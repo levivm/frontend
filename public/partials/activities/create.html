@@ -1,0 +1,152 @@
+
+<div class="container">
+  <div class="col-sm-2">
+      <nav class="nav-sidebar">
+      <ul class="nav tabs">
+            <!-- <li class="active"><a data-target="#tab1" data-toggle="tab">General</a></li> -->
+<!--             <li class=""><a data-target="#tab2" data-toggle="tab">Detalle</a></li> -->
+            <li><a ui-sref=".general">General</a></li>
+      </ul>
+    </nav>
+      <div><h2 class="add">Place for your add!</h2></div>
+  </div>
+  <div class="tab-content">
+    <div ui-view></div>
+<!--     <div class="tab-pane active text-style" id="tab1">
+      <div class="row">
+        <div class="col-md-6">
+       
+          <form name='activity_create_form' ng-submit="save_activity()">
+            <fieldset>
+              <h2>Descripción</h2>
+              <div class="form-group">
+                <label>Título</label>
+                <input class="form-control" ng-model='activity.title' name="title"/>
+                <div class="errors"  ng-show="activity_create_form.title.$invalid && !activity_create_form.title.$dirty">
+                  <span>{{ errors.title }}</span> 
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Descripción Corta</label>
+                <textarea class="form-control" ng-model='activity.large_description' name="large_description" ng-mouseover="setOverElement('short_description')">  </textarea>
+                <div class="errors" ng-show="activity_create_form.large_description.$invalid && !activity_create_form.large_description.$dirty">
+                  <span>{{ errors.large_description }}</span> 
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Descripción Detallada</label>
+                <textarea class="form-control" ng-model='activity.short_description' name="short_description">  </textarea>
+                <div class="errors" ng-show="activity_create_form.short_description.$invalid && !activity_create_form.short_description.$dirty">
+                  <span>{{ errors.short_description }}</span> 
+                </div>
+
+              </div>
+              <hr>
+              <h2>Información</h2>
+              <div class="form-group">
+                <label>Tipo</label>
+                <select ng-model="selected_type"
+                    ng-options="type as type.value for type in activity_types" name="type">
+                    <option value="" selected ng-show="!activity_create_form.type.$dirty">Seleccione..</option>
+                </select>
+                <span class="errors" ng-show="activity_create_form.type.$invalid && !activity_create_form.type.$dirty">
+                  <span>{{ errors.type }}</span> 
+                </span>
+                <label>Nivel</label>
+                <select ng-model="selected_level"
+                    ng-options="level as level.value for level in activity_levels" name="level">
+                    <option value="" selected ng-show="!activity_create_form.level.$dirty">Seleccione..</option>
+                </select>
+                <span class="errors" ng-show="activity_create_form.level.$invalid && !activity_create_form.level.$dirty">
+                  <span>{{ errors.level }}</span> 
+                </span>
+              </div>
+              <div class="form-group">
+                <label>Categoria</label>
+                <select ng-model="selected_category"
+                    ng-options="category as category.name for (index,category) in activity_categories" name="category">
+                    <option value="" selected ng-show="!activity_create_form.category.$dirty">Seleccione..</option>
+                </select>
+                <span class="errors" ng-show="activity_create_form.category.$invalid && !activity_create_form.category.$dirty">
+                  <span>{{ errors.category }}</span> 
+                </span>
+                <label>Sub-Categoria</label>
+                <select ng-model="selected_sub_category" 
+                    ng-options="sub_category as sub_category.name for (index,sub_category) in activity_sub_categories" name="sub_category"
+                    ng-mouseover="setOverElement('sub_category')" >
+                    <option value="" selected ng-show="!activity_create_form.sub_category.$dirty">Seleccione..</option>
+                </select>
+                <span class="errors" ng-show="activity_create_form.sub_category.$invalid && !activity_create_form.sub_category.$dirty">
+                  <span>{{ errors.sub_category }}</span> 
+                </span>
+              </div>
+              <label>Tags</label>
+              <tags-input ng-model="activity_tags" display-property="name" ng-mouseover="setOverElement('tags')"> 
+                <auto-complete source="loadTags()"></auto-complete>
+              </tags-input> 
+
+              <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+              <div ng-savedmessage message="Guardado" ng-model="isCollapsed" collapse="isCollapsed">
+                
+              </div>
+
+              </fieldset>
+          </form>
+        </div>
+        <div class="col-md-3">
+          <div class="sidebar-nav-fixed pull-right affix well">
+            <ul class="nav">
+              <li ng-show="showTooltip('short_description')">
+                Describe tu actividad de forma atractiva, especifica y díficil de olvidar.
+                Recuerda que esta descripción aparecerá en las tarjeta de la actividad.
+              </li>
+              <li ng-show="showTooltip('short_description')">
+                Describe tu actividad de forma atractiva, especifica y díficil de olvidar.
+                Recuerda que esta descripción aparecerá en las tarjeta de la actividad.
+              </li>
+              <li ng-show="showTooltip('sub_category')">
+                Elige la que más esté acorde con 
+                tu actividad. En caso de no hallar 
+                la adecuada, selecciona “otra” y 
+                rato después nosotros añadiremos una nueva que encaje con tu 
+                publicación.
+              </li>
+              <li ng-show="showTooltip('tags')">
+                Estas son etiquetas en forma de
+                hashtags, ayudando a los usuari
+                os a encontrar tu publicación en 
+                nuestros buscadores y redes so
+                ciales. Deja un espacio por cada 
+                palabra o frase que deseas agre-
+                gar, sin poner el #.
+                Un ejemplo para un curso de 
+                pizzas:
+                Hashtags: cocinaitaliana napoli
+                tana cuatroquesos
+              </li>
+
+
+
+
+            </ul>
+          </div>
+        </div>
+         <hr>
+
+      </div>
+    </div>
+
+
+    <div class="tab-pane text-style" id="tab2">
+      <div ui-view="detail"></div>
+    </div>
+    <div class="tab-pane text-style" id="tab3">
+      <h2>Stet clita</h2>
+      <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum 
+        iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla 
+        facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit 
+        augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
+        <hr>
+    </div> -->
+  </div>
+</div>

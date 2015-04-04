@@ -1,0 +1,46 @@
+      <select ng-model="vm.current_city"
+          ng-options="city as city.name for city in vm.cities" name="city" ng-change="vm.setCurrentCity(current_city)">
+          
+      </select>
+
+      <br/>
+      <a ui-sref="register">Register</a>
+      <br/>
+      <a ui-sref="login">Iniciar sesión</a>
+      <br/>
+      <a ui-sref="organizer-dashboard.profile">dashboard</a>
+      <br/>
+      <a ui-sref="activties-new.general">crear actividad</a>
+      <br/>
+      <a ui-sref="logout">logout</a>
+
+
+<!--       <div ng-show="!vm.isUserAuthenticated">
+        <div ng-controller="RegisterController as vm">
+          <a href="#" form-modal  
+                      template="partials/authentication/register.html"
+                      title="Register"
+                      ok-button-text="Registarme"
+                      form-submit="vm.register()"
+                      form-object="vm.user"
+                      form-errors="vm.errors"
+                      ng-init="vm.user_type='O';">
+            Registrarse
+          </a>
+        </div> 
+      </div> -->
+      <!-- <a ui-sref="modal-dialog.login">Iniciar sesión</a> -->
+<!--         <div ng-controller="LoginController as vm">
+          <a href="#" form-modal  
+                      template="partials/authentication/login.html"
+                      title="Login"
+                      ok-button-text="Iniciar Sesión"
+                      form-submit="vm.login()"
+                      form-object="vm.user"
+                      form-errors="vm.errors"
+                      ng-click='click()'>
+            Iniciar Sesión
+          </a>
+        </div> 
+      </div>-->
+

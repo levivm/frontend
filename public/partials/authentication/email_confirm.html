@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h3 class="modal-title">Confirmación de cuenta</h3>
+</div>
+<div class="modal-body">
+	<div ng-if='error'>
+		Hubo un error, tal vez la llave de confirmación haya expirado o es erronea. 
+	</div>
+	<div ng-if='!error'>
+		Su correo fue confirmado.
+	</div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="ok()">OK</button>
+</div>

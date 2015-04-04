@@ -1,0 +1,72 @@
+<div class="container">
+	<div class="col-sm-2">
+	    <nav class="nav-sidebar">
+			<ul class="nav tabs">
+	          <li class="active"><a data-target="#tab1" data-toggle="tab">Editar</a></li>
+	          <li class=""><a data-target="#tab2" data-toggle="tab">Foto y Video</a></li>
+	          <li class=""><a data-target="#tab3" data-toggle="tab">Comentarios</a></li>                               
+			</ul>
+		</nav>
+			<div><h2 class="add">Place for your add!</h2></div>
+	</div>
+	<div class="tab-content">
+		<div class="tab-pane active text-style" id="tab1">
+		  <h2>Información</h2>
+		  	<form name='vm.profile_form_info' ng-submit="vm.submit_info()">
+			    <fieldset>
+			      	<div class="form-group">
+			          <label>Nombre completo</label>
+			          <input type="text" class="form-control" ng-model='vm.organizer.name' name="full_name" >
+			        </div>
+			      	<div class="form-group">
+			          <label>Biografía</label>
+			          <textarea class="form-control" ng-model='vm.organizer.bio' name="bio">  </textarea>
+			        </div>
+			        <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+		        	<div collapse="vm.isCollapsed">
+						Guardado
+					</div>
+		        </fieldset>
+	    	</form>
+	       <hr>
+		</div>
+		<div class="tab-pane text-style" id="tab2">
+			<h2>Foto de Perfíl</h2>
+			<form name='vm.profile_form_photo' ng-submit="vm.submit_video()">
+			    <fieldset>
+			      	<div class="form-group">
+
+
+				        <label>Foto</label>
+						<div ng-file-drop="" ng-file-select="" ng-model="vm.organizer.photo" class="drop-box" drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" ng-multiple="false" allow-dir="true" accept="image/*" ng-file-change="vm.addImage(vm.organizer.photo)">
+								Drop Images or PDFs<div>here</div>
+						</div>
+						<div ng-no-file-drop="" class="drop-box">File Farg&amp;Drop not supported on your browser</div>
+						<img ng-src="{{vm.photo_path}}" width="300px" height="300px" /> 
+						<img ng-src="img/ajax-loader.gif" ng-show='vm.photo_loading'/> 
+			          	<div class="errors" ng-show="vm.photo_invalid">
+            				<span>{{ vm.errors.file }}</span> 
+          				</div>
+			        </div>
+			      	<div class="form-group">
+			          <label>Vídeo</label>
+			          <input type="text" class="form-control" ng-model="vm.organizer.youtube_video_url" name="video" placeholder='Ejemplo: www.youtube.com/watch?v=video_id'>
+			        </div>
+			        <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+		        	<div collapse="vm.isCollapsed">
+						Guardado
+					</div>
+		        </fieldset>
+	        </form>
+	       <hr>
+		</div>
+		<div class="tab-pane text-style" id="tab3">
+		  <h2>Stet clita</h2>
+		  <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum 
+		    iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla 
+		    facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit 
+		    augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
+		    <hr>
+		</div>
+	</div>
+</div>

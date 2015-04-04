@@ -1,0 +1,39 @@
+<div class="tab-pane active text-style">
+  <div class="row">
+    <div class="col-md-8">
+
+
+      <div ui-view>
+        <h1> Calendarios</h1>
+        <hr>
+        <p>
+
+          <a  ng-click="vm.createCalendar()" class="btn btn-primary" role="button">Agregar Calendario</a>
+        </p>
+        <div ng-repeat="calendar in vm.calendars | orderBy: 'initial_date'" >
+          
+          <div class="well">
+              Fecha de Inicio: {{calendar.initial_date | date }} / 
+              Cierre de ventas: {{calendar.closing_sale | date }} 
+
+          <button ng-click="vm.loadCalendar(calendar)" type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+          </button>
+          <button ng-click="vm.deleteCalendar(calendar)" type="button" class="btn btn-default" aria-label="Left Align">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </button>
+          </div>
+          <alert type="danger" ng-show="vm.calendar_errors[calendar.id]">{{vm.calendar_errors[calendar.id]}}</alert>
+
+
+
+        </div> 
+
+      </div>
+
+
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
