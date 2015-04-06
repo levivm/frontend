@@ -18,42 +18,6 @@
     var vm = this;
 
 
-    // console.log("parent controller",$scope.$parent);
-    // if ($stateParams.reset_key){
-
-    //   var modalInstance = $modal.open({
-    //     templateUrl: 'partials/authentication/reset_password.html',
-    //     controller: 'ResetPasswordCtrl',
-    //     controllerAs:'vm'
-    //   });
-
-    //   modalInstance.result.then(function(){
-
-      
-    //   $state.go('general-message',{'module_name':'authentication',
-    //                                'template_name':'change_password_success',
-    //                                'redirect_state':'home'});
-
-    //   });
-
-    // }
-    // else if ($stateParams.confirmation_key_done){
-
-    //   var modalInstance = $modal.open({
-    //     templateUrl: 'partials/authentication/password_reset_key_done.html',
-    //     controller: 'ModalInstanceCtrl',
-    //   });
-    // }
-    // else{
-
-    //   var modalInstance = $modal.open({
-    //     templateUrl: 'partials/authentication/reset_password.html',
-    //     controller: 'ResetPasswordCtrl',
-    //     controllerAs:'vm'
-    //   });
-
-    // }
-
 
     vm.errors = {};
     vm.forgotPassword = forgotPassword;
@@ -110,9 +74,6 @@
                                    'template_name':'password_reset_done',
                                    'redirect_state':'home'});
 
-      //Authentication.setAuthenticatedAccount(vm.user);
-
-      //window.location = '/';
     }
 
     /**

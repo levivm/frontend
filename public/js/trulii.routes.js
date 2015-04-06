@@ -6,7 +6,7 @@
     .constant("serverConf", {
         "url": "http://trulii-back.herokuapp.com",
         //"url": "http://localhost:8000",
-        "port": "80"
+       
     })
     .config(config)
     .run(run);
