@@ -14,7 +14,7 @@
     "angular-google-maps": "~2.0.13",
     "angular-local-storage": "~0.1.5",
     "angular-ui-router": "~0.2.13",
-    "bootstrap": "~3.3.2",
+    "bootstrap": "~3.3.4",
     "bower": "^1.4.1",
     "express": "~4.9.x",
     "jquery": "~2.1.3",
