@@ -20,7 +20,7 @@
     "lodash": "^3.6.0",
     "ng-file-upload": "~3.0.7",
     "ng-tags-input": "2.1.1",
-    
+    "bower": "1.4.1"
   },
   "engines": {
     "node": "0.10.x"
