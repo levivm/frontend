@@ -4,8 +4,8 @@
   angular
     .module('trulii.routes')
     .constant("serverConf", {
-        "url": "http://trulii-back.herokuapp.com",
-        //"url": "http://localhost:8000",
+        //"url": "http://trulii-back.herokuapp.com",
+        "url": "http://localhost:8000",
        
     })
     .config(config)

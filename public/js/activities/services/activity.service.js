@@ -80,19 +80,33 @@
           },
           addPhoto:function(image){
             var url = this.base_url + this.id + '/gallery';
-            return UploadFile.upload_file(image,url)
+            return UploadFile.upload_file(image,url);
 
 
           },
           deletePhoto:function(image){
-            var url = this.base_url + this.id + '/gallery'
+            var url = this.base_url + this.id + '/gallery';
             return $http({
               method: 'put',
               url:url,
               data: {'photo_id':image.id},
-              //headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
             });
+          },
+          publish:function(){
+
+            var scope = this;
+            var url = this.base_url + this.id + '/publish';
+            return $http({
+              method: 'put',
+              url:url,
+            }).then(function(response){
+
+              scope.active = true;
+
+            });
+
           }
+
           //   //$http.put('/api/activities/' + this.id, this);
           // },
           // change_email: function() {
