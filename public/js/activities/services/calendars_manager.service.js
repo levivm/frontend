@@ -134,7 +134,6 @@
                     return scope.calendars
                 },
                 function(response){
-                    console.log("maloooo",response);
                     return response.data
                 });
 
