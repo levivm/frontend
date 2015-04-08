@@ -25,7 +25,7 @@ Esto instalará las dependencias contenidas en el Gemfile. Una vez instaladas la
 Si se quiere trabajar en los archivos en Sass de Trulii ejecutar
 
 ```
-    compass watch
+    compass watch 
 ```
 
 Esto mantedrá a compass corriendo esperando cambios en los archivos Sass.
