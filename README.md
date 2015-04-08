@@ -6,7 +6,7 @@
 
 Instalar Ruby según tu SO. https://www.ruby-lang.org/es/downloads/
 
-Instalar Bundler (pip/npm de Ruby)
+Instalar Bundler (pip/npm de Ruby) 
 
 ```
 gem install bundler
