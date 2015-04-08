@@ -1,0 +1,30 @@
+<div class="container">
+   <div ng-style="{ 'background-image': 'url('+pc.activity.photos[0].photo+')' }">
+        <div>{{::pc.city}}</div>
+        <div>{{::pc.calendar.initial_date | date: 'dd MMMM yyyy'}}</div>
+        <div>{{::pc.calendar.session_price}}</div>
+        <div>{{::pc.activity.title}}</div>
+        <div>{{::pc.activity.short_description}}</div>
+        <div ng-repeat="tag in pc.activity.tags">{{::tag}}</div>
+    </div>
+
+    <div>
+        <img ng-src="{{::pc.organizer.photo}}" alt="" width="120" height="120"/>
+        <div>{{::pc.organizer.name}}</div>
+    </div>
+
+    <tabset justified="true">
+        <tab heading="Información" select="pc.changeState('info')"></tab>
+        <tab heading="Calendario" select="pc.changeState('calendar')"></tab>
+        <tab heading="Asistentes" select="pc.changeState('attendees')"></tab>
+    </tabset>
+
+    <div>
+        <span>Tipo de Actividad {{::pc.activity.type_display}}</span>
+        <span>Sub-categoría {{::pc.activity.sub_category_display}}</span>
+        <span>Nivel {{::pc.activity.level_display}}</span>
+        <span>Duración 3 horas</span>
+    </div>
+
+    <div ui-view></div>
+</div>

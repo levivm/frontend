@@ -4,6 +4,7 @@
   angular
     .module('trulii.activities', [
       'uiGmapgoogle-maps',
+      'youtube-embed',
       'trulii.activities.config',
       'trulii.activities.controllers',
       'trulii.activities.services',

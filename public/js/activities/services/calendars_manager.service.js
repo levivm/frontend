@@ -113,7 +113,8 @@
             // return deferred.promise;
         },
         // /* Use this function in order to get instances of all the books */
-        loadCalendars: function(activity_id) {
+        loadCalendars: function(activity_id, active) {
+            var actives = active || false;
             this.activity_id = activity_id;
             //var deferred = $q.defer();
 
@@ -123,7 +124,11 @@
                 return scope.calendars
             }
 
-            return $http.get(serverConf.url+'/api/activities/'+this.activity_id+'/calendars/')
+            var url = serverConf.url+'/api/activities/'+this.activity_id+'/calendars/';
+
+            if (actives) url += '?actives=true';
+
+            return $http.get(url)
                 .then(function(response){
 
                     //scope.calendars = [];
@@ -199,7 +204,7 @@
 
             }
             return calendar;
-        },
+        }
 
     };
     return CalendarsManager;
