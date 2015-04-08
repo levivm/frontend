@@ -15,7 +15,7 @@ gem install bundler
 Estando en el root del proyecto hacer
 
 ```
-bundler install
+bundler install 
 ```
 Esto instalará las dependencias contenidas en el Gemfile. Una vez instaladas las dependencias los estidos de trulii con
 
