@@ -82,9 +82,28 @@
 
 <body>
 
-	hola
+	<!-- NAV BAR -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span> <span
+                class="icon-bar"></span> <span class="icon-bar"></span> <span
+                class="icon-bar"></span>
+            </button>
+            <a> <span class="navbar__logo"></span>            
+            </a>
 
-	<ui-view></ui-view>
+          </div>
+        </div>
+ 	</nav>
+
+	<div class="with-navbar">
+		<ui-view></ui-view>	
+	</div>
+	
+
 	<div ui-view="landing"></div>
 
 	<script type="text/ng-template" id="modalContainer"> </script>

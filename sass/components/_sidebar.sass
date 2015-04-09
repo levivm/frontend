@@ -1,5 +1,6 @@
 
 @import "bootstrap-variables"
+@import "colors"
 
 
 .sidebar
@@ -9,15 +10,33 @@
 	left: 0
 	display: block
 	z-index: 1000	
-	overflow-x: hidden
-	overflow-y: auto	
+	overflow-x: visible
+	overflow-y: visible	
 	background: red
 	padding: 20px 0
+	background-color: white
+	border-right: 1px solid $color-delimeter-dark
+	text-transform: uppercase
+	letter-spacing: 1px
+	line-height: 3em
 
 	&__item
+		color: $text-color
 		display: block
 		width: 100%
 		padding: 15px
+		border-top: 1px solid $color-delimeter-light
+		text-decoration: none		
+
+		&--selected			
+			background: $color-global-background
+			border-top: 1px solid $color-delimeter-dark
+			position: relative
+			left: 1px
+			border-right: 1px solid $color-delimeter-light
+
+.with-sidebar
+	padding-left: 4em
 
 
 
