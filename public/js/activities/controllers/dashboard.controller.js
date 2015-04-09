@@ -17,9 +17,6 @@
   function ActivityDashboardCtrl($scope,Activity,activity) {
 
 
-
-
-
     var pc = this;
 
     pc.all_steps_completed = false;
@@ -29,8 +26,6 @@
 
     activate();
 
-   
-   
 
     pc.activitySectionUpdated = _checkSections;
 
