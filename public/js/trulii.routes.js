@@ -189,11 +189,15 @@
       //templateUrl: 'modalContainer' 
     })
     .state('organizer-dashboard.activities', {
-      url:'',
-      //controller: 'OrganizerAccountCtrl', 
-      //controllerAs: 'vm',
+      url:'activities',
+      controller: 'OrganizerActivitiesCtrl', 
+      controllerAs: 'vm',
       templateUrl: 'partials/organizers/dashboard_activities.html',
       //templateUrl: 'modalContainer' 
+      resolve: {
+
+        activities: getOrganizerActivities
+      }
     })
     .state('activties-new', {
       abstract:true,
@@ -345,6 +349,16 @@
 
   }
 
+
+
+  getOrganizerActivities.$inject = ['organizer'];
+
+  function getOrganizerActivities(organizer){
+
+    return organizer.getActivities()
+
+
+  }
 
   /****** RESOLVER FUNCTIONS ACTIVITIES *******/
 

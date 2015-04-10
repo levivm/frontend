@@ -101,7 +101,7 @@
               url:url,
             }).then(function(response){
 
-              scope.active = true;
+              scope.published = true;
 
             });
 
