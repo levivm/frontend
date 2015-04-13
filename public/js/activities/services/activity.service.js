@@ -17,6 +17,7 @@
       function Activity(activitieData) {
           if (activitieData) {
               this.setData(activitieData);
+              console.log("Activity data",activitieData);
           }
           this.tags = [];
           this.base_url = serverConf.url+'/api/activities/';
