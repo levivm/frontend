@@ -10,11 +10,11 @@
     .module('trulii.activities.controllers')
     .controller('ActivityGeneralController', ActivityGeneralController);
 
-  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','filterFilter','Categories','activity'];
+  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','ActivitiesManager','filterFilter','Categories','activity'];
   /**
   * @namespace ActivityGeneralController
   */
-  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,Categories,activity) {
+  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,ActivitiesManager,filterFilter,Categories,activity) {
 
 
     var vm = this;
@@ -100,7 +100,8 @@
         //console.log("voy a crear");
         vm.save_activity = _createActivity;
         vm.creating = true;
-        vm.activity.generalInfo().then(_setPreSaveInfo);
+        //console.log("activity manager",ActivitiesManager);
+        ActivitiesManager.loadGeneralInfo().then(_setPreSaveInfo);
 
 
     }

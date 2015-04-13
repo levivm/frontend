@@ -351,11 +351,11 @@
 
 
 
-  getOrganizerActivities.$inject = ['organizer'];
+  getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
 
-  function getOrganizerActivities(organizer){
+  function getOrganizerActivities(ActivitiesManager,organizer){
 
-    return organizer.getActivities()
+    return ActivitiesManager.loadOrganizerActivities(organizer.id)
 
 
   }
@@ -388,18 +388,14 @@
 
 
 
-  getActivity.$inject = ['$stateParams','$q','Activity'];
+  getActivity.$inject = ['$stateParams','$q','ActivitiesManager'];
   
-  function getActivity($stateParams,$q,Activity){
+  function getActivity($stateParams,$q,ActivitiesManager){
 
-    var activity = new Activity();
-    if (!$stateParams.activity_id){
-      var deferred = $q.defer();
-      deferred.resolve(activity);
-      return deferred.promise;
-    }
 
-    return activity.load($stateParams.activity_id)
+
+    return ActivitiesManager.getActivity($stateParams.activity_id)
+
   }
 
 
@@ -414,9 +410,6 @@
     $rootScope.$on('$stateChangeStart',function(e,toState,toParams,fromState){
 
       $state.previous = fromState;
-
-      //$modalStack.dismissAll();
-
 
       if ( !(toState.data) ) return;
       if ( !(toState.data.requiredAuthentication) ) return;
