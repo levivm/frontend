@@ -19,7 +19,8 @@ $gray:                   lighten($gray-base, 33.5%) // #555
 $gray-light:             lighten($gray-base, 46.7%) // #777
 // $gray-lighter:           lighten($gray-base, 93.5%) // #eee
 
-// $brand-primary:         darken(#428bca, 6.5%) // #337ab7
+$brand-primary:           #FC0 // Yellow Trulii
+$brand-secondary:         #00BCD4 // Cyan
 // $brand-success:         #5cb85c
 // $brand-info:            #5bc0de
 // $brand-warning:         #f0ad4e
@@ -31,7 +32,7 @@ $gray-light:             lighten($gray-base, 46.7%) // #777
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               $color-global-background
+$body-bg:               #F5F5F5
 //** Global text color on `<body>`.
 $text-color:            $gray
 
@@ -112,7 +113,7 @@ $icon-font-path: "../fonts/bootstrap/"
 // $line-height-large:         1.3333333 // extra decimals for Win 8.1 Chrome
 // $line-height-small:         1.5
 
-$border-radius-base:        0px
+$border-radius-base:        4px
 // $border-radius-large:       6px
 // $border-radius-small:       3px
 
@@ -159,7 +160,7 @@ $border-radius-base:        0px
 // $btn-default-border:             #ccc
 
 // $btn-primary-color:              #fff
-$btn-primary-bg:                 $color-brand-main
+$btn-primary-bg:                 $brand-secondary
 // $btn-primary-border:             darken($btn-primary-bg, 5%)
 
 // $btn-success-color:              #fff
@@ -205,7 +206,7 @@ $btn-primary-bg:                 $color-brand-main
 // $input-border-radius-small:      $border-radius-small
 
 //** Border color for inputs on focus
-$input-border-focus:             $color-brand-main
+$input-border-focus:             $brand-primary
 
 //** Placeholder text color
 // $input-color-placeholder:        #999
@@ -370,7 +371,7 @@ $navbar-padding-vertical:          (($navbar-height - $line-height-computed) / 2
 // $navbar-collapse-max-height:       340px
 
 // $navbar-default-color:             #777
-$navbar-default-bg:                $color-brand-main
+$navbar-default-bg:                $brand-primary
 // $navbar-default-border:            darken($navbar-default-bg, 6.5%)
 
 // Navbar links

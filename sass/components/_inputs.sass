@@ -1,13 +1,15 @@
 
+@import "variables"
 
 .form-group
 	margin-top: 3.4em
 
-input.form-control, textarea.form-control, select.form-control
+.form-control, .form-control, .form-control
 	background: transparent
 	border: 0px
 	border-bottom: 1px solid #CCC
 	box-shadow: none
+	border-radius: 0px
 
 	&:focus
 		box-shadow: none
@@ -23,16 +25,17 @@ input.form-control, textarea.form-control, select.form-control
 
 
 .form-submit-controls
-	border-top: 2px solid $color-brand-main
+	border-top: 1px dashed gray	
 	text-align: right
+	margin-top: 3em
+	margin-bottom: 3em
 
-	.btn-primary
-		border-top: none
+	.btn-primary		
+		margin-top: 1em
 		font-weight: bolder
 		text-transform: uppercase
-		padding: 10px 50px
-		display: inline-block
-		position: relative
-		right: 20px
+		padding: .8em 6em
+		display: inline-block		
+		text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.4)
 
 
