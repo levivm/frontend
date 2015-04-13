@@ -118,7 +118,7 @@
         vm.activity_types  = data.types;
         vm.activity_levels = data.levels;
 
-
+        console.log(data);
 
         vm.loadTags = function(){
             var deferred = $q.defer();
@@ -211,7 +211,7 @@
 
         vm.errors = {};
         vm.isCollapsed = true;
-        
+        vm.duration = 1;
 
 
     }

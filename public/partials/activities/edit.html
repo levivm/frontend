@@ -1,57 +1,68 @@
 
-<div class="container">
-  <div class="col-sm-2">
-      <nav class="nav-sidebar">
-      <ul class="nav tabs">
-            <!-- <li class="active"><a data-target="#tab1" data-toggle="tab">General</a></li> -->
-<!--             <li class=""><a data-target="#tab2" data-toggle="tab">Detalle</a></li> -->
-            <li ui-sref-active="active">
-              <a ui-sref=".general" >
-                General
-                <span ng-show="pc.steps.general" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </a>
-            </li>
-            <li>
-              <a ui-sref=".detail">
-                Detalle
-                <span ng-show="pc.steps.detail" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </a>
-            </li>                          
-            <li>
-              <a ui-sref=".calendars">
-                Calendario
-                <span ng-show="pc.steps.calendars" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </a>
-            </li>
-            <li>
-              <a ui-sref=".location">
-                Ubicación 
-                <span ng-show="pc.steps.location" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </a>
-            </li>                          
-            <li>
-              <a ui-sref=".gallery">
-                Galería
-                <span ng-show="pc.steps.gallery" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+<div class="container-fluid">
 
-              </a>
+  <div class="row">
+    
+      <div class="col-sm-2">
+        <nav class="col-sm-2 sidebar">
+        
+              <li ui-sref-active="active">
+                <a ui-sref=".general" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  General
+                  <span ng-show="pc.steps.general" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref=".detail" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Detalle
+                  <span ng-show="pc.steps.detail" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>                          
+              <li>
+                <a ui-sref=".calendars" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Calendario
+                  <span ng-show="pc.steps.calendars" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref=".location" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Ubicación 
+                  <span ng-show="pc.steps.location" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>                          
+              <li>
+                <a ui-sref=".gallery" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Galería
+                  <span ng-show="pc.steps.gallery" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
 
-            </li>                          
-            <li>
-              <a ui-sref=".return-policy">
-              Política de devolución
-              <span ng-show="pc.steps.return_policy" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-              </a>
-            </li>                          
-      </ul>
-    </nav>
-      <div>
-        <input type="submit" id="submit" ng-show="pc.all_steps_completed && !pc.activity.active" class="btn btn-primary" ng-click="pc.publish_activity()" value="Publicar"/>
-      </div>
+                </a>
+
+              </li>                          
+              <li>
+                <a ui-sref=".return-policy" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                Política de devolución
+                <span ng-show="pc.steps.return_policy" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>                          
+
+      </nav>
+
+        <div>
+          <input type="submit" id="submit" ng-show="pc.all_steps_completed && !pc.activity.active" class="btn btn-primary" ng-click="pc.publish_activity()" value="Publicar"/>
+        </div>
+    </div>
+
+    <div class="col-sm-offset-2 col-sm-10 with-sidebar" ui-view>
+      
+
+    </div>
+
   </div>
+
+<!--
   <div class="tab-content">
     <div ui-view></div>
-<!--     <div class="tab-pane active text-style" id="tab1">
+     <div class="tab-pane active text-style" id="tab1">
       <div class="row">
         <div class="col-md-6">
        
@@ -186,6 +197,8 @@
         facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit 
         augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
         <hr>
-    </div> -->
-  </div>
+    </div> 
+      </div>
 </div>
+
+-->
