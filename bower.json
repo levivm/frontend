@@ -24,7 +24,8 @@
     "ng-tags-input": "2.1.1",
     "bootstrap": "~3.3.2",
     "angular-local-storage": "~0.1.5",
-    "lodash": "~3.6.0"
+    "lodash": "~3.6.0",
+    "bootstrap-material-design": "~0.3.0"
   },
   "resolutions": {
     "lodash": "~3.6.0",
