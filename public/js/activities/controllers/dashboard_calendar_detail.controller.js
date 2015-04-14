@@ -90,8 +90,6 @@
         vm.errors = {};
     }
 
-
-
     function _addError(field, message) {
       console.log("field error",field,message);
       vm.errors[field] = message;
@@ -102,7 +100,7 @@
 
       if (field == "non_field_errors")
         return;
-      
+
 
       var valid_form_field = vm.activity_calendar_form[field] ? vm.activity_calendar_form[field]:false;
       if (valid_form_field)
@@ -114,23 +112,23 @@
 
 
     function _errored(errors) {
-        
+
         //console.log("EROOOOOR",errors);
         //console.log("EROOOOOR",errors);
         angular.forEach(errors, function(message,field) {
 
 
-          _addError(field,message[0]);   
+          _addError(field,message[0]);
 
         });
 
-        
+
 
     }
 
     function _successCreated(calendar){
 
-      
+
       vm.save_calendar = _updateCalendar;
       vm.isCollapsed = false;
       console.log("ccccccccccccccc",$scope);
@@ -141,7 +139,7 @@
     function _successUpdate(calendar){
       vm.isCollapsed = false;
       $scope.$parent.vm.setCalendar(calendar);
-      
+
 
     }
 

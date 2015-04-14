@@ -302,7 +302,7 @@
       templateUrl: 'partials/activities/dashboard_return_policy.html'
         })
     .state('activities-detail', {
-      url:'/activities/{activity_id:int}/',
+      url:'/activities/{activity_id:int}',
       controller: 'ActivityDetailController',
       controllerAs: 'pc',
       resolve: {
@@ -334,6 +334,16 @@
         controller: 'ActivityDetailAttendeesController',
         controllerAs: 'vm',
         templateUrl: 'partials/activities/detail.attendees.html'
+    })
+    .state('activities-enroll', {
+        url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
+        controller: 'ActivityDetailEnrollController',
+        controllerAs: 'vm',
+        templateUrl: 'partials/activities/detail.enroll.html',
+        resolve: {
+            activity: getActivity,
+            calendar: fetchCalendar
+        }
     });
     
     $urlRouterProvider.otherwise('/');
@@ -401,6 +411,15 @@
     return CalendarsManager.getCalendar(calendar_id);
   }
 
+
+  fetchCalendar.$inject = ['$stateParams', 'CalendarsManager'];
+
+  function fetchCalendar($stateParams, CalendarsManager) {
+      var activityId = $stateParams.activity_id;
+      var calendarId = $stateParams.calendar_id;
+
+      return CalendarsManager.fetchCalendar(activityId, calendarId);
+  }
 
 
   getActivity.$inject = ['$stateParams','$q','Activity'];
