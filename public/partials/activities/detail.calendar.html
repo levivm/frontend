@@ -10,7 +10,7 @@
         </tr>
         <tr ng-repeat="calendar in vm.calendars track by $index">
             <td>
-                <input type="radio" name="calendar" ng-model="vm.calendar_selected" ng-value="calendar"/>
+                <input type="radio" name="calendar" ng-model="vm.calendar_selected" ng-value="calendar" ng-change="pc.changeCalendarSelected(calendar)"/>
                 {{ ::calendar.initial_date | date:'dd MMMM yyyy' }}
             </td>
             <td>{{ ::calendar.number_of_sessions }}</td>

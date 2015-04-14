@@ -5,8 +5,7 @@
     .module('trulii.routes')
     .constant("serverConf", {
         //"url": "http://trulii-back.herokuapp.com",
-        "url": "http://localhost:8000",
-        "port": "80"
+        "url": "http://localhost:8000"
     })
     .config(config)
     .run(run);
@@ -189,11 +188,15 @@
             //templateUrl: 'modalContainer'
     })
     .state('organizer-dashboard.activities', {
-      url:'',
-      //controller: 'OrganizerAccountCtrl', 
-      //controllerAs: 'vm',
-      templateUrl: 'partials/organizers/dashboard_activities.html'
-            //templateUrl: 'modalContainer'
+      url:'activities',
+      controller: 'OrganizerActivitiesCtrl', 
+      controllerAs: 'vm',
+      templateUrl: 'partials/organizers/dashboard_activities.html',
+      //templateUrl: 'modalContainer' 
+      resolve: {
+
+        activities: getOrganizerActivities
+      }
     })
     .state('activties-new', {
       abstract:true,
@@ -302,7 +305,7 @@
       templateUrl: 'partials/activities/dashboard_return_policy.html'
         })
     .state('activities-detail', {
-      url:'/activities/{activity_id:int}/',
+      url:'/activities/{activity_id:int}',
       controller: 'ActivityDetailController',
       controllerAs: 'pc',
       resolve: {
@@ -334,6 +337,16 @@
         controller: 'ActivityDetailAttendeesController',
         controllerAs: 'vm',
         templateUrl: 'partials/activities/detail.attendees.html'
+    })
+    .state('activities-enroll', {
+        url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
+        controller: 'ActivityDetailEnrollController',
+        controllerAs: 'vm',
+        templateUrl: 'partials/activities/detail.enroll.html',
+        resolve: {
+            activity: getActivity,
+            calendar: fetchCalendar
+        }
     });
     
     $urlRouterProvider.otherwise('/');
@@ -376,6 +389,16 @@
   }
 
 
+
+  getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
+
+  function getOrganizerActivities(ActivitiesManager,organizer){
+
+    return ActivitiesManager.loadOrganizerActivities(organizer.id)
+
+
+  }
+
   /****** RESOLVER FUNCTIONS ACTIVITIES *******/
 
 
@@ -402,19 +425,24 @@
   }
 
 
+  fetchCalendar.$inject = ['$stateParams', 'CalendarsManager'];
 
-  getActivity.$inject = ['$stateParams','$q','Activity'];
+  function fetchCalendar($stateParams, CalendarsManager) {
+      var activityId = $stateParams.activity_id;
+      var calendarId = $stateParams.calendar_id;
+
+      return CalendarsManager.fetchCalendar(activityId, calendarId);
+  }
+
+
+  getActivity.$inject = ['$stateParams','$q','ActivitiesManager'];
   
-  function getActivity($stateParams,$q,Activity){
+  function getActivity($stateParams,$q,ActivitiesManager){
 
-    var activity = new Activity();
-    if (!$stateParams.activity_id){
-      var deferred = $q.defer();
-      deferred.resolve(activity);
-      return deferred.promise;
-    }
 
-    return activity.load($stateParams.activity_id)
+
+    return ActivitiesManager.getActivity($stateParams.activity_id)
+
   }
 
 
@@ -429,9 +457,6 @@
     $rootScope.$on('$stateChangeStart',function(e,toState,toParams,fromState){
 
       $state.previous = fromState;
-
-      //$modalStack.dismissAll();
-
 
       if ( !(toState.data) ) return;
       if ( !(toState.data.requiredAuthentication) ) return;
