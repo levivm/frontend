@@ -5,6 +5,10 @@
         <a ng-click="vm.plus()" style="cursor: pointer;">+</a>
     </div>
 
+    <div>
+        precio: {{ vm.amount | currency }}
+    </div>
+
     <div class="form-group" ng-repeat="assistant in vm.assistants">
         <input class="form-control" name="first_name" type="text" placeholder="Nombre"  ng-model="assistant.first_name" required/>
         <div class="errors"  ng-show="vm.enrollForm.first_name.$invalid && !vm.enrollForm.first_name.$dirty">

@@ -20,6 +20,7 @@
             if (vm.quantity > 1) {
                 vm.quantity -= 1;
                 vm.assistants.pop();
+                _calculateAmount();
             }
         };
 
@@ -27,6 +28,7 @@
             if (vm.quantity < vm.capacity) {
                 vm.quantity += 1;
                 vm.assistants.push({});
+                _calculateAmount();
             }
         };
 
@@ -78,6 +80,10 @@
 
         function _successCreation(response) {
             //$state.go('')
+        }
+
+        function _calculateAmount() {
+            vm.amount = vm.quantity * calendar.session_price;
         }
     }
 })();
