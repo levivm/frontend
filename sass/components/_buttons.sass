@@ -7,7 +7,6 @@
 
 .btn-group
 	
-
 	.btn
 		border-radius: 0px
 
@@ -22,6 +21,19 @@
 			color: white
 			z-index: 20
 			transform: scale(1.1)
+
+		&.btn-intermediate-level.active
+			background: $intermediate-level
+			border: 1px solid darken($intermediate-level, 5%)
+
+		&.btn-advanced-level.active			
+			background: $advanced-level
+			border: 1px solid darken($advanced-level, 5%)
+
+		&.btn-no-level.active			
+			background: $brand-secondary
+			border: 1px solid darken($brand-secondary, 5%)
+
 
 
 .btn-group-justified .btn 
