@@ -45,7 +45,9 @@
             </li>                          
       </ul>
     </nav>
-      <div><h2 class="add">Place for your add!</h2></div>
+      <div>
+        <input type="submit" id="submit" ng-show="pc.all_steps_completed && !pc.activity.published" class="btn btn-primary" ng-click="pc.publish_activity()" value="Publicar"/>
+      </div>
   </div>
   <div class="tab-content">
     <div ui-view></div>

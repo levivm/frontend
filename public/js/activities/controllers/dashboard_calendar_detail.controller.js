@@ -131,7 +131,6 @@
 
       vm.save_calendar = _updateCalendar;
       vm.isCollapsed = false;
-      console.log("ccccccccccccccc",$scope);
       $scope.$parent.vm.setCalendar(calendar);
 
     }

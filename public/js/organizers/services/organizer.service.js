@@ -5,44 +5,6 @@
 (function () {
   'use strict';
 
-  // angular
-  //   .module('trulii.organizers.services')
-  //   .factory('OrganizerService', OrganizerService);
-
-  // OrganizerService.$inject = ['$cookies', '$http','Authentication'];
-
-  // /**
-  // * @namespace OrganizerService
-  // * @returns {Factory}
-  // */
-  // function OrganizerService($cookies, $http,Authentication) {
-
-
-
-  //   var OrganizerService = {
-  //     update: update,
-  //   };
-
-
-
-  //   return OrganizerService;
-
-
-  //   function update(organizer) {
-
-  //     var request = $http({
-  //       method: 'put',
-  //       url:'/api/organizers/'+organizer.id+'/',
-  //       data: organizer,
-  //       headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-  //     });
-
-  //     return request
-  //   }
-
-
-  // }
-
   angular
     .module('trulii.organizers.services')
     .factory('Organizer', Organizer);
@@ -115,7 +77,6 @@
             .then(function(response){
               Authentication.updateAuthenticatedAccount().then(function(response){
                 scope.setData(response.data);
-                console.log("ORGANIZER",scope);
 
               });
 
@@ -136,6 +97,17 @@
             return Authentication.change_password(password_data)
             //$http.put('/api/organizers/' + this.id, this);
           },
+          getActivities:function(){
+
+            return $http({
+              method: 'get',
+              url:serverConf.url+'/api/organizers/'+this.id+'/activities/',
+              //headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            }).then(function(response){
+              return response.data
+            });
+
+          }
       };
       return Organizer;
   };

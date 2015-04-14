@@ -5,8 +5,7 @@
     .module('trulii.routes')
     .constant("serverConf", {
         //"url": "http://trulii-back.herokuapp.com",
-        "url": "http://localhost:8000",
-        "port": "80"
+        "url": "http://localhost:8000"
     })
     .config(config)
     .run(run);
@@ -189,11 +188,15 @@
             //templateUrl: 'modalContainer'
     })
     .state('organizer-dashboard.activities', {
-      url:'',
-      //controller: 'OrganizerAccountCtrl', 
-      //controllerAs: 'vm',
-      templateUrl: 'partials/organizers/dashboard_activities.html'
-            //templateUrl: 'modalContainer'
+      url:'activities',
+      controller: 'OrganizerActivitiesCtrl', 
+      controllerAs: 'vm',
+      templateUrl: 'partials/organizers/dashboard_activities.html',
+      //templateUrl: 'modalContainer' 
+      resolve: {
+
+        activities: getOrganizerActivities
+      }
     })
     .state('activties-new', {
       abstract:true,
@@ -386,6 +389,16 @@
   }
 
 
+
+  getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
+
+  function getOrganizerActivities(ActivitiesManager,organizer){
+
+    return ActivitiesManager.loadOrganizerActivities(organizer.id)
+
+
+  }
+
   /****** RESOLVER FUNCTIONS ACTIVITIES *******/
 
 
@@ -422,18 +435,14 @@
   }
 
 
-  getActivity.$inject = ['$stateParams','$q','Activity'];
+  getActivity.$inject = ['$stateParams','$q','ActivitiesManager'];
   
-  function getActivity($stateParams,$q,Activity){
+  function getActivity($stateParams,$q,ActivitiesManager){
 
-    var activity = new Activity();
-    if (!$stateParams.activity_id){
-      var deferred = $q.defer();
-      deferred.resolve(activity);
-      return deferred.promise;
-    }
 
-    return activity.load($stateParams.activity_id)
+
+    return ActivitiesManager.getActivity($stateParams.activity_id)
+
   }
 
 
@@ -448,9 +457,6 @@
     $rootScope.$on('$stateChangeStart',function(e,toState,toParams,fromState){
 
       $state.previous = fromState;
-
-      //$modalStack.dismissAll();
-
 
       if ( !(toState.data) ) return;
       if ( !(toState.data.requiredAuthentication) ) return;
