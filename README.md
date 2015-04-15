@@ -2,33 +2,30 @@
 
 # Configuración del entorno de trabajo
 
-## Usando Compass
+## Para compilar estilos
 
-Instalar Ruby según tu SO. https://www.ruby-lang.org/es/downloads/
+Ejecutar 'npm install' debería ser suficiente para compilar los estilos de Trulii y ser feluz. Ahora, si quieres trabajar los estilos debes saber los siguiente:
 
-Instalar Bundler (pip/npm de Ruby) 
+Instalar Gulp de forma global
 
 ```
-gem install bundler
+sudo npm install -g gulp
 ```
  
-Estando en el root del proyecto hacer
+Estando en el root del proyecto correr la tarea 'less.compile'
 
 ```
-bundler install 
+gulp less.compile
 ```
-Esto instalará las dependencias contenidas en el Gemfile. Una vez instaladas las dependencias los estidos de trulii con
+Esto compilará los estilos de trulii y los creará en la carpeta /css respectiva
+
+Si se quiere trabajar en los archivos en Less de Trulii ejecutar
 
 ```
-    compass compile 
-```
-Si se quiere trabajar en los archivos en Sass de Trulii ejecutar
-
-```
-    compass watch 
+    gulp less.watch 
 ```
 
-Esto mantedrá a compass corriendo esperando cambios en los archivos Sass.
+Eso iniciará un proceso que esperará cambios sobre los archivos Less para así actualizar los estilos de forma automática.
 
 
 
