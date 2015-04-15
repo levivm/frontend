@@ -4,6 +4,8 @@
 
 ## Para compilar estilos
 
+Ejecutar 'npm install' debería ser suficiente para compilar los estilos de Trulii y ser feluz. Ahora, si quieres trabajar los estilos debes saber los siguiente:
+
 Instalar Gulp de forma global
 
 ```

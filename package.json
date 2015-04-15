@@ -43,12 +43,5 @@
     "heroku",
     "express"
   ],
-  "license": "MIT",
-  "devDependencies": {
-    "gulp-watch": "~1.2.1",    
-    "gulp-less": "~3.0.2",
-    "gulp": "~3.8.11",
-    "gulp-debug": "~2.0.1",
-    "gulp-plumber": "~1.0.0"
-  }
+  "license": "MIT"
 }

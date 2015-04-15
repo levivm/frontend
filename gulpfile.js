@@ -34,7 +34,7 @@ var LESS_OUTPUT = 'public/css'
 gulp.task('less.watch', function () {
 
     watch('less/**/*.less', function(){
-        gulp.src('less/trulii.less')  // TODO: RegExp for files that do not begin with an underscore
+        gulp.src('less/trulii.less')  // TODO: RegExp for files that don't begin with an underscore
         .pipe(plumber())
         .pipe(less(LESS_CONFIG))
         .pipe(gulp.dest(LESS_OUTPUT));
