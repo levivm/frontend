@@ -1,1 +1,14 @@
-<div>Attendees Tab</div>
+<div>
+    Hasta ahora
+    <ng-pluralize count="vm.totalItems"
+                  when="{'one': 'va 1 asistente.',
+                     'other': 'van {} asistentes.'}">
+    </ng-pluralize>
+    ¡Faltas tú!
+    <hr/>
+    <div ng-repeat="assistant in vm.assistants">
+        {{::assistant.first_name}}
+    </div>
+
+    <pagination total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged()" items-per-page="vm.itemsPerPage"></pagination>
+</div>
