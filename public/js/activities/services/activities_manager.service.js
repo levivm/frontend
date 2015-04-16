@@ -4,9 +4,9 @@
     .module('trulii.activities.services')
     .factory('ActivitiesManager', ActivitiesManager);
 
-  ActivitiesManager.$inject = ['$http','$q','serverConf','Activity'];
+  ActivitiesManager.$inject = ['$http','$q','serverConf','Activity', 'CalendarsManager'];
 
-  function ActivitiesManager($http,$q,serverConf,Activity) {  
+  function ActivitiesManager($http,$q,serverConf,Activity, CalendarsManager) {
     
 
 
