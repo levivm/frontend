@@ -198,6 +198,16 @@
         activities: getOrganizerActivities
       }
     })
+    .state('organizer-profile', {
+        url: '/organizers/{organizer_id:int}/profile',
+        controller: 'OrganizerProfileController',
+        controllerAs: 'vm',
+        templateUrl: 'partials/organizers/profile.html',
+        resolve: {
+            organizer: getOrganizerUser,
+            activities: getOrganizerActivities
+        }
+    })
     .state('activties-new', {
       abstract:true,
       url:'/activities/new/',
@@ -407,10 +417,13 @@
   getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
 
   function getOrganizerActivities(ActivitiesManager,organizer){
-    console.log('organizer', organizer);
     return ActivitiesManager.loadOrganizerActivities(organizer.id)
+  }
 
+  getOrganizerUser.$inject = ['$stateParams', 'organizersManager'];
 
+  function getOrganizerUser($stateParams, organizersManager) {
+      return organizersManager.getOrganizer($stateParams.organizer_id)
   }
 
   /****** RESOLVER FUNCTIONS ACTIVITIES *******/
