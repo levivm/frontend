@@ -1,0 +1,21 @@
+<div>
+    <img ng-src="{{::vm.organizer.photo}}" alt="" width="300" height="300"/>
+    <div ng-repeat="activity in vm.activities" ng-style="{ 'background-image': 'url('+activity.photos[0].photo+')' }"
+            style="background-repeat: no-repeat; height: 300px;">
+        {{::activity.title}}
+    </div>
+</div>
+
+<aside>
+    <div>{{::vm.organizer.name}}</div>
+    <div>Miembro {{::vm.organizer.created_at | date:'MMMM, yyyy'}}</div>
+
+    <div>
+        <h2>Biografía</h2>
+        <p>{{::vm.organizer.bio}}</p>
+    </div>
+
+    <div>
+        <youtube-video video-url="vm.organizer.youtube_video_url"></youtube-video>
+    </div>
+</aside>
