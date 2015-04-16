@@ -26,6 +26,7 @@
         //     return instance;
         // },
         _retrieveInstance: function(calendarId, calendarData) {
+            console.log('pool', this._pool);
             var instance = this._search(calendarId);
             //console.log("INSTANCIA",calendarId)
             if (!(instance)){
@@ -112,6 +113,21 @@
             // }
             // return deferred.promise;
         },
+        fetchCalendar: function (activityId, calendarId) {
+            var scope = this;
+            this.activity_id = activityId;
+            var deferred = $q.defer();
+            $http.get(serverConf.url+'/api/activities/'+activityId+'/calendars/'+calendarId+'/')
+                .success(function (result) {
+                    var calendar = scope._retrieveInstance(result.id, result);
+                    deferred.resolve(calendar);
+                })
+                .error(function (result) {
+                    deferred.reject(result);
+                });
+
+            return deferred.promise;
+        },
         // /* Use this function in order to get instances of all the books */
         loadCalendars: function(activity_id, active) {
             var actives = active || false;
@@ -133,6 +149,7 @@
 
                     //scope.calendars = [];
                     scope._setCalendars(response.data);
+                    console.log(response.data);
                     //scope.calendars = $filter('orderBy')(scope.calendars,'initial_date');
 
 

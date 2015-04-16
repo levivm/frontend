@@ -21,9 +21,11 @@
 
 
     var pc = this;
-    pc.steps = {};
 
-    //pc.detailsUpdated = _detailsUpdated;
+    pc.all_steps_completed = false;
+    pc.steps = {};
+    pc.activity = activity;
+    pc.publish_activity = _publish_activity;
 
     activate();
 
@@ -32,16 +34,35 @@
 
     pc.activitySectionUpdated = _checkSections;
 
+    function _publish_activity(){
+
+
+        activity.publish().then(function(response){
+
+            console.log("actividad publicada");
+        });
+
+    }
+
+
     function _checkSections(activity){
 
-
+        var all_completed = true;
         angular.forEach(activity.completed_steps,function(value,key){
 
 
             pc.steps[key] = value;
+            if(!(value))
+                all_completed = false;
         });
 
+        pc.all_steps_completed = all_completed
+
     }
+
+
+
+
 
     function activate(){
 
@@ -50,75 +71,6 @@
     }
 
 
-    // $scope.isCollapsed = true;
-
-    // function success(){ 
-
-    //   $scope.isCollapsed   = false;
-
-    //   var timer = $timeout(function() {
-    //     $scope.isCollapsed = true;
-    //   }, 1000);
-    // }
-
-    // function _update_info() {
-
-    //   var data_info = {
-    //     'name':$scope.organizer.name,
-    //     'bio' :$scope.organizer.bio,
-    //     'id'  :$scope.organizer.id
-    //   }
-
-    //   OrganizerService.update(data_info)
-    //     .success(_updateSuccess)
-    //     .error(_updateFail);
-      
-    // }
-
-
-    // function _update_video() {
-
-    //   var data_info = {
-    //     'youtube_video_url':$scope.organizer.youtube_video_url,
-    //     'id'  :$scope.organizer.id
-    //   }
-
-    //   OrganizerService.update(data_info)
-    //     .success(_updateSuccess)
-    //     .error(_updateFail);
-      
-    // }
-
-    // function _updateSuccess(response){
-
-    //   Authentication.updateAuthenticatedAccount();
-    //   _toggleMessage();
-
-
-    // }
-
-    // function _updateFail(response){
-    //     console.log(response);
-    // }
-
-    
-    // function _successUploaded(data){
-
-    //   Authentication.updateAuthenticatedAccount();
-
-    //   $scope.photo_path    = data.photo;
-    //   $scope.photo_invalid = false;
-    //   $scope.photo_loading = false;
-
-    // }
-
-    // function _toggleMessage(){
-
-    //   $scope.isCollapsed   = false;
-    //   var timer = $timeout(function() {
-    //     $scope.isCollapsed = true;
-    //   }, 1000);
-    // }
 
   };
 
