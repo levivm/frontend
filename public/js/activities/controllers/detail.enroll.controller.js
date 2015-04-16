@@ -8,41 +8,41 @@
     ActivityDetailEnrollController.$inject = ['$state', 'ActivitiesManager', 'activity', 'calendar'];
 
     function ActivityDetailEnrollController($state, ActivitiesManager, activity, calendar) {
-        var vm = this;
+        var pc = this;
 
         initialize();
 
-        vm.getCapacity = function () {
-            return new Array(vm.capacity)
+        pc.getCapacity = function () {
+            return new Array(pc.capacity)
         };
 
-        vm.minus = function () {
-            if (vm.quantity > 1) {
-                vm.quantity -= 1;
-                vm.assistants.pop();
+        pc.minus = function () {
+            if (pc.quantity > 1) {
+                pc.quantity -= 1;
+                pc.assistants.pop();
                 _calculateAmount();
             }
         };
 
-        vm.plus = function () {
-            if (vm.quantity < vm.capacity) {
-                vm.quantity += 1;
-                vm.assistants.push({});
+        pc.plus = function () {
+            if (pc.quantity < pc.capacity) {
+                pc.quantity += 1;
+                pc.assistants.push({});
                 _calculateAmount();
             }
         };
 
-        vm.enroll = function () {
+        pc.enroll = function () {
             _clearErrors();
 
             var student_data = JSON.parse(localStorage.getItem('ls.user'));
 
             var data = {
-                activity: activity.id,
+                chronogram: calendar.id,
                 student: student_data.id,
-                amount: vm.quantity * calendar.session_price,
-                quantity: vm.quantity,
-                assistants: vm.assistants
+                amount: pc.quantity * calendar.session_price,
+                quantity: pc.quantity,
+                assistants: pc.assistants
             };
 
             ActivitiesManager.enroll(activity.id, data)
@@ -51,23 +51,24 @@
         };
 
         function initialize(){
-            vm.errors = {};
-            vm.capacity = calendar.capacity > 10 ? 10 : calendar.capacity;
-            vm.quantity = 1;
-            vm.assistants = [{}];
-            vm.amount = calendar.session_price;
+            pc.errors = {};
+            pc.capacity = calendar.capacity > 10 ? 10 : calendar.capacity;
+            pc.quantity = 1;
+            pc.assistants = [{}];
+            pc.amount = calendar.session_price;
 
-            vm.calendar = calendar;
-            vm.activity = activity;
+            pc.calendar = calendar;
+            pc.activity = activity;
+            pc.success = false;
         }
 
         function _clearErrors() {
-            vm.enrollForm.$setPristine();
-            vm.errors = {};
+            pc.enrollForm.$setPristine();
+            pc.errors = {};
         }
 
         function _addError(field, message) {
-            vm.errors[field] = message;
+            pc.errors[field] = message;
         }
 
         function _error(errors){
@@ -79,11 +80,13 @@
         }
 
         function _successCreation(response) {
-            //$state.go('')
+            calendar.addAssistants(response.assistants);
+            pc.success = true;
+            $state.go('activities-enroll.success');
         }
 
         function _calculateAmount() {
-            vm.amount = vm.quantity * calendar.session_price;
+            pc.amount = pc.quantity * calendar.session_price;
         }
     }
 })();

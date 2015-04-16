@@ -1,0 +1,33 @@
+<div>
+    <h2>¡Felicidades!</h2>
+    Prepárate para asistir a:
+
+    <div>
+        <div>{{::vm.activity.title}}</div>
+        <div>{{::vm.activity.location.address}}</div>
+        <div ng-repeat="session in vm.calendar.sessions">
+            {{::session.date | date:'EEEE, dd MMMM'}} {{::session.start_time | date:'h:mma'}}-{{::session.end_time | date:'h:mma'}}
+        </div>
+    </div>
+</div>
+
+<div>
+    <h2>Asistentes</h2>
+    <p>Aprender algo nuevo siempre es más divertido si lo compartes con tus amigos. ¡Invítalos y disfruta el doble!
+
+    Ellos también asistirán</p>
+
+    <span ng-repeat="assistant in vm.calendar.assistants">{{::assistant.first_name}}</span>
+</div>
+
+<aside>
+    <div>
+        <h2>Organizador</h2>
+        <img ng-src="{{::vm.activity.organizer.photo}}" alt=""/>
+    </div>
+
+    <div ng-repeat="activity in vm.organizerActivities" ng-style="{ 'background-image': 'url('+activity.photos[0].photo+')' }"
+            style="background-repeat: no-repeat; height: 300px">
+        <div>{{::activity.title}}</div>
+    </div>
+</aside>

@@ -1,29 +1,39 @@
-<form name="vm.enrollForm" novalidate ng-submit="vm.enroll()">
-    <div>
-        <a ng-click="vm.minus()" style="cursor: pointer;">-</a>
-        <span>{{ vm.quantity }}</span>
-        <a ng-click="vm.plus()" style="cursor: pointer;">+</a>
-    </div>
-
-    <div>
-        precio: {{ vm.amount | currency }}
-    </div>
-
-    <div class="form-group" ng-repeat="assistant in vm.assistants">
-        <input class="form-control" name="first_name" type="text" placeholder="Nombre"  ng-model="assistant.first_name" required/>
-        <div class="errors"  ng-show="vm.enrollForm.first_name.$invalid && !vm.enrollForm.first_name.$dirty">
-          <span>{{ vm.errors.assistants[$index].first_name[0] }}</span>
+<div ng-show="!pc.success">
+    <form name="pc.enrollForm" novalidate ng-submit="pc.enroll()">
+        <div>
+            <a ng-click="pc.minus()" style="cursor: pointer;">-</a>
+            <span>{{ pc.quantity }}</span>
+            <a ng-click="pc.plus()" style="cursor: pointer;">+</a>
         </div>
 
-        <input class="form-control" name="last_name" type="text" placeholder="Apellido" ng-model="assistant.last_name" required/>
-        <div class="errors"  ng-show="vm.enrollForm.last_name.$invalid && !vm.enrollForm.last_name.$dirty">
-          <span>{{ vm.errors.assistants[$index].last_name[0] }}</span>
+        <div>
+            precio: {{ pc.amount | currency }}
         </div>
 
-        <input class="form-control" name="email" type="email" placeholder="Email" ng-model="assistant.email" required/>
-        <div class="errors"  ng-show="vm.enrollForm.email.$invalid && !vm.enrollForm.email.$dirty">
-          <span>{{ vm.errors.assistants[$index].email[0] }}</span>
+        <div class="form-group" ng-repeat="assistant in pc.assistants">
+            <input class="form-control" name="first_name" type="text" placeholder="Nombre"
+                   ng-model="assistant.first_name" required/>
+
+            <div class="errors" ng-show="pc.enrollForm.first_name.$invalid && !pc.enrollForm.first_name.$dirty">
+                <span>{{ pc.errors.assistants[$index].first_name[0] }}</span>
+            </div>
+
+            <input class="form-control" name="last_name" type="text" placeholder="Apellido"
+                   ng-model="assistant.last_name" required/>
+
+            <div class="errors" ng-show="pc.enrollForm.last_name.$invalid && !pc.enrollForm.last_name.$dirty">
+                <span>{{ pc.errors.assistants[$index].last_name[0] }}</span>
+            </div>
+
+            <input class="form-control" name="email" type="email" placeholder="Email" ng-model="assistant.email"
+                   required/>
+
+            <div class="errors" ng-show="pc.enrollForm.email.$invalid && !pc.enrollForm.email.$dirty">
+                <span>{{ pc.errors.assistants[$index].email[0] }}</span>
+            </div>
         </div>
-    </div>
-    <button type="submit" class="btn btn-default">Inscribir</button>
-</form>
+        <button type="submit" class="btn btn-default">Inscribir</button>
+    </form>
+</div>
+
+<div ui-view></div>

@@ -341,11 +341,25 @@
     .state('activities-enroll', {
         url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
         controller: 'ActivityDetailEnrollController',
-        controllerAs: 'vm',
+        controllerAs: 'pc',
         templateUrl: 'partials/activities/detail.enroll.html',
         resolve: {
             activity: getActivity,
             calendar: fetchCalendar
+        }
+    })
+    .state('activities-enroll.success', {
+        url: '',
+        controller: 'ActivityEnrollSuccessController',
+        controllerAs: 'vm',
+        templateUrl: 'partials/activities/detail.enroll.success.html',
+        resolve: {
+            //activity: getActivity,
+            //calendar: fetchCalendar,
+            organizer: ['activity', function (activity) {
+                return  activity.organizer
+            }],
+            organizerActivities: getOrganizerActivities
         }
     });
     
@@ -393,7 +407,7 @@
   getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
 
   function getOrganizerActivities(ActivitiesManager,organizer){
-
+    console.log('organizer', organizer);
     return ActivitiesManager.loadOrganizerActivities(organizer.id)
 
 

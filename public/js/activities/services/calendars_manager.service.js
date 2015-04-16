@@ -114,10 +114,13 @@
             // return deferred.promise;
         },
         fetchCalendar: function (activityId, calendarId) {
+            var scope = this;
+            this.activity_id = activityId;
             var deferred = $q.defer();
             $http.get(serverConf.url+'/api/activities/'+activityId+'/calendars/'+calendarId+'/')
                 .success(function (result) {
-                    deferred.resolve(result);
+                    var calendar = scope._retrieveInstance(result.id, result);
+                    deferred.resolve(calendar);
                 })
                 .error(function (result) {
                     deferred.reject(result);
