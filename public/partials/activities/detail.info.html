@@ -1,0 +1,30 @@
+<div>
+    <h3>Descripción</h3>
+    <p>{{ ::vm.activity.large_description }}</p>
+</div>
+
+<div>
+    <h3>Conócenos</h3>
+    <youtube-video video-url="vm.activity.youtube_video_url"></youtube-video>
+</div>
+
+<hr/>
+<div class="col-md-2">Contenido</div>
+<div class="col-md-10">{{ ::vm.activity.content }}</div>
+
+<div class="col-md-2">Audiencia</div>
+<div class="col-md-10">{{ ::vm.activity.audience }}</div>
+
+<div class="col-md-2">Objetivo(s)</div>
+<div class="col-md-10">{{ ::vm.activity.goals }}</div>
+
+<div class="col-md-2">Requisitos</div>
+<div class="col-md-10">{{ ::vm.activity.requirements }}</div>
+
+<div class="col-md-2">Información Extra</div>
+<div class="col-md-10">{{ ::vm.activity.extra_info }}</div>
+
+<div class="col-md-2">Política de Reembolso</div>
+<div class="col-md-10">{{ ::vm.activity.return_policy }}</div>
+
+<div id="map-canvas" style="width:800px; height: 500px; margin: 0; padding: 0"></div>

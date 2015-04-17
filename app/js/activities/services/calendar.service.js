@@ -294,10 +294,10 @@
               session.start_time = new_start_time;
             }
 
+          },
+          addAssistants: function (assistants) {
+              this.assistants = this.assistants.concat(assistants);
           }
-
-
-
 
 
           // create: function(){

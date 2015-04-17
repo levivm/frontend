@@ -26,6 +26,7 @@
     "angular-local-storage": "~0.1.5",
     "lodash": "~3.6.0",
     "bootstrap-material-design": "~0.3.0"
+    "angular-youtube-mb": "~1.0.0"
   },
   "resolutions": {
     "lodash": "~3.6.0",

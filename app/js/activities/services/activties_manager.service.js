@@ -4,9 +4,9 @@
     .module('trulii.activities.services')
     .factory('ActivitiesManager', ActivitiesManager);
 
-  ActivitiesManager.$inject = ['$http','$q','Activity'];
+  ActivitiesManager.$inject = ['$http','$q','Activity', 'serverConf'];
 
-  function ActivitiesManager($http,$q,Activity) {  
+  function ActivitiesManager($http,$q,Activity, serverConf) {
     
 
     
@@ -81,9 +81,11 @@
         //     }
         //     return book;
         // },
-
+        enroll: function (activity_id, data) {
+            return $http.post(serverConf.url+'/api/activities/'+activity_id+'/orders', data);
+        }
     };
     return ActivitiesManager;
-}
+  }
 
 })();
