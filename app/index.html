@@ -3,6 +3,10 @@
 <head>
 
     <!-- inject:bower:css -->
+    <link rel="stylesheet" href="lib/ng-tags-input/ng-tags-input.min.css">
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap-material-design/dist/css/material.css">
+    <link rel="stylesheet" href="lib/bootstrap-material-design/dist/css/ripples.css">
     <!-- endinject -->
 
     <!-- inject:css -->
@@ -14,17 +18,47 @@
 
 <body>
 
-hola
+<!-- NAV BAR -->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a ui-sref="home" class="navbar__logo"></a>
+        </div>
+    </div>
+</nav>
 
-<ui-view></ui-view>
+<div class="with-navbar">
+    <ui-view></ui-view>
+</div>
+
+
 <div ui-view="landing"></div>
 
 <script type="text/ng-template" id="modalContainer"> </script>
 
 <!-- inject:bower:js -->
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-cookies/angular-cookies.js"></script>
+<script src="lib/lodash/lodash.js"></script>
+<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="lib/jquery/dist/jquery.js"></script>
+<script src="lib/ng-file-upload/angular-file-upload.js"></script>
+<script src="lib/ng-tags-input/ng-tags-input.min.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="lib/bootstrap-material-design/dist/js/material.js"></script>
+<script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
+<script src="lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
 <!-- endinject -->
-
-<script src="https://www.youtube.com/iframe_api"></script>
 
 <!-- inject:js -->
 <script src="js/trulii.js"></script>
@@ -37,6 +71,7 @@ hola
 <script src="js/organizers/organizers.module.js"></script>
 <script src="js/utils/utils.module.js"></script>
 <script src="js/activities/activities.config.js"></script>
+<script src="js/activities/services/activities_manager.service.js"></script>
 <script src="js/activities/services/activity.service.js"></script>
 <script src="js/activities/services/activties_manager.service.js"></script>
 <script src="js/activities/services/calendar.service.js"></script>
@@ -46,6 +81,7 @@ hola
 <script src="js/authentication/services/session_injector.factory.js"></script>
 <script src="js/locations/services/locations_manager.service.js"></script>
 <script src="js/organizers/services/organizer.service.js"></script>
+<script src="js/organizers/services/organizer_manager.service.js"></script>
 <script src="js/utils/services/upload_file.service.js"></script>
 <script src="js/authentication/directives/authentication.directive.js"></script>
 <script src="js/authentication/directives/form_modal.directive.js"></script>
@@ -60,6 +96,12 @@ hola
 <script src="js/activities/controllers/dashboard_general.controller.js"></script>
 <script src="js/activities/controllers/dashboard_location.controller.js"></script>
 <script src="js/activities/controllers/dashboard_return_policy.controller.js"></script>
+<script src="js/activities/controllers/detail.attendees.controller.js"></script>
+<script src="js/activities/controllers/detail.calendar.controller.js"></script>
+<script src="js/activities/controllers/detail.controller.js"></script>
+<script src="js/activities/controllers/detail.enroll.controller.js"></script>
+<script src="js/activities/controllers/detail.enroll.success.controller.js"></script>
+<script src="js/activities/controllers/detail.info.controller.js"></script>
 <script src="js/authentication/controllers/email_confirm.controller.js"></script>
 <script src="js/authentication/controllers/forgot_password.controller.js"></script>
 <script src="js/authentication/controllers/login.controller.js"></script>
@@ -70,7 +112,9 @@ hola
 <script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/organizers/controllers/dashboard.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_account.controller.js"></script>
+<script src="js/organizers/controllers/dashboard_activities.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_profile.controller.js"></script>
+<script src="js/organizers/controllers/profile.controller.js"></script>
 <script src="js/utils/controllers/modal_dialog.controller.js"></script>
 <script src="js/utils/controllers/utils.controller.js"></script>
 <!-- endinject -->
