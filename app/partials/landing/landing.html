@@ -1,46 +1,65 @@
-      <select ng-model="vm.current_city"
-          ng-options="city as city.name for city in vm.cities" name="city" ng-change="vm.setCurrentCity(current_city)">
-          
-      </select>
+<div class="row">
+    <div class="col-xs-2">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="list-group">
+                    <label for="city-select-landing" class="sr-only"
+                           ng-bind="home.strings.CITIES_LABEL"></label>
+                    <select id="city-select-landing" name="city"
+                            class="list-group-item" ng-model="home.current_city"
+                            ng-options="city as city.name for city in home.cities"
+                            ng-change="home.setCurrentCity(current_city)">
+                    </select>
 
-      <br/>
-      <a ui-sref="register">Register</a>
-      <br/>
-      <a ui-sref="login">Iniciar sesión</a>
-      <br/>
-      <a ui-sref="organizer-dashboard.profile">dashboard</a>
-      <br/>
-      <a ui-sref="activties-new.general">crear actividad</a>
-      <br/>
-      <a ui-sref="logout">logout</a>
+                    <a ui-sref="register" ui-sref-active="active"
+                       class="list-group-item" ng-bind="home.strings.SIGN_UP_LABEL"></a>
+                    <a ui-sref="login" ui-sref-active="active"
+                       class="list-group-item" ng-bind="home.strings.LOGIN_LABEL"></a>
+                    <a ui-sref="organizer-dashboard.profile" ui-sref-active="active"
+                       class="list-group-item" ng-bind="home.strings.DASHBOARD_LABEL"></a>
+                    <a ui-sref="activties-new.general" ui-sref-active="active"
+                       class="list-group-item" ng-bind="home.strings.NEW_ACTIVITY_LABEL"></a>
+                    <a ui-sref="logout"
+                       class="list-group-item" ng-bind="home.strings.LOGOUT_LABEL"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-10">
+        <div class="jumbotron">
+            <h1>Trulii</h1>
+            <p>Bienvenido a Trulii!</p>
+            <p><a class="btn btn-default btn-lg" ui-sref="register"
+                  ng-bind="home.strings.SIGN_UP_LABEL"></a></p>
+        </div>
+    </div>
+</div>
 
-
-<!--       <div ng-show="!vm.isUserAuthenticated">
+<!--       <div ng-show="!home.isUserAuthenticated">
         <div ng-controller="RegisterController as vm">
           <a href="#" form-modal  
                       template="partials/authentication/register.html"
                       title="Register"
                       ok-button-text="Registarme"
-                      form-submit="vm.register()"
-                      form-object="vm.user"
-                      form-errors="vm.errors"
-                      ng-init="vm.user_type='O';">
+                      form-submit="home.register()"
+                      form-object="home.user"
+                      form-errors="home.errors"
+                      ng-init="home.user_type='O';">
             Registrarse
           </a>
         </div> 
       </div> -->
-      <!-- <a ui-sref="modal-dialog.login">Iniciar sesión</a> -->
+<!-- <a ui-sref="modal-dialog.login">Iniciar sesión</a> -->
 <!--         <div ng-controller="LoginController as vm">
           <a href="#" form-modal  
                       template="partials/authentication/login.html"
                       title="Login"
                       ok-button-text="Iniciar Sesión"
-                      form-submit="vm.login()"
-                      form-object="vm.user"
-                      form-errors="vm.errors"
+                      form-submit="home.login()"
+                      form-object="home.user"
+                      form-errors="home.errors"
                       ng-click='click()'>
             Iniciar Sesión
           </a>
         </div> 
       </div>-->
-

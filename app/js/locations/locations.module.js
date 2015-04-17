@@ -3,14 +3,10 @@
 
   angular
     .module('trulii.locations', [
-      'trulii.locations.services',
-      //'trulii.locations.directives'
+      'trulii.locations.services'
     ]);
 
   angular
     .module('trulii.locations.services', ['ngCookies']);
-
-  // angular
-  //  .module('trulii.organizer.directives',[]);
 
 })();

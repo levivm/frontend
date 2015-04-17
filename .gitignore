@@ -3,6 +3,9 @@ node_modules/
 bower_components/
 app/lib/
 
+# Generated Docs directory
+docs/
+
 # Distribution directory
 public/
 

@@ -1,15 +1,19 @@
-/** Gulp main Modules **/
+
+/* Gulp main Modules */
+
 var gulp  = require('gulp');
 var gutil = require('gulp-util');
 var debug = require('gulp-debug');
 var DEBUG_OPTS = {title: 'unicorn:'};
 //Usage .pipe(debug(DEBUG_OPTS))
 
-/** Gulp Inject Modules **/
+/* Gulp Inject Modules */
+
 var inject = require('gulp-inject');
 var mainBowerFiles = require('main-bower-files');
 
-/** Filesystem related Modules and Values**/
+/* Filesystem related Modules and Values */
+
 var watch = require('gulp-watch');
 var connect = require('gulp-connect');
 var livereload = require('gulp-livereload');
@@ -63,16 +67,16 @@ var dist = {
     'all': DIST_ROOT
 };
 
-/**
+/*
  * Styles Section - Styles related modules, values and tasks
- * **/
+ * */
 
-/** LESS and CSS related Modules **/
+/* LESS and CSS related Modules */
 var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
 
-/** Vendor LESS files path **/
+/* Vendor LESS files path */
 var BOOTSTRAP_LESS_PATH = BOWER_COMPONENTS_PATH + '/bootstrap/less';
 var BOOTSTRAP_MATERIAL_LESS_PATH = BOWER_COMPONENTS_PATH + '/bootstrap-material-design/less';
 
@@ -83,7 +87,7 @@ var LESS_CONFIG = {
     ]
 };
 
-// Task to Watch changes on '.less' files
+/** Task to Watch changes on '.less' files **/
 gulp.task('less.watch', function () {
     watch(source.less.all, function(){
         gulp.src(source.less.src)
@@ -92,17 +96,17 @@ gulp.task('less.watch', function () {
     });
 });
 
-// Task to ccompile '.less' files
+/** Task to compile '.less' files **/
 gulp.task('less-compile', function () {
     return gulp.src(source.less.src)
         .pipe(less(LESS_CONFIG))
         .pipe(autoprefixer())
-        .pipe(minifyCSS())
+//        .pipe(minifyCSS())
         .pipe(gulp.dest(source.css.root))
         .pipe(size());
 });
 
-// Injector for .css file from Bower Dependencies
+/** Injector Task for .css file from Bower Dependencies **/
 gulp.task('bower-css-injector', function() {
     var filter = '**/*.css';
     var injectParams = {name: 'inject:bower', relative: true};
@@ -114,6 +118,7 @@ gulp.task('bower-css-injector', function() {
         .pipe(gulp.dest(APP_ROOT));
 });
 
+/** Injector Task for .css file generated from .less inside source **/
 gulp.task('source-css-injector', ['less-compile'], function() {
     var injectParams = {relative: true};
     var srcParams = { read: false };
@@ -122,9 +127,11 @@ gulp.task('source-css-injector', ['less-compile'], function() {
 
     return target.pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT))
-        .pipe(livereload());
+        .pipe(livereload())
+        .pipe(connect.reload());
 });
 
+/** Meta Injector Task for .css files (Bower and source) **/
 gulp.task('css-injector', ['bower-css-injector', 'source-css-injector'], function() {
     var injectParams = {relative: true};
     var srcParams = { read: false };
@@ -135,22 +142,26 @@ gulp.task('css-injector', ['bower-css-injector', 'source-css-injector'], functio
         .pipe(gulp.dest(APP_ROOT));
 });
 
-/**
+/*
  * Javascript Section - Javascript related modules, values and tasks
- * **/
+ * */
 
-/** Javascript related Modules **/
+/* Javascript related Modules */
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 
-/* run javascript through jshint */
+/** Javascript related Tasks **/
+
+/** Tasks to run .js source files through jshint **/
 gulp.task('jshint', function() {
     return gulp.src(source.javascript.files)
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
-/* concat javascript files, minify if --type production */
+//TODO needs work
+/* NICE TO HAVE: https://github.com/hparra/gulp-rename */
+/** concat javascript files, minify if --type production **/
 gulp.task('build-js', ['clean'], function() {
     return gulp.src(source.javascript.files)
         .pipe(sourcemaps.init())
@@ -163,7 +174,8 @@ gulp.task('build-js', ['clean'], function() {
         .pipe(size());
 });
 
-// REWORK
+/* TODO REWORK. Should concatenate and minify all bower .js files that are not .min.
+ * an then inject it on index.html. */
 gulp.task('build-vendor-js', function() {
     return gulp.src('vendor/*.js')
         .pipe(concat('vendor.js'))
@@ -176,13 +188,44 @@ gulp.task('build-vendor-js', function() {
         .pipe(size());
 });
 
-/**
- * HTML Section - HTML related modules, values and tasks
- * **/
+/** Injects .js files from Bower dependencies inside '<!-- inject:bower:js -->' tag **/
+gulp.task('bower-js-injector', function() {
+    var filter = '**/*.js';
+    var injectParams = {name: 'inject:bower', relative: true};
+    var srcParams = { base: BOWER_COMPONENTS_PATH, read: false };
+    var target = gulp.src(source.html.index);
+    var sources = gulp.src(mainBowerFiles(filter), srcParams);
 
-/** HTML related Modules **/
+    return target.pipe(inject(sources, injectParams))
+        .pipe(gulp.dest(APP_ROOT));
+});
+
+/** Injects .js sources inside '<!-- inject:js -->' tag **/
+gulp.task('source-js-injector', function () {
+    var injectParams = {relative: true};
+    var target = gulp.src(source.html.index);
+    var sources = gulp.src(localDependencies, {read: false, relative: true});
+
+    return target.pipe(inject(sources, injectParams))
+        .pipe(gulp.dest(APP_ROOT))
+        .pipe(livereload())
+        .pipe(connect.reload());
+});
+
+/** Meta Task for .js files injection (Bower and sources) **/
+gulp.task('js-injector', ['bower-js-injector', 'source-js-injector'], function () {
+});
+
+/*
+ * HTML Section - HTML related modules, values and tasks
+ * */
+
+/* HTML related Modules */
+
 var minifyHTML = require('gulp-minify-html');
 var htmlify = require('gulp-angular-htmlify');
+
+/* HTML related configuration objects */
 
 var MINIFY_HTML_CONF = {
     empty: true,
@@ -198,30 +241,9 @@ var HTMLIFY_CONF = {
     verbose: true
 };
 
-gulp.task('bower-js-injector', function() {
-    var filter = '**/*.js';
-    var injectParams = {name: 'inject:bower', relative: true};
-    var srcParams = { base: BOWER_COMPONENTS_PATH, read: false };
-    var target = gulp.src(source.html.index);
-    var sources = gulp.src(mainBowerFiles(filter), srcParams);
+/* HTML related Tasks */
 
-    return target.pipe(inject(sources, injectParams))
-        .pipe(gulp.dest(APP_ROOT));
-});
-
-gulp.task('source-js-injector', function () {
-    var injectParams = {relative: true};
-    var target = gulp.src(source.html.index);
-    var sources = gulp.src(localDependencies, {read: false, relative: true});
-
-    return target.pipe(inject(sources, injectParams))
-        .pipe(gulp.dest(APP_ROOT))
-        .pipe(livereload());
-});
-
-gulp.task('js-injector', ['bower-js-injector', 'source-js-injector'], function () {
-});
-
+/** Minification Task for .html index file **/
 gulp.task('minify-html-index', function() {
     return gulp.src(source.html.index)
         .pipe(htmlify(HTMLIFY_CONF))
@@ -229,6 +251,7 @@ gulp.task('minify-html-index', function() {
         .pipe(gulp.dest(dist.html.index));
 });
 
+/** Minification Task for .html partials files **/
 gulp.task('minify-html-partials', function() {
     return gulp.src(source.html.partials)
         .pipe(htmlify(HTMLIFY_CONF))
@@ -236,7 +259,52 @@ gulp.task('minify-html-partials', function() {
         .pipe(gulp.dest(dist.html.partials));
 });
 
+/** Livereload Task for .html files **/
+gulp.task('on-html-livereload', function() {
+    return gulp.src(source.html.partials)
+        .pipe(livereload())
+        .pipe(connect.reload());
+});
+
+/** Meta Task for .html files minification **/
 gulp.task('minify-html', ['clean', 'minify-html-index', 'minify-html-partials']);
+
+/*
+ * ng-docs Section - ng-docs related modules, values and tasks
+ * */
+
+var gulpDocs = require('gulp-ngdocs');
+
+var NG_DOCS_ROOT = __dirname + '/docs/';
+
+/* ng-docs Tasks */
+
+/** ng-docs generation Task **/
+gulp.task('ngdocs', [], function () {
+    var ngDocsOptions = {
+        html5Mode: true,
+        startPage: '/api',
+        title: "Trulii Angular Docs",
+//        image: __dirname + "/logo-trulii.png",
+        imageLink: "/api",
+        titleLink: "/api"
+    };
+    return gulp.src(source.javascript.files)
+        .pipe(gulpDocs.process(ngDocsOptions))
+        .pipe(gulp.dest(NG_DOCS_ROOT))
+        .pipe(livereload())
+        .pipe(connect.reload());;
+});
+
+/** ng-docs Connect Task for documentation, can be accessed through 'api/' **/
+gulp.task('serve-ngdocs', function() {
+    gutil.log('Starting server on ' + NG_DOCS_ROOT);
+    connect.server({
+        root: NG_DOCS_ROOT,
+        port: 8000,
+        livereload: true
+    });
+});
 
 /** Gulp Core Tasks **/
 
@@ -245,7 +313,6 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('connect', function() {
-//    var path = __dirname + '/' + APP_ROOT + '/';
     var path = APP_ROOT + '/';
     gutil.log('Starting server on ' + path);
     connect.server({
@@ -254,16 +321,20 @@ gulp.task('connect', function() {
     });
 });
 
+/** Meta Task to inject dependencies **/
 gulp.task('injector', ['css-injector', 'js-injector']);
 
-/* Watch these files for changes and run the task on update */
+/** Watch these files for changes and run the task on update **/
 gulp.task('watch', function() {
-    livereload.listen();
+//    livereload.listen();
     gutil.log('Starting watch on ' + source.javascript.root + ' and ' + source.less.root);
-    //TODO HTML
-    gulp.watch(source.javascript.files, ['source-js-injector']);
+    gulp.watch([source.html.index, source.html.partials], ['on-html-livereload']);
+    gulp.watch(source.javascript.files, ['source-js-injector', 'ng-docs']);
     gulp.watch(source.less.all, ['source-css-injector']);
 });
 
-/* run the watch task when gulp is called without arguments */
-gulp.task('default', ['connect', 'watch']);
+/** Serve task for development mode **/
+gulp.task('serve', ['connect', 'watch']);
+
+/** Default Task, run serve when gulp is called without arguments **/
+gulp.task('default', ['serve']);

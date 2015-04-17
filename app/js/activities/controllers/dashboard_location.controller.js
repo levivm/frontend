@@ -5,18 +5,16 @@
 (function () {
   'use strict';
 
-
   angular
     .module('trulii.activities.controllers')
     .controller('ActivityDBLocationController', ActivityDBLocationController);
 
   ActivityDBLocationController.$inject = ['$scope','uiGmapGoogleMapApi','uiGmapIsReady','filterFilter','activity','cities','LocationManager'];
-  /**
+
+    /**
   * @namespace ActivityDBLocationController
   */
   function ActivityDBLocationController($scope,uiGmapGoogleMapApi,uiGmapIsReady,filterFilter,activity,cities,LocationManager) {
-
-
 
     var vm = this;
 
@@ -113,20 +111,25 @@
         vm.isCollapsed = true;
         var city_id;
         var city  = vm.activity.location ? vm.activity.location.city : null;
-        if (city){
-          city_id = typeof city == 'number' ? city:city.id;
-        }
-        else{
-          city_id = LocationManager.getCurrentCity().id;
-          vm.activity.location = {};
 
+        if(city){
+          city_id = typeof city == 'number' ? city:city.id;
+        } else {
+          LocationManager.getCurrentCity().then(success, error);
+          vm.activity.location = {};
         }
+
         vm.activity.location.city = filterFilter(vm.cities,{id:city_id})[0];
-          
 
         _initialize_map();
         _setMarker(); 
 
+        function success(city){
+            city_id = city.id;
+        }
+        function error(){
+            city_id = null;
+        }
     }
 
     function _initialize_map(){
@@ -142,7 +145,6 @@
 
         latitude  = location.point[0];
         longitude = location.point[1];
-
 
         vm.map = {
           center: {latitude: latitude, longitude: longitude }, 
@@ -214,11 +216,7 @@
           }
         }
       };
-
-
     }
-       
-
-  };
+  }
 
   })();
