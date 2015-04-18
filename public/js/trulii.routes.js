@@ -208,8 +208,10 @@
         requiredAuthentication : true
       },
       resolve: {
+        presaveInfo: getPresaveActivityInfo,
+        activity: getActivity,
+        organizer : getOrganizer,
 
-        activity: getActivity
 
       },
       //controllerAs: 'vm',
@@ -232,8 +234,10 @@
         requiredAuthentication : true
       },
       resolve: {
-
+        presaveInfo: getPresaveActivityInfo,
         activity: getActivity,
+        organizer : getOrganizer,
+
 
       },
       controllerAs: 'pc',
@@ -291,6 +295,12 @@
       controllerAs: 'vm',
       templateUrl: 'partials/activities/dashboard_location.html',
     })
+    .state('activities-edit.instructors', {
+      url:'instructors', 
+      controller: 'ActivityDBInstructorsController', 
+      controllerAs: 'vm',
+      templateUrl: 'partials/activities/dashboard_instructors.html',
+    })
     .state('activities-edit.gallery', {
       url:'gallery', 
       controller: 'ActivityDBGalleryController', 
@@ -332,7 +342,6 @@
     
     var is_organizer = true;
 
-    console.log("Authentication",authenticatedUser);
 
     if(authenticatedUser){
 
@@ -388,13 +397,21 @@
 
 
 
-  getActivity.$inject = ['$stateParams','$q','ActivitiesManager'];
+  getActivity.$inject = ['$stateParams','ActivitiesManager'];
   
-  function getActivity($stateParams,$q,ActivitiesManager){
-
-
+  function getActivity($stateParams,ActivitiesManager){
 
     return ActivitiesManager.getActivity($stateParams.activity_id)
+
+  }
+
+
+
+  getPresaveActivityInfo.$inject = ['ActivitiesManager'];
+  
+  function getPresaveActivityInfo(ActivitiesManager){
+
+    return ActivitiesManager.loadGeneralInfo()
 
   }
 

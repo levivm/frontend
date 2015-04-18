@@ -1,0 +1,58 @@
+<div class="tab-pane active text-style">
+  <div class="row">
+    <div class="col-md-6">
+
+      <h1> Instructores</h1>
+      <hr>
+
+      <form name='vm.activity_instructors_forms' ng-submit="vm.save_activity()">
+        <p>
+
+          <a  href="" ng-click="vm.removeInstructor()">-</a>
+          <label>{{vm.activity.instructors.length}}</label>
+          <a  href="" ng-click="vm.addInstructor()" >+</a>
+
+        </p>
+        <div ng-repeat="instructor in vm.activity.instructors track by $index" >
+          
+
+          <div class="form-group">
+            <label>Nombre</label>
+            <!-- <input class="form-control" ng-model='instructor.full_name' name="full_name"/> -->
+            <input type="text" ng-model="instructor.full_name" typeahead-on-select="vm.setInstructor($item, $model, $label,instructor)" typeahead="ins.full_name for ins in vm.typeahead_instructors | limitTo:8" class="form-control">
+            <div class="errors">
+              <span>{{ vm.instructors_errors[$index].full_name }}</span> 
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Bio</label>
+            <textarea class="form-control" ng-model='instructor.bio' name="bio">
+              
+            </textarea> 
+            <div class="errors">
+              <span>{{ vm.instructors_errors[$index].bio }}</span> 
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Website</label>
+            <input class="form-control" ng-model='instructor.website' name="website"/>
+            <div class="errors">
+              <span>{{ vm.instructors_errors[$index].website }}</span> 
+            </div>
+          </div>
+          <button ng-show="instructor.id" ng-click="vm.deleteInstructor(instructor)" type="button" class="btn btn-default" aria-label="Left Align">
+           <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          </button>  
+          <alert type="danger" ng-show="vm.instructors_errors[$index].delete_instructor">{{vm.instructors_errors[$index].delete_instructor}}</alert>
+          <hr>
+        </div> 
+
+        <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+        <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
+        </div>
+      </form>
+
+    <div class="col-md-4">
+    </div>
+  </div>
+</div>
