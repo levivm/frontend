@@ -279,11 +279,11 @@
       return data
     }
 
-    function updateAuthenticatedAccount(response) {
+    function updateAuthenticatedAccount() {
 
       return getCurrentUser().then(function(response){
         localStorageService.set('user',response.data);
-        return response.data
+        return response
 
       });
       

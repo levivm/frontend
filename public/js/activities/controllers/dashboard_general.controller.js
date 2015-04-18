@@ -10,11 +10,11 @@
     .module('trulii.activities.controllers')
     .controller('ActivityGeneralController', ActivityGeneralController);
 
-  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','ActivitiesManager','filterFilter','Categories','activity'];
+  ActivityGeneralController.$inject = ['$scope','$state','$q','ActivitiesManager','filterFilter','Categories','activity','presaveInfo'];
   /**
   * @namespace ActivityGeneralController
   */
-  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,ActivitiesManager,filterFilter,Categories,activity) {
+  function ActivityGeneralController($scope,$state,$q,ActivitiesManager,filterFilter,Categories,activity,presaveInfo) {
 
 
     var vm = this;
@@ -22,7 +22,6 @@
     initialize();
 
     vm.activity = angular.copy(activity);
-    //vm.activity = activity;
 
     if (activity.id)
         _setUpdate();
@@ -41,7 +40,6 @@
 
     function _selectCategory(category){
 
-        console.log("category",category);
         vm.activity_sub_categories = category.subcategories;
 
     }
@@ -60,12 +58,8 @@
         _updateTags();
         _updateSelectedValues();
         vm.activity.update()
-            .success(function(response){
-                vm.isCollapsed = false;
-                angular.extend(activity,vm.activity)
+            .then(_updateSuccess,_errored)
 
-            })
-            .error(_errored);
     }
 
     function _showTooltip(element){
@@ -86,33 +80,29 @@
 
 
     function _setUpdate(){
-        // vm.activity.load(activity_id)
-        //     .then(,_loadActivityFail)
-        vm.activity.generalInfo()
-            .then(_setPreSaveInfo)
-            .then(_successLoadActivity);
+
+        _setPreSaveInfo().then(_successLoadActivity);
         vm.save_activity = _updateActivity;
         vm.creating = false;
     }
 
 
     function _setCreate(){
-        //console.log("voy a crear");
         vm.save_activity = _createActivity;
         vm.creating = true;
-        //console.log("activity manager",ActivitiesManager);
-        ActivitiesManager.loadGeneralInfo().then(_setPreSaveInfo);
+        _setPreSaveInfo();
 
 
     }
 
-    function _setPreSaveInfo(data) {
+    function _setPreSaveInfo() {
+        var data = presaveInfo;
+        
         vm.selected_category = {};
         vm.selected_sub_category = {};
         vm.selected_type = {};
         vm.selected_level = {};
 
-        //var data = data;
         var categories = new Categories(data.categories);
         vm.activity_categories = categories;
         vm.activity_sub_categories = data.subcategories;
@@ -120,14 +110,14 @@
         vm.activity_levels = data.levels;
 
 
-
+        console.log("tags",data);
         vm.loadTags = function(){
             var deferred = $q.defer();
                 deferred.resolve(data.tags);
             return deferred.promise;
         };
 
-
+        console.log("acitiyvtyyy",vm.activity);
         var deferred = $q.defer();
             deferred.resolve(vm.activity);
         return deferred.promise;
@@ -149,12 +139,21 @@
     /*********RESPONSE HANDLERS***************/
 
 
+    function _updateSuccess(response){
+
+        vm.isCollapsed = false;
+        angular.extend(activity,vm.activity)
+
+    }
+
+
 
     function _successLoadActivity(response){
         vm.selected_level = filterFilter(vm.activity_levels,{code:response.level})[0];
         vm.selected_type  = filterFilter(vm.activity_types,{code:response.type})[0];
         vm.selected_category = filterFilter(vm.activity_categories,{id:response.category_id})[0];
         vm.selected_sub_category = filterFilter(vm.activity_sub_categories,{id:response.sub_category})[0];
+        console.log("response tags",response);
         vm.activity_tags = response.tags; 
     
     }

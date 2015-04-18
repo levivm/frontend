@@ -16,7 +16,6 @@
         _activities:[],
         _retrieveInstance: function(activityID, activityData) {
             var instance = this._pool[activityID];
-
             if (instance) {
 
                 instance.setData(activityData);
