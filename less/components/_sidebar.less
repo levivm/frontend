@@ -1,0 +1,39 @@
+
+@import url('../_trulii-variables');
+
+.sidebar{
+	.shadow-z-2;
+	position: fixed;
+	top: @navbar-height + 1;
+	bottom: 0;
+	left: 0;
+	display: block;
+	z-index: 1000;
+	overflow-x: visible;
+	overflow-y: visible;	
+	background: red;
+	padding: 20px 0;
+	background-color: white;	
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	line-height: 3em;
+
+	&__item{
+		color: @text-color;
+		display: block;
+		width: 100%;
+		padding: 15px;
+		border-top: 1px solid @color-delimeter-light;
+		text-decoration: none;
+
+		&--selected{
+			background: @body-bg;
+			border-top: 1px solid @color-delimeter-light;			
+			//border-right: 1px solid $color-delimeter-light
+			border-left: 10px solid @brand-primary;
+			transition: ease all 0.1s;
+		}
+	}
+
+
+}

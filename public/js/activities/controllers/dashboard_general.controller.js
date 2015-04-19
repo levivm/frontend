@@ -17,12 +17,11 @@
   function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,Categories,activity) {
 
 
-    var vm = this;
-
-    initialize();
+    var vm = this;    
 
     vm.activity = angular.copy(activity);
-    //vm.activity = activity;
+
+    initialize();
 
     if (activity.id)
         _setUpdate();
@@ -97,7 +96,7 @@
 
 
     function _setCreate(){
-        //console.log("voy a crear");
+        
         vm.save_activity = _createActivity;
         vm.creating = true;
         vm.activity.generalInfo().then(_setPreSaveInfo);
@@ -155,6 +154,21 @@
         vm.selected_category = filterFilter(vm.activity_categories,{id:response.category_id})[0];
         vm.selected_sub_category = filterFilter(vm.activity_sub_categories,{id:response.sub_category})[0];
         vm.activity_tags = response.tags; 
+
+
+        // 
+
+        for (var i = vm.activity_types.length - 1; i >= 0; i--) {
+            
+            if ( vm.activity_types[i] == vm.selected_type ){
+
+                if (i > 2 )
+                    vm.others_type_selected = vm.selected_type;
+
+                break;
+            }
+
+        };
     
     }
 
@@ -212,7 +226,11 @@
         vm.errors = {};
         vm.isCollapsed = true;
         vm.duration = 1;
+        vm.others_type_selected = false;        
 
+        if (!vm.activity.id)
+            document.getElementById("activity_title").focus();            
+        
 
     }
 

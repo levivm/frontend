@@ -15,7 +15,7 @@
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
 @brand-primary:           #FC0; // Yellow Trulii
-@brand-secondary:         #00BCD4; // Cyan
+@brand-secondary:         #009688; // Cyan
 @brand-success:         #5cb85c;
 @brand-info:            #5bc0de;
 @brand-warning:         #f0ad4e;
@@ -27,7 +27,7 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #fff;
+@body-bg:               #EEEEEE;
 //** Global text color on `<body>`.
 @text-color:            @gray-dark;
 
@@ -869,21 +869,21 @@
 
 // Bootstrap shades
 @primary: @brand-primary;
-@success: @green;
+@secondary: @brand-secondary;
+@success: @brand-secondary;
 @info: @light-blue;
 @warning: @deep-orange;
 @danger: @red;
 
 // Typography elements for Material
 @darkbg-text: rgba(255,255,255,0.84);
-@lightbg-text: rgba(0,0,0,0.84);
+@lightbg-text: rgba(0,0,0,0.74);
 @icon-color: rgba(0,0,0,0.5);
 
 
 // Bootstrap variables
-@body-bg: #EEEEEE;
 
-@btn-default: transparent;
+@btn-default: white;
 @btn-default-text: @lightbg-text;
 
 @btn-primary: @primary;
@@ -936,6 +936,10 @@
 @card-body-background: #fff;
 @card-image-headline: #fff;
 
+@card-header-background: @primary;
+
+@card-padding: 2em;
+
 @text-disabled: #a8a8a8;
 @background-disabled: #eaeaea;
 
@@ -949,6 +953,13 @@
 @popover-color: #ececec;
 
 
-// ***** Resources ******
+// ***** Trulii Variables ******
 
 @res-trulii-logo: 'img/logo-trulii.png';
+
+@color-delimeter-light: #f0f0f0;
+@color-delimeter-dark: darken(@color-delimeter-light, 10%);
+
+@color-beginner: @brand-primary;
+@color-intermediate: spin(@brand-primary, -15);
+@color-advanced: spin(@brand-primary, -30);

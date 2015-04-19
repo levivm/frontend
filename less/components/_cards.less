@@ -1,0 +1,43 @@
+
+
+@import url('../_trulii-variables');
+
+.card{	
+	margin: 1.5em 0;
+	padding: 0;
+
+	.card-header{
+		background: @card-header-background;
+		padding: 3em @card-padding;
+
+		*{
+			color: @lightbg-text;
+		}
+
+		.form-group{			  
+
+			  .form-control{
+			  	text-align: center;
+				background-image: linear-gradient(@secondary, @secondary), linear-gradient(white, white);			  	
+			  }
+		}
+
+		::-webkit-input-placeholder { /* WebKit browsers */
+		    color:    fadeout(white, 20%) ;
+		}
+		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		   color:    fadeout(white, 20%) ;
+		}
+		::-moz-placeholder { /* Mozilla Firefox 19+ */
+		   color:    fadeout(white, 20%) ;
+		}
+		:-ms-input-placeholder { /* Internet Explorer 10+ */
+		   color:    fadeout(white, 20%) ;
+		}
+	}
+
+	
+	.card-body{
+		padding: @card-padding;
+	}
+}

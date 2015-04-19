@@ -1,78 +1,102 @@
-    <div class="tab-pane active text-style">
+
       <div class="row">
 
-        <div class="col-md-8">
+        <div class="col-sm-offset-1 col-md-8">
+
 <!--
           <h2>Descripción</h2>
           <p>Describe la información básica acerca de tu actividad</p>
 -->      
-          <form class="form-horizontal" name='vm.activity_create_form' ng-submit="vm.save_activity()">
-            <fieldset>
-              <div class="form-group">                
-                <div class="col-sm-12">
-                  <input class="form-control input--main" ng-model='vm.activity.title' name="title" placeholder="Título :"/>  
-                </div>                
-                <div class="errors"  ng-show="vm.activity_create_form.title.$invalid && !vm.activity_create_form.title.$dirty">
-                  <span>{{ vm.errors.title }}</span> 
+          <form class="form-horizontal card" name='vm.activity_create_form' ng-submit="vm.save_activity()">
+
+              <fieldset>
+
+              <div class="card-header">
+                <div class="form-group has-success input--main">                
+
+                  <div class="col-sm-12">
+                    <input id="activity_title" class="form-control" ng-model='vm.activity.title' name="title" placeholder="¿Cómo titulas a tu actividad?"/>  
+                  </div>                
+
+                  <div class="errors"  ng-show="vm.activity_create_form.title.$invalid && !vm.activity_create_form.title.$dirty">
+                    <span>{{ vm.errors.title }}</span> 
+                  </div>
                 </div>
               </div>
 
-              <div class="form-group">
-                <label class="control-label col-sm-2" >Descripción Corta</label>
+              <div class="card-body">
 
-                <div class="col-sm-10">
-                  <textarea class="form-control" ng-model='vm.activity.large_description' name="large_description" ng-mouseover="vm.setOverElement('short_description')">  </textarea>  
+                <div class="form-group">
+                  <label class="control-label col-sm-2">Tipo</label>
+
+                  <div class="col-sm-10">
+                     <div class="btn-group btn-group-justified" role="group" aria-label="Tipo" role="group">
+                       
+
+                        <label for="type" class="btn btn-default"  ng-repeat="type in vm.activity_types | limitTo:3" ng-click="vm.selected_type = type; vm.others_type_selected = false" ng-class="{'btn-active': vm.selected_type.code == type.code}">
+                          <input type="radio" name="type" class="hidden">{{type.value}}
+                        </label>                      
+                      
+                        <div class="btn-group">
+                          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-class="{'btn-active': vm.others_type_selected}">
+                            <span ng-hide="vm.others_type_selected">Otros </span>
+                            <span ng-show="vm.others_type_selected">{{vm.others_type_selected.value}} </span>
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li ng-repeat="type in vm.activity_types.slice().reverse() | limitTo: vm.activity_types.length - 3" ng-click="vm.selected_type = type; vm.others_type_selected = type" >
+
+                              <a ng-class="{'btn-active': vm.selected_type.code == type.code}" href="" class="btn btn-default">{{type.value}}</a></li>                          
+                          </ul>
+                        </div>
+                     </div>
+                  </div>
+                  
+                   <span class="errors" ng-show="vm.activity_create_form.type.$invalid && !vm.activity_create_form.type.$dirty">
+                    <span>{{ vm.errors.type }}</span> 
+                  </span>
                 </div>
-                
 
-                <div class="errors" ng-show="vm.activity_create_form.large_description.$invalid && !vm.activity_create_form.large_description.$dirty">
-                  <span>{{ vm.errors.large_description }}</span> 
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="control-label col-sm-2">Descripción Detallada</label>
-
-                <div class="col-sm-10">
-                  <textarea class="form-control" ng-model='vm.activity.short_description' name="short_description">  </textarea>  
-                </div>
-                
-                <div class="errors" ng-show="vm.activity_create_form.short_description.$invalid && !vm.activity_create_form.short_description.$dirty">
-                  <span>{{ vm.errors.short_description }}</span> 
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label class="control-label col-sm-2">Tipo</label>
-
-                <div class="col-sm-10">
-                   <div class="btn-group btn-group-justified" role="group" aria-label="Tipo" role="group">
-                     
-
-                      <label for="type" class="btn btn-default"  ng-repeat="type in vm.activity_types" ng-click="vm.selected_type = type" ng-class="{active: vm.selected_type.code == type.code}">
-                        <input type="radio" name="type" class="hidden">{{type.value}}
-                      </label>                      
-                    
-                   </div>
-                </div>
-                
-                 <span class="errors" ng-show="vm.activity_create_form.type.$invalid && !vm.activity_create_form.type.$dirty">
-                  <span>{{ vm.errors.type }}</span> 
-                </span>
-              </div>
-
-               <div class="form-group">
+                 <div class="form-group">
                 <label class="control-label col-sm-2">Nivel</label>
 
                 <div class="col-sm-10">
                    <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
                   
-                      <label for="level" class="btn btn-default" ng-repeat="level in vm.activity_levels" ng-click="vm.selected_level = level" ng-class="{active: vm.selected_level.code == level.code, 'btn-intermediate-level': level.code == 'I', 'btn-advanced-level': level.code == 'A', 'btn-no-level': level.code == 'N'}">
+                      <label for="level" class="btn btn-default" ng-repeat="level in vm.activity_levels" ng-click="vm.selected_level = level" ng-class="{'btn-active': vm.selected_level.code == level.code, 'btn-intermediate-level': level.code == 'I', 'btn-advanced-level': level.code == 'A', 'btn-beginner-level': level.code == 'P'}">
                         <input type="radio" name="level" class="hidden">{{level.value}}  
                       </label>                      
                                
                    </div>
                 </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-2" >Descripción Corta</label>
+
+                  <div class="col-sm-10">
+                    <textarea class="form-control" ng-model='vm.activity.large_description' name="large_description" ng-mouseover="vm.setOverElement('short_description')">  </textarea>  
+                  </div>
+                  
+
+                  <div class="errors" ng-show="vm.activity_create_form.large_description.$invalid && !vm.activity_create_form.large_description.$dirty">
+                    <span>{{ vm.errors.large_description }}</span> 
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-2">Descripción Detallada</label>
+
+                  <div class="col-sm-10">
+                    <textarea class="form-control" ng-model='vm.activity.short_description' name="short_description" > </textarea>  
+                  </div>
+                  
+                  <div class="errors" ng-show="vm.activity_create_form.short_description.$invalid && !vm.activity_create_form.short_description.$dirty">
+                    <span>{{ vm.errors.short_description }}</span> 
+                  </div>
+                </div>
+
+
+              
                 
                  <span class="errors" ng-show="vm.activity_create_form.type.$invalid && !vm.activity_create_form.type.$dirty">
                   <span>{{ vm.errors.type }}</span> 
@@ -122,95 +146,59 @@
   
 
               <!-- <div counter  form="vm.activity_create_form" value="vm.duration" change="vm.activity.duration" min="1"></div> -->
-
-             <!--  <hr>
-              <h2>Información</h2> -->
-
-               <!-- <div class="form-group">
-                <label>Tipo</label>
-                <select ng-model="vm.selected_type"
-                    ng-options="type as type.value for type in vm.activity_types" name="type">
-                    <option value="" selected ng-show="!vm.activity_create_form.type.$dirty">Seleccione..</option>
-                </select>
-                <span class="errors" ng-show="vm.activity_create_form.type.$invalid && !vm.activity_create_form.type.$dirty">
-                  <span>{{ vm.errors.type }}</span> 
-                </span> 
-                <label>Nivel</label>
-                <select ng-model="vm.selected_level"
-                    ng-options="level as level.value for level in vm.activity_levels" name="level">
-                    <option value="" selected ng-show="!vm.activity_create_form.level.$dirty">Seleccione..</option>
-                </select>
-                <span class="errors" ng-show="vm.activity_create_form.level.$invalid && !vm.activity_create_form.level.$dirty">
-                  <span>{{ vm.errors.level }}</span> 
-                </span>
-              </div> 
-              <div class="form-group">
-                <label>Categoria</label>
-                <select ng-model="vm.selected_category"
-                    ng-options="category as category.name for (index,category) in vm.activity_categories" name="category" ng-change="vm.selectCategory(vm.selected_category)">
-                    <option value="" selected ng-show="!vm.activity_create_form.category.$dirty">Seleccione..</option>
-                </select>
-                <span class="errors" ng-show="vm.activity_create_form.category.$invalid && !vm.activity_create_form.category.$dirty">
-                  <span>{{ vm.errors.category }}</span> 
-                </span>
-                <label>Sub-Categoria</label>
-                <select ng-model="vm.selected_sub_category" 
-                    ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories" name="sub_category"
-                    ng-mouseover="vm.setOverElement('sub_category')" >
-                    <option value="" selected ng-show="!vm.activity_create_form.sub_category.$dirty">Seleccione..</option>
-                </select>
-                <span class="errors" ng-show="vm.activity_create_form.sub_category.$invalid && !vm.activity_create_form.sub_category.$dirty">
-                  <span>{{ vm.errors.sub_category }}</span> 
-                </span>
-              </div> -->
               
               <div class="form-submit-controls">
-                <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>  
+                <input type="submit" class="btn btn-success btn-raised btn-lg" value="Guardar"/>  
+              </div>  
               </div>
+            
+
+
               
 
             <!--  <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
                 
               </div> -->
 
-              </fieldset>
+            </fieldset>
           </form>
         </div>
-        <div class="col-md-4">
-          <div class="sidebar-nav-fixed pull-right affix well">
-            <ul class="nav">
-              <li ng-show="vm.showTooltip('short_description')">
-                Describe tu actividad de forma atractiva, especifica y díficil de olvidar.
-                Recuerda que esta descripción aparecerá en las tarjeta de la actividad.
-              </li>
-              <li ng-show="vm.showTooltip('sub_category')">
-                Elige la que más esté acorde con 
-                tu actividad. En caso de no hallar 
-                la adecuada, selecciona “otra” y 
-                rato después nosotros añadiremos una nueva que encaje con tu 
-                publicación.
-              </li>
-              <li ng-show="vm.showTooltip('tags')">
-                Estas son etiquetas en forma de
-                hashtags, ayudando a los usuari
-                os a encontrar tu publicación en 
-                nuestros buscadores y redes so
-                ciales. Deja un espacio por cada 
-                palabra o frase que deseas agre-
-                gar, sin poner el #.
-                Un ejemplo para un curso de 
-                pizzas:
-                Hashtags: cocinaitaliana napoli
-                tana cuatroquesos
-              </li>
 
-
-
-
-            </ul>
-          </div>
-        </div>
-         <hr>
-
-      </div>
+        <div class="col-md-3">
+ <!--          <div class="sidebar-nav-fixed pull-right affix well">
+   <ul class="nav">
+     <li ng-show="vm.showTooltip('short_description')">
+       Describe tu actividad de forma atractiva, especifica y díficil de olvidar.
+       Recuerda que esta descripción aparecerá en las tarjeta de la actividad.
+     </li>
+     <li ng-show="vm.showTooltip('sub_category')">
+       Elige la que más esté acorde con 
+       tu actividad. En caso de no hallar 
+       la adecuada, selecciona “otra” y 
+       rato después nosotros añadiremos una nueva que encaje con tu 
+       publicación.
+     </li>
+     <li ng-show="vm.showTooltip('tags')">
+       Estas son etiquetas en forma de
+       hashtags, ayudando a los usuari
+       os a encontrar tu publicación en 
+       nuestros buscadores y redes so
+       ciales. Deja un espacio por cada 
+       palabra o frase que deseas agre-
+       gar, sin poner el #.
+       Un ejemplo para un curso de 
+       pizzas:
+       Hashtags: cocinaitaliana napoli
+       tana cuatroquesos
+     </li>
+ 
+ 
+ 
+ 
+   </ul>
+ </div> -->
     </div>
+     <hr>
+
+  </div>
+
