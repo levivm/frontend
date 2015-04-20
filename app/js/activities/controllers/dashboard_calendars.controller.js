@@ -94,7 +94,7 @@
 
     });
 
-    //$scope.pc.activitySectionUpdated(response);
+    //$scope.pc.activitySectionUpdated(response.data);
 
   }
 

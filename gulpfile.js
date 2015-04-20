@@ -299,7 +299,7 @@ gulp.task('compile-ngdocs', [], function () {
         html5Mode: true,
         startPage: '/api',
         title: "Trulii Angular Docs",
-//        image: __dirname + "/logo-trulii.png",
+        image: __dirname + "/logo-ii-yellow.png",
         imageLink: "/api",
         titleLink: "/api"
     };

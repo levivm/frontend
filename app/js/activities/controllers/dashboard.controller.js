@@ -48,7 +48,6 @@
         var all_completed = true;
         angular.forEach(activity.completed_steps,function(value,key){
 
-
             pc.steps[key] = value;
             if(!(value))
                 all_completed = false;

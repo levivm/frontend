@@ -15,12 +15,13 @@
   function Activity($http,$q,$log,serverConf,UploadFile) {  
       
       function Activity(activitieData) {
-          if (activitieData) {
-              this.setData(activitieData);
-              console.log("Activity data",activitieData);
-          }
-          this.tags = [];
-          this.base_url = serverConf.url+'/api/activities/';
+        this.tags = [];
+        if (activitieData) {
+            this.setData(activitieData);
+            console.log("Activity data",activitieData);
+        }
+        
+        this.base_url = serverConf.url+'/api/activities/';
 
           // Some other initializations related to book
       };
@@ -76,7 +77,11 @@
               method: 'put',
               url:url,
               data: this,
-              //headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+            }).then(function(response){
+
+              scope.setData(response.data);
+              return response
+
             });
           },
           addPhoto:function(image){

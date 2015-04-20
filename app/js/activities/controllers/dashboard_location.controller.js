@@ -39,13 +39,7 @@
         _clearErrors();
         _setActivityPos();
         vm.activity.update()
-            .success(function(response){
-                vm.isCollapsed = false;
-                angular.extend(activity,vm.activity);
-                $scope.pc.activitySectionUpdated(response);
-
-            })
-            .error(_errored);
+            .then(_updateSuccess,_errored);
     }
 
     function _showTooltip(element){
@@ -77,7 +71,15 @@
     /*********RESPONSE HANDLERS***************/
 
 
+    function _updateSuccess(response){
 
+      vm.isCollapsed = false;
+      angular.extend(activity,vm.activity);
+      $scope.pc.activitySectionUpdated(response.data);
+
+
+
+    }
 
 
     function _clearErrors(){
