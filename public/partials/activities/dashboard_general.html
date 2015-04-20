@@ -69,33 +69,6 @@
                                
                    </div>
                 </div>
-
-                <div class="form-group">
-                  <label class="control-label col-sm-2" >Descripción Corta</label>
-
-                  <div class="col-sm-10">
-                    <textarea class="form-control" ng-model='vm.activity.large_description' name="large_description" ng-mouseover="vm.setOverElement('short_description')">  </textarea>  
-                  </div>
-                  
-
-                  <div class="errors" ng-show="vm.activity_create_form.large_description.$invalid && !vm.activity_create_form.large_description.$dirty">
-                    <span>{{ vm.errors.large_description }}</span> 
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label class="control-label col-sm-2">Descripción Detallada</label>
-
-                  <div class="col-sm-10">
-                    <textarea class="form-control" ng-model='vm.activity.short_description' name="short_description" > </textarea>  
-                  </div>
-                  
-                  <div class="errors" ng-show="vm.activity_create_form.short_description.$invalid && !vm.activity_create_form.short_description.$dirty">
-                    <span>{{ vm.errors.short_description }}</span> 
-                  </div>
-                </div>
-
-
               
                 
                  <span class="errors" ng-show="vm.activity_create_form.type.$invalid && !vm.activity_create_form.type.$dirty">
@@ -131,6 +104,32 @@
                   <span>{{ vm.errors.sub_category }}</span> 
                 </span>
               </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-2" >Descripción Detallada</label>
+
+                  <div class="col-sm-10">
+                    <textarea class="form-control" ng-model='vm.activity.large_description' name="large_description" ng-mouseover="vm.setOverElement('short_description')">  </textarea>  
+
+                      <div class="alert alert-warning alert-top-arrow" ng-show="vm.activity_create_form.large_description.$invalid && !vm.activity_create_form.large_description.$dirty">
+                      <p>{{ vm.errors.large_description }}</p> 
+                    </div>
+                  </div>
+                                    
+                </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-2">Descripción Corta</label>
+
+                  <div class="col-sm-10">
+                    <textarea class="form-control" ng-model='vm.activity.short_description' name="short_description" > </textarea>  
+                  </div>
+                  
+                  <div class="errors" ng-show="vm.activity_create_form.short_description.$invalid && !vm.activity_create_form.short_description.$dirty">
+                    <span>{{ vm.errors.short_description }}</span> 
+                  </div>
+                </div>
+
 
               <div class="form-group">
                 
