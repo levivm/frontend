@@ -111,9 +111,10 @@
                   <div class="col-sm-10">
                     <textarea class="form-control" ng-model='vm.activity.large_description' name="large_description" ng-mouseover="vm.setOverElement('short_description')">  </textarea>  
 
-                      <div class="alert alert-warning alert-top-arrow" ng-show="vm.activity_create_form.large_description.$invalid && !vm.activity_create_form.large_description.$dirty">
+                      <div class="alert alert-warning alert-input alert-top-arrow lateral-fade lateral-fadeout" ng-show="vm.activity_create_form.large_description.$invalid && !vm.activity_create_form.large_description.$dirty">
                       <p>{{ vm.errors.large_description }}</p> 
                     </div>
+                    
                   </div>
                                     
                 </div>
