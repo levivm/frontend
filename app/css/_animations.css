@@ -1,0 +1,22 @@
+.lateral-slide {
+  -webkit-animation-name: lateral-slide;
+          animation-name: lateral-slide;
+  -webkit-animation-duration: 0.4s;
+          animation-duration: 0.4s;
+}
+@-webkit-keyframes lateral-slide {
+  from {
+    left: -20em;
+  }
+  to {
+    left: 0em;
+  }
+}
+@keyframes lateral-slide {
+  from {
+    left: -20em;
+  }
+  to {
+    left: 0em;
+  }
+}

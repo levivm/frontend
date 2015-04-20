@@ -14,7 +14,8 @@
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-@brand-primary:         darken(#428bca, 6.5%); // #337ab7
+@brand-primary:           #FC0; // Yellow Trulii
+@brand-secondary:         #009688; // Cyan
 @brand-success:         #5cb85c;
 @brand-info:            #5bc0de;
 @brand-warning:         #f0ad4e;
@@ -26,7 +27,7 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #fff;
+@body-bg:               #EEEEEE;
 //** Global text color on `<body>`.
 @text-color:            @gray-dark;
 
@@ -360,7 +361,7 @@
 @navbar-collapse-max-height:       340px;
 
 @navbar-default-color:             #777;
-@navbar-default-bg:                #f8f8f8;
+@navbar-default-bg:                @brand-primary;
 @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
 
 // Navbar links
@@ -859,3 +860,106 @@
 @dl-horizontal-offset:        @component-offset-horizontal;
 //** Horizontal line color.
 @hr-border:                   @gray-lighter;
+
+
+// ************* MATERIAL **************
+
+// material icons path
+@material-font-path: "../fonts";
+
+// Bootstrap shades
+@primary: @brand-primary;
+@secondary: @brand-secondary;
+@success: @brand-secondary;
+@info: @light-blue;
+@warning: @deep-orange;
+@danger: @red;
+
+// Typography elements for Material
+@darkbg-text: rgba(255,255,255,0.84);
+@lightbg-text: rgba(0,0,0,0.74);
+@icon-color: rgba(0,0,0,0.5);
+
+
+// Bootstrap variables
+
+@btn-default: white;
+@btn-default-text: @lightbg-text;
+
+@btn-primary: @primary;
+@btn-primary-text: @darkbg-text;
+
+@btn-success: @success;
+@btn-success-text: @darkbg-text;
+
+@btn-info: @info;
+@btn-info-text: @darkbg-text;
+
+@btn-warning: @warning;
+@btn-warning-text: @darkbg-text;
+
+@btn-danger: @danger;
+@btn-danger-text: @darkbg-text;
+
+@input-unchecked: rgba(137, 137, 137, 0.3);
+@input-checked: rgba(15, 157, 88, 0.3);
+
+@radio-default: @lightbg-text;
+@radio-primary: @primary;
+@radio-success: @success;
+@radio-info:    @info;
+@radio-warning: @warning;
+@radio-danger:  @danger;
+
+@input-danger: @danger;
+@input-default: @primary;
+@input-warning: @warning;
+@input-success: @success;
+@input-info:    @info;
+
+@alert-success: @success;
+@alert-info: @info;
+@alert-warning: @warning;
+@alert-danger: @danger;
+
+@progress-success: @success;
+@progress-info: @info;
+@progress-warning: @warning;
+@progress-danger: @danger;
+
+// Global Material variables
+@material-border-radius: 2px;
+@input-underline-color: #D2D2D2;
+
+// Card
+@card-body-text: @lightbg-text;
+@card-body-background: #fff;
+@card-image-headline: #fff;
+
+@card-header-background: @primary;
+
+@card-padding: 2em;
+
+@text-disabled: #a8a8a8;
+@background-disabled: #eaeaea;
+
+// Checkboxes
+@checkbox-size: 20px;
+@checkbox-animation-ripple: 500ms;
+@checkbox-animation-check: 0.3s;
+
+// Popovers and Popups
+@popover-background: rgba(101, 101, 101, 0.9);
+@popover-color: #ececec;
+
+
+// ***** Trulii Variables ******
+
+@res-trulii-logo: 'img/logo-trulii.png';
+
+@color-delimeter-light: #f0f0f0;
+@color-delimeter-dark: darken(@color-delimeter-light, 10%);
+
+@color-beginner: @brand-primary;
+@color-intermediate: spin(@brand-primary, -15);
+@color-advanced: spin(@brand-primary, -30);

@@ -37,7 +37,14 @@ var BOWER_COMPONENTS_PATH = APP_ROOT +  '/lib';
 var source  = {
     'less': {
         'src': APP_ROOT + '/less/[^_]*.less',
-        'includes' : APP_ROOT + '/less/includes/_*.less',
+        'includes' : {
+            'all': APP_ROOT + '/less/includes/_*.less',
+            'root': APP_ROOT + '/less/includes/'
+        },
+        'components' : {
+            'all': APP_ROOT + '/less/components/_*.less',
+            'root': APP_ROOT + '/less/components/'
+        },
         'all': APP_ROOT + '/less/**/*.less',
         'root': APP_ROOT + '/less/'
     },
@@ -85,14 +92,12 @@ var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
 
-/* Vendor LESS files path */
-var BOOTSTRAP_LESS_PATH = BOWER_COMPONENTS_PATH + '/bootstrap/less';
-var BOOTSTRAP_MATERIAL_LESS_PATH = BOWER_COMPONENTS_PATH + '/bootstrap-material-design/less';
-
 var LESS_CONFIG = {
     paths: [
-        path.join(__dirname, BOOTSTRAP_LESS_PATH),
-        path.join(__dirname, BOOTSTRAP_MATERIAL_LESS_PATH)
+        path.join(__dirname, BOWER_COMPONENTS_PATH, '/bootstrap/less'),
+        path.join(__dirname, BOWER_COMPONENTS_PATH, '/bootstrap-material-design/less'),
+        path.join(__dirname, source.less.includes.root),
+        path.join(__dirname, source.less.components.root)
     ]
 };
 

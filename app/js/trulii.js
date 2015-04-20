@@ -3,6 +3,7 @@
 
 	angular
 	.module('trulii', [
+	  'ngAnimate',
 	  'ui.bootstrap',
 	  'LocalStorageModule',
 	  'trulii.config',

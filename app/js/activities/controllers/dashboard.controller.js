@@ -24,7 +24,10 @@
     pc.activity = activity;
     pc.publish_activity = _publish_activity;
 
+    pc.sidebar = false;
+
     activate();
+    initilize();
 
 
     pc.activitySectionUpdated = _checkSections;
@@ -55,14 +58,14 @@
 
     }
 
-
-
-
-
     function activate(){
 
         _checkSections(activity);
 
+    }
+
+    function initilize(){
+      pc.sidebar = true;
     }
 
 
