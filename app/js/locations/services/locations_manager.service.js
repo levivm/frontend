@@ -35,7 +35,6 @@
              */
             getAvailableCities : _getAvailableCities,
 
-
             /**
              * @ngdoc function
              * @name trulii.locations.services.LocationManager#getAvailableCities
@@ -47,10 +46,13 @@
 
             /**
              * @ngdoc function
-             * @name trulii.locations.services.LocationManager#getAvailableCities
+             * @name trulii.locations.services.LocationManager#setCurrentCity
+             * @params {object} object object param
+             * @params {number} object.id id of object
              * @description Sets the current city for the logged user
              * @methodOf trulii.locations.services.LocationManager
              */
+
             setCurrentCity   : _setCurrentCity,
 
             /**
@@ -60,6 +62,7 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} Allowed boundaries
              */
+
             getAllowedBounds: _getAllowedBounds
         };
 

@@ -4,6 +4,7 @@
 var gulp  = require('gulp');
 var gutil = require('gulp-util');
 var debug = require('gulp-debug');
+var gulpif = require('gulp-if');
 var DEBUG_OPTS = {title: 'unicorn:'};
 //Usage .pipe(debug(DEBUG_OPTS))
 
@@ -11,6 +12,14 @@ var DEBUG_OPTS = {title: 'unicorn:'};
 
 var inject = require('gulp-inject');
 var mainBowerFiles = require('main-bower-files');
+
+/* Check for debug flag */
+var isRelease  = false;
+
+// If "release" is passed from the command line then update the defaults
+if(gutil.env._[0] === 'release') {
+    isRelease  = true;
+}
 
 /* Filesystem related Modules and Values */
 
@@ -166,8 +175,8 @@ gulp.task('build-js', ['clean'], function() {
     return gulp.src(source.javascript.files)
         .pipe(sourcemaps.init())
         .pipe(concat('bundle.js'))
-        //only uglify if gulp is ran with '--type production'
-        .pipe(gutil.env.type === 'production' ? uglify() : gutil.noop())
+        //only uglify if gulp is ran with '--release'
+        .pipe(gulpif(isRelease, uglify()))
         .pipe(sourcemaps.write())
         .pipe(del(dist.javascript))
         .pipe(gulp.dest(dist.javascript))
@@ -280,7 +289,7 @@ var NG_DOCS_ROOT = __dirname + '/docs/';
 /* ng-docs Tasks */
 
 /** ng-docs generation Task **/
-gulp.task('ngdocs', [], function () {
+gulp.task('compile-ngdocs', [], function () {
     var ngDocsOptions = {
         html5Mode: true,
         startPage: '/api',
@@ -289,11 +298,12 @@ gulp.task('ngdocs', [], function () {
         imageLink: "/api",
         titleLink: "/api"
     };
+
     return gulp.src(source.javascript.files)
         .pipe(gulpDocs.process(ngDocsOptions))
         .pipe(gulp.dest(NG_DOCS_ROOT))
         .pipe(livereload())
-        .pipe(connect.reload());;
+        .pipe(connect.reload());
 });
 
 /** ng-docs Connect Task for documentation, can be accessed through 'api/' **/
@@ -301,19 +311,25 @@ gulp.task('serve-ngdocs', function() {
     gutil.log('Starting server on ' + NG_DOCS_ROOT);
     connect.server({
         root: NG_DOCS_ROOT,
-        port: 8000,
+        port: 9000,
         livereload: true
     });
 });
 
-/** Gulp Core Tasks **/
+/* Gulp Core Tasks */
 
+/** Clean task to remove everything from public **/
 gulp.task('clean', function(cb) {
     del([dist.all], cb);
 });
 
 gulp.task('connect', function() {
-    var path = APP_ROOT + '/';
+    var path = null;
+    if(isRelease){
+        path = DIST_ROOT + '/';
+    } else {
+        path = APP_ROOT + '/';
+    }
     gutil.log('Starting server on ' + path);
     connect.server({
         root: path,
@@ -324,12 +340,15 @@ gulp.task('connect', function() {
 /** Meta Task to inject dependencies **/
 gulp.task('injector', ['css-injector', 'js-injector']);
 
+/** Task to build resources from APP to DIST **/
+gulp.task('build', ['injector']);
+
 /** Watch these files for changes and run the task on update **/
 gulp.task('watch', function() {
 //    livereload.listen();
     gutil.log('Starting watch on ' + source.javascript.root + ' and ' + source.less.root);
     gulp.watch([source.html.index, source.html.partials], ['on-html-livereload']);
-    gulp.watch(source.javascript.files, ['source-js-injector', 'ng-docs']);
+    gulp.watch(source.javascript.files, ['source-js-injector', 'compile-ngdocs']);
     gulp.watch(source.less.all, ['source-css-injector']);
 });
 
