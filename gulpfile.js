@@ -53,7 +53,7 @@ var source  = {
         'root': APP_ROOT + '/js/'
     },
     'css': {
-        'files': APP_ROOT + '/css/**/*.css',
+        'files': APP_ROOT + '/css/**/[^_]*.css',
         'root' : APP_ROOT + '/css/'
     },
     'html': {
