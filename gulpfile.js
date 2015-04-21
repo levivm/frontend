@@ -290,6 +290,7 @@ gulp.task('minify-html', ['clean', 'minify-html-index', 'minify-html-partials'])
 var gulpDocs = require('gulp-ngdocs');
 
 var NG_DOCS_ROOT = __dirname + '/docs/';
+var NG_DOCS_PORT = 9000;
 
 /* ng-docs Tasks */
 
@@ -316,7 +317,7 @@ gulp.task('serve-ngdocs', function() {
     gutil.log('Starting server on ' + NG_DOCS_ROOT);
     connect.server({
         root: NG_DOCS_ROOT,
-        port: 9000,
+        port: NG_DOCS_PORT,
         livereload: true
     });
 });
@@ -358,7 +359,7 @@ gulp.task('watch', function() {
 });
 
 /** Serve task for development mode **/
-gulp.task('serve', ['connect', 'watch']);
+gulp.task('serve', ['less-compile', 'injector', 'connect', 'watch']);
 
 /** Default Task, run serve when gulp is called without arguments **/
 gulp.task('default', ['serve']);
