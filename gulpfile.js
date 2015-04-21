@@ -107,6 +107,10 @@ gulp.task('less.watch', function () {
         gulp.src(source.less.src)
         .pipe(plumber())
         .pipe(less(LESS_CONFIG))
+        .on('error', function (err) {
+            gutil.log(err);
+            this.emit('end');
+        })
         .pipe(gulp.dest(source.css.root));
     });
 });
@@ -116,6 +120,10 @@ gulp.task('less-compile', function () {
     return gulp.src(source.less.src)
         .pipe(plumber())
         .pipe(less(LESS_CONFIG))
+        .on('error', function (err) {
+            gutil.log(err);
+            this.emit('end');
+        })
         .pipe(autoprefixer())
 //        .pipe(minifyCSS())
         .pipe(gulp.dest(source.css.root))
@@ -344,10 +352,7 @@ gulp.task('connect', function() {
     connect.server({
         root: path,
         livereload: true,
-        directoryListing: true,
-//        middleware: function(req, res) {
-//            res.sendfile(path + 'index.html');
-//        }
+        fallback: path + 'index.html'
     });
 
 //    var express = require('express');
