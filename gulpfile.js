@@ -345,6 +345,8 @@ gulp.task('clean', function(cb) {
 });
 
 gulp.task('connect', function() {
+    var modRewrite = require('connect-modrewrite');
+    var historyApiFallback = require('connect-history-api-fallback');
     var path = null;
     if(isRelease){
         path = DIST_ROOT + '/';
@@ -355,9 +357,20 @@ gulp.task('connect', function() {
     gutil.log('Starting server on ' + path);
 
     connect.server({
-        root: path,
+//        root: path,
+        root: APP_ROOT,
+        port: 8080,
         livereload: true,
-        fallback: path + 'index.html'
+        fallback: path + 'index.html',
+        middleware: function() {
+            return [
+//                historyApiFallback
+                modRewrite([
+//                        '!\\.\\w+$ /index.html [L]'
+                        '^[^\\.]*$ /index.html [L]'
+                ])
+            ];
+        }
     });
 });
 
