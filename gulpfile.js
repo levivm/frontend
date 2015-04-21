@@ -128,7 +128,7 @@ gulp.task('less-compile', function () {
             gutil.log(err);
             this.emit('end');
         })
-        .pipe(autoprefixer())
+//        .pipe(autoprefixer())
         .pipe(size())
         //        .pipe(minifyCSS())
         .pipe(sourcemaps.write('./'))
@@ -359,14 +359,6 @@ gulp.task('connect', function() {
         livereload: true,
         fallback: path + 'index.html'
     });
-
-//    var express = require('express');
-//    var server = express();
-//    server.use(livereload({port: 8080}));
-//    server.use(express.static(path));
-//    server.all('/*', function(req, res) {
-//        res.sendfile('index.html', { root: path });
-//    });
 });
 
 /** Meta Task to inject dependencies **/
