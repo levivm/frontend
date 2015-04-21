@@ -7,7 +7,7 @@ var debug = require('gulp-debug');
 var gulpif = require('gulp-if');
 var DEBUG_OPTS = {title: 'unicorn:'};
 //Usage .pipe(debug(DEBUG_OPTS))
-
+var plumber = require('gulp-plumber');
 /* Gulp Inject Modules */
 
 var inject = require('gulp-inject');
@@ -105,6 +105,7 @@ var LESS_CONFIG = {
 gulp.task('less.watch', function () {
     watch(source.less.all, function(){
         gulp.src(source.less.src)
+        .pipe(plumber())
         .pipe(less(LESS_CONFIG))
         .pipe(gulp.dest(source.css.root));
     });
@@ -113,6 +114,7 @@ gulp.task('less.watch', function () {
 /** Task to compile '.less' files **/
 gulp.task('less-compile', function () {
     return gulp.src(source.less.src)
+        .pipe(plumber())
         .pipe(less(LESS_CONFIG))
         .pipe(autoprefixer())
 //        .pipe(minifyCSS())
@@ -141,7 +143,7 @@ gulp.task('source-css-injector', ['less-compile'], function() {
 
     return target.pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT))
-        .pipe(livereload())
+//        .pipe(livereload())
         .pipe(connect.reload());
 });
 
@@ -222,7 +224,7 @@ gulp.task('source-js-injector', function () {
 
     return target.pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT))
-        .pipe(livereload())
+//        .pipe(livereload())
         .pipe(connect.reload());
 });
 
@@ -276,7 +278,7 @@ gulp.task('minify-html-partials', function() {
 /** Livereload Task for .html files **/
 gulp.task('on-html-livereload', function() {
     return gulp.src(source.html.partials)
-        .pipe(livereload())
+//        .pipe(livereload())
         .pipe(connect.reload());
 });
 
@@ -308,7 +310,7 @@ gulp.task('compile-ngdocs', [], function () {
     return gulp.src(source.javascript.files)
         .pipe(gulpDocs.process(ngDocsOptions))
         .pipe(gulp.dest(NG_DOCS_ROOT))
-        .pipe(livereload())
+//        .pipe(livereload())
         .pipe(connect.reload());
 });
 
@@ -336,11 +338,25 @@ gulp.task('connect', function() {
     } else {
         path = APP_ROOT + '/';
     }
+
     gutil.log('Starting server on ' + path);
+
     connect.server({
         root: path,
-        livereload: true
+        livereload: true,
+        directoryListing: true,
+//        middleware: function(req, res) {
+//            res.sendfile(path + 'index.html');
+//        }
     });
+
+//    var express = require('express');
+//    var server = express();
+//    server.use(livereload({port: 8080}));
+//    server.use(express.static(path));
+//    server.all('/*', function(req, res) {
+//        res.sendfile('index.html', { root: path });
+//    });
 });
 
 /** Meta Task to inject dependencies **/
