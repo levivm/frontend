@@ -5,6 +5,7 @@ var gulp  = require('gulp');
 var gutil = require('gulp-util');
 var debug = require('gulp-debug');
 var gulpif = require('gulp-if');
+var sourcemaps = require('gulp-sourcemaps');
 var DEBUG_OPTS = {title: 'unicorn:'};
 //Usage .pipe(debug(DEBUG_OPTS))
 var plumber = require('gulp-plumber');
@@ -101,33 +102,37 @@ var LESS_CONFIG = {
     ]
 };
 
-/** Task to Watch changes on '.less' files **/
-gulp.task('less.watch', function () {
-    watch(source.less.all, function(){
-        gulp.src(source.less.src)
-        .pipe(plumber())
-        .pipe(less(LESS_CONFIG))
-        .on('error', function (err) {
-            gutil.log(err);
-            this.emit('end');
-        })
-        .pipe(gulp.dest(source.css.root));
-    });
-});
+///** Task to Watch changes on '.less' files **/
+//gulp.task('less.watch', function () {
+//    watch(source.less.all, function(){
+//        gulp.src(source.less.src, {base : source.less.root})
+//        .pipe(plumber())
+//        .pipe(sourcemaps.init({loadMaps: true}))
+//        .pipe(less(LESS_CONFIG))
+//        .pipe(sourcemaps.write(source.css.root))
+//        .on('error', function (err) {
+//            gutil.log(err);
+//            this.emit('end');
+//        })
+//        .pipe(gulp.dest(source.css.root));
+//    });
+//});
 
 /** Task to compile '.less' files **/
 gulp.task('less-compile', function () {
-    return gulp.src(source.less.src)
+    return gulp.src(source.less.src, {base : source.less.root})
         .pipe(plumber())
+        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(less(LESS_CONFIG))
         .on('error', function (err) {
             gutil.log(err);
             this.emit('end');
         })
         .pipe(autoprefixer())
-//        .pipe(minifyCSS())
-        .pipe(gulp.dest(source.css.root))
-        .pipe(size());
+        .pipe(size())
+        //        .pipe(minifyCSS())
+        .pipe(sourcemaps.write('./'))
+        .pipe(gulp.dest(source.css.root));
 });
 
 /** Injector Task for .css file from Bower Dependencies **/
