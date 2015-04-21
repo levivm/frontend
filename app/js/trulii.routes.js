@@ -341,14 +341,15 @@
     getActivity.$inject = ['$stateParams','ActivitiesManager'];
 
     function getActivity($stateParams,ActivitiesManager){
-        console.log('getActivity. ', ActivitiesManager.getActivity($stateParams.activity_id));
+        console.log('getActivity. ', $stateParams.activity_id);
         return ActivitiesManager.getActivity($stateParams.activity_id);
     }
 
     getPresaveActivityInfo.$inject = ['ActivitiesManager'];
 
     function getPresaveActivityInfo(ActivitiesManager){
-        console.log('getPresaveActivityInfo. ', ActivitiesManager.loadGeneralInfo());
+        console.log('getPresaveActivityInfo. ');
+        console.log(ActivitiesManager.loadGeneralInfo());
         return ActivitiesManager.loadGeneralInfo();
     }
 
