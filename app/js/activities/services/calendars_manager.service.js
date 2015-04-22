@@ -1,16 +1,27 @@
+/**
+ * @ngdoc service
+ * @name trulii.activities.services.CalendarsManager
+ * @description CalendarsManager
+ * @requires ng.$http
+ * @requires ng.$q
+ * @requires ng.$filter
+ * @requires trulii.activities.services.ActivityServerApi
+ * @requires trulii.activities.services.Calendar
+ */
+
 (function () {
   'use strict';
   angular
     .module('trulii.activities.services')
     .factory('CalendarsManager', CalendarsManager);
 
-  CalendarsManager.$inject = ['$http','$q','$filter','serverConf','Calendar'];
+  CalendarsManager.$inject = ['$http', '$q', '$filter', 'ActivityServerApi', 'Calendar'];
 
-  function CalendarsManager($http,$q,$filter,serverConf,Calendar) {  
-    
+  function CalendarsManager($http, $q, $filter, ActivityServerApi, Calendar) {
 
-    
-    var CalendarsManager = {
+      var api = ActivityServerApi;
+    //noinspection UnnecessaryLocalVariableJS
+      var CalendarsManager = {
         _pool: {},
         calendars: [],
         // _retrieveInstance: function(calendarId, calendarData) {
@@ -33,28 +44,12 @@
                 instance = new Calendar(calendarData);
                 //instance.setData(calendarData);                
                 instance.activity = this.activity_id;
-
             }
-
-            return instance
+            return instance;
         },
         _search: function(calendarId) {
             return this._pool[calendarId];
         },
-        // _load: function(bookId, deferred) {
-        //     var scope = this;
-
-        //     $http.get('ourserver/books/' + bookId)
-        //         .success(function(bookData) {
-        //             var book = scope._retrieveInstance(bookData.id, bookData);
-        //             deferred.resolve(book);
-        //         })
-        //         .error(function() {
-        //             deferred.reject();
-        //         });
-        // },
-        // /* Public Methods */
-        // /* Use this function in order to get a book instance by it's id */
         _deleteInsntance:function(calendarId){
 
             var scope = this;
@@ -79,21 +74,16 @@
             var calendar = this._search(calendarId);
             
             var scope = this;
-            //if (!(calendar))
-            //    return
-
-            //var activity_id = calendar.activity;
            
-
-            return $http.delete(serverConf.url+'/api/activities/'+this.activity_id+'/calendars/'+calendarId)
+            // serverConf.url+'/api/activities/'+this.activity_id+'/calendars/'+calendarId
+            return $http.delete(api.calendar(this.activity_id, calendarId))
                 .then(function(response){
                     scope._deleteInsntance(calendarId);
-
-                    deferred.resolve(scope.calendars)
-                    return deferred.promise
+                    deferred.resolve(scope.calendars);
+                    return deferred.promise;
                 },
                 function(response){
-                    return $q.reject(response.data)
+                    return $q.reject(response.data);
                 });
 
         },
@@ -103,9 +93,8 @@
                 //console.log("calendar before get",calendar);
             var calendar = new Calendar();
                 angular.extend(calendar,this._retrieveInstance(calendarId));
-                
-            
-            return calendar
+
+            return calendar;
             // if (calendar) {
             //     deferred.resolve(calendar);
             // } else {
@@ -117,7 +106,8 @@
             var scope = this;
             this.activity_id = activityId;
             var deferred = $q.defer();
-            $http.get(serverConf.url+'/api/activities/'+activityId+'/calendars/'+calendarId+'/')
+            // serverConf.url+'/api/activities/'+activityId+'/calendars/'+calendarId+'/'
+            $http.get(api.calendar(activityId, calendarId))
                 .success(function (result) {
                     var calendar = scope._retrieveInstance(result.id, result);
                     deferred.resolve(calendar);
@@ -128,7 +118,6 @@
 
             return deferred.promise;
         },
-        // /* Use this function in order to get instances of all the books */
         loadCalendars: function(activity_id, active) {
             var actives = active || false;
             this.activity_id = activity_id;
@@ -140,43 +129,28 @@
                 return scope.calendars
             }
 
-            var url = serverConf.url+'/api/activities/'+this.activity_id+'/calendars/';
+            // url += '?actives=true';
+            var config = {};
+            if (actives) {
+                config.actives = true;
+            }
 
-            if (actives) url += '?actives=true';
-
-            return $http.get(url)
+            // serverConf.url+'/api/activities/'+this.activity_id+'/calendars/'
+            return $http.get(api.calendars(this.activity_id), config)
                 .then(function(response){
-
                     //scope.calendars = [];
                     scope._setCalendars(response.data);
                     console.log(response.data);
                     //scope.calendars = $filter('orderBy')(scope.calendars,'initial_date');
-
-
                     return scope.calendars
                 },
                 function(response){
                     return response.data
                 });
-
-            //     .success(function(booksArray) {
-            //         var books = [];
-            //         booksArray.forEach(function(bookData) {
-            //             var book = scope._retrieveInstance(bookData.id, bookData);
-            //             books.push(book);
-            //         });
-
-            //         deferred.resolve(books);
-            //     })
-            //     .error(function() {
-            //         deferred.reject();
-            //     });
-            // return deferred.promise;
         },
         _setCalendars: function (calendarsData){
 
-                //scope.calendars = calendarsData;
-            
+            //scope.calendars = calendarsData;
             var scope = this;
             angular.forEach(calendarsData,function(calendarData){
                 //this._retrieveInstance(calendarData);
@@ -186,11 +160,9 @@
                 //var calendar = scope.setCalendar(calendarData);
                 //    scope._addCalendar(calendar);
 
-            })
+            });
 
             //return calendars
-
-
         },
         _addCalendar:function(calendar){
             this._pool[calendar.id] = calendar;
@@ -198,16 +170,6 @@
             //$filter('orderBy')(this.calendars,'initial_date');
 
         },
-        // setCalendar: function(calendarData) {
-        //     var scope = this;
-        //     var calendar = this._search(calendarData.id);
-
-        //     if (calendar)
-        //         book.setData(calendarData);
-
-        //     return calendar;
-        // },
-        // /*  This function is useful when we got somehow the book data and we wish to store it or update the pool and get a book instance in return */
         setCalendar: function(calendarData) {
             var scope = this;
             var calendar = this._search(calendarData.id);
@@ -223,7 +185,8 @@
         }
 
     };
+
     return CalendarsManager;
-};
+}
 
 })();

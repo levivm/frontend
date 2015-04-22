@@ -1,82 +1,77 @@
 /**
-* activities
-* @namespace thinkster.authentication.services
-*/
+ * @ngdoc service
+ * @name trulii.activities.services.Activity
+ * @description Activity Service
+ * @requires ng.$http
+ * @requires ng.$q
+ * @requires trulii.routes.serverConf
+ * @requires trulii.utils.services.UploadFile
+ */
+
 (function () {
   'use strict';
-
  
   angular
     .module('trulii.activities.services')
     .factory('Activity', Activity);
 
-  Activity.$inject = ['$http','$q','$log','serverConf','UploadFile'];
+  Activity.$inject = ['$http', '$q', '$log', 'ActivityServerApi', 'UploadFile'];
 
-  function Activity($http,$q,$log,serverConf,UploadFile) {  
+  function Activity($http, $q, $log, ActivityServerApi, UploadFile) {
+
+      var api = ActivityServerApi;
       
-      function Activity(activitieData) {
+      function Activity(activityData) {
         this.tags = [];
-        if (activitieData) {
-            this.setData(activitieData);
-            console.log("Activity data",activitieData);
+        if (activityData) {
+            this.setData(activityData);
+            console.log("Activity data ",activityData);
         }
-        
-        this.base_url = serverConf.url+'/api/activities/';
-
-          // Some other initializations related to book
-      };
+      }
 
       Activity.prototype = {
-          setData: function(activitieData) {
-              angular.extend(this, activitieData);
+          setData: function(activityData) {
+              angular.extend(this, activityData);
           },
           create: function(){
-            return $http.post(this.base_url,this);
+            // this.base_url
+            return $http.post(api.activities(),this);
           },
           generalInfo: function() {
               var scope = this;
-              
               var deferred = $q.defer();
 
-              if (scope.presave_info){ 
-               
+              if (scope.presave_info){
                 deferred.resolve(scope.presave_info);                
-                return deferred.promise
-              }
-              else{
-
-                var url = this.base_url + "info/";
-                return $http.get(url).then(function(response){
+                return deferred.promise;
+              } else{
+                // this.base_url + "info/"
+                return $http.get(api.info()).then(function(response){
                   scope.presave_info = response.data;
                   deferred.resolve(scope.presave_info);
-                  return deferred.promise
+                  return deferred.promise;
                 });
-
               }
-
-              //return deferred.promise;
-
           },
           load: function(id){
             var scope = this;
 
-            if (!(id))
-              id = scope.id
+            if (!id) { id = scope.id; }
 
-            var url = this.base_url + id;
-            return $http.get(url)
+            //this.base_url + id;
+            return $http.get(api.activity(id))
               .then(function(response) {
                 scope.setData(response.data);
-                return scope
+                return scope;
               });
           },
           update: function() {
-            var url = this.base_url + this.id;
+            //this.base_url + this.id;
             var scope = this;
             return $http({
               method: 'put',
-              url:url,
-              data: this,
+              url: api.activity(this.id),
+              data: this
             }).then(function(response){
 
               scope.setData(response.data);
@@ -85,63 +80,32 @@
             });
           },
           addPhoto:function(image){
-            var url = this.base_url + this.id + '/gallery';
-            return UploadFile.upload_file(image,url);
-
-
+            //this.base_url + this.id + '/gallery';
+            return UploadFile.upload_file(image, api.gallery(this.id));
           },
           deletePhoto:function(image){
-            var url = this.base_url + this.id + '/gallery';
+            //this.base_url + this.id + '/gallery';
             return $http({
               method: 'put',
-              url:url,
-              data: {'photo_id':image.id},
+              url: api.gallery(this.id),
+              data: {'photo_id':image.id}
             });
           },
           publish:function(){
-
             var scope = this;
-            var url = this.base_url + this.id + '/publish';
+            //this.base_url + this.id + '/publish';
             return $http({
               method: 'put',
-              url:url,
-            }).then(function(response){
-
+              url: api.publish(this.id)
+            })
+            .then(function(response){
               scope.published = true;
 
             });
-
           }
-
-          //   //$http.put('/api/activities/' + this.id, this);
-          // },
-          // change_email: function() {
-          //   return $http({
-          //     method: 'post',
-          //     url:'users/email/',
-          //     data: {
-          //       'email':this.user.email,
-          //       'action_add':true,
-          //     },
-          //   });
-
-          //   //$http.put('/api/activities/' + this.id, this);
-          // },
-          // change_password: function(password_data) {
-          //   console.log(password_data);
-          //   console.log('--------');
-          //   return $http({
-          //     method: 'post',
-          //     url:'/users/password/change/',
-          //     data: password_data,
-          //   });
-
-          //   //$http.put('/api/activities/' + this.id, this);
-          // },
       };
+
       return Activity;
-  };
-
-
+  }
 
 })();

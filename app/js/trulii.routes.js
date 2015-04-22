@@ -1,12 +1,20 @@
 (function () {
     'use strict';
 
+    /**
+     * @ngdoc service
+     * @name trulii.routes.serverConf
+     * @description Server URL for API usage
+     */
     angular
         .module('trulii.routes')
         .constant("serverConf", {
             //"url": "http://trulii-back.herokuapp.com"
             "url": "http://localhost:8000"
-        })
+        });
+
+    angular
+        .module('trulii.routes')
         .config(config)
         .run(run);
 
@@ -226,6 +234,10 @@
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
+                resolve: {
+                    presaveInfo: getPresaveActivityInfo,
+                    activity: getActivity
+                },
                 templateUrl: 'partials/activities/dashboard_general.html'
                 //templateUrl: 'modalContainer'
             })
@@ -308,7 +320,8 @@
         }
 
         var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
-        console.log('getOrganizer. ', result);
+        console.log('getOrganizer. ');
+        console.log(result);
         return result;
     }
 
@@ -341,7 +354,8 @@
     getActivity.$inject = ['$stateParams','ActivitiesManager'];
 
     function getActivity($stateParams,ActivitiesManager){
-        console.log('getActivity. ', $stateParams.activity_id);
+        console.log('getActivity. ');
+        console.log($stateParams.activity_id);
         return ActivitiesManager.getActivity($stateParams.activity_id);
     }
 
