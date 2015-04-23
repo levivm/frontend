@@ -1,7 +1,10 @@
 /**
-* Authentication
-* @namespace thinkster.authentication.services
-*/
+ * @ngdoc service
+ * @name trulii.authentication.services.sessionInjector
+ * @description Session Injector Service
+ * @requires LocalStorageModule.localStorageService
+ */
+
 (function () {
   'use strict';
 
@@ -11,34 +14,23 @@
 
   sessionInjector.$inject = ['localStorageService'];
 
-  /**
-  * @namespace sessionInjector
-  * @returns {Factory}
-  */
   function sessionInjector(localStorageService) {
 
-  	var sessionInjector = {
+  	//noinspection UnnecessaryLocalVariableJS
+      var sessionInjector = {
   		request: function(config){
-        var token = localStorageService.get('token');   
-  			if(token){
-          config.headers['Authorization'] = "Token " + token;
-        }
-           
-        return config;
+            var token = localStorageService.get('token');
 
+            if(token){
+                config.headers['Authorization'] = "Token " + token;
+            }
+
+            return config;
   		}
-
-
-
-
-
   	};
 
   	return sessionInjector;
-  	
 
   }
-
-
 
 })();

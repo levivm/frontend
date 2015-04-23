@@ -5,6 +5,7 @@
      * @ngdoc service
      * @name trulii.routes.serverConf
      * @description Server URL for API usage
+     * @property {string} url Backend Server URL
      */
     angular
         .module('trulii.routes')
@@ -26,14 +27,11 @@
      */
     function config($urlRouterProvider,$stateProvider,$urlMatcherFactoryProvider) {
 
-
-
         $urlMatcherFactoryProvider.strictMode(false);
         $stateProvider
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
-//                controllerAs: 'home',
                 resolve:{
                     cities:getAvailableCities,
                     authenticatedUser:getAuthenticatedUser

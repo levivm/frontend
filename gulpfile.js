@@ -312,7 +312,7 @@ var NG_DOCS_PORT = 9000;
 /** ng-docs generation Task **/
 gulp.task('compile-ngdocs', [], function () {
     var ngDocsOptions = {
-        html5Mode: true,
+        html5Mode: false,
         startPage: '/api',
         title: "Trulii Angular Docs",
         image: __dirname + "/logo-ii-yellow.png",

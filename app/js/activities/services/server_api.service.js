@@ -1,7 +1,7 @@
 /**
  * @ngdoc service
  * @name trulii.activities.services.ActivityServerApi
- * @description Manager for Activity related API Endpoints
+ * @description API Service for Activity related Endpoints
  * @requires trulii.routes.serverConf
  */
 
@@ -26,7 +26,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#activities
-             * @description Renders "/api/activities/" Activities List URL
+             * @description Renders **`/api/activities/`** Activities List URL
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
@@ -37,7 +37,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#activity
-             * @description Renders "/api/activities/:idActivity" Activity URL
+             * @description Renders **`/api/activities/:idActivity`** Activity URL
              * @param {number} idActivity Activity Id
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
@@ -49,7 +49,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#gallery
-             * @description Renders "/api/activities/:idActivity/gallery" Activity gallery URL
+             * @description Renders **`/api/activities/:idActivity/gallery`** Activity gallery URL
              * @param {number} idActivity Activity Id
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
@@ -61,7 +61,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#calendars
-             * @description Renders "/api/activities/:idActivity/calendars" Activity calendars URL
+             * @description Renders **`/api/activities/:idActivity/calendars`** Activity calendars URL
              * @param {number} idActivity Activity Id
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
@@ -73,7 +73,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#calendar
-             * @description Renders "/api/activities/:idActivity/calendars/:idCalendar" Activity calendar URL
+             * @description Renders **`/api/activities/:idActivity/calendars/:idCalendar`** Activity calendar URL
              * @param {number} idActivity Activity Id
              * @param {number} idCalendar Calendar Id
              * @return {string} Rendered URL
@@ -86,7 +86,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#publish
-             * @description Renders "/api/activities/:idActivity/publish" Activity publication URL
+             * @description Renders **`/api/activities/:idActivity/publish`** Activity publication URL
              * @param {number} idActivity Activity Id
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
@@ -98,7 +98,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#info
-             * @description Renders "/api/activities/info" Activities Information URL
+             * @description Renders **`/api/activities/info`** Activities Information URL
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
@@ -109,7 +109,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#categories
-             * @description Renders "/api/activities/categories" Activities Categories URL
+             * @description Renders **`/api/activities/categories`** Activities Categories URL
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
@@ -120,7 +120,7 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#orders
-             * @description Renders "/api/activities/orders" Activities Orders URL
+             * @description Renders **`/api/activities/orders`** Activities Orders URL
              * @param {number} idActivity Activity Id
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
@@ -135,8 +135,9 @@
          * @name trulii.activities.services.ActivityServerApi#renderUrl
          * @description URL Renderer, takes multiple parameters
          * @param {string} endpoint server endpoint, must start and end with '/'
-         * @param {Array} urlParams (Optional) Array with URL params. Are rendered in the same order they come
+         * @param {Array=} urlParams (Optional) Array with URL params. Are rendered in the same order they come
          * rendered through console output.
+         * @return {string} Rendered URL
          * @methodOf trulii.activities.services.ActivityServerApi
          */
         function renderUrl(endpoint, urlParams){
@@ -144,7 +145,7 @@
             var result = urlParams? hostArr.concat(urlParams.join('/')) : hostArr;
             result = result.join('');
             if(debug){
-                console.log('Domain.renderUrl:');
+                console.log('ServerApi.renderUrl:');
                 console.log(result);
             }
             return result;

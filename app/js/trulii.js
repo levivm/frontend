@@ -1,6 +1,11 @@
 (function () {
   'use strict';
 
+    /**
+     * @ngdoc object
+     * @name trulii
+     * @description Trulii Main Module
+     */
 	angular
 	.module('trulii', [
 	  'ngAnimate',

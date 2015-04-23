@@ -1,7 +1,7 @@
 /**
  * @ngdoc service
  * @name trulii.organizers.services.OrganizerServerApi
- * @description Manager for Organizer related API Endpoints
+ * @description API Service for Organizer related Endpoints
  * @requires trulii.routes.serverConf
  */
 
@@ -25,10 +25,10 @@
 
             /**
              * @ngdoc function
-             * @name trulii.organizers.services.ActivityServerApi#activities
-             * @description Renders "/api/activities/" Activities List URL
+             * @name trulii.organizers.services.OrganizerServerApi#activities
+             * @description Renders **`/api/organizers/:idOrganizer/activities`** Activities List URL
              * @return {string} Rendered URL
-             * @methodOf trulii.organizers.services.ActivityServerApi
+             * @methodOf trulii.organizers.services.OrganizerServerApi
              */
             'activities': function(idOrganizer){
                 return renderUrl('organizers/', [idOrganizer, 'activities']);
@@ -37,19 +37,20 @@
 
         /**
          * @ngdoc function
-         * @name trulii.organizers.services.ActivityServerApi#renderUrl
+         * @name trulii.organizers.services.OrganizerServerApi#renderUrl
          * @description URL Renderer, takes multiple parameters
-         * @param {string} endpoint server endpoint, must start and end with '/'
-         * @param {Array} urlParams (Optional) Array with URL params. Are rendered in the same order they come
+         * @param {string} endpoint Server endpoint, must end with '/'
+         * @param {Array=} urlParams (Optional) Array with URL params. Are rendered in the same order they come
          * rendered through console output.
-         * @methodOf trulii.organizers.services.ActivityServerApi
+         * @return {string} Rendered URL
+         * @methodOf trulii.organizers.services.OrganizerServerApi
          */
         function renderUrl(endpoint, urlParams){
             var hostArr = [serverApi, endpoint];
             var result = urlParams? hostArr.concat(urlParams.join('/')) : hostArr;
             result = result.join('');
             if(debug){
-                console.log('Domain.renderUrl:');
+                console.log('ServerApi.renderUrl:');
                 console.log(result);
             }
             return result;
