@@ -70,6 +70,8 @@
                       </label>                      
                                
                    </div>
+
+                   <div trulii-input-alert field="vm.activity_create_form.level" errors="vm.errors"></div>
                 </div>
               
                 
@@ -85,9 +87,8 @@
                       ng-options="category as category.name for (index,category) in vm.activity_categories" name="category" ng-change="vm.selectCategory(vm.selected_category)">
                       <option value="" selected ng-show="!vm.activity_create_form.category.$dirty">Seleccione..</option>
                   </select>
-                  <span class="errors" ng-show="vm.activity_create_form.category.$invalid && !vm.activity_create_form.category.$dirty">
-                    <span>{{ vm.errors.category }}</span> 
-                  </span>
+                  
+                  <div trulii-input-alert field="vm.activity_create_form.category" errors="vm.errors"></div>
                 </div>
                                 
               </div>
@@ -100,11 +101,10 @@
                       ng-mouseover="vm.setOverElement('sub_category')" >
                       <option value="" selected ng-show="!vm.activity_create_form.sub_category.$dirty">Seleccione..</option>
                   </select>
+
+                  <div trulii-input-alert field="vm.activity_create_form.sub_category" errors="vm.errors"></div>
                 </div>
-                
-                <span class="errors" ng-show="vm.activity_create_form.sub_category.$invalid && !vm.activity_create_form.sub_category.$dirty">
-                  <span>{{ vm.errors.sub_category }}</span> 
-                </span>
+                               
               </div>
 
                 <div class="form-group">
