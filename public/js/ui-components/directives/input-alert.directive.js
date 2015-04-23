@@ -13,12 +13,10 @@
 		return {
 			restrict: 'AE',
 			templateUrl: UIComponentsTemplatesPath + "input-alert.html",
-			scope: {
-				form: '=',
+			scope: {				
 				field: '=',
 				errors: '='
-			}, 
-			controller: 
+			}
 		}
 	}
 

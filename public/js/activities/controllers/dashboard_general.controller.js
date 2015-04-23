@@ -227,9 +227,6 @@
         vm.isCollapsed = true;
         vm.duration = 1;
         vm.others_type_selected = false;        
-
-        if (!vm.activity.id)
-            document.getElementById("activity_title").focus();            
         
 
     }
