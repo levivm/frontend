@@ -39,6 +39,7 @@
             return $http.post(api.activities(),this);
           },
           generalInfo: function() {
+              console.log("CAI AQUI");
               var scope = this;
               var deferred = $q.defer();
 
@@ -78,6 +79,8 @@
               scope.setData(response.data);
               return response
 
+            },function(response){
+              return $q.reject(response.data);
             });
           },
           addPhoto:function(image){

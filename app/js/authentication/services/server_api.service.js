@@ -32,7 +32,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'signup': function(){
-                return renderUrl('users/', ['signup'], false);
+                return renderUrl('users/', ['signup/'], false);
             },
 
             /**

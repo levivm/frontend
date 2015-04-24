@@ -95,7 +95,6 @@
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'
                 return $http.post(api.calendars(activity_id), this)
                     .then(function(response){
-                        console.log("response.data ",response.data);
                         that.setData(response.data);
                         return that;
                     },function(response){

@@ -30,7 +30,7 @@
     initilize();
 
     console.log('ActivityDashboardCtrl. Activity.generalInfo()');
-    console.log(Activity.generalInfo());
+    // console.log(Activity.generalInfo());
 
 
     pc.activitySectionUpdated = _checkSections;

@@ -188,14 +188,17 @@
 
 
     function _addError(field, message) {
+    console.log("field",field,message);
       vm.errors[field] = message;
       vm.activity_create_form[field].$setValidity(message, false);
 
     };
 
     function _errored(errors) {
+        console.log("ERRORS",errors);
         angular.forEach(errors, function(message,field) {
 
+            console.log("ERRORS",message,field);
 
           _addError(field,message[0]);   
 
