@@ -16,7 +16,7 @@
 
     function AuthenticationServerApi(serverConf) {
 
-        var server = serverConf.url;
+        var server = serverConf.url + '/';
         var serverApi = serverConf.url + '/api/';
 //        var apiVersion = 'v1';
         var debug = true;
@@ -43,19 +43,30 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'login': function(){
-                return renderUrl('users/', ['login'], false);
+                return renderUrl('users/', ['login/'], false);
+            },
+
+            /**
+             * @ngdoc function
+             * @name trulii.authentication.services.AuthenticationServerApi#token
+             * @description Renders **`/api/users/token/`** User Token URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.authentication.services.AuthenticationServerApi
+             */
+            'token': function(){
+                return renderUrl('users/', ['token/'], true);
             },
 
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#passwordReset
-             * @description Renders **`/users/password/reset`** User Password Reset URL
+             * @description Renders **`/users/password/reset/`** User Password Reset URL
              * @param {string=} key (Optional) Password Reset Key
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'passwordReset': function(key){
-                var arr = ['password', 'reset'];
+                var arr = ['password', 'reset/'];
                 if(key){ arr.push(key); }
 
                 return renderUrl('users/', arr, false);
@@ -64,23 +75,23 @@
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#passwordChange
-             * @description Renders **`/users/password/change`** User Password Change URL
+             * @description Renders **`/users/password/change/`** User Password Change URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'passwordChange': function(){
-                return renderUrl('users/', ['password', 'change'], false);
+                return renderUrl('users/', ['password', 'change/'], false);
             },
 
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#email
-             * @description Renders **`/users/email`** User Email URL
+             * @description Renders **`/users/email/`** User Email URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'email': function(){
-                return renderUrl('users/', ['email'], false);
+                return renderUrl('users/', ['email/'], false);
             },
 
             /* API - Endpoints that require /api/ */
@@ -88,23 +99,12 @@
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#current
-             * @description Renders **`/api/users/current`** Current User URL
+             * @description Renders **`/api/users/current/`** Current User URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'current': function(){
-                return renderUrl('users/', ['current'], true);
-            },
-
-            /**
-             * @ngdoc function
-             * @name trulii.authentication.services.AuthenticationServerApi#token
-             * @description Renders **`/api/users/token`** User Token URL
-             * @return {string} Rendered URL
-             * @methodOf trulii.authentication.services.AuthenticationServerApi
-             */
-            'token': function(){
-                return renderUrl('users/', ['token'], true);
+                return renderUrl('users/', ['current/'], true);
             },
 
             /**
@@ -115,7 +115,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'logout': function(){
-                return renderUrl('users/', ['logout'], true);
+                return renderUrl('users/', ['logout/'], true);
             }
 
         };
@@ -146,6 +146,12 @@
                 console.log(result);
             }
             return result;
+        }
+
+        for (var key in api) {
+            if (api.hasOwnProperty(key)) {
+                console.log('api[' + key + ']: ' + api[key]());
+            }
         }
 
         return api;
