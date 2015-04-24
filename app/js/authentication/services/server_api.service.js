@@ -27,7 +27,7 @@
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#signup
-             * @description Renders **`/users/signup/`** User SignUp URL
+             * @description Renders **`/users/signup`** User SignUp URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
@@ -66,8 +66,12 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'passwordReset': function(key){
-                var arr = ['password', 'reset/'];
-                if(key){ arr.push(key); }
+                var arr = null;
+                if(key){
+                    arr = ['password', 'reset', key + '/'];
+                } else {
+                    arr = ['password', 'reset/', key];
+                }
 
                 return renderUrl('users/', arr, false);
             },
@@ -146,12 +150,6 @@
                 console.log(result);
             }
             return result;
-        }
-
-        for (var key in api) {
-            if (api.hasOwnProperty(key)) {
-                console.log('api[' + key + ']: ' + api[key]());
-            }
         }
 
         return api;

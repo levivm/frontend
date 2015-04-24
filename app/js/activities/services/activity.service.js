@@ -20,6 +20,7 @@
   function Activity($http, $q, $log, ActivityServerApi, UploadFile) {
 
       var api = ActivityServerApi;
+//      this.base_url = serverConf.url+'/api/activities/';
       
       function Activity(activityData) {
         this.tags = [];
