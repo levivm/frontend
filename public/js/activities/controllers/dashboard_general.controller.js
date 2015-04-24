@@ -226,7 +226,8 @@
         vm.errors = {};
         vm.isCollapsed = true;
         vm.duration = 1;
-        vm.others_type_selected = false;        
+        vm.others_type_selected = false;     
+        vm.isSaving = false;   
         
 
     }
