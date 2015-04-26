@@ -10,11 +10,11 @@
     .module('trulii.activities.controllers')
     .controller('ActivityGeneralController', ActivityGeneralController);
 
-  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','filterFilter','Categories','activity'];
+  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','filterFilter','Categories','activity', 'Elevator'];
   /**
   * @namespace ActivityGeneralController
   */
-  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,Categories,activity) {
+  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,Categories,activity, Elevator) {
 
 
     var vm = this;    
@@ -61,6 +61,7 @@
         vm.activity.update()
             .success(function(response){
                 vm.isCollapsed = false;
+                vm.isSaving = false;
                 angular.extend(activity,vm.activity)
 
             })
@@ -202,15 +203,16 @@
 
     function _errored(errors) {
         angular.forEach(errors, function(message,field) {
-
-
           _addError(field,message[0]);   
 
         });
 
+        vm.isSaving = false;
+
     }
 
     function _successCreation(response){
+        vm.isSaving = false;
         $state.go('activities-edit.general',{activity_id:response.id});
     }
 
@@ -229,7 +231,7 @@
         vm.others_type_selected = false;     
         vm.isSaving = false;   
         
-
+        Elevator.toTop();
     }
 
   };

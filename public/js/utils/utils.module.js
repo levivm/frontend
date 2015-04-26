@@ -5,7 +5,8 @@
     .module('trulii.utils', [
       'trulii.utils.controllers',
       'trulii.utils.services',
-      'trulii.utils.directives'
+      'trulii.utils.directives', 
+      'duScroll'
     ]);
 
 

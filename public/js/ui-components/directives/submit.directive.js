@@ -14,15 +14,24 @@
 			restrict: 'AE',
 			templateUrl: UIComponentsTemplatesPath + "submit-controls.html",
 			scope: {				
-				toggle: '='
+				toggle: '=',
+				value: '='
 			}, 
 			
 			link: function(scope, element, attrs){
 
-				var btn = element.find(".btn-success")[0];
-				var progress = element.find(".progress");
+				if (scope.value == undefined){  // Si el atributo value no es una variable 
 
-				progress.removeClass("hidden");
+					if (attrs.value)					
+						scope.value = attrs.value;
+					else
+						scope.value = "Guardar" // TODO: Debería tomarse de las cadenas de translate
+				}
+
+				var btn = element.find(".btn-success")[0];
+//				var progress = element.find(".progress");
+
+//				progress.removeClass("hidden");
 
 				btn.addEventListener("click", onSubmit);
 
