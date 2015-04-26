@@ -20,7 +20,9 @@
   	function toTop(){
 
   		if ( $document.scrollTop() > 0)
-  			$document.scrollTop(0, 1000);
+  			$document.scrollTopAnimated(0, 1000, 
+          function (t) { return t*(2-t) // Easing funtions in https://gist.github.com/gre/1650294
+        });
   	}
 
   }
