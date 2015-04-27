@@ -14,7 +14,7 @@
 			restrict: 'AE',
 			templateUrl: UIComponentsTemplatesPath + "submit-controls.html",
 			scope: {				
-				toggle: '=',
+				isSaving: '=',
 				value: '='
 			}, 
 			
@@ -37,7 +37,7 @@
 
 				function onSubmit(event){
 
-					scope.toggle = true;
+					scope.isSaving = true;
 				}
 
 				

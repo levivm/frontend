@@ -3,11 +3,13 @@
 
         <div class="col-sm-offset-1 col-md-8">
 
+        <trulii-preloader is-ready="vm.isReady"></trulii-preloader>
+
 <!--
           <h2>Descripción</h2>
           <p>Describe la información básica acerca de tu actividad</p>
 -->      
-          <form class="form-horizontal card" name='vm.activity_create_form' ng-submit="vm.save_activity()">
+          <form class="form-horizontal card lateral-fade lateral-fadeout" name='vm.activity_create_form' ng-submit="vm.save_activity()" ng-show="vm.isReady">
 
               <fieldset>
 
@@ -15,7 +17,7 @@
                 <div class="form-group has-success input--main">                
 
                   <div class="col-sm-12">
-                    <input id="activity_title" class="form-control" ng-model='vm.activity.title' name="title" placeholder="¿Cómo titulas a tu actividad?" trulii-input-autofocus="{{!vm.activity.id}}" />  
+                    <input id="activity_title" class="form-control" ng-model='vm.activity.title' name="title" placeholder="¿Cómo titulas a tu actividad?" trulii-input-autofocus="{{!vm.creating}}" />  
                   </div>                
 
                   <!--
@@ -146,7 +148,7 @@
 
               <!-- <div counter  form="vm.activity_create_form" value="vm.duration" change="vm.activity.duration" min="1"></div> -->
               
-             <trulii-submit-controls toggle="vm.isSaving" value="Continuar"> </trulii-submit-controls>
+             <trulii-submit-controls is-saving="vm.isSaving" value="Continuar"> </trulii-submit-controls>
 
               </div>
             

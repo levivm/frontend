@@ -1,12 +1,12 @@
 
 
 <div class="form-submit-controls">
-	<div ng-hide="toggle" class="lateral-fade lateral-fadeout">
+	<div ng-hide="isSaving" class="lateral-fade lateral-fadeout">
 		<input type="submit" class="btn btn-success btn-raised btn-lg" value="{{value}}"/>  	
 	</div>
     
 
-    <div class="progress" ng-show="toggle">
+    <div class="progress" ng-show="isSaving">
       <div class="indeterminate"></div>
     </div>
 </div> 

@@ -90,7 +90,8 @@
         //     .then(,_loadActivityFail)
         vm.activity.generalInfo()
             .then(_setPreSaveInfo)
-            .then(_successLoadActivity);
+            .then(_successLoadActivity)
+            .then(_isReady);
         vm.save_activity = _updateActivity;
         vm.creating = false;
     }
@@ -100,7 +101,7 @@
         
         vm.save_activity = _createActivity;
         vm.creating = true;
-        vm.activity.generalInfo().then(_setPreSaveInfo);
+        vm.activity.generalInfo().then(_setPreSaveInfo).then(_isReady);
 
 
     }
@@ -169,7 +170,7 @@
                 break;
             }
 
-        };
+        };        
     
     }
 
@@ -212,8 +213,14 @@
     }
 
     function _successCreation(response){
-        vm.isSaving = false;
-        $state.go('activities-edit.general',{activity_id:response.id});
+        vm.isSaving = false;        
+
+        if (vm.creating)
+            $state.go('activities-edit.detail',{activity_id:response.id});        
+    }
+
+    function _isReady(data){
+        vm.isReady = true;
     }
 
 
@@ -230,6 +237,7 @@
         vm.duration = 1;
         vm.others_type_selected = false;     
         vm.isSaving = false;   
+        vm.isReady = false;        
         
         Elevator.toTop();
     }
