@@ -149,10 +149,20 @@
             .state('general-message', {
                 url:'/messages/:module_name/:template_name/?redirect_state',
                 controller: 'SimpleModalMsgCtrl',
-                //controllerAs: 'vm',
+                controllerAs: 'vm',
                 //templateUrl: 'partials/email_confirm.html' url(r"
                 templateUrl: 'modalContainer'
                 //templateUrl: 'partials/authentication/register.html'
+            })
+            .state('organizer-landing', {
+                url:'/organizers/landing/',
+                controller: 'OrganizerLandingCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'partials/organizers/landing.html',
+                resolve:{
+                    cities: getAvailableCities
+                },
+
             })
             .state('organizer-dashboard', {
                 abstract:true,

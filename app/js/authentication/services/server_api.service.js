@@ -34,6 +34,16 @@
             'signup': function(){
                 return renderUrl('users/', ['signup/'], false);
             },
+            /**
+             * @ngdoc function
+             * @name trulii.authentication.services.AuthenticationServerApi#requestSignup
+             * @description Renders **`/users/request/signup`** User RequestSignup URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.authentication.services.AuthenticationServerApi
+             */
+            'requestSignup': function(){
+                return renderUrl('api/users/', ['request','signup/'], false);
+            },
 
             /**
              * @ngdoc function
