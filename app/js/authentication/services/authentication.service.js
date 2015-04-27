@@ -25,6 +25,7 @@
         //noinspection UnnecessaryLocalVariableJS
         var Authentication = {
             register: register,
+            requestSignup: request_signup,
             getAuthenticatedAccount: getAuthenticatedAccount,
             isAuthenticated: isAuthenticated,
             login: login,
@@ -124,6 +125,16 @@
                 .then(unauthenticate, logoutError);
         }
 
+        function request_signup(data){
+
+
+            return $http.post(api.requestSignup(),data);
+                
+            
+
+
+        }
+
         function forgot_password(email) {
 
             // serverConf.url+'/users/password/reset/'
@@ -195,6 +206,9 @@
 
 
         /** AUTH HELPER / CALLBACKS METHODS */
+
+
+
 
         function logoutError(response){
             redirect();
