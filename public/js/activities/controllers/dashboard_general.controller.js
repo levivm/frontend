@@ -10,11 +10,11 @@
     .module('trulii.activities.controllers')
     .controller('ActivityGeneralController', ActivityGeneralController);
 
-  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','filterFilter','Categories','activity', 'Elevator'];
+  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','filterFilter','Categories','activity', 'Elevator', 'Toast'];
   /**
   * @namespace ActivityGeneralController
   */
-  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,Categories,activity, Elevator) {
+  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,Categories,activity, Elevator, Toast) {
 
 
     var vm = this;    
@@ -216,7 +216,9 @@
         vm.isSaving = false;        
 
         if (vm.creating)
-            $state.go('activities-edit.detail',{activity_id:response.id});        
+            $state.go('activities-edit.detail',{activity_id:response.id});  
+
+        Toast.info("Un paso menos para publicar su actividad", "¡Información guardada!");
     }
 
     function _isReady(data){
@@ -240,6 +242,7 @@
         vm.isReady = false;        
         
         Elevator.toTop();
+
     }
 
   };

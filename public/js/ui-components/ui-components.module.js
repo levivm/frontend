@@ -4,11 +4,15 @@
   angular
     .module('trulii.ui-components', [
       'trulii.ui-components.directives',      
+      'trulii.ui-components.services',
     ])
 
     .constant('UIComponentsTemplatesPath', "partials/ui-components/");
 
   angular
     .module('trulii.ui-components.directives', []);
+
+  angular
+    .module('trulii.ui-components.services', []);
 
 })();

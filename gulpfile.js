@@ -14,13 +14,15 @@ var path = require('path');
 
 // LESS
 
-var BOOTSTRAP_LESS_FILES_PATH = 'bower_components/bootstrap/less'
-var BOOTSTRAP_MATERIAL_LESS_FILES_PATH = 'bower_components/bootstrap-material-design/less'
+var BOOTSTRAP_LESS_FILES_PATH = 'bower_components/bootstrap/less';
+var BOOTSTRAP_MATERIAL_LESS_FILES_PATH = 'bower_components/bootstrap-material-design/less';
+var TOASTR_PATH = 'bower_components/toastr';
 
 var LESS_CONFIG = {
     paths: [
         path.join(__dirname, BOOTSTRAP_LESS_FILES_PATH),
-        path.join(__dirname, BOOTSTRAP_MATERIAL_LESS_FILES_PATH)
+        path.join(__dirname, BOOTSTRAP_MATERIAL_LESS_FILES_PATH),
+        path.join(__dirname, TOASTR_PATH)
     ]
 }
 
