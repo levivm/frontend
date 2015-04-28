@@ -14,6 +14,7 @@
 	  'trulii.config',
 	  'trulii.routes',
 	  'trulii.authentication',
+	  'trulii.ui-components',
 	  'trulii.organizers',
 	  'trulii.activities',
 	  'trulii.locations',
