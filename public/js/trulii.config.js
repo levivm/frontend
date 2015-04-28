@@ -3,7 +3,8 @@
 
   angular
     .module('trulii.config')
-    .config(config);
+    .config(config)
+    .run(run);
 
 
   config.$inject = ['$locationProvider','$httpProvider'];
@@ -16,10 +17,6 @@
 
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';
     $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-
-
-
-
 
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
@@ -77,5 +74,16 @@
     
 
 
+  }
+
+  run.$inject = ['$rootScope'];
+
+  function run($rootScope){
+
+    $rootScope.$on('$stateChangeStart', 
+      function(event, toState, toParams, fromState, fromParams){
+        console.log("Inicia  el cambio de estado");
+        console.log(toState);
+      })
   }
 })();
