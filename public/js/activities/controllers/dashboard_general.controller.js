@@ -64,6 +64,8 @@
                 vm.isSaving = false;
                 angular.extend(activity,vm.activity)
 
+                Toast.generics.weSave();
+
             })
             .error(_errored);
     }
@@ -218,7 +220,7 @@
         if (vm.creating)
             $state.go('activities-edit.detail',{activity_id:response.id});  
 
-        Toast.info("Un paso menos para publicar su actividad", "¡Información guardada!");
+        Toast.generics.weSave("Un paso menos para publicar su actividad");
     }
 
     function _isReady(data){

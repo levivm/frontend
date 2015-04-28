@@ -1,5 +1,7 @@
 
 
+// Toast library https://github.com/CodeSeven/toastr
+
 (function(){
 	'use strict'
 
@@ -11,13 +13,16 @@
 
   function Toast($document){
 
+  	_initialize();
+
   	var Toast = {
   		info: toastr.info,
   		success: toastr.success,
   		error: toastr.error,
+  		warning: toastr.warning,
 
   		generics: {
-  			weSave: weSave
+  			weSave: weSave  			
   		}
   	}
 
@@ -25,8 +30,16 @@
 
   	//////////////  	
 
-  	function weSave(){
-  		toastr.info("¡Información guardada!");   // TODO: From translate
+  	function weSave(complement){
+  		toastr.info( complement, "¡Información guardada!");   // TODO: From translate
+  	}
+
+  	function _initialize(){
+  		toastr.options = {
+	  		"progressBar": true,
+	  		"timeOut": "3500",
+	  		"positionClass": "toast-bottom-right",
+	  	}
   	}
 
   }
