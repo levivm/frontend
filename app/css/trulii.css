@@ -11649,6 +11649,9 @@ select.form-control {
   padding-left: 3em;
   padding-right: 3em;
 }
+.alert-warning.alert-top-arrow:before {
+  content: "";
+}
 .card {
   margin: 1.5em 0;
   padding: 0;
@@ -11690,5 +11693,3 @@ body {
 .angular-google-map-container {
   height: 400px;
 }
-
-/*# sourceMappingURL=trulii.css.map */

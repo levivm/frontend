@@ -91,48 +91,34 @@ var dist = {
 /* LESS and CSS related Modules */
 var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
-var autoprefixer = require('gulp-autoprefixer');
 
 var LESS_CONFIG = {
     paths: [
         path.join(__dirname, BOWER_COMPONENTS_PATH, '/bootstrap/less'),
         path.join(__dirname, BOWER_COMPONENTS_PATH, '/bootstrap-material-design/less'),
-        path.join(__dirname, source.less.includes.root),
-        path.join(__dirname, source.less.components.root),
-        path.join(__dirname, source.less.root)
+//        path.join(__dirname, source.less.includes.root),
+//        path.join(__dirname, source.less.components.root),
+//        path.join(__dirname, source.less.root)
     ]
 };
 
-///** Task to Watch changes on '.less' files **/
-//gulp.task('less.watch', function () {
-//    watch(source.less.all, function(){
-//        gulp.src(source.less.src, {base : source.less.root})
+/** Task to compile '.less' files **/
+gulp.task('less-compile', function () {
+//    return gulp.src(source.less.src)
 //        .pipe(plumber())
 //        .pipe(sourcemaps.init({loadMaps: true}))
 //        .pipe(less(LESS_CONFIG))
-//        .pipe(sourcemaps.write(source.css.root))
 //        .on('error', function (err) {
+//            gutil.log('on.error: ');
 //            gutil.log(err);
 //            this.emit('end');
 //        })
+//        .pipe(size())
+//        .pipe(sourcemaps.write('./'))
 //        .pipe(gulp.dest(source.css.root));
-//    });
-//});
-
-/** Task to compile '.less' files **/
-gulp.task('less-compile', function () {
-    return gulp.src(source.less.src, {base : source.less.root})
-        .pipe(plumber())
-        .pipe(sourcemaps.init({loadMaps: true}))
+    gutil.log(source.less.root + 'trulii.less');
+    return gulp.src(source.less.root + 'trulii.less')
         .pipe(less(LESS_CONFIG))
-        .on('error', function (err) {
-            gutil.log(err);
-            this.emit('end');
-        })
-//        .pipe(autoprefixer())
-        .pipe(size())
-        //        .pipe(minifyCSS())
-        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(source.css.root));
 });
 
