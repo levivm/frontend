@@ -98,7 +98,8 @@ var LESS_CONFIG = {
         path.join(__dirname, BOWER_COMPONENTS_PATH, '/bootstrap/less'),
         path.join(__dirname, BOWER_COMPONENTS_PATH, '/bootstrap-material-design/less'),
         path.join(__dirname, source.less.includes.root),
-        path.join(__dirname, source.less.components.root)
+        path.join(__dirname, source.less.components.root),
+        path.join(__dirname, source.less.root)
     ]
 };
 

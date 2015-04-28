@@ -192,7 +192,7 @@
                     activities: getOrganizerActivities
                 }
             })
-            .state('activties-new', {
+            .state('activities-new', {
                 abstract: true,
                 url: '/activities/new',
                 data: {
@@ -205,7 +205,7 @@
                 },
                 templateUrl: 'partials/activities/create.html'
             })
-            .state('activties-new.general', {
+            .state('activities-new.general', {
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',

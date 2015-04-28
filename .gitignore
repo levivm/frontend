@@ -3,6 +3,10 @@ node_modules/
 bower_components/
 app/lib/
 
+# Compiled Styles
+app/css/*.css
+app/css/*.css.map
+
 # Generated Docs directory
 docs/
 
