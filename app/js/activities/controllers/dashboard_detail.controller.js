@@ -10,11 +10,11 @@
     .module('trulii.activities.controllers')
     .controller('ActivityDBDetailController', ActivityDBDetailController);
 
-  ActivityDBDetailController.$inject = ['$scope','$state','$timeout','$q','$stateParams','activity'];
+  ActivityDBDetailController.$inject = ['$scope','$state','$timeout','$q','$stateParams','activity', 'Elevator'];
   /**
   * @namespace ActivityDBDetailController
   */
-  function ActivityDBDetailController($scope,$state,$timeout,$q,$stateParams,activity) {
+  function ActivityDBDetailController($scope,$state,$timeout,$q,$stateParams,activity, Elevator) {
 
 
 
@@ -118,6 +118,7 @@
         vm.errors = {};
         vm.isCollapsed = true;
 
+        Elevator.toTop();
 
     }
 

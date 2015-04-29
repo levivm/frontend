@@ -10,28 +10,37 @@
     .module('trulii.activities.controllers')
     .controller('ActivityGeneralController', ActivityGeneralController);
 
-  ActivityGeneralController.$inject = ['$scope','$state','$q','ActivitiesManager','filterFilter','Categories','activity','presaveInfo'];
+  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','filterFilter','Categories','activity', 'Elevator', 'Toast'];
   /**
   * @namespace ActivityGeneralController
   */
-  function ActivityGeneralController($scope,$state,$q,ActivitiesManager,filterFilter,Categories,activity,presaveInfo) {
+  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,Categories,activity, Elevator, Toast) {
+
 
     var vm = this;    
 
     vm.activity = angular.copy(activity);
-    vm.errors = {};
-    vm.isCollapsed = true;
-    vm.duration = 1;
-    vm.others_type_selected = false;
-    vm.selectCategory = _selectCategory;
-    vm.setOverElement = _setOverElement;
 
     initialize();
 
+    if (activity.id)
+        _setUpdate();
+    else
+        _setCreate();
+
+    vm.selectCategory = _selectCategory;
+
+    vm.setOverElement = _setOverElement;
+
+
+
+
     /******************ACTIONS**************/
+
 
     function _selectCategory(category){
 
+        console.log("category",category);
         vm.activity_sub_categories = category.subcategories;
 
     }
@@ -50,8 +59,15 @@
         _updateTags();
         _updateSelectedValues();
         vm.activity.update()
-            .then(_updateSuccess,_errored)
+            .success(function(response){
+                vm.isCollapsed = false;
+                vm.isSaving = false;
+                angular.extend(activity,vm.activity)
 
+                Toast.generics.weSave();
+
+            })
+            .error(_errored);
     }
 
     function _showTooltip(element){
@@ -72,36 +88,40 @@
 
 
     function _setUpdate(){
-
-        _setPreSaveInfo().then(_successLoadActivity);
+        // vm.activity.load(activity_id)
+        //     .then(,_loadActivityFail)
+        vm.activity.generalInfo()
+            .then(_setPreSaveInfo)
+            .then(_successLoadActivity)
+            .then(_isReady);
         vm.save_activity = _updateActivity;
         vm.creating = false;
     }
 
 
     function _setCreate(){
+        
         vm.save_activity = _createActivity;
         vm.creating = true;
-        _setPreSaveInfo();
+        vm.activity.generalInfo().then(_setPreSaveInfo).then(_isReady);
 
 
     }
 
-    function _setPreSaveInfo() {
-        var data = presaveInfo;
-        
+    function _setPreSaveInfo(data) {
         vm.selected_category = {};
         vm.selected_sub_category = {};
         vm.selected_type = {};
         vm.selected_level = {};
 
+        //var data = data;
         var categories = new Categories(data.categories);
         vm.activity_categories = categories;
         vm.activity_sub_categories = data.subcategories;
         vm.activity_types  = data.types;
         vm.activity_levels = data.levels;
 
-        console.log("tags",data);
+        console.log(data);
 
         vm.loadTags = function(){
             var deferred = $q.defer();
@@ -109,7 +129,7 @@
             return deferred.promise;
         };
 
-        console.log("acitiyvtyyy",vm.activity);
+
         var deferred = $q.defer();
             deferred.resolve(vm.activity);
         return deferred.promise;
@@ -131,21 +151,12 @@
     /*********RESPONSE HANDLERS***************/
 
 
-    function _updateSuccess(response){
-
-        vm.isCollapsed = false;
-        angular.extend(activity,vm.activity)
-
-    }
-
-
 
     function _successLoadActivity(response){
         vm.selected_level = filterFilter(vm.activity_levels,{code:response.level})[0];
         vm.selected_type  = filterFilter(vm.activity_types,{code:response.type})[0];
         vm.selected_category = filterFilter(vm.activity_categories,{id:response.category_id})[0];
         vm.selected_sub_category = filterFilter(vm.activity_sub_categories,{id:response.sub_category})[0];
-        console.log("response tags",response);
         vm.activity_tags = response.tags; 
 
 
@@ -161,7 +172,7 @@
                 break;
             }
 
-        };
+        };        
     
     }
 
@@ -188,26 +199,32 @@
 
 
     function _addError(field, message) {
-    console.log("field",field,message);
       vm.errors[field] = message;
       vm.activity_create_form[field].$setValidity(message, false);
 
     };
 
     function _errored(errors) {
-        console.log("ERRORS",errors);
         angular.forEach(errors, function(message,field) {
-
-            console.log("ERRORS",message,field);
-
           _addError(field,message[0]);   
 
         });
 
+        vm.isSaving = false;
+
     }
 
     function _successCreation(response){
-        $state.go('activities-edit.general',{activity_id:response.id});
+        vm.isSaving = false;        
+
+        if (vm.creating)
+            $state.go('activities-edit.detail',{activity_id:response.id});  
+
+        Toast.generics.weSave("Un paso menos para publicar su actividad");
+    }
+
+    function _isReady(data){
+        vm.isReady = true;
     }
 
 
@@ -219,17 +236,17 @@
 
     function initialize(){
 
-        if (!vm.activity.id)
-            document.getElementById("activity_title").focus();
+        vm.errors = {};
+        vm.isCollapsed = true;
+        vm.duration = 1;
+        vm.others_type_selected = false;     
+        vm.isSaving = false;   
+        vm.isReady = false;        
+        
+        Elevator.toTop();
 
-        if (activity.id) {
-            _setUpdate();
-        }
-        else {
-            _setCreate();
-        }
     }
 
-  }
+  };
 
-})();
+  })();

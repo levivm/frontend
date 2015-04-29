@@ -91,46 +91,30 @@ var dist = {
 /* LESS and CSS related Modules */
 var less = require('gulp-less');
 var minifyCSS = require('gulp-minify-css');
-var autoprefixer = require('gulp-autoprefixer');
 
 var LESS_CONFIG = {
     paths: [
         path.join(__dirname, BOWER_COMPONENTS_PATH, '/bootstrap/less'),
         path.join(__dirname, BOWER_COMPONENTS_PATH, '/bootstrap-material-design/less'),
-        path.join(__dirname, source.less.includes.root),
-        path.join(__dirname, source.less.components.root)
+        path.join(__dirname, BOWER_COMPONENTS_PATH, '/toastr'),
+//        path.join(__dirname, source.less.includes.root),
+//        path.join(__dirname, source.less.components.root),
+//        path.join(__dirname, source.less.root)
     ]
 };
 
-///** Task to Watch changes on '.less' files **/
-//gulp.task('less.watch', function () {
-//    watch(source.less.all, function(){
-//        gulp.src(source.less.src, {base : source.less.root})
-//        .pipe(plumber())
-//        .pipe(sourcemaps.init({loadMaps: true}))
-//        .pipe(less(LESS_CONFIG))
-//        .pipe(sourcemaps.write(source.css.root))
-//        .on('error', function (err) {
-//            gutil.log(err);
-//            this.emit('end');
-//        })
-//        .pipe(gulp.dest(source.css.root));
-//    });
-//});
-
 /** Task to compile '.less' files **/
 gulp.task('less-compile', function () {
-    return gulp.src(source.less.src, {base : source.less.root})
+    return gulp.src(source.less.src)
         .pipe(plumber())
         .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(less(LESS_CONFIG))
         .on('error', function (err) {
+            gutil.log('on.error: ');
             gutil.log(err);
             this.emit('end');
         })
-//        .pipe(autoprefixer())
         .pipe(size())
-        //        .pipe(minifyCSS())
         .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(source.css.root));
 });
@@ -138,10 +122,16 @@ gulp.task('less-compile', function () {
 /** Injector Task for .css file from Bower Dependencies **/
 gulp.task('bower-css-injector', function() {
     var filter = '**/*.css';
+    /* Filters to exclude bootstrap and bootstrap-material-design css files
+    *  since it's .less files are being used */
+    var filterExcludeBootstrap = '!**/bootstrap/**';
+    var filterExcludeMaterial = '!**/bootstrap-material-design/**';
+
     var injectParams = {name: 'inject:bower', relative: true};
     var srcParams = { base: BOWER_COMPONENTS_PATH, read: false };
     var target = gulp.src(source.html.index);
-    var sources = gulp.src(mainBowerFiles(filter), srcParams);
+    var sources = gulp.src(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial]), srcParams);
+    gutil.log(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial]));
 
     return target.pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT));

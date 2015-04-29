@@ -221,7 +221,7 @@
                     activities: getOrganizerActivities
                 }
             })
-            .state('activties-new', {
+            .state('activities-new', {
                 abstract: true,
                 url: '/activities/new',
                 data: {
@@ -234,7 +234,7 @@
                 },
                 templateUrl: 'partials/activities/create.html'
             })
-            .state('activties-new.general', {
+            .state('activities-new.general', {
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
@@ -323,7 +323,64 @@
                 controller: 'ActivityDBReturnPDashboard',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_return_policy.html'
+            })
+            .state('activities-detail', {
+                url:'/activities/{activity_id:int}',
+                controller: 'ActivityDetailController',
+                controllerAs: 'pc',
+                resolve: {
+                    activity: getActivity,
+                    cities: getAvailableCities,
+                    active: function () {
+                        return true;
+                    },
+                    calendars: getCalendars
+                },
+                templateUrl: 'partials/activities/detail.html'
+            })
+            .state('activities-detail.info', {
+                url: '',
+                controller: 'ActivityDetailInfoController',
+                controllerAs: 'vm',
+                templateUrl: 'partials/activities/detail.info.html'
+            })
+            .state('activities-detail.calendar', {
+                url: '',
+                controller: 'ActivityDetailCalendarController',
+                controllerAs: 'vm',
+                templateUrl: 'partials/activities/detail.calendar.html'
+            })
+            .state('activities-detail.attendees', {
+                url: '',
+                controller: 'ActivityDetailAttendeesController',
+                controllerAs: 'vm',
+                templateUrl: 'partials/activities/detail.attendees.html'
+            })
+            .state('activities-enroll', {
+                url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
+                controller: 'ActivityDetailEnrollController',
+                controllerAs: 'pc',
+                templateUrl: 'partials/activities/detail.enroll.html',
+                resolve: {
+                    activity: getActivity,
+                    calendar: fetchCalendar
+                }
+            })
+            .state('activities-enroll.success', {
+                url: '',
+                controller: 'ActivityEnrollSuccessController',
+                controllerAs: 'vm',
+                templateUrl: 'partials/activities/detail.enroll.success.html',
+                resolve: {
+                    //activity: getActivity,
+                    //calendar: fetchCalendar,
+                    organizer: ['activity', function (activity) {
+                        return  activity.organizer
+                    }],
+                    organizerActivities: getOrganizerActivities
+                }
             });
+
         $urlRouterProvider.otherwise('/');
     }
 
@@ -388,6 +445,15 @@
     function getCalendar($stateParams, CalendarsManager, activity){
         var calendar_id = $stateParams.id;
         return CalendarsManager.getCalendar(calendar_id);
+    }
+
+    fetchCalendar.$inject = ['$stateParams', 'CalendarsManager'];
+
+    function fetchCalendar($stateParams, CalendarsManager) {
+        var activityId = $stateParams.activity_id;
+        var calendarId = $stateParams.calendar_id;
+
+        return CalendarsManager.fetchCalendar(activityId, calendarId);
     }
 
     getActivity.$inject = ['$stateParams','ActivitiesManager'];

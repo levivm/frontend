@@ -33,9 +33,7 @@
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
     <!-- inject:bower:css -->
     <link rel="stylesheet" href="lib/ng-tags-input/ng-tags-input.min.css">
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="lib/bootstrap-material-design/dist/css/material.css">
-    <link rel="stylesheet" href="lib/bootstrap-material-design/dist/css/ripples.css">
+    <link rel="stylesheet" href="lib/toastr/toastr.css">
     <!-- endinject -->
 
     <!-- inject:css -->
@@ -72,39 +70,24 @@
 <script type="text/ng-template" id="modalContainer"> </script>
 
 <!-- inject:bower:js -->
-
 <script src="lib/angular/angular.js"></script>
-
 <script src="lib/angular-cookies/angular-cookies.js"></script>
-
 <script src="lib/lodash/lodash.js"></script>
-
 <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-
 <script src="lib/jquery/dist/jquery.js"></script>
-
 <script src="lib/ng-file-upload/angular-file-upload.js"></script>
-
 <script src="lib/ng-tags-input/ng-tags-input.min.js"></script>
-
 <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-
 <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
-
 <script src="lib/bootstrap-material-design/dist/js/material.js"></script>
-
 <script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
-
 <script src="lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
-
 <script src="lib/angular-animate/angular-animate.js"></script>
-
 <script src="lib/arrive/src/arrive.js"></script>
-
+<script src="lib/angular-scroll/angular-scroll.js"></script>
+<script src="lib/toastr/toastr.js"></script>
 <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-
 <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
-
 <!-- endinject -->
 
 <!-- inject:js -->
@@ -116,6 +99,7 @@
 <script src="js/landing/landing.module.js"></script>
 <script src="js/locations/locations.module.js"></script>
 <script src="js/organizers/organizers.module.js"></script>
+<script src="js/ui-components/ui-components.module.js"></script>
 <script src="js/utils/utils.module.js"></script>
 <script src="js/activities/activities.config.js"></script>
 <script src="js/activities/services/activities_manager.service.js"></script>
@@ -131,9 +115,15 @@
 <script src="js/organizers/services/organizer.service.js"></script>
 <script src="js/organizers/services/organizer_manager.service.js"></script>
 <script src="js/organizers/services/server_api.service.js"></script>
+<script src="js/ui-components/services/toast.service.js"></script>
+<script src="js/utils/services/elevator.service.js"></script>
 <script src="js/utils/services/upload_file.service.js"></script>
 <script src="js/authentication/directives/authentication.directive.js"></script>
 <script src="js/authentication/directives/form_modal.directive.js"></script>
+<script src="js/ui-components/directives/input-alert.directive.js"></script>
+<script src="js/ui-components/directives/input-autofocus.directive.js"></script>
+<script src="js/ui-components/directives/preloader.directive.js"></script>
+<script src="js/ui-components/directives/submit.directive.js"></script>
 <script src="js/utils/directives/counter.directive.js"></script>
 <script src="js/utils/directives/datepicker_popup.directive.js"></script>
 <script src="js/utils/directives/saved_message.directive.js"></script>
