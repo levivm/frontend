@@ -24,6 +24,7 @@
       
       function Activity(activityData) {
         this.tags = [];
+        this.certification = false;
         if (activityData) {
             this.setData(activityData);
             console.log("Activity data ",activityData);
@@ -75,10 +76,8 @@
               url: api.activity(this.id),
               data: this
             }).then(function(response){
-
               scope.setData(response.data);
-              return response
-
+              return response;
             },function(response){
               return $q.reject(response.data);
             });

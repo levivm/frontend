@@ -1,21 +1,22 @@
 /**
-* Register controller
-* @namespace thinkster.organizers.controllers
-*/
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityGeneralController
+ * @description ActivityGeneralController
+ * @requires ng.$scope
+ */
+
 (function () {
   'use strict';
-
 
   angular
     .module('trulii.activities.controllers')
     .controller('ActivityGeneralController', ActivityGeneralController);
 
-  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','filterFilter','Categories','activity', 'Elevator', 'Toast'];
-  /**
-  * @namespace ActivityGeneralController
-  */
-  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,Categories,activity, Elevator, Toast) {
+  ActivityGeneralController.$inject = ['$scope','$modal','$http','$state','$timeout','$q','$stateParams','filterFilter',
+        'Categories','activity', 'Elevator', 'Toast'];
 
+  function ActivityGeneralController($scope,$modal,$http,$state,$timeout,$q,$stateParams,filterFilter,
+        Categories,activity, Elevator, Toast) {
 
     var vm = this;    
 
@@ -32,7 +33,7 @@
 
     vm.setOverElement = _setOverElement;
 
-
+    vm.getLevelClassStyle = getLevelClassStyle;
 
 
     /******************ACTIONS**************/
@@ -59,22 +60,18 @@
         _updateTags();
         _updateSelectedValues();
         vm.activity.update()
-            .success(function(response){
+            .then(function(response){
                 vm.isCollapsed = false;
                 vm.isSaving = false;
-                angular.extend(activity,vm.activity)
-
+                angular.extend(activity,vm.activity);
                 Toast.generics.weSave();
-
-            })
-            .error(_errored);
+            }, _errored);
     }
 
     function _showTooltip(element){
 
-        if (vm.currentOverElement==element)
-            return true
-        return false
+        return vm.currentOverElement == element;
+
     }
 
 
@@ -111,14 +108,12 @@
     function _setPreSaveInfo(data) {
         vm.selected_category = {};
         vm.selected_sub_category = {};
-        vm.selected_type = {};
         vm.selected_level = {};
 
         //var data = data;
         var categories = new Categories(data.categories);
         vm.activity_categories = categories;
         vm.activity_sub_categories = data.subcategories;
-        vm.activity_types  = data.types;
         vm.activity_levels = data.levels;
 
         console.log(data);
@@ -154,26 +149,9 @@
 
     function _successLoadActivity(response){
         vm.selected_level = filterFilter(vm.activity_levels,{code:response.level})[0];
-        vm.selected_type  = filterFilter(vm.activity_types,{code:response.type})[0];
         vm.selected_category = filterFilter(vm.activity_categories,{id:response.category_id})[0];
         vm.selected_sub_category = filterFilter(vm.activity_sub_categories,{id:response.sub_category})[0];
-        vm.activity_tags = response.tags; 
-
-
-        // 
-
-        for (var i = vm.activity_types.length - 1; i >= 0; i--) {
-            
-            if ( vm.activity_types[i] == vm.selected_type ){
-
-                if (i > 2 )
-                    vm.others_type_selected = vm.selected_type;
-
-                break;
-            }
-
-        };        
-    
+        vm.activity_tags = response.tags;
     }
 
 
@@ -182,10 +160,7 @@
     function _updateSelectedValues(){
         vm.activity.category = vm.selected_category.id;
         vm.activity.sub_category = vm.selected_sub_category.id;
-        vm.activity.type = vm.selected_type.code;
         vm.activity.level = vm.selected_level.code;
-
-
     }
 
 
@@ -202,7 +177,7 @@
       vm.errors[field] = message;
       vm.activity_create_form[field].$setValidity(message, false);
 
-    };
+    }
 
     function _errored(errors) {
         angular.forEach(errors, function(message,field) {
@@ -234,12 +209,22 @@
 
     }
 
+    /* Utils */
+
+    function getLevelClassStyle(level){
+        return {
+            'btn-active': vm.selected_level.code == level.code,
+            'btn-intermediate-level': level.code == 'I',
+            'btn-advanced-level': level.code == 'A',
+            'btn-beginner-level': level.code == 'P'
+        };
+    }
+
     function initialize(){
 
         vm.errors = {};
         vm.isCollapsed = true;
         vm.duration = 1;
-        vm.others_type_selected = false;     
         vm.isSaving = false;   
         vm.isReady = false;        
         
@@ -247,6 +232,6 @@
 
     }
 
-  };
+  }
 
-  })();
+})();
