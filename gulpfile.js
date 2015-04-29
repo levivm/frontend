@@ -126,10 +126,16 @@ gulp.task('less-compile', function () {
 /** Injector Task for .css file from Bower Dependencies **/
 gulp.task('bower-css-injector', function() {
     var filter = '**/*.css';
+    /* Filters to exclude bootstrap and bootstrap-material-design css files
+    *  since it's .less files are being used */
+    var filterExcludeBootstrap = '!**/bootstrap/**';
+    var filterExcludeMaterial = '!**/bootstrap-material-design/**';
+
     var injectParams = {name: 'inject:bower', relative: true};
     var srcParams = { base: BOWER_COMPONENTS_PATH, read: false };
     var target = gulp.src(source.html.index);
-    var sources = gulp.src(mainBowerFiles(filter), srcParams);
+    var sources = gulp.src(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial]), srcParams);
+    gutil.log(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial]));
 
     return target.pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT));
