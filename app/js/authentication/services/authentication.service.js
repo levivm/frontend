@@ -190,6 +190,7 @@
         function reset_password(key,password1,password2) {
 
             // serverConf.url+'/users/password/reset/key/'+key+'/'
+            console.log("key111",key);
             return $http({
                 url: api.passwordReset(key),
                 data:_parseParam({'password1':password1,'password2':password2}),
