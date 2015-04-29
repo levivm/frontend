@@ -11,7 +11,8 @@
 
     angular
         .module('trulii.config')
-        .config(config);
+        .config(config)
+        .run(run);
 
 
     config.$inject = ['$locationProvider','$httpProvider'];
@@ -76,4 +77,17 @@
         // }];
 
     }
+
+    run.$inject = ['$rootScope'];
+
+    function run($rootScope){
+
+        $rootScope.$on('$stateChangeStart', 
+          function(event, toState, toParams, fromState, fromParams){
+            console.log("Inicia  el cambio de estado");
+            console.log(toState);
+        });
+    }
+
+     
 })();

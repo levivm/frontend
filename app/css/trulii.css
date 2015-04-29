@@ -11763,6 +11763,9 @@ tags-input .remove-button {
 tags-input input {
   border: 0px;
 }
+.checkbox {
+  padding-top: 0 !important;
+}
 .btn-success {
   color: white !important;
 }
@@ -12584,3 +12587,5 @@ button.toast-close-button {
     width: 25em;
   }
 }
+
+/*# sourceMappingURL=trulii.css.map */
