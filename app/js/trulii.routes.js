@@ -42,7 +42,19 @@
                 url:'/register',
                 controller: 'RegisterController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/authentication/register.html'
+                templateUrl: 'partials/authentication/register.html',
+                resolve:{
+                    validatedData: tokenSignupValidation
+                }
+            })
+            .state('register-organizer', {
+                url:'/organizers/register/:token/',
+                controller: 'RegisterController',
+                controllerAs: 'vm',
+                resolve: {
+                    validatedData :  tokenSignupValidation
+                },
+                templateUrl: 'partials/authentication/register_organizer.html'
             })
             .state('login', {
                 url:'/login',
@@ -67,12 +79,19 @@
                 templateUrl: 'partials/authentication/reset_password.html'
             })
             .state('email-confirm', {
-                url:'/email/confirm/:status/',
+                url:'/email/confirm/:key/',
                 controller: 'EmailConfirmCtrl',
                 controllerAs: 'vm',
                 //templateUrl: 'partials/email_confirm.html' url(r"
                 templateUrl: 'modalContainer'
             })
+            // .state('email-confirm', {
+            //     url:'/email/confirm/:status/',
+            //     controller: 'EmailConfirmCtrl',
+            //     controllerAs: 'vm',
+            //     //templateUrl: 'partials/email_confirm.html' url(r"
+            //     templateUrl: 'modalContainer'
+            // })
 
             .state('modal-dialog', {
                 url:'/',
@@ -309,6 +328,18 @@
     }
 
     /****** RESOLVER FUNCTIONS USERS *******/
+
+
+    tokenSignupValidation.$inject = ['$stateParams','Authentication'];
+
+    function tokenSignupValidation($stateParams,Authentication){
+        var token = $stateParams.token;
+        if (!(token))
+            return {}
+        return Authentication.requestSignupToken($stateParams.token)
+    }
+
+
 
     getAuthenticatedUser.$inject = ['Authentication'];
 

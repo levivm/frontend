@@ -44,6 +44,16 @@
             'requestSignup': function(){
                 return renderUrl('api/users/', ['request','signup/'], false);
             },
+            /**
+             * @ngdoc function
+             * @name trulii.authentication.services.AuthenticationServerApi#requestSignupTokenValidation
+             * @description Renders **`/users/request/signup/token/`** User RequestSignup URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.authentication.services.AuthenticationServerApi
+             */
+            'requestSignupToken': function(token){
+                return renderUrl('api/users/', ['request','signup','token',token + '/'], false);
+            },
 
             /**
              * @ngdoc function
@@ -106,6 +116,16 @@
              */
             'email': function(){
                 return renderUrl('users/', ['email/'], false);
+            },
+            /**
+             * @ngdoc function
+             * @name trulii.authentication.services.AuthenticationServerApi#confirmEmail
+             * @description Renders **`/users/confirm-email/:token/`** User Email URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.authentication.services.AuthenticationServerApi
+             */
+            'confirmEmail': function(key){
+                return renderUrl('users/', ['confirm-email',key+'/'], false);
             },
 
             /* API - Endpoints that require /api/ */

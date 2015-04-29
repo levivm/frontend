@@ -26,10 +26,12 @@
         var Authentication = {
             register: register,
             requestSignup: request_signup,
+            requestSignupToken: token_signup_validation,
             getAuthenticatedAccount: getAuthenticatedAccount,
             isAuthenticated: isAuthenticated,
             login: login,
             logout:logout,
+            confirmEmail:confirm_email,
             reset_password:reset_password,
             forgot_password:forgot_password,
             change_password: change_password,
@@ -77,21 +79,32 @@
         }
 
 
-        function register(email, password,first_name,last_name,user_type) {
+        function register(register_data) {
 
             // serverConf.url+'/users/signup/'
+            console.log("register_data",register_data)
             return $http({
                 method: 'post',
                 url: api.signup(),
-                data:_parseParam({
-                    password1: password,
-                    email: email,
-                    first_name: first_name,
-                    last_name: last_name,
-                    user_type: user_type
-                }),
+                data:_parseParam(register_data),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            })
+            .then(function(register_response){
+                console.log(register_data)
+
+                var token_data = {'email':register_data.email,'password':register_data.password1};
+                return getToken(token_data)
+                    .then(function(response_token){
+                        console.log("RESPONSE TOKENN",response_token);
+                        setAuthenticationToken(response_token.data.token);
+                        setAuthenticatedAccount(response_token.data.user);
+                        return register_response
+                    })
+
             });
+
+            
+            
 
         }
 
@@ -111,6 +124,7 @@
                 return getToken(login_data)
                     .then(function(response_token){
                         localStorageService.set('token',response_token.data.token);
+
                         return login_response;
                     }
                 );
@@ -133,6 +147,32 @@
             
 
 
+        }
+
+        function confirm_email(key){
+
+            return $http.post(api.confirmEmail(key));
+
+        }
+
+        function token_signup_validation(token){
+
+            return $http.get(api.requestSignupToken(token))
+                        .then(function(response){
+                            return response.data
+                        })
+            // .then(
+
+            //     function (res){console.log(res)},function(res){console.log(res)}
+
+            //     );
+
+
+            // var successValidation = function (response) {
+            //     return response.data
+            // }          
+
+            // var successValidation
         }
 
         function forgot_password(email) {
@@ -240,6 +280,11 @@
         function setAuthenticatedAccount(data){
             localStorageService.set('user',data);
             return data;
+        }
+
+        function setAuthenticationToken(token){
+            localStorageService.set('token',token);
+
         }
 
         function updateAuthenticatedAccount() {
