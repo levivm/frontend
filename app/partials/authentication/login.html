@@ -33,7 +33,9 @@
                                         {{ vm.errors.password }}
                                     </div>
                                 </div>
+                                <input type="hidden" ng-model="__all__" name="__all__"/>
                                 <div class="alert alert-error" ng-show="vm.errors.__all__">
+                                    <input type="hidden" name="__all__"/>
                                     <strong>{{vm.errors.__all__}}</strong>
                                 </div>
                                 <div class="form-group">

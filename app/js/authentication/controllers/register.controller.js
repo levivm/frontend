@@ -20,23 +20,37 @@
     
 
 
-  RegisterController.$inject = ['$scope','$q','Authentication','$modal','$http','$state'];
+  RegisterController.$inject = ['$scope','$q','Authentication','$modal','$http','$state','validatedData'];
 
 
-  function RegisterController($scope, $q, Authentication,$modal,$http,$state) {
+  function RegisterController($scope, $q, Authentication,$modal,$http,$state,validatedData) {
     var vm = this;
 
-    
+    vm.strings = {};
+    vm.strings.SIGNUP_LABEL = "Registrate";
+    vm.strings.PLACEHOLDER_EMAIL = "Correo electrónico";
+    vm.strings.PLACEHOLDER_PASSWORD = "Contraseña";
 
-    vm.set_usertype = function function_name(user_type) {
-      vm.user_type = user_type;
-    }
+
+
 
     vm.auth   = {};
+    console.log(validatedData,"data valida");
+    if (validatedData){
+        vm.auth.email = validatedData.email;
+        vm.auth.name = validatedData.name;
+    }
+      
+
     vm.errors = {};
 
     vm.register = register;
 
+
+
+    vm.set_usertype = function function_name(user_type) {
+      vm.user_type = user_type;
+    }
 
 
     function _clearErrors(){
@@ -70,15 +84,11 @@
     function register() {
       _clearErrors();
       vm.auth.user_type = vm.user_type;
-      console.log("user user_type",vm.user_type);
-      return Authentication.register(vm.auth.email, vm.auth.password1,
-                                     vm.auth.first_name, vm.auth.last_name,
-                                     vm.auth.user_type)
+
+      return Authentication.register(vm.auth)
             .then(function(response){
 
-              console.log("success");
-              console.log(response);
-              $state.go("login");
+              $state.go("home");
               //HERE SHOULD HSHOW A POP UP
 
             },_registerError);
