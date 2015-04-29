@@ -10,35 +10,50 @@
     .module('trulii.authentication.controllers')
     .controller('EmailConfirmCtrl', EmailConfirmCtrl);
 
-  EmailConfirmCtrl.$inject = ['$scope','$modal','$http','$state','$stateParams','Authentication'];
+  EmailConfirmCtrl.$inject = ['$scope','$modal','$state','$stateParams','Authentication'];
   /**
   * @namespace RegisterController
   */
-  function EmailConfirmCtrl($scope,$modal,$http,$state,$stateParams,Authentication) {
+  function EmailConfirmCtrl($scope,$modal,$state,$stateParams,Authentication) {
 
     var error = false;
-    var success = $stateParams.status === "success" ? true:false;
+    var key = $stateParams.key;
 
-    if(success){    
+    if (key)
+      Authentication.confirmEmail(key).then(confirmed_email,invalid_token);
+
+
+
+    function confirmed_email(){
+
+      console.log("TODO BIENN");
       var modalInstance = $modal.open({
           templateUrl: 'partials/authentication/email_confirmation_success.html',
           controller: 'ModalInstanceCtrl',
         });
 
-      console.log(modalInstance);
       modalInstance.result.then(function(){
 
 
         $state.go("home");
       })
-    }
-    else{
+
+    } 
+
+    function invalid_token(){
 
       var modalInstance = $modal.open({
-          templateUrl: 'partials/authentication/email_confirmation_error.html/',
+          templateUrl: 'partials/authentication/email_confirmation_error.html',
           controller: 'ModalInstanceCtrl',
         });
-      $state.go("home");
+
+      modalInstance.result.then(function(){
+
+        $state.go("home");
+      })
+
+
+
     }
   };
 
