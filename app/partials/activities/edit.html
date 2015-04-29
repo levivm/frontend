@@ -1,0 +1,59 @@
+<div class="container-fluid">
+
+  <div class="row">
+    
+      <div class="col-sm-2">
+        <nav class="col-sm-2 sidebar lateral-slide">
+        
+              <li ui-sref-active="active">
+                <a ui-sref=".general" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  General
+                  <span ng-show="pc.steps.general" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref=".detail" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Detalle
+                  <span ng-show="pc.steps.detail" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>                          
+              <li>
+                <a ui-sref=".calendars" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Calendario
+                  <span ng-show="pc.steps.calendars" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>
+              <li>
+                <a ui-sref=".location" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Ubicación 
+                  <span ng-show="pc.steps.location" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>                          
+              <li>
+                <a ui-sref=".gallery" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Galería
+                  <span ng-show="pc.steps.gallery" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+
+                </a>
+
+              </li>                          
+              <li>
+                <a ui-sref=".return-policy" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                Política de devolución
+                <span ng-show="pc.steps.return_policy" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>                          
+
+      </nav>
+
+        <div>
+          <input type="submit" id="submit" ng-show="pc.all_steps_completed && !pc.activity.active" class="btn btn-primary" ng-click="pc.publish_activity()" value="Publicar"/>
+        </div>
+    </div>
+
+    <div class="col-sm-offset-2 col-sm-10 with-sidebar lateral-fade" ui-view>
+      
+
+    </div>
+
+  </div>

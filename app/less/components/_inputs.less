@@ -1,0 +1,72 @@
+
+
+@import url('../_trulii-variables');
+
+//@import url('inputs');
+@import "_inputs";
+
+.form-group:not(:first-child){
+	margin-top: 3.4em;
+}
+
+.input--main{
+	margin-top: 0px;
+
+	input{
+		font-size: 2.6em;
+		height: auto !important;
+		font-weight: bold;			
+	}
+
+	.floating-label{
+		font-size: 2.6em;
+		font-weight: bold;
+	}
+	
+}
+
+select.form-control{
+	font-size: 1.3em;
+}
+
+tags-input{
+	.tags{
+		.form-control;
+		border: 0px;
+	}
+
+	.tag-list{
+		display: inline-block;
+		padding: 0px;
+	}
+
+	.tag-item{
+		background: @brand-secondary;
+		display: inline-block;
+		color: white;
+		font-weight: bolder;
+		padding: 2px 10px;
+		padding-right: 20px;
+		margin-right: 5px;
+		position: relative;
+
+		// Tag Text
+		span{
+			padding-right: 5px;
+		}
+	}
+
+	.remove-button{
+		cursor: pointer;
+		position: absolute;
+		top: 50%;		
+		font-size: 23px;
+		line-height: 0px;
+	}
+
+	input{
+		border: 0px;
+	}
+
+}
+	

@@ -1,5 +1,23 @@
-node_modules
-bower_components
+# Bower and NPM directories
+node_modules/
+bower_components/
+app/lib/
 
-.sass-cache
-public/css/trulii.css
+# Compiled Styles
+app/css/*.css
+app/css/*.css.map
+
+# Generated Docs directory
+docs/
+
+# Distribution directory
+public/
+
+# Temporal build files
+temp/
+
+# IntelliJ IDEs
+.idea/
+
+# Mac scumbag files
+**/.DS_Store
