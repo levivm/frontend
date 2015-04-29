@@ -1,204 +1,201 @@
+      <div class="row">
 
-<div class="row">
+        <div class="col-sm-offset-1 col-md-8">
 
-<div class="col-sm-offset-1 col-md-8">
+        <trulii-preloader is-ready="vm.isReady"></trulii-preloader>
 
-    <trulii-preloader is-ready="vm.isReady"></trulii-preloader>
+<!--
+          <h2>Descripción</h2>
+          <p>Describe la información básica acerca de tu actividad</p>
+-->      
+          <form class="form-horizontal card lateral-fade lateral-fadeout" name='vm.activity_create_form' ng-submit="vm.save_activity()" ng-show="vm.isReady">
 
-    <!--
-              <h2>Descripción</h2>
-              <p>Describe la información básica acerca de tu actividad</p>
-    -->
-    <form class="form-horizontal card lateral-fade lateral-fadeout" name='vm.activity_create_form' ng-submit="vm.save_activity()" ng-show="vm.isReady">
+              <fieldset>
 
-        <fieldset>
+              <div class="card-header">
+                <div class="form-group has-success input--main">                
 
-            <div class="card-header">
-                <div class="form-group has-success input--main">
+                  <div class="col-sm-12">
+                    <input id="activity_title" class="form-control" ng-model='vm.activity.title' name="title" placeholder="¿Cómo titulas a tu actividad?" trulii-input-autofocus="{{!vm.creating}}" />  
+                  </div>                
 
-                    <div class="col-sm-12">
-                        <input id="activity_title" class="form-control" ng-model='vm.activity.title' name="title" placeholder="¿Cómo titulas a tu actividad?" trulii-input-autofocus="{{!vm.creating}}" />
-                    </div>
-
-                    <!--
-                     <div trulii-input-alert field="vm.activity_create_form.title" errors="vm.errors" styles="color: white;"></div>
-
-                     -->
+                  <!--
+                   <div trulii-input-alert field="vm.activity_create_form.title" errors="vm.errors" styles="color: white;"></div>
+                   -->
 
                 </div>
-            </div>
+              </div>
 
-            <div class="card-body">
+              <div class="card-body">
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Tipo</label>
+                  <label class="control-label col-sm-2">Tipo</label>
 
-                    <div class="col-sm-10">
-                        <div class="btn-group btn-group-justified" role="group" aria-label="Tipo" role="group">
+                  <div class="col-sm-10">
+                     <div class="btn-group btn-group-justified" role="group" aria-label="Tipo" role="group">
+                       
 
+                        <label for="type" class="btn btn-default"  ng-repeat="type in vm.activity_types | limitTo:3" ng-click="vm.selected_type = type; vm.others_type_selected = false" ng-class="{'btn-active': vm.selected_type.code == type.code}">
+                          <input type="radio" name="type" class="hidden">{{type.value}}
+                        </label>                      
+                      
+                        <div class="btn-group">
+                          <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-class="{'btn-active': vm.others_type_selected}">
+                            <span ng-hide="vm.others_type_selected">Otros </span>
+                            <span ng-show="vm.others_type_selected">{{vm.others_type_selected.value}} </span>
+                            <span class="caret"></span>
+                          </button>
+                          <ul class="dropdown-menu">
+                            <li ng-repeat="type in vm.activity_types.slice().reverse() | limitTo: vm.activity_types.length - 3" ng-click="vm.selected_type = type; vm.others_type_selected = type" >
 
-                            <label for="type" class="btn btn-default"  ng-repeat="type in vm.activity_types | limitTo:3" ng-click="vm.selected_type = type; vm.others_type_selected = false" ng-class="{'btn-active': vm.selected_type.code == type.code}">
-                                <input type="radio" name="type" class="hidden">{{type.value}}
-                            </label>
-
-                            <div class="btn-group">
-                                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" ng-class="{'btn-active': vm.others_type_selected}">
-                                    <span ng-hide="vm.others_type_selected">Otros </span>
-                                    <span ng-show="vm.others_type_selected">{{vm.others_type_selected.value}} </span>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu">
-                                    <li ng-repeat="type in vm.activity_types.slice().reverse() | limitTo: vm.activity_types.length - 3" ng-click="vm.selected_type = type; vm.others_type_selected = type" >
-
-                                        <a ng-class="{'btn-active': vm.selected_type.code == type.code}" href="" class="btn btn-default">{{type.value}}</a></li>
-                                </ul>
-                            </div>
+                              <a ng-class="{'btn-active': vm.selected_type.code == type.code}" href="" class="btn btn-default">{{type.value}}</a></li>                          
+                          </ul>
                         </div>
-                    </div>
-
+                     </div>
+                  </div>
+                  
                    <span class="errors" ng-show="vm.activity_create_form.type.$invalid && !vm.activity_create_form.type.$dirty">
-                    <span>{{ vm.errors.type }}</span>
+                    <span>{{ vm.errors.type }}</span> 
                   </span>
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Nivel</label>
+                 <div class="form-group">
+                <label class="control-label col-sm-2">Nivel</label>
 
-                    <div class="col-sm-10">
-                        <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
+                <div class="col-sm-10">
+                   <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
+                  
+                      <label for="level" class="btn btn-default" ng-repeat="level in vm.activity_levels" ng-click="vm.selected_level = level" ng-class="{'btn-active': vm.selected_level.code == level.code, 'btn-intermediate-level': level.code == 'I', 'btn-advanced-level': level.code == 'A', 'btn-beginner-level': level.code == 'P'}">
+                        <input type="radio" name="level" class="hidden">{{level.value}}  
+                      </label>                      
+                               
+                   </div>
 
-                            <label for="level" class="btn btn-default" ng-repeat="level in vm.activity_levels" ng-click="vm.selected_level = level" ng-class="{'btn-active': vm.selected_level.code == level.code, 'btn-intermediate-level': level.code == 'I', 'btn-advanced-level': level.code == 'A', 'btn-beginner-level': level.code == 'P'}">
-                                <input type="radio" name="level" class="hidden">{{level.value}}
-                            </label>
-
-                        </div>
-
-                        <div trulii-input-alert field="vm.activity_create_form.level" errors="vm.errors"></div>
-                    </div>
-
-
+                   <div trulii-input-alert field="vm.activity_create_form.level" errors="vm.errors"></div>
+                </div>
+              
+                
                  <span class="errors" ng-show="vm.activity_create_form.type.$invalid && !vm.activity_create_form.type.$dirty">
-                  <span>{{ vm.errors.type }}</span>
+                  <span>{{ vm.errors.type }}</span> 
                 </span>
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2">Categoria</label>
+                <div class="col-sm-10">
+                  <select class="form-control" ng-model="vm.selected_category"
+                      ng-options="category as category.name for (index,category) in vm.activity_categories" name="category" ng-change="vm.selectCategory(vm.selected_category)">
+                      <option value="" selected ng-show="!vm.activity_create_form.category.$dirty">Seleccione..</option>
+                  </select>
+                  
+                  <div trulii-input-alert field="vm.activity_create_form.category" errors="vm.errors"></div>
+                </div>
+                                
+              </div>
+
+              <div class="form-group">
+                <label class="control-label col-sm-2">Sub-Categoria</label>
+                <div class="col-sm-10">
+                  <select class="form-control" ng-model="vm.selected_sub_category" 
+                      ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories" name="sub_category"
+                      ng-mouseover="vm.setOverElement('sub_category')" >
+                      <option value="" selected ng-show="!vm.activity_create_form.sub_category.$dirty">Seleccione..</option>
+                  </select>
+
+                  <div trulii-input-alert field="vm.activity_create_form.sub_category" errors="vm.errors"></div>
+                </div>
+                               
+              </div>
+
+                <div class="form-group">
+                  <label class="control-label col-sm-2" >Descripción Detallada</label>
+
+                  <div class="col-sm-10">
+                    <textarea class="form-control" ng-model='vm.activity.large_description' name="large_description" ng-mouseover="vm.setOverElement('short_description')">  </textarea>  
+                      
+
+                    <div trulii-input-alert field="vm.activity_create_form.large_description" errors="vm.errors"></div>
+
+                  </div>
+                                    
                 </div>
 
                 <div class="form-group">
-                    <label class="control-label col-sm-2">Categoria</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" ng-model="vm.selected_category"
-                                ng-options="category as category.name for (index,category) in vm.activity_categories" name="category" ng-change="vm.selectCategory(vm.selected_category)">
-                            <option value="" selected ng-show="!vm.activity_create_form.category.$dirty">Seleccione..</option>
-                        </select>
+                  <label class="control-label col-sm-2">Descripción Corta</label>
 
-                        <div trulii-input-alert field="vm.activity_create_form.category" errors="vm.errors"></div>
-                    </div>
+                  <div class="col-sm-10">
+                    <textarea class="form-control" ng-model='vm.activity.short_description' name="short_description" > </textarea>  
 
+                    <div trulii-input-alert field="vm.activity_create_form.short_description" errors="vm.errors"></div>
+                  </div>                                    
+                                   
                 </div>
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Sub-Categoria</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" ng-model="vm.selected_sub_category"
-                                ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories" name="sub_category"
-                                ng-mouseover="vm.setOverElement('sub_category')" >
-                            <option value="" selected ng-show="!vm.activity_create_form.sub_category.$dirty">Seleccione..</option>
-                        </select>
-
-                        <div trulii-input-alert field="vm.activity_create_form.sub_category" errors="vm.errors"></div>
-                    </div>
-
+              <div class="form-group">
+                
+                <label class="control-label col-sm-2">Tags</label>
+                <div class="col-sm-10">
+                     <tags-input ng-model="vm.activity_tags" display-property="name" ng-mouseover="vm.setOverElement('tags')"> 
+                      <auto-complete source="vm.loadTags()"></auto-complete>
+                    </tags-input> 
                 </div>
+               
+              </div>
+                
+  
 
-                <div class="form-group">
-                    <label class="control-label col-sm-2" >Descripción Detallada</label>
+              <!-- <div counter  form="vm.activity_create_form" value="vm.duration" change="vm.activity.duration" min="1"></div> -->
+              
+             <trulii-submit-controls is-saving="vm.isSaving" value="Continuar"> </trulii-submit-controls>
 
-                    <div class="col-sm-10">
-                        <textarea class="form-control" ng-model='vm.activity.large_description' name="large_description" ng-mouseover="vm.setOverElement('short_description')">  </textarea>
-
-
-                        <div trulii-input-alert field="vm.activity_create_form.large_description" errors="vm.errors"></div>
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-sm-2">Descripción Corta</label>
-
-                    <div class="col-sm-10">
-                        <textarea class="form-control" ng-model='vm.activity.short_description' name="short_description" > </textarea>
-
-                        <div trulii-input-alert field="vm.activity_create_form.short_description" errors="vm.errors"></div>
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label class="control-label col-sm-2">Tags</label>
-                    <div class="col-sm-10">
-                        <tags-input ng-model="vm.activity_tags" display-property="name" ng-mouseover="vm.setOverElement('tags')">
-                            <auto-complete source="vm.loadTags()"></auto-complete>
-                        </tags-input>
-                    </div>
-
-                </div>
+              </div>
+            
 
 
-
-                <!-- <div counter  form="vm.activity_create_form" value="vm.duration" change="vm.activity.duration" min="1"></div> -->
-
-                <trulii-submit-controls is-saving="vm.isSaving" value="Continuar"> </trulii-submit-controls>
-
-            </div>
-
-
-
-
+              
 
             <!--  <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
-
+                
               </div> -->
 
-        </fieldset>
-    </form>
-</div>
+            </fieldset>
+          </form>
+        </div>
 
-<div class="col-md-3">
-    <!--          <div class="sidebar-nav-fixed pull-right affix well">
-      <ul class="nav">
-        <li ng-show="vm.showTooltip('short_description')">
-          Describe tu actividad de forma atractiva, especifica y díficil de olvidar.
-          Recuerda que esta descripción aparecerá en las tarjeta de la actividad.
-        </li>
-        <li ng-show="vm.showTooltip('sub_category')">
-          Elige la que más esté acorde con
-          tu actividad. En caso de no hallar
-          la adecuada, selecciona “otra” y
-          rato después nosotros añadiremos una nueva que encaje con tu
-          publicación.
-        </li>
-        <li ng-show="vm.showTooltip('tags')">
-          Estas son etiquetas en forma de
-          hashtags, ayudando a los usuari
-          os a encontrar tu publicación en
-          nuestros buscadores y redes so
-          ciales. Deja un espacio por cada
-          palabra o frase que deseas agre-
-          gar, sin poner el #.
-          Un ejemplo para un curso de
-          pizzas:
-          Hashtags: cocinaitaliana napoli
-          tana cuatroquesos
-        </li>
+        <div class="col-md-3">
+ <!--          <div class="sidebar-nav-fixed pull-right affix well">
+   <ul class="nav">
+     <li ng-show="vm.showTooltip('short_description')">
+       Describe tu actividad de forma atractiva, especifica y díficil de olvidar.
+       Recuerda que esta descripción aparecerá en las tarjeta de la actividad.
+     </li>
+     <li ng-show="vm.showTooltip('sub_category')">
+       Elige la que más esté acorde con 
+       tu actividad. En caso de no hallar 
+       la adecuada, selecciona “otra” y 
+       rato después nosotros añadiremos una nueva que encaje con tu 
+       publicación.
+     </li>
+     <li ng-show="vm.showTooltip('tags')">
+       Estas son etiquetas en forma de
+       hashtags, ayudando a los usuari
+       os a encontrar tu publicación en 
+       nuestros buscadores y redes so
+       ciales. Deja un espacio por cada 
+       palabra o frase que deseas agre-
+       gar, sin poner el #.
+       Un ejemplo para un curso de 
+       pizzas:
+       Hashtags: cocinaitaliana napoli
+       tana cuatroquesos
+     </li>
+ 
+ 
+ 
+ 
+   </ul>
+ </div> -->
+    </div>
+     <hr>
 
-
-
-
-      </ul>
-    </div> -->
-</div>
-<hr>
-
-</div>
-
+  </div>

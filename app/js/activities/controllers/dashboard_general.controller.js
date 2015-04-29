@@ -220,7 +220,7 @@
         if (vm.creating)
             $state.go('activities-edit.detail',{activity_id:response.id});  
 
-        Toast.generics.weSave("Un paso menos para publicar su actividad");
+        Toast.generics.weSave("Un paso menos para publicar tu actividad");
     }
 
     function _isReady(data){

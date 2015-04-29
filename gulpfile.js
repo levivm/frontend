@@ -126,11 +126,13 @@ gulp.task('bower-css-injector', function() {
     *  since it's .less files are being used */
     var filterExcludeBootstrap = '!**/bootstrap/**';
     var filterExcludeMaterial = '!**/bootstrap-material-design/**';
+    var filterExcludeToastr = '!**/toastr/**';
+    var filterNgTagsInput = '!**/ng-tags-input/**';
 
     var injectParams = {name: 'inject:bower', relative: true};
     var srcParams = { base: BOWER_COMPONENTS_PATH, read: false };
     var target = gulp.src(source.html.index);
-    var sources = gulp.src(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial]), srcParams);
+    var sources = gulp.src(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial, filterExcludeToastr, filterNgTagsInput]), srcParams);
     gutil.log(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial]));
 
     return target.pipe(inject(sources, injectParams))
