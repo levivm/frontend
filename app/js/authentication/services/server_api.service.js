@@ -42,7 +42,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'requestSignup': function(){
-                return renderUrl('api/users/', ['request','signup/'], false);
+                return renderUrl('users/', ['request','signup/'], true);
             },
             /**
              * @ngdoc function
@@ -52,7 +52,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'requestSignupToken': function(token){
-                return renderUrl('api/users/', ['request','signup','token',token + '/'], false);
+                return renderUrl('users/', ['request','signup','token',token + '/'], true);
             },
 
             /**
@@ -87,10 +87,11 @@
              */
             'passwordReset': function(key){
                 var arr = null;
+                console.log("KEY",key);
                 if(key){
                     arr = ['password', 'reset', key + '/'];
                 } else {
-                    arr = ['password', 'reset/', key];
+                    arr = ['password', 'reset/'];
                 }
 
                 return renderUrl('users/', arr, false);

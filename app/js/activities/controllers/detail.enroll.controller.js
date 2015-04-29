@@ -25,6 +25,7 @@
         };
 
         pc.plus = function () {
+            console.log("clicning",pc.quantity,pc.capacity);
             if (pc.quantity < pc.capacity) {
                 pc.quantity += 1;
                 pc.assistants.push({});
