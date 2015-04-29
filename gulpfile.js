@@ -105,21 +105,17 @@ var LESS_CONFIG = {
 
 /** Task to compile '.less' files **/
 gulp.task('less-compile', function () {
-//    return gulp.src(source.less.src)
-//        .pipe(plumber())
-//        .pipe(sourcemaps.init({loadMaps: true}))
-//        .pipe(less(LESS_CONFIG))
-//        .on('error', function (err) {
-//            gutil.log('on.error: ');
-//            gutil.log(err);
-//            this.emit('end');
-//        })
-//        .pipe(size())
-//        .pipe(sourcemaps.write('./'))
-//        .pipe(gulp.dest(source.css.root));
-    gutil.log(source.less.root + 'trulii.less');
-    return gulp.src(source.less.root + 'trulii.less')
+    return gulp.src(source.less.src)
+        .pipe(plumber())
+        .pipe(sourcemaps.init({loadMaps: true}))
         .pipe(less(LESS_CONFIG))
+        .on('error', function (err) {
+            gutil.log('on.error: ');
+            gutil.log(err);
+            this.emit('end');
+        })
+        .pipe(size())
+        .pipe(sourcemaps.write('./'))
         .pipe(gulp.dest(source.css.root));
 });
 
