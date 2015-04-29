@@ -42,7 +42,19 @@
                 url:'/register',
                 controller: 'RegisterController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/authentication/register.html'
+                templateUrl: 'partials/authentication/register.html',
+                resolve:{
+                    validatedData: tokenSignupValidation
+                }
+            })
+            .state('register-organizer', {
+                url:'/organizers/register/:token/',
+                controller: 'RegisterController',
+                controllerAs: 'vm',
+                resolve: {
+                    validatedData :  tokenSignupValidation
+                },
+                templateUrl: 'partials/authentication/register_organizer.html'
             })
             .state('login', {
                 url:'/login',
@@ -67,12 +79,19 @@
                 templateUrl: 'partials/authentication/reset_password.html'
             })
             .state('email-confirm', {
-                url:'/email/confirm/:status/',
+                url:'/email/confirm/:key/',
                 controller: 'EmailConfirmCtrl',
                 controllerAs: 'vm',
                 //templateUrl: 'partials/email_confirm.html' url(r"
                 templateUrl: 'modalContainer'
             })
+            // .state('email-confirm', {
+            //     url:'/email/confirm/:status/',
+            //     controller: 'EmailConfirmCtrl',
+            //     controllerAs: 'vm',
+            //     //templateUrl: 'partials/email_confirm.html' url(r"
+            //     templateUrl: 'modalContainer'
+            // })
 
             .state('modal-dialog', {
                 url:'/',
@@ -149,10 +168,20 @@
             .state('general-message', {
                 url:'/messages/:module_name/:template_name/?redirect_state',
                 controller: 'SimpleModalMsgCtrl',
-                //controllerAs: 'vm',
+                controllerAs: 'vm',
                 //templateUrl: 'partials/email_confirm.html' url(r"
                 templateUrl: 'modalContainer'
                 //templateUrl: 'partials/authentication/register.html'
+            })
+            .state('organizer-landing', {
+                url:'/organizers/landing/',
+                controller: 'OrganizerLandingCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'partials/organizers/landing.html',
+                resolve:{
+                    cities: getAvailableCities
+                },
+
             })
             .state('organizer-dashboard', {
                 abstract:true,
@@ -356,6 +385,18 @@
     }
 
     /****** RESOLVER FUNCTIONS USERS *******/
+
+
+    tokenSignupValidation.$inject = ['$stateParams','Authentication'];
+
+    function tokenSignupValidation($stateParams,Authentication){
+        var token = $stateParams.token;
+        if (!(token))
+            return {}
+        return Authentication.requestSignupToken($stateParams.token)
+    }
+
+
 
     getAuthenticatedUser.$inject = ['Authentication'];
 
