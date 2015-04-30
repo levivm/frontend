@@ -12560,14 +12560,6 @@ button.toast-close-button {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
 }
-
-
-/*Agular Google Maps*/
-
-.angular-google-map-container { height: 400px; }
-
-
-
 /*Responsive Design*/
 @media all and (max-width: 240px) {
   #toast-container > div {
@@ -12594,6 +12586,10 @@ button.toast-close-button {
     padding: 15px 15px 15px 50px;
     width: 25em;
   }
+}
+/*Agular Google Maps*/
+.angular-google-map-container {
+  height: 400px;
 }
 
 /*# sourceMappingURL=trulii.css.map */
