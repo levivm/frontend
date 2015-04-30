@@ -1,0 +1,18 @@
+<label for="home-city-selector" class="sr-only">Cities</label>
+<select id="home-city-selector" name="city" ng-model="home.current_city"
+        ng-options="city as city.name for city in home.cities"
+        ng-change="vm.setCurrentCity(current_city)">
+</select>
+
+<br/>
+<a ui-sref="register">Register</a>
+<br/>
+<a ui-sref="organizer-landing">Register Organizer</a>
+<br/>
+<a ui-sref="login">Iniciar sesión</a>
+<br/>
+<a ui-sref="organizer-dashboard.profile">Dashboard</a>
+<br/>
+<a ui-sref="activities-new.general">Crear Actividad</a>
+<br/>
+<a ui-sref="logout">Logout</a>

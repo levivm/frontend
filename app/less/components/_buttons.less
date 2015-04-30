@@ -1,0 +1,32 @@
+
+@import url('../_trulii-variables');
+
+
+// ...Because strange issue on bootstrap-material
+.btn-success{
+	color: white !important;
+}
+
+.btn{
+	font-weight: bold;
+	
+	&.btn-active{
+		background: @secondary !important;
+		color: white !important;
+
+
+		&.btn-beginner-level{
+			background-color: @color-beginner !important;			
+		}
+
+		&.btn-intermediate-level{
+			background-color: @color-intermediate !important;
+		}
+
+		&.btn-advanced-level{
+			background-color: @color-advanced !important;
+
+		}
+	}
+
+}

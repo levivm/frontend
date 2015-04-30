@@ -1,0 +1,39 @@
+<div>
+    <table>
+        <tr>
+            <th>Fecha de Inicio</th>
+            <th>Nro. de Sesiones</th>
+            <th>Cupos restantes</th>
+            <th>Cierre de ventas</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+        </tr>
+        <tr ng-repeat="calendar in vm.calendars track by $index">
+            <td>
+                <input type="radio" name="calendar" ng-model="vm.calendar_selected" ng-value="calendar" ng-change="pc.changeCalendarSelected(calendar)"/>
+                {{ ::calendar.initial_date | date:'dd MMMM yyyy' }}
+            </td>
+            <td>{{ ::calendar.number_of_sessions }}</td>
+            <td>12</td>
+            <td>{{ ::calendar.closing_sale | date:'dd MMMM yyyy' }}</td>
+            <td>{{ ::calendar.session_price }}</td>
+            <td>{{ ::calendar.capacity }}</td>
+        </tr>
+    </table>
+
+    <table>
+        <tr>
+            <th colspan="2">Cronograma</th>
+        </tr>
+        <tr ng-repeat="session in vm.calendar_selected.sessions">
+            <td>{{ session.date | date:'EEEE, dd MMMM' }}</td>
+            <td>{{ session.start_time | date:'h:mma'}}-{{ session.end_time | date:'h:mma' }}</td>
+        </tr>
+    </table>
+
+    <div>
+        <a ui-sref="activities-enroll({activity_id: pc.activity.id, calendar_id: vm.calendar_selected.id})">Inscribirme</a>
+    </div>
+
+    <div id="map-canvas" style="width:800px; height: 500px; margin: 0; padding: 0"></div>
+</div>

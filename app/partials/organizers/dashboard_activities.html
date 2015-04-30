@@ -1,0 +1,55 @@
+<div class="container">
+	<div class="col-sm-2">
+	    <nav class="nav-sidebar">
+			<ul class="nav tabs">
+	          <li class="active"><a data-target="#actives" data-toggle="tab">Abiertos</a></li>
+	          <li class=""><a data-target="#inactives" data-toggle="tab">Anteriores</a></li>
+	          <li class=""><a data-target="#draft" data-toggle="tab">Borradores</a></li>      
+	           <!-- <tab heading="Cuenta" select="changeState('organizer-dashboard.account')">                         -->
+			</ul>
+		</nav>
+	</div>
+	<div class="tab-content">
+
+		<div class="tab-pane active text-style" id="actives">
+			<div class="row">
+				<div class="col-md-3" ng-repeat="activity in vm.actual_activities">
+					{{::activity.title}}
+					{{::activity.short_description}}
+					{{::activity.id}}
+
+					<img width="200px" height="200px" ng-src="{{activity.photos[0].photo}}">
+					<a ui-sref="activities-edit.general({activity_id:activity.id})">editar</a>
+
+
+						<!-- <img ng-src="{{::activity.photo}}"> -->
+				</div>
+			</div>
+		</div>
+		<div class="tab-pane text-style" id="inactives">
+			<div>
+				<div class="col-md-3" ng-repeat="activity in vm.previous_activities">
+					{{::activity.title}}
+					{{::activity.id}}
+					{{::activity.short_description}}
+					<img width="200px" height="200px" ng-src="{{activity.photos[0].photo}}">
+					<a ui-sref="activities-edit.general({activity_id:activity.id})">editar</a>
+				</div>
+			</div>
+
+		</div>
+		<div class="tab-pane text-style" id="draft">
+			<div>
+				<div class="col-md-3" ng-repeat="activity in vm.draft_activities">
+					{{::activity.title}}
+					{{::activity.short_description}}
+					{{::activity.id}}
+
+					<img width="200px" height="200px" ng-src="{{activity.photos[0].photo}}">
+					<a ui-sref="activities-edit.general({activity_id:activity.id})">editar</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
