@@ -32,7 +32,13 @@
                   <span ng-show="pc.steps.location" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                     <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.steps.location }"></i>
                 </a>
-              </li>                          
+              </li>   
+              <li>
+                <a ui-sref=".instructors" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                  Instructores 
+                  <span ng-show="pc.steps.instructors" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </a>
+              </li>                        
               <li>
                 <a ui-sref=".gallery" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                   Galería
