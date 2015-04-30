@@ -39,6 +39,7 @@
         });
     }
 
+      //TODO this one here is the one to refactor
     function _checkSections(activity){
         var all_completed = true;
         angular.forEach(activity.completed_steps,function(value,key){

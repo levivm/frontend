@@ -107,8 +107,8 @@
             } else {
                 //_base_url + "info/";
                 $http.get(api.info()).then(function(response){
-                    console.log('loadGeneralInfo response: ');
-                    console.log(response);
+//                    console.log('loadGeneralInfo response: ');
+//                    console.log(response);
                     presave_info = response.data;
                     deferred.resolve(presave_info);
                 });

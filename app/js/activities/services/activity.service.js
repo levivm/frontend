@@ -96,15 +96,35 @@
           },
           publish:function(){
             var scope = this;
-            //this.base_url + this.id + '/publish';
             return $http({
               method: 'put',
               url: api.publish(this.id)
             })
             .then(function(response){
               scope.published = true;
-
             });
+          },
+          checkSections : function (){
+              var all_completed = true;
+              angular.forEach(this.completed_steps, function(value, key){
+                  if(!value)
+                      all_completed = false;
+              });
+          },
+          setSectionCompleted : function(section, value){
+              /*
+              * STEPS_REQUIREMENTS = {
+
+               'general':['title','short_description','large_description','sub_category_id','level','type'],
+               'detail':['content'],
+               'calendars':['chronograms'],
+               'instructors':['instructors'],
+               'location':['location'],''
+               'gallery':['photos'],
+               'return_policy':['return_policy']
+               }
+               */
+            this.completed_steps[section] = value;
           }
       };
 
