@@ -23,6 +23,7 @@
 //      this.base_url = serverConf.url+'/api/activities/';
       
       function Activity(activityData) {
+        this.all_steps_completed = false;
         this.tags = [];
         this.certification = false;
         if (activityData) {
@@ -104,27 +105,69 @@
               scope.published = true;
             });
           },
+
+          /**
+           * @ngdoc function
+           * @name trulii.activities.services.Activity#areAllStepsCompleted
+           * @return {boolean} `true` if all of the activity creation steps
+           * are completed, `false` otherwise
+           * @methodOf trulii.activities.services.Activity
+           */
+          areAllStepsCompleted : function(){
+              this.checkSections();
+              console.log('Activity.areAllStepsCompleted: ', this.all_steps_completed);
+              return this.all_steps_completed;
+          },
+
+          /**
+           * @ngdoc function
+           * @name trulii.activities.services.Activity#checkSections
+           * @description Checks the completion of all of the Activity's creation steps
+           * @methodOf trulii.activities.services.Activity
+           */
           checkSections : function (){
-              var all_completed = true;
-              angular.forEach(this.completed_steps, function(value, key){
+              var scope = this;
+              scope.all_steps_completed = true;
+              angular.forEach(scope.completed_steps, function(value, key){
                   if(!value)
-                      all_completed = false;
+                      scope.all_steps_completed = false;
               });
           },
+
+          /**
+           * @ngdoc function
+           * @name trulii.activities.services.Activity#setSectionCompleted
+           * @param {string} section The section to update.
+           * Available values are ['general', 'detail', 'instructors', 'location', 'gallery', 'return_policy']
+           * @param {boolean} value The value to assign to the section
+           * @methodOf trulii.activities.services.Activity
+           */
           setSectionCompleted : function(section, value){
+              console.log('Activity.setSectionCompleted: ', section, ', ', value);
               /*
               * STEPS_REQUIREMENTS = {
 
                'general':['title','short_description','large_description','sub_category_id','level','type'],
                'detail':['content'],
-               'calendars':['chronograms'],
-               'instructors':['instructors'],
                'location':['location'],''
                'gallery':['photos'],
                'return_policy':['return_policy']
                }
                */
             this.completed_steps[section] = value;
+          },
+
+          /**
+           * @ngdoc function
+           * @name trulii.activities.services.Activity#isSectionCompleted
+           * @param {string} section The section to get.
+           * Available values are ['general', 'detail', 'instructors', 'location', 'gallery', 'return_policy']
+           * @methodOf trulii.activities.services.Activity
+           */
+          isSectionCompleted : function(section){
+              var scope = this;
+              console.log('Activity.isSectionCompleted: ', section, ', ', scope.completed_steps[section]);
+              return scope.completed_steps[section];
           }
       };
 

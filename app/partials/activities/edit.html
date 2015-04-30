@@ -22,41 +22,42 @@
               <li>
                 <a ui-sref=".calendars" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                     Calendario
-                    <span ng-show="pc.steps.calendars" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.steps.calendars }"></i>
+                    <span ng-show="pc.isSectionCompleted('calendars')" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.isSectionCompleted('calendars') }"></i>
                 </a>
               </li>
               <li>
                 <a ui-sref=".location" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                   Ubicación 
-                  <span ng-show="pc.steps.location" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.steps.location }"></i>
+                  <span ng-show="pc.isSectionCompleted('location')" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.isSectionCompleted('location') }"></i>
                 </a>
               </li>   
               <li>
                 <a ui-sref=".instructors" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                   Instructores 
-                  <span ng-show="pc.steps.instructors" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <span ng-show="pc.isSectionCompleted('instructors')" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                  <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.isSectionCompleted('instructors') }"></i>
                 </a>
               </li>                        
               <li>
                 <a ui-sref=".gallery" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                   Galería
                   <span ng-show="pc.steps.gallery" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.steps.gallery }"></i>
+                  <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.steps.gallery }"></i>
                 </a>
               </li>                          
               <li>
                 <a ui-sref=".return-policy" class="sidebar__item" ui-sref-active="sidebar__item--selected">
-                Política de devolución
-                <span ng-show="pc.steps.return_policy" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                    <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.steps.return_policy }"></i>
+                    Política de devolución
+                    <span ng-show="pc.isSectionCompleted('return_policy')" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    <i class="mdi-action-done text-success" ng-class="{ 'hide' : !pc.isSectionCompleted('return_policy') }"></i>
                 </a>
               </li>
       </nav>
 
         <div>
-          <input type="submit" id="submit" ng-show="pc.all_steps_completed && !pc.activity.active" class="btn btn-primary" ng-click="pc.publish_activity()" value="Publicar"/>
+          <input type="submit" id="submit" ng-show="pc.areAllStepsCompleted() && !pc.activity.active" class="btn btn-primary" ng-click="pc.publish_activity()" value="Publicar"/>
         </div>
       </div>
 

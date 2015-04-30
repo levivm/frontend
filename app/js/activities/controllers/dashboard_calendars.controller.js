@@ -27,29 +27,24 @@
 
       vm.createCalendar = _createCalendar;
       vm.loadCalendar   = _loadCalendar;
-      vm.deleteCalendar = _deleteCalendar;
       vm.setCalendar    = _setCalendar;
-
-
-      function _setCalendar(calendar){
-
-        CalendarsManager.setCalendar(calendar);
-        activity.load().then(function(data){
-
-          $scope.$parent.pc.activitySectionUpdated(activity);
-
-        });
-
-        $state.go("^");
-      }
-
+      vm.deleteCalendar = _deleteCalendar;
 
       function _createCalendar(){
-        $state.go(".detail");
+          $state.go(".detail");
       }
 
       function _loadCalendar(calendar){
-        $state.go(".detail",{'id':calendar.id});
+          $state.go(".detail",{'id':calendar.id});
+      }
+
+      function _setCalendar(calendar){
+        CalendarsManager.setCalendar(calendar);
+        activity.load().then(function(data){
+            _onSectionUpdated();
+        });
+
+        $state.go("^");
       }
 
       function _updatedCalendar(){
@@ -57,39 +52,42 @@
       }
 
       function _deleteCalendar(calendar){
-        var modalInstance = $modal.open({
-          templateUrl:  'partials/activities/messages/confirm_delete_calendar.html',
-          controller: 'ModalInstanceCtrl',
-          size: 'lg'
-        });
+          var modalInstance = $modal.open({
+              templateUrl:  'partials/activities/messages/confirm_delete_calendar.html',
+              controller: 'ModalInstanceCtrl',
+              size: 'lg'
+          });
 
-        modalInstance.result.then(function(){
+          modalInstance.result.then(function(){
 
-          CalendarsManager.deleteCalendar(calendar.id)
-          .then(_successDelete, _errorDelete);
+              CalendarsManager.deleteCalendar(calendar.id)
+                  .then(_successDelete, _errorDelete);
 
-        });
+          });
+
+          function _successDelete(response){
+              activity.load().then(function(data){
+                  _onSectionUpdated();
+              });
+          }
+
+          function _errorDelete(response){
+              vm.calendar_errors = {};
+              angular.forEach(response,function(value,key){
+                  vm.calendar_errors[key] = value;
+              })
+
+          }
       }
 
-      function _successDelete(response){
-
-        activity.load().then(function(data){
-          $scope.$parent.pc.activitySectionUpdated(activity);
-        });
-
-      }
-
-      function _errorDelete(response){
-
-        vm.calendar_errors = {};
-        angular.forEach(response,function(value,key){
-          vm.calendar_errors[key] = value;
-        })
-
+      function _onSectionUpdated(){
+          var hasCalendars = calendars.length > 0;
+          activity.setSectionCompleted('calendars', hasCalendars);
       }
 
       function initialize(){
-        vm.calendar_errors = {}
+        vm.calendar_errors = {};
+        _onSectionUpdated();
       }
   }
 

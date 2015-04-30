@@ -18,7 +18,7 @@
 
         var serverApi = serverConf.url + '/api/';
 //        var apiVersion = 'v1';
-        var debug = true;
+        var debug = false;
 
         //noinspection UnnecessaryLocalVariableJS
         var api = {

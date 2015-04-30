@@ -14,24 +14,22 @@
     .module('trulii.activities.controllers')
     .controller('ActivityDashboardCtrl', ActivityDashboardCtrl);
 
-  ActivityDashboardCtrl.$inject = ['$scope','Activity','activity'];
+  ActivityDashboardCtrl.$inject = ['$scope', 'Activity', 'activity'];
 
-  function ActivityDashboardCtrl($scope,Activity,activity) {
+  function ActivityDashboardCtrl($scope, Activity, activity) {
 
     var pc = this;
 
-    pc.all_steps_completed = false;
-    pc.steps = {};
+    pc.areAllStepsCompleted = function(){ return activity.areAllStepsCompleted(); };
+    pc.steps = function(){ return activity.completed_steps; }();
+    pc.isSectionCompleted = function(section) { return activity.isSectionCompleted(section); };
     pc.activity = activity;
     pc.sidebar = false;
 
     pc.publish_activity = _publish_activity;
-    pc.activitySectionUpdated = _checkSections;
 
     activate();
     initialize();
-
-    console.log('ActivityDashboardCtrl. Activity.generalInfo()');
 
     function _publish_activity(){
         activity.publish().then(function(response){
@@ -39,25 +37,14 @@
         });
     }
 
-      //TODO this one here is the one to refactor
-    function _checkSections(activity){
-        var all_completed = true;
-        angular.forEach(activity.completed_steps,function(value,key){
-            pc.steps[key] = value;
-            if(!(value))
-                all_completed = false;
-        });
-
-        pc.all_steps_completed = all_completed
-    }
-
     function activate(){
-        _checkSections(activity);
+
     }
 
     function initialize(){
       pc.sidebar = true;
     }
+
   }
 
-  })();
+})();
