@@ -4,13 +4,15 @@
 
             <form name='vm.activity_return_policy_form' ng-submit="vm.save_activity()">
                 <fieldset>
-                    <h2>Descripción</h2>
+                    <h2>Política de Devolución</h2>
+                    <h4 class="text-muted">Especifica bajo qué condiciones aceptas reembolsar pagos</h4>
 
                     <div class="form-group">
-                        <label for="return-policy-textarea">Política de Devolución</label>
+                        <label for="return-policy-textarea" class="sr-only">Política de Devolución</label>
                         <textarea id="return-policy-textarea" class="form-control" name="return_policy"
                                   ng-model='vm.activity.return_policy'
-                                  ng-mouseover="vm.setOverElement('return_policy')">
+                                  ng-mouseover="vm.setOverElement('return_policy')"
+                                placeholder="Condiciones para reembolso">
                         </textarea>
                         <div class="errors"
                              ng-show="vm.activity_create_form.return_policy.$invalid && !vm.activity_create_form.return_policy.$dirty">
@@ -28,37 +30,8 @@
         <div class="col-md-3">
             <div class="sidebar-nav-fixed pull-right affix well">
                 <ul class="nav">
-                    <li ng-show="vm.showTooltip('content')">
-                        ¿Tu actividad está dividida en
-                        módulos en donde cada uno
-                        tiene temas a enseñar?
-                    </li>
-                    <li ng-show="vm.showTooltip('goals')">
-                        ¿Cuál es la finalidad de tu activ-
-                        idad?
-
-                        Algunos ejemplos:
-                        ¿Tus alumnos saldrán domi-
-                        nando algún campo en particu-
-                        lar?
-                        ¿Tus inscritos saldrán agota-
-                        dos con muchas calorías
-                        menos?
-                    </li>
-                    <li ng-show="vm.showTooltip('methodology')">
-                        ¿Tu actividad será evaluada?
-                        ¿Cómo?
-                        ¿Aplicarás algún método de
-                        enseñanza en particular?
-                    </li>
-                    <li ng-show="vm.showTooltip('requirements')">
-                        ¿Para inscribirse hace falta
-                        conocimientos en algún tema
-                        en particular?
-                        ¿Deben llevar algún material
-                        para realizar la actividad?
-                        ¿Se requiere una docu-
-                        mentación?
+                    <li ng-show="vm.showTooltip('return_policy')">
+                        Especifica las circunstancias en las que se aplica reembolso
                     </li>
                 </ul>
             </div>
