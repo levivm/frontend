@@ -82,11 +82,28 @@
 
     function run($rootScope){
 
-        $rootScope.$on('$stateChangeStart', 
-          function(event, toState, toParams, fromState, fromParams){
-            console.log("Inicia  el cambio de estado");
-            console.log(toState);
-        });
+        $rootScope.globalStateChanging = false;
+
+        $rootScope.$on('$stateChangeStart', enableGlobalLoader);
+
+        $rootScope.$on('$stateChangeSuccess', disabledGlobalLoader);
+
+        /////////// 
+
+        function enableGlobalLoader(event, toState, toParams, fromState, fromParams){
+            
+            if (toState.name.indexOf(".") == -1  || fromState.name.indexOf(".") == -1 ){  // We are changing to or from an parent state
+                $rootScope.globalStateChanging = true;                
+            }
+        }
+
+        function disabledGlobalLoader(event, toState, toParams, fromState, fromParams){
+            
+            if (toState.name.indexOf(".") == -1  || fromState.name.indexOf(".") == -1 ){ // We are changing to or from an parent state
+                $rootScope.globalStateChanging = false;                
+            }
+
+        }
     }
 
      
