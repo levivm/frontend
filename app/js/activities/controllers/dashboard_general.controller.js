@@ -69,14 +69,10 @@
     }
 
     function _showTooltip(element){
-
         return vm.currentOverElement == element;
-
     }
 
-
     function _setOverElement(element){
-
         vm.currentOverElement = element;
     }
 

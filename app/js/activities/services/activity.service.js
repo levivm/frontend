@@ -149,9 +149,6 @@
 
                'general':['title','short_description','large_description','sub_category_id','level','type'],
                'detail':['content'],
-               'location':['location'],''
-               'gallery':['photos'],
-               'return_policy':['return_policy']
                }
                */
             this.completed_steps[section] = value;
