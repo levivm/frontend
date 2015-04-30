@@ -23,7 +23,7 @@
 	]);
 
 	angular
-  	.module('trulii.config',[]);
+  	.module('trulii.config',['facebook']);
 
 	angular
 	.module('trulii.routes',['ui.router']);

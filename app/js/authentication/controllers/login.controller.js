@@ -55,6 +55,13 @@
                 .then(_loginSuccess,_loginError);
         }
 
+
+        function facebookLogin() {
+
+            return  Authentication.facebook_login();
+        }
+
+
         /**
          * @name loginSuccessFn
          * @desc Set the authenticated account and redirect to index

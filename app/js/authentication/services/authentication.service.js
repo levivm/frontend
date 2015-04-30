@@ -16,9 +16,9 @@
         .module('trulii.authentication.services')
         .factory('Authentication', Authentication);
 
-    Authentication.$inject = [ '$http', '$q', '$state', 'AuthenticationServerApi', 'localStorageService'];
+    Authentication.$inject = [ '$http', '$q', '$state', 'AuthenticationServerApi', 'localStorageService','Facebook'];
 
-    function Authentication($http, $q, $state, AuthenticationServerApi, localStorageService) {
+    function Authentication($http, $q, $state, AuthenticationServerApi, localStorageService,Facebook) {
 
         var api = AuthenticationServerApi;
 
@@ -129,6 +129,15 @@
                     }
                 );
             },authenticationError);
+
+        }
+
+        function facebook_login(){
+
+            Facebook.login(function(response) {
+            // Do something with response.
+            });
+
 
         }
 
