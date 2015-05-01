@@ -50,12 +50,14 @@
       _updateSelectedValues();
       _onSectionUpdated();
       vm.activity.update()
-          .then(function(response){
-            vm.isCollapsed = false;
-            vm.isSaving = false;
-            angular.extend(activity,vm.activity);
-            Toast.generics.weSave();
-          }, _errored);
+          .then(updateSuccess, _errored);
+
+      function updateSuccess(response){
+        vm.isCollapsed = false;
+        vm.isSaving = false;
+        angular.extend(activity,vm.activity);
+        Toast.generics.weSave();
+      }
     }
 
     function _showTooltip(element){

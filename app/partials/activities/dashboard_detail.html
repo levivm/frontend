@@ -15,7 +15,7 @@
               </div>
               <div class="form-group">
                 <label for="audience">Audencia</label>
-                <textarea id="audience" class="form-control" ng-model='vm.activity.audience' name="audience">  </textarea>
+                <textarea id="audience" class="form-control" ng-model='vm.activity.audience' name="audience" ng-mouseover="vm.setOverElement('audience')">  </textarea>
                 <div class="errors" ng-show="vm.activity_create_form.audience.$invalid && !vm.activity_create_form.audience.$dirty">
                   <span>{{ vm.errors.audience }}</span> 
                 </div>
@@ -64,6 +64,11 @@
               <li ng-show="vm.showTooltip('content')">
                 <p>
                   ¿Tu actividad está dividida en módulos en donde cada uno tiene temas a enseñar?
+                </p>
+              </li>
+              <li ng-show="vm.showTooltip('audience')">
+                <p>
+                  ¿A qué tipo de público está dirigida tu actividad?
                 </p>
               </li>
               <li ng-show="vm.showTooltip('goals')">
