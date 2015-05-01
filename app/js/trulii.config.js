@@ -11,9 +11,7 @@
 
     angular
         .module('trulii.config')
-        .config(config)
-        .run(run);
-
+        .config(config)        
 
     config.$inject = ['$locationProvider','$httpProvider'];
 
@@ -77,34 +75,5 @@
         // }];
 
     }
-
-    run.$inject = ['$rootScope'];
-
-    function run($rootScope){
-
-        $rootScope.globalStateChanging = false;
-
-        $rootScope.$on('$stateChangeStart', enableGlobalLoader);
-
-        $rootScope.$on('$stateChangeSuccess', disabledGlobalLoader);
-
-        /////////// 
-
-        function enableGlobalLoader(event, toState, toParams, fromState, fromParams){
-            
-            if (toState.name.indexOf(".") == -1  || fromState.name.indexOf(".") == -1 ){  // We are changing to or from an parent state
-                $rootScope.globalStateChanging = true;                
-            }
-        }
-
-        function disabledGlobalLoader(event, toState, toParams, fromState, fromParams){
-            
-            if (toState.name.indexOf(".") == -1  || fromState.name.indexOf(".") == -1 ){ // We are changing to or from an parent state
-                $rootScope.globalStateChanging = false;                
-            }
-
-        }
-    }
-
      
 })();

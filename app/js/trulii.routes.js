@@ -479,11 +479,15 @@
 
         $urlMatcherFactory.strictMode(false);
 
-        $rootScope.$on('$stateChangeStart', onStateChange);
+        $rootScope.$on('$stateChangeStart', onStateChange);       
+
+        $rootScope.globalStateChanging = true;
+
+        ///////////
 
         function onStateChange(e, toState, toParams, fromState){
             $state.previous = fromState;
-
+           
             if (toState.data && toState.data.requiredAuthentication) {
                 var _requiredAuthentication = toState.data.requiredAuthentication;
 
@@ -493,6 +497,7 @@
                 }
             }
         }
+       
     }
 
 })();

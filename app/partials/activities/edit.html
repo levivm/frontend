@@ -51,9 +51,11 @@
         </div>
     </div>
 
-    <div class="col-sm-offset-2 col-sm-10 with-sidebar lateral-fade" ui-view>
+    <div class="col-sm-offset-2 col-sm-10 with-sidebar lateral-fade" ui-view ng-show="vm.isReady">
       
 
     </div>
+
+    <trulii-preloader loader-control="vm.isReady" ></trulii-preloader>
 
   </div>

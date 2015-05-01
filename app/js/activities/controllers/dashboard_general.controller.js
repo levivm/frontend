@@ -89,8 +89,7 @@
         //     .then(,_loadActivityFail)
         vm.activity.generalInfo()
             .then(_setPreSaveInfo)
-            .then(_successLoadActivity)
-            .then(_isReady);
+            .then(_successLoadActivity);
         vm.save_activity = _updateActivity;
         vm.creating = false;
     }
@@ -100,7 +99,7 @@
         
         vm.save_activity = _createActivity;
         vm.creating = true;
-        vm.activity.generalInfo().then(_setPreSaveInfo).then(_isReady);
+        vm.activity.generalInfo().then(_setPreSaveInfo);
 
 
     }
@@ -196,12 +195,7 @@
             $state.go('activities-edit.detail',{activity_id:response.id});  
 
         Toast.generics.weSave("Un paso menos para publicar tu actividad");
-    }
-
-    function _isReady(data){
-        vm.isReady = true;
-    }
-
+    }    
 
 
     function activate() {
@@ -225,8 +219,7 @@
         vm.errors = {};
         vm.isCollapsed = true;
         vm.duration = 1;
-        vm.isSaving = false;   
-        vm.isReady = false;        
+        vm.isSaving = false;               
         
         Elevator.toTop();
 
