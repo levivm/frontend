@@ -479,9 +479,7 @@
 
         $urlMatcherFactory.strictMode(false);
 
-        $rootScope.$on('$stateChangeStart', onStateChange);       
-
-        $rootScope.globalStateChanging = true;
+        $rootScope.$on('$stateChangeStart', onStateChange);               
 
         ///////////
 

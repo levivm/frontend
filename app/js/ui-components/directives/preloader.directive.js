@@ -15,27 +15,30 @@
 			restrict: 'AE',
 			templateUrl: UIComponentsTemplatesPath + "preloader.html",
 			scope: {				
-				'loaderControl': '=',
-				'isGlobal': '=', // If true only responds to parents states				
+				'loaderControl': '=?',
+				'isGlobal': '=' // If is true only responds to parents states						
 			},
-			link: function(scope, element, attrs){
-
-				scope.loaderControl = false;
+			link: function(scope, element, attrs){				
 				
-				$rootScope.$on('$stateChangeSuccess', toggleLoader);
-				$rootScope.$on('$stateChangeStart', toggleLoader);
-				$rootScope.$on('$stateChangeError', toggleLoader);
+				if (!attrs.loaderControl){
+
+					scope.loaderControl = true;
+					
+					scope.$on('$stateChangeSuccess', toggleLoader);
+					scope.$on('$stateChangeStart', toggleLoader);
+					scope.$on('$stateChangeError', toggleLoader);	
+				}
 
 				//////
 
-				function toggleLoader(event, toState, toParams, fromState, fromParams){
+				function toggleLoader(event, toState, toParams, fromState, fromParams){					
 
 		            if (scope.isGlobal && toState.name.indexOf(".") == -1  || fromState.name.indexOf(".") == -1 ){  // We are changing to or from an parent state
-		                scope.loaderControl = !scope.loaderControl;
+		                scope.loaderControl = '$stateChangeStart' == event.name ? true : false;	
 		            }
 
 		            if (!scope.isGlobal){
-		            	scope.loaderControl = !scope.loaderControl;
+		            	scope.loaderControl = '$stateChangeStart' == event.name ? true : false;
 		            }
 
 

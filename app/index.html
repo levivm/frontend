@@ -61,8 +61,8 @@
 </nav>
 
 <div class="with-navbar">
-    <ui-view ng-hide="!$root.globalStateChanging"></ui-view>
-    <trulii-preloader loader-control="$root.globalStateChanging" is-global="true"></trulii-preloader>
+    <ui-view></ui-view>
+    <trulii-preloader is-global="true"></trulii-preloader>
 </div>
 
 <div ui-view="landing"></div>
@@ -127,6 +127,13 @@
 <script src="js/utils/directives/counter.directive.js"></script>
 <script src="js/utils/directives/datepicker_popup.directive.js"></script>
 <script src="js/utils/directives/saved_message.directive.js"></script>
+<script src="js/authentication/controllers/email_confirm.controller.js"></script>
+<script src="js/authentication/controllers/forgot_password.controller.js"></script>
+<script src="js/authentication/controllers/login.controller.js"></script>
+<script src="js/authentication/controllers/logout.controller.js"></script>
+<script src="js/authentication/controllers/register.controller.js"></script>
+<script src="js/authentication/controllers/reset_password.controller.js"></script>
+<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
 <script src="js/activities/controllers/dashboard.controller.js"></script>
 <script src="js/activities/controllers/dashboard_calendar_detail.controller.js"></script>
 <script src="js/activities/controllers/dashboard_calendars.controller.js"></script>
@@ -142,13 +149,6 @@
 <script src="js/activities/controllers/detail.enroll.controller.js"></script>
 <script src="js/activities/controllers/detail.enroll.success.controller.js"></script>
 <script src="js/activities/controllers/detail.info.controller.js"></script>
-<script src="js/authentication/controllers/email_confirm.controller.js"></script>
-<script src="js/authentication/controllers/forgot_password.controller.js"></script>
-<script src="js/authentication/controllers/login.controller.js"></script>
-<script src="js/authentication/controllers/logout.controller.js"></script>
-<script src="js/authentication/controllers/register.controller.js"></script>
-<script src="js/authentication/controllers/reset_password.controller.js"></script>
-<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
 <script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/organizers/controllers/dashboard.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_account.controller.js"></script>
