@@ -1,14 +1,14 @@
 
 (function (){
-	'use strict'
+	'use strict';
 
 	angular.module('trulii.ui-components.directives')
 
 	.directive('truliiSubmitControls', truliiSubmitControls);
 
-	truliiSubmitControls.$inject = ['UIComponentsTemplatesPath']
+	truliiSubmitControls.$inject = ['$timeout', 'UIComponentsTemplatesPath'];
 
-	function truliiSubmitControls(UIComponentsTemplatesPath){
+	function truliiSubmitControls($timeout, UIComponentsTemplatesPath){
 
 		return {
 			restrict: 'AE',
@@ -25,22 +25,15 @@
 					if (attrs.value)					
 						scope.value = attrs.value;
 					else
-						scope.value = "Guardar" // TODO: Debería tomarse de las cadenas de translate
+						scope.value = "Guardar"; // TODO: Debería tomarse de las cadenas de translate
 				}
 
-				var btn = element.find(".btn-success")[0];
-//				var progress = element.find(".progress");
-
-//				progress.removeClass("hidden");
-
-				btn.addEventListener("click", onSubmit);
+        var btn = element.find(".btn-success")[0];
+        btn.addEventListener("click", onSubmit);
 
 				function onSubmit(event){
-
 					scope.isSaving = true;
 				}
-
-				
 			}
 		}
 	}

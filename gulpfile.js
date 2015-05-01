@@ -212,12 +212,18 @@ gulp.task('build-vendor-js', function() {
 /** Injects .js files from Bower dependencies inside '<!-- inject:bower:js -->' tag **/
 gulp.task('bower-js-injector', function() {
     var filter = '**/*.js';
+    var jQueryFilter = '**/jquery/**/*.js';
+    var jQueryExcludeFilter = '!' + jQueryFilter;
     var injectParams = {name: 'inject:bower', relative: true};
     var srcParams = { base: BOWER_COMPONENTS_PATH, read: false };
     var target = gulp.src(source.html.index);
-    var sources = gulp.src(mainBowerFiles(filter), srcParams);
+    var sources = gulp.src(mainBowerFiles([filter, jQueryExcludeFilter]), srcParams);
 
-    return target.pipe(inject(sources, injectParams))
+    var injectjQueryParams = {name: 'inject:head', relative: true};
+    var sourcesJquery = gulp.src(mainBowerFiles(jQueryFilter), srcParams);
+
+
+    return target.pipe(inject(sourcesJquery, injectjQueryParams)).pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT));
 });
 
