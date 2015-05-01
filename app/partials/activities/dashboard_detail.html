@@ -4,45 +4,46 @@
        
           <form name='vm.activity_detail_form' ng-submit="vm.save_activity()">
             <fieldset>
-              <h2>Descripción</h2>
+              <h2>Detalle</h2>
+              <h4 class="text-muted">Completa estos campos si deseas ser más preciso</h4>
               <div class="form-group">
-                <label>Contenido</label>
-                <textarea class="form-control" ng-model='vm.activity.content' name="content" ng-mouseover="vm.setOverElement('content')">  </textarea>
+                <label for="content">Contenido</label>
+                <textarea id="content" class="form-control" ng-model='vm.activity.content' name="content" ng-mouseover="vm.setOverElement('content')">  </textarea>
                 <div class="errors" ng-show="vm.activity_create_form.content.$invalid && !vm.activity_create_form.content.$dirty">
                   <span>{{ vm.errors.content }}</span> 
                 </div>
               </div>
               <div class="form-group">
-                <label>Audencia</label>
-                <textarea class="form-control" ng-model='vm.activity.audience' name="audience">  </textarea>
+                <label for="audience">Audencia</label>
+                <textarea id="audience" class="form-control" ng-model='vm.activity.audience' name="audience">  </textarea>
                 <div class="errors" ng-show="vm.activity_create_form.audience.$invalid && !vm.activity_create_form.audience.$dirty">
                   <span>{{ vm.errors.audience }}</span> 
                 </div>
               </div>
               <div class="form-group">
-                <label>Objetivos</label>
-                <textarea class="form-control" ng-model='vm.activity.goals' name="goals" ng-mouseover="vm.setOverElement('goals')">  </textarea>
+                <label for="goals">Objetivos</label>
+                <textarea id="goals" class="form-control" ng-model='vm.activity.goals' name="goals" ng-mouseover="vm.setOverElement('goals')">  </textarea>
                 <div class="errors" ng-show="vm.activity_create_form.goals.$invalid && !vm.activity_create_form.goals.$dirty">
                   <span>{{ vm.errors.goals }}</span> 
                 </div>
               </div>
               <div class="form-group">
-                <label>methodology</label>
-                <textarea class="form-control" ng-model='vm.activity.methodology' name="methodology" ng-mouseover="vm.setOverElement('methodology')">  </textarea>
+                <label for="methodology">Metodología</label>
+                <textarea id="methodology" class="form-control" ng-model='vm.activity.methodology' name="methodology" ng-mouseover="vm.setOverElement('methodology')">  </textarea>
                 <div class="errors" ng-show="vm.activity_create_form.methodology.$invalid && !vm.activity_create_form.methodology.$dirty">
                   <span>{{ vm.errors.methodology }}</span> 
                 </div>
               </div>
               <div class="form-group">
-                <label>Requerimientos</label>
-                <textarea class="form-control" ng-model='vm.activity.requirements' name="requirements" ng-mouseover="vm.setOverElement('requirements')">  </textarea>
+                <label for="requirements">Requerimientos</label>
+                <textarea id="requirements" class="form-control" ng-model='vm.activity.requirements' name="requirements" ng-mouseover="vm.setOverElement('requirements')">  </textarea>
                 <div class="errors" ng-show="vm.activity_create_form.requirements.$invalid && !vm.activity_create_form.requirements.$dirty">
                   <span>{{ vm.errors.requirements }}</span> 
                 </div>
               </div>
               <div class="form-group">
-                <label>Información Adicional</label>
-                <textarea class="form-control" ng-model='vm.activity.extra_info' name="extra_info">  </textarea>
+                <label for="extra_info">Información Adicional</label>
+                <textarea id="extra_info" class="form-control" ng-model='vm.activity.extra_info' name="extra_info">  </textarea>
                 <div class="errors" ng-show="vm.activity_create_form.extra_info.$invalid && !activity_create_form.extra_info.$dirty">
                   <span>{{ vm.errors.extra_info }}</span> 
                 </div>
@@ -61,42 +62,44 @@
           <div class="sidebar-nav-fixed pull-right affix well">
             <ul class="nav">
               <li ng-show="vm.showTooltip('content')">
-                ¿Tu actividad está dividida en 
-                módulos en donde cada uno 
-                tiene temas a enseñar?
+                <p>
+                  ¿Tu actividad está dividida en módulos en donde cada uno tiene temas a enseñar?
+                </p>
               </li>
               <li ng-show="vm.showTooltip('goals')">
-                ¿Cuál es la finalidad de tu activ-
-                idad? 
-
-                Algunos ejemplos:
-                 ¿Tus alumnos saldrán domi-
-                nando algún campo en particu-
-                lar?
-                 ¿Tus inscritos saldrán agota-
-                dos con muchas calorías 
-                menos?
+                <p>
+                  ¿Cuál es la finalidad de tu actividad?
+                </p>
+                <p>
+                  Algunos ejemplos:
+                </p>
+                <p>
+                  ¿Tus alumnos saldrán dominando algún campo en particular?
+                </p>
+                <p>
+                  ¿Tus inscritos saldrán agotados con muchas calorías menos?
+                </p>
               </li>
               <li ng-show="vm.showTooltip('methodology')">
-                ¿Tu actividad será evaluada?
-                ¿Cómo?
-                ¿Aplicarás algún método de 
-                enseñanza en particular?
+                <p>¿Tu actividad será evaluada?</p>
+                <p>¿Cómo?</p>
+                <p>¿Aplicarás algún método de enseñanza en particular?
+                </p>
               </li>
               <li ng-show="vm.showTooltip('requirements')">
-                ¿Para inscribirse hace falta 
-                conocimientos en algún tema 
-                en particular?
-                ¿Deben llevar algún material 
-                para realizar la actividad?
-                ¿Se requiere una docu-
-                mentación?
+                <p>
+                  ¿Para inscribirse hace falta conocimientos en algún tema en particular?
+                </p>
+                <p>
+                  ¿Deben llevar algún material para realizar la actividad?
+                </p>
+                <p>
+                  ¿Se requiere una documentación?
+                </p>
               </li>
             </ul>
           </div>
-
         </div>
          <hr>
-
       </div>
     </div>

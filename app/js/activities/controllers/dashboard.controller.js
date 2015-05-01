@@ -1,9 +1,10 @@
 /**
  * @ngdoc controller
  * @name trulii.activities.controllers.ActivityDashboardCtrl
- * @description ActivityGeneralController
+ * @description ActivityDashboardCtrl
  * @requires ng.$scope
  * @requires trulii.activities.services.Activity
+ * @requires trulii.activities.services.ActivitySteps
  * @requires activity
  */
 
@@ -19,8 +20,6 @@
   function ActivityDashboardCtrl($scope, Activity, ActivitySteps, activity) {
 
     var pc = this;
-
-      console.log(ActivitySteps);
 
     pc.steps = ActivitySteps;
     pc.activity = activity;
