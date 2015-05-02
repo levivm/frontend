@@ -15,9 +15,17 @@
         .run(run);
 
 
-    config.$inject = ['$locationProvider','$httpProvider'];
+    config.$inject = ['$locationProvider','$httpProvider','FacebookProvider'];
 
-    function config($locationProvider, $httpProvider) {
+    function config($locationProvider, $httpProvider,FacebookProvider) {
+
+
+
+
+
+        /* Facebook initialization */
+        FacebookProvider.init('1563536137193781');
+
 
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -27,8 +35,8 @@
 
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-        // Use x-www-form-urlencoded Content-Type
-        //$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+
+
 
         /**
          * @ngdoc method
