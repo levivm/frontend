@@ -6,8 +6,12 @@
           </div>
 
           <div class="panel-body">
+            <input type="button" ng-click="vm.facebookRegister()" class="btn btn-lg btn-primary btn-block" value="Facebook">
+
             <form name='vm.signup_form' ng-submit="vm.register()">
               <fieldset>
+
+              
                 <a title="Facebook" class="socialaccount_provider facebook" href="javascript:allauth.facebook.login('', 'authenticate', 'login')">Facebook</a>
                 <div class="row">
                   <div class="col-sm-12 col-md-10  col-md-offset-1 ">
