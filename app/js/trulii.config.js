@@ -17,7 +17,7 @@
 
     config.$inject = ['$locationProvider','$httpProvider','FacebookProvider'];
 
-    function config($locationProvider, $httpProvider) {
+    function config($locationProvider, $httpProvider,FacebookProvider) {
 
 
 
