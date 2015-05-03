@@ -11073,6 +11073,18 @@ hr.on-light {
 .center-childs {
   text-align: center;
 }
+.grand-title {
+  font-size: 5em;
+  margin-bottom: .5em;
+}
+.bg-primary {
+  background: #ffcc00;
+  color: rgba(0, 0, 0, 0.74);
+}
+.bg-secondary {
+  background: #00b3b3;
+  color: rgba(255, 255, 255, 0.84);
+}
 .navbar {
   position: relative;
   min-height: 50px;
@@ -12390,6 +12402,10 @@ tags-input input {
 }
 .card .card-body {
   padding: 2em;
+}
+.card .card-footer {
+  border-top: 1px solid #d7d7d7;
+  padding: 1.2em 2em;
 }
 .toast-title {
   font-weight: bold;
