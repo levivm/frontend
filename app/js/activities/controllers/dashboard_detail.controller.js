@@ -74,11 +74,7 @@
     }
 
     function _onSectionUpdated(){
-      var subSections = ['content', 'audience', 'goals', 'methodology', 'requirements', 'extra_info'];
-      var isCompleted = subSections.some(function(subSection){
-        return (vm.activity.hasOwnProperty(subSection) && !!vm.activity[subSection]);
-      });
-      activity.setSectionCompleted('detail', isCompleted);
+      activity.updateSection('detail');
     }
 
     function activate() {

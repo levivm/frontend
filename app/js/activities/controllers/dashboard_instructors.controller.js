@@ -116,8 +116,8 @@
       }
 
       function _onSectionUpdated(){
-          var hasInstructors = vm.instructors.length > 0;
-          activity.setSectionCompleted('instructors', hasInstructors);
+        var hasInstructors = vm.instructors.length > 0;
+        activity.updateSection('instructors', hasInstructors);
       }
 
       function _initialize_errors_array(){

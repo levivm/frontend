@@ -24,18 +24,6 @@
       var CalendarsManager = {
         _pool: {},
         calendars: [],
-        // _retrieveInstance: function(calendarId, calendarData) {
-        //     var instance = this._pool[calendarId];
-
-        //     if (instance) {
-        //         instance.setData(calendarData);
-        //     } else {
-        //         instance = new Book(calendarData);
-        //         this._pool[calendarId] = instance;
-        //     }
-
-        //     return instance;
-        // },
         _retrieveInstance: function(calendarId, calendarData) {
             console.log('pool', this._pool);
             var instance = this._search(calendarId);
@@ -74,8 +62,7 @@
             var calendar = this._search(calendarId);
             
             var scope = this;
-           
-            // serverConf.url+'/api/activities/'+this.activity_id+'/calendars/'+calendarId
+
             return $http.delete(api.calendar(this.activity_id, calendarId))
                 .then(function(response){
                     scope._deleteInsntance(calendarId);
@@ -88,25 +75,15 @@
 
         },
         getCalendar: function(calendarId) {
-            //var deferred = $q.defer();
-            //var calendar = this._search(calendarId);
-                //console.log("calendar before get",calendar);
             var calendar = new Calendar();
                 angular.extend(calendar,this._retrieveInstance(calendarId));
 
             return calendar;
-            // if (calendar) {
-            //     deferred.resolve(calendar);
-            // } else {
-            //     this._load(calendarId, deferred);
-            // }
-            // return deferred.promise;
         },
         fetchCalendar: function (activityId, calendarId) {
             var scope = this;
             this.activity_id = activityId;
             var deferred = $q.defer();
-            // serverConf.url+'/api/activities/'+activityId+'/calendars/'+calendarId+'/'
             $http.get(api.calendar(activityId, calendarId))
                 .success(function (result) {
                     var calendar = scope._retrieveInstance(result.id, result);
@@ -148,6 +125,7 @@
                     return response.data
                 });
         },
+
         _setCalendars: function (calendarsData){
 
             //scope.calendars = calendarsData;

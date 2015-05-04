@@ -85,14 +85,13 @@
     function _updateSuccess(response){
       vm.isCollapsed = false;
       angular.extend(activity,vm.activity);
-      $scope.pc.activitySectionUpdated(response.data);
+      _onSectionUpdated();
     }
 
     function _successUploaded(response){
         vm.photo_loading = false;
         vm.images.push(response.data.photo);
-        
-        $scope.pc.activitySectionUpdated(response.data.activity);
+      _onSectionUpdated();
     }
 
     function _progressUpload(response){
@@ -153,8 +152,7 @@
     }
 
     function _onSectionUpdated(){
-      var hasPictures = vm.images.length > 0;
-      activity.setSectionCompleted('gallery', hasPictures);
+      activity.updateSection('gallery');
     }
 
     function activate() {

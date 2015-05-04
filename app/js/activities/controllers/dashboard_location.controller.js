@@ -1,7 +1,10 @@
 /**
-* Register controller
-* @namespace thinkster.organizers.controllers
-*/
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityDBLocationController
+ * @description ActivityDBLocationController
+ * @requires ng.$scope
+ */
+
 (function () {
   'use strict';
 
@@ -9,53 +12,44 @@
     .module('trulii.activities.controllers')
     .controller('ActivityDBLocationController', ActivityDBLocationController);
 
-  ActivityDBLocationController.$inject = ['$scope','uiGmapGoogleMapApi','uiGmapIsReady','filterFilter','activity','cities','LocationManager'];
+  ActivityDBLocationController.$inject = ['$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'filterFilter',
+    'activity', 'cities', 'LocationManager'];
 
-    /**
-  * @namespace ActivityDBLocationController
-  */
-  function ActivityDBLocationController($scope,uiGmapGoogleMapApi,uiGmapIsReady,filterFilter,activity,cities,LocationManager) {
+  function ActivityDBLocationController($scope, uiGmapGoogleMapApi, uiGmapIsReady, filterFilter,
+    activity, cities, LocationManager) {
 
     var vm = this;
 
     vm.cities = cities;
-
     vm.activity = angular.copy(activity);
+    vm.save_activity  = _updateActivity;
+    vm.setOverElement = _setOverElement;
+    vm.showTooltip    = _showTooltip;
 
     initialize();
 
-    vm.save_activity  = _updateActivity;
-
-    vm.setOverElement = _setOverElement;
-
-    vm.showTooltip    = _showTooltip;
-
-
     /******************ACTIONS**************/
 
-
-    
     function _updateActivity() {
         _clearErrors();
         _setActivityPos();
         vm.activity.update()
-            .then(_updateSuccess,_errored);
+            .then(_updateSuccess, _errored);
+
+      function _updateSuccess(response){
+        vm.isCollapsed = false;
+        _onSectionUpdated();
+        angular.extend(activity,vm.activity);
+      }
     }
 
     function _showTooltip(element){
-
-        if (vm.currentOverElement==element)
-            return true
-        return false
+        return vm.currentOverElement === element;
     }
-
 
     function _setOverElement(element){
-
         vm.currentOverElement = element;
     }
-
-
 
     /*****************SETTERS********************/
 
@@ -65,57 +59,36 @@
       vm.activity.location.point[1] = vm.marker.coords.longitude;
     }
 
-
-
-
     /*********RESPONSE HANDLERS***************/
 
-
-    function _updateSuccess(response){
-
-      vm.isCollapsed = false;
-      angular.extend(activity,vm.activity);
-      $scope.pc.activitySectionUpdated(response.data);
-
-
-
-    }
-
-
     function _clearErrors(){
-
         vm.activity_location_form.$setPristine();
         vm.errors = {};
     }
 
-
-
     function _addError(field, message) {
       vm.errors[field] = message;
       vm.activity_location_form[field].$setValidity(message, false);
-
-    };
+    }
 
     function _errored(errors) {
         angular.forEach(errors, function(message,field) {
-
-
-          _addError(field,message[0]);   
-
+          _addError(field,message[0]);
         });
-
     }
 
+    function _onSectionUpdated(){
+      activity.updateSection('location');
+    }
 
     function initialize(){
-
         vm.errors = {};
         vm.isCollapsed = true;
         var city_id;
         var city  = vm.activity.location ? vm.activity.location.city : null;
 
         if(city){
-          city_id = typeof city == 'number' ? city:city.id;
+          city_id = typeof city == 'number' ? city : city.id;
         } else {
           LocationManager.getCurrentCity().then(success, error);
           vm.activity.location = {};
@@ -165,14 +138,11 @@
               var  southwest = new google.maps.LatLng(_southwest.latitude,_southwest.longitude);
 
               var allowedBounds = new google.maps.LatLngBounds(southwest,northeast);
-              
-
 
               if (allowedBounds.contains(map.getCenter())) {
-
                 vm.map.control.valid_center = map.getCenter();
-                return
-              };
+                return;
+              }
 
               map.panTo(vm.map.control.valid_center);
 
@@ -181,11 +151,8 @@
           },
           control : {
             allowedBounds : LocationManager.getAllowedBounds()
-
           }
-
         };
-
     }
 
     function _setMarker(){

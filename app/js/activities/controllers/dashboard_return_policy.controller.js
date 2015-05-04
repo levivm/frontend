@@ -49,7 +49,6 @@
 
     function _updateSuccess(response){
       vm.isCollapsed = false;
-        //TODO replace
         _onSectionUpdated();
     }
 
@@ -72,14 +71,11 @@
     }
 
     function _onSectionUpdated(){
-      var hasReturnPolicy = !!vm.activity.return_policy;
-      activity.setSectionCompleted('return_policy', hasReturnPolicy);
+      activity.updateSection('return_policy');
     }
 
     function activate() {
-
       // If the user is authenticated, they should not be here.
-
     }
 
     function initialize(){

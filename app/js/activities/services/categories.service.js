@@ -26,20 +26,19 @@
       }
 
       Categories.prototype = {
+
           setData: function(categoriesData) {
               angular.extend(this, categoriesData);
           },
-          load: function() {
 
+          load: function() {
               var scope = this;
-              // serverConf.url+'/api/activities/categories/'
               return $http.get(api.categories())
                   .success(function(categoriesData) {
                       console.log('response');
                       console.log(categoriesData);
                       scope.setData(categoriesData);
                   });
-
           }
           // update: function() {
           //   return $http({
@@ -51,7 +50,9 @@
           //   //$http.put('/api/categories/' + this.id, this);
           // },
       };
+
       return Categories;
+
   }
 
 })();

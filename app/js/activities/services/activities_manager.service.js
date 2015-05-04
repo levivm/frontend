@@ -16,7 +16,8 @@
         .module('trulii.activities.services')
         .factory('ActivitiesManager', ActivitiesManager);
 
-    ActivitiesManager.$inject = ['$http', '$q', 'ActivityServerApi', 'OrganizerServerApi', 'Activity', 'CalendarsManager'];
+    ActivitiesManager.$inject = ['$http', '$q', 'ActivityServerApi', 'OrganizerServerApi',
+        'Activity', 'CalendarsManager'];
 
     function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, Activity, CalendarsManager) {
 
@@ -105,10 +106,7 @@
             if (presave_info){
                 deferred.resolve(presave_info);
             } else {
-                //_base_url + "info/";
                 $http.get(api.info()).then(function(response){
-//                    console.log('loadGeneralInfo response: ');
-//                    console.log(response);
                     presave_info = response.data;
                     deferred.resolve(presave_info);
                 });

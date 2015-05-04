@@ -15,95 +15,99 @@
       .module('trulii.activities.services')
       .factory('Activity', Activity);
 
-  Activity.$inject = ['$http', '$q', '$log', 'ActivityServerApi', 'UploadFile'];
+  Activity.$inject = ['$http', '$q', '$log', 'ActivityServerApi', 'UploadFile', 'ActivitySteps', 'CalendarsManager'];
 
-  function Activity($http, $q, $log, ActivityServerApi, UploadFile) {
+  function Activity($http, $q, $log, ActivityServerApi, UploadFile, ActivitySteps, CalendarsManager) {
 
     var api = ActivityServerApi;
-//      this.base_url = serverConf.url+'/api/activities/';
+    var that = null;
 
     function Activity(activityData) {
-      this.all_steps_completed = false;
-      this.tags = [];
-      this.certification = false;
+      that = this;
+      that.tags = [];
+      that.certification = false;
+
       if (activityData) {
-        this.setData(activityData);
-        console.log("Activity data ",activityData);
+        //TODO eliminar cuando levi elimine del backend
+        delete activityData.completed_steps;
+        that.setData(activityData);
       }
     }
 
     Activity.prototype = {
+
       setData: function(activityData) {
         angular.extend(this, activityData);
+        that.resetSections();
+        angular.forEach(ActivitySteps, function(step){
+          that.updateSection(step.name);
+        });
+        console.log("Activity setData ", this);
+        that.checkSections();
       },
+
       create: function(){
-        // this.base_url
         return $http.post(api.activities(),this);
       },
+
       generalInfo: function() {
-        console.log("CAI AQUI");
-        var scope = this;
         var deferred = $q.defer();
 
-        if (scope.presave_info){
-          deferred.resolve(scope.presave_info);
+        if (that.presave_info){
+          deferred.resolve(that.presave_info);
           return deferred.promise;
-        } else{
-          // this.base_url + "info/"
+        } else {
           return $http.get(api.info()).then(function(response){
-            scope.presave_info = response.data;
-            deferred.resolve(scope.presave_info);
+            that.presave_info = response.data;
+            deferred.resolve(that.presave_info);
             return deferred.promise;
           });
         }
       },
+
       load: function(id){
-        var scope = this;
+        if (!id) { id = that.id; }
 
-        if (!id) { id = scope.id; }
-
-        //this.base_url + id;
         return $http.get(api.activity(id))
             .then(function(response) {
-              scope.setData(response.data);
-              return scope;
+              that.setData(response.data);
+              return that;
             });
       },
+
       update: function() {
-        //this.base_url + this.id;
-        var scope = this;
         return $http({
           method: 'put',
           url: api.activity(this.id),
           data: this
         }).then(function(response){
-          scope.setData(response.data);
+          that.setData(response.data);
           return response;
         },function(response){
           return $q.reject(response.data);
         });
       },
+
       addPhoto:function(image){
-        //this.base_url + this.id + '/gallery';
         return UploadFile.upload_file(image, api.gallery(this.id));
       },
+
       deletePhoto:function(image){
-        //this.base_url + this.id + '/gallery';
         return $http({
           method: 'put',
           url: api.gallery(this.id),
           data: {'photo_id':image.id}
         });
       },
+
       publish:function(){
-        var scope = this;
         return $http({
           method: 'put',
           url: api.publish(this.id)
         })
-            .then(function(response){
-              scope.published = true;
-            });
+        .then(function(response){
+          that.published = true;
+        });
       },
 
       /**
@@ -113,11 +117,9 @@
        * @methodOf trulii.activities.services.Activity
        */
       checkSections : function (){
-        var scope = this;
-        scope.all_steps_completed = true;
-        angular.forEach(scope.completed_steps, function(value, key){
-          if(!value)
-            scope.all_steps_completed = false;
+        that.all_steps_completed = true;
+        angular.forEach(that.completed_steps, function(value){
+          if(!value) that.all_steps_completed = false;
         });
       },
 
@@ -129,9 +131,7 @@
        * @methodOf trulii.activities.services.Activity
        */
       areAllStepsCompleted : function(){
-        var scope = this;
-        scope.checkSections();
-        console.log('Activity.areAllStepsCompleted: ', this.all_steps_completed);
+        that.checkSections();
         return this.all_steps_completed;
       },
 
@@ -144,9 +144,8 @@
        * @methodOf trulii.activities.services.Activity
        */
       setSectionCompleted : function(section, value){
-        var scope = this;
-        scope.completed_steps[section] = value;
-        console.log('Activity.setSectionCompleted: ', section, ', ', scope.completed_steps[section]);
+        that.completed_steps[section] = value;
+        console.log('Activity.setSectionCompleted: ', section, ', ', that.completed_steps[section]);
       },
 
       /**
@@ -157,13 +156,72 @@
        * @methodOf trulii.activities.services.Activity
        */
       isSectionCompleted : function(section){
-        var scope = this;
-//              console.log('Activity.isSectionCompleted: ', section, ', ', scope.completed_steps[section]);
-        return scope.completed_steps[section];
-      }
+        return that.completed_steps[section];
+      },
+
+      updateSection : updateSection,
+
+      resetSections: resetSections,
     };
 
     return Activity;
+
+    function updateSection(section, value){
+      var subSections = [];
+      var isCompleted = false;
+      switch (section) {
+        case 'general':
+          subSections = ['title', 'short_description', 'category_id', 'sub_category', 'level'];
+          isCompleted = subSections.every(function(subSection){
+            console.log('activity[', subSection, ']: ', that.hasOwnProperty(subSection) && !!that[subSection]);
+            return (that.hasOwnProperty(subSection) && !!that[subSection]);
+          });
+          that.setSectionCompleted('general', isCompleted);
+          break;
+        case 'calendars':
+          var hasCalendars = that.chronograms.length > 0;
+          that.setSectionCompleted('calendars', hasCalendars);
+          break;
+        case 'detail':
+          subSections = ['content', 'audience', 'goals', 'methodology', 'requirements', 'extra_info'];
+          isCompleted = subSections.some(function(subSection){
+            return (that.hasOwnProperty(subSection) && !!that[subSection]);
+          });
+          that.setSectionCompleted('detail', isCompleted);
+          break;
+        case 'gallery':
+          var hasPhotos = that.photos.length > 0;
+          var hasVideos = that.youtube_video_url;
+          that.setSectionCompleted('gallery', hasPhotos || hasVideos);
+          break;
+        case 'instructors':
+          var hasInstructors = that.instructors.length > 0;
+          that.setSectionCompleted('instructors', hasInstructors);
+          break;
+        case 'location':
+          var hasLocation = !!that.location;
+          that.setSectionCompleted('location', hasLocation);
+          break;
+        case 'return_policy':
+          that.setSectionCompleted('return_policy', !!that.return_policy);
+          break;
+      }
+    }
+
+    function resetSections(){
+      console.log('that:', that);
+      that.completed_steps = {
+        calendars: false,
+        detail: false,
+        gallery: false,
+        general: false,
+        instructors: false,
+        location: false,
+        return_policy: false
+      };
+
+      that.all_steps_completed = false;
+    }
   }
 
 })();

@@ -180,7 +180,7 @@
                 templateUrl: 'partials/organizers/landing.html',
                 resolve:{
                     cities: getAvailableCities
-                },
+                }
 
             })
             .state('organizer-dashboard', {
@@ -375,7 +375,7 @@
                     //activity: getActivity,
                     //calendar: fetchCalendar,
                     organizer: ['activity', function (activity) {
-                        return  activity.organizer
+                        return  activity.organizer;
                     }],
                     organizerActivities: getOrganizerActivities
                 }
@@ -386,33 +386,30 @@
 
     /****** RESOLVER FUNCTIONS USERS *******/
 
-
     tokenSignupValidation.$inject = ['$stateParams','Authentication'];
 
     function tokenSignupValidation($stateParams,Authentication){
         var token = $stateParams.token;
         if (!(token))
-            return {}
-        return Authentication.requestSignupToken($stateParams.token)
+            return {};
+        return Authentication.requestSignupToken($stateParams.token);
     }
-
-
 
     getAuthenticatedUser.$inject = ['Authentication'];
 
     function getAuthenticatedUser(Authentication){
-        return Authentication.getAuthenticatedAccount()
+        return Authentication.getAuthenticatedAccount();
     }
 
-    getOrganizer.$inject = ['Authentication','Organizer'];
+    getOrganizer.$inject = ['Authentication','Organizer', '$q'];
 
-    function getOrganizer(Authentication,Organizer){
+    function getOrganizer(Authentication,Organizer, $q){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var is_organizer = true;
 
         if(authenticatedUser){
-            is_organizer = authenticatedUser.user_type == 'O';
+            is_organizer = authenticatedUser.user_type === 'O';
         }
 
         var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
@@ -428,15 +425,16 @@
     }
 
     /****** RESOLVER FUNCTIONS ACTIVITIES *******/
+
     getAvailableCities.$inject = ['$stateParams','$q','LocationManager'];
 
     function getAvailableCities($stateParams, $q, LocationManager){
-        return LocationManager.getAvailableCities()
+        return LocationManager.getAvailableCities();
     }
 
     getCalendars.$inject = ['CalendarsManager','activity'];
 
-    function getCalendars( CalendarsManager, activity){
+    function getCalendars(CalendarsManager, activity){
         return CalendarsManager.loadCalendars(activity.id);
     }
 
@@ -467,12 +465,11 @@
     getPresaveActivityInfo.$inject = ['ActivitiesManager'];
 
     function getPresaveActivityInfo(ActivitiesManager){
-        console.log('getPresaveActivityInfo. ');
-        console.log(ActivitiesManager.loadGeneralInfo());
         return ActivitiesManager.loadGeneralInfo();
     }
 
     /****** RUN METHOD*******/
+
     run.$inject = ['$rootScope','$state','$urlMatcherFactory','Authentication'];
 
     function run($rootScope,$state,$urlMatcherFactory,Authentication){
