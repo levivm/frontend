@@ -1,8 +1,11 @@
 /**
  * @ngdoc controller
  * @name trulii.authentication.controllers.RegisterController
- * @description RegisterController
- * @requires ng.$scope
+ * @description Handles Student Registration using different methods like Facebook or regular Email
+ * @requires ng.$q
+ * @requires trulii.authentication.services.Authentication
+ * @requires ui.router.state.$state
+ * @requires validatedData
  */
 
 (function () {
@@ -12,18 +15,18 @@
         .module('trulii.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$scope', '$q', 'Authentication', '$modal', '$http', '$state', 'validatedData'];
+    RegisterController.$inject = ['$q', 'Authentication', '$state', 'validatedData'];
 
-    function RegisterController($scope, $q, Authentication, $modal, $http, $state, validatedData) {
+    function RegisterController($q, Authentication, $state, validatedData) {
 
         var vm = this;
         var selectedMethod = null;
 
         vm.auth = {};
         vm.errors = {};
+        vm.user_type = 'S';
 
         vm.register = register;
-        vm.set_usertype = function_name;
         vm.isSelectedMethod = isSelectedMethod;
         vm.setSelectedMethod = setSelectedMethod;
 
@@ -37,26 +40,9 @@
             selectedMethod = method;
         }
 
-        function function_name(user_type) {
-            vm.user_type = user_type;
-        }
-
         function _clearErrors() {
             vm.errors = null;
             vm.errors = {};
-        }
-
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.signup_form[field].$setValidity(message, false);
-        }
-
-        function _errored(data) {
-            if (data['form_errors']) {
-                angular.forEach(data['form_errors'], function (errors, field) {
-                    _addError(field, errors[0]);
-                });
-            }
         }
 
         function register() {
@@ -69,11 +55,23 @@
                     //TODO HERE SHOULD SHOW A POP UP
                 }, _registerError);
 
-        }
+            function _registerError(response) {
+                _errored(response.data);
+                return $q.reject(response);
+            }
 
-        function _registerError(response) {
-            _errored(response.data);
-            return $q.reject(response);
+            function _errored(data) {
+                if (data['form_errors']) {
+                    angular.forEach(data['form_errors'], function (errors, field) {
+                        _addError(field, errors[0]);
+                    });
+                }
+            }
+
+            function _addError(field, message) {
+                vm.errors[field] = message;
+                vm.signup_form[field].$setValidity(message, false);
+            }
 
         }
 
@@ -96,41 +94,6 @@
                 vm.auth.name = validatedData.name;
             }
         }
-    }
-
-})();
-
-/**
- * @ngdoc controller
- * @name trulii.authentication.controllers.serverError
- * @description serverError
- * @requires ng.$scope
- */
-
-(function () {
-    'use strict';
-
-    angular
-        .module('trulii.authentication.controllers')
-        .directive('serverError', serverError);
-
-    function serverError() {
-        return {
-            restrict : 'A',
-            require : '?ngModel',
-            link : function (scope, element, attrs, ctrl) {
-
-                element.on('change', function (event) {
-
-                    scope.$apply(function () {
-                        console.log("aqui");
-                        ctrl.$setValidity('server', true);
-                    });
-
-                });
-            }
-        }
-
     }
 
 })();
