@@ -52,8 +52,9 @@
 
 	    // 	}
 	    // });
+		//$('[data-toggle=tooltip]').tooltip();
 
-	  $http.defaults.xsrfHeaderName = 'X-CSRFToken';
+		$http.defaults.xsrfHeaderName = 'X-CSRFToken';
 	  $http.defaults.xsrfCookieName = 'csrftoken';
 	}
 
