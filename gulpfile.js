@@ -26,7 +26,6 @@ if(gutil.env._[0] === 'release') {
 
 var watch = require('gulp-watch');
 var connect = require('gulp-connect');
-var livereload = require('gulp-livereload');
 var path = require('path');
 var del = require('del');
 var size = require('gulp-filesize');
@@ -123,17 +122,19 @@ gulp.task('less-compile', function () {
 gulp.task('bower-css-injector', function() {
     var filter = '**/*.css';
     /* Filters to exclude bootstrap and bootstrap-material-design css files
-    *  since it's .less files are being used */
+     *  since it's .less files are being used */
     var filterExcludeBootstrap = '!**/bootstrap/**';
     var filterExcludeMaterial = '!**/bootstrap-material-design/**';
     var filterExcludeToastr = '!**/toastr/**';
     var filterNgTagsInput = '!**/ng-tags-input/**';
+    var filterArr = [filter, filterExcludeBootstrap, filterExcludeMaterial,
+        filterExcludeToastr, filterNgTagsInput];
 
     var injectParams = {name: 'inject:bower', relative: true};
     var srcParams = { base: BOWER_COMPONENTS_PATH, read: false };
     var target = gulp.src(source.html.index);
-    var sources = gulp.src(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial, filterExcludeToastr, filterNgTagsInput]), srcParams);
-    gutil.log(mainBowerFiles([filter, filterExcludeBootstrap, filterExcludeMaterial]));
+    var sources = gulp.src(mainBowerFiles(filterArr), srcParams);
+    gutil.log(mainBowerFiles(filterArr));
 
     return target.pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT));
@@ -288,8 +289,7 @@ gulp.task('minify-html-partials', function() {
 
 /** Livereload Task for .html files **/
 gulp.task('on-html-livereload', function() {
-    return gulp.src(source.html.partials)
-//        .pipe(livereload())
+    return gulp.src([source.html.index, source.html.partials])
         .pipe(connect.reload());
 });
 
@@ -358,7 +358,6 @@ gulp.task('clean', function(cb) {
 
 gulp.task('connect', function() {
     var modRewrite = require('connect-modrewrite');
-    var historyApiFallback = require('connect-history-api-fallback');
     var path = null;
     if(isRelease){
         path = DIST_ROOT + '/';
@@ -369,17 +368,14 @@ gulp.task('connect', function() {
     gutil.log('Starting server on ' + path);
 
     connect.server({
-//        root: path,
         root: APP_ROOT,
         port: 8080,
         livereload: true,
         fallback: path + 'index.html',
         middleware: function() {
             return [
-//                historyApiFallback
                 modRewrite([
-//                        '!\\.\\w+$ /index.html [L]'
-                        '^[^\\.]*$ /index.html [L]'
+                    '^[^\\.]*$ /index.html [L]'
                 ])
             ];
         }
@@ -400,6 +396,11 @@ gulp.task('watch', function() {
     gulp.watch(source.javascript.files, ['source-js-injector', 'compile-ngdocs']);
     gulp.watch(source.less.all, ['source-css-injector']);
 });
+
+/** Serve Documentation Tasks (ng-docs styleguide) **/
+gulp.task('serve-docs', ['serve-ngdocs', 'serve-styleguide']);
+
+gulp.task('serve-all', ['serve', 'serve-ngdocs', 'serve-styleguide']);
 
 /** Serve task for development mode **/
 gulp.task('serve', ['less-compile', 'injector', 'connect', 'watch']);

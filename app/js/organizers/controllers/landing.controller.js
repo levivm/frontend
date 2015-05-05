@@ -15,7 +15,7 @@
         vm.errors = {};
         vm.request = {};
         vm.strings = {};
-        vm.strings.PLACEHOLDER_EMAIL = 'Correo Electrónico';
+        vm.strings.EMAIL_LABEL = 'Correo Electrónico';
         vm.strings.PLACEHOLDER_NAME = 'Nombre de Compañía';
         vm.strings.PLACEHOLDER_TELEPHONE = 'Teléfono';
         vm.strings.PLACEHOLDER_WANT_TEACH = '¿Qué deseas enseñar?';

@@ -1,73 +1,117 @@
-    <div class="row">
-      <div class="col-sm-6 col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <strong>{{::vm.strings.SIGNUP_LABEL}}</strong>
-          </div>
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <div class="card">
+            <div class="card-header">
+                <strong>{{::vm.strings.SIGNUP_LABEL}}</strong>
+            </div>
 
-          <div class="panel-body">
-            <form name='vm.signup_form' ng-submit="vm.register()">
-              <fieldset>
-                <a title="Facebook" class="socialaccount_provider facebook" href="javascript:allauth.facebook.login('', 'authenticate', 'login')">Facebook</a>
+            <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-12 col-md-10  col-md-offset-1 ">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="glyphicon glyphicon-user"></i>
-                        </span> 
-                        <input class="form-control" name="first_name" ng-model="vm.auth.first_name"  placeholder="Nombre"  type="text" autofocus>
-                      </div>
-                      <div class="errors" ng-show="vm.signup_form.first_name.$invalid">
-                        {{ vm.errors.first_name }}
-                      </div>
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <button type="button" class="btn btn-block btn-facebook">
+                            <i class="trulii-icon-facebook"></i> Regístrate con Facebook
+                        </button>
                     </div>
-                    <div class="form-group">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="glyphicon glyphicon-user"></i>
-                        </span> 
-                        <input class="form-control" name="last_name" ng-model="vm.auth.last_name"  placeholder="Apellido"  type="text" autofocus>
-                      </div>
-                      <div class="errors" ng-show="vm.signup_form.last_name.$invalid">
-                        {{ vm.errors.last_name }}
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="glyphicon glyphicon-envelope"></i>
-                        </span> 
-                        <input class="form-control" name="email" ng-model="vm.auth.email"  placeholder="Correo electrónico"  type="text" autofocus>
-                      </div>
-                      <div class="errors" ng-show="vm.signup_form.email.$invalid">
-                        {{ vm.errors.email }}
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="glyphicon glyphicon-lock"></i>
-                        </span>
-                        <input class="form-control" placeholder="Contraseña" name="password1" ng-model="vm.auth.password1"  type="password" value="">
-
-                      </div>
-                      <div class="errors" ng-show="vm.signup_form.password1.$invalid">
-                       {{ vm.errors.password1 }}
-                      </div>
-                    </div>
-                    <input type="hidden" ng-model="vm.user_type" ng-init="vm.user_type='S'">
-                    <div class="form-group">
-                      <input type="submit" id="submit" class="btn btn-lg btn-primary btn-block" value="{{::vm.strings.SIGNUP_LABEL}}">
-                    </div>
-                  </div>
                 </div>
-              </fieldset>
-            </form>
-          </div>
-          <div class="panel-footer ">
-            ¿Ya tienes cuenta? <a ui-sref="login"> Inicia sesión</a>
-          </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <h5 class="text-center text-muted">O puedes registrarte con</h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <button type="button" class="btn btn-block btn-primary"
+                                ng-hide="vm.isSelectedMethod('email')"
+                                ng-click="vm.setSelectedMethod('email')">
+                            <i class="mdi-communication-email"></i>
+                            <span ng-bind="::vm.strings.EMAIL_LABEL"></span>
+                        </button>
+
+                        <form name='vm.signup_form' ng-submit="vm.register()"
+                              toggle="vm.isSelectedMethod('email')"
+                              trulii-expandable-content>
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <i class="glyphicon glyphicon-user"></i>
+                                                </span>
+                                                <input class="form-control" name="first_name" type="text"
+                                                       ng-model="vm.auth.first_name"
+                                                       placeholder="{{::vm.strings.FIRST_NAME_LABEL}}"
+                                                       autofocus>
+                                            </div>
+                                            <div class="errors" ng-show="vm.signup_form.first_name.$invalid">
+                                                {{ vm.errors.first_name }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <i class="glyphicon glyphicon-user"></i>
+                                                </span>
+                                                <input class="form-control" name="last_name" type="text"
+                                                       ng-model="vm.auth.last_name"
+                                                       placeholder="{{::vm.strings.LAST_NAME_LABEL}}"
+                                                       autofocus>
+                                            </div>
+                                            <div class="errors" ng-show="vm.signup_form.last_name.$invalid">
+                                                {{ vm.errors.last_name }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <i class="glyphicon glyphicon-envelope"></i>
+                                                </span>
+                                                <input class="form-control" name="email" type="text"
+                                                       ng-model="vm.auth.email"
+                                                       placeholder="{{::vm.strings.EMAIL_LABEL}}"
+                                                       autofocus>
+                                            </div>
+                                            <div class="errors" ng-show="vm.signup_form.email.$invalid">
+                                                {{ vm.errors.email }}
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="input-group">
+                                                <span class="input-group-addon">
+                                                  <i class="glyphicon glyphicon-lock"></i>
+                                                </span>
+                                                <input class="form-control" name="password1" type="password"
+                                                       placeholder="{{vm.strings.PASSWORD_LABEL}}"
+                                                       ng-model="vm.auth.password1">
+
+                                            </div>
+                                            <div class="errors" ng-show="vm.signup_form.password1.$invalid">
+                                                {{ vm.errors.password1 }}
+                                            </div>
+                                        </div>
+                                        <input type="hidden" ng-model="vm.user_type" ng-init="vm.user_type='S'">
+
+                                        <div class="form-group">
+                                            <input type="submit" id="submit"
+                                                   class="btn btn-lg btn-primary btn-block"
+                                                   value="{{::vm.strings.SIGNUP_LABEL}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-10 col-md-offset-1">
+                        <p class="text-muted">Registrandome estoy aceptando los <strong>Terminos y Condiciones</strong>
+                            y la <strong>Política de Privacidad</strong> de Trulii</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                ¿Ya tienes cuenta en Trulii? <a ui-sref="login" ng-bind="::vm.strings.LOGIN_LABEL"></a>
+            </div>
         </div>
-      </div>
     </div>
+</div>

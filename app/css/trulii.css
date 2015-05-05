@@ -11838,8 +11838,50 @@ tags-input input {
 .checkbox {
   padding-top: 0 !important;
 }
+@font-face {
+  font-family: 'fontello';
+  src: url('fonts/fontello/fontello.eot?27890168');
+  src: url('fonts/fontello/fontello.eot?27890168#iefix') format('embedded-opentype'), url('fonts/fontello/fontello.woff?27890168') format('woff'), url('fonts/fontello/fontello.ttf?27890168') format('truetype'), url('fonts/fontello/fontello.svg?27890168#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+[class^="trulii-icon-"]:before,
+[class*=" trulii-icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.trulii-icon-facebook:before {
+  content: '\e800';
+}
+.trulii-icon-facebook-squared:before {
+  content: '\e801';
+}
 .btn-success {
   color: white !important;
+}
+.btn-facebook {
+  color: white !important;
+  background-color: #3b5998 !important;
+  text-transform: none;
+}
+.btn-facebook:hover {
+  background-color: #8b9dc3 !important;
+}
+.btn-facebook:active {
+  background-color: #dfe3ee !important;
 }
 .btn {
   font-weight: bold;
