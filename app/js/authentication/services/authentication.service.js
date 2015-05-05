@@ -139,28 +139,13 @@
 
             return deferred.promise
                 .then(Facebook.login(function(response) {
-
-                    console.log("FACEBOOOK RESPONSE",response);
+                    
                     if (response.status === 'connected') {
                         // Logged into your app and Facebook.
                         var access_token = response.authResponse.accessToken;
                             return $http.post('http://localhost:8000/users/facebook/signup/',
                                                 {'auth_token':access_token})
-                                    .then(_successFbLogin)
-
-                            function _successFbLogin(response){
-
-                                setAuthenticatedAccount(response.data.user);
-                                setAuthenticationToken(response.data.token);
-                                deferred.resolve(response);
-
-                            }
-
-                            function _errorFbLogin(response){
-
-                                deferred.reject(response);
-                            }                    
-
+                                    .then(_successFbLogin)                                             
 
                     } else if (response.status === 'not_authorized') {
                         deferred.reject();
@@ -174,6 +159,21 @@
                     // Do something with response.
                 })
             );
+
+            // FB Login callbacks
+    
+            function _successFbLogin(response){
+
+                setAuthenticatedAccount(response.data.user);
+                setAuthenticationToken(response.data.token);
+                deferred.resolve(response);
+
+            }
+
+            function _errorFbLogin(response){
+
+                deferred.reject(response);
+            }   
 
 
 
