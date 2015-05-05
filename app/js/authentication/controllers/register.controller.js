@@ -25,6 +25,9 @@
         vm.auth = {};
         vm.errors = {};
         vm.user_type = 'S';
+        vm.facebook = {
+            'error': false
+        };
 
         vm.fbRegister = fbRegister;
         vm.register = register;
@@ -55,6 +58,7 @@
             }
             function error(){
                 alert("Couldn't Register with Facebook");
+                vm.facebook.error = true;
             }
         }
 
@@ -96,7 +100,9 @@
                 EMAIL_LABEL : "Correo electrónico",
                 PASSWORD_LABEL : "Contraseña",
                 FIRST_NAME_LABEL : "Nombre",
-                LAST_NAME_LABEL : "Apellido"
+                LAST_NAME_LABEL : "Apellido",
+                REGISTER_WITH_FACEBOOK_MSG : "Regístrate con Facebook",
+                FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook"
             });
         }
 

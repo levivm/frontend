@@ -130,24 +130,21 @@
 
             return deferred.promise
                 .then(Facebook.login(function(response) {
-                    
                     if (response.status === 'connected') {
                         // Logged into your app and Facebook.
                         var access_token = response.authResponse.accessToken;
-                            return $http.post(api.facebook(),
-                                                {'auth_token':access_token})
-                                    .then(_successFbLogin)                                             
+                        return $http.post(api.facebook(),
+                                            { 'auth_token': access_token })
+                                .then(_successFbLogin);
 
                     } else if (response.status === 'not_authorized') {
-                        deferred.reject();
-                    // The person is logged into Facebook, but not your app.
+                        // The person is logged into Facebook, but not your app.
+                        _errorFbLogin(response);
                     } else {
-                        deferred.resolve();
-                        
-                    // The person is not logged into Facebook, so we're not sure if
-                    // they are logged into this app or not.
+                        // The person is not logged into Facebook, so we're not sure if
+                        // they are logged into this app or not.
+                        _errorFbLogin(response);
                     }
-                    // Do something with response.
                 })
             );
 

@@ -5,8 +5,11 @@
                 <div class="row">
                     <div class="col-sm-12 col-md-10 col-md-offset-1">
                         <button type="button" class="btn btn-block btn-facebook" ng-click="vm.fbRegister()">
-                            <i class="trulii-icon-facebook"></i> Regístrate con Facebook
+                            <i class="trulii-icon-facebook"></i> <span ng-bind="vm.strings.REGISTER_WITH_FACEBOOK_MSG"></span>
                         </button>
+                        <div class="alert alert-danger" ng-show="!!vm.facebook.error">
+                            <span ng-bind="vm.strings.FACEBOOK_ERROR"></span>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
