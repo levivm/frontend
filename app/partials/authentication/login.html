@@ -5,6 +5,7 @@
             <strong> Inicie sesión</strong>
           </div>
           <div class="panel-body">
+            <input type="button" ng-click="vm.facebookLogin()" class="btn btn-lg btn-primary btn-block" value="Facebook">
             <form name='vm.login_form' ng-submit="vm.login()">
               <fieldset>
                 <div class="row">
@@ -32,6 +33,7 @@
                        {{ vm.errors.password }}
                       </div>
                     </div>
+                    <input type="hidden" ng-model="__all__" name="__all__"/>
                     <div class="alert alert-error" ng-show="vm.errors.__all__">
                       <strong>{{vm.errors.__all__}}</strong>
                     </div>

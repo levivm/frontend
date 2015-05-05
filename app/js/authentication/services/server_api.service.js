@@ -89,7 +89,7 @@
                 var arr = null;
                 console.log("KEY",key);
                 if(key){
-                    arr = ['password', 'reset', key + '/'];
+                    arr = ['password', 'reset','key', key + '/'];
                 } else {
                     arr = ['password', 'reset/'];
                 }

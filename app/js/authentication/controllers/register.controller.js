@@ -45,6 +45,7 @@
     vm.errors = {};
 
     vm.register = register;
+    vm.facebookRegister = _facebookRegister;
 
 
 
@@ -95,12 +96,48 @@
 
     }
 
+
+    function _facebookRegister() {
+
+      console.log(Authentication);
+      return  Authentication.facebookLogin()
+                  .then(successFbLogin,errorFbLogin);
+
+
+      /**
+        * @name successFbLogin
+        * @desc redirect to home when facebook login is successful
+        */
+      function successFbLogin(response){
+
+          $state.go("home")
+      }
+
+      /**
+        * @name errorFbLogin
+        * @desc redirect to error message when facebook login fails
+        */
+      function errorFbLogin(response){
+
+          console.log("hubo error");
+          $state.go('general-message',{'module_name':'authentication',
+                         'template_name':'social_login_cancelled',
+                         'redirect_state':'home'});
+
+
+
+        }
+    }
+
+
     function _registerError(response){
       _errored(response.data);
       return $q.reject(response);
 
     }
   }
+
+
 
 
   function serverError(){

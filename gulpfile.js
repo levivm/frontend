@@ -216,6 +216,7 @@ gulp.task('bower-js-injector', function() {
     var srcParams = { base: BOWER_COMPONENTS_PATH, read: false };
     var target = gulp.src(source.html.index);
     var sources = gulp.src(mainBowerFiles(filter), srcParams);
+    gutil.log(mainBowerFiles(filter));
 
     return target.pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT));
