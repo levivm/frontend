@@ -16,6 +16,20 @@
 			scope: {				
 				field: '=',
 				errors: '='
+			}, 
+			link: function(scope, element, attrs){
+
+				var breakdown = attrs.field.split('.');
+
+				var fieldName = breakdown[breakdown.length - 1];
+
+				scope.$watch('errors', function(newValue, oldValue){
+
+					if (newValue){
+						scope.message = scope.errors[fieldName];		
+					}
+				})
+				
 			}
 		}
 	}

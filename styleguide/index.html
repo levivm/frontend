@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Trulii Stylesguide</title>
+
+	<link rel="stylesheet" href="/css/trulii.css">
+
+	<script src="/lib/jquery/dist/jquery.js"></script>
+	<script src="/lib/angular/angular.js"></script>
+	<script src="lib/angular-animate/angular-animate.js"></script>
+	<script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="/js/ui-components/ui-components.module.js"></script>
+	<script src="/js/ui-components/directives/input-alert.directive.js"></script>
+	<script src="/js/ui-components/directives/input-autofocus.directive.js"></script>
+	<script src="/js/ui-components/directives/preloader.directive.js"></script>
+	<script src="/js/ui-components/directives/submit.directive.js"></script>
+	<script src="/js/ui-components/directives/card-expandable.directive.js"></script>
+	<script src="/js/ui-components/services/toast.service.js"></script>
+	<script src="styleguide.js"></script>
+</head>
+<body ng-app="trulii.styleguide">
+	<!-- NAV BAR -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+	    <div class="container-fluid">
+	        <div class="navbar-header page-scroll">
+	            <button type="button" class="navbar-toggle" data-toggle="collapse"
+	                    data-target="#bs-example-navbar-collapse-1">
+	                <span class="sr-only">Toggle navigation</span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	                <span class="icon-bar"></span>
+	            </button>
+	            <a ui-sref="home" class="navbar__logo"></a>
+	        </div>
+	    </div>
+	</nav>
+
+	<div class="with-navbar">
+
+
+		<div class="container-fluid navbar-secondary" >
+			
+			<a ui-sref="css" class="navbar-secondary__item" ui-sref-active="navbar-secondary__item--selected">CSS</a>
+			<a ui-sref="directives" class="navbar-secondary__item" ui-sref-active="navbar-secondary__item--selected">Directivas</a>
+		</div>
+			
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12 bg-secondary" style="padding: 1em 0; ">
+					<h1 class="center-childs grand-title" >
+						Trulii Style Guide
+					</h1>
+					<p class="center-childs" style="font-size: 1.4em">
+						Componentes UI de Trulii para la mejor experiencia de usuario. Fundamentado sobre <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material-Bootstrap</a> y <a href="http://materializecss.com/">Materialize.</a> 
+					</p>
+				</div>
+			</div>	
+
+			<div style="padding: 1.3em">
+				<ui-view>
+
+				</ui-view>	
+			</div>
+			
+
+		</div>
+	</div>
+
+
+
+
+
+
+	
+</body>
+</html>
