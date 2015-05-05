@@ -17,7 +17,7 @@
 
 
 
-.lateral-fade{
+.lateral-fadein{
 	&.ng-hide-remove, &.ng-enter {
 		transition: .3s ease all;
 		position: relative;
@@ -27,7 +27,7 @@
 }
 
 
-.lateral-fade{	
+.lateral-fadein{	
 
 	&.ng-hide-remove.ng-hide-remove-active, 
 	&.ng-enter.ng-enter-active{
@@ -55,4 +55,9 @@
 		position: relative;
 		left: 50px;
 	}	
+}
+
+.lateral-fade{
+	.lateral-fadein;
+	.lateral-fadeout;
 }

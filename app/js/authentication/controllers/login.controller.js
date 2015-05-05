@@ -18,7 +18,8 @@
         var vm = this;
         vm.errors = {};
         vm.auth = {};
-        vm.login = login;
+        vm.login = _login;
+        vm.facebookLogin = _facebookLogin;
         vm.is_new = true;
 
         vm.clearErrors = clearErrors;
@@ -48,12 +49,44 @@
          * @desc Log the user in
          * @memberOf thinkster.authentication.controllers.LoginController
          */
-        function login() {
+        function _login() {
             clearErrors();
             console.log("vm auth",vm.auth);
             return  Authentication.login(vm.auth.email, vm.auth.password)
                 .then(_loginSuccess,_loginError);
         }
+
+
+        function _facebookLogin() {
+
+            return  Authentication.facebookLogin()
+                        .then(successFbLogin,errorFbLogin);
+
+
+            /**
+              * @name successFbLogin
+              * @desc redirect to home when facebook login is successful
+              */
+            function successFbLogin(response){
+
+                $state.go("home")
+            }
+
+            /**
+              * @name errorFbLogin
+              * @desc redirect to error message when facebook login fails
+              */
+            function errorFbLogin(response){
+
+                $state.go('general-message',{'module_name':'authentication',
+                               'template_name':'social_login_cancelled',
+                               'redirect_state':'home'});
+
+
+
+            }
+        }
+
 
         /**
          * @name loginSuccessFn

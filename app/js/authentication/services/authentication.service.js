@@ -16,9 +16,9 @@
         .module('trulii.authentication.services')
         .factory('Authentication', Authentication);
 
-    Authentication.$inject = [ '$http', '$q', '$state', 'AuthenticationServerApi', 'localStorageService'];
+    Authentication.$inject = [ '$http', '$q', '$state', 'AuthenticationServerApi', 'localStorageService','Facebook'];
 
-    function Authentication($http, $q, $state, AuthenticationServerApi, localStorageService) {
+    function Authentication($http, $q, $state, AuthenticationServerApi, localStorageService,Facebook) {
 
         var api = AuthenticationServerApi;
 
@@ -30,6 +30,7 @@
             getAuthenticatedAccount: getAuthenticatedAccount,
             isAuthenticated: isAuthenticated,
             login: login,
+            facebookLogin:facebookLogin,
             logout:logout,
             confirmEmail:confirm_email,
             reset_password:reset_password,
@@ -129,6 +130,52 @@
                     }
                 );
             },authenticationError);
+
+        }
+
+        function facebookLogin(){
+
+            var deferred = $q.defer();
+
+            return deferred.promise
+                .then(Facebook.login(function(response) {
+                    
+                    if (response.status === 'connected') {
+                        // Logged into your app and Facebook.
+                        var access_token = response.authResponse.accessToken;
+                            return $http.post('http://localhost:8000/users/facebook/signup/',
+                                                {'auth_token':access_token})
+                                    .then(_successFbLogin)                                             
+
+                    } else if (response.status === 'not_authorized') {
+                        deferred.reject();
+                    // The person is logged into Facebook, but not your app.
+                    } else {
+                        deferred.resolve();
+                        
+                    // The person is not logged into Facebook, so we're not sure if
+                    // they are logged into this app or not.
+                    }
+                    // Do something with response.
+                })
+            );
+
+            // FB Login callbacks
+    
+            function _successFbLogin(response){
+
+                setAuthenticatedAccount(response.data.user);
+                setAuthenticationToken(response.data.token);
+                deferred.resolve(response);
+
+            }
+
+            function _errorFbLogin(response){
+
+                deferred.reject(response);
+            }   
+
+
 
         }
 
@@ -296,6 +343,7 @@
         }
 
         function unauthenticate() {
+
             localStorageService.remove('user');
             localStorageService.remove('token');
         }

@@ -335,6 +335,20 @@ gulp.task('serve-ngdocs', function() {
     });
 });
 
+var STYLEGUIDE_ROOT = __dirname + '/styleguide/';
+var STYLEGUIDE_PORT = 9001;
+
+/** ng-docs Connect Task for documentation, can be accessed through 'api/' **/
+gulp.task('serve-styleguide', function() {
+    gutil.log('Starting server on ' + STYLEGUIDE_PORT);
+    connect.server({
+        root: [STYLEGUIDE_ROOT, APP_ROOT],
+        port: STYLEGUIDE_PORT,
+        livereload: true
+    });
+});
+
+
 /* Gulp Core Tasks */
 
 /** Clean task to remove everything from public **/

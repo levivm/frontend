@@ -11,13 +11,19 @@
 
     angular
         .module('trulii.config')
-        .config(config)
-        .run(run);
+        .config(config)        
+
+    config.$inject = ['$locationProvider','$httpProvider','FacebookProvider'];
+
+    function config($locationProvider, $httpProvider,FacebookProvider) {
 
 
-    config.$inject = ['$locationProvider','$httpProvider'];
 
-    function config($locationProvider, $httpProvider) {
+
+
+        /* Facebook initialization */
+        FacebookProvider.init('1563536137193781');
+
 
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
@@ -27,8 +33,8 @@
 
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-        // Use x-www-form-urlencoded Content-Type
-        //$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+
+
 
         /**
          * @ngdoc method
@@ -77,17 +83,5 @@
         // }];
 
     }
-
-    run.$inject = ['$rootScope'];
-
-    function run($rootScope){
-
-        $rootScope.$on('$stateChangeStart', 
-          function(event, toState, toParams, fromState, fromParams){
-            console.log("Inicia  el cambio de estado");
-            console.log(toState);
-        });
-    }
-
      
 })();
