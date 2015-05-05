@@ -32,20 +32,31 @@
                 $http.get(this._base_url + organizerId)
                     .then(function (response) {
                         var organizerData = response.data;
+                        console.log("from back",response.data);
                         var organizer = scope._retrieveInstance(organizerId, organizerData);
                         deferred.resolve(organizer);
                     }, function () {
                         deferred.reject();
                     });
             },
-            getOrganizer: function (organizerId) {
+            getOrganizer: function (organizerId,force_fetch) {
                 var deferred = $q.defer();
-                var organizer = this._search(organizerId);
+
+                if(force_fetch){
+                    console.log("FETCHING NEW");
+                    this._load(organizerId, deferred);
+                    console.log("FETCHING NEW",deferred.promise);
+                    return deferred.promise;
+                }
+
+                var organizer = this._search(organizerId);                
+
 
                 if (organizer) {
                     deferred.resolve(organizer);
                 } else {
                     this._load(organizerId, deferred);
+
                 }
 
                 return deferred.promise;

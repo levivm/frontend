@@ -9,20 +9,26 @@
     .module('trulii.activities.controllers')
     .controller('ActivityDBLocationController', ActivityDBLocationController);
 
-  ActivityDBLocationController.$inject = ['$scope','uiGmapGoogleMapApi','uiGmapIsReady','filterFilter','activity','cities','LocationManager'];
+  ActivityDBLocationController.$inject = ['$scope','uiGmapGoogleMapApi','uiGmapIsReady','filterFilter',
+                  'LocationManager','activity','cities','organizer'];
 
     /**
   * @namespace ActivityDBLocationController
   */
-  function ActivityDBLocationController($scope,uiGmapGoogleMapApi,uiGmapIsReady,filterFilter,activity,cities,LocationManager) {
+  function ActivityDBLocationController($scope,uiGmapGoogleMapApi,uiGmapIsReady,filterFilter,
+                  LocationManager,activity,cities,organizer) {
 
     var vm = this;
+
+    vm.errors = {};
+
+    vm.isCollapsed = true;
 
     vm.cities = cities;
 
     vm.activity = angular.copy(activity);
 
-    initialize();
+    initialize_map();
 
     vm.save_activity  = _updateActivity;
 
@@ -107,118 +113,17 @@
     }
 
 
-    function initialize(){
+    function initialize_map(){
 
-        vm.errors = {};
-        vm.isCollapsed = true;
-        var city_id;
-        var city  = vm.activity.location ? vm.activity.location.city : null;
+        var location;
 
-        if(city){
-          city_id = typeof city == 'number' ? city:city.id;
-        } else {
-          LocationManager.getCurrentCity().then(success, error);
-          vm.activity.location = {};
-        }
-
-        vm.activity.location.city = filterFilter(vm.cities,{id:city_id})[0];
-
-        _initialize_map();
-        _setMarker(); 
-
-        function success(city){
-            city_id = city.id;
-        }
-        function error(){
-            city_id = null;
-        }
-    }
-
-    function _initialize_map(){
-
-        var latitude;
-        var longitude;
-        var location = {};
-
-        if (vm.activity.location.point)
-          location = angular.copy(vm.activity.location);
-        else
-          location = angular.copy(vm.activity.location.city);
-
-        latitude  = location.point[0];
-        longitude = location.point[1];
-
-        vm.map = {
-          center: {latitude: latitude, longitude: longitude }, 
-          zoom: 8, 
-          bounds: LocationManager.getAllowedBounds() ,
-
-          events: {
-
-            bounds_changed : function(map, eventName, args) {
-
-              var _allowedBounds = LocationManager.getAllowedBounds();
-
-              var _northeast = _allowedBounds.northeast;
-              var _southwest = _allowedBounds.southwest;
-              var  northeast = new google.maps.LatLng(_northeast.latitude,_northeast.longitude);
-              var  southwest = new google.maps.LatLng(_southwest.latitude,_southwest.longitude);
-
-              var allowedBounds = new google.maps.LatLngBounds(southwest,northeast);
-              
-
-
-              if (allowedBounds.contains(map.getCenter())) {
-
-                vm.map.control.valid_center = map.getCenter();
-                return
-              };
-
-              map.panTo(vm.map.control.valid_center);
-
-            }
-
-          },
-          control : {
-            allowedBounds : LocationManager.getAllowedBounds()
-
-          }
-
-        };
+        location = vm.activity.location.point? vm.activity.location: organizer.location;
+        vm.activity.location = location;
+        vm.map = LocationManager.getMap(location);
+        vm.marker = LocationManager.getMarker(location);
 
     }
 
-    function _setMarker(){
-
-      var latitude = vm.activity.location.point ? 
-                     vm.activity.location.point[0] : vm.activity.location.city.point[0];
-      var longitude = vm.activity.location.point ? 
-                     vm.activity.location.point[1] : vm.activity.location.city.point[1];
-
-      vm.marker = {
-        id: 0,
-        coords: {
-          latitude: latitude,
-          longitude: longitude
-        },
-        options: { draggable: true },
-        events: {
-          dragend: function (marker, eventName, args) {
-            var lat = marker.getPosition().lat();
-            var lon = marker.getPosition().lng();
-
-
-
-            vm.marker.options = {
-              draggable: true,
-              labelContent: "lat: " + vm.marker.coords.latitude + ' ' + 'lon: ' + vm.marker.coords.longitude,
-              labelAnchor: "100 0",
-              labelClass: "marker-labels"
-            };
-          }
-        }
-      };
-    }
   }
 
   })();
