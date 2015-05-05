@@ -26,6 +26,7 @@
         vm.errors = {};
         vm.user_type = 'S';
 
+        vm.fbRegister = fbRegister;
         vm.register = register;
         vm.isSelectedMethod = isSelectedMethod;
         vm.setSelectedMethod = setSelectedMethod;
@@ -43,6 +44,18 @@
         function _clearErrors() {
             vm.errors = null;
             vm.errors = {};
+        }
+
+        function fbRegister(){
+            Authentication.facebookLogin()
+                .then(success, error);
+
+            function success(){
+                $state.go('home');
+            }
+            function error(){
+                alert("Couldn't Register with Facebook");
+            }
         }
 
         function register() {
