@@ -4,7 +4,8 @@
 			<ul class="nav tabs">
 	          <li class="active"><a data-target="#tab1" data-toggle="tab">Editar</a></li>
 	          <li class=""><a data-target="#tab2" data-toggle="tab">Foto y Video</a></li>
-	          <li class=""><a data-target="#tab3" data-toggle="tab">Comentarios</a></li>                               
+	          <li class=""><a data-target="#tab3" ng-click="vm.load_map()" data-toggle="tab">Ubicación</a></li>                               
+	          <li class=""><a data-target="#tab4" data-toggle="tab">Comentarios</a></li>                               
 			</ul>
 		</nav>
 			<div><h2 class="add">Place for your add!</h2></div>
@@ -60,7 +61,50 @@
 	        </form>
 	       <hr>
 		</div>
-		<div class="tab-pane text-style" id="tab3">
+		<div class="tab-pane text-style"  id="tab3">
+
+			<form name='vm.organizer_location_form' ng-submit="vm.submit_location()">
+			<fieldset>
+			  
+			  <h2>Descripción</h2>
+			  <div class="form-group">
+			    <label>Ciudad</label>
+			    <select ng-model="vm.organizer.location.city"
+			        ng-options="city as city.name for city in vm.cities track by city.id" name="city">
+			        <option value="" selected ng-show="!vm.organizer_location_form.type.$dirty">Seleccione..</option>
+			    </select>
+			    {{ vm.errors.city }}
+			    <span class="errors" ng-show="vm.organizer_location_form.city.$invalid && !vm.organizer_location_form.city.$dirty">
+			      <span>{{ vm.errors.city }}</span> 
+			    </span>
+			  </div>
+			  <div class="form-group">
+
+			  </div>
+			  <div class="form-group">
+			    <label>Dirección exacta</label>
+			    <textarea class="form-control" ng-model='vm.organizer.location.address' name="address">  </textarea>
+			    <div class="errors" ng-show="vm.organizer_location_form.address.$invalid && !vm.organizer_location_form.address.$dirty">
+			      <span>{{ vm.errors.address }}</span> 
+			    </div>
+			  <hr>
+			  <div>
+		  		<ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' bounds="vm.map.bounds" events="vm.map.events" control="vm.map.control">
+
+				    <ui-gmap-marker coords="vm.marker.coords" options="vm.marker.options" events="vm.marker.events" idkey="vm.marker.id">
+
+				</ui-gmap-google-map>
+			  </div>
+
+			  <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+			  <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
+			    
+			  </div>
+			  </fieldset>
+			</form>
+
+		</div>
+		<div class="tab-pane text-style" id="tab4">
 		  <h2>Stet clita</h2>
 		  <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum 
 		    iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla 

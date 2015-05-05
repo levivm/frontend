@@ -190,6 +190,7 @@
                 controllerAs: 'vm',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
+                    cities:getAvailableCities,
                     organizer : getOrganizer
                 },
                 data: {
@@ -301,7 +302,9 @@
                 url:'location',
                 controller: 'ActivityDBLocationController',
                 resolve:{
-                    cities: getAvailableCities
+                    cities: getAvailableCities,
+                    organizer : getOrganizer
+
                 },
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_location.html'
@@ -404,9 +407,9 @@
         return Authentication.getAuthenticatedAccount()
     }
 
-    getOrganizer.$inject = ['Authentication','Organizer'];
+    getOrganizer.$inject = ['Authentication','Organizer','organizersManager'];
 
-    function getOrganizer(Authentication,Organizer){
+    function getOrganizer(Authentication,Organizer,organizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var is_organizer = true;
@@ -415,10 +418,14 @@
             is_organizer = authenticatedUser.user_type == 'O';
         }
 
-        var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
-        console.log('getOrganizer. ');
-        console.log(result);
-        return result;
+        var force_fetch = true;
+        
+        return organizersManager.getOrganizer(authenticatedUser.id,force_fetch);
+
+        // var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
+        // console.log('getOrganizer. ',result);
+        // console.log(result);
+        // return result;
     }
 
     getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];

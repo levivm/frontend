@@ -15,11 +15,10 @@
         .module('trulii.locations.services')
         .factory('LocationManager', LocationManager);
 
-    LocationManager.$inject = ['$http', '$q', '$cookies', 'serverConf'];
+    LocationManager.$inject = ['$http', '$q', '$cookies', 'serverConf','localStorageService'];
 
-    function LocationManager($http, $q, $cookies, serverConf) {
+    function LocationManager($http, $q, $cookies, serverConf,localStorageService) {
 
-        var availableCities = null;
         var currentCity = null;
         var mapBounds = null;
 
@@ -46,6 +45,17 @@
 
             /**
              * @ngdoc function
+             * @name trulii.locations.services.LocationManager#_getCityById
+             * @params {number} city id 
+             * @description get the city by id
+             * @methodOf trulii.locations.services.LocationManager
+             * @return {object} City 
+             */
+
+            getCityById   : _getCityById,
+
+            /**
+             * @ngdoc function
              * @name trulii.locations.services.LocationManager#setCurrentCity
              * @params {object} object object param
              * @params {number} object.id id of object
@@ -63,23 +73,65 @@
              * @return {object} Allowed boundaries
              */
 
-            getAllowedBounds: _getAllowedBounds
+            getAllowedBounds: _getAllowedBounds,
+
+            /**
+             * @ngdoc function
+             * @name trulii.locations.services.LocationManager#getMap
+             * @description set current city in the map based on a location data
+             * @methodOf trulii.locations.services.LocationManager
+             * * @return {object} With attributes to init google-maps-angular map
+             */
+
+            getMap: _getMap,
+
+            /**
+             * @ngdoc function
+             * @name trulii.locations.services.LocationManager#getMarker
+             * @description extract marker position from location data
+             * @methodOf trulii.locations.services.LocationManager
+             * * @return {object} With attributes to set google-maps-angular marker
+             */
+
+            getMarker: _getMarker
+
+
+            
+
         };
 
         function _getAvailableCities(){
 
             var deferred = $q.defer();
-
+            var availableCities = localStorageService.get('availableCities');
             if(availableCities){
+
                 deferred.resolve(availableCities);
                 return deferred.promise
             } else {
+
                 return $http.get(serverConf.url+'/api/locations/cities/').then(function(response){
-                    availableCities = response.data;
+                    localStorageService.set('availableCities',response.data);
+
                     return response.data
                 });
             }
         }
+
+        function _getCityById(city_id){
+
+            var availableCities = localStorageService.get('availableCities');
+
+            // return _.filter(availableCities,'id',city_id).pop()
+            
+            function byId(city){
+                return city.id === city_id;
+            }
+
+            return availableCities.filter(byId)[0]
+
+        }
+
 
         function _setCurrentCity(city){
             if (city){
@@ -90,19 +142,26 @@
 
         function _getCurrentCity(){
 
-            var deferred = $q.defer();
-            if ($cookies.currentCity){
-                var persistedCurrentCity = JSON.parse($cookies.currentCity);
-                deferred.resolve(availableCities.filter(byId)[0]);
+            // var deferred = $q.defer();
+            var availableCities = localStorageService.get('availableCities');
+            var current_city = localStorageService.get('current_city');
+            if (current_city){
+                
+                return availableCities.filter(byId)[0]
             } else {
-                _setCurrentCity(availableCities[0]);
-                deferred.resolve(availableCities[0]);
+
+                localStorageService.set('current_city',availableCities[0]);
+
+                return availableCities[0]
+
             }
+
+
 
             return deferred.promise;
 
             function byId(city){
-                return city.id === persistedCurrentCity.id;
+                return city.id === current_city.id;
             }
         }
 
@@ -122,38 +181,98 @@
 
         }
 
-        // function LocationManager(locationsData) {
-        //     if (locationsData) {
-        //         this.setData(locationsData);
-        //     }
 
-        //     this.cache = ['1'];
-        //     this.availableCities = this.getAvailableCities();
-        //     console.log("sadasdasd",this.getAvailableCities());
+        function _getMap(location){
 
-        //     // if (!(this.availableCities)){
-        //     //   console.log('availableCities',availableCities);
-        //     //   this.availableCities = this.getAvailableCities();
+            var latitude;
+            var longitude;
 
-        //     // }
-        // };
+            if (location.point)
+              location = angular.copy(location);
+            else
+              location = angular.copy(location.city);
 
-        // LocationManager.prototype = {
-        //     setData: function(locationsData) {
-        //         angular.extend(this, locationsData);
-        //     },
-        //     create: function(){
-        //       return $http.post('/api/activities/',this);
-        //     },
-        //     getAvailableCities: function() {
-        //         var scope = this;
+            latitude  = location.point[0];
+            longitude = location.point[1];
 
-        //         return $http.get('/api/locations/cities/').then(function(response){
-        //           scope.setData({'availableCities': response.data});
-        //           return response.data
-        //         });
-        //     },
-        // };
+            console.log("latitude","longitude",latitude,longitude);
+
+
+            var scope = this;
+            var map = {
+              center: {latitude: latitude, longitude: longitude }, 
+              zoom: 8, 
+              bounds: scope.getAllowedBounds() ,
+
+              events: {
+
+                bounds_changed : function(_map, eventName, args) {
+
+                  var _allowedBounds = scope.getAllowedBounds();
+
+                  var _northeast = _allowedBounds.northeast;
+                  var _southwest = _allowedBounds.southwest;
+                  var  northeast = new google.maps.LatLng(_northeast.latitude,_northeast.longitude);
+                  var  southwest = new google.maps.LatLng(_southwest.latitude,_southwest.longitude);
+
+                  var allowedBounds = new google.maps.LatLngBounds(southwest,northeast);
+                  
+
+
+                  if (allowedBounds.contains(_map.getCenter())) {
+
+                    map.control.valid_center = _map.getCenter();
+                    return
+                  };
+
+                  _map.panTo(map.control.valid_center);
+
+                }
+
+              },
+              control : {
+                allowedBounds : scope.getAllowedBounds()
+
+              }
+
+            }
+            return map
+
+        }
+
+        function _getMarker(location){
+
+          var latitude  = location.point ? 
+                         location.point[0] : location.city.point[0];
+          var longitude = location.point ? 
+                         location.point[1] : location.city.point[1];
+
+          var marker = {
+            id: 0,
+            coords: {
+              latitude: latitude,
+              longitude: longitude
+            },
+            options: { draggable: true },
+            events: {
+              dragend: function (_marker, eventName, args) {
+                var lat = _marker.getPosition().lat();
+                var lon = _marker.getPosition().lng();
+
+
+
+                marker.options = {
+                  draggable: true,
+                  labelAnchor: "100 0",
+                  labelClass: "marker-labels"
+                };
+              }
+            }
+          };
+
+          return marker
+        }
+
 
         return LocationManager;
 

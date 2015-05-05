@@ -1,6 +1,6 @@
 <label for="home-city-selector" class="sr-only">Cities</label>
 <select id="home-city-selector" name="city" ng-model="home.current_city"
-        ng-options="city as city.name for city in home.cities"
+        ng-options="city as city.name for city in home.cities track by city.id"
         ng-change="vm.setCurrentCity(current_city)">
 </select>
 

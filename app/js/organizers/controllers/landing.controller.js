@@ -41,7 +41,7 @@
 
         function activate(){
 
-
+            console.log("activating");
             LocationManager.getCurrentCity().then(success, error);
 
             function success(city){
