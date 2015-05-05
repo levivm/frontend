@@ -11040,15 +11040,15 @@ hr.on-light {
     left: 0em;
   }
 }
-.lateral-fade.ng-hide-remove,
-.lateral-fade.ng-enter {
+.lateral-fadein.ng-hide-remove,
+.lateral-fadein.ng-enter {
   transition: .3s ease all;
   position: relative;
   left: -50px;
   opacity: 0;
 }
-.lateral-fade.ng-hide-remove.ng-hide-remove-active,
-.lateral-fade.ng-enter.ng-enter-active {
+.lateral-fadein.ng-hide-remove.ng-hide-remove-active,
+.lateral-fadein.ng-enter.ng-enter-active {
   opacity: 1;
   position: relative;
   left: 0px;
@@ -11063,6 +11063,32 @@ hr.on-light {
 /* The starting CSS styles for the enter animation */
 .lateral-fadeout.ng-hide-add.ng-hide-add-active,
 .lateral-fadeout.ng-leave.ng-leave-active {
+  opacity: 0;
+  position: relative;
+  left: 50px;
+}
+.lateral-fade.ng-hide-remove,
+.lateral-fade.ng-enter {
+  transition: .3s ease all;
+  position: relative;
+  left: -50px;
+  opacity: 0;
+}
+.lateral-fade.ng-hide-remove.ng-hide-remove-active,
+.lateral-fade.ng-enter.ng-enter-active {
+  opacity: 1;
+  position: relative;
+  left: 0px;
+}
+.lateral-fade.ng-hide-add,
+.lateral-fade.ng-leave {
+  transition: .3s ease all;
+  position: relative;
+  left: 0px;
+  opacity: 1;
+}
+.lateral-fade.ng-hide-add.ng-hide-add-active,
+.lateral-fade.ng-leave.ng-leave-active {
   opacity: 0;
   position: relative;
   left: 50px;
@@ -11609,6 +11635,9 @@ fieldset[disabled] .navbar-inverse .btn-link:hover,
 fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #444444;
 }
+.navbar {
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+}
 .navbar__logo {
   background: url('img/logo-trulii.png') no-repeat center;
   height: 50px;
@@ -11617,6 +11646,37 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-size: 60%;
   padding: 15px 0px;
   box-sizing: border-box;
+}
+.navbar-secondary {
+  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+  background: #e6b800;
+  height: 40px;
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  top: 50px;
+  z-index: 100;
+}
+.navbar-secondary__item {
+  color: rgba(0, 0, 0, 0.74);
+  display: inline-block;
+  font-weight: bolder;
+  line-height: 37px;
+  padding: 0 1.7em;
+  text-transform: uppercase;
+}
+.navbar-secondary__item--selected {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.74);
+}
+.navbar-secondary__item:hover {
+  color: #00b3b3;
+  text-decoration: none;
+}
+.navbar-secondary__item:focus {
+  color: rgba(0, 0, 0, 0.74);
+}
+.navbar-secondary + * {
+  margin-top: 90px;
 }
 .with-navbar {
   margin-top: 50px;
@@ -12404,6 +12464,10 @@ tags-input input {
   padding: 2em;
 }
 .card .card-footer {
+  border-top: 1px solid #d7d7d7;
+  padding: 1.2em 2em;
+}
+.card .card-list-item {
   border-top: 1px solid #d7d7d7;
   padding: 1.2em 2em;
 }

@@ -1,0 +1,133 @@
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Cards</h2>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-header">
+						<h2>.card-header</h2>
+					</div>
+					<div class="card-body">
+						.card-body
+					</div>	
+					<div class="card-footer">
+						.card-footer
+					</div>
+				</div>
+				
+			</div>	
+
+			<div class="col-sm-6">
+				<div class="card shadow-z-1">
+					<div class="card-header">
+						<h2>Con .shadow-z-1</h2>
+					</div>
+					<div class="card-body">
+						Con la clase shadow-z-*, puede controlarse el nivel de la tarjeta. Los niveles van de 0 a 5.
+					</div>	
+				</div>
+				
+			</div>	
+				
+		</div>
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="form-group input--main">
+							<input type="text" class="form-control" placeholder="Header con input">
+						</div>
+					</div>
+					<div class="card-body">
+						Card body
+					</div>	
+				</div>
+				
+			</div>	
+
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-header">
+						<h2>List items</h2>
+					</div>
+					<div class="card-list-item">
+						.card-list-item
+					</div>	
+					<div class="card-list-item">
+						.card-list-item
+					</div>	
+					<div class="card-list-item">
+						.card-list-item
+					</div>	
+
+				</div>
+				
+			</div>
+				
+		</div>
+
+
+	</div>
+
+</div>
+
+<!-- *** ANIMACIONES *** -->
+
+<div class="row">
+	
+	<div class="col-sm-12">
+		<h2>Animaciones</h2>
+		<p>Las clases para animaciones en Trulii están integranda para trabajas con las directivas de angular (ng-show, ng-hide, ng-repeat, ui-view, etc)</p>
+
+		<div class="row">
+			<div class="col-sm-4">
+				<div class="card">
+					<div class="card-header">
+						<h2>.lateral-fadein</h2>
+					</div>
+					<div class="card-body center-childs">
+						<div style="height: 5em;">
+							<button class="btn btn-lg btn-success lateral-fadein" ng-show="lateralFadein" ng-click="delayToggle('lateralFadein')">Tengo .lateral-fadein</button>
+						</div>
+						<p>Animación de <strong>entrada</strong> de un elemento.</p>
+						
+					</div>
+				</div>				
+			</div>		
+
+			<div class="col-sm-4">
+				<div class="card">
+					<div class="card-header">
+						<h2>.lateral-fadeout</h2>
+					</div>
+					<div class="card-body center-childs">
+						<div style="height: 5em;">
+							<button class="btn btn-lg btn-success lateral-fadeout" ng-show="lateralFadeout" ng-click="delayToggle('lateralFadeout')">Tengo .lateral-fadeout</button>
+						</div>
+						<p>Animación de <strong>salida</strong> de un elemento.</p>
+						
+					</div>
+				</div>				
+			</div>		
+
+			<div class="col-sm-4">
+				<div class="card">
+					<div class="card-header">
+						<h2>.lateral-fade</h2>
+					</div>
+					<div class="card-body center-childs">
+						<div style="height: 5em;">
+							<button class="btn btn-lg btn-success lateral-fade" ng-show="lateralFade" ng-click="delayToggle('lateralFade')">Tengo .lateral-fade</button>
+						</div>
+						<p>Todo en uno.</p>
+						
+					</div>
+				</div>				
+			</div>	
+
+		</div>
+
+
+	</div>
+</div>

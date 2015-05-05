@@ -13,9 +13,10 @@
 		return {
 			restrict: 'AE',
 			templateUrl: UIComponentsTemplatesPath + "submit-controls.html",
+			transclude: true,
 			scope: {				
 				isSaving: '=',
-				value: '='
+				//value: '=?'
 			}, 
 			
 			link: function(scope, element, attrs){

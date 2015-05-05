@@ -1,0 +1,137 @@
+<div class="row">
+	<div class="col-sm-12">
+		<h2>trulii-expandable-content</h2>
+		<div class="col-sm-6" >
+			<div class="card shadow-z-1">
+				<div class="card-header center-childs">
+					<button class="btn btn-success" ng-click="toggle = !toggle">
+					<span ng-show="!toggle">¡Sal de ahí!</span>
+					<span ng-show="toggle">¡Escóndete!</span>
+					</button>
+				</div>
+			
+				<div class="card-body center-childs" trulii-expandable-content toggle="toggle"  >
+					¡Mira! Estoy aquí :)
+				</div>									
+				
+
+			</div>
+			
+		</div>	
+
+		<div class="col-sm-6">
+			<div class="card shadow-z-1">
+				<div class="card-header center-childs">							
+					<button class="btn btn-success" ng-click="addItem()">
+					Agregar Minion							
+					</button>
+				</div>
+			
+				<div class="card-list-item center-childs" trulii-expandable-content ng-repeat="i in items" >
+					
+						{{i}} Minion(s)
+											
+					 
+				</div>									
+				
+
+			</div>
+			
+		</div>	
+		
+	</div>
+</div>
+
+<div class="row">
+
+		
+
+
+		<div class="col-sm-6">
+			<h2>trulii-submit-controls | trulii-input-alert</h2>
+			<div class="card">
+				<div class="card-body">
+					<form action="" class="form-horizontal" name="submitTest" ng-submit="save()">
+						<div class="form-group">
+							<label for="" class="form-label col-sm-3">Valar Morghulis:</label>
+							<div class="col-sm-9">
+								<input type="text" class="form-control" name="response" ng-required>	
+
+								<div trulii-input-alert field="submitTest.response" errors="errors"></div>
+
+							</div>
+							
+						</div>
+
+						<div trulii-submit-controls is-saving="saving" value="A bravoss!"></div>
+					</form>	
+				</div>
+				
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+			<h2>trulii-input-autofocus</h2>		
+
+			<div class="card">
+
+				<div class="card-body">
+					<div class="form-group">
+						<label for="" class="form-label col-sm-3">Valar Morghulis:</label>
+						<div class="col-sm-9">
+							<input type="text" class="form-control" name="response" trulii-input-autofocus>					
+							<p>Yo me hago "autofocus"</p>		
+						</div>						
+						
+					</div>	
+				</div>
+				
+
+
+			</div>
+	
+		</div>
+
+
+</div>
+
+
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<h2>trulii-preloader</h2>		
+
+		<div class="card">
+			<div class="card-header center-childs">
+				<button class="btn btn-success" ng-click="preloader = !preloader">Toggle</button>
+			</div>
+			<div class="card-body">
+				
+				<div trulii-preloader loader-control="preloader">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Toast</h2>		
+
+
+	</div>
+
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<h2>Elevator</h2>		
+
+
+	</div>
+
+</div>

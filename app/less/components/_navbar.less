@@ -6,6 +6,7 @@
 
 
 .navbar {
+	.shadow-z-1;
 	&__logo{
 		background: url(@res-trulii-logo) no-repeat center;
 		height: @navbar-height;
@@ -16,6 +17,46 @@
 		box-sizing: border-box;
 	}
 		
+}
+
+.navbar-secondary{
+	.shadow-z-1;
+	background: darken(@primary, 5%);
+	height: 40px;
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	top: @navbar-height;
+	z-index: 100;
+
+	&__item{
+		color: @lightbg-text;
+		display: inline-block;
+		font-weight: bolder;
+		line-height: 37px;
+		padding: 0 1.7em;
+		text-transform: uppercase;
+
+		
+		&--selected{
+			border-bottom: 3px solid @lightbg-text;
+		}
+
+		&:hover{
+			color: @secondary;
+			text-decoration: none;
+		}
+
+		&:focus{
+			color: @lightbg-text;
+		}
+
+	}
+
+	& + *{
+		margin-top: @navbar-height + 40px;
+	}
+
 }
 	
 
