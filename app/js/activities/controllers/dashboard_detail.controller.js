@@ -52,8 +52,8 @@
 
     function _updateSuccess(response){
       vm.isCollapsed = false;
+      _onSectionUpdated();
       angular.extend(activity,vm.activity);
-      _onSectionUpdated()
     }
 
     function _clearErrors(){
@@ -74,7 +74,7 @@
     }
 
     function _onSectionUpdated(){
-      activity.updateSection('detail');
+      activity.updateSection('calendars');
     }
 
     function activate() {
