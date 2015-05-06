@@ -5,16 +5,122 @@
 @import "navbar.less";
 
 
+@navbar-inner-height: @navbar-height - (@navbar-padding-vertical*2);
+
 .navbar {
 	.shadow-z-1;
+
+	height: @navbar-height;
+	padding: @navbar-padding-vertical 1em;
+	overflow: hidden;
+
+
 	&__logo{
-		background: url(@res-trulii-logo) no-repeat center;
-		height: @navbar-height;
+		background: url(@res-trulii-logo) no-repeat;
+		height: @navbar-inner-height;
 		width: 120px;
-		display: block;
-		background-size: 60%;
-		padding: @navbar-padding-vertical 0px;
-		box-sizing: border-box;
+		display: inline-block;
+		background-size: contain;
+		position: absolute;
+
+		.before-xs({
+			background: url(@res-trulii-logo-tiny) no-repeat center;			
+			width: 30px;			
+			background-size: contain;
+			position: relative;
+		});
+	}
+
+	&__user{
+		line-height: @navbar-inner-height;
+		display: inline-block;
+		//float:right;		
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: @navbar-padding-vertical 1em @navbar-padding-vertical .5em;
+
+		* {
+			height: 100%;
+			display: inline-block;
+			color: @darkbg-text;			
+		}
+
+		&__picture{
+			.square(@navbar-inner-height);
+			border-radius: 50%;
+			border: 2px solid rgba(255,255,255,0.5);
+		}
+
+		&__name:extend(.show-after-md){			
+			font-size: 1.2em;
+			font-weight: bold;			
+		}
+
+		&:hover{			
+			background-color: darken(@primary, 6%);
+		}
+		
+	}
+
+	&__center-wrapper{
+
+		vertical-align: top;
+		height: @navbar-inner-height;
+		width: 65%;		
+		.center-block();
+
+		.before-xs({
+			display: inline-block;
+		});
+	}
+
+	&__search-box{
+		background: white;
+		width: 100%;
+		height: 100%;
+		border-radius: @border-radius-base;
+		border: 1px solid darken(@primary, 4%);
+
+		input{
+			font-size: 1.2em;
+			text-align: center;
+			background: transparent;
+			border: 0px;
+			height: 100%;
+			width: 75%;
+			float: left;
+			display: block;
+		
+		}
+
+		&__city-select{
+			width: 15%;
+			display: inline-block;
+			height: 100%;
+			vertical-align: top;
+			line-height: @navbar-inner-height;
+			font-weight: bold;
+			border-left: 1px solid @color-delimeter-dark;
+			text-align: center;
+		}
+
+		&__btn{
+			&:before{				
+				line-height: @navbar-inner-height;
+				display: inline-block;			
+				color: @lightbg-text;					
+				font-size: 1.2em;
+			}			
+
+			width: 10%;
+			text-align: center;
+			height: @navbar-inner-height;
+			display: inline-block;
+			border: 0;
+			border-left: 1px solid @color-delimeter-dark;
+			background: transparent;
+		}
 	}
 		
 }

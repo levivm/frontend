@@ -1,0 +1,58 @@
+
+@import '../_trulii-variables';
+
+
+
+.show-after-sm{
+    @media screen and (max-width: @screen-sm ){
+        display: none !important;
+    }
+}
+
+.show-after-md{
+    @media screen and (max-width: @screen-md ){
+
+        display: none !important;
+    }    
+}
+
+.hide-before-xs{
+    @media screen and (max-width: @screen-xs ){
+        display: none !important;
+    }
+}
+
+// Generics breakpoints
+
+.before-width(@width; @styles){
+    @media screen and (max-width: @width){
+        @styles();
+    }
+}
+
+.after-width(@width; @styles){
+    @media screen and (min-width: @width){
+        @styles();
+    }
+}
+
+// Bootstrap Breakpoints
+
+.before-xs(@styles){
+    .before-width(@screen-xs,  @styles);
+}
+
+.before-sm(@styles){
+    .before-width(@screen-sm,  @styles);
+}
+
+.before-md(@styles){
+    .before-width(@screen-md,  @styles);
+}
+
+
+
+
+
+
+

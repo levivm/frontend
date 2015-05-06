@@ -11028,6 +11028,22 @@ hr.on-light {
 .shadow-z-5 {
   box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
 }
+@media screen and (max-width: 768px) {
+  .show-after-sm {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 992px) {
+  .show-after-md,
+  .navbar__user__name {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 480px) {
+  .hide-before-xs {
+    display: none !important;
+  }
+}
 .lateral-slide {
   animation-name: lateral-slide;
   animation-duration: 0.4s;
@@ -11219,7 +11235,7 @@ hr.on-light {
 }
 .navbar-brand {
   float: left;
-  padding: 15px 15px;
+  padding: 5px 15px;
   font-size: 18px;
   line-height: 20px;
   height: 50px;
@@ -11267,7 +11283,7 @@ hr.on-light {
   }
 }
 .navbar-nav {
-  margin: 7.5px -15px;
+  margin: 2.5px -15px;
 }
 .navbar-nav > li > a {
   padding-top: 10px;
@@ -11305,8 +11321,8 @@ hr.on-light {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
 .navbar-form {
@@ -11637,15 +11653,106 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar {
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+  height: 50px;
+  padding: 5px 1em;
+  overflow: hidden;
 }
 .navbar__logo {
-  background: url('img/logo-trulii.png') no-repeat center;
-  height: 50px;
+  background: url('img/logo-trulii.png') no-repeat;
+  height: 40px;
   width: 120px;
+  display: inline-block;
+  background-size: contain;
+  position: absolute;
+}
+@media screen and (max-width: 480px) {
+  .navbar__logo {
+    background: url('img/logo-tiny.png') no-repeat center;
+    width: 30px;
+    background-size: contain;
+    position: relative;
+  }
+}
+.navbar__user {
+  line-height: 40px;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 1em 5px 0.5em;
+}
+.navbar__user * {
+  height: 100%;
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.84);
+}
+.navbar__user__picture {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+.navbar__user__name {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.navbar__user:hover {
+  background-color: #e0b400;
+}
+.navbar__center-wrapper {
+  vertical-align: top;
+  height: 40px;
+  width: 65%;
   display: block;
-  background-size: 60%;
-  padding: 15px 0px;
-  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media screen and (max-width: 480px) {
+  .navbar__center-wrapper {
+    display: inline-block;
+  }
+}
+.navbar__search-box {
+  background: white;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  border: 1px solid #ebbc00;
+}
+.navbar__search-box input {
+  font-size: 1.2em;
+  text-align: center;
+  background: transparent;
+  border: 0px;
+  height: 100%;
+  width: 75%;
+  float: left;
+  display: block;
+}
+.navbar__search-box__city-select {
+  width: 15%;
+  display: inline-block;
+  height: 100%;
+  vertical-align: top;
+  line-height: 40px;
+  font-weight: bold;
+  border-left: 1px solid #d7d7d7;
+  text-align: center;
+}
+.navbar__search-box__btn {
+  width: 10%;
+  text-align: center;
+  height: 40px;
+  display: inline-block;
+  border: 0;
+  border-left: 1px solid #d7d7d7;
+  background: transparent;
+}
+.navbar__search-box__btn:before {
+  line-height: 40px;
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.74);
+  font-size: 1.2em;
 }
 .navbar-secondary {
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
