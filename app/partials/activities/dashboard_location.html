@@ -16,7 +16,7 @@
               <div class="form-group">
                 <label>Ciudad</label>
                 <select ng-model="vm.activity.location.city"
-                    ng-options="city as city.name for city in vm.cities" name="city">
+                    ng-options="city as city.name for city in vm.cities track by city.id" name="city">
                     <option value="" selected ng-show="!vm.activity_location_form.type.$dirty">Seleccione..</option>
                 </select>
                 <span class="errors" ng-show="vm.activity_location_form.city.$invalid && !vm.activity_location_form.city.$dirty">

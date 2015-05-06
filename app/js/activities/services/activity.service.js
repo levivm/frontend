@@ -15,9 +15,9 @@
     .module('trulii.activities.services')
     .factory('Activity', Activity);
 
-  Activity.$inject = ['$http', '$q', '$log', 'ActivityServerApi', 'UploadFile'];
+  Activity.$inject = ['$http', '$q', '$log', 'ActivityServerApi', 'UploadFile','LocationManager'];
 
-  function Activity($http, $q, $log, ActivityServerApi, UploadFile) {
+  function Activity($http, $q, $log, ActivityServerApi, UploadFile,LocationManager) {
 
       var api = ActivityServerApi;
 //      this.base_url = serverConf.url+'/api/activities/';
@@ -34,6 +34,31 @@
       Activity.prototype = {
           setData: function(activityData) {
               angular.extend(this, activityData);
+              this._setCity();
+          },
+          _setCity:function(){
+
+            var city_id;
+            var city;
+            var organizer_city;
+
+
+            this.location = this.location ? this.location:{};
+            
+            console.log("this location ",this.location);
+
+            city_id  = this.location ? this.location.city : null;
+
+
+            if (!(city_id))
+              city = LocationManager.getCurrentCity();
+            else
+              city = LocationManager.getCityById(city_id)
+
+            console.log("location city",city);
+
+            this.location.city = city;
+
           },
           create: function(){
             // this.base_url

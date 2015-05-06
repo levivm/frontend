@@ -11,9 +11,9 @@
     .constant("organizerConstants", {'max_allowed_instructors':3}
     )
 
-  Organizer.$inject = ['$http','$q','serverConf','Authentication','organizerConstants'];
+  Organizer.$inject = ['$http','$q','serverConf','Authentication','organizerConstants','LocationManager'];
 
-  function Organizer($http,$q,serverConf,Authentication,organizerConstants) {  
+  function Organizer($http,$q,serverConf,Authentication,organizerConstants,LocationManager) {  
       
       function Organizer(organizerData) {
           if (organizerData) {
@@ -26,14 +26,34 @@
       Organizer.prototype = {
           setData: function(organizerData) {
               angular.extend(this, organizerData);
+              this._setCity();
+          },
+          _setCity:function(){
+
+            var city_id;
+            var city;
+            var organizer_city;
+
+            this.location = this.locations.length > 0 ? this.locations.pop():{};
+            
+            city_id  = this.location ? this.location.city : null;
+
+
+            if (!(city_id))
+              city = LocationManager.getCurrentCity();
+            else
+              city = LocationManager.getCityById(city_id)
+
+            this.location.city = city;
+
           },
           load: function(id) {
               var scope = this;
-
               $http.get(serverConf.url+'/api/organizers/' + id).success(function(organizerData) {
                   console.log('response');
                   console.log(organizerData);
                   scope.setData(organizerData);
+                  
               });
           },
           update_video: function(){
@@ -61,6 +81,7 @@
 
               Authentication.setAuthenticatedAccount(response.data);
               scope.setData(response.data);
+              
               return response.data;
 
             },function(response){
@@ -109,6 +130,24 @@
 
             return Authentication.change_password(password_data)
             //$http.put('/api/organizers/' + this.id, this);
+          },
+          update_location:function (location_data){
+            console.log("location data",location_data);
+            var location_data = angular.copy(location_data);
+                location_data.city = location_data.city ? location_data.city.id  : undefined;
+              console.log("copying",location_data);
+            return $http.post('http://localhost:8000/api/organizers/'+this.id+'/locations/',location_data)
+            // .then(
+            //   function(response){
+            //     console.log("todo bien",response);
+
+            //   },
+            //   function(response){
+
+            //     console.log("error",response);
+            //   })
+
+
           },
           getActivities:function(){
 
