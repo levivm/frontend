@@ -30,7 +30,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'activities': function(){
+            'activities' : function () {
                 return renderUrl('activities/', null);
             },
 
@@ -42,7 +42,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'activity': function(idActivity){
+            'activity' : function (idActivity) {
                 return renderUrl('activities/', [idActivity]);
             },
 
@@ -54,7 +54,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'gallery': function(idActivity){
+            'gallery' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'gallery']);
             },
 
@@ -66,7 +66,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'calendars': function(idActivity){
+            'calendars' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'calendars']);
             },
 
@@ -79,7 +79,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'calendar': function(idActivity, idCalendar){
+            'calendar' : function (idActivity, idCalendar) {
                 return renderUrl('activities/', [idActivity, 'calendars', idCalendar]);
             },
 
@@ -91,7 +91,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'publish': function(idActivity){
+            'publish' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'publish']);
             },
 
@@ -102,7 +102,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'info': function(){
+            'info' : function () {
                 return renderUrl('activities/', ['info']);
             },
 
@@ -113,7 +113,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'categories': function(){
+            'categories' : function () {
                 return renderUrl('activities/', ['categories']);
             },
 
@@ -125,7 +125,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'orders': function(idActivity){
+            'orders' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'orders']);
             }
         };
@@ -140,11 +140,11 @@
          * @return {string} Rendered URL
          * @methodOf trulii.activities.services.ActivityServerApi
          */
-        function renderUrl(endpoint, urlParams){
+        function renderUrl(endpoint, urlParams) {
             var hostArr = [serverApi, endpoint];
-            var result = urlParams? hostArr.concat(urlParams.join('/')) : hostArr;
+            var result = urlParams ? hostArr.concat(urlParams.join('/')) : hostArr;
             result = result.join('');
-            if(debug){
+            if (debug) {
                 console.log('ServerApi.renderUrl:');
                 console.log(result);
             }

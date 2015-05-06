@@ -12,39 +12,39 @@
         .module('trulii.activities.services')
         .value('ActivitySteps', [
             {
-                sref: '.general',
-                title: 'General',
-                name: 'general'
+                sref : '.general',
+                title : 'General',
+                name : 'general'
             },
             {
-                sref: '.detail',
-                title: 'Detalle',
-                name: 'detail'
+                sref : '.detail',
+                title : 'Detalle',
+                name : 'detail'
             },
             {
-                sref: '.calendars',
-                title: 'Calendario',
-                name: 'calendars'
+                sref : '.calendars',
+                title : 'Calendario',
+                name : 'calendars'
             },
             {
-                sref: '.location',
-                title: 'Ubicación',
-                name: 'location'
+                sref : '.location',
+                title : 'Ubicación',
+                name : 'location'
             },
             {
-                sref: '.instructors',
-                title: 'Instructores',
-                name: 'instructors'
+                sref : '.instructors',
+                title : 'Instructores',
+                name : 'instructors'
             },
             {
-                sref: '.gallery',
-                title: 'Galeria',
-                name: 'gallery'
+                sref : '.gallery',
+                title : 'Galeria',
+                name : 'gallery'
             },
             {
-                sref: '.return-policy',
-                title: 'Política de Devolución',
-                name: 'return_policy'
+                sref : '.return-policy',
+                title : 'Política de Devolución',
+                name : 'return-policy'
             }
         ]);
 

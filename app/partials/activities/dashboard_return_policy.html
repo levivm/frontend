@@ -12,8 +12,9 @@
                         <textarea id="return-policy-textarea" class="form-control" name="return_policy"
                                   ng-model='vm.activity.return_policy'
                                   ng-mouseover="vm.setOverElement('return_policy')"
-                                placeholder="Condiciones para reembolso">
+                                  placeholder="Condiciones para reembolso">
                         </textarea>
+
                         <div class="errors"
                              ng-show="vm.activity_create_form.return_policy.$invalid && !vm.activity_create_form.return_policy.$dirty">
                             <span>{{ vm.errors.return_policy }}</span>
@@ -21,6 +22,7 @@
                     </div>
 
                     <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+
                     <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
 
                     </div>

@@ -29,10 +29,10 @@
 
         //noinspection UnnecessaryLocalVariableJS
         var ActivitiesManager = {
-            getActivity: getActivity,
-            loadOrganizerActivities: loadOrganizerActivities,
-            loadGeneralInfo: loadGeneralInfo,
-            enroll: enroll
+            getActivity : getActivity,
+            loadOrganizerActivities : loadOrganizerActivities,
+            loadGeneralInfo : loadGeneralInfo,
+            enroll : enroll
         };
 
         return ActivitiesManager;
@@ -51,7 +51,7 @@
             return instance;
         }
 
-        function _search(activityID){
+        function _search(activityID) {
             return _pool[activityID];
         }
 
@@ -59,11 +59,11 @@
             if (activityID) {
                 //_base_url + activityID
                 $http.get(api.activity(activityID))
-                    .then(function(response) {
+                    .then(function (response) {
                         var activityData = response.data;
                         var activity = _retrieveInstance(activityData.id, activityData);
                         deferred.resolve(activity);
-                    },function() {
+                    }, function () {
                         deferred.reject();
                     });
             } else {
@@ -74,10 +74,10 @@
             return deferred.promise
         }
 
-        function getActivity(activityId,create) {
+        function getActivity(activityId, create) {
             var deferred = $q.defer();
             var activity = _search(activityId);
-            if (activity){
+            if (activity) {
                 deferred.resolve(activity);
             } else {
                 _load(activityId, deferred);
@@ -87,26 +87,28 @@
 
         function loadOrganizerActivities(organizer_id) {
 
-            if (!(_.isEmpty(_activities))) { return _activities; }
+            if (!(_.isEmpty(_activities))) {
+                return _activities;
+            }
 
             // serverConf.url+'/api/organizers/'+organizer_id+'/activities/'
             return $http.get(apiOrg.activities(organizer_id))
-                .then(function(response){
-                _.each(response.data,function(activityData){
-                    var activity = _retrieveInstance(activityData.id,activityData);
-                    _activities.push(activity)
+                .then(function (response) {
+                    _.each(response.data, function (activityData) {
+                        var activity = _retrieveInstance(activityData.id, activityData);
+                        _activities.push(activity)
+                    });
+                    return _activities;
                 });
-                return _activities;
-            });
         }
 
         function loadGeneralInfo() {
             var deferred = $q.defer();
 
-            if (presave_info){
+            if (presave_info) {
                 deferred.resolve(presave_info);
             } else {
-                $http.get(api.info()).then(function(response){
+                $http.get(api.info()).then(function (response) {
                     presave_info = response.data;
                     deferred.resolve(presave_info);
                 });

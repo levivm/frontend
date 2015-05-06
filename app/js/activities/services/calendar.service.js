@@ -22,7 +22,7 @@
         var api = ActivityServerApi;
 
         function Calendar(calendarData) {
-            if (calendarData){
+            if (calendarData) {
                 this.setData(calendarData);
             } else {
 
@@ -40,27 +40,27 @@
         }
 
         Calendar.prototype = {
-            setData: function(calendarData) {
+            setData : function (calendarData) {
 
                 var that = this;
                 angular.extend(this, calendarData);
-                this.sessions = $filter('orderBy')(this.sessions,'date');
+                this.sessions = $filter('orderBy')(this.sessions, 'date');
 
                 this.initial_date = new Date(this.initial_date);
                 this.closing_sale = new Date(this.closing_sale);
-                angular.forEach(this.sessions,function(session,index){
+                angular.forEach(this.sessions, function (session, index) {
 
                     session.date = new Date(session.date);
-                    that.changeSessionDate(index,session);
+                    that.changeSessionDate(index, session);
 
-                    session.end_time   = new Date(session.end_time);
+                    session.end_time = new Date(session.end_time);
                     session.start_time = new Date(session.start_time);
 
                 });
 
                 this.last_sn = this.number_of_sessions;
             },
-            load: function(activity_id){
+            load : function (activity_id) {
 
                 var that = this;
                 that.activity = activity_id;
@@ -68,15 +68,15 @@
                 console.log("activity_id ", activity_id);
                 // serverConf.url+'/api/activities/'+activity_id+'/calendar/'
                 return $http.get(api.calendars(activity_id))
-                    .then(function(response){
+                    .then(function (response) {
                         that.setData(response.data);
                         return that;
-                    },function(response){
+                    }, function (response) {
                         return that;
                     });
 
             },
-            create: function(){
+            create : function () {
                 var activity_id = this.activity;
                 var _initial_date = this.initial_date;
                 var _closing_sale = this.closing_sale;
@@ -84,7 +84,7 @@
                 this.initial_date = this.initial_date.valueOf();
                 this.closing_sale = this.closing_sale.valueOf();
 
-                angular.forEach(this.sessions,function(session){
+                angular.forEach(this.sessions, function (session) {
                     session.date = session.date.valueOf();
                     session.end_time = session.end_time.valueOf();
                     session.start_time = session.start_time.valueOf();
@@ -94,32 +94,32 @@
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'
                 return $http.post(api.calendars(activity_id), this)
-                    .then(function(response){
+                    .then(function (response) {
                         that.setData(response.data);
                         return that;
-                    },function(response){
+                    }, function (response) {
                         return $q.reject(response.data);
                     });
 
             },
-            update : function(){
+            update : function () {
 
                 var activity_id = this.activity;
-                console.log("updating",this);
+                console.log("updating", this);
                 this.setToSave();
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'+this.id
-                return $http.put(api.calendar(activity_id, this.id),this)
-                    .then(function(response){
+                return $http.put(api.calendar(activity_id, this.id), this)
+                    .then(function (response) {
                         that.setData(response.data);
                         return response.data
                     },
-                    function(response){
+                    function (response) {
                         return $q.reject(response.data);
                     });
 
             },
-            setToSave: function(){
+            setToSave : function () {
 
                 var _initial_date = this.initial_date;
                 var _closing_sale = this.closing_sale;
@@ -127,88 +127,88 @@
                 this.initial_date = this.initial_date.valueOf();
                 this.closing_sale = this.closing_sale.valueOf();
 
-                angular.forEach(this.sessions,function(session){
+                angular.forEach(this.sessions, function (session) {
                     session.date = session.date.valueOf();
                     session.end_time = session.end_time.valueOf();
                     session.start_time = session.start_time.valueOf();
                 });
             },
-            changeStartDate: function(){
+            changeStartDate : function () {
 
-                var initial_date  = this.initial_date;
+                var initial_date = this.initial_date;
                 //this.initial_date = initial_date.valueOf ? initial_date.valueOf() : initial_date;
                 //this.initial_date = this.initial_date;
 
-                if(this.initial_date>this.closing_sale)
+                if (this.initial_date > this.closing_sale)
                     this.closing_sale = this.initial_date;
 
             },
-            changeCloseDate: function(){
+            changeCloseDate : function () {
 
                 var closing_sale = this.closing_sale;
                 //this.closing_sale = closing_sale.valueOf ? closing_sale.valueOf() : closing_sale;
 
-                if(this.initial_date>this.closing_sale)
+                if (this.initial_date > this.closing_sale)
                     this.closing_sale = this.initial_date;
             },
-            openCloseDate: function($event){
+            openCloseDate : function ($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
                 this.endOpened = true;
             },
-            openStartDate: function($event){
+            openStartDate : function ($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
                 this.startOpened = true;
 
             },
-            openSessionDate: function($event,session){
+            openSessionDate : function ($event, session) {
                 $event.preventDefault();
                 $event.stopPropagation();
-                session.openDate= true;
+                session.openDate = true;
             },
-            changeSessionsN: function(){
+            changeSessionsN : function () {
 
-                if (this.number_of_sessions>10)
+                if (this.number_of_sessions > 10)
                     return;
 
                 var difference = this.number_of_sessions - this.last_sn;
                 var abs_difference = Math.abs(difference);
 
-                for (var i=0; i<abs_difference; i++){
+                for (var i = 0; i < abs_difference; i++) {
 
-                    if (difference>0){
+                    if (difference > 0) {
 
                         var index = this.number_of_sessions - 1;
 
-                        var previous_s  = index ? this.sessions[index-1]:null;
+                        var previous_s = index ? this.sessions[index - 1] : null;
 
-                        var date = index ? new Date(previous_s.date.getTime()):this.initial_date;
+                        var date = index ? new Date(previous_s.date.getTime()) : this.initial_date;
 
                         //var minDate =index ? new Date(previous_s.date.getTime()+24*60*60*1000):date;
 
                         //var _start_time = previous_s && previous_s.date
-                        var hours = index ? previous_s.end_time.getHours():10;
-                        console.log(hours,"horas");
+                        var hours = index ? previous_s.end_time.getHours() : 10;
+                        console.log(hours, "horas");
 
                         var start_time = new Date();
-                        start_time.setHours( hours + 1 );
-                        start_time.setMinutes( 0 );
+                        start_time.setHours(hours + 1);
+                        start_time.setMinutes(0);
 
                         var end_time = new Date();
-                        end_time.setHours( hours + 4 );
-                        end_time.setMinutes( 0 );
+                        end_time.setHours(hours + 4);
+                        end_time.setMinutes(0);
 
                         var session = {
-                            openDate:false,
-                            date:date,
-                            minDate:date,
-                            start_time:start_time,
-                            end_time:end_time,
+                            openDate : false,
+                            date : date,
+                            minDate : date,
+                            start_time : start_time,
+                            end_time : end_time,
                         };
                         this.sessions.push(session);
                     }
-                    else{
+                    else {
                         this.sessions.pop();
                     }
                 }
@@ -217,47 +217,47 @@
                 //return this.number_of_sessions
 
             },
-            changeSessionDate: function($index,session){
+            changeSessionDate : function ($index, session) {
 
                 var size = this.sessions.length;
-                var rest_sessions     = this.sessions.slice($index+1, $index+size);
-                var previous_sessions = this.sessions.slice(0,$index);
+                var rest_sessions = this.sessions.slice($index + 1, $index + size);
+                var previous_sessions = this.sessions.slice(0, $index);
 
-                rest_sessions.map(function(value){
-                    value.date    = value.date<=session.date ? session.date : value.date;
-                    value.minDate  = session.date;
+                rest_sessions.map(function (value) {
+                    value.date = value.date <= session.date ? session.date : value.date;
+                    value.minDate = session.date;
                 });
 
-                previous_sessions.map(function(value){
+                previous_sessions.map(function (value) {
                     value.maxDate = session.date;
                 });
 
             },
-            changeStartTime: function(session){
+            changeStartTime : function (session) {
 
                 var start_time = session.start_time.getHours();
-                var end_time   = session.end_time.getHours();
+                var end_time = session.end_time.getHours();
 
-                if(start_time > end_time){
+                if (start_time > end_time) {
                     var new_end_time = new Date();
-                    new_end_time.setHours(start_time+1);
+                    new_end_time.setHours(start_time + 1);
                     session.end_time = new_end_time;
                 }
 
             },
-            changeEndTime: function(session){
+            changeEndTime : function (session) {
 
                 var start_time = session.start_time.getHours();
-                var end_time   = session.end_time.getHours();
+                var end_time = session.end_time.getHours();
 
-                if(start_time > end_time){
+                if (start_time > end_time) {
                     var new_start_time = new Date();
-                    new_start_time.setHours(end_time-1);
+                    new_start_time.setHours(end_time - 1);
                     session.start_time = new_start_time;
                 }
 
             },
-            addAssistants: function (assistants) {
+            addAssistants : function (assistants) {
                 this.assistants = this.assistants.concat(assistants);
             }
         };
