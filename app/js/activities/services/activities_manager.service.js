@@ -29,9 +29,50 @@
 
         //noinspection UnnecessaryLocalVariableJS
         var ActivitiesManager = {
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#getActivity
+             * @description Gets or creates a new Activity
+             * @param {number} activityId Id of activity to retrieve
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
             getActivity : getActivity,
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#loadOrganizerActivities
+             * @description Gets all of the activities related to an Organizer
+             * @param {number} organizerId - Id of organizer for which to retrieve activities
+             * @return {array} Organizer Activities
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
             loadOrganizerActivities : loadOrganizerActivities,
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#loadGeneralInfo
+             * @description Returns general activities related info
+             * like `categories`, `levels`, `sub-categories` and `tags`
+             * @return {object} Presave Info
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
             loadGeneralInfo : loadGeneralInfo,
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#enroll
+             * @description Enrolls a student on the specified activity
+             * @param {number} activityId - Id of activity to enroll on
+             * @param {object} data - Contains enrollment info
+             * @param {number} data.chronogram - Id of calendar
+             * @param {number} data.student - Id of student
+             * @param {number} data.amount - Total amount of the enrollment action
+             * @param {number} data.quantity - Quantity of enrollments
+             * @param {number} data.assistants - Number of assistants
+             * @return {promise} Enroll result promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
             enroll : enroll
         };
 
@@ -39,42 +80,7 @@
 
         /***************** Function definitions ********************/
 
-        function _retrieveInstance(activityID, activityData) {
-            var instance = _pool[activityID];
-            if (instance) {
-                instance.setData(activityData);
-            } else {
-                instance = new Activity(activityData);
-                _pool[activityID] = instance;
-            }
-
-            return instance;
-        }
-
-        function _search(activityID) {
-            return _pool[activityID];
-        }
-
-        function _load(activityID, deferred) {
-            if (activityID) {
-                //_base_url + activityID
-                $http.get(api.activity(activityID))
-                    .then(function (response) {
-                        var activityData = response.data;
-                        var activity = _retrieveInstance(activityData.id, activityData);
-                        deferred.resolve(activity);
-                    }, function () {
-                        deferred.reject();
-                    });
-            } else {
-                var activity = _retrieveInstance(null, {});
-                deferred.resolve(activity);
-            }
-
-            return deferred.promise
-        }
-
-        function getActivity(activityId, create) {
+        function getActivity(activityId) {
             var deferred = $q.defer();
             var activity = _search(activityId);
             if (activity) {
@@ -85,14 +91,13 @@
             return deferred.promise;
         }
 
-        function loadOrganizerActivities(organizer_id) {
+        function loadOrganizerActivities(organizerId) {
 
             if (!(_.isEmpty(_activities))) {
                 return _activities;
             }
 
-            // serverConf.url+'/api/organizers/'+organizer_id+'/activities/'
-            return $http.get(apiOrg.activities(organizer_id))
+            return $http.get(apiOrg.activities(organizerId))
                 .then(function (response) {
                     _.each(response.data, function (activityData) {
                         var activity = _retrieveInstance(activityData.id, activityData);
@@ -116,9 +121,42 @@
             return deferred.promise
         }
 
-        function enroll(activity_id, data) {
-            // serverConf.url+'/api/activities/'+activity_id+'/orders'
-            return $http.post(api.orders(activity_id), data);
+        function enroll(activityId, data) {
+            return $http.post(api.orders(activityId), data);
+        }
+
+        function _retrieveInstance(activityID, activityData) {
+            var instance = _pool[activityID];
+            if (instance) {
+                instance.setData(activityData);
+            } else {
+                instance = new Activity(activityData);
+                _pool[activityID] = instance;
+            }
+
+            return instance;
+        }
+
+        function _search(activityID) {
+            return _pool[activityID];
+        }
+
+        function _load(activityID, deferred) {
+            if (activityID) {
+                $http.get(api.activity(activityID))
+                    .then(function (response) {
+                        var activityData = response.data;
+                        var activity = _retrieveInstance(activityData.id, activityData);
+                        deferred.resolve(activity);
+                    }, function () {
+                        deferred.reject();
+                    });
+            } else {
+                var activity = _retrieveInstance(null, {});
+                deferred.resolve(activity);
+            }
+
+            return deferred.promise
         }
 
     }
