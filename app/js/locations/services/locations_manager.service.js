@@ -51,7 +51,6 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} City 
              */
-
             getCityById   : _getCityById,
 
             /**
@@ -62,7 +61,6 @@
              * @description Sets the current city for the logged user
              * @methodOf trulii.locations.services.LocationManager
              */
-
             setCurrentCity   : _setCurrentCity,
 
             /**
@@ -72,7 +70,6 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} Allowed boundaries
              */
-
             getAllowedBounds: _getAllowedBounds,
 
             /**
@@ -82,7 +79,6 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} With attributes to init google-maps-angular map
              */
-
             getMap: _getMap,
 
             /**
@@ -92,12 +88,7 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} With attributes to set google-maps-angular marker
              */
-
             getMarker: _getMarker
-
-
-            
-
         };
 
         function _getAvailableCities(){
@@ -105,15 +96,12 @@
             var deferred = $q.defer();
             var availableCities = localStorageService.get('availableCities');
             if(availableCities){
-
                 deferred.resolve(availableCities);
-                return deferred.promise
+                return deferred.promise;
             } else {
-
                 return $http.get(serverConf.url+'/api/locations/cities/').then(function(response){
                     localStorageService.set('availableCities',response.data);
-
-                    return response.data
+                    return response.data;
                 });
             }
         }
@@ -121,15 +109,12 @@
         function _getCityById(city_id){
 
             var availableCities = localStorageService.get('availableCities');
-
-            // return _.filter(availableCities,'id',city_id).pop()
             
             function byId(city){
                 return city.id === city_id;
             }
 
-            return availableCities.filter(byId)[0]
-
+            return availableCities.filter(byId)[0];
         }
 
 
@@ -141,24 +126,14 @@
         }
 
         function _getCurrentCity(){
-
-            // var deferred = $q.defer();
             var availableCities = localStorageService.get('availableCities');
             var current_city = localStorageService.get('current_city');
             if (current_city){
-                
-                return availableCities.filter(byId)[0]
+                return availableCities.filter(byId)[0];
             } else {
-
                 localStorageService.set('current_city',availableCities[0]);
-
-                return availableCities[0]
-
+                return availableCities[0];
             }
-
-
-
-            return deferred.promise;
 
             function byId(city){
                 return city.id === current_city.id;
@@ -181,7 +156,6 @@
 
         }
 
-
         function _getMap(location){
 
             var latitude;
@@ -196,7 +170,6 @@
             longitude = location.point[1];
 
             console.log("latitude","longitude",latitude,longitude);
-
 
             var scope = this;
             var map = {
@@ -216,14 +189,11 @@
                   var  southwest = new google.maps.LatLng(_southwest.latitude,_southwest.longitude);
 
                   var allowedBounds = new google.maps.LatLngBounds(southwest,northeast);
-                  
-
 
                   if (allowedBounds.contains(_map.getCenter())) {
-
                     map.control.valid_center = _map.getCenter();
-                    return
-                  };
+                    return;
+                  }
 
                   _map.panTo(map.control.valid_center);
 
@@ -235,8 +205,9 @@
 
               }
 
-            }
-            return map
+            };
+
+            return map;
 
         }
 

@@ -180,7 +180,7 @@
                 templateUrl: 'partials/organizers/landing.html',
                 resolve:{
                     cities: getAvailableCities
-                },
+                }
 
             })
             .state('organizer-dashboard', {
@@ -395,8 +395,9 @@
     function tokenSignupValidation($stateParams,Authentication){
         var token = $stateParams.token;
         if (!(token))
-            return {}
-        return Authentication.requestSignupToken($stateParams.token)
+            return {};
+
+        return Authentication.requestSignupToken($stateParams.token);
     }
 
 
@@ -407,9 +408,9 @@
         return Authentication.getAuthenticatedAccount()
     }
 
-    getOrganizer.$inject = ['Authentication','Organizer','OrganizersManager'];
+    getOrganizer.$inject = ['Authentication', 'OrganizersManager'];
 
-    function getOrganizer(Authentication,Organizer,OrganizersManager){
+    function getOrganizer(Authentication, OrganizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var is_organizer = true;
@@ -420,7 +421,7 @@
 
         var force_fetch = true;
         
-        return OrganizersManager.getOrganizer(authenticatedUser.id,force_fetch);
+        return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
 
         // var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
         // console.log('getOrganizer. ',result);
@@ -430,15 +431,15 @@
 
     getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
 
-    function getOrganizerActivities(ActivitiesManager,organizer){
+    function getOrganizerActivities(ActivitiesManager, organizer){
         return ActivitiesManager.loadOrganizerActivities(organizer.id);
     }
 
     /****** RESOLVER FUNCTIONS ACTIVITIES *******/
-    getAvailableCities.$inject = ['$stateParams','$q','LocationManager'];
+    getAvailableCities.$inject = ['LocationManager'];
 
-    function getAvailableCities($stateParams, $q, LocationManager){
-        return LocationManager.getAvailableCities()
+    function getAvailableCities(LocationManager){
+        return LocationManager.getAvailableCities();
     }
 
     getCalendars.$inject = ['CalendarsManager','activity'];
@@ -447,9 +448,9 @@
         return CalendarsManager.loadCalendars(activity.id);
     }
 
-    getCalendar.$inject = ['$stateParams','CalendarsManager','activity'];
+    getCalendar.$inject = ['$stateParams','CalendarsManager'];
 
-    function getCalendar($stateParams, CalendarsManager, activity){
+    function getCalendar($stateParams, CalendarsManager){
         var calendar_id = $stateParams.id;
         return CalendarsManager.getCalendar(calendar_id);
     }

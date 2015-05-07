@@ -131,7 +131,6 @@
                 location_data.city = location_data.city ? location_data.city.id : undefined;
                 console.log("copying", location_data);
                 // 'http://localhost:8000/api/organizers/' + this.id + '/locations/'
-                // TODO locations not working check with levi
                 return $http.post(api.locations(this.id), location_data);
 
             },

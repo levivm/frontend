@@ -81,7 +81,7 @@
 
         function _load(organizerId, deferred) {
             $http.get(api.organizer(organizerId))
-                .then(sucess, error);
+                .then(success, error);
 
             function success(response) {
                 var organizerData = response.data;
