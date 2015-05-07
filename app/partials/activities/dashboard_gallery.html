@@ -15,15 +15,18 @@
                             <a class="btn btn-primary" role="button">Añadir Imagen</a>
                         </div>
                         <div>
+                            <!--TODO revisar estos alerts-->
                             <alert type="danger" ng-show="vm.errors.file">{{vm.errors.file}}</alert>
-                            <alert type="danger" ng-show="vm.errors.non_field_errors">{{vm.errors.non_field_errors}}
+                            <alert type="danger" ng-show="vm.errors.non_field_errors">
+                                {{vm.errors.non_field_errors}}
                             </alert>
                         </div>
+
                         <div ng-repeat="image in vm.images track by $index">
                             <img ng-src="{{image.photo}}" width="200px" height="200px"/>
                             <button type="button" class="btn btn-default" aria-label="Left Align"
                                     ng-click="vm.deleteImage(image)">
-                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                <span class="mdi-action-delete" aria-hidden="true"></span>
                             </button>
                         </div>
 
@@ -39,13 +42,11 @@
                                placeholder="Pega aquí el enlace de tu video en Youtube"
                                ng-model='vm.activity.youtube_video_url'/>
 
-                        <div class="errors"
-                             ng-show="vm.activity_create_form.youtube_video_url.$invalid && !vm.activity_create_form.youtube_video_url.$dirty">
-                            <span>{{ errors.youtube_video_url }}</span>
-                        </div>
+                        <trulii-input-alert field="vm.activity_gallery_form.youtube_video_url"
+                                            errors="vm.errors"></trulii-input-alert>
                     </div>
                     <hr>
-                    <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+                    <button type="submit" id="submit" class="btn btn-primary" >Guardar</button>
 
                     <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
                     </div>

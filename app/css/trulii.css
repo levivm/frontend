@@ -12507,11 +12507,13 @@ tags-input input {
 }
 .card .card-footer {
   border-top: 1px solid #d7d7d7;
-  padding: 1.2em 2em;
+  padding: 2em;
+  height: auto;
 }
 .card .card-list-item {
   border-top: 1px solid #d7d7d7;
-  padding: 1.2em 2em;
+  padding: 2em;
+  height: auto;
 }
 .toast-title {
   font-weight: bold;

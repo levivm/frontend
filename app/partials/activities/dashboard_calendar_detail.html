@@ -1,106 +1,137 @@
 <div class="tab-pane active text-style">
     <div class="row">
-
-        <form name='vm.activity_calendar_form' ng-submit="vm.save_calendar()" novalidate>
-            <fieldset>
-                <h2>Calendario</h2>
-
-                <div class="form-group">
-
-                    <alert type="danger" ng-show="vm.errors.non_field_errors">{{vm.errors.non_field_errors}}</alert>
-                    <label>Fecha de Inicio</label>
-                    <input type="text" class="form-control" datepicker-popup="{{vm.format}}"
-                           ng-model="vm.calendar.initial_date" is-open="vm.calendar.startOpened"
-                           min-date="vm.minStartDate" ng-change="vm.calendar.changeStartDate()"
-                           datepicker-options="vm.dateOptions" close-text="Close"/>
-                    <button class="btn btn-default" ng-click="vm.calendar.openStartDate($event)"><i
-                        class="glyphicon glyphicon-calendar"></i></button>
-                    <div class="errors"
-                         ng-show="activity_calendar_form.title.$invalid && !activity_calendar_form.title.$dirty">
-                        <span>{{ errors.title }}</span>
-                    </div>
+        <div class="col-xs-12">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Calendario</h2>
+                    <h4 class="text-muted">Añade el horario, precio, número de sesiones y más</h4>
                 </div>
-                <div class="form-group">
-                    <label>Cierre de ventas</label>
-                    <input type="text" class="form-control" datepicker-popup="{{vm.format}}"
-                           ng-model="vm.calendar.closing_sale" is-open="vm.calendar.endOpened"
-                           min-date="vm.calendar.initial_date" max-date="null" ng-change="vm.calendar.changeCloseDate()"
-                           datepicker-options="vm.dateOptions" close-text="Close"/>
-                    <button class="btn btn-default" ng-click="vm.calendar.openCloseDate($event)"><i
-                        class="glyphicon glyphicon-calendar"></i></button>
-                    <div class="errors"
-                         ng-show="activity_calendar_form.title.$invalid && !activity_calendar_form.title.$dirty">
-                        <span>{{ errors.title }}</span>
-                    </div>
+                <div class="card-body">
+                    <form name='vm.activity_calendar_form' ng-submit="vm.save_calendar()" novalidate>
+                        <fieldset>
+                            <div class="form-group">
+                                <alert type="danger" ng-show="vm.errors.non_field_errors">
+                                    {{vm.errors.non_field_errors}}
+                                </alert>
+
+                                <label for="initial_date">Fecha de Inicio</label>
+                                <input id="initial_date" type="text" class="form-control" name="initial_date"
+                                       ng-model="vm.calendar.initial_date"
+                                       ng-change="vm.calendar.changeStartDate()"
+                                       datepicker-popup="{{vm.format}}" is-open="vm.calendar.startOpened"
+                                       min-date="vm.minStartDate" datepicker-options="vm.dateOptions"
+                                       close-text="Close"/>
+                                <button class="btn btn-default" ng-click="vm.calendar.openStartDate($event)">
+                                    <i class="mdi-action-event"></i>
+                                </button>
+
+                                <!--TODO check directive-->
+                                <div class="errors"
+                                     ng-show="activity_calendar_form.initial_date.$invalid && !activity_calendar_form.initial_date.$dirty">
+                                    <span>{{ errors.initial_date }}</span>
+                                </div>
+
+                                <trulii-input-alert field="vm.activity_calendar_form.initial_date"
+                                                    errors="vm.errors"></trulii-input-alert>
+                            </div>
+                            <div class="form-group">
+                                <label for="closing_sale">Cierre de ventas</label>
+                                <input id="closing_sale" type="text" class="form-control" name="closing_sale"
+                                       ng-model="vm.calendar.closing_sale" ng-change="vm.calendar.changeCloseDate()"
+                                       datepicker-popup="{{vm.format}}" is-open="vm.calendar.endOpened"
+                                       min-date="vm.calendar.initial_date" datepicker-options="vm.dateOptions"
+                                       max-date="null" close-text="Close"/>
+                                <button class="btn btn-default" ng-click="vm.calendar.openCloseDate($event)"><i
+                                    class="mdi-action-event"></i></button>
+
+                                <!--TODO check directive-->
+                                <div class="errors"
+                                     ng-show="activity_calendar_form.title.$invalid && !activity_calendar_form.title.$dirty">
+                                    <span>{{ errors.title }}</span>
+                                </div>
+                                <trulii-input-alert field="vm.activity_calendar_form.title"
+                                                    errors="vm.errors"></trulii-input-alert>
+                            </div>
+                            <div class="form-group">
+                                <label for="session_price">Precio(COP)</label>
+                                <input id="session_price" class="form-control" type="number" name="session_price"
+                                       placeholder="0.00" min="0"
+                                       ng-model="vm.calendar.session_price" />
+
+                                <!--TODO check directive-->
+                                <div class="errors"
+                                     ng-show="vm.activity_calendar_form.session_price.$invalid && !vm.activity_calendar_form.session_price.$dirty">
+                                    <span>{{ vm.errors.session_price }}</span>
+                                </div>
+                                <trulii-input-alert field="vm.activity_calendar_form.session_price"
+                                                    errors="vm.errors"></trulii-input-alert>
+                            </div>
+                            <div class="form-group">
+                                <label for="capacity">Cupos</label>
+                                <input id="capacity" class="form-control" type="number" name="capacity"
+                                       placeholder="0.00" min="1"
+                                       ng-model="vm.calendar.capacity" />
+
+                                <!--TODO check directive-->
+                                <div class="errors"
+                                     ng-show="vm.activity_calendar_form.capacity.$invalid && !vm.activity_calendar_form.capacity.$dirty">
+                                    <span>{{ vm.errors.capacity }}</span>
+                                </div>
+                            </div>
+
+                            <label>Nro Sesiones</label>
+
+                            <div counter form="vm.activity_calendar_form"
+                                 value="vm.calendar" change="vm.calendar.changeSessionsN()" min="0"></div>
+                            <hr>
+
+                            <!--TODO check directive-->
+                            <div class="errors"
+                                 ng-show="vm.activity_calendar_form.number_of_sessions.$invalid && !vm.activity_calendar_form.number_of_sessions.$dirty">
+                                {{ vm.errors.number_of_sessions }}
+                            </div>
+                            <trulii-input-alert field="vm.activity_calendar_form.number_of_sessions"
+                                                errors="vm.errors"></trulii-input-alert>
+
+
+                            <div ng-repeat="session in vm.calendar.sessions track by $index">
+
+                                <div class="row">
+
+                                    <div class="col-md-4">
+                                        <label>Hora de inicio:</label>
+                                        <timepicker ng-model="session.start_time" ng-change="vm.calendar.changeStartTime(session)"
+                                                    hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
+                                        </timepicker>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label>Hora de fin:</label>
+                                        <timepicker ng-model="session.end_time" ng-change="vm.calendar.changeEndTime(session)"
+                                                    hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
+                                        </timepicker>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="text" class="form-control" datepicker-popup="{{vm.format}}"
+                                               ng-model="session.date" is-open="session.openDate" min-date="session.minDate"
+                                               max-date="session.maxDate" datepicker-options="vm.dateOptions" close-text="Close"
+                                               ng-change="vm.calendar.changeSessionDate($index,session)"
+                                            />
+                                        <button class="btn btn-default" ng-click="vm.calendar.openSessionDate($event,session)"><i
+                                            class="mdi-action-event"></i></button>
+                                    </div>
+
+                                </div>
+                                <!--TODO revisar alert-->
+                                <alert type="danger" ng-show="vm.errors.{{'sessions_'+$index}}">{{vm.errors.session_error}}</alert>
+
+                            </div>
+                            <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+
+                            <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
+                        </fieldset>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label>Precio(COP)</label>
-                    <input class="form-control" type="number" ng-model="vm.calendar.session_price" name="session_price"
-                           placeholder="0.00" min="0"/>
-
-                    <div class="errors"
-                         ng-show="vm.activity_calendar_form.session_price.$invalid && !vm.activity_calendar_form.session_price.$dirty">
-                        <span>{{ vm.errors.session_price }}</span>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label>Cupos</label>
-                    <input class="form-control" type="number" ng-model="vm.calendar.capacity" name="capacity"
-                           placeholder="0.00" min="1"/>
-
-                    <div class="errors"
-                         ng-show="vm.activity_calendar_form.capacity.$invalid && !vm.activity_calendar_form.capacity.$dirty">
-                        <span>{{ vm.errors.capacity }}</span>
-                    </div>
-                </div>
-
-                <label>Nro Sesiones</label>
-
-                <div counter form="vm.activity_calendar_form" value="vm.calendar" change="vm.calendar.changeSessionsN()"
-                     min="0"></div>
-                <!--           <span class="glyphicon glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                          <span class="glyphicon glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                          <input class="form-control" type="number" name="session_number" ng-model="vm.calendar.session_number" ng-change="vm.calendar.changeSessionsN()" placeholder="3" min="0"  /> -->
-                <hr>
-                <div class="errors"
-                     ng-show="vm.activity_calendar_form.number_of_sessions.$invalid && !vm.activity_calendar_form.number_of_sessions.$dirty">
-                    {{ vm.errors.number_of_sessions }}
-                </div>
-                <div ng-repeat="session in vm.calendar.sessions track by $index">
-
-                    <div class="row">
-
-                        <div class="col-md-4">
-                            <label>Hora de inicio:</label>
-                            <timepicker ng-model="session.start_time" ng-change="vm.calendar.changeStartTime(session)"
-                                        hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
-                            </timepicker>
-                        </div>
-                        <div class="col-md-3">
-                            <label>Hora de fin:</label>
-                            <timepicker ng-model="session.end_time" ng-change="vm.calendar.changeEndTime(session)"
-                                        hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
-                            </timepicker>
-                        </div>
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" datepicker-popup="{{vm.format}}"
-                                   ng-model="session.date" is-open="session.openDate" min-date="session.minDate"
-                                   max-date="session.maxDate" datepicker-options="vm.dateOptions" close-text="Close"
-                                   ng-change="vm.calendar.changeSessionDate($index,session)"
-                                />
-                            <button class="btn btn-default" ng-click="vm.calendar.openSessionDate($event,session)"><i
-                                class="glyphicon glyphicon-calendar"></i></button>
-                        </div>
-
-                    </div>
-                    <alert type="danger" ng-show="vm.errors.{{'sessions_'+$index}}">{{vm.errors.session_error}}</alert>
-
-                </div>
-                <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
-
-                <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
-            </fieldset>
-        </form>
-
+            </div>
+        </div>
     </div>
 </div>

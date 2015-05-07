@@ -114,8 +114,7 @@
         }
 
         function _onSectionUpdated() {
-            var hasInstructors = vm.instructors.length > 0;
-            activity.updateSection('instructors', hasInstructors);
+            activity.updateSection('instructors');
         }
 
         function _initialize_errors_array() {

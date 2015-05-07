@@ -1,7 +1,6 @@
 <div class="tab-pane active text-style">
     <div class="row">
         <div class="col-md-6">
-
             <form name='vm.activity_detail_form' ng-submit="vm.save_activity()">
                 <fieldset>
                     <h2>Detalle</h2>
@@ -9,64 +8,58 @@
 
                     <div class="form-group">
                         <label for="content">Contenido</label>
-                        <textarea id="content" class="form-control" ng-model='vm.activity.content' name="content"
-                                  ng-mouseover="vm.setOverElement('content')">  </textarea>
+                        <textarea id="content" class="form-control" name="content"
+                                  ng-model='vm.activity.content' ng-mouseover="vm.setOverElement('content')">
+                        </textarea>
 
-                        <div class="errors"
-                             ng-show="vm.activity_create_form.content.$invalid && !vm.activity_create_form.content.$dirty">
-                            <span>{{ vm.errors.content }}</span>
-                        </div>
+                        <trulii-input-alert field="vm.activity_detail_form.content"
+                                            errors="vm.errors"></trulii-input-alert>
                     </div>
                     <div class="form-group">
                         <label for="audience">Audencia</label>
-                        <textarea id="audience" class="form-control" ng-model='vm.activity.audience' name="audience"
-                                  ng-mouseover="vm.setOverElement('audience')">  </textarea>
+                        <textarea id="audience" class="form-control" name="audience"
+                                  ng-model='vm.activity.audience' ng-mouseover="vm.setOverElement('audience')">
+                        </textarea>
 
-                        <div class="errors"
-                             ng-show="vm.activity_create_form.audience.$invalid && !vm.activity_create_form.audience.$dirty">
-                            <span>{{ vm.errors.audience }}</span>
-                        </div>
+                        <trulii-input-alert field="vm.activity_detail_form.audience"
+                                            errors="vm.errors"></trulii-input-alert>
                     </div>
                     <div class="form-group">
                         <label for="goals">Objetivos</label>
-                        <textarea id="goals" class="form-control" ng-model='vm.activity.goals' name="goals"
-                                  ng-mouseover="vm.setOverElement('goals')">  </textarea>
+                        <textarea id="goals" class="form-control" name="goals"
+                                  ng-model='vm.activity.goals' ng-mouseover="vm.setOverElement('goals')">
+                        </textarea>
 
-                        <div class="errors"
-                             ng-show="vm.activity_create_form.goals.$invalid && !vm.activity_create_form.goals.$dirty">
-                            <span>{{ vm.errors.goals }}</span>
-                        </div>
+                        <trulii-input-alert field="vm.activity_create_form.goals"
+                                            errors="vm.errors"></trulii-input-alert>
                     </div>
                     <div class="form-group">
                         <label for="methodology">Metodología</label>
-                        <textarea id="methodology" class="form-control" ng-model='vm.activity.methodology'
-                                  name="methodology" ng-mouseover="vm.setOverElement('methodology')">  </textarea>
+                        <textarea id="methodology" class="form-control" name="methodology"
+                                  ng-model='vm.activity.methodology' ng-mouseover="vm.setOverElement('methodology')">
+                        </textarea>
 
-                        <div class="errors"
-                             ng-show="vm.activity_create_form.methodology.$invalid && !vm.activity_create_form.methodology.$dirty">
-                            <span>{{ vm.errors.methodology }}</span>
-                        </div>
+                        <trulii-input-alert field="vm.activity_create_form.methodology"
+                                            errors="vm.errors"></trulii-input-alert>
                     </div>
                     <div class="form-group">
                         <label for="requirements">Requerimientos</label>
-                        <textarea id="requirements" class="form-control" ng-model='vm.activity.requirements'
-                                  name="requirements" ng-mouseover="vm.setOverElement('requirements')">  </textarea>
+                        <textarea id="requirements" class="form-control" name="requirements"
+                                  ng-model='vm.activity.requirements' ng-mouseover="vm.setOverElement('requirements')">
+                        </textarea>
 
-                        <div class="errors"
-                             ng-show="vm.activity_create_form.requirements.$invalid && !vm.activity_create_form.requirements.$dirty">
-                            <span>{{ vm.errors.requirements }}</span>
-                        </div>
+                        <trulii-input-alert field="vm.activity_create_form.requirements"
+                                            errors="vm.errors"></trulii-input-alert>
                     </div>
                     <div class="form-group">
                         <label for="extra_info">Información Adicional</label>
                         <textarea id="extra_info" class="form-control" ng-model='vm.activity.extra_info'
                                   name="extra_info">  </textarea>
 
-                        <div class="errors"
-                             ng-show="vm.activity_create_form.extra_info.$invalid && !activity_create_form.extra_info.$dirty">
-                            <span>{{ vm.errors.extra_info }}</span>
-                        </div>
+                        <trulii-input-alert field="vm.activity_create_form.extra_info"
+                                            errors="vm.errors"></trulii-input-alert>
                     </div>
+
                     <hr>
 
                     <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>

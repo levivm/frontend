@@ -2,37 +2,35 @@
     <div class="row">
         <div class="col-md-6">
 
-            <h1> Instructores</h1>
+            <h1>Instructores</h1>
             <hr>
 
             <form name='vm.activity_instructors_forms' ng-submit="vm.save_activity()">
-                <p>
-
-                    <a href="" ng-click="vm.removeInstructor()">-</a>
+                <div>
+                    <span href="" ng-click="vm.removeInstructor()">-</span>
                     <label>{{vm.activity.instructors.length}}</label>
                     <a href="" ng-click="vm.addInstructor()">+</a>
-
-                </p>
+                </div>
 
                 <div ng-repeat="instructor in vm.activity.instructors track by $index">
 
                     <div class="form-group">
-                        <label>Nombre</label>
-                        <!-- <input class="form-control" ng-model='instructor.full_name' name="full_name"/> -->
-                        <input type="text" ng-model="instructor.full_name"
+                        <label for="full_name">Nombre</label>
+                        <input type="text" id="full_name" name="full_name"
+                               ng-model="instructor.full_name"
                                typeahead-on-select="vm.setInstructor($item, $model, $label,instructor)"
                                typeahead="ins.full_name for ins in vm.typeahead_instructors | limitTo:8"
                                class="form-control">
 
                         <div class="errors">
-                            <span>{{ vm.instructors_errors[$index].full_name }}</span>
+                            <span ng-bind="vm.instructors_errors[$index].full_name"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Bio</label>
-            <textarea class="form-control" ng-model='instructor.bio' name="bio">
-              
-            </textarea>
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" class="form-control" name="bio"
+                                  ng-model='instructor.bio'>
+                        </textarea>
 
                         <div class="errors">
                             <span>{{ vm.instructors_errors[$index].bio }}</span>
@@ -46,10 +44,12 @@
                             <span>{{ vm.instructors_errors[$index].website }}</span>
                         </div>
                     </div>
+
                     <button ng-show="instructor.id" ng-click="vm.deleteInstructor(instructor)" type="button"
                             class="btn btn-default" aria-label="Left Align">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        <span class="mdi-action-delete" aria-hidden="true"></span>
                     </button>
+
                     <alert type="danger" ng-show="vm.instructors_errors[$index].delete_instructor">
                         {{vm.instructors_errors[$index].delete_instructor}}
                     </alert>

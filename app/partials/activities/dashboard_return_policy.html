@@ -15,10 +15,8 @@
                                   placeholder="Condiciones para reembolso">
                         </textarea>
 
-                        <div class="errors"
-                             ng-show="vm.activity_create_form.return_policy.$invalid && !vm.activity_create_form.return_policy.$dirty">
-                            <span>{{ vm.errors.return_policy }}</span>
-                        </div>
+                        <trulii-input-alert field="vm.activity_create_form.return_policy"
+                                            errors="vm.errors"></trulii-input-alert>
                     </div>
 
                     <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>

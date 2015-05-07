@@ -72,7 +72,7 @@
         }
 
         function _onSectionUpdated() {
-            activity.updateSection('calendars');
+            activity.updateSection('detail');
         }
 
         function activate() {

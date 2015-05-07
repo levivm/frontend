@@ -77,8 +77,7 @@
         }
 
         function _onSectionUpdated() {
-            var hasCalendars = calendars.length > 0;
-            activity.updateSection('calendars', hasCalendars);
+            activity.updateSection('calendars');
         }
 
         function initialize() {
