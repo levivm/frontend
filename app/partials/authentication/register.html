@@ -42,9 +42,8 @@
                                                        placeholder="{{::vm.strings.FIRST_NAME_LABEL}}"
                                                        autofocus>
                                             </div>
-                                            <div class="errors" ng-show="vm.signup_form.first_name.$invalid">
-                                                {{ vm.errors.first_name }}
-                                            </div>
+                                            <trulii-input-alert field="vm.signup_form.first_name"
+                                                                errors="vm.errors"></trulii-input-alert>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -56,9 +55,8 @@
                                                        placeholder="{{::vm.strings.LAST_NAME_LABEL}}"
                                                        autofocus>
                                             </div>
-                                            <div class="errors" ng-show="vm.signup_form.last_name.$invalid">
-                                                {{ vm.errors.last_name }}
-                                            </div>
+                                            <trulii-input-alert field="vm.signup_form.last_name"
+                                                                errors="vm.errors"></trulii-input-alert>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -70,9 +68,8 @@
                                                        placeholder="{{::vm.strings.EMAIL_LABEL}}"
                                                        autofocus>
                                             </div>
-                                            <div class="errors" ng-show="vm.signup_form.email.$invalid">
-                                                {{ vm.errors.email }}
-                                            </div>
+                                            <trulii-input-alert field="vm.signup_form.email"
+                                                                errors="vm.errors"></trulii-input-alert>
                                         </div>
                                         <div class="form-group">
                                             <div class="input-group">
@@ -84,9 +81,8 @@
                                                        ng-model="vm.auth.password1">
 
                                             </div>
-                                            <div class="errors" ng-show="vm.signup_form.password1.$invalid">
-                                                {{ vm.errors.password1 }}
-                                            </div>
+                                            <trulii-input-alert field="vm.signup_form.password1"
+                                                                errors="vm.errors"></trulii-input-alert>
                                         </div>
                                         <input type="hidden" ng-model="vm.user_type">
 
