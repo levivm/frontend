@@ -80,7 +80,7 @@
              * @name trulii.locations.services.LocationManager#getMap
              * @description set current city in the map based on a location data
              * @methodOf trulii.locations.services.LocationManager
-             * * @return {object} With attributes to init google-maps-angular map
+             * @return {object} With attributes to init google-maps-angular map
              */
 
             getMap: _getMap,
@@ -90,7 +90,7 @@
              * @name trulii.locations.services.LocationManager#getMarker
              * @description extract marker position from location data
              * @methodOf trulii.locations.services.LocationManager
-             * * @return {object} With attributes to set google-maps-angular marker
+             * @return {object} With attributes to set google-maps-angular marker
              */
 
             getMarker: _getMarker

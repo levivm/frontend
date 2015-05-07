@@ -407,9 +407,9 @@
         return Authentication.getAuthenticatedAccount()
     }
 
-    getOrganizer.$inject = ['Authentication','Organizer','organizersManager'];
+    getOrganizer.$inject = ['Authentication','Organizer','OrganizersManager'];
 
-    function getOrganizer(Authentication,Organizer,organizersManager){
+    function getOrganizer(Authentication,Organizer,OrganizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var is_organizer = true;
@@ -420,7 +420,7 @@
 
         var force_fetch = true;
         
-        return organizersManager.getOrganizer(authenticatedUser.id,force_fetch);
+        return OrganizersManager.getOrganizer(authenticatedUser.id,force_fetch);
 
         // var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
         // console.log('getOrganizer. ',result);
