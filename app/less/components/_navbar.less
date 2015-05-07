@@ -12,7 +12,7 @@
 
 	height: @navbar-height;
 	padding: @navbar-padding-vertical 1em;
-	overflow: hidden;
+	//overflow: hidden;
 
 
 	&__logo{
@@ -35,6 +35,7 @@
 		line-height: @navbar-inner-height;
 		display: inline-block;
 		//float:right;		
+		cursor: pointer;
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -52,15 +53,18 @@
 			border: 2px solid rgba(255,255,255,0.5);
 		}
 
-		&__name:extend(.show-after-md){			
-			font-size: 1.2em;
+		&__name:extend(.show-after-md){						
 			font-weight: bold;			
 		}
 
-		&:hover{			
+		.open &{			
 			background-color: darken(@primary, 6%);
-		}
+		}		
 		
+	}
+
+	.dropdown{
+		width: 14em;
 	}
 
 	&__center-wrapper{
@@ -101,8 +105,23 @@
 			vertical-align: top;
 			line-height: @navbar-inner-height;
 			font-weight: bold;
+			border: 0;
 			border-left: 1px solid @color-delimeter-dark;
 			text-align: center;
+			background: transparent;
+			padding: 0 .5em;
+			.text-overflow();	
+			-webkit-appearance: none;
+			-moz-appearance: none;
+
+			&::-ms-expand{
+				display: none;
+			}
+
+			.before-sm({
+				width: 25%;
+			});
+
 		}
 
 		&__btn{
@@ -120,7 +139,14 @@
 			border: 0;
 			border-left: 1px solid @color-delimeter-dark;
 			background: transparent;
+
+			&:extend(.show-after-sm);
 		}
+	}
+
+	[class*=mdi-navigation]:before{
+		position: relative;
+		top: 0.2em;
 	}
 		
 }

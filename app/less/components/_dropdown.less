@@ -1,0 +1,41 @@
+
+
+.dropdown{    
+    display: inline-block;
+    position: absolute;
+    top: 100%;
+    right: 10px;  
+    height: auto;    
+    margin: 0em;
+    &:extend(.card);
+    display: none;
+
+    &__item{
+        color: @lightbg-text;
+        display: block;
+        width: 100%;
+        padding: .5em 1em;
+        font-weight: bold;
+
+        &:hover:extend(.clear-href:hover){
+            color: @lightbg-text;
+            background: @light-hover;
+        }
+
+        &:active{
+            background: @secondary;
+        }
+
+        &__icon{
+            color: @lightbg-text;
+            position: relative;
+            top: 0.2em;
+            padding-right: .5em;
+        }
+    }    
+
+    .open &{
+        display: block;
+    }
+    
+}

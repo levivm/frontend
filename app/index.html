@@ -68,17 +68,28 @@
             </div>
         </div>
 
-        <div class="navbar__user">
+        <div>
+            <div class="navbar__user" data-toggle="dropdown">
 
-            <img class="navbar__user__picture" src="/css/img/avatar-test.jpg" alt="">            
-            <span class="navbar__user__name">
-                Carlos Pinelly                
-            </span>
-            <span class="mdi-navigation-expand-more"></span>
+                <img class="navbar__user__picture" src="/css/img/avatar-test.jpg" alt="">            
+                <span class="navbar__user__name">
+                    Carlos Pinelly                
+                </span>
+
+                <span class="mdi-navigation-expand-more"></span>                                    
+                            
+            </div>                    
+
+            <div class="dropdown" role="menu" >                
+                <a class="dropdown__item" ui-sref="organizer-dashboard.profile">
+                    <span class="mdi-action-account-circle dropdown__item__icon"></span>Mi perfil
+                </a>
+                <a ui-sref="logout" class="dropdown__item">
+                <span class="mdi-action-exit-to-app dropdown__item__icon"></span>Logout
+                </a>                
+            </div>
             
-                        
         </div>
-
         
     </div>
 </nav>
@@ -132,6 +143,9 @@
 <script src="js/activities/services/calendars_manager.service.js"></script>
 <script src="js/activities/services/categories.service.js"></script>
 <script src="js/activities/services/server_api.service.js"></script>
+<script src="js/authentication/services/authentication.service.js"></script>
+<script src="js/authentication/services/server_api.service.js"></script>
+<script src="js/authentication/services/session_injector.factory.js"></script>
 <script src="js/locations/services/locations_manager.service.js"></script>
 <script src="js/organizers/services/organizer.service.js"></script>
 <script src="js/organizers/services/organizer_manager.service.js"></script>
@@ -139,9 +153,6 @@
 <script src="js/ui-components/services/toast.service.js"></script>
 <script src="js/utils/services/elevator.service.js"></script>
 <script src="js/utils/services/upload_file.service.js"></script>
-<script src="js/authentication/services/authentication.service.js"></script>
-<script src="js/authentication/services/server_api.service.js"></script>
-<script src="js/authentication/services/session_injector.factory.js"></script>
 <script src="js/authentication/directives/authentication.directive.js"></script>
 <script src="js/authentication/directives/form_modal.directive.js"></script>
 <script src="js/ui-components/directives/card-expandable.directive.js"></script>
@@ -167,6 +178,7 @@
 <script src="js/activities/controllers/detail.enroll.controller.js"></script>
 <script src="js/activities/controllers/detail.enroll.success.controller.js"></script>
 <script src="js/activities/controllers/detail.info.controller.js"></script>
+<script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/authentication/controllers/email_confirm.controller.js"></script>
 <script src="js/authentication/controllers/forgot_password.controller.js"></script>
 <script src="js/authentication/controllers/login.controller.js"></script>
@@ -174,7 +186,6 @@
 <script src="js/authentication/controllers/register.controller.js"></script>
 <script src="js/authentication/controllers/reset_password.controller.js"></script>
 <script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
-<script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/organizers/controllers/dashboard.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_account.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_activities.controller.js"></script>

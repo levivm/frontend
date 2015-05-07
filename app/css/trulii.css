@@ -10052,7 +10052,8 @@ icon-material-grey {
 icon-material-blue-grey {
   color: #607d8b;
 }
-.card {
+.card,
+.dropdown {
   /***** Make height equal to width (http://stackoverflow.com/a/6615994) ****/
   display: inline-block;
   position: relative;
@@ -11029,7 +11030,8 @@ hr.on-light {
   box-shadow: 0 27px 24px 0 rgba(0, 0, 0, 0.2), 0 40px 77px 0 rgba(0, 0, 0, 0.22);
 }
 @media screen and (max-width: 768px) {
-  .show-after-sm {
+  .show-after-sm,
+  .navbar__search-box__btn {
     display: none !important;
   }
 }
@@ -11114,6 +11116,10 @@ hr.on-light {
 }
 .center-childs {
   text-align: center;
+}
+.clear-href:hover,
+.dropdown__item:hover {
+  text-decoration: none;
 }
 .grand-title {
   font-size: 5em;
@@ -11655,7 +11661,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
   height: 50px;
   padding: 5px 1em;
-  overflow: hidden;
 }
 .navbar__logo {
   background: url('img/logo-trulii.png') no-repeat;
@@ -11676,6 +11681,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__user {
   line-height: 40px;
   display: inline-block;
+  cursor: pointer;
   position: absolute;
   top: 0;
   right: 0;
@@ -11693,11 +11699,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border: 2px solid rgba(255, 255, 255, 0.5);
 }
 .navbar__user__name {
-  font-size: 1.2em;
   font-weight: bold;
 }
-.navbar__user:hover {
+.open .navbar__user {
   background-color: #e0b400;
+}
+.navbar .dropdown {
+  width: 14em;
 }
 .navbar__center-wrapper {
   vertical-align: top;
@@ -11736,8 +11744,24 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   vertical-align: top;
   line-height: 40px;
   font-weight: bold;
+  border: 0;
   border-left: 1px solid #d7d7d7;
   text-align: center;
+  background: transparent;
+  padding: 0 .5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.navbar__search-box__city-select::-ms-expand {
+  display: none;
+}
+@media screen and (max-width: 768px) {
+  .navbar__search-box__city-select {
+    width: 25%;
+  }
 }
 .navbar__search-box__btn {
   width: 10%;
@@ -11753,6 +11777,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   color: rgba(0, 0, 0, 0.74);
   font-size: 1.2em;
+}
+.navbar [class*=mdi-navigation]:before {
+  position: relative;
+  top: 0.2em;
 }
 .navbar-secondary {
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
@@ -12536,7 +12564,8 @@ tags-input input {
     opacity: 0;
   }
 }
-.card {
+.card,
+.dropdown {
   margin: 1.5em 0;
   padding: 0;
 }
@@ -12773,6 +12802,38 @@ button.toast-close-button {
     padding: 15px 15px 15px 50px;
     width: 25em;
   }
+}
+.dropdown {
+  display: inline-block;
+  position: absolute;
+  top: 100%;
+  right: 10px;
+  height: auto;
+  margin: 0em;
+  display: none;
+}
+.dropdown__item {
+  color: rgba(0, 0, 0, 0.74);
+  display: block;
+  width: 100%;
+  padding: .5em 1em;
+  font-weight: bold;
+}
+.dropdown__item:hover {
+  color: rgba(0, 0, 0, 0.74);
+  background: #f0f0f0;
+}
+.dropdown__item:active {
+  background: #00b3b3;
+}
+.dropdown__item__icon {
+  color: rgba(0, 0, 0, 0.74);
+  position: relative;
+  top: 0.2em;
+  padding-right: .5em;
+}
+.open .dropdown {
+  display: block;
 }
 /*Agular Google Maps*/
 .angular-google-map-container {
