@@ -190,7 +190,9 @@
                     isCompleted = hasLocation;
                     break;
                 case 'return-policy':
-                    var hasReturnPolicy = !!that[section];
+                    //var hasReturnPolicy = !!that[section];
+                    //TODO reemplazar por comentario al cambiar key en backend
+                    var hasReturnPolicy = !!that['return_policy'];
                     isCompleted = hasReturnPolicy;
                     break;
             }
