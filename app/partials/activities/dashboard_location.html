@@ -1,7 +1,6 @@
 <div class="tab-pane active text-style">
     <div class="row">
         <div class="col-md-6">
-
             <form name='vm.activity_location_form' ng-submit="vm.save_activity()">
                 <fieldset>
                     <h2>Ubicación</h2>
@@ -36,11 +35,12 @@
                             </ui-gmap-marker>
 
                         </ui-gmap-google-map>
+                    </div>
 
-                        <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+                    <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
 
-                        <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
-                        </div>
+                    <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
+                    </div>
                 </fieldset>
             </form>
         </div>
@@ -81,9 +81,7 @@
                     </li>
                 </ul>
             </div>
-
         </div>
         <hr>
-
     </div>
 </div>

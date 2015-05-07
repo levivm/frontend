@@ -190,6 +190,7 @@
                 controllerAs: 'vm',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
+                    cities:getAvailableCities,
                     organizer : getOrganizer
                 },
                 data: {
@@ -301,7 +302,9 @@
                 url:'location',
                 controller: 'ActivityDBLocationController',
                 resolve:{
-                    cities: getAvailableCities
+                    cities: getAvailableCities,
+                    organizer : getOrganizer
+
                 },
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_location.html'
@@ -401,9 +404,9 @@
         return Authentication.getAuthenticatedAccount();
     }
 
-    getOrganizer.$inject = ['Authentication','Organizer', '$q'];
+    getOrganizer.$inject = ['Authentication', 'OrganizersManager'];
 
-    function getOrganizer(Authentication,Organizer, $q){
+    function getOrganizer(Authentication, OrganizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var is_organizer = true;
@@ -412,23 +415,27 @@
             is_organizer = authenticatedUser.user_type === 'O';
         }
 
-        var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
-        console.log('getOrganizer. ');
-        console.log(result);
-        return result;
+        var force_fetch = true;
+        
+        return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
+
+        // var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
+        // console.log('getOrganizer. ',result);
+        // console.log(result);
+        // return result;
     }
 
     getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
 
-    function getOrganizerActivities(ActivitiesManager,organizer){
+    function getOrganizerActivities(ActivitiesManager, organizer){
         return ActivitiesManager.loadOrganizerActivities(organizer.id);
     }
 
     /****** RESOLVER FUNCTIONS ACTIVITIES *******/
 
-    getAvailableCities.$inject = ['$stateParams','$q','LocationManager'];
+    getAvailableCities.$inject = ['LocationManager'];
 
-    function getAvailableCities($stateParams, $q, LocationManager){
+    function getAvailableCities(LocationManager){
         return LocationManager.getAvailableCities();
     }
 
@@ -438,9 +445,9 @@
         return CalendarsManager.loadCalendars(activity.id);
     }
 
-    getCalendar.$inject = ['$stateParams','CalendarsManager','activity'];
+    getCalendar.$inject = ['$stateParams','CalendarsManager'];
 
-    function getCalendar($stateParams, CalendarsManager, activity){
+    function getCalendar($stateParams, CalendarsManager){
         var calendar_id = $stateParams.id;
         return CalendarsManager.getCalendar(calendar_id);
     }

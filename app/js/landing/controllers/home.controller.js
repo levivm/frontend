@@ -44,16 +44,15 @@
         }
 
         function activate(){
+            vm.current_city = LocationManager.getCurrentCity();
 
-            LocationManager.getCurrentCity().then(success, error);
-
-            function success(city){
-                vm.current_city = city;
-                console.log('getCurrentCity: ', vm.current_city);
-            }
-            function error(){
-                console.log("Couldn't obtain current city");
-            }
+            // function success(city){
+            //     vm.current_city = city;
+            //     console.log('getCurrentCity: ', vm.current_city);
+            // }
+            // function error(){
+            //     console.log("Couldn't obtain current city");
+            // }
         }
 
     }

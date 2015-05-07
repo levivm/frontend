@@ -1,137 +1,154 @@
 /**
-* Organizers
-* @namespace thinkster.authentication.services
-*/
+ * @ngdoc service
+ * @name trulii.organizers.services.Organizer
+ * @description Organizer Model Service
+ * @requires ng.$http
+ * @requires ng.$q
+ * @requires trulii.organizers.services.OrganizerServerApi
+ * @requires trulii.authentication.services.Authentication
+ * @requires trulii.organizers.services.OrganizerConstants
+ */
+
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('trulii.organizers.services')
-    .factory('Organizer', Organizer)
-    .constant("organizerConstants", {'max_allowed_instructors':3}
-    )
+    angular
+        .module('trulii.organizers.services')
+        .factory('Organizer', Organizer);
 
-  Organizer.$inject = ['$http','$q','serverConf','Authentication','organizerConstants'];
+    Organizer.$inject = ['$http', '$q', 'OrganizerServerApi', 'Authentication', 'OrganizerConstants',
+        'LocationManager'];
 
-  function Organizer($http,$q,serverConf,Authentication,organizerConstants) {  
-      
-      function Organizer(organizerData) {
-          if (organizerData) {
-              this.setData(organizerData);
-              this.max_allowed_instructors = organizerConstants.max_allowed_instructors;
-          }
-          // Some other initializations related to book
-      };
+    function Organizer($http, $q, OrganizerServerApi, Authentication, OrganizerConstants, LocationManager) {
 
-      Organizer.prototype = {
-          setData: function(organizerData) {
-              angular.extend(this, organizerData);
-          },
-          load: function(id) {
-              var scope = this;
+        var api = OrganizerServerApi;
 
-              $http.get(serverConf.url+'/api/organizers/' + id).success(function(organizerData) {
-                  console.log('response');
-                  console.log(organizerData);
-                  scope.setData(organizerData);
-              });
-          },
-          update_video: function(){
+        function Organizer(organizerData) {
+            if (organizerData) {
+                this.setData(organizerData);
+                this.max_allowed_instructors = OrganizerConstants.max_allowed_instructors;
+            }
+        }
 
-            var scope = this;
-            var video_data = {'youtube_video_url':scope.youtube_video_url};
-            return scope.update(video_data)
+        Organizer.prototype = {
 
-          },
-          update_profile: function(){
+            setData : function (organizerData) {
+                angular.extend(this, organizerData);
+                this._setCity();
+            },
 
-            var scope = this;
-            var profile_data = {'name':scope.name,'bio':scope.bio};
-            return scope.update(profile_data)
+            _setCity : function () {
+                var city_id;
+                var city;
+                var organizer_city;
 
-          },
-          update: function(data) {
-            var scope = this;
-            return $http({
-              method: 'put',
-              url:serverConf.url+'/api/organizers/' + this.id,
-              data: data,
-              //headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-            }).then(function(response){
+                this.location = (!!this.locations) && (this.locations.length > 0) ? this.locations.pop() : {};
 
-              Authentication.setAuthenticatedAccount(response.data);
-              scope.setData(response.data);
-              return response.data;
+                city_id = this.location ? this.location.city : null;
 
-            },function(response){
+                if (!(city_id))
+                    city = LocationManager.getCurrentCity();
+                else
+                    city = LocationManager.getCityById(city_id);
 
+                this.location.city = city;
+            },
 
-              return $q.reject(response);
+            load : function (id) {
+                var scope = this;
+                // serverConf.url+'/api/organizers/' + id
+                $http.get(api.organizer(id)).success(function (organizerData) {
+                    console.log('response');
+                    console.log(organizerData);
+                    scope.setData(organizerData);
+                });
+            },
 
-            });
+            update_video : function () {
+                var scope = this;
+                var video_data = {
+                    'youtube_video_url' : scope.youtube_video_url
+                };
+                return scope.update(video_data)
+            },
 
-            //$http.put(serverConf.url+'/api/organizers/' + this.id, this);
-          },
-          reload:function(){
+            update_profile : function () {
+                var scope = this;
+                var profile_data = {
+                    'name' : scope.name,
+                    'bio' : scope.bio
+                };
+                return scope.update(profile_data)
+            },
 
-            var scope = this;
-            return Authentication.updateAuthenticatedAccount().then(function(response){
+            update : function (data) {
+                var scope = this;
+                // serverConf.url + '/api/organizers/' + this.id
+                return $http.put(api.organizer(this.id),data)
+                    .then(success, error);
 
-              scope.setData(response.data);
+                function success(response) {
+                    Authentication.setAuthenticatedAccount(response.data);
+                    scope.setData(response.data);
+                    return response.data;
+                }
 
-            });
+                function error(response) {
+                    return $q.reject(response);
+                }
+            },
 
-          },
-          change_email: function() {
+            reload : function () {
+                var scope = this;
+                return Authentication.updateAuthenticatedAccount().then(function (response) {
+                    scope.setData(response.data);
+                });
+            },
 
-            var scope = this;
+            change_email : function () {
+                var scope = this;
+                return Authentication.change_email(this.user.email)
+                    .then(success, error);
 
-            return Authentication.change_email(this.user.email)
-            .then(function(response){
-              Authentication.updateAuthenticatedAccount().then(function(response){
-                scope.setData(response.data);
+                function success(response) {
+                    Authentication.updateAuthenticatedAccount().then(function (response) {
+                        scope.setData(response.data);
+                    });
+                    return response.data;
+                }
+                function error(response) {
+                    return $q.reject(response);
+                }
+            },
 
-              });
+            change_password : function (password_data) {
+                return Authentication.change_password(password_data);
+            },
 
-              return response.data;
+            update_location : function (location_data_param) {
+                console.log("location data", location_data_param);
+                var location_data = angular.copy(location_data_param);
+                location_data.city = location_data.city ? location_data.city.id : undefined;
+                console.log("copying", location_data);
+                // 'http://localhost:8000/api/organizers/' + this.id + '/locations/'
+                return $http.post(api.locations(this.id), location_data);
 
-            },function(response){
+            },
 
+            getActivities : function () {
+                return $http.get(api.activities(this.id))
+                    .then(function (response) {
+                        return response.data
+                    });
+            },
 
-              return $q.reject(response);
+            deleteInstructor : function (instructorID) {
+                // serverConf.url + '/api/organizers/' + this.id + '/instructors/' + instructorID
+                return $http.delete(api.instructor(this.id, instructorID));
+            }
+        };
 
-            });
-            
-
-            //$http.put(serverConf.url+'/api/organizers/' + this.id, this);
-          },
-          change_password: function(password_data) {
-
-            return Authentication.change_password(password_data)
-            //$http.put('/api/organizers/' + this.id, this);
-          },
-          getActivities:function(){
-
-            return $http({
-              method: 'get',
-              url:serverConf.url+'/api/organizers/'+this.id+'/activities/',
-              //headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
-            }).then(function(response){
-              return response.data
-            });
-
-          },
-          deleteInstructor: function(instructorID){
-
-            return $http({
-              method: 'delete',
-              url:serverConf.url+'/api/organizers/'+this.id+'/instructors/'+instructorID,
-            })
-          },
-      };
-      return Organizer;
-  };
-
-
+        return Organizer;
+    }
 
 })();
