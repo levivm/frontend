@@ -1,28 +1,32 @@
 /**
- * LoginController
- * @namespace thinkster.authentication.controllers
+ * @ngdoc controller
+ * @name trulii.authentication.controllers.LoginController
+ * @description Handles user Login, both Student and Organizer
+ * @requires ui.router.state.$state
+ * @requires ng.$q
+ * @requires trulii.authentication.services.Authentication
  */
+
 (function () {
-    'use static';
+    'use strict';
 
     angular
         .module('trulii.authentication.controllers')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$scope', '$location', '$state','$q','Authentication'];
+    LoginController.$inject = ['$state','$q','Authentication'];
 
-    /**
-     * @namespace LoginController
-     */
-    function LoginController($scope, $location, $state, $q, Authentication) {
+    function LoginController($state, $q, Authentication) {
         var vm = this;
         vm.errors = {};
         vm.auth = {};
-        vm.login = _login;
-        vm.facebookLogin = _facebookLogin;
         vm.is_new = true;
 
+        vm.login = _login;
+        vm.facebookLogin = _facebookLogin;
         vm.clearErrors = clearErrors;
+
+        initialize();
 
         //--------- Functions Implementation ---------//
 
@@ -44,11 +48,6 @@
             }
         }
 
-        /**
-         * @name login
-         * @desc Log the user in
-         * @memberOf thinkster.authentication.controllers.LoginController
-         */
         function _login() {
             clearErrors();
             console.log("vm auth",vm.auth);
@@ -56,56 +55,49 @@
                 .then(_loginSuccess,_loginError);
         }
 
-
         function _facebookLogin() {
-
             return  Authentication.facebookLogin()
                         .then(successFbLogin,errorFbLogin);
 
-
-            /**
-              * @name successFbLogin
-              * @desc redirect to home when facebook login is successful
-              */
             function successFbLogin(response){
-
                 $state.go("home")
             }
-
-            /**
-              * @name errorFbLogin
-              * @desc redirect to error message when facebook login fails
-              */
             function errorFbLogin(response){
-
-                $state.go('general-message',{'module_name':'authentication',
-                               'template_name':'social_login_cancelled',
-                               'redirect_state':'home'});
-
-
-
+                $state.go('general-message', {
+                    'module_name':'authentication',
+                    'template_name':'social_login_cancelled',
+                   'redirect_state':'home'
+                });
             }
         }
 
-
-        /**
-         * @name loginSuccessFn
-         * @desc Set the authenticated account and redirect to index
-         */
         function _loginSuccess(redirect_state) {
-            console.log("redirect state",redirect_state);
+            console.log("redirect state", redirect_state);
             $state.go(redirect_state.data.location);
             Authentication.updateAuthenticatedAccount();
         }
 
-        /**
-         * @name loginErrorFn
-         * @desc Log "Epic failure!" to the console
-         */
         function _loginError(response) {
             _errored(response.data);
             return $q.reject(response);
         }
 
+        function setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                LOGIN_LABEL : "Iniciar Sesión",
+                LOGIN_ALTERNATIVES_LABEL : "O puedes iniciar sesión con",
+                EMAIL_LABEL : "Correo electrónico",
+                PASSWORD_LABEL : "Contraseña",
+                FIRST_NAME_LABEL : "Nombre",
+                LAST_NAME_LABEL : "Apellido",
+                LOGIN_WITH_FACEBOOK_MSG : "Iniciar sesion con Facebook",
+                FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook"
+            });
+        }
+
+        function initialize(){
+            setStrings();
+        }
     }
 })();

@@ -1,91 +1,77 @@
-    <div class="row">
-      <div class="col-sm-6 col-md-4 col-md-offset-4">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <strong> Inicie sesión</strong>
-          </div>
-          <div class="panel-body">
-            <input type="button" ng-click="vm.facebookLogin()" class="btn btn-lg btn-primary btn-block" value="Facebook">
-            <form name='vm.login_form' ng-submit="vm.login()">
-              <fieldset>
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+        <div class="card">
+            <div class="card-header">
+                <h4><strong ng-bind="::vm.strings.LOGIN_LABEL"></strong></h4>
+            </div>
+            <div class="card-body">
                 <div class="row">
-                  <div class="col-sm-12 col-md-10  col-md-offset-1 ">
-                    <div class="form-group">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="glyphicon glyphicon-envelope"></i>
-                        </span> 
-                        <input class="form-control" name="login" ng-model="vm.auth.email"  placeholder="Correo electrónico"  type="text" autofocus>
-                      </div>
-                      <div class="errors" ng-show="vm.login_form.login.$invalid">
-                        {{ vm.errors.login }}
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <div class="input-group">
-                        <span class="input-group-addon">
-                          <i class="glyphicon glyphicon-lock"></i>
-                        </span>
-                        <input class="form-control" placeholder="Contraseña" name="password" ng-model="vm.auth.password"  type="password" value="">
+                    <button type="button" class="btn btn-lg btn-block btn-facebook"
+                            ng-click="vm.facebookLogin()">
+                        <i class="trulii-icon-facebook"></i>
+                        <span ng-bind="vm.strings.LOGIN_WITH_FACEBOOK_MSG"></span>
+                    </button>
 
-                      </div>
-                      <div class="errors" ng-show="vm.login_form.password.$invalid">
-                       {{ vm.errors.password }}
-                      </div>
+                    <!--TODO replace with toast-->
+                    <div class="alert alert-danger" ng-show="!!vm.facebook.error">
+                        <span ng-bind="vm.strings.FACEBOOK_ERROR"></span>
                     </div>
-                    <input type="hidden" ng-model="__all__" name="__all__"/>
-                    <div class="alert alert-error" ng-show="vm.errors.__all__">
-                      <strong>{{vm.errors.__all__}}</strong>
-                    </div>
-                    <div class="form-group">
-                      <input type="submit" id="submit" class="btn btn-lg btn-primary btn-block" value="Inciar sesión">
-                    </div>
-                  </div>
                 </div>
-              </fieldset>
-            </form>
-          </div>
-          <a ui-sref="password-forgot">Olvidé mi contraseña</a>
-
-          <div class="panel-footer ">
-            No tienes cuenta <a ui-sref="register"> Registrate aquí</a>
-          </div>
+                <div class="row">
+                    <h5 class="text-center text-muted" ng-bind="vm.strings.LOGIN_ALTERNATIVES_LABEL"></h5>
                 </div>
-      </div>
-    </div>
-<!-- <form name='vm.login_form' ng-submit="vm.login()">
-  <div class="modal-body">
-    <div class="row" >
-      <div class="col-md-12">
-        
-        
-        <fieldset>
+                <div class="row">
+                    <form name='vm.login_form' ng-submit="vm.login()">
+                        <fieldset>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                      <i class="mdi-communication-email"></i>
+                                    </span>
+                                    <input class="form-control" name="login" type="text"
+                                           ng-model="vm.auth.email"
+                                           placeholder="{{::vm.strings.EMAIL_LABEL}}"
+                                           trulii-input-autofocus>
+                                </div>
+                                <trulii-input-alert field="vm.login_form.login"
+                                                    errors="vm.errors"></trulii-input-alert>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                      <i class="mdi-action-lock"></i>
+                                    </span>
+                                    <input class="form-control" name="password" type="password" value=""
+                                           placeholder="{{::vm.strings.PASSWORD_LABEL}}"
+                                           ng-model="vm.auth.password">
+                                </div>
+                                <trulii-input-alert field="vm.login_form.password"
+                                                    errors="vm.errors"></trulii-input-alert>
+                            </div>
+                            <input type="hidden" ng-model="__all__" name="__all__"/>
 
-          <a title="Facebook" class="socialaccount_provider facebook" href="javascript:allauth.facebook.login('', 'authenticate', 'login')">Facebook</a>
+                            <!--TODO replace with toast-->
+                            <div class="alert alert-error" ng-show="vm.errors.__all__">
+                                <strong>{{vm.errors.__all__}}</strong>
+                            </div>
 
-          <div class="form-group">
-            <label>Email</label>
-            <input type="text" class="form-control" name="login" ng-model="vm.auth.email" placeholder="">
-            <div class="errors" ng-show="vm.login_form.login.$invalid">
-              {{ vm.errors.login }}
+                            <div class="form-group">
+                                <button type="submit" id="submit" class="btn btn-lg btn-primary btn-block"
+                                       ng-bind="::vm.strings.LOGIN_LABEL"></button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
             </div>
-          </div>
-
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password"  class="form-control" name="password" ng-model="vm.auth.password"  placeholder="" >
-            <div class="errors" ng-show="vm.login_form.password.$invalid">
-             {{ vm.errors.password }}
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <a ui-sref="password-forgot">Olvidé mi contraseña</a>
+                </div>
             </div>
-          </div>
-          <div class="alert alert-error" ng-show="vm.errors.__all__">
-            <strong>{{vm.errors.__all__}}</strong>
-          </div>
-          <a ui-sref="modal-dialog.password-forgot">Olvidé mi contraseña</a>
-        </fieldset>   
-        
-      </div>
+
+            <div class="card-footer text-center">
+                ¿No tienes cuenta? <a ui-sref="register"> Registrate aquí</a>
+            </div>
+        </div>
     </div>
-  </div>
-  <input type="submit" id="submit" class="btn btn-primary" value="Inciar Sesión"/>
-</form> -->
+</div>
