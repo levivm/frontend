@@ -2,7 +2,7 @@
     <div class="col-sm-6 col-md-4 col-md-offset-4">
         <div class="card">
             <div class="card-header">
-                <strong>{{::vm.strings.SIGNUP_LABEL}}</strong>
+                <h4><strong>{{::vm.strings.SIGNUP_LABEL}}</strong></h4>
             </div>
 
             <div class="card-body">
@@ -12,11 +12,11 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                      <i class="glyphicon glyphicon-user"></i>
+                                      <i class="mdi-social-person"></i>
                                     </span>
                                     <input class="form-control" ng-readonly="true" name="name"
                                            ng-model="vm.auth.name" placeholder="Nombre de la Organización"
-                                           type="text" autofocus>
+                                           type="text" trulii-input-autofocus>
                                 </div>
                                 <trulii-input-alert field="vm.signup_form.name"
                                                     errors="vm.errors"></trulii-input-alert>
@@ -24,7 +24,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                      <i class="glyphicon glyphicon-envelope"></i>
+                                      <i class="mdi-communication-email"></i>
                                     </span>
                                     <input class="form-control" ng-readonly="true" name="email"
                                            ng-model="vm.auth.email" placeholder="Correo electrónico"
@@ -36,7 +36,7 @@
                             <div class="form-group">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                      <i class="glyphicon glyphicon-lock"></i>
+                                      <i class="mdi-action-lock"></i>
                                     </span>
                                     <input class="form-control"
                                            placeholder="{{::vm.strings.PASSWORD_LABEL}}" name="password1"
