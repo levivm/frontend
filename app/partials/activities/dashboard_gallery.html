@@ -8,9 +8,21 @@
 
                     <div class="form-group">
                         <div class="drop-box"
+                             ng-model="vm.main_photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                             drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                             ng-file-change="vm.addImage(vm.main_photo,true)"
+                             allow-dir="true" accept="image/*">
+                            <a class="btn btn-primary" role="button">Añadir Imagen Principal</a>
+                        </div>
+                        <img ng-src="{{vm.main_image.photo}}" width="200px" height="200px"/>
+                        <img ng-src="/img/ajax-loader.gif" ng-show='vm.main_photo_loading'/>
+
+
+                        <hr>
+                        <div class="drop-box"
                              ng-model="vm.photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
                              drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                             ng-file-change="vm.addImage(vm.photo)"
+                             ng-file-change="vm.addImage(vm.photo,false)"
                              allow-dir="true" accept="image/*">
                             <a class="btn btn-primary" role="button">Añadir Imagen</a>
                         </div>

@@ -7,7 +7,6 @@
  * @requires trulii.routes.serverConf
  * @requires trulii.utils.services.UploadFile
  */
-
 (function () {
     'use strict';
 
@@ -75,8 +74,8 @@
                 });
             },
 
-            addPhoto : function (image) {
-                return UploadFile.upload_file(image, api.gallery(this.id));
+            addPhoto : function (image,extra_data) {
+                return UploadFile.upload_file(image, api.gallery(this.id),extra_data);
             },
 
             deletePhoto : function (image) {

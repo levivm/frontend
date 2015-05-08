@@ -30,19 +30,25 @@
 
         /******************ACTIONS**************/
 
-        function _addImage(images) {
+        function _addImage(images,isMain) {
 
+            console.log("images",images);
             //vm.images.concat(images.pop());
             _clearErrors();
             vm.uploading_photo = images.pop();
             //vm.photos.push(images.pop());
+            var extra_data = {'main_photo':isMain};
             if (vm.uploading_photo)
-                activity.addPhoto(vm.uploading_photo, vm.upload_url)
-                    .then(_successUploaded, _erroredUpload, _progressUpload);
+                if(isMain){
+                    activity.addPhoto(vm.uploading_photo,extra_data)
+                        .then(_successUploadedMainPhoto, _erroredUpload, _progressUploadMainPhoto);
+                }
+                else{
 
-            //console.log("UPLOAD IMAGE",vm.images);
+                    activity.addPhoto(vm.uploading_photo,extra_data)
+                        .then(_successUploaded, _erroredUpload, _progressUpload);
 
-            //vm.images.push(photo);
+                }
 
         }
 
@@ -91,6 +97,20 @@
             vm.images.push(response.data.photo);
             _onSectionUpdated();
         }
+
+        function _successUploadedMainPhoto(response) {
+            vm.main_photo_loading = false;
+            vm.main_image = response.data.photo;
+            _onSectionUpdated();
+        }
+
+
+
+        function _progressUploadMainPhoto(response) {
+            vm.main_photo_loading = true;
+        }
+
+
 
         function _progressUpload(response) {
             vm.photo_loading = true;
@@ -161,6 +181,7 @@
             vm.errors = {};
             vm.isCollapsed = true;
             vm.uploading_photo = false;
+            vm.main_image = _.first(_.remove(activity.photos, 'main_photo', true));
             vm.images = activity.photos;
         }
 

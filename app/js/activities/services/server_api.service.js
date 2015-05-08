@@ -4,7 +4,6 @@
  * @description API Service for Activity related Endpoints
  * @requires trulii.routes.serverConf
  */
-
 (function () {
     'use strict';
 
