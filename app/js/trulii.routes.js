@@ -28,16 +28,25 @@
     function config($urlRouterProvider,$stateProvider,$urlMatcherFactoryProvider) {
 
         $urlMatcherFactoryProvider.strictMode(false);
+
+
         $stateProvider
-            .state('home',{
+
+            .state('brow', {                
+                templateUrl: 'partials/browsing.html',
+                
+            })
+
+            .state('brow.home',{
                 url:'/',
                 controller:'HomeController as home',
                 resolve:{
                     cities:getAvailableCities,
                     authenticatedUser:getAuthenticatedUser
                 },
-                templateUrl: 'partials/landing/landing.html'
+                templateUrl: 'partials/landing/landing.html'                        
             })
+            
             .state('register', {
                 url:'/register',
                 controller: 'RegisterController',

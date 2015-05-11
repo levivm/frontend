@@ -47,60 +47,9 @@
 
 <body>
 
-<!-- NAV BAR -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
+<div ui-view></div>
 
-    <div class="row">
-      
-   
-                <!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button> -->
-        <a ui-sref="home" class="navbar__logo"></a> 
-            
-       
-        <div class="navbar__center-wrapper">
-            
-            <div class="navbar__search-box">
-                <input type="text" placeholder="¿Qué quieres aprender hoy?"><span class="navbar__search-box__city-select">Bogotá<span class="mdi-navigation-expand-more"></span></span><button class="navbar__search-box__btn mdi-action-search" ></button>
-
-            </div>
-        </div>
-
-        <div>
-            <div class="navbar__user" data-toggle="dropdown">
-
-                <img class="navbar__user__picture" src="/css/img/avatar-test.jpg" alt="">            
-                <span class="navbar__user__name">
-                    Carlos Pinelly                
-                </span>
-
-                <span class="mdi-navigation-expand-more"></span>                                    
-                            
-            </div>                    
-
-            <div class="dropdown" role="menu" >                
-                <a class="dropdown__item" ui-sref="organizer-dashboard.profile">
-                    <span class="mdi-action-account-circle dropdown__item__icon"></span>Mi perfil
-                </a>
-                <a ui-sref="logout" class="dropdown__item">
-                <span class="mdi-action-exit-to-app dropdown__item__icon"></span>Logout
-                </a>                
-            </div>
-            
-        </div>
-        
-    </div>
-</nav>
-
-<div class="with-navbar">
-    <ui-view></ui-view>
-</div>
+<trulii-preloader is-global="true"></trulii-preloader>
 
 <div ui-view="landing"></div>
 
@@ -183,7 +132,6 @@
 <script src="js/activities/controllers/detail.enroll.controller.js"></script>
 <script src="js/activities/controllers/detail.enroll.success.controller.js"></script>
 <script src="js/activities/controllers/detail.info.controller.js"></script>
-<script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/authentication/controllers/email_confirm.controller.js"></script>
 <script src="js/authentication/controllers/forgot_password.controller.js"></script>
 <script src="js/authentication/controllers/login.controller.js"></script>
@@ -191,12 +139,14 @@
 <script src="js/authentication/controllers/register.controller.js"></script>
 <script src="js/authentication/controllers/reset_password.controller.js"></script>
 <script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
+<script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/organizers/controllers/dashboard.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_account.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_activities.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_profile.controller.js"></script>
 <script src="js/organizers/controllers/landing.controller.js"></script>
 <script src="js/organizers/controllers/profile.controller.js"></script>
+<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <script src="js/utils/controllers/modal_dialog.controller.js"></script>
 <script src="js/utils/controllers/utils.controller.js"></script>
 <!-- endinject -->
