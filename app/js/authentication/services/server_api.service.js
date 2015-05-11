@@ -144,6 +144,17 @@
 
             /**
              * @ngdoc function
+             * @name trulii.authentication.services.AuthenticationServerApi#facebook
+             * @description Renders **`/users/facebook/signup/`** Facebook User SignUp URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.authentication.services.AuthenticationServerApi
+             */
+            'facebook': function(){
+                return renderUrl('users/', ['facebook', 'signup/'], true);
+            },
+
+            /**
+             * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#logout
              * @description Renders **`/api/users/logout/`** User API Logout URL
              * @return {string} Rendered URL

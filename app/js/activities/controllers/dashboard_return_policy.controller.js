@@ -1,124 +1,86 @@
 /**
-* Register controller
-* @namespace thinkster.organizers.controllers
-*/
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityDBReturnPDashboard
+ * @description ActivityDBReturnPDashboard
+ * @requires ng.$scope
+ */
+
 (function () {
-  'use strict';
+    'use strict';
 
+    angular
+        .module('trulii.activities.controllers')
+        .controller('ActivityDBReturnPDashboard', ActivityDBReturnPDashboard);
 
-  angular
-    .module('trulii.activities.controllers')
-    .controller('ActivityDBReturnPDashboard', ActivityDBReturnPDashboard);
+    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity'];
 
-  ActivityDBReturnPDashboard.$inject = ['$scope','activity'];
-  /**
-  * @namespace ActivityDBReturnPDashboard
-  */
-  function ActivityDBReturnPDashboard($scope,activity) {
+    function ActivityDBReturnPDashboard($scope, activity) {
 
-    var vm = this;
-    
-    vm.activity = activity;
+        var vm = this;
 
-    initialize();
+        vm.activity = activity;
+        vm.save_activity = _updateActivity;
+        vm.setOverElement = _setOverElement;
+        vm.showTooltip = _showTooltip;
 
-    vm.save_activity  = _updateActivity;
+        initialize();
 
-    vm.setOverElement = _setOverElement;
+        /******************ACTIONS**************/
 
-    vm.showTooltip    = _showTooltip;
+        function _updateActivity() {
+            console.log(vm.activity);
+            vm.activity.update()
+                .then(_updateSuccess, _errored);
+        }
 
+        function _showTooltip(element) {
+            return vm.currentOverElement == element;
+        }
 
+        function _setOverElement(element) {
+            vm.currentOverElement = element;
+        }
 
-    
+        /*****************SETTERS********************/
 
-    /******************ACTIONS**************/
+        /*********RESPONSE HANDLERS***************/
 
+        function _updateSuccess(response) {
+            vm.isCollapsed = false;
+            _onSectionUpdated();
+        }
 
-    
-    function _updateActivity() {
-        console.log(vm.activity);
-        vm.activity.update()
-            .then(_updateSuccess,_errored);
+        function _clearErrors() {
+            vm.activity_return_policy_form.$setPristine();
+            vm.errors = null;
+            vm.errors = {};
+        }
 
-    }
+        function _addError(field, message) {
+            vm.errors[field] = message;
+            vm.activity_return_policy_form[field].$setValidity(message, false);
+        }
 
-    function _showTooltip(element){
+        function _errored(errors) {
+            angular.forEach(errors, function (message, field) {
+                _addError(field, message[0]);
+            });
+            _onSectionUpdated();
+        }
 
-        if (vm.currentOverElement==element)
-            return true
-        return false
-    }
+        function _onSectionUpdated() {
+            activity.updateSection('return-policy');
+        }
 
+        function activate() {
+            // If the user is authenticated, they should not be here.
+        }
 
-    function _setOverElement(element){
-
-        vm.currentOverElement = element;
-    }
-
-
-
-    /*****************SETTERS********************/
-
-
-
-
-
-    /*********RESPONSE HANDLERS***************/
-
-
-    function _updateSuccess(response){
-
-      vm.isCollapsed = false;
-      $scope.pc.activitySectionUpdated(response.data);
-
-
-    }
-
-
-    function _clearErrors(){
-        vm.activity_return_policy_form.$setPristine();
-        vm.errors = null;
-        vm.errors = {};
-    }
-
-
-
-    function _addError(field, message) {
-      vm.errors[field] = message;
-      vm.activity_return_policy_form[field].$setValidity(message, false);
-
-    };
-
-    function _errored(errors) {
-        angular.forEach(errors, function(message,field) {
-
-
-          _addError(field,message[0]);   
-
-        });
+        function initialize() {
+            vm.errors = {};
+            vm.isCollapsed = true;
+        }
 
     }
 
-
-    function activate() {
-
-      // If the user is authenticated, they should not be here.
-
-    }
-
-    function initialize(){
-
-        vm.errors = {};
-        vm.isCollapsed = true;
-
-    }
-
-
-
-
-       
-
-  };
-
-  })();
+})();

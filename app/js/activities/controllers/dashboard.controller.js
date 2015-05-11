@@ -1,62 +1,63 @@
 /**
  * @ngdoc controller
  * @name trulii.activities.controllers.ActivityDashboardCtrl
- * @description ActivityGeneralController
+ * @description ActivityDashboardCtrl
  * @requires ng.$scope
  * @requires trulii.activities.services.Activity
+ * @requires trulii.activities.services.ActivitySteps
  * @requires activity
  */
 
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('trulii.activities.controllers')
-    .controller('ActivityDashboardCtrl', ActivityDashboardCtrl);
+    angular
+        .module('trulii.activities.controllers')
+        .controller('ActivityDashboardCtrl', ActivityDashboardCtrl);
 
-  ActivityDashboardCtrl.$inject = ['$scope','Activity','activity'];
+    ActivityDashboardCtrl.$inject = ['$scope', 'Activity', 'ActivitySteps', 'activity'];
 
-  function ActivityDashboardCtrl($scope,Activity,activity) {
+    function ActivityDashboardCtrl($scope, Activity, ActivitySteps, activity) {
 
-    var pc = this;
+        var pc = this;
 
-    pc.all_steps_completed = false;
-    pc.steps = {};
-    pc.activity = activity;
-    pc.sidebar = false;
+        pc.steps = ActivitySteps;
+        pc.activity = activity;
+        pc.sidebar = false;
+        pc.areAllStepsCompleted = areAllStepsCompleted;
+        pc.isSectionCompleted = isSectionCompleted;
+        pc.getCheckStyle = getCheckStyle;
+        pc.publish_activity = _publish_activity;
 
-    pc.publish_activity = _publish_activity;
-    pc.activitySectionUpdated = _checkSections;
+        activate();
+        initialize();
 
-    activate();
-    initialize();
+        function areAllStepsCompleted() {
+            return activity.areAllStepsCompleted();
+        }
 
-    console.log('ActivityDashboardCtrl. Activity.generalInfo()');
+        function isSectionCompleted(section) {
+            return activity.isSectionCompleted(section);
+        }
 
-    function _publish_activity(){
-        activity.publish().then(function(response){
-            console.log("actividad publicada");
-        });
+        function getCheckStyle(section) {
+            return {'hide' : !pc.isSectionCompleted(section)};
+        }
+
+        function _publish_activity() {
+            activity.publish().then(function (response) {
+                console.log("actividad publicada");
+            });
+        }
+
+        function activate() {
+
+        }
+
+        function initialize() {
+            pc.sidebar = true;
+        }
+
     }
 
-    function _checkSections(activity){
-        var all_completed = true;
-        angular.forEach(activity.completed_steps,function(value,key){
-            pc.steps[key] = value;
-            if(!(value))
-                all_completed = false;
-        });
-
-        pc.all_steps_completed = all_completed
-    }
-
-    function activate(){
-        _checkSections(activity);
-    }
-
-    function initialize(){
-      pc.sidebar = true;
-    }
-  }
-
-  })();
+})();

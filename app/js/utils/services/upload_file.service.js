@@ -1,7 +1,13 @@
 /**
-* Authentication
-* @namespace thinkster.authentication.services
-*/
+ * @ngdoc service
+ * @name trulii.utils.services.UploadFile
+ * @description UploadFile Factory
+ * @requires ngCookies.$cookies
+ * @requires ng.$http
+ * @requires angularFileUpload.$upload
+ * @requires ng.$window
+ */
+
 (function () {
   'use strict';
 
@@ -11,25 +17,14 @@
 
   UploadFile.$inject = ['$cookies', '$http','$upload','$window'];
 
-  /**
-  * @namespace 
-  * @returns {Factory}
-  */
-  function UploadFile($cookies, $http,$upload,$window) {
-    /**
-    * @name UploadFile
-    * @desc The Factory to be returned
-    */
+  function UploadFile($cookies, $http, $upload,$window) {
 
-
-    var UploadFile = {
-      upload_file: upload_file,
+    //noinspection UnnecessaryLocalVariableJS
+      var UploadFile = {
+      upload_file: upload_file
     };
     
     return UploadFile;
-
-
-
 
     function upload_file(file,url) {
 
@@ -48,14 +43,8 @@
                                     // could be a list of names for multiple files (html5). Default is 'file'
         //formDataAppender: function(formData, key, val){}  // customize how data is added to the formData. 
                                                             // See #40#issuecomment-28612000 for sample code
-
       })
-
     }
-
-
   }
-
-
 
 })();

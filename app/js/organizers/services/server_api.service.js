@@ -18,7 +18,7 @@
 
         var serverApi = serverConf.url + '/api/';
 //        var apiVersion = 'v1';
-        var debug = true;
+        var debug = false;
 
         //noinspection UnnecessaryLocalVariableJS
         var api = {
@@ -27,11 +27,50 @@
              * @ngdoc function
              * @name trulii.organizers.services.OrganizerServerApi#activities
              * @description Renders **`/api/organizers/:idOrganizer/activities`** Activities List URL
+             * @param {number} idOrganizer Organizer Id
              * @return {string} Rendered URL
              * @methodOf trulii.organizers.services.OrganizerServerApi
              */
             'activities': function(idOrganizer){
                 return renderUrl('organizers/', [idOrganizer, 'activities']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name trulii.organizers.services.OrganizerServerApi#locations
+             * @description Renders **`/api/organizers/:idOrganizer/locations`** Locations URL
+             * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'locations': function(idOrganizer){
+                return renderUrl('organizers/', [idOrganizer, 'locations']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name trulii.organizers.services.OrganizerServerApi#organizer
+             * @description Renders **`/api/organizers/:idOrganizer`** Organizer URL
+             * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'organizer': function (idOrganizer){
+                return renderUrl('organizers/', [idOrganizer]);
+            },
+
+            /**
+             * @ngdoc function
+             * @name trulii.organizers.services.OrganizerServerApi#instructor
+             * @description Renders **`/api/organizers/:idOrganizer/instructors/:idInstructor`**
+             * Organizer Instructor URL
+             * @param {number} idOrganizer Organizer Id
+             * @param {number} idInstructor Instructor Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'instructor': function (idOrganizer, idInstructor){
+                return renderUrl('organizers/', [idOrganizer, 'instructors', idInstructor]);
             }
         };
 
@@ -50,10 +89,14 @@
             var result = urlParams? hostArr.concat(urlParams.join('/')) : hostArr;
             result = result.join('');
             if(debug){
-                console.log('ServerApi.renderUrl:');
+                console.log('OrganizerServerApi.renderUrl:');
                 console.log(result);
             }
             return result;
+        }
+
+        for (var key in api){
+            if(api.hasOwnProperty(key)) api[key](1, 1);
         }
 
         return api;

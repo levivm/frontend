@@ -1,39 +1,54 @@
 <div class="tab-pane active text-style">
-  <div class="row">
-    <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-8">
 
+            <div ui-view>
+                <h1> Calendarios</h1>
+                <h4 class="text-muted">Añade el horario, precio, número de sesiones y más</h4>
+                <hr>
+                <p>
+                    <button ng-click="vm.createCalendar()" class="btn btn-primary">Agregar Calendario</button>
+                </p>
 
-      <div ui-view>
-        <h1> Calendarios</h1>
-        <hr>
-        <p>
+                <div ng-repeat="calendar in vm.calendars | orderBy: 'initial_date'" trulii-expandable-content>
 
-          <a  ng-click="vm.createCalendar()" class="btn btn-primary" role="button">Agregar Calendario</a>
-        </p>
-        <div ng-repeat="calendar in vm.calendars | orderBy: 'initial_date'" >
-          
-          <div class="well">
-              Fecha de Inicio: {{calendar.initial_date | date }} / 
-              Cierre de ventas: {{calendar.closing_sale | date }} 
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="col-md-8">
+                                <span><strong>Fecha de Inicio: </strong></span>
+                                <span>{{calendar.initial_date | date }}</span>
+                                <br/>
+                                <span><strong>Cierre de ventas: </strong></span>
+                                <span>{{calendar.closing_sale | date }}</span>
+                            </div>
 
-          <button ng-click="vm.loadCalendar(calendar)" type="button" class="btn btn-default" aria-label="Left Align">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-          </button>
-          <button ng-click="vm.deleteCalendar(calendar)" type="button" class="btn btn-default" aria-label="Left Align">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-          </button>
-          </div>
-          <alert type="danger" ng-show="vm.calendar_errors[calendar.id]">{{vm.calendar_errors[calendar.id]}}</alert>
+                            <div class="col-md-4">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-default" aria-label="Left Align"
+                                            ng-click="vm.loadCalendar(calendar)" >
+                                        <i class="mdi-content-create" aria-hidden="true"></i>
+                                    </button>
 
+                                    <button type="button" class="btn btn-default" aria-label="Left Align"
+                                            ng-click="vm.deleteCalendar(calendar)" >
+                                        <i class="mdi-action-delete" aria-hidden="true"></i>
+                                    </button>
+                                </div>
+                            </div>
 
+                            <!--TODO revisar este alert-->
+                            <alert type="danger" ng-show="vm.calendar_errors[calendar.id]">
+                                {{vm.calendar_errors[calendar.id]}}
+                            </alert>
+                        </div>
+                    </div>
 
-        </div> 
+                </div>
 
-      </div>
+            </div>
 
-
+        </div>
+        <div class="col-md-4">
+        </div>
     </div>
-    <div class="col-md-4">
-    </div>
-  </div>
 </div>

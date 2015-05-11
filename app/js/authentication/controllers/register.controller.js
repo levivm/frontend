@@ -1,163 +1,119 @@
 /**
-* Register controller
-* @namespace thinkster.authentication.controllers
-*/
+ * @ngdoc controller
+ * @name trulii.authentication.controllers.RegisterController
+ * @description Handles Student Registration using different methods like Facebook or regular Email
+ * @requires ng.$q
+ * @requires trulii.authentication.services.Authentication
+ * @requires ui.router.state.$state
+ * @requires validatedData
+ */
+
 (function () {
-  'use strict';
+    'use strict';
 
+    angular
+        .module('trulii.authentication.controllers')
+        .controller('RegisterController', RegisterController);
 
+    RegisterController.$inject = ['$q', 'Authentication', '$state', 'validatedData'];
 
-  angular
-    .module('trulii.authentication.controllers')
-    .controller('RegisterController', RegisterController);
+    function RegisterController($q, Authentication, $state, validatedData) {
 
-  angular
-    .module('trulii.authentication.controllers')
-    .directive('serverError',serverError);
+        var vm = this;
+        var selectedMethod = null;
 
-  angular
-    .module('trulii.authentication.controllers')
-    
+        vm.auth = {};
+        vm.errors = {};
+        vm.user_type = 'S';
+        vm.facebook = {
+            'error': false
+        };
 
+        vm.fbRegister = fbRegister;
+        vm.register = register;
+        vm.isSelectedMethod = isSelectedMethod;
+        vm.setSelectedMethod = setSelectedMethod;
 
-  RegisterController.$inject = ['$scope','$q','Authentication','$modal','$http','$state','validatedData'];
+        initialize();
 
+        function isSelectedMethod(method){
+            return selectedMethod === method;
+        }
 
-  function RegisterController($scope, $q, Authentication,$modal,$http,$state,validatedData) {
-    var vm = this;
+        function setSelectedMethod(method){
+            selectedMethod = method;
+        }
 
-    vm.strings = {};
-    vm.strings.SIGNUP_LABEL = "Registrate";
-    vm.strings.PLACEHOLDER_EMAIL = "Correo electrónico";
-    vm.strings.PLACEHOLDER_PASSWORD = "Contraseña";
+        function _clearErrors() {
+            vm.errors = null;
+            vm.errors = {};
+        }
 
+        function fbRegister(){
+            Authentication.facebookLogin()
+                .then(success, error);
 
+            function success(){
+                $state.go('home');
+            }
+            function error(){
+                alert("Couldn't Register with Facebook");
+                vm.facebook.error = true;
+            }
+        }
 
+        function register() {
+            _clearErrors();
+            vm.auth.user_type = vm.user_type;
 
-    vm.auth   = {};
-    console.log(validatedData,"data valida");
-    if (validatedData){
-        vm.auth.email = validatedData.email;
-        vm.auth.name = validatedData.name;
-    }
-      
+            return Authentication.register(vm.auth)
+                .then(function (response) {
+                    $state.go("home");
+                    //TODO HERE SHOULD SHOW A POP UP
+                }, _registerError);
 
-    vm.errors = {};
+            function _registerError(response) {
+                _errored(response.data);
+                return $q.reject(response);
+            }
 
-    vm.register = register;
-    vm.facebookRegister = _facebookRegister;
+            function _errored(data) {
+                if (data['form_errors']) {
+                    angular.forEach(data['form_errors'], function (errors, field) {
+                        _addError(field, errors[0]);
+                    });
+                }
+            }
 
-
-
-    vm.set_usertype = function function_name(user_type) {
-      vm.user_type = user_type;
-    }
-
-
-    function _clearErrors(){
-      vm.errors = null;
-      vm.errors = {};
-    }
-
-
-
-    function _addError(field, message) {
-
-      vm.errors[field] = message;
-      vm.signup_form[field].$setValidity(message, false);
-
-    };
-
-
-    function _errored(data) {
-      if (data['form_errors']) {
-
-        angular.forEach(data['form_errors'], function(errors, field) {
-
-          _addError(field, errors[0]);
-
-        });
-
-      }
-    }
-
-
-    function register() {
-      _clearErrors();
-      vm.auth.user_type = vm.user_type;
-
-      return Authentication.register(vm.auth)
-            .then(function(response){
-
-              $state.go("home");
-              //HERE SHOULD HSHOW A POP UP
-
-            },_registerError);
-
-    }
-
-
-    function _facebookRegister() {
-
-      console.log(Authentication);
-      return  Authentication.facebookLogin()
-                  .then(successFbLogin,errorFbLogin);
-
-
-      /**
-        * @name successFbLogin
-        * @desc redirect to home when facebook login is successful
-        */
-      function successFbLogin(response){
-
-          $state.go("home")
-      }
-
-      /**
-        * @name errorFbLogin
-        * @desc redirect to error message when facebook login fails
-        */
-      function errorFbLogin(response){
-
-          console.log("hubo error");
-          $state.go('general-message',{'module_name':'authentication',
-                         'template_name':'social_login_cancelled',
-                         'redirect_state':'home'});
-
-
+            function _addError(field, message) {
+                vm.errors[field] = message;
+                vm.signup_form[field].$setValidity(message, false);
+            }
 
         }
+
+        function setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                SIGNUP_LABEL : "Registrarme",
+                SIGNUP_ALTERNATIVES_LABEL : "O puedes registrarte con",
+                LOGIN_LABEL : "Inicia Sesión",
+                EMAIL_LABEL : "Correo electrónico",
+                PASSWORD_LABEL : "Contraseña",
+                FIRST_NAME_LABEL : "Nombre",
+                LAST_NAME_LABEL : "Apellido",
+                REGISTER_WITH_FACEBOOK_MSG : "Regístrate con Facebook",
+                FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook"
+            });
+        }
+
+        function initialize(){
+            setStrings();
+            if (validatedData) {
+                vm.auth.email = validatedData.email;
+                vm.auth.name = validatedData.name;
+            }
+        }
     }
-
-
-    function _registerError(response){
-      _errored(response.data);
-      return $q.reject(response);
-
-    }
-  }
-
-
-
-
-  function serverError(){
-    return {
-      restrict: 'A',
-      require: '?ngModel',
-      link: function (scope, element, attrs, ctrl) {
-
-        element.on('change',function(event){
-
-          scope.$apply(function () {
-            console.log("aqui");
-            ctrl.$setValidity('server', true);
-
-          });
-
-        });
-      }
-    }
-
-  };
 
 })();

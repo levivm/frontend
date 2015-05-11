@@ -1,74 +1,43 @@
-    <div class="tab-pane active text-style">
-      <div class="row">
+<div class="tab-pane active text-style">
+    <div class="row">
         <div class="col-md-6">
-       
-          <form name='vm.activity_return_policy_form' ng-submit="vm.save_activity()">
-            <fieldset>
-              
-              <h2>Descripción</h2>
-<!--               <div class="form-group">
-                <label>Contenido</label>
-                <input class="form-control" ng-model='activity.city' name="city"/>
-                <div class="errors" ng-show="activity_location_form.city.$invalid && !activity_location_form.city.$dirty">
-                  <span>{{ errors.city }}</span> 
-                </div>
-              </div> -->
-              
-              <div class="form-group">
-                <label>Política de Devolución</label>
-                <textarea class="form-control" ng-model='vm.activity.return_policy' name="return_policy" ng-mouseover="vm.setOverElement('return_policy')">  </textarea>
-                <div class="errors" ng-show="vm.activity_create_form.return_policy.$invalid && !vm.activity_create_form.return_policy.$dirty">
-                  <span>{{ vm.errors.return_policy }}</span> 
-                </div>
-              </div>
 
-              <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
-              <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
-                
-              </div>
-              </fieldset>
-          </form>
+            <form name='vm.activity_return_policy_form' ng-submit="vm.save_activity()">
+                <fieldset>
+                    <h2>Política de Devolución</h2>
+                    <h4 class="text-muted">Especifica bajo qué condiciones aceptas reembolsar pagos</h4>
+
+                    <div class="form-group">
+                        <label for="return-policy-textarea" class="sr-only">Política de Devolución</label>
+                        <textarea id="return-policy-textarea" class="form-control" name="return_policy"
+                                  ng-model='vm.activity.return_policy'
+                                  ng-mouseover="vm.setOverElement('return_policy')"
+                                  placeholder="Condiciones para reembolso">
+                        </textarea>
+
+                        <trulii-input-alert field="vm.activity_create_form.return_policy"
+                                            errors="vm.errors"></trulii-input-alert>
+                    </div>
+
+                    <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+
+                    <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
+
+                    </div>
+                </fieldset>
+            </form>
         </div>
         <div class="col-md-3">
-          <div class="sidebar-nav-fixed pull-right affix well">
-            <ul class="nav">
-              <li ng-show="vm.showTooltip('content')">
-                ¿Tu actividad está dividida en 
-                módulos en donde cada uno 
-                tiene temas a enseñar?
-              </li>
-              <li ng-show="vm.showTooltip('goals')">
-                ¿Cuál es la finalidad de tu activ-
-                idad? 
-
-                Algunos ejemplos:
-                 ¿Tus alumnos saldrán domi-
-                nando algún campo en particu-
-                lar?
-                 ¿Tus inscritos saldrán agota-
-                dos con muchas calorías 
-                menos?
-              </li>
-              <li ng-show="vm.showTooltip('methodology')">
-                ¿Tu actividad será evaluada?
-                ¿Cómo?
-                ¿Aplicarás algún método de 
-                enseñanza en particular?
-              </li>
-              <li ng-show="vm.showTooltip('requirements')">
-                ¿Para inscribirse hace falta 
-                conocimientos en algún tema 
-                en particular?
-                ¿Deben llevar algún material 
-                para realizar la actividad?
-                ¿Se requiere una docu-
-                mentación?
-              </li>
-            </ul>
-          </div>
+            <div class="sidebar-nav-fixed pull-right affix well">
+                <ul class="nav">
+                    <li ng-show="vm.showTooltip('return_policy')">
+                        Especifica las circunstancias en las que se aplica reembolso
+                    </li>
+                </ul>
+            </div>
 
         </div>
-         <hr>
+        <hr>
 
-      </div>
     </div>
+</div>

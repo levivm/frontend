@@ -1,91 +1,87 @@
-    <div class="tab-pane active text-style">
-      <div class="row">
+<div class="tab-pane active text-style">
+    <div class="row">
         <div class="col-md-6">
-       
-          <form name='vm.activity_location_form' ng-submit="vm.save_activity()">
-            <fieldset>
-              
-              <h2>Descripción</h2>
-<!--               <div class="form-group">
-                <label>Contenido</label>
-                <input class="form-control" ng-model='activity.city' name="city"/>
-                <div class="errors" ng-show="activity_location_form.city.$invalid && !activity_location_form.city.$dirty">
-                  <span>{{ errors.city }}</span> 
-                </div>
-              </div> -->
-              <div class="form-group">
-                <label>Ciudad</label>
-                <select ng-model="vm.activity.location.city"
-                    ng-options="city as city.name for city in vm.cities" name="city">
-                    <option value="" selected ng-show="!vm.activity_location_form.type.$dirty">Seleccione..</option>
-                </select>
-                <span class="errors" ng-show="vm.activity_location_form.city.$invalid && !vm.activity_location_form.city.$dirty">
-                  <span>{{ vm.errors.city }}</span> 
-                </span>
-              </div>
-              <div class="form-group">
+            <form name='vm.activity_location_form' ng-submit="vm.save_activity()">
+                <fieldset>
+                    <h2>Ubicación</h2>
+                    <h4 class="text-muted">Especifica en qué lugar se desarrollará tu actividad</h4>
 
-              </div>
-              <div class="form-group">
-                <label>Dirección exacta</label>
-                <textarea class="form-control" ng-model='vm.activity.location.address' name="address">  </textarea>
-                <div class="errors" ng-show="vm.activity_location_form.address.$invalid && !vm.activity_location_form.address.$dirty">
-                  <span>{{ vm.errors.address }}</span> 
-                </div>
-              <hr>
-              <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' bounds="vm.map.bounds" events="vm.map.events" control="vm.map.control">
+                    <div class="form-group">
+                        <label for="city">Ciudad</label>
+                        <select id="city" ng-model="vm.activity.location.city"
+                                ng-options="city as city.name for city in vm.cities" name="city">
+                            <option value="" selected ng-show="!vm.activity_location_form.type.$dirty">Seleccione..
+                            </option>
+                        </select>
+                        <trulii-input-alert field="vm.activity_location_form.city"
+                                errors="vm.errors"></trulii-input-alert>
+                    </div>
+                    <div class="form-group">
 
-                <ui-gmap-marker coords="vm.marker.coords" options="vm.marker.options" events="vm.marker.events" idkey="vm.marker.id">
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Dirección exacta</label>
+                        <textarea id="address" class="form-control" ng-model='vm.activity.location.address'
+                                  name="address">  </textarea>
 
-              </ui-gmap-google-map>
+                        <trulii-input-alert field="vm.activity_location_form.address"
+                                            errors="vm.errors"></trulii-input-alert>
+                        <hr>
+                        <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' bounds="vm.map.bounds"
+                                            events="vm.map.events" control="vm.map.control">
 
-              <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
-              <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
-                
-              </div>
-              </fieldset>
-          </form>
+                            <ui-gmap-marker coords="vm.marker.coords" options="vm.marker.options"
+                                            events="vm.marker.events" idkey="vm.marker.id">
+                            </ui-gmap-marker>
+
+                        </ui-gmap-google-map>
+                    </div>
+
+                    <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+
+                    <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
+                    </div>
+                </fieldset>
+            </form>
         </div>
         <div class="col-md-3">
-          <div class="sidebar-nav-fixed pull-right affix well">
-            <ul class="nav">
-              <li ng-show="vm.showTooltip('content')">
-                ¿Tu actividad está dividida en 
-                módulos en donde cada uno 
-                tiene temas a enseñar?
-              </li>
-              <li ng-show="vm.showTooltip('goals')">
-                ¿Cuál es la finalidad de tu activ-
-                idad? 
+            <div class="sidebar-nav-fixed pull-right affix well">
+                <ul class="nav">
+                    <li ng-show="vm.showTooltip('content')">
+                        ¿Tu actividad está dividida en
+                        módulos en donde cada uno
+                        tiene temas a enseñar?
+                    </li>
+                    <li ng-show="vm.showTooltip('goals')">
+                        ¿Cuál es la finalidad de tu activ-
+                        idad?
 
-                Algunos ejemplos:
-                 ¿Tus alumnos saldrán domi-
-                nando algún campo en particu-
-                lar?
-                 ¿Tus inscritos saldrán agota-
-                dos con muchas calorías 
-                menos?
-              </li>
-              <li ng-show="vm.showTooltip('methodology')">
-                ¿Tu actividad será evaluada?
-                ¿Cómo?
-                ¿Aplicarás algún método de 
-                enseñanza en particular?
-              </li>
-              <li ng-show="vm.showTooltip('requirements')">
-                ¿Para inscribirse hace falta 
-                conocimientos en algún tema 
-                en particular?
-                ¿Deben llevar algún material 
-                para realizar la actividad?
-                ¿Se requiere una docu-
-                mentación?
-              </li>
-            </ul>
-          </div>
-
+                        Algunos ejemplos:
+                        ¿Tus alumnos saldrán domi-
+                        nando algún campo en particu-
+                        lar?
+                        ¿Tus inscritos saldrán agota-
+                        dos con muchas calorías
+                        menos?
+                    </li>
+                    <li ng-show="vm.showTooltip('methodology')">
+                        ¿Tu actividad será evaluada?
+                        ¿Cómo?
+                        ¿Aplicarás algún método de
+                        enseñanza en particular?
+                    </li>
+                    <li ng-show="vm.showTooltip('requirements')">
+                        ¿Para inscribirse hace falta
+                        conocimientos en algún tema
+                        en particular?
+                        ¿Deben llevar algún material
+                        para realizar la actividad?
+                        ¿Se requiere una docu-
+                        mentación?
+                    </li>
+                </ul>
+            </div>
         </div>
-         <hr>
-
-      </div>
+        <hr>
     </div>
+</div>

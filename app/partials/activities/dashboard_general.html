@@ -1,13 +1,9 @@
 <div class="row">
 
-    <div class="col-sm-offset-1 col-md-8">         
+    <div class="col-sm-offset-1 col-md-8">
 
-        <!--
-                  <h2>Descripción</h2>
-                  <p>Describe la información básica acerca de tu actividad</p>
-        -->
         <form class="form-horizontal card lateral-fade lateral-fadeout" name='vm.activity_create_form'
-              ng-submit="vm.save_activity()" >
+              ng-submit="vm.save_activity()">
 
             <fieldset>
 
@@ -17,7 +13,7 @@
                         <div class="col-sm-12">
                             <input id="activity_title" class="form-control" name="title"
                                    placeholder="¿Cómo titulas a tu actividad?"
-                                   ng-model='vm.activity.title' trulii-input-autofocus="{{!vm.creating}}" />
+                                   ng-model='vm.activity.title' trulii-input-autofocus="{{!vm.creating}}"/>
                         </div>
 
                     </div>
@@ -48,12 +44,14 @@
 
                     <div class="form-group">
                         <label class="control-label col-sm-2">Categoria</label>
+
                         <div class="col-sm-10">
                             <select class="form-control" ng-model="vm.selected_category" name="category"
                                     ng-options="category as category.name for (index,category) in vm.activity_categories"
                                     ng-change="vm.selectCategory(vm.selected_category)">
                                 <option value="" ng-show="!vm.activity_create_form.category.$dirty"
-                                        selected>Seleccione..</option>
+                                        selected>Seleccione..
+                                </option>
                             </select>
 
                             <div trulii-input-alert field="vm.activity_create_form.category" errors="vm.errors"></div>
@@ -63,14 +61,18 @@
 
                     <div class="form-group">
                         <label for="sub-category-select" class="control-label col-sm-2">Sub-Categoria</label>
+
                         <div class="col-sm-10">
                             <select id="sub-category-select" class="form-control" name="sub_category"
                                     ng-model="vm.selected_sub_category" ng-mouseover="vm.setOverElement('sub_category')"
                                     ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories">
-                                <option value="" ng-show="!vm.activity_create_form.sub_category.$dirty" selected>Seleccione..</option>
+                                <option value="" ng-show="!vm.activity_create_form.sub_category.$dirty" selected>
+                                    Seleccione..
+                                </option>
                             </select>
 
-                            <div trulii-input-alert field="vm.activity_create_form.sub_category" errors="vm.errors"></div>
+                            <trulii-input-alert field="vm.activity_create_form.sub_category"
+                                                errors="vm.errors"></trulii-input-alert>
                         </div>
 
                     </div>
@@ -81,9 +83,9 @@
                         <div class="col-sm-10">
                             <textarea id="activity-short-desc" class="form-control"
                                       ng-model='vm.activity.short_description' name="short_description"></textarea>
-                            <div trulii-input-alert
-                                 field="vm.activity_create_form.short_description"
-                                 errors="vm.errors"></div>
+
+                            <trulii-input-alert field="vm.activity_create_form.short_description"
+                                                errors="vm.errors"></trulii-input-alert>
                         </div>
 
                     </div>
@@ -91,6 +93,7 @@
                     <div class="form-group">
 
                         <label class="control-label col-sm-2">Tags</label>
+
                         <div class="col-sm-10">
                             <tags-input display-property="name"
                                         ng-model="vm.activity_tags" ng-mouseover="vm.setOverElement('tags')">
@@ -101,6 +104,7 @@
 
                     <div class="form-group">
                         <label class="col-lg-2 control-label">Certificación</label>
+
                         <div class="col-lg-10">
                             <div class="checkbox">
                                 <label>
@@ -113,7 +117,7 @@
                         </div>
                     </div>
 
-                    <trulii-submit-controls is-saving="vm.isSaving" value="Continuar"> </trulii-submit-controls>
+                    <trulii-submit-controls is-saving="vm.isSaving" value="Continuar"></trulii-submit-controls>
                 </div>
 
             </fieldset>
