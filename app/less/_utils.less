@@ -5,10 +5,32 @@
 
 .center-childs{
 	text-align: center;
+
+    & > *{
+        display: inline-block;
+    }
 }
+
+//TODO: To mixinis
 
 .clear-href{
     &:hover{
         text-decoration: none;        
     }
 }
+
+.white-curtain{
+    background: white;
+    position: fixed;
+    z-index: 1;
+    bottom: 0;
+    top: 0;    
+    left: 0;
+    right: 0;
+
+    & + *{
+        z-index: 2;
+        position: relative;
+    }
+}
+

@@ -1,0 +1,38 @@
+
+@spacing-standard: 3rem;
+
+.separate-above{
+    margin-top: @spacing-standard;
+}
+
+.separate-below{
+    margin-bottom: @spacing-standard;
+}
+
+.separate-left{
+    margin-left: @spacing-standard;
+}
+
+.separate-right{
+    margin-right: @spacing-standard;
+}
+
+.separate-vertical{
+    .separate-above;
+    .separate-below;
+}
+
+.separate-horizontal{
+    .separate-left;
+    .separate-right;
+}
+
+.separate{
+    .separate-vertical;
+    .separate-horizontal;
+}
+
+.separate-horizontal-inner{
+    padding: 0 @spacing-standard;
+}
+

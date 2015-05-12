@@ -97,7 +97,7 @@
             angular.extend(vm.strings, {
                 SIGNUP_LABEL : "Registrarme",
                 SIGNUP_ALTERNATIVES_LABEL : "O puedes registrarte con",
-                LOGIN_LABEL : "Inicia Sesión",
+                LOGIN_LABEL : "Iniciar Sesión",
                 EMAIL_LABEL : "Correo electrónico",
                 PASSWORD_LABEL : "Contraseña",
                 FIRST_NAME_LABEL : "Nombre",
