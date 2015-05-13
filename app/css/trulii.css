@@ -12075,7 +12075,7 @@ tags-input input {
 }
 .btn-success,
 .btn-primary {
-  color: rgba(255, 255, 255, 0.84) !important;
+  color: white !important;
 }
 .btn {
   font-weight: bold;
