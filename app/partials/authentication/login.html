@@ -1,14 +1,21 @@
-<div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4">
-        <div class="card">
-            <div class="card-header">
-                <h4><strong ng-bind="::vm.strings.LOGIN_LABEL"></strong></h4>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <button type="button" class="btn btn-lg btn-block btn-facebook"
+
+<div class="white-curtain"></div>
+
+<div class="container-fluid">
+    <div class="row center-childs">
+        <div class="size-xs fit-in-xs separate-horizontal-inner">            
+        
+                <a ui-sref="brow.home">
+                    <div class="trulii-inverse-med">
+                        
+                    </div>    
+                </a>
+                
+                <div class="row">                                        
+
+                    <button type="button" class="btn btn-grand btn-block btn-facebook"
                             ng-click="vm.facebookLogin()">
-                        <i class="trulii-icon-facebook"></i>
+                        <i class="trulii-icon-facebook  btn-grand__icon"></i>
                         <span ng-bind="vm.strings.LOGIN_WITH_FACEBOOK_MSG"></span>
                     </button>
 
@@ -17,63 +24,76 @@
                         <span ng-bind="vm.strings.FACEBOOK_ERROR"></span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="form-group">
-                        <h5 class="text-center text-muted" ng-bind="vm.strings.LOGIN_ALTERNATIVES_LABEL"></h5>
-                    </div>
+
+                <div class="row separator separator-text">
+                    <p class="text-center text-muted" ng-bind="vm.strings.LOGIN_ALTERNATIVES_LABEL"></p>
                 </div>
-                <div class="row">
+
+                <div class="row">                    
+
                     <form name='vm.login_form' ng-submit="vm.login()">
                         <fieldset>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                      <i class="mdi-communication-email"></i>
-                                    </span>
-                                    <input class="form-control" name="login" type="text"
-                                           ng-model="vm.auth.email"
-                                           placeholder="{{::vm.strings.EMAIL_LABEL}}"
-                                           trulii-input-autofocus>
-                                </div>
-                                <trulii-input-alert field="vm.login_form.login"
-                                                    errors="vm.errors"></trulii-input-alert>
-                            </div>
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <span class="input-group-addon">
-                                      <i class="mdi-action-lock"></i>
-                                    </span>
-                                    <input class="form-control" name="password" type="password" value=""
-                                           placeholder="{{::vm.strings.PASSWORD_LABEL}}"
-                                           ng-model="vm.auth.password">
-                                </div>
-                                <trulii-input-alert field="vm.login_form.password"
-                                                    errors="vm.errors"></trulii-input-alert>
-                            </div>
-                            <input type="hidden" ng-model="__all__" name="__all__"/>
 
-                            <!--TODO replace with toast-->
-                            <div class="alert alert-error" ng-show="vm.errors.__all__">
-                                <strong>{{vm.errors.__all__}}</strong>
+                            <div class="separate-vertical">
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                          <i class="mdi-communication-email"></i>
+                                        </span>
+                                        <input class="form-control input--med" name="login" type="text"
+                                               ng-model="vm.auth.email"
+                                               placeholder="{{::vm.strings.EMAIL_LABEL}}"
+                                               trulii-input-autofocus>
+                                    </div>
+                                    <trulii-input-alert field="vm.login_form.login"
+                                                        errors="vm.errors"></trulii-input-alert>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">
+                                          <i class="mdi-action-lock"></i>
+                                        </span>
+                                        <input class="form-control input--med" name="password" type="password" value=""
+                                               placeholder="{{::vm.strings.PASSWORD_LABEL}}"
+                                               ng-model="vm.auth.password">
+
+                                    </div>
+                                    <a ui-sref="password-forgot">Olvidé mi contraseña</a>
+                                    <trulii-input-alert field="vm.login_form.password"
+                                                        errors="vm.errors"></trulii-input-alert>
+                                </div>
+                                <input type="hidden" ng-model="__all__" name="__all__"/>
+
+                                <!--TODO replace with toast-->
+                                <div class="alert alert-error" ng-show="vm.errors.__all__">
+                                    <strong>{{vm.errors.__all__}}</strong>
+                                </div>
                             </div>
 
-                            <div class="form-group">
-                                <button type="submit" id="submit" class="btn btn-lg btn-primary btn-block"
+                
+                            <button type="submit" id="submit" class="btn btn-grand btn-primary btn-block"
                                        ng-bind="::vm.strings.LOGIN_LABEL"></button>
-                            </div>
+                         
                         </fieldset>
                     </form>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                    <a ui-sref="password-forgot">Olvidé mi contraseña</a>
-                </div>
-            </div>
 
-            <div class="card-footer text-center">
-                ¿No tienes cuenta? <a ui-sref="register"> Registrate aquí</a>
+                </div>
+
+
+            <div class="row">
+                <div class="separator"></div>
+            
+                <div class="text-center separate-vertical" id="anchor">
+                    <span class="fit-in-xs">¿No tienes cuenta?</span>
+                     <a ui-sref="register" class="lightbg-strong-anchor separate-horizontal"> Registrate aquí</a>
+                </div>    
             </div>
-        </div>
+            
+            
+      
+        </div>        
     </div>
+
 </div>
+
+

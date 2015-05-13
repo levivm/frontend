@@ -6969,7 +6969,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn:not(.btn-link):not(.btn-flat),
 .btn-default:not(.btn-link):not(.btn-flat) {
-  background-color: white;
+  background-color: transparent;
   color: #333333;
   color: rgba(0, 0, 0, 0.74);
 }
@@ -6980,7 +6980,6 @@ body .jumbotron-material-blue-grey,
 .btn-white:not(.btn-link):not(.btn-flat) {
   background-color: #ffffff;
   color: #333333;
-  color: rgba(0, 0, 0, 0.74);
 }
 .btn-inverse:not(.btn-link):not(.btn-flat) {
   background-color: #3f51b5;
@@ -7084,7 +7083,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn:hover:not(.btn-link):not(.btn-flat),
 .btn-default:hover:not(.btn-link):not(.btn-flat) {
-  background-color: #f5f5f5;
+  background-color: rgba(10, 10, 10, 0);
 }
 .btn-black:hover:not(.btn-link):not(.btn-flat) {
   background-color: #0a0a0a;
@@ -7169,7 +7168,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn:active:not(.btn-link):not(.btn-flat),
 .btn-default:active:not(.btn-link):not(.btn-flat) {
-  background-color: #f0f0f0;
+  background-color: rgba(15, 15, 15, 0);
 }
 .btn-black:active:not(.btn-link):not(.btn-flat) {
   background-color: #0f0f0f;
@@ -7254,7 +7253,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn.active:not(.btn-link):not(.btn-flat),
 .btn-default.active:not(.btn-link):not(.btn-flat) {
-  background-color: #f0f0f0;
+  background-color: rgba(15, 15, 15, 0);
 }
 .btn-black.active:not(.btn-link):not(.btn-flat) {
   background-color: #0f0f0f;
@@ -7339,7 +7338,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn.btn-flat:hover:not(.btn-ink),
 .btn-default.btn-flat:hover:not(.btn-ink) {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .btn-black.btn-flat:hover:not(.btn-ink) {
   background-color: rgba(0, 0, 0, 0.2);
@@ -7635,7 +7634,7 @@ body .jumbotron-material-blue-grey,
 }
 .open > .dropdown-toggle.btn,
 .open > .dropdown-toggle.btn-default {
-  background-color: white;
+  background-color: transparent;
 }
 .open > .dropdown-toggle.btn-black {
   background-color: #000000;
@@ -11054,6 +11053,7 @@ hr.on-light {
 @media screen and (max-width: 480px) {
   .fit-in-xs {
     width: 100%;
+    display: block;
   }
 }
 .lateral-slide {
@@ -11931,6 +11931,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 2.6em;
   font-weight: bold;
 }
+.input--med {
+  font-size: 1.3em;
+}
 select.form-control {
   font-size: 1.3em;
 }
@@ -12070,8 +12073,9 @@ tags-input input {
 .trulii-icon-facebook-squared:before {
   content: '\e801';
 }
-.btn-success {
-  color: white !important;
+.btn-success,
+.btn-primary {
+  color: rgba(255, 255, 255, 0.84) !important;
 }
 .btn {
   font-weight: bold;
@@ -12983,6 +12987,9 @@ button.toast-close-button {
 }
 .open .dropdown {
   display: block;
+}
+a {
+  color: #f0b400;
 }
 /*Agular Google Maps*/
 .angular-google-map-container {

@@ -60,20 +60,21 @@
                         .then(successFbLogin,errorFbLogin);
 
             function successFbLogin(response){
-                $state.go("home")
+                $state.go("brow.home")
             }
             function errorFbLogin(response){
                 $state.go('general-message', {
                     'module_name':'authentication',
                     'template_name':'social_login_cancelled',
-                   'redirect_state':'home'
+                   'redirect_state':'brow.home'
                 });
             }
         }
 
         function _loginSuccess(redirect_state) {
             console.log("redirect state", redirect_state);
-            $state.go(redirect_state.data.location);
+            //$state.go(redirect_state.data.location);
+            $state.go("brow.home");
             Authentication.updateAuthenticatedAccount();
         }
 
@@ -91,7 +92,7 @@
                 PASSWORD_LABEL : "Contraseña",
                 FIRST_NAME_LABEL : "Nombre",
                 LAST_NAME_LABEL : "Apellido",
-                LOGIN_WITH_FACEBOOK_MSG : "Iniciar sesion con Facebook",
+                LOGIN_WITH_FACEBOOK_MSG : "Iniciar sesión con Facebook",
                 FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook"
             });
         }

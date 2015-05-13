@@ -283,7 +283,7 @@
         }
 
         function redirect(){
-            $state.go("home");
+            $state.go("brow.home");
         }
 
     }
