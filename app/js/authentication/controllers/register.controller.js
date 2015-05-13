@@ -15,9 +15,9 @@
         .module('trulii.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$q', 'Authentication', '$state', 'validatedData'];
+    RegisterController.$inject = ['$q', 'Authentication', '$state', 'validatedData', 'Elevator'];
 
-    function RegisterController($q, Authentication, $state, validatedData) {
+    function RegisterController($q, Authentication, $state, validatedData, Elevator) {
 
         var vm = this;
         var selectedMethod = null;
@@ -33,6 +33,7 @@
         vm.register = register;
         vm.isSelectedMethod = isSelectedMethod;
         vm.setSelectedMethod = setSelectedMethod;
+        vm.focusForm = focusForm;
 
         initialize();
 
@@ -42,6 +43,13 @@
 
         function setSelectedMethod(method){
             selectedMethod = method;
+        }
+
+        function focusForm(){
+            
+            // this must be to use toElement but is not working :(
+            Elevator.toBottom(3000);
+
         }
 
         function _clearErrors() {

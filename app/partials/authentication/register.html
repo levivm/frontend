@@ -109,7 +109,7 @@
                         </div>
                         <button type="button" class="btn btn-block btn-grand btn-primary"
                                 ng-hide="vm.isSelectedMethod('email')"
-                                ng-click="vm.setSelectedMethod('email')">
+                                ng-click="vm.setSelectedMethod('email'); vm.focusForm();">
                             <i class="mdi-communication-email "></i>
                             <span ng-bind="::vm.strings.EMAIL_LABEL"></span>
                         </button>
@@ -125,7 +125,7 @@
             <div class="row">
                 <div class="separator"></div>
             
-                <div class="text-center separate-vertical">
+                <div class="text-center separate-vertical" id="anchor">
                     ¿Ya tienes cuenta en Trulii? <a class="lightbg-strong-anchor separate-horizontal" ui-sref="login" ng-bind="::vm.strings.LOGIN_LABEL"></a>
                 </div>    
             </div>
