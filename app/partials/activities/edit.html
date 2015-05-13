@@ -8,14 +8,38 @@
                         <span ng-show="pc.isSectionCompleted(step.name)" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         <i class="mdi-action-done text-success" ng-class="pc.getCheckStyle(step.name)"></i>
                     </a>
+
                 </li>
+                <div>
+                    <ng-pluralize ng-show="!pc.activity.published && pc.steps_left>0" count="pc.activity.steps_left"
+                        when="{
+                            '0':'',
+                            '1': 'Te falta {{pc.steps_left}} paso para publicar',
+                            'other': 'Te faltan {{ pc.steps_left }} pasos para publicar'
+                            }">
+                    </ng-pluralize>
+                </div>
+                <div ng-show="pc.allow_publish">
+                <!-- <div ng-show="!pc.publishing"> -->
+                    <input type="submit" id="submit" class="btn btn-primary" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
+                           ng-show="pc.areAllStepsCompleted() && !pc.activity.published"
+                           ng-click="pc.publish_activity()"/>
+                </div>
+                <div ng-show="pc.allow_unpublish">
+                <!-- <div ng-show="!pc.publishing"> -->
+                    <input type="submit" id="submit" class="btn btn-primary" value="{{pc.strings.UNPUBLISH_ACTIVITY_LABEL}}"
+                           ng-show="pc.activity.published" 
+                           ng-click="pc.unpublish_activity()"/>
+                </div>
+            
             </nav>
 
-            <div>
+<!--             <div>
                 <input type="submit" id="submit" class="btn btn-primary" value="Publicar"
                        ng-show="pc.areAllStepsCompleted() && !pc.activity.active"
                        ng-click="pc.publish_activity()"/>
-            </div>
+            </div> -->
+            
         </div>
 
         <div class="col-sm-offset-2 col-sm-10 with-sidebar lateral-fade" ui-view>

@@ -44,8 +44,9 @@
             {
                 sref : '.return-policy',
                 title : 'Política de Devolución',
-                name : 'return-policy'
+                name : 'return_policy'
             }
         ]);
+        // .factory('activity', Activity);;
 
 })();

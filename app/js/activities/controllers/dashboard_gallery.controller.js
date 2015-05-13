@@ -95,12 +95,15 @@
         function _successUploaded(response) {
             vm.photo_loading = false;
             vm.images.push(response.data.photo);
+            angular.extend(activity.photos,vm.images);
             _onSectionUpdated();
         }
 
         function _successUploadedMainPhoto(response) {
             vm.main_photo_loading = false;
             vm.main_image = response.data.photo;
+            _.remove(activity.photos, 'main_photo', true);
+            activity.photos.push(vm.main_image);
             _onSectionUpdated();
         }
 
@@ -136,9 +139,8 @@
 
         function _successDelete(response) {
             var image_id = response.data.photo_id;
-            var images = angular.copy(vm.images);
 
-            angular.forEach(images, function (photo, index) {
+            angular.forEach(vm.images, function (photo, index) {
 
                 if (photo.id == image_id) {
                     vm.images.splice(index, 1);
@@ -180,9 +182,9 @@
         function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
-            vm.uploading_photo = false;
-            vm.main_image = _.first(_.remove(activity.photos, 'main_photo', true));
-            vm.images = activity.photos;
+            vm.uploading_photo = false;            
+            vm.images = angular.copy(activity.photos);
+            vm.main_image = _.first(_.remove(vm.images, 'main_photo', true));
         }
 
     }

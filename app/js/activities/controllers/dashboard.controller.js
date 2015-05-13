@@ -15,19 +15,31 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDashboardCtrl', ActivityDashboardCtrl);
 
-    ActivityDashboardCtrl.$inject = ['$scope', 'Activity', 'ActivitySteps', 'activity'];
+    ActivityDashboardCtrl.$inject = ['$scope','$state', 'Activity','Toast', 'ActivitySteps', 'activity'];
 
-    function ActivityDashboardCtrl($scope, Activity, ActivitySteps, activity) {
+    function ActivityDashboardCtrl($scope,$state, Activity,Toast, ActivitySteps, activity) {
 
         var pc = this;
 
         pc.steps = ActivitySteps;
         pc.activity = activity;
         pc.sidebar = false;
+        pc.allow_unpublish = true;
+        pc.allow_publish = true;
         pc.areAllStepsCompleted = areAllStepsCompleted;
         pc.isSectionCompleted = isSectionCompleted;
         pc.getCheckStyle = getCheckStyle;
         pc.publish_activity = _publish_activity;
+        pc.unpublish_activity = _unpublish_activity;
+        pc.steps_left = activity.steps_left;
+        
+
+        pc.strings = {};
+        pc.strings.UNPUBLISH_ACTIVITY_LABEL = "Desactivar";
+        pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad saldrá de los motores de búsqueda";
+        pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar";
+        pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
+
 
         activate();
         initialize();
@@ -41,14 +53,39 @@
         }
 
         function getCheckStyle(section) {
+            // console.log("APPLYING STYLE",pc.isSectionCompleted(section),section);
             return {'hide' : !pc.isSectionCompleted(section)};
         }
 
         function _publish_activity() {
+            pc.allow_publish = false;
+
             activity.publish().then(function (response) {
-                console.log("actividad publicada");
-            });
+
+                if(pc.activity.isFirstEdit())
+                    $state.go('activities-detail',{'activity_id':pc.activity.id});
+                
+                Toast.success(pc.strings.ACTIVITY_PUBLISHED);
+                pc.allow_unpublish = true;
+            },function(response){
+                Toast.error(response.data.detail)
+                pc.allow_publish = true;
+            })
         }
+
+        function _unpublish_activity() {
+            pc.allow_unpublish = false;
+            activity.unpublish().then(function (response) {
+                
+                Toast.warning(pc.strings.UNPUBLISH_ACTIVITY_WARNING);
+                pc.allow_publish = true;
+
+            },function(response){
+                Toast.error(response.data.detail)
+                pc.allow_unpublish = true;
+            })
+        }
+
 
         function activate() {
 
