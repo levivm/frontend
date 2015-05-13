@@ -16,9 +16,10 @@
         .module('trulii.authentication.services')
         .factory('Authentication', Authentication);
 
-    Authentication.$inject = [ '$http', '$q', '$state', 'AuthenticationServerApi', 'localStorageService','Facebook'];
+    Authentication.$inject = [ '$rootScope', '$http', '$q', '$state',
+        'AuthenticationServerApi', 'localStorageService','Facebook'];
 
-    function Authentication($http, $q, $state, AuthenticationServerApi, localStorageService,Facebook) {
+    function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService,Facebook) {
 
         var api = AuthenticationServerApi;
 
@@ -116,8 +117,7 @@
                 var login_data = {'email':email,'password':password};
                 return getToken(login_data)
                     .then(function(response_token){
-                        localStorageService.set('token',response_token.data.token);
-
+                        setAuthenticationToken(response_token.data.token);
                         return login_response;
                     }
                 );
@@ -262,6 +262,8 @@
         }
 
         function setAuthenticatedAccount(data){
+            console.log('Authentication. userChanged');
+            $rootScope.$emit('userChanged', data);
             localStorageService.set('user',data);
             return data;
         }
