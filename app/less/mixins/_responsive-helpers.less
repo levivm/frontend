@@ -2,6 +2,11 @@
 @import '../_trulii-variables';
 
 
+// Sizes
+
+.size-xs{
+    width: @screen-xs;
+}
 
 .show-after-sm{
     @media screen and (max-width: @screen-sm ){
@@ -51,7 +56,12 @@
 }
 
 
-
+.fit-in-xs{
+    .before-xs({
+        width: 100%;
+        display: block;
+    });
+}
 
 
 

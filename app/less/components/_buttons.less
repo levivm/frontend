@@ -2,23 +2,9 @@
 @import url('../_trulii-variables');
 
 
-// ...Because strange issue on bootstrap-material
-.btn-success{
+// ...Because there is a strange issue on bootstrap-material
+.btn-success, .btn-primary{
 	color: white !important;
-}
-
-.btn-facebook {
-	color: white !important;
-	background-color: @facebook-blue !important;
-	text-transform: none;
-
-	&:hover {
-		background-color: @facebook-blue-medium !important;;
-	}
-
-	&:active {
-		background-color: @facebook-blue-weak !important;;
-	}
 }
 
 .btn{
@@ -41,6 +27,33 @@
 			background-color: @color-advanced !important;
 
 		}
+	}
+
+	&-grand:extend(.btn-lg){
+
+		&:extend(.btn-lg);
+		padding: 1em;
+
+		&__icon{
+			line-height: 0;
+
+			&:before, &:after{
+				line-height: 0em;
+				position: relative;
+				font-size: 2em;
+				top: 0.2em;
+			}
+		}
+	}
+
+	&-facebook{
+		color: white !important;
+		background-color: @facebook-blue !important;
+		text-transform: none;
+
+		&:hover {
+			background-color: darken(@facebook-blue, 2%) !important ;
+		}		
 	}
 
 }

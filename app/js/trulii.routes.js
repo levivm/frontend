@@ -36,7 +36,7 @@
                 templateUrl: 'partials/browsing.html'
             })
 
-            .state('brow.home',{
+            .state('home',{
                 url:'/',
                 controller:'HomeController as home',
                 resolve:{

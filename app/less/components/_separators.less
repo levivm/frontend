@@ -1,0 +1,28 @@
+
+.separator{
+    border-bottom: 1px solid @color-delimeter-dark;
+    margin: 1em 0;
+
+    &-text{        
+        border-bottom: 0px;
+
+        position: relative;
+
+        &::before{
+            content: " ";
+            display: block;
+            position: absolute;
+            bottom: 50%;
+            width: 100%;
+            border-bottom: 1px solid @color-delimeter-dark;        
+        }
+
+        p{
+            margin: 0 auto;
+            display: block;
+            width: 14em;
+            background: white;
+            position: relative;
+        }
+    }
+}
