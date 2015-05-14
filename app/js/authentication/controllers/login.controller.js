@@ -60,13 +60,13 @@
                         .then(successFbLogin,errorFbLogin);
 
             function successFbLogin(response){
-                $state.go("brow.home")
+                $state.go("home")
             }
             function errorFbLogin(response){
                 $state.go('general-message', {
                     'module_name':'authentication',
                     'template_name':'social_login_cancelled',
-                   'redirect_state':'brow.home'
+                   'redirect_state':'home'
                 });
             }
         }
@@ -74,7 +74,7 @@
         function _loginSuccess(redirect_state) {
             console.log("redirect state", redirect_state);
             //$state.go(redirect_state.data.location);
-            $state.go("brow.home");
+            $state.go("home");
             Authentication.updateAuthenticatedAccount();
         }
 
