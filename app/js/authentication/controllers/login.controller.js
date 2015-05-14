@@ -60,7 +60,7 @@
                         .then(successFbLogin,errorFbLogin);
 
             function successFbLogin(response){
-                $state.go("home")
+                $state.go("brow.home")
             }
             function errorFbLogin(response){
                 $state.go('general-message', {

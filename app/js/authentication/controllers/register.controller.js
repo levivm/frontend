@@ -62,7 +62,8 @@
                 .then(success, error);
 
             function success(){
-                $state.go('home');
+                // $state.go('home');
+                $state.go("brow.home")
             }
             function error(){
                 alert("Couldn't Register with Facebook");
@@ -76,7 +77,9 @@
 
             return Authentication.register(vm.auth)
                 .then(function (response) {
-                    $state.go("home");
+                    // $state.go("home");
+                    $state.go("brow.home");
+                    
                     //TODO HERE SHOULD SHOW A POP UP
                 }, _registerError);
 

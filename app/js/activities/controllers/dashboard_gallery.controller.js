@@ -30,19 +30,25 @@
 
         /******************ACTIONS**************/
 
-        function _addImage(images) {
+        function _addImage(images,isMain) {
 
+            console.log("images",images);
             //vm.images.concat(images.pop());
             _clearErrors();
             vm.uploading_photo = images.pop();
             //vm.photos.push(images.pop());
+            var extra_data = {'main_photo':isMain};
             if (vm.uploading_photo)
-                activity.addPhoto(vm.uploading_photo, vm.upload_url)
-                    .then(_successUploaded, _erroredUpload, _progressUpload);
+                if(isMain){
+                    activity.addPhoto(vm.uploading_photo,extra_data)
+                        .then(_successUploadedMainPhoto, _erroredUpload, _progressUploadMainPhoto);
+                }
+                else{
 
-            //console.log("UPLOAD IMAGE",vm.images);
+                    activity.addPhoto(vm.uploading_photo,extra_data)
+                        .then(_successUploaded, _erroredUpload, _progressUpload);
 
-            //vm.images.push(photo);
+                }
 
         }
 
@@ -89,8 +95,25 @@
         function _successUploaded(response) {
             vm.photo_loading = false;
             vm.images.push(response.data.photo);
+            angular.extend(activity.photos,vm.images);
             _onSectionUpdated();
         }
+
+        function _successUploadedMainPhoto(response) {
+            vm.main_photo_loading = false;
+            vm.main_image = response.data.photo;
+            _.remove(activity.photos, 'main_photo', true);
+            activity.photos.push(vm.main_image);
+            _onSectionUpdated();
+        }
+
+
+
+        function _progressUploadMainPhoto(response) {
+            vm.main_photo_loading = true;
+        }
+
+
 
         function _progressUpload(response) {
             vm.photo_loading = true;
@@ -116,9 +139,8 @@
 
         function _successDelete(response) {
             var image_id = response.data.photo_id;
-            var images = angular.copy(vm.images);
 
-            angular.forEach(images, function (photo, index) {
+            angular.forEach(vm.images, function (photo, index) {
 
                 if (photo.id == image_id) {
                     vm.images.splice(index, 1);
@@ -160,8 +182,9 @@
         function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
-            vm.uploading_photo = false;
-            vm.images = activity.photos;
+            vm.uploading_photo = false;            
+            vm.images = angular.copy(activity.photos);
+            vm.main_image = _.first(_.remove(vm.images, 'main_photo', true));
         }
 
     }

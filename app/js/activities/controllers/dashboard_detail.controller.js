@@ -50,8 +50,9 @@
 
         function _updateSuccess(response) {
             vm.isCollapsed = false;
-            _onSectionUpdated();
             angular.extend(activity, vm.activity);
+            _onSectionUpdated();
+
         }
 
         function _clearErrors() {

@@ -7,7 +7,6 @@
  * @requires trulii.routes.serverConf
  * @requires trulii.utils.services.UploadFile
  */
-
 (function () {
     'use strict';
 
@@ -27,11 +26,17 @@
             that.tags = [];
             that.certification = false;
 
+
+            
+            
             if (activityData) {
                 //TODO eliminar cuando levi elimine del backend
                 delete activityData.completed_steps;
+
                 that.setData(activityData);
+
             }
+
         }
 
         Activity.prototype = {
@@ -39,12 +44,17 @@
             setData : function (activityData) {
                 angular.extend(this, activityData);
                 that.resetSections();
+
+
                 angular.forEach(ActivitySteps, function (step) {
+
                     that.updateSection(step.name);
                 });
                 console.log("Activity setData ", this);
+                
                 that.checkSections();
             },
+
 
             create : function () {
                 return $http.post(api.activities(), this);
@@ -75,8 +85,8 @@
                 });
             },
 
-            addPhoto : function (image) {
-                return UploadFile.upload_file(image, api.gallery(this.id));
+            addPhoto : function (image,extra_data) {
+                return UploadFile.upload_file(image, api.gallery(this.id),extra_data);
             },
 
             deletePhoto : function (image) {
@@ -96,6 +106,32 @@
                         that.published = true;
                     });
             },
+            unpublish: function(){
+
+                return $http({
+                    method : 'put',
+                    url : api.unpublish(this.id)
+                })
+                    .then(function (response) {
+                        that.published = false;
+                    });
+
+            },
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#isFirstEdit
+             * @description Check and set a flag if the activity is beign edited for first time
+             * @methodOf trulii.activities.services.Activity
+             */
+            isFirstEdit: function(){
+
+                if (!this.photos.length && !this.published)
+                    return true
+
+                return false
+
+
+            },
 
             /**
              * @ngdoc function
@@ -105,8 +141,13 @@
              */
             checkSections : function () {
                 that.all_steps_completed = true;
-                angular.forEach(that.completed_steps, function (value) {
-                    if (!value) that.all_steps_completed = false;
+                angular.forEach(_.keys(that.required_steps), function (value) {
+
+                    if (!that.isSectionCompleted(value))
+                        that.all_steps_completed = false;
+
+
+                    // if (!value) that.all_steps_completed = false;
                 });
             },
 
@@ -131,7 +172,10 @@
              * @methodOf trulii.activities.services.Activity
              */
             setSectionCompleted : function (section, value) {
-                that.completed_steps[section] = value;
+                console.log("detail",section,value);
+                if(section in that.completed_steps){
+                    that.completed_steps[section] = value;
+                }
                 console.log('Activity.setSectionCompleted: ', section, ', ', that.completed_steps[section]);
             },
 
@@ -145,6 +189,27 @@
             isSectionCompleted : function (section) {
                 return that.completed_steps[section];
             },
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#setStepsLeft
+             * @description set the steps left to publish an activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            setStepsLeft: function(section){
+
+                if (!that.required_steps[section])
+                    return
+
+                that.steps_left = 0;
+
+                _.each(_.keys(that.required_steps),function(value){
+
+                    that.steps_left += !that.completed_steps[value] ? 1:0;
+
+                });
+
+
+            },
 
             updateSection : updateSection,
 
@@ -154,67 +219,79 @@
         return Activity;
 
         function updateSection(section) {
-            var subSections = [];
+            
             var isCompleted = false;
+            if (!that.steps)
+                return
+            
+            var subSections = that.steps[section];
             switch (section) {
                 case 'general':
-                    subSections = ['title', 'short_description', 'category_id', 'sub_category', 'level'];
+                    
+
                     isCompleted = subSections.every(function (subSection) {
                         var value = that.hasOwnProperty(subSection) && !!that[subSection];
-                        //console.log('activity[', subSection, ']: ', value);
-                        return (value);
+                        return value;
                     });
                     break;
-                case 'calendars':
-                    that.hasOwnProperty('chronograms');
-                    var hasCalendars = !!that.chronograms && (that.chronograms.length > 0);
-                    isCompleted = hasCalendars;
-                    break;
                 case 'detail':
-                    subSections = ['content', 'audience', 'goals', 'methodology', 'requirements', 'extra_info'];
                     isCompleted = subSections.some(function (subSection) {
                         return (that.hasOwnProperty(subSection) && !!that[subSection]);
                     });
                     break;
-                case 'gallery':
-                    var hasPhotos = !!that.photos && (that.photos.length > 0);
-                    var hasVideos = !!that.youtube_video_url;
-                    isCompleted = (hasPhotos || hasVideos);
-                    break;
-                case 'instructors':
-                    var hasInstructors = !!that.instructors && (that.instructors.length > 0);
-                    isCompleted = hasInstructors;
-                    break;
                 case 'location':
-                    var hasLocation = !!that.location;
+
+                    var hasLocation = !!that[subSections];
                     isCompleted = hasLocation;
                     break;
-                case 'return-policy':
-                    //var hasReturnPolicy = !!that[section];
+                case 'calendars':
+                    that.hasOwnProperty(subSections);
+                    var hasCalendars = !!that.chronograms && (that.chronograms.length > 0);
+                    isCompleted = hasCalendars;
+                    break;
+                case 'instructors':
+                    var hasInstructors = !!that[subSections] && (that[subSections].length > 0);
+                    isCompleted = hasInstructors;
+                    break;
+                case 'gallery':
+                    var photos = _.clone(that.photos);
+                    var main_photo = _.first(_.remove(photos, 'main_photo', true));
+                    var hasMainPhoto = !!main_photo;
+                    isCompleted = hasMainPhoto;
+                    console.log("has main photo",hasMainPhoto);
+                    break;
+                case 'return_policy':
                     //TODO reemplazar por comentario al cambiar key en backend
-                    var hasReturnPolicy = !!that['return_policy'];
+                    var hasReturnPolicy = !!that[subSections];
                     isCompleted = hasReturnPolicy;
                     break;
+
             }
+
             console.log('updateSection[' + section + ']: ', isCompleted);
             that.setSectionCompleted(section, isCompleted);
+            that.setStepsLeft(section);
         }
 
         function resetSections() {
-            that.completed_steps = {
-                'calendars' : false,
-                'detail' : false,
-                'gallery' : false,
-                'general' : false,
-                'instructors' : false,
-                'location' : false,
-                'return-policy' : false
-            };
+
+            that.completed_steps = {};
+
+            _.forEach(that.steps,function(value,key){
+
+                that.completed_steps[key] = false;
+
+            });
+
+
+
 
             that.all_steps_completed = false;
 
             console.log('resetSections. that:', that);
         }
+
+
     }
 
 })();

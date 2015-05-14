@@ -4,7 +4,6 @@
  * @description API Service for Activity related Endpoints
  * @requires trulii.routes.serverConf
  */
-
 (function () {
     'use strict';
 
@@ -94,7 +93,17 @@
             'publish' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'publish']);
             },
-
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.ActivityServerApi#unpublish
+             * @description Renders **`/api/activities/:idActivity/unpublish`** Activity publication URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'unpublish' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'unpublish']);
+            },
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#info

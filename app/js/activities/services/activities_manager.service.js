@@ -86,8 +86,10 @@
             if (activity) {
                 deferred.resolve(activity);
             } else {
+
                 _load(activityId, deferred);
             }
+
             return deferred.promise;
         }
 
@@ -131,6 +133,7 @@
                 instance.setData(activityData);
             } else {
                 instance = new Activity(activityData);
+
                 _pool[activityID] = instance;
             }
 
@@ -152,7 +155,9 @@
                         deferred.reject();
                     });
             } else {
+
                 var activity = _retrieveInstance(null, {});
+
                 deferred.resolve(activity);
             }
 

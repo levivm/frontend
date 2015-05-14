@@ -150,7 +150,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'facebook': function(){
-                return renderUrl('users/', ['facebook', 'signup/'], true);
+                return renderUrl('users/', ['facebook', 'signup/'], false);
             },
 
             /**
