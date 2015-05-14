@@ -26,17 +26,17 @@
     
     return UploadFile;
 
-    function upload_file(file,url) {
+    function upload_file(file,url,extra_data) {
 
-      console.log("FILE",file);
-      console.log("FILE",file);
-      console.log("FILE",file);
-      console.log("FILE",file);
+      console.log("uploading FILE",file);
       return $upload.upload({
         url: url, // upload.php script, node.js route, or servlet url
+        // formData:{'main_photo':true},
         //method: 'POST' or 'PUT',
         //headers: {'Authorization': 'xxx'}, // only for html5
         //withCredentials: true,
+        fields:extra_data,
+        fileFormDataName:'photo',
         file: file, // single file or a list of files. list is only for html5
         //fileName: 'doc.jpg' or ['1.jpg', '2.jpg', ...] // to modify the name of the file(s)
         //fileFormDataName: myFile, // file formData name ('Content-Disposition'), server side request form name

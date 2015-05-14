@@ -61,6 +61,8 @@
             pc.calendar = calendar;
             pc.activity = activity;
             pc.success = false;
+
+
         }
 
         function _clearErrors() {

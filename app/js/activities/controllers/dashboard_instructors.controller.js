@@ -83,7 +83,6 @@
             vm.isCollapsed = false;
             angular.extend(activity, vm.activity);
             organizer.reload().then(_setInstructors);
-//        $scope.pc.activitySectionUpdated(response.data);
             _onSectionUpdated()
         }
 

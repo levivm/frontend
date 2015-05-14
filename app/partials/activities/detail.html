@@ -6,7 +6,7 @@
         <div>{{::pc.activity.title}}</div>
         <div>{{::pc.activity.short_description}}</div>
         <div ng-repeat="tag in pc.activity.tags">{{::tag}}</div>
-        <div><a ui-sref="activities-enroll({activity_id: pc.activity.id, calendar_id: pc.calendar_selected.id})">Inscribirme</a></div>
+        <div><a ng-show="pc.activity.published" ui-sref="activities-enroll({activity_id: pc.activity.id, calendar_id: pc.calendar_selected.id})">Inscribirme</a></div>
     </div>
 
     <div>
