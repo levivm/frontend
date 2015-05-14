@@ -26,10 +26,15 @@
             that.tags = [];
             that.certification = false;
 
+
+            
+            
             if (activityData) {
                 //TODO eliminar cuando levi elimine del backend
                 delete activityData.completed_steps;
+
                 that.setData(activityData);
+
             }
 
         }
@@ -39,7 +44,10 @@
             setData : function (activityData) {
                 angular.extend(this, activityData);
                 that.resetSections();
+
+
                 angular.forEach(ActivitySteps, function (step) {
+
                     that.updateSection(step.name);
                 });
                 console.log("Activity setData ", this);
@@ -117,10 +125,10 @@
              */
             isFirstEdit: function(){
 
-              if (this.photos.length>0)
-                return false
+                if (!this.photos.length && !this.published)
+                    return true
 
-              return true
+                return false
 
 
             },
@@ -187,13 +195,20 @@
              * @description set the steps left to publish an activity
              * @methodOf trulii.activities.services.Activity
              */
-            setStepsLeft: function(){
+            setStepsLeft: function(section){
 
-                _.each(that.required_steps,function(value){
-                    
+                if (!that.required_steps[section])
+                    return
+
+                that.steps_left = 0;
+
+                _.each(_.keys(that.required_steps),function(value){
+
                     that.steps_left += !that.completed_steps[value] ? 1:0;
 
                 });
+
+
             },
 
             updateSection : updateSection,
@@ -206,19 +221,23 @@
         function updateSection(section) {
             
             var isCompleted = false;
+            if (!that.steps)
+                return
+            
             var subSections = that.steps[section];
             switch (section) {
                 case 'general':
+                    
+
                     isCompleted = subSections.every(function (subSection) {
                         var value = that.hasOwnProperty(subSection) && !!that[subSection];
-                        return (value);
+                        return value;
                     });
                     break;
                 case 'detail':
                     isCompleted = subSections.some(function (subSection) {
                         return (that.hasOwnProperty(subSection) && !!that[subSection]);
                     });
-                    console.log("ESTA COMPLETO DETAIL",isCompleted);
                     break;
                 case 'location':
 
@@ -248,9 +267,10 @@
                     break;
 
             }
+
             console.log('updateSection[' + section + ']: ', isCompleted);
             that.setSectionCompleted(section, isCompleted);
-            that.setStepsLeft();
+            that.setStepsLeft(section);
         }
 
         function resetSections() {
@@ -262,6 +282,8 @@
                 that.completed_steps[key] = false;
 
             });
+
+
 
 
             that.all_steps_completed = false;
