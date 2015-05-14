@@ -22,15 +22,18 @@
 
                 scope.cities = [];
                 scope.isStudent = isStudent;
+                scope.isOrganizer = isOrganizer;
 
                 var unsubscribeUserChanged = null;
 
                 initialize();
 
                 function isStudent(){
-                    //TODO for debugging purposes only
-                    return true;
-                    //return scope.user.is_student;
+                    return scope.user.is_student;
+                }
+
+                function isOrganizer(){
+                    return scope.user.is_organizer;
                 }
 
                 function setStrings() {
@@ -41,7 +44,9 @@
                     angular.extend(scope.strings, {
                         PLACEHOLDER_WANT_TO_LEARN : '¿Qué quieres aprender hoy?',
                         CITY_LABEL: 'Ciudad',
-                        CITY_DEFAULT_LABEL: 'Ciudad..'
+                        CITY_DEFAULT_LABEL: 'Ciudad..',
+                        PROFILE_LABEL: 'Mi Perfil',
+                        LOGOUT_LABEL: 'Logout'
                     });
                 }
 
