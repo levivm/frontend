@@ -119,6 +119,21 @@
             },
             /**
              * @ngdoc function
+             * @name trulii.activities.services.Activity#hasAssistants
+             * @description Check if an activity has already assitants
+             * @methodOf trulii.activities.services.Activity
+             */
+            hasAssistants: function(){
+
+                if (!this.chronograms)
+                    return false
+
+                return this.chronograms.some(function (chronogram) {
+                        return chronogram.assistants.length > 0
+                    });
+            },
+            /**
+             * @ngdoc function
              * @name trulii.activities.services.Activity#isFirstEdit
              * @description Check and set a flag if the activity is beign edited for first time
              * @methodOf trulii.activities.services.Activity
