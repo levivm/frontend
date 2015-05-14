@@ -1,57 +1,6 @@
-<!-- NAV BAR -->
-
-<!-- TODO: Directive or ng-include -->
-<nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-
-    <div class="row">
-      
-   
-                <!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
-                        data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button> -->
-        <a ui-sref="home" class="navbar__logo"></a> 
-            
-       
-        <div class="navbar__center-wrapper">
-            
-            <div class="navbar__search-box">
-                <input type="text" placeholder="¿Qué quieres aprender hoy?"><span class="navbar__search-box__city-select">Bogotá<span class="mdi-navigation-expand-more"></span></span><button class="navbar__search-box__btn mdi-action-search" ></button>
-
-            </div>
-        </div>
-
-        <div>
-            <div class="navbar__user" data-toggle="dropdown">
-
-                <img class="navbar__user__picture" src="/css/img/avatar-test.jpg" alt="">            
-                <span class="navbar__user__name">
-                    Carlos Pinelly                
-                </span>
-
-                <span class="mdi-navigation-expand-more"></span>                                    
-                            
-            </div>                    
-
-            <div class="dropdown" role="menu" >                
-                <a class="dropdown__item" ui-sref="organizer-dashboard.profile">
-                    <span class="mdi-action-account-circle dropdown__item__icon"></span>Mi perfil
-                </a>
-                <a ui-sref="logout" class="dropdown__item">
-                <span class="mdi-action-exit-to-app dropdown__item__icon"></span>Logout
-                </a>                
-            </div>
-            
-        </div>
-        
-    </div>
-</nav>
+<trulii-navbar></trulii-navbar>
 
 <div class="with-navbar">
     <div ui-view></div>
-    <!-- <trulii-preloader></trulii-preloader> TODO: Activar al resolver bug con el loader --> 
+    <!-- <trulii-preloader></trulii-preloader> TODO: Activar al resolver bug con el loader -->
 </div>

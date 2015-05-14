@@ -33,8 +33,7 @@
         $stateProvider
 
             .state('brow', {                
-                templateUrl: 'partials/browsing.html',
-                
+                templateUrl: 'partials/browsing.html'
             })
 
             .state('brow.home',{
