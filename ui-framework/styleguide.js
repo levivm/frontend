@@ -1,6 +1,6 @@
 (function(){
 		angular
-			.module('trulii.styleguide', ['trulii.ui-components', 'ngAnimate', 'ui.router'])			
+			.module('trulii.styleguide', ['trulii.ui-components',  'ngAnimate', 'ui.router'])			
 
 			.config(config)
 
