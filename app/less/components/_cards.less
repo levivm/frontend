@@ -3,35 +3,42 @@
 @import url('../_trulii-variables');
 
 .card{	
+	border-radius: @material-border-radius;
 	margin: 1.5em 0;
 	padding: 0;
 
 	.card-header{
+		-webkit-border-top-left-radius: @material-border-radius;
+		-webkit-border-top-right-radius: @material-border-radius;
+		-moz-border-radius-topleft: @material-border-radius;
+		-moz-border-radius-topright: @material-border-radius;
+		border-top-left-radius: @material-border-radius;
+		border-top-right-radius: @material-border-radius;
 		
 		padding: @card-padding;
 		color: @lightbg-text;
 		
+		&--primary{
+			background: @primary;
+			color: darken(@primary-dark, 15%);
+		}
 
-		// .form-group{			  
+		&--secondary{
+			background: @secondary;
+			color: white;
+		}
+	}
 
-		// 	  .form-control{
-		// 	  	text-align: center;
-		// 		background-image: linear-gradient(@secondary, @secondary), linear-gradient(white, white);			  	
-		// 	  }
-		// }
+	.card-icon{
+		display: inline-block;
+		margin-right: .5em;
+		position: relative;
+		top: 0.2em;
 
-		// ::-webkit-input-placeholder { /* WebKit browsers */
-		//     color:    fadeout(white, 20%) ;
-		// }
-		// :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-		//    color:    fadeout(white, 20%) ;
-		// }
-		// ::-moz-placeholder { /* Mozilla Firefox 19+ */
-		//    color:    fadeout(white, 20%) ;
-		// }
-		// :-ms-input-placeholder { /* Internet Explorer 10+ */
-		//    color:    fadeout(white, 20%) ;
-		// } 
+		&:before{
+			font-size: 1.5em;
+			color: @secondary;
+		}
 	}
 	
 	.card-body{

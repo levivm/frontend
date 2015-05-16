@@ -7,7 +7,7 @@
 				<div class="card">
 					<div class="card-header">
 						<h2>
-							<i class="mdi-action-account-circle"></i>
+							<i class="mdi-action-account-circle card-icon"></i>
 							.card-header
 						</h2>
 					</div>
@@ -22,33 +22,27 @@
 			</div>	
 
 			<div class="col-sm-6">
-				<div class="card shadow-z-1">
-					<div class="card-header">
-						<h2>Con .shadow-z-1</h2>
-					</div>
-					<div class="card-body">
-						Con la clase shadow-z-*, puede controlarse el nivel de la tarjeta. Los niveles van de 0 a 5.
-					</div>	
-				</div>
+				<xmp class="prettyprint lang-html">
+<div class="card">
+	<div class="card-header">
+		<h2>
+			<i class="mdi-action-account-circle card-icon"></i>
+			.card-header
+		</h2>
+	</div>
+	<div class="card-body">
+		.card-body
+	</div>	
+	<div class="card-footer">
+		.card-footer
+	</div>
+</div>
+				</xmp>
 				
 			</div>	
 				
 		</div>
 		<div class="row">
-			<div class="col-sm-6">
-				<div class="card">
-					<div class="card-header">
-						<div class="form-group input--main">
-							<input type="text" class="form-control" placeholder="Header con input">
-						</div>
-					</div>
-					<div class="card-body">
-						Card body
-					</div>	
-				</div>
-				
-			</div>	
-
 			<div class="col-sm-6">
 				<div class="card">
 					<div class="card-header">
@@ -61,7 +55,101 @@
 						.card-list-item
 					</div>						
 
+				</div>				
+			</div>
+
+			<div class="col-sm-6">
+
+
+				<xmp class="prettyprint lang-html">
+<div class="card">
+	<div class="card-header">
+		<h2>List items</h2>
+	</div>
+	<div class="card-list-item">
+		.card-list-item
+	</div>	
+	<div class="card-list-item">
+		.card-list-item
+	</div>						
+
+</div>	
+				</xmp>
+				
+			</div>	
+				
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card shadow-z-1">
+					<div class="card-header">
+						<h2>Con .shadow-z-1</h2>
+					</div>
+					<div class="card-body">
+						Con la clase shadow-z-*, puede controlarse el nivel de la tarjeta. Los niveles van de 0 a 5.
+					</div>	
 				</div>
+			
+			</div>
+			<div class="col-sm-6">
+			<xmp class="prettyprint lang-html">
+<div class="card shadow-z-1">
+	<div class="card-header">
+		<h2>Con .shadow-z-1</h2>
+	</div>
+	<div class="card-body">
+		Con la clase shadow-z-*, puede controlarse el nivel de la tarjeta. Los niveles van de 0 a 5.
+	</div>	
+</div>
+			</xmp>
+			</div>
+			
+		</div>
+
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-header card-header--primary">
+						<h2 class="text-center">Card Header w/ Primary Color</h2>
+					</div>
+					<div class="card-body">
+						.card-header--primary
+					</div>	
+				</div>
+				<div class="card">
+					<div class="card-header card-header--secondary">
+						<h2 class="text-center">Card Header w/ Secondary Color</h2>
+					</div>
+					<div class="card-body">
+						.card-header--secondary
+					</div>	
+				</div>
+				
+			</div>	
+
+			<div class="col-sm-6">
+				<xmp class="prettyprint lang-html">
+<div class="card">
+	<div class="card-header card-header--primary">
+		<h2 class="text-center">Card Header w/ Primary Color</h2>
+	</div>
+	<div class="card-body">
+		.card-header--primary
+	</div>	
+</div>
+
+
+
+<div class="card">
+	<div class="card-header card-header--secondary">
+		<h2 class="text-center">Card Header w/ Secondary Color</h2>
+	</div>
+	<div class="card-body">
+		.card-header--secondary
+	</div>	
+</div>
+				</xmp>
 				
 			</div>
 				
@@ -70,6 +158,98 @@
 
 	</div>
 
+</div>
+
+<!-- *** Textos *** -->
+
+
+<div class="row">
+	
+	<div class="col-sm-12">
+		<h2>Textos</h2>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-header card-header--secondary">
+						<div class="title-compound">
+							<div class="title-compound__title">
+								<h2>Título Compuesto</h2>
+							</div>
+							<div class="title-compound__description">
+								<p>Descripción del título o sección.</p>
+								
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						Inputs para campos que representan la cabecera o título de una estructura. Dan una idea al usuario de la jerarquía del campo ante el resto del formulario.
+					</div>	
+				</div>
+				
+			</div>	
+
+			<div class="col-sm-6">	
+				<xmp class="prettyprint lang-html">
+<div class="card-header card-header--secondary">
+	<div class="title-compound">
+		<div class="title-compound__title">
+			<h2>Título Compuesto</h2>
+		</div>
+		<div class="title-compound__description">
+			<p>Descripción del título o sección.</p>
+		
+		</div>
+	</div>
+</div>
+
+
+				</xmp>				
+			</div>
+				
+		</div>
+
+	</div>
+</div>
+
+<!-- *** Inputs *** -->
+
+
+<div class="row">
+	
+	<div class="col-sm-12">
+		<h2>Inputs</h2>
+		
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="card">
+					<div class="card-header">
+						<div class="form-group input--main">
+							<input type="text" class="form-control" placeholder="form-group.input--main">
+						</div>
+					</div>
+					<div class="card-body">
+						Inputs para campos que representan la cabecera o título de una estructura. Dan una idea al usuario de la jerarquía del campo ante el resto del formulario.
+					</div>	
+				</div>
+				
+			</div>	
+
+			<div class="col-sm-6">	
+				<xmp class="prettyprint lang-html">
+<div class="card-header">
+	<div class="form-group input--main">
+		<input type="text" class="form-control">
+	</div>
+</div>
+
+				
+				</xmp>			
+			</div>
+				
+		</div>
+
+	</div>
 </div>
 
 <!-- *** ANIMACIONES *** -->

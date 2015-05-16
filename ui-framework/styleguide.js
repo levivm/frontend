@@ -23,6 +23,8 @@
 					}, 1000);					
 
 				}
+
+				prettyPrint();
 			}
 
 			function DirectivesTests($scope, $timeout){

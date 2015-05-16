@@ -11157,6 +11157,34 @@ hr.on-light {
 .text-left {
   text-align: left;
 }
+.title-compound__title {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.title-compound__title > * {
+  margin: 0;
+}
+.title-compound__title h1,
+.title-compound__title h2,
+.title-compound__title h3,
+.title-compound__title h4,
+.title-compound__title h5,
+.title-compound__title h6 {
+  display: inline-block;
+  border-bottom: 1px solid white;
+  padding: .2em 1em;
+}
+.title-compound__description {
+  display: block;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  padding: .5em 1em;
+}
+.title-compound__description > * {
+  margin: 0;
+}
 .separate-above {
   margin-top: 3rem;
 }
@@ -11925,11 +11953,30 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .input--main input {
   font-size: 2.6em;
   height: auto !important;
-  font-weight: bold;
 }
 .input--main .floating-label {
   font-size: 2.6em;
   font-weight: bold;
+}
+.input--main.form-group .form-control {
+  text-align: center;
+  background-image: linear-gradient(#00b3b3, #00b3b3), linear-gradient(#cccccc, #cccccc);
+}
+.input--main ::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: rgba(128, 128, 128, 0.8);
+}
+.input--main :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: rgba(128, 128, 128, 0.8);
+}
+.input--main ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: rgba(128, 128, 128, 0.8);
+}
+.input--main :-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: rgba(128, 128, 128, 0.8);
 }
 .input--med {
   font-size: 1.3em;
@@ -12717,12 +12764,37 @@ tags-input input {
 }
 .card,
 .dropdown {
+  border-radius: 2px;
   margin: 1.5em 0;
   padding: 0;
 }
 .card .card-header {
+  -webkit-border-top-left-radius: 2px;
+  -webkit-border-top-right-radius: 2px;
+  -moz-border-radius-topleft: 2px;
+  -moz-border-radius-topright: 2px;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
   padding: 2em;
   color: rgba(0, 0, 0, 0.74);
+}
+.card .card-header--primary {
+  background: #ffcc33;
+  color: #a37a00;
+}
+.card .card-header--secondary {
+  background: #00b3b3;
+  color: white;
+}
+.card .card-icon {
+  display: inline-block;
+  margin-right: .5em;
+  position: relative;
+  top: 0.2em;
+}
+.card .card-icon:before {
+  font-size: 1.5em;
+  color: #00b3b3;
 }
 .card .card-body {
   padding: 2em;

@@ -16,20 +16,42 @@
 
 		input{
 			font-size: 2.6em;
-			height: auto !important;
-			font-weight: bold;			
+			height: auto !important;				
 		}
 
 		.floating-label{
 			font-size: 2.6em;
 			font-weight: bold;
 		}
+
+		&.form-group{			  
+
+			  .form-control{
+			  	text-align: center;
+				background-image: linear-gradient(@secondary, @secondary), linear-gradient(@input-border, @input-border);			  	
+			  }
+		}
+
+		::-webkit-input-placeholder { /* WebKit browsers */
+		    color:    fadeout(gray, 20%) ;
+		}
+		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		   color:    fadeout(gray, 20%) ;
+		}
+		::-moz-placeholder { /* Mozilla Firefox 19+ */
+		   color:    fadeout(gray, 20%) ;
+		}
+		:-ms-input-placeholder { /* Internet Explorer 10+ */
+		   color:    fadeout(gray, 20%) ;
+		} 
 	}
 
-	// TODO: Fix el input-group-lg para cuand se tiene un addon en material-bootstrap
+	// TODO: Arreglar el input-group-lg para cuando se tiene un addon en material-bootstrap
 	&--med{
 		font-size: 1.3em;
 	}
+
+
 	
 }
 

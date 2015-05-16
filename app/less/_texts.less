@@ -12,3 +12,38 @@
 .text-left{
     text-align: left;
 }
+
+.title-compound{
+    
+    &__title{
+        display: block;
+        width: 100%;
+        text-align: center;         
+
+        & > *{
+            margin: 0;
+        }     
+
+        h1,h2,h3,h4,h5,h6{
+            display: inline-block;    
+            border-bottom: 1px solid white;
+            padding: .2em 1em;
+        }
+        
+    }
+
+    &__description{        
+        display: block;
+        width: 100%;
+        margin: 0;
+        text-align: center;        
+        padding: .5em 1em;       
+
+        & > *{
+            margin: 0;
+        } 
+    }
+
+    
+}
+
