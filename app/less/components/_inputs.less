@@ -12,12 +12,9 @@
 .input{
 	
 	&--main{
-		margin-top: 0px;
+		// TODO: Improve this for be used only with .form-group
 
-		input{
-			font-size: 2.6em;
-			height: auto !important;				
-		}
+		margin-top: 0px;
 
 		.floating-label{
 			font-size: 2.6em;
@@ -26,10 +23,13 @@
 
 		&.form-group{			  
 
-			  .form-control{
+			.form-control{
+			  	font-size: 2.6em;
+				height: auto !important;
 			  	text-align: center;
 				background-image: linear-gradient(@secondary, @secondary), linear-gradient(@input-border, @input-border);			  	
-			  }
+			}
+			 
 		}
 
 		::-webkit-input-placeholder { /* WebKit browsers */
@@ -79,6 +79,7 @@ tags-input{
 		padding-right: 20px;
 		margin-right: 5px;
 		position: relative;
+		border-radius: @material-border-radius;
 
 		// Tag Text
 		span{
@@ -92,6 +93,7 @@ tags-input{
 		top: 50%;		
 		font-size: 23px;
 		line-height: 0px;
+		color: darken(@secondary, 10%);
 	}
 
 	input{

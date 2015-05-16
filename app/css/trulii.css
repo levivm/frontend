@@ -11181,6 +11181,7 @@ hr.on-light {
   margin: 0;
   text-align: center;
   padding: .5em 1em;
+  font-size: 1.1em;
 }
 .title-compound__description > * {
   margin: 0;
@@ -11950,15 +11951,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .input--main {
   margin-top: 0px;
 }
-.input--main input {
-  font-size: 2.6em;
-  height: auto !important;
-}
 .input--main .floating-label {
   font-size: 2.6em;
   font-weight: bold;
 }
 .input--main.form-group .form-control {
+  font-size: 2.6em;
+  height: auto !important;
   text-align: center;
   background-image: linear-gradient(#00b3b3, #00b3b3), linear-gradient(#cccccc, #cccccc);
 }
@@ -12072,6 +12071,7 @@ tags-input .tag-item {
   padding-right: 20px;
   margin-right: 5px;
   position: relative;
+  border-radius: 2px;
 }
 tags-input .tag-item span {
   padding-right: 5px;
@@ -12082,6 +12082,7 @@ tags-input .remove-button {
   top: 50%;
   font-size: 23px;
   line-height: 0px;
+  color: #007f80;
 }
 tags-input input {
   border: 0px;
@@ -12785,6 +12786,19 @@ tags-input input {
 .card .card-header--secondary {
   background: #00b3b3;
   color: white;
+}
+.card .card-header .editable-title {
+  position: relative;
+}
+.card .card-header .editable-title .form-control {
+  display: inline-block;
+  text-align: left;
+  padding-left: 1.5em;
+}
+.card .card-header .editable-title .card-icon {
+  position: absolute;
+  width: 18%;
+  display: inline-block;
 }
 .card .card-icon {
   display: inline-block;

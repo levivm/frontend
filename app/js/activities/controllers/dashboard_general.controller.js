@@ -77,6 +77,7 @@
         function _setUpdate() {
             vm.save_activity = _updateActivity;
             vm.creating = false;
+            vm.weHaveTitle = false;
             _setPreSaveInfo(presaveInfo)
                 .then(_successLoadActivity);
 
@@ -91,6 +92,8 @@
         function _setCreate() {
             vm.save_activity = _createActivity;
             vm.creating = true;
+            vm.weHaveTitle = false;
+
             _setPreSaveInfo(presaveInfo);
         }
 
