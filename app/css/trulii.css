@@ -13032,7 +13032,7 @@ button.toast-close-button {
   color: rgba(0, 0, 0, 0.74);
   display: block;
   width: 100%;
-  padding: .5em 1em;
+  padding: .8em 1em;
   font-weight: bold;
 }
 .dropdown__item:hover {
