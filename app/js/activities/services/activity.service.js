@@ -40,7 +40,13 @@
         }
 
         Activity.prototype = {
-
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#setData
+             * @description Given an activity data, fill 'this' object with that data
+             * @param {activityData} activityData The activity data to set 
+             * @methodOf trulii.activities.services.Activity
+             */
             setData : function (activityData) {
                 angular.extend(this, activityData);
                 that.resetSections();
@@ -55,11 +61,22 @@
                 that.checkSections();
             },
 
-
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#create
+             * @description Create an activity
+             * @methodOf trulii.activities.services.Activity
+             */
             create : function () {
                 return $http.post(api.activities(), this);
             },
-
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#load
+             * @description Get an activity from backend given a id
+             * @param {number} id The activity id to retrieve 
+             * @methodOf trulii.activities.services.Activity
+             */
             load : function (id) {
                 if (!id) {
                     id = that.id;
@@ -71,7 +88,12 @@
                         return that;
                     });
             },
-
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#update
+             * @description Update the activity using 'this' object internal values
+             * @methodOf trulii.activities.services.Activity
+             */
             update : function () {
                 return $http({
                     method : 'put',
@@ -85,10 +107,25 @@
                 });
             },
 
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#addPhoto
+             * @description Publish an activity 
+             * @param {file} image The image to add.
+             * @param {object} extra_data The extra data to send among the image
+             * @methodOf trulii.activities.services.Activity
+             */
             addPhoto : function (image,extra_data) {
                 return UploadFile.upload_file(image, api.gallery(this.id),extra_data);
             },
 
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#deletePhoto
+             * @description Publish an activity 
+             * @param {file} image The image to delete.
+             * @methodOf trulii.activities.services.Activity
+             */
             deletePhoto : function (image) {
                 return $http({
                     method : 'put',
@@ -96,7 +133,12 @@
                     data : {'photo_id' : image.id}
                 });
             },
-
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#publish
+             * @description Publish an activity 
+             * @methodOf trulii.activities.services.Activity
+             */
             publish : function () {
                 return $http({
                     method : 'put',
@@ -106,6 +148,12 @@
                         that.published = true;
                     });
             },
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#unpublish
+             * @description Unpublish an activity 
+             * @methodOf trulii.activities.services.Activity
+             */
             unpublish: function(){
 
                 return $http({
@@ -273,7 +321,6 @@
                     var main_photo = _.first(_.remove(photos, 'main_photo', true));
                     var hasMainPhoto = !!main_photo;
                     isCompleted = hasMainPhoto;
-                    console.log("has main photo",hasMainPhoto);
                     break;
                 case 'return_policy':
                     //TODO reemplazar por comentario al cambiar key en backend
