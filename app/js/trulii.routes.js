@@ -181,7 +181,26 @@
                 templateUrl: 'modalContainer'
                 //templateUrl: 'partials/authentication/register.html'
             })
-
+            .state('student-dashboard', {
+                abstract:true,
+                url:'/students/dashboard/',
+                controller: 'StudentDashboardCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'partials/students/dashboard.html',
+                resolve:{
+                    cities:getAvailableCities,
+                    // organizer : getCurrentOrganizer
+                },
+                data: {
+                    requiredAuthentication : true
+                }
+            })
+            .state('student-dashboard.account', {
+                url:'account',
+                controller: 'StudentAccountCtrl',
+                controllerAs: 'vm',
+                templateUrl: 'partials/students/dashboard_account.html'
+            })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl',

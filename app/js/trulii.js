@@ -16,6 +16,7 @@
 	  'trulii.authentication',
 	  'trulii.ui-components',
 	  'trulii.organizers',
+	  'trulii.students',
 	  'trulii.activities',
 	  'trulii.locations',
 	  'trulii.landing',
