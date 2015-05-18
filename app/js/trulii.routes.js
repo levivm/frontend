@@ -36,6 +36,10 @@
                 templateUrl: 'partials/browsing.html'
             })
 
+            .state('dash', {                
+                templateUrl: 'partials/browsing.html'
+            })
+
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
@@ -230,7 +234,7 @@
                     activities: getOrganizerActivities
                 }
             })
-            .state('activities-new', {
+            .state('dash.activities-new', {
                 abstract: true,
                 url: '/activities/new',
                 data: {
@@ -243,7 +247,7 @@
                 },
                 templateUrl: 'partials/activities/create.html'
             })
-            .state('activities-new.general', {
+            .state('dash.activities-new.general', {
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
