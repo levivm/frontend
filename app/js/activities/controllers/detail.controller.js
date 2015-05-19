@@ -43,13 +43,9 @@
         }
 
         function getMapStyle(){
-            //return {
-            //    'width': '100%',
-            //    'height': '500px'
-            //};
             return {
                 'width': $window.innerWidth + 'px',
-                'height': '480px'
+                'height': '240px'
             };
         }
 

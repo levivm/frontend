@@ -1,13 +1,15 @@
 <div class="row">
     <div class="col-md-12">
-        <div class="well-plain">
+        <h2>
             Hasta ahora
             <ng-pluralize count="vm.totalItems"
-                          when="{'one': 'va 1 asistente.',
-                         'other': 'van {} asistentes.'}">
+                          when="{
+                          '0': 'esta actividad no tiene asistentes ¡Sé tú el primero!',
+                          'one': 'va 1 asistente ¡Faltas tú!',
+                         'other': 'van {} asistentes ¡Faltas tú!'
+                         }">
             </ng-pluralize>
-            ¡Faltas tú!
-        </div>
+        </h2>
     </div>
 </div>
 

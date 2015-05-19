@@ -15,12 +15,13 @@
         .module('trulii.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$q', 'Authentication', '$state', 'validatedData', 'Elevator'];
+    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator'];
 
-    function RegisterController($q, Authentication, $state, validatedData, Elevator) {
+    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator) {
 
         var vm = this;
         var selectedMethod = null;
+        var fromState = null;
 
         vm.auth = {};
         vm.errors = {};
@@ -59,12 +60,8 @@
 
         function fbRegister(){
             Authentication.facebookLogin()
-                .then(success, error);
+                .then(_registerSuccess, error);
 
-            function success(){
-                // $state.go('home');
-                $state.go("brow.home")
-            }
             function error(){
                 alert("Couldn't Register with Facebook");
                 vm.facebook.error = true;
@@ -76,12 +73,7 @@
             vm.auth.user_type = vm.user_type;
 
             return Authentication.register(vm.auth)
-                .then(function (response) {
-                    // $state.go("home");
-                    $state.go("brow.home");
-                    
-                    //TODO HERE SHOULD SHOW A POP UP
-                }, _registerError);
+                .then(_registerSuccess, _registerError);
 
             function _registerError(response) {
                 _errored(response.data);
@@ -103,6 +95,14 @@
 
         }
 
+        function _registerSuccess(){
+            if(!!fromState.state){
+                $state.go(fromState.state, fromState.params);
+            } else {
+                $state.go("home");
+            }
+        }
+
         function setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
@@ -119,6 +119,8 @@
         }
 
         function initialize(){
+            fromState = $stateParams.from;
+            console.log(fromState);
             setStrings();
             if (validatedData) {
                 vm.auth.email = validatedData.email;

@@ -5,16 +5,14 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', 'ActivitiesManager', 'activity', 'calendar'];
+    ActivityDetailEnrollController.$inject = ['$state', 'ActivitiesManager', 'Authentication', 'activity', 'calendar', 'Toast'];
 
-    function ActivityDetailEnrollController($state, ActivitiesManager, activity, calendar) {
+    function ActivityDetailEnrollController($state, ActivitiesManager, Authentication, activity, calendar, Toast) {
         var pc = this;
-
-        pc.calendar_selected = null;
-        //pc.changeCalendarSelected = changeCalendarSelected;
         pc.minus = minus;
         pc.plus = plus;
         pc.enroll = enroll;
+        pc.isAnonymous = isAnonymous;
 
         initialize();
 
@@ -27,16 +25,14 @@
         }
 
         function plus() {
-            if (pc.quantity + pc.calendar.assistants.length <= pc.capacity) {
+            if (pc.quantity + pc.calendar.assistants.length < pc.capacity) {
                 pc.quantity += 1;
                 pc.assistants.push({});
                 _calculateAmount();
+            } else {
+                Toast.warning('El máximo de cupos disponibles es ' + pc.quantity);
             }
         }
-
-        //function changeCalendarSelected(calendar) {
-        //    pc.calendar_selected = calendar;
-        //}
 
         function enroll() {
             _clearErrors();
@@ -56,26 +52,22 @@
                 .error(_error);
         }
 
-        function initialize(){
-            pc.errors = {};
-            pc.capacity = calendar.capacity > 10;
-            pc.amount = calendar.session_price;
+        function _successCreation(response) {
+            calendar.addAssistants(response.assistants);
+            pc.success = true;
+            $state.go('activities-enroll.success');
+        }
 
-            if(isAllBooked()){
-                pc.quantity = 0;
-                pc.assistants = [];
-            } else {
-                pc.quantity = 1;
-                pc.assistants = [{}];
-            }
+        function _calculateAmount() {
+            pc.amount = pc.quantity * calendar.session_price;
+        }
 
-            pc.calendar = calendar;
-            pc.activity = activity;
-            pc.success = false;
-            pc.calendar_selected = activity.chronograms[0];
+        function isAllBooked(){
+            return calendar.capacity <= calendar.assistants.length;
+        }
 
-            console.log(activity);
-            console.log(calendar);
+        function isAnonymous(){
+            return Authentication.isAnonymous();
         }
 
         function _clearErrors() {
@@ -95,18 +87,33 @@
             })
         }
 
-        function _successCreation(response) {
-            calendar.addAssistants(response.assistants);
-            pc.success = true;
-            $state.go('activities-enroll.success');
-        }
+        function initialize(){
+            pc.stateInfo = {
+                from: {
+                    state : $state.current.name,
+                    params : $state.params
+                }
+            };
 
-        function _calculateAmount() {
-            pc.amount = pc.quantity * calendar.session_price;
-        }
+            pc.errors = {};
+            pc.capacity = calendar.capacity;
+            pc.amount = calendar.session_price;
 
-        function isAllBooked(){
-            return calendar.capacity <= calendar.assistants.length;
+            if(isAllBooked()){
+                pc.quantity = 0;
+                pc.assistants = [];
+            } else {
+                pc.quantity = 1;
+                pc.assistants = [{}];
+            }
+
+            pc.calendar = calendar;
+            pc.activity = activity;
+            pc.success = false;
+
+            console.log(activity);
+            console.log(calendar);
+            console.log($state);
         }
     }
 })();

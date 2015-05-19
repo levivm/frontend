@@ -51,6 +51,12 @@
                 controller: 'RegisterController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/register.html',
+                params: {
+                    'from': {
+                        'state': undefined,
+                        'params': {}
+                    }
+                },
                 resolve:{
                     validatedData: tokenSignupValidation
                 }
@@ -68,7 +74,14 @@
                 url:'/login',
                 controller: 'LoginController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/authentication/login.html'
+                templateUrl: 'partials/authentication/login.html',
+                params: {
+                    'from' : {
+                        'state' : undefined,
+                        'params' : {}
+
+                    }
+                }
             })
             .state('logout',{
                 url:'/logout',
