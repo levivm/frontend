@@ -44,9 +44,7 @@
             var deferred = $q.defer();
 
             if(force_fetch){
-                console.log("FETCHING NEW");
                 _load(idOrganizer, deferred);
-                console.log("FETCHING NEW",deferred.promise);
                 return deferred.promise;
             }
 

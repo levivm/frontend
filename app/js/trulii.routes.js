@@ -185,6 +185,7 @@
                 templateUrl: 'modalContainer'
                 //templateUrl: 'partials/authentication/register.html'
             })
+
             .state('organizer-landing', {
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl',
@@ -203,7 +204,7 @@
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
-                    organizer : getOrganizer
+                    organizer : getCurrentOrganizer
                 },
                 data: {
                     requiredAuthentication : true
@@ -234,7 +235,19 @@
                     activities: getOrganizerActivities
                 }
             })
+
+            .state('organizer-profile', {
+                url: '/organizers/{organizer_id:int}/profile',
+                controller: 'OrganizerProfileController',
+                controllerAs: 'vm',
+                templateUrl: 'partials/organizers/profile.html',
+                resolve: {
+                    organizer: getOrganizer,
+                    activities: getOrganizerActivities
+                }
+            })
             .state('dash.activities-new', {
+
                 abstract: true,
                 url: '/activities/new',
                 data: {
@@ -243,7 +256,7 @@
                 resolve: {
                     presaveInfo: getPresaveActivityInfo,
                     activity: getActivity,
-                    organizer : getOrganizer
+                    organizer : getCurrentOrganizer
                 },
                 templateUrl: 'partials/activities/create.html'
             })
@@ -264,7 +277,7 @@
                 resolve: {
                     presaveInfo: getPresaveActivityInfo,
                     activity: getActivity,
-                    organizer : getOrganizer
+                    organizer : getCurrentOrganizer
                 },
                 controllerAs: 'pc',
                 templateUrl: 'partials/activities/edit.html'
@@ -310,12 +323,14 @@
                     calendar: getCalendar
                 }
             })
+
             .state('dash.activities-edit.location', {
+
                 url:'location',
                 controller: 'ActivityDBLocationController',
                 resolve:{
                     cities: getAvailableCities,
-                    organizer : getOrganizer
+                    organizer : getCurrentOrganizer
 
                 },
                 controllerAs: 'vm',
@@ -416,26 +431,43 @@
         return Authentication.getAuthenticatedAccount();
     }
 
-    getOrganizer.$inject = ['Authentication', 'OrganizersManager'];
+    getCurrentOrganizer.$inject = ['$timeout','$state','Authentication', 'OrganizersManager'];
 
-    function getOrganizer(Authentication, OrganizersManager){
+    function getCurrentOrganizer($timeout,$state,Authentication, OrganizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var is_organizer = true;
 
         if(authenticatedUser){
             is_organizer = authenticatedUser.user_type === 'O';
+            if (!is_organizer){
+
+                $timeout(function() {
+                  // This code runs after the authentication promise has been rejected.
+                  // Go to the log-in page
+                     $state.go('home');
+                });
+
+
+                return $q.reject()
+            }
         }
+
 
         var force_fetch = true;
         
         return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
 
-        // var result = is_organizer ? new Organizer(authenticatedUser) : $q.reject();
-        // console.log('getOrganizer. ',result);
-        // console.log(result);
-        // return result;
     }
+
+
+
+    getOrganizer.$inject = ['$stateParams', 'OrganizersManager'];
+
+    function getOrganizer($stateParams, OrganizersManager) {
+        return OrganizersManager.getOrganizer($stateParams.organizer_id)
+    }
+
 
     getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
 
