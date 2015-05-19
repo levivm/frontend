@@ -6,27 +6,27 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailInfoController', ActivityDetailInfoController);
 
-    ActivityDetailInfoController.$inject = ['uiGmapGoogleMapApi', 'activity'];
+    ActivityDetailInfoController.$inject = ['activity'];
 
-    function ActivityDetailInfoController(uiGmapGoogleMapApi, activity) {
+    function ActivityDetailInfoController(activity) {
         var vm = this;
 
         vm.activity = activity;
+        vm.getActivityVideoUrl = getActivityVideoUrl;
 
-        uiGmapGoogleMapApi.then(function(maps) {
-                var position = new maps.LatLng(activity.location.point[0], activity.location.point[1]);
-                var gmapOptions = {
-                    zoom: 16,
-                    center: position
-                };
+        initialize();
 
-                var gmap = new maps.Map(document.getElementById('map-canvas'), gmapOptions);
+        function getActivityVideoUrl(){
+            if(!!vm.activity.youtube_video_url){
+                return vm.activity.youtube_video_url;
+            } else {
+                return 'https://www.youtube.com/watch?v=Gk0qepLU48o';
+            }
 
-                var marker = new maps.Marker({
-                    position: position,
-                    map: gmap
-                });
-        });
+        }
+
+        function initialize(){
+        }
     }
 
 })();

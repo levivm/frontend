@@ -1,32 +1,138 @@
+<div class="detail-cover-container">
+    <div class="detail-cover" ng-style="{ 'background-image': 'url('+pc.activity.photos[0].photo+')' }"></div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <i class="mdi-action-favorite-outline icon-lg"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h2>{{::pc.city}}</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>
+                        <i class="mdi-action-event"></i>
+                        <span ng-bind="::pc.calendar.initial_date | date: 'dd MMMM yyyy'"></span>
+                    </h3>
+                </div>
+                <div class="col-md-4">
+                    <div class="pull-right">
+                        <h3><span ng-bind="::pc.calendar.session_price | currency"></span></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>{{::pc.activity.title}}</h1>
+                    <h3 class="text-muted">{{::pc.activity.short_description}}</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="tag-container pull-right">
+                        <div class="tag-item" ng-repeat="tag in pc.activity.tags">{{::tag}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-1">
+                <div class="detail-organizer">
+                    <a ui-sref="organizer-profile({organizer_id: pc.organizer.id})">
+                        <img class="detail-organizer-picture"
+                             ng-src="{{::pc.getOrganizerPhoto()}}"
+                             alt="{{::pc.organizer.name}}"/>
+                        <div>
+                            Ver Perfil
+                        </div>
+                    </a>
+                    <button class="btn btn-primary">Contactar</button>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h3>
+                    <span class="detail-organizer-name" ng-bind="::pc.organizer.name"></span>
+                </h3>
+                <div>
+                    <i class="mdi-action-grade"
+                       ng-repeat="star in pc.activity.rating track by star"
+                       ng-style="pc.getStarStyle(star)"></i>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="pull-right">
+                    <a class="btn btn-lg btn-primary"
+                       ng-show="pc.activity.published"
+                       ui-sref="activities-enroll({activity_id: pc.activity.id, calendar_id: pc.calendar_selected.id})">Inscribirme</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
-    <div ng-style="{ 'background-image': 'url('+pc.activity.photos[0].photo+')' }">
-        <div>{{::pc.city}}</div>
-        <div>{{::pc.calendar.initial_date | date: 'dd MMMM yyyy'}}</div>
-        <div>{{::pc.calendar.session_price}}</div>
-        <div>{{::pc.activity.title}}</div>
-        <div>{{::pc.activity.short_description}}</div>
-        <div ng-repeat="tag in pc.activity.tags">{{::tag}}</div>
-        <div><a ng-show="pc.activity.published" ui-sref="activities-enroll({activity_id: pc.activity.id, calendar_id: pc.calendar_selected.id})">Inscribirme</a></div>
+    <div class="row">
+        <div class="col-md-8 col-md-push-2">
+            <tabset justified="true">
+                <tab heading="Información" select="pc.changeState('info')"></tab>
+                <tab heading="Calendario" select="pc.changeState('calendar')"></tab>
+                <tab heading="Asistentes" select="pc.changeState('attendees')"></tab>
+            </tabset>
+        </div>
     </div>
 
-    <div>
-        <img ng-src="{{::pc.organizer.photo}}" alt="" width="120" height="120"/>
-
-        <div>{{::pc.organizer.name}}</div>
+    <div class="row remarks-container">
+        <div class="col-md-2 col-md-offset-2 text-center">
+            <div>
+                <i class="mdi-action-description icon-lg"></i>
+            </div>
+            <h3>Categoria</h3>
+            <div class="text-muted">
+                <strong><span ng-bind="::pc.activity.category_display"></span></strong>
+            </div>
+        </div>
+        <div class="col-md-2 text-center">
+            <div>
+                <i class="mdi-action-list icon-lg"></i>
+            </div>
+            <h3>Sub-Categoría</h3>
+            <div class="text-muted">
+                <strong><span ng-bind="::pc.activity.sub_category_display"></span></strong>
+            </div>
+        </div>
+        <div class="col-md-2 text-center">
+            <div>
+                <i class="mdi-action-assessment icon-lg"></i>
+            </div>
+            <h3>Nivel</h3>
+            <div class="text-muted">
+                <strong><span ng-bind="::pc.activity.level_display"></span></strong>
+            </div>
+        </div>
+        <div class="col-md-2 text-center">
+            <div>
+                <i class="mdi-action-schedule icon-lg"></i>
+            </div>
+            <h3>Duración</h3>
+            <div class="text-muted">
+                <strong><span>3 horas</span></strong>
+            </div>
+        </div>
     </div>
 
-    <tabset justified="true">
-        <tab heading="Información" select="pc.changeState('info')"></tab>
-        <tab heading="Calendario" select="pc.changeState('calendar')"></tab>
-        <tab heading="Asistentes" select="pc.changeState('attendees')"></tab>
-    </tabset>
-
-    <div>
-        <span>Tipo de Actividad {{::pc.activity.type_display}}</span>
-        <span>Sub-categoría {{::pc.activity.sub_category_display}}</span>
-        <span>Nivel {{::pc.activity.level_display}}</span>
-        <span>Duración 3 horas</span>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div ui-view></div>
+        </div>
     </div>
+</div>
 
-    <div ui-view></div>
+<div class="row">
+    <div id="map-canvas" ng-style="::pc.getMapStyle()"></div>
 </div>

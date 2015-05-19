@@ -1,39 +1,127 @@
-<div ng-show="!pc.success">
-    <form name="pc.enrollForm" novalidate ng-submit="pc.enroll()">
-        <div>
-            <a ng-click="pc.minus()" style="cursor: pointer;">-</a>
-            <span>{{ pc.quantity }}</span>
-            <a ng-click="pc.plus()" style="cursor: pointer;">+</a>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <tr class="text-center">
+                        <!--<th></th>-->
+                        <th>Fecha de Inicio</th>
+                        <th>Nro. de Sesiones</th>
+                        <th>Cupos restantes</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                    <tr class="text-center" ng-repeat="calendar in pc.activity.chronograms track by $index">
+                        <!--<td>-->
+                            <!--<label class="sr-only" ng-attr-for="{{'calendar_' + calendar.id}}"></label>-->
+                            <!--<input ng-attr-id="{{'calendar_' + calendar.id}}"type="radio" name="calendar"-->
+                                   <!--ng-model="vm.calendar_selected" ng-value="calendar"-->
+                                   <!--ng-change="pc.changeCalendarSelected(calendar)"/>-->
+                        <!--</td>-->
+                        <td><span ng-bind="::calendar.initial_date | date:'dd MMMM yyyy'"></span></td>
+                        <td><span ng-bind="::calendar.number_of_sessions"></span></td>
+                        <td><span ng-bind="::(calendar.capacity - calendar.assistants.length)"></span></td>
+                        <td><span ng-bind="::calendar.session_price | currency"></span></td>
+                        <td class="text-center">
+                            <a ng-click="pc.minus()" style="cursor: pointer;">-</a>
+                            <span>{{ pc.quantity }}</span>
+                            <a ng-click="pc.plus()" style="cursor: pointer;">+</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <strong>Precio</strong>
+                        </td>
+                        <td colspan="4" class="pull-right">
+                            {{ pc.amount | currency }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
-
-        <div>
-            precio: {{ pc.amount | currency }}
+    </div>
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover">
+                    <tr class="text-center">
+                        <th colspan="2">Cronogramas</th>
+                    </tr>
+                    <tr ng-repeat="session in pc.calendar_selected.sessions">
+                        <td><span ng-bind="session.date | date:'EEEE, dd MMMM'"></span></td>
+                        <td class="pull-right">{{ session.start_time | date:'h:mma'}} - {{ session.end_time | date:'h:mma' }}</td>
+                    </tr>
+                </table>
+            </div>
         </div>
+    </div>
+    <div ng-show="!pc.success">
+        <form class="form-horizontal" name="pc.enrollForm" novalidate ng-submit="pc.enroll()">
 
-        <div class="form-group" ng-repeat="assistant in pc.assistants">
-            <input class="form-control" name="first_name" type="text" placeholder="Nombre"
-                   ng-model="assistant.first_name" required/>
-
-            <div class="errors" ng-show="pc.enrollForm.first_name.$invalid && !pc.enrollForm.first_name.$dirty">
-                <span>{{ pc.errors.assistants[$index].first_name[0] }}</span>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1>Asistentes</h1>
+                </div>
             </div>
 
-            <input class="form-control" name="last_name" type="text" placeholder="Apellido"
-                   ng-model="assistant.last_name" required/>
+            <fieldset>
 
-            <div class="errors" ng-show="pc.enrollForm.last_name.$invalid && !pc.enrollForm.last_name.$dirty">
-                <span>{{ pc.errors.assistants[$index].last_name[0] }}</span>
-            </div>
+                <div ng-repeat="assistant in pc.assistants">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h3>Asistente #<span ng-bind="$index + 1"></span></h3>
 
-            <input class="form-control" name="email" type="email" placeholder="Email" ng-model="assistant.email"
-                   required/>
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Nombre</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" name="first_name" type="text"
+                                           placeholder="Nombre"
+                                           ng-model="assistant.first_name" required/>
+                                </div>
 
-            <div class="errors" ng-show="pc.enrollForm.email.$invalid && !pc.enrollForm.email.$dirty">
-                <span>{{ pc.errors.assistants[$index].email[0] }}</span>
-            </div>
-        </div>
-        <button type="submit" class="btn btn-default">Inscribir</button>
-    </form>
+                            </div>
+
+                            <div class="errors" ng-show="pc.enrollForm.first_name.$invalid && !pc.enrollForm.first_name.$dirty">
+                                <span>{{ pc.errors.assistants[$index].first_name[0] }}</span>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Apellido</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" name="last_name" type="text"
+                                           ng-model="assistant.last_name"
+                                           placeholder="Apellido" required/>
+                                </div>
+                                <div class="errors" ng-show="pc.enrollForm.last_name.$invalid && !pc.enrollForm.last_name.$dirty">
+                                    <span>{{ pc.errors.assistants[$index].last_name[0] }}</span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Email</label>
+                                <div class="col-md-10">
+                                    <input class="form-control col-md-2" name="email" type="email"
+                                           ng-model="assistant.email"
+                                           placeholder="Email"
+                                           required/>
+                                </div>
+                                <div class="errors" ng-show="pc.enrollForm.email.$invalid && !pc.enrollForm.email.$dirty">
+                                    <span>{{ pc.errors.assistants[$index].email[0] }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <button type="submit" class="btn btn-lg btn-primary pull-right">Inscribir</button>
+                    </div>
+                </div>
+
+            </fieldset>
+        </form>
+    </div>
 </div>
 
 <div ui-view></div>

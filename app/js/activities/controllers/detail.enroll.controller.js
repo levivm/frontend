@@ -10,30 +10,35 @@
     function ActivityDetailEnrollController($state, ActivitiesManager, activity, calendar) {
         var pc = this;
 
+        pc.calendar_selected = null;
+        //pc.changeCalendarSelected = changeCalendarSelected;
+        pc.minus = minus;
+        pc.plus = plus;
+        pc.enroll = enroll;
+
         initialize();
 
-        pc.getCapacity = function () {
-            return new Array(pc.capacity)
-        };
-
-        pc.minus = function () {
+        function minus() {
             if (pc.quantity > 1) {
                 pc.quantity -= 1;
                 pc.assistants.pop();
                 _calculateAmount();
             }
-        };
+        }
 
-        pc.plus = function () {
-            console.log("clicning",pc.quantity,pc.capacity);
-            if (pc.quantity < pc.capacity) {
+        function plus() {
+            if (pc.quantity + pc.calendar.assistants.length <= pc.capacity) {
                 pc.quantity += 1;
                 pc.assistants.push({});
                 _calculateAmount();
             }
-        };
+        }
 
-        pc.enroll = function () {
+        //function changeCalendarSelected(calendar) {
+        //    pc.calendar_selected = calendar;
+        //}
+
+        function enroll() {
             _clearErrors();
 
             var student_data = JSON.parse(localStorage.getItem('ls.user'));
@@ -49,20 +54,28 @@
             ActivitiesManager.enroll(activity.id, data)
                 .success(_successCreation)
                 .error(_error);
-        };
+        }
 
         function initialize(){
             pc.errors = {};
-            pc.capacity = calendar.capacity > 10 ? 10 : calendar.capacity;
-            pc.quantity = 1;
-            pc.assistants = [{}];
+            pc.capacity = calendar.capacity > 10;
             pc.amount = calendar.session_price;
+
+            if(isAllBooked()){
+                pc.quantity = 0;
+                pc.assistants = [];
+            } else {
+                pc.quantity = 1;
+                pc.assistants = [{}];
+            }
 
             pc.calendar = calendar;
             pc.activity = activity;
             pc.success = false;
+            pc.calendar_selected = activity.chronograms[0];
 
-
+            console.log(activity);
+            console.log(calendar);
         }
 
         function _clearErrors() {
@@ -90,6 +103,10 @@
 
         function _calculateAmount() {
             pc.amount = pc.quantity * calendar.session_price;
+        }
+
+        function isAllBooked(){
+            return calendar.capacity <= calendar.assistants.length;
         }
     }
 })();

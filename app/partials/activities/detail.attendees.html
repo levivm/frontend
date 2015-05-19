@@ -1,14 +1,30 @@
-<div>
-    Hasta ahora
-    <ng-pluralize count="vm.totalItems"
-                  when="{'one': 'va 1 asistente.',
-                     'other': 'van {} asistentes.'}">
-    </ng-pluralize>
-    ¡Faltas tú!
-    <hr/>
-    <div ng-repeat="assistant in vm.assistants">
-        {{::assistant.first_name}}
+<div class="row">
+    <div class="col-md-12">
+        <div class="well-plain">
+            Hasta ahora
+            <ng-pluralize count="vm.totalItems"
+                          when="{'one': 'va 1 asistente.',
+                         'other': 'van {} asistentes.'}">
+            </ng-pluralize>
+            ¡Faltas tú!
+        </div>
     </div>
+</div>
 
-    <pagination total-items="vm.totalItems" ng-model="vm.currentPage" ng-change="vm.pageChanged()" items-per-page="vm.itemsPerPage"></pagination>
+<div class="row">
+    <div class="user-thumbnail-container">
+        <div class="user-thumbnail" ng-repeat="assistant in vm.assistants track by assistant.email">
+            <img class="user-img" ng-src="{{vm.getAssistantPicture(assistant)}}"
+                 alt="{{::assistant.first_name}}"/>
+            <h3 ng-bind="::assistant.first_name"></h3>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <pagination class="pull-right" total-items="vm.totalItems" ng-model="vm.currentPage"
+                    ng-change="vm.pageChanged()"
+                    items-per-page="vm.itemsPerPage"></pagination>
+    </div>
 </div>
