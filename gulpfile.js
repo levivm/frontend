@@ -335,15 +335,15 @@ gulp.task('serve-ngdocs', function() {
     });
 });
 
-var STYLEGUIDE_ROOT = __dirname + '/styleguide/';
-var STYLEGUIDE_PORT = 9001;
+var UIFRAMEWORK_ROOT = __dirname + '/ui-framework/';
+var UIFRAMEWORK_PORT = 9001;
 
 /** ng-docs Connect Task for documentation, can be accessed through 'api/' **/
-gulp.task('serve-styleguide', function() {
-    gutil.log('Starting server on ' + STYLEGUIDE_PORT);
+gulp.task('serve-uiframework', function() {
+    gutil.log('Starting server on ' + UIFRAMEWORK_PORT);
     connect.server({
-        root: [STYLEGUIDE_ROOT, APP_ROOT],
-        port: STYLEGUIDE_PORT,
+        root: [UIFRAMEWORK_ROOT, APP_ROOT],
+        port: UIFRAMEWORK_PORT,
         livereload: true
     });
 });
@@ -398,9 +398,9 @@ gulp.task('watch', function() {
 });
 
 /** Serve Documentation Tasks (ng-docs styleguide) **/
-gulp.task('serve-docs', ['serve-ngdocs', 'serve-styleguide']);
+gulp.task('serve-docs', ['serve-ngdocs', 'serve-uiframework']);
 
-gulp.task('serve-all', ['serve', 'serve-ngdocs', 'serve-styleguide']);
+gulp.task('serve-all', ['serve', 'serve-ngdocs', 'serve-uiframework']);
 
 /** Serve task for development mode **/
 gulp.task('serve', ['less-compile', 'injector', 'connect', 'watch']);

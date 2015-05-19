@@ -36,6 +36,10 @@
                 templateUrl: 'partials/browsing.html'
             })
 
+            .state('dash', {                
+                templateUrl: 'partials/browsing.html'
+            })
+
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
@@ -231,6 +235,7 @@
                     activities: getOrganizerActivities
                 }
             })
+
             .state('organizer-profile', {
                 url: '/organizers/{organizer_id:int}/profile',
                 controller: 'OrganizerProfileController',
@@ -241,7 +246,8 @@
                     activities: getOrganizerActivities
                 }
             })
-            .state('activities-new', {
+            .state('dash.activities-new', {
+
                 abstract: true,
                 url: '/activities/new',
                 data: {
@@ -254,14 +260,14 @@
                 },
                 templateUrl: 'partials/activities/create.html'
             })
-            .state('activities-new.general', {
+            .state('dash.activities-new.general', {
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_general.html'
                 //templateUrl: 'modalContainer'
             })
-            .state('activities-edit', {
+            .state('dash.activities-edit', {
                 abstract:true,
                 url:'/activities/edit/{activity_id:int}/',
                 controller: 'ActivityDashboardCtrl',
@@ -277,7 +283,7 @@
                 templateUrl: 'partials/activities/edit.html'
                 //templateUrl: 'modalContainer'
             })
-            .state('activities-edit.general', {
+            .state('dash.activities-edit.general', {
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
@@ -288,7 +294,7 @@
                 templateUrl: 'partials/activities/dashboard_general.html'
                 //templateUrl: 'modalContainer'
             })
-            .state('activities-edit.detail', {
+            .state('dash.activities-edit.detail', {
                 url:'detail',
                 controller: 'ActivityDBDetailController',
                 // resolve:{
@@ -298,7 +304,7 @@
                 templateUrl: 'partials/activities/dashboard_detail.html'
                 //templateUrl: 'modalContainer'
             })
-            .state('activities-edit.calendars', {
+            .state('dash.activities-edit.calendars', {
                 url:'calendars',
                 controller: 'ActivityCalendarsController',
                 controllerAs: 'vm',
@@ -308,7 +314,7 @@
                 }
                 //templateUrl: 'modalContainer'
             })
-            .state('activities-edit.calendars.detail', {
+            .state('dash.activities-edit.calendars.detail', {
                 url:'?id',
                 controller: 'ActivityCalendarController',
                 controllerAs: 'vm',
@@ -318,7 +324,8 @@
                 }
             })
 
-            .state('activities-edit.location', {
+            .state('dash.activities-edit.location', {
+
                 url:'location',
                 controller: 'ActivityDBLocationController',
                 resolve:{
@@ -329,19 +336,19 @@
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_location.html'
             })
-            .state('activities-edit.instructors', {
+            .state('dash.activities-edit.instructors', {
                 url:'instructors',
                 controller: 'ActivityDBInstructorsController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_instructors.html'
             })
-            .state('activities-edit.gallery', {
+            .state('dash.activities-edit.gallery', {
                 url:'gallery',
                 controller: 'ActivityDBGalleryController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_gallery.html'
             })
-            .state('activities-edit.return-policy', {
+            .state('dash.activities-edit.return-policy', {
                 url:'return-policy',
                 controller: 'ActivityDBReturnPDashboard',
                 controllerAs: 'vm',

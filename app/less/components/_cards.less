@@ -3,47 +3,75 @@
 @import url('../_trulii-variables');
 
 .card{	
+	border-radius: @material-border-radius;
 	margin: 1.5em 0;
 	padding: 0;
 
 	.card-header{
-		background: @card-header-background;
-		padding: 3em @card-padding;
-
-		*{
-			color: @lightbg-text;
+		-webkit-border-top-left-radius: @material-border-radius;
+		-webkit-border-top-right-radius: @material-border-radius;
+		-moz-border-radius-topleft: @material-border-radius;
+		-moz-border-radius-topright: @material-border-radius;
+		border-top-left-radius: @material-border-radius;
+		border-top-right-radius: @material-border-radius;
+		
+		padding: @card-padding;
+		color: @lightbg-text;
+		
+		&--primary{
+			background: @primary;
+			color: darken(@primary-dark, 15%);
 		}
 
-		.form-group{			  
-
-			  .form-control{
-			  	text-align: center;
-				background-image: linear-gradient(@secondary, @secondary), linear-gradient(white, white);			  	
-			  }
+		&--secondary{
+			background: @secondary;
+			color: white;
 		}
 
-		::-webkit-input-placeholder { /* WebKit browsers */
-		    color:    fadeout(white, 20%) ;
+		.editable-title{
+			position: relative;
+			// TODO: This must be extend from .input--main
+
+			.form-control{
+				display: inline-block;				
+				text-align: left;
+				padding-left: 1.5em;
+			}
+
+			.card-icon{
+				position: absolute;
+				width: 18%;
+				display: inline-block;
+			}
+			
 		}
-		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-		   color:    fadeout(white, 20%) ;
-		}
-		::-moz-placeholder { /* Mozilla Firefox 19+ */
-		   color:    fadeout(white, 20%) ;
-		}
-		:-ms-input-placeholder { /* Internet Explorer 10+ */
-		   color:    fadeout(white, 20%) ;
+	}
+
+	.card-icon{
+		display: inline-block;
+		margin-right: .5em;
+		position: relative;
+		top: 0.2em;
+
+		&:before{
+			font-size: 1.5em;
+			color: @secondary;
 		}
 	}
 	
 	.card-body{
 		padding: @card-padding;
+
+		&--shrink{
+			padding-left: @card-padding*2;
+			padding-right: @card-padding*2;
+		}
 	}
 
 	.card-footer{
 		border-top: 1px solid @color-delimeter-dark;
 		padding: @card-padding;
-		height: auto;
+		height: auto;		
 	}
 
 	.card-list-item{

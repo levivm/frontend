@@ -23,6 +23,7 @@
         vm.selectCategory = _selectCategory;
         vm.setOverElement = _setOverElement;
         vm.getLevelClassStyle = getLevelClassStyle;
+        vm.checkValidTitle = checkValidTitle;
 
         initialize();
 
@@ -43,7 +44,7 @@
 
             function _successCreation(response) {
                 vm.isSaving = false;
-                if (vm.creating) $state.go('activities-edit.detail', {activity_id : response.id});
+                if (vm.creating) $state.go('dash.activities-edit.detail', {activity_id : response.id});
                 Toast.generics.weSave("Un paso menos para publicar tu actividad");
             }
         }
@@ -77,6 +78,7 @@
         function _setUpdate() {
             vm.save_activity = _updateActivity;
             vm.creating = false;
+            vm.weHaveTitle = false;
             _setPreSaveInfo(presaveInfo)
                 .then(_successLoadActivity);
 
@@ -90,7 +92,9 @@
 
         function _setCreate() {
             vm.save_activity = _createActivity;
-            vm.creating = true;
+            vm.creating = true;            
+            vm.activity.certification = undefined;
+
             _setPreSaveInfo(presaveInfo);
         }
 
@@ -172,12 +176,36 @@
             activity.updateSection('general');
         }
 
+        function checkValidTitle(){              
+
+            if (!vm.creating){
+                vm.weHaveTitle = true; 
+                return;
+            }
+
+            if (vm.activity.title != undefined && vm.activity.title != ""){
+
+                var whiteSpaces = 0;
+
+                for (var i = vm.activity.title.length-1; i > 0; i--)
+                    if ( vm.activity.title[i] == ' ')
+                        whiteSpaces++;
+
+                if (whiteSpaces == vm.activity.length )
+                    vm.weHaveTitle = false;
+                else
+                    vm.weHaveTitle = true;
+
+            }else
+                vm.weHaveTitle = false;
+        }
+
         function initialize() {
 
             vm.errors = {};
             vm.isCollapsed = true;
             vm.duration = 1;
-            vm.isSaving = false;
+            vm.isSaving = false;                        
 
             Elevator.toTop();
 
@@ -185,6 +213,8 @@
                 _setUpdate();
             else
                 _setCreate();
+
+            vm.checkValidTitle();
 
             _onSectionUpdated();
         }

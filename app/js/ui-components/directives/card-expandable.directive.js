@@ -14,18 +14,21 @@
 		return {
 			restrict: 'AE',		
 			scope: {
-				toggle: "=?"
+				toggle: "=?",
+				duration: "=?"
 			},			
 			link: function(scope, element, attrs){				
+
+				scope.duration = scope.duration || "fast";
 				
 				element[0].style.display = "none";				
 
 				function expand(){					
-					element.slideDown("fast");										
+					element.slideDown(scope.duration);										
 				}
 
 				function retract(){					
-					element.slideUp("fast");										
+					element.slideUp(scope.duration);										
 				}
 
 				if (attrs.toggle != undefined){
