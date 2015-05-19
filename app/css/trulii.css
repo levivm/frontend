@@ -2147,7 +2147,7 @@ fieldset[disabled] .btn {
 }
 .btn-default {
   color: #333333;
-  background-color: #ffffff;
+  background-color: #eeeeee;
   border-color: #cccccc;
 }
 .btn-default:hover,
@@ -2157,7 +2157,7 @@ fieldset[disabled] .btn {
 .btn-default.active,
 .open > .dropdown-toggle.btn-default {
   color: #333333;
-  background-color: #e6e6e6;
+  background-color: #d5d5d5;
   border-color: #adadad;
 }
 .btn-default:active,
@@ -2183,11 +2183,11 @@ fieldset[disabled] .btn-default:active,
 .btn-default.disabled.active,
 .btn-default[disabled].active,
 fieldset[disabled] .btn-default.active {
-  background-color: #ffffff;
+  background-color: #eeeeee;
   border-color: #cccccc;
 }
 .btn-default .badge {
-  color: #ffffff;
+  color: #eeeeee;
   background-color: #333333;
 }
 .btn-primary {
@@ -6969,7 +6969,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn:not(.btn-link):not(.btn-flat),
 .btn-default:not(.btn-link):not(.btn-flat) {
-  background-color: transparent;
+  background-color: #eeeeee;
   color: #333333;
   color: rgba(0, 0, 0, 0.74);
 }
@@ -7083,7 +7083,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn:hover:not(.btn-link):not(.btn-flat),
 .btn-default:hover:not(.btn-link):not(.btn-flat) {
-  background-color: rgba(10, 10, 10, 0);
+  background-color: #e4e4e4;
 }
 .btn-black:hover:not(.btn-link):not(.btn-flat) {
   background-color: #0a0a0a;
@@ -7168,7 +7168,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn:active:not(.btn-link):not(.btn-flat),
 .btn-default:active:not(.btn-link):not(.btn-flat) {
-  background-color: rgba(15, 15, 15, 0);
+  background-color: #dfdfdf;
 }
 .btn-black:active:not(.btn-link):not(.btn-flat) {
   background-color: #0f0f0f;
@@ -7253,7 +7253,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn.active:not(.btn-link):not(.btn-flat),
 .btn-default.active:not(.btn-link):not(.btn-flat) {
-  background-color: rgba(15, 15, 15, 0);
+  background-color: #dfdfdf;
 }
 .btn-black.active:not(.btn-link):not(.btn-flat) {
   background-color: #0f0f0f;
@@ -7338,7 +7338,7 @@ body .jumbotron-material-blue-grey,
 }
 .btn.btn-flat:hover:not(.btn-ink),
 .btn-default.btn-flat:hover:not(.btn-ink) {
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(238, 238, 238, 0.2);
 }
 .btn-black.btn-flat:hover:not(.btn-ink) {
   background-color: rgba(0, 0, 0, 0.2);
@@ -7634,7 +7634,7 @@ body .jumbotron-material-blue-grey,
 }
 .open > .dropdown-toggle.btn,
 .open > .dropdown-toggle.btn-default {
-  background-color: transparent;
+  background-color: #eeeeee;
 }
 .open > .dropdown-toggle.btn-black {
   background-color: #000000;
@@ -11215,6 +11215,9 @@ hr.on-light {
 .separate-horizontal-inner {
   padding: 0 3rem;
 }
+.no-padding-top {
+  padding-top: 0 !important;
+}
 .bg-primary {
   background: #ffcc33;
   color: rgba(0, 0, 0, 0.74);
@@ -11912,7 +11915,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-top: 50px;
 }
 .sidebar {
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   position: fixed;
   top: 51px;
   bottom: 0;
@@ -11939,7 +11942,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar__item--selected {
   background: #eeeeee;
   border-top: 1px solid #f0f0f0;
-  border-left: 10px solid #ffcc33;
+  border-left: 10px solid #00b3b3;
   transition: ease all 0.1s;
 }
 .sidebar li {
@@ -12141,6 +12144,9 @@ tags-input input {
 .btn.btn-active.btn-advanced-level {
   background-color: #ff6633 !important;
 }
+.btn.btn-active-darken {
+  background: #008f8f !important;
+}
 .btn-grand {
   padding: 1em;
 }
@@ -12176,6 +12182,30 @@ tags-input input {
   position: absolute;
   margin-top: 0;
   top: 50%;
+}
+.material-form .form-group:before,
+.material-form .form-group:after {
+  content: " ";
+  display: table;
+}
+.material-form .form-group:after {
+  clear: both;
+}
+.material-form .form-group:before,
+.material-form .form-group:after {
+  content: " ";
+  display: table;
+}
+.material-form .form-group:after {
+  clear: both;
+}
+.material-form .control-label {
+  font-weight: 200;
+  color: rgba(102, 102, 102, 0.74);
+}
+.form-group .input-error {
+  color: #bd362f;
+  font-weight: bold;
 }
 .alert-input {
   padding: 7px 15px;
@@ -12812,6 +12842,10 @@ tags-input input {
 }
 .card .card-body {
   padding: 2em;
+}
+.card .card-body--shrink {
+  padding-left: 4em;
+  padding-right: 4em;
 }
 .card .card-footer {
   border-top: 1px solid #d7d7d7;

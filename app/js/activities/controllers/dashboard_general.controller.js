@@ -44,7 +44,7 @@
 
             function _successCreation(response) {
                 vm.isSaving = false;
-                if (vm.creating) $state.go('activities-edit.detail', {activity_id : response.id});
+                if (vm.creating) $state.go('dash.activities-edit.detail', {activity_id : response.id});
                 Toast.generics.weSave("Un paso menos para publicar tu actividad");
             }
         }
@@ -93,6 +93,7 @@
         function _setCreate() {
             vm.save_activity = _createActivity;
             vm.creating = true;            
+            vm.activity.certification = undefined;
 
             _setPreSaveInfo(presaveInfo);
         }

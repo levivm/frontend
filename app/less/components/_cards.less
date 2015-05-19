@@ -61,12 +61,17 @@
 	
 	.card-body{
 		padding: @card-padding;
+
+		&--shrink{
+			padding-left: @card-padding*2;
+			padding-right: @card-padding*2;
+		}
 	}
 
 	.card-footer{
 		border-top: 1px solid @color-delimeter-dark;
 		padding: @card-padding;
-		height: auto;
+		height: auto;		
 	}
 
 	.card-list-item{
