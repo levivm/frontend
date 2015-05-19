@@ -15,14 +15,15 @@
         .controller('ActivityCalendarsController', ActivityCalendarsController);
 
     ActivityCalendarsController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$modal',
-        'activity', 'calendars', 'CalendarsManager'];
+        'CalendarsManager','Toast','activity', 'calendars'];
 
     function ActivityCalendarsController($scope, $state, $stateParams, $filter, $modal,
-                                         activity, calendars, CalendarsManager) {
+                                         CalendarsManager,Toast, activity, calendars) {
 
         var vm = this;
         vm.calendars = calendars;
 
+        setStrings();
         initialize();
 
         vm.createCalendar = _createCalendar;
@@ -48,6 +49,14 @@
         }
 
         function _deleteCalendar(calendar) {
+
+
+            if (activity.hasAssistants()){
+                Toast.error(vm.strings.DELETE_CALENDAR_ERROR);
+                return
+            }
+
+
             var modalInstance = $modal.open({
                 templateUrl : 'partials/activities/messages/confirm_delete_calendar.html',
                 controller : 'ModalInstanceCtrl',
@@ -68,7 +77,14 @@
             }
 
             function _errorDelete(response) {
+
                 vm.calendar_errors = {};
+
+                if(response.detail){
+                    Toast.error(response.detail);
+                    return
+                }
+
                 angular.forEach(response, function (value, key) {
                     vm.calendar_errors[key] = value;
                 })
@@ -84,6 +100,14 @@
             vm.calendar_errors = {};
             _onSectionUpdated();
         }
+        function setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                DELETE_CALENDAR_ERROR : "No puede eliminar este calendario, tiene estudiantes inscritos, contactanos"
+            });
+        }
+
+
     }
 
 })();
