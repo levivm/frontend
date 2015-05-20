@@ -18,16 +18,17 @@
                 field: '=',
                 errors: '='
             }, 
-            link: function(scope, element, attrs){
+            link: function(scope, element, attrs){                
 
-                var breakdown = attrs.field.split('.');
+                scope.$watch('field.$valid', function(newValue, oldValue){       
 
-                var fieldName = breakdown[breakdown.length - 1];
+                    var s = scope;             
 
-                scope.$watch('errors', function(newValue, oldValue){
-
-                    if (newValue != oldValue){
+                    if (newValue === false){
                         element.addClass("has-error");
+                        scope.message = scope.errors[scope.field.$name];
+                    }else{
+                        element.removeClass("has-error");
                     }
                 })
                 

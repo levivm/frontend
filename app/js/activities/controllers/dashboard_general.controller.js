@@ -45,7 +45,7 @@
             function _successCreation(response) {
                 vm.isSaving = false;
                 if (vm.creating) $state.go('dash.activities-edit.detail', {activity_id : response.id});
-                Toast.generics.weSave("Un paso menos para publicar tu actividad");
+                Toast.generics.weSaved("Un paso menos para publicar tu actividad");
             }
         }
 
@@ -61,7 +61,7 @@
                 vm.isSaving = false;
                 angular.extend(activity, vm.activity);
                 _onSectionUpdated();
-                Toast.generics.weSave();
+                Toast.generics.weSaved();
             }
         }
 
@@ -145,7 +145,7 @@
 
         function _addError(field, message) {
             vm.errors[field] = message;
-            vm.activity_create_form[field].$setValidity(message, false);
+            vm.activity_create_form[field].$setValidity(field, false);
         }
 
         function _errored(errors) {

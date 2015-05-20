@@ -11157,25 +11157,28 @@ hr.on-light {
 .text-left {
   text-align: left;
 }
-.title-compound__title {
+.title-compound {
+  position: relative;
+}
+.title-compound-centered__title {
   display: block;
   width: 100%;
   text-align: center;
 }
-.title-compound__title > * {
+.title-compound-centered__title > * {
   margin: 0;
 }
-.title-compound__title h1,
-.title-compound__title h2,
-.title-compound__title h3,
-.title-compound__title h4,
-.title-compound__title h5,
-.title-compound__title h6 {
+.title-compound-centered__title h1,
+.title-compound-centered__title h2,
+.title-compound-centered__title h3,
+.title-compound-centered__title h4,
+.title-compound-centered__title h5,
+.title-compound-centered__title h6 {
   display: inline-block;
   border-bottom: 1px solid white;
   padding: .2em 1em;
 }
-.title-compound__description {
+.title-compound-centered__description {
   display: block;
   width: 100%;
   margin: 0;
@@ -11183,8 +11186,18 @@ hr.on-light {
   padding: .5em 1em;
   font-size: 1.1em;
 }
-.title-compound__description > * {
+.title-compound-centered__description > * {
   margin: 0;
+}
+.title-compound .card-icon {
+  position: absolute !important;
+  top: 0 !important;
+}
+.title-compound__title {
+  margin-left: 60px;
+}
+.title-compound__description {
+  margin-top: 1em;
 }
 .separate-above {
   margin-top: 3rem;
@@ -12798,6 +12811,9 @@ tags-input input {
   border-radius: 2px;
   margin: 1.5em 0;
   padding: 0;
+}
+.card.card--shrink {
+  padding: 0 2em;
 }
 .card .card-header {
   -webkit-border-top-left-radius: 2px;

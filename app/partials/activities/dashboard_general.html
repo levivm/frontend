@@ -8,11 +8,11 @@
             <fieldset>
 
                 <div class="card-header card-header--secondary" ng-show="vm.creating" trulii-expandable-content toggle="!vm.weHaveTitle" duration="800">
-                  <div class="title-compound">
-                    <div class="title-compound__title">
+                  <div class="title-compound-centered">
+                    <div class="title-compound-centered__title">
                       <h2>¡Comencemos a registrar su actividad!</h2>
                     </div>
-                    <div class="title-compound__description">
+                    <div class="title-compound-centered__description">
                       <p>
                         Cuéntanos como titularías tu actividad, por ejemplo: Curso de repostería.
                       </p>
@@ -133,21 +133,20 @@
 
                           </div>
                         </div>
-                      </div>                  
-  
-                      <div class="form-control-wrapper">
+                      </div>       
+
+          
+                 
                         <div class="form-group" trulii-input-errors-control field="vm.activity_create_form.short_description" errors="vm.errors">
                           <label for="activity-short-desc" class="control-label">Descripción Corta</label>
 
                           
-                          <textarea id="activity-short-desc" class="form-control"
-                                    ng-model='vm.activity.short_description' name="short_description"></textarea>
-
-                          
-                          
+                          <textarea class="form-control"
+                                    ng-model="vm.activity.short_description" name="short_description"></textarea>
+                                                
 
                         </div>  
-                      </div>
+
                       
 
                       <div class="form-group">

@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBReturnPDashboard', ActivityDBReturnPDashboard);
 
-    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity'];
+    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity', 'Toast'];
 
-    function ActivityDBReturnPDashboard($scope, activity) {
+    function ActivityDBReturnPDashboard($scope, activity, Toast) {
 
         var vm = this;
 
@@ -31,6 +31,8 @@
             console.log(vm.activity);
             vm.activity.update()
                 .then(_updateSuccess, _errored);
+
+            vm.isSaving = true;
         }
 
         function _showTooltip(element) {
@@ -48,6 +50,10 @@
         function _updateSuccess(response) {
             vm.isCollapsed = false;
             _onSectionUpdated();
+
+            vm.isSaving = false;
+
+            Toast.generics.weSaved();
         }
 
         function _clearErrors() {
@@ -66,6 +72,8 @@
                 _addError(field, message[0]);
             });
             _onSectionUpdated();
+
+            vm.isSaving = false;
         }
 
         function _onSectionUpdated() {
@@ -79,6 +87,7 @@
         function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
+            vm.isSaving = false;
         }
 
     }

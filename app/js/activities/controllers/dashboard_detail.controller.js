@@ -14,9 +14,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBDetailController', ActivityDBDetailController);
 
-    ActivityDBDetailController.$inject = ['$scope', '$state', '$timeout', '$q', '$stateParams', 'activity', 'Elevator'];
+    ActivityDBDetailController.$inject = ['$scope', '$state', '$timeout', '$q', '$stateParams', 'activity', 'Elevator', 'Toast'];
 
-    function ActivityDBDetailController($scope, $state, $timeout, $q, $stateParams, activity, Elevator) {
+    function ActivityDBDetailController($scope, $state, $timeout, $q, $stateParams, activity, Elevator, Toast) {
 
         var vm = this;
 
@@ -30,6 +30,8 @@
         /******************ACTIONS**************/
 
         function _updateActivity() {
+            vm.isSaving = true;
+
             _clearErrors();
 
             vm.activity.update()
@@ -50,8 +52,11 @@
 
         function _updateSuccess(response) {
             vm.isCollapsed = false;
+            vm.isSaving = false;
             angular.extend(activity, vm.activity);
             _onSectionUpdated();
+
+            Toast.generics.weSaved();
 
         }
 
@@ -67,6 +72,7 @@
         }
 
         function _errored(errors) {
+            vm.isSaving = false;
             angular.forEach(errors, function (message, field) {
                 _addError(field, message[0]);
             });
@@ -83,6 +89,7 @@
         function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
+            vm.isSaving = false;
 
             Elevator.toTop();
         }
