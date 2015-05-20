@@ -10,11 +10,23 @@
     function ActivityDetailAttendeesController(calendars) {
         var vm = this;
 
+        vm.pageChanged = pageChanged;
+        vm.getAssistantPicture = getAssistantPicture;
+
         initialize();
 
-        vm.pageChanged = function () {
+        function pageChanged() {
             _assistantByPage();
-        };
+        }
+
+        function getAssistantPicture(assistant){
+            console.log('assistant:',assistant);
+            if(!!assistant.picture){
+                return assistant.picture;
+            } else {
+                return 'css/img/default_profile_pic.jpg';
+            }
+        }
 
         function _getAssistants() {
             var assistants = [];
