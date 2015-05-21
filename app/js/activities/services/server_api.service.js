@@ -81,6 +81,17 @@
             'calendar' : function (idActivity, idCalendar) {
                 return renderUrl('activities/', [idActivity, 'calendars', idCalendar]);
             },
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.ActivityServerApi#locations
+             * @description Renders **`/api/activities/:idActivity/calendars/:idCalendar`** Activity locations URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'locations' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'locations']);
+            },
 
             /**
              * @ngdoc function

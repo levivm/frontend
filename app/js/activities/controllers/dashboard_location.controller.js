@@ -33,7 +33,7 @@
         function _updateActivity() {
             _clearErrors();
             _setActivityPos();
-            vm.activity.update()
+            vm.activity.update_location()
                 .then(_updateSuccess, _errored);
 
             function _updateSuccess(response) {
