@@ -11940,23 +11940,24 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: red;
   padding: 20px 0;
   background-color: white;
-  text-transform: uppercase;
-  letter-spacing: 1px;
   line-height: 3em;
 }
 .sidebar__item {
   color: #333333;
   display: block;
   width: 100%;
-  padding: 15px;
+  padding: 10px;
   border-top: 1px solid #f0f0f0;
   text-decoration: none;
 }
 .sidebar__item--selected {
   background: #eeeeee;
-  border-top: 1px solid #f0f0f0;
-  border-left: 10px solid #00b3b3;
+  border-left: 5px solid #00b3b3;
   transition: ease all 0.1s;
+}
+.sidebar__item:hover {
+  color: #00b3b3;
+  text-decoration: none;
 }
 .sidebar li {
   display: block;

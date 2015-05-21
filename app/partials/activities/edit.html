@@ -4,6 +4,7 @@
             <nav class="col-sm-2 sidebar lateral-slide">
                 <li ui-sref-active="active" ng-repeat="step in pc.steps track by step.name">
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                        <i class="{{::step.icon}}"></i>
                         <span ng-bind="::step.title"></span>
                         <span ng-show="pc.isSectionCompleted(step.name)" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
                         <i class="mdi-action-done text-success" ng-class="pc.getCheckStyle(step.name)"></i>

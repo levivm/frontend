@@ -14,24 +14,29 @@
 	background: red;
 	padding: 20px 0;
 	background-color: white;	
-	text-transform: uppercase;
-	letter-spacing: 1px;
+	//text-transform: uppercase;
+	//letter-spacing: 1px;
 	line-height: 3em;	
 
 	&__item{
 		color: @text-color;
 		display: block;
 		width: 100%;
-		padding: 15px;
+		padding: 10px;
 		border-top: 1px solid @color-delimeter-light;
 		text-decoration: none;
 
 		&--selected{
 			background: @body-bg;
-			border-top: 1px solid @color-delimeter-light;			
+			//border-top: 1px solid @color-delimeter-light;			
 			//border-right: 1px solid $color-delimeter-light
-			border-left: 10px solid @secondary;
+			border-left: 5px solid @secondary;
 			transition: ease all 0.1s;
+		}
+
+		&:hover{
+			color: @secondary;
+			text-decoration: none;
 		}
 	}
 

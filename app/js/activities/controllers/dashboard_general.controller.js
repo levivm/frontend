@@ -138,14 +138,13 @@
         }
 
         function _clearErrors() {
-            vm.activity_create_form.$setPristine();
-            vm.errors = null;
-            vm.errors = {};
+            vm.activity_create_form.$setPristine();            
         }
 
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.activity_create_form[field].$setValidity(field, false);
+        function _addError(field, message) {                        
+
+            vm.activity_create_form[field].$setValidity(field, false);            
+            vm.activity_create_form[field].error_message = message;
         }
 
         function _errored(errors) {
@@ -201,8 +200,7 @@
         }
 
         function initialize() {
-
-            vm.errors = {};
+            
             vm.isCollapsed = true;
             vm.duration = 1;
             vm.isSaving = false;                        

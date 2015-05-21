@@ -40,7 +40,7 @@
 
                 <div class="card-header" ng-show="vm.weHaveTitle">
                                       
-                  <div class="form-group editable-title input--main">
+                  <div class="form-group editable-title input--main" trulii-input-errors-control="title">
 
                     <div class="col-sm-12">
                       <span class="card-icon mdi-social-school"></span>
@@ -56,41 +56,32 @@
                 <div class="card-body card-body--shrink no-padding-top" trulii-expandable-content toggle="vm.weHaveTitle" duration="800">
                   
          
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control field="vm.activity_create_form.level">
                           <label class="control-label ">Nivel</label>
 
                          
-                            <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
+                            <div class="btn-group btn-group-justified" role="group" aria-label="Nivel" >
                                 <label class="btn btn-default"
-                                       ng-repeat="level in vm.activity_levels" ng-click="vm.selected_level = level"
+                                       ng-repeat="level in vm.activity_levels"
                                        ng-class="vm.getLevelClassStyle(level)">
-                                    <input type="radio" name="level" class="hidden">{{level.value}}
+                                    <input type="radio" name="level" class="hidden" ng-model="vm.selected_level" ng-value="level">{{level.value}}
                                 </label>
-                            </div>
-                            <div trulii-input-alert field="vm.activity_create_form.level" errors="vm.errors"></div>
-                 
-
-
-                         <span class="errors"
-                               ng-show="vm.activity_create_form.type.$invalid && !vm.activity_create_form.type.$dirty">
-                              <span>{{ vm.errors.type }}</span>
-                        </span>
+                            </div>                            
+                                          
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group" trulii-input-errors-control field="vm.activity.certification">
                           <label class="control-label">¿Entregará certificado u otorgará alguna certificación?</label>                          
 
                             <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
-                                <label class="btn btn-default"
-                                      ng-click="vm.activity.certification = true"
+                                <label class="btn btn-default"                                      
                                       ng-class="{'btn-active': vm.activity.certification === true}">
-                                    <input type="radio" name="level" class="hidden">Con certificación
+                                    <input type="radio" name="certification" class="hidden" ng-model="vm.activity.certification" ng-value="true">Con certificación
                                 </label>
 
-                                <label class="btn btn-default"
-                                      ng-click="vm.activity.certification = false"
+                                <label class="btn btn-default"                                      
                                       ng-class="{'btn-active btn-active-darken': vm.activity.certification === false}">
-                                    <input type="radio" name="level" class="hidden">Sin certificación
+                                    <input type="radio" name="certification" class="hidden" ng-model="vm.activity.certification" ng-value="false">Sin certificación
                                 </label>
                             </div>
                           
@@ -98,7 +89,7 @@
 
                       <div class="row form-group">
                         <div class="col-md-6">
-                          <div class="form-group">                            
+                          <div class="form-group" trulii-input-errors-control="category">                            
 
          
                                 <select class="form-control" ng-model="vm.selected_category" name="category"
@@ -116,7 +107,7 @@
                       </div>
 
                         <div class="col-md-6">
-                          <div class="form-group">                            
+                          <div class="form-group" trulii-input-errors-control="sub_category">                            
 
                        
                                 <select id="sub-category-select" class="form-control" name="sub_category"
@@ -127,17 +118,13 @@
                                     </option>
                                 </select>
 
-                                <trulii-input-alert field="vm.activity_create_form.sub_category"
-                                                    errors="vm.errors"></trulii-input-alert>
-                        
-
                           </div>
                         </div>
                       </div>       
 
           
                  
-                        <div class="form-group" trulii-input-errors-control field="vm.activity_create_form.short_description" errors="vm.errors">
+                        <div class="form-group" trulii-input-errors-control="short_description">
                           <label for="activity-short-desc" class="control-label">Descripción Corta</label>
 
                           

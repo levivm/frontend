@@ -14,12 +14,14 @@
             {
                 sref : '.general',
                 title : 'General',
-                name : 'general'
+                name : 'general',
+                icon : 'mdi-social-school'
             },
             {
                 sref : '.detail',
-                title : 'Detalle',
-                name : 'detail'
+                title : 'Detalles',
+                name : 'detail',
+                icon : 'mdi-av-my-library-books'
             },
             {
                 sref : '.calendars',
