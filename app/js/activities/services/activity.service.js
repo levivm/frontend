@@ -106,6 +106,26 @@
                     return $q.reject(response.data);
                 });
             },
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#update_location
+             * @description Update the activity using 'this' object internal values
+             * @methodOf trulii.activities.services.Activity
+             */
+            update_location: function () {
+                return $http({
+                    method : 'put',
+                    url : api.locations(this.id),
+                    data : this
+                }).then(function (response) {
+                    angular.extend(that.location,response.data)
+                    // that.setData(response.data);
+                    return response;
+                }, function (response) {
+                    return $q.reject(response.data);
+                });
+            },
+
 
             /**
              * @ngdoc function
@@ -283,6 +303,7 @@
 
         function updateSection(section) {
             
+            // console.log("ENTRE A CHEQUEAR")
             var isCompleted = false;
             if (!that.steps)
                 return

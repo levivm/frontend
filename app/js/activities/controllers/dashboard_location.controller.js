@@ -36,11 +36,8 @@
             Error.form.clear(vm.activity_location_form);
             
             _setActivityPos();
-            vm.activity.update()
-                .then(updateSuccess, errored);
-
-            
-
+            vm.activity.update_location()
+                .then(_updateSuccess, _errored);
             function updateSuccess(response) {
                 vm.isCollapsed = false;
                 angular.extend(activity, vm.activity);
