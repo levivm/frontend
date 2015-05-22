@@ -22,7 +22,7 @@
   		warning: toastr.warning,
 
   		generics: {
-  			weSave: weSave  			
+  			weSaved: weSaved  			
   		},
       setPosition: setPosition
   	}
@@ -31,13 +31,11 @@
 
   	//////////////  	
 
-  	function weSave(complement){
+  	function weSaved(complement){
   		toastr.info( complement, "¡Información guardada!");   // TODO: From translate
   	}
     function setPosition(classPos){
-      toastr.options = {
-        "positionClass": classPos
-      }
+      toastr.options["positionClass"] = classPos;
 
     }
 

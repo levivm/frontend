@@ -14,20 +14,23 @@
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "input-errors-control.html",
             transclude: true,
+            require: '^form',
             scope: {                
-                field: '=',
-                errors: '='
+                field: '=?',                
+                errors: '=?' // Not yet supported :/
             }, 
-            link: function(scope, element, attrs){
+            link: function(scope, element, attrs, formCtrl ){
+                
 
-                var breakdown = attrs.field.split('.');
+                if (scope.field === undefined)
+                    scope.field = formCtrl[attrs.truliiInputErrorsControl] || formCtrl[attrs.fieldName] ; 
 
-                var fieldName = breakdown[breakdown.length - 1];
+                scope.$watch('field.$invalid && !field.$dirty', function(newValue, oldValue){                               
 
-                scope.$watch('errors', function(newValue, oldValue){
-
-                    if (newValue != oldValue){
-                        element.addClass("has-error");
+                    if (newValue === true){
+                        element.addClass("has-error");                        
+                    }else{
+                        element.removeClass("has-error");
                     }
                 })
                 

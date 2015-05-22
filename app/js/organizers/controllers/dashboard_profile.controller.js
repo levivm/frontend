@@ -126,7 +126,7 @@
     function _successUpdatedLocation(response){
 
         angular.extend(organizer,vm.organizer);
-        Toast.generics.weSave();
+        Toast.generics.weSaved();
     }
 
     function _setOrganizerPos(){

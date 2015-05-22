@@ -14,24 +14,55 @@
 	background: red;
 	padding: 20px 0;
 	background-color: white;	
-	text-transform: uppercase;
-	letter-spacing: 1px;
-	line-height: 3em;	
+	//text-transform: uppercase;
+	//letter-spacing: 1px;
+	line-height: 3em;		
 
 	&__item{
+		position: relative;
 		color: @text-color;
 		display: block;
 		width: 100%;
-		padding: 15px;
+		padding: 10px;
+		padding-left: 1em;
 		border-top: 1px solid @color-delimeter-light;
-		text-decoration: none;
+		text-decoration: none;	
+		position: relative;	
 
 		&--selected{
 			background: @body-bg;
-			border-top: 1px solid @color-delimeter-light;			
+			//border-top: 1px solid @color-delimeter-light;			
 			//border-right: 1px solid $color-delimeter-light
-			border-left: 10px solid @secondary;
+			border-left: 5px solid @secondary;
 			transition: ease all 0.1s;
+		}
+
+		&:hover{
+			color: @secondary;
+			text-decoration: none;
+		}
+
+		&__icon{			
+			top: 0;
+			bottom: 0;
+
+			&:before{
+				position: relative;
+				top: 0.2em;
+				font-size: .8em;
+				margin-right: .3em;
+			}
+		}
+
+		&__completed-sign{
+			position: absolute;
+			//bottom: 0px;
+			top: -1px;
+			height: 101%;
+			right: 0px;
+			color: white;
+			background-color: #FC3;
+			//border-radius: 50%;
 		}
 	}
 
