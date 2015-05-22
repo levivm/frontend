@@ -11121,6 +11121,15 @@ hr.on-light {
   position: relative;
   left: 50px;
 }
+.slide-down.ng-hide-remove,
+.slide-down.ng-enter {
+  transition: 1s ease all;
+  height: 0%;
+}
+.slide-down.ng-hide-remove.ng-hide-remove-active,
+.slide-down.ng-enter.ng-enter-active {
+  height: 100%;
+}
 .hidden {
   display: none;
 }
@@ -11846,6 +11855,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   background-size: contain;
   position: absolute;
+  margin-left: 0.5em;
 }
 @media screen and (max-width: 480px) {
   .navbar__logo {
@@ -12039,8 +12049,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar__item__completed-sign {
   position: absolute;
-  bottom: 0px;
   top: -1px;
+  height: 101%;
   right: 0px;
   color: white;
   background-color: #FC3;
@@ -12183,6 +12193,7 @@ tags-input .remove-button {
   cursor: pointer;
   position: absolute;
   top: 50%;
+  right: 0.25em;
   font-size: 23px;
   line-height: 0px;
   color: #007f80;

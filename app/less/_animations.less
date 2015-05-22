@@ -15,7 +15,7 @@
 }
 
 
-
+// TODO: Improve all this code using mixins
 
 .lateral-fadein{
 	&.ng-hide-remove, &.ng-enter {
@@ -60,4 +60,24 @@
 .lateral-fade{
 	.lateral-fadein;
 	.lateral-fadeout;
+}
+
+// SlideDown
+
+.slide-down{
+	&.ng-hide-remove, &.ng-enter {
+		transition: 1s ease all;		
+		height: 0%;
+			
+	}
+}
+
+
+.slide-down{	
+
+	&.ng-hide-remove.ng-hide-remove-active, 
+	&.ng-enter.ng-enter-active{
+		height: 100%;
+		
+	}	
 }
