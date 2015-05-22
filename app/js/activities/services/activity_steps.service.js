@@ -25,28 +25,34 @@
             },
             {
                 sref : '.calendars',
-                title : 'Calendario',
-                name : 'calendars'
+                title : 'Calendarios',
+                name : 'calendars',
+                icon: 'mdi-action-today'
             },
             {
                 sref : '.location',
                 title : 'Ubicación',
-                name : 'location'
+                name : 'location',
+                icon: 'mdi-maps-pin-drop'
+
             },
             {
                 sref : '.instructors',
                 title : 'Instructores',
-                name : 'instructors'
+                name : 'instructors',
+                icon: 'mdi-social-group'
             },
             {
                 sref : '.gallery',
                 title : 'Galeria',
-                name : 'gallery'
+                name : 'gallery',
+                icon : 'mdi-image-photo-library'
             },
             {
                 sref : '.return-policy',
                 title : 'Política de Devolución',
-                name : 'return_policy'
+                name : 'return_policy',
+                icon : 'mdi-communication-call-missed'
             }
         ]);
         // .factory('activity', Activity);;

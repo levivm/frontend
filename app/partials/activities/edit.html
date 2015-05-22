@@ -4,21 +4,21 @@
             <nav class="col-sm-2 sidebar lateral-slide">
                 <li ui-sref-active="active" ng-repeat="step in pc.steps track by step.name">
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected">
-                        <i class="{{::step.icon}}"></i>
+                        <i class="{{::step.icon}} sidebar__item__icon"></i>
                         <span ng-bind="::step.title"></span>
-                        <span ng-show="pc.isSectionCompleted(step.name)" class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                        <i class="mdi-action-done text-success" ng-class="pc.getCheckStyle(step.name)"></i>
+                        
+                        <i class="mdi-action-done sidebar__item__completed-sign" ng-class="pc.getCheckStyle(step)" ng-show="pc.isSectionCompleted(step.name)"></i>
                     </a>
 
                 </li>
                 <div>
-                    <ng-pluralize ng-show="!pc.activity.published && pc.steps_left>0" count="pc.activity.steps_left"
+                    <!-- <ng-pluralize ng-show="!pc.activity.published && pc.steps_left>0" count="pc.activity.steps_left"
                         when="{
                             '0':'',
                             '1': 'Te falta {{pc.steps_left}} paso para publicar',
                             'other': 'Te faltan {{ pc.steps_left }} pasos para publicar'
                             }">
-                    </ng-pluralize>
+                    </ng-pluralize> -->
                 </div>
 
                 <div ng-show="pc.allow_publish">

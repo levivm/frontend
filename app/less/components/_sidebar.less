@@ -16,15 +16,18 @@
 	background-color: white;	
 	//text-transform: uppercase;
 	//letter-spacing: 1px;
-	line-height: 3em;	
+	line-height: 3em;		
 
 	&__item{
+		position: relative;
 		color: @text-color;
 		display: block;
 		width: 100%;
 		padding: 10px;
+		padding-left: 1em;
 		border-top: 1px solid @color-delimeter-light;
-		text-decoration: none;
+		text-decoration: none;	
+		position: relative;	
 
 		&--selected{
 			background: @body-bg;
@@ -37,6 +40,28 @@
 		&:hover{
 			color: @secondary;
 			text-decoration: none;
+		}
+
+		&__icon{			
+			top: 0;
+			bottom: 0;
+
+			&:before{
+				position: relative;
+				top: 0.2em;
+				font-size: .8em;
+				margin-right: .3em;
+			}
+		}
+
+		&__completed-sign{
+			position: absolute;
+			bottom: 0px;
+			top: -1px;
+			right: 0px;
+			color: white;
+			background-color: #FC3;
+			//border-radius: 50%;
 		}
 	}
 
