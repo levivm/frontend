@@ -13,10 +13,10 @@
         .controller('ActivityDBLocationController', ActivityDBLocationController);
 
     ActivityDBLocationController.$inject = ['$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'filterFilter',
-        'activity', 'cities', 'LocationManager'];
+        'activity', 'cities', 'LocationManager', 'Toast'];
 
     function ActivityDBLocationController($scope, uiGmapGoogleMapApi, uiGmapIsReady, filterFilter,
-                                          activity, cities, LocationManager) {
+                                          activity, cities, LocationManager, Toast) {
 
         var vm = this;
 
@@ -31,6 +31,8 @@
         /******************ACTIONS**************/
 
         function _updateActivity() {
+            vm.isSaving = true;
+
             _clearErrors();
             _setActivityPos();
             vm.activity.update()
@@ -40,6 +42,10 @@
                 vm.isCollapsed = false;
                 angular.extend(activity, vm.activity);
                 _onSectionUpdated();
+
+                vm.isSaving = false;
+
+                Toast.generics.weSaved();
             }
         }
 
@@ -75,6 +81,8 @@
             angular.forEach(errors, function (message, field) {
                 _addError(field, message[0]);
             });
+
+            vm.isSaving = false;
         }
 
         function _onSectionUpdated() {
@@ -84,6 +92,7 @@
         function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
+            vm.isSaving = false;
 
             if (!vm.activity.location)
                 vm.activity.location = {};
