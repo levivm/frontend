@@ -93,7 +93,7 @@
                 $location.url('/');
             }
 
-            //getOrders();
+            getOrders();
 
         }
 
