@@ -80,6 +80,7 @@
         }
 
         function _error(errors){
+            console.log(errors);
             angular.forEach(errors, function (message, field) {
                 console.log('message', message);
                 console.log('field', field);

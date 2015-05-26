@@ -24,15 +24,8 @@
         vm.cities = cities;
         vm.current_city = null;
         vm.isUserAuthenticated = authenticatedUser !== undefined;
+        vm.userId = !!authenticatedUser && authenticatedUser.id? authenticatedUser.id : null;
         vm.setCurrentCity = _setCurrentCity;
-        vm.strings = {};
-        vm.strings.CITIES_LABEL = 'Ciudades';
-        vm.strings.CITIES_LABEL = 'Ciudades';
-        vm.strings.SIGN_UP_LABEL = 'Registrarse';
-        vm.strings.LOGIN_LABEL = 'Iniciar Sesión';
-        vm.strings.LOGOUT_LABEL = 'Logout';
-        vm.strings.NEW_ACTIVITY_LABEL = 'Crear Actividad';
-        vm.strings.DASHBOARD_LABEL = 'Dashboard';
 
         activate();
 
@@ -43,16 +36,21 @@
             console.log('setCurrentCity (', city, ')');
         }
 
-        function activate(){
-            vm.current_city = LocationManager.getCurrentCity();
+        function setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                CITIES_LABEL : 'Ciudades',
+                SIGN_UP_LABEL : 'Registrarse',
+                LOGIN_LABEL : 'Iniciar Sesión',
+                LOGOUT_LABEL : 'Logout',
+                NEW_ACTIVITY_LABEL : 'Crear Actividad',
+                DASHBOARD_LABEL : 'Dashboard'
+            });
+        }
 
-            // function success(city){
-            //     vm.current_city = city;
-            //     console.log('getCurrentCity: ', vm.current_city);
-            // }
-            // function error(){
-            //     console.log("Couldn't obtain current city");
-            // }
+        function activate(){
+            setStrings();
+            vm.current_city = LocationManager.getCurrentCity();
         }
 
     }

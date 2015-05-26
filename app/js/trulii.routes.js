@@ -196,13 +196,12 @@
             })
             .state('student-dashboard', {
                 abstract:true,
-                url:'/students/dashboard/',
-                controller: 'StudentDashboardCtrl',
-                controllerAs: 'vm',
+                url:'/students/:student_id/dashboard/',
+                controller: 'StudentDashboardCtrl as dash',
                 templateUrl: 'partials/students/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
-                    // organizer : getCurrentOrganizer
+                    student: getStudent
                 },
                 data: {
                     requiredAuthentication : true
@@ -210,9 +209,18 @@
             })
             .state('student-dashboard.account', {
                 url:'account',
-                controller: 'StudentAccountCtrl',
-                controllerAs: 'vm',
+                controller: 'StudentAccountCtrl as account',
                 templateUrl: 'partials/students/dashboard_account.html'
+            })
+            .state('student-dashboard.profile', {
+                url:'profile',
+                controller: 'StudentProfileCtrl as profile',
+                templateUrl: 'partials/students/dashboard_profile.html'
+            })
+            .state('student-dashboard.activities', {
+                url:'activities',
+                controller: 'StudentActivitiesCtrl as activities',
+                templateUrl: 'partials/students/dashboard_activities.html'
             })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
@@ -490,7 +498,14 @@
     getOrganizer.$inject = ['$stateParams', 'OrganizersManager'];
 
     function getOrganizer($stateParams, OrganizersManager) {
-        return OrganizersManager.getOrganizer($stateParams.organizer_id)
+        return OrganizersManager.getOrganizer($stateParams.organizer_id);
+    }
+
+    getStudent.$inject = ['$stateParams', 'StudentsManager'];
+
+    function getStudent($stateParams, StudentsManager) {
+        console.log('$stateParams.student_id:', $stateParams.student_id);
+        return StudentsManager.getStudent($stateParams.student_id);
     }
 
 

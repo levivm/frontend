@@ -1,20 +1,19 @@
+<label for="home-city-selector" class="sr-only">Cities</label>
+<select id="home-city-selector" name="city" ng-model="home.current_city"
+        ng-options="city as city.name for city in home.cities track by city.id"
+        ng-change="home.setCurrentCity(current_city)">
+</select>
 
-<trulii-navbar></trulii-navbar>
-
-<div class="with-navbar">
-    <label for="home-city-selector" class="sr-only">Cities</label>
-    <select id="home-city-selector" name="city" ng-model="home.current_city"
-            ng-options="city as city.name for city in home.cities track by city.id"
-            ng-change="vm.setCurrentCity(current_city)">
-    </select>
-
-    <br/>
-    <a ui-sref="register">Register</a>
-    <br/>
-    <a ui-sref="organizer-landing">Register Organizer</a>
-    <br/>
-    <a ui-sref="login">Iniciar sesión</a>
-    <br/>
-    <a ui-sref="activities-new.general">Crear Actividad</a>
-    <br/>
-</div>
+<br/>
+<a ui-sref="register">Register</a>
+<br/>
+<a ui-sref="organizer-landing">Register Organizer</a>
+<br/>
+<a ui-sref="login">Iniciar sesión</a>
+<br/>
+<a ui-sref="student-dashboard.account({'student_id': home.userId})">Dashboard Estudiante</a>
+<br/>
+<a ui-sref="organizer-dashboard.account">Dashboard Organizador</a>
+<br/>
+<a ui-sref="activities-new.general">Crear Actividad</a>
+<br/>

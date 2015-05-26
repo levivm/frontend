@@ -211,6 +211,7 @@
 
 
         function change_email(email){
+            console.log('Authentication.change_email.email:', email);
             return $http({
                 method: 'post',
                 url: api.email(),
