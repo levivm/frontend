@@ -44,7 +44,7 @@
             },
             {
                 sref : '.gallery',
-                title : 'Galeria',
+                title : 'Galería',
                 name : 'gallery',
                 icon : 'mdi-image-photo-library'
             },

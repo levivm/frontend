@@ -13,9 +13,9 @@
         .controller('ActivityDBGalleryController', ActivityDBGalleryController);
 
     ActivityDBGalleryController.$inject = ['$scope', '$state', '$timeout', '$q', '$modal', '$stateParams',
-        'activity', 'UploadFile'];
+        'activity', 'UploadFile', 'Toast'];
 
-    function ActivityDBGalleryController($scope, $state, $timeout, $q, $modal, $stateParams, activity, UploadFile) {
+    function ActivityDBGalleryController($scope, $state, $timeout, $q, $modal, $stateParams, activity, UploadFile, Toast) {
 
         var vm = this;
 
@@ -69,6 +69,8 @@
 
         function _updateActivity() {
 
+            vm.isSaving = true;
+
             _clearErrors();
             vm.activity.update()
                 .then(_updateSuccess, _errored);
@@ -90,6 +92,9 @@
             vm.isCollapsed = false;
             angular.extend(activity, vm.activity);
             _onSectionUpdated();
+
+            vm.isSaving = false;
+            Toast.generics.weSaved();
         }
 
         function _successUploaded(response) {
@@ -168,7 +173,7 @@
         }
 
         function _errored(errors) {
-
+            vm.isSaving = false;
         }
 
         function _onSectionUpdated() {
@@ -183,8 +188,10 @@
             vm.errors = {};
             vm.isCollapsed = true;
             vm.uploading_photo = false;            
+            vm.main_photo_loading = false;
+            vm.isSaving = false;
             vm.images = angular.copy(activity.photos);
-            vm.main_image = _.first(_.remove(vm.images, 'main_photo', true));
+            vm.main_image = _.first(_.remove(vm.images, 'main_photo', true));            
         }
 
     }

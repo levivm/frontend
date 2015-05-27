@@ -1,24 +1,70 @@
 <div class="tab-pane active text-style">
     <div class="row">
-        <div class="col-md-6">
-            <form name='vm.activity_gallery_form' ng-submit="vm.save_activity()">
-                <fieldset>
-                    <h2>Imágenes</h2>
-                    <h4 class="text-muted">Añade fotografías de las actividades que has organizado anteriormente</h4>
+        <div class="col-sm-offset-1 col-md-8">
 
-                    <div class="form-group">
-                        <div class="drop-box"
-                             ng-model="vm.main_photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
-                             drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                             ng-file-change="vm.addImage(vm.main_photo,true)"
-                             allow-dir="true" accept="image/*">
-                            <a class="btn btn-primary" role="button">Añadir Imagen Principal</a>
+            <div class="card card--shrink shadow-z-1">
+                <div class="card-header">
+                    <div class="title-compound">
+                        <i class="mdi-image-panorama card-icon"></i>
+                    
+                        <h1 class="title-compound__title">
+                            Portada
+                        </h1>
+                        <h4 class="text-muted title-compound__description">Añade fotografías de las actividades que has organizado anteriormente.</h4>    
+                    </div>    
+                </div>
+                
+                <div class="card-body no-padding-top">                    
+                    
+                    <div class="drop-box" ng-show="!vm.main_photo_loading"
+                         ng-model="vm.main_photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                         drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                         ng-file-change="vm.addImage(vm.main_photo,true)"
+                         allow-dir="true" accept="image/*">
+
+                         <div class="center-childs" ng-show="!vm.main_image">
+                            <a class="btn btn-success btn-lg" role="button">Colocar portada</a>     
+                         </div>
+
+                        <div ng-show="vm.main_image" class="img-cover-preview img-actionable img-size-cover img-position-center" style="background-image: url('{{vm.main_image.photo}}')"  >
+                        
+                            <div class="img-actionable__actions">
+                                <a class="img-actionable__actions__action" role="button">
+                                    Cambiar portada
+                                </a>
+                                
+                            </div>
+
                         </div>
-                        <img ng-src="{{vm.main_image.photo}}" width="200px" height="200px"/>
-                        <img ng-src="/img/ajax-loader.gif" ng-show='vm.main_photo_loading'/>
+                        
+                    </div>
+
+                    <div trulii-preloader loader-control="vm.main_photo_loading">
+                        
+                    </div>
+                    
+                </div>
+            </div>
 
 
-                        <hr>
+            
+            <form class="material-form" name='vm.activity_gallery_form' ng-submit="vm.save_activity()">
+                <fieldset class="card card--shrink shadow-z-1">
+
+                    <div class="card-header">
+                        <div class="title-compound">
+                            <i class="mdi-image-photo-library card-icon"></i>
+                        
+                            <h1 class="title-compound__title">
+                                Galería
+                            </h1>
+                            <h4 class="text-muted title-compound__description">Añade fotografías de las actividades que has organizado anteriormente.</h4>    
+                        </div>        
+                    </div>
+                    
+                    <div class="card-body no-padding-top">
+
+                        
                         <div class="drop-box"
                              ng-model="vm.photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
                              drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
@@ -34,8 +80,11 @@
                             </alert>
                         </div>
 
-                        <div ng-repeat="image in vm.images track by $index">
-                            <img ng-src="{{image.photo}}" width="200px" height="200px"/>
+                        <div ng-repeat="image in vm.images track by $index">                            
+                            <div class="img-square"
+                                 style="background-image: url('{{image.photo}}')">
+                                
+                            </div>
                             <button type="button" class="btn btn-default" aria-label="Left Align"
                                     ng-click="vm.deleteImage(image)">
                                 <span class="mdi-action-delete" aria-hidden="true"></span>
@@ -44,28 +93,44 @@
 
                         <img ng-src="/img/ajax-loader.gif" ng-show='vm.photo_loading'/>
                     </div>
-                    <hr>
-                    <div class="form-group">
-                        <h2>Video</h2>
-                        <h4 class="text-muted">Agrega un video para que promociones mejor tu actividad</h4>
-                        <br/>
-                        <label for="youtube_video_url">Enlace Youtube</label>
-                        <input id="youtube_video_url" class="form-control" name="youtube_video_url"
-                               placeholder="Pega aquí el enlace de tu video en Youtube"
-                               ng-model='vm.activity.youtube_video_url'/>
-
-                        <trulii-input-alert field="vm.activity_gallery_form.youtube_video_url"
-                                            errors="vm.errors"></trulii-input-alert>
-                    </div>
-                    <hr>
-                    <button type="submit" id="submit" class="btn btn-primary" >Guardar</button>
-
-                    <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
-                    </div>
+                                        
                 </fieldset>
-            </form>
+           
+
+                <div class="card card--shrink shadow-z-1">
+                    
+                    <div class="card-header">
+                        <div class="title-compound">
+                            <i class="mdi-action-theaters card-icon"></i>
+                        
+                            <h1 class="title-compound__title">
+                                Vídeo
+                            </h1>
+                            <h4 class="text-muted title-compound__description">Agrega un video para que promociones mejor tu actividad.</h4>    
+                        </div> 
+                    </div>
+
+                    <div class="card-body no-padding-top">
+                        <div class="form-group">
+                            
+                            <label for="youtube_video_url" class="control-label">Enlace Youtube</label>
+                            <input id="youtube_video_url" class="form-control" name="youtube_video_url"
+                                   placeholder="Coloca aquí el enlace de tu vídeo en Youtube"
+                                   ng-model='vm.activity.youtube_video_url'/>
+
+                            <trulii-input-alert field="vm.activity_gallery_form.youtube_video_url"
+                                                errors="vm.errors"></trulii-input-alert>
+                        </div>
+
+                        <youtube-video video-url="vm.activity.youtube_video_url" player-width="'100%'"></youtube-video>
+                        
+                        <div trulii-submit-controls class="separate-above" is-saving="vm.isSaving" value="Guardar"></div>
+                    </div>
+                </div>
+             </form>
+
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <div class="sidebar-nav-fixed pull-right affix well">
                 <ul class="nav">
                     <li>
@@ -99,7 +164,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> -->
         <hr>
     </div>
 </div>
