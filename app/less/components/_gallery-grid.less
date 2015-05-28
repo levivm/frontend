@@ -1,0 +1,27 @@
+
+
+@component-class: gallery-grid;
+
+.@{component-class}{
+
+    &--fixed{
+        &:extend(.center-childs);    
+
+        & .@{component-class}__photo{
+            width: 12em;
+            height: 12em;
+        }
+
+    }
+
+    &__photo{
+        &:extend(.img-size-cover);        
+        &:extend(.img-carpet);
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 2px 2px 0;
+        
+    }
+    
+    
+}

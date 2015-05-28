@@ -29,6 +29,16 @@
 					scope.$on('$stateChangeError', toggleLoader);	
 				}
 
+				if (attrs.centerLoader){
+
+					var container = element.find('.preloader-container')[0];
+
+					container.style.margin = 0;
+					container.style.position = 'relative';
+					container.style.marginTop = "30%";
+
+				}
+
 				//////
 
 				function toggleLoader(event, toState, toParams, fromState, fromParams){					

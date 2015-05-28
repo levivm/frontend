@@ -23,17 +23,17 @@
                          allow-dir="true" accept="image/*">
 
                          <div class="center-childs" ng-show="!vm.main_image">
-                            <a class="btn btn-success btn-lg" role="button">Colocar portada</a>     
+                            <a class="btn btn-success btn-lg" role="button">Colocar portada</a>   <br/> 
+                            <div class="text-center text-warning">Obligatorio</div>
                          </div>
 
-                        <div ng-show="vm.main_image" class="img-cover-preview img-actionable img-size-cover img-position-center" style="background-image: url('{{vm.main_image.photo}}')"  >
+                        <div ng-show="vm.main_image" class="img-cover-preview img-actionable img-size-cover img-carpet img-position-center" style="background-image: url('{{vm.main_image.photo}}')"  >
                         
                             <div class="img-actionable__actions">
                                 <a class="img-actionable__actions__action" role="button">
                                     Cambiar portada
-                                </a>
-                                
-                            </div>
+                                </a>                                
+                            </div>                            
 
                         </div>
                         
@@ -64,14 +64,6 @@
                     
                     <div class="card-body no-padding-top">
 
-                        
-                        <div class="drop-box"
-                             ng-model="vm.photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
-                             drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                             ng-file-change="vm.addImage(vm.photo,false)"
-                             allow-dir="true" accept="image/*">
-                            <a class="btn btn-primary" role="button">Añadir Imagen</a>
-                        </div>
                         <div>
                             <!--TODO revisar estos alerts-->
                             <alert type="danger" ng-show="vm.errors.file">{{vm.errors.file}}</alert>
@@ -79,19 +71,45 @@
                                 {{vm.errors.non_field_errors}}
                             </alert>
                         </div>
-
-                        <div ng-repeat="image in vm.images track by $index">                            
-                            <div class="img-square"
-                                 style="background-image: url('{{image.photo}}')">
+                        
+                        <div class="gallery-grid--fixed">
+                            <div class="gallery-grid__photo img-actionable img-actionable--small" 
+                                    ng-repeat="image in vm.images track by $index"
+                                    style="background-image: url('{{image.photo}}')" >                            
+                       
+                                    
+                                <div class="img-actionable__actions">
+                                    
+                                    <button type="button" class="img-actionable__actions__action" aria-label="Eliminar"
+                                        ng-click="vm.deleteImage(image)" alt="Eliminar">
+                                    <span class="mdi-action-delete" aria-hidden="true"></span>
+                                </button>        
+                                </div>
+                              
                                 
                             </div>
-                            <button type="button" class="btn btn-default" aria-label="Left Align"
-                                    ng-click="vm.deleteImage(image)">
-                                <span class="mdi-action-delete" aria-hidden="true"></span>
-                            </button>
+
+                            <div class="gallery-grid__photo" ng-show="vm.photo_loading" >
+                                <div trulii-preloader loader-control="true" center-loader="true"></div>                                
+                            </div>
+                            
                         </div>
 
-                        <img ng-src="/img/ajax-loader.gif" ng-show='vm.photo_loading'/>
+
+                        <div class="drop-box center-childs"
+                             ng-show="vm.images.length < 5"
+                             ng-model="vm.photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                             drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                             ng-file-change="vm.addImage(vm.photo,false)"
+                             allow-dir="true" accept="image/*">
+                            <a class="btn btn-primary separate-above" role="button">Agregar Imagen</a>
+                        </div>
+                        
+                        <p class="text-center separate-above" ng-show="vm.images.length == 5">
+                            Ya posee el ḿáximo de imágenes que puede tener para una actividad.
+                        </p>
+
+                        
                     </div>
                                         
                 </fieldset>
@@ -113,7 +131,7 @@
                     <div class="card-body no-padding-top">
                         <div class="form-group">
                             
-                            <label for="youtube_video_url" class="control-label">Enlace Youtube</label>
+                            <label for="youtube_video_url" class="control-label">Enlace de Youtube</label>
                             <input id="youtube_video_url" class="form-control" name="youtube_video_url"
                                    placeholder="Coloca aquí el enlace de tu vídeo en Youtube"
                                    ng-model='vm.activity.youtube_video_url'/>

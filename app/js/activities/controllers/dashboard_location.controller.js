@@ -13,10 +13,10 @@
         .controller('ActivityDBLocationController', ActivityDBLocationController);
 
     ActivityDBLocationController.$inject = ['$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'filterFilter',
-        'activity', 'cities', 'LocationManager', 'Toast'];
+        'activity', 'cities', 'LocationManager', 'Toast', 'Elevator'];
 
     function ActivityDBLocationController($scope, uiGmapGoogleMapApi, uiGmapIsReady, filterFilter,
-                                          activity, cities, LocationManager, Toast) {
+                                          activity, cities, LocationManager, Toast, Elevator) {
 
         var vm = this;
 
@@ -101,6 +101,8 @@
             vm.map = LocationManager.getMap(vm.activity.location);
             
             vm.marker = LocationManager.getMarker(vm.activity.location);
+
+            Elevator.toTop();
 
         }
 
