@@ -15,9 +15,9 @@
         .module('trulii.students.services')
         .factory('Student', Student);
 
-    Student.$inject = ['$http', '$q', 'UploadFile', 'StudentServerApi', 'Authentication'];
+    Student.$inject = ['$http', '$q', 'UploadFile', 'StudentServerApi', 'Authentication', 'defaultPicture'];
 
-    function Student($http, $q, UploadFile, StudentServerApi, Authentication) {
+    function Student($http, $q, UploadFile, StudentServerApi, Authentication, defaultPicture) {
 
         var api = StudentServerApi;
 
@@ -31,11 +31,14 @@
 
             setData : function (studentData) {
                 angular.extend(this, studentData);
+                if(!this.photo) {
+                    this.photo = defaultPicture;
+                }
             },
 
             load : function (id) {
                 var scope = this;
-                $http.get(api.student(id)).success(function (studentData) {
+                return $http.get(api.student(id)).success(function (studentData) {
                     console.log('response');
                     console.log(studentData);
                     scope.setData(studentData);
@@ -103,40 +106,6 @@
 
             change_password : function (password_data) {
                 return Authentication.change_password(password_data);
-            },
-
-// <<<<<<< Updated upstream
-//             upload_photo : function (photo_data) {
-//                 var deferred = $q.defer();
-
-//                 UploadFile.upload_file(photo_data, api.upload_photo())
-//                     .then(success,error);
-
-//                 return deferred.promise;
-
-//                 function success(response){
-//                     deferred.resolve(response.data);
-//                 }
-//                 function error(response) {
-//                     deferred.reject(response);
-//                 }
-//             },
-// =======
-            // upload_photo : function (photo_data) {
-            //     return $http.post(api.upload_photo(), photo_data)
-            //         .then(success, error);
-
-            //     function success(response){
-            //         return response.data;
-            //     }
-            //     function error(response) {
-            //         return $q.reject(response);
-            //     }
-            // },
-// >>>>>>> Stashed changes
-
-            getPicture: function(){
-                return !!this.photo? this.photo : 'css/img/default_profile_pic.jpg';
             },
 
             getOrders : function () {

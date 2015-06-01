@@ -262,12 +262,12 @@
 
         function isStudent(){
             var user = getAuthenticatedAccount();
-            return (user.user_type && user.user_type === 'S')
+            return (user && user.user_type && user.user_type === 'S')
         }
 
         function isOrganizer(){
             var user = getAuthenticatedAccount();
-            return (user.user_type && user.user_type === 'O')
+            return (user && user.user_type && user.user_type === 'O')
         }
 
         function isAuthenticated() {

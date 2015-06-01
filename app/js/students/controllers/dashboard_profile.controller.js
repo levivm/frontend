@@ -41,7 +41,6 @@
         vm.genders = [{name:'Femenino', id: 1}, {name:'Masculino', id: 2}];
         vm.updateProfile = updateProfile;
         vm.uploadPicture = uploadPicture;
-        vm.getPicture = vm.student.getPicture();
 
         initialize();
 
@@ -63,12 +62,16 @@
 
         function uploadPicture(image){
             console.log(image);
+            vm.photo_loading = true;
             vm.student.upload_photo(image).then(success, error);
 
             function success(response){
-                angular.extend(student,vm.student);
-                vm.photo_invalid = false;
-                vm.photo_loading = false;
+                vm.student.load(vm.student.id).then(function(){
+                    angular.extend(student,vm.student);
+                    vm.photo_invalid = false;
+                    vm.photo_loading = false;
+                });
+
             }
 
             function error(response) {

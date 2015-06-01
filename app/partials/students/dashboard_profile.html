@@ -64,7 +64,6 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="gender">Género</label>
                             <div class="col-sm-3">
-                                --{{profile.selected_gender}}--
                                 <select id="gender" class="form-control" ng-model="profile.selected_gender"
                                         name="gender"
                                         ng-options="gender as gender.name for (index, gender) in profile.genders"
@@ -104,15 +103,14 @@
                 </form>
             </div>
             <div class="tab-pane text-style" id="picture-tab">
-                <form name="profile.picture_form" ng-submit="profile.replaceProfilePiture()">
+                <form name="profile.picture_form">
                     <div class="form-group">
                         <h3>Foto de Perfil</h3>
                         <h4 class="text-muted">Coloca una foto tuya donde salgas con estilo</h4>
                         <div class="img-input">
-                            <img ng-src="{{profile.getPicture}}" width="300px" height="300px" />
-                            <img ng-src="img/ajax-loader.gif" ng-show='profile.photo_loading'/>
-                            <div>{{profile.student.photo_url}}</div>
-                            <div>{{profile.student.photo}}</div>
+                            <img ng-src="{{profile.student.photo}}" width="300px" height="300px"
+                                 ng-hide='profile.photo_loading'/>
+                            <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
                             <div class="drop-box"
                                  ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select="" ng-multiple="false"
                                  drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
