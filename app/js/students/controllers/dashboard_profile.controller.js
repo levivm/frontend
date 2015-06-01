@@ -52,6 +52,7 @@
             vm.student.update_profile().then(updateSuccess, updateError);
 
             function updateSuccess(){}
+            
             function updateError(response){
                 var responseErrors = response.data['form_errors'];
                 if (responseErrors) {

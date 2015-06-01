@@ -56,6 +56,11 @@
                 };
                 return scope.update(profile_data)
             },
+            upload_photo : function (image) {
+                var scope = this;
+
+                return UploadFile.upload_user_photo(image,api.student(scope.id));
+            },
 
             update : function (data) {
                 var scope = this;
@@ -100,21 +105,35 @@
                 return Authentication.change_password(password_data);
             },
 
-            upload_photo : function (photo_data) {
-                var deferred = $q.defer();
+// <<<<<<< Updated upstream
+//             upload_photo : function (photo_data) {
+//                 var deferred = $q.defer();
 
-                UploadFile.upload_file(photo_data, api.upload_photo())
-                    .then(success,error);
+//                 UploadFile.upload_file(photo_data, api.upload_photo())
+//                     .then(success,error);
 
-                return deferred.promise;
+//                 return deferred.promise;
 
-                function success(response){
-                    deferred.resolve(response.data);
-                }
-                function error(response) {
-                    deferred.reject(response);
-                }
-            },
+//                 function success(response){
+//                     deferred.resolve(response.data);
+//                 }
+//                 function error(response) {
+//                     deferred.reject(response);
+//                 }
+//             },
+// =======
+            // upload_photo : function (photo_data) {
+            //     return $http.post(api.upload_photo(), photo_data)
+            //         .then(success, error);
+
+            //     function success(response){
+            //         return response.data;
+            //     }
+            //     function error(response) {
+            //         return $q.reject(response);
+            //     }
+            // },
+// >>>>>>> Stashed changes
 
             getPicture: function(){
                 return !!this.photo? this.photo : 'css/img/default_profile_pic.jpg';

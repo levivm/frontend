@@ -21,16 +21,33 @@
 
     //noinspection UnnecessaryLocalVariableJS
       var UploadFile = {
-      upload_file: upload_file
+      upload_user_photo:upload_user_photo,
+      upload_activity_photo:upload_activity_photo,
     };
     
     return UploadFile;
 
-    function upload_file(file,url,extra_data) {
+    function upload_user_photo(file,url,extra_data){
 
-      console.log("uploading FILE",file);
+      var method = "PUT";
+      return _upload_file(file,url,extra_data,method)
+
+
+    }
+
+    function upload_activity_photo(file,url,extra_data){
+
+      var method = "POST";
+      return _upload_file(file,url,extra_data,method)
+
+    }
+
+
+    function _upload_file(file,url,extra_data,method) {
+
       return $upload.upload({
-        url: url, // upload.php script, node.js route, or servlet url
+        url: url,
+        method:method,
         // formData:{'main_photo':true},
         //method: 'POST' or 'PUT',
         //headers: {'Authorization': 'xxx'}, // only for html5
