@@ -15,17 +15,18 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['LocationManager', 'cities', 'authenticatedUser'];
+    HomeController.$inject = ['LocationManager', 'cities', 'authenticatedUser', 'Authentication'];
 
-    function HomeController(LocationManager, cities, authenticatedUser) {
+    function HomeController(LocationManager, cities, authenticatedUser, Authentication) {
 
+        console.log('authenticatedUser:', authenticatedUser);
         var vm = this;
 
         vm.cities = cities;
         vm.current_city = null;
-        vm.isUserAuthenticated = authenticatedUser !== undefined;
-        vm.userId = !!authenticatedUser && authenticatedUser.id? authenticatedUser.id : null;
         vm.setCurrentCity = _setCurrentCity;
+        vm.isStudent = Authentication.isStudent;
+        vm.isOrganizer = Authentication.isOrganizer;
 
         activate();
 

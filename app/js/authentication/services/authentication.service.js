@@ -42,6 +42,8 @@
             setAuthenticatedAccount: setAuthenticatedAccount,
             unauthenticate: unauthenticate,
             getCurrentUser:getCurrentUser,
+            isStudent: isStudent,
+            isOrganizer: isOrganizer,
             isAnonymous:isAnonymous
         };
 
@@ -258,12 +260,21 @@
             return localStorageService.get('user');
         }
 
+        function isStudent(){
+            var user = getAuthenticatedAccount();
+            return (user.user_type && user.user_type === 'S')
+        }
+
+        function isOrganizer(){
+            var user = getAuthenticatedAccount();
+            return (user.user_type && user.user_type === 'O')
+        }
+
         function isAuthenticated() {
             return !!localStorageService.get('user');
         }
 
         function setAuthenticatedAccount(data){
-            console.log('Authentication. userChanged');
             $rootScope.$emit('userChanged', data);
             localStorageService.set('user',data);
             return data;

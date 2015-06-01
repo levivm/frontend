@@ -41,7 +41,7 @@
                 controller:'HomeController as home',
                 resolve:{
                     cities:getAvailableCities,
-                    authenticatedUser:getAuthenticatedUser
+                    authenticatedUser: getAuthenticatedUser
                 },
                 templateUrl: 'partials/landing/landing.html'                        
             })
@@ -196,12 +196,12 @@
             })
             .state('student-dashboard', {
                 abstract:true,
-                url:'/students/:student_id/dashboard/',
+                url:'/students/dashboard/',
                 controller: 'StudentDashboardCtrl as dash',
                 templateUrl: 'partials/students/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
-                    student: getStudent
+                    student: getCurrentStudent
                 },
                 data: {
                     requiredAuthentication : true
@@ -220,7 +220,10 @@
             .state('student-dashboard.activities', {
                 url:'activities',
                 controller: 'StudentActivitiesCtrl as activities',
-                templateUrl: 'partials/students/dashboard_activities.html'
+                templateUrl: 'partials/students/dashboard_activities.html',
+                resolve:{
+                    activities: getActivities
+                }
             })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
@@ -470,35 +473,48 @@
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var is_organizer = true;
+        var force_fetch = true;
 
         if(authenticatedUser){
             is_organizer = authenticatedUser.user_type === 'O';
-            if (!is_organizer){
-
+            if (is_organizer) {
+                return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
+            } else {
                 $timeout(function() {
-                  // This code runs after the authentication promise has been rejected.
-                  // Go to the log-in page
                      $state.go('home');
                 });
-
-
                 return $q.reject()
             }
         }
-
-
-        var force_fetch = true;
-        
-        return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
-
     }
-
-
 
     getOrganizer.$inject = ['$stateParams', 'OrganizersManager'];
 
     function getOrganizer($stateParams, OrganizersManager) {
         return OrganizersManager.getOrganizer($stateParams.organizer_id);
+    }
+
+    getCurrentStudent.$inject = ['$timeout', '$state', 'Authentication', 'StudentsManager'];
+
+    function getCurrentStudent($timeout, $state, Authentication, StudentsManager){
+
+        var authenticatedUser =  Authentication.getAuthenticatedAccount();
+        var is_student = false;
+        var force_fetch = true;
+
+        if(authenticatedUser){
+            is_student = (authenticatedUser.user_type === 'S');
+            if (is_student) {
+                return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
+            } else {
+                $timeout(function() {
+                    $state.go('home');
+                }, 0);
+
+                return $q.reject()
+            }
+        }
+
     }
 
     getStudent.$inject = ['$stateParams', 'StudentsManager'];
@@ -521,6 +537,12 @@
 
     function getAvailableCities(LocationManager){
         return LocationManager.getAvailableCities();
+    }
+
+    getActivities.$inject = ['ActivitiesManager'];
+
+    function getActivities(ActivitiesManager){
+        return ActivitiesManager.getActivities();
     }
 
     getCalendars.$inject = ['CalendarsManager','activity'];

@@ -47,14 +47,13 @@
                             <label class="control-label col-md-2" for="birth_date">Fecha de Nacimiento</label>
                             <div class="col-md-3">
                                 <input id="birth_date" type="text" class="form-control" name="birth_date"
-                                       ng-model="profile.student.user.birth_date"
-                                       ng-change="profile.calendar.changeStartDate()"
-                                       datepicker-popup="{{profile.format}}" is-open="profile.calendar.startOpened"
+                                       ng-model="profile.student.birth_date"
+                                       datepicker-popup="{{profile.format}}" is-open="profile.opened"
                                        min-date="profile.minStartDate" datepicker-options="profile.dateOptions"
                                        close-text="Close"/>
                             </div>
                             <div class="col-md-1">
-                                <button class="btn btn-default btn-sm" ng-click="profile.calendar.openStartDate($event)">
+                                <button class="btn btn-default btn-sm" ng-click="profile.openDatePicker($event)">
                                     <i class="mdi-action-event"></i>
                                 </button>
                             </div>
@@ -65,6 +64,7 @@
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="gender">Género</label>
                             <div class="col-sm-3">
+                                --{{profile.selected_gender}}--
                                 <select id="gender" class="form-control" ng-model="profile.selected_gender"
                                         name="gender"
                                         ng-options="gender as gender.name for (index, gender) in profile.genders"
@@ -106,29 +106,28 @@
             <div class="tab-pane text-style" id="picture-tab">
                 <form name="profile.picture_form" ng-submit="profile.replaceProfilePiture()">
                     <div class="form-group">
-                        <img ng-src="{{image.photo}}" width="200px" height="200px"/>
-                        <button type="button" class="btn btn-default" aria-label="Reemplazar"
-                                ng-click="profile.replace(image)">
-                            <span class="mdi-content-create" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div ng-if="profile.isChangingPicture">
-                        <div class="form-group">
+                        <h3>Foto de Perfil</h3>
+                        <h4 class="text-muted">Coloca una foto tuya donde salgas con estilo</h4>
+                        <div class="img-input">
+                            <img ng-src="{{profile.getPicture}}" width="300px" height="300px" />
+                            <img ng-src="img/ajax-loader.gif" ng-show='profile.photo_loading'/>
+                            <div>{{profile.student.photo_url}}</div>
+                            <div>{{profile.student.photo}}</div>
                             <div class="drop-box"
-                                 ng-model="profile.photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                                 ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select="" ng-multiple="false"
                                  drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                                 ng-file-change="profile.replaceProfilePicture(profile.photo,false)"
+                                 ng-file-change="profile.uploadPicture(profile.student.photo_url)"
                                  allow-dir="true" accept="image/*">
-                                <a class="btn btn-primary" role="button">Reemplazar Imagen</a>
+                                <a class="btn btn-primary" aria-label="Reemplazar"
+                                   role="button">
+                                    <span class="mdi-content-create" aria-hidden="true"></span>
+                                </a>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn-lg" aria-label="Aceptar">
-                                <span class="mdi-content-save" aria-hidden="true"></span>
-                            </button>
+                        <div class="errors" ng-show="profile.photo_invalid">
+                            <span>{{ profile.errors.photo }}</span>
                         </div>
                     </div>
-
                 </form>
             </div>
             <div class="tab-pane text-style" id="comments-tab">

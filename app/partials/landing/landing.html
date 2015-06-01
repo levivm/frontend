@@ -1,19 +1,34 @@
-<label for="home-city-selector" class="sr-only">Cities</label>
-<select id="home-city-selector" name="city" ng-model="home.current_city"
-        ng-options="city as city.name for city in home.cities track by city.id"
-        ng-change="home.setCurrentCity(current_city)">
-</select>
-
-<br/>
-<a ui-sref="register">Register</a>
-<br/>
-<a ui-sref="organizer-landing">Register Organizer</a>
-<br/>
-<a ui-sref="login">Iniciar sesión</a>
-<br/>
-<a ui-sref="student-dashboard.account({'student_id': home.userId})">Dashboard Estudiante</a>
-<br/>
-<a ui-sref="organizer-dashboard.account">Dashboard Organizador</a>
-<br/>
-<a ui-sref="activities-new.general">Crear Actividad</a>
-<br/>
+<div class="row">
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li>
+                <label for="home-city-selector" class="sr-only">Cities</label>
+                <select id="home-city-selector" class="form-control" name="city" ng-model="home.current_city"
+                        ng-options="city as city.name for city in home.cities track by city.id"
+                        ng-change="home.setCurrentCity(current_city)">
+                </select>
+            </li>
+            <li>
+                <a ui-sref="login">Iniciar sesión</a>
+            </li>
+            <li>
+                <a ui-sref="register">Register</a>
+            </li>
+            <li>
+                <a ui-sref="organizer-landing">Register Organizer</a>
+            </li>
+            <li ng-if="home.isOrganizer()">
+                <a ui-sref="organizer-dashboard.account">Dashboard</a>
+            </li>
+            <li ng-if="home.isOrganizer()">
+                <a ui-sref="activities-new.general">Crear Actividad</a>
+            </li>
+            <li ng-if="home.isStudent()">
+                <a ui-sref="student-dashboard.account">Dashboard</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10"></div>
+</div>

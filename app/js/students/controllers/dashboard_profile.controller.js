@@ -12,51 +12,82 @@
         .module('trulii.students.controllers')
         .controller('StudentProfileCtrl', StudentProfileCtrl);
 
-    StudentProfileCtrl.$inject = ['$timeout', '$state', 'Authentication', 'datepickerPopupConfig', 'student'];
+    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student'];
 
-    function StudentProfileCtrl($timeout, $state, Authentication, datepickerPopupConfig, student) {
+    function StudentProfileCtrl(datepickerPopupConfig, Error, student) {
 
         var vm = this;
-        var cache_student = Authentication.getAuthenticatedAccount();
+
+        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.format = vm.formats[0];
+        vm.hstep = 1;
+        vm.mstep = 15;
+        vm.minStartDate = new Date();
+        vm.dateOptions = {
+            formatYear: 'yy',
+            startingDay: 1
+        };
+        vm.ismeridian = true;
+        vm.openDatePicker = openDatePicker;
 
         vm.bio_max = 140;
         vm.student = student;
         vm.isChangingPicture = false;
         vm.errors = {};
         vm.isCollapsed = true;
+        vm.photo = null;
+        vm.photo_invalid = false;
+        vm.photo_loading = false;
+        vm.genders = [{name:'Femenino', id: 1}, {name:'Masculino', id: 2}];
         vm.updateProfile = updateProfile;
-
-        student.getOrders().then(function(result){
-            console.log('student.getOrders:', result);
-        });
+        vm.uploadPicture = uploadPicture;
+        vm.getPicture = vm.student.getPicture();
 
         initialize();
 
         //--------- Functions Implementation ---------//
 
         function updateProfile(){
-            _clearErrors(profile_form);
-            vm.student.update().then(updateSuccess, updateError);
+            vm.errors = Error.form.clear(vm.profile_form, vm.errors);
+            vm.student.update_profile().then(updateSuccess, updateError);
 
             function updateSuccess(){}
             function updateError(response){
-                angular.forEach(response.data['form_errors'], function(errors, field) {
-                   _addError(field, errors[0]);
-                });
+                var responseErrors = response.data['form_errors'];
+                if (responseErrors) {
+                    vm.errors = Error.form.add(vm.profile_form, vm.errors, responseErrors);
+                }
             }
         }
 
-         function _clearErrors(form){
-           form.$setPristine();
-           vm.errors = null;
-           vm.errors = {};
-         }
+        function uploadPicture(image){
+            console.log(image);
+            vm.student.upload_photo(image).then(success, error);
 
-         function _addError(field, message) {
-           vm.errors[field] = message;
-        //   if (field in vm.account_form_email)
-        //     vm.account_form_email[field].$setValidity(message, false);
-         }
+            function success(response){
+                angular.extend(student,vm.student);
+                vm.photo_invalid = false;
+                vm.photo_loading = false;
+            }
+
+            function error(response) {
+                console.log('StudentProfileCtrl.uploadPicture. Error uploading profile picture');
+                var responseErrors = response['errors'];
+                vm.photo_loading = false;
+                if (responseErrors) {
+                    vm.photo_invalid = true;
+                    vm.errors = Error.form.add(vm.picture_form, vm.errors, responseErrors);
+                }
+            }
+        }
+
+        function openDatePicker($event){
+            console.log('openDatePicker');
+            $event.preventDefault();
+            $event.stopPropagation();
+
+            vm.opened = true;
+        }
 
         function initialize() {
             datepickerPopupConfig.showButtonBar = false;

@@ -1,92 +1,75 @@
 <div class="container">
     <div class="col-md-2">
-        <!--<nav class="nav-sidebar">-->
-            <!--<ul class="nav nav-pills nav-stacked">-->
-                <!--<li class="active"><a data-target="#settings-tab" data-toggle="tab">Ajustes</a></li>-->
-                <!--<li class=""><a data-target="#history-tab" data-toggle="tab">Historial de Compras</a></li>-->
-            <!--</ul>-->
-        <!--</nav>-->
+        <nav class="nav-sidebar">
+            <ul class="nav nav-pills nav-stacked">
+                <li class="active"><a data-target="#current-tab" data-toggle="tab">Actuales</a></li>
+                <li class=""><a data-target="#history-tab" data-toggle="tab">Anteriores</a></li>
+            </ul>
+        </nav>
     </div>
     <div class="col-md-8 col-md-offset-1">
-        <!--<div class="tab-content">-->
-            <!--<div class="tab-pane active text-style" id="settings-tab">-->
-                <!--<form name='vm.account_form_email' class="form-horizontal" ng-submit="vm.changeEmail()">-->
-                    <!--<fieldset>-->
-                        <!--<div class="form-group">-->
-                            <!--<h3>Correo Electrónico</h3>-->
-                            <!--<h4 class="text-muted">-->
-                                <!--Puedes modificar tu dirección de correo electrónico si así lo deseas-->
-                            <!--</h4>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="control-label col-md-2" for="email">Correo</label>-->
-                            <!--<div class="col-md-6">-->
-                                <!--<input id="email" class="form-control" name="email"-->
-                                       <!--ng-model="vm.organizer.user.email" type="email"/>-->
-                            <!--</div>-->
-                            <!--<trulii-input-alert field="vm.account_form_email.email"-->
-                                                <!--errors="vm.errors"></trulii-input-alert>-->
-                        <!--</div>-->
-
-                        <!--<div class="form-group">-->
-                            <!--<input type="submit" id="email-submit" class="btn btn-primary pull-right" value="Guardar"/>-->
-                        <!--</div>-->
-
-                        <!--<div ng-hide="vm.isCollapsed">Guardado</div>-->
-                        <!--<div class="separator"></div>-->
-                    <!--</fieldset>-->
-                <!--</form>-->
-                <!--<hr>-->
-
-                <!--<form name='vm.account_form_password' class="form-horizontal" ng-submit="vm.changePassword()">-->
-                    <!--<fieldset>-->
-                        <!--<div class="form-group">-->
-                            <!--<h3>Contraseña</h3>-->
-                            <!--<h4 class="text-muted">-->
-                                <!--En caso de modificar tu contraseña te recomendamos crear una segura y fácil de recordar-->
-                            <!--</h4>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="control-label col-md-2" for="old-password">Contraseña actual</label>-->
-                            <!--<div class="col-md-6">-->
-                                <!--<input id="old-password" class="form-control" name="old-password"-->
-                                       <!--ng-model="vm.password_data.oldpassword" placeholder="Contraseña" type="password">-->
-                            <!--</div>-->
-                            <!--<trulii-input-alert field="vm.account_form_password.oldpassword"-->
-                                                <!--errors="vm.errors"></trulii-input-alert>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="control-label col-md-2" for="password">Nueva Contraseña</label>-->
-                            <!--<div class="col-md-6">-->
-                                <!--<input id="password" class="form-control" name="password"-->
-                                       <!--ng-model="vm.password_data.password"-->
-                                       <!--placeholder="Contraseña" type="password">-->
-                            <!--</div>-->
-                            <!--<trulii-input-alert field="vm.account_form_password.password"-->
-                                                <!--errors="vm.errors"></trulii-input-alert>-->
-                        <!--</div>-->
-                        <!--<div class="form-group">-->
-                            <!--<label class="control-label col-md-2" for="re-password">Confirmar Nueva Contraseña</label>-->
-                            <!--<div class="col-md-6">-->
-                                <!--<input id="re-password" class="form-control" name="re-password"-->
-                                       <!--ng-model="vm.password_data.repassword" placeholder="Contraseña" type="password">-->
-                            <!--</div>-->
-                            <!--<trulii-input-alert field="vm.account_form_password.repassword"-->
-                                                <!--errors="vm.errors"></trulii-input-alert>-->
-                        <!--</div>-->
-                        <!--<button type="submit" id="password-submit" class="btn btn-primary pull-right">Cambiar Contraseña</button>-->
-                    <!--</fieldset>-->
-                <!--</form>-->
-                <!--<hr>-->
-            <!--</div>-->
-            <!--<div class="tab-pane text-style" id="history-tab">-->
-                <!--<div class="jumbotron">-->
-                    <!--<h1 class="text-muted"> Coming Soon!</h1>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <div class="jumbotron">
-            <h1 class="text-muted"> Coming Soon!</h1>
+        <div class="tab-content">
+            <div class="tab-pane active" id="current-tab">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <h3>Actuales</h3>
+                            <h4 class="text-muted">
+                                Revisa las actividades que estás cursando actualmente o que inician próximamente
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" ng-repeat="activity in activities.activities track by activity.id">
+                        <div class="panel panel-default">
+                            <div>
+                                <img ng-src="{{activity.main_photo}}" alt="{{activity.title}}" class="img-responsive"/>
+                            </div>
+                            <div class="panel-body">
+                                <h3 ng-bind="activity.title"></h3>
+                                <div class="row text-right">
+                                    <div class="col-md-2 col-md-offset-7">
+                                        <a ui-sref="activities-detail({activity_id: {{activity.id}} })">Ver</a>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <a href="">Contactar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="history-tab">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <h3>Anteriores</h3>
+                            <h4 class="text-muted">
+                                Revisa las actividades en las que te has inscrito anteriormente
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" ng-repeat="activity in activities.activities track by activity.id">
+                        <div class="panel panel-default">
+                            <div>
+                                <img ng-src="{{activity.main_photo}}" alt="{{activity.title}}" class="img-responsive"/>
+                            </div>
+                            <div class="panel-body">
+                                <h3 ng-bind="activity.title"></h3>
+                                <div class="row text-right">
+                                    <div class="col-md-2 col-md-offset-10">
+                                        <a ui-sref="activities-detail({activity_id: {{activity.id}} })">Ver</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

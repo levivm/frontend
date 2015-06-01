@@ -15,9 +15,9 @@
         .module('trulii.students.services')
         .factory('Student', Student);
 
-    Student.$inject = ['$http', '$q', 'StudentServerApi', 'Authentication'];
+    Student.$inject = ['$http', '$q', 'UploadFile', 'StudentServerApi', 'Authentication'];
 
-    function Student($http, $q, StudentServerApi, Authentication) {
+    function Student($http, $q, UploadFile, StudentServerApi, Authentication) {
 
         var api = StudentServerApi;
 
@@ -42,11 +42,16 @@
                 });
             },
 
-            //TODO
             update_profile : function () {
                 var scope = this;
                 var profile_data = {
-                    'name' : scope.name,
+                    user: {
+                        'first_name': scope.user.first_name,
+                        'last_name': scope.user.last_name,
+                        'city': scope.user.city
+                    },
+                    'birth_date': scope.birth_date,
+                    'gender': scope.gender,
                     'bio' : scope.bio
                 };
                 return scope.update(profile_data)
@@ -96,15 +101,23 @@
             },
 
             upload_photo : function (photo_data) {
-                return $http.post(api.upload_photo(), photo_data)
-                    .then(success, error);
+                var deferred = $q.defer();
+
+                UploadFile.upload_file(photo_data, api.upload_photo())
+                    .then(success,error);
+
+                return deferred.promise;
 
                 function success(response){
-                    return response.data;
+                    deferred.resolve(response.data);
                 }
                 function error(response) {
-                    return $q.reject(response);
+                    deferred.reject(response);
                 }
+            },
+
+            getPicture: function(){
+                return !!this.photo? this.photo : 'css/img/default_profile_pic.jpg';
             },
 
             getOrders : function () {

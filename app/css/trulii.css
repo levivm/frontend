@@ -12482,6 +12482,16 @@ tags-input input {
 .checkbox {
   padding-top: 0 !important;
 }
+.img-input {
+  position: relative;
+  width: 300px;
+  height: 300px;
+}
+.img-input .drop-box {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
 @font-face {
   font-family: 'fontello';
   src: url('fonts/fontello/fontello.eot?27890168');

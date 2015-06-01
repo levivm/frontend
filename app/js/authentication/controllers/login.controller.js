@@ -70,11 +70,14 @@
         }
 
         function _loginSuccess(redirect_state) {
-            Authentication.updateAuthenticatedAccount();
-            if(!!fromState.state){
-                $state.go(fromState.state, fromState.params);
-            } else {
-                $state.go("home");
+            Authentication.updateAuthenticatedAccount().then(success, _loginError);
+
+            function success(){
+                if(!!fromState.state){
+                    $state.go(fromState.state, fromState.params);
+                } else {
+                    $state.go("home");
+                }
             }
         }
 
