@@ -391,9 +391,9 @@
                 templateUrl: 'partials/activities/dashboard_return_policy.html'
             })
             .state('activities-detail', {
-                url:'/activities/{activity_id:int}',
-                controller: 'ActivityDetailController',
-                controllerAs: 'pc',
+                url:'/activities/{activity_id:int}/',
+                controller: 'ActivityDetailController as detail',
+                templateUrl: 'partials/activities/detail.html',
                 resolve: {
                     activity: getActivity,
                     cities: getAvailableCities,
@@ -401,25 +401,19 @@
                         return true;
                     },
                     calendars: getCalendars
-                },
-                templateUrl: 'partials/activities/detail.html'
+                }
             })
             .state('activities-detail.info', {
-                url: '',
-                controller: 'ActivityDetailInfoController',
-                controllerAs: 'vm',
+                url: 'info',
                 templateUrl: 'partials/activities/detail.info.html'
             })
             .state('activities-detail.calendar', {
-                url: '',
-                controller: 'ActivityDetailCalendarController',
-                controllerAs: 'vm',
+                url: 'calendar',
                 templateUrl: 'partials/activities/detail.calendar.html'
             })
             .state('activities-detail.attendees', {
-                url: '',
-                controller: 'ActivityDetailAttendeesController',
-                controllerAs: 'vm',
+                url: 'attendees',
+                controller: 'ActivityDetailAttendeesController as attendees',
                 templateUrl: 'partials/activities/detail.attendees.html'
             })
             .state('activities-enroll', {

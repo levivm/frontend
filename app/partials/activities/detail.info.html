@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="well-plain">
-                <p>{{ ::vm.activity.short_description }}</p>
+                <p ng-bind="::detail.activity.short_description"></p>
             </div>
         </div>
     </div>
@@ -20,7 +20,7 @@
 
     <div class="row">
         <div class="col-md-12 text-center">
-            <youtube-video video-url="vm.getActivityVideoUrl()"></youtube-video>
+            <youtube-video video-url="detail.getActivityVideoUrl()"></youtube-video>
         </div>
     </div>
 
@@ -29,27 +29,27 @@
             <div class="list list-translucent">
                 <div class="list-item">
                     <div class="title">Contenido</div>
-                    <div class="content" ng-bind="::vm.activity.content"></div>
+                    <div class="content" ng-bind="::detail.activity.content"></div>
                 </div>
                 <div class="list-item">
                     <div class="title">Audiencia</div>
-                    <div class="content" ng-bind="::vm.activity.audience"></div>
+                    <div class="content" ng-bind="::detail.activity.audience"></div>
                 </div>
                 <div class="list-item">
                     <div class="title">Objetivo(s)</div>
-                    <div class="content" ng-bind="::vm.activity.goals"></div>
+                    <div class="content" ng-bind="::detail.activity.goals"></div>
                 </div>
                 <div class="list-item">
                     <div class="title">Requisitos</div>
-                    <div class="content" ng-bind="::vm.activity.requirements"></div>
+                    <div class="content" ng-bind="::detail.activity.requirements"></div>
                 </div>
                 <div class="list-item">
                     <div class="title">Información Extra</div>
-                    <div class="content" ng-bind="::vm.activity.extra_info"></div>
+                    <div class="content" ng-bind="::detail.activity.extra_info"></div>
                 </div>
                 <div class="list-item">
                     <div class="title">Política de Reembolso</div>
-                    <div class="content" ng-bind="::vm.activity.return_policy"></div>
+                    <div class="content" ng-bind="::detail.activity.return_policy"></div>
                 </div>
             </div>
         </div>

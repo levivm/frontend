@@ -5,9 +5,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailAttendeesController', ActivityDetailAttendeesController);
 
-    ActivityDetailAttendeesController.$inject = ['calendars'];
+    ActivityDetailAttendeesController.$inject = ['$scope'];
 
-    function ActivityDetailAttendeesController(calendars) {
+    function ActivityDetailAttendeesController($scope) {
         var vm = this;
 
         vm.pageChanged = pageChanged;
@@ -30,7 +30,7 @@
 
         function _getAssistants() {
             var assistants = [];
-            _.forEach(calendars, function (calendar) {
+            _.forEach(vm.calendars, function (calendar) {
                 assistants.push(calendar.assistants);
             });
 
@@ -51,7 +51,7 @@
             vm.currentPage = 1;
             vm.itemsPerPage = 10;
             vm.maxSize = 5;
-            vm.calendars = calendars;
+            vm.calendars = $scope.detail.calendars;
             vm._assistants = _getAssistants();
             vm.totalItems = vm._assistants.length;
 

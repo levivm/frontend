@@ -7,36 +7,49 @@
 
     ActivityDetailController.$inject = ['$state', '$window', 'uiGmapGoogleMapApi', 'Toast', 'cities', 'activity', 'calendars'];
 
-    function ActivityDetailController($state, $window, uiGmapGoogleMapApi, Toast,cities, activity, calendars) {
-        var pc = this;
+    function ActivityDetailController($state, $window, uiGmapGoogleMapApi, Toast, cities, activity, calendars) {
+        var vm = this;
 
-        pc.city = _.result(_.findWhere(cities, {id: activity.location.city}), 'name');
-        pc.calendar = calendars[0];
-        pc.activity = activity;
-        pc.organizer = activity.organizer;
-        pc.calendar_selected = pc.calendar;
-        pc.strings = {};
-        pc.strings.ACTIVITY_DISABLED = "Esta actividad se encuentra inactiva";
+        vm.city = _.result(_.findWhere(cities, {id: activity.location.city}), 'name');
+        vm.calendars = calendars;
+        vm.calendar = calendars[0];
+        vm.activity = activity;
+        vm.organizer = activity.organizer;
+        vm.calendar_selected = vm.calendar;
 
-        pc.changeState = changeState;
-        pc.changeCalendarSelected = changeCalendarSelected;
-        pc.getOrganizerPhoto = getOrganizerPhoto;
-        pc.getMapStyle = getMapStyle;
-        pc.getStarStyle = getStarStyle;
+        vm.getActivityVideoUrl = getActivityVideoUrl;
+        vm.changeState = changeState;
+        vm.changeCalendarSelected = changeCalendarSelected;
+        vm.getOrganizerPhoto = getOrganizerPhoto;
+        vm.getMapStyle = getMapStyle;
+        vm.getStarStyle = getStarStyle;
+        vm.isSelectedCalendarFull = isSelectedCalendarFull;
 
         initialize();
+
+        function isSelectedCalendarFull(){
+            return vm.calendar_selected.assistants.length >= vm.calendar_selected.capacity;
+        }
+
+        function getActivityVideoUrl(){
+            if(!!vm.activity.youtube_video_url){
+                return vm.activity.youtube_video_url;
+            } else {
+                return 'https://www.youtube.com/watch?v=Gk0qepLU48o';
+            }
+        }
 
         function changeState(state) {
             $state.go('activities-detail.' + state);
         }
 
         function changeCalendarSelected(calendar) {
-            pc.calendar_selected = calendar;
+            vm.calendar_selected = calendar;
         }
 
         function getOrganizerPhoto(){
-            if(!!pc.organizer.photo){
-                return pc.organizer.photo;
+            if(!!vm.organizer.photo){
+                return vm.organizer.photo;
             } else {
                 return "css/img/avatar-test.jpg";
             }
@@ -61,14 +74,7 @@
             }
         }
 
-        function initialize(){
-            pc.activity.rating = [1, 2, 3, 4, 5];
-
-            if(!(pc.activity.published)){
-                Toast.setPosition("toast-top-center");
-                Toast.error(pc.strings.ACTIVITY_DISABLED);
-            }
-
+        function setUpMaps(){
             uiGmapGoogleMapApi.then(function(maps) {
                 var position = new maps.LatLng(activity.location.point[0], activity.location.point[1]);
                 var gmapOptions = {
@@ -84,6 +90,27 @@
                 });
 
             });
+        }
+
+        function setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
+                ACTIVITY_SOLD_OUT: "No quedan cupos disponibles para esta actividad"
+            });
+        }
+
+        function initialize(){
+
+            setStrings();
+            setUpMaps();
+            vm.activity.rating = [1, 2, 3, 4, 5];
+
+            if(!(vm.activity.published)){
+                Toast.setPosition("toast-top-center");
+                Toast.error(vm.strings.ACTIVITY_DISABLED);
+            }
+
         }
     }
 })();

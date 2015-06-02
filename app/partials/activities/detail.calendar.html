@@ -11,19 +11,19 @@
                     <th>Precio</th>
                     <th>Cantidad</th>
                 </tr>
-                <tr class="text-center" ng-repeat="calendar in vm.calendars track by $index">
+                <tr class="text-center" ng-repeat="calendarItem in detail.calendars track by $index">
                     <td>
-                        <label class="sr-only" ng-attr-for="{{'calendar_' + calendar.id}}"></label>
-                        <input ng-attr-id="{{'calendar_' + calendar.id}}"type="radio" name="calendar"
-                               ng-model="vm.calendar_selected" ng-value="calendar"
-                               ng-change="pc.changeCalendarSelected(calendar)"/>
+                        <label class="sr-only" ng-attr-for="{{'calendar_' + calendarItem.id}}"></label>
+                        <input ng-attr-id="{{'calendar_' + calendarItem.id}}" type="radio" name="calendar"
+                               ng-model="detail.calendar_selected" ng-value="calendarItem"
+                               ng-change="detail.changeCalendarSelected(calendarItem)"/>
                     </td>
-                    <td><span ng-bind="::calendar.initial_date | date:'dd MMMM yyyy'"></span></td>
-                    <td><span ng-bind="::calendar.number_of_sessions"></span></td>
-                    <td><span ng-bind="::(calendar.capacity - calendar.assistants.length)"></span></td>
-                    <td><span ng-bind="::calendar.closing_sale | date:'dd MMMM yyyy'"></span></td>
-                    <td><span ng-bind="::calendar.session_price | currency"></span></td>
-                    <td><span ng-bind="::calendar.capacity"></span></td>
+                    <td><span ng-bind="::calendarItem.initial_date | date:'dd MMMM yyyy'"></span></td>
+                    <td><span ng-bind="::calendarItem.number_of_sessions"></span></td>
+                    <td><span ng-bind="::(calendarItem.capacity - calendarItem.assistants.length)"></span></td>
+                    <td><span ng-bind="::calendarItem.closing_sale | date:'dd MMMM yyyy'"></span></td>
+                    <td><span ng-bind="::calendarItem.session_price | currency"></span></td>
+                    <td><span ng-bind="::calendarItem.capacity"></span></td>
                 </tr>
             </table>
         </div>
@@ -36,7 +36,7 @@
                 <tr class="text-center">
                     <th colspan="2">Cronogramas</th>
                 </tr>
-                <tr ng-repeat="session in vm.calendar_selected.sessions">
+                <tr ng-repeat="session in detail.calendar_selected.sessions">
                     <td><span ng-bind="session.date | date:'EEEE, dd MMMM'"></span></td>
                     <td class="pull-right">{{ session.start_time | date:'h:mma'}} - {{ session.end_time | date:'h:mma' }}</td>
                 </tr>
@@ -45,9 +45,10 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-12 pull-right">
-        <a class="btn btn-lg btn-primary"
-           ui-sref="activities-enroll({activity_id: pc.activity.id, calendar_id: vm.calendar_selected.id})"
+    <div class="col-md-12">
+        <a class="btn btn-lg btn-primary pull-right"
+           ng-disabled="detail.isSelectedCalendarFull()"
+           ui-sref="activities-enroll({activity_id: pc.activity.id, calendar_id: calendar.calendar_selected.id})"
             >Inscribirme</a>
     </div>
 </div>

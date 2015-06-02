@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <h2>
             Hasta ahora
-            <ng-pluralize count="vm.totalItems"
+            <ng-pluralize count="attendees.totalItems"
                           when="{
                           '0': 'esta actividad no tiene asistentes ¡Sé tú el primero!',
                           'one': 'va 1 asistente ¡Faltas tú!',
@@ -15,8 +15,8 @@
 
 <div class="row">
     <div class="user-thumbnail-container">
-        <div class="user-thumbnail" ng-repeat="assistant in vm.assistants track by assistant.email">
-            <img class="user-img" ng-src="{{vm.getAssistantPicture(assistant)}}"
+        <div class="user-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.email">
+            <img class="user-img" ng-src="{{attendees.getAssistantPicture(assistant)}}"
                  alt="{{::assistant.first_name}}"/>
             <h3 ng-bind="::assistant.first_name"></h3>
         </div>
@@ -25,8 +25,8 @@
 
 <div class="row">
     <div class="col-md-12">
-        <pagination class="pull-right" total-items="vm.totalItems" ng-model="vm.currentPage"
-                    ng-change="vm.pageChanged()"
-                    items-per-page="vm.itemsPerPage"></pagination>
+        <pagination class="pull-right" total-items="attendees.totalItems" ng-model="attendees.currentPage"
+                    ng-change="attendees.pageChanged()"
+                    items-per-page="attendees.itemsPerPage"></pagination>
     </div>
 </div>
