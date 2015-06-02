@@ -128,7 +128,7 @@
              */
             deletePhoto : function (image) {
                 return $http({
-                    method : 'put',
+                    method : 'delete',
                     url : api.gallery(this.id),
                     data : {'photo_id' : image.id}
                 });
