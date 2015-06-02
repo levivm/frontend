@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBInstructorsController', ActivityDBInstructorsController);
 
-    ActivityDBInstructorsController.$inject = ['$scope', '$modal', '$state', '$filter', 'activity', 'organizer'];
+    ActivityDBInstructorsController.$inject = ['$scope', '$modal', '$state', '$filter', 'activity', 'organizer', 'Toast'];
 
-    function ActivityDBInstructorsController($scope, $modal, $state, $filter, activity, organizer) {
+    function ActivityDBInstructorsController($scope, $modal, $state, $filter, activity, organizer, Toast) {
 
         var vm = this;
         vm.activity = angular.copy(activity);
@@ -60,11 +60,13 @@
                 _.remove(vm.activity.instructors, 'id', instructor.id);
                 angular.extend(activity, vm.activity);
                 organizer.reload().then(_setInstructors);
+
+                Toast.generics.deleted("El instructor se ha eliminado.");
             }
 
             function deleteError(response) {
                 var index = _.indexOf(vm.instructors, instructor);
-                vm.instructors_errors[index].delete_instructor = response.data.detail
+                vm.instructors_errors[index].delete_instructor = response.data.detail;
             }
 
         }
@@ -89,6 +91,8 @@
             _onSectionUpdated()
 
             vm.isSaving = false;
+
+            Toast.generics.weSaved();
         }
 
         function _clearErrors() {
