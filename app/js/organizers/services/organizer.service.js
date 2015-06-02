@@ -17,9 +17,10 @@
         .factory('Organizer', Organizer);
 
     Organizer.$inject = ['$http', '$q', 'OrganizerServerApi', 'Authentication', 'OrganizerConstants',
-        'LocationManager','UploadFile'];
+        'LocationManager','UploadFile', 'defaultPicture'];
 
-    function Organizer($http, $q, OrganizerServerApi, Authentication, OrganizerConstants, LocationManager,UploadFile) {
+    function Organizer($http, $q, OrganizerServerApi, Authentication, OrganizerConstants,
+                       LocationManager, UploadFile, defaultPicture) {
 
         var api = OrganizerServerApi;
 
@@ -35,6 +36,10 @@
             setData : function (organizerData) {
                 angular.extend(this, organizerData);
                 this._setCity();
+                console.log( 'organizer photo:', !this.photo);
+                if(!this.photo) {
+                    this.photo = defaultPicture;
+                }
             },
 
             _setCity : function () {

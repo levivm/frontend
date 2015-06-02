@@ -12,29 +12,22 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', 'UIComponentsTemplatesPath', 'LocationManager', 'Authentication'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', 'UIComponentsTemplatesPath', 'LocationManager', 'Authentication',
+        'defaultPicture'];
 
-    function truliiNavbar($rootScope, $timeout, UIComponentsTemplatesPath, LocationManager, Authentication) {
+    function truliiNavbar($rootScope, $timeout, UIComponentsTemplatesPath, LocationManager, Authentication, defaultPicture) {
         return {
             restrict : 'AE',
             templateUrl: UIComponentsTemplatesPath + "navbar.html",
             link : function (scope, element, attrs) {
 
                 scope.cities = [];
-                scope.isStudent = isStudent;
-                scope.isOrganizer = isOrganizer;
+                scope.isStudent = Authentication.isStudent;
+                scope.isOrganizer = Authentication.isOrganizer;
 
                 var unsubscribeUserChanged = null;
 
                 initialize();
-
-                function isStudent(){
-                    return scope.user.is_student;
-                }
-
-                function isOrganizer(){
-                    return scope.user.is_organizer;
-                }
 
                 function setStrings() {
                     if (!scope.strings) {
@@ -46,6 +39,10 @@
                         CITY_LABEL: 'Ciudad',
                         CITY_DEFAULT_LABEL: 'Ciudad..',
                         PROFILE_LABEL: 'Mi Perfil',
+                        LOGIN_LABEL: 'Iniciar Sesión',
+                        REGISTER_LABEL: 'Registrarse',
+                        ORGANIZER_LABEL: 'Organizador',
+                        STUDENT_LABEL: 'Estudiante',
                         LOGOUT_LABEL: 'Logout'
                     });
                 }
@@ -54,14 +51,14 @@
                     scope.user = !!user? user : Authentication.getAuthenticatedAccount();
 
                     if(scope.user && scope.user.user_type) {
-                        var userType = scope.user.user_type.toLowerCase();
+                        var userType = scope.user.user_type.toUpperCase();
                         mapDisplayName(scope.user);
                         switch(userType){
-                            case 'o':
+                            case 'O':
                                 console.log('Organizer user type: ' + userType);
                                 scope.user.is_organizer = true;
                                 break;
-                            case 's':
+                            case 'S':
                                 console.log('Student user type: ' + userType);
                                 scope.user.is_student = true;
                                 break;
@@ -73,16 +70,22 @@
                 }
 
                 function mapDisplayName(data){
-                    console.log('mapDisplayName', data);
+                    console.log('mapDisplayName. data:', data);
                     var user = data.user;
                     var company = data.name;
-                    if(user.first_name && user.last_name){
+                    if(user.full_name){
+                        console.log('Full Name already defined');
+                    } else if(user.first_name && user.last_name){
                         user.full_name = [user.first_name, user.last_name].join(' ');
                     } else if (company){
                         user.full_name = company;
                     } else {
                         user.full_name = 'User';
                     }
+
+                    console.log('data.photo:', !data.photo, data.photo);
+                    if(!data.photo) { data.photo = defaultPicture; }
+                    console.log('data.photo:', !data.photo, data.photo);
 
                     $timeout(function(){
                         scope.$apply();
@@ -92,13 +95,8 @@
                 function getCities(){
                     LocationManager.getAvailableCities().then(success, error);
 
-                    function success(cities) {
-                        scope.cities = cities;
-                    }
-
-                    function error(response) {
-                        console.log("truliiNavbar. initialize. Couldn't get ");
-                    }
+                    function success(cities) { scope.cities = cities; }
+                    function error(response) { console.log("truliiNavbar. Couldn't get cities"); }
                 }
 
                 function cleanUp(){
@@ -116,13 +114,6 @@
                     });
 
                     scope.$on('$destroy', cleanUp);
-
-                    //for testing
-                    //$timeout(function(){
-                    //    $rootScope.$emit('userChanged', {
-                    //        "id":1,"user":{"first_name":"Fernando","last_name":"De Freitas","email":"fdefreitas@outlook.com","full_name":"Trulii"},"name":"Trulii","bio":"","website":"","youtube_video_url":"","telephone":"","photo":null,"user_type":"O","created_at":1430325657000,"instructors":[{"full_name":"Fernando De Freitas","id":2,"bio":"Here","organizer":1,"photo":null,"website":"http://localhost"}],"locations":[],"is_organizer":true
-                    //    });
-                    //}, 3000);
 
                 }
             }
