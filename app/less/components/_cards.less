@@ -7,11 +7,6 @@
 	margin: 1.5em 0;
 	padding: 0;
 
-	&.card--shrink{
-		padding: 0 2em;
-	}
-
-
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
 		-webkit-border-top-right-radius: @material-border-radius;
@@ -81,5 +76,12 @@
 
 	.card-list-item{
 		.card-footer
+	}
+
+	&--shrink{
+		.card-body, .card-header, .card-list-item, .card-footer{
+			padding-left: @card-padding + 2;
+			padding-right: @card-padding + 2;
+		}	
 	}
 }
