@@ -10,7 +10,7 @@
             </button> -->
             <a ui-sref="home" class="navbar__logo"></a>
 
-            <div class="navbar__center-wrapper">
+            <div ng-if="!isOrganizer()" class="navbar__center-wrapper">
                 <div class="navbar__search-box">
                     <input type="text" placeholder="¿Qué quieres aprender hoy?"><span
                     class="navbar__search-box__city-select">Bogotá<span
@@ -38,16 +38,25 @@
                     <!--</a>-->
                 <!--</div>-->
             </div>
+            <div ng-if="isOrganizer()" class="navbar__right-wrapper">
+                <a class="btn btn-xs btn-info" ui-sref="activities-new.general">
+                    <span class="mdi-content-add"></span>
+                </a>
+            </div>
 
-            <div>
+            <div ng-if="!!user">
                 <div class="navbar__user" data-toggle="dropdown">
-                    <img class="navbar__user__picture" src="css/img/avatar-test.jpg" alt="{{user.user.full_name}}">
+                    <img class="navbar__user__picture" ng-src="{{user.photo}}" alt="{{user.user.full_name}}">
                     <span class="navbar__user__name" ng-bind="user.user.full_name"></span>
                     <span class="mdi-navigation-expand-more"></span>
                 </div>
 
                 <div class="dropdown" role="menu">
-                    <a class="dropdown__item" ui-sref="organizer-dashboard.profile">
+                    <a ng-if="isOrganizer()" class="dropdown__item" ui-sref="organizer-dashboard.profile">
+                        <span class="mdi-action-account-circle dropdown__item__icon"></span>
+                        <span ng-bind="strings.PROFILE_LABEL"></span>
+                    </a>
+                    <a ng-if="isStudent()" class="dropdown__item" ui-sref="student-dashboard.profile">
                         <span class="mdi-action-account-circle dropdown__item__icon"></span>
                         <span ng-bind="strings.PROFILE_LABEL"></span>
                     </a>
@@ -56,7 +65,26 @@
                         <span ng-bind="strings.LOGOUT_LABEL"></span>
                     </a>
                 </div>
-
+            </div>
+            <div ng-if="!user">
+                <div class="navbar__user" data-toggle="dropdown">
+                    <span class="navbar__user__name" ng-bind="strings.REGISTER_LABEL"></span>
+                    <span class="mdi-navigation-expand-more"></span>
+                </div>
+                <div class="dropdown" role="menu">
+                    <a class="dropdown__item" ui-sref="login">
+                        <span ng-bind="strings.LOGIN_LABEL"></span>
+                    </a>
+                    <div class="dropdown-header">¿No tienes cuenta?</div>
+                    <a class="dropdown__item" ui-sref="register">
+                        <span class="mdi-social-school dropdown__item__icon"></span>
+                        <span ng-bind="strings.STUDENT_LABEL"></span>
+                    </a>
+                    <a class="dropdown__item" ui-sref="organizer-landing" >
+                        <span class="mdi-social-domain dropdown__item__icon"></span>
+                        <span ng-bind="strings.ORGANIZER_LABEL"></span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

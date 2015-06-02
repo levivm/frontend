@@ -17,9 +17,10 @@
         .factory('Organizer', Organizer);
 
     Organizer.$inject = ['$http', '$q', 'OrganizerServerApi', 'Authentication', 'OrganizerConstants',
-        'LocationManager'];
+        'LocationManager','UploadFile', 'defaultPicture'];
 
-    function Organizer($http, $q, OrganizerServerApi, Authentication, OrganizerConstants, LocationManager) {
+    function Organizer($http, $q, OrganizerServerApi, Authentication, OrganizerConstants,
+                       LocationManager, UploadFile, defaultPicture) {
 
         var api = OrganizerServerApi;
 
@@ -35,6 +36,10 @@
             setData : function (organizerData) {
                 angular.extend(this, organizerData);
                 this._setCity();
+                console.log( 'organizer photo:', !this.photo);
+                if(!this.photo) {
+                    this.photo = defaultPicture;
+                }
             },
 
             _setCity : function () {
@@ -79,6 +84,11 @@
                     'bio' : scope.bio
                 };
                 return scope.update(profile_data)
+            },
+            upload_photo : function (image) {
+                var scope = this;
+
+                return UploadFile.upload_user_photo(image,api.organizer(scope.id));
             },
 
             update : function (data) {
@@ -126,10 +136,8 @@
             },
 
             update_location : function (location_data_param) {
-                console.log("location data", location_data_param);
                 var location_data = angular.copy(location_data_param);
                 location_data.city = location_data.city ? location_data.city.id : undefined;
-                console.log("copying", location_data);
                 // 'http://localhost:8000/api/organizers/' + this.id + '/locations/'
                 return $http.post(api.locations(this.id), location_data);
 

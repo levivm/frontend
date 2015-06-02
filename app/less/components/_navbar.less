@@ -79,6 +79,22 @@
 		});
 	}
 
+	&__right-wrapper{
+
+		vertical-align: top;
+		height: @navbar-inner-height;
+		width: 80%;
+		text-align: right;
+
+		.before-xs({
+			display: inline-block;
+		});
+
+        .btn{
+            margin: 2px 1px;
+        }
+	}
+
 	&__search-box{
 		background: white;
 		width: 100%;
@@ -195,4 +211,5 @@
 // Put on navbar sibling element
 .with-navbar{
 	margin-top: @navbar-height;
+	padding-top: @navbar-margin-bottom;
 }
