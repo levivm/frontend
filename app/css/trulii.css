@@ -11160,6 +11160,9 @@ hr.on-light {
 .inline-block {
   display: inline-block;
 }
+.float-right {
+  float: right;
+}
 .grand-title {
   font-size: 5em;
   margin-bottom: .5em;
@@ -11323,6 +11326,9 @@ hr.on-light {
 }
 .no-padding-top {
   padding-top: 0 !important;
+}
+.no-margin-top {
+  margin-top: 0 !important;
 }
 .bg-primary {
   background: #ffcc33;

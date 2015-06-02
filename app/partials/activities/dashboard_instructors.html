@@ -30,7 +30,13 @@
                 
                     <div class="card-list-item" ng-repeat="instructor in vm.activity.instructors track by $index" trulii-expandable-content>
 
-                        <h2>Instructor {{$index + 1}}</h2>
+                        
+                        <h2>
+                            Instructor {{$index + 1}}
+                            <span class="btn btn-default float-right no-margin-top" ng-show="instructor.id" ng-click="vm.deleteInstructor(instructor)">                                
+                                Eliminar
+                            </span>
+                        </h2>
 
                         <div class="form-group">
                             <label class="control-label">Nombre</label>
@@ -62,11 +68,6 @@
                                 <span>{{ vm.instructors_errors[$index].website }}</span>
                             </div>
                         </div>
-
-                        <button ng-show="instructor.id" ng-click="vm.deleteInstructor(instructor)" type="button"
-                                class="btn btn-default" aria-label="Left Align">
-                            <span class="mdi-action-delete" aria-hidden="true"></span>
-                        </button>
 
                         <alert type="danger" ng-show="vm.instructors_errors[$index].delete_instructor">
                             {{vm.instructors_errors[$index].delete_instructor}}
