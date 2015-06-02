@@ -12225,6 +12225,20 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     display: inline-block;
   }
 }
+.navbar__right-wrapper {
+  vertical-align: top;
+  height: 40px;
+  width: 80%;
+  text-align: right;
+}
+@media screen and (max-width: 480px) {
+  .navbar__right-wrapper {
+    display: inline-block;
+  }
+}
+.navbar__right-wrapper .btn {
+  margin: 2px 1px;
+}
 .navbar__search-box {
   background: white;
   width: 100%;
