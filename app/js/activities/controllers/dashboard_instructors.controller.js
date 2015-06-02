@@ -23,6 +23,7 @@
         vm.removeInstructor = _removeInstructor;
         vm.setInstructor = _setInstructor;
         vm.deleteInstructor = _deleteInstructor;
+        vm.maxAllowedInstructors = organizer.max_allowed_instructors;
 
         initialize();
         _setInstructors();
@@ -77,6 +78,8 @@
             _clearErrors();
             vm.activity.update()
                 .then(_updateSuccess, _errored);
+
+            vm.isSaving = true;
         }
 
         function _updateSuccess(response) {
@@ -84,6 +87,8 @@
             angular.extend(activity, vm.activity);
             organizer.reload().then(_setInstructors);
             _onSectionUpdated()
+
+            vm.isSaving = false;
         }
 
         function _clearErrors() {
@@ -103,6 +108,8 @@
             });
 
             _onSectionUpdated();
+
+            vm.isSaving = false;
         }
 
         function _setInstructors() {
@@ -125,7 +132,8 @@
 
         function initialize() {
             _initialize_errors_array();
-            vm.isCollapsed = true;
+            
+            vm.isSaving = false;
         }
 
     }
