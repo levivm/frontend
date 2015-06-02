@@ -259,6 +259,13 @@
             },
             addAssistants : function (assistants) {
                 this.assistants = this.assistants.concat(assistants);
+            },
+            hasAssistantByEmail: function (email){
+                console.log(email, this.assistants);
+                return this.assistants.some(function(assistant){
+                    console.log('assistant email', assistant.email === email, assistant.email);
+                    return assistant.email === email;
+                });
             }
         };
 

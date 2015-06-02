@@ -570,12 +570,6 @@
     getActivity.$inject = ['$stateParams','ActivitiesManager'];
 
     function getActivity($stateParams,ActivitiesManager){
-        console.log('getActivity. ');
-        console.log($stateParams.activity_id);
-        console.log("aaa",a);
-        var a = ActivitiesManager.getActivity($stateParams.activity_id);
-        console.log("aaa",a);
-        return a
         return ActivitiesManager.getActivity($stateParams.activity_id);
     }
 

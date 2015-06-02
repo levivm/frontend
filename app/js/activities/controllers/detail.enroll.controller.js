@@ -8,7 +8,9 @@
     ActivityDetailEnrollController.$inject = ['$state', 'ActivitiesManager', 'Authentication', 'activity', 'calendar', 'Toast'];
 
     function ActivityDetailEnrollController($state, ActivitiesManager, Authentication, activity, calendar, Toast) {
+
         var pc = this;
+        var currentUser = null;
         pc.minus = minus;
         pc.plus = plus;
         pc.enroll = enroll;
@@ -88,7 +90,10 @@
             })
         }
 
+
+
         function initialize(){
+
             pc.stateInfo = {
                 from: {
                     state : $state.current.name,
@@ -97,24 +102,31 @@
             };
 
             pc.errors = {};
+            pc.success = false;
+
+            pc.calendar = calendar;
+            pc.activity = activity;
+            console.log(activity);
+            console.log(calendar);
+            console.log($state);
+
             pc.capacity = calendar.capacity;
             pc.amount = calendar.session_price;
+
+            currentUser = Authentication.getAuthenticatedAccount();
 
             if(isAllBooked()){
                 pc.quantity = 0;
                 pc.assistants = [];
             } else {
                 pc.quantity = 1;
-                pc.assistants = [{}];
+                if(pc.calendar.hasAssistantByEmail(currentUser.user.email)){
+                    console.log('Usuario ya esta inscrito');
+                    pc.assistants = [{}];
+                } else {
+                    pc.assistants = [angular.extend({}, currentUser.user)];
+                }
             }
-
-            pc.calendar = calendar;
-            pc.activity = activity;
-            pc.success = false;
-
-            console.log(activity);
-            console.log(calendar);
-            console.log($state);
         }
     }
 })();

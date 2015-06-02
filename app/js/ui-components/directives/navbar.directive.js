@@ -65,12 +65,12 @@
                             default:
                                 console.log('Unknown user type: ' + userType);
                         }
-                        console.log('navbar. getUser:', scope.user);
+                        //console.log('navbar. getUser:', scope.user);
                     }
                 }
 
                 function mapDisplayName(data){
-                    console.log('mapDisplayName. data:', data);
+                    //console.log('mapDisplayName. data:', data);
                     var user = data.user;
                     var company = data.name;
                     if(user.full_name){
@@ -83,9 +83,9 @@
                         user.full_name = 'User';
                     }
 
-                    console.log('data.photo:', !data.photo, data.photo);
-                    if(!data.photo) { data.photo = defaultPicture; }
-                    console.log('data.photo:', !data.photo, data.photo);
+                    if(!data.photo) {
+                        data.photo = defaultPicture;
+                    }
 
                     $timeout(function(){
                         scope.$apply();
