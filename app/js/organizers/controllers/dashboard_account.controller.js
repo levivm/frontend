@@ -1,135 +1,103 @@
 /**
-* Register controller
-* @namespace thinkster.organizers.controllers
-*/
+ * @ngdoc controller
+ * @name trulii.organizers.controllers.OrganizerAccountCtrl
+ * @description Handles Organizer Account Dashboard
+ * @requires organizer
+ */
+
 (function () {
-  'use strict';
+    'use strict';
 
+    angular
+        .module('trulii.organizers.controllers')
+        .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
 
-  angular
-    .module('trulii.organizers.controllers')
-    .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
+    OrganizerAccountCtrl.$inject = ['$location', '$timeout', '$state', 'Authentication', 'organizer'];
+    function OrganizerAccountCtrl($location, $timeout, $state, Authentication, organizer) {
 
-  OrganizerAccountCtrl.$inject = ['$scope','$modal','$http','$location','$timeout','$state','Authentication','Organizer','organizer'];
-  /**
-  * @namespace RegisterController
-  */
-  function OrganizerAccountCtrl($scope,$modal,$http,$location,$timeout,$state,Authentication,Organizer,organizer) {
+        var vm = this;
+        activate();
 
+        vm.organizer = organizer;
 
-    var vm = this;
-    activate();
+        vm.errors = {};
+        vm.password_data = {};
+        vm.isCollapsed = true;
 
-    //console.log("111111");
-    //var cache_organizer = Authentication.getAuthenticatedAccount();
-    
-    vm.organizer    = organizer
+        //submit callbacks
+        vm.changeEmail = _changeEmail;
+        vm.changePassword = _changePassword;
 
-    vm.errors = {};
-    vm.password_data = {};
-    
-    
+        //Private functions
 
-    vm.isCollapsed  = true;
+        function _changeEmail() {
+            _clearErrors(vm.account_form_email);
+            vm.organizer.change_email()
+                .then(_changeSuccess, _changeFail);
+        }
 
-    //submit callbacks
-    vm.changeEmail    =  _changeEmail;
+        function _changePassword() {
+            _clearErrors(vm.account_form_password);
+            vm.organizer.change_password(vm.password_data)
+                .then(_changePasswordSuccess, _changeFail);
+        }
 
-    vm.changePassword =  _changePassword;
-    
-    
+        //Handle responses
+        function _changeSuccess(response) {
 
+            Authentication.updateAuthenticatedAccount();
+            _toggleMessage();
 
+        }
 
-    //Private functions
+        //Handle responses
+        function _changePasswordSuccess(response) {
+            $state.go('general-message', {
+                'module_name' : 'authentication',
+                'template_name' : 'change_password_success',
+                'redirect_state' : 'home'
+            });
+        }
 
-    function _changeEmail() {
-      _clearErrors(vm.account_form_email);
-      vm.organizer.change_email()
-        .then(_changeSuccess,_changeFail);
+        function _changeFail(response) {
+
+            if (response.data['form_errors']) {
+
+                angular.forEach(response.data['form_errors'], function (errors, field) {
+
+                    _addError(field, errors[0]);
+
+                });
+
+            }
+        }
+
+        function _clearErrors(form) {
+            form.$setPristine();
+            vm.errors = null;
+            vm.errors = {};
+        }
+
+        function _addError(field, message) {
+
+            vm.errors[field] = message;
+            if (field in vm.account_form_email)
+                vm.account_form_email[field].$setValidity(message, false);
+
+            if (field in vm.account_form_password)
+                vm.account_form_password[field].$setValidity(message, false);
+
+        }
+
+        function _toggleMessage() {
+            vm.isCollapsed = false;
+            var timer = $timeout(function () {
+                vm.isCollapsed = true;
+            }, 1000);
+        }
+
+        function activate() {}
+
     }
 
-
-
-    function _changePassword() {
-      _clearErrors(vm.account_form_password);
-      vm.organizer.change_password(vm.password_data)
-        .then(_changePasswordSuccess,_changeFail);      
-    }
-
-    //Handle responses
-    function _changeSuccess(response){
-
-      Authentication.updateAuthenticatedAccount();
-      _toggleMessage();
-
-    }
-
-    //Handle responses
-    function _changePasswordSuccess(response){
-
-      //$location.url('/');
-      //
-      $state.go('general-message',{'module_name':'authentication',
-                                   'template_name':'change_password_success',
-                                   'redirect_state':'home'});
-
-      //$state.go
-     // window.location = '/';
-
-    }
-
-
-    function _changeFail(response){
-
-
-      if (response.data['form_errors']) {
-
-        angular.forEach(response.data['form_errors'], function(errors, field) {
-
-          _addError(field, errors[0]);
-
-        });
-
-      }
-    }
-
-
-    function _clearErrors(form){
-      form.$setPristine();
-      vm.errors = null;
-      vm.errors = {};
-    }
-
-
-
-    function _addError(field, message) {
-
-      vm.errors[field] = message;
-      if (field in vm.account_form_email)
-        vm.account_form_email[field].$setValidity(message, false);
-
-      if (field in vm.account_form_password)
-        vm.account_form_password[field].$setValidity(message, false);
-
-    };
-
-
-    function _toggleMessage(){
-      vm.isCollapsed  = false;
-      var timer = $timeout(function() {
-         vm.isCollapsed = true;
-      }, 1000);
-    }
-
-
-    function activate() {
-      // If the user is authenticated, they should not be here.
-      if (!(Authentication.isAuthenticated())) {
-        $location.url('/');
-      }
-    }
-
-  };
-
-  })();
+})();

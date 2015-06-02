@@ -4,6 +4,7 @@
  * @description Handles Student Account Dashboard
  * @requires student
  * @requires trulii.authentication.services.Authentication
+ * @requires trulii.authentication.services.Error
  */
 
 (function () {
@@ -88,13 +89,7 @@
         }
 
         function activate() {
-            // If the user is authenticated, they should not be here.
-            if (!(Authentication.isAuthenticated())) {
-                $location.url('/');
-            }
-
             getOrders();
-
         }
 
     }

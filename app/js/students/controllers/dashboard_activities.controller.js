@@ -2,7 +2,7 @@
  * @ngdoc controller
  * @name trulii.students.controllers.StudentActivitiesCtrl
  * @description Handles Student Activities Dashboard
- * @requires student
+ * @requires activities
  */
 
 (function () {
@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentActivitiesCtrl', StudentActivitiesCtrl);
 
-    StudentActivitiesCtrl.$inject = ['$timeout', '$state', 'Authentication', 'activities'];
+    StudentActivitiesCtrl.$inject = ['activities'];
 
-    function StudentActivitiesCtrl($timeout, $state, Authentication, activities) {
+    function StudentActivitiesCtrl(activities) {
 
         var vm = this;
         vm.activities = null;
@@ -37,11 +37,6 @@
         }
 
         function activate() {
-            // If the user is authenticated, they should not be here.
-            if (!(Authentication.isAuthenticated())) {
-                $location.url('/');
-            }
-
             vm.activities = activities.map(mapMainPicture);
             console.log(vm.activities);
         }
