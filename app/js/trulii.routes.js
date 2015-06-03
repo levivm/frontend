@@ -225,6 +225,14 @@
                     activities: getActivities
                 }
             })
+            .state('student-profile', {
+                url: '/students/{student_id:int}/profile',
+                controller: 'StudentProfileController as profile',
+                templateUrl: 'partials/students/profile.html',
+                resolve: {
+                    student: getStudent
+                }
+            })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl',
@@ -432,8 +440,6 @@
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/detail.enroll.success.html',
                 resolve: {
-                    //activity: getActivity,
-                    //calendar: fetchCalendar,
                     organizer: ['activity', function (activity) {
                         return  activity.organizer;
                     }],

@@ -1,3 +1,17 @@
+/**
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityDetailController
+ * @description Controller for Activity Detail Component. Handles
+ * display of activity info, available calendars and assistants.
+ * @requires ui.router.state.$state
+ * @requires ng.$window
+ * @requires uiGmapgoogle-maps.providers.uiGmapGoogleMapApi
+ * @requires trulii.ui-components.services.Toast
+ * @requires cities
+ * @requires activity
+ * @requires calendars
+ */
+
 (function () {
     'use strict';
 
@@ -5,7 +19,8 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$state', '$window', 'uiGmapGoogleMapApi', 'Toast', 'cities', 'activity', 'calendars'];
+    ActivityDetailController.$inject = ['$state', '$window', 'uiGmapGoogleMapApi', 'Toast',
+        'cities', 'activity', 'calendars'];
 
     function ActivityDetailController($state, $window, uiGmapGoogleMapApi, Toast, cities, activity, calendars) {
         var vm = this;

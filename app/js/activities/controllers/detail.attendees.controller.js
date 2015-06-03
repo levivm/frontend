@@ -1,3 +1,11 @@
+/**
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityDetailAttendeesController
+ * @description Controller for Activity Detail Attendees Sub-Component. Handles
+ * display of activity assistants.
+ * @requires ng.$scope
+ */
+
 (function () {
     'use strict';
 
@@ -8,6 +16,7 @@
     ActivityDetailAttendeesController.$inject = ['$scope'];
 
     function ActivityDetailAttendeesController($scope) {
+
         var vm = this;
 
         vm.pageChanged = pageChanged;
