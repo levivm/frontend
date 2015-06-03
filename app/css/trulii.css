@@ -12298,6 +12298,14 @@ tags-input input {
   font-size: 1.5em;
   display: inline-block;
 }
+.counter-input .counter-field {
+  font-weight: bold;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  text-align: center;
+  width: 2.5em;
+}
 .counter-input-lg {
   font-size: 3em;
 }
