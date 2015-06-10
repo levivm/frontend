@@ -6,9 +6,9 @@
 
 	.directive('truliiSubmitControls', truliiSubmitControls);
 
-	truliiSubmitControls.$inject = ['$timeout', 'UIComponentsTemplatesPath'];
+	truliiSubmitControls.$inject = ['$timeout', '$window', 'UIComponentsTemplatesPath'];
 
-	function truliiSubmitControls($timeout, UIComponentsTemplatesPath){
+	function truliiSubmitControls($timeout, $window, UIComponentsTemplatesPath){
 
 		return {
 			restrict: 'AE',
@@ -16,6 +16,7 @@
 			transclude: true,
 			scope: {				
 				isSaving: '=',
+				cancelActive: '='
 				//value: '=?'
 			}, 
 			
@@ -27,15 +28,25 @@
 						scope.value = attrs.value;
 					else
 						scope.value = "Guardar"; // TODO: Debería tomarse de las cadenas de translate
-				}
 
-        var btn = element.find(".btn-success")[0];
-        btn.addEventListener("click", onSubmit);
+				}				
+
+		        var btn = element.find(".btn-success")[0];
+
+		        btn.addEventListener("click", onSubmit);
+		        scope.cancelAction = cancelDefaultResponse;
+
+		        ///////////////// 
 
 				function onSubmit(event){
 					scope.isSaving = true;
+				}												
+
+				function cancelDefaultResponse(event){
+
+					$window.history.back();
 				}
-			}
+			}		
 		}
 	}
 

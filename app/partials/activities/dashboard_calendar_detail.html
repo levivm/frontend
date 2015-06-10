@@ -73,7 +73,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="control-label" for="capacity">Cupos</label>
-                    <input id="capacity" class="form-control" type="number" name="capacity"
+                    <input id="capacity" class="form-control center-input" type="number" name="capacity"
                            placeholder="0.00" min="1"
                            ng-model="vm.calendar.capacity" />
 
@@ -89,7 +89,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label class="control-label" for="session_price">Precio(COP)</label>
-                    <input id="session_price" class="form-control" type="number" name="session_price"
+                    <input id="session_price" class="form-control center-input" type="number" name="session_price"
                            placeholder="0.00" min="0"
                            ng-model="vm.calendar.session_price" />
 
@@ -128,7 +128,7 @@
 
         <h3>Sesión {{$index + 1}}</h3>
 
-        <div class="row-fluid clearfix">
+        <div class="row-fluid clearfix separate-below">
 
             <div class=" col-md-offset-3 col-md-6">
                 <label for="" class="control-label">Día de la sesión</label>
@@ -147,13 +147,13 @@
 
             <div class="col-md-6">
                 <label class="control-label">Hora de inicio:</label>
-                <timepicker ng-model="session.start_time" ng-change="vm.calendar.changeStartTime(session)"
+                <timepicker class="timepicker" ng-model="session.start_time" ng-change="vm.calendar.changeStartTime(session)"
                             hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
                 </timepicker>
             </div>
             <div class="col-md-6">
                 <label class="control-label">Hora de fin:</label>
-                <timepicker ng-model="session.end_time" ng-change="vm.calendar.changeEndTime(session)"
+                <timepicker class="timepicker" ng-model="session.end_time" ng-change="vm.calendar.changeEndTime(session)"
                             hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
                 </timepicker>
             </div>            
@@ -167,7 +167,7 @@
     </div>
 
     <div class="card-footer" ng-show="vm.calendar.sessions.length > 0 ">    
-        <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
+        <trulii-submit-controls is-saving="vm.isSaving" cancel-active="true" value="Guardar"></trulii-submit-controls>
 
         <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">         
     </div>    

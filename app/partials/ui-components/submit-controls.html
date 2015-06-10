@@ -2,7 +2,10 @@
 
 <div class="form-submit-controls">
 	<div ng-hide="isSaving" class="lateral-fade">
-		<input type="submit" class="btn btn-success btn-raised btn-lg" value="{{value}}"/>  	
+
+		<input type="button" ng-show="cancelActive" ng-click="cancelAction()" class="btn btn-default btn-lg btn-less" value="Cancelar" />
+		
+		<input type="submit" class="btn btn-success btn-raised btn-lg" value="{{value}}"/>
 	</div>
     
 

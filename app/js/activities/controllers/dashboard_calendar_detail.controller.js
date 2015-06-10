@@ -44,7 +44,7 @@
 
   function initialize(){
 
-    vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+    vm.formats = ['dd - MM - yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
     vm.format = vm.formats[0];
 
     vm.hstep = 1;
@@ -60,6 +60,8 @@
     vm.errors  = {};
 
     vm.ismeridian = true;
+
+    vm.isSaving = false;
 
   }
 
@@ -116,13 +118,11 @@
         //console.log("EROOOOOR",errors);
         //console.log("EROOOOOR",errors);
         angular.forEach(errors, function(message,field) {
-
-
           _addError(field,message[0]);
 
         });
 
-
+        $scope.isSaving = false;
 
     }
 
@@ -133,11 +133,15 @@
       vm.isCollapsed = false;
       $scope.$parent.vm.setCalendar(calendar);
 
+      vm.isSaving = false;
+
     }
 
     function _successUpdate(calendar){
       vm.isCollapsed = false;
       $scope.$parent.vm.setCalendar(calendar);
+
+      vm.isSaving = false;
 
 
     }
