@@ -12018,6 +12018,9 @@ hr.on-light {
 .title-compound__description {
   margin-top: 1em;
 }
+.text-color-primary {
+  color: #ffcc33;
+}
 .img-cover-preview {
   width: 100%;
   height: 15em;
@@ -12102,10 +12105,14 @@ hr.on-light {
   padding: 0em;
   margin: 0em;
 }
-.separate-above {
+.separate-above,
+.separate-vertical,
+.separate {
   margin-top: 3rem;
 }
-.separate-below {
+.separate-below,
+.separate-vertical,
+.separate {
   margin-bottom: 3rem;
 }
 .separate-left {
@@ -12114,17 +12121,11 @@ hr.on-light {
 .separate-right {
   margin-right: 3rem;
 }
-.separate-vertical {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-}
 .separate-horizontal {
   margin-left: 3rem;
   margin-right: 3rem;
 }
 .separate {
-  margin-top: 3rem;
-  margin-bottom: 3rem;
   margin-left: 3rem;
   margin-right: 3rem;
 }
@@ -13924,7 +13925,11 @@ tags-input input {
   padding-right: 4em;
 }
 .contrast-box {
+  background-color: #eeeeee;
   padding: 1em;
+  margin-left: 2px;
+  margin-bottom: 2px;
+  display: inline-block;
 }
 .toast-title {
   font-weight: bold;

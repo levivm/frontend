@@ -29,72 +29,60 @@
 
                         <div class="row clearfix">
                             <div class="col-md-3">
-                                <span><strong>Inicia el: </strong></span><br/>
-                                <span>{{calendar.initial_date | date }}</span>
+                                <span><strong>Inicia el </strong></span><br/>
+                                <span>{{calendar.initial_date | date: 'dd / MM / yy' }}</span>
                                 <br/>
                                 
                             </div>
 
-                            <div class="col-md-3">
-                                <span><strong>Cierre de ventas: </strong></span><br/>
-                                <span>{{calendar.closing_sale | date }}</span>
+                            <div class="col-md-4">
+                                <span><strong>Cierre de ventas</strong></span><br/>
+                                <span>{{calendar.closing_sale | date: 'dd / MM / yy' }}</span>
                             </div>  
 
-                            <div class="col-md-6 text-right">
-                                <h4 class="clear-spacings">
-                                    <strong ng-bind="::calendar.session_price"></strong> COP
-                                </h4>
-                                
-                                <div class="text-muted">
-                                    <strong>10</strong> Cupos
+                            <div class="col-md-5">
+                                <div class="pull-right">
+                                    <button type="button" class="btn btn-default btn-sm" aria-label="Editar"
+                                            ng-click="vm.loadCalendar(calendar)" >
+                                        <i class="mdi-content-create" aria-hidden="true"></i>
+                                    </button>
+
+                                    <button type="button" class="btn btn-default btn-sm" aria-label="Eliminar"
+                                            ng-click="vm.deleteCalendar(calendar)" >
+                                        <i class="mdi-action-delete" aria-hidden="true"></i>
+                                    </button>
                                 </div>
                                 
                             </div>  
                         </div>
 
-                        <div class="row clearfix separate-above">
-                            <div class="col-md-12">
-                                <h3> <span ng-bind="::calendar.sessions.length"></span> Sesiones</h3>    
+                        <div class="row clearfix separate-vertical">
+                            <div class="col-md-6">                                
+                                <h3 class="clear-spacings">
+                                    <span ng-bind="::calendar.sessions.length"></span> Sesiones
+                                </h3>    
                             </div>                            
+
+                            <div class="col-md-6 text-right">                                
+                                <h3 class="clear-spacings">
+                                    <strong class="text-color-primary" ng-bind="::calendar.session_price | currency: '':0"></strong> COP
+                                </h3>
+                                
+                                <div class="text-muted">
+                                    <strong>10</strong> Cupos
+                                </div>  
+                            </div>         
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-3 text-center contrast-box text-tiny">
-                                <div>11 / 13 / 2015</div>
-                                <div class="text-muted">2:00 PM a 3:00 PM</div>
-                            </div>
+                        <div class="row center-childs">
 
-                            <div class="col-md-3 text-center contrast-box text-tiny">
-                                <div>11 / 13 / 2015</div>
-                                <div class="text-muted">2:00 PM a 3:00 PM</div>
+                            <div class="text-center contrast-box" ng-repeat="session in calendar.sessions">
+                                <div ng-bind="session.date | date: 'dd / MM / yy'"></div>
+                                <div class="text-muted text-tiny"> <span ng-bind="session.start_time | date: 'h:mm a'"></span> a <span ng-bind="session.end_time | date: 'h:mm a'"></span></div>                                
                             </div>
-
-                            <div class="col-md-3 text-center contrast-box text-tiny">
-                                <div>11 / 13 / 2015</div>
-                                <div class="text-muted">2:00 PM a 3:00 PM</div>
-                            </div>
-
-                            <div class="col-md-3 text-center contrast-box text-tiny">
-                                <div>11 / 13 / 2015</div>
-                                <div class="text-muted">2:00 PM a 3:00 PM</div>
-                            </div>
+                            
                         </div>
-                        
-                        
-
-                       <!-- <div class="col-md-4">
-                            <div class="pull-right">
-                                <button type="button" class="btn btn-default" aria-label="Left Align"
-                                        ng-click="vm.loadCalendar(calendar)" >
-                                    <i class="mdi-content-create" aria-hidden="true"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-default" aria-label="Left Align"
-                                        ng-click="vm.deleteCalendar(calendar)" >
-                                    <i class="mdi-action-delete" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div> -->
+                                                                
 
                         <!--TODO revisar este alert-->
                         <alert type="danger" ng-show="vm.calendar_errors[calendar.id]">
