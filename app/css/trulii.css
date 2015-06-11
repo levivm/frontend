@@ -12098,6 +12098,10 @@ hr.on-light {
   background: transparent;
   padding: 0;
 }
+.clear-spacings {
+  padding: 0em;
+  margin: 0em;
+}
 .separate-above {
   margin-top: 3rem;
 }
@@ -13918,6 +13922,9 @@ tags-input input {
 .card--shrink .card-footer {
   padding-left: 4em;
   padding-right: 4em;
+}
+.contrast-box {
+  padding: 1em;
 }
 .toast-title {
   font-weight: bold;

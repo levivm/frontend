@@ -26,16 +26,63 @@
                 <div ng-repeat="calendar in vm.calendars | orderBy: 'initial_date'" trulii-expandable-content>
 
                     <div class="card-list-item">
-                        
-                        <div class="col-md-8">
-                            <span><strong>Fecha de Inicio: </strong></span>
-                            <span>{{calendar.initial_date | date }}</span>
-                            <br/>
-                            <span><strong>Cierre de ventas: </strong></span>
-                            <span>{{calendar.closing_sale | date }}</span>
+
+                        <div class="row clearfix">
+                            <div class="col-md-3">
+                                <span><strong>Inicia el: </strong></span><br/>
+                                <span>{{calendar.initial_date | date }}</span>
+                                <br/>
+                                
+                            </div>
+
+                            <div class="col-md-3">
+                                <span><strong>Cierre de ventas: </strong></span><br/>
+                                <span>{{calendar.closing_sale | date }}</span>
+                            </div>  
+
+                            <div class="col-md-6 text-right">
+                                <h4 class="clear-spacings">
+                                    <strong ng-bind="::calendar.session_price"></strong> COP
+                                </h4>
+                                
+                                <div class="text-muted">
+                                    <strong>10</strong> Cupos
+                                </div>
+                                
+                            </div>  
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="row clearfix separate-above">
+                            <div class="col-md-12">
+                                <h3> <span ng-bind="::calendar.sessions.length"></span> Sesiones</h3>    
+                            </div>                            
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 text-center contrast-box text-tiny">
+                                <div>11 / 13 / 2015</div>
+                                <div class="text-muted">2:00 PM a 3:00 PM</div>
+                            </div>
+
+                            <div class="col-md-3 text-center contrast-box text-tiny">
+                                <div>11 / 13 / 2015</div>
+                                <div class="text-muted">2:00 PM a 3:00 PM</div>
+                            </div>
+
+                            <div class="col-md-3 text-center contrast-box text-tiny">
+                                <div>11 / 13 / 2015</div>
+                                <div class="text-muted">2:00 PM a 3:00 PM</div>
+                            </div>
+
+                            <div class="col-md-3 text-center contrast-box text-tiny">
+                                <div>11 / 13 / 2015</div>
+                                <div class="text-muted">2:00 PM a 3:00 PM</div>
+                            </div>
+                        </div>
+                        
+                        
+
+                       <!-- <div class="col-md-4">
                             <div class="pull-right">
                                 <button type="button" class="btn btn-default" aria-label="Left Align"
                                         ng-click="vm.loadCalendar(calendar)" >
@@ -47,7 +94,7 @@
                                     <i class="mdi-action-delete" aria-hidden="true"></i>
                                 </button>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!--TODO revisar este alert-->
                         <alert type="danger" ng-show="vm.calendar_errors[calendar.id]">

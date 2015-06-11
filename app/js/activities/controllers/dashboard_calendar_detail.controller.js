@@ -122,7 +122,7 @@
 
         });
 
-        $scope.isSaving = false;
+        vm.isSaving = false;
 
     }
 
