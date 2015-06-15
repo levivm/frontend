@@ -14,10 +14,11 @@
         .module('trulii.authentication.controllers')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state','$q','Authentication'];
+    LoginController.$inject = ['$state','$stateParams', '$q','Authentication'];
 
-    function LoginController($state, $q, Authentication) {
+    function LoginController($state, $stateParams, $q, Authentication) {
         var vm = this;
+        var fromState = null;
         vm.errors = {};
         vm.auth = {};
         vm.is_new = true;
@@ -57,11 +58,8 @@
 
         function _facebookLogin() {
             return  Authentication.facebookLogin()
-                        .then(successFbLogin,errorFbLogin);
+                        .then(_loginSuccess ,errorFbLogin);
 
-            function successFbLogin(response){
-                $state.go("brow.home")
-            }
             function errorFbLogin(response){
                 $state.go('general-message', {
                     'module_name':'authentication',
@@ -72,10 +70,15 @@
         }
 
         function _loginSuccess(redirect_state) {
-            console.log("redirect state", redirect_state);
-            //$state.go(redirect_state.data.location);
-            $state.go("home");
-            Authentication.updateAuthenticatedAccount();
+            Authentication.updateAuthenticatedAccount().then(success, _loginError);
+
+            function success(){
+                if(!!fromState.state){
+                    $state.go(fromState.state, fromState.params);
+                } else {
+                    $state.go("home");
+                }
+            }
         }
 
         function _loginError(response) {
@@ -98,6 +101,7 @@
         }
 
         function initialize(){
+            fromState = $stateParams.from;
             setStrings();
         }
     }

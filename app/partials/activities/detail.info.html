@@ -1,30 +1,56 @@
-<div>
-    <h3>Descripción</h3>
-    <p>{{ ::vm.activity.short_description }}</p>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Descripción</h3>
+        </div>
+    </div>
 
-<div>
-    <h3>Conócenos</h3>
-    <youtube-video video-url="vm.activity.youtube_video_url"></youtube-video>
-</div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well-plain">
+                <p ng-bind="::detail.activity.short_description"></p>
+            </div>
+        </div>
+    </div>
 
-<hr/>
-<div class="col-md-2">Contenido</div>
-<div class="col-md-10">{{ ::vm.activity.content }}</div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Conócenos</h3>
+        </div>
+    </div>
 
-<div class="col-md-2">Audiencia</div>
-<div class="col-md-10">{{ ::vm.activity.audience }}</div>
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <youtube-video video-url="detail.getActivityVideoUrl()"></youtube-video>
+        </div>
+    </div>
 
-<div class="col-md-2">Objetivo(s)</div>
-<div class="col-md-10">{{ ::vm.activity.goals }}</div>
-
-<div class="col-md-2">Requisitos</div>
-<div class="col-md-10">{{ ::vm.activity.requirements }}</div>
-
-<div class="col-md-2">Información Extra</div>
-<div class="col-md-10">{{ ::vm.activity.extra_info }}</div>
-
-<div class="col-md-2">Política de Reembolso</div>
-<div class="col-md-10">{{ ::vm.activity.return_policy }}</div>
-
-<div id="map-canvas" style="width:800px; height: 500px; margin: 0; padding: 0"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="list list-translucent">
+                <div class="list-item">
+                    <div class="title">Contenido</div>
+                    <div class="content" ng-bind="::detail.activity.content"></div>
+                </div>
+                <div class="list-item">
+                    <div class="title">Audiencia</div>
+                    <div class="content" ng-bind="::detail.activity.audience"></div>
+                </div>
+                <div class="list-item">
+                    <div class="title">Objetivo(s)</div>
+                    <div class="content" ng-bind="::detail.activity.goals"></div>
+                </div>
+                <div class="list-item">
+                    <div class="title">Requisitos</div>
+                    <div class="content" ng-bind="::detail.activity.requirements"></div>
+                </div>
+                <div class="list-item">
+                    <div class="title">Información Extra</div>
+                    <div class="content" ng-bind="::detail.activity.extra_info"></div>
+                </div>
+                <div class="list-item">
+                    <div class="title">Política de Reembolso</div>
+                    <div class="content" ng-bind="::detail.activity.return_policy"></div>
+                </div>
+            </div>
+        </div>
+    </div>

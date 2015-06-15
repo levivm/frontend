@@ -29,6 +29,16 @@
 
         //noinspection UnnecessaryLocalVariableJS
         var ActivitiesManager = {
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#getActivities
+             * @description Gets all existing activities
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getActivities : getActivities,
+
             /**
              * @ngdoc method
              * @name trulii.activities.services.ActivitiesManager#getActivity
@@ -79,6 +89,17 @@
         return ActivitiesManager;
 
         /***************** Function definitions ********************/
+
+        function getActivities(){
+            return $http.get(api.activities()).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                $q.reject(response.data);
+            }
+        }
 
         function getActivity(activityId) {
             var deferred = $q.defer();

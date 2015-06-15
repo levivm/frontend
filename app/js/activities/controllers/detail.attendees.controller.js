@@ -1,3 +1,11 @@
+/**
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityDetailAttendeesController
+ * @description Controller for Activity Detail Attendees Sub-Component. Handles
+ * display of activity assistants.
+ * @requires ng.$scope
+ */
+
 (function () {
     'use strict';
 
@@ -5,20 +13,33 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailAttendeesController', ActivityDetailAttendeesController);
 
-    ActivityDetailAttendeesController.$inject = ['calendars'];
+    ActivityDetailAttendeesController.$inject = ['$scope'];
 
-    function ActivityDetailAttendeesController(calendars) {
+    function ActivityDetailAttendeesController($scope) {
+
         var vm = this;
+
+        vm.pageChanged = pageChanged;
+        vm.getAssistantPicture = getAssistantPicture;
 
         initialize();
 
-        vm.pageChanged = function () {
+        function pageChanged() {
             _assistantByPage();
-        };
+        }
+
+        function getAssistantPicture(assistant){
+            console.log('assistant:',assistant);
+            if(!!assistant.picture){
+                return assistant.picture;
+            } else {
+                return 'css/img/default_profile_pic.jpg';
+            }
+        }
 
         function _getAssistants() {
             var assistants = [];
-            _.forEach(calendars, function (calendar) {
+            _.forEach(vm.calendars, function (calendar) {
                 assistants.push(calendar.assistants);
             });
 
@@ -39,7 +60,7 @@
             vm.currentPage = 1;
             vm.itemsPerPage = 10;
             vm.maxSize = 5;
-            vm.calendars = calendars;
+            vm.calendars = $scope.detail.calendars;
             vm._assistants = _getAssistants();
             vm.totalItems = vm._assistants.length;
 

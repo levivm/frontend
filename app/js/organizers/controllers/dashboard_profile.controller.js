@@ -53,8 +53,7 @@
 
     function uploadImage(image){
 
-      var url = serverConf.url+'/api/users/upload/photo/';
-      UploadFile.upload_file(image,url)
+      vm.organizer.upload_photo(image)
           .then(_successUploaded,_erroredUpload,_progressUpload);
 
     }

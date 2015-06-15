@@ -45,7 +45,7 @@
                 controller:'HomeController as home',
                 resolve:{
                     cities:getAvailableCities,
-                    authenticatedUser:getAuthenticatedUser
+                    authenticatedUser: getAuthenticatedUser
                 },
                 templateUrl: 'partials/landing/landing.html'                        
             })
@@ -55,6 +55,12 @@
                 controller: 'RegisterController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/register.html',
+                params: {
+                    'from': {
+                        'state': undefined,
+                        'params': {}
+                    }
+                },
                 resolve:{
                     validatedData: tokenSignupValidation
                 }
@@ -72,7 +78,14 @@
                 url:'/login',
                 controller: 'LoginController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/authentication/login.html'
+                templateUrl: 'partials/authentication/login.html',
+                params: {
+                    'from' : {
+                        'state' : undefined,
+                        'params' : {}
+
+                    }
+                }
             })
             .state('logout',{
                 url:'/logout',
@@ -185,7 +198,45 @@
                 templateUrl: 'modalContainer'
                 //templateUrl: 'partials/authentication/register.html'
             })
-
+            .state('student-dashboard', {
+                abstract:true,
+                url:'/students/dashboard/',
+                controller: 'StudentDashboardCtrl as dash',
+                templateUrl: 'partials/students/dashboard.html',
+                resolve:{
+                    cities:getAvailableCities,
+                    student: getCurrentStudent
+                },
+                data: {
+                    requiredAuthentication : true
+                }
+            })
+            .state('student-dashboard.account', {
+                url:'account',
+                controller: 'StudentAccountCtrl as account',
+                templateUrl: 'partials/students/dashboard_account.html'
+            })
+            .state('student-dashboard.profile', {
+                url:'profile',
+                controller: 'StudentProfileCtrl as profile',
+                templateUrl: 'partials/students/dashboard_profile.html'
+            })
+            .state('student-dashboard.activities', {
+                url:'activities',
+                controller: 'StudentActivitiesCtrl as activities',
+                templateUrl: 'partials/students/dashboard_activities.html',
+                resolve:{
+                    activities: getActivities
+                }
+            })
+            .state('student-profile', {
+                url: '/students/{student_id:int}/profile',
+                controller: 'StudentProfileController as profile',
+                templateUrl: 'partials/students/profile.html',
+                resolve: {
+                    student: getStudent
+                }
+            })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl',
@@ -355,9 +406,9 @@
                 templateUrl: 'partials/activities/dashboard_return_policy.html'
             })
             .state('activities-detail', {
-                url:'/activities/{activity_id:int}',
-                controller: 'ActivityDetailController',
-                controllerAs: 'pc',
+                url:'/activities/{activity_id:int}/',
+                controller: 'ActivityDetailController as detail',
+                templateUrl: 'partials/activities/detail.html',
                 resolve: {
                     activity: getActivity,
                     cities: getAvailableCities,
@@ -365,25 +416,19 @@
                         return true;
                     },
                     calendars: getCalendars
-                },
-                templateUrl: 'partials/activities/detail.html'
+                }
             })
             .state('activities-detail.info', {
-                url: '',
-                controller: 'ActivityDetailInfoController',
-                controllerAs: 'vm',
+                url: 'info',
                 templateUrl: 'partials/activities/detail.info.html'
             })
             .state('activities-detail.calendar', {
-                url: '',
-                controller: 'ActivityDetailCalendarController',
-                controllerAs: 'vm',
+                url: 'calendar',
                 templateUrl: 'partials/activities/detail.calendar.html'
             })
             .state('activities-detail.attendees', {
-                url: '',
-                controller: 'ActivityDetailAttendeesController',
-                controllerAs: 'vm',
+                url: 'attendees',
+                controller: 'ActivityDetailAttendeesController as attendees',
                 templateUrl: 'partials/activities/detail.attendees.html'
             })
             .state('activities-enroll', {
@@ -402,8 +447,6 @@
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/detail.enroll.success.html',
                 resolve: {
-                    //activity: getActivity,
-                    //calendar: fetchCalendar,
                     organizer: ['activity', function (activity) {
                         return  activity.organizer;
                     }],
@@ -437,35 +480,55 @@
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var is_organizer = true;
+        var force_fetch = true;
 
         if(authenticatedUser){
             is_organizer = authenticatedUser.user_type === 'O';
-            if (!is_organizer){
-
+            if (is_organizer) {
+                return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
+            } else {
                 $timeout(function() {
-                  // This code runs after the authentication promise has been rejected.
-                  // Go to the log-in page
                      $state.go('home');
                 });
+                return $q.reject()
+            }
+        }
+    }
 
+    getOrganizer.$inject = ['$stateParams', 'OrganizersManager'];
+
+    function getOrganizer($stateParams, OrganizersManager) {
+        return OrganizersManager.getOrganizer($stateParams.organizer_id);
+    }
+
+    getCurrentStudent.$inject = ['$timeout', '$state', 'Authentication', 'StudentsManager'];
+
+    function getCurrentStudent($timeout, $state, Authentication, StudentsManager){
+
+        var authenticatedUser =  Authentication.getAuthenticatedAccount();
+        var is_student = false;
+        var force_fetch = true;
+
+        if(authenticatedUser){
+            is_student = (authenticatedUser.user_type === 'S');
+            if (is_student) {
+                return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
+            } else {
+                $timeout(function() {
+                    $state.go('home');
+                }, 0);
 
                 return $q.reject()
             }
         }
 
-
-        var force_fetch = true;
-        
-        return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
-
     }
 
+    getStudent.$inject = ['$stateParams', 'StudentsManager'];
 
-
-    getOrganizer.$inject = ['$stateParams', 'OrganizersManager'];
-
-    function getOrganizer($stateParams, OrganizersManager) {
-        return OrganizersManager.getOrganizer($stateParams.organizer_id)
+    function getStudent($stateParams, StudentsManager) {
+        console.log('$stateParams.student_id:', $stateParams.student_id);
+        return StudentsManager.getStudent($stateParams.student_id);
     }
 
 
@@ -481,6 +544,12 @@
 
     function getAvailableCities(LocationManager){
         return LocationManager.getAvailableCities();
+    }
+
+    getActivities.$inject = ['ActivitiesManager'];
+
+    function getActivities(ActivitiesManager){
+        return ActivitiesManager.getActivities();
     }
 
     getCalendars.$inject = ['CalendarsManager','activity'];
@@ -508,12 +577,6 @@
     getActivity.$inject = ['$stateParams','ActivitiesManager'];
 
     function getActivity($stateParams,ActivitiesManager){
-        console.log('getActivity. ');
-        console.log($stateParams.activity_id);
-        console.log("aaa",a);
-        var a = ActivitiesManager.getActivity($stateParams.activity_id);
-        console.log("aaa",a);
-        return a
         return ActivitiesManager.getActivity($stateParams.activity_id);
     }
 

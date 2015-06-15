@@ -116,7 +116,7 @@
              * @methodOf trulii.activities.services.Activity
              */
             addPhoto : function (image,extra_data) {
-                return UploadFile.upload_file(image, api.gallery(this.id),extra_data);
+                return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
             },
 
             /**

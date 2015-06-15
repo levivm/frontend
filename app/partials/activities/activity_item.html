@@ -1,0 +1,30 @@
+<div class="col-md-4 col-sm-6 col-xs-12">
+    <div class="panel panel-default">
+        <div>
+            <img ng-src="{{activity.main_photo}}" alt="{{activity.title}}" class="img-responsive"/>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-4">
+                    <a ui-sref="organizer-profile({organizer_id: {{activity.organizer.id}} })">
+                        <img ng-src="{{activity.organizer.photo}}" alt="{{activity.organizer.full_name}}" class="img-responsive img-circle"/>
+                    </a>
+                </div>
+                <div class="col-md-8 text-right">
+                    <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
+                        <h3 ng-bind="activity.title"></h3>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-4">
+                    <div class="pull-right">
+                        <i class="mdi-action-grade"
+                           ng-repeat="star in activity.rating track by star"
+                           ng-style="getStarStyle(star)"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
