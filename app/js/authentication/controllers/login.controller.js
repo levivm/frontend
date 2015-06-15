@@ -25,32 +25,13 @@
 
         vm.login = login;
         vm.facebookLogin = _facebookLogin;
-        // vm.clearErrors = clearErrors;
 
         initialize();
 
         //--------- Functions Implementation ---------//
 
-        // function clearErrors(){
-        //     vm.errors = null;
-        //     vm.errors = {};
-        // }
-
-        // function _addError(field, message) {
-        //     vm.errors[field] = message;
-        //     vm.login_form[field].$setValidity(message, false);
-        // }
-
-        // function _errored(data) {
-        //     if (data['form_errors']) {
-        //         angular.forEach(data['form_errors'], function(errors, field) {
-        //             _addError(field, errors[0]);
-        //         });
-        //     }
-        // }
 
         function login() {
-            // clearErrors();
             Error.form.clear(vm.login_form);
             console.log("vm auth",vm.auth);
             return  Authentication.login(vm.auth.email, vm.auth.password)
