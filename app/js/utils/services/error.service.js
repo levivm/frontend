@@ -19,6 +19,9 @@
             form: {
                 clear: _clearErrors,
                 add: _addErrors
+            },
+            session: {
+
             }
         };
 
