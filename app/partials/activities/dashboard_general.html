@@ -95,8 +95,7 @@
                                 <select class="form-control" ng-model="vm.selected_category" name="category"
                                         ng-options="category as category.name for (index,category) in vm.activity_categories"
                                         ng-change="vm.selectCategory(vm.selected_category)">
-                                    <option value="" ng-show="!vm.activity_create_form.category.$dirty"
-                                            selected>Categoría
+                                    <option value="" ng-show="!vm.selected_category" selected>Categoría
                                     </option>
                                 </select>
 
@@ -113,7 +112,7 @@
                                 <select id="sub-category-select" class="form-control" name="sub_category"
                                         ng-model="vm.selected_sub_category" ng-mouseover="vm.setOverElement('sub_category')"
                                         ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories">
-                                    <option value="" ng-show="!vm.activity_create_form.sub_category.$dirty" selected>
+                                    <option value="" ng-show="!vm.selected_sub_category" selected>
                                         Sub-categoría
                                     </option>
                                 </select>
