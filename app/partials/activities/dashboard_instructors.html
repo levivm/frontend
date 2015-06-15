@@ -1,21 +1,15 @@
-
-    <div class="row">
-        <div class="col-sm-offset-1 col-md-8">            
-
+ <div class="row">
+        <div class="col-sm-offset-1 col-md-8">
             <form class="card card--shrink shadow-z-1 material-form lateral-fade lateral-fadeout" 
                 name='vm.activity_instructors_forms' ng-submit="vm.save_activity()">
-
                     <div class="card-header">
-
                         <div class="title-compound">
                             <i class="mdi-social-group card-icon"></i>
-                        
                             <h1 class="title-compound__title">
                                 Instructores
                             </h1>
                             <h4 class="text-muted title-compound__description">Cuéntanos de cada una de las personas que impartirán la actividad.</h4>    
                         </div>
-                            
                     </div>
 
                     <div class="card-body center-childs">
@@ -29,8 +23,6 @@
                     </div>                    
                 
                     <div class="card-list-item" ng-repeat="instructor in vm.activity.instructors track by $index" trulii-expandable-content>
-
-                        
                         <h2>
                             Instructor {{$index + 1}}
                             <span class="btn btn-default float-right no-margin-top" ng-show="instructor.id" ng-click="vm.deleteInstructor(instructor)">                                
@@ -38,37 +30,26 @@
                             </span>
                         </h2>
 
-                        <div class="form-group">
-                            <label class="control-label">Nombre</label>
+                        <div class="form-group" trulii-input-errors-control="full_name">
+                            <label for="full_name" class="control-label">Nombre</label>
                             <input type="text" id="full_name" name="full_name"
                                    ng-model="instructor.full_name"
                                    typeahead-on-select="vm.setInstructor($item, $model, $label,instructor)"
                                    typeahead="ins.full_name for ins in vm.typeahead_instructors | limitTo:8"
                                    class="form-control">
-
-                            <div class="errors">
-                                <span ng-bind="vm.instructors_errors[$index].full_name"></span>
-                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Bio</label>
+                        <div class="form-group" trulii-input-errors-control="bio">
+                            <label for="bio" class="control-label">Bio</label>
                             <textarea id="bio" class="form-control" name="bio"
                                       ng-model='instructor.bio'>
                             </textarea>
-
-                            <div class="errors">
-                                <span>{{ vm.instructors_errors[$index].bio }}</span>
-                            </div>
                         </div>
-                        <div class="form-group">
-                            <label class="control-label">Website</label>
-                            <input class="form-control" ng-model='instructor.website' name="website"/>
-
-                            <div class="errors">
-                                <span>{{ vm.instructors_errors[$index].website }}</span>
-                            </div>
+                        <div class="form-group" trulii-input-errors-control="website">
+                            <label for="website" class="control-label">Website</label>
+                            <input id="website" class="form-control" ng-model='instructor.website' name="website"/>
                         </div>
 
+                        <!--TODO reemplazar con Toast-->
                         <alert type="danger" ng-show="vm.instructors_errors[$index].delete_instructor">
                             {{vm.instructors_errors[$index].delete_instructor}}
                         </alert>
@@ -76,12 +57,8 @@
                     </div>
 
                     <div class="card-footer" ng-show="vm.activity.instructors.length > 0">
-
                         <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>       
                     </div>
-
-                
-
             </form>
 
             <div class="col-md-4">

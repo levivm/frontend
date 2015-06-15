@@ -5,7 +5,7 @@
             <h5>Prepárate para asistir a:</h5>
 
             <div>
-                <div>{{::vm.activity.title}}</div>
+                <div ng-bind="::vm.activity.title"></div>
                 <div>{{::vm.activity.location.address}}</div>
                 <div ng-repeat="session in vm.calendar.sessions">
                     {{::session.date | date:'EEEE, dd MMMM'}} {{::session.start_time | date:'h:mma'}}-{{::session.end_time | date:'h:mma'}}

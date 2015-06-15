@@ -1,55 +1,44 @@
+<div class="row">
+    <div class="col-sm-offset-1 col-md-8">
+        <form class="card card--shrink shadow-z-1 material-form lateral-fade lateral-fadeout"
+              name='vm.activity_return_policy_form' ng-submit="vm.save_activity()">
+            <fieldset>
+                <div class="card-header">
+                    <div class="title-compound">
+                        <i class="mdi-communication-call-missed card-icon"></i>
 
-    <div class="row">
-        <div class="col-sm-offset-1 col-md-8">
-
-            <form class="card card--shrink shadow-z-1 material-form lateral-fade lateral-fadeout"  name='vm.activity_return_policy_form' ng-submit="vm.save_activity()">
-                <fieldset>                    
-                    
-                    <div class="card-header">
-                        <div class="title-compound">
-                            <i class="mdi-communication-call-missed card-icon"></i>
-                        
-                            <h1 class="title-compound__title">
-                                Política de Devolución
-                            </h1>
-                            <h4 class="text-muted title-compound__description">Especifica bajo qué condiciones aceptas reembolsar pagos</h4>    
-                        </div>
+                        <h1 class="title-compound__title">
+                            Política de Devolución
+                        </h1>
+                        <h4 class="text-muted title-compound__description">Especifica bajo qué condiciones aceptas
+                            reembolsar pagos</h4>
                     </div>
+                </div>
 
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="return-policy-textarea" class="sr-only">Política de Devolución</label>
-                            <textarea id="return-policy-textarea" class="form-control" name="return_policy" rows="10" 
+                <div class="card-body">
+                    <div class="form-group" trulii-input-errors-control="return_policy">
+                        <label for="return-policy-textarea" class="sr-only">Política de Devolución</label>
+                            <textarea id="return-policy-textarea" class="form-control" name="return_policy" rows="10"
                                       ng-model='vm.activity.return_policy'
                                       ng-mouseover="vm.setOverElement('return_policy')"
                                       placeholder="Condiciones para reembolso">
                             </textarea>
-
-                            <trulii-input-alert field="vm.activity_create_form.return_policy"
-                                                errors="vm.errors"></trulii-input-alert>
-                        </div>
-
-                        <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
-                    
                     </div>
-    
-                    
-
-                    </div>
-                </fieldset>
-            </form>
+                    <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <!--         <div class="col-md-3">
+        <div class="sidebar-nav-fixed pull-right affix well">
+            <ul class="nav">
+                <li ng-show="vm.showTooltip('return_policy')">
+                    Especifica las circunstancias en las que se aplica reembolso
+                </li>
+            </ul>
         </div>
-<!--         <div class="col-md-3">
-    <div class="sidebar-nav-fixed pull-right affix well">
-        <ul class="nav">
-            <li ng-show="vm.showTooltip('return_policy')">
-                Especifica las circunstancias en las que se aplica reembolso
-            </li>
-        </ul>
-    </div>
 
-</div> -->
-        <hr>
-
-    </div>
+    </div> -->
+    <hr>
+</div>
 

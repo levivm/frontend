@@ -1,38 +1,27 @@
-
     <div class="row">
         <div class="col-sm-offset-1 col-md-8">
-
-            <div ui-view class="card card--shrink shadow-z-1 material-form lateral-fade lateral-fadeout">    
-
+            <div ui-view class="card card--shrink shadow-z-1 material-form lateral-fade lateral-fadeout">
                 <div class="card-header">
-
                     <div class="title-compound">
                         <i class="mdi-action-today card-icon"></i>
-                    
                         <h1 class="title-compound__title">
                             Calendarios
                         </h1>
                         <h4 class="text-muted title-compound__description">Añade el horario, precio, número de sesiones y más</h4>    
                     </div>
-
                 </div>            
 
                 <div class="card-body no-padding-top center-childs">                    
                     <button ng-click="vm.createCalendar()" class="btn btn-primary">Agregar Calendario</button>                    
                 </div>
-                
-                
 
                 <div ng-repeat="calendar in vm.calendars | orderBy: 'initial_date'" trulii-expandable-content>
-
                     <div class="card-list-item">
-
                         <div class="row clearfix">
                             <div class="col-md-3">
                                 <span><strong>Inicia el </strong></span><br/>
                                 <span>{{calendar.initial_date | date: 'dd / MM / yy' }}</span>
                                 <br/>
-                                
                             </div>
 
                             <div class="col-md-4">
@@ -75,14 +64,11 @@
                         </div>
 
                         <div class="row center-childs">
-
                             <div class="text-center contrast-box" ng-repeat="session in calendar.sessions">
                                 <div ng-bind="session.date | date: 'dd / MM / yy'"></div>
                                 <div class="text-muted text-tiny"> <span ng-bind="session.start_time | date: 'h:mm a'"></span> a <span ng-bind="session.end_time | date: 'h:mm a'"></span></div>                                
                             </div>
-                            
                         </div>
-                                                                
 
                         <!--TODO revisar este alert-->
                         <alert type="danger" ng-show="vm.calendar_errors[calendar.id]">
@@ -90,11 +76,8 @@
                         </alert>
                         
                     </div>
-
                 </div>
-
             </div>
-
         </div>
         <div class="col-md-4">
         </div>

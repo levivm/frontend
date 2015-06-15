@@ -129,15 +129,11 @@
                     </div>
 
                     <div class="card-body no-padding-top">
-                        <div class="form-group">
-                            
+                        <div class="form-group" trulii-input-errors-control="youtube_video_url">
                             <label for="youtube_video_url" class="control-label">Enlace de Youtube</label>
                             <input id="youtube_video_url" class="form-control" name="youtube_video_url"
                                    placeholder="Coloca aquí el enlace de tu vídeo en Youtube"
                                    ng-model='vm.activity.youtube_video_url'/>
-
-                            <trulii-input-alert field="vm.activity_gallery_form.youtube_video_url"
-                                                errors="vm.errors"></trulii-input-alert>
                         </div>
 
                         <youtube-video video-url="vm.activity.youtube_video_url" player-width="'100%'"></youtube-video>
