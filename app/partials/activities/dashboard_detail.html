@@ -18,124 +18,99 @@
                     </div>
                     
                     <div class="card-body card-body ">
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control="content">
                             <label class="control-label" for="content">Contenido</label>
                             <textarea id="content" class="form-control" name="content"
                                       ng-model='vm.activity.content' ng-mouseover="vm.setOverElement('content')">
                             </textarea>
-
-                            <trulii-input-alert field="vm.activity_detail_form.content"
-                                                errors="vm.errors"></trulii-input-alert>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control="audience">
                             <label class="control-label" for="audience">Audencia</label>
                             <textarea id="audience" class="form-control" name="audience"
                                       ng-model='vm.activity.audience' ng-mouseover="vm.setOverElement('audience')">
                             </textarea>
-
-                            <trulii-input-alert field="vm.activity_detail_form.audience"
-                                                errors="vm.errors"></trulii-input-alert>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control="goals">
                             <label class="control-label" for="goals">Objetivos</label>
                             <textarea id="goals" class="form-control" name="goals"
                                       ng-model='vm.activity.goals' ng-mouseover="vm.setOverElement('goals')">
                             </textarea>
-
-                            <trulii-input-alert field="vm.activity_create_form.goals"
-                                                errors="vm.errors"></trulii-input-alert>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control="methodology">
                             <label class="control-label" for="methodology">Metodología</label>
                             <textarea id="methodology" class="form-control" name="methodology"
                                       ng-model='vm.activity.methodology' ng-mouseover="vm.setOverElement('methodology')">
                             </textarea>
-
-                            <trulii-input-alert field="vm.activity_create_form.methodology"
-                                                errors="vm.errors"></trulii-input-alert>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control="requirements">
                             <label class="control-label" for="requirements">Requerimientos</label>
                             <textarea id="requirements" class="form-control" name="requirements"
                                       ng-model='vm.activity.requirements' ng-mouseover="vm.setOverElement('requirements')">
                             </textarea>
-
-                            <trulii-input-alert field="vm.activity_create_form.requirements"
-                                                errors="vm.errors"></trulii-input-alert>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control="extra_info">
                             <label class="control-label" for="extra_info">Información Adicional</label>
                             <textarea id="extra_info" class="form-control" ng-model='vm.activity.extra_info'
-                                      name="extra_info">  </textarea>
-
-                            <trulii-input-alert field="vm.activity_create_form.extra_info"
-                                                errors="vm.errors"></trulii-input-alert>
+                                      name="extra_info">
+                            </textarea>
                         </div>
-                        
-
                         <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
                     </div>
-                            
-
-                    </div>
-
                 </fieldset>
             </form>
         </div>
-        <!-- <div class="col-md-3">
-            <div class="sidebar-nav-fixed pull-right affix well">
-                <ul class="nav">
-                    <li ng-show="vm.showTooltip('content')">
-                        <p>
-                            ¿Tu actividad está dividida en módulos en donde cada uno tiene temas a enseñar?
-                        </p>
-                    </li>
-                    <li ng-show="vm.showTooltip('audience')">
-                        <p>
-                            ¿A qué tipo de público está dirigida tu actividad?
-                        </p>
-                    </li>
-                    <li ng-show="vm.showTooltip('goals')">
-                        <p>
-                            ¿Cuál es la finalidad de tu actividad?
-                        </p>
-        
-                        <p>
-                            Algunos ejemplos:
-                        </p>
-        
-                        <p>
-                            ¿Tus alumnos saldrán dominando algún campo en particular?
-                        </p>
-        
-                        <p>
-                            ¿Tus inscritos saldrán agotados con muchas calorías menos?
-                        </p>
-                    </li>
-                    <li ng-show="vm.showTooltip('methodology')">
-                        <p>¿Tu actividad será evaluada?</p>
-        
-                        <p>¿Cómo?</p>
-        
-                        <p>¿Aplicarás algún método de enseñanza en particular?
-                        </p>
-                    </li>
-                    <li ng-show="vm.showTooltip('requirements')">
-                        <p>
-                            ¿Para inscribirse hace falta conocimientos en algún tema en particular?
-                        </p>
-        
-                        <p>
-                            ¿Deben llevar algún material para realizar la actividad?
-                        </p>
-        
-                        <p>
-                            ¿Se requiere una documentación?
-                        </p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <hr>
-            </div>
-         -->
+        <!--<div class="col-md-3">-->
+            <!--<div class="sidebar-nav-fixed pull-right affix well">-->
+                <!--<ul class="nav">-->
+                    <!--<li ng-show="vm.showTooltip('content')">-->
+                        <!--<p>-->
+                            <!--¿Tu actividad está dividida en módulos en donde cada uno tiene temas a enseñar?-->
+                        <!--</p>-->
+                    <!--</li>-->
+                    <!--<li ng-show="vm.showTooltip('audience')">-->
+                        <!--<p>-->
+                            <!--¿A qué tipo de público está dirigida tu actividad?-->
+                        <!--</p>-->
+                    <!--</li>-->
+                    <!--<li ng-show="vm.showTooltip('goals')">-->
+                        <!--<p>-->
+                            <!--¿Cuál es la finalidad de tu actividad?-->
+                        <!--</p>-->
+        <!-- -->
+                        <!--<p>-->
+                            <!--Algunos ejemplos:-->
+                        <!--</p>-->
+        <!-- -->
+                        <!--<p>-->
+                            <!--¿Tus alumnos saldrán dominando algún campo en particular?-->
+                        <!--</p>-->
+        <!-- -->
+                        <!--<p>-->
+                            <!--¿Tus inscritos saldrán agotados con muchas calorías menos?-->
+                        <!--</p>-->
+                    <!--</li>-->
+                    <!--<li ng-show="vm.showTooltip('methodology')">-->
+                        <!--<p>¿Tu actividad será evaluada?</p>-->
+        <!-- -->
+                        <!--<p>¿Cómo?</p>-->
+        <!-- -->
+                        <!--<p>¿Aplicarás algún método de enseñanza en particular?-->
+                        <!--</p>-->
+                    <!--</li>-->
+                    <!--<li ng-show="vm.showTooltip('requirements')">-->
+                        <!--<p>-->
+                            <!--¿Para inscribirse hace falta conocimientos en algún tema en particular?-->
+                        <!--</p>-->
+        <!-- -->
+                        <!--<p>-->
+                            <!--¿Deben llevar algún material para realizar la actividad?-->
+                        <!--</p>-->
+        <!-- -->
+                        <!--<p>-->
+                            <!--¿Se requiere una documentación?-->
+                        <!--</p>-->
+                    <!--</li>-->
+                <!--</ul>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>

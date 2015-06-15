@@ -14,9 +14,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBDetailController', ActivityDBDetailController);
 
-    ActivityDBDetailController.$inject = ['$scope', '$state', '$timeout', '$q', '$stateParams', 'activity', 'Elevator', 'Toast'];
+    ActivityDBDetailController.$inject = ['$scope', '$state', '$timeout', '$q', '$stateParams', 'activity', 'Elevator', 'Toast', 'Error'];
 
-    function ActivityDBDetailController($scope, $state, $timeout, $q, $stateParams, activity, Elevator, Toast) {
+    function ActivityDBDetailController($scope, $state, $timeout, $q, $stateParams, activity, Elevator, Toast, Error) {
 
         var vm = this;
 
@@ -32,7 +32,7 @@
         function _updateActivity() {
             vm.isSaving = true;
 
-            _clearErrors();
+            Error.form.clear(vm.activity_detail_form);
 
             vm.activity.update()
                 .then(_updateSuccess, _errored);
@@ -54,7 +54,7 @@
             vm.isCollapsed = false;
             vm.isSaving = false;
             angular.extend(activity, vm.activity);
-            _onSectionUpdated();
+            _onSectionUpdated();            
 
             Toast.generics.weSaved();
 
@@ -64,18 +64,13 @@
             vm.activity_detail_form.$setPristine();
             vm.errors = null;
             vm.errors = {};
-        }
-
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.activity_detail_form[field].$setValidity(message, false);
-        }
+        }        
 
         function _errored(errors) {
             vm.isSaving = false;
-            angular.forEach(errors, function (message, field) {
-                _addError(field, message[0]);
-            });
+
+            Error.form.add(vm.activity_detail_form, errors);
+            
         }
 
         function _onSectionUpdated() {

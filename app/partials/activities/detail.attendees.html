@@ -16,7 +16,6 @@
 <div class="row">
     <div class="user-thumbnail-container">
         <div class="user-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.email">
-            <!--TODO agregar ui-sref. Falta enviar id desde back-->
             <img class="user-img" ng-src="{{attendees.getAssistantPicture(assistant)}}"
                  alt="{{::assistant.first_name}}"/>
             <h3 ng-bind="::assistant.first_name"></h3>

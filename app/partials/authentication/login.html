@@ -3,16 +3,13 @@
 
 <div class="container-fluid">
     <div class="row center-childs">
-        <div class="size-xs fit-in-xs separate-horizontal-inner">            
-        
+        <div class="size-xs fit-in-xs separate-horizontal-inner">
                 <a ui-sref="home">
                     <div class="trulii-inverse-med">
-                        
                     </div>    
                 </a>
                 
-                <div class="row">                                        
-
+                <div class="row">
                     <button type="button" class="btn btn-grand btn-block btn-facebook"
                             ng-click="vm.facebookLogin()">
                         <i class="trulii-icon-facebook  btn-grand__icon"></i>
@@ -29,11 +26,9 @@
                     <p class="text-center text-muted" ng-bind="vm.strings.LOGIN_ALTERNATIVES_LABEL"></p>
                 </div>
 
-                <div class="row">                    
-
+                <div class="row">
                     <form name='vm.login_form' ng-submit="vm.login()">
                         <fieldset>
-
                             <div class="separate-vertical">
                                 <div class="form-group" trulii-input-errors-control="login">
                                     <div class="input-group">
@@ -66,31 +61,20 @@
                                     <strong>{{vm.errors.__all__}}</strong>
                                 </div>
                             </div>
-
-                
                             <button type="submit" id="submit" class="btn btn-grand btn-primary btn-block"
                                        ng-bind="::vm.strings.LOGIN_LABEL"></button>
-                         
                         </fieldset>
                     </form>
-
                 </div>
-
-
             <div class="row">
                 <div class="separator"></div>
-            
                 <div class="text-center separate-vertical" id="anchor">
                     <span class="fit-in-xs">¿No tienes cuenta?</span>
                      <a ui-sref="register" class="lightbg-strong-anchor separate-horizontal"> Registrate aquí</a>
                 </div>    
             </div>
-            
-            
-      
         </div>        
     </div>
-
 </div>
 
 

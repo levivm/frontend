@@ -1,106 +1,95 @@
+<div class="row">
+    <div class="col-sm-offset-1 col-md-8">
+        <form class="card card--shrink shadow-z-1 material-form" name='vm.activity_location_form'
+              ng-submit="vm.save_activity()">
+            <fieldset>
+                <div class="card-header">
+                    <div class="title-compound">
+                        <i class="mdi-maps-pin-drop card-icon"></i>
 
-    <div class="row">
-        <div class="col-sm-offset-1 col-md-8">
-            <form class="card card--shrink shadow-z-1 material-form" name='vm.activity_location_form' ng-submit="vm.save_activity()">
-                <fieldset>
+                        <h1 class="title-compound__title">
+                            Ubicación
+                        </h1>
+                        <h4 class="text-muted title-compound__description">Especifica en qué lugar se desarrollará tu
+                            actividad</h4>
+                    </div>
+                </div>
 
-                    <div class="card-header">
-                        <div class="title-compound">
-                            <i class="mdi-maps-pin-drop card-icon"></i>
-                        
-                            <h1 class="title-compound__title">
-                                Ubicación
-                            </h1>
-                            <h4 class="text-muted title-compound__description">Especifica en qué lugar se desarrollará tu actividad</h4>    
-                        </div>
+                <div class="card-body">
+                    <div class="form-group" trulii-input-errors-control="city">
+                        <label for="city" class="control-label">Ciudad</label>
+                        <select class="form-control" id="city" ng-model="vm.activity.location.city"
+                                ng-options="city as city.name for city in vm.cities track by city.id" name="city">
+                            <option value="" selected ng-show="!vm.activity_location_form.type.$dirty">Seleccione..
+                            </option>
+                        </select>
                     </div>
 
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="city" class="control-label">Ciudad</label>
-                            <select class="form-control" id="city" ng-model="vm.activity.location.city"
-                                    ng-options="city as city.name for city in vm.cities track by city.id" name="city">
-                                <option value="" selected ng-show="!vm.activity_location_form.type.$dirty">Seleccione..
-                                </option>
-                            </select>
-                            <trulii-input-alert field="vm.activity_location_form.city"
-                                    errors="vm.errors"></trulii-input-alert>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="address" class="control-label">Dirección exacta</label>
+                    <div class="form-group" trulii-input-errors-control="address">
+                        <label for="address" class="control-label">Dirección exacta</label>
                             <textarea id="address" class="form-control" ng-model='vm.activity.location.address'
                                       name="address">  </textarea>
-
-                            <trulii-input-alert field="vm.activity_location_form.address"
-                                                errors="vm.errors"></trulii-input-alert>
-
-                        </div>
-
-                        <div class="text-center separate-above">
-                            <strong>Arrastre</strong> el indicador (<span class="mdi-action-room" style="color: #F86161"></span>)  en el mapa hasta el lugar donde se llevará a cabo su actividad.
-                        </div>
-
                     </div>
-
-                    
-                    <div>
-                                                
-                        <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' bounds="vm.map.bounds"
-                                            events="vm.map.events" control="vm.map.control">
-
-                            <ui-gmap-marker coords="vm.marker.coords" options="vm.marker.options"
-                                            events="vm.marker.events" idkey="vm.marker.id">
-                            </ui-gmap-marker>
-
-                        </ui-gmap-google-map>
+                    <div class="text-center separate-above">
+                        <strong>Arrastre</strong> el indicador (<span class="mdi-action-room"
+                                                                      style="color: #F86161"></span>) en el mapa hasta
+                        el lugar donde se llevará a cabo su actividad.
                     </div>
+                </div>
 
-                    <div class="card-body">
-                        <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
-                    </div>
-                   
-                    
-                </fieldset>
-            </form>
-        </div>
-        <!-- <div class="col-md-3">
-            <div class="sidebar-nav-fixed pull-right affix well">
-                <ul class="nav">
-                    <li ng-show="vm.showTooltip('content')">
-                        ¿Tu actividad está dividida en
-                        módulos en donde cada uno
-                        tiene temas a enseñar?
-                    </li>
-                    <li ng-show="vm.showTooltip('goals')">
-                        ¿Cuál es la finalidad de tu activ-
-                        idad?
+                <div>
+                    <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' bounds="vm.map.bounds"
+                                        events="vm.map.events" control="vm.map.control">
+                        <ui-gmap-marker coords="vm.marker.coords" options="vm.marker.options"
+                                        events="vm.marker.events" idkey="vm.marker.id">
+                        </ui-gmap-marker>
+                    </ui-gmap-google-map>
+                </div>
 
-                        Algunos ejemplos:
-                        ¿Tus alumnos saldrán domi-
-                        nando algún campo en particu-
-                        lar?
-                        ¿Tus inscritos saldrán agota-
-                        dos con muchas calorías
-                        menos?
-                    </li>
-                    <li ng-show="vm.showTooltip('methodology')">
-                        ¿Tu actividad será evaluada?
-                        ¿Cómo?
-                        ¿Aplicarás algún método de
-                        enseñanza en particular?
-                    </li>
-                    <li ng-show="vm.showTooltip('requirements')">
-                        ¿Para inscribirse hace falta
-                        conocimientos en algún tema
-                        en particular?
-                        ¿Deben llevar algún material
-                        para realizar la actividad?
-                        ¿Se requiere una docu-
-                        mentación?
-                    </li>
-                </ul>
-            </div>
-        </div> -->
-        <hr>
+                <div class="card-body">
+                    <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
+                </div>
+
+            </fieldset>
+        </form>
     </div>
+    <!-- <div class="col-md-3">
+        <div class="sidebar-nav-fixed pull-right affix well">
+            <ul class="nav">
+                <li ng-show="vm.showTooltip('content')">
+                    ¿Tu actividad está dividida en
+                    módulos en donde cada uno
+                    tiene temas a enseñar?
+                </li>
+                <li ng-show="vm.showTooltip('goals')">
+                    ¿Cuál es la finalidad de tu activ-
+                    idad?
+
+                    Algunos ejemplos:
+                    ¿Tus alumnos saldrán domi-
+                    nando algún campo en particu-
+                    lar?
+                    ¿Tus inscritos saldrán agota-
+                    dos con muchas calorías
+                    menos?
+                </li>
+                <li ng-show="vm.showTooltip('methodology')">
+                    ¿Tu actividad será evaluada?
+                    ¿Cómo?
+                    ¿Aplicarás algún método de
+                    enseñanza en particular?
+                </li>
+                <li ng-show="vm.showTooltip('requirements')">
+                    ¿Para inscribirse hace falta
+                    conocimientos en algún tema
+                    en particular?
+                    ¿Deben llevar algún material
+                    para realizar la actividad?
+                    ¿Se requiere una docu-
+                    mentación?
+                </li>
+            </ul>
+        </div>
+    </div> -->
+    <hr>
+</div>
