@@ -39,9 +39,13 @@
 
         function clearErrors(form) {
             form.$setPristine();
+            
+            // form.$valid = true;
         }
 
         function addErrors(form, responseErrors) {
+            
+            // form.$valid = false;
             angular.forEach(responseErrors, function (fieldErrors, field) {
                 var message = fieldErrors[0];
 
@@ -52,8 +56,11 @@
                 if (field in form){
                     form[field].error_message = message;
                     form[field].$setValidity(field, false);
+
                 }
+
             });
+
         }
 
         function processSessionErrors(form, responseErrors){

@@ -41,7 +41,7 @@
 
                                     <div class="separate-vertical">
                                         
-                                        <div class="form-group">
+                                        <div class="form-group" trulii-input-errors-control="first_name">
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                   <i class="mdi-social-person"></i>
@@ -51,10 +51,8 @@
                                                        placeholder="{{::vm.strings.FIRST_NAME_LABEL}}"
                                                        autofocus>
                                             </div>
-                                            <trulii-input-alert field="vm.signup_form.first_name"
-                                                                errors="vm.errors"></trulii-input-alert>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" trulii-input-errors-control="last_name" >
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                   <i class="mdi-social-person"></i>
@@ -64,10 +62,8 @@
                                                        placeholder="{{::vm.strings.LAST_NAME_LABEL}}"
                                                        autofocus>
                                             </div>
-                                            <trulii-input-alert field="vm.signup_form.last_name"
-                                                                errors="vm.errors"></trulii-input-alert>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" trulii-input-errors-control="email" >
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                   <i class="mdi-communication-email"></i>
@@ -77,10 +73,8 @@
                                                        placeholder="{{::vm.strings.EMAIL_LABEL}}"
                                                        autofocus>
                                             </div>
-                                            <trulii-input-alert field="vm.signup_form.email"
-                                                                errors="vm.errors"></trulii-input-alert>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group" trulii-input-errors-control="password1" >
                                             <div class="input-group">
                                                 <span class="input-group-addon">
                                                   <i class="mdi-action-lock"></i>
@@ -90,8 +84,6 @@
                                                        ng-model="vm.auth.password1">
 
                                             </div>
-                                            <trulii-input-alert field="vm.signup_form.password1"
-                                                                errors="vm.errors"></trulii-input-alert>
                                         </div>
                                     </div>
 

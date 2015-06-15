@@ -15,9 +15,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['$state', 'LocationManager', 'Authentication', 'cities'];
+    OrganizerLandingCtrl.$inject = ['$state', 'LocationManager', 'Authentication','Error', 'cities'];
 
-    function OrganizerLandingCtrl($state, LocationManager, Authentication, cities) {
+    function OrganizerLandingCtrl($state, LocationManager, Authentication, Error,cities) {
 
         var vm = this;
 
@@ -36,46 +36,39 @@
 
 
         function requestSignup() {
-            _clearErrors();
+            Error.form.clear(vm.pre_signup_form);
             vm.request.city = vm.request.current_city.id;
-            Authentication.requestSignup(vm.request).then(successRequestSignup, _errored);
+            Authentication.requestSignup(vm.request).then(success, error);
+
+
+            function success() {
+                $state.go('general-message', {
+                    'module_name' : 'authentication',
+                    'template_name' : 'request_signup_success',
+                    'redirect_state' : 'home'
+                });
+            }
+
+            function error(response){
+                console.log("response.dsad",response);
+                var responseErrors = response.data;
+                if (responseErrors) {
+                    Error.form.add(vm.pre_signup_form, responseErrors);
+                }
+
+
+            }
+
         }
 
         function activate() {
             console.log("activating");
             vm.request.current_city = LocationManager.getCurrentCity();
+            console.log("city",vm.request.current_city);
+
         }
 
-        function selectCity(city) {
-            vm.request.current_city = city;
-        }
 
-        function successRequestSignup() {
-            $state.go('general-message', {
-                'module_name' : 'authentication',
-                'template_name' : 'request_signup_success',
-                'redirect_state' : 'home'
-            });
-        }
-
-        function _clearErrors() {
-            vm.errors = null;
-            vm.errors = {};
-        }
-
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.pre_signup_form[field].$setValidity(message, false);
-        }
-
-        function _errored(response) {
-            var errors = response.data;
-            if (errors) {
-                angular.forEach(errors, function (errors, field) {
-                    _addError(field, errors[0]);
-                });
-            }
-        }
 
         function setStrings() {
             if (!vm.strings) {

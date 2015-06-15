@@ -18,6 +18,7 @@
             scope: {                
                 field: '=?',                
                 errors: '=?' // Not yet supported :/
+
             }, 
             link: function(scope, element, attrs, formCtrl ){
                 
@@ -25,11 +26,15 @@
                 if (scope.field === undefined)
                     scope.field = formCtrl[attrs.truliiInputErrorsControl] || formCtrl[attrs.fieldName] ; 
 
-                scope.$watch('field.$invalid && !field.$dirty', function(newValue, oldValue){                               
+                scope.form = formCtrl;
 
+
+                scope.$watch('field.$invalid && !field.$dirty', function(newValue, oldValue){                               
+                    
                     if (newValue === true){
                         element.addClass("has-error");                        
                     }else{
+                        scope.field.$setValidity(scope.field.$name,true);
                         element.removeClass("has-error");
                     }
                 })

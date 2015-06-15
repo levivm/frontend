@@ -35,21 +35,11 @@
             Error.form.clear(vm.login_form);
             console.log("vm auth",vm.auth);
             return  Authentication.login(vm.auth.email, vm.auth.password)
-                .then(_loginSuccess,error);
-
-
-            function error(response) {
-                
-                var responseErrors = response.data['form_errors'];
-                if (responseErrors) {
-                    Error.form.add(vm.login_form, responseErrors);
-                }
-
-                return $q.reject(response);
-            }
+                .then(_loginSuccess,_loginError);
 
         }
 
+    
         function _facebookLogin() {
             return  Authentication.facebookLogin()
                         .then(_loginSuccess ,errorFbLogin);
@@ -74,6 +64,18 @@
                 }
             }
         }
+
+        function _loginError(response) {
+                
+            var responseErrors = response.data['form_errors'];
+            if (responseErrors) {
+                Error.form.add(vm.login_form, responseErrors);
+            }
+
+            return $q.reject(response);
+
+        }
+
 
 
 
