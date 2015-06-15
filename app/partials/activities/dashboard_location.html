@@ -16,24 +16,19 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control="city">
                             <label for="city" class="control-label">Ciudad</label>
                             <select class="form-control" id="city" ng-model="vm.activity.location.city"
-                                    ng-options="city as city.name for city in vm.cities track by city.id" name="city">
-                                <option value="" selected ng-show="!vm.activity_location_form.type.$dirty">Seleccione..
+                                    ng-options="city as city.name for city in vm.cities track by city.id" name="city">                                
                                 </option>
                             </select>
-                            <trulii-input-alert field="vm.activity_location_form.city"
-                                    errors="vm.errors"></trulii-input-alert>
+             
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" trulii-input-errors-control="address">
                             <label for="address" class="control-label">Dirección exacta</label>
                             <textarea id="address" class="form-control" ng-model='vm.activity.location.address'
                                       name="address">  </textarea>
-
-                            <trulii-input-alert field="vm.activity_location_form.address"
-                                                errors="vm.errors"></trulii-input-alert>
 
                         </div>
 

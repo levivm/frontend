@@ -70,7 +70,7 @@
                                           
                       </div>
 
-                      <div class="form-group" trulii-input-errors-control field="vm.activity.certification">
+                      <div class="form-group" trulii-input-errors-control="certification">
                           <label class="control-label">¿Entregará certificado u otorgará alguna certificación?</label>                          
 
                             <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
@@ -97,10 +97,7 @@
                                         ng-change="vm.selectCategory(vm.selected_category)">
                                     <option value="" ng-show="!vm.selected_category" selected>Categoría
                                     </option>
-                                </select>
-
-                                <div trulii-input-alert field="vm.activity_create_form.category" errors="vm.errors"></div>
-                 
+                                </select>                                                 
                         
                         </div>
                       </div>
