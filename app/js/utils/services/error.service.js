@@ -15,35 +15,52 @@
 
     function Error() {
 
+        /**
+         * @ngdoc property
+         * @name trulii.utils.services.Error#NON_FIELD_ERRORS
+         * @description Non field errors constant value
+         * @propertyOf trulii.utils.services.Error
+         */
+        var NON_FIELD_ERRORS = "non_field_errors";
+        var SESSIONS_PREFIX = "sessions";
+
+        //noinspection UnnecessaryLocalVariableJS
         var service = {
             form: {
                 clear: _clearErrors,
                 add: _addErrors
-            },
-            session: {
-
             }
         };
 
         return service;
 
-        function _clearErrors(form, errors) {
+        function _clearErrors(form) {
             form.$setPristine();
-            errors = null;
-            errors = {};
-            return errors;
         }
 
-        function _addErrors(form, formErrors, responseErrors) {
-            angular.forEach(responseErrors, function (errors, field) {
-                var message = errors[0];
-                formErrors[field] = message;
-                if (field in form)
+        function _addErrors(form, responseErrors) {
+            angular.forEach(responseErrors, function (fieldErrors, field) {
+                var message = fieldErrors[0];
+
+                // Error is unrelated to form fields
+                if (field === NON_FIELD_ERRORS) return;
+
+                // Check and treat session related errors
+                processSessionError(field, message);
+
+                // Process remaining form field errors
+                if (field in form){
                     form[field].error_message = message;
                     form[field].$setValidity(field, false);
+                }
             });
+        }
 
-            return formErrors;
+        function processSessionError(field, message, fieldErrors){
+            var isSessionError = field.split("_")[0] == SESSIONS_PREFIX;
+            if(isSessionError){
+                fieldErrors.session_error = isSessionError ? message : null;
+            }
         }
     }
 

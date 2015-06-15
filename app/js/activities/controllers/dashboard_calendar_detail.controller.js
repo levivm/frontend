@@ -1,7 +1,13 @@
 /**
- * Register controller
- * @namespace thinkster.organizers.controllers
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityCalendarController
+ * @description Handles Activity Calendar Actions
+ * @requires ng.$scope
+ * @requires ui.bootstrap.datepicker.datepickerPopupConfig
+ * @requires trulii.authentication.services.Error
+ * @requires calendar
  */
+
 (function () {
     'use strict';
 
@@ -9,11 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope', '$timeout', 'activity', 'datepickerPopupConfig', 'calendar'];
-    /**
-     * @namespace ActivityCalendarController
-     */
-    function ActivityCalendarController($scope, $timeout, activity, datepickerPopupConfig, calendar) {
+    ActivityCalendarController.$inject = ['$scope', 'datepickerPopupConfig', 'Error', 'calendar'];
+
+    function ActivityCalendarController($scope, datepickerPopupConfig, Error, calendar) {
 
         var vm = this;
         vm.calendar = calendar;
@@ -53,7 +57,8 @@
 
         function _createCalendar() {
 
-            _clearErrors();
+            vm.errors = Error.form.clear(vm.activity_calendar_form, vm.errors);
+
             console.log(vm.calendar, "dd");
             vm.calendar.create()
                 .then(_successCreated, _errored);
@@ -62,41 +67,34 @@
 
         function _updateCalendar() {
 
-            _clearErrors();
+            vm.errors = Error.form.clear(vm.activity_calendar_form, vm.errors);
             console.log(vm.calendar, "dd");
             vm.calendar.update()
                 .then(_successUpdate, _errored);
 
         }
 
-        function _clearErrors() {
-            vm.activity_calendar_form.$setPristine();
-            vm.errors = null;
-            vm.errors = {};
-        }
-
         function _addError(field, message) {
             console.log("field error", field, message);
             vm.errors[field] = message;
 
-            var is_session_error = field.split("_")[0] == 'sessions';
-
-            vm.errors.session_error = is_session_error ? message : null;
-
+            //Non-field validation
             if (field === "non_field_errors")
                 return;
+            //End Non-field validation
 
+            //Form validation
             var valid_form_field = vm.activity_calendar_form[field] ? vm.activity_calendar_form[field] : false;
             if (valid_form_field) {
                 valid_form_field.$setValidity(message, false);
             }
+            //End Form validation
         }
 
-        function _errored(errors) {
-            angular.forEach(errors, function (message, field) {
-                _addError(field, message[0]);
-
-            });
+        function _errored(responseErrors) {
+            if (responseErrors) {
+                vm.errors = Error.form.add(form, vm.errors, responseErrors);
+            }
 
             vm.isSaving = false;
         }
