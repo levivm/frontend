@@ -1,12 +1,8 @@
 <div class="row">
-
     <div class="col-sm-offset-1 col-md-8">
-
         <form class="card shadow-z-1 material-form lateral-fade lateral-fadeout" name='vm.activity_create_form'
               ng-submit="vm.save_activity()">
-
             <fieldset>
-
                 <div class="card-header card-header--secondary" ng-show="vm.creating" trulii-expandable-content
                      toggle="!vm.weHaveTitle" duration="800">
                     <div class="title-compound-centered">
@@ -23,7 +19,6 @@
                 </div>
 
                 <div class="card-header" ng-hide="vm.weHaveTitle">
-
                     <div class="form-group input--main">
                         <div class="col-sm-12">
                             <input id="activity_title" class="form-control" name="title"
@@ -39,7 +34,6 @@
                 </div>
 
                 <div class="card-header" ng-show="vm.weHaveTitle">
-
                     <div class="form-group editable-title input--main" trulii-input-errors-control="title">
                         <div class="col-sm-12">
                             <span class="card-icon mdi-social-school"></span>
@@ -47,14 +41,10 @@
                                    placeholder="¿Cómo titulas a tu actividad?"
                                    ng-model='vm.activity.title'>
                         </div>
-
                     </div>
-
                 </div>
-
                 <div class="card-body card-body--shrink no-padding-top" trulii-expandable-content
                      toggle="vm.weHaveTitle" duration="800">
-
                     <div class="form-group" trulii-input-errors-control field="vm.activity_create_form.level">
                         <label class="control-label ">Nivel</label>
 
@@ -69,7 +59,7 @@
 
                     </div>
 
-                    <div class="form-group" trulii-input-errors-control field="vm.activity.certification">
+                    <div class="form-group" trulii-input-errors-control="certification">
                         <label class="control-label">¿Entregará certificado u otorgará alguna certificación?</label>
 
                         <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
@@ -85,14 +75,14 @@
                                        ng-model="vm.activity.certification" ng-value="false">Sin certificación
                             </label>
                         </div>
-
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-6">
                             <div class="form-group" trulii-input-errors-control="category">
                                 <label for="select-category" class="control-label">Categoría</label>
-                                <select id="select-category" class="form-control" ng-model="vm.selected_category" name="category"
+                                <select id="select-category" class="form-control" ng-model="vm.selected_category"
+                                        name="category"
                                         ng-options="category as category.name for (index,category) in vm.activity_categories"
                                         ng-change="vm.selectCategory(vm.selected_category)">
                                     <option value="" ng-show="!vm.selected_category" selected>Categoría
@@ -119,8 +109,8 @@
 
                     <div class="form-group" trulii-input-errors-control="short_description">
                         <label for="short_description" class="control-label">Descripción Corta</label>
-                        <textarea id="short_description" class="form-control"
-                                  ng-model="vm.activity.short_description" name="short_description"></textarea>
+                            <textarea id="short_description" class="form-control"
+                                      ng-model="vm.activity.short_description" name="short_description"></textarea>
                     </div>
 
                     <div class="form-group">
