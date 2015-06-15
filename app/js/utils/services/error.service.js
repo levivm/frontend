@@ -18,7 +18,7 @@
         var service = {
             form: {
                 clear: _clearErrors,
-                add: _addError
+                add: _addErrors
             }
         };
 
@@ -31,14 +31,13 @@
             return errors;
         }
 
-        function _addError(form, formErrors, responseErrors) {
-            //console.log('_addError:', 'form:', form, 'formErrors:', formErrors, 'responseErrors:', responseErrors);
+        function _addErrors(form, formErrors, responseErrors) {
             angular.forEach(responseErrors, function (errors, field) {
                 var message = errors[0];
-                //console.log('field:', field, 'message:', message);
                 formErrors[field] = message;
                 if (field in form)
-                    form[field].$setValidity(message, false);
+                    form[field].error_message = message;
+                    form[field].$setValidity(field, false);
             });
 
             return formErrors;
