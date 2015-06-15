@@ -35,7 +35,7 @@
                         <fieldset>
 
                             <div class="separate-vertical">
-                                <div class="form-group">
+                                <div class="form-group" trulii-input-errors-control="login">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                           <i class="mdi-communication-email"></i>
@@ -45,10 +45,8 @@
                                                placeholder="{{::vm.strings.EMAIL_LABEL}}"
                                                trulii-input-autofocus>
                                     </div>
-                                    <trulii-input-alert field="vm.login_form.login"
-                                                        errors="vm.errors"></trulii-input-alert>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" trulii-input-errors-control="password">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                           <i class="mdi-action-lock"></i>
@@ -58,10 +56,9 @@
                                                ng-model="vm.auth.password">
 
                                     </div>
-                                    <a ui-sref="password-forgot">Olvidé mi contraseña</a>
-                                    <trulii-input-alert field="vm.login_form.password"
-                                                        errors="vm.errors"></trulii-input-alert>
+                                    
                                 </div>
+                                <a ui-sref="password-forgot">Olvidé mi contraseña</a>
                                 <input type="hidden" ng-model="__all__" name="__all__"/>
 
                                 <!--TODO replace with toast-->
