@@ -27,26 +27,26 @@
         //noinspection UnnecessaryLocalVariableJS
         var service = {
             form: {
-                clear: _clearErrors,
-                add: _addErrors
+                clear: clearErrors,
+                add: addErrors
+            },
+            session: {
+                process: processSessionErrors
             }
         };
 
         return service;
 
-        function _clearErrors(form) {
+        function clearErrors(form) {
             form.$setPristine();
         }
 
-        function _addErrors(form, responseErrors) {
+        function addErrors(form, responseErrors) {
             angular.forEach(responseErrors, function (fieldErrors, field) {
                 var message = fieldErrors[0];
 
                 // Error is unrelated to form fields
                 if (field === NON_FIELD_ERRORS) return;
-
-                // Check and treat session related errors
-                processSessionError(field, message);
 
                 // Process remaining form field errors
                 if (field in form){
@@ -56,11 +56,14 @@
             });
         }
 
-        function processSessionError(field, message, fieldErrors){
-            var isSessionError = field.split("_")[0] == SESSIONS_PREFIX;
-            if(isSessionError){
-                fieldErrors.session_error = isSessionError ? message : null;
-            }
+        function processSessionErrors(form, responseErrors){
+            angular.forEach(responseErrors, function (fieldErrors, field) {
+                var message = fieldErrors[0];
+                var isSessionError = field.split("_")[0] == SESSIONS_PREFIX;
+                if(isSessionError){
+                    fieldErrors.session_error = isSessionError ? message : null;
+                }
+            });
         }
     }
 
