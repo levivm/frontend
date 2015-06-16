@@ -12302,17 +12302,17 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   top: 0.2em;
 }
 .navbar-secondary {
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-  background: #ffc619;
+  background: #f0b400;
   height: 40px;
   width: 100%;
   text-align: center;
   position: fixed;
   top: 50px;
-  z-index: 100;
+  z-index: 200;
+  border-bottom: 1pxx solid #a87e00;
 }
 .navbar-secondary__item {
-  color: rgba(0, 0, 0, 0.74);
+  color: rgba(255, 255, 255, 0.84);
   display: inline-block;
   font-weight: bolder;
   line-height: 37px;
@@ -12320,11 +12320,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-transform: uppercase;
 }
 .navbar-secondary__item--selected {
-  border-bottom: 3px solid rgba(0, 0, 0, 0.74);
+  border-bottom: 3px solid #997300;
+  color: rgba(0, 0, 0, 0.74);
 }
 .navbar-secondary__item:hover {
-  color: #00b3b3;
   text-decoration: none;
+  background-color: #d6a100;
+  border-bottom: 3px solid #d6a100;
+  color: rgba(0, 0, 0, 0.74);
 }
 .navbar-secondary__item:focus {
   color: rgba(0, 0, 0, 0.74);

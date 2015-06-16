@@ -167,18 +167,18 @@
 		
 }
 
-.navbar-secondary{
-	.shadow-z-1;
-	background: darken(@primary, 5%);
+.navbar-secondary{	
+	background: darken(@primary, 13%);
 	height: 40px;
 	width: 100%;
 	text-align: center;
 	position: fixed;
 	top: @navbar-height;
-	z-index: 100;
+	z-index: 200;
+	border-bottom: 1pxx solid darken(@primary, 27%);
 
 	&__item{
-		color: @lightbg-text;
+		color: @darkbg-text;
 		display: inline-block;
 		font-weight: bolder;
 		line-height: 37px;
@@ -187,12 +187,15 @@
 
 		
 		&--selected{
-			border-bottom: 3px solid @lightbg-text;
+			border-bottom: 3px solid darken(@primary, 30%);
+			color: @lightbg-text;
 		}
 
-		&:hover{
-			color: @secondary;
+		&:hover{			
 			text-decoration: none;
+			background-color: darken(@primary, 18%);
+			border-bottom: 3px solid darken(@primary, 18%);
+			color: @lightbg-text;	
 		}
 
 		&:focus{
