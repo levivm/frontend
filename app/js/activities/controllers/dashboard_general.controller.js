@@ -25,7 +25,7 @@
         vm.getLevelClassStyle = getLevelClassStyle;
         vm.checkValidTitle = checkValidTitle;
 
-        initialize();
+        activate();
 
         /******************ACTIONS**************/
 
@@ -35,7 +35,7 @@
         }
 
         function _createActivity() {
-            _clearErrors();
+            Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
             vm.activity.create()
@@ -50,7 +50,7 @@
         }
 
         function _updateActivity() {
-            _clearErrors();
+            Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
             vm.activity.update()
@@ -137,27 +137,29 @@
             vm.activity.level = vm.selected_level.code;
         }
 
-        function _clearErrors() {
-            vm.activity_create_form.$setPristine();            
-        }
-
-        function _addError(field, message) {                        
-
-            vm.activity_create_form[field].$setValidity(field, false);            
-            vm.activity_create_form[field].error_message = message;
-        }
-
-        function _errored(errors) {
-
-            angular.forEach(errors, function (message, field) {
-                _addError(field, message[0]);
-            });
+        function _errored(responseErrors) {
+            if (responseErrors) {
+                Error.form.add(vm.activity_create_form, responseErrors);
+            }
 
             vm.isSaving = false;
         }
 
         function activate() {
-            // If the user is authenticated, they should not be here.
+            vm.isCollapsed = true;
+            vm.duration = 1;
+            vm.isSaving = false;
+
+            Elevator.toTop();
+
+            if (activity.id)
+                _setUpdate();
+            else
+                _setCreate();
+
+            vm.checkValidTitle();
+
+            _onSectionUpdated();
         }
 
         /* Utils */
@@ -190,33 +192,12 @@
                     if ( vm.activity.title[i] == ' ')
                         whiteSpaces++;
 
-                if (whiteSpaces == vm.activity.length )
-                    vm.weHaveTitle = false;
-                else
-                    vm.weHaveTitle = true;
+                vm.weHaveTitle = (whiteSpaces != vm.activity.length);
 
-            }else
+            }else {
                 vm.weHaveTitle = false;
+            }
         }
-
-        function initialize() {
-            
-            vm.isCollapsed = true;
-            vm.duration = 1;
-            vm.isSaving = false;                        
-
-            Elevator.toTop();
-
-            if (activity.id)
-                _setUpdate();
-            else
-                _setCreate();
-
-            vm.checkValidTitle();
-
-            _onSectionUpdated();
-        }
-
     }
 
 })();
