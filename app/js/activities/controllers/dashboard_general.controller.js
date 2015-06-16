@@ -24,6 +24,7 @@
         vm.setOverElement = _setOverElement;
         vm.getLevelClassStyle = getLevelClassStyle;
         vm.checkValidTitle = checkValidTitle;
+        vm.getSubmitButtonText = getSubmitButtonText;
 
         activate();
 
@@ -175,6 +176,14 @@
 
         function _onSectionUpdated() {
             activity.updateSection('general');
+        }
+
+        function getSubmitButtonText(){
+            if(activity.id){
+                return "Guardar";
+            } else{
+                return "Continuar";
+            }
         }
 
         function checkValidTitle(){              
