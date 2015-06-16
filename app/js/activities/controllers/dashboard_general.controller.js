@@ -12,10 +12,10 @@
         .module('trulii.activities.controllers')
         .controller('ActivityGeneralController', ActivityGeneralController);
 
-    ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Categories', 'Elevator', 'Toast',
+    ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Categories', 'Elevator', 'Toast', 'Error',
         'activity', 'presaveInfo'];
 
-    function ActivityGeneralController($state, $q, filterFilter, Categories, Elevator, Toast, activity, presaveInfo) {
+    function ActivityGeneralController($state, $q, filterFilter, Categories, Elevator, Toast, Error, activity, presaveInfo) {
 
         var vm = this;
 
