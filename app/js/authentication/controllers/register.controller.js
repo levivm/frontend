@@ -15,9 +15,9 @@
         .module('trulii.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator'];
+    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator','Error'];
 
-    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator) {
+    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator,Error) {
 
         var vm = this;
         var selectedMethod = null;
@@ -53,11 +53,6 @@
 
         }
 
-        function _clearErrors() {
-            vm.errors = null;
-            vm.errors = {};
-        }
-
         function fbRegister(){
             Authentication.facebookLogin()
                 .then(_registerSuccess, error);
@@ -69,29 +64,36 @@
         }
 
         function register() {
-            _clearErrors();
+            vm.signup_form.$setPristine();
+            Error.form.clear(vm.signup_form);
             vm.auth.user_type = vm.user_type;
 
             return Authentication.register(vm.auth)
-                .then(_registerSuccess, _registerError);
+                .then(_registerSuccess, error);
 
-            function _registerError(response) {
-                _errored(response.data);
+
+            function error(response) {
+
+                var responseErrors = response.data['form_errors'];
+                if (responseErrors) {
+                    Error.form.add(vm.signup_form, responseErrors);
+                }
+                // _errored(response.data);
                 return $q.reject(response);
             }
 
-            function _errored(data) {
-                if (data['form_errors']) {
-                    angular.forEach(data['form_errors'], function (errors, field) {
-                        _addError(field, errors[0]);
-                    });
-                }
-            }
+            // function _errored(data) {
+            //     if (data['form_errors']) {
+            //         angular.forEach(data['form_errors'], function (errors, field) {
+            //             _addError(field, errors[0]);
+            //         });
+            //     }
+            // }
 
-            function _addError(field, message) {
-                vm.errors[field] = message;
-                vm.signup_form[field].$setValidity(message, false);
-            }
+            // function _addError(field, message) {
+            //     vm.errors[field] = message;
+            //     vm.signup_form[field].$setValidity(message, false);
+            // }
 
         }
 
