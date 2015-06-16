@@ -13,9 +13,9 @@
         .controller('ActivityDBGalleryController', ActivityDBGalleryController);
 
     ActivityDBGalleryController.$inject = ['$scope', '$state', '$timeout', '$q', '$modal', '$stateParams',
-        'activity', 'UploadFile'];
+        'activity', 'UploadFile', 'Toast', 'Elevator'];
 
-    function ActivityDBGalleryController($scope, $state, $timeout, $q, $modal, $stateParams, activity, UploadFile) {
+    function ActivityDBGalleryController($scope, $state, $timeout, $q, $modal, $stateParams, activity, UploadFile, Toast, Elevator) {
 
         var vm = this;
 
@@ -69,6 +69,8 @@
 
         function _updateActivity() {
 
+            vm.isSaving = true;
+
             _clearErrors();
             vm.activity.update()
                 .then(_updateSuccess, _errored);
@@ -90,6 +92,9 @@
             vm.isCollapsed = false;
             angular.extend(activity, vm.activity);
             _onSectionUpdated();
+
+            vm.isSaving = false;
+            Toast.generics.weSaved();
         }
 
         function _successUploaded(response) {
@@ -97,6 +102,8 @@
             vm.images.push(response.data.photo);
             angular.extend(activity.photos,vm.images);
             _onSectionUpdated();
+
+            Toast.info(null, "Imagen guardada");
         }
 
         function _successUploadedMainPhoto(response) {
@@ -105,6 +112,8 @@
             _.remove(activity.photos, 'main_photo', true);
             activity.photos.push(vm.main_image);
             _onSectionUpdated();
+
+            Toast.info(null, "Portada guardada");
         }
 
 
@@ -168,7 +177,7 @@
         }
 
         function _errored(errors) {
-
+            vm.isSaving = false;
         }
 
         function _onSectionUpdated() {
@@ -182,9 +191,13 @@
         function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
-            vm.uploading_photo = false;            
+            vm.photo_loading = false;            
+            vm.main_photo_loading = false;
+            vm.isSaving = false;
             vm.images = angular.copy(activity.photos);
-            vm.main_image = _.first(_.remove(vm.images, 'main_photo', true));
+            vm.main_image = _.first(_.remove(vm.images, 'main_photo', true));      
+
+            Elevator.toTop();      
         }
 
     }

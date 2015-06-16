@@ -54,7 +54,13 @@
 
         function getCheckStyle(section) {
             // console.log("APPLYING STYLE",pc.isSectionCompleted(section),section);
-            return {'hide' : !pc.isSectionCompleted(section)};
+
+            var sectionIndex = _.indexOf(ActivitySteps, section);     
+
+            var classes = {};
+            classes['bg-primary-' + (sectionIndex)] = pc.isSectionCompleted(section.name);
+
+            return classes;
         }
 
         function _publish_activity() {

@@ -12,24 +12,46 @@
 .input{
 	
 	&--main{
-		margin-top: 0px;
+		// TODO: Improve this for be used only with .form-group
 
-		input{
-			font-size: 2.6em;
-			height: auto !important;
-			font-weight: bold;			
-		}
+		margin-top: 0px;
 
 		.floating-label{
 			font-size: 2.6em;
 			font-weight: bold;
 		}
+
+		&.form-group{			  
+
+			.form-control{
+			  	font-size: 2.6em;
+				height: auto !important;
+			  	text-align: center;
+				background-image: linear-gradient(@secondary, @secondary), linear-gradient(@input-border, @input-border);			  	
+			}
+			 
+		}
+
+		::-webkit-input-placeholder { /* WebKit browsers */
+		    color:    fadeout(gray, 20%) ;
+		}
+		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		   color:    fadeout(gray, 20%) ;
+		}
+		::-moz-placeholder { /* Mozilla Firefox 19+ */
+		   color:    fadeout(gray, 20%) ;
+		}
+		:-ms-input-placeholder { /* Internet Explorer 10+ */
+		   color:    fadeout(gray, 20%) ;
+		} 
 	}
 
-	// TODO: Fix el input-group-lg para cuand se tiene un addon en material-bootstrap
+	// TODO: Arreglar el input-group-lg para cuando se tiene un addon en material-bootstrap
 	&--med{
 		font-size: 1.3em;
 	}
+
+
 	
 }
 
@@ -57,6 +79,7 @@ tags-input{
 		padding-right: 20px;
 		margin-right: 5px;
 		position: relative;
+		border-radius: @material-border-radius;
 
 		// Tag Text
 		span{
@@ -68,8 +91,10 @@ tags-input{
 		cursor: pointer;
 		position: absolute;
 		top: 50%;		
+		right: 0.25em;
 		font-size: 23px;
 		line-height: 0px;
+		color: darken(@secondary, 10%);
 	}
 
 	input{
@@ -82,15 +107,77 @@ tags-input{
   padding-top: 0 !important;
 }
 
+// TODO: Colocarle feedback a los botones
+.counter-input{
+	font-size: 1.5em;
+	display: inline-block;
+
+	.counter-field{
+		font-weight: bold;
+		background-color: transparent;
+		border: 0;
+		outline: none;
+		text-align: center;
+		width: 2.5em;
+	}
+
+	&-lg{
+		font-size: 3em;
+	}	
+
+	* {
+		display: inline-block;		
+	}
+
+	&__left-button, &__right-button{
+		display: inline-block;
+		color: @primary;
+		cursor: pointer;
+		margin: 0 .1em;
+		border-radius: 50%;
+		height: 1em;
+		width: 1em;
+
+
+		// Apply this
+		/*&:hover{
+			background-color: @gray;
+		}*/
+
+		&--disabled{
+			color: @gray-lighter;
+			cursor: default;
+		}
+	}
+
+	&__left-button:before{
+		content: "-";
+	}
+
+	&__right-button:before{
+		content: "+";	
+	}
+}
+
+.center-input{
+	font-size: 2em;
+	font-weight: bold;
+	height: auto !important;
+	text-align: center;
+}
+
 .img-input {
     position: relative;
     width: 300px;
     height: 300px;
+
 
 	.drop-box {
 		position: absolute;
 		bottom: 0;
 		right: 0;
 	}
+
 }
+
 	

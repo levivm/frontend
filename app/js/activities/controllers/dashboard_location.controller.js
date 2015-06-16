@@ -13,10 +13,10 @@
         .controller('ActivityDBLocationController', ActivityDBLocationController);
 
     ActivityDBLocationController.$inject = ['$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'filterFilter',
-        'activity', 'cities', 'LocationManager'];
+        'activity', 'cities', 'LocationManager', 'Toast', 'Elevator', 'Error'];
 
     function ActivityDBLocationController($scope, uiGmapGoogleMapApi, uiGmapIsReady, filterFilter,
-                                          activity, cities, LocationManager) {
+                                          activity, cities, LocationManager, Toast, Elevator, Error) {
 
         var vm = this;
 
@@ -31,15 +31,25 @@
         /******************ACTIONS**************/
 
         function _updateActivity() {
-            _clearErrors();
+            vm.isSaving = true;
+
+            Error.form.clear(vm.activity_location_form);
+            
             _setActivityPos();
             vm.activity.update()
-                .then(_updateSuccess, _errored);
+                .then(updateSuccess, errored);
 
-            function _updateSuccess(response) {
+            
+
+            function updateSuccess(response) {
                 vm.isCollapsed = false;
-                _onSectionUpdated();
                 angular.extend(activity, vm.activity);
+                _onSectionUpdated();
+
+                vm.isSaving = false;
+
+                Toast.generics.weSaved();
+
             }
         }
 
@@ -60,21 +70,13 @@
         }
 
         /*********RESPONSE HANDLERS***************/
+        
 
-        function _clearErrors() {
-            vm.activity_location_form.$setPristine();
-            vm.errors = {};
-        }
+        function errored(errors) {
+            
+            Error.form.add(vm.activity_location_form, errors);
 
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.activity_location_form[field].$setValidity(message, false);
-        }
-
-        function _errored(errors) {
-            angular.forEach(errors, function (message, field) {
-                _addError(field, message[0]);
-            });
+            vm.isSaving = false;
         }
 
         function _onSectionUpdated() {
@@ -84,6 +86,7 @@
         function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
+            vm.isSaving = false;
 
             if (!vm.activity.location)
                 vm.activity.location = {};
@@ -92,6 +95,8 @@
             vm.map = LocationManager.getMap(vm.activity.location);
             
             vm.marker = LocationManager.getMarker(vm.activity.location);
+
+            Elevator.toTop();
 
         }
 

@@ -70,13 +70,13 @@
 
                 /**
                  * @ngdoc function
-                 * @name trulii.ui-components.services.Toast.generics#weSave
+                 * @name trulii.ui-components.services.Toast.generics#weSaved
                  * @description Info toast wrapper for **"save"** events. contained
                  * in **generics** service property
                  * @param {string} complement Save event message to display
                  * @methodOf trulii.ui-components.services.Toast
                  */
-                weSave : weSave
+                weSaved : weSaved
             },
 
             /**
@@ -93,14 +93,18 @@
 
         //////////////
 
-        function weSave(complement) {
-            toastr.info(complement, "¡Información guardada!");   // TODO: From translate
+
+        function weSaved(complement){
+            toastr.info( complement, "¡Información guardada!");   // TODO: From translate
+        }
+
+        function deleted(complement){
+          toastr.info(complement, "Información eliminada");   // TODO: From translate 
         }
 
         function setPosition(classPos) {
-            toastr.options = {
-                "positionClass" : classPos
-            }
+
+            toastr.options["positionClass"] = classPos;
 
         }
 

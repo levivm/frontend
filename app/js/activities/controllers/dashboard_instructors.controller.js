@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBInstructorsController', ActivityDBInstructorsController);
 
-    ActivityDBInstructorsController.$inject = ['$scope', '$modal', '$state', '$filter', 'activity', 'organizer'];
+    ActivityDBInstructorsController.$inject = ['$scope', '$modal', '$state', '$filter', 'activity', 'organizer', 'Toast', 'Elevator'];
 
-    function ActivityDBInstructorsController($scope, $modal, $state, $filter, activity, organizer) {
+    function ActivityDBInstructorsController($scope, $modal, $state, $filter, activity, organizer, Toast, Elevator) {
 
         var vm = this;
         vm.activity = angular.copy(activity);
@@ -23,6 +23,7 @@
         vm.removeInstructor = _removeInstructor;
         vm.setInstructor = _setInstructor;
         vm.deleteInstructor = _deleteInstructor;
+        vm.maxAllowedInstructors = organizer.max_allowed_instructors;
 
         initialize();
         _setInstructors();
@@ -59,11 +60,13 @@
                 _.remove(vm.activity.instructors, 'id', instructor.id);
                 angular.extend(activity, vm.activity);
                 organizer.reload().then(_setInstructors);
+
+                Toast.generics.deleted("El instructor se ha eliminado.");
             }
 
             function deleteError(response) {
                 var index = _.indexOf(vm.instructors, instructor);
-                vm.instructors_errors[index].delete_instructor = response.data.detail
+                vm.instructors_errors[index].delete_instructor = response.data.detail;
             }
 
         }
@@ -77,6 +80,8 @@
             _clearErrors();
             vm.activity.update()
                 .then(_updateSuccess, _errored);
+
+            vm.isSaving = true;
         }
 
         function _updateSuccess(response) {
@@ -84,6 +89,10 @@
             angular.extend(activity, vm.activity);
             organizer.reload().then(_setInstructors);
             _onSectionUpdated()
+
+            vm.isSaving = false;
+
+            Toast.generics.weSaved();
         }
 
         function _clearErrors() {
@@ -103,6 +112,8 @@
             });
 
             _onSectionUpdated();
+
+            vm.isSaving = false;
         }
 
         function _setInstructors() {
@@ -125,7 +136,10 @@
 
         function initialize() {
             _initialize_errors_array();
-            vm.isCollapsed = true;
+            
+            vm.isSaving = false;
+
+            Elevator.toTop();
         }
 
     }

@@ -8,14 +8,32 @@
 
 	.btn{
 		display: inline-block;
-		padding-left: 3em;
-		padding-right: 3em;
+		width: 12em;		
 	}
 
 	.progress{
 		position: absolute;
 		margin-top: 0;
 		top: 50%;
+	}	
+}
+
+.material-form{
+
+	.form-group{
+		.clearfix();	
+	}
+
+	.control-label{
+		font-weight: 200;
+		color: lighten(@lightbg-text, 40%)
+	}
+}
+
+.form-group{
+	.input-error{
+		color: @danger;
+		font-weight: bold;
 	}
 }
 	

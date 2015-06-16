@@ -15,33 +15,62 @@
 
     function Error() {
 
+        /**
+         * @ngdoc property
+         * @name trulii.utils.services.Error#NON_FIELD_ERRORS
+         * @description Non field errors constant value
+         * @propertyOf trulii.utils.services.Error
+         */
+        var NON_FIELD_ERRORS = "non_field_errors";
+        var SESSIONS_PREFIX = "sessions";
+
+        //noinspection UnnecessaryLocalVariableJS
         var service = {
             form: {
-                clear: _clearErrors,
-                add: _addError
+                clear: clearErrors,
+                add: addErrors
+            },
+            session: {
+                process: processSessionErrors
             }
         };
 
         return service;
 
-        function _clearErrors(form, errors) {
+        function clearErrors(form) {
             form.$setPristine();
-            errors = null;
-            errors = {};
-            return errors;
+            
+            // form.$valid = true;
         }
 
-        function _addError(form, formErrors, responseErrors) {
-            //console.log('_addError:', 'form:', form, 'formErrors:', formErrors, 'responseErrors:', responseErrors);
-            angular.forEach(responseErrors, function (errors, field) {
-                var message = errors[0];
-                //console.log('field:', field, 'message:', message);
-                formErrors[field] = message;
-                if (field in form)
-                    form[field].$setValidity(message, false);
+        function addErrors(form, responseErrors) {
+            
+            // form.$valid = false;
+            angular.forEach(responseErrors, function (fieldErrors, field) {
+                var message = fieldErrors[0];
+
+                // Error is unrelated to form fields
+                if (field === NON_FIELD_ERRORS) return;
+
+                // Process remaining form field errors
+                if (field in form){
+                    form[field].error_message = message;
+                    form[field].$setValidity(field, false);
+
+                }
+
             });
 
-            return formErrors;
+        }
+
+        function processSessionErrors(form, responseErrors){
+            angular.forEach(responseErrors, function (fieldErrors, field) {
+                var message = fieldErrors[0];
+                var isSessionError = field.split("_")[0] == SESSIONS_PREFIX;
+                if(isSessionError){
+                    fieldErrors.session_error = isSessionError ? message : null;
+                }
+            });
         }
     }
 

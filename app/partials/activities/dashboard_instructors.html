@@ -1,65 +1,64 @@
-<div class="tab-pane active text-style">
-    <div class="row">
-        <div class="col-md-6">
-
-            <h1>Instructores</h1>
-            <hr>
-
-            <form name='vm.activity_instructors_forms' ng-submit="vm.save_activity()">
-                <div>
-                    <span href="" ng-click="vm.removeInstructor()">-</span>
-                    <label>{{vm.activity.instructors.length}}</label>
-                    <a href="" ng-click="vm.addInstructor()">+</a>
-                </div>
-
-                <div ng-repeat="instructor in vm.activity.instructors track by $index">
-
-                    <div class="form-group">
-                        <label for="full_name">Nombre</label>
-                        <input type="text" id="full_name" name="full_name"
-                               ng-model="instructor.full_name"
-                               typeahead-on-select="vm.setInstructor($item, $model, $label,instructor)"
-                               typeahead="ins.full_name for ins in vm.typeahead_instructors | limitTo:8"
-                               class="form-control">
-
-                        <div class="errors">
-                            <span ng-bind="vm.instructors_errors[$index].full_name"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="bio">Bio</label>
-                        <textarea id="bio" class="form-control" name="bio"
-                                  ng-model='instructor.bio'>
-                        </textarea>
-
-                        <div class="errors">
-                            <span>{{ vm.instructors_errors[$index].bio }}</span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Website</label>
-                        <input class="form-control" ng-model='instructor.website' name="website"/>
-
-                        <div class="errors">
-                            <span>{{ vm.instructors_errors[$index].website }}</span>
+ <div class="row">
+        <div class="col-sm-offset-1 col-md-8">
+            <form class="card card--shrink shadow-z-1 material-form lateral-fade lateral-fadeout" 
+                name='vm.activity_instructors_forms' ng-submit="vm.save_activity()">
+                    <div class="card-header">
+                        <div class="title-compound">
+                            <i class="mdi-social-group card-icon"></i>
+                            <h1 class="title-compound__title">
+                                Instructores
+                            </h1>
+                            <h4 class="text-muted title-compound__description">Cuéntanos de cada una de las personas que impartirán la actividad.</h4>    
                         </div>
                     </div>
 
-                    <button ng-show="instructor.id" ng-click="vm.deleteInstructor(instructor)" type="button"
-                            class="btn btn-default" aria-label="Left Align">
-                        <span class="mdi-action-delete" aria-hidden="true"></span>
-                    </button>
+                    <div class="card-body center-childs">
+                        <div class="text-center">¿Cuántos instructores participarán?</div><br/>
+                        <div class="counter-input counter-input-lg">
+                            <span class="counter-input__left-button"  ng-click="vm.removeInstructor()" ng-class="{'counter-input__left-button--disabled': vm.activity.instructors.length == 0} "></span>
+                            <label>{{vm.activity.instructors.length}}</label>
+                            <span class="counter-input__right-button" ng-click="vm.addInstructor()"
+                                ng-class="{'counter-input__right-button--disabled': vm.activity.instructors.length >= vm.maxAllowedInstructors}"></span>
+                        </div>        
+                    </div>                    
+                
+                    <div class="card-list-item" ng-repeat="instructor in vm.activity.instructors track by $index" trulii-expandable-content>
+                        <h2>
+                            Instructor {{$index + 1}}
+                            <span class="btn btn-default float-right no-margin-top" ng-show="instructor.id" ng-click="vm.deleteInstructor(instructor)">                                
+                                Eliminar
+                            </span>
+                        </h2>
 
-                    <alert type="danger" ng-show="vm.instructors_errors[$index].delete_instructor">
-                        {{vm.instructors_errors[$index].delete_instructor}}
-                    </alert>
-                    <hr>
-                </div>
+                        <div class="form-group" trulii-input-errors-control="full_name">
+                            <label for="full_name" class="control-label">Nombre</label>
+                            <input type="text" id="full_name" name="full_name"
+                                   ng-model="instructor.full_name"
+                                   typeahead-on-select="vm.setInstructor($item, $model, $label,instructor)"
+                                   typeahead="ins.full_name for ins in vm.typeahead_instructors | limitTo:8"
+                                   class="form-control">
+                        </div>
+                        <div class="form-group" trulii-input-errors-control="bio">
+                            <label for="bio" class="control-label">Bio</label>
+                            <textarea id="bio" class="form-control" name="bio"
+                                      ng-model='instructor.bio'>
+                            </textarea>
+                        </div>
+                        <div class="form-group" trulii-input-errors-control="website">
+                            <label for="website" class="control-label">Website</label>
+                            <input id="website" class="form-control" ng-model='instructor.website' name="website"/>
+                        </div>
 
-                <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
+                        <!--TODO reemplazar con Toast-->
+                        <alert type="danger" ng-show="vm.instructors_errors[$index].delete_instructor">
+                            {{vm.instructors_errors[$index].delete_instructor}}
+                        </alert>
+                        
+                    </div>
 
-                <div ng-savedmessage message="Guardado" ng-model="vm.isCollapsed" collapse="vm.isCollapsed">
-                </div>
+                    <div class="card-footer" ng-show="vm.activity.instructors.length > 0">
+                        <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>       
+                    </div>
             </form>
 
             <div class="col-md-4">

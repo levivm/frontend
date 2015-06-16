@@ -33,7 +33,6 @@
         vm.bio_max = 140;
         vm.student = student;
         vm.isChangingPicture = false;
-        vm.errors = {};
         vm.isCollapsed = true;
         vm.photo = null;
         vm.photo_invalid = false;
@@ -47,7 +46,7 @@
         //--------- Functions Implementation ---------//
 
         function updateProfile(){
-            vm.errors = Error.form.clear(vm.profile_form, vm.errors);
+            Error.form.clear(vm.profile_form);
             vm.student.update_profile().then(updateSuccess, updateError);
 
             function updateSuccess(){}
@@ -55,7 +54,7 @@
             function updateError(response){
                 var responseErrors = response.data['form_errors'];
                 if (responseErrors) {
-                    vm.errors = Error.form.add(vm.profile_form, vm.errors, responseErrors);
+                    Error.form.add(vm.profile_form, responseErrors);
                 }
             }
         }
@@ -80,7 +79,7 @@
                 vm.photo_loading = false;
                 if (responseErrors) {
                     vm.photo_invalid = true;
-                    vm.errors = Error.form.add(vm.picture_form, vm.errors, responseErrors);
+                    Error.form.add(vm.picture_form, responseErrors);
                 }
             }
         }

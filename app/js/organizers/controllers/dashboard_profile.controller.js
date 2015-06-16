@@ -12,13 +12,13 @@
 
   OrganizerProfileCtrl.$inject = ['$scope','$modal','$http','$location','$timeout','serverConf',
                   'filterFilter','uiGmapIsReady','Authentication','LocationManager','UploadFile',
-                  'Toast','organizer','cities'];
+                  'Toast','organizer','cities', 'Error'];
   /**
   * @namespace RegisterController
   */
   function OrganizerProfileCtrl($scope,$modal,$http,$location,$timeout,serverConf,
                   filterFilter,uiGmapIsReady,Authentication,LocationManager,UploadFile,Toast,
-                  organizer,cities) {
+                  organizer,cities, Error) {
 
     var vm = this;
 
@@ -113,7 +113,8 @@
 
     function update_location(){
 
-      _clearErrors();
+      Error.form.clear(vm.profile_form_info);
+
       _setOrganizerPos();
       vm.organizer.update_location(vm.organizer.location)
         .then(_successUpdatedLocation,_updateFail)
@@ -125,7 +126,7 @@
     function _successUpdatedLocation(response){
 
         angular.extend(organizer,vm.organizer);
-        Toast.generics.weSave();
+        Toast.generics.weSaved();
     }
 
     function _setOrganizerPos(){
@@ -162,30 +163,10 @@
     function _updateFail(response){
 
         var errors = response.data
-        angular.forEach(errors, function(message,field) {
-          _addError(field,message[0]);   
 
-        });
+        Error.form.add( vm.profile_form_info, errors);        
 
     }
-
-    function _clearErrors(){
-      vm.organizer_location_form.$setPristine();
-      vm.errors = null;
-      vm.errors = {};
-    }
-
-
-
-    function _addError(field, message) {
-
-      if (field in vm.organizer_location_form){
-        vm.organizer_location_form[field].$setValidity(message, false);
-      }
-
-      vm.errors[field] = message;
-
-    };
 
     function _toggleMessage(){
 

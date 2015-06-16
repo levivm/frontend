@@ -81,7 +81,7 @@
 //## Specify custom location and filename of the included Glyphicons icon font. Useful for those including Bootstrap via Bower.
 
 //** Load fonts from this directory.
-@icon-font-path:          "../fonts/";
+@icon-font-path:          "fonts/bootstrap/";
 //** File name for all font files.
 @icon-font-name:          "glyphicons-halflings-regular";
 //** Element ID within SVG icon file.
@@ -150,7 +150,7 @@
 @btn-font-weight:                normal;
 
 @btn-default-color:              #333;
-@btn-default-bg:                 #fff;
+@btn-default-bg:                 @body-bg;
 @btn-default-border:             #ccc;
 
 @btn-primary-color:              #fff;
@@ -875,6 +875,7 @@
 @primary: @brand-primary;
 @primary-dark: darken(@primary, 13%);
 @secondary: @brand-secondary;
+@secondary-dark: darken(@brand-secondary, 7%);
 @success: @brand-secondary;
 @info: @light-blue;
 @warning: @deep-orange;
@@ -888,7 +889,7 @@
 
 // Bootstrap variables
 
-@btn-default: transparent;
+@btn-default: @btn-default-bg;
 @btn-default-text: @darkbg-text;
 
 @btn-primary: @primary;
@@ -940,8 +941,6 @@
 @card-body-text: @lightbg-text;
 @card-body-background: #fff;
 @card-image-headline: #fff;
-
-@card-header-background: @primary;
 
 @card-padding: 2em;
 

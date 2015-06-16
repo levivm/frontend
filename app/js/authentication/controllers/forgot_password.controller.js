@@ -9,12 +9,12 @@
     .module('trulii.authentication.controllers')
     .controller('ForgotPasswordCtrl', ForgotPasswordCtrl);
 
-  ForgotPasswordCtrl.$inject = ['$scope','$location','$modal','$state','$stateParams','Authentication'];
+  ForgotPasswordCtrl.$inject = ['$scope','$location','$modal','$state','$stateParams','Authentication','Error'];
 
   /**
   * @namespace ForgotPasswordCtrl
   */
-  function ForgotPasswordCtrl($scope, $location,$modal,$state,$stateParams,Authentication) {
+  function ForgotPasswordCtrl($scope, $location,$modal,$state,$stateParams,Authentication,Error) {
     var vm = this;
 
 
@@ -22,68 +22,39 @@
     vm.errors = {};
     vm.forgotPassword = forgotPassword;
 
-    vm.clearErrors = _clearErrors;
-
-    function _clearErrors(){
-      vm.errors = null;
-      vm.errors = {};
-    }
-
-
-
-    function _addError(field, message) {
-
-      vm.errors[field] = message;
-      vm.forgot_password_form[field].$setValidity(message, false);
-
-
-    };
-
-
-
-
-    function _errored(response) {
-
-
-      if (response['form_errors']) {
-
-        angular.forEach(response['form_errors'], function(errors, field) {
-
-          _addError(field, errors[0]);
-
-        });
-
-      }
-    }
-
 
     function forgotPassword() {
-      _clearErrors();
-
-     return  Authentication.forgot_password(vm.email)
-              .error(passwordResetErrorFn)
-              .success(passwordResetFn);
-    }
+      Error.form.clear(vm.forgot_password_form);
 
 
-    function passwordResetFn(data, status, headers, config) {
+      return  Authentication.forgot_password(vm.email)
+              .then(success,error);
+              // .error(passwordResetErrorFn)
+              // .success(passwordResetFn);
 
-    
 
-     $state.go('general-message',{'module_name':'authentication',
+      function success(response){
+
+        $state.go('general-message',{'module_name':'authentication',
                                    'template_name':'password_reset_done',
                                    'redirect_state':'home'});
 
+
+      }
+
+      function error(response){
+            
+        var responseErrors = response.data['form_errors'];
+        if (responseErrors) {
+            Error.form.add(vm.forgot_password_form, responseErrors);
+        }
+
+      }
+
     }
 
-    /**
-     * @name passwordResetErrorFn
-     * @desc Log "Epic failure!" to the console
-     */
-    function passwordResetErrorFn(data) {
-      console.log("errroor",data);
-      _errored(data);
-    }
+
+
 
 
 

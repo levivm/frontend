@@ -23,6 +23,7 @@
         vm.selectCategory = _selectCategory;
         vm.setOverElement = _setOverElement;
         vm.getLevelClassStyle = getLevelClassStyle;
+        vm.checkValidTitle = checkValidTitle;
 
         initialize();
 
@@ -43,8 +44,8 @@
 
             function _successCreation(response) {
                 vm.isSaving = false;
-                if (vm.creating) $state.go('activities-edit.detail', {activity_id : response.id});
-                Toast.generics.weSave("Un paso menos para publicar tu actividad");
+                if (vm.creating) $state.go('dash.activities-edit.detail', {activity_id : response.id});
+                Toast.generics.weSaved("Un paso menos para publicar tu actividad");
             }
         }
 
@@ -60,7 +61,7 @@
                 vm.isSaving = false;
                 angular.extend(activity, vm.activity);
                 _onSectionUpdated();
-                Toast.generics.weSave();
+                Toast.generics.weSaved();
             }
         }
 
@@ -77,6 +78,7 @@
         function _setUpdate() {
             vm.save_activity = _updateActivity;
             vm.creating = false;
+            vm.weHaveTitle = false;
             _setPreSaveInfo(presaveInfo)
                 .then(_successLoadActivity);
 
@@ -90,7 +92,9 @@
 
         function _setCreate() {
             vm.save_activity = _createActivity;
-            vm.creating = true;
+            vm.creating = true;            
+            vm.activity.certification = undefined;
+
             _setPreSaveInfo(presaveInfo);
         }
 
@@ -134,14 +138,13 @@
         }
 
         function _clearErrors() {
-            vm.activity_create_form.$setPristine();
-            vm.errors = null;
-            vm.errors = {};
+            vm.activity_create_form.$setPristine();            
         }
 
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.activity_create_form[field].$setValidity(message, false);
+        function _addError(field, message) {                        
+
+            vm.activity_create_form[field].$setValidity(field, false);            
+            vm.activity_create_form[field].error_message = message;
         }
 
         function _errored(errors) {
@@ -172,12 +175,35 @@
             activity.updateSection('general');
         }
 
-        function initialize() {
+        function checkValidTitle(){              
 
-            vm.errors = {};
+            if (!vm.creating){
+                vm.weHaveTitle = true; 
+                return;
+            }
+
+            if (vm.activity.title != undefined && vm.activity.title != ""){
+
+                var whiteSpaces = 0;
+
+                for (var i = vm.activity.title.length-1; i > 0; i--)
+                    if ( vm.activity.title[i] == ' ')
+                        whiteSpaces++;
+
+                if (whiteSpaces == vm.activity.length )
+                    vm.weHaveTitle = false;
+                else
+                    vm.weHaveTitle = true;
+
+            }else
+                vm.weHaveTitle = false;
+        }
+
+        function initialize() {
+            
             vm.isCollapsed = true;
             vm.duration = 1;
-            vm.isSaving = false;
+            vm.isSaving = false;                        
 
             Elevator.toTop();
 
@@ -185,6 +211,8 @@
                 _setUpdate();
             else
                 _setCreate();
+
+            vm.checkValidTitle();
 
             _onSectionUpdated();
         }

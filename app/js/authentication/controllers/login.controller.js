@@ -14,48 +14,32 @@
         .module('trulii.authentication.controllers')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state','$stateParams', '$q','Authentication'];
+    LoginController.$inject = ['$state','$stateParams', '$q','Authentication','Error'];
 
-    function LoginController($state, $stateParams, $q, Authentication) {
+    function LoginController($state, $stateParams, $q, Authentication,Error) {
         var vm = this;
         var fromState = null;
         vm.errors = {};
         vm.auth = {};
         vm.is_new = true;
 
-        vm.login = _login;
+        vm.login = login;
         vm.facebookLogin = _facebookLogin;
-        vm.clearErrors = clearErrors;
 
         initialize();
 
         //--------- Functions Implementation ---------//
 
-        function clearErrors(){
-            vm.errors = null;
-            vm.errors = {};
-        }
 
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.login_form[field].$setValidity(message, false);
-        }
-
-        function _errored(data) {
-            if (data['form_errors']) {
-                angular.forEach(data['form_errors'], function(errors, field) {
-                    _addError(field, errors[0]);
-                });
-            }
-        }
-
-        function _login() {
-            clearErrors();
+        function login() {
+            Error.form.clear(vm.login_form);
             console.log("vm auth",vm.auth);
             return  Authentication.login(vm.auth.email, vm.auth.password)
                 .then(_loginSuccess,_loginError);
+
         }
 
+    
         function _facebookLogin() {
             return  Authentication.facebookLogin()
                         .then(_loginSuccess ,errorFbLogin);
@@ -82,9 +66,18 @@
         }
 
         function _loginError(response) {
-            _errored(response.data);
+                
+            var responseErrors = response.data['form_errors'];
+            if (responseErrors) {
+                Error.form.add(vm.login_form, responseErrors);
+            }
+
             return $q.reject(response);
+
         }
+
+
+
 
         function setStrings(){
             if(!vm.strings){ vm.strings = {}; }

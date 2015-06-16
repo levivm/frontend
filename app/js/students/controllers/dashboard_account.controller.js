@@ -21,7 +21,6 @@
 
         vm.student = student;
         vm.orders = [];
-        vm.errors = {};
         vm.password_data = {};
         vm.isCollapsed = true;
         vm.orderQuery = '';
@@ -35,7 +34,7 @@
 
         function _changeEmail() {
             console.log(vm.student);
-            vm.errors = Error.form.clear(vm.account_form_email, vm.errors);
+            Error.form.clear(vm.account_form_email);
             vm.student.change_email()
                 .then(_changeSuccess, fail);
 
@@ -45,7 +44,7 @@
         }
 
         function _changePassword() {
-            vm.errors = Error.form.clear(vm.account_form_password, vm.errors);
+            Error.form.clear(vm.account_form_password);
             vm.student.change_password(vm.password_data)
                 .then(success, fail);
 
@@ -66,13 +65,13 @@
         function _changeFail(response, form) {
             var responseErrors = response.data['form_errors'];
             if (responseErrors) {
-                vm.errors = Error.form.add(form, vm.errors, responseErrors);
+                Error.form.add(form, responseErrors);
             }
         }
 
         function _toggleMessage() {
             vm.isCollapsed = false;
-            var timer = $timeout(function () {
+            $timeout(function () {
                 vm.isCollapsed = true;
             }, 1000);
         }

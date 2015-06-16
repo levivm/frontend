@@ -14,9 +14,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBDetailController', ActivityDBDetailController);
 
-    ActivityDBDetailController.$inject = ['$scope', '$state', '$timeout', '$q', '$stateParams', 'activity', 'Elevator'];
+    ActivityDBDetailController.$inject = ['$scope', '$state', '$timeout', '$q', '$stateParams', 'activity', 'Elevator', 'Toast', 'Error'];
 
-    function ActivityDBDetailController($scope, $state, $timeout, $q, $stateParams, activity, Elevator) {
+    function ActivityDBDetailController($scope, $state, $timeout, $q, $stateParams, activity, Elevator, Toast, Error) {
 
         var vm = this;
 
@@ -30,7 +30,9 @@
         /******************ACTIONS**************/
 
         function _updateActivity() {
-            _clearErrors();
+            vm.isSaving = true;
+
+            Error.form.clear(vm.activity_detail_form);
 
             vm.activity.update()
                 .then(_updateSuccess, _errored);
@@ -50,8 +52,11 @@
 
         function _updateSuccess(response) {
             vm.isCollapsed = false;
+            vm.isSaving = false;
             angular.extend(activity, vm.activity);
-            _onSectionUpdated();
+            _onSectionUpdated();            
+
+            Toast.generics.weSaved();
 
         }
 
@@ -59,17 +64,13 @@
             vm.activity_detail_form.$setPristine();
             vm.errors = null;
             vm.errors = {};
-        }
-
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.activity_detail_form[field].$setValidity(message, false);
-        }
+        }        
 
         function _errored(errors) {
-            angular.forEach(errors, function (message, field) {
-                _addError(field, message[0]);
-            });
+            vm.isSaving = false;
+
+            Error.form.add(vm.activity_detail_form, errors);
+            
         }
 
         function _onSectionUpdated() {
@@ -83,6 +84,7 @@
         function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
+            vm.isSaving = false;
 
             Elevator.toTop();
         }

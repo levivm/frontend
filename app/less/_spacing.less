@@ -1,6 +1,11 @@
 
 @spacing-standard: 3rem;
 
+.clear-spacings{
+    padding: 0em;
+    margin: 0em;
+}
+
 .separate-above{
     margin-top: @spacing-standard;
 }
@@ -18,8 +23,8 @@
 }
 
 .separate-vertical{
-    .separate-above;
-    .separate-below;
+    &:extend(.separate-above);
+    &:extend(.separate-below);
 }
 
 .separate-horizontal{
@@ -34,5 +39,13 @@
 
 .separate-horizontal-inner{
     padding: 0 @spacing-standard;
+}
+
+.no-padding-top{
+    padding-top: 0 !important;
+}
+
+.no-margin-top{
+    margin-top: 0 !important;
 }
 
