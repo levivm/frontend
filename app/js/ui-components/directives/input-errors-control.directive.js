@@ -35,9 +35,9 @@
                         element.addClass("has-error");                        
                     }else{
 
-                        //TODO  checkear por qué scope.field es nulo
-                        if(!scope.field)
+                        if(!scope.field){
                             return
+                        }
                         scope.field.$setValidity(scope.field.$name,true);
                         element.removeClass("has-error");
                     }

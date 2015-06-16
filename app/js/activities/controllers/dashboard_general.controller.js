@@ -203,7 +203,8 @@
             
             vm.isCollapsed = true;
             vm.duration = 1;
-            vm.isSaving = false;                        
+            vm.isSaving = false;
+
 
             Elevator.toTop();
 
@@ -213,6 +214,8 @@
                 _setCreate();
 
             vm.checkValidTitle();
+            vm.selected_level = vm.activity_levels[0];
+            vm.activity.certification = false;
 
             _onSectionUpdated();
         }
