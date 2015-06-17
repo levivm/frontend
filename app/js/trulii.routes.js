@@ -226,7 +226,7 @@
                 controller: 'StudentActivitiesCtrl as activities',
                 templateUrl: 'partials/students/dashboard_activities.html',
                 resolve:{
-                    activities: getActivities
+                    activities: getStudentActivities
                 }
             })
             .state('student-profile', {
@@ -550,6 +550,19 @@
 
     function getActivities(ActivitiesManager){
         return ActivitiesManager.getActivities();
+    }
+
+    getStudentActivities.$inject = ['ActivitiesManager', 'Authentication', 'StudentsManager'];
+
+    function getStudentActivities(ActivitiesManager, Authentication, StudentsManager){
+        var currentUser =  Authentication.getAuthenticatedAccount();
+        if(currentUser.user_type === 'S'){
+            ActivitiesManager.getStudentActivities(currentUser.id).then(function(activities){
+                console.log('activities: ', activities);
+            });
+            return ActivitiesManager.getStudentActivities(student_id);
+        }
+
     }
 
     getCalendars.$inject = ['CalendarsManager','activity'];
