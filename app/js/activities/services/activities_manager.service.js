@@ -16,13 +16,14 @@
         .module('trulii.activities.services')
         .factory('ActivitiesManager', ActivitiesManager);
 
-    ActivitiesManager.$inject = ['$http', '$q', 'ActivityServerApi', 'OrganizerServerApi',
+    ActivitiesManager.$inject = ['$http', '$q', 'ActivityServerApi', 'OrganizerServerApi', 'StudentServerApi',
         'Activity', 'CalendarsManager'];
 
-    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, Activity, CalendarsManager) {
+    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity, CalendarsManager) {
 
         var api = ActivityServerApi;
         var apiOrg = OrganizerServerApi;
+        var apiStudent = StudentServerApi;
         var _pool = {};
         var _activities = [];
         var presave_info = null;
@@ -48,6 +49,15 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             getActivity : getActivity,
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#getStudentActivities
+             * @description Gets all of a student's activities
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getStudentActivities : getStudentActivities,
 
             /**
              * @ngdoc method
@@ -92,6 +102,17 @@
 
         function getActivities(){
             return $http.get(api.activities()).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                $q.reject(response.data);
+            }
+        }
+
+        function getStudentActivities(studentId){
+            return $http.get(apiStudent.activities(studentId)).then(success, error);
 
             function success(response){
                 return response.data;

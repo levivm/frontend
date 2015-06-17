@@ -12540,6 +12540,10 @@ hr.on-light {
   background: transparent;
   padding: 0;
 }
+.profile-photo {
+  width: 12em;
+  height: 12em;
+}
 .clear-spacings {
   padding: 0em;
   margin: 0em;
@@ -13321,35 +13325,42 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   top: 0.2em;
 }
 .navbar-secondary {
-  box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
-  background: #ffc619;
+  background: white;
   height: 40px;
   width: 100%;
   text-align: center;
   position: fixed;
   top: 50px;
-  z-index: 100;
+  z-index: 200;
+  border-bottom: 1px solid #eeeeee;
 }
 .navbar-secondary__item {
   color: rgba(0, 0, 0, 0.74);
   display: inline-block;
   font-weight: bolder;
   line-height: 37px;
-  padding: 0 1.7em;
-  text-transform: uppercase;
+  padding: 0 3.7em;
 }
 .navbar-secondary__item--selected {
-  border-bottom: 3px solid rgba(0, 0, 0, 0.74);
+  border-bottom: 3px solid #00b3b3;
+  color: rgba(0, 0, 0, 0.74);
+  background-color: #eeeeee;
 }
 .navbar-secondary__item:hover {
-  color: #00b3b3;
   text-decoration: none;
+  background-color: #eeeeee;
+  border-bottom: 3px solid #c8c8c8;
+  color: rgba(0, 0, 0, 0.74);
 }
 .navbar-secondary__item:focus {
   color: rgba(0, 0, 0, 0.74);
 }
 .navbar-secondary + * {
-  margin-top: 90px;
+  margin-top: 25px;
+}
+.navbar-secondary [class^="mdi-"] {
+  position: relative;
+  top: 5px;
 }
 .with-navbar {
   margin-top: 50px;
@@ -13368,9 +13379,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: red;
   padding: 20px 0;
   background-color: white;
-  line-height: 3em;
 }
 .sidebar__item {
+  border-radius: 0px;
   color: #333333;
   display: block;
   width: 100%;
@@ -13379,6 +13390,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-top: 1px solid #f0f0f0;
   text-decoration: none;
   position: relative;
+  line-height: 3em;
+  cursor: pointer;
 }
 .sidebar__item--selected {
   background: #eeeeee;
@@ -13606,8 +13619,6 @@ tags-input input {
 }
 .img-input {
   position: relative;
-  width: 300px;
-  height: 300px;
 }
 .img-input .drop-box {
   position: absolute;
@@ -14421,6 +14432,13 @@ tags-input input {
 .card--shrink .card-footer {
   padding-left: 4em;
   padding-right: 4em;
+}
+.card__lateral-menu {
+  border-right: 1px solid #d7d7d7;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  padding: 0px;
 }
 .contrast-box {
   background-color: #eeeeee;
