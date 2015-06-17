@@ -13,15 +13,16 @@
         .controller('ActivityGeneralController', ActivityGeneralController);
 
     ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Categories', 'Elevator', 'Toast', 'Error',
-        'activity', 'presaveInfo'];
+            'activity', 'presaveInfo'];
 
-    function ActivityGeneralController($state, $q, filterFilter, Categories, Elevator, Toast, Error, activity, presaveInfo) {
+    function ActivityGeneralController($state, $q, filterFilter, Categories, Elevator, Toast, Error,
+            activity, presaveInfo) {
 
         var vm = this;
 
         vm.activity = angular.copy(activity);
-        vm.selectCategory = _selectCategory;
-        vm.setOverElement = _setOverElement;
+        vm.selectCategory = selectCategory;
+        vm.setOverElement = setOverElement;
         vm.getLevelClassStyle = getLevelClassStyle;
         vm.checkValidTitle = checkValidTitle;
         vm.getSubmitButtonText = getSubmitButtonText;
@@ -30,12 +31,7 @@
 
         /******************ACTIONS**************/
 
-        function _selectCategory(category) {
-            console.log("category", category);
-            vm.activity_sub_categories = category.subcategories;
-        }
-
-        function _createActivity() {
+        function createActivity() {
             Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
@@ -50,7 +46,7 @@
             }
         }
 
-        function _updateActivity() {
+        function updateActivity() {
             Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
@@ -66,18 +62,55 @@
             }
         }
 
-        function _showTooltip(element) {
-            return vm.currentOverElement == element;
+        function setOverElement(element) {
+            vm.currentOverElement = element;
         }
 
-        function _setOverElement(element) {
-            vm.currentOverElement = element;
+        function getLevelClassStyle(level) {
+            return {
+                'btn-active' : vm.selected_level.code === level.code,
+                'btn-intermediate-level' : level.code === 'I',
+                'btn-advanced-level' : level.code === 'A',
+                'btn-beginner-level' : level.code === 'P'
+            };
+        }
+
+        function selectCategory(category) {
+            console.log("category", category);
+            vm.activity_sub_categories = category.subcategories;
+        }
+
+        function getSubmitButtonText(){
+            if(activity.id){
+                return "Guardar";
+            } else{
+                return "Continuar";
+            }
+        }
+
+        function checkValidTitle(){
+            if (!vm.creating){
+                vm.weHaveTitle = true;
+                return;
+            }
+
+            if (vm.activity.title != undefined && vm.activity.title != ""){
+                var whiteSpaces = 0;
+                for (var i = vm.activity.title.length-1; i > 0; i--){
+                    if ( vm.activity.title[i] == ' '){
+                        whiteSpaces++;
+                    }
+                }
+                vm.weHaveTitle = (whiteSpaces != vm.activity.length);
+            } else {
+                vm.weHaveTitle = false;
+            }
         }
 
         /*****************SETTERS********************/
 
         function _setUpdate() {
-            vm.save_activity = _updateActivity;
+            vm.save_activity = updateActivity;
             vm.creating = false;
             vm.weHaveTitle = false;
             _setPreSaveInfo(presaveInfo)
@@ -92,7 +125,7 @@
         }
 
         function _setCreate() {
-            vm.save_activity = _createActivity;
+            vm.save_activity = createActivity;
             vm.creating = true;            
             vm.activity.certification = undefined;
 
@@ -163,49 +196,8 @@
             _onSectionUpdated();
         }
 
-        /* Utils */
-
-        function getLevelClassStyle(level) {
-            return {
-                'btn-active' : vm.selected_level.code === level.code,
-                'btn-intermediate-level' : level.code === 'I',
-                'btn-advanced-level' : level.code === 'A',
-                'btn-beginner-level' : level.code === 'P'
-            };
-        }
-
         function _onSectionUpdated() {
             activity.updateSection('general');
-        }
-
-        function getSubmitButtonText(){
-            if(activity.id){
-                return "Guardar";
-            } else{
-                return "Continuar";
-            }
-        }
-
-        function checkValidTitle(){              
-
-            if (!vm.creating){
-                vm.weHaveTitle = true; 
-                return;
-            }
-
-            if (vm.activity.title != undefined && vm.activity.title != ""){
-
-                var whiteSpaces = 0;
-
-                for (var i = vm.activity.title.length-1; i > 0; i--)
-                    if ( vm.activity.title[i] == ' ')
-                        whiteSpaces++;
-
-                vm.weHaveTitle = (whiteSpaces != vm.activity.length);
-
-            }else {
-                vm.weHaveTitle = false;
-            }
         }
     }
 

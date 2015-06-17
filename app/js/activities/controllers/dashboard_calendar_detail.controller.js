@@ -43,8 +43,8 @@
 
         function _errored(responseErrors) {
             if (responseErrors) {
-                Error.form.add(form, responseErrors);
-                Error.session.process(form, responseErrors);
+                Error.form.add(vm.activity_calendar_form, responseErrors);
+                Error.session.process(vm.activity_calendar_form, responseErrors);
             }
 
             vm.isSaving = false;
