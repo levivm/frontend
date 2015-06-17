@@ -192,6 +192,8 @@
                 _setCreate();
 
             vm.checkValidTitle();
+            vm.selected_level = vm.activity_levels[0];
+            vm.activity.certification = false;
 
             _onSectionUpdated();
         }
