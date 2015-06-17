@@ -170,34 +170,35 @@
 }
 
 .navbar-secondary{	
-	background: darken(@primary, 13%);
+	background: white;
 	height: 40px;
 	width: 100%;
 	text-align: center;
 	position: fixed;
 	top: @navbar-height;
 	z-index: 200;
-	border-bottom: 1pxx solid darken(@primary, 27%);
+	border-bottom: 1px solid  @gray-lighter;
 
 	&__item{
-		color: @darkbg-text;
+		color: @lightbg-text;
 		display: inline-block;
 		font-weight: bolder;
 		line-height: 37px;
-		padding: 0 1.7em;
-		text-transform: uppercase;
+		padding: 0 3.7em;
+		//text-transform: uppercase;
 
 		
 		&--selected{
-			border-bottom: 3px solid darken(@primary, 30%);
+			border-bottom: 3px solid @secondary;
 			color: @lightbg-text;
+			background-color: @gray-lighter;
 		}
 
 		&:hover{			
 			text-decoration: none;
-			background-color: darken(@primary, 18%);
-			border-bottom: 3px solid darken(@primary, 18%);
-			color: @lightbg-text;	
+			background-color: @gray-lighter;
+			border-bottom: 3px solid darken(@gray-lighter, 15%);			
+			color: @lightbg-text;
 		}
 
 		&:focus{
@@ -207,7 +208,12 @@
 	}
 
 	& + *{
-		margin-top: @navbar-height + 40px;
+		margin-top: 25px;		
+	}
+
+	[class^="mdi-"]{
+		position: relative;
+		top: 5px;
 	}
 
 }

@@ -1,47 +1,83 @@
 <div class="container">
-    <div class="col-md-2">
-        <nav class="nav-sidebar">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a data-target="#profile-tab" data-toggle="tab">Editar Perfil</a></li>
-                <li class=""><a data-target="#picture-tab" data-toggle="tab">Foto</a></li>
-                <li class=""><a data-target="#comments-tab" data-toggle="tab">Comentarios</a></li>
-                <li>
-                    <br/>
-                </li>
-                <li>
-                    <button class="btn btn-primary btn-sm">Ver Perfil</button>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <div class="col-md-8 col-md-offset-1">
-        <div class="tab-content">
+
+    <div class="card">
+        <div class="col-md-3">
+            <!-- <nav class="nav-sidebar">
+                
+                    
+                    <a class="sidebar__item" data-target="#profile-tab" data-toggle="tab">Editar Perfil</a>                
+
+                    <a class="sidebar__item" data-target="#picture-tab" data-toggle="tab">Foto</a>                                                
+                    
+                    <li>
+                        <button class="btn btn-primary btn-sm">Ver Perfil</button>
+                    </li>
+                </ul>
+            </nav> -->
+
+            <form name="profile.picture_form" class="separate-above">
+                <div class="form-group">
+                    
+                    <div class="img-input center-childs">
+                        
+                        <div class="img-actionable img-actionable--small profile-photo img-size-cover img-position-center" style="background-image: url('{{profile.student.photo}}')">
+
+                            <div class="img-actionable__actions">
+
+                                <div 
+                                     ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                                     drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                     ng-file-change="profile.uploadPicture(profile.student.photo_url)"
+                                     allow-dir="true" accept="image/*">
+                                    
+                                    
+                                    <button type="button" class="img-actionable__actions__action" aria-label="Eliminar"
+                                        alt="Cambiar foto">                                        
+                                        <span class="mdi-content-create" aria-hidden="true"></span>
+                                    </button>                
+                                </div>
+                                    
+                                    
+                            </div>                                                        
+
+                        <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
+
+                        </div>
+                    </div>
+                    <div class="errors" ng-show="profile.photo_invalid">
+                        <span>{{ profile.errors.photo }}</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-md-7 card-body">
+            <div class="tab-content">
             <div class="tab-pane active text-style" id="profile-tab">
                 <form name="profile.profile_form" class="form-horizontal" ng-submit="profile.updateProfile()">
                     <fieldset>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <h3>Información</h3>
                             <h4 class="text-muted">
                                 Completa la información de tu perfil
                             </h4>
-                        </div>
+                        </div> -->
                         <div class="form-group">
-                            <label class="control-label col-md-2" for="first_name">Nombre</label>
+                            
                             <div class="col-md-6">
                                 <input id="first_name" class="form-control" name="first_name"
-                                       ng-model="profile.student.user.first_name" type="text"/>
+                                       ng-model="profile.student.user.first_name" type="text" placeholder="Nombres" />
                             </div>
-                            <trulii-input-alert field="profile_form.first_name"
-                                                errors="profile.errors"></trulii-input-alert>
+                            
                         </div>
+
                         <div class="form-group">
-                            <label class="control-label col-md-2" for="last_name">Apellido</label>
+                            
                             <div class="col-md-6">
                                 <input id="last_name" class="form-control" name="last_name"
-                                       ng-model="profile.student.user.last_name" type="text"/>
+                                       ng-model="profile.student.user.last_name" type="text" placeholder="Apellidos" />
                             </div>
-                            <trulii-input-alert field="profile_form.last_name"
-                                                errors="profile.errors"></trulii-input-alert>
+                            
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2" for="birth_date">Fecha de Nacimiento</label>
@@ -101,38 +137,10 @@
                         </div>
                     </fieldset>
                 </form>
+            </div>            
+            
             </div>
-            <div class="tab-pane text-style" id="picture-tab">
-                <form name="profile.picture_form">
-                    <div class="form-group">
-                        <h3>Foto de Perfil</h3>
-                        <h4 class="text-muted">Coloca una foto tuya donde salgas con estilo</h4>
-                        <div class="img-input">
-                            <img ng-src="{{profile.student.photo}}" width="300px" height="300px"
-                                 ng-hide='profile.photo_loading'/>
-                            <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
-                            <div class="drop-box"
-                                 ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select="" ng-multiple="false"
-                                 drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                                 ng-file-change="profile.uploadPicture(profile.student.photo_url)"
-                                 allow-dir="true" accept="image/*">
-                                <a class="btn btn-primary" aria-label="Reemplazar"
-                                   role="button">
-                                    <span class="mdi-content-create" aria-hidden="true"></span>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="errors" ng-show="profile.photo_invalid">
-                            <span>{{ profile.errors.photo }}</span>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="tab-pane text-style" id="comments-tab">
-                <div class="jumbotron">
-                    <h1 class="text-muted"> Coming Soon!</h1>
-                </div>
-            </div>
-        </div>
+        </div>    
     </div>
+    
 </div>
