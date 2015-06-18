@@ -43,8 +43,16 @@
                 _onSectionUpdated();
                 vm.isSaving = false;
                 Toast.generics.weSaved();
-
             }
+
+            function error(errors) {
+                
+                Error.form.add(vm.activity_location_form, errors);
+
+                vm.isSaving = false;
+            }
+
+            
         }
 
         function _showTooltip(element) {
@@ -64,7 +72,6 @@
         }
 
         /*********RESPONSE HANDLERS***************/
-        
 
         function errored(errors) {
             Error.form.add(vm.activity_location_form, errors);

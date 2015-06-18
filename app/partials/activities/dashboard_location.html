@@ -20,7 +20,7 @@
                         <label for="city" class="control-label">Ciudad</label>
                         <select class="form-control" id="city" ng-model="vm.activity.location.city"
                                 ng-options="city as city.name for city in vm.cities track by city.id" name="city">
-                            <option value="" selected ng-show="!vm.activity_location_form.type.$dirty">Seleccione..
+                            <option value="" selected ng-show="!vm.activity_location_form.city">Seleccione..
                             </option>
                         </select>
                     </div>
