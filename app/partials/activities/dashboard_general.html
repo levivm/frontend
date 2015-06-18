@@ -63,16 +63,17 @@
                         <label class="control-label">¿Entregará certificado u otorgará alguna certificación?</label>
 
                         <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
-                            <label class="btn btn-default"
-                                   ng-class="{'btn-active': vm.activity.certification === true}">
-                                <input type="radio" name="certification" class="hidden"
-                                       ng-model="vm.activity.certification" ng-value="true">Con certificación
-                            </label>
+
 
                             <label class="btn btn-default"
                                    ng-class="{'btn-active btn-active-darken': vm.activity.certification === false}">
                                 <input type="radio" name="certification" class="hidden"
                                        ng-model="vm.activity.certification" ng-value="false">Sin certificación
+                            </label>
+                            <label class="btn btn-default"
+                                   ng-class="{'btn-active': vm.activity.certification === true}">
+                                <input type="radio" name="certification" class="hidden"
+                                       ng-model="vm.activity.certification" ng-value="true">Con certificación
                             </label>
                         </div>
                     </div>
@@ -121,7 +122,7 @@
                         </tags-input>
                     </div>
 
-                    <trulii-submit-controls is-saving="vm.isSaving" value="Continuar"></trulii-submit-controls>
+                    <trulii-submit-controls is-saving="vm.isSaving" data-value="{{vm.getSubmitButtonText()}}"></trulii-submit-controls>
                 </div>
             </fieldset>
         </form>

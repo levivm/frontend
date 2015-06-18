@@ -560,7 +560,7 @@
             ActivitiesManager.getStudentActivities(currentUser.id).then(function(activities){
                 console.log('activities: ', activities);
             });
-            return ActivitiesManager.getStudentActivities(student_id);
+            return ActivitiesManager.getStudentActivities(currentUser.id);
         }
 
     }

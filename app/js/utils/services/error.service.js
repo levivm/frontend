@@ -56,7 +56,6 @@
                 if (field in form){
                     form[field].error_message = message;
                     form[field].$setValidity(field, false);
-
                 }
 
             });

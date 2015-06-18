@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBReturnPDashboard', ActivityDBReturnPDashboard);
 
-    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity', 'Toast'];
+    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity', 'Toast', 'Error'];
 
-    function ActivityDBReturnPDashboard($scope, activity, Toast) {
+    function ActivityDBReturnPDashboard($scope, activity, Toast, Error) {
 
         var vm = this;
 
@@ -23,7 +23,7 @@
         vm.setOverElement = _setOverElement;
         vm.showTooltip = _showTooltip;
 
-        initialize();
+        activate();
 
         /******************ACTIONS**************/
 
@@ -48,6 +48,7 @@
         /*********RESPONSE HANDLERS***************/
 
         function _updateSuccess(response) {
+            Error.form.clear(vm.activity_return_policy_form);
             vm.isCollapsed = false;
             _onSectionUpdated();
 
@@ -56,23 +57,9 @@
             Toast.generics.weSaved();
         }
 
-        function _clearErrors() {
-            vm.activity_return_policy_form.$setPristine();
-            vm.errors = null;
-            vm.errors = {};
-        }
-
-        function _addError(field, message) {
-            vm.errors[field] = message;
-            vm.activity_return_policy_form[field].$setValidity(message, false);
-        }
-
         function _errored(errors) {
-            angular.forEach(errors, function (message, field) {
-                _addError(field, message[0]);
-            });
+            Error.form.add(vm.activity_return_policy_form, errors);
             _onSectionUpdated();
-
             vm.isSaving = false;
         }
 
@@ -81,10 +68,6 @@
         }
 
         function activate() {
-            // If the user is authenticated, they should not be here.
-        }
-
-        function initialize() {
             vm.errors = {};
             vm.isCollapsed = true;
             vm.isSaving = false;

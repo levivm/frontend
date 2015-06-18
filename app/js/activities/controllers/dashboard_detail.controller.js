@@ -60,17 +60,9 @@
 
         }
 
-        function _clearErrors() {
-            vm.activity_detail_form.$setPristine();
-            vm.errors = null;
-            vm.errors = {};
-        }        
-
         function _errored(errors) {
             vm.isSaving = false;
-
             Error.form.add(vm.activity_detail_form, errors);
-            
         }
 
         function _onSectionUpdated() {

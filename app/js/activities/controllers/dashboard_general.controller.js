@@ -12,30 +12,27 @@
         .module('trulii.activities.controllers')
         .controller('ActivityGeneralController', ActivityGeneralController);
 
-    ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Categories', 'Elevator', 'Toast',
-        'activity', 'presaveInfo'];
+    ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Categories', 'Elevator', 'Toast', 'Error',
+            'activity', 'presaveInfo'];
 
-    function ActivityGeneralController($state, $q, filterFilter, Categories, Elevator, Toast, activity, presaveInfo) {
+    function ActivityGeneralController($state, $q, filterFilter, Categories, Elevator, Toast, Error,
+            activity, presaveInfo) {
 
         var vm = this;
 
         vm.activity = angular.copy(activity);
-        vm.selectCategory = _selectCategory;
-        vm.setOverElement = _setOverElement;
+        vm.selectCategory = selectCategory;
+        vm.setOverElement = setOverElement;
         vm.getLevelClassStyle = getLevelClassStyle;
         vm.checkValidTitle = checkValidTitle;
+        vm.getSubmitButtonText = getSubmitButtonText;
 
-        initialize();
+        activate();
 
         /******************ACTIONS**************/
 
-        function _selectCategory(category) {
-            console.log("category", category);
-            vm.activity_sub_categories = category.subcategories;
-        }
-
-        function _createActivity() {
-            _clearErrors();
+        function createActivity() {
+            Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
             vm.activity.create()
@@ -49,8 +46,8 @@
             }
         }
 
-        function _updateActivity() {
-            _clearErrors();
+        function updateActivity() {
+            Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
             vm.activity.update()
@@ -65,18 +62,55 @@
             }
         }
 
-        function _showTooltip(element) {
-            return vm.currentOverElement == element;
+        function setOverElement(element) {
+            vm.currentOverElement = element;
         }
 
-        function _setOverElement(element) {
-            vm.currentOverElement = element;
+        function getLevelClassStyle(level) {
+            return {
+                'btn-active' : vm.selected_level.code === level.code,
+                'btn-intermediate-level' : level.code === 'I',
+                'btn-advanced-level' : level.code === 'A',
+                'btn-beginner-level' : level.code === 'P'
+            };
+        }
+
+        function selectCategory(category) {
+            console.log("category", category);
+            vm.activity_sub_categories = category.subcategories;
+        }
+
+        function getSubmitButtonText(){
+            if(activity.id){
+                return "Guardar";
+            } else{
+                return "Continuar";
+            }
+        }
+
+        function checkValidTitle(){
+            if (!vm.creating){
+                vm.weHaveTitle = true;
+                return;
+            }
+
+            if (vm.activity.title != undefined && vm.activity.title != ""){
+                var whiteSpaces = 0;
+                for (var i = vm.activity.title.length-1; i > 0; i--){
+                    if ( vm.activity.title[i] == ' '){
+                        whiteSpaces++;
+                    }
+                }
+                vm.weHaveTitle = (whiteSpaces != vm.activity.length);
+            } else {
+                vm.weHaveTitle = false;
+            }
         }
 
         /*****************SETTERS********************/
 
         function _setUpdate() {
-            vm.save_activity = _updateActivity;
+            vm.save_activity = updateActivity;
             vm.creating = false;
             vm.weHaveTitle = false;
             _setPreSaveInfo(presaveInfo)
@@ -91,9 +125,10 @@
         }
 
         function _setCreate() {
-            vm.save_activity = _createActivity;
+            vm.save_activity = createActivity;
             vm.creating = true;            
-            vm.activity.certification = undefined;
+            vm.activity.certification = true;
+            vm.selected_level = vm.activity_levels[0];
 
             _setPreSaveInfo(presaveInfo);
         }
@@ -137,73 +172,18 @@
             vm.activity.level = vm.selected_level.code;
         }
 
-        function _clearErrors() {
-            vm.activity_create_form.$setPristine();            
-        }
-
-        function _addError(field, message) {                        
-
-            vm.activity_create_form[field].$setValidity(field, false);            
-            vm.activity_create_form[field].error_message = message;
-        }
-
-        function _errored(errors) {
-
-            angular.forEach(errors, function (message, field) {
-                _addError(field, message[0]);
-            });
+        function _errored(responseErrors) {
+            if (responseErrors) {
+                Error.form.add(vm.activity_create_form, responseErrors);
+            }
 
             vm.isSaving = false;
         }
 
         function activate() {
-            // If the user is authenticated, they should not be here.
-        }
-
-        /* Utils */
-
-        function getLevelClassStyle(level) {
-            return {
-                'btn-active' : vm.selected_level.code === level.code,
-                'btn-intermediate-level' : level.code === 'I',
-                'btn-advanced-level' : level.code === 'A',
-                'btn-beginner-level' : level.code === 'P'
-            };
-        }
-
-        function _onSectionUpdated() {
-            activity.updateSection('general');
-        }
-
-        function checkValidTitle(){              
-
-            if (!vm.creating){
-                vm.weHaveTitle = true; 
-                return;
-            }
-
-            if (vm.activity.title != undefined && vm.activity.title != ""){
-
-                var whiteSpaces = 0;
-
-                for (var i = vm.activity.title.length-1; i > 0; i--)
-                    if ( vm.activity.title[i] == ' ')
-                        whiteSpaces++;
-
-                if (whiteSpaces == vm.activity.length )
-                    vm.weHaveTitle = false;
-                else
-                    vm.weHaveTitle = true;
-
-            }else
-                vm.weHaveTitle = false;
-        }
-
-        function initialize() {
-            
             vm.isCollapsed = true;
             vm.duration = 1;
-            vm.isSaving = false;                        
+            vm.isSaving = false;
 
             Elevator.toTop();
 
@@ -213,10 +193,15 @@
                 _setCreate();
 
             vm.checkValidTitle();
+            
+            
 
             _onSectionUpdated();
         }
 
+        function _onSectionUpdated() {
+            activity.updateSection('general');
+        }
     }
 
 })();

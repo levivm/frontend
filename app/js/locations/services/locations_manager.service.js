@@ -174,7 +174,7 @@
             var scope = this;
             var map = {
               center: {latitude: latitude, longitude: longitude }, 
-              zoom: 8, 
+              zoom: 14, 
               bounds: scope.getAllowedBounds() ,
 
               events: {
