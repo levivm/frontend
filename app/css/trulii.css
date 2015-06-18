@@ -14455,12 +14455,47 @@ tags-input input {
   padding-right: 4em;
 }
 .card__lateral-menu {
-  border-right: 1px solid #d7d7d7;
   position: absolute;
   top: 0px;
   bottom: 0px;
   padding: 0px;
   background-color: #00b3b3;
+  padding-top: 1.3em;
+}
+.card__lateral-menu__item {
+  display: block;
+  width: 100%;
+  padding: 1.5em 1em;
+  color: white;
+  background-color: #009999;
+  border-bottom: 1px solid #00b3b3;
+  text-transform: uppercase;
+  transition: 0.3s background-color ease;
+}
+.card__lateral-menu__item.active {
+  color: #00b3b3;
+  background-color: white;
+  font-weight: bold;
+}
+.card__lateral-menu__item.active * {
+  color: #00b3b3;
+}
+.card__lateral-menu__item * {
+  color: white;
+}
+.card__lateral-menu__title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: bold;
+  padding-bottom: 1.5em;
+  text-transform: uppercase;
+  color: #006666;
+  font-size: 1.2em;
+}
+.card [class^="mdi-"] {
+  position: relative;
+  top: 4px;
 }
 .contrast-box {
   background-color: #eeeeee;
@@ -14784,6 +14819,9 @@ button.toast-close-button {
 }
 a {
   color: #f0b400;
+}
+ul {
+  padding: 0px;
 }
 /*Agular Google Maps*/
 .angular-google-map-container {
