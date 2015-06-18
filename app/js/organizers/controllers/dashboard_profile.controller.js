@@ -46,6 +46,8 @@
     vm.submit_video =  update_video;
 
     vm.submit_location = update_location;
+
+    vm.isSaving = false;
     
 
 
@@ -157,6 +159,9 @@
       //Authentication.updateAuthenticatedAccount();
       _toggleMessage();
 
+      vm.isSaving = false;
+      Toast.generics.weSaved();
+
 
     }
 
@@ -164,7 +169,9 @@
 
         var errors = response.data
 
-        Error.form.add( vm.profile_form_info, errors);        
+        Error.form.add( vm.profile_form_info, errors);   
+
+        vm.isSaving = false;     
 
     }
 

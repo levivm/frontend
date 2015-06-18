@@ -7,11 +7,11 @@
 }
 
 .img-size-cover{
-    background-size: cover;
+    background-size: cover !important;
 }
 
 .img-position-center{
-    background-position: center;
+    background-position: center !important;
 }
 
 .img-carpet{
@@ -103,7 +103,13 @@
     }
 }
 
-.profile-photo{
-    width: 12em;
-    height: 12em;    
+.profile-photo{    
+    border-radius: 50%;    
+
+    &--xs{
+        width: 15em;
+        height: 15em;  
+        border: 4px solid lighten(@secondary, 8%)
+    }
+    
 }

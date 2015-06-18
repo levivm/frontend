@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentProfileCtrl', StudentProfileCtrl);
 
-    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student'];
+    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student', 'Toast'];
 
-    function StudentProfileCtrl(datepickerPopupConfig, Error, student) {
+    function StudentProfileCtrl(datepickerPopupConfig, Error, student, Toast) {
 
         var vm = this;
 
@@ -41,6 +41,8 @@
         vm.updateProfile = updateProfile;
         vm.uploadPicture = uploadPicture;
 
+        vm.isSaving = false;
+
         initialize();
 
         //--------- Functions Implementation ---------//
@@ -49,14 +51,22 @@
             Error.form.clear(vm.profile_form);
             vm.student.update_profile().then(updateSuccess, updateError);
 
-            function updateSuccess(){}
+            function updateSuccess(){
+
+                Toast.generics.weSaved();
+
+                vm.isSaving = false;
+            }
             
             function updateError(response){
                 var responseErrors = response.data['form_errors'];
                 if (responseErrors) {
                     Error.form.add(vm.profile_form, responseErrors);
                 }
+
+                vm.isSaving = false;
             }
+            
         }
 
         function uploadPicture(image){
@@ -93,7 +103,7 @@
         }
 
         function initialize() {
-            datepickerPopupConfig.showButtonBar = false;
+            datepickerPopupConfig.showButtonBar = false;            
         }
 
     }

@@ -45,8 +45,9 @@
             </div>
 
             <div ng-if="!!user">
-                <div class="navbar__user" data-toggle="dropdown">
-                    <img class="navbar__user__picture" ng-src="{{user.photo}}" alt="{{user.user.full_name}}">
+                <div class="navbar__user" data-toggle="dropdown">                    
+
+                    <div class="navbar__user__picture" style="background: url('{{user.photo}}')" alt="{{user.user.full_name}}"></div>
                     <span class="navbar__user__name" ng-bind="user.user.full_name"></span>
                     <span class="mdi-navigation-expand-more"></span>
                 </div>

@@ -12405,6 +12405,9 @@ hr.on-light {
 .float-right {
   float: right;
 }
+.text-left {
+  text-align: left !important;
+}
 .grand-title {
   font-size: 5em;
   margin-bottom: .5em;
@@ -12414,6 +12417,9 @@ hr.on-light {
 }
 .text-left {
   text-align: left;
+}
+.text-capitalize {
+  text-transform: capitalize;
 }
 .title-compound {
   position: relative;
@@ -12466,11 +12472,13 @@ hr.on-light {
   display: block;
 }
 .img-size-cover,
+.navbar__user__picture,
 .gallery-grid__photo {
-  background-size: cover;
+  background-size: cover !important;
 }
-.img-position-center {
-  background-position: center;
+.img-position-center,
+.navbar__user__picture {
+  background-position: center !important;
 }
 .img-carpet,
 .gallery-grid__photo {
@@ -12541,8 +12549,12 @@ hr.on-light {
   padding: 0;
 }
 .profile-photo {
-  width: 12em;
-  height: 12em;
+  border-radius: 50%;
+}
+.profile-photo--xs {
+  width: 15em;
+  height: 15em;
+  border: 4px solid #00dbdb;
 }
 .clear-spacings {
   padding: 0em;
@@ -12580,6 +12592,9 @@ hr.on-light {
 }
 .no-margin-top {
   margin-top: 0 !important;
+}
+.no-margin {
+  margin: 0px !important;
 }
 .bg-primary {
   background: #ffcc33;
@@ -13219,6 +13234,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 100%;
   display: inline-block;
   color: rgba(255, 255, 255, 0.84);
+  vertical-align: top;
 }
 .navbar__user__picture {
   width: 40px;
@@ -13228,6 +13244,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar__user__name {
   font-weight: bold;
+  text-transform: capitalize;
 }
 .open .navbar__user {
   background-color: #f0b400;
@@ -13332,7 +13349,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   position: fixed;
   top: 50px;
   z-index: 200;
-  border-bottom: 1px solid #eeeeee;
+  border-bottom: 1px solid #d5d5d5;
 }
 .navbar-secondary__item {
   color: rgba(0, 0, 0, 0.74);
@@ -13681,6 +13698,10 @@ tags-input input {
 }
 .btn.btn-active-darken {
   background: #008f8f !important;
+}
+.btn-bgsecondary {
+  background-color: white;
+  color: #00b3b3 !important;
 }
 .btn.btn-less {
   font-weight: normal;
@@ -14439,6 +14460,7 @@ tags-input input {
   top: 0px;
   bottom: 0px;
   padding: 0px;
+  background-color: #00b3b3;
 }
 .contrast-box {
   background-color: #eeeeee;
