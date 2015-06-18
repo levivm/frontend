@@ -48,6 +48,18 @@
 
             /**
              * @ngdoc function
+             * @name trulii.students.services.StudentServerApi#activities
+             * @description Renders **`/api/students/:idStudent/activities`** Activity List URL
+             * @param {number} idStudent Student Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.students.services.StudentServerApi
+             */
+            'activities': function(idStudent){
+                return renderUrl('students/', [idStudent, 'activities/']);
+            },
+
+            /**
+             * @ngdoc function
              * @name trulii.students.services.StudentServerApi#orders
              * @description Renders **`/api/students/:idStudent/orders`** Order List URL
              * @param {number} idStudent Student Id
