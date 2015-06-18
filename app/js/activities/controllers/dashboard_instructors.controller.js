@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBInstructorsController', ActivityDBInstructorsController);
 
-    ActivityDBInstructorsController.$inject = ['$scope', '$modal', '$state', '$filter', 'activity', 'organizer', 'Toast', 'Elevator'];
+    ActivityDBInstructorsController.$inject = ['$modal', 'activity', 'organizer', 'Toast', 'Elevator', 'Error'];
 
-    function ActivityDBInstructorsController($scope, $modal, $state, $filter, activity, organizer, Toast, Elevator) {
+    function ActivityDBInstructorsController($modal, activity, organizer, Toast, Elevator, Error) {
 
         var vm = this;
         vm.activity = angular.copy(activity);
@@ -88,7 +88,7 @@
             vm.isCollapsed = false;
             angular.extend(activity, vm.activity);
             organizer.reload().then(_setInstructors);
-            _onSectionUpdated()
+            _onSectionUpdated();
 
             vm.isSaving = false;
 
