@@ -127,7 +127,8 @@
         function _setCreate() {
             vm.save_activity = createActivity;
             vm.creating = true;            
-            vm.activity.certification = undefined;
+            vm.activity.certification = true;
+            vm.selected_level = vm.activity_levels[0];
 
             _setPreSaveInfo(presaveInfo);
         }
@@ -192,8 +193,8 @@
                 _setCreate();
 
             vm.checkValidTitle();
-            vm.selected_level = vm.activity_levels[0];
-            vm.activity.certification = false;
+            
+            
 
             _onSectionUpdated();
         }
