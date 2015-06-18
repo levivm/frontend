@@ -21,8 +21,8 @@
         vm.save_activity = _updateActivity;
         vm.addInstructor = _addInstructor;
         vm.removeInstructor = _removeInstructor;
-        vm.setInstructor = _setInstructor;
-        vm.deleteInstructor = _deleteInstructor;
+        // vm.setInstructor = _setInstructor;
+        // vm.deleteInstructor = _deleteInstructor;
         vm.maxAllowedInstructors = organizer.max_allowed_instructors;
 
         initialize();
@@ -42,39 +42,39 @@
             _onSectionUpdated();
         }
 
-        function _deleteInstructor(instructor) {
+        // function _deleteInstructor(instructor) {
 
-            var modalInstance = $modal.open({
-                templateUrl : 'partials/activities/messages/confirm_delete_instructor.html',
-                controller : 'ModalInstanceCtrl',
-                size : 'lg'
-            });
+        //     var modalInstance = $modal.open({
+        //         templateUrl : 'partials/activities/messages/confirm_delete_instructor.html',
+        //         controller : 'ModalInstanceCtrl',
+        //         size : 'lg'
+        //     });
 
-            modalInstance.result.then(function () {
-                _initialize_errors_array();
-                organizer.deleteInstructor(instructor.id)
-                    .then(deleteSuccess, deleteError);
-            });
+        //     modalInstance.result.then(function () {
+        //         _initialize_errors_array();
+        //         organizer.deleteInstructor(instructor.id)
+        //             .then(success, error);
+        //     });
 
-            function deleteSuccess(response) {
-                _.remove(vm.activity.instructors, 'id', instructor.id);
-                angular.extend(activity, vm.activity);
-                organizer.reload().then(_setInstructors);
+        //     function success(response) {
+        //         _.remove(vm.activity.instructors, 'id', instructor.id);
+        //         angular.extend(activity, vm.activity);
+        //         organizer.reload().then(_setInstructors);
 
-                Toast.generics.deleted("El instructor se ha eliminado.");
-            }
+        //         Toast.generics.deleted("El instructor se ha eliminado.");
+        //     }
 
-            function deleteError(response) {
-                var index = _.indexOf(vm.instructors, instructor);
-                vm.instructors_errors[index].delete_instructor = response.data.detail;
-            }
+        //     function error(response) {
+        //         var index = _.indexOf(vm.instructors, instructor);
+        //         vm.instructors_errors[index].delete_instructor = response.data.detail;
+        //     }
 
-        }
+        // }
 
-        function _setInstructor(selected_instructor, model, label, instructor) {
-            angular.extend(instructor, selected_instructor);
-            _.remove(vm.typeahead_instructors, 'id', selected_instructor.id);
-        }
+        // function _setInstructor(selected_instructor, model, label, instructor) {
+        //     angular.extend(instructor, selected_instructor);
+        //     _.remove(vm.typeahead_instructors, 'id', selected_instructor.id);
+        // }
 
         function _updateActivity() {
             _clearErrors();
@@ -118,9 +118,9 @@
 
         function _setInstructors() {
             vm.instructors = vm.activity.instructors;
-            vm.typeahead_instructors = _.filter(organizer.instructors, function (instructor) {
-                return !_.findWhere(vm.instructors, instructor);
-            });
+            // vm.typeahead_instructors = _.filter(organizer.instructors, function (instructor) {
+            //     return !_.findWhere(vm.instructors, instructor);
+            // });
         }
 
         function _onSectionUpdated() {
