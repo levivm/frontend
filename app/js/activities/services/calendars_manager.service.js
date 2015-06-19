@@ -27,10 +27,8 @@
             _retrieveInstance : function (calendarId, calendarData) {
                 console.log('pool', this._pool);
                 var instance = this._search(calendarId);
-                //console.log("INSTANCIA",calendarId)
                 if (!(instance)) {
                     instance = new Calendar(calendarData);
-                    //instance.setData(calendarData);
                     instance.activity = this.activity_id;
                 }
                 return instance;
@@ -98,12 +96,16 @@
             loadCalendars : function (activity_id, active) {
                 var actives = active || false;
                 this.activity_id = activity_id;
-                //var deferred = $q.defer();
 
                 var scope = this;
 
                 if (scope.calendars.length > 0) {
-                    return scope.calendars
+                    var activity_calendar_id = scope.calendars[0].activity;
+                
+                    if (activity_calendar_id == this.activity_id){
+                        return scope.calendars
+                    }
+
                 }
 
                 // url += '?actives=true';
@@ -115,10 +117,7 @@
                 // serverConf.url+'/api/activities/'+this.activity_id+'/calendars/'
                 return $http.get(api.calendars(this.activity_id), config)
                     .then(function (response) {
-                        //scope.calendars = [];
                         scope._setCalendars(response.data);
-                        console.log(response.data);
-                        //scope.calendars = $filter('orderBy')(scope.calendars,'initial_date');
                         return scope.calendars
                     },
                     function (response) {
@@ -128,24 +127,19 @@
 
             _setCalendars : function (calendarsData) {
 
-                //scope.calendars = calendarsData;
                 var scope = this;
+                    scope.calendars  = [];
                 angular.forEach(calendarsData, function (calendarData) {
-                    //this._retrieveInstance(calendarData);
                     var calendar = new Calendar(calendarData);
                     scope.calendars.push(calendar);
                     scope._pool[calendar.id] = calendar;
-                    //var calendar = scope.setCalendar(calendarData);
-                    //    scope._addCalendar(calendar);
 
                 });
 
-                //return calendars
             },
             _addCalendar : function (calendar) {
                 this._pool[calendar.id] = calendar;
                 this.calendars.push(calendar);
-                //$filter('orderBy')(this.calendars,'initial_date');
 
             },
             setCalendar : function (calendarData) {
