@@ -102,9 +102,9 @@
                             <div class="col-sm-3">
                                 <select id="gender" class="form-control" ng-model="profile.selected_gender"
                                         name="gender"
-                                        ng-options="gender as gender.name for (index, gender) in profile.genders"
+                                        ng-options="gender as gender.name for gender in profile.genders track by gender.name"
                                         ng-change="profile.selectGender(profile.selected_gender)">
-                                    <option value="" ng-show="!profile.profile_form.gender.$dirty"
+                                    <option value=""  ng-show="!profile.student.gender"
                                             selected>Seleccione...
                                     </option>
                                 </select>

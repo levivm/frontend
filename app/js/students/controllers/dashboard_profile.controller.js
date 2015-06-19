@@ -37,9 +37,10 @@
         vm.photo = null;
         vm.photo_invalid = false;
         vm.photo_loading = false;
-        vm.genders = [{name:'Femenino', id: 1}, {name:'Masculino', id: 2}];
+        vm.genders = [{id: 1,name:'Femenino' }, {id:2,name:'Masculino'}];
         vm.updateProfile = updateProfile;
         vm.uploadPicture = uploadPicture;
+        vm.selectGender  = selectGender;
 
         initialize();
 
@@ -58,6 +59,21 @@
                 }
             }
         }
+
+
+
+        function selectGender(gender){
+
+            _setGender(gender.id)
+
+        }
+
+        function _setGender(gender){
+
+            vm.selected_gender = _.find(vm.genders, { 'id': gender});
+            vm.student.gender  = gender;
+        }
+
 
         function uploadPicture(image){
             console.log(image);
@@ -93,6 +109,7 @@
         }
 
         function initialize() {
+            _setGender(vm.student.gender);
             datepickerPopupConfig.showButtonBar = false;
         }
 
