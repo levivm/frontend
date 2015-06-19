@@ -14,9 +14,9 @@
     <div class="col-md-10">
         <div class="container-fluid">
             <div class="row">
-                <trulii-activity-item
-                    ng-repeat="activity in home.activities track by activity.id"
-                    data-activity="activity"></trulii-activity-item>
+                <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
+                        ng-repeat="activity in home.activities track by activity.id"
+                        data-activity="activity" data-options="{{home.options}}"></trulii-activity-item>
             </div>
         </div>
     </div>

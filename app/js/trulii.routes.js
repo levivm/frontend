@@ -229,14 +229,6 @@
                     activities: getStudentActivities
                 }
             })
-            .state('student-profile', {
-                url: '/students/{student_id:int}/profile',
-                controller: 'StudentProfileController as profile',
-                templateUrl: 'partials/students/profile.html',
-                resolve: {
-                    student: getStudent
-                }
-            })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl',
