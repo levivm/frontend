@@ -84,9 +84,9 @@
                                     
                                         <select id="gender" class="form-control" ng-model="profile.selected_gender"
                                                 name="gender"
-                                                ng-options="gender as gender.name for (index, gender) in profile.genders"
+                                                ng-options="gender as gender.name for gender in profile.genders track by gender.name"
                                                 ng-change="profile.selectGender(profile.selected_gender)">
-                                            <option value="" ng-show="!profile.profile_form.gender.$dirty"
+                                            <option value=""  ng-show="!profile.student.gender"
                                                     selected>Seleccione...
                                             </option>
                                         </select>
@@ -97,11 +97,10 @@
                                 <div class="form-group no-margin">                                                                
                                     <label class="control-label" for="gender">Fecha de nacimiento</label>
                                     <input id="birth_date" type="text" class="form-control" name="birth_date"
-                                           ng-click="profile.openDatePicker($event)"
-                                           ng-model="profile.student.birth_date"
-                                           datepicker-popup="{{profile.format}}" is-open="profile.opened"
-                                           min-date="profile.minStartDate" datepicker-options="profile.dateOptions"
-                                           close-text="Close"/>                                
+                                       ng-model="profile.student.birth_date"
+                                       datepicker-popup="{{profile.format}}" is-open="profile.opened"
+                                       min-date="profile.minStartDate" datepicker-options="profile.dateOptions"
+                                       close-text="Close"/>                              
                                     
                                 </div>  
                             </div>
@@ -132,8 +131,6 @@
                                               rows="5" ng-maxlength="profile.bio_max"
                                               ng-model="profile.student.user.bio"></textarea>
                                     
-                                </div>
-                                
                             </div>
                         </div>
                                                                                                                                                                                             
