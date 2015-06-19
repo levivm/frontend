@@ -100,9 +100,10 @@
 			padding: 1.5em 1em;
 			color: white;
 			background-color: darken(@secondary, 5%);
-			border-bottom: 1px solid @secondary;
-			text-transform: uppercase;
+			border-bottom: 1px solid @secondary;			
 			transition: .3s background-color ease;
+			cursor: pointer;
+			font-size: 1.1em;
 
 			&.active{
 				color: @secondary;
@@ -117,6 +118,10 @@
 
 			* {
 				color: white;
+
+				&:hover{
+					color: white;
+				}
 			}
 		}
 

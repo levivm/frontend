@@ -2,7 +2,7 @@
 
 <div class="container">
     
-    <div class="card shadow-z-1">  
+    <div class="card shadow-z-1" style="min-height: 30em">  
 
         <div class="row-fluid clearfix">
             <div class="col-md-3 card__lateral-menu">
@@ -23,90 +23,100 @@
             </div>
 
             <div class="col-md-8 col-md-offset-3">
-                <div class="card-body tab-content">
+                <div class="card-body tab-content">                    
                     
-                    <div  class="tab-pane text-style active" id="change-password-tab">
-                        <form name='account.account_form_password' class="form-horizontal"
+                    <div  class="tab-pane text-style active fade  in" id="change-password-tab">
+                        <form name='account.account_form_password' class="form-horizontal material-form"
                             ng-submit="account.changePassword()">
                             <fieldset>
                                 <div class="form-group">
                                     
                                     <h4 class="text-muted">
                                         En caso de modificar tu contraseña te recomendamos crear una segura
-                                        y fácil de recordar
+                                        y fácil de recordar.
                                     </h4>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2" for="oldpassword">Contraseña actual</label>
 
-                                    <div class="col-md-6">
-                                        <input id="oldpassword" class="form-control" name="oldpassword" type="password"
-                                               ng-model="account.password_data.oldpassword" placeholder="Contraseña">
-                                    </div>
-                                    <trulii-input-alert field="account.account_form_password.oldpassword"
-                                                        errors="account.errors"></trulii-input-alert>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2" for="password">Nueva Contraseña</label>
+                                <div class="row-fluid clearfix">
+                                    
+                                    <div class="col-md-7 col-md-offset-3">
+                                        <div class="form-group">
+                                            <label class="control-label" for="oldpassword">Contraseña actual</label>
+                                            
+                                            <input id="oldpassword" class="form-control" name="oldpassword" type="password"
+                                                       ng-model="account.password_data.oldpassword" >
+                                            
+                                            <trulii-input-alert field="account.account_form_password.oldpassword"
+                                                                errors="account.errors"></trulii-input-alert>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label" for="password">Nueva Contraseña</label>
+                                            
+                                            <input id="password" class="form-control" name="password"
+                                                       ng-model="account.password_data.password1"
+                                                    type="password">
+                                            
+                                            <trulii-input-alert field="account_form_password.password"
+                                                                errors="account.errors"></trulii-input-alert>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label"
+                                                   for="re_password">Confirmar Nueva Contraseña</label>
 
-                                    <div class="col-md-6">
-                                        <input id="password" class="form-control" name="password"
-                                               ng-model="account.password_data.password1"
-                                               placeholder="Contraseña" type="password">
-                                    </div>
-                                    <trulii-input-alert field="account_form_password.password"
-                                                        errors="account.errors"></trulii-input-alert>
-                                </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2"
-                                           for="re_password">Confirmar Nueva Contraseña</label>
+                                            
+                                            <input id="re_password" class="form-control" name="re_password" type="password"
+                                                       ng-model="account.password_data.password2">
+                                            
+                                            <trulii-input-alert field="account_form_password.re_password"
+                                                                errors="account.errors"></trulii-input-alert>
+                                        </div>                                        
 
-                                    <div class="col-md-6">
-                                        <input id="re_password" class="form-control" name="re_password" type="password"
-                                               ng-model="account.password_data.password2" placeholder="Contraseña">
-                                    </div>
-                                    <trulii-input-alert field="account_form_password.re_password"
-                                                        errors="account.errors"></trulii-input-alert>
+                                    </div>                                    
+                        
                                 </div>
-                                <button type="submit" id="password-submit"
-                                        class="btn btn-primary pull-right">Cambiar Contraseña
-                                </button>
+                                
+                                <div class="separate-above col-md-10">
+                                    <trulii-submit-controls is-saving="account.isSaving" value="Guardar"></trulii-submit-controls>    
+                                </div>
+                                
                             </fieldset>
                         </form>
                     </div>
 
-                    <div  class="tab-pane text-style" id="settings-tab">
-                        <form name='account.account_form_email' class="form-horizontal"
+                    <div  class="tab-pane fade" id="settings-tab">
+                        <form name='account.account_form_email' class="form-horizontal material-form"
                               ng-submit="account.changeEmail()">
                             <fieldset>
-                                <div class="form-group">
-                                    <h3>Correo Electrónico</h3>
+                                <div class="form-group">                                    
                                     <h4 class="text-muted">
                                         Puedes modificar tu dirección de correo electrónico si así lo deseas
                                     </h4>
                                 </div>
-                                <div class="form-group">
-                                    <label class="control-label col-md-2" for="email">Correo</label>
 
-                                    <div class="col-md-6">
-                                        <input id="email" class="form-control" name="email"
-                                               ng-model="account.student.email" type="email"/>
+                                <div class="row-fluid clearfix separate-above">
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <div class="form-group">
+                                            <label class="control-label" for="email">Correo</label>
+
+                                            
+                                            <input id="email" class="form-control" name="email"
+                                                       ng-model="account.student.email" type="email"/>
+                                            
+                                            <trulii-input-alert field="account.account_form_email.email"
+                                                                errors="account.errors"></trulii-input-alert>
+                                        </div>
+                                    </div>    
+                                    <div class="separate-above col-md-8 col-md-offset-2">
+                                        <trulii-submit-controls is-saving="account.isSaving" value="Guardar"></trulii-submit-controls>    
                                     </div>
-                                    <trulii-input-alert field="account.account_form_email.email"
-                                                        errors="account.errors"></trulii-input-alert>
-                                </div>
-
-                                <button type="submit" id="email-submit"
-                                        class="btn btn-primary pull-right">Guardar
-                                </button>
-
-                                <div ng-hide="account.isCollapsed">Guardado</div>
+                                </div>                                                            
+                                
                             </fieldset>
                         </form>
 
                     </div>
 
-                    <div  class="tab-pane text-style" id="history-tab">
+                    <div  class="tab-pane fade" id="history-tab">
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <ul class="nav nav-pills">

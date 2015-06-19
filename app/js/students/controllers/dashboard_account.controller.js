@@ -14,8 +14,8 @@
         .module('trulii.students.controllers')
         .controller('StudentAccountCtrl', StudentAccountCtrl);
 
-    StudentAccountCtrl.$inject = ['$timeout', 'student', 'Authentication', 'Error'];
-    function StudentAccountCtrl($timeout, student, Authentication, Error) {
+    StudentAccountCtrl.$inject = ['$timeout', 'student', 'Authentication', 'Error', 'Toast'];
+    function StudentAccountCtrl($timeout, student, Authentication, Error, Toast) {
 
         var vm = this;
 
@@ -27,6 +27,8 @@
 
         vm.changeEmail = _changeEmail;
         vm.changePassword = _changePassword;
+
+        vm.isSaving = false;
 
         activate();
 
@@ -40,6 +42,8 @@
 
             function fail(response){
                 _changeFail(response, vm.account_form_email);
+
+                vm.isSaving = false;
             }
         }
 
@@ -49,17 +53,23 @@
                 .then(success, fail);
 
             function success(response) {
-                console.log('Success changing password');
+                
+                vm.isSaving = false;
+                Toast.info("Password cambiado");
             }
 
             function fail(response){
                 _changeFail(response, vm.account_form_password);
+
+                vm.isSaving = false;
             }
         }
 
         function _changeSuccess(response) {
             Authentication.updateAuthenticatedAccount();
-            _toggleMessage();
+            
+            vm.isSaving = false;
+            Toast.info("Correo cambiado");
         }
 
         function _changeFail(response, form) {
@@ -67,14 +77,7 @@
             if (responseErrors) {
                 Error.form.add(form, responseErrors);
             }
-        }
-
-        function _toggleMessage() {
-            vm.isCollapsed = false;
-            $timeout(function () {
-                vm.isCollapsed = true;
-            }, 1000);
-        }
+        }        
 
         function getOrders(){
             student.getOrders().then(success, error);

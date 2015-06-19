@@ -14469,8 +14469,9 @@ tags-input input {
   color: white;
   background-color: #009999;
   border-bottom: 1px solid #00b3b3;
-  text-transform: uppercase;
   transition: 0.3s background-color ease;
+  cursor: pointer;
+  font-size: 1.1em;
 }
 .card__lateral-menu__item.active {
   color: #00b3b3;
@@ -14481,6 +14482,9 @@ tags-input input {
   color: #00b3b3;
 }
 .card__lateral-menu__item * {
+  color: white;
+}
+.card__lateral-menu__item *:hover {
   color: white;
 }
 .card__lateral-menu__title {
