@@ -28,6 +28,9 @@
         vm.setCurrentCity = _setCurrentCity;
         vm.isStudent = Authentication.isStudent;
         vm.isOrganizer = Authentication.isOrganizer;
+        /*vm.options ={
+            'actions': ["view", "edit", "manage", "contact", "republish"]
+        };*/
 
         activate();
 

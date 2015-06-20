@@ -18,6 +18,9 @@
 
         var vm = this;
         vm.activities = null;
+        vm.options = {
+            actions: ["view"]
+        };
 
         activate();
 

@@ -30,6 +30,9 @@
         Student.prototype = {
 
             setData : function (studentData) {
+
+
+                this.birth_date = new Date(studentData.birth_date);
                 angular.extend(this, studentData);
                 if(!this.photo) {
                     this.photo = defaultPicture;
@@ -39,8 +42,6 @@
             load : function (id) {
                 var scope = this;
                 return $http.get(api.student(id)).success(function (studentData) {
-                    console.log('response');
-                    console.log(studentData);
                     scope.setData(studentData);
                 });
             },
@@ -53,7 +54,7 @@
                         'last_name': scope.user.last_name,
                         'city': scope.user.city
                     },
-                    'birth_date': scope.birth_date,
+                    'birth_date': scope.birth_date.valueOf(),
                     'gender': scope.gender,
                     'bio' : scope.bio
                 };

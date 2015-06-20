@@ -12,9 +12,11 @@
         .module('trulii.students.controllers')
         .controller('StudentProfileCtrl', StudentProfileCtrl);
 
-    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student', 'Toast'];
 
-    function StudentProfileCtrl(datepickerPopupConfig, Error, student, Toast) {
+    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast'];
+
+    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities) {
+
 
         var vm = this;
 
@@ -50,6 +52,7 @@
 
         function updateProfile(){
             Error.form.clear(vm.profile_form);
+            console.log("2222",vm.student);
             vm.student.update_profile().then(updateSuccess, updateError);
 
             function updateSuccess(){

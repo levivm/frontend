@@ -128,9 +128,8 @@
             vm.save_activity = createActivity;
             vm.creating = true;            
             vm.activity.certification = true;
-            vm.selected_level = vm.activity_levels[0];
-
             _setPreSaveInfo(presaveInfo);
+            vm.selected_level = vm.activity_levels[0];
         }
 
         function _setPreSaveInfo(data) {

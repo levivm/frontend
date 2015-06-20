@@ -96,7 +96,13 @@
                         </div>
                     </div>
                 </div>
-                
+
+                <div class="row">
+                    <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
+                              ng-repeat="activity in activities.activities track by activity.id"
+                              data-activity="activity" data-options="{{activities.options}}"></trulii-activity-item>
+                </div>
+
             </div>
             <div class="tab-pane" id="history-tab">
                 <div class="row">
@@ -110,21 +116,9 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6" ng-repeat="activity in activities.activities track by activity.id">
-                        <div class="panel panel-default">
-                            <div>
-                                <img ng-src="{{activity.main_photo}}" alt="{{activity.title}}" class="img-responsive"/>
-                            </div>
-                            <div class="panel-body">
-                                <h3 ng-bind="activity.title"></h3>
-                                <div class="row text-right">
-                                    <div class="col-md-2 col-md-offset-10">
-                                        <a ui-sref="activities-detail({activity_id: {{activity.id}} })">Ver</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
+                              ng-repeat="activity in activities.activities track by activity.id"
+                              data-activity="activity" data-options="{{activities.options}}"></trulii-activity-item>
                 </div>
             </div>
         </div>
