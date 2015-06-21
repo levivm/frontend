@@ -77,65 +77,44 @@
         // }
 
         function _updateActivity() {
-            _clearErrors();
+            Error.form.clear(vm.activity_instructors_forms);
             vm.activity.update()
-                .then(_updateSuccess, _errored);
+                .then(success, error);
 
             vm.isSaving = true;
-        }
 
-        function _updateSuccess(response) {
-            vm.isCollapsed = false;
-            angular.extend(activity, vm.activity);
-            organizer.reload().then(_setInstructors);
-            _onSectionUpdated();
+            function success(response) {
+                vm.isCollapsed = false;
+                angular.extend(activity, vm.activity);
+                organizer.reload().then(_setInstructors);
+                _onSectionUpdated();
 
-            vm.isSaving = false;
+                vm.isSaving = false;
 
-            Toast.generics.weSaved();
-        }
+                Toast.generics.weSaved();
+            }
 
-        function _clearErrors() {
-            _initialize_errors_array();
-        }
+            function error(responseErrors) {
+                Error.form.add(vm.activity_instructors_forms, responseErrors);
 
-        function _addError(index, field, message) {
-            vm.instructors_errors[index][field] = message.pop();
-        }
+                _onSectionUpdated();
 
-        function _errored(response) {
-            var errors = response.data.instructors;
-            _.each(errors, function (error_dict, index) {
-                _.each(error_dict, function (message, field) {
-                    _addError(index, field, message);
-                });
-            });
+                vm.isSaving = false;
+            }
 
-            _onSectionUpdated();
 
-            vm.isSaving = false;
         }
 
         function _setInstructors() {
             vm.instructors = vm.activity.instructors;
-            // vm.typeahead_instructors = _.filter(organizer.instructors, function (instructor) {
-            //     return !_.findWhere(vm.instructors, instructor);
-            // });
         }
 
         function _onSectionUpdated() {
             activity.updateSection('instructors');
         }
 
-        function _initialize_errors_array() {
-            vm.instructors_errors = [];
-            for (var i = 0; i < organizer.max_allowed_instructors; i++) {
-                vm.instructors_errors.push({});
-            }
-        }
 
         function initialize() {
-            _initialize_errors_array();
             
             vm.isSaving = false;
 
