@@ -24,25 +24,26 @@
                     <label>{{vm.activity.instructors.length}}</label>
                             <span class="counter-input__right-button" ng-click="vm.addInstructor()"
                                 ng-class="{'counter-input__right-button--disabled': vm.activity.instructors.length >= vm.maxAllowedInstructors}"></span>
-                        </div>        
-                    </div>                    
-                
-                    <div class="card-list-item" ng-repeat="instructor in vm.activity.instructors track by $index" trulii-expandable-content>
-                        <h2>
-                            Instructor {{$index + 1}}
-                        </h2>
+                </div>        
+            </div>                    
 
-                        <div class="form-group" trulii-input-errors-control="full_name">
-                            <label for="full_name" class="control-label">Nombre</label>
-                            <input type="text" id="full_name" name="full_name"
-                                   ng-model="instructor.full_name"
-                                   class="form-control">
-                        </div>
-                        <div class="form-group" trulii-input-errors-control="bio">
-                            <label for="bio" class="control-label">Bio</label>
-                            <textarea id="bio" class="form-control" name="bio"
-                                      ng-model='instructor.bio'>
-                            </textarea>
+                
+            <div class="card-list-item" ng-repeat="instructor in vm.activity.instructors track by $index" trulii-expandable-content>
+                <h2>
+                    Instructor {{$index + 1}}
+                </h2>
+
+                <div class="form-group" trulii-input-errors-control="full_name">
+                    <label for="full_name" class="control-label">Nombre</label>
+                    <input type="text" id="full_name" name="full_name"
+                           ng-model="instructor.full_name"
+                           class="form-control">
+                </div>
+                <div class="form-group" trulii-input-errors-control="bio">
+                    <label for="bio" class="control-label">Bio</label>
+                    <textarea id="bio" class="form-control" name="bio"
+                              ng-model='instructor.bio'>
+                    </textarea>
                 </div>
                 <div class="form-group" trulii-input-errors-control="website">
                     <label for="website" class="control-label">Website</label>
@@ -53,12 +54,8 @@
                 <alert type="danger" ng-show="vm.instructors_errors[$index].delete_instructor">
                     {{vm.instructors_errors[$index].delete_instructor}}
                 </alert>
-                    <div class="card-footer">
-                        <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>       
-                    </div>
-            </form>
-
-            <div class="card-footer" ng-show="vm.activity.instructors.length > 0">
+            </div>
+            <div class="card-footer">
                 <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
             </div>
         </form>
