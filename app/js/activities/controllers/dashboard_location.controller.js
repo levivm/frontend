@@ -34,7 +34,7 @@
             Error.form.clear(vm.activity_location_form);
             
             _setActivityPos();
-            vm.activity.update()
+            vm.activity.update_location()
                 .then(updateSuccess, errored);
 
             function updateSuccess(response) {
