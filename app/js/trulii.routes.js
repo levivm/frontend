@@ -281,8 +281,7 @@
 
             .state('organizer-profile', {
                 url: '/organizers/{organizer_id:int}/profile',
-                controller: 'OrganizerProfileController',
-                controllerAs: 'vm',
+                controller: 'OrganizerProfileController as profile',
                 templateUrl: 'partials/organizers/profile.html',
                 resolve: {
                     organizer: getOrganizer,

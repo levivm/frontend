@@ -1,37 +1,53 @@
 <div class="activity-item">
     <div class="activity-header">
-        <img class="activity-cover" ng-src="{{activity.main_photo}}" alt="{{activity.title}}"/>
+        <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
+            <img class="activity-cover" ng-src="{{activity.main_photo}}" alt="{{activity.title}}"/>
+        </a>
+        <span ng-if="activity.closest_chronogram.session_price"
+              class="activity-price">{{activity.closest_chronogram.session_price | currency}}</span>
     </div>
-    <div class="panel-body">
+    <div class="activity-body">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <a ui-sref="organizer-profile({organizer_id: {{activity.organizer.id}} })">
-                    <img class="img-responsive img-circle" ng-src="{{activity.organizer.photo}}"
-                         alt="{{activity.organizer.full_name}}"/>
+                    <img class="organizer-profile-pic" ng-src="{{activity.organizer.photo}}"
+                         alt="{{activity.organizer.name}}"/>
                 </a>
             </div>
-            <div class="col-md-8 text-right">
-                <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
-                    <h3 ng-bind="activity.title"></h3>
-                </a>
+            <div class="col-md-8 col-md-offset-4">
+                <div class="activity-title">
+                    <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
+                        <span ng-bind="activity.title"></span>
+                    </a>
+                </div>
+                <div class="organizer-name">
+                    <a ui-sref="organizer-profile({organizer_id: {{activity.organizer.id}} })">
+                        <span ng-bind="activity.organizer.name"></span>
+                    </a>
+                </div>
             </div>
         </div>
+        <br/>
         <div class="row">
             <div class="col-md-6">
                 <div class="text-right">
                     <small>
-                        <strong>
-                            <span class="text-muted">En 1 día</span>
-                            <span>(22 Sep)</span>
-                        </strong>
+                            <div ng-if="activity.days_to_closest < 0">
+                                <span class="text-muted">Espere nuevas fechas </span>
+                            </div>
+                            <div ng-if="activity.days_to_closest >= 0">
+                                <span ng-if="activity.days_to_closest === 0" class="text-muted">Hoy </span>
+                                <span ng-if="activity.days_to_closest > 0" class="text-muted">En {{activity.days_to_closest}} día </span>
+                                <span ng-if="activity.closest_date">({{ activity.closest_date | date: 'dd MMM' }})</span>
+                            </div>
                     </small>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="pull-right">
-                    <i class="mdi-action-grade"
+                <div class="rating-container">
+                    <i class="rating-star mdi-action-grade"
                        ng-repeat="star in activity.rating track by star"
-                       ng-style="getStarStyle(star)"></i>
+                       ng-style="getStarStyle($index)"></i>
                 </div>
             </div>
         </div>

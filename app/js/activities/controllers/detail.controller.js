@@ -20,12 +20,17 @@
         .controller('ActivityDetailController', ActivityDetailController);
 
     ActivityDetailController.$inject = ['$state', '$window', 'uiGmapGoogleMapApi', 'Toast',
-        'cities', 'activity', 'calendars'];
+        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover'];
 
-    function ActivityDetailController($state, $window, uiGmapGoogleMapApi, Toast, cities, activity, calendars) {
+    function ActivityDetailController($state, $window, uiGmapGoogleMapApi, Toast,
+                                      cities, activity, calendars, defaultPicture, defaultCover) {
         var vm = this;
 
-        vm.city = _.result(_.findWhere(cities, {id: activity.location.city}), 'name');
+        if(activity.location && activity.location.city){
+            vm.city = _.result(_.findWhere(cities, {id: activity.location.city}), 'name');
+        } else {
+            vm.city = null;
+        }
         vm.calendars = calendars;
         vm.calendar = calendars[0];
         vm.activity = activity;
@@ -36,6 +41,7 @@
         vm.changeState = changeState;
         vm.changeCalendarSelected = changeCalendarSelected;
         vm.getOrganizerPhoto = getOrganizerPhoto;
+        vm.getCoverStyle = getCoverStyle;
         vm.getMapStyle = getMapStyle;
         vm.getStarStyle = getStarStyle;
         vm.isSelectedCalendarFull = isSelectedCalendarFull;
@@ -66,8 +72,17 @@
             if(!!vm.organizer.photo){
                 return vm.organizer.photo;
             } else {
-                return "css/img/avatar-test.jpg";
+                return defaultPicture;
             }
+        }
+
+        function getCoverStyle(){
+            //return {
+            //    'background': "linear-gradient(rgba(255, 0, 0, 0.45),rgba(255, 0, 0, 0.45))," +
+            //    "url('" + vm.activity.main_photo + "');"
+            //};
+            return { 'background-image': 'url('+vm.activity.photos[0].photo+')',
+            'background-repeat': 'no-repeat'};
         }
 
         function getMapStyle(){
@@ -107,6 +122,23 @@
             });
         }
 
+        function mapMainPicture(activity){
+            if(activity.photos.length > 0){
+                angular.forEach(activity.photos, function(photo, index, array){
+                    if(photo.main_photo){
+                        activity.main_photo = photo.photo;
+                    }
+
+                    if( index === (array.length - 1) && !activity.main_photo){
+                        activity.main_photo = array[0].photo;
+                    }
+                });
+            } else {
+                activity.main_photo = defaultCover;
+            }
+            return activity;
+        }
+
         function setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
@@ -119,6 +151,7 @@
 
             setStrings();
             setUpMaps();
+            vm.activity = mapMainPicture(vm.activity);
             vm.activity.rating = [1, 2, 3, 4, 5];
 
             if(!(vm.activity.published)){

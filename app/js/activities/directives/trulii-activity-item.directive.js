@@ -38,15 +38,7 @@
 
 
                 function getStarStyle(star){
-                    if(star <= 4){
-                        return {
-                            'color': 'yellow'
-                        };
-                    } else {
-                        return {
-                            'color': 'white'
-                        }
-                    }
+                    return (star < 4? "rating-star": "rating-star-empty");
                 }
 
                 function hasAction(actionQuery){
@@ -79,7 +71,6 @@
 
                 function initialize(){
                     setStrings();
-                    console.log('directive activity:', scope.activity);
                     if(attrs.options){
                         options = JSON.parse(attrs.options);
                         if(options.actions){
@@ -87,15 +78,15 @@
                         } else {
                             scope.actions = null;
                         }
-                        console.log('directive actions:', scope.actions);
                     }
-
-                    scope.activity = mapMainPicture(scope.activity);
                     scope.activity.rating = [1, 2, 3, 4, 5];
                     var organizer = scope.activity.organizer;
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
+                    mapMainPicture(scope.activity);
+                    mapClosestCalendar(scope.activity);
+                    console.log('directive activity:', scope.activity);
 
                     function mapMainPicture(activity){
                         if(activity.photos.length > 0){
@@ -123,6 +114,32 @@
                                 return null;
                             }
                         });
+                    }
+
+                    function mapClosestCalendar(activity){
+                        var today = Date.now();
+                        activity.days_to_closest = null;
+
+                        if(activity.chronograms){
+                            activity.chronograms.forEach(function(chronogram){
+                                //console.log('activity.closest_date:', activity.closest_date);
+                                //console.log('chronogram.initial_date:', chronogram.initial_date);
+                                //console.log('condition:', !activity.closest_date || chronogram.initial_date < activity.closest_date);
+                                if(!activity.closest_date || chronogram.initial_date < activity.closest_date){
+                                    activity.closest_date = chronogram.initial_date;
+                                    activity.days_to_closest = Math.floor((activity.closest_date - today) / (1000*60*60*24));
+                                    //console.log('today:', today, 'initial_date:', chronogram.initial_date,
+                                    //    'diff ms:', activity.closest_date - today, 'days:', activity.days_to_closest);
+                                }
+                                activity.closest_chronogram = chronogram;
+                            });
+                        }
+
+                        //console.log('activity.days_to_closest:', activity.days_to_closest, !activity.days_to_closest);
+                        if(activity.days_to_closest === null){
+                            activity.days_to_closest = -1;
+                        }
+                        return activity;
                     }
                 }
             }
