@@ -2,7 +2,15 @@
 
 @component-class: gallery-grid;
 
+@grid-spacing: 4px;
+
 .@{component-class}{
+
+    [class*=col-]{
+        padding-right: 0px;
+        padding-left: @grid-spacing;
+        padding-bottom: @grid-spacing - 2px;
+    }
 
     &--fixed{
         &:extend(.center-childs);    
@@ -20,6 +28,68 @@
         display: inline-block;
         vertical-align: top;
         margin: 0 2px 2px 0;
+        padding: 0;
+        height: 12em;
+        width: 100%;
+        position: relative;
+        background-color: @secondary;
+
+        &__caption{            
+            color: white;
+            height: 45%;
+            background: rgba(0,0,0,0.7);
+            width: 100%;            
+            position: absolute;
+            bottom: 0;
+            padding: .5em 1em;
+            transition: .5s background ease;            
+
+            &__title{
+                display: block;
+                font-size: 1.3em;
+                font-weight: bold;
+                width: 100%;
+                .truncate();                
+            }
+
+            &__complement{
+                display: block;
+                font-size: .9em;                                
+                .truncate();                
+            }
+
+            &__organizer{
+                width: 4em;
+                height: 4em;
+                background: gray;
+                border-radius: 50%;
+                position: absolute;
+                right: 10px;
+                top: -40%;                
+            }
+
+            &__actions{
+                position: absolute;
+                bottom: 0px;
+                right: 0px;
+                margin-right: 1em;
+                margin-bottom: .4em;
+                font-size: .8em;
+            }
+
+        }
+
+        &:hover{
+
+            .@{component-class}__photo__caption{
+                background: darken(@secondary, 5%);
+                cursor: pointer;
+
+                &__title{
+                    text-decoration: underline;
+                }
+            }
+        }
         
     }
     
