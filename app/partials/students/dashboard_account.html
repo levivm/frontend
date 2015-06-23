@@ -22,7 +22,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-8 col-md-offset-3">
+            <div class="col-md-9 col-md-offset-3">
                 <div class="card-body tab-content">                    
                     
                     <div  class="tab-pane text-style active fade  in" id="change-password-tab">
@@ -142,7 +142,9 @@
                                                     <input class="form-control floating-label" type="text"
                                                            ng-model="account.orderQuery"
                                                            placeholder="Buscar por número de orden, pago, detalle, etc.">
-                                                    <span class="input-group-addon"><i class="mdi-action-search"></i></span>
+                                                    <span class="input-group-addon">
+                                                        <!-- <i class="mdi-action-search"></i> -->
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -150,15 +152,15 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive">
-                                                <table class="table table-striped table-hover">
+                                                <table class="table table-hover">
                                                     <tr class="text-center">
-                                                        <th class="text-center">#Orden</th>
-                                                        <th class="text-center">Actividad</th>
-                                                        <th class="text-center">Pago</th>
-                                                        <th class="text-center">Detalle</th>
-                                                        <th class="text-center">Fecha</th>
-                                                        <th class="text-center">Total</th>
-                                                        <th class="text-center"></th>
+                                                        <th class="">Orden</th>
+                                                        <th class="">Actividad</th>
+                                                        <th class="">Pago</th>
+                                                        <th class="">Detalle</th>
+                                                        <th class="">Fecha</th>
+                                                        <th class="">Total</th>
+                                                        <th class=""></th>
                                                     </tr>
                                                     <tr ng-repeat="order in account.orders track by order.id | filter:account.orderQuery">
                                                         <td>
@@ -187,7 +189,7 @@
                                                             <span ng-bind="order.amount | currency"></span>
                                                         </td>
                                                         <td>
-                                                            <button class="btn btn-info btn-xs pull-right">Reembolso</button>
+                                                            <button class="btn btn-xs btn-bgsecondary pull-right no-margin">Reembolsar</button>
                                                         </td>
                                                     </tr>
                                                 </table>

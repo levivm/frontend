@@ -13,7 +13,7 @@
                         <a > <i class="mdi-action-https"></i>  Actuales</a>
                     </li>
                     <li class="card__lateral-menu__item" data-toggle="tab" data-target="#history-tab">
-                        <a> <i class="mdi-communication-email"></i> Anteiores</a>
+                        <a> <i class="mdi-communication-email"></i> Anteriores</a>
                     </li>
                     
                 </ul>
@@ -28,11 +28,11 @@
                             Revisa las actividades que estás cursando actualmente o que inician próximamente.
                         </h4>
                         <div class="row gallery-grid separate-above">
-                            <div class="col-md-6" 
+                            <div class="col-md-12" 
                                     ng-repeat="activity in activities.activities track by activity.id"
                                     
                                     >
-                                <a ui-sref="activities-detail({activity_id: {{activity.id}} })" class="gallery-grid__photo img-fit" style="background: url('{{activity.main_photo}}')" alt="{{activity.title}}">
+                                <a ui-sref="activities-detail({activity_id: {{activity.id}} })" class="gallery-grid__photo gallery-grid__photo--grand img-fit" style="background: url('{{activity.main_photo}}')" alt="{{activity.title}}">
                                     <div class="gallery-grid__photo__caption">
                                         <span class="gallery-grid__photo__caption__title" ng-bind="::activity.title"></span>
                                         <span class="gallery-grid__photo__caption__complement" ng-bind="::activity.organizer.name"></span>

@@ -37,12 +37,13 @@
         &__caption{            
             color: white;
             height: 45%;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.75);
             width: 100%;            
             position: absolute;
             bottom: 0;
             padding: .5em 1em;
-            transition: .5s background ease;            
+            transition: .5s background ease; 
+            .font-title;                       
 
             &__title{
                 display: block;
@@ -77,6 +78,28 @@
                 font-size: .8em;
             }
 
+        }
+
+        &--grand{
+            height: 16em;
+            margin-bottom: 1em;
+
+            .@{component-class}__photo{                
+
+                &__caption{
+                    &__organizer{
+                        width: 6em;
+                        height: 6em;
+                    }
+
+                    &__title{
+                        font-size: 1.8em;
+                    }
+                }
+    
+            }
+
+            
         }
 
         &:hover{

@@ -12469,6 +12469,9 @@ hr.on-light {
 .text-color-primary {
   color: #ffcc33;
 }
+.font-title {
+  font-family: 'Montserrat', sans-serif;
+}
 .img-cover-preview {
   width: 100%;
   height: 15em;
@@ -13705,7 +13708,7 @@ tags-input input {
   background: #008f8f !important;
 }
 .btn-bgsecondary {
-  background-color: white;
+  background-color: white !important;
   color: #00b3b3 !important;
 }
 .btn.btn-less {
@@ -13857,6 +13860,17 @@ tags-input input {
   width: 100%;
   height: auto;
   border-radius: 50%;
+}
+th {
+  border-top: 0px solid !important;
+  font-weight: normal;
+  color: #777777;
+  text-align: left;
+}
+th,
+td {
+  font-size: .9em;
+  padding: 15px 8px !important;
 }
 /*
 	Code from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss
@@ -14763,12 +14777,13 @@ button.toast-close-button {
 .gallery-grid__photo__caption {
   color: white;
   height: 45%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.75);
   width: 100%;
   position: absolute;
   bottom: 0;
   padding: .5em 1em;
   transition: .5s background ease;
+  font-family: 'Montserrat', sans-serif;
 }
 .gallery-grid__photo__caption__title {
   display: block;
@@ -14807,6 +14822,17 @@ button.toast-close-button {
   margin-right: 1em;
   margin-bottom: .4em;
   font-size: .8em;
+}
+.gallery-grid__photo--grand {
+  height: 16em;
+  margin-bottom: 1em;
+}
+.gallery-grid__photo--grand .gallery-grid__photo__caption__organizer {
+  width: 6em;
+  height: 6em;
+}
+.gallery-grid__photo--grand .gallery-grid__photo__caption__title {
+  font-size: 1.8em;
 }
 .gallery-grid__photo:hover .gallery-grid__photo__caption {
   background: #009999;
