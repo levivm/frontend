@@ -15,7 +15,7 @@
 
     StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast'];
 
-    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities) {
+    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast) {
 
 
         var vm = this;
@@ -52,7 +52,6 @@
 
         function updateProfile(){
             Error.form.clear(vm.profile_form);
-            console.log("2222",vm.student);
             vm.student.update_profile().then(updateSuccess, updateError);
 
             function updateSuccess(){
@@ -72,7 +71,6 @@
             }
             
         }
-
 
 
         function selectGender(gender){
