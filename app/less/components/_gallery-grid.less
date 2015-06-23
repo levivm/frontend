@@ -29,13 +29,26 @@
         vertical-align: top;
         margin: 0 2px 2px 0;
         padding: 0;
-        height: 12em;
+        height: 16em;
         width: 100%;
         position: relative;
         background-color: @secondary;
 
         &__price{
-            
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: fadeout(@primary, 10%);
+            color: @gray;
+            padding: .1em 1em;
+            font-size: 1.25em;
+            font-weight: bold;
+
+            &:before{
+                content: "$";
+                color: darken(@primary, 25%);
+                display: inline-block;
+            }
         }
 
         &__caption{            
@@ -53,14 +66,14 @@
                 display: block;
                 font-size: 1.3em;
                 font-weight: bold;
-                width: 100%;
-                .truncate();                
+                width: 90%;
+                //.truncate();                
             }
 
             &__complement{
                 display: block;
                 font-size: .9em;                                
-                .truncate();                
+                //.truncate();                
             }
 
             &__organizer{
@@ -69,8 +82,8 @@
                 background: gray;
                 border-radius: 50%;
                 position: absolute;
-                right: 10px;
-                top: -40%;                
+                right: 1em;
+                top: -28%;                
             }
 
             &__actions{
@@ -82,23 +95,38 @@
                 font-size: .8em;
             }
 
+            .btn{
+                background: transparent !important;
+                color: @primary !important;
+                font-size: 0.9em;
+                padding: 5px;
+                margin: 0px;
+
+                &:hover{
+                    background-color: white !important;
+                    color: darken(@secondary, 10%) !important;
+                }
+            }
+
         }
 
         &--grand{
-            height: 16em;
+            height: 18em;
             margin-bottom: 1em;
 
             .@{component-class}__photo{                
 
                 &__caption{
+                    font-size: 1.25em;
+
                     &__organizer{
-                        width: 6em;
-                        height: 6em;
+                        width: 8rem;
+                        height: 8rem;
                     }
 
-                    &__title{
-                        font-size: 1.8em;
-                    }
+                    //&__title{
+                    //    font-size: 1.8em;
+                    //}
                 }
     
             }

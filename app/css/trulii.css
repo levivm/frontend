@@ -13893,6 +13893,9 @@ td {
   position: relative;
   top: 0 !important;
 }
+.ranking-star__star--empty {
+  color: rgba(255, 204, 51, 0.2);
+}
 /*
 	Code from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss
 */
@@ -14790,10 +14793,25 @@ button.toast-close-button {
   vertical-align: top;
   margin: 0 2px 2px 0;
   padding: 0;
-  height: 12em;
+  height: 16em;
   width: 100%;
   position: relative;
   background-color: #00b3b3;
+}
+.gallery-grid__photo__price {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: rgba(255, 204, 51, 0.9);
+  color: #555555;
+  padding: .1em 1em;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.gallery-grid__photo__price:before {
+  content: "$";
+  color: #b38600;
+  display: inline-block;
 }
 .gallery-grid__photo__caption {
   color: white;
@@ -14810,22 +14828,11 @@ button.toast-close-button {
   display: block;
   font-size: 1.3em;
   font-weight: bold;
-  text-overflow: ellipsis;
-  display: inline-block;
-  vertical-align: top;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 100%;
+  width: 90%;
 }
 .gallery-grid__photo__caption__complement {
   display: block;
   font-size: .9em;
-  text-overflow: ellipsis;
-  display: inline-block;
-  vertical-align: top;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 100%;
 }
 .gallery-grid__photo__caption__organizer {
   width: 4em;
@@ -14833,8 +14840,8 @@ button.toast-close-button {
   background: gray;
   border-radius: 50%;
   position: absolute;
-  right: 10px;
-  top: -40%;
+  right: 1em;
+  top: -28%;
 }
 .gallery-grid__photo__caption__actions {
   position: absolute;
@@ -14844,16 +14851,27 @@ button.toast-close-button {
   margin-bottom: .4em;
   font-size: .8em;
 }
+.gallery-grid__photo__caption .btn {
+  background: transparent !important;
+  color: #ffcc33 !important;
+  font-size: 0.9em;
+  padding: 5px;
+  margin: 0px;
+}
+.gallery-grid__photo__caption .btn:hover {
+  background-color: white !important;
+  color: #007f80 !important;
+}
 .gallery-grid__photo--grand {
-  height: 16em;
+  height: 18em;
   margin-bottom: 1em;
 }
-.gallery-grid__photo--grand .gallery-grid__photo__caption__organizer {
-  width: 6em;
-  height: 6em;
+.gallery-grid__photo--grand .gallery-grid__photo__caption {
+  font-size: 1.25em;
 }
-.gallery-grid__photo--grand .gallery-grid__photo__caption__title {
-  font-size: 1.8em;
+.gallery-grid__photo--grand .gallery-grid__photo__caption__organizer {
+  width: 8rem;
+  height: 8rem;
 }
 .gallery-grid__photo:hover .gallery-grid__photo__caption {
   background: #009999;
