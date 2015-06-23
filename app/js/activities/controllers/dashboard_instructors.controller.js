@@ -95,7 +95,7 @@
             }
 
             function error(responseErrors) {
-                Error.form.add(vm.activity_instructors_forms, responseErrors);
+                Error.form.addArrayErrors(vm.activity_instructors_forms, responseErrors['instructors']);
 
                 _onSectionUpdated();
 

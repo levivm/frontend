@@ -83,12 +83,12 @@
 
         <div class="row-fluid clearfix separate-below">
 
-            <div class=" col-md-offset-3 col-md-6">
+            <div class="form-group col-md-offset-3 col-md-6" trulii-input-errors-control="date_{{$index}}">
                 <label class="control-label">Día de la sesión</label>
 
                 <input type="text" class="form-control" datepicker-popup="{{vm.format}}"
-                       ng-model="session.date" is-open="session.openDate" min-date="session.minDate"
-                       max-date="session.maxDate" datepicker-options="vm.dateOptions" close-text="Close"
+                       ng-model="session.date" is-open="session.openDate" name="date_{{$index}}" min-date="session.minDate"
+                       max-date="session.maxDate" id="date" datepicker-options="vm.dateOptions" close-text="Close"
                        ng-change="vm.calendar.changeSessionDate($index,session)"
                        ng-click="vm.calendar.openSessionDate($event,session)"
                     />
@@ -98,15 +98,16 @@
 
         <div class="row-fluid clearfix">            
 
-            <div class="col-md-6">
+            <div class="form-group col-md-6" trulii-input-errors-control="start_time_{{$index}}">
                 <label class="control-label">Hora de inicio:</label>
-                <timepicker class="timepicker" ng-model="session.start_time" ng-change="vm.calendar.changeStartTime(session)"
+                <timepicker name="start_time_{{$index}}"  class="timepicker" ng-model="session.start_time" ng-change="vm.calendar.changeStartTime(session)"
                             hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
                 </timepicker>
+
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" trulii-input-errors-control="end_time_{{$index}}">
                 <label class="control-label">Hora de fin:</label>
-                <timepicker class="timepicker" ng-model="session.end_time" ng-change="vm.calendar.changeEndTime(session)"
+                <timepicker class="timepicker" name="end_time_{{$index}}" ng-model="session.end_time" ng-change="vm.calendar.changeEndTime(session)"
                             hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
                 </timepicker>
             </div>            

@@ -53,8 +53,11 @@
                     session.date = new Date(session.date);
                     that.changeSessionDate(index, session);
 
+                    // session.end_time   = null;
+                    // session.start_time = null;
                     session.end_time = new Date(session.end_time);
                     session.start_time = new Date(session.start_time);
+
 
                 });
 
@@ -65,7 +68,6 @@
                 var that = this;
                 that.activity = activity_id;
 
-                console.log("activity_id ", activity_id);
                 // serverConf.url+'/api/activities/'+activity_id+'/calendar/'
                 return $http.get(api.calendars(activity_id))
                     .then(function (response) {
@@ -78,17 +80,8 @@
             },
             create : function () {
                 var activity_id = this.activity;
-                var _initial_date = this.initial_date;
-                var _closing_sale = this.closing_sale;
 
-                this.initial_date = this.initial_date.valueOf();
-                this.closing_sale = this.closing_sale.valueOf();
-
-                angular.forEach(this.sessions, function (session) {
-                    session.date = session.date.valueOf();
-                    session.end_time = session.end_time.valueOf();
-                    session.start_time = session.start_time.valueOf();
-                });
+                this.setToSave();
 
                 console.log(this);
                 var that = this;
@@ -136,8 +129,6 @@
             changeStartDate : function () {
 
                 var initial_date = this.initial_date;
-                //this.initial_date = initial_date.valueOf ? initial_date.valueOf() : initial_date;
-                //this.initial_date = this.initial_date;
 
                 if (this.initial_date > this.closing_sale)
                     this.closing_sale = this.initial_date;
@@ -146,7 +137,6 @@
             changeCloseDate : function () {
 
                 var closing_sale = this.closing_sale;
-                //this.closing_sale = closing_sale.valueOf ? closing_sale.valueOf() : closing_sale;
 
                 if (this.initial_date > this.closing_sale)
                     this.closing_sale = this.initial_date;
@@ -235,6 +225,9 @@
             },
             changeStartTime : function (session) {
 
+                session.end_time = new Date(session.end_time);
+                session.start_time = new Date(session.start_time);
+
                 var start_time = session.start_time.getHours();
                 var end_time = session.end_time.getHours();
 
@@ -246,6 +239,9 @@
 
             },
             changeEndTime : function (session) {
+
+                session.end_time = new Date(session.end_time);
+                session.start_time = new Date(session.start_time);
 
                 var start_time = session.start_time.getHours();
                 var end_time = session.end_time.getHours();

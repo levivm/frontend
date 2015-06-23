@@ -133,8 +133,8 @@
 
     function _setOrganizerPos(){
       vm.organizer.location.point = [];
-      vm.organizer.location.point[1] = vm.marker.coords.latitude;
-      vm.organizer.location.point[0] = vm.marker.coords.longitude;
+      vm.organizer.location.point[0] = vm.marker.coords.latitude;
+      vm.organizer.location.point[1] = vm.marker.coords.longitude;
     }
 
 
