@@ -1,3 +1,5 @@
+@import url('../_trulii-variables');
+
 .activity-item {
   height: 300px;
   &:extend(.panel);
@@ -8,6 +10,7 @@
     min-height: 50%;
     max-height: 50%;
     overflow: hidden;
+    position: relative;
 
 
     .activity-cover{
@@ -15,13 +18,69 @@
       //height:auto;
       vertical-align:top;
     }
+
+    .activity-price {
+      position: absolute;
+      bottom: 16px;
+      right: 0;
+      padding: 8px;
+      background-color: fade(@primary, 80%);
+      color: @darkbg-text;
+      font-weight: 500;
+    }
   }
 
   .activity-body{
+    &:extend(.panel-body);
+    position: relative;
+    padding-top: 0;
 
+    .organizer-profile-pic {
+      border-radius: 50%;
+      position: absolute;
+      top: -25px;
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    .rating-container {
+      float: right;
+
+      .rating-star {
+        font-size: 18px;
+        color: @primary;
+
+        &-empty{
+          color: silver;
+        }
+      }
+    }
   }
 
   .activity-footer{
+    &:extend(.panel-footer);
+  }
 
+  .activity-title {
+    &:extend(h5);
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-weight: 600;
+
+    a {
+      color: @lightbg-text;
+      text-decoration: none;
+    }
+  }
+
+  .organizer-name {
+    &:extend(.activity-title);
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    a {
+      color: @text-muted;
+    }
   }
 }

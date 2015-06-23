@@ -1,5 +1,8 @@
 <div class="detail-cover-container">
-    <div class="detail-cover" ng-style="{ 'background-image': 'url('+detail.activity.photos[0].photo+')' }"></div>
+    <!--<div class="detail-cover" ng-style="detail.getCoverStyle()">-->
+    <div class="detail-cover">
+        <img ng-src="{{detail.activity.main_photo}}" alt="detail.activity.title"/>
+    </div>
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="row">

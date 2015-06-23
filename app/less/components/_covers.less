@@ -13,7 +13,14 @@
         height: 100%;
         top: 0;
         left: 0;
-        filter: blur(120px);
+        filter: blur(4px);
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            min-height: 280px;
+            height: auto;
+        }
     }
 
     .detail-organizer {
@@ -40,6 +47,6 @@
     }
 
     * {
-        color: @body-bg;
+        color: @lightbg-text;
     }
 }
