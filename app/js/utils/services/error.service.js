@@ -28,7 +28,8 @@
         var service = {
             form: {
                 clear: clearErrors,
-                add: addErrors
+                add: addErrors,
+                addArrayErrors:addArrayErrors
             },
             session: {
                 process: processSessionErrors
@@ -40,25 +41,21 @@
         function clearErrors(form) {
             form.$setPristine();
             
-            // form.$valid = true;
         }
 
         function addArrayErrors(form,responseErrors){
 
+            console.log("RESPONSE ERROR",responseErrors);
+            _.each(responseErrors, function (error_dict) {
 
-            // angular.forEach(responseErrors, function (fieldErrors, field) {
-            //     var message = fieldErrors[0];
-
-            //     // Error is unrelated to form fields
-            //     if (field === NON_FIELD_ERRORS) return;
-
-            //     // Process remaining form field errors
-            //     if (field in form){
-            //         form[field].error_message = message;
-            //         form[field].$setValidity(field, false);
-            //     }
-
-            // });
+                console.log(error_dict,"ERROOOOR DICT");
+                _.each(error_dict, function (message, field) {
+                    // console.log("message,field",message,field);
+                    console.log("FOOOORMM",form);
+                    form[field].error_message = message.pop();
+                    form[field].$setValidity(field, false);
+                });
+            });
 
         }
 
@@ -66,21 +63,6 @@
             
             // form.$valid = false;
             angular.forEach(responseErrors, function (fieldErrors, field) {
-
-                if (_.isArray(fieldErrors)){
-
-
-                    _.each(fieldErrors, function (error_dict) {
-
-                        _.each(error_dict, function (message, field) {
-                            console.log("message,field",message,field);
-                            form[field].error_message = message.pop();
-                            form[field].$setValidity(field, false);
-                        });
-                    });
-                    return
-
-                }
 
                 var message = fieldErrors[0];
 
