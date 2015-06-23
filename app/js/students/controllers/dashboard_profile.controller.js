@@ -15,7 +15,7 @@
 
     StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast'];
 
-    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities) {
+    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast) {
 
 
         var vm = this;
