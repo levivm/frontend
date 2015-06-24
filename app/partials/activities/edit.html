@@ -21,15 +21,47 @@
                     </ng-pluralize> -->
                 </div>
 
-                <div ng-show="pc.allow_publish">
-                    <input type="submit" id="submit" class="btn btn-primary" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
+                <div class="sidebar__bottom-action text-center bg-secondary" ng-show="pc.allow_publish">
+                    <strong>¡Estamos listos para publicar!</strong>
+
+                    <button class="btn btn-bgsecondary btn-raised" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
                            ng-show="pc.areAllStepsCompleted() && !pc.activity.published"
-                           ng-click="pc.publish_activity()"/>
+                           ng-click="pc.publish_activity()">
+                        <i class="glyphicon glyphicon-bullhorn"></i> Publicar
+                    </button>
+                    
                 </div>
+
                 <div ng-show="pc.allow_unpublish">
                     <input type="submit" id="submit" class="btn btn-primary" value="{{pc.strings.UNPUBLISH_ACTIVITY_LABEL}}"
                            ng-show="pc.activity.published" 
                            ng-click="pc.unpublish_activity()"/>
+                </div>
+                
+                <div class="sidebar__bottom-action text-center text-muted" ng-show="!pc.activity.published && pc.steps_left>0">
+                    <h4>
+                        
+                            <ng-pluralize count="pc.activity.steps_left"
+                                when="{
+                                    '0':'',
+                                    '1': 'Falta',
+                                    'other': 'Faltan'
+                                    }">
+                            </ng-pluralize>
+
+                            <strong class="bold-secondary">{{pc.steps_left}}</strong>
+
+                            <ng-pluralize count="pc.activity.steps_left"
+                                when="{
+                                    '0':'',
+                                    '1': 'paso',
+                                    'other': 'pasos'
+                                    }">
+                            </ng-pluralize>
+                        
+                    </h4>
+                    <p>Para publicar tu actividad</p>
+                    
                 </div>
             
             </nav>
