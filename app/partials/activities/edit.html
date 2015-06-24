@@ -11,15 +11,6 @@
                     </a>
 
                 </li>
-                <div>
-                    <!-- <ng-pluralize ng-show="!pc.activity.published && pc.steps_left>0" count="pc.activity.steps_left"
-                        when="{
-                            '0':'',
-                            '1': 'Te falta {{pc.steps_left}} paso para publicar',
-                            'other': 'Te faltan {{ pc.steps_left }} pasos para publicar'
-                            }">
-                    </ng-pluralize> -->
-                </div>
 
                 <div class="sidebar__bottom-action text-center bg-secondary" ng-show="pc.areAllStepsCompleted() && !pc.activity.published">
 
@@ -63,7 +54,7 @@
                     
                 </div>
                 
-                <div class="sidebar__bottom-action text-center text-muted" ng-show="!pc.activity.published && pc.steps_left>0">
+                <div class="sidebar__bottom-action text-center text-muted" ng-show="!pc.areAllStepsCompleted()">
                     <h4>
                         
                             <ng-pluralize count="pc.activity.steps_left"
