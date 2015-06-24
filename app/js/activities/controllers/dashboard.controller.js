@@ -41,7 +41,6 @@
         pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
 
 
-        activate();
         initialize();
 
         function areAllStepsCompleted() {
@@ -53,10 +52,8 @@
         }
 
         function getCheckStyle(section) {
-            // console.log("APPLYING STYLE",pc.isSectionCompleted(section),section);
 
             var sectionIndex = _.indexOf(ActivitySteps, section);     
-
             var classes = {};
             classes['bg-primary-' + (sectionIndex)] = pc.isSectionCompleted(section.name);
 
@@ -92,13 +89,9 @@
             })
         }
 
-
-        function activate() {
-
-        }
-
         function initialize() {
             pc.sidebar = true;
+            activity.updateAllSections();
         }
 
     }

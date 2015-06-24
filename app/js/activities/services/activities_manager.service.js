@@ -125,10 +125,10 @@
         function getActivity(activityId) {
             var deferred = $q.defer();
             var activity = _search(activityId);
+
             if (activity) {
                 deferred.resolve(activity);
             } else {
-
                 _load(activityId, deferred);
             }
 
@@ -171,6 +171,8 @@
 
         function _retrieveInstance(activityID, activityData) {
             var instance = _pool[activityID];
+
+
             if (instance) {
                 instance.setData(activityData);
             } else {
