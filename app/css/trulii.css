@@ -12487,6 +12487,13 @@ hr.on-light {
   color: #00b3b3;
   font-weight: bold;
 }
+.strong-text-muted,
+.card__lateral-menu__title {
+  font-weight: bold !important;
+  text-transform: uppercase;
+  color: black;
+  opacity: .4;
+}
 .img-cover-preview {
   width: 100%;
   height: 15em;
@@ -13438,8 +13445,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: #eeeeee;
   border-left: 5px solid #00b3b3;
   transition: ease all 0.1s;
+  color: #00b3b3;
 }
-.sidebar__item:hover {
+.sidebar__item:hover,
+.sidebar__item:focus {
   color: #00b3b3;
   text-decoration: none;
 }
@@ -13471,6 +13480,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 100%;
   height: 7em;
   padding: .5em;
+}
+.sidebar__bottom-action.ng-hide-remove,
+.sidebar__bottom-action.ng-enter {
+  transition: .3s ease all;
+  bottom: -7em;
+}
+.sidebar__bottom-action.ng-hide-remove.ng-hide-remove-active,
+.sidebar__bottom-action.ng-enter.ng-enter-active {
+  bottom: 0;
 }
 .form-group:not(:first-child) {
   margin-top: 3.4em;
@@ -14544,10 +14562,7 @@ td {
   display: block;
   width: 100%;
   text-align: center;
-  font-weight: bold;
   padding-bottom: 1.5em;
-  text-transform: uppercase;
-  color: #006666;
   font-size: 1.2em;
 }
 .card [class^="mdi-"] {
@@ -15023,6 +15038,9 @@ a {
 }
 ul {
   padding: 0px;
+}
+body {
+  overflow-x: hidden;
 }
 /*Agular Google Maps*/
 .angular-google-map-container {

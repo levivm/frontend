@@ -21,21 +21,46 @@
                     </ng-pluralize> -->
                 </div>
 
-                <div class="sidebar__bottom-action text-center bg-secondary" ng-show="pc.allow_publish">
-                    <strong>¡Estamos listos para publicar!</strong>
+                <div class="sidebar__bottom-action text-center bg-secondary" ng-show="pc.areAllStepsCompleted() && !pc.activity.published">
 
-                    <button class="btn btn-bgsecondary btn-raised" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
-                           ng-show="pc.areAllStepsCompleted() && !pc.activity.published"
-                           ng-click="pc.publish_activity()">
-                        <i class="glyphicon glyphicon-bullhorn"></i> Publicar
-                    </button>
+                    <div class="lateral-fade" ng-show="pc.allow_publish">
+                        <strong>¡Actividad lista para publicar!</strong>
+
+                        <button class="btn btn-bgsecondary btn-raised" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"                               
+                               ng-click="pc.publish_activity()">
+                            <i class="glyphicon glyphicon-bullhorn"></i> <span ng-bind="::pc.strings.PUBLISH_ACTIVITY_LABEL"></span>
+                        </button>    
+                    </div>
+                    
+                    <div class="lateral-fade strong-text-muted separate-above" ng-show="!pc.allow_publish">
+                        Publicando...
+                    </div>
                     
                 </div>
 
-                <div ng-show="pc.allow_unpublish">
+                <!-- <div ng-show="pc.activity.published">
                     <input type="submit" id="submit" class="btn btn-primary" value="{{pc.strings.UNPUBLISH_ACTIVITY_LABEL}}"
-                           ng-show="pc.activity.published" 
+                           ng-show="pc.allow_unpublish"        
                            ng-click="pc.unpublish_activity()"/>
+                </div> -->
+
+                <div class="sidebar__bottom-action text-center" ng-show="pc.activity.published">   
+
+                    <div ng-show="pc.allow_unpublish" class="lateral-fade">
+                        <strong class="text-muted">Para quitar al público</strong>                
+
+                        <button class="btn btn-bgsecondary btn-raised"                               
+                               ng-click="pc.unpublish_activity()">
+
+                            <i class="glyphicon glyphicon-ban-circle"></i> <span ng-bind="::pc.strings.UNPUBLISH_ACTIVITY_LABEL"></span>
+                        </button>    
+                    </div> 
+                    
+                    <div class="lateral-fade strong-text-muted separate-above" ng-show="!pc.allow_unpublish">
+                        Desactivando...
+                    </div>
+                    
+                    
                 </div>
                 
                 <div class="sidebar__bottom-action text-center text-muted" ng-show="!pc.activity.published && pc.steps_left>0">
