@@ -84,7 +84,7 @@
 
             reload : function () {
                 var scope = this;
-                return Authentication.updateAuthenticatedAccount().then(function (response) {
+                return Authentication.getAuthenticatedAccount(true).then(function (response) {
                     scope.setData(response.data);
                 });
             },
@@ -95,7 +95,7 @@
                     .then(success, error);
 
                 function success(response) {
-                    Authentication.updateAuthenticatedAccount().then(function (response) {
+                    Authentication.getAuthenticatedAccount(true).then(function (response) {
                         scope.setData(response.data);
                     });
                     return response.data;

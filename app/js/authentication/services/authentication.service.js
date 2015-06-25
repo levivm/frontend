@@ -41,10 +41,10 @@
             forgot_password: forgot_password,
             change_password: change_password,
             change_email: change_email,
-            updateAuthenticatedAccount: updateAuthenticatedAccount,
+            // updateAuthenticatedAccount: updateAuthenticatedAccount,
             setAuthenticatedAccount: setAuthenticatedAccount,
             unauthenticate: unauthenticate,
-            getCurrentUser:getCurrentUser,
+            // getCurrentUser:getCurrentUser,
             isStudent: isStudent,
             isOrganizer: isOrganizer
         };
@@ -119,9 +119,10 @@
             })
             .then(success, error);
 
-            function success(login_response){
-                setAuthenticationToken(login_response.data.token);
-                return login_response;
+            function success(response){
+
+                updateData(response.data.user,response.data.token);
+                return response;
             }
 
             function error(response){
@@ -225,7 +226,17 @@
                     'action_add': true
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-            });
+            })
+            // .then(success, error);
+
+            // function success(response){
+            //     updateData(response.data);
+            //     return response.data;
+            // }
+
+            // function error(){
+
+            // }
         }
 
         /** AUTH HELPER / CALLBACKS METHODS */
@@ -240,9 +251,9 @@
             return (user && user.user_type && user.user_type === 'O');
         }
 
-        function getCurrentUser(){
-            return $http.get(api.current());
-        }
+        // function getCurrentUser(){
+        //     return $http.get(api.current());
+        // }
 
         function getToken(login_data){
             return $http({
@@ -261,29 +272,47 @@
             updateData(null, token);
         }
 
-        function updateAuthenticatedAccount() {
-            return getCurrentUser()
-                .then(function(response){
-                    updateData(response.data);
-                    return response.data;
-                });
-        }
+        // function updateAuthenticatedAccount() {
+        //     return getAuthenticatedAccount(true)
+        //         .then(function(response){
+        //             updateData(response.data);
+        //             return response.data;
+        //         });
+        // }
 
         function isAuthenticated() {
             return !!localStorageService.get(USER_KEY);
         }
 
-        function getAuthenticatedAccount() {
-            if (!isAuthenticated()) {
-                return;
+        function getAuthenticatedAccount(force_fetch) {
+            var deferred = $q.defer();
+
+            if(force_fetch){
+                 return $http.get(api.current()).then(success, error);
+            } else {
+                if (!isAuthenticated()) {
+                    deferred.resolve(null);
+                } else {
+                    deferred.resolve(localStorageService.get(USER_KEY));
+                }
             }
 
-            return localStorageService.get(USER_KEY);
+            return deferred.promise;
+
+            function success(response){
+                var user = response.data;
+                updateData(user);
+                deferred.resolve(localStorageService.get(USER_KEY));
+            }
+
+            function error(){
+                deferred.reject(null);
+            }
         }
 
         function updateData(user, token){
             if(user){
-                $rootScope.$emit(USER_CHANGED_EVENT, data);
+                $rootScope.$emit(USER_CHANGED_EVENT, user);
                 localStorageService.set(USER_KEY, user);
             }
 

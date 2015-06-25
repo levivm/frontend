@@ -150,7 +150,7 @@
         function _updateSuccess() {
 
             angular.extend(organizer, vm.organizer);
-            //Authentication.updateAuthenticatedAccount();
+            //Authentication.getAuthenticatedAccount(true);
             _toggleMessage();
 
             vm.isSaving = false;

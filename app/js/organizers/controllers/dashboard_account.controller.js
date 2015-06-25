@@ -44,10 +44,8 @@
 
         //Handle responses
         function _changeSuccess(response) {
-
-            Authentication.updateAuthenticatedAccount();
+            Authentication.getAuthenticatedAccount(true);
             _toggleMessage();
-
         }
 
         //Handle responses
