@@ -21,6 +21,9 @@
 
     function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService,Facebook) {
 
+        var USER_CHANGED_EVENT = 'userChanged';
+        var TOKEN_KEY = 'token';
+        var USER_KEY = 'user';
         var api = AuthenticationServerApi;
 
         //noinspection UnnecessaryLocalVariableJS
@@ -43,12 +46,10 @@
             unauthenticate: unauthenticate,
             getCurrentUser:getCurrentUser,
             isStudent: isStudent,
-            isOrganizer: isOrganizer,
-            isAnonymous:isAnonymous
+            isOrganizer: isOrganizer
         };
 
         return Authentication;
-
 
         /** Helper function */
         function _parseParam(obj) {
@@ -122,7 +123,7 @@
 
                 //TODO 
                 //Llamar aquí la función que guarda la data del usuario en local storage
-                return login_response
+                return login_response;
                 
                 // return getToken(login_data)
                 //     .then(function(response_token){
@@ -131,6 +132,11 @@
                 //     }
                 // );
             }, authenticationError);
+
+            function authenticationError(response){
+                console.log("response BAD login",response);
+                return $q.reject(response);
+            }
         }
 
         function facebookLogin(){
@@ -156,8 +162,6 @@
                     }
                 })
             );
-
-            // FB Login callbacks
     
             function _successFbLogin(response){
                 setAuthenticatedAccount(response.data.user);
@@ -172,7 +176,11 @@
 
         function logout() {
             return $http.post(api.logout())
-                .then(unauthenticate, logoutError);
+                .then(unauthenticate, error);
+
+            function error(){
+                redirect();
+            }
         }
 
         function request_signup(data){
@@ -199,7 +207,7 @@
             });
         }
 
-        function reset_password(key,password1,password2) {
+        function reset_password(key, password1, password2) {
             console.log("key111",key);
             return $http({
                 url: api.passwordReset(key),
@@ -218,7 +226,6 @@
             });
         }
 
-
         function change_email(email){
             console.log('Authentication.change_email.email:', email);
             return $http({
@@ -230,6 +237,18 @@
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             });
+        }
+
+        /** AUTH HELPER / CALLBACKS METHODS */
+
+        function isStudent(){
+            var user = getAuthenticatedAccount();
+            return (user && user.user_type && user.user_type === 'S');
+        }
+
+        function isOrganizer(){
+            var user = getAuthenticatedAccount();
+            return (user && user.user_type && user.user_type === 'O');
         }
 
         function getCurrentUser(){
@@ -244,19 +263,24 @@
             });
         }
 
-        /** AUTH HELPER / CALLBACKS METHODS */
-
-        function logoutError(response){
-            redirect();
+        function setAuthenticatedAccount(data){
+            updateData(data);
+            return data;
         }
 
-        function authenticationError(response){
-            console.log("response BAD login",response);
-            return $q.reject(response);
+        function setAuthenticationToken(token){
+            updateData(null, token);
         }
 
-        function isAnonymous(){
-            return getAuthenticatedAccount() ? false:true;
+        function updateAuthenticatedAccount() {
+            return getCurrentUser().then(function(response){
+                updateData(response.data);
+                return response;
+            });
+        }
+
+        function isAuthenticated() {
+            return !!localStorageService.get(USER_KEY);
         }
 
         function getAuthenticatedAccount() {
@@ -264,43 +288,22 @@
                 return;
             }
 
-            return localStorageService.get('user');
+            return localStorageService.get(USER_KEY);
         }
 
-        function isStudent(){
-            var user = getAuthenticatedAccount();
-            return (user && user.user_type && user.user_type === 'S')
-        }
+        function updateData(user, token){
+            if(user) {
+                $rootScope.$emit(USER_CHANGED_EVENT, data);
+                localStorageService.set(USER_KEY,user);
+            }
 
-        function isOrganizer(){
-            var user = getAuthenticatedAccount();
-            return (user && user.user_type && user.user_type === 'O')
-        }
-
-        function isAuthenticated() {
-            return !!localStorageService.get('user');
-        }
-
-        function setAuthenticatedAccount(data){
-            $rootScope.$emit('userChanged', data);
-            localStorageService.set('user',data);
-            return data;
-        }
-
-        function setAuthenticationToken(token){
-            localStorageService.set('token',token);
-        }
-
-        function updateAuthenticatedAccount() {
-            return getCurrentUser().then(function(response){
-                localStorageService.set('user',response.data);
-                return response;
-            });
+            if(token)
+                localStorageService.set(TOKEN_KEY,token);
         }
 
         function unauthenticate() {
-            localStorageService.remove('user');
-            localStorageService.remove('token');
+            localStorageService.remove(USER_KEY);
+            localStorageService.remove(TOKEN_KEY);
         }
 
         function redirect(){

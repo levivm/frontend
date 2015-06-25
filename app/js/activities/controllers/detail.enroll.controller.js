@@ -5,12 +5,13 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', 'ActivitiesManager', 'Authentication', 'activity', 'calendar', 'Toast'];
+    ActivityDetailEnrollController.$inject = ['$state', 'ActivitiesManager', 'Authentication', 'Toast',
+        'activity', 'calendar', 'currentUser'];
 
-    function ActivityDetailEnrollController($state, ActivitiesManager, Authentication, activity, calendar, Toast) {
+    function ActivityDetailEnrollController($state, ActivitiesManager, Authentication, Toast,
+                                            activity, calendar, currentUser) {
 
         var pc = this;
-        var currentUser = null;
         pc.minus = minus;
         pc.plus = plus;
         pc.enroll = enroll;
@@ -69,7 +70,7 @@
         }
 
         function isAnonymous(){
-            return Authentication.isAnonymous();
+            return Authentication.isAuthenticated();
         }
 
         function _clearErrors() {
@@ -112,8 +113,6 @@
 
             pc.capacity = calendar.capacity;
             pc.amount = calendar.session_price;
-
-            currentUser = Authentication.getAuthenticatedAccount();
 
             if(isAllBooked()){
                 pc.quantity = 0;
