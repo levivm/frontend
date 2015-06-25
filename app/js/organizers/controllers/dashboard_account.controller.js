@@ -12,65 +12,79 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
 
-    OrganizerAccountCtrl.$inject = ['$location', '$timeout', '$state', 'Authentication', 'Error', 'organizer'];
-    function OrganizerAccountCtrl($location, $timeout, $state, Authentication, Error, organizer) {
+    OrganizerAccountCtrl.$inject = ['$location', '$timeout', '$state', 'Authentication', 'organizer'];
+    function OrganizerAccountCtrl($location, $timeout, $state, Authentication, organizer) {
 
         var vm = this;
+        activate();
 
         vm.organizer = organizer;
+
+        vm.errors = {};
         vm.password_data = {};
         vm.isCollapsed = true;
-        vm.isSaving = false;
-        vm.changeEmail = changeEmail;
-        vm.changePassword = changePassword;
 
-        activate();
+        //submit callbacks
+        vm.changeEmail = _changeEmail;
+        vm.changePassword = _changePassword;
 
         //Private functions
 
-        function changeEmail() {
-            vm.isSaving = true;
-            Error.form.clear(vm.account_form_email);
+        function _changeEmail() {
+            _clearErrors(vm.account_form_email);
             vm.organizer.change_email()
-                .then(success, error);
+                .then(_changeSuccess, _changeFail);
+        }
 
-            function success() {
-                Authentication.updateAuthenticatedAccount();
-                vm.isSaving = false;
-                _toggleMessage();
-            }
+        function _changePassword() {
+            _clearErrors(vm.account_form_password);
+            vm.organizer.change_password(vm.password_data)
+                .then(_changePasswordSuccess, _changeFail);
+        }
 
-            function error(response) {
-                vm.isSaving = false;
-                var responseErrors = response.data['form_errors'];
-                if (responseErrors) {
-                    Error.form.add(vm.account_form_email, responseErrors);
-                }
+        //Handle responses
+        function _changeSuccess(response) {
+            Authentication.getAuthenticatedAccount(true);
+            _toggleMessage();
+        }
+
+        //Handle responses
+        function _changePasswordSuccess(response) {
+            $state.go('general-message', {
+                'module_name' : 'authentication',
+                'template_name' : 'change_password_success',
+                'redirect_state' : 'home'
+            });
+        }
+
+        function _changeFail(response) {
+
+            if (response.data['form_errors']) {
+
+                angular.forEach(response.data['form_errors'], function (errors, field) {
+
+                    _addError(field, errors[0]);
+
+                });
+
             }
         }
 
-        function changePassword() {
-            vm.isSaving = true;
-            Error.form.clear(vm.account_form_password);
-            vm.organizer.change_password(vm.password_data)
-                .then(success, error);
+        function _clearErrors(form) {
+            form.$setPristine();
+            vm.errors = null;
+            vm.errors = {};
+        }
 
-            function success() {
-                vm.isSaving = false;
-                $state.go('general-message', {
-                    'module_name': 'authentication',
-                    'template_name': 'change_password_success',
-                    'redirect_state': 'home'
-                });
-            }
+        function _addError(field, message) {
 
-            function error(response) {
-                vm.isSaving = false;
-                var responseErrors = response.data['form_errors'];
-                if (responseErrors) {
-                    Error.form.add(vm.account_form_password, responseErrors);
-                }
-            }
+            vm.errors[field] = message;
+            if (field in vm.account_form_email)
+                vm.account_form_email[field].$setValidity(message, false);
+
+            if (field in vm.account_form_password)
+                vm.account_form_password[field].$setValidity(message, false);
+
         }
 
         function _toggleMessage() {
@@ -80,42 +94,7 @@
             }, 1000);
         }
 
-        function setStrings() {
-            if (!vm.strings) {
-                vm.strings = {};
-            }
-            angular.extend(vm.strings, {
-                ACTION_SAVE: "Guardar",
-                ACTION_REIMBURSE: "Reembolsar",
-                COPY_BANKING: "Coloca los datos de tu cuenta bancaria para que recibas los pagos que los usuarios"
-                    + " hacen al inscribirse. Tranquilo, esta información no la compartimos con nadie",
-                COPY_NOT_AVAILABLE : "No Disponible",
-                COPY_NA : "N/A",
-                COPY_SEARCH_ORDERS_HELPER : "Buscar por número de orden, pago, detalle, etc.",
-                SECTION_ACCOUNT: "Cuenta",
-                TAB_EMAIL: "Correo Electrónico",
-                TAB_PASSWORD: "Contraseña",
-                TAB_BANKING: "Información Bancaria",
-                TAB_HISTORY: "Historial de Ventas",
-                TAB_SALES: "Ventas",
-                TAB_REIMBURSEMENTS: "Reembolsos",
-                LABEL_SEARCH_ORDERS : "Buscar Ordenes",
-                LABEL_CURRENT_PASSWORD: "Contraseña Actual",
-                LABEL_NEW_PASSWORD: "Nueva Contraseña",
-                LABEL_REPEAT_PASSWORD: "Repetir Nueva Contraseña",
-                LABEL_EMAIL: "Correo Electrónico",
-                LABEL_ORDER: "Orden",
-                LABEL_ACTIVITY: "Actividad",
-                LABEL_PAYMENT: "Pago",
-                LABEL_DETAIL: "Detalle",
-                LABEL_DATE: "Fecha",
-                LABEL_TOTAL: "Total",
-            });
-        }
-
-        function activate() {
-            setStrings();
-        }
+        function activate() {}
 
     }
 

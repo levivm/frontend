@@ -425,7 +425,8 @@
                 templateUrl: 'partials/activities/detail.enroll.html',
                 resolve: {
                     activity: getActivity,
-                    calendar: fetchCalendar
+                    calendar: fetchCalendar,
+                    currentUser: getAuthenticatedUser
                 }
             })
             .state('activities-enroll.success', {
@@ -466,19 +467,15 @@
     function getCurrentOrganizer($timeout,$state,Authentication, OrganizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var is_organizer = true;
         var force_fetch = true;
 
-        if(authenticatedUser){
-            is_organizer = authenticatedUser.user_type === 'O';
-            if (is_organizer) {
-                return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
-            } else {
-                $timeout(function() {
-                     $state.go('home');
-                });
-                return $q.reject()
-            }
+        if(authenticatedUser && Authentication.isOrganizer()){
+            return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
+        } else {
+            $timeout(function() {
+                 $state.go('home');
+            });
+            return $q.reject()
         }
     }
 
@@ -493,20 +490,16 @@
     function getCurrentStudent($timeout, $state, Authentication, StudentsManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var is_student = false;
         var force_fetch = true;
 
-        if(authenticatedUser){
-            is_student = (authenticatedUser.user_type === 'S');
-            if (is_student) {
-                return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
-            } else {
-                $timeout(function() {
-                    $state.go('home');
-                }, 0);
+        if(authenticatedUser && Authentication.isStudent()){
+            return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
+        } else {
+            $timeout(function() {
+                $state.go('home');
+            }, 0);
 
-                return $q.reject()
-            }
+            return $q.reject()
         }
 
     }
@@ -543,13 +536,9 @@
 
     function getStudentActivities(ActivitiesManager, Authentication, StudentsManager){
         var currentUser =  Authentication.getAuthenticatedAccount();
-        if(currentUser.user_type === 'S'){
-            ActivitiesManager.getStudentActivities(currentUser.id).then(function(activities){
-                console.log('activities: ', activities);
-            });
+        if(Authentication.isStudent()){
             return ActivitiesManager.getStudentActivities(currentUser.id);
         }
-
     }
 
     getCalendars.$inject = ['CalendarsManager','activity'];

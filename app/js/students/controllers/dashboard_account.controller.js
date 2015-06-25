@@ -66,7 +66,7 @@
         }
 
         function _changeSuccess(response) {
-            Authentication.updateAuthenticatedAccount();
+            Authentication.getAuthenticatedAccount(true);
             
             vm.isSaving = false;
             Toast.info("Correo cambiado");
