@@ -13754,7 +13754,7 @@ tags-input input {
 }
 .form-submit-controls .btn {
   display: inline-block;
-  width: 12em;
+  min-width: 12em;
 }
 .form-submit-controls .progress {
   position: absolute;

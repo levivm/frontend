@@ -1,29 +1,45 @@
 /**
-* Register controller
-* @namespace thinkster.organizers.controllers
-*/
+ * Register controller
+ * @namespace thinkster.organizers.controllers
+ */
 (function () {
-  'use strict';
+    'use strict';
 
 
-  angular
-    .module('trulii.organizers.controllers')
-    .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
+    angular
+        .module('trulii.organizers.controllers')
+        .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-  OrganizerDashboardCtrl.$inject = ['$state'];
-  /**
-  * @namespace RegisterController
-  */
-  function OrganizerDashboardCtrl($state) {
+    OrganizerDashboardCtrl.$inject = ['$state'];
+    /**
+     * @namespace RegisterController
+     */
+    function OrganizerDashboardCtrl($state) {
 
-    var vm = this;
-    vm.changeState = _changeState;
+        var vm = this;
+        vm.changeState = changeState;
 
-    function _changeState(newState){
-        $state.go(newState);
+        activate();
+
+        function changeState(newState) {
+            $state.go(newState);
+        }
+
+        function setStrings() {
+            if (!vm.strings) {
+                vm.strings = {};
+            }
+            angular.extend(vm.strings, {
+                SECTION_ACTIVITIES: "Actividades",
+                SECTION_ACCOUNT: "Cuenta",
+                SECTION_PROFILE: "Mi Perfil"
+            });
+        }
+
+        function activate() {
+            setStrings();
+        }
+
     }
 
-
-  };
-
-  })();
+})();

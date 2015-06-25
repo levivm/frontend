@@ -242,8 +242,7 @@
             .state('organizer-dashboard', {
                 abstract:true,
                 url:'/organizer/dashboard/',
-                controller: 'OrganizerDashboardCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerDashboardCtrl as dash',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
@@ -256,22 +255,19 @@
             })
             .state('organizer-dashboard.profile', {
                 url:'profile',
-                controller: 'OrganizerProfileCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerProfileCtrl as profile',
                 templateUrl: 'partials/organizers/dashboard_profile.html'
                 //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.account', {
                 url:'account',
-                controller: 'OrganizerAccountCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard_account.html'
                 //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.activities', {
                 url:'activities',
-                controller: 'OrganizerActivitiesCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerActivitiesCtrl as activities',
                 templateUrl: 'partials/organizers/dashboard_activities.html',
                 //templateUrl: 'modalContainer'
                 resolve: {
