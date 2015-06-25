@@ -6,8 +6,11 @@
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                         <i class="{{::step.icon}} sidebar__item__icon"></i>
                         <span ng-bind="::step.title"></span>
+
+                        <i class="mdi-image-control-point sidebar__item__sign slide-down" ng-show="step.required"></i>
                         
-                        <i class="mdi-action-done sidebar__item__completed-sign slide-down" ng-class="pc.getCheckStyle(step)" ng-show="pc.isSectionCompleted(step.name)"></i>
+                        <i class="mdi-action-done sidebar__item__sign sidebar__item__sign--completed slide-down" ng-class="pc.getCheckStyle(step)" ng-show="pc.isSectionCompleted(step.name)"></i>
+                        
                     </a>
 
                 </li>
@@ -76,7 +79,11 @@
                             </ng-pluralize>
                         
                     </h4>
-                    <p>Para publicar tu actividad</p>
+                    <span>Para publicar tu actividad</span><br/>
+
+                    <div style="margin-top: 0.3em;">
+                        (<i class="mdi-image-control-point font-size-inherit"></i> Obligatorios)
+                    </div> 
                     
                 </div>
             
