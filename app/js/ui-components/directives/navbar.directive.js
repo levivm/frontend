@@ -26,6 +26,7 @@
                 scope.isOrganizer = Authentication.isOrganizer;
 
                 var unsubscribeUserChanged = null;
+                var unsubscribeUserLoggedOut = null;
 
                 initialize();
 
@@ -48,24 +49,19 @@
                 }
 
                 function getUser(user){
-                    scope.user = !!user? user : Authentication.getAuthenticatedAccount();
+                    Authentication.getAuthenticatedAccount().then(success, error);
 
-                    if(scope.user && scope.user.user_type) {
-                        var userType = scope.user.user_type.toUpperCase();
+                    function success(user){
+                        console.log('navbar user:', user);
+                        scope.user = user;
+                        scope.user.is_organizer = Authentication.isOrganizer();
+                        scope.user.is_student = Authentication.isStudent();
                         mapDisplayName(scope.user);
-                        switch(userType){
-                            case 'O':
-                                console.log('Organizer user type: ' + userType);
-                                scope.user.is_organizer = true;
-                                break;
-                            case 'S':
-                                console.log('Student user type: ' + userType);
-                                scope.user.is_student = true;
-                                break;
-                            default:
-                                console.log('Unknown user type: ' + userType);
-                        }
-                        //console.log('navbar. getUser:', scope.user);
+                    }
+
+                    function error(){
+                        console.log('navbar response reject');
+                        scope.user = null;
                     }
                 }
 
@@ -73,12 +69,12 @@
                     //console.log('mapDisplayName. data:', data);
                     var user = data.user;
                     var company = data.name;
-                    if(user.full_name){
+                    if (company){
+                        user.full_name = company;
+                    } else if(user.full_name){
                         console.log('Full Name already defined');
                     } else if(user.first_name && user.last_name){
                         user.full_name = [user.first_name, user.last_name].join(' ');
-                    } else if (company){
-                        user.full_name = company;
                     } else {
                         user.full_name = 'User';
                     }
@@ -96,11 +92,12 @@
                     LocationManager.getAvailableCities().then(success, error);
 
                     function success(cities) { scope.cities = cities; }
-                    function error(response) { console.log("truliiNavbar. Couldn't get cities"); }
+                    function error() { console.log("truliiNavbar. Couldn't get cities"); }
                 }
 
                 function cleanUp(){
                     unsubscribeUserChanged();
+                    unsubscribeUserLoggedOut();
                 }
 
                 function initialize() {
@@ -108,9 +105,14 @@
                     getUser();
                     getCities();
 
-                    unsubscribeUserChanged = $rootScope.$on('userChanged', function(event, user){
+                    unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function(event, user){
                         console.log('navBar. onUserChanged');
-                        getUser(user);
+                        getUser();
+                    });
+
+                    unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function(event){
+                        console.log('navBar. onUserLogout');
+                        getUser();
                     });
 
                     scope.$on('$destroy', cleanUp);

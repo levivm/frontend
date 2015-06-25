@@ -22,6 +22,7 @@
     function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService, Facebook) {
 
         var USER_CHANGED_EVENT = 'userChanged';
+        var USER_LOGOUT_EVENT = 'userLogout';
         var TOKEN_KEY = 'token';
         var USER_KEY = 'user';
         var api = AuthenticationServerApi;
@@ -46,7 +47,9 @@
             unauthenticate: unauthenticate,
             // getCurrentUser:getCurrentUser,
             isStudent: isStudent,
-            isOrganizer: isOrganizer
+            isOrganizer: isOrganizer,
+            USER_CHANGED_EVENT : USER_CHANGED_EVENT,
+            USER_LOGOUT_EVENT : USER_LOGOUT_EVENT
         };
 
         return Authentication;
@@ -169,6 +172,7 @@
                 .then(unauthenticate, error);
 
             function error(){
+                $rootScope.$emit(USER_LOGOUT_EVENT);
                 redirect();
             }
         }
@@ -324,6 +328,7 @@
         function unauthenticate() {
             localStorageService.remove(USER_KEY);
             localStorageService.remove(TOKEN_KEY);
+            $rootScope.$emit(USER_LOGOUT_EVENT);
         }
 
         function redirect(){
