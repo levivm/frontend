@@ -49,12 +49,14 @@
                                         <input class="form-control input--med" name="password" type="password" value=""
                                                placeholder="{{::vm.strings.PASSWORD_LABEL}}"
                                                ng-model="vm.auth.password">
-
                                     </div>
-                                    
                                 </div>
                                 <a ui-sref="password-forgot">Olvidé mi contraseña</a>
-                                <input type="hidden" ng-model="__all__" name="__all__"/>
+
+                                <div class="form-group" trulii-input-errors-control="__all__">
+                                    <input type="hidden" name="__all__"
+                                           ng-model="__all__"/>
+                                </div>
 
                                 <!--TODO replace with toast-->
                                 <div class="alert alert-error" ng-show="vm.errors.__all__">
