@@ -108,21 +108,28 @@
         function login(email, password) {
             return $http({
                 method: 'post',
-                url: api.login(),
-                data: _parseParam({
+                url: api.token(),
+                data: 
+                _parseParam({
                     login: email,
                     password: password
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             })
             .then(function(login_response){
-                var login_data = {'email':email,'password':password};
-                return getToken(login_data)
-                    .then(function(response_token){
-                        setAuthenticationToken(response_token.data.token);
-                        return login_response;
-                    }
-                );
+
+                setAuthenticationToken(login_response.data.token);
+
+                //TODO 
+                //Llamar aquí la función que guarda la data del usuario en local storage
+                return login_response
+                
+                // return getToken(login_data)
+                //     .then(function(response_token){
+                //         setAuthenticationToken(response_token.data.token);
+                //         return login_response;
+                //     }
+                // );
             }, authenticationError);
         }
 
