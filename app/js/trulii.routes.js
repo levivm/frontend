@@ -430,7 +430,7 @@
                 resolve: {
                     activity: getActivity,
                     calendar: fetchCalendar,
-                    currentUser: getAuthenticatedUser()
+                    currentUser: getAuthenticatedUser
                 }
             })
             .state('activities-enroll.success', {

@@ -19,7 +19,7 @@
     Authentication.$inject = [ '$rootScope', '$http', '$q', '$state',
         'AuthenticationServerApi', 'localStorageService','Facebook'];
 
-    function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService,Facebook) {
+    function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService, Facebook) {
 
         var USER_CHANGED_EVENT = 'userChanged';
         var TOKEN_KEY = 'token';
@@ -34,11 +34,11 @@
             getAuthenticatedAccount: getAuthenticatedAccount,
             isAuthenticated: isAuthenticated,
             login: login,
-            facebookLogin:facebookLogin,
-            logout:logout,
-            confirmEmail:confirm_email,
-            reset_password:reset_password,
-            forgot_password:forgot_password,
+            facebookLogin: facebookLogin,
+            logout: logout,
+            confirmEmail: confirm_email,
+            reset_password: reset_password,
+            forgot_password: forgot_password,
             change_password: change_password,
             change_email: change_email,
             updateAuthenticatedAccount: updateAuthenticatedAccount,
@@ -117,32 +117,21 @@
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             })
-            .then(function(login_response){
+            .then(success, error);
 
+            function success(login_response){
                 setAuthenticationToken(login_response.data.token);
-
-                //TODO 
-                //Llamar aquí la función que guarda la data del usuario en local storage
                 return login_response;
-                
-                // return getToken(login_data)
-                //     .then(function(response_token){
-                //         setAuthenticationToken(response_token.data.token);
-                //         return login_response;
-                //     }
-                // );
-            }, authenticationError);
+            }
 
-            function authenticationError(response){
+            function error(response){
                 console.log("response BAD login",response);
                 return $q.reject(response);
             }
         }
 
         function facebookLogin(){
-
             var deferred = $q.defer();
-
             return deferred.promise
                 .then(Facebook.login(function(response) {
                     if (response.status === 'connected') {
@@ -150,26 +139,26 @@
                         var access_token = response.authResponse.accessToken;
                         return $http.post(api.facebook(),
                                             { 'auth_token': access_token })
-                                .then(_successFbLogin);
+                                .then(success);
 
                     } else if (response.status === 'not_authorized') {
                         // The person is logged into Facebook, but not your app.
-                        _errorFbLogin(response);
+                        error(response);
                     } else {
                         // The person is not logged into Facebook, so we're not sure if
                         // they are logged into this app or not.
-                        _errorFbLogin(response);
+                        error(response);
                     }
                 })
             );
     
-            function _successFbLogin(response){
+            function success(response){
                 setAuthenticatedAccount(response.data.user);
                 setAuthenticationToken(response.data.token);
                 deferred.resolve(response);
             }
 
-            function _errorFbLogin(response){
+            function error(response){
                 deferred.reject(response);
             }
         }
@@ -194,7 +183,7 @@
         function token_signup_validation(token){
             return $http.get(api.requestSignupToken(token))
                         .then(function(response){
-                            return response.data
+                            return response.data;
                         });
         }
 
@@ -273,10 +262,11 @@
         }
 
         function updateAuthenticatedAccount() {
-            return getCurrentUser().then(function(response){
-                updateData(response.data);
-                return response;
-            });
+            return getCurrentUser()
+                .then(function(response){
+                    updateData(response.data);
+                    return response.data;
+                });
         }
 
         function isAuthenticated() {
@@ -292,13 +282,14 @@
         }
 
         function updateData(user, token){
-            if(user) {
+            if(user){
                 $rootScope.$emit(USER_CHANGED_EVENT, data);
-                localStorageService.set(USER_KEY,user);
+                localStorageService.set(USER_KEY, user);
             }
 
-            if(token)
-                localStorageService.set(TOKEN_KEY,token);
+            if(token){
+                localStorageService.set(TOKEN_KEY, token);
+            }
         }
 
         function unauthenticate() {
