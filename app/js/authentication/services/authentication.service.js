@@ -316,8 +316,8 @@
 
         function updateData(user, token){
             if(user){
-                $rootScope.$emit(USER_CHANGED_EVENT, user);
                 localStorageService.set(USER_KEY, user);
+                $rootScope.$emit(USER_CHANGED_EVENT);
             }
 
             if(token){

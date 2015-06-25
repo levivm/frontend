@@ -15,7 +15,8 @@
     truliiNavbar.$inject = ['$rootScope', '$timeout', 'UIComponentsTemplatesPath', 'LocationManager', 'Authentication',
         'defaultPicture'];
 
-    function truliiNavbar($rootScope, $timeout, UIComponentsTemplatesPath, LocationManager, Authentication, defaultPicture) {
+    function truliiNavbar($rootScope, $timeout, UIComponentsTemplatesPath, LocationManager, Authentication,
+                          defaultPicture) {
         return {
             restrict : 'AE',
             templateUrl: UIComponentsTemplatesPath + "navbar.html",
@@ -28,7 +29,7 @@
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
 
-                initialize();
+                activate();
 
                 function setStrings() {
                     if (!scope.strings) {
@@ -48,11 +49,15 @@
                     });
                 }
 
-                function getUser(user){
+                function getUser(){
                     Authentication.getAuthenticatedAccount().then(success, error);
 
                     function success(user){
-                        console.log('navbar user:', user);
+                        console.log('user:', user, '!!user:', !!user);
+                        if(!user){
+                            scope.user = null;
+                            return;
+                        }
                         scope.user = user;
                         scope.user.is_organizer = Authentication.isOrganizer();
                         scope.user.is_student = Authentication.isStudent();
@@ -100,18 +105,18 @@
                     unsubscribeUserLoggedOut();
                 }
 
-                function initialize() {
+                function activate() {
                     setStrings();
                     getUser();
                     getCities();
 
-                    unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function(event, user){
-                        console.log('navBar. onUserChanged');
+                    unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function(event){
+                        console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
                         getUser();
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function(event){
-                        console.log('navBar. onUserLogout');
+                        console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         getUser();
                     });
 
