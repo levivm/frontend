@@ -13471,7 +13471,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   top: -1px;
   height: 101%;
   right: 0px;
-  background: #eeeeee;
+  background: #e2e2e2;
   z-index: 20;
   color: #c1c1c1;
 }

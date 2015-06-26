@@ -21,7 +21,7 @@
 
         var pc = this;
 
-        pc.steps = ActivitySteps;
+        pc.steps = angular.copy(ActivitySteps);
         pc.activity = activity;
         pc.sidebar = false;
         pc.allow_unpublish = true;
