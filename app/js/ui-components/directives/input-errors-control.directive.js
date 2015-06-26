@@ -31,6 +31,7 @@
 
                 scope.$watch('field.$invalid && !field.$dirty', function(newValue, oldValue){                               
                     
+                    console.log("FIIIIIIELLLLLLD",newValue,oldValue,scope.field);
                     if (newValue === true){
                         element.addClass("has-error");                        
                     }else{
