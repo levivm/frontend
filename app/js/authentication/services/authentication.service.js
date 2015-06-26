@@ -246,13 +246,27 @@
         /** AUTH HELPER / CALLBACKS METHODS */
 
         function isStudent(){
-            var user = getAuthenticatedAccount();
-            return (user && user.user_type && user.user_type === 'S');
+            return getAuthenticatedAccount().then(success, error);
+
+            function success(user){
+                return (user && user.user_type && user.user_type === 'S');
+            }
+
+            function error(){
+                return false;
+            }
         }
 
         function isOrganizer(){
-            var user = getAuthenticatedAccount();
-            return (user && user.user_type && user.user_type === 'O');
+            return getAuthenticatedAccount().then(success, error);
+
+            function success(user){
+                return (user && user.user_type && user.user_type === 'O');
+            }
+
+            function error(){
+                return false;
+            }
         }
 
         // function getCurrentUser(){

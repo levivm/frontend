@@ -468,14 +468,22 @@
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var force_fetch = true;
+        return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
 
-        if(authenticatedUser && Authentication.isOrganizer()){
-            return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
-        } else {
-            $timeout(function() {
-                 $state.go('home');
+        function successAuthAccount(authenticatedUser){
+            return Authentication.isOrganizer().then(function(isOrganizer){
+                if(authenticatedUser && isOrganizer){
+                    return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
+                } else {
+                    $timeout(function() {
+                        $state.go('home');
+                    });
+                    return $q.reject()
+                }
             });
-            return $q.reject()
+        }
+        function errorAuthAccount(){
+            console.log("getCurrentOrganizer. Couldn't resolve authenticatedUser");
         }
     }
 
@@ -489,17 +497,24 @@
 
     function getCurrentStudent($timeout, $state, Authentication, StudentsManager){
 
-        var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var force_fetch = true;
 
-        if(authenticatedUser && Authentication.isStudent()){
-            return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
-        } else {
-            $timeout(function() {
-                $state.go('home');
-            }, 0);
+        return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
 
-            return $q.reject()
+        function successAuthAccount(authenticatedUser){
+            return Authentication.isStudent().then(function(isStudent){
+                if(authenticatedUser && isStudent){
+                    return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
+                } else {
+                    $timeout(function() {
+                        $state.go('home');
+                    });
+                    return $q.reject()
+                }
+            });
+        }
+        function errorAuthAccount(){
+            console.log("getCurrentStudent. Couldn't resolve authenticatedUser");
         }
 
     }

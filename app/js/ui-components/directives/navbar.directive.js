@@ -22,12 +22,10 @@
             templateUrl: UIComponentsTemplatesPath + "navbar.html",
             link : function (scope, element, attrs) {
 
-                scope.cities = [];
-                scope.isStudent = Authentication.isStudent;
-                scope.isOrganizer = Authentication.isOrganizer;
-
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
+
+                scope.cities = [];
 
                 activate();
 
@@ -53,15 +51,19 @@
                     Authentication.getAuthenticatedAccount().then(success, error);
 
                     function success(user){
-                        console.log('user:', user, '!!user:', !!user);
                         if(!user){
                             scope.user = null;
                             return;
                         }
                         scope.user = user;
-                        scope.user.is_organizer = Authentication.isOrganizer();
-                        scope.user.is_student = Authentication.isStudent();
+                        Authentication.isOrganizer().then(function(result){
+                            scope.user.is_organizer = result;
+                        });
+                        Authentication.isStudent().then(function(result){
+                            scope.user.is_student = result;
+                        });
                         mapDisplayName(scope.user);
+                        console.log('user:', user, '!!user:', !!user);
                     }
 
                     function error(){

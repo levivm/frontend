@@ -161,7 +161,7 @@
 
         function _updateFail(response) {
 
-            var errors = response.data
+            var errors = response.data;
 
             Error.form.add(vm.profile_form_info, errors);
 

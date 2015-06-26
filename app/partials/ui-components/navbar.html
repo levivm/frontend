@@ -10,7 +10,7 @@
             </button> -->
             <a ui-sref="home" class="navbar__logo"></a>
 
-            <div ng-if="!isOrganizer()" class="navbar__center-wrapper">
+            <div ng-if="!user.is_organizer" class="navbar__center-wrapper">
                 <div class="navbar__search-box">
                     <input type="text" placeholder="¿Qué quieres aprender hoy?"><span
                     class="navbar__search-box__city-select">Bogotá<span
@@ -38,7 +38,7 @@
                     <!--</a>-->
                 <!--</div>-->
             </div>
-            <div ng-if="isOrganizer()" class="navbar__right-wrapper">
+            <div ng-if="user.is_organizer" class="navbar__right-wrapper">
                 <a class="btn btn-xs btn-info" ui-sref="dash.activities-new.general">
                     <span class="mdi-content-add"></span>
                 </a>
@@ -53,11 +53,11 @@
                 </div>
 
                 <div class="dropdown" role="menu">
-                    <a ng-if="isOrganizer()" class="dropdown__item" ui-sref="organizer-dashboard.profile">
+                    <a ng-if="user.is_organizer" class="dropdown__item" ui-sref="organizer-dashboard.profile">
                         <span class="mdi-action-account-circle dropdown__item__icon"></span>
                         <span ng-bind="strings.PROFILE_LABEL"></span>
                     </a>
-                    <a ng-if="isStudent()" class="dropdown__item" ui-sref="student-dashboard.profile">
+                    <a ng-if="user.is_student" class="dropdown__item" ui-sref="student-dashboard.profile">
                         <span class="mdi-action-account-circle dropdown__item__icon"></span>
                         <span ng-bind="strings.PROFILE_LABEL"></span>
                     </a>
