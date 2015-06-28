@@ -18,6 +18,8 @@
             actions: ['view']
         };
 
+        console.log('organizer:', organizer);
+
         activate();
 
         function setStrings(){

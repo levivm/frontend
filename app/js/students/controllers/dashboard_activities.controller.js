@@ -40,8 +40,7 @@
         }
 
         function activate() {
-            vm.activities = activities.map(mapMainPicture);
-            console.log(vm.activities);
+            vm.activities = activities ? activities.map(mapMainPicture) : [] ;
         }
 
     }

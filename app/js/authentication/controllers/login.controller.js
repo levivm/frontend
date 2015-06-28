@@ -14,9 +14,9 @@
         .module('trulii.authentication.controllers')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state','$stateParams', '$q','Authentication','Error'];
+    LoginController.$inject = ['$state', '$stateParams', '$q', 'Authentication', 'Error'];
 
-    function LoginController($state, $stateParams, $q, Authentication,Error) {
+    function LoginController($state, $stateParams, $q, Authentication, Error) {
         var vm = this;
         var fromState = null;
         vm.errors = {};
@@ -33,7 +33,7 @@
 
         function login() {
             Error.form.clear(vm.login_form);
-            console.log("vm auth",vm.auth);
+            console.log("vm auth:",vm.auth);
             return  Authentication.login(vm.auth.email, vm.auth.password)
                 .then(_loginSuccess,_loginError);
 
@@ -54,15 +54,15 @@
         }
 
         function _loginSuccess(redirect_state) {
-            Authentication.updateAuthenticatedAccount().then(success, _loginError);
-
-            function success(){
-                if(!!fromState.state){
-                    $state.go(fromState.state, fromState.params);
-                } else {
-                    $state.go("home");
-                }
+            // Authentication.updateAuthenticatedAccount().then(success, _loginError);
+            // success();
+            // function success(){
+            if(!!fromState.state){
+                $state.go(fromState.state, fromState.params);
+            } else {
+                $state.go("home");
             }
+            // }
         }
 
         function _loginError(response) {

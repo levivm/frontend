@@ -1,9 +1,21 @@
+<div class="container-fluid navbar-secondary" >
+    <a class="navbar-secondary__item"
+       ui-sref=".activities" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-social-school"></i>
+        <span> </span>
+        <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
+    </a>
+    <a class="navbar-secondary__item"
+       ui-sref=".account" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-action-settings"></i>
+        <span> </span>
+        <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span></a>
+    <a class="navbar-secondary__item"
+       ui-sref=".profile" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-action-account-circle"></i>
+        <span> </span>
+        <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
+    </a>
+</div>
 
-<ul class="nav nav-tabs">
-    <li ui-sref=".profile" ui-sref-active="active"><a>Perfil</a></li>
-    <li ui-sref=".account" ui-sref-active="active"><a>Cuenta</a></li>
-    <li ui-sref=".activities" ui-sref-active="active"><a>Mis Actividades</a></li>
-</ul>
-
-
-<div ui-view></div>
+<div ui-view class="lateral-fade"></div>

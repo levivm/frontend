@@ -1,39 +1,133 @@
 <div class="container">
-	<div class="row">
-		<div class="col-sm-2">
-			<nav class="nav-sidebar">
-				<ul class="nav tabs">
-					<li class="active"><a data-target="#active" data-toggle="tab">Abiertos</a></li>
-					<li class=""><a data-target="#inactive" data-toggle="tab">Anteriores</a></li>
-					<li class=""><a data-target="#draft" data-toggle="tab">Borradores</a></li>
-					<!-- <tab heading="Cuenta" select="changeState('organizer-dashboard.account')">                         -->
-				</ul>
-			</nav>
-		</div>
-		<div class="col-sm-10">
-			<div class="tab-content">
-				<div class="tab-pane active" id="active">
-					<div class="row">
-						<trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
-								ng-repeat="activity in vm.actual_activities"
-								data-activity="activity" data-options="{{vm.options}}"></trulii-activity-item>
-					</div>
-				</div>
-				<div class="tab-pane" id="inactive">
-					<div class="row">
-						<trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
-							ng-repeat="activity in vm.previous_activities"
-							data-activity="activity" data-options="{{vm.options}}"></trulii-activity-item>
-					</div>
-				</div>
-				<div class="tab-pane" id="draft">
-					<div class="row">
-						<trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
-								ng-repeat="activity in vm.draft_activities"
-								data-activity="activity" data-options="{{vm.options}}"></trulii-activity-item>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="card z-shadow-1" style="min-height: 30em">
+        <div class="row clearfix">
+            <div class="col-md-3 card__lateral-menu">
+                <div class="card__lateral-menu__title">
+                    <i class="mdi-action-settings"></i>
+                    <span> </span>
+                    <span ng-bind="::activities.strings.SECTION_ACTIVITIES"></span>
+                </div>
+                <ul>
+                    <li class="card__lateral-menu__item active" data-toggle="tab" data-target="#published-tab">
+                        <a> <i class="mdi-action-view-carousel"></i>
+                            <span> </span>
+                            <span ng-bind="::activities.strings.TAB_PUBLISHED"></span>
+                        </a>
+                    </li>
+                    <li class="card__lateral-menu__item" data-toggle="tab" data-target="#previous-tab">
+                        <a> <i class="mdi-action-history"></i>
+                            <span> </span>
+                            <span ng-bind="::activities.strings.TAB_PREVIOUS"></span>
+                        </a>
+                    </li>
+                    <li class="card__lateral-menu__item" data-toggle="tab" data-target="#drafts-tab">
+                        <a> <i class="mdi-editor-mode-edit"></i>
+                            <span> </span>
+                            <span ng-bind="::activities.strings.TAB_DRAFTS"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-9 col-md-offset-3">
+                <div class="card-body tab-content">
+                    <div class="tab-pane active fade in" id="published-tab">
+                        <h2 ng-bind="activities.strings.TAB_PUBLISHED"></h2>
+                        <h4 class="text-muted" ng-bind="activities.strings.COPY_PUBLISHED"></h4>
+
+                        <div class="row gallery-grid separate-above">
+                            <div class="col-md-12"
+                                 ng-repeat="activity in activities.published_activities track by activity.id">
+                                <a ui-sref="activities-detail({activity_id: {{activity.id}} })"
+                                   class="gallery-grid__photo gallery-grid__photo--grand img-fit"
+                                   style="background: url('{{activity.main_photo}}')" alt="{{activity.title}}">
+                                    <div class="gallery-grid__photo__caption">
+                                        <span class="gallery-grid__photo__caption__title"
+                                              ng-bind="::activity.title"></span>
+                                        <span class="gallery-grid__photo__caption__complement"
+                                              ng-bind="::activity.organizer.name"></span>
+                                        <span class="gallery-grid__photo__caption__actions">
+                                            Inicia en 3 días
+                                        </span>
+
+                                        <div class="gallery-grid__photo__caption__organizer img-fit"
+                                             style="background-image: url('{{activity.organizer.photo}}')"></div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade in" id="previous-tab">
+                        <h2 ng-bind="activities.strings.TAB_PREVIOUS"></h2>
+                        <h4 class="text-muted" ng-bind="activities.strings.COPY_PREVIOUS"></h4>
+
+                        <div class="row gallery-grid separate-above">
+                            <div class="col-md-6"
+                                 ng-repeat="activity in activities.previous_activities track by activity.id">
+                                <a ui-sref="activities-detail({activity_id: {{activity.id}} })"
+                                   class="gallery-grid__photo img-fit"
+                                   style="background: url('{{activity.main_photo}}')" alt="{{activity.title}}">
+                                    <div class="gallery-grid__photo__caption">
+                                        <span class="gallery-grid__photo__caption__title"
+                                              ng-bind="::activity.title"></span>
+                                        <span class="gallery-grid__photo__caption__complement"
+                                              ng-bind="::activity.organizer.name"></span>
+                                        <span class="ranking-star">
+                                            <i class="mdi-action-grade ranking-star__star"></i>
+                                            <i class="mdi-action-grade ranking-star__star"></i>
+                                            <i class="mdi-action-grade ranking-star__star"></i>
+                                            <i class="mdi-action-grade ranking-star__star"></i>
+                                            <i class="mdi-action-grade ranking-star__star"></i>
+                                        </span>
+
+                                        <div class="gallery-grid__photo__caption__organizer img-fit"
+                                             style="background-image: url('{{activity.organizer.photo}}')"></div>
+                                        <span class="gallery-grid__photo__caption__actions">
+                                            Inicia en 3 días
+                                        </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade in" id="drafts-tab">
+                        <h2 ng-bind="activities.strings.TAB_DRAFTS"></h2>
+                        <h4 class="text-muted" ng-bind="activities.strings.COPY_DRAFTS">
+                        </h4>
+                        <div class="row gallery-grid separate-above">
+                            <div class="col-md-6"
+                                 ng-repeat="activity in activities.draft_activities track by activity.id">
+                                <a ui-sref="activities-detail({activity_id: {{activity.id}} })"
+                                   class="gallery-grid__photo img-fit"
+                                   style="background: url('{{activity.main_photo}}')" alt="{{activity.title}}">
+                                    <div class="gallery-grid__photo__caption">
+                                    <span class="gallery-grid__photo__caption__title"
+                                          ng-bind="::activity.title"></span>
+                                    <span class="gallery-grid__photo__caption__complement"
+                                          ng-bind="::activity.organizer.name"></span>
+                                    <span class="ranking-star">
+                                        <i class="mdi-action-grade ranking-star__star"></i>
+                                        <i class="mdi-action-grade ranking-star__star"></i>
+                                        <i class="mdi-action-grade ranking-star__star"></i>
+                                        <i class="mdi-action-grade ranking-star__star"></i>
+                                        <i class="mdi-action-grade ranking-star__star"></i>
+                                    </span>
+
+                                        <div class="gallery-grid__photo__caption__organizer img-fit"
+                                             style="background-image: url('{{activity.organizer.photo}}')"></div>
+                                    <span class="gallery-grid__photo__caption__actions">
+                                        Inicia en 3 días
+                                    </span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

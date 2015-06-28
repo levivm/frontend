@@ -242,8 +242,7 @@
             .state('organizer-dashboard', {
                 abstract:true,
                 url:'/organizer/dashboard/',
-                controller: 'OrganizerDashboardCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerDashboardCtrl as dash',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
@@ -256,22 +255,19 @@
             })
             .state('organizer-dashboard.profile', {
                 url:'profile',
-                controller: 'OrganizerProfileCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerProfileCtrl as profile',
                 templateUrl: 'partials/organizers/dashboard_profile.html'
                 //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.account', {
                 url:'account',
-                controller: 'OrganizerAccountCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard_account.html'
                 //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.activities', {
                 url:'activities',
-                controller: 'OrganizerActivitiesCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerActivitiesCtrl as activities',
                 templateUrl: 'partials/organizers/dashboard_activities.html',
                 //templateUrl: 'modalContainer'
                 resolve: {
@@ -429,7 +425,8 @@
                 templateUrl: 'partials/activities/detail.enroll.html',
                 resolve: {
                     activity: getActivity,
-                    calendar: fetchCalendar
+                    calendar: fetchCalendar,
+                    currentUser: getAuthenticatedUser
                 }
             })
             .state('activities-enroll.success', {
@@ -470,19 +467,23 @@
     function getCurrentOrganizer($timeout,$state,Authentication, OrganizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var is_organizer = true;
         var force_fetch = true;
+        return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
 
-        if(authenticatedUser){
-            is_organizer = authenticatedUser.user_type === 'O';
-            if (is_organizer) {
-                return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
-            } else {
-                $timeout(function() {
-                     $state.go('home');
-                });
-                return $q.reject()
-            }
+        function successAuthAccount(authenticatedUser){
+            return Authentication.isOrganizer().then(function(isOrganizer){
+                if(authenticatedUser && isOrganizer){
+                    return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
+                } else {
+                    $timeout(function() {
+                        $state.go('home');
+                    });
+                    return $q.reject()
+                }
+            });
+        }
+        function errorAuthAccount(){
+            console.log("getCurrentOrganizer. Couldn't resolve authenticatedUser");
         }
     }
 
@@ -496,21 +497,24 @@
 
     function getCurrentStudent($timeout, $state, Authentication, StudentsManager){
 
-        var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var is_student = false;
         var force_fetch = true;
 
-        if(authenticatedUser){
-            is_student = (authenticatedUser.user_type === 'S');
-            if (is_student) {
-                return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
-            } else {
-                $timeout(function() {
-                    $state.go('home');
-                }, 0);
+        return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
 
-                return $q.reject()
-            }
+        function successAuthAccount(authenticatedUser){
+            return Authentication.isStudent().then(function(isStudent){
+                if(authenticatedUser && isStudent){
+                    return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
+                } else {
+                    $timeout(function() {
+                        $state.go('home');
+                    });
+                    return $q.reject()
+                }
+            });
+        }
+        function errorAuthAccount(){
+            console.log("getCurrentStudent. Couldn't resolve authenticatedUser");
         }
 
     }
@@ -547,13 +551,9 @@
 
     function getStudentActivities(ActivitiesManager, Authentication, StudentsManager){
         var currentUser =  Authentication.getAuthenticatedAccount();
-        if(currentUser.user_type === 'S'){
-            ActivitiesManager.getStudentActivities(currentUser.id).then(function(activities){
-                console.log('activities: ', activities);
-            });
+        if(Authentication.isStudent()){
             return ActivitiesManager.getStudentActivities(currentUser.id);
         }
-
     }
 
     getCalendars.$inject = ['CalendarsManager','activity'];
