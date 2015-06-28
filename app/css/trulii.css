@@ -15011,10 +15011,6 @@ a {
 ul {
   padding: 0px;
 }
-body {
-  overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
-}
 /*Agular Google Maps*/
 .angular-google-map-container {
   height: 400px;

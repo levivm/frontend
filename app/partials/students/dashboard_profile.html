@@ -104,16 +104,16 @@
                                         <label class="control-label" for="birth_date">Fecha de Nacimiento</label>
                                         <div>
                                             <div class="col-md-9">
-                                                <input id="birth_date" type="text" class="form-control" name="birth_date"
+                                                <input id="birth_date" type="text" class="form-control" name="birth_date" 
                                                        ng-model="profile.student.birth_date"
-                                                       datepicker-popup="{{profile.format}}" is-open="profile.opened"
-                                                       min-date="profile.minStartDate" datepicker-options="profile.dateOptions"
-                                                       close-text="Close"/>
+                                                       datepicker-popup="{{profile.format}}" is-open="profile.opened" max-date="profile.maxStartDate"
+                                                        datepicker-options="profile.dateOptions"
+                                                       close-text="Close" ng-click="profile.openDatePicker($event)"/>
                                             </div>
                                             <div class="col-md-1">
-                                                <button class="btn btn-default btn-sm no-margin" ng-click="profile.openDatePicker($event)">
+<!--                                                 <button class="btn btn-default btn-sm no-margin" >
                                                     <i class="mdi-action-event"></i>
-                                                </button>
+                                                </button> -->
                                             </div>
                                         </div>
 

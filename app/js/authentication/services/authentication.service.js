@@ -88,25 +88,25 @@
 
         function register(register_data) {
 
-            console.log("register_data",register_data);
             return $http({
                 method: 'post',
-                url: api.signup(),
+                url: api.token(),
                 data:_parseParam(register_data),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             })
-            .then(function(register_response){
-                console.log(register_data);
+            .then(success,error);
 
-                var token_data = {'email':register_data.email,'password':register_data.password1};
-                return getToken(token_data)
-                    .then(function(response_token){
-                        console.log("RESPONSE TOKENN",response_token);
-                        setAuthenticationToken(response_token.data.token);
-                        setAuthenticatedAccount(response_token.data.user);
-                        return register_response
-                    })
-            });
+    
+            function success(response){
+
+                updateData(response.data.user,response.data.token);
+                return response;
+            }
+
+            function error(response){
+                console.log("response BAD login",response);
+                return $q.reject(response);
+            }
         }
 
         function login(email, password) {

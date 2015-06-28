@@ -20,11 +20,11 @@
 
         var vm = this;
 
-        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = vm.formats[0];
         vm.hstep = 1;
         vm.mstep = 15;
-        vm.minStartDate = new Date();
+        vm.maxStartDate = new Date();
         vm.dateOptions = {
             formatYear: 'yy',
             startingDay: 1
