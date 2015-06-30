@@ -229,6 +229,11 @@
                     activities: getStudentActivities
                 }
             })
+            .state('student-dashboard.history', {
+                url:'history',
+                controller: 'StudentHistoryCtrl as history',
+                templateUrl: 'partials/students/dashboard_history.html'
+            })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl',

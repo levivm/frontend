@@ -13223,6 +13223,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 50px;
   padding: 5px 1em;
 }
+.navbar .btn {
+  margin-top: 0;
+}
 .navbar__link {
   line-height: 35px;
   display: inline-block;

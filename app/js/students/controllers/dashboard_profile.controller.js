@@ -100,7 +100,6 @@
 
 
         function uploadPicture(image){
-            console.log(image);
             vm.photo_loading = true;
             vm.student.upload_photo(image).then(success, error);
 
@@ -116,10 +115,11 @@
             function error(response) {
                 console.log('StudentProfileCtrl.uploadPicture. Error uploading profile picture');
                 var responseErrors = response['errors'];
+                console.log('responseErrors:', responseErrors);
                 vm.photo_loading = false;
                 if (responseErrors) {
                     vm.photo_invalid = true;
-                    Error.form.add(vm.picture_form, responseErrors);
+                    Error.form.add(picture_form, responseErrors);
                 }
             }
         }
@@ -132,8 +132,27 @@
             vm.opened = true;
         }
 
-        function initialize() {
+        function setStrings() {
+            if (!vm.strings) {
+                vm.strings = {};
+            }
+            angular.extend(vm.strings, {
+                ACTION_REPLACE_PICTURE: "Cambiar foto",
+                ACTION_SAVE: "Guardar",
+                COPY_BIO: "Cuéntanos un poco sobre tí, otros querrán conocerte",
+                LABEL_FIRST_NAMES: "Nombres",
+                LABEL_BIRTH_DATE: "Fecha de Nacimiento",
+                LABEL_LAST_NAMES: "Apellidos",
+                LABEL_GENDER: "Género",
+                LABEL_CITY: "Ciudad",
+                OPTION_SELECT: "Seleccione...",
+                SECTION_ACCOUNT: "Cuenta",
+                SECTION_PROFILE: "Mi Perfil"
+            });
+        }
 
+        function initialize() {
+            setStrings();
             _setGender(vm.student.gender);
             _setCity(vm.student.city);
             datepickerPopupConfig.showButtonBar = false;

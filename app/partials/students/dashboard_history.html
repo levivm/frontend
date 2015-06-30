@@ -1,0 +1,116 @@
+<div class="container">
+
+    <div class="card shadow-z-1" style="min-height: 30em">
+
+        <div class="row clearfix">
+            <div class="col-md-3 card__lateral-menu">
+                <div class="card__lateral-menu__title">
+                    <i class="mdi-action-settings"></i> <span ng-bind="::history.strings.SECTION_HISTORY"></span>
+                </div>
+                <ul>
+                    <li class="card__lateral-menu__item active" data-toggle="tab" data-target="#history-orders-tab">
+                        <a>
+                            <i class="mdi-action-shopping-cart"></i>  <span
+                                ng-bind="::history.strings.TAB_ORDERS"></span></a>
+                    </li>
+                    <!--<li class="card__lateral-menu__item" data-toggle="tab" data-target="#history-reimbursements-tab">-->
+                        <!--<a> <i class="mdi-content-undo"></i> <span-->
+                                <!--ng-bind="::history.strings.TAB_REIMBURSEMENTS"></span></a>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+
+            <div class="col-md-9 col-md-offset-3">
+                <div class="card-body tab-content">
+                    <div class="tab-pane active fade in" id="history-orders-tab">
+                        <!--If there are orders-->
+                        <div ng-if="history.orders.length > 0">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label sr-only"
+                                               ng-bind="::history.strings.LABEL_SEARCH"></label>
+                                        <div class="input-group">
+                                            <input class="form-control floating-label" type="text"
+                                                   ng-model="history.orderQuery"
+                                                   placeholder="{{history.strings.COPY_SEARCH}}">
+                                            <span class="input-group-addon">
+                                                <i class="mdi-action-search"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <tr class="text-center">
+                                                <th class="">Orden</th>
+                                                <th class="">Actividad</th>
+                                                <th class="">Pago</th>
+                                                <th class="">Detalle</th>
+                                                <th class="">Fecha</th>
+                                                <th class="">Total</th>
+                                                <th class=""></th>
+                                            </tr>
+                                            <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
+                                                <td>
+                                                    <span ng-bind="order.id"></span>
+                                                </td>
+                                                <td>
+                                                    <span>No Disponible</span>
+                                                </td>
+                                                <td>
+                                                    <span>N/A</span>
+                                                </td>
+                                                <td>
+                                                    <span>
+                                                        <ng-pluralize count="order.assistants.length"
+                                                                      when="{
+                                                                        'one': '{} asistente',
+                                                                        'other': '{} asistentes'
+                                                                      }">
+                                                        </ng-pluralize>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>DD/MM/YYYY</span>
+                                                </td>
+                                                <td>
+                                                    <span ng-bind="order.amount | currency"></span>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-xs btn-bgsecondary pull-right no-margin"
+                                                            ng-bind="::history.strings.ACTION_REIMBURSE"></button>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--If there are no orders-->
+                        <div ng-if="history.orders.length <= 0" class="row">
+                            <div class="col-md-12">
+                                <h4 ng-bind="::history.strings.LABEL_EMPTY_ORDERS"></h4>
+                                <p ng-bind="::history.strings.COPY_EMPTY_ORDERS"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="tab-pane" id="history-reimbursements-tab">-->
+                        <!--<div class="panel panel-default">-->
+                            <!--<div class="panel-body">-->
+                                <!--<p class="lead">Coming Soon!</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
