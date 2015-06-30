@@ -13,24 +13,26 @@
         .controller('StudentProfileCtrl', StudentProfileCtrl);
 
 
-    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast'];
+    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast','LocationManager'];
 
-    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast) {
+    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast, LocationManager) {
 
 
         var vm = this;
 
-        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = vm.formats[0];
         vm.hstep = 1;
         vm.mstep = 15;
-        vm.minStartDate = new Date();
+        vm.maxStartDate = new Date();
         vm.dateOptions = {
             formatYear: 'yy',
             startingDay: 1
         };
+        vm.cities = cities;
         vm.ismeridian = true;
         vm.openDatePicker = openDatePicker;
+        vm.selectCity = selectCity;
 
         vm.bio_max = 140;
         vm.student = student;
@@ -73,9 +75,20 @@
         }
 
 
+        function selectCity(city){
+            vm.student.city = city.id;
+            LocationManager.setCurrentCity(city);
+        }
+
         function selectGender(gender){
 
             _setGender(gender.id)
+
+        }
+
+        function _setCity(city){
+
+            vm.selected_city = _.find(vm.cities, { 'id': city});
 
         }
 
@@ -122,6 +135,7 @@
         function initialize() {
 
             _setGender(vm.student.gender);
+            _setCity(vm.student.city);
             datepickerPopupConfig.showButtonBar = false;
 
         }

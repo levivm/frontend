@@ -104,16 +104,16 @@
                                         <label class="control-label" for="birth_date">Fecha de Nacimiento</label>
                                         <div>
                                             <div class="col-md-9">
-                                                <input id="birth_date" type="text" class="form-control" name="birth_date"
+                                                <input id="birth_date" type="text" class="form-control" name="birth_date" 
                                                        ng-model="profile.student.birth_date"
-                                                       datepicker-popup="{{profile.format}}" is-open="profile.opened"
-                                                       min-date="profile.minStartDate" datepicker-options="profile.dateOptions"
-                                                       close-text="Close"/>
+                                                       datepicker-popup="{{profile.format}}" is-open="profile.opened" max-date="profile.maxStartDate"
+                                                        datepicker-options="profile.dateOptions"
+                                                       close-text="Close" ng-click="profile.openDatePicker($event)"/>
                                             </div>
                                             <div class="col-md-1">
-                                                <button class="btn btn-default btn-sm no-margin" ng-click="profile.openDatePicker($event)">
+<!--                                                 <button class="btn btn-default btn-sm no-margin" >
                                                     <i class="mdi-action-event"></i>
-                                                </button>
+                                                </button> -->
                                             </div>
                                         </div>
 
@@ -129,9 +129,15 @@
                                     <div class="form-group no-margin">
                                         <label class="control-label" for="city">Ciudad</label>
 
-                                        <input id="city" class="form-control text-capitalize" name="city"
-                                               ng-model="profile.student.user.city" type="text"/>
+                                        <label for="home-city-selector" class="sr-only">Cities</label>
+                                        <select id="home-city-selector" class="form-control" name="city" ng-model="profile.selected_city"
+                                                ng-options="city as city.name for city in profile.cities track by city.id"
+                                                ng-change="profile.selectCity(profile.selected_city)">
+                                        </select>
 
+<!--                                         <input id="city" class="form-control text-capitalize" name="city"
+                                               ng-model="profile.student.user.city" type="text"/>
+ -->
                                     </div>
                                 </div>
 
