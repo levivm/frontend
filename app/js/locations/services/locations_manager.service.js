@@ -120,7 +120,7 @@
 
         function _setCurrentCity(city){
             if (city){
-                $cookies.currentCity = JSON.stringify(city);
+                localStorageService.set('current_city',city);
                 currentCity = city;
             }
         }
@@ -128,6 +128,7 @@
         function _getCurrentCity(){
             var availableCities = localStorageService.get('availableCities');
             var current_city = localStorageService.get('current_city');
+
             if (current_city){
                 return availableCities.filter(byId)[0];
             } else {
