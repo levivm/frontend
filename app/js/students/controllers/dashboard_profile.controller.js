@@ -13,9 +13,9 @@
         .controller('StudentProfileCtrl', StudentProfileCtrl);
 
 
-    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast'];
+    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast','LocationManager'];
 
-    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast) {
+    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast, LocationManager) {
 
 
         var vm = this;
@@ -29,8 +29,10 @@
             formatYear: 'yy',
             startingDay: 1
         };
+        vm.cities = cities;
         vm.ismeridian = true;
         vm.openDatePicker = openDatePicker;
+        vm.selectCity = selectCity;
 
         vm.bio_max = 140;
         vm.student = student;
@@ -73,9 +75,20 @@
         }
 
 
+        function selectCity(city){
+            vm.student.city = city.id;
+            LocationManager.setCurrentCity(city);
+        }
+
         function selectGender(gender){
 
             _setGender(gender.id)
+
+        }
+
+        function _setCity(city){
+
+            vm.selected_city = _.find(vm.cities, { 'id': city});
 
         }
 
@@ -122,6 +135,7 @@
         function initialize() {
 
             _setGender(vm.student.gender);
+            _setCity(vm.student.city);
             datepickerPopupConfig.showButtonBar = false;
 
         }

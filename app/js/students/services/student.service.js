@@ -52,11 +52,11 @@
                     user: {
                         'first_name': scope.user.first_name,
                         'last_name': scope.user.last_name,
-                        'city': scope.user.city
                     },
                     'birth_date': scope.birth_date.valueOf(),
                     'gender': scope.gender,
-                    'bio' : scope.bio
+                    'bio' : scope.bio,
+                    'city' : scope.city,
                 };
                 return scope.update(profile_data)
             },
