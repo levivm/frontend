@@ -25,7 +25,9 @@
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
 
+                scope.search_city = null;
                 scope.cities = [];
+                scope.isSearchVisible = true;
 
                 activate();
 
@@ -36,14 +38,15 @@
 
                     angular.extend(scope.strings, {
                         PLACEHOLDER_WANT_TO_LEARN : '¿Qué quieres aprender hoy?',
-                        CITY_LABEL: 'Ciudad',
-                        CITY_DEFAULT_LABEL: 'Ciudad..',
-                        PROFILE_LABEL: 'Mi Perfil',
-                        LOGIN_LABEL: 'Iniciar Sesión',
-                        REGISTER_LABEL: 'Registrarse',
-                        ORGANIZER_LABEL: 'Organizador',
-                        STUDENT_LABEL: 'Estudiante',
-                        LOGOUT_LABEL: 'Logout'
+                        COPY_BECOME_ORGANIZER : '¿Quieres ser Organizador?',
+                        ACTION_LOGIN: 'Inicia Sesión',
+                        ACTION_REGISTER: 'Registrate',
+                        LABEL_CITY: 'Ciudad',
+                        LABEL_CITY_DEFAULT: 'Ciudad..',
+                        LABEL_PROFILE: 'Mi Perfil',
+                        LABEL_ORGANIZER: 'Organizador',
+                        LABEL_STUDENT: 'Estudiante',
+                        LABEL_LOGOUT: 'Logout'
                     });
                 }
 
