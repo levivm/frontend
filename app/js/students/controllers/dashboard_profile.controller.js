@@ -76,14 +76,17 @@
 
 
         function selectCity(city){
-            vm.student.city = city.id;
-            LocationManager.setCurrentCity(city);
+            console.log('selectCity. city:', city);
+            if(city){
+                vm.student.city = city.id;
+                LocationManager.setCurrentCity(city);
+            } else {
+                console.log('no city selected');
+            }
         }
 
         function selectGender(gender){
-
             _setGender(gender.id)
-
         }
 
         function _setCity(city){
@@ -93,7 +96,6 @@
         }
 
         function _setGender(gender){
-
             vm.selected_gender = _.find(vm.genders, { 'id': gender});
             vm.student.gender  = gender;
         }
@@ -139,6 +141,7 @@
             angular.extend(vm.strings, {
                 ACTION_REPLACE_PICTURE: "Cambiar foto",
                 ACTION_SAVE: "Guardar",
+                ACTION_CLOSE: "Cerrar",
                 COPY_BIO: "Cuéntanos un poco sobre tí, otros querrán conocerte",
                 LABEL_FIRST_NAMES: "Nombres",
                 LABEL_BIRTH_DATE: "Fecha de Nacimiento",

@@ -9,26 +9,25 @@
             <form name="profile.picture_form">
                 <div class="form-group">
                     <div class="img-input center-childs">
-                        <div class="profile-photo profile-photo--xs img-size-cover img-position-center"
-                             style="background-image: url('{{profile.student.photo}}')">
-                            <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
-                        </div>
+                        <img class="profile-photo profile-photo--xs img-size-cover img-position-center"
+                             ng-src="{{profile.organizer.photo}}" alt="{{profile.organizer.name}}"
+                             ng-hide="profile.photo_loading"/>
+                        <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
                     </div>
                     <div class="center-childs">
-                        <div ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select=""
-                                ng-multiple="false"
-                                drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                                ng-file-change="profile.uploadPicture(profile.student.photo_url)"
-                                allow-dir="true" accept="image/*">
-                            <button class="btn btn-bgsecondary btn-raised" aria-label="{{profile.strings.ACTION_DELETE}}"
-                                    alt="{{profile.strings.ACTION_UPDATE_PICTURE}}">
+                        <div ng-model="profile.organizer.photo_url" ng-file-drop="" ng-file-select=""
+                             ng-multiple="false"
+                             data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                             ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
+                             data-allow-dir="true" data-accept="image/*">
+                            <button class="btn btn-bgsecondary btn-raised"
+                                    aria-label="{{profile.strings.ACTION_UPDATE_PICTURE}}">
                                 <span ng-bind="profile.strings.ACTION_UPDATE_PICTURE"></span>
                             </button>
                         </div>
                     </div>
-                    <!--TODO Ajustar-->
-                    <div class="errors" ng-show="profile.photo_invalid">
-                        <span>{{ profile.errors.photo }}</span>
+                    <div class="form-group" trulii-input-errors-control="photo">
+                        <input type="hidden" name="photo"/>
                     </div>
                 </div>
             </form>
@@ -59,24 +58,26 @@
                 </li>
             </ul>
         </div>
-        <div class="col-md-9 card-body col-md-offset-3">
+        <div class="col-md-9 col-md-offset-3 card-body">
             <div class="tab-content">
-                <div class="tab-pane active text-style" id="info-tab">
+                <div class="tab-pane active" id="info-tab">
                     <h2 ng-bind="::profile.strings.TAB_INFO"></h2>
 
                     <form name='profile.profile_form_info' ng-submit="profile.submit_info()">
                         <fieldset>
                             <div class="form-group">
                                 <label ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
-                                <input type="text" class="form-control" ng-model='profile.organizer.name' name="full_name"
+                                <input type="text" class="form-control" ng-model='profile.organizer.name'
+                                       name="full_name"
                                        placeholder="{{profile.strings.HELPER_FULL_NAME}}">
                             </div>
                             <div class="form-group">
                                 <label for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
                                 <textarea id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"
-                                        placeholder="{{profile.strings.HELPER_BIO}}"></textarea>
+                                          placeholder="{{profile.strings.HELPER_BIO}}"></textarea>
                             </div>
-                            <input type="submit" id="info-submit" class="btn btn-primary" ng-value="profile.strings.ACTION_SAVE"/>
+                            <input type="submit" id="info-submit" class="btn btn-primary"
+                                   ng-value="profile.strings.ACTION_SAVE"/>
 
                             <div collapse="profile.isCollapsed">
                                 Guardado
@@ -84,30 +85,15 @@
                         </fieldset>
                     </form>
                 </div>
-                <div class="tab-pane text-style" id="video-tab">
+                <div class="tab-pane" id="video-tab">
                     <h2 ng-bind="profile.strings.TAB_VIDEO"></h2>
 
                     <form name='profile.profile_form_photo' ng-submit="profile.submit_video()">
                         <fieldset>
                             <div class="form-group">
-                                <label>Foto</label>
-                                <div ng-file-drop="" ng-file-select="" ng-model="profile.organizer.photo" class="drop-box"
-                                     drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" ng-multiple="false"
-                                     allow-dir="true" accept="image/*" ng-file-change="profile.addImage(profile.organizer.photo)">
-                                    Drop Images or PDFs
-                                    <div>here</div>
-                                </div>
-                                <div ng-no-file-drop="" class="drop-box">File Drag&amp;Drop not supported on your browser</div>
-                                <img ng-src="{{profile.photo_path}}" width="300px" height="300px"/>
-                                <img ng-src="img/ajax-loader.gif" ng-show='profile.photo_loading'/>
-
-                                <div class="errors" ng-show="profile.photo_invalid">
-                                    <span>{{ profile.errors.file }}</span>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label>Vídeo</label>
-                                <input type="text" class="form-control" ng-model="profile.organizer.youtube_video_url" name="video"
+                                <input type="text" class="form-control" ng-model="profile.organizer.youtube_video_url"
+                                       name="video"
                                        placeholder='Ejemplo: www.youtube.com/watch?v=video_id'>
                             </div>
                             <input type="submit" id="video-submit" class="btn btn-primary" value="Guardar"/>
@@ -119,66 +105,66 @@
                     </form>
                     <hr>
                 </div>
-                <div class="tab-pane text-style" id="location-tab">
-
+                <div class="tab-pane" id="location-tab">
                     <form name='profile.organizer_location_form' ng-submit="profile.submit_location()">
                         <fieldset>
+                            <h2 ng-bind="::profile.strings.TAB_LOCATION"></h2>
 
-                            <h2>Descripción</h2>
-
-                            <div class="form-group">
-                                <label>Ciudad</label>
-                                <select ng-model="profile.organizer.location.city"
-                                        ng-options="city as city.name for city in profile.cities track by city.id" name="city">
-                                    <option value="" selected ng-show="!profile.organizer_location_form.type.$dirty">Seleccione..
-                                    </option>
-                                </select>
-                                {{ profile.errors.city }}
-                                <span class="errors"
-                                      ng-show="profile.organizer_location_form.city.$invalid && !profile.organizer_location_form.city.$dirty">
-                                  <span>{{ profile.errors.city }}</span>
-                                </span>
-                            </div>
-                            <div class="form-group">
-
-                            </div>
-                            <div class="form-group">
-                                <label>Dirección exacta</label>
-                                <textarea class="form-control" ng-model='profile.organizer.location.address'
-                                          name="address">  </textarea>
-
-                                <div class="errors"
-                                     ng-show="profile.organizer_location_form.address.$invalid && !profile.organizer_location_form.address.$dirty">
-                                    <span>{{ profile.errors.address }}</span>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group" trulii-input-errors-control="city">
+                                        <label for="city">Ciudad</label>
+                                        <select id="city" name="city" class="form-control"
+                                                ng-model="profile.organizer.location.city"
+                                                ng-options="city as city.name for city in profile.cities track by city.id">
+                                            <option value="" selected ng-show="!profile.organizer_location_form.city.$dirty">
+                                                Seleccione..
+                                            </option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <hr>
-                                <div>
-                                    <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom' bounds="profile.map.bounds"
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="address">Dirección exacta</label>
+                                        <textarea id="address" class="form-control"
+                                                  ng-model='profile.organizer.location.address'
+                                                  name="address"></textarea>
+                                        <div class="errors"
+                                             ng-show="profile.organizer_location_form.address.$invalid && !profile.organizer_location_form.address.$dirty">
+                                            <span>{{ profile.errors.address }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
+                                                        bounds="profile.map.bounds"
                                                         events="profile.map.events" control="profile.map.control">
-
                                         <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
-                                                        events="profile.marker.events" idkey="profile.marker.id"></ui-gmap-marker>
-
+                                                        events="profile.marker.events"
+                                                        idkey="profile.marker.id"></ui-gmap-marker>
                                     </ui-gmap-google-map>
-                                </div>
+                                    <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
 
-                                <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
-
-                                <div ng-savedmessage message="Guardado" ng-model="profile.isCollapsed" collapse="profile.isCollapsed">
+                                    <div ng-savedmessage data-message="Guardado" ng-model="profile.isCollapsed"
+                                         collapse="profile.isCollapsed">
+                                    </div>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
-
                 </div>
-                <div class="tab-pane text-style" id="comments-tab">
+                <div class="tab-pane" id="comments-tab">
                     <h2>Stet clita</h2>
 
-                    <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel eum
-                        iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla
-                        facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
+                    <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel
+                        eum
+                        iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
+                        feugiat nulla
+                        facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+                        delenit
                         augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
-                    <hr>
                 </div>
             </div>
         </div>

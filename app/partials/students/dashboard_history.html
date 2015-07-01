@@ -14,8 +14,8 @@
                                 ng-bind="::history.strings.TAB_ORDERS"></span></a>
                     </li>
                     <!--<li class="card__lateral-menu__item" data-toggle="tab" data-target="#history-reimbursements-tab">-->
-                        <!--<a> <i class="mdi-content-undo"></i> <span-->
-                                <!--ng-bind="::history.strings.TAB_REIMBURSEMENTS"></span></a>-->
+                    <!--<a> <i class="mdi-content-undo"></i> <span-->
+                    <!--ng-bind="::history.strings.TAB_REIMBURSEMENTS"></span></a>-->
                     <!--</li>-->
                 </ul>
             </div>
@@ -30,6 +30,7 @@
                                     <div class="form-group">
                                         <label class="control-label sr-only"
                                                ng-bind="::history.strings.LABEL_SEARCH"></label>
+
                                         <div class="input-group">
                                             <input class="form-control floating-label" type="text"
                                                    ng-model="history.orderQuery"
@@ -46,12 +47,12 @@
                                     <div class="table-responsive">
                                         <table class="table table-hover">
                                             <tr class="text-center">
-                                                <th class="">Orden</th>
-                                                <th class="">Actividad</th>
-                                                <th class="">Pago</th>
-                                                <th class="">Detalle</th>
-                                                <th class="">Fecha</th>
-                                                <th class="">Total</th>
+                                                <th ng-bind="::history.strings.HEADER_ORDER"></th>
+                                                <th ng-bind="::history.strings.HEADER_ACTIVITY"></th>
+                                                <th ng-bind="::history.strings.HEADER_PAYMENT"></th>
+                                                <th ng-bind="::history.strings.HEADER_DETAIL"></th>
+                                                <th ng-bind="::history.strings.HEADER_DATE"></th>
+                                                <th ng-bind="::history.strings.HEADER_TOTAL"></th>
                                                 <th class=""></th>
                                             </tr>
                                             <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
@@ -59,18 +60,18 @@
                                                     <span ng-bind="order.id"></span>
                                                 </td>
                                                 <td>
-                                                    <span>No Disponible</span>
+                                                    <span ng-bind="::history.strings.COPY_NOT_AVAILABLE"></span>
                                                 </td>
                                                 <td>
-                                                    <span>N/A</span>
+                                                    <span ng-bind="::history.strings.COPY_NA"></span>
                                                 </td>
                                                 <td>
                                                     <span>
                                                         <ng-pluralize count="order.assistants.length"
                                                                       when="{
-                                                                        'one': '{} asistente',
-                                                                        'other': '{} asistentes'
-                                                                      }">
+                                                            'one': {{history.strings.PLURALIZE_ASSISTANT}},
+                                                            'other': {{history.strings.PLURALIZE_ASSISTANTS}}
+                                                          }">
                                                         </ng-pluralize>
                                                     </span>
                                                 </td>
@@ -95,16 +96,17 @@
                         <div ng-if="history.orders.length <= 0" class="row">
                             <div class="col-md-12">
                                 <h4 ng-bind="::history.strings.LABEL_EMPTY_ORDERS"></h4>
+
                                 <p ng-bind="::history.strings.COPY_EMPTY_ORDERS"></p>
                             </div>
                         </div>
                     </div>
                     <!--<div class="tab-pane" id="history-reimbursements-tab">-->
-                        <!--<div class="panel panel-default">-->
-                            <!--<div class="panel-body">-->
-                                <!--<p class="lead">Coming Soon!</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
+                    <!--<div class="panel panel-default">-->
+                    <!--<div class="panel-body">-->
+                    <!--<p class="lead">Coming Soon!</p>-->
+                    <!--</div>-->
+                    <!--</div>-->
                     <!--</div>-->
                 </div>
             </div>

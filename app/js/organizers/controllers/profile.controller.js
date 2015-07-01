@@ -38,12 +38,6 @@
                 var cityId = organizer.locations[0].city;
                 cities.find(isSameCity);
             } else {
-                // TODO for layout purposes
-                return {
-                    address: "Bogotá",
-                    city: 1,
-                    id: 1
-                };
                 return null;
             }
 
