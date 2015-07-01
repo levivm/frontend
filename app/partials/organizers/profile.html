@@ -17,6 +17,12 @@
         <trulii-activity-item class="col-md-12"
                               ng-repeat="activity in profile.activities track by activity.id"
                               data-activity="activity" data-options="{{profile.options}}"></trulii-activity-item>
+        <pagination class="pagination-sm"
+                    ng-model="profile.pageNumber"
+                    ng-change="profile.activityPageChange()"
+                    data-total-items="profile.paginationOpts.totalItems"
+                    data-items-per-page="profile.paginationOpts.itemsPerPage"
+                    data-boundary-links="false"></pagination>
     </div>
 </div>
 <div class="col-md-6">
