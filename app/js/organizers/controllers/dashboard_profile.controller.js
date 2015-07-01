@@ -25,7 +25,6 @@
         vm.errors = {};
         vm.photo_invalid = false;
         vm.photo_loading = false;
-        vm.isCollapsed = true;
         vm.load_map = initialize_map;
         vm.map = LocationManager.getMap(vm.organizer.location);
         vm.marker = LocationManager.getMarker(vm.organizer.location);
@@ -104,8 +103,6 @@
 
         function _updateSuccess() {
             angular.extend(organizer, vm.organizer);
-            //Authentication.updateAuthenticatedAccount();
-            _toggleMessage();
             vm.isSaving = false;
             Toast.generics.weSaved();
         }
@@ -114,13 +111,6 @@
             var errors = response.data;
             Error.form.add(vm.profile_form_info, errors);
             vm.isSaving = false;
-        }
-
-        function _toggleMessage() {
-            vm.isCollapsed = false;
-            var timer = $timeout(function () {
-                vm.isCollapsed = true;
-            }, 1000);
         }
 
         function setStrings() {
@@ -138,6 +128,11 @@
                 TAB_COMMENTS: "Comentarios",
                 LABEL_FULL_NAME: "Nombre Completo",
                 LABEL_BIO: "Biografía",
+                LABEL_VIDEO: "Video",
+                LABEL_CITY: "Ciudad",
+                LABEL_ADDRESS: "Dirección Exacta",
+                OPTION_SELECT: "Seleccione...",
+                PLACEHOLDER_VIDEO: "Ejemplo: www.youtube.com/watch?v=video_id",
                 HELPER_FULL_NAME: "Escribe el nombre de la organización o persona",
                 HELPER_BIO: "Escribe sobre la historia, reputación y calidad de servicios de tu empresa "
                 + "¡En pocas palabras, describe por qué tu empresa es genial!"

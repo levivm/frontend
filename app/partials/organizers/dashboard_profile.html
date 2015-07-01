@@ -1,12 +1,12 @@
 <div class="container">
-    <div class="card z-shadow-1">
+    <div class="card z-shadow-1" style="min-height: 44em;">
         <div class="col-md-3 card__lateral-menu">
             <div class="card__lateral-menu__title">
                 <i class="mdi-action-account-circle"></i>
                 <span> </span>
-                <span ng-bind="profile.strings.SECTION_PROFILE"></span>
+                <span ng-bind="::profile.strings.SECTION_PROFILE"></span>
             </div>
-            <form name="profile.picture_form">
+            <form name="vm.picture_form">
                 <div class="form-group">
                     <div class="img-input center-childs">
                         <img class="profile-photo profile-photo--xs img-size-cover img-position-center"
@@ -21,8 +21,8 @@
                              ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
                              data-allow-dir="true" data-accept="image/*">
                             <button class="btn btn-bgsecondary btn-raised"
-                                    aria-label="{{profile.strings.ACTION_UPDATE_PICTURE}}">
-                                <span ng-bind="profile.strings.ACTION_UPDATE_PICTURE"></span>
+                                    aria-label="{{::profile.strings.ACTION_UPDATE_PICTURE}}">
+                                <span ng-bind="::profile.strings.ACTION_UPDATE_PICTURE"></span>
                             </button>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li class="card__lateral-menu__item" data-toggle="tab" data-target="#video-tab">
-                    <a> <i class="mdi-communication-email"></i>
+                    <a> <i class="mdi-av-videocam"></i>
                         <span> </span>
                         <span ng-bind="::profile.strings.TAB_VIDEO"></span>
                     </a>
@@ -50,12 +50,12 @@
                         <span ng-bind="::profile.strings.TAB_LOCATION"></span>
                     </a>
                 </li>
-                <li class="card__lateral-menu__item" data-toggle="tab" data-target="#comments-tab">
-                    <a> <i class="mdi-action-history"></i>
-                        <span> </span>
-                        <span ng-bind="::profile.strings.TAB_COMMENTS"></span>
-                    </a>
-                </li>
+                <!--<li class="card__lateral-menu__item" data-toggle="tab" data-target="#comments-tab">-->
+                    <!--<a> <i class="mdi-communication-comment"></i>-->
+                        <!--<span> </span>-->
+                        <!--<span ng-bind="::profile.strings.TAB_COMMENTS"></span>-->
+                    <!--</a>-->
+                <!--</li>-->
             </ul>
         </div>
         <div class="col-md-9 col-md-offset-3 card-body">
@@ -63,76 +63,66 @@
                 <div class="tab-pane active" id="info-tab">
                     <h2 ng-bind="::profile.strings.TAB_INFO"></h2>
 
-                    <form name='profile.profile_form_info' ng-submit="profile.submit_info()">
+                    <form name='vm.profile_form_info' ng-submit="profile.submit_info()">
                         <fieldset>
                             <div class="form-group">
                                 <label ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
                                 <input type="text" class="form-control" ng-model='profile.organizer.name'
                                        name="full_name"
-                                       placeholder="{{profile.strings.HELPER_FULL_NAME}}">
+                                       placeholder="{{::profile.strings.HELPER_FULL_NAME}}">
                             </div>
                             <div class="form-group">
                                 <label for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
                                 <textarea id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"
-                                          placeholder="{{profile.strings.HELPER_BIO}}"></textarea>
+                                          placeholder="{{::profile.strings.HELPER_BIO}}"></textarea>
                             </div>
                             <input type="submit" id="info-submit" class="btn btn-primary"
-                                   ng-value="profile.strings.ACTION_SAVE"/>
-
-                            <div collapse="profile.isCollapsed">
-                                Guardado
-                            </div>
+                                   ng-value="::profile.strings.ACTION_SAVE"/>
                         </fieldset>
                     </form>
                 </div>
                 <div class="tab-pane" id="video-tab">
-                    <h2 ng-bind="profile.strings.TAB_VIDEO"></h2>
-
-                    <form name='profile.profile_form_photo' ng-submit="profile.submit_video()">
+                    <h2 ng-bind="::profile.strings.TAB_VIDEO"></h2>
+                    <form name='vm.profile_form_photo' ng-submit="profile.submit_video()">
                         <fieldset>
                             <div class="form-group">
-                                <label>Vídeo</label>
+                                <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
                                 <input type="text" class="form-control" ng-model="profile.organizer.youtube_video_url"
                                        name="video"
-                                       placeholder='Ejemplo: www.youtube.com/watch?v=video_id'>
+                                       placeholder="{{::profile.strings.PLACEHOLDER_VIDEO}}">
                             </div>
-                            <input type="submit" id="video-submit" class="btn btn-primary" value="Guardar"/>
-
-                            <div collapse="profile.isCollapsed">
-                                Guardado
+                            <div class="form-group">
+                                <youtube-video video-url="profile.organizer.youtube_video_url" player-width="'100%'">
+                                </youtube-video>
                             </div>
+                            <input type="submit" id="video-submit" class="btn btn-primary"
+                                   value="{{profile.strings.ACTION_SAVE}}"/>
                         </fieldset>
                     </form>
-                    <hr>
                 </div>
                 <div class="tab-pane" id="location-tab">
-                    <form name='profile.organizer_location_form' ng-submit="profile.submit_location()">
+                    <form name='vm.organizer_location_form' ng-submit="profile.submit_location()">
                         <fieldset>
                             <h2 ng-bind="::profile.strings.TAB_LOCATION"></h2>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group" trulii-input-errors-control="city">
-                                        <label for="city">Ciudad</label>
+                                        <label for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
                                         <select id="city" name="city" class="form-control"
                                                 ng-model="profile.organizer.location.city"
                                                 ng-options="city as city.name for city in profile.cities track by city.id">
-                                            <option value="" selected ng-show="!profile.organizer_location_form.city.$dirty">
-                                                Seleccione..
+                                            <option value="" ng-show="!vm.organizer_location_form.city.$dirty"
+                                                    ng-bind="::profile.strings.OPTION_SELECT" selected>
                                             </option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label for="address">Dirección exacta</label>
+                                    <div class="form-group" trulii-input-errors-control="address">
+                                        <label for="address" ng-bind="::profile.strings.LABEL_ADDRESS"></label>
                                         <textarea id="address" class="form-control"
                                                   ng-model='profile.organizer.location.address'
                                                   name="address"></textarea>
-                                        <div class="errors"
-                                             ng-show="profile.organizer_location_form.address.$invalid && !profile.organizer_location_form.address.$dirty">
-                                            <span>{{ profile.errors.address }}</span>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -145,27 +135,24 @@
                                                         events="profile.marker.events"
                                                         idkey="profile.marker.id"></ui-gmap-marker>
                                     </ui-gmap-google-map>
-                                    <input type="submit" id="submit" class="btn btn-primary" value="Guardar"/>
-
-                                    <div ng-savedmessage data-message="Guardado" ng-model="profile.isCollapsed"
-                                         collapse="profile.isCollapsed">
-                                    </div>
+                                    <input type="submit" id="submit" class="btn btn-primary"
+                                           value="{{::profile.strings.ACTION_SAVE}}"/>
                                 </div>
                             </div>
                         </fieldset>
                     </form>
                 </div>
-                <div class="tab-pane" id="comments-tab">
-                    <h2>Stet clita</h2>
+                <!--<div class="tab-pane" id="comments-tab">-->
+                    <!--<h2 ng-bind="::profile.strings.TAB_COMMENTS"></h2>-->
 
-                    <p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel
-                        eum
-                        iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu
-                        feugiat nulla
-                        facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
-                        delenit
-                        augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>
-                </div>
+                    <!--<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel-->
+                        <!--eum-->
+                        <!--iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu-->
+                        <!--feugiat nulla-->
+                        <!--facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril-->
+                        <!--delenit-->
+                        <!--augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>-->
+                <!--</div>-->
             </div>
         </div>
     </div>
