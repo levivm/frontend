@@ -20,7 +20,10 @@
     function LocationManager($http, $q, $cookies, serverConf,localStorageService) {
 
         var currentCity = null;
+        var searchCity = null;
         var mapBounds = null;
+        var KEY_SEARCH_CITY = "search_city";
+        var KEY_AVAILABLE_CITIES = "availableCities";
 
         //noinspection UnnecessaryLocalVariableJS
         var LocationManager = {
@@ -36,6 +39,15 @@
 
             /**
              * @ngdoc function
+             * @name trulii.locations.services.LocationManager#setCurrentCity
+             * @params {object} city City Object to persist
+             * @description Sets the current city for the logged user
+             * @methodOf trulii.locations.services.LocationManager
+             */
+            setCurrentCity   : _setCurrentCity,
+
+            /**
+             * @ngdoc function
              * @name trulii.locations.services.LocationManager#getAvailableCities
              * @description Returns current selected city for the logged user
              * @methodOf trulii.locations.services.LocationManager
@@ -46,22 +58,29 @@
             /**
              * @ngdoc function
              * @name trulii.locations.services.LocationManager#_getCityById
-             * @params {number} city id 
+             * @params {number} city id
              * @description get the city by id
              * @methodOf trulii.locations.services.LocationManager
-             * @return {object} City 
+             * @return {object} City
              */
             getCityById   : _getCityById,
 
             /**
              * @ngdoc function
-             * @name trulii.locations.services.LocationManager#setCurrentCity
-             * @params {object} object object param
-             * @params {number} object.id id of object
-             * @description Sets the current city for the logged user
+             * @name trulii.locations.services.LocationManager#setSearchCity
+             * @params {object} city City Object to persist
+             * @description Sets the current city for activities search
              * @methodOf trulii.locations.services.LocationManager
              */
-            setCurrentCity   : _setCurrentCity,
+            setSearchCity   : _setSearchCity,
+
+            /**
+             * @ngdoc function
+             * @name trulii.locations.services.LocationManager#getSearchCity
+             * @description Returns the city selected for activities search
+             * @methodOf trulii.locations.services.LocationManager
+             */
+            getSearchCity   : _getSearchCity,
 
             /**
              * @ngdoc function
@@ -138,6 +157,28 @@
 
             function byId(city){
                 return city.id === current_city.id;
+            }
+        }
+
+        function _setSearchCity(city){
+            if (city){
+                localStorageService.set(KEY_SEARCH_CITY,city);
+                searchCity = city;
+            }
+        }
+
+        function _getSearchCity(){
+            var availableCities = localStorageService.get(KEY_AVAILABLE_CITIES);
+
+            if(!searchCity){
+                searchCity = localStorageService.get(KEY_SEARCH_CITY);
+                if (searchCity){
+                    return searchCity;
+                } else {
+                    localStorageService.set(KEY_SEARCH_CITY, availableCities[0]);
+                    searchCity = availableCities[0];
+                    return availableCities[0];
+                }
             }
         }
 
