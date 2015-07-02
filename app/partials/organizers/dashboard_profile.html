@@ -6,7 +6,7 @@
                 <span> </span>
                 <span ng-bind="::profile.strings.SECTION_PROFILE"></span>
             </div>
-            <form name="vm.picture_form">
+            <form name="profile.picture_form">
                 <div class="form-group">
                     <div class="img-input center-childs">
                         <img class="profile-photo profile-photo--xs img-size-cover img-position-center"
@@ -44,8 +44,8 @@
                         <span ng-bind="::profile.strings.TAB_VIDEO"></span>
                     </a>
                 </li>
-                <li class="card__lateral-menu__item" data-toggle="tab" data-target="#location-tab">
-                    <a> <i class="mdi-maps-place"></i>
+                <li class="card__lateral-menu__item" data-toggle="tab" ng-click="profile.load_map()"  data-target="#location-tab">
+                    <a > <i class="mdi-maps-place"></i>
                         <span> </span>
                         <span ng-bind="::profile.strings.TAB_LOCATION"></span>
                     </a>
@@ -63,27 +63,34 @@
                 <div class="tab-pane active" id="info-tab">
                     <h2 ng-bind="::profile.strings.TAB_INFO"></h2>
 
-                    <form name='vm.profile_form_info' ng-submit="profile.submit_info()">
+                    <form name='profile.profile_form_info' ng-submit="profile.submit_info()">
                         <fieldset>
-                            <div class="form-group">
+                            <div class="form-group" trulii-input-errors-control="name">
                                 <label ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
                                 <input type="text" class="form-control" ng-model='profile.organizer.name'
-                                       name="full_name"
+                                       name="name"
                                        placeholder="{{::profile.strings.HELPER_FULL_NAME}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="headline" ng-bind="::profile.strings.LABEL_HEADLINE"></label>
+                                <textarea id="headline" class="form-control" ng-model='profile.organizer.headline' name="headline"
+                                          placeholder="{{::profile.strings.HELPER_HEADLINE}}"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
                                 <textarea id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"
                                           placeholder="{{::profile.strings.HELPER_BIO}}"></textarea>
                             </div>
-                            <input type="submit" id="info-submit" class="btn btn-primary"
+<!--                             <input type="submit" id="info-submit" class="btn btn-primary"
                                    ng-value="::profile.strings.ACTION_SAVE"/>
+ -->                            <trulii-submit-controls is-saving="profile.isSaving"
+                                data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
                         </fieldset>
                     </form>
                 </div>
                 <div class="tab-pane" id="video-tab">
                     <h2 ng-bind="::profile.strings.TAB_VIDEO"></h2>
-                    <form name='vm.profile_form_photo' ng-submit="profile.submit_video()">
+                    <form name='profile.profile_form_photo' ng-submit="profile.submit_video()">
                         <fieldset>
                             <div class="form-group">
                                 <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
@@ -95,13 +102,16 @@
                                 <youtube-video video-url="profile.organizer.youtube_video_url" player-width="'100%'">
                                 </youtube-video>
                             </div>
-                            <input type="submit" id="video-submit" class="btn btn-primary"
+                            <trulii-submit-controls is-saving="profile.isSaving"
+                                data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
+
+<!--                             <input type="submit" id="video-submit" class="btn btn-primary"
                                    value="{{profile.strings.ACTION_SAVE}}"/>
-                        </fieldset>
+ -->                        </fieldset>
                     </form>
                 </div>
                 <div class="tab-pane" id="location-tab">
-                    <form name='vm.organizer_location_form' ng-submit="profile.submit_location()">
+                    <form name='profile.organizer_location_form' ng-submit="profile.submit_location()">
                         <fieldset>
                             <h2 ng-bind="::profile.strings.TAB_LOCATION"></h2>
                             <div class="row">
@@ -111,7 +121,7 @@
                                         <select id="city" name="city" class="form-control"
                                                 ng-model="profile.organizer.location.city"
                                                 ng-options="city as city.name for city in profile.cities track by city.id">
-                                            <option value="" ng-show="!vm.organizer_location_form.city.$dirty"
+                                            <option value="" ng-show="!profile.organizer.location.city"
                                                     ng-bind="::profile.strings.OPTION_SELECT" selected>
                                             </option>
                                         </select>
@@ -135,8 +145,12 @@
                                                         events="profile.marker.events"
                                                         idkey="profile.marker.id"></ui-gmap-marker>
                                     </ui-gmap-google-map>
-                                    <input type="submit" id="submit" class="btn btn-primary"
+                                    <trulii-submit-controls is-saving="profile.isSaving"
+                                        data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
+
+<!--                                     <input type="submit" id="submit" class="btn btn-primary"
                                            value="{{::profile.strings.ACTION_SAVE}}"/>
+ -->                                           
                                 </div>
                             </div>
                         </fieldset>

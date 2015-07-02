@@ -57,27 +57,20 @@
 
             function success() {
                 vm.isSaving = false;
-            $state.go('general-message', {
-                'module_name' : 'authentication',
-                'template_name' : 'change_password_success',
-                'redirect_state' : 'home'
-            });
-        }
+                $state.go('general-message', {
+                    'module_name' : 'authentication',
+                    'template_name' : 'change_password_success',
+                    'redirect_state' : 'home'
+                });
+            }
 
             function error(response) {
                 vm.isSaving = false;
                 var responseErrors = response.data['form_errors'];
                 if (responseErrors) {
                     Error.form.add(vm.account_form_password, responseErrors);
+                }
             }
-        }
-        }
-
-        function _toggleMessage() {
-            vm.isCollapsed = false;
-            var timer = $timeout(function () {
-                vm.isCollapsed = true;
-            }, 1000);
         }
 
         function setStrings() {

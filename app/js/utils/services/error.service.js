@@ -41,6 +41,7 @@
 
         function clearErrors(form) {
 
+            console.log("FORMMMMM",form);
             form.$setPristine();
 
             if (form.hasOwnProperty(FORM_FIELD_ALL))
@@ -54,6 +55,7 @@
 
                 _.each(error_dict, function (message, field) {
                     // console.log("message,field",message,field);
+                    // 
                     form[field].error_message = message.pop();
                     form[field].$setValidity(field, false);
                 });

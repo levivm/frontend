@@ -81,7 +81,8 @@
                 var scope = this;
                 var profile_data = {
                     'name' : scope.name,
-                    'bio' : scope.bio
+                    'bio' : scope.bio,
+                    'headline' : scope.headline
                 };
                 return scope.update(profile_data)
             },

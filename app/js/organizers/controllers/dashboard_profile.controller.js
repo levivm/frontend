@@ -26,7 +26,9 @@
         vm.photo_invalid = false;
         vm.photo_loading = false;
         vm.load_map = initialize_map;
+
         vm.map = LocationManager.getMap(vm.organizer.location);
+
         vm.marker = LocationManager.getMarker(vm.organizer.location);
         vm.uploadPicture = uploadPicture;
         vm.submit_info = update_info;
@@ -69,18 +71,21 @@
         }
 
         function update_info() {
+            Error.form.clear(vm.profile_form_info);
+
             vm.organizer.update_profile()
                 .then(_updateSuccess, _updateFail);
         }
 
         function update_location() {
-            Error.form.clear(vm.profile_form_info);
+            Error.form.clear(vm.organizer_location_form);
             _setOrganizerPos();
             vm.organizer.update_location(vm.organizer.location)
                 .then(_successUpdatedLocation, _updateFail)
         }
 
         function _successUpdatedLocation(response) {
+            vm.isSaving = false;
             angular.extend(organizer, vm.organizer);
             Toast.generics.weSaved();
         }
@@ -109,6 +114,7 @@
 
         function _updateFail(response) {
             var errors = response.data;
+            Error.form.add(vm.organizer_location_form, errors);
             Error.form.add(vm.profile_form_info, errors);
             vm.isSaving = false;
         }
@@ -128,12 +134,14 @@
                 TAB_COMMENTS: "Comentarios",
                 LABEL_FULL_NAME: "Nombre Completo",
                 LABEL_BIO: "Biografía",
+                LABEL_HEADLINE: "Descripción Corta",
                 LABEL_VIDEO: "Video",
                 LABEL_CITY: "Ciudad",
                 LABEL_ADDRESS: "Dirección Exacta",
                 OPTION_SELECT: "Seleccione...",
                 PLACEHOLDER_VIDEO: "Ejemplo: www.youtube.com/watch?v=video_id",
                 HELPER_FULL_NAME: "Escribe el nombre de la organización o persona",
+                HELPER_HEADLINE: "Describe tu organización en pocas palabras",
                 HELPER_BIO: "Escribe sobre la historia, reputación y calidad de servicios de tu empresa "
                 + "¡En pocas palabras, describe por qué tu empresa es genial!"
             });
@@ -141,6 +149,7 @@
 
         function activate(){
             setStrings();
+            // initialize_map();
             console.log('organizer:', organizer);
             console.log('vm.map:', vm.map);
             console.log('vm.marker:', vm.marker);
