@@ -28,8 +28,13 @@
                 scope.search_city = null;
                 scope.cities = [];
                 scope.isSearchVisible = true;
+                scope.updateSearchCity = updateSearchCity;
 
                 activate();
+
+                function updateSearchCity(){
+                    LocationManager.setSearchCity(scope.search_city);
+                }
 
                 function setStrings() {
                     if (!scope.strings) {
@@ -105,6 +110,10 @@
                     function error() { console.log("truliiNavbar. Couldn't get cities"); }
                 }
 
+                function setCurrentCity(){
+                    scope.search_city = LocationManager.getCurrentCity();
+                }
+
                 function cleanUp(){
                     unsubscribeUserChanged();
                     unsubscribeUserLoggedOut();
@@ -113,6 +122,7 @@
                 function activate() {
                     setStrings();
                     getUser();
+                    setCurrentCity();
                     getCities();
 
                     unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function(event){
