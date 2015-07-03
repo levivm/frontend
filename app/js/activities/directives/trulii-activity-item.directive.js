@@ -32,7 +32,7 @@
                 scope.getStarStyle = getStarStyle;
                 scope.hasAction = hasAction;
 
-                initialize();
+                _activate();
 
                 /////////////////////////////////////
 
@@ -53,7 +53,106 @@
                     }
                 }
 
-                function setStrings(){
+                function _mapMainPicture(activity){
+                    if(activity.photos.length > 0){
+                        angular.forEach(activity.photos, function(photo, index, array){
+                            if(photo.main_photo){
+                                activity.main_photo = photo.photo;
+                            }
+
+                            if( index === (array.length - 1) && !activity.main_photo){
+                                activity.main_photo = array[0].photo;
+                            }
+                        });
+                    } else {
+                        activity.main_photo = defaultCover;
+                    }
+                    return activity;
+                }
+
+                function _mapActions(actions){
+                    if(!actions) return null;
+
+                    actions = actions.map(function(action){
+                        if(typeof action === 'string'){
+                            return action.toLowerCase();
+                        } else {
+                            return null;
+                        }
+                    });
+                    console.log('actions.map(createActionObject):', actions.map(createActionObject));
+                    return actions.map(createActionObject);
+
+                    function createActionObject(action){
+                        switch(action){
+                            case scope.strings.ACTION_VIEW:
+                                return {
+                                    'name': scope.strings.LABEL_VIEW,
+                                    'icon': 'mdi-action-visibility',
+                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                };
+                                break;
+                            case scope.strings.ACTION_EDIT:
+                                return {
+                                    'name': scope.strings.LABEL_EDIT,
+                                    'icon': 'mdi-content-create',
+                                    'state': "dash.activities-edit.general({activity_id:" + scope.activity.id + "})"
+                                };
+                                break;
+                            case scope.strings.ACTION_MANAGE:
+                                return {
+                                    'name': scope.strings.LABEL_MANAGE,
+                                    'icon': 'mdi-action-settings',
+                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                };
+                                break;
+                            case scope.strings.ACTION_CONTACT:
+                                return {
+                                    'name': scope.strings.LABEL_CONTACT,
+                                    'icon': 'mdi-communication-email',
+                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                };
+                                break;
+                            case scope.strings.ACTION_REPUBLISH:
+                                return {
+                                    'name': scope.strings.LABEL_REPUBLISH,
+                                    'icon': 'mdi-content-redo',
+                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                };
+                                break;
+                            default:
+                                return null;
+                        }
+                    }
+                }
+
+                function _mapClosestCalendar(activity){
+                    var today = Date.now();
+                    activity.days_to_closest = null;
+
+                    if(activity.chronograms){
+                        activity.chronograms.forEach(function(chronogram){
+                            //console.log('activity.closest_date:', activity.closest_date);
+                            //console.log('chronogram.initial_date:', chronogram.initial_date);
+                            //console.log('condition:', !activity.closest_date || chronogram.initial_date < activity.closest_date);
+                            if(!activity.closest_date || chronogram.initial_date < activity.closest_date){
+                                activity.closest_date = chronogram.initial_date;
+                                activity.days_to_closest = Math.floor((activity.closest_date - today) / (1000*60*60*24));
+                                //console.log('today:', today, 'initial_date:', chronogram.initial_date,
+                                //    'diff ms:', activity.closest_date - today, 'days:', activity.days_to_closest);
+                            }
+                            activity.closest_chronogram = chronogram;
+                        });
+                    }
+
+                    //console.log('activity.days_to_closest:', activity.days_to_closest, !activity.days_to_closest);
+                    if(activity.days_to_closest === null){
+                        activity.days_to_closest = -1;
+                    }
+                    return activity;
+                }
+
+                function _setStrings(){
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
                         ACTION_VIEW: "view",
@@ -65,16 +164,20 @@
                         ACTION_CONTACT: "contact",
                         LABEL_CONTACT: "Contactar",
                         ACTION_REPUBLISH: "republish",
-                        LABEL_REPUBLISH: "Republicar"
+                        LABEL_REPUBLISH: "Republicar",
+                        COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
+                        COPY_TODAY: "Hoy",
+                        COPY_DAY: "día ",
+                        COPY_IN: "En "
                     });
                 }
 
-                function initialize(){
-                    setStrings();
+                function _activate(){
+                    _setStrings();
                     if(attrs.options){
                         options = JSON.parse(attrs.options);
                         if(options.actions){
-                            scope.actions = mapActions(options.actions);
+                            scope.actions = _mapActions(options.actions);
                         } else {
                             scope.actions = null;
                         }
@@ -84,63 +187,11 @@
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
-                    mapMainPicture(scope.activity);
-                    mapClosestCalendar(scope.activity);
+                    _mapMainPicture(scope.activity);
+                    _mapClosestCalendar(scope.activity);
                     console.log('directive activity:', scope.activity);
 
-                    function mapMainPicture(activity){
-                        if(activity.photos.length > 0){
-                            angular.forEach(activity.photos, function(photo, index, array){
-                                if(photo.main_photo){
-                                    activity.main_photo = photo.photo;
-                                }
-
-                                if( index === (array.length - 1) && !activity.main_photo){
-                                    activity.main_photo = array[0].photo;
-                                }
-                            });
-                        } else {
-                            activity.main_photo = defaultCover;
-                        }
-                        return activity;
-                    }
-
-                    function mapActions(actions){
-                        if(!actions) return null;
-                        return actions.map(function(action){
-                            if(typeof action === 'string'){
-                                return action.toLowerCase();
-                            } else {
-                                return null;
-                            }
-                        });
-                    }
-
-                    function mapClosestCalendar(activity){
-                        var today = Date.now();
-                        activity.days_to_closest = null;
-
-                        if(activity.chronograms){
-                            activity.chronograms.forEach(function(chronogram){
-                                //console.log('activity.closest_date:', activity.closest_date);
-                                //console.log('chronogram.initial_date:', chronogram.initial_date);
-                                //console.log('condition:', !activity.closest_date || chronogram.initial_date < activity.closest_date);
-                                if(!activity.closest_date || chronogram.initial_date < activity.closest_date){
-                                    activity.closest_date = chronogram.initial_date;
-                                    activity.days_to_closest = Math.floor((activity.closest_date - today) / (1000*60*60*24));
-                                    //console.log('today:', today, 'initial_date:', chronogram.initial_date,
-                                    //    'diff ms:', activity.closest_date - today, 'days:', activity.days_to_closest);
-                                }
-                                activity.closest_chronogram = chronogram;
-                            });
-                        }
-
-                        //console.log('activity.days_to_closest:', activity.days_to_closest, !activity.days_to_closest);
-                        if(activity.days_to_closest === null){
-                            activity.days_to_closest = -1;
-                        }
-                        return activity;
-                    }
+                    $('[data-toggle="tooltip"]').tooltip({'container': 'body'});
                 }
             }
         }

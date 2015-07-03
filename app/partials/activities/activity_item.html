@@ -1,20 +1,14 @@
-<div class="activity-item">
+<div class="activity-item" style="background: url('{{activity.main_photo}}')">
     <div class="activity-header">
         <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
-            <img class="activity-cover" ng-src="{{activity.main_photo}}" alt="{{activity.title}}"/>
+            <!--<img class="activity-cover" ng-src="{{activity.main_photo}}" alt="{{activity.title}}"/>-->
         </a>
         <span ng-if="activity.closest_chronogram.session_price"
               class="activity-price">{{activity.closest_chronogram.session_price | currency}}</span>
     </div>
     <div class="activity-body">
         <div class="row">
-            <div class="col-md-3">
-                <a ui-sref="organizer-profile({organizer_id: {{activity.organizer.id}} })">
-                    <img class="organizer-profile-pic" ng-src="{{activity.organizer.photo}}"
-                         alt="{{activity.organizer.name}}"/>
-                </a>
-            </div>
-            <div class="col-md-8 col-md-offset-4">
+            <div class="col-md-8">
                 <div class="activity-title">
                     <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
                         <span ng-bind="activity.title"></span>
@@ -26,23 +20,14 @@
                     </a>
                 </div>
             </div>
-        </div>
-        <br/>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="text-right">
-                    <small>
-                            <div ng-if="activity.days_to_closest < 0">
-                                <span class="text-muted">Espere nuevas fechas </span>
-                            </div>
-                            <div ng-if="activity.days_to_closest >= 0">
-                                <span ng-if="activity.days_to_closest === 0" class="text-muted">Hoy </span>
-                                <span ng-if="activity.days_to_closest > 0" class="text-muted">En {{activity.days_to_closest}} día </span>
-                                <span ng-if="activity.closest_date">({{ activity.closest_date | date: 'dd MMM' }})</span>
-                            </div>
-                    </small>
-                </div>
+            <div class="col-md-3">
+                <a ui-sref="organizer-profile({organizer_id: {{activity.organizer.id}} })">
+                    <img class="organizer-profile-pic" ng-src="{{activity.organizer.photo}}"
+                         alt="{{activity.organizer.name}}"/>
+                </a>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-6">
                 <div class="rating-container">
                     <i class="rating-star mdi-action-grade"
@@ -50,21 +35,35 @@
                        ng-style="getStarStyle($index)"></i>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="activity-date">
+                    <div ng-if="activity.days_to_closest < 0">
+                        <span ng-bind="::strings.COPY_WAIT_NEW_DATES"></span>
+                    </div>
+                    <!--TODO se puede generar el string en jS-->
+                    <div ng-if="activity.days_to_closest >= 0">
+                        <span ng-if="activity.days_to_closest === 0" ng-bind="::strings.COPY_TODAY"></span>
+                        <span ng-if="activity.days_to_closest > 0">
+                            <span ng-bind="::strings.COPY_IN"></span>
+                            <span ng-bind="::activity.days_to_closest"></span>
+                            <span ng-bind="::strings.COPY_DAY"></span>
+                        </span>
+                        <span ng-if="activity.closest_date">({{ activity.closest_date | date: 'dd MMM' }})</span>
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="activity-footer">
         <div class="row">
             <div class="col-md-12 text-right">
-                <a ng-if="hasAction(strings.ACTION_VIEW)"
-                   ui-sref="activities-detail({activity_id: activity.id})"
-                   ng-bind="::strings.LABEL_VIEW"></a>
-                <a ng-if="hasAction(strings.ACTION_EDIT)"
-                   ui-sref="dash.activities-edit.general({activity_id:activity.id})"
-                   ng-bind="::strings.LABEL_EDIT"></a>
-                <a ng-if="hasAction(strings.ACTION_MANAGE)"
-                   ng-bind="::strings.LABEL_MANAGE"></a>
-                <a ng-if="hasAction(strings.ACTION_CONTACT)"
-                   ng-bind="::strings.LABEL_CONTACT"></a>
-                <a ng-if="hasAction(strings.ACTION_REPUBLISH)"
-                   ng-bind="::strings.LABEL_REPUBLISH"></a>
+                <a ng-repeat="action in actions track by action.name"
+                   class="activity-action"
+                   ui-sref="{{action.state}}"
+                   data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+                    <i ng-class="action.icon"></i>
+                    <!--<span ng-bind="::action.name"></span>-->
+                </a>
             </div>
         </div>
     </div>

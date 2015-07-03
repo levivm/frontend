@@ -36,7 +36,7 @@
                         <h4 class="text-muted" ng-bind="activities.strings.COPY_PUBLISHED"></h4>
 
                         <div class="row gallery-grid separate-above">
-                            <div class="col-md-12"
+                            <div class="col-md-6"
                                  ng-repeat="activity in activities.published_activities track by activity.id">
                                 <a ui-sref="activities-detail({activity_id: {{activity.id}} })"
                                    class="gallery-grid__photo gallery-grid__photo--grand img-fit"
@@ -162,8 +162,8 @@
                                         <span class="gallery-grid__photo__caption__actions">
                                             <!-- Inicia en 3 días -->
 
-                                            <!-- <button class="btn">Contactar</button>
-                                                <button class="btn">Ver</button> -->
+                                            <button class="btn">Contactar</button>
+                                                <button class="btn">Ver</button>
 
                                         </span>
                                     </div>
