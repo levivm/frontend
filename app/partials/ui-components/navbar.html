@@ -12,8 +12,10 @@
             <a ui-sref="home" class="navbar__logo"></a>
         </div>
         <div class="col-md-5">
-                <form name="search_box" ng-if="isSearchVisible" class="navbar__search-box">
-                    <input type="text" placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"/>
+            <!--TODO Comentado el ng-if para poder probar busqueda como organizer-->
+                <!--<form name="search_box" ng-if="isSearchVisible" class="navbar__search-box">-->
+                <form name="search_box" class="navbar__search-box">
+                    <input type="text" ng-model="q" placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"/>
                     <label for="search-city-selector" class="sr-only">Cities</label>
                     <select id="search-city-selector" class="navbar__search-box__city-select" name="city"
                             ng-model="search_city" ng-change="updateSearchCity()"
@@ -21,36 +23,13 @@
                         <option value="" selected
                                 ng-show="!search_box.city.$dirty" ng-bind="strings.LABEL_CITY"></option>
                     </select>
-                    <!--<span class="navbar__search-box__city-select">Bogotá <span class="mdi-navigation-expand-more"></span></span>-->
-                    <button class="navbar__search-box__btn mdi-action-search"></button>
+                    <button class="navbar__search-box__btn mdi-action-search" ng-click="search()"></button>
                 </form>
-
-                <!--<div ng-if="isStudent()" class="navbar__search-box">-->
-                <!--<input type="text" placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"><label for="city-select-landing" class="sr-only"-->
-                <!--ng-bind="::strings.CITY_LABEL"></label><div class="input-group">-->
-                <!--<select id="city-select-landing" name="city"-->
-                <!--class="form-control navbar__search-box__city-select"-->
-                <!--ng-model="current_city"-->
-                <!--ng-options="city as city.name for city in cities"-->
-                <!--ng-change="setCurrentCity(current_city)">-->
-                <!--<option value="" selected ng-bind="::strings.CITY_DEFAULT_LABEL">-->
-                <!--</option>-->
-                <!--</select>-->
-                <!--</div>-->
-                <!--<button class="navbar__search-box__btn mdi-action-search"></button>-->
-                <!--</div>-->
-
-                <!--<div class="navbar__actions" ng-if="isOrganizer()">-->
-                <!--<a ui-sref="activities-new.general" class="btn btn-default btn-lg">-->
-                <!--<i class="mdi-content-add"></i>-->
-                <!--</a>-->
-                <!--</div>-->
         </div>
         <div class="col-md-5 text-right">
-            <!--<div class="navbar__right-wrapper">-->
             <div ng-if="user">
-                <a ng-if="user.is_organizer" class="btn btn-xs btn-info" ui-sref="dash.activities-new.general">
-                    <span class="mdi-content-add"></span>
+                <a ng-if="user.is_organizer" class="btn btn-info text-light"
+                   ui-sref="dash.activities-new.general" ng-bind="::strings.ACTION_CREATE">
                 </a>
 
                 <div class="navbar__user" data-toggle="dropdown">

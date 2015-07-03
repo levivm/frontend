@@ -12477,6 +12477,12 @@ hr.on-light {
 .title-compound__description {
   margin-top: 1em;
 }
+.text-light {
+  color: rgba(255, 255, 255, 0.84) !important;
+}
+.text-dark {
+  color: rgba(0, 0, 0, 0.74) !important;
+}
 .text-color-primary {
   color: #ffcc33;
 }

@@ -43,6 +43,9 @@
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
+                params: {
+                    'activities': null
+                },
                 resolve:{
                     cities:getAvailableCities,
                     authenticatedUser: getAuthenticatedUser

@@ -35,6 +35,17 @@
 
             /**
              * @ngdoc function
+             * @name trulii.activities.services.ActivityServerApi#search
+             * @description Renders **`/api/activities/search`** Activities Search URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'search' : function () {
+                return renderUrl('activities/', ['search/']);
+            },
+
+            /**
+             * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#activity
              * @description Renders **`/api/activities/:idActivity`** Activity URL
              * @param {number} idActivity Activity Id

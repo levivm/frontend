@@ -35,6 +35,20 @@
 
         activate();
 
+        function mapMainPicture(activity){
+            angular.forEach(activity.photos, function(photo, index, array){
+                if(photo.main_photo){
+                    activity.main_photo = photo.photo;
+                }
+
+                if( index === (array.length - 1) && !activity.main_photo){
+                    activity.main_photo = array[0].photo;
+                }
+            });
+
+            return activity;
+        }
+
         function setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -54,6 +68,8 @@
 
         function activate() {
             setStrings();
+            console.log('activities:', activities);
+            activities.map(mapMainPicture);
             vm.previous_activities = _.filter(activities, function (activity) {
                 var today = new Date();
                 today.setHours(0, 0, 0, 0);
