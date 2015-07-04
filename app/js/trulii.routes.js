@@ -558,9 +558,17 @@
     getStudentActivities.$inject = ['ActivitiesManager', 'Authentication', 'StudentsManager'];
 
     function getStudentActivities(ActivitiesManager, Authentication, StudentsManager){
-        var currentUser =  Authentication.getAuthenticatedAccount();
-        if(Authentication.isStudent()){
+        Authentication.isStudent()
+            .then(function(isStudent){
+                return isStudent? Authentication.getAuthenticatedAccount() : $q.reject();
+            })
+            .then(success, error);
+
+        function success(currentUser){
             return ActivitiesManager.getStudentActivities(currentUser.id);
+        }
+        function error(){
+            $q.reject();
         }
     }
 

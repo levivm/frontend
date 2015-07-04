@@ -230,7 +230,7 @@
                     'action_add': true
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
-            })
+            });
             // .then(success, error);
 
             // function success(response){
