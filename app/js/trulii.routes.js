@@ -438,9 +438,8 @@
                 }
             })
             .state('activities-enroll.success', {
-                url: '',
-                controller: 'ActivityEnrollSuccessController',
-                controllerAs: 'vm',
+                url: '/success',
+                controller: 'ActivityEnrollSuccessController as success',
                 templateUrl: 'partials/activities/detail.enroll.success.html',
                 resolve: {
                     organizer: ['activity', function (activity) {
