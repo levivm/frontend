@@ -34,7 +34,6 @@
                     <div class="tab-pane active fade in" id="published-tab">
                         <h2 ng-bind="activities.strings.TAB_PUBLISHED"></h2>
                         <h4 class="text-muted" ng-bind="activities.strings.COPY_PUBLISHED"></h4>
-
                         <div class="row gallery-grid separate-above">
                             <div class="col-md-6"
                                  ng-repeat="activity in activities.published_activities track by activity.id">
@@ -135,7 +134,7 @@
                                    style="background: url('{{activity.main_photo}}')" alt="{{activity.title}}">
 
                                     <!-- PRICE -->
-                                    <span class="gallery-grid__photo__price"> 300.000</span>
+                                    <span class="gallery-grid__photo__price" ng-bind="activity.chronograms[0].session_price | number"> 300.000</span>
 
                                     <div class="gallery-grid__photo__caption">
                                         <span class="gallery-grid__photo__caption__title"
@@ -168,10 +167,6 @@
                                         </span>
                                     </div>
                                 </a>
-
-                                <!-- -->
-
-
                             </div>
                         </div>
                     </div>

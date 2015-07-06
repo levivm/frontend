@@ -1,14 +1,20 @@
 @import url('../_trulii-variables');
 
+.activity-grid {
+    [class*=col-]{
+        padding: 0 0 @grid-spacing - 2px @grid-spacing;
+    }
+}
+
 .activity-item {
-    //height: 300px;
-    height: 12em;
+    height: 18em;
     width: 100%;
+    position: relative;
     &:extend(.panel);
     &:extend(.panel-default);
-    position: relative;
     &:extend(.img-size-cover);
     &:extend(.img-position-center);
+    box-shadow: none;
 
     .activity-header {
         height: 50%;
@@ -17,6 +23,9 @@
         overflow: hidden;
         position: absolute;
         top:0;
+        right: 0;
+        bottom: 0;
+        left: 0;
 
         .activity-cover {
             width: 100%;
@@ -26,24 +35,41 @@
 
         .activity-price {
             position: absolute;
-            bottom: 16px;
+            top: 0;
             right: 0;
-            padding: 8px;
-            background-color: fade(@primary, 80%);
-            color: @darkbg-text;
-            font-weight: 500;
+
+            background: fadeout(@primary, 10%);
+            color: @gray;
+            padding: .1em 1em;
+            font-size: 1.25em;
+            font-weight: bold;
+
+            &:before{
+                content: "$";
+                color: darken(@primary, 25%);
+                display: inline-block;
+            }
         }
     }
 
     .activity-body {
         &:extend(.panel-body);
         position: absolute;
-        bottom: 15%;
+        bottom: 0;
         left: 0;
         right: 0;
         padding-top: 0;
         background: rgba(0,0,0,0.75);
         color: @darkbg-text;
+
+        &:hover{
+            background: darken(@secondary, 5%);
+            //cursor: pointer;
+
+            .action {
+                color: @darkbg-text;
+            }
+        }
 
         .organizer-profile-pic {
             border-radius: 50%;
@@ -57,6 +83,7 @@
         .activity-date {
             float: right;
             font-size: @font-size-small;
+            padding: 0 8px;
         }
 
         .rating-container {
@@ -67,31 +94,29 @@
                 color: @primary;
 
                 &-empty {
+                    font-size: 18px;
                     color: silver;
                 }
             }
         }
     }
 
-    .activity-footer {
-        padding: 8px 15px 10px;
-        position: absolute;
-        top: 85%;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        &:extend(.panel-footer);
-
-        .activity-action {
+    .action-container {
+        margin-top: 8px;
+        .action {
             padding: 8px;
             text-transform: uppercase;
             text-decoration: none;
             cursor: pointer;
-            color: @text-muted;
+            color: @primary-dark;
             i {
                 font-size: 18px;
             }
         }
+    }
+
+    .activity-action {
+
     }
 
     .activity-title {
@@ -113,6 +138,22 @@
 
         a {
             color: @darkbg-text;
+        }
+    }
+
+    &.dimmed {
+        position: relative;
+
+        &:after {
+            content: " ";
+            z-index: 10;
+            display: block;
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(238, 238, 238, 0.4);
         }
     }
 }

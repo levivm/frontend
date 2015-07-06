@@ -4,7 +4,9 @@
  * @restrict E
  * @description Trulii Activity Item Directive.
  * @param {object} activity Activity instance to represent
- * @param {array} actions Action buttons to display
+ * @param {object} options Options object
+ * @param {array} options.actions Action buttons to display
+ * @param {boolean} options.disabled Defines if the activity should have an opacity overlay
  */
 
 (function (){
@@ -14,10 +16,9 @@
 
         .directive('truliiActivityItem', truliiActivityItem);
 
-    truliiActivityItem.$inject = ['ActivitiesTemplatesPath', 'defaultPicture', 'defaultCover'];
+    truliiActivityItem.$inject = ['$filter', 'ActivitiesTemplatesPath', 'defaultPicture', 'defaultCover'];
 
-    function truliiActivityItem(ActivitiesTemplatesPath, defaultPicture, defaultCover){
-
+    function truliiActivityItem($filter, ActivitiesTemplatesPath, defaultPicture, defaultCover){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -28,7 +29,9 @@
             link: function(scope, element, attrs){
 
                 var options;
+                var MAX_DAYS = 30;
 
+                scope.dimmed = false;
                 scope.getStarStyle = getStarStyle;
                 scope.hasAction = hasAction;
 
@@ -36,9 +39,12 @@
 
                 /////////////////////////////////////
 
-
                 function getStarStyle(star){
-                    return (star < 4? "rating-star": "rating-star-empty");
+                    if(star < 4){
+                        return "rating-star mdi-action-grade";
+                    } else {
+                        return "rating-star-empty mdi-action-grade";
+                    }
                 }
 
                 function hasAction(actionQuery){
@@ -129,25 +135,43 @@
                 function _mapClosestCalendar(activity){
                     var today = Date.now();
                     activity.days_to_closest = null;
+                    activity.closest_date = null;
+                    activity.closest_chronogram = null;
 
                     if(activity.chronograms){
                         activity.chronograms.forEach(function(chronogram){
-                            //console.log('activity.closest_date:', activity.closest_date);
-                            //console.log('chronogram.initial_date:', chronogram.initial_date);
-                            //console.log('condition:', !activity.closest_date || chronogram.initial_date < activity.closest_date);
-                            if(!activity.closest_date || chronogram.initial_date < activity.closest_date){
+                            if(chronogram.initial_date >= today
+                                    && (chronogram.initial_date < activity.closest_date || !activity.closest_date)){
                                 activity.closest_date = chronogram.initial_date;
-                                activity.days_to_closest = Math.floor((activity.closest_date - today) / (1000*60*60*24));
-                                //console.log('today:', today, 'initial_date:', chronogram.initial_date,
-                                //    'diff ms:', activity.closest_date - today, 'days:', activity.days_to_closest);
+                                activity.closest_chronogram = chronogram;
                             }
-                            activity.closest_chronogram = chronogram;
                         });
                     }
 
-                    //console.log('activity.days_to_closest:', activity.days_to_closest, !activity.days_to_closest);
-                    if(activity.days_to_closest === null){
+                    if(activity.closest_date){
+                        activity.days_to_closest = Math.floor((activity.closest_date - today)/(1000*60*60*24));
+                    } else {
                         activity.days_to_closest = -1;
+                    }
+
+                    mapDateMsg(activity);
+
+                    return activity;
+                }
+
+                function mapDateMsg(activity){
+                    if(activity.days_to_closest < 0){
+                        activity.date_msg = scope.strings.COPY_WAIT_NEW_DATES;
+                    } else if(activity.days_to_closest === 0){
+                        activity.date_msg = scope.strings.COPY_TODAY;
+                    } else if(activity.days_to_closest === 1){
+                        activity.date_msg = scope.strings.COPY_IN + " "
+                            + activity.days_to_closest + " " + scope.strings.COPY_DAY;
+                    } else if(activity.days_to_closest <= MAX_DAYS){
+                        activity.date_msg = scope.strings.COPY_IN + " "
+                            + activity.days_to_closest + " " + scope.strings.COPY_DAYS;
+                    } else {
+                        activity.date_msg = $filter('date')(activity.closest_date, 'dd MMM');
                     }
                     return activity;
                 }
@@ -166,8 +190,10 @@
                         ACTION_REPUBLISH: "republish",
                         LABEL_REPUBLISH: "Republicar",
                         COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
+                        COPY_NA: "N/A",
                         COPY_TODAY: "Hoy",
                         COPY_DAY: "día ",
+                        COPY_DAYS: "días ",
                         COPY_IN: "En "
                     });
                 }
@@ -181,6 +207,9 @@
                         } else {
                             scope.actions = null;
                         }
+                        if(options.disabled){
+                            scope.dimmed = true;
+                        }
                     }
                     scope.activity.rating = [1, 2, 3, 4, 5];
                     var organizer = scope.activity.organizer;
@@ -191,6 +220,7 @@
                     _mapClosestCalendar(scope.activity);
                     console.log('directive activity:', scope.activity);
 
+                    //TODO para tooltips
                     $('[data-toggle="tooltip"]').tooltip({'container': 'body'});
                 }
             }

@@ -4402,8 +4402,7 @@ a.thumbnail.active {
 .panel-title > .small > a {
   color: inherit;
 }
-.panel-footer,
-.activity-item .activity-footer {
+.panel-footer {
   padding: 10px 15px;
   background-color: #f5f5f5;
   border-top: 1px solid #dddddd;
@@ -11595,8 +11594,7 @@ icon-material-blue-grey {
 .panel:not([class*="panel-"]) > .panel-heading {
   color: rgba(0, 0, 0, 0.74);
 }
-.panel-footer,
-.activity-item .activity-footer {
+.panel-footer {
   background-color: #eeeeee;
 }
 hr.on-dark {
@@ -15027,10 +15025,14 @@ button.toast-close-button {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+.activity-grid [class*=col-] {
+  padding: 0 0 2px 4px;
+}
 .activity-item {
-  height: 12em;
+  height: 18em;
   width: 100%;
   position: relative;
+  box-shadow: none;
 }
 .activity-item .activity-header {
   height: 50%;
@@ -15039,6 +15041,9 @@ button.toast-close-button {
   overflow: hidden;
   position: absolute;
   top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
 }
 .activity-item .activity-header .activity-cover {
   width: 100%;
@@ -15046,20 +15051,32 @@ button.toast-close-button {
 }
 .activity-item .activity-header .activity-price {
   position: absolute;
-  bottom: 16px;
+  top: 0;
   right: 0;
-  padding: 8px;
-  background-color: rgba(255, 204, 51, 0.8);
-  color: rgba(255, 255, 255, 0.84);
-  font-weight: 500;
+  background: rgba(255, 204, 51, 0.9);
+  color: #555555;
+  padding: .1em 1em;
+  font-size: 1.25em;
+  font-weight: bold;
+}
+.activity-item .activity-header .activity-price:before {
+  content: "$";
+  color: #b38600;
+  display: inline-block;
 }
 .activity-item .activity-body {
   position: absolute;
-  bottom: 15%;
+  bottom: 0;
   left: 0;
   right: 0;
   padding-top: 0;
   background: rgba(0, 0, 0, 0.75);
+  color: rgba(255, 255, 255, 0.84);
+}
+.activity-item .activity-body:hover {
+  background: #009999;
+}
+.activity-item .activity-body:hover .action {
   color: rgba(255, 255, 255, 0.84);
 }
 .activity-item .activity-body .organizer-profile-pic {
@@ -15073,6 +15090,7 @@ button.toast-close-button {
 .activity-item .activity-body .activity-date {
   float: right;
   font-size: 12px;
+  padding: 0 8px;
 }
 .activity-item .activity-body .rating-container {
   float: left;
@@ -15082,24 +15100,20 @@ button.toast-close-button {
   color: #ffcc33;
 }
 .activity-item .activity-body .rating-container .rating-star-empty {
+  font-size: 18px;
   color: silver;
 }
-.activity-item .activity-footer {
-  padding: 8px 15px 10px;
-  position: absolute;
-  top: 85%;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.activity-item .action-container {
+  margin-top: 8px;
 }
-.activity-item .activity-footer .activity-action {
+.activity-item .action-container .action {
   padding: 8px;
   text-transform: uppercase;
   text-decoration: none;
   cursor: pointer;
-  color: #777777;
+  color: #f0b400;
 }
-.activity-item .activity-footer .activity-action i {
+.activity-item .action-container .action i {
   font-size: 18px;
 }
 .activity-item .activity-title {
@@ -15117,6 +15131,20 @@ button.toast-close-button {
 }
 .activity-item .organizer-name a {
   color: rgba(255, 255, 255, 0.84);
+}
+.activity-item.dimmed {
+  position: relative;
+}
+.activity-item.dimmed:after {
+  content: " ";
+  z-index: 10;
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(238, 238, 238, 0.4);
 }
 a {
   color: #f0b400;
