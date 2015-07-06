@@ -27,10 +27,12 @@
             actions: ['view', 'edit', 'manage']
         };
         vm.previousOptions = {
-            actions: ['view', 'republish']
+            actions: ['view', 'republish'],
+            disabled: true
         };
         vm.draftOptions = {
-            actions: ['view', 'edit']
+            actions: ['view', 'edit'],
+            isDraft: true
         };
 
         activate();
@@ -78,10 +80,8 @@
 
                 var activity_date = new Date(activity.last_date);
                 activity_date.setHours(0, 0, 0, 0);
-
                 return !!activity.last_date && activity_date < today && activity.published
             });
-
             vm.draft_activities = _.filter(activities, 'published', false);
             vm.published_activities = _.difference(_.filter(activities, {'enroll_open': true, 'published': true}),
                 vm.previous_activities);

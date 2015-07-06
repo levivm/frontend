@@ -15064,6 +15064,15 @@ button.toast-close-button {
   color: #b38600;
   display: inline-block;
 }
+.activity-item .activity-header .draft {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(217, 83, 79, 0.9);
+  color: rgba(255, 255, 255, 0.84);
+  padding: .1em 1em;
+  font-size: 1.25em;
+}
 .activity-item .activity-body {
   position: absolute;
   bottom: 0;

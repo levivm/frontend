@@ -29,7 +29,6 @@
 
         .activity-cover {
             width: 100%;
-            //height:auto;
             vertical-align: top;
         }
 
@@ -49,6 +48,16 @@
                 color: darken(@primary, 25%);
                 display: inline-block;
             }
+        }
+
+        .draft {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: fadeout(@brand-danger, 10%);
+            color: @darkbg-text;
+            padding: .1em 1em;
+            font-size: 1.25em;
         }
     }
 

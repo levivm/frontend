@@ -1,6 +1,10 @@
 <div class="activity-item" style="background: url('{{::activity.main_photo}}')" ng-class="{'dimmed': dimmed}">
     <a ui-sref="activities-detail({activity_id: {{::activity.id}} })"
         class="activity-header">
+        <span ng-if="draft" class="draft">
+            <i class="mdi-content-drafts"></i>
+            <span ng-bind="::strings.LABEL_DRAFT"></span>
+        </span>
         <span class="activity-price">
             <span ng-if="activity.closest_chronogram.session_price"
                   ng-bind="::activity.closest_chronogram.session_price | number"></span>

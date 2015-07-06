@@ -32,6 +32,7 @@
                 var MAX_DAYS = 30;
 
                 scope.dimmed = false;
+                scope.draft = false;
                 scope.getStarStyle = getStarStyle;
                 scope.hasAction = hasAction;
 
@@ -189,6 +190,7 @@
                         LABEL_CONTACT: "Contactar",
                         ACTION_REPUBLISH: "republish",
                         LABEL_REPUBLISH: "Republicar",
+                        LABEL_DRAFT: "Borrador",
                         COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                         COPY_NA: "N/A",
                         COPY_TODAY: "Hoy",
@@ -209,6 +211,9 @@
                         }
                         if(options.disabled){
                             scope.dimmed = true;
+                        }
+                        if(options.isDraft){
+                            scope.draft = true;
                         }
                     }
                     scope.activity.rating = [1, 2, 3, 4, 5];
