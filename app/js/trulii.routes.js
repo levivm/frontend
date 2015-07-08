@@ -428,8 +428,7 @@
             })
             .state('activities-enroll', {
                 url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
-                controller: 'ActivityDetailEnrollController',
-                controllerAs: 'pc',
+                controller: 'ActivityDetailEnrollController as enroll',
                 templateUrl: 'partials/activities/detail.enroll.html',
                 resolve: {
                     activity: getActivity,

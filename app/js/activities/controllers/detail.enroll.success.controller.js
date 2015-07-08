@@ -40,7 +40,6 @@
                 ACTION_VIEW_RECEIPT: "Ver Recibo",
                 ACTION_VIEW_MORE: "Ver Más",
                 ACTION_PUBLISH: "Publica Ya",
-                ACTION_RETURN: "Volver a Actividad",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_PUBLISH_ACTIVITY: "Publica tu Actividad"
