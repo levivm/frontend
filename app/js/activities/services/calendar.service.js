@@ -173,26 +173,32 @@
 
                         var previous_s = index ? this.sessions[index - 1] : null;
 
-                        var date = index ? new Date(previous_s.date.getTime()) : this.initial_date;
 
+
+
+                        // var previous_s_date = previous_s.date.getTime();
+                        var date = index ? new Date(previous_s.date.getTime() + 24 * 60 * 60 * 1000) : this.initial_date;
+
+                        // var minDate = new Date(date.getTime() - 24 * 60 * 60 * 1000);
+                        var minDate = index ? new Date(previous_s.date.getTime()):this.initial_date;
                         //var minDate =index ? new Date(previous_s.date.getTime()+24*60*60*1000):date;
 
                         //var _start_time = previous_s && previous_s.date
-                        var hours = index ? previous_s.end_time.getHours() : 10;
-                        console.log(hours, "horas");
+                        var hours = index ? previous_s.start_time.getHours() : 10;
 
                         var start_time = new Date();
-                        start_time.setHours(hours + 1);
+                        start_time.setHours(hours);
                         start_time.setMinutes(0);
 
                         var end_time = new Date();
-                        end_time.setHours(hours + 4);
+                        end_time.setHours(hours + 3);
                         end_time.setMinutes(0);
+
 
                         var session = {
                             openDate : false,
                             date : date,
-                            minDate : date,
+                            minDate : minDate,
                             start_time : start_time,
                             end_time : end_time,
                         };
