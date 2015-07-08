@@ -470,21 +470,24 @@
         return Authentication.getAuthenticatedAccount();
     }
 
-    getCurrentOrganizer.$inject = ['$timeout','$state','Authentication', 'OrganizersManager'];
+    getCurrentOrganizer.$inject = ['$timeout','$q','$state','Authentication', 'OrganizersManager'];
 
-    function getCurrentOrganizer($timeout,$state,Authentication, OrganizersManager){
+    function getCurrentOrganizer($timeout,$q,$state,Authentication, OrganizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
         var force_fetch = true;
+        
         return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
 
         function successAuthAccount(authenticatedUser){
+
             return Authentication.isOrganizer().then(function(isOrganizer){
+                console.log("isOrganizer",isOrganizer);
                 if(authenticatedUser && isOrganizer){
                     return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
                 } else {
                     $timeout(function() {
-                        $state.go('home');
+                        // $state.go('home');
                     });
                     return $q.reject()
                 }

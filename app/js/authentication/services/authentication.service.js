@@ -153,7 +153,7 @@
                         // they are logged into this app or not.
                         error(response);
                     }
-                })
+                },{scope: 'email'})
             );
     
             function success(response){
