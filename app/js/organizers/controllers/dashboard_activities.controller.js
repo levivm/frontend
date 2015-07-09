@@ -79,19 +79,19 @@
             setStrings();
             console.log('activities:', activities);
             activities.map(mapMainPicture);
-            //vm.previous_activities = _.filter(activities, function (activity) {
-            //    var today = new Date();
-            //    today.setHours(0, 0, 0, 0);
-            //
-            //    if (!(activity.last_date)) return false;
-            //
-            //    var activity_date = new Date(activity.last_date);
-            //    activity_date.setHours(0, 0, 0, 0);
-            //    return !!activity.last_date && activity_date < today && activity.published
-            //});
-            //vm.draft_activities = _.filter(activities, 'published', false);
-            //vm.published_activities = _.difference(_.filter(activities, {'enroll_open': true, 'published': true}),
-            //    vm.previous_activities);
+            vm.previous_activities = _.filter(activities, function (activity) {
+                var today = new Date();
+                today.setHours(0, 0, 0, 0);
+
+                if (!(activity.last_date)) return false;
+
+                var activity_date = new Date(activity.last_date);
+                activity_date.setHours(0, 0, 0, 0);
+                return !!activity.last_date && activity_date < today && activity.published
+            });
+            vm.draft_activities = _.filter(activities, 'published', false);
+            vm.published_activities = _.difference(_.filter(activities, {'enroll_open': true, 'published': true}),
+                vm.previous_activities);
         }
 
     }
