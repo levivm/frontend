@@ -33,6 +33,8 @@
         function _addImage(images,isMain) {
 
             console.log("images",images);
+            if (!images)
+                return
             //vm.images.concat(images.pop());
             _clearErrors();
             vm.uploading_photo = images.pop();

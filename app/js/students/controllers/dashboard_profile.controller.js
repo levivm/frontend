@@ -53,6 +53,7 @@
         //--------- Functions Implementation ---------//
 
         function updateProfile(){
+            console.log(vm.profile_form,"FORM");
             Error.form.clear(vm.profile_form);
             vm.student.update_profile().then(updateSuccess, updateError);
 
@@ -100,8 +101,16 @@
             vm.student.gender  = gender;
         }
 
+        function _setDates(){
+
+            vm.student.birth_date = new Date(student.birth_date)
+        }
+
 
         function uploadPicture(image){
+
+            if (!image)
+                return;
             vm.photo_loading = true;
             vm.student.upload_photo(image).then(success, error);
 
@@ -158,7 +167,9 @@
             setStrings();
             _setGender(vm.student.gender);
             _setCity(vm.student.city);
+            _setDates();
             datepickerPopupConfig.showButtonBar = false;
+
 
         }
 

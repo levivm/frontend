@@ -282,7 +282,7 @@
               }
             }
           };
-
+          console.log("MARKER INFO",marker);
           return marker
         }
 
