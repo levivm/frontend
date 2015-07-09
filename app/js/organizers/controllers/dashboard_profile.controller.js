@@ -39,6 +39,9 @@
         activate();
 
         function uploadPicture(image) {
+            if (!image)
+                return;
+
             vm.organizer.upload_photo(image)
                 .then(_successUploaded, _erroredUpload, _progressUpload);
         }
@@ -102,6 +105,7 @@
                 instances.forEach(function (inst) {
                     var map = inst.map;
                     google.maps.event.trigger(map, 'resize');
+                    vm.map.control.refresh(vm.map.center);
                 });
             });
         }

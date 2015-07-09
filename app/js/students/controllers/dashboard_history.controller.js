@@ -41,7 +41,7 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                ACTION_REIMBURSE: "Reembolsar",
+                ACTION_REIMBURSE: "Solicitar Reembolso",
                 SECTION_HISTORY: "Historial de Compras",
                 COPY_SEARCH: "Buscar por número de orden, pago, detalle, etc.",
                 COPY_NOT_AVAILABLE: "No Disponible",
