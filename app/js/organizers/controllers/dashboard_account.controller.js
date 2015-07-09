@@ -23,8 +23,10 @@
         vm.isSaving = false;
         vm.changeEmail = changeEmail;
         vm.changePassword = changePassword;
+        vm.sales = [];
+        vm.reimbursements = [];
 
-        activate();
+        _activate();
 
         //Private functions
 
@@ -37,8 +39,7 @@
             function success() {
                 Authentication.updateAuthenticatedAccount();
                 vm.isSaving = false;
-            _toggleMessage();
-        }
+            }
 
             function error(response) {
                 vm.isSaving = false;
@@ -73,7 +74,7 @@
             }
         }
 
-        function setStrings() {
+        function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
@@ -85,6 +86,8 @@
                 COPY_NOT_AVAILABLE : "No Disponible",
                 COPY_NA : "N/A",
                 COPY_SEARCH_ORDERS_HELPER : "Buscar por número de orden, pago, detalle, etc.",
+                COPY_NO_ORDERS: "Aún no tienes ordenes en tu historial de Ventas",
+                COPY_NO_REIMBURSEMENTS: "Aún no tienes reembolsos en tu historial de Ventas",
                 SECTION_ACCOUNT: "Cuenta",
                 TAB_EMAIL: "Correo Electrónico",
                 TAB_PASSWORD: "Contraseña",
@@ -103,11 +106,13 @@
                 LABEL_DETAIL: "Detalle",
                 LABEL_DATE: "Fecha",
                 LABEL_TOTAL: "Total",
+                LABEL_NO_ORDERS: "No hay ordenes en el historial",
+                LABEL_NO_REIMBURSEMENTS: "No hay reembolsos en el historial"
             });
         }
 
-        function activate() {
-            setStrings();
+        function _activate() {
+            _setStrings();
         }
 
     }

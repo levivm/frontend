@@ -106,7 +106,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="table-responsive">
+                                        <div ng-if="account.sales.length > 0" class="table-responsive">
                                             <table class="table table-hover">
                                                 <tr class="text-center">
                                                     <th ng-bind="::account.strings.LABEL_ORDER"></th>
@@ -150,6 +150,11 @@
                                                 </tr>
                                             </table>
                                         </div>
+                                        <!--If there are no Reimbursements-->
+                                        <div ng-if="account.sales.length <= 0">
+                                            <h4 ng-bind="::account.strings.LABEL_NO_ORDERS"></h4>
+                                            <span ng-bind="::account.strings.COPY_NO_ORDERS"></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +176,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <div class="table-responsive">
+                                        <div class="table-responsive" ng-if="account.reimbursements.length > 0">
                                             <table class="table table-hover">
                                                 <tr class="text-center">
                                                     <th ng-bind="::account.strings.LABEL_ORDER"></th>
@@ -209,6 +214,11 @@
                                                     </td>
                                                 </tr>
                                             </table>
+                                        </div>
+                                        <!--If there are no Reimbursements-->
+                                        <div ng-if="account.reimbursements.length <= 0">
+                                            <h4 ng-bind="::account.strings.LABEL_NO_REIMBURSEMENTS"></h4>
+                                            <span ng-bind="::account.strings.COPY_NO_REIMBURSEMENTS"></span>
                                         </div>
                                     </div>
                                 </div>
