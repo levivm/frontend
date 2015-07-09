@@ -1,48 +1,98 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h2>¡Felicidades!</h2>
-            <h5>Prepárate para asistir a:</h5>
-
-            <div>
-                <div ng-bind="::vm.activity.title"></div>
-                <div ng-bind="::vm.activity.location.address"></div>
-                <div ng-repeat="session in vm.calendar.sessions">
-                    {{::session.date | date:'EEEE, dd MMMM'}} {{::session.start_time | date:'h:mma'}}-{{::session.end_time | date:'h:mma'}}
+        <div class="col-md-7 col-md-offset-1">
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h4 ng-bind="::success.strings.COPY_CONGRATULATIONS"></h4>
+                </div>
+                <div class="panel-body">
+                    <h5 ng-bind="::success.strings.COPY_PREPARE_TO_ASSIST_TO"></h5>
+                    <div class="text-center">
+                        <h4 ng-bind="::success.activity.title"></h4>
+                        <h5 class="text-muted" ng-bind="::success.activity.location.address"></h5>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <tr ng-repeat="session in success.calendar.sessions">
+                                    <td>
+                                        <span ng-bind="::session.date | date:'EEEE, dd MMMM'"></span>
+                                    </td>
+                                    <td class="text-right">
+                                        <span ng-bind="::session.start_time | date:'h:mma'"></span>
+                                        <span> - </span>
+                                        <span ng-bind="::session.end_time | date:'h:mma'"></span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="float-right">
+                        <a class="btn btn-link" ui-sref="student-dashboard.activities"
+                                ng-bind="success.strings.ACTION_GO_TO_ACTIVITIES"></a>
+                        <button class="btn btn-primary" ng-bind="success.strings.ACTION_VIEW_RECEIPT"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h4 ng-bind="::success.strings.LABEL_ORGANIZER"></h4>
+                </div>
+                <div class="panel-body text-center">
+                    <a class="btn btn-link" ui-sref="organizer-profile({organizer_id: success.organizer.id})">
+                        <img class="user-badge user-badge-center"
+                             ng-src="{{::success.organizer.photo}}"
+                             alt="{{::success.organizer.name}}"/>
+                        <div ng-bind="::success.organizer.name"></div>
+                        <div ng-bind="::success.strings.ACTION_VIEW_PROFILE"></div>
+                    </a>
+                    <button class="btn btn-primary"
+                            ng-bind="::success.strings.ACTION_CONTACT"></button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h2>Asistentes</h2>
-            <p>Aprender algo nuevo siempre es más divertido si lo compartes con tus amigos. ¡Invítalos y disfruta el doble!
-
-            Ellos también asistirán</p>
-
-            <div class="list">
-                <div class="list-item" ng-repeat="assistant in vm.calendar.assistants">
-                    {{::assistant.first_name}}</div>
+        <div class="col-md-7 col-md-offset-1">
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h4 ng-bind="::success.strings.LABEL_ASSISTANTS"></h4>
+                </div>
+                <div class="panel-body">
+                    <p ng-bind="::success.strings.COPY_ASSISTANCE"></p>
+                    <div class="list">
+                        <div class="list-item" ng-repeat="assistant in success.calendar.assistants">
+                            {{::assistant.first_name}}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <h4 ng-bind="::success.strings.LABEL_PUBLISH_ACTIVITY"></h4>
+                </div>
+                <div class="panel-body">
+                    <p ng-bind="::success.strings.COPY_PUBLISH"></p>
+                    <a ui-sref="organizer-landing" class="btn btn-primary float-right"
+                       ng-bind="::success.strings.ACTION_PUBLISH"></a>
+                </div>
             </div>
         </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h2>Organizador</h2>
-            <img ng-src="{{::vm.activity.organizer.photo}}" alt="{{::vm.activity.organizer.name}}"/>
-            <h5 ng-bind="vm.activity.organizer.name" class="text-center"></h5>
-        </div>
-
-        <div class="row" ng-if="vm.organizerActivities > 0" ng-repeat="activity in vm.organizerActivities"
-             ng-style="{ 'background-image': 'url('+activity.photos[0].photo+')' }"
-                style="background-repeat: no-repeat; height: 300px">
-            <div class="col-md-8 col-md-offset-2">{{::activity.title}}</div>
-        </div>
-        <div class="row" ng-if="vm.organizerActivities <= 0">
-            <div class="col-md-8 col-md-offset-2">
-                El Organizador no tiene más Actividades disponibles
+        <div class="col-md-3">
+            <div ng-if="success.organizerActivities.length > 0">
+                <h4>
+                    <span ng-bind="::success.strings.COPY_ACTIVITIES_FROM"></span>
+                    <span ng-bind="::success.organizer.name"></span></h4>
+                <div class="row activity-grid">
+                    <trulii-activity-item class="col-xs-12"
+                          ng-repeat="activity in success.organizerActivities track by activity.id"
+                          data-activity="activity" data-options="{{home.options}}"></trulii-activity-item>
+                </div>
+                <a class="btn btn-primary float-right" ui-sref="organizer-profile({organizer_id: success.organizer.id})"
+                        ng-bind="::success.strings.ACTION_VIEW_MORE"></a>
+            </div>
+            <div ng-if="success.organizerActivities.length <= 0"
+                 ng-bind="::success.strings.COPY_NO_ACTIVITIES">
             </div>
         </div>
     </div>

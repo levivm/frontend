@@ -41,6 +41,14 @@
                                                   data-activity="activity"
                                                   data-options="{{activities.currentOptions}}"></trulii-activity-item>
                         </div>
+                        <!--If there are no activities-->
+                        <div ng-if="activities.published_activities.length <= 0" class="row">
+                            <br/>
+                            <div class="col-md-12">
+                                <h4 ng-bind="::activities.strings.LABEL_EMPTY_PUBLISHED"></h4>
+                                <p ng-bind="::activities.strings.COPY_EMPTY_PUBLISHED"></p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-pane fade in" id="previous-tab">
@@ -53,6 +61,13 @@
                                                   data-activity="activity"
                                                   data-options="{{activities.previousOptions}}"></trulii-activity-item>
                         </div>
+                        <!--If there are no activities-->
+                        <div ng-if="activities.previous_activities.length <= 0" class="row">
+                            <div class="col-md-12">
+                                <h4 ng-bind="::activities.strings.LABEL_EMPTY_PREVIOUS"></h4>
+                                <p ng-bind="::activities.strings.COPY_EMPTY_PREVIOUS"></p>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="tab-pane fade in" id="drafts-tab">
@@ -64,6 +79,13 @@
                                                   ng-repeat="activity in activities.draft_activities track by activity.id"
                                                   data-activity="activity"
                                                   data-options="{{activities.draftOptions}}"></trulii-activity-item>
+                        </div>
+                        <!--If there are no activities-->
+                        <div ng-if="activities.draft_activities.length <= 0" class="row">
+                            <div class="col-md-12">
+                                <h4 ng-bind="::activities.strings.LABEL_EMPTY_DRAFTS"></h4>
+                                <p ng-bind="::activities.strings.COPY_EMPTY_DRAFTS"></p>
+                            </div>
                         </div>
                     </div>
                 </div>

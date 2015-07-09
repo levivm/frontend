@@ -428,8 +428,7 @@
             })
             .state('activities-enroll', {
                 url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
-                controller: 'ActivityDetailEnrollController',
-                controllerAs: 'pc',
+                controller: 'ActivityDetailEnrollController as enroll',
                 templateUrl: 'partials/activities/detail.enroll.html',
                 resolve: {
                     activity: getActivity,
@@ -438,9 +437,8 @@
                 }
             })
             .state('activities-enroll.success', {
-                url: '',
-                controller: 'ActivityEnrollSuccessController',
-                controllerAs: 'vm',
+                url: '/success',
+                controller: 'ActivityEnrollSuccessController as success',
                 templateUrl: 'partials/activities/detail.enroll.success.html',
                 resolve: {
                     organizer: ['activity', function (activity) {
