@@ -36,7 +36,7 @@
                                         <i class="mdi-content-create" aria-hidden="true"></i>
                                     </button>
 
-                                    <button type="button" class="btn btn-default btn-sm" aria-label="Eliminar"
+                                    <button ng-if="!calendar.hasAssistants()" type="button" class="btn btn-default btn-sm" aria-label="Eliminar"
                                             ng-click="vm.deleteCalendar(calendar)" >
                                         <i class="mdi-action-delete" aria-hidden="true"></i>
                                     </button>

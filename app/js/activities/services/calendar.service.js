@@ -262,6 +262,9 @@
                 }
 
             },
+            hasAssistants: function(){
+                return this.assistants.length > 0
+            },
             addAssistants : function (assistants) {
                 this.assistants = this.assistants.concat(assistants);
             },
