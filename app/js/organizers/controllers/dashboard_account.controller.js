@@ -88,6 +88,8 @@
                 COPY_SEARCH_ORDERS_HELPER : "Buscar por número de orden, pago, detalle, etc.",
                 COPY_NO_ORDERS: "Aún no tienes ordenes en tu historial de Ventas",
                 COPY_NO_REIMBURSEMENTS: "Aún no tienes reembolsos en tu historial de Ventas",
+                COPY_ONE_ASSISTANT: "1 asistente",
+                COPY_MANY_ASSISTANTS: "{} asistentes",
                 SECTION_ACCOUNT: "Cuenta",
                 TAB_EMAIL: "Correo Electrónico",
                 TAB_PASSWORD: "Contraseña",

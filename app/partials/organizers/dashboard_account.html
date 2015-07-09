@@ -131,8 +131,8 @@
                                                         <span>
                                                             <ng-pluralize count="order.assistants.length"
                                                                           when="{
-                                                                            'one': '{} asistente',
-                                                                            'other': '{} asistentes'
+                                                                            'one': account.strings.COPY_ONE_ASSISTANT,
+                                                                            'other': account.strings.COPY_MANY_ASSISTANTS
                                                                           }">
                                                             </ng-pluralize>
                                                         </span>
@@ -150,7 +150,7 @@
                                                 </tr>
                                             </table>
                                         </div>
-                                        <!--If there are no Reimbursements-->
+                                        <!--If there are no Sales-->
                                         <div ng-if="account.sales.length <= 0">
                                             <h4 ng-bind="::account.strings.LABEL_NO_ORDERS"></h4>
                                             <span ng-bind="::account.strings.COPY_NO_ORDERS"></span>
@@ -166,7 +166,7 @@
                                             <div class="input-group">
                                                 <input class="form-control floating-label" type="text"
                                                        ng-model="account.orderQuery"
-                                                       placeholder="Buscar por número de orden, pago, detalle, etc.">
+                                                       placeholder="{{::account.strings.COPY_SEARCH_ORDERS_HELPER}}">
                                                     <span class="input-group-addon">
                                                          <i class="mdi-action-search"></i>
                                                     </span>
@@ -200,8 +200,8 @@
                                                         <span>
                                                             <ng-pluralize count="order.assistants.length"
                                                                           when="{
-                                                                            'one': '{} asistente',
-                                                                            'other': '{} asistentes'
+                                                                            'one': account.strings.COPY_ONE_ASSISTANT,
+                                                                            'other': account.strings.COPY_MANY_ASSISTANTS
                                                                           }">
                                                             </ng-pluralize>
                                                         </span>
