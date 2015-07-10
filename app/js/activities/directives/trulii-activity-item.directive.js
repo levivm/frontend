@@ -87,7 +87,6 @@
                             return null;
                         }
                     });
-                    console.log('actions.map(createActionObject):', actions.map(createActionObject));
                     return actions.map(createActionObject);
 
                     function createActionObject(action){
@@ -124,7 +123,8 @@
                                 return {
                                     'name': scope.strings.LABEL_REPUBLISH,
                                     'icon': 'mdi-content-redo',
-                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                    'state': "dash.activities-edit.calendars({activity_id: " + scope.activity.id
+                                        + ", republish: true})"
                                 };
                                 break;
                             default:

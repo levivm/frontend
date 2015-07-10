@@ -357,6 +357,9 @@
                 templateUrl: 'partials/activities/dashboard_calendars.html',
                 resolve:{
                     calendars:getCalendars
+                },
+                params: {
+                  'republish': false
                 }
                 //templateUrl: 'modalContainer'
             })
