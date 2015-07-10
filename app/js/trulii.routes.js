@@ -52,6 +52,15 @@
                 },
                 templateUrl: 'partials/landing/landing.html'                        
             })
+
+            .state('contact-us', {
+                url:'/contact/us',
+                controller:'ContactController as contact',
+                resolve:{
+                    cities:getAvailableCities
+                },
+                templateUrl: 'partials/landing/contact_us.html'
+            })
             
             .state('register', {
                 url:'/register',
