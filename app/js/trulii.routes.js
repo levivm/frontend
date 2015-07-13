@@ -373,7 +373,7 @@
                 //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.calendars.detail', {
-                url:'?id',
+                url:'/:id',
                 controller: 'ActivityCalendarController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_calendar_detail.html',
@@ -381,15 +381,12 @@
                     calendar: getCalendar
                 }
             })
-
             .state('dash.activities-edit.location', {
-
                 url:'location',
                 controller: 'ActivityDBLocationController',
                 resolve:{
                     cities: getAvailableCities,
                     organizer : getCurrentOrganizer
-
                 },
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_location.html'
