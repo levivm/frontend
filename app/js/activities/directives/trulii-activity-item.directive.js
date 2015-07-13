@@ -95,7 +95,7 @@
                                 return {
                                     'name': scope.strings.LABEL_VIEW,
                                     'icon': 'mdi-action-visibility',
-                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                    'state': "activities-detail.info({activity_id: " + scope.activity.id + "})"
                                 };
                                 break;
                             case scope.strings.ACTION_EDIT:

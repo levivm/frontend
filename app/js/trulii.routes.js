@@ -414,6 +414,7 @@
             })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/',
+                abstract: true,
                 controller: 'ActivityDetailController as detail',
                 templateUrl: 'partials/activities/detail.html',
                 resolve: {

@@ -1,5 +1,5 @@
 <div class="activity-item" style="background: url('{{::activity.main_photo}}')" ng-class="{'dimmed': dimmed}">
-    <a ui-sref="activities-detail({activity_id: {{::activity.id}} })"
+    <a ui-sref="activities-detail.info({activity_id: {{::activity.id}} })"
         class="activity-header">
         <span ng-if="draft" class="draft">
             <i class="mdi-content-drafts"></i>
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-8">
                 <div class="activity-title">
-                    <a ui-sref="activities-detail({activity_id: {{::activity.id}} })">
+                    <a ui-sref="activities-detail.info({activity_id: {{::activity.id}} })">
                         <span ng-bind="::activity.title"></span>
                     </a>
                 </div>
