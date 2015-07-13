@@ -46,7 +46,7 @@
                 angular.extend(data, vm.formData);
 
                 console.log('data:', data);
-                Contact.sendContactForm();
+                Contact.sendContactForm(data);
             } else {
                 console.log('Incomplete Form');
                 Toast.error(vm.strings.COPY_ALL_FIELDS_REQUIRED);

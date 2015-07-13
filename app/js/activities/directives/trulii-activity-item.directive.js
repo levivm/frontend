@@ -116,7 +116,7 @@
                                 return {
                                     'name': scope.strings.LABEL_CONTACT,
                                     'icon': 'mdi-communication-email',
-                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                    'state': "contact-us"
                                 };
                                 break;
                             case scope.strings.ACTION_REPUBLISH:
