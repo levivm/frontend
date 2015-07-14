@@ -15048,6 +15048,11 @@ button.toast-close-button {
   position: relative;
   box-shadow: none;
 }
+.activity-item .activity-img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
 .activity-item .activity-header {
   height: 50%;
   min-height: 50%;
@@ -15088,6 +15093,7 @@ button.toast-close-button {
   font-size: 1.25em;
 }
 .activity-item .activity-body {
+  z-index: 1;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -15095,6 +15101,9 @@ button.toast-close-button {
   padding-top: 0;
   background: rgba(0, 0, 0, 0.75);
   color: rgba(255, 255, 255, 0.84);
+}
+.activity-item .activity-body.dimmed {
+  background: rgba(0, 0, 0, 0.3);
 }
 .activity-item .activity-body:hover {
   background: #009999;
@@ -15107,8 +15116,11 @@ button.toast-close-button {
   position: absolute;
   top: -25px;
   display: block;
-  max-width: 100%;
-  height: auto;
+  width: 6em;
+  height: 6em;
+}
+.activity-item .activity-body .organizer-profile-pic.dimmed {
+  background: rgba(0, 0, 0, 0.3);
 }
 .activity-item .activity-body .activity-date {
   float: right;
@@ -15160,14 +15172,14 @@ button.toast-close-button {
 }
 .activity-item.dimmed:after {
   content: " ";
-  z-index: 10;
+  z-index: 0;
   display: block;
   position: absolute;
   height: 100%;
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(238, 238, 238, 0.4);
+  background: rgba(238, 238, 238, 0.6);
 }
 a {
   color: #f0b400;

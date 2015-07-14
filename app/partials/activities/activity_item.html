@@ -1,4 +1,5 @@
-<div class="activity-item" style="background: url('{{::activity.main_photo}}')" ng-class="{'dimmed': dimmed}">
+<div class="activity-item" ng-class="{'dimmed': dimmed}">
+    <img class="activity-img" ng-src="{{activity.main_photo}}" alt=""/>
     <a ui-sref="activities-detail.info({activity_id: {{::activity.id}} })"
         class="activity-header">
         <span ng-if="draft" class="draft">
@@ -12,7 +13,7 @@
                   ng-bind="::strings.COPY_NA"></span>
         </span>
     </a>
-    <div class="activity-body">
+    <div class="activity-body" ng-class="{'dimmed': dimmed}">
         <div class="row">
             <div class="col-md-8">
                 <div class="activity-title">
