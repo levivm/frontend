@@ -456,9 +456,22 @@
                     }],
                     organizerActivities: getOrganizerActivities
                 }
+            })
+            .state('not-found', {
+                url: '/404',
+                controller: 'NotFoundController as notFound',
+                templateUrl: 'partials/landing/not_found.html',
+                resolve:{
+                    cities: getAvailableCities,
+                },
+                params: {
+                    message: '',
+                    fromState: null,
+                    fromParams: null
+                }
             });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/404');
     }
 
     /****** RESOLVER FUNCTIONS USERS *******/
@@ -625,7 +638,8 @@
 
         $urlMatcherFactory.strictMode(false);
 
-        $rootScope.$on('$stateChangeStart', onStateChange);               
+        $rootScope.$on('$stateChangeStart', onStateChange);
+        $rootScope.$on('$stateChangeError', onStateChangeError);
 
         ///////////
 
@@ -640,6 +654,23 @@
                     $state.go('home', {'notify': false});
                 }
             }
+        }
+
+        function onStateChangeError(event, toState, toParams, fromState, fromParams, error){
+            $state.previous = fromState;
+            console.group('stateChangeError');
+            console.log('fromState:', fromState);
+            console.log('event:', event);
+            console.log('error:', error);
+            console.groupEnd();
+
+            console.log('Resolve Error. Redirecting to "not-found"');
+            event.preventDefault();
+            $state.go('not-found', {
+                message: 'State Not Found',
+                fromState: fromState,
+                fromParams: fromParams
+            });
         }
        
     }
