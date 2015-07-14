@@ -21,6 +21,7 @@
                                          CalendarsManager,Toast, activity, calendars) {
 
         var vm = this;
+        var DETAIL_STATE = '.detail';
         var stateChangeUnbinder = null;
         vm.republish = false;
         vm.calendars = calendars;
@@ -32,11 +33,11 @@
         _activate();
 
         function createCalendar() {
-            $state.go(".detail");
+            $state.go(DETAIL_STATE, {'id' : null});
         }
 
         function loadCalendar(calendar) {
-            $state.go(".detail", {'id' : calendar.id});
+            $state.go(DETAIL_STATE, {'id' : calendar.id});
         }
 
         function setCalendar(calendar) {
@@ -119,18 +120,30 @@
 
             stateChangeUnbinder = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
-                    if(vm.republish){
-                        event.preventDefault();
-                        if(_hasNewCalendar()){
-                            console.log('Republish exiting. User set a valid calendar to republish');
-                            doTransition();
-                        } else {
-                            var modalInstance = $modal.open({
-                                templateUrl : 'partials/activities/messages/confirm_leave_republish.html',
-                                controller : 'ModalInstanceCtrl',
-                                size : 'md'
-                            });
-                            modalInstance.result.then(success, error);
+                    console.group('validation:');
+                    console.log('isCreatingCalendar:', isCreatingCalendar());
+                    console.log('vm.republish:', vm.republish);
+                    console.log('toState:', toState.name);
+                    console.log('fromState:', fromState.name);
+                    console.log('fromVal:', fromState.name + DETAIL_STATE);
+                    console.groupEnd();
+                    if(isCreatingCalendar()){
+                        console.log('Creating New Calendar');
+                    } else {
+                        if(vm.republish){
+                            console.log('inside if');
+                            event.preventDefault();
+                            if(_hasNewCalendar()){
+                                console.log('Republish exiting. User set a valid calendar to republish');
+                                doTransition();
+                            } else {
+                                var modalInstance = $modal.open({
+                                    templateUrl : 'partials/activities/messages/confirm_leave_republish.html',
+                                    controller : 'ModalInstanceCtrl',
+                                    size : 'md'
+                                });
+                                modalInstance.result.then(success, error);
+                            }
                         }
                     }
 
@@ -143,6 +156,10 @@
                     // error function for Republish Exit Modal Cancel/GO Back Button
                     function error(response) {
                         console.log('Republish exiting. User chose to stay and republish');
+                    }
+
+                    function isCreatingCalendar(){
+                        return (toState.name === (fromState.name + DETAIL_STATE)) || fromState.name === 'dash.activities-edit.calendars.detail';
                     }
 
                     function doTransition(){

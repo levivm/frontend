@@ -73,10 +73,11 @@
 
             },
             getCalendar : function (calendarId) {
+                var deferred = $q.defer();
                 var calendar = new Calendar();
                 angular.extend(calendar, this._retrieveInstance(calendarId));
-
-                return calendar;
+                deferred.resolve(calendar);
+                return deferred.promise;
             },
             fetchCalendar : function (activityId, calendarId) {
                 var scope = this;

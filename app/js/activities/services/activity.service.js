@@ -275,11 +275,11 @@
             setSectionCompleted : function (section, value) {
                 var that = this;
 
-                console.log("detail",section,value);
+                //console.log("detail",section,value);
                 if(section in that.completed_steps){
                     that.completed_steps[section] = value;
                 }
-                console.log('Activity.setSectionCompleted: ', section, ', ', that.completed_steps[section]);
+                //console.log('Activity.setSectionCompleted: ', section, ', ', that.completed_steps[section]);
             },
 
             /**
@@ -409,28 +409,20 @@
 
             }
 
-            console.log('updateSection[' + section + ']: ', isCompleted);
+            //console.log('updateSection[' + section + ']: ', isCompleted);
             that.setSectionCompleted(section, isCompleted);
             that.setStepsLeft(section);
         }
 
         function resetSections() {
             var that = this;
-
             that.completed_steps = {};
 
             _.forEach(that.steps,function(value,key){
-
                 that.completed_steps[key] = false;
-
             });
 
-
-
-
             that.all_steps_completed = false;
-
-            console.log('resetSections. that:', that);
         }
 
 
