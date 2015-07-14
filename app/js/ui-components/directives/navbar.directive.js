@@ -26,6 +26,7 @@
 
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
+                var unsuscribeCityModified = null;
 
                 scope.q = null;
                 scope.search_city = null;
@@ -147,6 +148,7 @@
                 function cleanUp() {
                     unsubscribeUserChanged();
                     unsubscribeUserLoggedOut();
+                    unsuscribeCityModified();
                 }
 
                 function activate() {
@@ -163,6 +165,11 @@
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
                         console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         getUser();
+                    });
+
+                    unsuscribeCityModified = $rootScope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT, function (event) {
+                        console.log('navBar. on' + LocationManager.CURRENT_CITY_MODIFIED_EVENT);
+                        setCurrentCity();
                     });
 
                     scope.$on('$destroy', cleanUp);

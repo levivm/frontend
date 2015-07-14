@@ -15,15 +15,16 @@
         .module('trulii.locations.services')
         .factory('LocationManager', LocationManager);
 
-    LocationManager.$inject = ['$http', '$q', '$cookies', 'serverConf','localStorageService'];
+    LocationManager.$inject = ['$rootScope', '$http', '$q', '$cookies', 'serverConf','localStorageService'];
 
-    function LocationManager($http, $q, $cookies, serverConf,localStorageService) {
+    function LocationManager($rootScope, $http, $q, $cookies, serverConf,localStorageService) {
 
         var currentCity = null;
         var searchCity = null;
         var mapBounds = null;
         var KEY_SEARCH_CITY = "search_city";
         var KEY_AVAILABLE_CITIES = "availableCities";
+        var CURRENT_CITY_MODIFIED_EVENT = "currentCityModified";
 
         //noinspection UnnecessaryLocalVariableJS
         var LocationManager = {
@@ -107,7 +108,9 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} With attributes to set google-maps-angular marker
              */
-            getMarker: _getMarker
+            getMarker: _getMarker,
+
+            CURRENT_CITY_MODIFIED_EVENT: CURRENT_CITY_MODIFIED_EVENT
         };
 
         function _getAvailableCities(){
@@ -141,6 +144,7 @@
             if (city){
                 localStorageService.set('current_city',city);
                 currentCity = city;
+                $rootScope.$emit(CURRENT_CITY_MODIFIED_EVENT);
             }
         }
 
