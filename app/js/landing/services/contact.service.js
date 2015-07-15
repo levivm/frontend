@@ -61,7 +61,7 @@
         }
 
         function sendContactForm(data){
-            $http.post(api.contactUs(), data);
+            return $http.post(api.contactUs(), data);
         }
     }
 
