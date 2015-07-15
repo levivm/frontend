@@ -22,7 +22,7 @@
         var vm = this;
         vm.calendar = calendar;
 
-        //activate();
+        activate();
 
         ///////////////////////////
 
