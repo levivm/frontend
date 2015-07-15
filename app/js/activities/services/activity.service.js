@@ -55,7 +55,7 @@
                     that.updateSection(step.name);
                 });
 
-                console.log("Activity setData ", this);
+                //console.log("Activity setData ", this);
                 
                 that.checkSections();
             },
@@ -364,7 +364,7 @@
             // console.log("ENTRE A CHEQUEAR")
             var isCompleted = false;
             if (!that.steps)
-                return
+                return;
             var subSections = that.steps[section];
             switch (section) {
                 case 'general':

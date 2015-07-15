@@ -137,14 +137,14 @@
                     var today = Date.now();
                     activity.days_to_closest = null;
                     activity.closest_date = null;
-                    activity.closest_chronogram = null;
+                    activity.closest_calendar = null;
 
                     if(activity.chronograms){
                         activity.chronograms.forEach(function(chronogram){
                             if(chronogram.initial_date >= today
                                     && (chronogram.initial_date < activity.closest_date || !activity.closest_date)){
                                 activity.closest_date = chronogram.initial_date;
-                                activity.closest_chronogram = chronogram;
+                                activity.closest_calendar = chronogram;
                             }
                         });
                     }

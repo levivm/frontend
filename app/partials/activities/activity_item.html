@@ -7,9 +7,9 @@
             <span ng-bind="::strings.LABEL_DRAFT"></span>
         </span>
         <span class="activity-price">
-            <span ng-if="activity.closest_chronogram.session_price"
-                  ng-bind="::activity.closest_chronogram.session_price | number"></span>
-            <span ng-if="!activity.closest_chronogram.session_price"
+            <span ng-if="activity.closest_calendar.session_price"
+                  ng-bind="::activity.closest_calendar.session_price | number"></span>
+            <span ng-if="!activity.closest_calendar.session_price"
                   ng-bind="::strings.COPY_NA"></span>
         </span>
     </a>
