@@ -11,12 +11,13 @@
                     <th>Precio</th>
                     <th>Cantidad</th>
                 </tr>
+                <!--TODO set selected_calendar-->
                 <tr class="text-center" ng-repeat="calendarItem in detail.calendars track by $index">
                     <td>
                         <label class="sr-only" ng-attr-for="{{'calendar_' + calendarItem.id}}"></label>
                         <input ng-attr-id="{{'calendar_' + calendarItem.id}}" type="radio" name="calendar"
-                               ng-model="detail.calendar_selected" ng-value="calendarItem"
-                               ng-change="detail.changeCalendarSelected(calendarItem)"/>
+                               ng-model="detail.calendar_selected" ng-checked="calendarItem"
+                               ng-change="detail.changeSelectedCalendar(calendarItem)"/>
                     </td>
                     <td><span ng-bind="::calendarItem.initial_date | date:'dd MMMM yyyy'"></span></td>
                     <td><span ng-bind="::calendarItem.number_of_sessions"></span></td>

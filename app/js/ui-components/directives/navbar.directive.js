@@ -97,7 +97,6 @@
                             scope.user.is_student = result;
                         });
                         mapDisplayName(scope.user);
-                        console.log('user:', user, '!!user:', !!user);
                     }
 
                     function error() {

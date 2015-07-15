@@ -1,5 +1,4 @@
 <div class="detail-cover-container">
-    <!--<div class="detail-cover" ng-style="detail.getCoverStyle()">-->
     <div class="detail-cover">
         <img ng-src="{{detail.activity.main_photo}}" alt="detail.activity.title"/>
     </div>
@@ -21,12 +20,12 @@
                 <div class="col-md-6">
                     <h3>
                         <i class="mdi-action-event"></i>
-                        <span ng-bind="::detail.calendar.initial_date | date: 'dd MMMM yyyy'"></span>
+                        <span ng-bind="::detail.activity.closest_calendar.initial_date | date: 'dd MMMM yyyy'"></span>
                     </h3>
                 </div>
                 <div class="col-md-6">
                     <div class="pull-right">
-                        <h3><span ng-bind="::detail.calendar.session_price | currency"></span></h3>
+                        <h3><span ng-bind="::detail.activity.closest_calendar.session_price | currency"></span></h3>
                     </div>
                 </div>
             </div>
@@ -51,11 +50,9 @@
                         <img class="detail-organizer-picture"
                              ng-src="{{::detail.getOrganizerPhoto()}}"
                              alt="{{::detail.organizer.name}}"/>
-                        <div>
-                            Ver Perfil
-                        </div>
+                        <div ng-bind="::detail.strings.ACTION_VIEW_PROFILE"></div>
                     </a>
-                    <a ui-sref="contact-us" class="btn btn-primary">Contactar</a>
+                    <a ui-sref="contact-us" class="btn btn-primary" ng-bind="::detail.strings.ACTION_CONTACT"></a>
                 </div>
             </div>
             <div class="col-md-4">
@@ -77,7 +74,8 @@
                     <a class="btn btn-lg btn-primary"
                        ng-disabled="detail.isSelectedCalendarFull()"
                        ng-show="detail.activity.published"
-                       ui-sref="activities-enroll({activity_id: detail.activity.id, calendar_id: detail.calendar_selected.id})">Inscribirme</a>
+                       ui-sref="activities-enroll({activity_id: detail.activity.id, calendar_id: detail.calendar_selected.id})"
+                       ng-bind="::detail.strings.ACTION_SIGN_UP"></a>
                 </div>
             </div>
         </div>
@@ -85,13 +83,22 @@
 </div>
 
 <div class="container">
+    <!--<div class="row">-->
+        <!--<div class="col-md-8 col-md-push-2">-->
+            <!--<tabset justified="true">-->
+                <!--<tab heading="{{::detail.strings.TAB_INFO}}" select="detail.changeState('info')"></tab>-->
+                <!--<tab heading="{{::detail.strings.TAB_CALENDARS}}" select="detail.changeState('calendar')"></tab>-->
+                <!--<tab heading="{{::detail.strings.TAB_ASSISTANTS}}" select="detail.changeState('attendees')"></tab>-->
+            <!--</tabset>-->
+        <!--</div>-->
+    <!--</div>-->
     <div class="row">
-        <div class="col-md-8 col-md-push-2">
-            <tabset justified="true">
-                <tab heading="Información" select="detail.changeState('info')"></tab>
-                <tab heading="Calendario" select="detail.changeState('calendar')"></tab>
-                <tab heading="Asistentes" select="detail.changeState('attendees')"></tab>
-            </tabset>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="btn-group btn-group-justified">
+                <a class="btn btn-primary" ui-sref=".info" ng-bind="::detail.strings.TAB_INFO"></a>
+                <a class="btn btn-primary" ui-sref=".calendar" ng-bind="::detail.strings.TAB_CALENDARS"></a>
+                <a class="btn btn-primary" ui-sref=".attendees" ng-bind="::detail.strings.TAB_ASSISTANTS"></a>
+            </div>
         </div>
     </div>
 
@@ -100,7 +107,7 @@
             <div>
                 <i class="mdi-action-description icon-lg"></i>
             </div>
-            <h3>Categoria</h3>
+            <h3 ng-bind="::detail.strings.LABEL_CATEGORY"></h3>
             <div class="text-muted">
                 <strong><span ng-bind="::detail.activity.category_display"></span></strong>
             </div>
@@ -109,7 +116,7 @@
             <div>
                 <i class="mdi-action-list icon-lg"></i>
             </div>
-            <h3>Sub-Categoría</h3>
+            <h3 ng-bind="::detail.strings.LABEL_SUBCATEGORY"></h3>
             <div class="text-muted">
                 <strong><span ng-bind="::detail.activity.sub_category_display"></span></strong>
             </div>
@@ -118,7 +125,7 @@
             <div>
                 <i class="mdi-action-assessment icon-lg"></i>
             </div>
-            <h3>Nivel</h3>
+            <h3 ng-bind="::detail.strings.LABEL_LEVEL"></h3>
             <div class="text-muted">
                 <strong><span ng-bind="::detail.activity.level_display"></span></strong>
             </div>
@@ -127,7 +134,7 @@
             <div>
                 <i class="mdi-action-schedule icon-lg"></i>
             </div>
-            <h3>Duración</h3>
+            <h3 ng-bind="::detail.strings.LABEL_DURATION"></h3>
             <div class="text-muted">
                 <strong><span>3 horas</span></strong>
             </div>

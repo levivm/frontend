@@ -599,6 +599,7 @@
     getCalendars.$inject = ['CalendarsManager','activity'];
 
     function getCalendars(CalendarsManager, activity){
+        console.log('activity:', activity);
         return CalendarsManager.loadCalendars(activity.id);
     }
 
