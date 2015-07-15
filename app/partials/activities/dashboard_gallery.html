@@ -6,11 +6,13 @@
                     <div class="title-compound">
                         <i class="mdi-image-panorama card-icon"></i>
 
-                        <h1 class="title-compound__title">
-                            Portada
+                        <h1 class="title-compound__title" ng-bind="::vm.strings.LABEL_COVER_TITLE">
+                        
                         </h1>
-                        <h4 class="text-muted title-compound__description">Esta primera imagen que veremos de tu
-                            curso.</h4>
+                        <h4 class="text-muted title-compound__description" ng-bind="::vm.strings.COPY_COVER_PHOTO" >
+                            
+                        </h4>
+
                     </div>
                 </div>
                 <div class="card-body no-padding-top">
@@ -21,21 +23,30 @@
                          allow-dir="true" accept="image/*">
 
                         <div class="center-childs" ng-show="!vm.main_image">
-                            <a class="btn btn-success btn-lg" role="button">Colocar portada</a> <br/>
-
-                            <div class="text-center text-warning">Obligatorio</div>
+                            <a class="btn btn-success btn-lg" role="button" ng-bind="::vm.strings.LABEL_UPLOAD_COVER"></a> <br/>                            
+                            <div class="text-center text-warning" ng-bind="::vm.strings.LABEL_REQUIRED"></div>
                         </div>
 
                         <div ng-show="vm.main_image"
                              class="img-cover-preview img-actionable img-size-cover img-carpet img-position-center"
                              style="background-image: url('{{vm.main_image.photo}}')">
                             <div class="img-actionable__actions">
-                                <a class="img-actionable__actions__action" role="button">
-                                    Cambiar portada
+                                <a class="img-actionable__actions__action" role="button" ng-bind="::vm.strings.LABEL_CHANGE_COVER">
+                                   
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <div class="text-center" ng-show="!vm.main_image">
+                        <br/>
+                        <span ng-bind="::vm.strings.COPY_COVER_FROM_STOCK">
+                        </span>
+                        <br/>
+
+                                
+                        <a ng-click="vm.loadImageFromStock()" class="btn btn-primary separate-above" role="button" ng-bind="::vm.strings.LABEL_COVER_FROM_STOCK"></a>       
+                    </div>
+
 
                     <div trulii-preloader loader-control="vm.main_photo_loading">
                     </div>
@@ -48,11 +59,9 @@
                         <div class="title-compound">
                             <i class="mdi-image-photo-library card-icon"></i>
 
-                            <h1 class="title-compound__title">
-                                Galería
+                            <h1 class="title-compound__title" ng-bind="::vm.strings.LABEL_GALLERY_TITLE">
                             </h1>
-                            <h4 class="text-muted title-compound__description">Añade fotografías de las actividades que
-                                has organizado anteriormente.</h4>
+                            <h4 class="text-muted title-compound__description" ng-bind="::vm.strings.COPY_GALLERY"></h4>
                         </div>
                     </div>
                     <div class="card-body no-padding-top">
@@ -84,11 +93,10 @@
                              drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
                              ng-file-change="vm.addImage(vm.photo,false)"
                              allow-dir="true" accept="image/*">
-                            <a class="btn btn-primary separate-above" role="button">Agregar Imagen</a>
+                            <a class="btn btn-primary separate-above" ng-bind="::vm.strings.LABEL_GALLERY_ADD_IMAGE" role="button"></a>
                         </div>
 
-                        <p class="text-center separate-above" ng-show="vm.images.length == 5">
-                            Ya posee el ḿáximo de imágenes que puede tener para una actividad.
+                        <p class="text-center separate-above" ng-bind="::vm.strings.COPY_MAX_IMAGE_ERROR" ng-show="vm.images.length == 5">
                         </p>
                     </div>
                 </fieldset>
@@ -98,26 +106,24 @@
                         <div class="title-compound">
                             <i class="mdi-action-theaters card-icon"></i>
 
-                            <h1 class="title-compound__title">
-                                Vídeo
+                            <h1 class="title-compound__title" ng-bind="::vm.strings.LABEL_VIDEO_TITLE">
                             </h1>
-                            <h4 class="text-muted title-compound__description">Agrega un video para que promociones
-                                mejor tu actividad.</h4>
+                            <h4 class="text-muted title-compound__description" ng-bind="::vm.strings.COPY_VIDEO"></h4>
                         </div>
                     </div>
 
                     <div class="card-body no-padding-top">
                         <div class="form-group" trulii-input-errors-control="youtube_video_url">
-                            <label for="youtube_video_url" class="control-label">Enlace de Youtube</label>
+                            <label for="youtube_video_url" class="control-label" ng-bind="::vm.strings.LABEL_YOUTUBE_LINK"></label>
                             <input id="youtube_video_url" class="form-control" name="youtube_video_url"
-                                   placeholder="Coloca aquí el enlace de tu vídeo en Youtube"
+                                   placeholder="{{::vm.strings.PLACEHOLDER_YOUTUBE_LINK}}"
                                    ng-model='vm.activity.youtube_video_url'/>
                         </div>
 
                         <youtube-video video-url="vm.activity.youtube_video_url" player-width="'100%'"></youtube-video>
 
                         <div trulii-submit-controls class="separate-above" is-saving="vm.isSaving"
-                             value="Guardar"></div>
+                             value="{{::vm.strings.LABEL_SAVE_ACTIVITY}}"></div>
                     </div>
                 </div>
             </form>
