@@ -141,13 +141,31 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.Activity#addPhoto
-             * @description Publish an activity 
+             * @description Add photo to an activity gallery
              * @param {file} image The image to add.
              * @param {object} extra_data The extra data to send among the image
              * @methodOf trulii.activities.services.Activity
              */
             addPhoto : function (image,extra_data) {
                 return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
+            },
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#addPhotoFromStock
+             * @description Add photo to the activity gallery from our photo stock
+             * given a subcategory
+             * @param {sub_category} The activity subcategory
+             * @methodOf trulii.activities.services.Activity
+             */
+            addPhotoFromStock : function (sub_category) {
+                var from_stock = true;
+
+                return $http({
+                    method : 'post',
+                    url : api.gallery(this.id,from_stock),
+                    data : {'subcategory' : this.sub_category}
+                });
+                // return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
             },
 
             /**
