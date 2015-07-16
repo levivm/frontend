@@ -109,7 +109,7 @@
                                 return {
                                     'name': scope.strings.LABEL_MANAGE,
                                     'icon': 'mdi-action-settings',
-                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                    'state': "dash.activities-manage.orders({activity_id: " + scope.activity.id + "})"
                                 };
                                 break;
                             case scope.strings.ACTION_CONTACT:

@@ -1,0 +1,16 @@
+<div class="container-fluid navbar-secondary" >
+    <a class="navbar-secondary__item"
+       ui-sref=".orders" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-maps-local-atm"></i>
+        <span> </span>
+        <span ng-bind="::manage.strings.SECTION_ORDERS"></span>
+    </a>
+    <a class="navbar-secondary__item"
+       ui-sref=".assistants" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-social-people"></i>
+        <span> </span>
+        <span ng-bind="::manage.strings.SECTION_ASSISTANTS"></span>
+    </a>
+</div>
+
+<div ui-view class="lateral-fade"></div>

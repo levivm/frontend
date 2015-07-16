@@ -291,7 +291,6 @@
                     activities: getOrganizerActivities
                 }
             })
-
             .state('organizer-profile', {
                 url: '/organizers/{organizer_id:int}/profile',
                 controller: 'OrganizerProfileController as profile',
@@ -408,6 +407,23 @@
                 controller: 'ActivityDBReturnPDashboard',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_return_policy.html'
+            })
+            .state('dash.activities-manage', {
+                url:'/activities/manage/{activity_id:int}/',
+                abstract: true,
+                controller: 'ActivitiesManageCtrl as manage',
+                templateUrl: 'partials/activities/manage.html',
+                resolve: {
+                    activity: getActivity
+                }
+            })
+            .state('dash.activities-manage.orders', {
+                url:'orders',
+                templateUrl: 'partials/activities/manage_orders.html'
+            })
+            .state('dash.activities-manage.assistants', {
+                url:'assistants',
+                templateUrl: 'partials/activities/manage_assistants.html'
             })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/',
