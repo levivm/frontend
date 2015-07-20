@@ -18,15 +18,15 @@
 
 				var options = {};
 
-				options['content'] = scope.helpText;
-				options['placement'] = 'right';
+				options['content'] = scope.helpText;				
 				options['trigger'] = 'focus';				
 				options['container'] = 'body';
 
-				var title = attrs.truliiInputPopover
+				var title = attrs.truliiInputPopover;
 
-				if (title && title != "" )
-					options['title'] = title;
+				options['title'] = attrs.truliiInputPopover && attrs.truliiInputPopover != "" ? attrs.truliiInputPopover : undefined;
+
+				options['placement'] = attrs.popoverPlacement && attrs.popoverPlacement != "" ?  attrs.popoverPlacement : 'right';
 
 
 				$(element).popover(options);
