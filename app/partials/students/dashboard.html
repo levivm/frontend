@@ -2,11 +2,17 @@
 <div class="container-fluid navbar-secondary" >
 	
     <a class="navbar-secondary__item"
-       ui-sref=".activities" ui-sref-active="navbar-secondary__item--selected"><i class="mdi-social-school"></i> Mis Actividades</a>
+       ui-sref=".activities" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-social-school"></i> <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span></a>
     <a class="navbar-secondary__item"
-       ui-sref=".account" ui-sref-active="navbar-secondary__item--selected"><i class="mdi-action-settings"></i> Cuenta</a>
+       ui-sref=".account" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-action-settings"></i> <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span></a>
 	<a class="navbar-secondary__item"
-       ui-sref=".profile" ui-sref-active="navbar-secondary__item--selected"><i class="mdi-action-account-circle"></i> Mi Perfil</a>
+       ui-sref=".profile" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-action-account-circle"></i> <span ng-bind="::dash.strings.SECTION_PROFILE"></span></a>
+    <a class="navbar-secondary__item"
+       ui-sref=".history" ui-sref-active="navbar-secondary__item--selected">
+        <i class="mdi-maps-local-atm"></i> <span ng-bind="::dash.strings.SECTION_HISTORY"></span></a>
     
 </div>
 

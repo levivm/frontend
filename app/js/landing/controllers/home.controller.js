@@ -15,9 +15,11 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['LocationManager', 'ActivitiesManager', 'Authentication', 'cities', 'authenticatedUser'];
+    HomeController.$inject = ['$stateParams', 'LocationManager', 'ActivitiesManager', 'Authentication',
+        'cities', 'authenticatedUser'];
 
-    function HomeController(LocationManager, ActivitiesManager, Authentication, cities, authenticatedUser) {
+    function HomeController($stateParams, LocationManager, ActivitiesManager, Authentication,
+        cities, authenticatedUser) {
 
         console.log('authenticatedUser:', authenticatedUser);
         var vm = this;
@@ -26,11 +28,11 @@
         vm.cities = cities;
         vm.current_city = null;
         vm.setCurrentCity = _setCurrentCity;
-        vm.isStudent = Authentication.isStudent;
-        vm.isOrganizer = Authentication.isOrganizer;
-        /*vm.options ={
-            'actions': ["view", "edit", "manage", "contact", "republish"]
-        };*/
+        vm.isStudent = false;
+        vm.isOrganizer = false;
+        vm.options = {
+            actions: ['view', 'edit', 'contact', 'manage', 'republish']
+        };
 
         activate();
 
@@ -66,7 +68,11 @@
 
         function activate(){
             setStrings();
-            getActivities();
+            if($stateParams.activities){
+                vm.activities = $stateParams.activities;
+            } else {
+                getActivities();
+            }
             vm.current_city = LocationManager.getCurrentCity();
         }
 

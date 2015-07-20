@@ -82,23 +82,10 @@
                 return $q.reject(response);
             }
 
-            // function _errored(data) {
-            //     if (data['form_errors']) {
-            //         angular.forEach(data['form_errors'], function (errors, field) {
-            //             _addError(field, errors[0]);
-            //         });
-            //     }
-            // }
-
-            // function _addError(field, message) {
-            //     vm.errors[field] = message;
-            //     vm.signup_form[field].$setValidity(message, false);
-            // }
-
         }
 
         function _registerSuccess(){
-            if(!!fromState.state){
+            if(fromState && !!fromState.state){
                 $state.go(fromState.state, fromState.params);
             } else {
                 $state.go("home");

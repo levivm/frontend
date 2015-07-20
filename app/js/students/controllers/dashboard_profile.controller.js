@@ -13,24 +13,26 @@
         .controller('StudentProfileCtrl', StudentProfileCtrl);
 
 
-    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast'];
+    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast','LocationManager'];
 
-    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast) {
+    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast, LocationManager) {
 
 
         var vm = this;
 
-        vm.formats = ['dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        vm.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         vm.format = vm.formats[0];
         vm.hstep = 1;
         vm.mstep = 15;
-        vm.minStartDate = new Date();
+        vm.maxStartDate = new Date();
         vm.dateOptions = {
             formatYear: 'yy',
             startingDay: 1
         };
+        vm.cities = cities;
         vm.ismeridian = true;
         vm.openDatePicker = openDatePicker;
+        vm.selectCity = selectCity;
 
         vm.bio_max = 140;
         vm.student = student;
@@ -51,6 +53,7 @@
         //--------- Functions Implementation ---------//
 
         function updateProfile(){
+            console.log(vm.profile_form,"FORM");
             Error.form.clear(vm.profile_form);
             vm.student.update_profile().then(updateSuccess, updateError);
 
@@ -73,22 +76,41 @@
         }
 
 
+        function selectCity(city){
+            console.log('selectCity. city:', city);
+            if(city){
+                vm.student.city = city.id;
+                LocationManager.setCurrentCity(city);
+            } else {
+                console.log('no city selected');
+            }
+        }
 
         function selectGender(gender){
-
             _setGender(gender.id)
+        }
+
+        function _setCity(city){
+
+            vm.selected_city = _.find(vm.cities, { 'id': city});
 
         }
 
         function _setGender(gender){
-
             vm.selected_gender = _.find(vm.genders, { 'id': gender});
             vm.student.gender  = gender;
         }
 
+        function _setDates(){
+
+            vm.student.birth_date = new Date(student.birth_date)
+        }
+
 
         function uploadPicture(image){
-            console.log(image);
+
+            if (!image)
+                return;
             vm.photo_loading = true;
             vm.student.upload_photo(image).then(success, error);
 
@@ -104,10 +126,11 @@
             function error(response) {
                 console.log('StudentProfileCtrl.uploadPicture. Error uploading profile picture');
                 var responseErrors = response['errors'];
+                console.log('responseErrors:', responseErrors);
                 vm.photo_loading = false;
                 if (responseErrors) {
                     vm.photo_invalid = true;
-                    Error.form.add(vm.picture_form, responseErrors);
+                    Error.form.add(picture_form, responseErrors);
                 }
             }
         }
@@ -120,10 +143,33 @@
             vm.opened = true;
         }
 
-        function initialize() {
+        function setStrings() {
+            if (!vm.strings) {
+                vm.strings = {};
+            }
+            angular.extend(vm.strings, {
+                ACTION_REPLACE_PICTURE: "Cambiar foto",
+                ACTION_SAVE: "Guardar",
+                ACTION_CLOSE: "Cerrar",
+                COPY_BIO: "Cuéntanos un poco sobre tí, otros querrán conocerte",
+                LABEL_FIRST_NAMES: "Nombres",
+                LABEL_BIRTH_DATE: "Fecha de Nacimiento",
+                LABEL_LAST_NAMES: "Apellidos",
+                LABEL_GENDER: "Género",
+                LABEL_CITY: "Ciudad",
+                OPTION_SELECT: "Seleccione...",
+                SECTION_ACCOUNT: "Cuenta",
+                SECTION_PROFILE: "Mi Perfil"
+            });
+        }
 
+        function initialize() {
+            setStrings();
             _setGender(vm.student.gender);
+            _setCity(vm.student.city);
+            _setDates();
             datepickerPopupConfig.showButtonBar = false;
+
 
         }
 

@@ -6,30 +6,85 @@
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                         <i class="{{::step.icon}} sidebar__item__icon"></i>
                         <span ng-bind="::step.title"></span>
+
+                        <i class="mdi-image-control-point sidebar__item__sign slide-down" ng-show="step.required"></i>
                         
-                        <i class="mdi-action-done sidebar__item__completed-sign slide-down" ng-class="pc.getCheckStyle(step)" ng-show="pc.isSectionCompleted(step.name)"></i>
+                        <i class="mdi-action-done sidebar__item__sign sidebar__item__sign--completed slide-down" ng-class="pc.getCheckStyle(step)" ng-show="pc.isSectionCompleted(step.name)"></i>
+                        
                     </a>
 
                 </li>
-                <div>
-                    <!-- <ng-pluralize ng-show="!pc.activity.published && pc.steps_left>0" count="pc.activity.steps_left"
-                        when="{
-                            '0':'',
-                            '1': 'Te falta {{pc.steps_left}} paso para publicar',
-                            'other': 'Te faltan {{ pc.steps_left }} pasos para publicar'
-                            }">
-                    </ng-pluralize> -->
+
+                <div class="sidebar__bottom-action text-center bg-secondary" ng-show="pc.areAllStepsCompleted() && !pc.activity.published">
+
+                    <div class="lateral-fade" ng-show="pc.allow_publish">
+                        <strong>¡Actividad lista para publicar!</strong>
+
+                        <button class="btn btn-bgsecondary btn-raised" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"                               
+                               ng-click="pc.publish_activity()">
+                            <i class="glyphicon glyphicon-bullhorn"></i> <span ng-bind="::pc.strings.PUBLISH_ACTIVITY_LABEL"></span>
+                        </button>    
+                    </div>
+                    
+                    <div class="lateral-fade strong-text-muted separate-above" ng-show="!pc.allow_publish">
+                        Publicando...
+                    </div>
+                    
                 </div>
 
-                <div ng-show="pc.allow_publish">
-                    <input type="submit" id="submit" class="btn btn-primary" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
-                           ng-show="pc.areAllStepsCompleted() && !pc.activity.published"
-                           ng-click="pc.publish_activity()"/>
-                </div>
-                <div ng-show="pc.allow_unpublish">
+                <!-- <div ng-show="pc.activity.published">
                     <input type="submit" id="submit" class="btn btn-primary" value="{{pc.strings.UNPUBLISH_ACTIVITY_LABEL}}"
-                           ng-show="pc.activity.published" 
+                           ng-show="pc.allow_unpublish"        
                            ng-click="pc.unpublish_activity()"/>
+                </div> -->
+
+                <div class="sidebar__bottom-action text-center" ng-show="pc.activity.published">   
+
+                    <div ng-show="pc.allow_unpublish" class="lateral-fade">
+                        <strong class="text-muted">Para quitar al público</strong>                
+
+                        <button class="btn btn-bgsecondary btn-raised"                               
+                               ng-click="pc.unpublish_activity()">
+
+                            <i class="glyphicon glyphicon-ban-circle"></i> <span ng-bind="::pc.strings.UNPUBLISH_ACTIVITY_LABEL"></span>
+                        </button>    
+                    </div> 
+                    
+                    <div class="lateral-fade strong-text-muted separate-above" ng-show="!pc.allow_unpublish">
+                        Desactivando...
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="sidebar__bottom-action text-center text-muted" ng-show="!pc.areAllStepsCompleted()">
+                    <h4>
+                        
+                            <ng-pluralize count="pc.activity.steps_left"
+                                when="{
+                                    '0':'',
+                                    '1': 'Falta',
+                                    'other': 'Faltan'
+                                    }">
+                            </ng-pluralize>
+
+                            <strong class="bold-secondary">{{pc.steps_left}}</strong>
+
+                            <ng-pluralize count="pc.activity.steps_left"
+                                when="{
+                                    '0':'',
+                                    '1': 'paso',
+                                    'other': 'pasos'
+                                    }">
+                            </ng-pluralize>
+                        
+                    </h4>
+                    <span>Para publicar tu actividad</span><br/>
+
+                    <div style="margin-top: 0.3em;">
+                        (<i class="mdi-image-control-point font-size-inherit"></i> Obligatorios)
+                    </div> 
+                    
                 </div>
             
             </nav>
@@ -39,6 +94,4 @@
         <div class="col-sm-offset-2 col-sm-10 with-sidebar lateral-fade" ui-view>
         </div>
     </div>
-
-    <trulii-preloader></trulii-preloader>
 </div>

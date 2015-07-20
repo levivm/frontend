@@ -1,70 +1,60 @@
-<div class="activity-item">
-    <div class="activity-header">
-        <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
-            <img class="activity-cover" ng-src="{{activity.main_photo}}" alt="{{activity.title}}"/>
-        </a>
-        <span ng-if="activity.closest_chronogram.session_price"
-              class="activity-price">{{activity.closest_chronogram.session_price | currency}}</span>
-    </div>
-    <div class="activity-body">
+<div class="activity-item" ng-class="{'dimmed': dimmed}">
+    <img class="activity-img" ng-src="{{activity.main_photo}}" alt=""/>
+    <a ui-sref="activities-detail.info({activity_id: {{::activity.id}} })"
+        class="activity-header">
+        <span ng-if="draft" class="draft">
+            <i class="mdi-content-drafts"></i>
+            <span ng-bind="::strings.LABEL_DRAFT"></span>
+        </span>
+        <span class="activity-price">
+            <span ng-if="activity.closest_calendar.session_price"
+                  ng-bind="::activity.closest_calendar.session_price | number"></span>
+            <span ng-if="!activity.closest_calendar.session_price"
+                  ng-bind="::strings.COPY_NA"></span>
+        </span>
+    </a>
+    <div class="activity-body" ng-class="{'dimmed': dimmed}">
         <div class="row">
-            <div class="col-md-3">
-                <a ui-sref="organizer-profile({organizer_id: {{activity.organizer.id}} })">
-                    <img class="organizer-profile-pic" ng-src="{{activity.organizer.photo}}"
-                         alt="{{activity.organizer.name}}"/>
-                </a>
-            </div>
-            <div class="col-md-8 col-md-offset-4">
+            <div class="col-md-8">
                 <div class="activity-title">
-                    <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
-                        <span ng-bind="activity.title"></span>
+                    <a ui-sref="activities-detail.info({activity_id: {{::activity.id}} })">
+                        <span ng-bind="::activity.title"></span>
                     </a>
                 </div>
                 <div class="organizer-name">
-                    <a ui-sref="organizer-profile({organizer_id: {{activity.organizer.id}} })">
-                        <span ng-bind="activity.organizer.name"></span>
+                    <a ui-sref="organizer-profile({organizer_id: {{::activity.organizer.id}} })">
+                        <span ng-bind="::activity.organizer.name"></span>
                     </a>
                 </div>
             </div>
-        </div>
-        <br/>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="text-right">
-                    <small>
-                            <div ng-if="activity.days_to_closest < 0">
-                                <span class="text-muted">Espere nuevas fechas </span>
-                            </div>
-                            <div ng-if="activity.days_to_closest >= 0">
-                                <span ng-if="activity.days_to_closest === 0" class="text-muted">Hoy </span>
-                                <span ng-if="activity.days_to_closest > 0" class="text-muted">En {{activity.days_to_closest}} día </span>
-                                <span ng-if="activity.closest_date">({{ activity.closest_date | date: 'dd MMM' }})</span>
-                            </div>
-                    </small>
-                </div>
+            <div class="col-md-3">
+                <a ui-sref="organizer-profile({organizer_id: {{::activity.organizer.id}} })">
+                    <img class="organizer-profile-pic" ng-src="{{::activity.organizer.photo}}"
+                         alt="{{::activity.organizer.name}}"/>
+                </a>
             </div>
+        </div>
+        <div class="row">
             <div class="col-md-6">
                 <div class="rating-container">
-                    <i class="rating-star mdi-action-grade"
-                       ng-repeat="star in activity.rating track by star"
-                       ng-style="getStarStyle($index)"></i>
+                    <i ng-repeat="star in activity.rating track by star"
+                       ng-class="getStarStyle(star)"></i>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="activity-date" ng-bind="activity.date_msg">
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12 text-right">
-                <a ng-if="hasAction(strings.ACTION_VIEW)"
-                   ui-sref="activities-detail({activity_id: activity.id})"
-                   ng-bind="::strings.LABEL_VIEW"></a>
-                <a ng-if="hasAction(strings.ACTION_EDIT)"
-                   ui-sref="dash.activities-edit.general({activity_id:activity.id})"
-                   ng-bind="::strings.LABEL_EDIT"></a>
-                <a ng-if="hasAction(strings.ACTION_MANAGE)"
-                   ng-bind="::strings.LABEL_MANAGE"></a>
-                <a ng-if="hasAction(strings.ACTION_CONTACT)"
-                   ng-bind="::strings.LABEL_CONTACT"></a>
-                <a ng-if="hasAction(strings.ACTION_REPUBLISH)"
-                   ng-bind="::strings.LABEL_REPUBLISH"></a>
+            <div class="col-md-12 text-right action-container">
+                <a ng-repeat="action in actions track by action.name"
+                   class="action"
+                   ui-sref="{{::action.state}}"
+                   data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+                    <i ng-class="action.icon"></i>
+                    <!--<span ng-bind="::action.name"></span>-->
+                </a>
             </div>
         </div>
     </div>

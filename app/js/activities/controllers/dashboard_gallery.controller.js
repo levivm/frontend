@@ -19,10 +19,11 @@
 
         var vm = this;
 
-        initialize();
+        activate();
 
         vm.activity = angular.copy(activity);
         vm.addImage = _addImage;
+        vm.loadImageFromStock = _loadImageFromStock;
         vm.deleteImage = _deleteImage;
         vm.save_activity = _updateActivity;
         vm.setOverElement = _setOverElement;
@@ -33,10 +34,12 @@
         function _addImage(images,isMain) {
 
             console.log("images",images);
-            //vm.images.concat(images.pop());
+            if (!images)
+                return
+
             _clearErrors();
             vm.uploading_photo = images.pop();
-            //vm.photos.push(images.pop());
+
             var extra_data = {'main_photo':isMain};
             if (vm.uploading_photo)
                 if(isMain){
@@ -50,6 +53,11 @@
 
                 }
 
+        }
+
+        function _loadImageFromStock(){
+            activity.addPhotoFromStock()
+                .then(_successUploadedMainPhoto,_erroredUpload, _progressUploadMainPhoto)
         }
 
         function _deleteImage(image) {
@@ -184,11 +192,31 @@
             activity.updateSection('gallery');
         }
 
-        function activate() {
-            // If the user is authenticated, they should not be here.
+        function setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+
+                LABEL_REQUIRED: "Obligatorio",
+                LABEL_COVER_TITLE: "Portada",
+                LABEL_COVER_TITLE: "Portada",
+                LABEL_UPLOAD_COVER: "Seleccionar portada",
+                LABEL_CHANGE_COVER: "Cambiar portada",
+                LABEL_COVER_FROM_STOCK: "Portada Express",
+                COPY_COVER_FROM_STOCK: "Si no tienes foto de portada, nosotros tenemos un botón mágico para ti ",
+                COPY_COVER_PHOTO: "Esta primera imagen que veremos de tu curso.",
+                LABEL_GALLERY_TITLE: "Galeria",
+                LABEL_GALLERY_ADD_IMAGE: "Añadir Imagen",
+                COPY_GALLERY: "Añade fotografías de las actividades que has organizado anteriormente.",
+                COPY_MAX_IMAGE_ERROR: "Ya posee el ḿáximo de imágenes que puede tener para una actividad.",
+                LABEL_VIDEO_TITLE: "Vídeo",
+                COPY_VIDEO: "Agrega un video para que promociones mejor tu actividad.",
+                LABEL_YOUTUBE_LINK: "Enlace de Youtube",
+                LABEL_SAVE_ACTIVITY: "Guardar"
+            });
         }
 
-        function initialize() {
+        function activate() {
+            setStrings();
             vm.errors = {};
             vm.isCollapsed = true;
             vm.photo_loading = false;            

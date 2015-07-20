@@ -1,19 +1,8 @@
 
 <div class="row">
-    <div class="col-md-2">
-        <ul class="nav nav-pills nav-stacked">
-            <li>
-                <label for="home-city-selector" class="sr-only">Cities</label>
-                <select id="home-city-selector" class="form-control" name="city" ng-model="home.current_city"
-                        ng-options="city as city.name for city in home.cities track by city.id"
-                        ng-change="home.setCurrentCity(current_city)">
-                </select>
-            </li>
-        </ul>
-    </div>
-    <div class="col-md-10">
+    <div class="col-md-10 col-md-offset-1">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row activity-grid">
                 <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
                         ng-repeat="activity in home.activities track by activity.id"
                         data-activity="activity" data-options="{{home.options}}"></trulii-activity-item>
@@ -21,3 +10,8 @@
         </div>
     </div>
 </div>
+
+<a ng-if="home.isOrganizer" class="btn btn-info btn-create btn-fab btn-raised"
+   ui-sref="dash.activities-new.general">
+    <i class="mdi-content-add"></i>
+</a>

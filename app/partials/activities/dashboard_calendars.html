@@ -7,7 +7,13 @@
                         <h1 class="title-compound__title">
                             Calendarios
                         </h1>
-                        <h4 class="text-muted title-compound__description">Añade el horario, precio, número de sesiones y más</h4>    
+                        <h4 class="text-muted title-compound__description">Añade el horario, precio, número de sesiones y más</h4>
+                        <br/>
+                        <div ng-if="vm.republish" class="alert alert-warning">
+                            <h4>Advertencia!</h4>
+                            <p>Estás republicando esta actividad. Recuerda que para republicarla exitosamente debes
+                                de agregar por lo menos un nuevo calendario.</p>
+                        </div>
                     </div>
                 </div>            
 
@@ -36,7 +42,7 @@
                                         <i class="mdi-content-create" aria-hidden="true"></i>
                                     </button>
 
-                                    <button type="button" class="btn btn-default btn-sm" aria-label="Eliminar"
+                                    <button ng-if="!calendar.hasAssistants()" type="button" class="btn btn-default btn-sm" aria-label="Eliminar"
                                             ng-click="vm.deleteCalendar(calendar)" >
                                         <i class="mdi-action-delete" aria-hidden="true"></i>
                                     </button>

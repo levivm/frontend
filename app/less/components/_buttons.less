@@ -1,73 +1,69 @@
-
 @import url('../_trulii-variables');
 
-
 // ...Because there is a strange issue on bootstrap-material
-.btn-success, .btn-primary{
-	color: white !important;
+.btn-success, .btn-primary {
+    color: white !important;
 }
 
-.btn{
-	font-weight: bold;
-	
-	&.btn-active{
-		background: @secondary !important;
-		color: white !important;
+.btn {
+    font-weight: bold;
 
+    &.btn-active {
+        background: @secondary !important;
+        color: white !important;
 
-		&.btn-beginner-level{
-			background-color: @color-beginner !important;			
-		}
+        &.btn-beginner-level {
+            background-color: @color-beginner !important;
+        }
 
-		&.btn-intermediate-level{
-			background-color: @color-intermediate !important;
-		}
+        &.btn-intermediate-level {
+            background-color: @color-intermediate !important;
+        }
 
-		&.btn-advanced-level{
-			background-color: @color-advanced !important;
+        &.btn-advanced-level {
+            background-color: @color-advanced !important;
+        }
 
-		}
+        &-darken {
+            background: @secondary-dark !important;
+        }
+    }
 
-		&-darken{
-			background: @secondary-dark !important;
-		}
-	}
+    &-bgsecondary {
+        background-color: white !important;
+        color: @secondary !important;
+    }
 
-	&-bgsecondary{
-		background-color: white !important;
-		color: @secondary !important;
-	}
+    &.btn-less {
+        font-weight: normal;
+        width: 9em !important;
+    }
 
-	&.btn-less{
-		font-weight: normal;
-		width: 9em !important;
-	}
+    &-grand:extend(.btn-lg) {
 
-	&-grand:extend(.btn-lg){
+        &:extend(.btn-lg);
+        padding: 1em;
 
-		&:extend(.btn-lg);
-		padding: 1em;
+        &__icon {
+            line-height: 0;
 
-		&__icon{
-			line-height: 0;
+            &:before, &:after {
+                line-height: 0em;
+                position: relative;
+                font-size: 2em;
+                top: 0.2em;
+            }
+        }
+    }
 
-			&:before, &:after{
-				line-height: 0em;
-				position: relative;
-				font-size: 2em;
-				top: 0.2em;
-			}
-		}
-	}
+    &-facebook {
+        color: white !important;
+        background-color: @facebook-blue !important;
+        text-transform: none;
 
-	&-facebook{
-		color: white !important;
-		background-color: @facebook-blue !important;
-		text-transform: none;
-
-		&:hover {
-			background-color: darken(@facebook-blue, 2%) !important ;
-		}		
-	}	
+        &:hover {
+            background-color: darken(@facebook-blue, 2%) !important;
+        }
+    }
 
 }

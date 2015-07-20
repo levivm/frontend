@@ -16,7 +16,7 @@
 <div class="row">
     <div class="user-thumbnail-container">
         <div class="user-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.email">
-            <img class="user-img" ng-src="{{attendees.getAssistantPicture(assistant)}}"
+            <img class="user-img" ng-src="{{assistant.photo}}"
                  alt="{{::assistant.first_name}}"/>
             <h3 ng-bind="::assistant.first_name"></h3>
         </div>

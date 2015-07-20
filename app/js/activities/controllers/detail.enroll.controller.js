@@ -5,48 +5,63 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', 'ActivitiesManager', 'Authentication', 'activity', 'calendar', 'Toast'];
+    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'Authentication', 'Toast', 'Error',
+        'activity', 'calendar', 'currentUser'];
 
-    function ActivityDetailEnrollController($state, ActivitiesManager, Authentication, activity, calendar, Toast) {
+    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, Authentication, Toast, Error,
+                                            activity, calendar, currentUser) {
 
-        var pc = this;
-        var currentUser = null;
-        pc.minus = minus;
-        pc.plus = plus;
-        pc.enroll = enroll;
-        pc.isAnonymous = isAnonymous;
+        var vm = this;
 
-        initialize();
+        vm.success = false;
+        vm.calendar = null;
+        vm.activity = null;
+        vm.capacity = null;
+        vm.amount = null;
+        vm.quantity = 0;
+        vm.assistants = [];
+
+        vm.minus = minus;
+        vm.plus = plus;
+        vm.enroll = enroll;
+        vm.isAnonymous = isAnonymous;
+
+        _activate();
+
+        function isAnonymous(){
+            return !Authentication.isAuthenticated();
+        }
 
         function minus() {
-            if (pc.quantity > 1) {
-                pc.quantity -= 1;
-                pc.assistants.pop();
+            if (vm.quantity > 1) {
+                vm.quantity -= 1;
+                vm.assistants.pop();
                 _calculateAmount();
             }
         }
 
         function plus() {
-            if (pc.quantity + pc.calendar.assistants.length < pc.capacity) {
-                pc.quantity += 1;
-                pc.assistants.push({});
+            if (vm.quantity + vm.calendar.assistants.length < vm.capacity) {
+                vm.quantity += 1;
+                vm.assistants.push({});
                 _calculateAmount();
             } else {
-                Toast.warning('El máximo de cupos disponibles es ' + pc.quantity);
+                Toast.warning('El máximo de cupos disponibles es ' + vm.quantity);
             }
         }
 
         function enroll() {
             _clearErrors();
 
+            //TODO pedir de un Service
             var student_data = JSON.parse(localStorage.getItem('ls.user'));
 
             var data = {
                 chronogram: calendar.id,
                 student: student_data.id,
-                amount: pc.quantity * calendar.session_price,
-                quantity: pc.quantity,
-                assistants: pc.assistants
+                amount: vm.quantity * calendar.session_price,
+                quantity: vm.quantity,
+                assistants: vm.assistants
             };
 
             ActivitiesManager.enroll(activity.id, data)
@@ -56,75 +71,93 @@
 
         function _successCreation(response) {
             calendar.addAssistants(response.assistants);
-            pc.success = true;
+            vm.success = true;
             $state.go('activities-enroll.success');
         }
 
         function _calculateAmount() {
-            pc.amount = pc.quantity * calendar.session_price;
+            vm.amount = vm.quantity * calendar.session_price;
         }
 
-        function isAllBooked(){
+        function _isAllBooked(){
             return calendar.capacity <= calendar.assistants.length;
         }
 
-        function isAnonymous(){
-            return Authentication.isAnonymous();
-        }
-
         function _clearErrors() {
-            pc.enrollForm.$setPristine();
-            pc.errors = {};
-        }
-
-        function _addError(field, message) {
-            pc.errors[field] = message;
+            Error.form.clear(vm.enrollForm);
         }
 
         function _error(errors){
-            console.log(errors);
-            angular.forEach(errors, function (message, field) {
-                console.log('message', message);
-                console.log('field', field);
-                _addError(field, message);
-            })
+            Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
         }
 
+        function _setStrings() {
+            if (!vm.strings) {
+                vm.strings = {};
+            }
+            angular.extend(vm.strings, {
+                COPY_SIGN_UP: "¿Quieres inscribirte en esta actividad?",
+                COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
+                COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
+                COPY_UNTIL_NOW: "Hasta ahora",
+                COPY_NO_ASSISTANTS: "esta actividad no tiene asistentes ¡Sé tú el primero!",
+                COPY_ONE_ASSISTANT: "va 1 asistente ¡Faltas tú!",
+                COPY_MANY_ASSISTANTS: "van {} asistentes ¡Faltas tú!",
+                COPY_RELEASE: "Haciendo click en \"Pagar\" estoy de acuerdo con el monto total a cancelar,"
+                    + " el cual incluye la comisión de la plataforma de pago,"
+                    + " y con los Términos y Condiciones de Trulii",
+                ACTION_LOGIN: "Inicia Sesion",
+                ACTION_REGISTER: "Regístrate",
+                ACTION_ENROLL: "Inscribir",
+                ACTION_RETURN: "Volver a Actividad",
+                COPY_CONGRATULATIONS: "¡Felicidades!",
+                COPY_ASSISTANT_NUMBER: "Asistente #",
+                ACTION_VIEW_PROFILE: "Ver Perfil",
+                LABEL_ORGANIZER: "Organizador",
+                LABEL_ASSISTANTS: "Asistentes",
+                LABEL_ACTIVITY_INFO: "Información de la Actividad",
+                LABEL_START_DATE: "Fecha de Inicio",
+                LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
+                LABEL_AVAILABLE_SEATS: "Cupos Restantes",
+                LABEL_PRICE: "Precio",
+                LABEL_QUANTITY: "Cantidad",
+                LABEL_TOTAL: "Total",
+                LABEL_SCHEDULES: "Cronogramas",
+                LABEL_FIRST_NAME: "Nombre",
+                LABEL_LAST_NAME: "Apellido",
+                LABEL_EMAIL: "Email",
+                LABEL_PAYMENT_INFO: "Información de Pago",
+                LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
+            });
+        }
 
-
-        function initialize(){
-
-            pc.stateInfo = {
+        function _activate(){
+            _setStrings();
+            vm.stateInfo = {
                 from: {
                     state : $state.current.name,
                     params : $state.params
                 }
             };
 
-            pc.errors = {};
-            pc.success = false;
+            vm.success = false;
 
-            pc.calendar = calendar;
-            pc.activity = activity;
-            console.log(activity);
-            console.log(calendar);
-            console.log($state);
+            vm.calendar = calendar;
+            vm.activity = activity;
 
-            pc.capacity = calendar.capacity;
-            pc.amount = calendar.session_price;
+            vm.capacity = calendar.capacity;
+            vm.amount = calendar.session_price;
 
-            currentUser = Authentication.getAuthenticatedAccount();
-
-            if(isAllBooked()){
-                pc.quantity = 0;
-                pc.assistants = [];
+            if(_isAllBooked()){
+                vm.quantity = 0;
+                vm.assistants = [];
             } else {
-                pc.quantity = 1;
-                if(pc.calendar.hasAssistantByEmail(currentUser.user.email)){
+                vm.quantity = 1;
+                if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
                     console.log('Usuario ya esta inscrito');
-                    pc.assistants = [{}];
+                    vm.assistants = [{}];
                 } else {
-                    pc.assistants = [angular.extend({}, currentUser.user)];
+                    vm.assistants = [angular.extend({}, currentUser.user)];
                 }
             }
         }

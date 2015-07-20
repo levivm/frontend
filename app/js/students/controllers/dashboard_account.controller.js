@@ -53,21 +53,18 @@
                 .then(success, fail);
 
             function success(response) {
-                
                 vm.isSaving = false;
                 Toast.info("Password cambiado");
             }
 
             function fail(response){
                 _changeFail(response, vm.account_form_password);
-
                 vm.isSaving = false;
             }
         }
 
         function _changeSuccess(response) {
-            Authentication.updateAuthenticatedAccount();
-            
+            Authentication.getAuthenticatedAccount(true);
             vm.isSaving = false;
             Toast.info("Correo cambiado");
         }
@@ -90,7 +87,26 @@
             }
         }
 
+        function setStrings() {
+            if (!vm.strings) {
+                vm.strings = {};
+            }
+            angular.extend(vm.strings, {
+                ACTION_REPLACE_PICTURE: "Cambiar foto",
+                ACTION_SAVE: "Guardar",
+                LABEL_FIRST_NAMES: "Nombres",
+                LABEL_BIRTH_DATE: "Fecha de Nacimiento",
+                LABEL_LAST_NAMES: "Apellidos",
+                LABEL_GENDER: "Género",
+                LABEL_CITY: "Ciudad",
+                OPTION_SELECT: "Seleccione...",
+                SECTION_ACCOUNT: "Cuenta",
+                SECTION_PROFILE: "Mi Perfil"
+            });
+        }
+
         function activate() {
+            setStrings();
             getOrders();
         }
 

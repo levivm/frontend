@@ -43,11 +43,23 @@
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
+                params: {
+                    'activities': null
+                },
                 resolve:{
                     cities:getAvailableCities,
                     authenticatedUser: getAuthenticatedUser
                 },
                 templateUrl: 'partials/landing/landing.html'                        
+            })
+
+            .state('contact-us', {
+                url:'/contact/us',
+                controller:'ContactController as contact',
+                resolve:{
+                    cities:getAvailableCities
+                },
+                templateUrl: 'partials/landing/contact_us.html'
             })
             
             .state('register', {
@@ -229,6 +241,11 @@
                     activities: getStudentActivities
                 }
             })
+            .state('student-dashboard.history', {
+                url:'history',
+                controller: 'StudentHistoryCtrl as history',
+                templateUrl: 'partials/students/dashboard_history.html'
+            })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl',
@@ -242,8 +259,7 @@
             .state('organizer-dashboard', {
                 abstract:true,
                 url:'/organizer/dashboard/',
-                controller: 'OrganizerDashboardCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerDashboardCtrl as dash',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
@@ -256,22 +272,19 @@
             })
             .state('organizer-dashboard.profile', {
                 url:'profile',
-                controller: 'OrganizerProfileCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerProfileCtrl as profile',
                 templateUrl: 'partials/organizers/dashboard_profile.html'
                 //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.account', {
                 url:'account',
-                controller: 'OrganizerAccountCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard_account.html'
                 //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.activities', {
                 url:'activities',
-                controller: 'OrganizerActivitiesCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerActivitiesCtrl as activities',
                 templateUrl: 'partials/organizers/dashboard_activities.html',
                 //templateUrl: 'modalContainer'
                 resolve: {
@@ -353,11 +366,14 @@
                 templateUrl: 'partials/activities/dashboard_calendars.html',
                 resolve:{
                     calendars:getCalendars
+                },
+                params: {
+                  'republish': false
                 }
                 //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.calendars.detail', {
-                url:'?id',
+                url:'/:id',
                 controller: 'ActivityCalendarController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_calendar_detail.html',
@@ -365,15 +381,12 @@
                     calendar: getCalendar
                 }
             })
-
             .state('dash.activities-edit.location', {
-
                 url:'location',
                 controller: 'ActivityDBLocationController',
                 resolve:{
                     cities: getAvailableCities,
                     organizer : getCurrentOrganizer
-
                 },
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_location.html'
@@ -398,6 +411,7 @@
             })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/',
+                abstract: true,
                 controller: 'ActivityDetailController as detail',
                 templateUrl: 'partials/activities/detail.html',
                 resolve: {
@@ -424,18 +438,17 @@
             })
             .state('activities-enroll', {
                 url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
-                controller: 'ActivityDetailEnrollController',
-                controllerAs: 'pc',
+                controller: 'ActivityDetailEnrollController as enroll',
                 templateUrl: 'partials/activities/detail.enroll.html',
                 resolve: {
                     activity: getActivity,
-                    calendar: fetchCalendar
+                    calendar: fetchCalendar,
+                    currentUser: getAuthenticatedUser
                 }
             })
             .state('activities-enroll.success', {
-                url: '',
-                controller: 'ActivityEnrollSuccessController',
-                controllerAs: 'vm',
+                url: '/success',
+                controller: 'ActivityEnrollSuccessController as success',
                 templateUrl: 'partials/activities/detail.enroll.success.html',
                 resolve: {
                     organizer: ['activity', function (activity) {
@@ -443,9 +456,22 @@
                     }],
                     organizerActivities: getOrganizerActivities
                 }
+            })
+            .state('not-found', {
+                url: '/404',
+                controller: 'NotFoundController as notFound',
+                templateUrl: 'partials/landing/not_found.html',
+                resolve:{
+                    cities: getAvailableCities,
+                },
+                params: {
+                    message: '',
+                    fromState: null,
+                    fromParams: null
+                }
             });
 
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/404');
     }
 
     /****** RESOLVER FUNCTIONS USERS *******/
@@ -465,24 +491,31 @@
         return Authentication.getAuthenticatedAccount();
     }
 
-    getCurrentOrganizer.$inject = ['$timeout','$state','Authentication', 'OrganizersManager'];
+    getCurrentOrganizer.$inject = ['$timeout','$q','$state','Authentication', 'OrganizersManager'];
 
-    function getCurrentOrganizer($timeout,$state,Authentication, OrganizersManager){
+    function getCurrentOrganizer($timeout,$q,$state,Authentication, OrganizersManager){
 
         var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var is_organizer = true;
         var force_fetch = true;
+        
+        return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
 
-        if(authenticatedUser){
-            is_organizer = authenticatedUser.user_type === 'O';
-            if (is_organizer) {
-                return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
-            } else {
-                $timeout(function() {
-                     $state.go('home');
-                });
-                return $q.reject()
-            }
+        function successAuthAccount(authenticatedUser){
+
+            return Authentication.isOrganizer().then(function(isOrganizer){
+                console.log("isOrganizer",isOrganizer);
+                if(authenticatedUser && isOrganizer){
+                    return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
+                } else {
+                    $timeout(function() {
+                        // $state.go('home');
+                    });
+                    return $q.reject()
+                }
+            });
+        }
+        function errorAuthAccount(){
+            console.log("getCurrentOrganizer. Couldn't resolve authenticatedUser");
         }
     }
 
@@ -496,21 +529,24 @@
 
     function getCurrentStudent($timeout, $state, Authentication, StudentsManager){
 
-        var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var is_student = false;
         var force_fetch = true;
 
-        if(authenticatedUser){
-            is_student = (authenticatedUser.user_type === 'S');
-            if (is_student) {
-                return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
-            } else {
-                $timeout(function() {
-                    $state.go('home');
-                }, 0);
+        return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
 
-                return $q.reject()
-            }
+        function successAuthAccount(authenticatedUser){
+            return Authentication.isStudent().then(function(isStudent){
+                if(authenticatedUser && isStudent){
+                    return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
+                } else {
+                    $timeout(function() {
+                        $state.go('home');
+                    });
+                    return $q.reject()
+                }
+            });
+        }
+        function errorAuthAccount(){
+            console.log("getCurrentStudent. Couldn't resolve authenticatedUser");
         }
 
     }
@@ -546,19 +582,24 @@
     getStudentActivities.$inject = ['ActivitiesManager', 'Authentication', 'StudentsManager'];
 
     function getStudentActivities(ActivitiesManager, Authentication, StudentsManager){
-        var currentUser =  Authentication.getAuthenticatedAccount();
-        if(currentUser.user_type === 'S'){
-            ActivitiesManager.getStudentActivities(currentUser.id).then(function(activities){
-                console.log('activities: ', activities);
-            });
+        Authentication.isStudent()
+            .then(function(isStudent){
+                return isStudent? Authentication.getAuthenticatedAccount() : $q.reject();
+            })
+            .then(success, error);
+
+        function success(currentUser){
             return ActivitiesManager.getStudentActivities(currentUser.id);
         }
-
+        function error(){
+            $q.reject();
+        }
     }
 
     getCalendars.$inject = ['CalendarsManager','activity'];
 
     function getCalendars(CalendarsManager, activity){
+        console.log('activity:', activity);
         return CalendarsManager.loadCalendars(activity.id);
     }
 
@@ -598,7 +639,8 @@
 
         $urlMatcherFactory.strictMode(false);
 
-        $rootScope.$on('$stateChangeStart', onStateChange);               
+        $rootScope.$on('$stateChangeStart', onStateChange);
+        $rootScope.$on('$stateChangeError', onStateChangeError);
 
         ///////////
 
@@ -613,6 +655,23 @@
                     $state.go('home', {'notify': false});
                 }
             }
+        }
+
+        function onStateChangeError(event, toState, toParams, fromState, fromParams, error){
+            $state.previous = fromState;
+            console.group('stateChangeError');
+            console.log('fromState:', fromState);
+            console.log('event:', event);
+            console.log('error:', error);
+            console.groupEnd();
+
+            console.log('Resolve Error. Redirecting to "not-found"');
+            event.preventDefault();
+            $state.go('not-found', {
+                message: 'State Not Found',
+                fromState: fromState,
+                fromParams: fromParams
+            });
         }
        
     }

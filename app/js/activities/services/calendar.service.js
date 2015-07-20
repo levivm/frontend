@@ -48,6 +48,9 @@
 
                 this.initial_date = new Date(this.initial_date);
                 this.closing_sale = new Date(this.closing_sale);
+                console.log("SETTING HERE",this.initial_date);
+                console.log("SETTING HERE");
+                console.log("SETTING HERE");
                 angular.forEach(this.sessions, function (session, index) {
 
                     session.date = new Date(session.date);
@@ -98,11 +101,11 @@
             update : function () {
 
                 var activity_id = this.activity;
-                console.log("updating", this);
-                this.setToSave();
+                var calendar_copy = angular.copy(this);
+                calendar_copy.setToSave();
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'+this.id
-                return $http.put(api.calendar(activity_id, this.id), this)
+                return $http.put(api.calendar(activity_id, this.id), calendar_copy)
                     .then(function (response) {
                         that.setData(response.data);
                         return response.data
@@ -173,26 +176,32 @@
 
                         var previous_s = index ? this.sessions[index - 1] : null;
 
-                        var date = index ? new Date(previous_s.date.getTime()) : this.initial_date;
 
+
+
+                        // var previous_s_date = previous_s.date.getTime();
+                        var date = index ? new Date(previous_s.date.getTime() + 24 * 60 * 60 * 1000) : this.initial_date;
+
+                        // var minDate = new Date(date.getTime() - 24 * 60 * 60 * 1000);
+                        var minDate = index ? new Date(previous_s.date.getTime()):this.initial_date;
                         //var minDate =index ? new Date(previous_s.date.getTime()+24*60*60*1000):date;
 
                         //var _start_time = previous_s && previous_s.date
-                        var hours = index ? previous_s.end_time.getHours() : 10;
-                        console.log(hours, "horas");
+                        var hours = index ? previous_s.start_time.getHours() : 10;
 
                         var start_time = new Date();
-                        start_time.setHours(hours + 1);
+                        start_time.setHours(hours);
                         start_time.setMinutes(0);
 
                         var end_time = new Date();
-                        end_time.setHours(hours + 4);
+                        end_time.setHours(hours + 3);
                         end_time.setMinutes(0);
+
 
                         var session = {
                             openDate : false,
                             date : date,
-                            minDate : date,
+                            minDate : minDate,
                             start_time : start_time,
                             end_time : end_time,
                         };
@@ -252,6 +261,9 @@
                     session.start_time = new_start_time;
                 }
 
+            },
+            hasAssistants: function(){
+                return this.assistants.length > 0
             },
             addAssistants : function (assistants) {
                 this.assistants = this.assistants.concat(assistants);

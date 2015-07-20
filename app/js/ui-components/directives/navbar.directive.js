@@ -12,22 +12,53 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', 'UIComponentsTemplatesPath', 'LocationManager', 'Authentication',
+    truliiNavbar.$inject = ['$rootScope', '$state', '$timeout', 'UIComponentsTemplatesPath',
+        'ActivitiesManager', 'LocationManager', 'Authentication',
         'defaultPicture'];
 
-    function truliiNavbar($rootScope, $timeout, UIComponentsTemplatesPath, LocationManager, Authentication, defaultPicture) {
+    function truliiNavbar($rootScope, $state, $timeout, UIComponentsTemplatesPath,
+                          ActivitiesManager, LocationManager, Authentication,
+                          defaultPicture) {
         return {
-            restrict : 'AE',
+            restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "navbar.html",
-            link : function (scope, element, attrs) {
-
-                scope.cities = [];
-                scope.isStudent = Authentication.isStudent;
-                scope.isOrganizer = Authentication.isOrganizer;
+            link: function (scope, element, attrs) {
 
                 var unsubscribeUserChanged = null;
+                var unsubscribeUserLoggedOut = null;
+                var unsuscribeCityModified = null;
 
-                initialize();
+                scope.q = null;
+                scope.search_city = null;
+                scope.cities = [];
+                scope.isSearchVisible = true;
+                scope.updateSearchCity = updateSearchCity;
+                scope.search = search;
+
+                activate();
+
+                function search() {
+
+                    console.log('navbar. search.', 'q:', scope.q, 'cityId:', scope.search_city.id);
+                    ActivitiesManager.searchActivities(scope.q, scope.search_city.id).then(success, error);
+
+                    function success(response){
+                        console.log('search response:', response.data);
+                        $state.go('home', {'activities': response.data});
+                    }
+
+                    function error(response){
+                        if(!response){
+                            console.log("Error. Can't search without a city. Please specify a city to search on");
+                        } else {
+                            console.log('error searching for activities.', response);
+                        }
+                    }
+                }
+
+                function updateSearchCity() {
+                    LocationManager.setSearchCity(scope.search_city);
+                }
 
                 function setStrings() {
                     if (!scope.strings) {
@@ -35,82 +66,109 @@
                     }
 
                     angular.extend(scope.strings, {
-                        PLACEHOLDER_WANT_TO_LEARN : '¿Qué quieres aprender hoy?',
-                        CITY_LABEL: 'Ciudad',
-                        CITY_DEFAULT_LABEL: 'Ciudad..',
-                        PROFILE_LABEL: 'Mi Perfil',
-                        LOGIN_LABEL: 'Iniciar Sesión',
-                        REGISTER_LABEL: 'Registrarse',
-                        ORGANIZER_LABEL: 'Organizador',
-                        STUDENT_LABEL: 'Estudiante',
-                        LOGOUT_LABEL: 'Logout'
+                        PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
+                        COPY_BECOME_ORGANIZER: '¿Quieres ser Organizador?',
+                        ACTION_LOGIN: 'Inicia Sesión',
+                        ACTION_REGISTER: 'Registrate',
+                        ACTION_CREATE: 'Crear Actividad',
+                        LABEL_CITY: 'Ciudad',
+                        LABEL_CITY_DEFAULT: 'Ciudad..',
+                        LABEL_PROFILE: 'Mi Perfil',
+                        LABEL_ORGANIZER: 'Organizador',
+                        LABEL_STUDENT: 'Estudiante',
+                        LABEL_LOGOUT: 'Logout'
                     });
                 }
 
-                function getUser(user){
-                    scope.user = !!user? user : Authentication.getAuthenticatedAccount();
+                function getUser() {
+                    Authentication.getAuthenticatedAccount().then(success, error);
 
-                    if(scope.user && scope.user.user_type) {
-                        var userType = scope.user.user_type.toUpperCase();
-                        mapDisplayName(scope.user);
-                        switch(userType){
-                            case 'O':
-                                console.log('Organizer user type: ' + userType);
-                                scope.user.is_organizer = true;
-                                break;
-                            case 'S':
-                                console.log('Student user type: ' + userType);
-                                scope.user.is_student = true;
-                                break;
-                            default:
-                                console.log('Unknown user type: ' + userType);
+                    function success(user) {
+                        if (!user) {
+                            scope.user = null;
+                            return;
                         }
-                        //console.log('navbar. getUser:', scope.user);
+                        scope.user = user;
+                        Authentication.isOrganizer().then(function (result) {
+                            scope.user.is_organizer = result;
+                            scope.isSearchVisible = !result;
+                        });
+                        Authentication.isStudent().then(function (result) {
+                            scope.user.is_student = result;
+                        });
+                        mapDisplayName(scope.user);
+                    }
+
+                    function error() {
+                        console.log('navbar response reject');
+                        scope.user = null;
                     }
                 }
 
-                function mapDisplayName(data){
+                function mapDisplayName(data) {
                     //console.log('mapDisplayName. data:', data);
                     var user = data.user;
                     var company = data.name;
-                    if(user.full_name){
-                        console.log('Full Name already defined');
-                    } else if(user.first_name && user.last_name){
-                        user.full_name = [user.first_name, user.last_name].join(' ');
-                    } else if (company){
+                    if (company) {
                         user.full_name = company;
+                    } else if (user.full_name) {
+                        console.log('Full Name already defined');
+                    } else if (user.first_name && user.last_name) {
+                        user.full_name = [user.first_name, user.last_name].join(' ');
                     } else {
                         user.full_name = 'User';
                     }
 
-                    if(!data.photo) {
+                    if (!data.photo) {
                         data.photo = defaultPicture;
                     }
 
-                    $timeout(function(){
+                    $timeout(function () {
                         scope.$apply();
                     }, 0);
                 }
 
-                function getCities(){
+                function getCities() {
                     LocationManager.getAvailableCities().then(success, error);
 
-                    function success(cities) { scope.cities = cities; }
-                    function error(response) { console.log("truliiNavbar. Couldn't get cities"); }
+                    function success(cities) {
+                        scope.cities = cities;
+                    }
+
+                    function error() {
+                        console.log("truliiNavbar. Couldn't get cities");
+                    }
                 }
 
-                function cleanUp(){
+                function setCurrentCity() {
+                    scope.search_city = LocationManager.getCurrentCity();
+                }
+
+                function cleanUp() {
                     unsubscribeUserChanged();
+                    unsubscribeUserLoggedOut();
+                    unsuscribeCityModified();
                 }
 
-                function initialize() {
+                function activate() {
                     setStrings();
                     getUser();
+                    setCurrentCity();
                     getCities();
 
-                    unsubscribeUserChanged = $rootScope.$on('userChanged', function(event, user){
-                        console.log('navBar. onUserChanged');
-                        getUser(user);
+                    unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
+                        console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
+                        getUser();
+                    });
+
+                    unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
+                        console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
+                        getUser();
+                    });
+
+                    unsuscribeCityModified = $rootScope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT, function (event) {
+                        console.log('navBar. on' + LocationManager.CURRENT_CITY_MODIFIED_EVENT);
+                        setCurrentCity();
                     });
 
                     scope.$on('$destroy', cleanUp);
