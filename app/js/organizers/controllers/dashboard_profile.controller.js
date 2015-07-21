@@ -131,6 +131,7 @@
                 ACTION_SAVE: "Guardar",
                 ACTION_DELETE: "Eliminar",
                 ACTION_UPDATE_PICTURE: "Cambiar Foto",
+                ACTION_VIEW_PROFILE: "Ver Perfil",
                 SECTION_PROFILE: "Mi Perfil",
                 TAB_INFO: "Información",
                 TAB_VIDEO: "Video",

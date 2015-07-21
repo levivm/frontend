@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card z-shadow-1" style="min-height: 44em;">
+    <div class="card z-shadow-1" style="min-height: 48em;">
         <div class="col-md-3 card__lateral-menu">
             <div class="card__lateral-menu__title">
                 <i class="mdi-action-account-circle"></i>
@@ -25,6 +25,10 @@
                                 <span ng-bind="::profile.strings.ACTION_UPDATE_PICTURE"></span>
                             </button>
                         </div>
+                        <a class="btn btn-primary"
+                           ui-sref="organizer-profile({organizer_id: profile.organizer.id})">
+                            <div ng-bind="::profile.strings.ACTION_VIEW_PROFILE"></div>
+                        </a>
                     </div>
                     <div class="form-group" trulii-input-errors-control="photo">
                         <input type="hidden" name="photo"/>
