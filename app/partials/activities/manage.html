@@ -1,16 +1,33 @@
-<div class="container-fluid navbar-secondary" >
-    <a class="navbar-secondary__item"
-       ui-sref=".orders" ui-sref-active="navbar-secondary__item--selected">
-        <i class="mdi-maps-local-atm"></i>
-        <span> </span>
-        <span ng-bind="::manage.strings.SECTION_ORDERS"></span>
-    </a>
-    <a class="navbar-secondary__item"
-       ui-sref=".assistants" ui-sref-active="navbar-secondary__item--selected">
-        <i class="mdi-social-people"></i>
-        <span> </span>
-        <span ng-bind="::manage.strings.SECTION_ASSISTANTS"></span>
-    </a>
+<div class="container">
+    <div class="card z-shadow-1" style="min-height: 30em">
+        <div class="row clearfix">
+            <div class="col-md-3 card__lateral-menu">
+                <div class="card__lateral-menu__title">
+                    <i class="mdi-action-settings"></i>
+                    <span> </span>
+                    <span ng-bind="::manage.strings.SECTION_MANAGE"></span>
+                </div>
+                <ul>
+                    <li class="card__lateral-menu__item" ui-sref-active="active">
+                        <a ui-sref=".orders">
+                            <i class="mdi-maps-local-atm"></i>
+                            <span> </span>
+                            <span ng-bind="::manage.strings.TAB_ORDERS"></span>
+                        </a>
+                    </li>
+                    <li class="card__lateral-menu__item" ui-sref-active="active">
+                        <a ui-sref=".assistants">
+                            <i class="mdi-social-people"></i>
+                            <span> </span>
+                            <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9 col-md-offset-3">
+                <div class="card-body" ui-view></div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div ui-view class="lateral-fade"></div>

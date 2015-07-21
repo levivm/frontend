@@ -32,7 +32,7 @@
         function activityPageChange(){
             var offset = vm.paginationOpts['itemsPerPage'];
             var start = (vm.pageNumber - 1) * offset;
-            var end = start + offset;
+            var end = vm.pageNumber * offset;
             vm.activities = activities.slice(start, end);
         }
 

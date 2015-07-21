@@ -72,6 +72,16 @@
 
             /**
              * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#getOrders
+             * @description Gets Orders related to an Activity
+             * @param {number} activityId Id of activity to retrieve orders for
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getOrders: getOrders,
+
+            /**
+             * @ngdoc method
              * @name trulii.activities.services.ActivitiesManager#getStudentActivities
              * @description Gets all of a student's activities
              * @return {promise} Activity Promise
@@ -191,6 +201,17 @@
             }
 
             return deferred.promise;
+        }
+
+        function getOrders(activityId){
+            return $http.get(api.orders(activityId)).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                return response;
+            }
         }
 
         function loadOrganizerActivities(organizerId) {

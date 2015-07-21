@@ -36,10 +36,6 @@
                 templateUrl: 'partials/browsing.html'
             })
 
-            .state('dash', {                
-                templateUrl: 'partials/browsing.html'
-            })
-
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
@@ -300,8 +296,10 @@
                     activities: getOrganizerActivities
                 }
             })
+            .state('dash', {
+                templateUrl: 'partials/browsing.html'
+            })
             .state('dash.activities-new', {
-
                 abstract: true,
                 url: '/activities/new',
                 data: {
@@ -412,10 +410,10 @@
                 url:'/activities/manage/{activity_id:int}/',
                 abstract: true,
                 controller: 'ActivitiesManageCtrl as manage',
-                templateUrl: 'partials/activities/manage.html',
                 resolve: {
                     activity: getActivity
-                }
+                },
+                templateUrl: 'partials/activities/manage.html',
             })
             .state('dash.activities-manage.orders', {
                 url:'orders',

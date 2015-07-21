@@ -1,96 +1,99 @@
-<div class="container">
-    <div class="card z-shadow-1" style="min-height: 30em">
-        <div class="row clearfix">
-            <div class="col-md-3 card__lateral-menu">
-                <div class="card__lateral-menu__title">
-                    <i class="mdi-action-settings"></i>
-                    <span> </span>
-                    <span ng-bind="::activities.strings.SECTION_ACTIVITIES"></span>
+<div class="fade in">
+    <h2 ng-bind="manage.strings.TAB_ORDERS"></h2>
+    <h4 class="text-muted" ng-bind="manage.strings.COPY_ORDERS"></h4>
+    <br/>
+
+    <div ng-if="manage.orders.length > 0" class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="control-label sr-only"
+                       ng-bind="::manage.strings.LABEL_SEARCH"></label>
+                <div class="input-group">
+                    <input class="form-control floating-label" type="text"
+                           ng-model="manage.queries.orderQuery"
+                           ng-change="manage.updateByQuery(manage.TYPE_ORDER)"
+                           placeholder="{{manage.strings.COPY_SEARCH}}">
+                    <span class="input-group-addon">
+                        <i class="mdi-action-search"></i>
+                    </span>
                 </div>
-                <ul>
-                    <li class="card__lateral-menu__item active" data-toggle="tab" data-target="#published-tab">
-                        <a> <i class="mdi-action-view-carousel"></i>
-                            <span> </span>
-                            <span ng-bind="::activities.strings.TAB_PUBLISHED"></span>
-                        </a>
-                    </li>
-                    <li class="card__lateral-menu__item" data-toggle="tab" data-target="#previous-tab">
-                        <a> <i class="mdi-action-history"></i>
-                            <span> </span>
-                            <span ng-bind="::activities.strings.TAB_PREVIOUS"></span>
-                        </a>
-                    </li>
-                    <li class="card__lateral-menu__item" data-toggle="tab" data-target="#drafts-tab">
-                        <a> <i class="mdi-editor-mode-edit"></i>
-                            <span> </span>
-                            <span ng-bind="::activities.strings.TAB_DRAFTS"></span>
-                        </a>
-                    </li>
-                </ul>
             </div>
-
-            <div class="col-md-9 col-md-offset-3">
-                <div class="card-body tab-content">
-                    <div class="tab-pane active fade in" id="published-tab">
-                        <h2 ng-bind="activities.strings.TAB_PUBLISHED"></h2>
-                        <h4 class="text-muted" ng-bind="activities.strings.COPY_PUBLISHED"></h4>
-
-                        <div class="row activity-grid">
-                            <trulii-activity-item class="col-md-6 col-xs-12"
-                                                  ng-repeat="activity in activities.published_activities track by activity.id"
-                                                  data-activity="activity"
-                                                  data-options="{{activities.currentOptions}}"></trulii-activity-item>
+        </div>
+        <div class="col-md-12" ng-repeat="order in manage.orders track by order.id">
+            <div class="panel panel-dark">
+                <div class="panel-heading">
+                    <!--TODO Sacar estilo cableado-->
+                    <div class="row" style="margin-bottom: 8px;">
+                        <div class="col-md-4">
+                            <span class="label label-default">
+                                <span ng-bind="::manage.strings.LABEL_ORDER_NUMBER"></span>
+                                <span> </span>
+                                <span ng-bind="::order.id"></span>
+                            </span>
                         </div>
-                        <!--If there are no activities-->
-                        <div ng-if="activities.published_activities.length <= 0" class="row">
-                            <br/>
-                            <div class="col-md-12">
-                                <h4 ng-bind="::activities.strings.LABEL_EMPTY_PUBLISHED"></h4>
-                                <p ng-bind="::activities.strings.COPY_EMPTY_PUBLISHED"></p>
-                            </div>
+                        <div class="col-md-8 text-right">
+                            <span>DD/MM/YYYY</span>
                         </div>
                     </div>
-
-                    <div class="tab-pane fade in" id="previous-tab">
-                        <h2 ng-bind="activities.strings.TAB_PREVIOUS"></h2>
-                        <h4 class="text-muted" ng-bind="activities.strings.COPY_PREVIOUS"></h4>
-
-                        <div class="row activity-grid">
-                            <trulii-activity-item class="col-md-6 col-xs-12"
-                                                  ng-repeat="activity in activities.previous_activities track by activity.id"
-                                                  data-activity="activity"
-                                                  data-options="{{activities.previousOptions}}"></trulii-activity-item>
+                    <div class="row">
+                        <div class="col-md-3" ng-bind="::order.payer.full_name"></div>
+                        <div class="col-md-3" ng-bind="::order.payer.email"></div>
+                        <div class="col-md-3 text-center">
+                            <span ng-bind="::order.assistants.length"></span>
+                            <ng-pluralize count="order.assistants.length"
+                                          when="{'one': manage.strings.COPY_SEAT, 'other': manage.strings.COPY_SEATS}">
+                            </ng-pluralize>
                         </div>
-                        <!--If there are no activities-->
-                        <div ng-if="activities.previous_activities.length <= 0" class="row">
-                            <div class="col-md-12">
-                                <h4 ng-bind="::activities.strings.LABEL_EMPTY_PREVIOUS"></h4>
-                                <p ng-bind="::activities.strings.COPY_EMPTY_PREVIOUS"></p>
-                            </div>
+                        <div class="col-md-3 text-right" ng-bind="::order.amount | currency"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-xs btn-default pull-right no-margin"
+                                    ng-bind="::manage.strings.ACTION_REIMBURSE_ORDER"></button>
                         </div>
                     </div>
-
-                    <div class="tab-pane fade in" id="drafts-tab">
-                        <h2 ng-bind="activities.strings.TAB_DRAFTS"></h2>
-                        <h4 class="text-muted" ng-bind="activities.strings.COPY_DRAFTS"></h4>
-
-                        <div class="row activity-grid">
-                            <trulii-activity-item class="col-md-6 col-xs-12"
-                                                  ng-repeat="activity in activities.draft_activities track by activity.id"
-                                                  data-activity="activity"
-                                                  data-options="{{activities.draftOptions}}"></trulii-activity-item>
-                        </div>
-                        <!--If there are no activities-->
-                        <div ng-if="activities.draft_activities.length <= 0" class="row">
-                            <div class="col-md-12">
-                                <h4 ng-bind="::activities.strings.LABEL_EMPTY_DRAFTS"></h4>
-                                <p ng-bind="::activities.strings.COPY_EMPTY_DRAFTS"></p>
-                            </div>
-                        </div>
+                </div>
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <tr class="text-center">
+                                <th ng-bind="::manage.strings.HEADER_ASSISTANT"></th>
+                                <th ng-bind="::manage.strings.HEADER_EMAIL"></th>
+                                <th ng-bind="::manage.strings.HEADER_PRICE"></th>
+                                <th class=""></th>
+                            </tr>
+                            <tr ng-repeat="assistant in order.assistants">
+                                <td>
+                                    <span ng-bind="::assistant.full_name"></span>
+                                </td>
+                                <td>
+                                    <span ng-bind="::assistant.email"></span>
+                                </td>
+                                <td>
+                                    <span ng-bind="order.amount | currency"></span>
+                                </td>
+                                <td>
+                                    <button class="btn btn-xs btn-bgsecondary pull-right no-margin"
+                                            ng-bind="::manage.strings.ACTION_REIMBURSE_ASSISTANT"></button>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
+        <pagination class="pagination-sm"
+                    ng-model="manage.orderPaginationOpts.pageNumber"
+                    ng-change="manage.pageChange(manage.TYPE_ORDER)"
+                    data-total-items="manage.orderPaginationOpts.totalItems"
+                    data-items-per-page="manage.orderPaginationOpts.itemsPerPage"></pagination>
+    </div>
+    <!--If there are no orders-->
+    <div ng-if="manage.orders.length <= 0" class="row">
+        <br/>
+        <div class="col-md-12">
+            <h4 ng-bind="::manage.strings.LABEL_EMPTY_ORDERS"></h4>
+            <p ng-bind="::manage.strings.COPY_EMPTY_ORDERS"></p>
+        </div>
     </div>
 </div>
-
