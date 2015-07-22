@@ -21,22 +21,25 @@
 
         var vm = this;
         var selectedMethod = null;
-        var fromState = null;
+        var toState = null;
 
-        vm.auth = {};
-        vm.errors = {};
-        vm.user_type = 'S';
-        vm.facebook = {
-            'error': false
-        };
+        angular.extend(vm, {
+            auth : {},
+            errors : {},
+            user_type : 'S',
+            facebook : {
+                'error': false
+            },
+            fbRegister : fbRegister,
+            register : register,
+            isSelectedMethod : isSelectedMethod,
+            setSelectedMethod : setSelectedMethod,
+            focusForm : focusForm
+        });
 
-        vm.fbRegister = fbRegister;
-        vm.register = register;
-        vm.isSelectedMethod = isSelectedMethod;
-        vm.setSelectedMethod = setSelectedMethod;
-        vm.focusForm = focusForm;
+        _activate();
 
-        initialize();
+        //--------- Functions Implementation ---------//
 
         function isSelectedMethod(method){
             return selectedMethod === method;
@@ -47,10 +50,8 @@
         }
 
         function focusForm(){
-            
             // this must be to use toElement but is not working :(
             Elevator.toBottom(3000);
-
         }
 
         function fbRegister(){
@@ -85,14 +86,10 @@
         }
 
         function _registerSuccess(){
-            if(fromState && !!fromState.state){
-                $state.go(fromState.state, fromState.params);
-            } else {
-                $state.go("home");
-            }
+            $state.go(toState.state, toState.params);
         }
 
-        function setStrings(){
+        function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 SIGNUP_LABEL : "Registrarme",
@@ -107,10 +104,10 @@
             });
         }
 
-        function initialize(){
-            fromState = $stateParams.from;
-            console.log(fromState);
-            setStrings();
+        function _activate(){
+            toState = $stateParams.toState;
+            console.log(toState);
+            _setStrings();
             if (validatedData) {
                 vm.auth.email = validatedData.email;
                 vm.auth.name = validatedData.name;

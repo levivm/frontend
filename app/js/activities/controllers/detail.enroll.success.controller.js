@@ -5,9 +5,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityEnrollSuccessController', ActivityEnrollSuccessController);
 
-    ActivityEnrollSuccessController.$inject = ['activity', 'calendar', 'organizerActivities'];
+    ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'activity', 'calendar', 'organizerActivities'];
 
-    function ActivityEnrollSuccessController(activity, calendar, organizerActivities) {
+    function ActivityEnrollSuccessController($state, $stateParams, activity, calendar, organizerActivities) {
 
         var vm = this;
         vm.activity = activity;
@@ -19,6 +19,16 @@
 
         function _getOrganizerActivities() {
             return _.without(organizerActivities, activity).slice(0, 2);
+        }
+
+        function _setCurrentState(){
+            vm.current_state = {
+                toState: {
+                    state: $state.current.name,
+                    params: $stateParams
+                }
+            };
+            console.log('vm.current_state:', vm.current_state);
         }
 
         function _setStrings() {
@@ -48,6 +58,7 @@
 
         function _activate() {
             _setStrings();
+            _setCurrentState();
             vm.organizerActivities = _getOrganizerActivities();
             console.log('vm.organizerActivities:', vm.organizerActivities);
         }

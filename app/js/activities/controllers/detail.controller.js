@@ -19,28 +19,31 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$state', '$window', 'uiGmapGoogleMapApi', 'Toast',
+    ActivityDetailController.$inject = ['$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Toast',
         'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover'];
 
-    function ActivityDetailController($state, $window, uiGmapGoogleMapApi, Toast,
+    function ActivityDetailController($state, $stateParams, $window, uiGmapGoogleMapApi, Toast,
                                       cities, activity, calendars, defaultPicture, defaultCover) {
         var MAX_DAYS = 30;
         var vm = this;
-        vm.city = null;
-        vm.calendars = [];
-        vm.calendar = null;
-        vm.activity = null;
-        vm.organizer = null;
-        vm.calendar_selected = null;
-
-        vm.changeState = changeState;
-        vm.changeSelectedCalendar = changeSelectedCalendar;
-        vm.getOrganizerPhoto = getOrganizerPhoto;
-        vm.getMapStyle = getMapStyle;
-        vm.getStarStyle = getStarStyle;
-        vm.isSelectedCalendarFull = isSelectedCalendarFull;
+        angular.extend(vm, {
+            city : null,
+            calendars : [],
+            calendar : null,
+            activity : null,
+            organizer : null,
+            calendar_selected : null,
+            changeState : changeState,
+            changeSelectedCalendar : changeSelectedCalendar,
+            getOrganizerPhoto : getOrganizerPhoto,
+            getMapStyle : getMapStyle,
+            getStarStyle : getStarStyle,
+            isSelectedCalendarFull : isSelectedCalendarFull
+        });
 
         _activate();
+
+        //--------- Functions Implementation ---------//
 
         function isSelectedCalendarFull(){
             if(vm.calendar_selected){
@@ -189,6 +192,16 @@
             }
         }
 
+        function _setCurrentState(){
+            vm.current_state = {
+                toState: {
+                    state: $state.current.name,
+                    params: $stateParams
+                }
+            };
+            console.log('vm.current_state:', vm.current_state);
+        }
+
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
@@ -223,6 +236,7 @@
 
         function _activate(){
             _setStrings();
+            _setCurrentState();
             _setUpLocation(activity);
             vm.activity = _mapPictures(activity);
             vm.activity = _mapClosestCalendar(vm.activity);
@@ -230,7 +244,6 @@
             vm.activity.rating = [1, 2, 3, 4, 5];
 
             vm.calendars = calendars;
-            //vm.activity = activity;
             vm.organizer = activity.organizer;
             vm.calendar_selected = vm.activity.closest_calendar;
 

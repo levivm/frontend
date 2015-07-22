@@ -52,7 +52,8 @@
                              alt="{{::detail.organizer.name}}"/>
                         <div ng-bind="::detail.strings.ACTION_VIEW_PROFILE"></div>
                     </a>
-                    <a ui-sref="contact-us" class="btn btn-primary" ng-bind="::detail.strings.ACTION_CONTACT"></a>
+                    <a ui-sref="contact-us(detail.current_state)" class="btn btn-primary"
+                       ng-bind="::detail.strings.ACTION_CONTACT"></a>
                 </div>
             </div>
             <div class="col-md-4">

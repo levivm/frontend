@@ -16,9 +16,9 @@
 
         .directive('truliiActivityItem', truliiActivityItem);
 
-    truliiActivityItem.$inject = ['$filter', 'ActivitiesTemplatesPath', 'defaultPicture', 'defaultCover'];
+    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath', 'defaultPicture', 'defaultCover'];
 
-    function truliiActivityItem($filter, ActivitiesTemplatesPath, defaultPicture, defaultCover){
+    function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath, defaultPicture, defaultCover){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -116,7 +116,7 @@
                                 return {
                                     'name': scope.strings.LABEL_CONTACT,
                                     'icon': 'mdi-communication-email',
-                                    'state': "contact-us"
+                                    'state': "contact-us(" + JSON.stringify(scope.current_state) + ")"
                                 };
                                 break;
                             case scope.strings.ACTION_REPUBLISH:
@@ -177,6 +177,16 @@
                     return activity;
                 }
 
+                function _setCurrentState(){
+                    scope.current_state = {
+                        toState: {
+                            state: $state.current.name,
+                            params: $stateParams
+                        }
+                    };
+                    console.log('scope.current_state:', scope.current_state);
+                }
+
                 function _setStrings(){
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
@@ -202,6 +212,8 @@
 
                 function _activate(){
                     _setStrings();
+                    _setCurrentState();
+
                     if(attrs.options){
                         options = JSON.parse(attrs.options);
                         if(options.actions){

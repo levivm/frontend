@@ -31,11 +31,9 @@
 
 
         $stateProvider
-
             .state('brow', {                
                 templateUrl: 'partials/browsing.html'
             })
-
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
@@ -48,24 +46,28 @@
                 },
                 templateUrl: 'partials/landing/landing.html'                        
             })
-
             .state('contact-us', {
                 url:'/contact/us',
                 controller:'ContactController as contact',
                 resolve:{
                     cities:getAvailableCities
                 },
-                templateUrl: 'partials/landing/contact_us.html'
+                templateUrl: 'partials/landing/contact_us.html',
+                params: {
+                    'toState' : {
+                        'state' : 'home',
+                        'params' : {}
+                    }
+                }
             })
-            
             .state('register', {
                 url:'/register',
                 controller: 'RegisterController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/register.html',
                 params: {
-                    'from': {
-                        'state': undefined,
+                    'toState': {
+                        'state': 'home',
                         'params': {}
                     }
                 },
@@ -88,10 +90,9 @@
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/login.html',
                 params: {
-                    'from' : {
-                        'state' : undefined,
+                    'toState' : {
+                        'state' : 'home',
                         'params' : {}
-
                     }
                 }
             })
@@ -115,51 +116,13 @@
                 url:'/email/confirm/:key/',
                 controller: 'EmailConfirmCtrl',
                 controllerAs: 'vm',
-                //templateUrl: 'partials/email_confirm.html' url(r"
                 templateUrl: 'modalContainer'
             })
-            // .state('email-confirm', {
-            //     url:'/email/confirm/:status/',
-            //     controller: 'EmailConfirmCtrl',
-            //     controllerAs: 'vm',
-            //     //templateUrl: 'partials/email_confirm.html' url(r"
-            //     templateUrl: 'modalContainer'
-            // })
-
             .state('modal-dialog', {
                 url:'/',
                 controller: 'DialogModalCtrl',
                 controllerAs: 'vm'
-                // onEnter: function($stateParams, $state, $modal) {
-                //     var modalInstance = $modal.open({
-                //       templateUrl: 'partials/utils/base_dialog_modal.html',
-                //       controller: 'ModalInstanceCtrl',
-                //     });
-                // }
-                //templateUrl:'myModalContent.html'
-                // views:{
-                //   'modal':{
-                //     templateUrl:'myModalContent.html'
-                //   }
-                // }
-                //controllerAs: 'vm',
-                //templateUrl: 'partials/email_confirm.html' url(r"
-                //templateUrl: 'modalContainer'
-                //templateUrl: 'partials/utils/base_dialog_modal.html'
             })
-            // .state('modal-dialog.login', {
-            //   url:'login',
-            //   parent: 'modal-dialog',
-            //   views:{
-            //     'modal@':{
-            //       templateUrl: '/partials/authentication/login.html',
-            //       controller: 'LoginController',
-            //       controllerAs: 'vm',
-            //     }
-
-            //   }
-            //   //templateUrl: '/partials/authentication/forgot_password.html'
-            // })
             .state('modal-dialog.password-forgot', {
                 url:'password/forgot/',
                 parent: 'modal-dialog',
@@ -170,41 +133,12 @@
                         controllerAs: 'vm'
                     }
                 }
-                //templateUrl: '/partials/authentication/forgot_password.html'
             })
-            // .state('modal-dialog.password-reset', {
-            //   url:'password/reset/key/:reset_key/',
-            //   parent: 'modal-dialog',
-            //   views:{
-            //     'modal@':{
-            //       templateUrl: '/partials/authentication/reset_password.html',
-            //       controller: 'ResetPasswordCtrl',
-            //       controllerAs: 'vm',
-            //     }
-            //   }
-            //   //templateUrl: '/partials/authentication/forgot_password.html'
-            // })
-            // .state('password-reset', {
-            //   url:'/password/reset/',
-            //   controller: 'ForgotPasswordCtrl',
-            //   //controllerAs: 'vm',
-            //   //templateUrl: 'partials/email_confirm.html' url(r"
-            //   templateUrl: 'modalContainer'
-            // })
-            // .state('password-reset-key', {
-            //   url:'/password/reset/key/:reset_key/',
-            //   controller: 'ForgotPasswordCtrl',
-            //   //controllerAs: 'vm',
-            //   //templateUrl: 'partials/email_confirm.html' url(r"
-            //   templateUrl: 'modalContainer'
-            // })
             .state('general-message', {
                 url:'/messages/:module_name/:template_name/?redirect_state',
                 controller: 'SimpleModalMsgCtrl',
                 controllerAs: 'vm',
-                //templateUrl: 'partials/email_confirm.html' url(r"
                 templateUrl: 'modalContainer'
-                //templateUrl: 'partials/authentication/register.html'
             })
             .state('student-dashboard', {
                 abstract:true,
@@ -250,7 +184,6 @@
                 resolve:{
                     cities: getAvailableCities
                 }
-
             })
             .state('organizer-dashboard', {
                 abstract:true,
@@ -264,25 +197,21 @@
                 data: {
                     requiredAuthentication : true
                 }
-                //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.profile', {
                 url:'profile',
                 controller: 'OrganizerProfileCtrl as profile',
                 templateUrl: 'partials/organizers/dashboard_profile.html'
-                //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.account', {
                 url:'account',
                 controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard_account.html'
-                //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.activities', {
                 url:'activities',
                 controller: 'OrganizerActivitiesCtrl as activities',
                 templateUrl: 'partials/organizers/dashboard_activities.html',
-                //templateUrl: 'modalContainer'
                 resolve: {
                     activities: getOrganizerActivities
                 }
@@ -317,7 +246,6 @@
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_general.html'
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit', {
                 abstract:true,
@@ -333,7 +261,6 @@
                 },
                 controllerAs: 'pc',
                 templateUrl: 'partials/activities/edit.html'
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.general', {
                 url:'',
@@ -344,17 +271,12 @@
                     activity: getActivity
                 },
                 templateUrl: 'partials/activities/dashboard_general.html'
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.detail', {
                 url:'detail',
                 controller: 'ActivityDBDetailController',
-                // resolve:{
-                //   activity : getParentActivity
-                // },
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_detail.html'
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.calendars', {
                 url:'calendars',
@@ -367,7 +289,6 @@
                 params: {
                   'republish': false
                 }
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.calendars.detail', {
                 url:'/:id',
