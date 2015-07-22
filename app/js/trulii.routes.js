@@ -1,19 +1,6 @@
 (function () {
     'use strict';
 
-    /**
-     * @ngdoc service
-     * @name trulii.routes.serverConf
-     * @description Server URL for API usage
-     * @property {string} url Backend Server URL
-     */
-    angular
-        .module('trulii.routes')
-        .constant("serverConf", {
-            //"url": "http://trulii-back.herokuapp.com"
-            "url": "http://localhost:8000"
-        });
-
     angular
         .module('trulii.routes')
         .config(config)

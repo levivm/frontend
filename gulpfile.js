@@ -5,6 +5,7 @@ var gulp  = require('gulp');
 var gutil = require('gulp-util');
 var debug = require('gulp-debug');
 var gulpif = require('gulp-if');
+var ngConfig = require('gulp-ng-config');
 var sourcemaps = require('gulp-sourcemaps');
 var DEBUG_OPTS = {title: 'unicorn:'};
 //Usage .pipe(debug(DEBUG_OPTS))
@@ -348,6 +349,25 @@ gulp.task('serve-uiframework', function() {
     });
 });
 
+/* Gulp Environment Specific Tasks*/
+
+/** ServerConf file generation task
+ * generates serverConf angular constant with API URL depending on environment
+ * If ``--prod`` flag is set on gulp serve sets production API URL, or development API URL otherwise **/
+gulp.task('serverConf-injector', function(){
+    var MODULE_NAME = 'trulii.routes';
+    var options = {
+        wrap: true,
+        environment: gutil.env.prod? "production" : "development"
+    };
+
+    gutil.log('serverConf-injector. options: ' +  JSON.stringify(options));
+
+    gulp.src('./trulii.serverConf.json')
+        .pipe(ngConfig(MODULE_NAME, options))
+        .pipe(gulp.dest(source.javascript.root));
+});
+
 
 /* Gulp Core Tasks */
 
@@ -380,10 +400,12 @@ gulp.task('connect', function() {
             ];
         }
     });
+
+    gutil.log('process.env.dist:', !!gutil.env.dist);
 });
 
 /** Meta Task to inject dependencies **/
-gulp.task('injector', ['css-injector', 'js-injector']);
+gulp.task('injector', ['css-injector', 'js-injector', 'serverConf-injector']);
 
 /** Task to build resources from APP to DIST **/
 gulp.task('build', ['injector']);
