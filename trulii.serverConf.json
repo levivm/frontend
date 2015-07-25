@@ -6,7 +6,7 @@
     },
     "production": {
         "serverConf": {
-            "url": "http://trulii.com"
+            "url": "https://api.trulii.com"
         }
     }
 }

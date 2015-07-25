@@ -355,7 +355,7 @@ gulp.task('serve-uiframework', function() {
  * generates serverConf angular constant with API URL depending on environment
  * If ``--prod`` flag is set on gulp serve sets production API URL, or development API URL otherwise **/
 gulp.task('serverConf-injector', function(){
-    var MODULE_NAME = 'trulii.routes';
+    var MODULE_NAME = 'trulii.routes.config';
     var options = {
         wrap: true,
         environment: gutil.env.prod? "production" : "development"
