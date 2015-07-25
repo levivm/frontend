@@ -60,7 +60,7 @@ gulp.task('build-vendor-js', function() {
 gulp.task('bower-js-injector', function() {
 
     var target = gulp.src(source.html.index);
-    var srcParams = { base: BOWER_COMPONENTS_PATH, read: false, relative: true };
+    var srcParams = { base: BOWER_COMPONENTS_PATH, relative: true };
 
     // Filter globs
     var filter = '**/*.js';
@@ -77,7 +77,9 @@ gulp.task('bower-js-injector', function() {
     var sourcesJquery = gulp.src(mainBowerFiles(jQueryFilter), srcParams);
     gutil.log('bower-js-injector.head.sources:', mainBowerFiles(jQueryFilter));
 
-    return target.pipe(inject(sourcesJquery, injectjQueryParams)).pipe(inject(sources, injectParams))
+    return target
+        .pipe(inject(sourcesJquery, injectjQueryParams))
+        .pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT));
 
 });
@@ -103,7 +105,7 @@ gulp.task('js-injector', ['bower-js-injector', 'source-js-injector'], function (
  * generates serverConf angular constant with API URL depending on environment
  * If ``--prod`` flag is set on gulp serve sets production API URL, or development API URL otherwise **/
 gulp.task('serverConf-injector', function(){
-    var MODULE_NAME = 'trulii.routes';
+    var MODULE_NAME = 'trulii.routes.config';
     var options = {
         wrap: true,
         environment: gutil.env.prod? "production" : "development"
