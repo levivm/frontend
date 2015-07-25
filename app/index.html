@@ -35,6 +35,8 @@
 
     <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
     <!-- inject:bower:css -->
+    <link rel="stylesheet" href="lib/google-code-prettify/bin/prettify.min.css">
+    <link rel="stylesheet" href="lib/normalize.css/normalize.css">
     <!-- endinject -->
 
     <!-- inject:css -->
@@ -42,7 +44,6 @@
     <!-- endinject -->
 
   <!-- inject:head:js -->
-  <script src="lib/jquery/dist/jquery.js"></script>
   <!-- endinject -->
 
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -62,25 +63,6 @@
 <script type="text/ng-template" id="modalContainer"> </script>
 
 <!-- inject:bower:js -->
-<script src="lib/angular/angular.js"></script>
-<script src="lib/angular-cookies/angular-cookies.js"></script>
-<script src="lib/lodash/lodash.js"></script>
-<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="lib/ng-file-upload/angular-file-upload.js"></script>
-<script src="lib/ng-tags-input/ng-tags-input.min.js"></script>
-<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
-<script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
-<script src="lib/bootstrap-material-design/dist/js/material.js"></script>
-<script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
-<script src="lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
-<script src="lib/angular-animate/angular-animate.js"></script>
-<script src="lib/arrive/src/arrive.js"></script>
-<script src="lib/angular-scroll/angular-scroll.js"></script>
-<script src="lib/toastr/toastr.js"></script>
-<script src="lib/angular-facebook/lib/angular-facebook.js"></script>
-<script src="lib/google-code-prettify/bin/prettify.min.js"></script>
-<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
-<script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
 <!-- endinject -->
 
 <!-- inject:js -->
@@ -94,8 +76,8 @@
 <script src="js/locations/locations.module.js"></script>
 <script src="js/organizers/organizers.module.js"></script>
 <script src="js/students/students.module.js"></script>
-<script src="js/utils/utils.module.js"></script>
 <script src="js/ui-components/ui-components.module.js"></script>
+<script src="js/utils/utils.module.js"></script>
 <script src="js/activities/activities.config.js"></script>
 <script src="js/authentication/services/authentication.service.js"></script>
 <script src="js/authentication/services/server_api.service.js"></script>
@@ -110,13 +92,13 @@
 <script src="js/landing/services/contact.service.js"></script>
 <script src="js/landing/services/server_api.service.js"></script>
 <script src="js/locations/services/locations_manager.service.js"></script>
-<script src="js/students/services/server_api.service.js"></script>
-<script src="js/students/services/student.service.js"></script>
-<script src="js/students/services/student_manager.service.js"></script>
 <script src="js/organizers/services/organizer.service.js"></script>
 <script src="js/organizers/services/organizer_constants.service.js"></script>
 <script src="js/organizers/services/organizer_manager.service.js"></script>
 <script src="js/organizers/services/server_api.service.js"></script>
+<script src="js/students/services/server_api.service.js"></script>
+<script src="js/students/services/student.service.js"></script>
+<script src="js/students/services/student_manager.service.js"></script>
 <script src="js/ui-components/services/toast.service.js"></script>
 <script src="js/utils/services/default_cover.service.js"></script>
 <script src="js/utils/services/default_picture.service.js"></script>
@@ -159,20 +141,20 @@
 <script src="js/landing/controllers/contact.controller.js"></script>
 <script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/landing/controllers/not_found.controller.js"></script>
-<script src="js/students/controllers/dashboard.controller.js"></script>
-<script src="js/students/controllers/dashboard_account.controller.js"></script>
-<script src="js/students/controllers/dashboard_activities.controller.js"></script>
-<script src="js/students/controllers/dashboard_history.controller.js"></script>
-<script src="js/students/controllers/dashboard_profile.controller.js"></script>
 <script src="js/organizers/controllers/dashboard.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_account.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_activities.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_profile.controller.js"></script>
 <script src="js/organizers/controllers/landing.controller.js"></script>
 <script src="js/organizers/controllers/profile.controller.js"></script>
+<script src="js/students/controllers/dashboard.controller.js"></script>
+<script src="js/students/controllers/dashboard_account.controller.js"></script>
+<script src="js/students/controllers/dashboard_activities.controller.js"></script>
+<script src="js/students/controllers/dashboard_history.controller.js"></script>
+<script src="js/students/controllers/dashboard_profile.controller.js"></script>
+<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <script src="js/utils/controllers/modal_dialog.controller.js"></script>
 <script src="js/utils/controllers/utils.controller.js"></script>
-<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <!-- endinject -->
 
 <script type="text/javascript">
