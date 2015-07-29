@@ -125,7 +125,6 @@
                 url:'/messages/:module_name/:template_name/?redirect_state',
                 controller: 'SimpleModalMsgCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'modalContainer'
             })
             .state('student-dashboard', {
                 abstract:true,
