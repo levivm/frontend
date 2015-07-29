@@ -150,11 +150,11 @@
             }
 
             requestConfig = {
-                'params': {
-                    KEY_SEARCH_QUERY: q,
-                    KEY_SEARCH_CITY: cityId
-                }
+                'params': {}
             };
+
+            requestConfig.params[KEY_SEARCH_QUERY] = q;
+            requestConfig.params[KEY_SEARCH_CITY] = cityId;
 
             // If category is orivded
             if(categoryId){ requestConfig.params[KEY_SEARCH_CATEGORY] = categoryId; }
