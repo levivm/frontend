@@ -86,7 +86,7 @@
                 }
 
                 function error(response) {
-                    _setDates();
+                    scope._setDates();
                     return $q.reject(response);
                 }
             },

@@ -18,23 +18,22 @@
     function StudentAccountCtrl($timeout, student, Authentication, Error, Toast) {
 
         var vm = this;
-
-        vm.student = student;
-        vm.orders = [];
-        vm.password_data = {};
-        vm.isCollapsed = true;
-        vm.orderQuery = '';
-
-        vm.changeEmail = _changeEmail;
-        vm.changePassword = _changePassword;
-
-        vm.isSaving = false;
+        angular.extend(vm, {
+            student : student,
+            orders : [],
+            password_data : {},
+            isCollapsed : true,
+            isSaving : false,
+            orderQuery : '',
+            changeEmail : changeEmail,
+            changePassword : changePassword
+        });
 
         activate();
 
         //--------- Functions Implementation ---------//
 
-        function _changeEmail() {
+        function changeEmail() {
             console.log(vm.student);
             Error.form.clear(vm.account_form_email);
             vm.student.change_email()
@@ -47,7 +46,7 @@
             }
         }
 
-        function _changePassword() {
+        function changePassword() {
             Error.form.clear(vm.account_form_password);
             vm.student.change_password(vm.password_data)
                 .then(success, fail);
@@ -71,12 +70,13 @@
 
         function _changeFail(response, form) {
             var responseErrors = response.data['form_errors'];
+            console.log('responseErrors:', responseErrors);
             if (responseErrors) {
                 Error.form.add(form, responseErrors);
             }
         }        
 
-        function getOrders(){
+        function _getOrders(){
             student.getOrders().then(success, error);
 
             function success(orders){
@@ -87,27 +87,28 @@
             }
         }
 
-        function setStrings() {
+        function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                ACTION_REPLACE_PICTURE: "Cambiar foto",
                 ACTION_SAVE: "Guardar",
-                LABEL_FIRST_NAMES: "Nombres",
-                LABEL_BIRTH_DATE: "Fecha de Nacimiento",
-                LABEL_LAST_NAMES: "Apellidos",
-                LABEL_GENDER: "Género",
-                LABEL_CITY: "Ciudad",
-                OPTION_SELECT: "Seleccione...",
+                COPY_TAB_EMAIL: "Puedes modificar tu dirección de correo electrónico si así lo deseas",
+                COPY_TAB_PASSWORD: "En caso de modificar tu contraseña te recomendamos crear una segura "
+                    + "y fácil de recordar.",
+                LABEL_CURRENT_PASSWORD: "Contraseña Actual",
+                LABEL_NEW_PASSWORD: "Nueva Contraseña",
+                LABEL_CONFIRM_PASSWORD: "Confirmar Nueva Contraseña",
+                LABEL_EMAIL: "Correo Electrónico",
                 SECTION_ACCOUNT: "Cuenta",
-                SECTION_PROFILE: "Mi Perfil"
+                TAB_PASSWORD: "Cambiar Contraseña",
+                TAB_EMAIL: "Correo Electrónico"
             });
         }
 
         function activate() {
-            setStrings();
-            getOrders();
+            _setStrings();
+            _getOrders();
         }
 
     }
