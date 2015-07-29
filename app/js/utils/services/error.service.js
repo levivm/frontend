@@ -27,6 +27,7 @@
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
+            FORM_FIELD_ALL: FORM_FIELD_ALL,
             form: {
                 clear: clearErrors,
                 add: addErrors,

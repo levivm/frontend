@@ -7,13 +7,13 @@
 
             <form name="picture_form">
                 <div class="form-group">
+                    <!--Photo Widget-->
                     <div class="img-input center-childs">
                         <img class="profile-photo profile-photo--xs img-size-cover img-position-center"
                              ng-src="{{profile.student.photo}}" alt="{{profile.student.user.first_name}}"
                              ng-hide="profile.photo_loading"/>
                         <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
                     </div>
-
                     <div class="center-childs">
                         <div ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select=""
                              ng-multiple="false"
@@ -39,6 +39,7 @@
                     <form name="profile.profile_form" class="form-horizontal material-form"
                           ng-submit="profile.updateProfile()">
                         <fieldset>
+                            <!--Names-->
                             <div class="row clearfix">
                                 <div class="col-md-6">
                                     <div class="form-group no-margin input--main">
@@ -61,6 +62,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--Gender-->
                             <div class="row clearfix separate-above">
                                 <div class="col-md-6">
                                     <div class="form-group no-margin">
@@ -96,6 +98,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!--City-->
                             <div class="row clearfix separate-above">
                                 <div class="col-md-6">
                                     <div class="form-group no-margin" trulii-input-errors-control="city">
@@ -109,6 +112,13 @@
                                                     ng-bind="::profile.strings.OPTION_SELECT" selected>
                                             </option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row clearfix separate-above">
+                                <div class="col-md-12">
+                                    <div class="form-group no-margin" trulii-input-errors-control="__all__">
+                                        <input type="hidden" name="__all__" ng-model="__all__"/>
                                     </div>
                                 </div>
                             </div>
