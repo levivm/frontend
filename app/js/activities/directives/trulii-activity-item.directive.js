@@ -38,7 +38,7 @@
 
                 _activate();
 
-                /////////////////////////////////////
+                //--------- Exposed Functions ---------//
 
                 function getStarStyle(star){
                     if(star < 4){
@@ -59,6 +59,8 @@
                         return currentAction === actionQuery;
                     }
                 }
+
+                //--------- Internal Functions ---------//
 
                 function _mapMainPicture(activity){
                     if(activity.photos.length > 0){
@@ -155,12 +157,12 @@
                         activity.days_to_closest = -1;
                     }
 
-                    mapDateMsg(activity);
+                    _mapDateMsg(activity);
 
                     return activity;
                 }
 
-                function mapDateMsg(activity){
+                function _mapDateMsg(activity){
                     if(activity.days_to_closest < 0){
                         activity.date_msg = scope.strings.COPY_WAIT_NEW_DATES;
                     } else if(activity.days_to_closest === 0){
@@ -184,7 +186,6 @@
                             params: $stateParams
                         }
                     };
-                    console.log('scope.current_state:', scope.current_state);
                 }
 
                 function _setStrings(){

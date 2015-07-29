@@ -12,17 +12,7 @@
             <a ui-sref="home" class="navbar__logo"></a>
         </div>
         <div class="col-md-5">
-                <form name="search_box" ng-if="isSearchVisible" class="navbar__search-box">
-                    <input type="text" ng-model="q" placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"/>
-                    <label for="search-city-selector" class="sr-only">Cities</label>
-                    <select id="search-city-selector" class="navbar__search-box__city-select" name="city"
-                            ng-model="search_city" ng-change="updateSearchCity()"
-                            ng-options="city as city.name for city in cities track by city.id">
-                        <option value="" selected
-                                ng-show="!search_box.city.$dirty" ng-bind="strings.LABEL_CITY"></option>
-                    </select>
-                    <button class="navbar__search-box__btn mdi-action-search" ng-click="search()"></button>
-                </form>
+            <trulii-search-bar ng-if="isSearchVisible"></trulii-search-bar>
         </div>
         <div class="col-md-5 text-right">
             <div ng-if="user">

@@ -15,35 +15,47 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$stateParams', 'LocationManager', 'ActivitiesManager', 'Authentication',
-        'cities', 'authenticatedUser'];
+    HomeController.$inject = ['$stateParams', 'LocationManager', 'ActivitiesManager', 'cities'];
 
-    function HomeController($stateParams, LocationManager, ActivitiesManager, Authentication,
-        cities, authenticatedUser) {
+    function HomeController($stateParams, LocationManager, ActivitiesManager, cities) {
 
-        console.log('authenticatedUser:', authenticatedUser);
         var vm = this;
+        angular.extend(vm, {
+            activities : [],
+            cities : cities,
+            current_city : null,
+            setCurrentCity : setCurrentCity,
+            isStudent : false,
+            isOrganizer : false,
+            options : {
+                actions: ['view', 'edit', 'contact', 'manage', 'republish']
+            }
+        });
 
-        vm.activities = [];
-        vm.cities = cities;
-        vm.current_city = null;
-        vm.setCurrentCity = _setCurrentCity;
-        vm.isStudent = false;
-        vm.isOrganizer = false;
-        vm.options = {
-            actions: ['view', 'edit', 'contact', 'manage', 'republish']
-        };
+        _activate();
 
-        activate();
+        //--------- Exposed Functions ---------//
 
-        //--------- Functions Implementation ---------//
-
-        function _setCurrentCity(city){
+        function setCurrentCity(city){
             LocationManager.setCurrentCity(city);
             console.log('setCurrentCity(', city, ')');
         }
 
-        function setStrings(){
+        //--------- Internal Functions ---------//
+
+        function _getActivities(){
+            ActivitiesManager.getActivities().then(success, error);
+
+            function success(response){
+                vm.activities = response;
+                console.log('activities from ActivitiesManager:', vm.activities);
+            }
+            function error(response){
+                console.log('getActivities. Error obtaining Activities from ActivitiesManager');
+            }
+        }
+
+        function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 CITIES_LABEL : 'Ciudades',
@@ -55,23 +67,13 @@
             });
         }
 
-        function getActivities(){
-            ActivitiesManager.getActivities().then(success, error);
-
-            function success(response){
-                vm.activities = response;
-            }
-            function error(response){
-                console.log('getActivities. Error obtaining Activities from ActivitiesManager');
-            }
-        }
-
-        function activate(){
-            setStrings();
+        function _activate(){
+            _setStrings();
             if($stateParams.activities){
+                console.log('activities from $stateParams:', $stateParams.activities);
                 vm.activities = $stateParams.activities;
             } else {
-                getActivities();
+                _getActivities();
             }
             vm.current_city = LocationManager.getCurrentCity();
         }
