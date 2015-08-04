@@ -1,8 +1,9 @@
-<div class="container-fluid navbar-secondary" >
+<!--
+<div class="container-fluid" >
     <a class="navbar-secondary__item"
        ui-sref=".activities" ui-sref-active="navbar-secondary__item--selected">
         <i class="mdi-social-school"></i>
-        <span> </span>
+        <span> </span>  
         <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
     </a>
     <a class="navbar-secondary__item"
@@ -17,5 +18,60 @@
         <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
     </a>
 </div>
+-->
 
-<div ui-view class="lateral-fade"></div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2 sidebar lateral-slide">
+            
+            <li ui-sref-active="active">
+                <a ui-sref=".activities" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                    <i class="sidebar__item__icon mdi-social-school"></i>                    
+                    <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>                                                                        
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref=".account" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                    <i class="sidebar__item__icon mdi-action-settings"></i>                    
+                    <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>                                                                        
+                </a>
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref=".profile" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                    <i class="sidebar__item__icon mdi-action-account-circle"></i>                    
+                    <span ng-bind="::dash.strings.SECTION_PROFILE"></span>                                                                        
+                </a>            
+            </li>
+
+        </div>
+
+        <div ui-view class="col-sm-offset-2 col-sm-10 lateral-fade">
+            
+        </div>
+
+        <div class="footer footer--dashboard">
+            <a href="" class="footer__item">
+                Blog
+            </a>
+
+            <a href="" class="footer__item">
+                Términos y condiciones
+            </a>
+
+            <a href="" class="footer__item">
+                Tips para publicar
+            </a>
+
+            <a href="" class="footer__item">
+                Danos tu feedback
+            </a>
+
+            <a href="" class="footer__item">
+                Contáctanos
+            </a>
+        </div>
+    </div>
+</div>
+

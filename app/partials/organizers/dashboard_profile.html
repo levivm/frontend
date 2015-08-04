@@ -1,177 +1,181 @@
-<div class="container">
-    <div class="card z-shadow-1" style="min-height: 48em;">
-        <div class="col-md-3 card__lateral-menu">
-            <div class="card__lateral-menu__title">
-                <i class="mdi-action-account-circle"></i>
-                <span> </span>
-                <span ng-bind="::profile.strings.SECTION_PROFILE"></span>
-            </div>
-            <form name="profile.picture_form">
-                <div class="form-group">
-                    <div class="img-input center-childs">
-                        <img class="profile-photo profile-photo--xs img-size-cover img-position-center"
-                             ng-src="{{profile.organizer.photo}}" alt="{{profile.organizer.name}}"
-                             ng-hide="profile.photo_loading"/>
-                        <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
-                    </div>
-                    <div class="center-childs">
-                        <div ng-model="profile.organizer.photo_url" ng-file-drop="" ng-file-select=""
-                             ng-multiple="false"
-                             data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                             ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
-                             data-allow-dir="true" data-accept="image/*">
-                            <button class="btn btn-bgsecondary btn-raised"
-                                    aria-label="{{::profile.strings.ACTION_UPDATE_PICTURE}}">
-                                <span ng-bind="::profile.strings.ACTION_UPDATE_PICTURE"></span>
-                            </button>
-                        </div>
-                        <a class="btn btn-primary"
-                           ui-sref="organizer-profile({organizer_id: profile.organizer.id})">
-                            <div ng-bind="::profile.strings.ACTION_VIEW_PROFILE"></div>
-                        </a>
-                    </div>
-                    <div class="form-group" trulii-input-errors-control="photo">
-                        <input type="hidden" name="photo"/>
-                    </div>
-                </div>
-            </form>
-            <ul>
-                <li class="card__lateral-menu__item active" data-toggle="tab" data-target="#info-tab">
-                    <a> <i class="mdi-action-info"></i>
-                        <span> </span>
-                        <span ng-bind="::profile.strings.TAB_INFO"></span>
-                    </a>
-                </li>
-                <li class="card__lateral-menu__item" data-toggle="tab" data-target="#video-tab">
-                    <a> <i class="mdi-av-videocam"></i>
-                        <span> </span>
-                        <span ng-bind="::profile.strings.TAB_VIDEO"></span>
-                    </a>
-                </li>
-                <li class="card__lateral-menu__item" data-toggle="tab" ng-click="profile.load_map()"  data-target="#location-tab">
-                    <a > <i class="mdi-maps-place"></i>
-                        <span> </span>
-                        <span ng-bind="::profile.strings.TAB_LOCATION"></span>
-                    </a>
-                </li>
-                <!--<li class="card__lateral-menu__item" data-toggle="tab" data-target="#comments-tab">-->
-                    <!--<a> <i class="mdi-communication-comment"></i>-->
-                        <!--<span> </span>-->
-                        <!--<span ng-bind="::profile.strings.TAB_COMMENTS"></span>-->
-                    <!--</a>-->
-                <!--</li>-->
-            </ul>
-        </div>
-        <div class="col-md-9 col-md-offset-3 card-body">
-            <div class="tab-content">
-                <div class="tab-pane active" id="info-tab">
-                    <h2 ng-bind="::profile.strings.TAB_INFO"></h2>
 
-                    <form name='profile.profile_form_info' ng-submit="profile.submit_info()">
-                        <fieldset>
-                            <div class="form-group" trulii-input-errors-control="name">
-                                <label ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
-                                <input type="text" class="form-control" ng-model='profile.organizer.name'
-                                       name="name"
-                                       placeholder="{{::profile.strings.HELPER_FULL_NAME}}">
+<div class="navbar-secondary">
+
+    <ul>
+        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#info-tab">
+            <span ng-bind="::profile.strings.TAB_INFO"></span>
+        </li>
+
+        <li class="navbar-secondary__item" data-toggle="tab" data-toggle="tab" data-target="#video-tab">
+            <span ng-bind="::profile.strings.TAB_VIDEO"></span>
+        </li>
+
+        <li class="navbar-secondary__item" data-toggle="tab" ng-click="profile.load_map()"  data-target="#location-tab">
+            <span ng-bind="::profile.strings.TAB_LOCATION"></span>
+        </li>    
+    </ul>
+    
+    
+</div>
+
+<div class="container-fluid">
+    
+    <div class="col-md-8 col-md-offset-1 tab-content">
+
+        <div class="tab-pane fade in active" id="info-tab">
+            <div class="row">
+                <div class="col-md-12">
+
+                    <form name="profile.picture_form">
+                        <div class="form-group inline-childs">
+
+                            <div class="profile-photo-input">
+                                <img class="profile-photo-input__photo"
+                                     ng-src="{{profile.organizer.photo}}" alt="{{profile.organizer.name}}"
+                                     ng-hide="profile.photo_loading"/>
+                                <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
+
+                                <div class="separate-left" ng-model="profile.organizer.photo_url" ng-file-drop="" ng-file-select=""
+                                     ng-multiple="false"
+                                     data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                     ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
+                                     data-allow-dir="true" data-accept="image/*">
+
+                                    <button class="btn btn-default profile-photo-input__action"
+                                            aria-label="{{::profile.strings.ACTION_UPDATE_PICTURE}}">
+                                        <span ng-bind="::profile.strings.ACTION_UPDATE_PICTURE"></span>
+                                    </button>
+
+                                </div>
+
                             </div>
-                            <div class="form-group">
-                                <label for="headline" ng-bind="::profile.strings.LABEL_HEADLINE"></label>
-                                <textarea id="headline" class="form-control" ng-model='profile.organizer.headline' name="headline"
-                                          placeholder="{{::profile.strings.HELPER_HEADLINE}}"></textarea>
+                                                
+                            <a class="btn btn-primary"
+                               ui-sref="organizer-profile({organizer_id: profile.organizer.id})">
+                                <div ng-bind="::profile.strings.ACTION_VIEW_PROFILE"></div>
+                            </a>
+                            
+                            <div class="form-group" trulii-input-errors-control="photo">
+                                <input type="hidden" name="photo"/>
                             </div>
-                            <div class="form-group">
-                                <label for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
-                                <textarea id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"
-                                          placeholder="{{::profile.strings.HELPER_BIO}}"></textarea>
-                            </div>
-<!--                             <input type="submit" id="info-submit" class="btn btn-primary"
-                                   ng-value="::profile.strings.ACTION_SAVE"/>
- -->                            <trulii-submit-controls is-saving="profile.isSaving"
-                                data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
-                        </fieldset>
+                        </div>
                     </form>
+
                 </div>
-                <div class="tab-pane" id="video-tab">
-                    <h2 ng-bind="::profile.strings.TAB_VIDEO"></h2>
-                    <form name='profile.profile_form_photo' ng-submit="profile.submit_video()">
-                        <fieldset>
-                            <div class="form-group">
-                                <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
-                                <input type="text" class="form-control" ng-model="profile.organizer.youtube_video_url"
-                                       name="video"
-                                       placeholder="{{::profile.strings.PLACEHOLDER_VIDEO}}">
+            </div>
+
+            <form class="row separate-above" name='profile.profile_form_info' ng-submit="profile.submit_info()">
+                <fieldset>                    
+                                    
+                    <div class="col-md-12">
+                        <div class="form-group" trulii-input-errors-control="name">
+                            <label class="control-label" ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
+                            <input type="text" class="form-control" ng-model='profile.organizer.name'
+                                   name="name"
+                                   placeholder="{{::profile.strings.HELPER_FULL_NAME}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="headline" ng-bind="::profile.strings.LABEL_HEADLINE"></label>
+                            <textarea id="headline" class="form-control" ng-model='profile.organizer.headline' name="headline"
+                                      placeholder="{{::profile.strings.HELPER_HEADLINE}}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label" for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
+                            <textarea id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"
+                                      placeholder="{{::profile.strings.HELPER_BIO}}"></textarea>
+                        </div>
+    
+                     <trulii-submit-controls is-saving="profile.isSaving"
+                                data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                    </div>                
+                    
+                </fieldset>
+            </form>    
+
+        </div>
+
+        <div class="tab-pane fade" id="video-tab">
+            <h2 ng-bind="::profile.strings.TAB_VIDEO"></h2>
+            <form name='profile.profile_form_photo' ng-submit="profile.submit_video()">
+                <fieldset>
+                    <div class="form-group">
+                        <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
+                        <input type="text" class="form-control" ng-model="profile.organizer.youtube_video_url"
+                               name="video"
+                               placeholder="{{::profile.strings.PLACEHOLDER_VIDEO}}">
+                    </div>
+                    <div class="form-group">
+                        <youtube-video video-url="profile.organizer.youtube_video_url" player-width="'100%'">
+                        </youtube-video>
+                    </div>
+                    <trulii-submit-controls is-saving="profile.isSaving"
+                        data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
+
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="tab-pane fade" id="location-tab">
+            <form name='profile.organizer_location_form' ng-submit="profile.submit_location()">
+                <fieldset>
+                    <h2 ng-bind="::profile.strings.TAB_LOCATION"></h2>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group" trulii-input-errors-control="city">
+                                <label for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
+                                <select id="city" name="city" class="form-control"
+                                        ng-model="profile.organizer.location.city"
+                                        ng-options="city as city.name for city in profile.cities track by city.id">
+                                    <option value="" ng-show="!profile.organizer.location.city"
+                                            ng-bind="::profile.strings.OPTION_SELECT" selected>
+                                    </option>
+                                </select>
                             </div>
-                            <div class="form-group">
-                                <youtube-video video-url="profile.organizer.youtube_video_url" player-width="'100%'">
-                                </youtube-video>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group" trulii-input-errors-control="address">
+                                <label for="address" ng-bind="::profile.strings.LABEL_ADDRESS"></label>
+                                <textarea id="address" class="form-control"
+                                          ng-model='profile.organizer.location.address'
+                                          name="address"></textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
+                                                bounds="profile.map.bounds"
+                                                events="profile.map.events" control="profile.map.control">
+                                <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
+                                                events="profile.marker.events"
+                                                idkey="profile.marker.id"></ui-gmap-marker>
+                            </ui-gmap-google-map>
                             <trulii-submit-controls is-saving="profile.isSaving"
                                 data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
 
-<!--                             <input type="submit" id="video-submit" class="btn btn-primary"
-                                   value="{{profile.strings.ACTION_SAVE}}"/>
- -->                        </fieldset>
-                    </form>
-                </div>
-                <div class="tab-pane" id="location-tab">
-                    <form name='profile.organizer_location_form' ng-submit="profile.submit_location()">
-                        <fieldset>
-                            <h2 ng-bind="::profile.strings.TAB_LOCATION"></h2>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group" trulii-input-errors-control="city">
-                                        <label for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
-                                        <select id="city" name="city" class="form-control"
-                                                ng-model="profile.organizer.location.city"
-                                                ng-options="city as city.name for city in profile.cities track by city.id">
-                                            <option value="" ng-show="!profile.organizer.location.city"
-                                                    ng-bind="::profile.strings.OPTION_SELECT" selected>
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group" trulii-input-errors-control="address">
-                                        <label for="address" ng-bind="::profile.strings.LABEL_ADDRESS"></label>
-                                        <textarea id="address" class="form-control"
-                                                  ng-model='profile.organizer.location.address'
-                                                  name="address"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
-                                                        bounds="profile.map.bounds"
-                                                        events="profile.map.events" control="profile.map.control">
-                                        <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
-                                                        events="profile.marker.events"
-                                                        idkey="profile.marker.id"></ui-gmap-marker>
-                                    </ui-gmap-google-map>
-                                    <trulii-submit-controls is-saving="profile.isSaving"
-                                        data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
-
-<!--                                     <input type="submit" id="submit" class="btn btn-primary"
-                                           value="{{::profile.strings.ACTION_SAVE}}"/>
- -->                                           
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-                <!--<div class="tab-pane" id="comments-tab">-->
-                    <!--<h2 ng-bind="::profile.strings.TAB_COMMENTS"></h2>-->
-
-                    <!--<p>Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Duis autem vel-->
-                        <!--eum-->
-                        <!--iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu-->
-                        <!--feugiat nulla-->
-                        <!--facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril-->
-                        <!--delenit-->
-                        <!--augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,</p>-->
-                <!--</div>-->
-            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 </div>
+
+<!-- Old Structurre -->
+
+<!-- <div class="container">
+    <div>
+        <div class="col-md-3">                    
+            <span ng-bind="::profile.strings.SECTION_PROFILE"></span>                     
+        </div>
+
+        <div class="col-md-9 col-md-offset-3 card-body">
+            <div >
+                                
+                <div >
+
+                </div>                
+            </div>
+        </div>
+    
+</div> -->

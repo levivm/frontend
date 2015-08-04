@@ -1,5 +1,6 @@
 
 @spacing-standard: 3rem;
+@spacing-less: 1rem;
 
 .clear-spacings{
     padding: 0em;
@@ -16,10 +17,18 @@
 
 .separate-left{
     margin-left: @spacing-standard;
+
+    &-less{
+        margin-left: @spacing-less;
+    }
 }
 
 .separate-right{
     margin-right: @spacing-standard;
+
+    &-less{
+        margin-right: @spacing-less;
+    }
 }
 
 .separate-vertical{

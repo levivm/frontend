@@ -1,6 +1,8 @@
 
 @import "_trulii-variables";
 
+@import "_fontface-sinkinsans";
+
 @import '_custom-bootstrap';
 @import '_custom-material';
 
@@ -45,8 +47,14 @@
 @import "components/_containers";
 @import "components/_activities";
 
+@import "components/_footer";
+
 a{
-    color: @primary-dark;
+    
+    &:hover{
+    	color: @success;	
+    }
+    
 }
 
 ul{
@@ -56,6 +64,10 @@ ul{
 body{
 	overflow-x: hidden;
 	font-family: 'Roboto', sans-serif;
+}
+
+.tab-content{
+	padding-bottom: 5em;
 }
 
 /*Agular Google Maps*/

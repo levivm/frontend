@@ -108,13 +108,24 @@
     }
 }
 
-.profile-photo{    
-    border-radius: 50%;    
+.profile-photo-input{        
+    line-height: 8em;
 
-    &--xs{
-        width: 15em;
-        height: 15em;  
-        border: 4px solid lighten(@secondary, 8%)
+    & > *{
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    &__photo{
+        width: 8em;
+        height: 8em;          
+        border-radius: 50%;    
+        &:extend(.img-size-cover);
+        &:extend(.img-position-center);
+    }
+
+    &__action{
+        
     }
     
 }

@@ -2,6 +2,16 @@
 // Variables
 // --------------------------------------------------
 
+//== Colors
+//
+//## Fonts used on Trulii brand.
+
+@fonts-url: '/css/fonts/';
+
+@font-serif: 'PT Serif', serif;
+@font-sans: 'Montserrat', sans-serif;
+@font-sans-alt: 'Sinkin Sans';
+
 
 //== Colors
 //
@@ -14,13 +24,16 @@
 @gray-light:             lighten(@gray-base, 46.7%); // #777
 @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
 
-//@brand-primary:           #ffc117; // Yellow Trulii
-@brand-primary:           #ffcc33; // Yellow Trulii
-@brand-secondary:         darken(#00cccc, 5%) ; // Cyan
-@brand-success:         #5cb85c;
+
+@brand-primary:           #ffd580; // Yellow Trulii
+@brand-secondary:         #f32ebb; // Purple
+@brand-success:         #38dbc8;
 @brand-info:            #5bc0de;
 @brand-warning:         #f0ad4e;
 @brand-danger:          #d9534f;
+
+@dark-element: #393b3f;
+
 @facebook-blue:         #3b5998;
 @facebook-blue-medium:  #8b9dc3;
 @facebook-blue-weak:    #dfe3ee;
@@ -31,7 +44,7 @@
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-@body-bg:               #EEEEEE;
+@body-bg:               white;
 //** Global text color on `<body>`.
 @text-color:            @gray-dark;
 
@@ -365,7 +378,7 @@
 @navbar-collapse-max-height:       340px;
 
 @navbar-default-color:             #777;
-@navbar-default-bg:                @brand-primary;
+@navbar-default-bg:                white;
 @navbar-default-border:            darken(@navbar-default-bg, 6.5%);
 
 // Navbar links
@@ -413,6 +426,13 @@
 @navbar-inverse-toggle-icon-bar-bg:         #fff;
 @navbar-inverse-toggle-border-color:        #333;
 
+//== Footer
+//
+//##
+
+@footer-height: 10em;
+
+@footer-dashboard-height: 2.4em;
 
 //== Navs
 //
@@ -876,7 +896,7 @@
 @primary-dark: darken(@primary, 13%);
 @secondary: @brand-secondary;
 @secondary-dark: darken(@brand-secondary, 7%);
-@success: @brand-secondary;
+@success: @brand-success;
 @info: @light-blue;
 @warning: @deep-orange;
 @danger: @red;

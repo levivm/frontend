@@ -2,7 +2,7 @@
 @import url('../_trulii-variables');
 
 .sidebar{
-	.shadow-z-2;
+	font-family: @font-sans;
 	position: fixed;
 	top: @navbar-height;
 	bottom: 0;
@@ -13,36 +13,35 @@
 	overflow-y: visible;	
 	background: red;
 	padding: 20px 0;
-	background-color: white;	
-	width: 20%;
-	//text-transform: uppercase;
-	//letter-spacing: 1px;		
+	background-color: @dark-element;		
+	
+	a:hover{
+		color: @primary;
+	}
 
 	&__item{
 		border-radius: 0px;
 		position: relative;
-		color: @text-color;
+		color: @darkbg-text;
 		display: block;
 		width: 100%;
 		padding: 10px;
-		padding-left: 1em;
-		border-top: 1px solid @color-delimeter-light;
+		padding-left: 1em;		
 		text-decoration: none;	
 		position: relative;	
 		line-height: 3em;
-		cursor: pointer;
+		cursor: pointer;		
 
 		&--selected{
-			background: @body-bg;
+			background: lighten(@dark-element, 10%);
 			//border-top: 1px solid @color-delimeter-light;			
 			//border-right: 1px solid $color-delimeter-light
-			border-left: 5px solid @secondary;
+			border-left: 5px solid @primary;
 			transition: ease all 0.1s;
-			color: @secondary;
+			color: @primary;
 		}
 
-		&:hover, &:focus{
-			color: @secondary;
+		&:hover, &:focus{			
 			text-decoration: none;
 			outline: 0;
 		}
@@ -50,6 +49,7 @@
 		&__icon{			
 			top: 0;
 			bottom: 0;
+			margin-right: .5em;
 
 			&:before{
 				position: relative;
@@ -99,5 +99,10 @@
 			bottom: 0;
 		}
 	}
+
+	& + *{
+		padding-left: 0;
+	}
+
 
 }
