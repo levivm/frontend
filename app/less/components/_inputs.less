@@ -5,15 +5,31 @@
 //@import url('inputs');
 @import "_inputs";
 
-input, textarea{
+input, textarea, select{
 	font-family: @font-sans-alt;
 	font-weight: normal;
 }
 
-.control-label{
+::-webkit-input-placeholder {
+   font-weight: 200;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-weight: 200;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: 200;  
+}
+
+:-ms-input-placeholder {  
+   font-weight: 200;  
+}
+
+label{
 	font-family: @font-sans-alt;
 	font-weight: 200;
-	color: @gray-light !important;
+	color: @gray !important;
 	font-size: 0.9em;
 }
 

@@ -140,7 +140,7 @@
                 LABEL_FULL_NAME: "Nombre Completo",
                 LABEL_BIO: "Biografía",
                 LABEL_HEADLINE: "Descripción Corta",
-                LABEL_VIDEO: "Video",
+                LABEL_VIDEO: "Dirección en Youtube del vídeo",
                 LABEL_CITY: "Ciudad",
                 LABEL_ADDRESS: "Dirección Exacta",
                 OPTION_SELECT: "Seleccione...",

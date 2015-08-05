@@ -11865,6 +11865,14 @@ hr.on-light {
   color: #ffbf3e;
   font-weight: bold;
 }
+/*Agular Google Maps*/
+.angular-google-map-container {
+  height: 400px;
+}
+.map-help {
+  text-align: center;
+  background: #eeeeee;
+}
 .navbar {
   position: relative;
   min-height: 50px;
@@ -12705,14 +12713,29 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-left: 0;
 }
 input,
-textarea {
+textarea,
+select {
   font-family: 'Sinkin Sans';
   font-weight: normal;
 }
-.control-label {
+::-webkit-input-placeholder {
+  font-weight: 200;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  font-weight: 200;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  font-weight: 200;
+}
+:-ms-input-placeholder {
+  font-weight: 200;
+}
+label {
   font-family: 'Sinkin Sans';
   font-weight: 200;
-  color: #777777 !important;
+  color: #555555 !important;
   font-size: 0.9em;
 }
 .input--main {
@@ -14404,10 +14427,6 @@ body {
 }
 .tab-content {
   padding-bottom: 5em;
-}
-/*Agular Google Maps*/
-.angular-google-map-container {
-  height: 400px;
 }
 
 /*# sourceMappingURL=trulii.css.map */
