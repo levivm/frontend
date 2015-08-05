@@ -1,0 +1,53 @@
+@import url('../_trulii-variables');
+
+.navbar-context-menu {
+    &:extend(.navbar-secondary);
+    width: 80%;
+    text-align: start;
+    height: 120px;
+
+    .search-filter {
+        background-color: @gray-lighter;
+        padding: 8px;
+        height: 80px;
+        width: 100%;
+
+        button {
+            margin: 0;
+        }
+
+        .search-control {
+            padding-top: 20px;
+            padding-bottom: 20px;
+
+            select {
+                font-size: 14px;
+            }
+        }
+
+        .search-slider {
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            span {
+                .text-muted;
+            }
+        }
+
+        .checkbox {
+            margin: 0;
+            font-size: 12px;
+
+            .text {
+                margin-left: 4px;
+            }
+        }
+    }
+
+    .search-info {
+        .text-muted;
+        padding: 8px;
+        height: 40px;
+        width: 100%;
+    }
+}

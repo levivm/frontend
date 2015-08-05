@@ -16,21 +16,18 @@
 
         $urlMatcherFactoryProvider.strictMode(false);
 
-
         $stateProvider
-            .state('brow', {                
-                templateUrl: 'partials/browsing.html'
+            .state('search', {
+                url: '/search',
+                controller:'SearchController as search',
+                templateUrl: 'partials/search.html',
+                params: {
+                    'activities': null
+                }
             })
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
-                params: {
-                    'activities': null
-                },
-                resolve:{
-                    cities:getAvailableCities,
-                    authenticatedUser: getAuthenticatedUser
-                },
                 templateUrl: 'partials/landing/landing.html'                        
             })
             .state('contact-us', {
