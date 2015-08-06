@@ -26,7 +26,7 @@
             <h4 class="text-muted" ng-bind="activities.strings.COPY_PUBLISHED"></h4>
 
             <div class="row activity-grid">
-                <trulii-activity-item class="col-md-6 col-xs-12"
+                <trulii-activity-item class="col-md-4"
                                       ng-repeat="activity in activities.published_activities track by activity.id"
                                       data-activity="activity"
                                       data-options="{{activities.currentOptions}}"></trulii-activity-item>
@@ -46,7 +46,7 @@
             <h4 class="text-muted" ng-bind="activities.strings.COPY_PREVIOUS"></h4>
 
             <div class="row activity-grid">
-                <trulii-activity-item class="col-md-6 col-xs-12"
+                <trulii-activity-item class="col-md-4"
                                       ng-repeat="activity in activities.previous_activities track by activity.id"
                                       data-activity="activity"
                                       data-options="{{activities.previousOptions}}"></trulii-activity-item>
@@ -65,7 +65,7 @@
             <h4 class="text-muted" ng-bind="activities.strings.COPY_DRAFTS"></h4>
 
             <div class="row activity-grid">
-                <trulii-activity-item class="col-md-6 col-xs-12"
+                <trulii-activity-item class="col-md-4"
                                       ng-repeat="activity in activities.draft_activities track by activity.id"
                                       data-activity="activity"
                                       data-options="{{activities.draftOptions}}"></trulii-activity-item>

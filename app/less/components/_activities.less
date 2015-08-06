@@ -1,13 +1,189 @@
 @import url('../_trulii-variables');
 
-.activity-grid {
-    [class*=col-]{
-        padding: 0 0 @grid-spacing - 2px @grid-spacing;
+@activity-border-radius: 5px;
+@activity-padding: 1rem;
+@activity-owner-picture-width: 2.6em;
+
+.activity-card{
+    border-radius: @activity-border-radius;
+    background-color: white;
+    //border: 1px solid @gray-light;
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.4);
+    margin-bottom: 1em;
+    
+    &__header{
+        height: 13em;
+        width: 100%;        
+        padding: @activity-padding;       
+        position: relative; 
+
+        // TODO: To mixin
+        -webkit-border-top-left-radius: @activity-border-radius;
+        -webkit-border-top-right-radius: @activity-border-radius;
+        -moz-border-radius-topleft: @activity-border-radius;
+        -moz-border-radius-topright: @activity-border-radius;
+        border-top-left-radius: @activity-border-radius;
+        border-top-right-radius: @activity-border-radius;
+        &:extend(.img-size-cover);
+        &:extend(.img-position-center);
+
+        &__btn-more{
+            color: white;
+            position: absolute;
+            padding: @activity-padding/2;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: .2s all ease;
+            margin: @activity-padding/2;
+
+            &:hover{
+                background: rgba(255,255,255, 0.4);
+            }
+        }
+
+        &__menu{
+            position: relative;
+            background: white;
+            width: 10em;
+            float: right;
+            display: block;
+            border-radius: @activity-border-radius/2;
+            padding-top: 1.5em;
+            z-index: 10;
+
+            &__btn-close{
+                position: absolute;
+                top: 0;
+                right: 0;
+                cursor: pointer;
+            }
+
+            &__item{
+                color: @gray;
+                display: block;
+                font-size: .8em;
+                font-family: @font-sans;
+                text-transform: uppercase;
+                padding: .5em .5em;
+                cursor: pointer;
+
+                &:hover{
+                    background: @gray-lighter;
+                }
+
+            }
+        }
+
+    }
+
+    &__body{
+        padding: 1em;
+
+        &__title{
+            font-family: @font-sans-alt;
+            font-weight: bold;
+            font-size: .85em;
+            height: 3em;
+            display: block;            
+            overflow: hidden;
+            padding-bottom: .4em;
+            text-transform: capitalize;
+
+        }
+
+        &__owner-name{
+            font-family: @font-sans-alt;
+            font-weight: bold;            
+            font-size: .75em;            
+            width: 100%;
+            display: block;
+            padding-bottom: .7em;
+            color: @gray;
+        }        
+
+        &__description{
+            font-family: @font-serif;
+            padding-top: 1em;
+            color: @gray-light;
+            text-transform: capitalize;
+            overflow: hidden;
+            height: 5em;
+            font-size: .9em;
+        }
+
+        &__date{
+            font-family: @font-sans-alt;
+            color: @gray-light;
+            font-weight: bold;
+            font-size: .7em;
+            display: inline-block;
+        }
+    }
+
+    &__owner-picture{
+        border-radius: 50%;
+        width: @activity-owner-picture-width;
+        height: @activity-owner-picture-width;
+        position: absolute;
+        bottom: -(@activity-owner-picture-width)/2;
+        right: @activity-padding;
+        &:extend(.img-size-cover);
+        &:extend(.img-position-center);
+
+    }
+
+    &__bottom{
+        display: block;
+        width: 100%;
+        height: 3.5em;
+        line-height: 3.5em;
+        background: @gray-lighter;
+        color: @gray-light;
+        text-align: center;
+        font-weight: bold;
+        font-family: @font-sans-alt;
+    }
+
+    &__rating{
+        position: absolute;
+        right: @activity-padding*2;
+        display: inline-block;
+
+        &__star{
+            color: @primary;
+            font-size: 1.1em;            
+
+            &.--empty{
+                color: @gray-lighter;
+            }
+        }
+
+
+    }
+
+    &__category{
+        position: absolute;
+        top: @activity-padding;
+        left: @activity-padding;
+        color: white;
+        background-color: #C29845;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: .7em;
+        padding: .2em 1em;
+        border-radius: (@activity-border-radius/2);
+        font-family: @font-sans;
+        letter-spacing: .1em;
+        line-height: 1em;        
     }
 }
 
-.activity-card{
-    
+.activity-grid {
+    [class*=col-]{
+        padding: 0em .7em;
+    }
 }
 
 .activity-item {

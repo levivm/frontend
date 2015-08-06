@@ -1,3 +1,66 @@
+
+
+<div class="activity-card" >
+    <div class="activity-card__header" style="background-image: url('{{activity.main_photo}}') ">
+        
+        <div class="activity-card__category" ng-bind="::activity.category_display"></div>
+        <div class="activity-card__owner-picture" style="background-image: url('{{::activity.organizer.photo}}') "></div>
+
+        <span class="activity-card__header__btn-more mdi-navigation-more-vert"             
+            ng-click="showMenu = true">
+        </span>
+
+        <span class="activity-card__header__menu" ng-show="showMenu">
+
+            <div class="activity-card__header__menu__btn-close  mdi-navigation-close"                 
+                ng-click="showMenu = false">
+            </div>
+
+            <div class="activity-card__header__menu__item">
+                Editar
+            </div>
+            <div class="activity-card__header__menu__item">
+                Gestionar
+            </div>
+            <div class="activity-card__header__menu__item">
+                Republicar
+            </div>
+        </span>
+    </div>
+
+    <div class="activity-card__body">
+        <span class="activity-card__body__title" ng-bind="::activity.title"></span>    
+        <span class="activity-card__body__owner-name" ng-bind="::activity.organizer.name">
+            
+        </span>
+
+        <div>
+            <span class="activity-card__body__date">
+                13 Jul. 2015
+            </span>    
+
+            <div class="activity-card__rating">
+                <div class="mdi-action-grade activity-card__rating__star"></div>
+                <div class="mdi-action-grade activity-card__rating__star"></div>
+                <div class="mdi-action-grade activity-card__rating__star"></div>
+                <div class="mdi-action-grade activity-card__rating__star --empty"></div>
+                <div class="mdi-action-grade activity-card__rating__star --empty"></div>
+            </div>
+        </div>
+        
+    
+        <div class="activity-card__body__description" ng-bind="::activity.short_description">
+            
+        </div>
+    </div>
+
+    <div class="activity-card__bottom">
+        $ 20.000
+    </div>
+    
+</div>
+
+<!--
 <div class="activity-item" ng-class="{'dimmed': dimmed}">
     <img class="activity-img" ng-src="{{activity.main_photo}}" alt=""/>
     <a ui-sref="activities-detail.info({activity_id: {{::activity.id}} })"
@@ -52,10 +115,10 @@
                    class="action"
                    ui-sref="{{::action.state}}"
                    data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
-                    <i ng-class="action.icon"></i>
-                    <!--<span ng-bind="::action.name"></span>-->
+                    <i ng-class="action.icon"></i>                
                 </a>
             </div>
         </div>
     </div>
 </div>
+-->

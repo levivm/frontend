@@ -36,6 +36,8 @@
                 scope.getStarStyle = getStarStyle;
                 scope.hasAction = hasAction;
 
+                scope.showMenu = false;
+
                 _activate();
 
                 //--------- Exposed Functions ---------//
