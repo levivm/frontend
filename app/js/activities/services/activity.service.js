@@ -14,9 +14,9 @@
         .module('trulii.activities.services')
         .factory('Activity', Activity);
 
-    Activity.$inject = ['$http', '$q', '$log', 'ActivityServerApi', 'UploadFile', 'ActivitySteps', 'CalendarsManager'];
+    Activity.$inject = ['$http', '$q', '$log', 'ActivityServerApi', 'UploadFile', 'ActivitySteps'];
 
-    function Activity($http, $q, $log, ActivityServerApi, UploadFile, ActivitySteps, CalendarsManager) {
+    function Activity($http, $q, $log, ActivityServerApi, UploadFile, ActivitySteps) {
 
         var api = ActivityServerApi;
 
@@ -41,21 +41,19 @@
              * @ngdoc function
              * @name trulii.activities.services.Activity#setData
              * @description Given an activity data, fill 'this' object with that data
-             * @param {activityData} activityData The activity data to set 
+             * @param {object} activityData The activity data to set
              * @methodOf trulii.activities.services.Activity
              */
             setData : function (activityData) {
                 angular.extend(this, activityData);
+                this.calendars = this.chronograms;
+                delete this.chronograms;
                 var that = this;
                 that.resetSections();
 
-
                 angular.forEach(ActivitySteps, function (step) {
-
                     that.updateSection(step.name);
                 });
-
-                //console.log("Activity setData ", this);
                 
                 that.checkSections();
             },
@@ -97,20 +95,24 @@
              */
             update : function () {
                 var that = this;
+                this.chronograms = this.calendars;
 
                 return $http({
                     method : 'put',
                     url : api.activity(this.id),
                     data : this
-                }).then(function (response) {
+                }).then(success, error);
 
+                function success(response){
                     that.setData(response.data);
                     that.setAllSections();
 
                     return response;
-                }, function (response) {
+                }
+
+                function error(response){
                     return $q.reject(response.data);
-                });
+                }
             },
             /**
              * @ngdoc function
@@ -128,7 +130,7 @@
                     url : api.locations(this.id),
                     data : location
                 }).then(function (response) {
-                    angular.extend(that.location,response.data)
+                    angular.extend(that.location,response.data);
                     that.setAllSections();
                     // that.setData(response.data);
                     return response;
@@ -154,7 +156,7 @@
              * @name trulii.activities.services.Activity#addPhotoFromStock
              * @description Add photo to the activity gallery from our photo stock
              * given a subcategory
-             * @param {sub_category} The activity subcategory
+             * @param {string} sub_category The activity subcategory
              * @methodOf trulii.activities.services.Activity
              */
             addPhotoFromStock : function (sub_category) {
@@ -165,7 +167,6 @@
                     url : api.gallery(this.id,from_stock),
                     data : {'subcategory' : this.sub_category}
                 });
-                // return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
             },
 
             /**
@@ -225,11 +226,11 @@
              */
             hasAssistants: function(){
 
-                if (!this.chronograms)
+                if (!this.calendars)
                     return false
 
-                return this.chronograms.some(function (chronogram) {
-                        return chronogram.assistants.length > 0
+                return this.calendars.some(function (calendar) {
+                        return calendar.assistants.length > 0
                     });
             },
             /**
@@ -239,13 +240,11 @@
              * @methodOf trulii.activities.services.Activity
              */
             isFirstEdit: function(){
-
-                if (!this.photos.length && !this.published)
-                    return true
-
-                return false
-
-
+                if (!this.photos.length && !this.published){
+                    return true;
+                } else {
+                    return false;
+                }
             },
 
             /**
@@ -262,9 +261,6 @@
 
                     if (!that.isSectionCompleted(value))
                         that.all_steps_completed = false;
-
-
-                    // if (!value) that.all_steps_completed = false;
                 });
             },
 
@@ -321,18 +317,12 @@
             setStepsLeft: function(section){
                 var that = this;
 
-                if (!that.required_steps[section])
-                    return
+                if (!that.required_steps[section]){ return; }
 
                 that.steps_left = 0;
-
                 _.each(_.keys(that.required_steps),function(value){
-
                     that.steps_left += !that.completed_steps[value] ? 1:0;
-
                 });
-
-
             },
             /**
              * @ngdoc function
@@ -341,15 +331,10 @@
              * @methodOf trulii.activities.services.Activity
              */
             setAllSections: function(){
-
                 var that = this;
-
                 that.resetSections();
-
                 that.updateAllSections();
-
                 that.checkSections();
-
             },
 
             /**
@@ -368,45 +353,36 @@
 
             },
 
-
             updateSection : updateSection,
-
-            resetSections : resetSections,
+            resetSections : resetSections
         };
 
         return Activity;
 
         function updateSection(section) {
             var that = this;
-
-            // console.log("ENTRE A CHEQUEAR")
             var isCompleted = false;
             if (!that.steps)
                 return;
             var subSections = that.steps[section];
             switch (section) {
                 case 'general':
-                    
-
                     isCompleted = subSections.every(function (subSection) {
-                        var value = that.hasOwnProperty(subSection) && !!that[subSection];
-                        return value;
+                        return that.hasOwnProperty(subSection) && !!that[subSection];
                     });
                     break;
                 case 'detail':
                     isCompleted = subSections.some(function (subSection) {
-
                         return (that.hasOwnProperty(subSection) && !!that[subSection]);
                     });
                     break;
                 case 'location':
-
                     var hasLocation = !!that[subSections];
                     isCompleted = hasLocation;
                     break;
                 case 'calendars':
                     that.hasOwnProperty(subSections);
-                    var hasCalendars = !!that.chronograms && (that.chronograms.length > 0);
+                    var hasCalendars = !!that.calendars && (that.calendars.length > 0);
                     isCompleted = hasCalendars;
                     break;
                 case 'instructors':

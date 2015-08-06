@@ -139,7 +139,7 @@
         }
 
         function _getCalendars(activity){
-            calendars = activity.chronograms.map(_mapDateMsg);
+            calendars = activity.calendars.map(_mapDateMsg);
             vm.calendars = calendars.slice(0, vm.calendarPaginationOpts.itemsPerPage);
             console.log('calendars:', calendars);
             return calendars;

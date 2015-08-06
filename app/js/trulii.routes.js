@@ -228,7 +228,7 @@
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/activities/dashboard_general.html'
+                templateUrl: '../partials/activities/dashboard/dashboard_general.html'
             })
             .state('dash.activities-edit', {
                 abstract:true,
@@ -243,7 +243,7 @@
                     organizer : getCurrentOrganizer
                 },
                 controllerAs: 'pc',
-                templateUrl: 'partials/activities/edit.html'
+                templateUrl: '../partials/activities/edit/edit.html'
             })
             .state('dash.activities-edit.general', {
                 url:'',
@@ -253,19 +253,19 @@
                     presaveInfo: getPresaveActivityInfo,
                     activity: getActivity
                 },
-                templateUrl: 'partials/activities/dashboard_general.html'
+                templateUrl: '../partials/activities/edit/dashboard_general.html'
             })
             .state('dash.activities-edit.detail', {
                 url:'detail',
                 controller: 'ActivityDBDetailController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/activities/dashboard_detail.html'
+                templateUrl: '../partials/activities/edit/dashboard_detail.html'
             })
             .state('dash.activities-edit.calendars', {
                 url:'calendars',
                 controller: 'ActivityCalendarsController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/activities/dashboard_calendars.html',
+                templateUrl: '../partials/activities/edit/dashboard_calendars.html',
                 resolve:{
                     calendars:getCalendars
                 },
@@ -277,7 +277,7 @@
                 url:'/:id',
                 controller: 'ActivityCalendarController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/activities/dashboard_calendar_detail.html',
+                templateUrl: '../partials/activities/edit/dashboard_calendar_detail.html',
                 resolve: {
                     calendar: getCalendar
                 }
@@ -290,25 +290,25 @@
                     organizer : getCurrentOrganizer
                 },
                 controllerAs: 'vm',
-                templateUrl: 'partials/activities/dashboard_location.html'
+                templateUrl: '../partials/activities/edit/dashboard_location.html'
             })
             .state('dash.activities-edit.instructors', {
                 url:'instructors',
                 controller: 'ActivityDBInstructorsController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/activities/dashboard_instructors.html'
+                templateUrl: '../partials/activities/edit/dashboard_instructors.html'
             })
             .state('dash.activities-edit.gallery', {
                 url:'gallery',
                 controller: 'ActivityDBGalleryController',
                 controllerAs: 'vm',
-                templateUrl: 'partials/activities/dashboard_gallery.html'
+                templateUrl: '../partials/activities/edit/dashboard_gallery.html'
             })
             .state('dash.activities-edit.return-policy', {
                 url:'return-policy',
                 controller: 'ActivityDBReturnPDashboard',
                 controllerAs: 'vm',
-                templateUrl: 'partials/activities/dashboard_return_policy.html'
+                templateUrl: '../partials/activities/edit/dashboard_return_policy.html'
             })
             .state('dash.activities-manage', {
                 url:'/activities/manage/{activity_id:int}/',
@@ -317,21 +317,21 @@
                 resolve: {
                     activity: getActivity
                 },
-                templateUrl: 'partials/activities/manage.html',
+                templateUrl: '../partials/activities/manage/manage.html',
             })
             .state('dash.activities-manage.orders', {
                 url:'orders',
-                templateUrl: 'partials/activities/manage_orders.html'
+                templateUrl: '../partials/activities/manage/manage_orders.html'
             })
             .state('dash.activities-manage.assistants', {
                 url:'assistants',
-                templateUrl: 'partials/activities/manage_assistants.html'
+                templateUrl: '../partials/activities/manage/manage_assistants.html'
             })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/',
                 abstract: true,
                 controller: 'ActivityDetailController as detail',
-                templateUrl: 'partials/activities/detail.html',
+                templateUrl: '../partials/activities/detail/detail.html',
                 resolve: {
                     activity: getActivity,
                     cities: getAvailableCities,
@@ -343,21 +343,21 @@
             })
             .state('activities-detail.info', {
                 url: 'info',
-                templateUrl: 'partials/activities/detail.info.html'
+                templateUrl: '../partials/activities/detail/detail.info.html'
             })
             .state('activities-detail.calendar', {
                 url: 'calendar',
-                templateUrl: 'partials/activities/detail.calendar.html'
+                templateUrl: '../partials/activities/detail/detail.calendar.html'
             })
             .state('activities-detail.attendees', {
                 url: 'attendees',
                 controller: 'ActivityDetailAttendeesController as attendees',
-                templateUrl: 'partials/activities/detail.attendees.html'
+                templateUrl: '../partials/activities/detail/detail.attendees.html'
             })
             .state('activities-enroll', {
                 url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
                 controller: 'ActivityDetailEnrollController as enroll',
-                templateUrl: 'partials/activities/detail.enroll.html',
+                templateUrl: '../partials/activities/detail/detail.enroll.html',
                 resolve: {
                     activity: getActivity,
                     calendar: fetchCalendar,
@@ -367,7 +367,7 @@
             .state('activities-enroll.success', {
                 url: '/success',
                 controller: 'ActivityEnrollSuccessController as success',
-                templateUrl: 'partials/activities/detail.enroll.success.html',
+                templateUrl: '../partials/activities/detail/detail.enroll.success.html',
                 resolve: {
                     organizer: ['activity', function (activity) {
                         return  activity.organizer;
