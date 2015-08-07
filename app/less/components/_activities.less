@@ -5,17 +5,27 @@
 @activity-owner-picture-width: 2.6em;
 
 .activity-card{
+    max-width: 18em;
+    display: inline-block;  
     border-radius: @activity-border-radius;
-    background-color: white;
-    //border: 1px solid @gray-light;
+    background-color: white;    
     box-shadow: 0px 1px 2px rgba(0,0,0,0.4);
     margin-bottom: 1em;
+    margin: 0em .3em;
+    margin-bottom: 1em;
+    text-align: left;
+    transition: .2s all ease;
+
+    &:hover{
+        box-shadow: 0px 2px 4px rgba(0,0,0,0.4);
+    }
     
     &__header{
         height: 13em;
         width: 100%;        
         padding: @activity-padding;       
         position: relative; 
+        background-color: @gray-lighter;
 
         // TODO: To mixin
         -webkit-border-top-left-radius: @activity-border-radius;
@@ -51,7 +61,9 @@
             display: block;
             border-radius: @activity-border-radius/2;
             padding-top: 1.5em;
+            padding-bottom: .8em;
             z-index: 10;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.3);
 
             &__btn-close{
                 position: absolute;
@@ -66,12 +78,23 @@
                 font-size: .8em;
                 font-family: @font-sans;
                 text-transform: uppercase;
-                padding: .5em .5em;
+                padding: .7em .8em;
                 cursor: pointer;
+
+                &__icon{
+                    font-size: 1.3em;
+                    margin-right: .5em;
+                }
 
                 &:hover{
                     background: @gray-lighter;
+                    color: @gray;
                 }
+
+                &:active{
+                    background: @success;
+                    color: white;
+                }                
 
             }
         }
@@ -80,6 +103,12 @@
 
     &__body{
         padding: 1em;
+        display: block;
+        cursor: pointer;
+
+        & *{
+            text-decoration: none;    
+        }        
 
         &__title{
             font-family: @font-sans-alt;
@@ -90,10 +119,12 @@
             overflow: hidden;
             padding-bottom: .4em;
             text-transform: capitalize;
+            color: @gray-dark;            
 
         }
 
         &__owner-name{
+            height: 2em;
             font-family: @font-sans-alt;
             font-weight: bold;            
             font-size: .75em;            
@@ -101,6 +132,7 @@
             display: block;
             padding-bottom: .7em;
             color: @gray;
+            .text-overflow();
         }        
 
         &__description{
@@ -148,7 +180,7 @@
 
     &__rating{
         position: absolute;
-        right: @activity-padding*2;
+        right: 0;
         display: inline-block;
 
         &__star{
@@ -181,8 +213,10 @@
 }
 
 .activity-grid {
-    [class*=col-]{
-        padding: 0em .7em;
+    text-align: center;
+
+    &.--left{
+        text-align: left;
     }
 }
 
@@ -238,7 +272,7 @@
 
         .draft {
             position: absolute;
-            top: 0;
+            top: 0; 
             left: 0;
             background: fadeout(@brand-danger, 10%);
             color: @darkbg-text;

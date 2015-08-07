@@ -11547,6 +11547,9 @@ hr.on-light {
 .text-left {
   text-align: left !important;
 }
+.relative {
+  position: relative;
+}
 .grand-title {
   font-size: 5em;
   margin-bottom: .5em;
@@ -14262,16 +14265,25 @@ button.toast-close-button {
   margin-bottom: 8px;
 }
 .activity-card {
+  max-width: 18em;
+  display: inline-block;
   border-radius: 5px;
   background-color: white;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
+  margin: 0em .3em;
   margin-bottom: 1em;
+  text-align: left;
+  transition: .2s all ease;
+}
+.activity-card:hover {
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .activity-card__header {
   height: 13em;
   width: 100%;
   padding: 1rem;
   position: relative;
+  background-color: #eeeeee;
   -webkit-border-top-left-radius: 5px;
   -webkit-border-top-right-radius: 5px;
   -moz-border-radius-topleft: 5px;
@@ -14301,7 +14313,9 @@ button.toast-close-button {
   display: block;
   border-radius: 2.5px;
   padding-top: 1.5em;
+  padding-bottom: .8em;
   z-index: 10;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 .activity-card__header__menu__btn-close {
   position: absolute;
@@ -14315,14 +14329,28 @@ button.toast-close-button {
   font-size: .8em;
   font-family: 'Montserrat', sans-serif;
   text-transform: uppercase;
-  padding: .5em .5em;
+  padding: .7em .8em;
   cursor: pointer;
+}
+.activity-card__header__menu__item__icon {
+  font-size: 1.3em;
+  margin-right: .5em;
 }
 .activity-card__header__menu__item:hover {
   background: #eeeeee;
+  color: #555555;
+}
+.activity-card__header__menu__item:active {
+  background: #38dbc8;
+  color: white;
 }
 .activity-card__body {
   padding: 1em;
+  display: block;
+  cursor: pointer;
+}
+.activity-card__body * {
+  text-decoration: none;
 }
 .activity-card__body__title {
   font-family: 'Sinkin Sans';
@@ -14333,8 +14361,10 @@ button.toast-close-button {
   overflow: hidden;
   padding-bottom: .4em;
   text-transform: capitalize;
+  color: #333333;
 }
 .activity-card__body__owner-name {
+  height: 2em;
   font-family: 'Sinkin Sans';
   font-weight: bold;
   font-size: .75em;
@@ -14342,6 +14372,9 @@ button.toast-close-button {
   display: block;
   padding-bottom: .7em;
   color: #555555;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .activity-card__body__description {
   font-family: 'PT Serif', serif;
@@ -14380,7 +14413,7 @@ button.toast-close-button {
 }
 .activity-card__rating {
   position: absolute;
-  right: 2rem;
+  right: 0;
   display: inline-block;
 }
 .activity-card__rating__star {
@@ -14405,8 +14438,11 @@ button.toast-close-button {
   letter-spacing: .1em;
   line-height: 1em;
 }
-.activity-grid [class*=col-] {
-  padding: 0em .7em;
+.activity-grid {
+  text-align: center;
+}
+.activity-grid.--left {
+  text-align: left;
 }
 .activity-item {
   height: 18em;

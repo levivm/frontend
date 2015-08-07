@@ -10,41 +10,38 @@
             ng-click="showMenu = true">
         </span>
 
-        <span class="activity-card__header__menu" ng-show="showMenu">
+        <span class="activity-card__header__menu lateral-fade" ng-show="showMenu">
 
             <div class="activity-card__header__menu__btn-close  mdi-navigation-close"                 
                 ng-click="showMenu = false">
             </div>
 
-            <div class="activity-card__header__menu__item">
-                Editar
-            </div>
-            <div class="activity-card__header__menu__item">
-                Gestionar
-            </div>
-            <div class="activity-card__header__menu__item">
-                Republicar
-            </div>
+            <a ng-repeat="action in actions track by action.name"
+               class="activity-card__header__menu__item"
+               ui-sref="{{::action.state}}"
+               data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+                <i class=" activity-card__header__menu__item__icon" ng-class="action.icon"></i>                
+                <span ng-bind="::action.name"></span>
+            </a>
+
         </span>
     </div>
 
-    <div class="activity-card__body">
+    <a class="activity-card__body" ui-sref="activities-detail.info({activity_id: {{::activity.id}} })">
         <span class="activity-card__body__title" ng-bind="::activity.title"></span>    
         <span class="activity-card__body__owner-name" ng-bind="::activity.organizer.name">
             
         </span>
 
-        <div>
-            <span class="activity-card__body__date">
-                13 Jul. 2015
+        <div class="relative">
+            <span class="activity-card__body__date" ng-bind="activity.date_msg">
+                
             </span>    
 
             <div class="activity-card__rating">
-                <div class="mdi-action-grade activity-card__rating__star"></div>
-                <div class="mdi-action-grade activity-card__rating__star"></div>
-                <div class="mdi-action-grade activity-card__rating__star"></div>
-                <div class="mdi-action-grade activity-card__rating__star --empty"></div>
-                <div class="mdi-action-grade activity-card__rating__star --empty"></div>
+                
+                <i ng-repeat="star in activity.rating track by star"
+                       ng-class="getStarStyle(star)"></i>
             </div>
         </div>
         
@@ -52,10 +49,13 @@
         <div class="activity-card__body__description" ng-bind="::activity.short_description">
             
         </div>
-    </div>
+    </a>
 
     <div class="activity-card__bottom">
-        $ 20.000
+        <span ng-if="activity.closest_calendar.session_price"
+              ng-bind="::activity.closest_calendar.session_price | number"></span>
+        <span ng-if="!activity.closest_calendar.session_price"
+              ng-bind="::strings.COPY_NA"></span>
     </div>
     
 </div>
