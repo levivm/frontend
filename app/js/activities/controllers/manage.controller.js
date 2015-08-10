@@ -208,9 +208,10 @@
 
         function _activate() {
             _setStrings();
-            activity = _mapMainPicture(activity);
+            vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
+            
         }
 
     }

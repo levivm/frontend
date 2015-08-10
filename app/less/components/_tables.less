@@ -1,11 +1,51 @@
+
+table{
+	font-family: @font-sans-alt;
+}
+
 th{
 	border-top: 0px solid !important;
 	font-weight: normal;
-	.text-muted;
+	color: @gray-light;
 	text-align: left;
 }
 
 th, td{
-	font-size: .9em;
+	font-size: 1em;
 	padding: 15px 8px !important;
+}
+
+.order{
+	position: relative;
+	margin-bottom: 2em;	
+	border: 1px solid @gray-lighter;
+
+	&__info{
+		background-color: @gray-lighter;
+		padding: 1em;
+
+		&__label{
+			margin-top: 2em;
+			font-family: @font-sans-alt;
+			font-size: .9em;
+			font-weight: 200;
+			color: @gray-light;
+		}
+
+		&__data{
+			font-family: @font-sans-alt;
+			font-size: 1.1em;			
+		}
+	}
+
+	&__assistants{
+		padding: 1em;
+		background-color: white
+
+	}
+
+	&:hover{
+		border-color: @success;
+	}
+
 }

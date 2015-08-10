@@ -13,11 +13,57 @@
 	overflow-y: visible;	
 	background: red;
 	padding: 20px 0;
-	background-color: @dark-element;		
+	background-color: @sidebar-color;		
 	width: @sidebar-width;
 	
 	a:hover{
 		color: @primary;
+	}
+
+	&__activity{
+		padding: 1em.5em;
+		display: block;
+		width: 100%;
+		height: 9em;
+		color: white;
+		font-size: 1.2em;
+		text-align: center;
+		position: relative;
+		&:extend(.img-size-cover);
+        &:extend(.img-position-center);     
+
+        &__title{
+        	display: block;
+        	height: 3em;
+        	overflow: hidden;
+        	margin-bottom: .5em        	
+        }   
+
+        &__btn-back{
+        	color: white;
+        	display: block;
+        	margin-top: 1em;
+        	font-size: .8em;
+        }
+
+        &:after{
+        	content: '';
+        	display: block;
+        	position: absolute;
+        	background: fadeout(@sidebar-color, 55%) ;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			right: 0;
+			z-index: 1;
+
+        }
+
+        & *{
+        	position: relative;
+        	z-index: 10;
+        }
+
 	}
 
 	&__item{
@@ -45,6 +91,10 @@
 		&:hover, &:focus{			
 			text-decoration: none;
 			outline: 0;
+		}
+
+		&:first-child{
+			margin-top: 20px;
 		}
 
 		&__icon{			

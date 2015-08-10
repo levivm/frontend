@@ -18,6 +18,17 @@
         color: @gray-light;
     }
 
+    &-light{
+        color: white;
+        border: 1px solid white;
+
+        &:hover{
+            color: white !important;
+            border: 1px solid white !important;
+            background-color: fadeout(white, 80%);
+        }
+    }
+
     &.btn-active {
         background: @secondary !important;
         color: white !important;

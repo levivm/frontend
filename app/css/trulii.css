@@ -11687,6 +11687,7 @@ hr.on-light {
 .img-fit,
 .profile-photo-input__photo,
 .navbar__user__picture,
+.sidebar__activity,
 .gallery-grid__photo,
 .activity-card__header,
 .activity-card__owner-picture {
@@ -11696,6 +11697,7 @@ hr.on-light {
 .img-fit,
 .profile-photo-input__photo,
 .navbar__user__picture,
+.sidebar__activity,
 .activity-card__header,
 .activity-card__owner-picture {
   background-position: center !important;
@@ -12697,6 +12699,43 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar a:hover {
   color: #ffd580;
 }
+.sidebar__activity {
+  padding: 1em.5em;
+  display: block;
+  width: 100%;
+  height: 9em;
+  color: white;
+  font-size: 1.2em;
+  text-align: center;
+  position: relative;
+}
+.sidebar__activity__title {
+  display: block;
+  height: 3em;
+  overflow: hidden;
+  margin-bottom: 0.5em;
+}
+.sidebar__activity__btn-back {
+  color: white;
+  display: block;
+  margin-top: 1em;
+  font-size: .8em;
+}
+.sidebar__activity:after {
+  content: '';
+  display: block;
+  position: absolute;
+  background: rgba(57, 59, 63, 0.45);
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1;
+}
+.sidebar__activity * {
+  position: relative;
+  z-index: 10;
+}
 .sidebar__item {
   border-radius: 0px;
   color: rgba(255, 255, 255, 0.84);
@@ -12719,6 +12758,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar__item:focus {
   text-decoration: none;
   outline: 0;
+}
+.sidebar__item:first-child {
+  margin-top: 20px;
 }
 .sidebar__item__icon {
   top: 0;
@@ -13044,6 +13086,15 @@ tags-input input {
   border: 1px solid #eeeeee;
   color: #777777;
 }
+.btn-light {
+  color: white;
+  border: 1px solid white;
+}
+.btn-light:hover {
+  color: white !important;
+  border: 1px solid white !important;
+  background-color: rgba(255, 255, 255, 0.2);
+}
 .btn.btn-active {
   background: #f32ebb !important;
   color: white !important;
@@ -13226,6 +13277,9 @@ tags-input input {
 .user-badge .user-badge-center {
   text-align: center;
 }
+table {
+  font-family: 'Sinkin Sans';
+}
 th {
   border-top: 0px solid !important;
   font-weight: normal;
@@ -13234,8 +13288,35 @@ th {
 }
 th,
 td {
-  font-size: .9em;
+  font-size: 1em;
   padding: 15px 8px !important;
+}
+.order {
+  position: relative;
+  margin-bottom: 2em;
+  border: 1px solid #eeeeee;
+}
+.order__info {
+  background-color: #eeeeee;
+  padding: 1em;
+}
+.order__info__label {
+  margin-top: 2em;
+  font-family: 'Sinkin Sans';
+  font-size: .9em;
+  font-weight: 200;
+  color: #777777;
+}
+.order__info__data {
+  font-family: 'Sinkin Sans';
+  font-size: 1.1em;
+}
+.order__assistants {
+  padding: 1em;
+  background-color: white;
+}
+.order:hover {
+  border-color: #38dbc8;
 }
 .ranking-star {
   color: #ffd580;
@@ -14534,6 +14615,14 @@ ul {
 body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Sinkin Sans';
 }
 p {
   font-family: 'PT Serif', serif;

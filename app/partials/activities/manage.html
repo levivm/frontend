@@ -1,33 +1,48 @@
-<div class="container">
-    <div class="card z-shadow-1" style="min-height: 30em">
-        <div class="row clearfix">
-            <div class="col-md-3 card__lateral-menu">
-                <div class="card__lateral-menu__title">
-                    <i class="mdi-action-settings"></i>
-                    <span> </span>
-                    <span ng-bind="::manage.strings.SECTION_MANAGE"></span>
-                </div>
-                <ul>
-                    <li class="card__lateral-menu__item" ui-sref-active="active">
-                        <a ui-sref=".orders">
-                            <i class="mdi-maps-local-atm"></i>
-                            <span> </span>
-                            <span ng-bind="::manage.strings.TAB_ORDERS"></span>
-                        </a>
-                    </li>
-                    <li class="card__lateral-menu__item" ui-sref-active="active">
-                        <a ui-sref=".assistants">
-                            <i class="mdi-social-people"></i>
-                            <span> </span>
-                            <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-9 col-md-offset-3">
-                <div class="card-body" ui-view></div>
-            </div>
-        </div>
-    </div>
-</div>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="sidebar lateral-slide">
+
+            <div class="sidebar__activity" style="background: url('{{manage.activity.main_photo}}')">
+                <span class="sidebar__activity__title" ng-bind="manage.activity.title"></span> 
+
+                <div>
+                    <a class="btn btn-default btn-light" ui-sref="dash.activities-edit.general({activity_id:{{manage.activity.id}}})">
+                        Editar
+                    </a>
+                    <a class="btn btn-default btn-light" ui-sref="activities-detail.info({activity_id: {{manage.activity.id}}})">
+                        Ver
+                    </a>
+                </div>   
+                <div>
+                    <a class="sidebar__activity__btn-back" ui-sref="organizer-dashboard.activities">
+                        Mis actividades
+                    </a>
+                </div>
+            </div>
+                    
+            <ul>
+            
+                <a ui-sref=".assistants" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                    <i class="sidebar__item__icon mdi-social-people"></i>                    
+                    <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>                                                                        
+                </a>
+                
+                <a ui-sref=".orders" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                    <i class="sidebar__item__icon mdi-maps-local-atm"></i>                    
+                    <span ng-bind="::manage.strings.TAB_ORDERS"></span>                                                                        
+                </a>            
+                
+            </ul>
+
+        </div>
+
+        <div ui-view class="col-sm-10 lateral-fade">
+            
+        </div>
+
+        <div ng-include="'partials/ui-components/footer-dashboard.html'"></div>
+
+    </div>
+
+</div>
