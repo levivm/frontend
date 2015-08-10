@@ -6,7 +6,7 @@
             <span ng-bind="::activities.strings.TAB_PUBLISHED"></span>
         </li>
 
-        <li class="navbar-secondary__item" data-toggle="tab" data-toggle="tab" data-target="#previous-tab">            
+        <li class="navbar-secondary__item" data-toggle="tab" data-target="#previous-tab">            
             <span ng-bind="::activities.strings.TAB_PREVIOUS"></span>
         </li>
 
@@ -23,27 +23,40 @@
     <div class="col-md-11 col-md-offset-1 tab-content">
         <div class="tab-pane active fade in" id="published-tab">
             
-            <h4 class="text-muted" ng-bind="activities.strings.COPY_PUBLISHED"></h4>
+            <div ng-if="activities.published_activities.length > 0">
+                <p ng-bind="activities.strings.COPY_PUBLISHED"></p>
 
-            <div class="row activity-grid --left">
-                <trulii-activity-item class="col-md-4"
-                                      ng-repeat="activity in activities.published_activities track by activity.id"
-                                      data-activity="activity"
-                                      data-options="{{activities.currentOptions}}"></trulii-activity-item>
-            </div>
-            <!--If there are no activities-->
-            <div ng-if="activities.published_activities.length <= 0" class="row">
-                <br/>
-                <div class="col-md-12">
-                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_PUBLISHED"></h4>
-                    <p ng-bind="::activities.strings.COPY_EMPTY_PUBLISHED"></p>
+                <div class="row activity-grid --left">
+                    <trulii-activity-item 
+                          ng-repeat="activity in activities.published_activities track by activity.id"
+                          data-activity="activity"
+                          data-options="{{activities.currentOptions}}"></trulii-activity-item>
                 </div>
+
+            </div>
+            <!--If there are no activities-->            
+
+            <div class="row" ng-if="activities.published_activities.length <= 0">
+        
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="separate-below separate-above standout-text">
+                    <span ng-bind="::activities.strings.COPY_EMPTY_PUBLISHED"></span>
+                </div>
+
+                <a ui-sref="dash.activities-new.general" class="btn btn-lg btn-success">
+                    Crear Actividad
+                </a>    
+                <a ng-if="activities.previous_activities" data-toggle="tab" data-target="#previous-tab" class="btn btn-lg btn-default">
+                    Republicar anterior
+                </a>    
+            </div>
+                
             </div>
         </div>
 
         <div class="tab-pane fade in" id="previous-tab">
             
-            <h4 class="text-muted" ng-bind="activities.strings.COPY_PREVIOUS"></h4>
+            <p ng-bind="activities.strings.COPY_PREVIOUS"></p>
 
             <div class="row activity-grid --left">
                 <trulii-activity-item 
@@ -54,15 +67,15 @@
             <!--If there are no activities-->
             <div ng-if="activities.previous_activities.length <= 0" class="row">
                 <div class="col-md-12">
-                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_PREVIOUS"></h4>
-                    <p ng-bind="::activities.strings.COPY_EMPTY_PREVIOUS"></p>
+                    <div class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_PREVIOUS"></div>
+                    
                 </div>
             </div>
         </div>
 
         <div class="tab-pane fade in" id="drafts-tab">
             
-            <h4 class="text-muted" ng-bind="activities.strings.COPY_DRAFTS"></h4>
+            <p ng-bind="activities.strings.COPY_DRAFTS"></p>
 
             <div class="row activity-grid --left">
                 <trulii-activity-item 
@@ -73,12 +86,11 @@
             <!--If there are no activities-->
             <div ng-if="activities.draft_activities.length <= 0" class="row">
                 <div class="col-md-12">
-                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_DRAFTS"></h4>
-                    <p ng-bind="::activities.strings.COPY_EMPTY_DRAFTS"></p>
+                    <div class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_DRAFTS"></div>                    
                 </div>
             </div>
         </div>
-    </div>
+    </div>    
 
 </div>
 

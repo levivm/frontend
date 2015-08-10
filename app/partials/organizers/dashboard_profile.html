@@ -22,7 +22,8 @@
     
     <div class="col-md-8 col-md-offset-1 tab-content">
 
-        <div class="tab-pane fade in active" id="info-tab">
+        <div class="tab-pane fade in active" id="info-tab">            
+
             <div class="row">
                 <div class="col-md-12">
 
@@ -64,7 +65,7 @@
                     </form>
 
                 </div>
-            </div>
+            </div>            
 
             <form class="row separate-above" name='profile.profile_form_info' ng-submit="profile.submit_info()">
                 <fieldset>                    
@@ -97,6 +98,8 @@
         </div>
 
         <div class="tab-pane fade" id="video-tab">            
+
+            <p ng-bind="::profile.strings.COPY_VIDEO"></p>
             <form name='profile.profile_form_photo' ng-submit="profile.submit_video()">
                 <fieldset>
                     <div class="form-group">
@@ -117,6 +120,8 @@
         </div>
 
         <div class="tab-pane fade" id="location-tab">
+
+            <p ng-bind="::profile.strings.COPY_LOCATION"></p>
             <form name='profile.organizer_location_form' ng-submit="profile.submit_location()">
                 <fieldset>
                     

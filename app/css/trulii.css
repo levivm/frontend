@@ -1118,8 +1118,7 @@ h6,
 .h3,
 .h4,
 .h5,
-.h6,
-.activity-item .activity-title {
+.h6 {
   font-family: inherit;
   font-weight: 500;
   line-height: 1.1;
@@ -1181,8 +1180,7 @@ h4,
 h5,
 .h5,
 h6,
-.h6,
-.activity-item .activity-title {
+.h6 {
   margin-top: 10px;
   margin-bottom: 10px;
 }
@@ -1217,8 +1215,7 @@ h4,
   font-size: 18px;
 }
 h5,
-.h5,
-.activity-item .activity-title {
+.h5 {
   font-size: 14px;
 }
 h6,
@@ -4388,8 +4385,7 @@ a.thumbnail.active {
   padding-left: 0;
   list-style: none;
 }
-.panel,
-.activity-item {
+.panel {
   margin-bottom: 20px;
   background-color: #ffffff;
   border: 1px solid transparent;
@@ -4397,8 +4393,7 @@ a.thumbnail.active {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
-.panel-body,
-.activity-item .activity-body {
+.panel-body {
   padding: 15px;
 }
 .panel-heading {
@@ -4621,8 +4616,7 @@ a.thumbnail.active {
 .panel-group .panel-footer + .panel-collapse .panel-body {
   border-bottom: 1px solid #dddddd;
 }
-.panel-default,
-.activity-item {
+.panel-default {
   border-color: #dddddd;
 }
 .panel-default > .panel-heading {
@@ -4911,9 +4905,7 @@ a.thumbnail.active {
 .navbar-collapse:before,
 .navbar-collapse:after,
 .detail-cover-container:before,
-.detail-cover-container:after,
-.activity-item .activity-body:before,
-.activity-item .activity-body:after {
+.detail-cover-container:after {
   content: " ";
   display: table;
 }
@@ -4931,8 +4923,7 @@ a.thumbnail.active {
 .navbar:after,
 .navbar-header:after,
 .navbar-collapse:after,
-.detail-cover-container:after,
-.activity-item .activity-body:after {
+.detail-cover-container:after {
   clear: both;
 }
 .center-block {
@@ -7760,14 +7751,12 @@ h6,
 .h1,
 .h2,
 .h3,
-.h4,
-.activity-item .activity-title {
+.h4 {
   font-family: "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 h5,
-h6,
-.activity-item .activity-title {
+h6 {
   font-weight: 400;
 }
 a,
@@ -10619,8 +10608,7 @@ icon-material-blue-grey {
 .label-material-blue-grey {
   background-color: #607d8b;
 }
-.panel,
-.activity-item {
+.panel {
   border-radius: 2px;
   border: 0;
   box-shadow: 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 1px 6px 0 rgba(0, 0, 0, 0.12);
@@ -11499,6 +11487,59 @@ hr.on-light {
   position: relative;
   left: 50px;
 }
+.horizontal-fadein.ng-hide-remove,
+.horizontal-fadein.ng-enter {
+  transition: .3s ease all;
+  position: relative;
+  top: -50px;
+  opacity: 0;
+}
+.horizontal-fadein.ng-hide-remove.ng-hide-remove-active,
+.horizontal-fadein.ng-enter.ng-enter-active {
+  opacity: 1;
+  position: relative;
+  top: 0px;
+}
+.horizontal-fadeout.ng-hide-add,
+.horizontal-fadeout.ng-leave {
+  transition: .3s ease all;
+  position: relative;
+  top: 0px;
+  opacity: 1;
+}
+/* The starting CSS styles for the enter animation */
+.horizontal-fadeout.ng-hide-add.ng-hide-add-active,
+.horizontal-fadeout.ng-leave.ng-leave-active {
+  opacity: 0;
+  position: relative;
+  top: 50px;
+}
+.horizontal-fade.ng-hide-remove,
+.horizontal-fade.ng-enter {
+  transition: .3s ease all;
+  position: relative;
+  top: -50px;
+  opacity: 0;
+}
+.horizontal-fade.ng-hide-remove.ng-hide-remove-active,
+.horizontal-fade.ng-enter.ng-enter-active {
+  opacity: 1;
+  position: relative;
+  top: 0px;
+}
+.horizontal-fade.ng-hide-add,
+.horizontal-fade.ng-leave {
+  transition: .3s ease all;
+  position: relative;
+  top: 0px;
+  opacity: 1;
+}
+.horizontal-fade.ng-hide-add.ng-hide-add-active,
+.horizontal-fade.ng-leave.ng-leave-active {
+  opacity: 0;
+  position: relative;
+  top: 50px;
+}
 .slide-down.ng-hide-remove,
 .slide-down.ng-enter {
   transition: 1s ease all;
@@ -11523,7 +11564,7 @@ hr.on-light {
 }
 .clear-href:hover,
 .dropdown__item:hover {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 .white-curtain {
   background: white;
@@ -11631,6 +11672,12 @@ hr.on-light {
 .font-size-inherit {
   font-size: inherit;
 }
+.standout-text {
+  font-family: 'Sinkin Sans';
+  font-weight: 200;
+  font-size: 1.3em;
+  color: #777777;
+}
 .img-cover-preview {
   width: 100%;
   height: 15em;
@@ -11642,8 +11689,7 @@ hr.on-light {
 .navbar__user__picture,
 .gallery-grid__photo,
 .activity-card__header,
-.activity-card__owner-picture,
-.activity-item {
+.activity-card__owner-picture {
   background-size: cover !important;
 }
 .img-position-center,
@@ -11651,8 +11697,7 @@ hr.on-light {
 .profile-photo-input__photo,
 .navbar__user__picture,
 .activity-card__header,
-.activity-card__owner-picture,
-.activity-item {
+.activity-card__owner-picture {
   background-position: center !important;
 }
 .img-carpet,
@@ -12431,12 +12476,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 5px 1.8em;
   display: inline-block;
   float: left;
+  text-align: center;
+}
+.--on-dash .navbar__logo-container {
+  width: 18.1em;
 }
 .navbar__logo {
   background: url('img/logo-trulii.png') no-repeat;
   height: 40px;
   width: 6em;
-  display: block;
+  display: inline-block;
   background-size: contain;
   margin-left: 0.5em;
 }
@@ -12620,7 +12669,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: rgba(0, 0, 0, 0.74);
 }
 .navbar-secondary + * {
-  margin-top: 80px;
+  margin-top: 60px;
 }
 .navbar-secondary [class^="mdi-"] {
   position: relative;
@@ -12643,6 +12692,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: red;
   padding: 20px 0;
   background-color: #393b3f;
+  width: 17em;
 }
 .sidebar a:hover {
   color: #ffd580;
@@ -12718,6 +12768,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar + * {
   padding-left: 0;
+  margin-left: 17em;
 }
 input,
 textarea,
@@ -12984,6 +13035,9 @@ tags-input input {
 }
 .btn {
   font-family: 'Montserrat', sans-serif;
+}
+.btn-lg {
+  text-transform: uppercase;
 }
 .btn-default {
   background-color: transparent;
@@ -14265,6 +14319,7 @@ button.toast-close-button {
   margin-bottom: 8px;
 }
 .activity-card {
+  width: 100%;
   max-width: 18em;
   display: inline-block;
   border-radius: 5px;
@@ -14291,6 +14346,14 @@ button.toast-close-button {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
+.activity-card__header__draft-cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 0;
+  left: 0;
+}
 .activity-card__header__btn-more {
   color: white;
   position: absolute;
@@ -14308,8 +14371,8 @@ button.toast-close-button {
 .activity-card__header__menu {
   position: relative;
   background: white;
-  width: 10em;
   float: right;
+  width: 10em;
   display: block;
   border-radius: 2.5px;
   padding-top: 1.5em;
@@ -14348,9 +14411,10 @@ button.toast-close-button {
   padding: 1em;
   display: block;
   cursor: pointer;
+  text-decoration: none !important;
 }
-.activity-card__body * {
-  text-decoration: none;
+.activity-card__body:hover .activity-card__body__title {
+  text-decoration: underline;
 }
 .activity-card__body__title {
   font-family: 'Sinkin Sans';
@@ -14362,6 +14426,7 @@ button.toast-close-button {
   padding-bottom: .4em;
   text-transform: capitalize;
   color: #333333;
+  width: 95%;
 }
 .activity-card__body__owner-name {
   height: 2em;
@@ -14444,145 +14509,6 @@ button.toast-close-button {
 .activity-grid.--left {
   text-align: left;
 }
-.activity-item {
-  height: 18em;
-  width: 100%;
-  position: relative;
-  box-shadow: none;
-}
-.activity-item .activity-img {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-}
-.activity-item .activity-header {
-  height: 50%;
-  min-height: 50%;
-  max-height: 50%;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-.activity-item .activity-header .activity-cover {
-  width: 100%;
-  vertical-align: top;
-}
-.activity-item .activity-header .activity-price {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: rgba(255, 213, 128, 0.9);
-  color: #555555;
-  padding: .1em 1em;
-  font-size: 1.25em;
-  font-weight: bold;
-}
-.activity-item .activity-header .activity-price:before {
-  content: "$";
-  color: #ffab00;
-  display: inline-block;
-}
-.activity-item .activity-header .draft {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: rgba(217, 83, 79, 0.9);
-  color: rgba(255, 255, 255, 0.84);
-  padding: .1em 1em;
-  font-size: 1.25em;
-}
-.activity-item .activity-body {
-  z-index: 1;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding-top: 0;
-  background: rgba(0, 0, 0, 0.75);
-  color: rgba(255, 255, 255, 0.84);
-}
-.activity-item .activity-body.dimmed {
-  background: rgba(0, 0, 0, 0.3);
-}
-.activity-item .activity-body:hover {
-  background: #f216b3;
-}
-.activity-item .activity-body:hover .action {
-  color: rgba(255, 255, 255, 0.84);
-}
-.activity-item .activity-body .organizer-profile-pic {
-  border-radius: 50%;
-  position: absolute;
-  top: -25px;
-  display: block;
-  width: 6em;
-  height: 6em;
-}
-.activity-item .activity-body .organizer-profile-pic.dimmed {
-  background: rgba(0, 0, 0, 0.3);
-}
-.activity-item .activity-body .activity-date {
-  float: right;
-  font-size: 12px;
-  padding: 0 8px;
-}
-.activity-item .activity-body .rating-container {
-  float: left;
-}
-.activity-item .activity-body .rating-container .rating-star {
-  font-size: 18px;
-  color: #ffd580;
-}
-.activity-item .activity-body .rating-container .rating-star-empty {
-  font-size: 18px;
-  color: silver;
-}
-.activity-item .action-container {
-  margin-top: 8px;
-}
-.activity-item .action-container .action {
-  padding: 8px;
-  text-transform: uppercase;
-  text-decoration: none;
-  cursor: pointer;
-  color: #ffbf3e;
-}
-.activity-item .action-container .action i {
-  font-size: 18px;
-}
-.activity-item .activity-title {
-  margin-top: 10px;
-  margin-bottom: 5px;
-  font-weight: 600;
-}
-.activity-item .activity-title a {
-  color: rgba(255, 255, 255, 0.84);
-  text-decoration: none;
-}
-.activity-item .organizer-name {
-  margin-top: 0;
-  margin-bottom: 20px;
-}
-.activity-item .organizer-name a {
-  color: rgba(255, 255, 255, 0.84);
-}
-.activity-item.dimmed {
-  position: relative;
-}
-.activity-item.dimmed:after {
-  content: " ";
-  z-index: 0;
-  display: block;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: rgba(238, 238, 238, 0.6);
-}
 .footer--dashboard {
   font-family: 'Montserrat', sans-serif;
   width: 100%;
@@ -14608,6 +14534,12 @@ ul {
 body {
   overflow-x: hidden;
   font-family: 'Roboto', sans-serif;
+}
+p {
+  font-family: 'PT Serif', serif;
+  color: #777777;
+  font-size: 1.2em;
+  margin-bottom: 1.5em;
 }
 .tab-content {
   padding-bottom: 5em;

@@ -61,9 +61,8 @@
                     + " republicarlas.",
                 COPY_DRAFTS: "Revisa los registros que no has completado o publicado aún en Trulii ¿Qué esperas "
                     + "para publicarlos?",
-                LABEL_EMPTY_PUBLISHED: "No tienes ninguna actividad publicada",
-                COPY_EMPTY_PUBLISHED: "Parece ser el momento perfecto para pulir y publicar una actividad que tengas como borrador, "
-                    + " republicar una actividad pasada o crear una desde cero",
+                
+                COPY_EMPTY_PUBLISHED: "Por ahora no tiene ninguna actividad publicada. ¿Se anima a publicar una actividad en este momento?",
                 LABEL_EMPTY_PREVIOUS: "No tienes actividades pasadas",
                 COPY_EMPTY_PREVIOUS: "Ninguna de tus actividades publicadas se han vencido hasta ahora",
                 LABEL_EMPTY_DRAFTS: "Actualmente no tienes borradores de actividades",
@@ -90,8 +89,10 @@
                 return !!activity.last_date && activity_date < today && activity.published
             });
             vm.draft_activities = _.filter(activities, 'published', false);
-            vm.published_activities = _.difference(_.filter(activities, {'enroll_open': true, 'published': true}),
-                vm.previous_activities);
+            //vm.published_activities = _.difference(_.filter(activities, {'enroll_open': true, 'published': true}),
+            //    vm.previous_activities);
+
+            vm.published_activities = activities;
         }
 
     }

@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture'];
 
-    function truliiNavbar($rootScope, $timeout, UIComponentsTemplatesPath, Authentication, defaultPicture) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "navbar.html",

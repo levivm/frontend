@@ -6,6 +6,7 @@
 @logo-width: 120px;
 @search-box-element-height: @navbar-inner-height - @navbar-padding-vertical;
 
+@navbar-secondary-height: 40px;
 
 
 .navbar {    
@@ -38,6 +39,11 @@
         padding: @navbar-padding-vertical 1.8em;
         display: inline-block;        
         float: left;
+        text-align: center;
+
+        .--on-dash &{
+            width: @sidebar-width + 1.1;
+        }
     }
 
     &__logo {
@@ -45,7 +51,7 @@
         height: @navbar-inner-height;
         //width: @logo-width;
         width: 6em;
-        display: block;
+        display: inline-block;
         background-size: contain;        
         margin-left: 0.5em;
 
@@ -210,7 +216,7 @@
 
 .navbar-secondary {
     background: @gray-lighter;
-    height: 40px;
+    height:@navbar-secondary-height; 
     width: 100%;
     text-align: left;
     position: fixed;
@@ -247,7 +253,7 @@
     }
 
     & + * { 
-        margin-top: (40px*2);
+        margin-top: @navbar-secondary-height*1.5;
     }
 
     [class^="mdi-"] {

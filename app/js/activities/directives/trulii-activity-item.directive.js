@@ -44,9 +44,9 @@
 
                 function getStarStyle(star){
                     if(star < 4){
-                        return "activity-card__rating__star";
+                        return "mdi-action-grade activity-card__rating__star";
                     } else {
-                        return "activity-card__rating__star --empty";
+                        return "mdi-action-grade activity-card__rating__star --empty";
                     }
                 }
 
