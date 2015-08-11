@@ -15,9 +15,9 @@
         .module('trulii.organizers.services')
         .factory('OrganizersManager', OrganizersManager);
 
-    OrganizersManager.$inject = ['$http', '$q', 'OrganizerServerApi', 'Organizer'];
+    OrganizersManager.$inject = ['$http', '$q', 'OrganizerServerApi', 'Organizer', 'Authentication'];
 
-    function OrganizersManager($http, $q, OrganizerServerApi, Organizer) {
+    function OrganizersManager($http, $q, OrganizerServerApi, Organizer, Authentication) {
 
         var api = OrganizerServerApi;
         var _pool = {};
@@ -35,10 +35,43 @@
              * @return {promise} Organizer Instance Promise
              * @methodOf trulii.organizers.services.OrganizersManager
              */
-            getOrganizer: getOrganizer
+            getOrganizer: getOrganizer,
+
+            /**
+             * @ngdoc function
+             * @name trulii.organizers.services.OrganizersManager#getCurrentOrganizer
+             * @description Gets the current Organizer logged in in the app.
+             * Returns ``null`` if there is no user logged in and
+             * ``false`` if the user is not a organizer
+             * @param {number} idStudent Student Id
+             * @return {promise} Student Instance Promise
+             * @methodOf trulii.organizers.services.OrganizersManager
+             */
+            getCurrentOrganizer: getCurrentOrganizer
         };
 
         return service;
+
+        function getCurrentOrganizer(){
+            var force_fetch = true;
+            return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
+
+            function successAuthAccount(authenticatedUser){
+                return Authentication.isOrganizer().then(function(isOrganizer){
+                    if(authenticatedUser && isOrganizer){
+                        return getOrganizer(authenticatedUser.id, force_fetch);
+                    } else {
+                        return $q.reject(false);
+                    }
+                });
+            }
+
+            function errorAuthAccount(){
+                console.log("getCurrentOrganizer. Couldn't resolve authenticated user");
+                return $q.reject(null);
+            }
+
+        }
 
         function getOrganizer(idOrganizer, force_fetch) {
             var deferred = $q.defer();

@@ -1,3 +1,10 @@
+/**
+ * @ngdoc overview
+ * @name trulii.routes
+ * @description
+ * App Routes Module
+ */
+
 (function () {
     'use strict';
 
@@ -6,15 +13,20 @@
         .config(config)
         .run(run);
 
-    config.$inject = ['$urlRouterProvider','$stateProvider','$urlMatcherFactoryProvider'];
-
+    //noinspection JSValidateJSDoc
     /**
-     * @name config
-     * @desc Define valid application routes
+     * @ngdoc object
+     * @name trulii.routes.config
+     * @description Routes Module Config function
+     * @requires ui.router.state.$stateProvider
+     * @requires ui.router.router.$urlRouterProvider
+     * @requires ui.router.util.$urlMatcherFactoryProvider
      */
-    function config($urlRouterProvider,$stateProvider,$urlMatcherFactoryProvider) {
+    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider'];
+    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider) {
 
         $urlMatcherFactoryProvider.strictMode(false);
+        $urlRouterProvider.otherwise('/404');
 
         $stateProvider
             .state('search', {
@@ -121,7 +133,7 @@
             .state('general-message', {
                 url:'/messages/:module_name/:template_name/?redirect_state',
                 controller: 'SimpleModalMsgCtrl',
-                controllerAs: 'vm',
+                controllerAs: 'vm'
             })
             .state('student-dashboard', {
                 abstract:true,
@@ -209,7 +221,7 @@
                 }
             })
             .state('dash', {
-                templateUrl: 'partials/browsing.html'
+                templateUrl: 'partials/dashboard.html'
             })
             .state('dash.activities-new', {
                 abstract: true,
@@ -249,10 +261,6 @@
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
-                resolve: {
-                    presaveInfo: getPresaveActivityInfo,
-                    activity: getActivity
-                },
                 templateUrl: 'partials/activities/dashboard_general.html'
             })
             .state('dash.activities-edit.detail', {
@@ -274,7 +282,7 @@
                 }
             })
             .state('dash.activities-edit.calendars.detail', {
-                url:'/:id',
+                url:'/:calendar_id',
                 controller: 'ActivityCalendarController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_calendar_detail.html',
@@ -317,7 +325,7 @@
                 resolve: {
                     activity: getActivity
                 },
-                templateUrl: 'partials/activities/manage.html',
+                templateUrl: 'partials/activities/manage.html'
             })
             .state('dash.activities-manage.orders', {
                 url:'orders',
@@ -380,7 +388,7 @@
                 controller: 'NotFoundController as notFound',
                 templateUrl: 'partials/landing/not_found.html',
                 resolve:{
-                    cities: getAvailableCities,
+                    cities: getAvailableCities
                 },
                 params: {
                     message: '',
@@ -388,117 +396,167 @@
                     fromParams: null
                 }
             });
-
-        $urlRouterProvider.otherwise('/404');
     }
 
-    /****** RESOLVER FUNCTIONS USERS *******/
+    //--------- Resolver Functions Implementation ---------//
 
+    /**
+     * @ngdoc method
+     * @name .#tokenSignupValidation
+     * @description Token Sign Up Validation function. Checks if the presented token is not invalid or stale
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.authentication.services.Authentication
+     * @methodOf trulii.routes.config
+     */
     tokenSignupValidation.$inject = ['$stateParams','Authentication'];
-
     function tokenSignupValidation($stateParams,Authentication){
-        var token = $stateParams.token;
-        if (!(token))
-            return {};
-        return Authentication.requestSignupToken($stateParams.token);
+        return $stateParams.token? Authentication.requestSignupToken($stateParams.token) : {};
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getAuthenticatedUser
+     * @description Retrieves the current authenticated user from
+     * {@link trulii.authentication.services.Authentication Authentication} Service
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.authentication.services.Authentication
+     * @methodOf trulii.routes.config
+     */
     getAuthenticatedUser.$inject = ['Authentication'];
-
     function getAuthenticatedUser(Authentication){
         return Authentication.getAuthenticatedAccount();
     }
 
-    getCurrentOrganizer.$inject = ['$timeout','$q','$state','Authentication', 'OrganizersManager'];
+    /**
+     * @ngdoc method
+     * @name .#getCurrentOrganizer
+     * @description Retrieves the current logged Organizer from
+     * {@link trulii.organizers.services.StudentsManager StudentsManager} Service otherwise returns ``null``
+     * @requires ng.$timeout
+     * @requires ui.router.state.$state
+     * @requires ng.$q
+     * @requires trulii.organizers.services.OrganizersManager
+     * @methodOf trulii.routes.config
+     */
+    getCurrentOrganizer.$inject = ['$timeout', '$state', '$q', 'OrganizersManager'];
+    function getCurrentOrganizer($timeout, $state, $q, OrganizersManager){
 
-    function getCurrentOrganizer($timeout,$q,$state,Authentication, OrganizersManager){
+        return OrganizersManager.getCurrentOrganizer().then(success, error);
 
-        var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var force_fetch = true;
-        
-        return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
-
-        function successAuthAccount(authenticatedUser){
-
-            return Authentication.isOrganizer().then(function(isOrganizer){
-                console.log("isOrganizer",isOrganizer);
-                if(authenticatedUser && isOrganizer){
-                    return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
-                } else {
-                    $timeout(function() {
-                        // $state.go('home');
-                    });
-                    return $q.reject()
-                }
-            });
+        function success(organizer){
+            if(organizer){
+                return organizer;
+            } else {
+                //$timeout(function() { $state.go('home'); });
+                return $q.reject();
+            }
         }
-        function errorAuthAccount(){
-            console.log("getCurrentOrganizer. Couldn't resolve authenticatedUser");
+
+        function error(response){
+            if(response === null){
+                console.log("getCurrentOrganizer. There is no Authenticated User");
+            } else {
+                console.log("getCurrentOrganizer. The Authenticated User is not a Organizer");
+            }
+            return $q.reject();
         }
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getOrganizer
+     * @description Retrieves an Organizer from
+     * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service with
+     * the provided ``organizer_id`` from $staeParams
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.organizers.services.OrganizersManager
+     * @methodOf trulii.routes.config
+     */
     getOrganizer.$inject = ['$stateParams', 'OrganizersManager'];
-
     function getOrganizer($stateParams, OrganizersManager) {
         return OrganizersManager.getOrganizer($stateParams.organizer_id);
     }
 
-    getCurrentStudent.$inject = ['$timeout', '$state', 'Authentication', 'StudentsManager'];
+    /**
+     * @ngdoc method
+     * @name .#getCurrentStudent
+     * @description Retrieves the current logged Student from
+     * {@link trulii.students.services.StudentsManager StudentsManager} Service otherwise returns ``null``
+     * @requires ng.$timeout
+     * @requires ui.router.state.$state
+     * @requires ng.$q
+     * @requires trulii.students.services.StudentsManager
+     * @methodOf trulii.routes.config
+     */
+    getCurrentStudent.$inject = ['$timeout', '$state', '$q', 'StudentsManager'];
+    function getCurrentStudent($timeout, $state, $q, StudentsManager){
 
-    function getCurrentStudent($timeout, $state, Authentication, StudentsManager){
+        return StudentsManager.getCurrentStudent().then(success, error);
 
-        var force_fetch = true;
-
-        return Authentication.getAuthenticatedAccount().then(successAuthAccount, errorAuthAccount);
-
-        function successAuthAccount(authenticatedUser){
-            return Authentication.isStudent().then(function(isStudent){
-                if(authenticatedUser && isStudent){
-                    return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
-                } else {
-                    $timeout(function() {
-                        $state.go('home');
-                    });
-                    return $q.reject()
-                }
-            });
+        function success(student){
+            if(student){
+                return student;
+            } else {
+                $timeout(function() { $state.go('home'); });
+                return $q.reject();
+            }
         }
-        function errorAuthAccount(){
-            console.log("getCurrentStudent. Couldn't resolve authenticatedUser");
+
+        function error(response){
+            if(response === null){
+                console.error("getCurrentStudent. There is no Authenticated User");
+            } else {
+                console.warn("getCurrentStudent. The Authenticated User is not a Student");
+            }
+            return $q.reject();
         }
 
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getStudent
+     * @description Retrieves an Student from
+     * {@link trulii.organizers.services.StudentsManager StudentsManager} Service with the provided ``student_id``
+     * from $stateParams
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.students.services.StudentsManager
+     * @methodOf trulii.routes.config
+     */
     getStudent.$inject = ['$stateParams', 'StudentsManager'];
-
     function getStudent($stateParams, StudentsManager) {
-        console.log('$stateParams.student_id:', $stateParams.student_id);
         return StudentsManager.getStudent($stateParams.student_id);
     }
 
-
+    /**
+     * @ngdoc method
+     * @name .#getOrganizerActivities
+     * @description Retrieves an Organizer's Activities from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID
+     * @requires trulii.activities.services.ActivitiesManager
+     * @requires organizer
+     * @methodOf trulii.routes.config
+     */
     getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
-
     function getOrganizerActivities(ActivitiesManager, organizer){
         return ActivitiesManager.loadOrganizerActivities(organizer.id);
     }
 
-    /****** RESOLVER FUNCTIONS ACTIVITIES *******/
-
-    getAvailableCities.$inject = ['LocationManager'];
-
-    function getAvailableCities(LocationManager){
-        return LocationManager.getAvailableCities();
-    }
-
+    /**
+     * @ngdoc method
+     * @name .#getActivities
+     * @description Retrieves all Activities from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
     getActivities.$inject = ['ActivitiesManager'];
-
     function getActivities(ActivitiesManager){
         return ActivitiesManager.getActivities();
     }
 
+    //TODO refactor
     getStudentActivities.$inject = ['ActivitiesManager', 'Authentication', 'StudentsManager'];
-
     function getStudentActivities(ActivitiesManager, Authentication, StudentsManager){
         Authentication.isStudent()
             .then(function(isStudent){
@@ -509,27 +567,76 @@
         function success(currentUser){
             return ActivitiesManager.getStudentActivities(currentUser.id);
         }
+
         function error(){
             $q.reject();
         }
     }
 
-    getCalendars.$inject = ['CalendarsManager','activity'];
+    /**
+     * @ngdoc method
+     * @name .#getActivities
+     * @description All Activities from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
+    getActivity.$inject = ['$stateParams','ActivitiesManager'];
+    function getActivity($stateParams,ActivitiesManager){
+        return ActivitiesManager.getActivity($stateParams.activity_id);
+    }
 
+    /**
+     * @ngdoc method
+     * @name .#getPresaveActivityInfo
+     * @description Loads general activity info from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * like categories, subcategories, levels, etc
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
+    getPresaveActivityInfo.$inject = ['ActivitiesManager'];
+    function getPresaveActivityInfo(ActivitiesManager){
+        return ActivitiesManager.loadGeneralInfo();
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#getCalendars
+     * @description Gets all calendars for a given activity (using its ID) from
+     * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service
+     * @requires trulii.activities.services.CalendarsManager
+     * @requires activity
+     * @methodOf trulii.routes.config
+     */
+    getCalendars.$inject = ['CalendarsManager','activity'];
     function getCalendars(CalendarsManager, activity){
-        console.log('activity:', activity);
         return CalendarsManager.loadCalendars(activity.id);
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getCalendar
+     * @description Gets a Calendar by its ID from
+     * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.activities.services.CalendarsManager
+     * @methodOf trulii.routes.config
+     */
     getCalendar.$inject = ['$stateParams','CalendarsManager'];
-
     function getCalendar($stateParams, CalendarsManager){
-        var calendar_id = $stateParams.id;
-        return CalendarsManager.getCalendar(calendar_id);
+        return CalendarsManager.getCalendar($stateParams.calendar_id);
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getActivities
+     * @description All Activities from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
     fetchCalendar.$inject = ['$stateParams', 'CalendarsManager'];
-
     function fetchCalendar($stateParams, CalendarsManager) {
         var activityId = $stateParams.activity_id;
         var calendarId = $stateParams.calendar_id;
@@ -537,54 +644,68 @@
         return CalendarsManager.fetchCalendar(activityId, calendarId);
     }
 
-    getActivity.$inject = ['$stateParams','ActivitiesManager'];
-
-    function getActivity($stateParams,ActivitiesManager){
-        return ActivitiesManager.getActivity($stateParams.activity_id);
+    /**
+     * @ngdoc method
+     * @name .#getAvailableCities
+     * @description Retrieves all available cities from
+     * {@link trulii.locations.services.LocationManager LocationManager} Service
+     * @requires trulii.locations.services.LocationManager
+     * @methodOf trulii.routes.config
+     */
+    getAvailableCities.$inject = ['LocationManager'];
+    function getAvailableCities(LocationManager){
+        return LocationManager.getAvailableCities();
     }
 
-    getPresaveActivityInfo.$inject = ['ActivitiesManager'];
+    //--------- Module Run Method ---------//
 
-    function getPresaveActivityInfo(ActivitiesManager){
-        return ActivitiesManager.loadGeneralInfo();
-    }
-
-    /****** RUN METHOD*******/
-
-    run.$inject = ['$rootScope','$state','$urlMatcherFactory','Authentication'];
-
-    function run($rootScope,$state,$urlMatcherFactory,Authentication){
+    /**
+     * @ngdoc function
+     * @name trulii.routes.run
+     * @description Routes Module Run function
+     * @requires ng.$rootScope
+     * @requires ui.router.state.$state
+     * @requires ui.router.util.$urlMatcherFactory
+     * @requires trulii.authentication.services.Authentication
+     */
+    run.$inject = ['$rootScope', '$state', '$urlMatcherFactory', 'Authentication'];
+    function run($rootScope, $state, $urlMatcherFactory, Authentication){
 
         $urlMatcherFactory.strictMode(false);
 
         $rootScope.$on('$stateChangeStart', onStateChange);
         $rootScope.$on('$stateChangeError', onStateChangeError);
 
-        ///////////
+        //--------- Functions Implementation ---------//
 
+        //noinspection JSUnusedLocalSymbols
         function onStateChange(e, toState, toParams, fromState){
             $state.previous = fromState;
-           
             if (toState.data && toState.data.requiredAuthentication) {
                 var _requiredAuthentication = toState.data.requiredAuthentication;
-
                 if (_requiredAuthentication && !Authentication.isAuthenticated()) {
+                    console.group('stateChange Rejected. Authentication Needed');
+                    console.warn('fromState: ', fromState.name);
+                    console.warn('toState: ', toState.name);
+                    console.groupEnd();
                     e.preventDefault();
                     $state.go('home', {'notify': false});
                 }
             }
         }
 
+        //noinspection JSUnusedLocalSymbols
         function onStateChangeError(event, toState, toParams, fromState, fromParams, error){
             $state.previous = fromState;
             console.group('stateChangeError');
-            console.log('fromState:', fromState);
-            console.log('event:', event);
-            console.log('error:', error);
+            console.error('fromState:', fromState);
+            console.error('event:', event);
+            console.error('error:', error);
             console.groupEnd();
 
-            console.log('Resolve Error. Redirecting to "not-found"');
+            console.info('Resolve Error. Redirecting to "not-found"');
             event.preventDefault();
+
             $state.go('not-found', {
                 message: 'State Not Found',
                 fromState: fromState,

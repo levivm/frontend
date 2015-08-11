@@ -33,11 +33,11 @@
         _activate();
 
         function createCalendar() {
-            $state.go(DETAIL_STATE, {'id' : null});
+            $state.go(DETAIL_STATE, {'calendar_id' : null});
         }
 
         function loadCalendar(calendar) {
-            $state.go(DETAIL_STATE, {'id' : calendar.id});
+            $state.go(DETAIL_STATE, {'calendar_id' : calendar.id});
         }
 
         function setCalendar(calendar) {

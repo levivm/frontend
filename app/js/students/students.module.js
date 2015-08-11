@@ -1,18 +1,23 @@
+/**
+ * @ngdoc overview
+ * @name trulii.students
+ * @description
+ * Students Module
+ */
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('trulii.students', [
-      'trulii.students.controllers',
-      'trulii.students.services',
-    ]);
+    angular
+        .module('trulii.students', [
+            'trulii.students.controllers',
+            'trulii.students.services'
+        ]);
 
 
+    angular
+        .module('trulii.students.controllers', ['angularFileUpload']);
 
-  angular
-    .module('trulii.students.controllers',['angularFileUpload']);
-
-  angular
-    .module('trulii.students.services',[]);
+    angular
+        .module('trulii.students.services', []);
 
 })();
