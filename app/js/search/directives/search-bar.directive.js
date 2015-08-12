@@ -1,33 +1,34 @@
 /**
  * @ngdoc directive
- * @name trulii.ui-components.directives.truliiSearchBar
+ * @name trulii.search.directives.truliiSearchBar
  * @description truliiNavbar
  * @requires trulii.locations.services.LocationManager
- * @requires trulii.activities.services.ActivitiesManager
+ * @requires trulii.search.services.SearchManager
  */
 
 (function () {
     'use strict';
 
-    angular.module('trulii.ui-components.directives')
+    angular.module('trulii.search.directives')
         .directive('truliiSearchBar', truliiSearchBar);
 
     truliiSearchBar.$inject = ['$rootScope', '$state', 'UIComponentsTemplatesPath',
-        'ActivitiesManager', 'LocationManager'];
+        'SearchManager', 'LocationManager'];
 
     function truliiSearchBar($rootScope, $state, UIComponentsTemplatesPath,
-                          ActivitiesManager, LocationManager) {
+                          SearchManager, LocationManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "search-bar.html",
             link: function (scope, element, attrs) {
 
                 var unsuscribeCityModified = null;
+                var KEY_SEARCH_Q = SearchManager.KEY_QUERY;
+                var KEY_SEARCH_CITY = SearchManager.KEY_CITY;
 
                 scope.q = null;
                 scope.search_city = null;
                 scope.cities = [];
-                scope.isSearchVisible = true;
                 scope.updateSearchCity = updateSearchCity;
                 scope.search = search;
 
@@ -37,11 +38,14 @@
 
                 function search() {
                     console.log('navbar. search.', 'q:', scope.q, 'cityId:', scope.search_city.id);
-                    ActivitiesManager.searchActivities(scope.q, scope.search_city.id).then(success, error);
+                    var data = {};
+                    data[KEY_SEARCH_Q] = scope.q;
+                    data[KEY_SEARCH_CITY] = scope.search_city.id;
+                    SearchManager.searchActivities(data).then(success, error);
 
-                    function success(response){
-                        console.log('search response:', response.data);
-                        $state.go('home', {'activities': response.data});
+                    function success(activities){
+                        console.log('search activities:', activities);
+                        $state.go('search', {'activities': activities});
                     }
 
                     function error(response){

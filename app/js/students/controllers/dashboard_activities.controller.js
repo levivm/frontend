@@ -46,7 +46,7 @@
                 COPY_CURRENT: "Revisa las actividades que estás cursando actualmente o que inician próximamente.",
                 COPY_HISTORY: "Revisa las actividades en las que te has inscrito anteriormente.",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                LABEL_EMPTY_ORDERS: "Hasta ahora no se ha inscrito en algun actividad",
+                LABEL_EMPTY_ORDERS: "Hasta ahora no se ha inscrito en alguna actividad",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubra una nueva pasión, aprenda un nuevo pasatiempo o mejore su currículo",
                 TAB_CURRENT: "Actuales",
                 TAB_HISTORY: "Anteriores"

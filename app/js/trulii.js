@@ -20,6 +20,7 @@
 	  'trulii.activities',
 	  'trulii.locations',
 	  'trulii.landing',
+	  'trulii.search',
     'trulii.utils'
 	]);
 
