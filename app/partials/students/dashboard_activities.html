@@ -1,57 +1,66 @@
-<div class="container">
-    <div class="card z-shadow-1" style="min-height: 30em">
-        <div class="row-fluid clearfix">
-            <div class="col-md-3 card__lateral-menu">
-                <div class="card__lateral-menu__title">
-                    <i class="mdi-social-school"></i> <span
-                        ng-bind="::activities.strings.SECTION_ACTIVITIES"></span>
-                </div>
-                <ul>
-                    <li class="card__lateral-menu__item active" data-toggle="tab" data-target="#current-tab">
-                        <a><i class="mdi-action-today"></i>  <span
-                                ng-bind="::activities.strings.TAB_CURRENT"></span></a>
-                    </li>
-                    <li class="card__lateral-menu__item" data-toggle="tab" data-target="#history-tab">
-                        <a><i class="mdi-action-history"></i> <span
-                                ng-bind="::activities.strings.TAB_HISTORY"></span></a>
-                    </li>
-                </ul>
+
+<div class="navbar-secondary">
+
+    <ul>
+        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#current-tab">
+            <span ng-bind="::activities.strings.TAB_CURRENT"></span>
+        </li>
+
+        <li class="navbar-secondary__item" data-toggle="tab" data-toggle="tab" data-target="#history-tab">
+            <span ng-bind="::activities.strings.TAB_HISTORY"></span>
+        </li>
+    </ul>    
+    
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-11 col-md-offset-1 tab-content">
+        <div class="tab-pane text-style active fade  in" id="current-tab">
+            <!--If there are activities-->
+            <div class="row activity-grid">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.activities track by activity.id"
+                      data-activity="activity" data-options="{{activities.options}}">
+                </trulii-activity-item>
             </div>
-            <div class="col-md-9 col-md-offset-3">
-                <div class="card-body tab-content">
-                    <div class="tab-pane text-style active fade  in" id="current-tab">
-                        <!--If there are activities-->
-                        <div class="row activity-grid">
-                            <trulii-activity-item class="col-md-6 col-xs-12"
-                                  ng-repeat="activity in activities.activities track by activity.id"
-                                  data-activity="activity" data-options="{{activities.options}}"></trulii-activity-item>
-                        </div>
-                        <!--If there are no activities-->
-                        <div ng-if="activities.activities.length <= 0" class="row">
-                            <div class="col-md-12">
-                                <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>
-                                <p ng-bind="::activities.strings.COPY_EMPTY_ORDERS"></p>
-                            </div>
-                        </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.activities.length <= 0" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>                    
+
+                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_ORDERS">
+                                
                     </div>
-                    <div class="tab-pane fade" id="history-tab">
-                        <!--If there are activities-->
-                        <div class="row activity-grid">
-                            <trulii-activity-item class="col-md-6 col-xs-12"
-                                  ng-repeat="activity in activities.activities track by activity.id"
-                                  data-activity="activity" data-options="{{activities.options}}"></trulii-activity-item>
-                        </div>
-                        <!--If there are no activities-->
-                        <div ng-if="activities.activities.length <= 0" class="row">
-                            <div class="col-md-12">
-                                <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>
-                                <p ng-bind="::activities.strings.COPY_EMPTY_ORDERS"></p>
-                            </div>
-                        </div>
-                    </div>
+                    <a ui-sref="dash.activities-new.general" class="btn btn-lg btn-success">
+                        Buscar Actividad
+                    </a>                
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="history-tab">
+            <!--If there are activities-->
+            <div class="row activity-grid">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.activities track by activity.id"
+                      data-activity="activity" data-options="{{activities.options}}">
+                </trulii-activity-item>
+            </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.activities.length <= 0" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>                    
+
+                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_ORDERS">
+                                
+                    </div>
+                    <a class="btn btn-lg btn-success">
+                        Buscar Actividad
+                    </a>                
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
-

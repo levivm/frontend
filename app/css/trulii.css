@@ -13297,8 +13297,14 @@ td {
   border: 1px solid #eeeeee;
 }
 .order__info {
+  position: relative;
   background-color: #eeeeee;
+  display: inline-block;
   padding: 1em;
+  width: 25%;
+  min-height: 20em;
+  float: left;
+  z-index: 2;
 }
 .order__info__label {
   margin-top: 2em;
@@ -13313,10 +13319,21 @@ td {
 }
 .order__assistants {
   padding: 1em;
+  display: inline-block;
   background-color: white;
 }
 .order:hover {
   border-color: #38dbc8;
+}
+.order:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  background-color: #eeeeee;
+  width: 25%;
+  height: 100%;
+  z-index: 1;
 }
 .ranking-star {
   color: #ffd580;
@@ -14585,9 +14602,6 @@ button.toast-close-button {
   line-height: 1em;
 }
 .activity-grid {
-  text-align: center;
-}
-.activity-grid.--left {
   text-align: left;
 }
 .footer--dashboard {
@@ -14632,6 +14646,10 @@ p {
 }
 .tab-content {
   padding-bottom: 5em;
+}
+.pagination-sm {
+  font-family: 'Sinkin Sans';
+  font-size: 1.1em;
 }
 
 /*# sourceMappingURL=trulii.css.map */

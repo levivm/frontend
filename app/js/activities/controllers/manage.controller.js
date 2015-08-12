@@ -176,7 +176,7 @@
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
                 COPY_SEARCH: "Buscar orden por número, nombre o correo electrónico",
-                LABEL_ORDER_NUMBER: "Orden#",
+                LABEL_ORDER_NUMBER: "Orden N°",
                 LABEL_CALENDAR: "Calendario",
                 LABEL_SEARCH: "Buscar Ordenes",
                 LABEL_EMPTY_ORDERS: "No hay órdenes de compra",
