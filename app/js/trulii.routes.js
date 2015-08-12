@@ -209,7 +209,7 @@
                 }
             })
             .state('dash', {
-                templateUrl: 'partials/browsing.html'
+                templateUrl: 'partials/dashboard.html'
             })
             .state('dash.activities-new', {
                 abstract: true,

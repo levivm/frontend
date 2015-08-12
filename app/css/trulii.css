@@ -11401,7 +11401,7 @@ hr.on-light {
   transform: none;
 }
 .noUi-connect {
-  background: #f32ebb;
+  background: #732ebb;
   box-shadow: inset 0 0 3px rgba(51, 51, 51, 0.45);
   -webkit-transition: background 450ms;
   transition: background 450ms;
@@ -12922,7 +12922,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-color: #eeeeee;
 }
 .sidebar-category-container .sidebar-category .header.active {
-  background-color: #f216b3;
+  background-color: #6629a7;
   color: #ffffff;
 }
 .sidebar-category-container .sidebar-category .header__name {
