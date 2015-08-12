@@ -18,15 +18,15 @@
 </div>
 
 
-<div class="container-fluid">
+<div class="row">
 
-    <div class="col-md-11 col-md-offset-1 tab-content">
+    <div class="col-md-12 col-md-offset-1 tab-content">
         <div class="tab-pane active fade in" id="published-tab">
             
             <div ng-if="activities.published_activities.length > 0">
                 <p ng-bind="activities.strings.COPY_PUBLISHED"></p>
 
-                <div class="row activity-grid --left">
+                <div class="row activity-grid">
                     <trulii-activity-item 
                           ng-repeat="activity in activities.published_activities track by activity.id"
                           data-activity="activity"
@@ -39,9 +39,9 @@
             <div class="row" ng-if="activities.published_activities.length <= 0">
         
                 <div class="col-md-8 col-md-offset-2 text-center">
-                    <div class="separate-below separate-above standout-text">
-                    <span ng-bind="::activities.strings.COPY_EMPTY_PUBLISHED"></span>
-                </div>
+                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_PUBLISHED">
+                        
+                    </div>
 
                 <a ui-sref="dash.activities-new.general" class="btn btn-lg btn-success">
                     Crear Actividad

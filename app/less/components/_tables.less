@@ -21,8 +21,14 @@ th, td{
 	border: 1px solid @gray-lighter;
 
 	&__info{
+		position: relative;
 		background-color: @gray-lighter;
+		display: inline-block;
 		padding: 1em;
+		width: 25%;
+		min-height: 20em;		
+		float: left;
+		z-index: 2;
 
 		&__label{
 			margin-top: 2em;
@@ -40,12 +46,24 @@ th, td{
 
 	&__assistants{
 		padding: 1em;
-		background-color: white
+		display: inline-block;
+		background-color: white;
 
 	}
 
 	&:hover{
 		border-color: @success;
+	}
+
+	&:before{
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		background-color: @gray-lighter;
+		width: 25%;
+		height: 100%;
+		z-index: 1;
 	}
 
 }

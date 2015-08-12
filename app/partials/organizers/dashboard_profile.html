@@ -18,7 +18,7 @@
     
 </div>
 
-<div class="container-fluid">
+<div class="row">
     
     <div class="col-md-8 col-md-offset-1 tab-content">
 
@@ -34,7 +34,8 @@
                                 <img class="profile-photo-input__photo"
                                      ng-src="{{profile.organizer.photo}}" alt="{{profile.organizer.name}}"
                                      ng-hide="profile.photo_loading"/>
-                                <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
+                                     
+                                    <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
 
                                 <div class="separate-left" ng-model="profile.organizer.photo_url" ng-file-drop="" ng-file-select=""
                                      ng-multiple="false"
@@ -59,8 +60,7 @@
                             <div class="form-group" trulii-input-errors-control="photo">
                                 <input type="hidden" name="photo"/>
                             </div>
-
-                            <span ng-show="profile.photo_loading">Cargando foto</span>
+                            
                         </div>
                     </form>
 
@@ -180,22 +180,3 @@
         </div>
     </div>
 </div>
-
-<!-- Old Structurre -->
-
-<!-- <div class="container">
-    <div>
-        <div class="col-md-3">                    
-            <span ng-bind="::profile.strings.SECTION_PROFILE"></span>                     
-        </div>
-
-        <div class="col-md-9 col-md-offset-3 card-body">
-            <div >
-                                
-                <div >
-
-                </div>                
-            </div>
-        </div>
-    
-</div> -->

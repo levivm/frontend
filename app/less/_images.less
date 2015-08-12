@@ -108,8 +108,10 @@
     }
 }
 
+@photo-input-size: 8em;
+
 .profile-photo-input{        
-    line-height: 8em;
+    line-height: @photo-input-size;
 
     & > *{
         display: inline-block;
@@ -117,8 +119,8 @@
     }
 
     &__photo{
-        width: 8em;
-        height: 8em;          
+        width: @photo-input-size;
+        height: @photo-input-size;          
         border-radius: 50%;    
         &:extend(.img-size-cover);
         &:extend(.img-position-center);
@@ -126,6 +128,13 @@
 
     &__action{
         
+    }
+
+    & .preloader-container{
+        margin: 0;
+        padding-top: 2em;
+        width: @photo-input-size;
+        height: @photo-input-size;
     }
     
 }
