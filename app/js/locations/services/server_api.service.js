@@ -25,10 +25,10 @@
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.LocationServerApi#cities
+             * @name trulii.locations.services.LocationServerApi#cities
              * @description Renders **`/api/locations/cities/`** Cities List URL
              * @return {string} Rendered URL
-             * @methodOf trulii.activities.services.LocationServerApi
+             * @methodOf trulii.locations.services.LocationServerApi
              */
             'cities' : function () {
                 return renderUrl('locations/', ['cities/']);
@@ -37,13 +37,13 @@
 
         /**
          * @ngdoc function
-         * @name trulii.activities.services.LocationServerApi#renderUrl
+         * @name trulii.locations.services.LocationServerApi#renderUrl
          * @description URL Renderer, takes multiple parameters
          * @param {string} endpoint server endpoint, must start and end with '/'
          * @param {Array=} urlParams (Optional) Array with URL params. Are rendered in the same order they come
          * rendered through console output.
          * @return {string} Rendered URL
-         * @methodOf trulii.activities.services.LocationServerApi
+         * @methodOf trulii.locations.services.LocationServerApi
          */
         function renderUrl(endpoint, urlParams) {
             var hostArr = [serverApi, endpoint];

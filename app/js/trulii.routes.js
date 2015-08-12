@@ -418,7 +418,6 @@
      * @name .#getAuthenticatedUser
      * @description Retrieves the current authenticated user from
      * {@link trulii.authentication.services.Authentication Authentication} Service
-     * @requires ui.router.state.$stateParams
      * @requires trulii.authentication.services.Authentication
      * @methodOf trulii.routes.config
      */
@@ -431,7 +430,7 @@
      * @ngdoc method
      * @name .#getCurrentOrganizer
      * @description Retrieves the current logged Organizer from
-     * {@link trulii.organizers.services.StudentsManager StudentsManager} Service otherwise returns ``null``
+     * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service otherwise returns ``null``
      * @requires ng.$timeout
      * @requires ui.router.state.$state
      * @requires ng.$q
@@ -467,7 +466,7 @@
      * @name .#getOrganizer
      * @description Retrieves an Organizer from
      * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service with
-     * the provided ``organizer_id`` from $staeParams
+     * the provided ``organizer_id`` from $stateParams
      * @requires ui.router.state.$stateParams
      * @requires trulii.organizers.services.OrganizersManager
      * @methodOf trulii.routes.config
@@ -517,7 +516,7 @@
      * @ngdoc method
      * @name .#getStudent
      * @description Retrieves an Student from
-     * {@link trulii.organizers.services.StudentsManager StudentsManager} Service with the provided ``student_id``
+     * {@link trulii.students.services.StudentsManager StudentsManager} Service with the provided ``student_id``
      * from $stateParams
      * @requires ui.router.state.$stateParams
      * @requires trulii.students.services.StudentsManager
@@ -555,17 +554,22 @@
         return ActivitiesManager.getActivities();
     }
 
-    //TODO refactor
-    getStudentActivities.$inject = ['ActivitiesManager', 'Authentication', 'StudentsManager'];
-    function getStudentActivities(ActivitiesManager, Authentication, StudentsManager){
-        Authentication.isStudent()
-            .then(function(isStudent){
-                return isStudent? Authentication.getAuthenticatedAccount() : $q.reject();
-            })
-            .then(success, error);
+    /**
+     * @ngdoc method
+     * @name .#getStudentActivities
+     * @description Retrieves all Activities from
+     * {@link trulii.students.services.StudentsManager StudentsManager} Service
+     * for the specified Student ID
+     * @requires trulii.activities.services.ActivitiesManager
+     * @requires trulii.students.services.StudentsManager
+     * @methodOf trulii.routes.config
+     */
+    getStudentActivities.$inject = ['ActivitiesManager', 'StudentsManager'];
+    function getStudentActivities(ActivitiesManager, StudentsManager){
+        return StudentsManager.getCurrentStudent().then(success, error);
 
-        function success(currentUser){
-            return ActivitiesManager.getStudentActivities(currentUser.id);
+        function success(student){
+            return ActivitiesManager.getStudentActivities(student.id);
         }
 
         function error(){
@@ -575,8 +579,8 @@
 
     /**
      * @ngdoc method
-     * @name .#getActivities
-     * @description All Activities from
+     * @name .#getActivity
+     * @description Retrieves an Activity by its ID from
      * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
      * @requires trulii.activities.services.ActivitiesManager
      * @methodOf trulii.routes.config
@@ -589,9 +593,8 @@
     /**
      * @ngdoc method
      * @name .#getPresaveActivityInfo
-     * @description Loads general activity info from
+     * @description Loads general activity info like categories, subcategories, levels, etc. from
      * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
-     * like categories, subcategories, levels, etc
      * @requires trulii.activities.services.ActivitiesManager
      * @methodOf trulii.routes.config
      */
@@ -631,9 +634,10 @@
     /**
      * @ngdoc method
      * @name .#getActivities
-     * @description All Activities from
-     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
-     * @requires trulii.activities.services.ActivitiesManager
+     * @description Fetches a Calendar by Activity ID and Calendar ID in $stateParams from
+     * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.activities.services.CalendarsManager
      * @methodOf trulii.routes.config
      */
     fetchCalendar.$inject = ['$stateParams', 'CalendarsManager'];
@@ -673,13 +677,13 @@
 
         $urlMatcherFactory.strictMode(false);
 
-        $rootScope.$on('$stateChangeStart', onStateChange);
+        $rootScope.$on('$stateChangeStart', onStateChangeStart);
         $rootScope.$on('$stateChangeError', onStateChangeError);
 
         //--------- Functions Implementation ---------//
 
         //noinspection JSUnusedLocalSymbols
-        function onStateChange(e, toState, toParams, fromState){
+        function onStateChangeStart(e, toState, toParams, fromState){
             $state.previous = fromState;
             if (toState.data && toState.data.requiredAuthentication) {
                 var _requiredAuthentication = toState.data.requiredAuthentication;
