@@ -11659,7 +11659,7 @@ hr.on-light {
   font-family: 'Montserrat', sans-serif;
 }
 .bold-secondary {
-  color: #f32ebb;
+  color: #732ebb;
   font-weight: bold;
 }
 .strong-text-muted,
@@ -11845,7 +11845,7 @@ hr.on-light {
   color: rgba(0, 0, 0, 0.74);
 }
 .bg-secondary {
-  background: #f32ebb !important;
+  background: #732ebb !important;
   color: white;
 }
 .bg-primary-10 {
@@ -11882,37 +11882,37 @@ hr.on-light {
   background: #ffd580 !important;
 }
 .bg-secondary-10 {
-  background: #a82ef3 !important;
+  background: #2e47bb !important;
 }
 .bg-secondary-9 {
-  background: #b52ef3 !important;
+  background: #2e3ebb !important;
 }
 .bg-secondary-8 {
-  background: #c22ef3 !important;
+  background: #2e34bb !important;
 }
 .bg-secondary-7 {
-  background: #cf2ef3 !important;
+  background: #312ebb !important;
 }
 .bg-secondary-6 {
-  background: #dc2ef3 !important;
+  background: #3b2ebb !important;
 }
 .bg-secondary-5 {
-  background: #e92ef3 !important;
+  background: #442ebb !important;
 }
 .bg-secondary-4 {
-  background: #f32ef0 !important;
+  background: #4d2ebb !important;
 }
 .bg-secondary-3 {
-  background: #f32ee2 !important;
+  background: #572ebb !important;
 }
 .bg-secondary-2 {
-  background: #f32ed5 !important;
+  background: #602ebb !important;
 }
 .bg-secondary-1 {
-  background: #f32ec8 !important;
+  background: #6a2ebb !important;
 }
 .bg-secondary-0 {
-  background: #f32ebb !important;
+  background: #732ebb !important;
 }
 .lightbg-strong-anchor {
   text-transform: uppercase;
@@ -12849,7 +12849,7 @@ label {
   font-size: 2.6em;
   height: auto !important;
   text-align: center;
-  background-image: linear-gradient(#f32ebb, #f32ebb), linear-gradient(#cccccc, #cccccc);
+  background-image: linear-gradient(#732ebb, #732ebb), linear-gradient(#cccccc, #cccccc);
 }
 .input--main ::-webkit-input-placeholder {
   /* WebKit browsers */
@@ -12953,7 +12953,7 @@ tags-input .tag-list {
   padding: 0px;
 }
 tags-input .tag-item {
-  background: #f32ebb;
+  background: #732ebb;
   display: inline-block;
   color: white;
   font-weight: bolder;
@@ -12973,7 +12973,7 @@ tags-input .remove-button {
   right: 0.25em;
   font-size: 23px;
   line-height: 0px;
-  color: #e10da5;
+  color: #5a2492;
 }
 tags-input input {
   border: 0px;
@@ -13096,7 +13096,7 @@ tags-input input {
   background-color: rgba(255, 255, 255, 0.2);
 }
 .btn.btn-active {
-  background: #f32ebb !important;
+  background: #732ebb !important;
   color: white !important;
 }
 .btn.btn-active.btn-beginner-level {
@@ -13109,11 +13109,11 @@ tags-input input {
   background-color: #ff9680 !important;
 }
 .btn.btn-active-darken {
-  background: #f00eaf !important;
+  background: #61279e !important;
 }
 .btn-bgsecondary {
   background-color: white !important;
-  color: #f32ebb !important;
+  color: #732ebb !important;
 }
 .btn.btn-less {
   font-weight: normal;
@@ -13241,7 +13241,7 @@ tags-input input {
   display: inline-block;
 }
 .tag-container .tag-item {
-  background: #f32ebb;
+  background: #732ebb;
   display: inline-block;
   color: white;
   font-weight: bolder;
@@ -13887,7 +13887,7 @@ td {
   color: #f0a100;
 }
 .card .card-header--secondary {
-  background: #f32ebb;
+  background: #732ebb;
   color: white;
 }
 .card .card-header .editable-title {
@@ -13911,7 +13911,7 @@ td {
 }
 .card .card-icon:before {
   font-size: 1.5em;
-  color: #f32ebb;
+  color: #732ebb;
 }
 .card .card-body {
   padding: 2em;
@@ -13942,7 +13942,7 @@ td {
   top: 0px;
   bottom: 0px;
   padding: 0px;
-  background-color: #f32ebb;
+  background-color: #732ebb;
   padding-top: 1.3em;
 }
 .card__lateral-menu__item {
@@ -13950,19 +13950,19 @@ td {
   width: 100%;
   padding: 1.5em 1em;
   color: white;
-  background-color: #f216b3;
-  border-bottom: 1px solid #f32ebb;
+  background-color: #6629a7;
+  border-bottom: 1px solid #732ebb;
   transition: 0.3s background-color ease;
   cursor: pointer;
   font-size: 1.1em;
 }
 .card__lateral-menu__item.active {
-  color: #f32ebb;
+  color: #732ebb;
   background-color: white;
   font-weight: bold;
 }
 .card__lateral-menu__item.active * {
-  color: #f32ebb;
+  color: #732ebb;
 }
 .card__lateral-menu__item * {
   color: white;
@@ -14205,7 +14205,7 @@ button.toast-close-button {
   background: #f0f0f0;
 }
 .dropdown__item:active {
-  background: #f32ebb;
+  background: #732ebb;
 }
 .dropdown__item__icon {
   color: rgba(0, 0, 0, 0.74);
@@ -14233,7 +14233,7 @@ button.toast-close-button {
   height: 16em;
   width: 100%;
   position: relative;
-  background-color: #f32ebb;
+  background-color: #732ebb;
 }
 .gallery-grid__photo__price {
   position: absolute;
@@ -14297,7 +14297,7 @@ button.toast-close-button {
 }
 .gallery-grid__photo__caption .btn:hover {
   background-color: white !important;
-  color: #e10da5 !important;
+  color: #5a2492 !important;
 }
 .gallery-grid__photo--grand {
   height: 18em;
@@ -14311,7 +14311,7 @@ button.toast-close-button {
   height: 8rem;
 }
 .gallery-grid__photo:hover .gallery-grid__photo__caption {
-  background: #f216b3;
+  background: #6629a7;
   cursor: pointer;
 }
 .gallery-grid__photo:hover .gallery-grid__photo__caption__title {
@@ -14405,14 +14405,13 @@ button.toast-close-button {
   display: inline-block;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.4);
-  margin: 0em .3em;
-  margin-bottom: 1em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  margin: 0 0.3em 1em;
   text-align: left;
   transition: .2s all ease;
 }
 .activity-card:hover {
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 .activity-card__header {
   height: 13em;

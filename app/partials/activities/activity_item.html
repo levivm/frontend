@@ -1,30 +1,26 @@
-
-
-<div class="activity-card" >
+<div class="activity-card">
     <div class="activity-card__header " style="background-image: url('{{activity.main_photo}}') ">
+        <div ng-if="draft" class="activity-card__header__draft-cover"></div>
+        <div class="activity-card__category" style="background-color: {{activity.category_color}}"
+             ng-bind="::activity.category_display"></div>
+        <div class="activity-card__owner-picture"
+             style="background-image: url('{{::activity.organizer.photo}}') "></div>
 
-        <div ng-if="draft" class="activity-card__header__draft-cover">
-            
-        </div>  
-        
-        <div class="activity-card__category" style="background-color: {{activity.category_color}}" ng-bind="::activity.category_display"></div>
-        <div class="activity-card__owner-picture" style="background-image: url('{{::activity.organizer.photo}}') "></div>
-
-        <span class="activity-card__header__btn-more mdi-navigation-more-vert"             
-            ng-click="showMenu = true">
+        <span class="activity-card__header__btn-more mdi-navigation-more-vert"
+              ng-click="showMenu = true">
         </span>
 
         <span class="activity-card__header__menu horizontal-fade" ng-show="showMenu">
 
-            <div class="activity-card__header__menu__btn-close  mdi-navigation-close"                 
-                ng-click="showMenu = false">
+            <div class="activity-card__header__menu__btn-close  mdi-navigation-close"
+                 ng-click="showMenu = false">
             </div>
 
-            <a ng-repeat="action in actions track by action.name"
+            <a ng-repeat="action in actions track by $index"
                class="activity-card__header__menu__item"
                ui-sref="{{::action.state}}"
                data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
-                <i class=" activity-card__header__menu__item__icon" ng-class="action.icon"></i>                
+                <i class=" activity-card__header__menu__item__icon" ng-class="action.icon"></i>
                 <span ng-bind="::action.name"></span>
             </a>
 
@@ -40,31 +36,31 @@
         <div class="relative">
             <span class="activity-card__body__date" ng-bind="activity.date_msg">
                 
-            </span>    
+            </span>
 
             <div class="activity-card__rating">
-                
+
                 <i ng-repeat="star in activity.rating track by star"
-                       ng-class="getStarStyle(star)"></i>
+                   ng-class="getStarStyle(star)"></i>
             </div>
         </div>
-        
-    
+
+
         <div class="activity-card__body__description" ng-bind="::activity.short_description">
-            
+
         </div>
     </a>
 
     <div class="activity-card__bottom">
         <div ng-if="activity.closest_calendar.session_price">
             $
-            <span 
-              ng-bind="::activity.closest_calendar.session_price | number"></span>    
+            <span
+                    ng-bind="::activity.closest_calendar.session_price | number"></span>
         </div>
 
         
         <span ng-if="!activity.closest_calendar.session_price"
               ng-bind="::strings.COPY_NA"></span>
     </div>
-    
+
 </div>

@@ -31,6 +31,7 @@
                 var options;
                 var MAX_DAYS = 30;
 
+                scope.actions = [];
                 scope.dimmed = false;
                 scope.draft = false;
                 scope.getStarStyle = getStarStyle;
@@ -84,6 +85,8 @@
                 function _mapActions(actions){
                     if(!actions) return null;
 
+                    actions = actions.filter(filterActions);
+
                     actions = actions.map(function(action){
                         if(typeof action === 'string'){
                             return action.toLowerCase();
@@ -95,13 +98,6 @@
 
                     function createActionObject(action){
                         switch(action){
-                            case scope.strings.ACTION_VIEW:
-                                return {
-                                    'name': scope.strings.LABEL_VIEW,
-                                    'icon': 'mdi-action-visibility',
-                                    'state': "activities-detail.info({activity_id: " + scope.activity.id + "})"
-                                };
-                                break;
                             case scope.strings.ACTION_EDIT:
                                 return {
                                     'name': scope.strings.LABEL_EDIT,
@@ -133,6 +129,15 @@
                                 break;
                             default:
                                 return null;
+                        }
+                    }
+
+                    function filterActions(action){
+                        return (typeof action === 'string' && isValidAction(action));
+
+                        function isValidAction(action){
+                            return action == scope.strings.ACTION_EDIT || action == scope.strings.ACTION_MANAGE
+                                || action == scope.strings.ACTION_CONTACT || action == scope.strings.ACTION_REPUBLISH;
                         }
                     }
                 }
@@ -193,8 +198,6 @@
                 function _setStrings(){
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
-                        ACTION_VIEW: "view",
-                        LABEL_VIEW: "Ver",
                         ACTION_EDIT: "edit",
                         LABEL_EDIT: "Editar",
                         ACTION_MANAGE: "manage",
@@ -239,9 +242,6 @@
                     _mapMainPicture(scope.activity);
                     _mapClosestCalendar(scope.activity);
                     console.log('directive activity:', scope.activity);
-
-                    //TODO para tooltips
-                    $('[data-toggle="tooltip"]').tooltip({'container': 'body'});
                 }
             }
         }
