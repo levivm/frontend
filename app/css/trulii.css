@@ -11831,6 +11831,12 @@ hr.on-light {
   height: 8em;
   border-radius: 50%;
 }
+.profile-photo-input .preloader-container {
+  margin: 0;
+  padding-top: 2em;
+  width: 8em;
+  height: 8em;
+}
 .clear-spacings {
   padding: 0em;
   margin: 0em;
@@ -14014,6 +14020,9 @@ td {
   to {
     opacity: 0;
   }
+}
+.--global {
+  margin: 6em 0em;
 }
 .card,
 .dropdown {

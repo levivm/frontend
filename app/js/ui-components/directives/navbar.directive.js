@@ -62,7 +62,7 @@
                     } else if (user.full_name) {
                         console.log('Full Name already defined');
                     } else if (user.first_name && user.last_name) {
-                        user.full_name = [user.first_name, user.last_name].join(' ');
+                        user.full_name = user.first_name;
                     } else {
                         user.full_name = 'User';
                     }

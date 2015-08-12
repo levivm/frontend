@@ -34,7 +34,8 @@
                                 <img class="profile-photo-input__photo"
                                      ng-src="{{profile.organizer.photo}}" alt="{{profile.organizer.name}}"
                                      ng-hide="profile.photo_loading"/>
-                                <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
+                                     
+                                    <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
 
                                 <div class="separate-left" ng-model="profile.organizer.photo_url" ng-file-drop="" ng-file-select=""
                                      ng-multiple="false"
@@ -59,8 +60,7 @@
                             <div class="form-group" trulii-input-errors-control="photo">
                                 <input type="hidden" name="photo"/>
                             </div>
-
-                            <span ng-show="profile.photo_loading">Cargando foto</span>
+                            
                         </div>
                     </form>
 
