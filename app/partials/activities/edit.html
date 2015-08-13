@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
-            <nav class="col-sm-2 sidebar lateral-slide">
+            <nav class="col-sm-2 sidebar --float lateral-slide">
                 <li ui-sref-active="active" ng-repeat="step in pc.steps track by step.name">
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                         <i class="{{::step.icon}} sidebar__item__icon"></i>
