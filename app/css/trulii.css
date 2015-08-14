@@ -11653,6 +11653,9 @@ hr.on-light {
 .text-capitalize {
   text-transform: capitalize;
 }
+.text-uppercase {
+  text-transform: uppercase;
+}
 .title-compound {
   position: relative;
 }
@@ -11846,10 +11849,16 @@ hr.on-light {
 .separate {
   margin-top: 3rem;
 }
+.separate-above-more {
+  margin-top: 8rem;
+}
 .separate-below,
 .separate-vertical,
 .separate {
   margin-bottom: 3rem;
+}
+.separate-below-more {
+  margin-bottom: 8rem;
 }
 .separate-left {
   margin-left: 3rem;
@@ -12536,7 +12545,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-align: center;
 }
 .--on-dash .navbar__logo-container {
-  width: 18.1em;
+  width: 19.1em;
 }
 .navbar__logo {
   background: url('img/logo-trulii.png') no-repeat;
@@ -12791,7 +12800,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: red;
   padding: 20px 0;
   background-color: #393b3f;
-  width: 17em;
+  width: 18em;
 }
 .sidebar a:hover {
   color: #ffd580;
@@ -12847,6 +12856,24 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-family: 'Sinkin Sans';
   font-weight: bold;
   font-size: .9em;
+  /*
+        &__sign {
+            position: absolute;
+            top: -1px;
+            height: 101%;
+            right: 0px;
+            background: darken(@gray-lighter, 5%);
+            z-index: 20;
+            color: darken(@gray-lighter, 18%);
+
+            &--completed {
+                color: white;
+                background-color: #FC3;
+                z-index: 21;
+            }
+        }
+
+*/
 }
 .sidebar__item--selected {
   background: #51545a;
@@ -12875,7 +12902,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar__item__icon {
   top: 0;
   bottom: 0;
-  margin-right: .5em;
+  margin-right: .3em;
 }
 .sidebar__item__icon:before {
   position: relative;
@@ -12883,24 +12910,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: .8em;
   margin-right: .3em;
 }
-.sidebar__item__sign {
-  position: absolute;
-  top: -1px;
-  height: 101%;
-  right: 0px;
-  background: #e2e2e2;
-  z-index: 20;
-  color: #c1c1c1;
-}
-.sidebar__item__sign--completed {
-  color: white;
-  background-color: #FC3;
-  z-index: 21;
-}
 .--float .sidebar__item {
   color: rgba(0, 0, 0, 0.74);
   font-weight: normal;
   margin: 0;
+}
+.--float .sidebar__item.--muted {
+  color: #aaaaaa;
 }
 .sidebar li {
   display: block;
@@ -12908,21 +12924,47 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar__bottom-action {
   background: #eeeeee;
   width: 100%;
-  height: 8em;
-  padding: .5em;
+  padding: 1em;
+  margin-top: 2em;
+  font-family: 'Sinkin Sans';
+  font-weight: normal;
+  font-size: .9em;
+  color: #777777;
 }
-.sidebar__bottom-action.ng-hide-remove,
-.sidebar__bottom-action.ng-enter {
-  transition: .3s ease all;
-  bottom: -7em;
+.sidebar__bottom-action hr {
+  display: block;
+  width: 100%;
+  margin: 1.6em 0;
+  height: 0;
 }
-.sidebar__bottom-action.ng-hide-remove.ng-hide-remove-active,
-.sidebar__bottom-action.ng-enter.ng-enter-active {
-  bottom: 0;
+.sidebar__bottom-action hr:before {
+  content: '';
+  display: inline-block;
+  border-bottom: 1px solid #777777;
+  width: 20%;
+  vertical-align: top;
+}
+.sidebar__bottom-action .btn {
+  font-size: 1.3em;
+  margin-top: 1em;
+  width: 100%;
+  font-weight: bold;
+  line-height: 1.5em;
+}
+.sidebar .mandatory-mark {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #38dbc8;
+  border-radius: 50%;
+}
+.sidebar .mandatory-mark.--right {
+  float: right;
+  margin: 1.2em;
 }
 .sidebar + * {
   padding-left: 0;
-  margin-left: 17em;
+  margin-left: 18em;
 }
 .sidebar.--float {
   background-color: white;
@@ -12997,7 +13039,8 @@ label {
   font-family: 'Sinkin Sans';
   font-weight: 200;
   color: #555555 !important;
-  font-size: 0.9em;
+  font-size: 1em;
+  margin-bottom: 1em;
 }
 .input--main {
   margin-top: 0px;
@@ -13031,8 +13074,14 @@ label {
 .input--med {
   font-size: 1.3em;
 }
+.input-lg {
+  font-size: 1.5em;
+  height: auto !important;
+  line-height: 2em;
+}
 select.form-control {
   font-size: 1.3em;
+  height: auto;
 }
 tags-input .tags {
   display: block;
@@ -13114,7 +13163,7 @@ tags-input .tag-list {
   padding: 0px;
 }
 tags-input .tag-item {
-  background: #732ebb;
+  background: #38dbc8;
   display: inline-block;
   color: white;
   font-weight: bolder;
@@ -13134,7 +13183,10 @@ tags-input .remove-button {
   right: 0.25em;
   font-size: 23px;
   line-height: 0px;
-  color: #5a2492;
+  color: #22beac;
+}
+tags-input .remove-button:hover {
+  color: #1ea898;
 }
 tags-input input {
   border: 0px;
@@ -13261,20 +13313,20 @@ tags-input input {
   color: white !important;
 }
 .btn.btn-active.btn-beginner-level {
-  background-color: #ffd580 !important;
+  background-color: #38dbc8 !important;
 }
 .btn.btn-active.btn-intermediate-level {
-  background-color: #ffb580 !important;
+  background-color: #38db92 !important;
 }
 .btn.btn-active.btn-advanced-level {
-  background-color: #ff9680 !important;
+  background-color: #38db69 !important;
 }
 .btn.btn-active-darken {
   background: #61279e !important;
 }
-.btn-bgsecondary {
-  background-color: white !important;
-  color: #732ebb !important;
+.btn-secondary {
+  color: white !important;
+  background-color: #732ebb !important;
 }
 .btn.btn-less {
   font-weight: normal;
@@ -13398,6 +13450,14 @@ tags-input input {
   background: white;
   position: relative;
 }
+.section-title {
+  display: block;
+  width: 100%;
+  background-color: #eeeeee;
+  font-family: 'Sinkin Sans';
+  padding: 1em 1.5em;
+  font-size: 1.4em;
+}
 .tag-container {
   display: inline-block;
 }
@@ -13513,6 +13573,11 @@ td {
   color: rgba(255, 255, 255, 0.84);
   background-color: #333333;
   border: 0;
+}
+.btn-group .btn {
+  text-transform: uppercase;
+  padding: 1em 2.5em;
+  border-color: #e3e3e3;
 }
 /*
 	Code from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss
