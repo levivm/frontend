@@ -3,9 +3,7 @@
  * @ngdoc controller
  * @name trulii.landing.controllers.HomeController
  * @description HomeController
- * @requires trulii.locations.services.LocationManager
- * @requires cities
- * @requires authenticatedUser
+ * @requires trulii.activities.services.ActivitiesManager
  */
 
 (function () {
@@ -15,47 +13,23 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$stateParams', 'LocationManager', 'ActivitiesManager', 'Authentication',
-        'cities', 'authenticatedUser'];
+    HomeController.$inject = ['ActivitiesManager'];
 
-    function HomeController($stateParams, LocationManager, ActivitiesManager, Authentication,
-        cities, authenticatedUser) {
+    function HomeController(ActivitiesManager) {
 
-        console.log('authenticatedUser:', authenticatedUser);
         var vm = this;
+        angular.extend(vm, {
+            activities : [],
+            options : {
+                actions: ['view', 'edit', 'contact', 'manage', 'republish']
+            }
+        });
 
-        vm.activities = [];
-        vm.cities = cities;
-        vm.current_city = null;
-        vm.setCurrentCity = _setCurrentCity;
-        vm.isStudent = false;
-        vm.isOrganizer = false;
-        vm.options = {
-            actions: ['view', 'edit', 'contact', 'manage', 'republish']
-        };
+        _activate();
 
-        activate();
+        //--------- Internal Functions ---------//
 
-        //--------- Functions Implementation ---------//
-
-        function _setCurrentCity(city){
-            LocationManager.setCurrentCity(city);
-            console.log('setCurrentCity(', city, ')');
-        }
-
-        function setStrings(){
-            if(!vm.strings){ vm.strings = {}; }
-            angular.extend(vm.strings, {
-                CITIES_LABEL : 'Ciudades',
-                SIGN_UP_LABEL : 'Registrarse',
-                LOGIN_LABEL : 'Iniciar Sesión',
-                LOGOUT_LABEL : 'Logout',
-                NEW_ACTIVITY_LABEL : 'Crear Actividad',
-                DASHBOARD_LABEL : 'Dashboard'
-            });
-        }
-
-        function getActivities(){
+        function _getActivities(){
             ActivitiesManager.getActivities().then(success, error);
 
             function success(response){
@@ -66,14 +40,14 @@
             }
         }
 
-        function activate(){
-            setStrings();
-            if($stateParams.activities){
-                vm.activities = $stateParams.activities;
-            } else {
-                getActivities();
-            }
-            vm.current_city = LocationManager.getCurrentCity();
+        //function _setStrings(){
+        //    if(!vm.strings){ vm.strings = {}; }
+        //    angular.extend(vm.strings, {});
+        //}
+
+        function _activate(){
+            //_setStrings();
+            _getActivities();
         }
 
     }

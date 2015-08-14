@@ -26,17 +26,18 @@
     </div>
     <div class="row">
         <div class="col-md-8">
-            <form name="search_box" class="navbar__search-box" style="margin-top: 24px;">
-                <input type="text" ng-model="notFound.q" placeholder="{{notFound.strings.PLACEHOLDER_WANT_TO_LEARN}}"/>
-                <label for="search-city-selector" class="sr-only">Cities</label>
-                <select id="search-city-selector" class="navbar__search-box__city-select" name="city"
-                        ng-model="notFound.search_city" ng-change="notFound.updateSearchCity()"
-                        ng-options="city as city.name for city in notFound.cities track by city.id">
-                    <option value="" selected
-                            ng-show="!search_box.city.$dirty" ng-bind="notFound.strings.LABEL_CITY"></option>
-                </select>
-                <button class="navbar__search-box__btn mdi-action-search" ng-click="notFound.search()"></button>
-            </form>
+            <!--<form name="search_box" class="navbar__search-box" style="margin-top: 24px;">-->
+                <!--<input type="text" ng-model="notFound.q" placeholder="{{notFound.strings.PLACEHOLDER_WANT_TO_LEARN}}"/>-->
+                <!--<label for="search-city-selector" class="sr-only">Cities</label>-->
+                <!--<select id="search-city-selector" class="navbar__search-box__city-select" name="city"-->
+                        <!--ng-model="notFound.search_city" ng-change="notFound.updateSearchCity()"-->
+                        <!--ng-options="city as city.name for city in notFound.cities track by city.id">-->
+                    <!--<option value="" selected-->
+                            <!--ng-show="!search_box.city.$dirty" ng-bind="notFound.strings.LABEL_CITY"></option>-->
+                <!--</select>-->
+                <!--<button class="navbar__search-box__btn mdi-action-search" ng-click="notFound.search()"></button>-->
+            <!--</form>-->
+            <trulii-search-bar></trulii-search-bar>
         </div>
     </div>
 </div>

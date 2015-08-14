@@ -1,107 +1,66 @@
-<div class="container">
-    <div class="card z-shadow-1" style="min-height: 30em">
-        <div class="row-fluid clearfix">
-            <div class="col-md-3 card__lateral-menu">
-                <div class="card__lateral-menu__title">
-                    <i class="mdi-social-school"></i> <span
-                        ng-bind="::activities.strings.SECTION_ACTIVITIES"></span>
-                </div>
-                <ul>
-                    <li class="card__lateral-menu__item active" data-toggle="tab" data-target="#current-tab">
-                        <a><i class="mdi-action-today"></i>  <span
-                                ng-bind="::activities.strings.TAB_CURRENT"></span></a>
-                    </li>
-                    <li class="card__lateral-menu__item" data-toggle="tab" data-target="#history-tab">
-                        <a><i class="mdi-action-history"></i> <span
-                                ng-bind="::activities.strings.TAB_HISTORY"></span></a>
-                    </li>
-                </ul>
+
+<div class="navbar-secondary">
+
+    <ul>
+        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#current-tab">
+            <span ng-bind="::activities.strings.TAB_CURRENT"></span>
+        </li>
+
+        <li class="navbar-secondary__item" data-toggle="tab" data-toggle="tab" data-target="#history-tab">
+            <span ng-bind="::activities.strings.TAB_HISTORY"></span>
+        </li>
+    </ul>    
+    
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-11 col-md-offset-1 tab-content">
+        <div class="tab-pane text-style active fade  in" id="current-tab">
+            <!--If there are activities-->
+            <div class="row activity-grid">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.activities track by activity.id"
+                      data-activity="activity" data-options="{{activities.options}}">
+                </trulii-activity-item>
             </div>
-            <div class="col-md-9 col-md-offset-3">
+            <!--If there are no activities-->
+            <div ng-if="activities.activities.length <= 0" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>                    
 
-                <div class="card-body tab-content">                    
-
-                    <div  class="tab-pane text-style active fade  in" id="current-tab">
-                        <h4 class="text-muted">
-                            Revisa las actividades que estás cursando actualmente o que inician próximamente.
-                        </h4>
-                        <div class="row gallery-grid separate-above">
-                            <div class="col-md-12" 
-                                    ng-repeat="activity in activities.activities track by activity.id"
-                                    
-                                    >
-                                <a ui-sref="activities-detail({activity_id: {{activity.id}} })" class="gallery-grid__photo gallery-grid__photo--grand img-fit" style="background: url('{{activity.main_photo}}')" alt="{{activity.title}}">
-
-                                    <div class="gallery-grid__photo__caption">
-                                        <span class="gallery-grid__photo__caption__title" ng-bind="::activity.title"></span>
-                                        <span class="gallery-grid__photo__caption__complement" ng-bind="::activity.organizer.name"></span>
-                                        
-                                        <span class="gallery-grid__photo__caption__actions">
-                                            
-                                            <button class="btn">Contactar</button>
-                                            
-                                        </span>                                        
-                                        <div class="gallery-grid__photo__caption__organizer img-fit" style="background-image: url('{{activity.organizer.photo}}')"></div>
-                                    </div>    
-                                </a>                               
-                            </div>
-                        </div>
+                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_ORDERS">
+                                
                     </div>
-
-                    <div  class="tab-pane text-style fade" id="history-tab">
-                        <h4 class="text-muted">
-                            Revisa las actividades que estás cursando actualmente o que inician próximamente.
-                        </h4>
-                        <div class="row gallery-grid separate-above">
-                            <div class="col-md-6" 
-                                    ng-repeat="activity in activities.activities track by activity.id"
-                                    
-                                    >
-
-                                <!-- Course Card -->
-                                <!-- Agregar la clase 'gallery-grid__photo--grand' para pasar a tarjeta grande  -->
-
-                                <a ui-sref="activities-detail({activity_id: {{activity.id}} })" class="gallery-grid__photo img-fit" style="background: url('{{activity.main_photo}}')" alt="{{activity.title}}">
-
-                                    <!-- PRICE -->
-                                   <!-- <span class="gallery-grid__photo__price"> 300.000</span> -->
-
-                                    <div class="gallery-grid__photo__caption">
-                                        <span class="gallery-grid__photo__caption__title" ng-bind="::activity.title"></span>
-                                        <span class="gallery-grid__photo__caption__complement" ng-bind="::activity.organizer.name"></span>
-
-                                        <!-- Las estrellas se muestran en el dashboard de búsqueda sólo si ya alguien ha rankeado -->
-
-                                        <!-- RANKER -->
-
-                                        <!--
-                                        <span class="ranking-star">
-                                            <i class="mdi-action-grade ranking-star__star"></i>
-                                            <i class="mdi-action-grade ranking-star__star"></i>
-                                            <i class="mdi-action-grade ranking-star__star"></i>
-                                            <i class="mdi-action-grade ranking-star__star"></i>
-                                            <i class="mdi-action-grade ranking-star__star ranking-star__star--empty"></i> 
-                                        </span>
-                                        -->
-
-                                        <div class="gallery-grid__photo__caption__organizer img-fit" style="background-image: url('{{activity.organizer.photo}}')"></div>
-                                        <span class="gallery-grid__photo__caption__actions">
-                                            <!-- Inicia en 3 días -->
-
-                                            <!-- <button class="btn">Contactar</button>
-                                                <button class="btn">Ver</button> -->
-
-                                        </span>
-                                    </div>    
-                                </a>    
-
-
-                            </div>
-                        </div>
-                    </div>
+                    <a ui-sref="dash.activities-new.general" class="btn btn-lg btn-success">
+                        Buscar Actividad
+                    </a>                
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="history-tab">
+            <!--If there are activities-->
+            <div class="row activity-grid">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.activities track by activity.id"
+                      data-activity="activity" data-options="{{activities.options}}">
+                </trulii-activity-item>
+            </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.activities.length <= 0" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>                    
+
+                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_ORDERS">
+                                
+                    </div>
+                    <a class="btn btn-lg btn-success">
+                        Buscar Actividad
+                    </a>                
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
-

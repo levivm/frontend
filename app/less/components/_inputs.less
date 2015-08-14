@@ -5,8 +5,33 @@
 //@import url('inputs');
 @import "_inputs";
 
-.form-group:not(:first-child){
-	margin-top: 3.4em;
+input, textarea, select{
+	font-family: @font-sans-alt;
+	font-weight: normal;
+}
+
+::-webkit-input-placeholder {
+   font-weight: 200;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-weight: 200;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: 200;  
+}
+
+:-ms-input-placeholder {  
+   font-weight: 200;  
+}
+
+label{
+	font-family: @font-sans-alt;
+	font-weight: 200;
+	color: @gray !important;
+	font-size: 1em;
+	margin-bottom: 1em
 }
 
 .input{
@@ -51,12 +76,19 @@
 		font-size: 1.3em;
 	}
 
+	&-lg{
+		font-size: 1.5em;
+		height: auto !important;
+		line-height: 2em;
+	}
+
 
 	
 }
 
 select.form-control{
 	font-size: 1.3em;
+	height: auto;
 }
 
 tags-input{
@@ -71,7 +103,7 @@ tags-input{
 	}
 
 	.tag-item{
-		background: @brand-secondary;
+		background: @success;
 		display: inline-block;
 		color: white;
 		font-weight: bolder;
@@ -94,7 +126,11 @@ tags-input{
 		right: 0.25em;
 		font-size: 23px;
 		line-height: 0px;
-		color: darken(@secondary, 10%);
+		color: darken(@success, 10%);
+
+		&:hover{
+			color: darken(@success, 15%);	
+		}
 	}
 
 	input{

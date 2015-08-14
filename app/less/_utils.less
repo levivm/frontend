@@ -3,6 +3,13 @@
 	display: none;
 }
 
+.inline-childs{
+
+    & > * {
+        display: inline-block;
+    }
+}
+
 .center-childs{
 	text-align: center;
 
@@ -15,7 +22,7 @@
 
 .clear-href{
     &:hover{
-        text-decoration: none;        
+        text-decoration: none !important;        
     }
 }
 
@@ -44,4 +51,8 @@
 
 .text-left{
     text-align: left !important;
+}
+
+.relative{
+    position: relative;
 }

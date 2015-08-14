@@ -14,23 +14,27 @@
         .module('trulii.landing.controllers')
         .controller('ContactController', ContactController);
 
-    ContactController.$inject = ['$state', 'cities', 'Contact', 'Toast'];
+    ContactController.$inject = ['$state', '$stateParams', 'cities', 'Contact', 'Toast'];
 
-    function ContactController($state, cities, Contact, Toast) {
+    function ContactController($state, $stateParams, cities, Contact, Toast) {
         var vm = this;
 
-        vm.cities = cities;
-        vm.topics = [];
-        vm.selectedCity = null;
-        vm.selectedTopic = null;
-        vm.selectedSubtopic = null;
-        vm.sendContactForm = sendContactForm;
-        vm.formData = {
-            'name': null,
-            'email': null,
-            'phone_number': null,
-            'description': null
-        };
+        angular.extend(vm, {
+            cities : cities,
+            topics : [],
+            selectedCity : null,
+            selectedTopic : null,
+            selectedSubtopic : null,
+            sendContactForm : sendContactForm,
+            formData : {
+                'name': null,
+                'email': null,
+                'phone_number': null,
+                'description': null
+            }
+        });
+
+        var toState = {};
 
         _activate();
 
@@ -45,7 +49,7 @@
                 };
                 angular.extend(data, vm.formData);
 
-                console.log('data:', data);
+                //console.log('data:', data);
                 Contact.sendContactForm(data).then(success, error);
             } else {
                 console.log('Incomplete Form');
@@ -55,7 +59,7 @@
             function success(response){
                 console.log('Success Sending Contact Form');
                 Toast.success(vm.strings.COPY_SUCCESS_SENDING_FORM);
-                $state.go('home');
+                $state.go(toState.state, toState.params);
             }
             function error(response){
                 console.log('Error Sending Contact Form.', response);
@@ -113,6 +117,9 @@
         function _activate(){
             _setStrings();
             _getTopics();
+            toState = $stateParams.toState;
+            console.log('toState:', toState);
+
         }
 
     }

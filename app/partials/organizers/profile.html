@@ -3,7 +3,7 @@
         <div class="col-md-12 text-center">
             <img class="img-responsive img-circle center-block" ng-src="{{::profile.organizer.photo}}"
                  alt="{{profile.organizer.name}}" width="300" height="300"/>
-            <a class="btn btn-primary" ui-sref="contact-us" ng-bind="profile.strings.LABEL_CONTACT"></a>
+            <a class="btn btn-primary" ui-sref="contact-us(profile.current_state)" ng-bind="profile.strings.LABEL_CONTACT"></a>
         </div>
     </div>
     <div class="row">

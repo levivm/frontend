@@ -6,12 +6,11 @@
 @logo-width: 120px;
 @search-box-element-height: @navbar-inner-height - @navbar-padding-vertical;
 
-.navbar {
-    .shadow-z-1;
+@navbar-secondary-height: 40px;
 
-    height: @navbar-height;
-    padding: @navbar-padding-vertical 1em;
-    //overflow: hidden;
+
+.navbar {    
+    height: @navbar-height;    
 
     .btn {
         margin-top: 0;
@@ -34,14 +33,26 @@
         }
     }
 
+    &__logo-container{
+        background-color: @primary;
+        height: @navbar-height;
+        padding: @navbar-padding-vertical 1.8em;
+        display: inline-block;        
+        float: left;
+        text-align: center;
+
+        .--on-dash &{
+            width: @sidebar-width + 1.1;
+        }
+    }
+
     &__logo {
         background: url(@res-trulii-logo) no-repeat;
         height: @navbar-inner-height;
         //width: @logo-width;
-        width: 100%;
+        width: 6em;
         display: inline-block;
-        background-size: contain;
-        position: absolute;
+        background-size: contain;        
         margin-left: 0.5em;
 
         .before-xs({ background: url(@res-trulii-logo-tiny) no-repeat center; width: 30px; background-size: contain; position: relative; });
@@ -58,17 +69,44 @@
     &__right-wrapper {
         display: inline-block;
         vertical-align: top;
-        height: @navbar-inner-height;
-        width: 40%;
+        height: @navbar-height;
+        //width: 40%;
         text-align: right;
-        float: right;
+        float: right;     
+        font-size: 0.9em;   
 
         .before-xs({ display: inline-block; });
 
         .btn {
-            margin: 2px 1px;
+            margin: (@navbar-padding-vertical+2) 1em;            
+        }
+
+        & > div{
+            display: inline-block;
         }
     }
+
+    &__option {
+        color: @lightbg-text;    
+        display: inline-block;
+        padding: @navbar-padding-vertical 1em; 
+        height: @navbar-height;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: @navbar-height - (@navbar-padding-vertical*2);
+
+        &:active, &.open{
+            color: white;
+            background-color: @success !important;
+        }
+
+        &--right{
+            width: 14em;            
+            float: right;            
+            border-left: 1px solid @color-delimeter-dark;
+            text-align: left;                  
+        }
+    }    
 
     &__search-box {
         background: white;
@@ -135,39 +173,32 @@
         }
     }
 
-    &__user {
-        line-height: @search-box-element-height;
+    &__user {        
         display: inline-block;
-        cursor: pointer;
-        padding: @navbar-padding-vertical 1em @navbar-padding-vertical .5em;
+        cursor: pointer;            
 
         * {
             height: 100%;
-            display: inline-block;
-            color: @darkbg-text;
+            display: inline-block;            
             vertical-align: top;
         }
 
         &__picture:extend(.img-size-cover):extend(.img-position-center) {
-            .square(@navbar-inner-height);
-            border-radius: 50%;
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            .square(@navbar-inner-height - 8);
+            border-radius: 50%;            
+            margin: 4px;
         }
 
-        &__name:extend(.show-after-md) {
-            font-weight: bold;
-            text-transform: capitalize;
+        &__name:extend(.show-after-md) {                        
             min-width: 70px;
             max-width: 90px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-        }
-
-        .open & {
-            background-color: @primary-dark;
-            border-radius: 4px;
-        }
+            font-weight: bolder;
+            text-transform: uppercase;
+            line-height: @navbar-height - (@navbar-padding-vertical*2);
+        }    
 
     }
 
@@ -184,30 +215,31 @@
 }
 
 .navbar-secondary {
-    background: white;
-    height: 40px;
+    background: @gray-lighter;
+    height:@navbar-secondary-height; 
     width: 100%;
-    text-align: center;
+    text-align: left;
     position: fixed;
     top: @navbar-height;
-    z-index: 200;
-    border-bottom: 1px solid darken(@gray-lighter, 10%);
+    z-index: 200;    
+    padding: 0px 1em;
 
     &__item {
+        font-family: @font-sans-alt;
+        font-size: .85em;
         color: @lightbg-text;
         display: inline-block;
         font-weight: bolder;
         line-height: 37px;
         padding: 0 3.7em;
-        //text-transform: uppercase;
+        cursor: pointer;
 
-        &--selected {
-            border-bottom: 3px solid @secondary;
-            color: @lightbg-text;
-            background-color: @gray-lighter;
+        &--selected, &.active {
+            border-bottom: 3px solid @gray;            
+            font-weight: bold;
         }
 
-        &:hover {
+        &:hover:not(.active) {
             text-decoration: none;
             background-color: @gray-lighter;
             border-bottom: 3px solid darken(@gray-lighter, 15%);
@@ -220,8 +252,8 @@
 
     }
 
-    & + * {
-        margin-top: 25px;
+    & + * { 
+        margin-top: @navbar-secondary-height*1.5;
     }
 
     [class^="mdi-"] {

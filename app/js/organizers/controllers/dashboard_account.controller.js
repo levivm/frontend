@@ -81,8 +81,11 @@
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
                 ACTION_REIMBURSE: "Reembolsar",
-                COPY_BANKING: "Coloca los datos de tu cuenta bancaria para que recibas los pagos que los usuarios"
-                    + " hacen al inscribirse. Tranquilo, esta información no la compartimos con nadie",
+                COPY_BANKING: "Coloque los datos de su cuenta bancaria para recibir los pagos de las inscripciones. "
+                    + "Esta información no será compartida con nadie.",
+
+                COPY_PASSWORD: "¿Desea cambiar su contraseña?",
+                COPY_EMAIL: "¿Desea cambiar su correo electrónico?",
                 COPY_NOT_AVAILABLE : "No Disponible",
                 COPY_NA : "N/A",
                 COPY_SEARCH_ORDERS_HELPER : "Buscar por número de orden, pago, detalle, etc.",

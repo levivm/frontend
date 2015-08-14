@@ -1,5 +1,7 @@
 
+@spacing-more: 8rem;
 @spacing-standard: 3rem;
+@spacing-less: 1rem;
 
 .clear-spacings{
     padding: 0em;
@@ -8,18 +10,34 @@
 
 .separate-above{
     margin-top: @spacing-standard;
+
+    &-more{
+        margin-top: @spacing-more;        
+    }
 }
 
 .separate-below{
     margin-bottom: @spacing-standard;
+
+    &-more{
+        margin-bottom: @spacing-more;        
+    }
 }
 
 .separate-left{
     margin-left: @spacing-standard;
+
+    &-less{
+        margin-left: @spacing-less;
+    }
 }
 
 .separate-right{
     margin-right: @spacing-standard;
+
+    &-less{
+        margin-right: @spacing-less;
+    }
 }
 
 .separate-vertical{

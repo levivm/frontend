@@ -27,12 +27,7 @@
         var _pool = {};
         var _activities = [];
         var presave_info = null;
-
-        var KEY_SEARCH_QUERY = 'q';
-        var KEY_SEARCH_CITY = 'city';
-        var KEY_SEARCH_CATEGORY = 'category';
-        var KEY_SEARCH_SUBCATEGORY = 'subcategory';
-        var KEY_SEARCH_DATE = 'date';
+        var categories = null;
 
         //noinspection UnnecessaryLocalVariableJS
         var ActivitiesManager = {
@@ -48,20 +43,6 @@
 
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#searchActivities
-             * @description Searches activities with provided search parameters
-             * @param {string} q query string
-             * @param {number} cityId Id of the city where to search for activities
-             * @param {number=} categoryId Id of the category where to search for activities
-             * @param {number=} subcategoryId Id of the subcategory where to search for activities
-             * @param {number=} date Date in Unix Timestamp format from where to search for activities
-             * @return {promise} Activity Promise
-             * @methodOf trulii.activities.services.ActivitiesManager
-             */
-            searchActivities : searchActivities,
-
-            /**
-             * @ngdoc method
              * @name trulii.activities.services.ActivitiesManager#getActivity
              * @description Gets or creates a new Activity
              * @param {number} activityId Id of activity to retrieve
@@ -69,6 +50,16 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             getActivity : getActivity,
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#getOrders
+             * @description Gets Orders related to an Activity
+             * @param {number} activityId Id of activity to retrieve orders for
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getOrders: getOrders,
 
             /**
              * @ngdoc method
@@ -98,6 +89,15 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             loadGeneralInfo : loadGeneralInfo,
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#getCategories
+             * @description Returns activities categories with subcategories
+             * @return {array} Categories array
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getCategories : getCategories,
 
             /**
              * @ngdoc method
@@ -131,44 +131,6 @@
             }
         }
 
-        function searchActivities(q, cityId, categoryId, subcategoryId, date){
-            var deferred = $q.defer();
-            var requestConfig;
-
-            if(!cityId){
-             deferred.reject(null);
-            }
-
-            requestConfig = {
-                'params': {
-                    KEY_SEARCH_QUERY: q,
-                    KEY_SEARCH_CITY: cityId
-                }
-            };
-
-            // If category is orivded
-            if(categoryId){ requestConfig.params[KEY_SEARCH_CATEGORY] = categoryId; }
-
-            // If subcategory is provided
-            if(subcategoryId){ requestConfig.params[KEY_SEARCH_SUBCATEGORY] = subcategoryId;}
-
-            // If date is provided
-            if(date){ requestConfig.params[KEY_SEARCH_DATE] = date; }
-
-            $http.get(api.search(), requestConfig).then(success, error);
-
-            return deferred.promise;
-
-
-            function success(response){
-                console.log(response);
-                deferred.resolve(response);
-            }
-            function error(response){
-                deferred.reject(response);
-            }
-        }
-
         function getStudentActivities(studentId){
             return $http.get(apiStudent.activities(studentId)).then(success, error);
 
@@ -191,6 +153,17 @@
             }
 
             return deferred.promise;
+        }
+
+        function getOrders(activityId){
+            return $http.get(api.orders(activityId)).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                return response;
+            }
         }
 
         function loadOrganizerActivities(organizerId) {
@@ -220,7 +193,21 @@
                     deferred.resolve(presave_info);
                 });
             }
-            return deferred.promise
+            return deferred.promise;
+        }
+
+        function getCategories(){
+            var deferred = $q.defer();
+
+            if (presave_info) {
+                deferred.resolve(categories);
+            } else {
+                $http.get(api.categories()).then(function (response) {
+                    categories = response.data;
+                    deferred.resolve(categories);
+                });
+            }
+            return deferred.promise;
         }
 
         function enroll(activityId, data) {
