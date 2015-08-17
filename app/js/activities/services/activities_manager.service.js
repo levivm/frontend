@@ -17,9 +17,9 @@
         .factory('ActivitiesManager', ActivitiesManager);
 
     ActivitiesManager.$inject = ['$http', '$q', 'ActivityServerApi', 'OrganizerServerApi', 'StudentServerApi',
-        'Activity', 'CalendarsManager'];
+        'Activity'];
 
-    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity, CalendarsManager) {
+    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity) {
 
         var api = ActivityServerApi;
         var apiOrg = OrganizerServerApi;
