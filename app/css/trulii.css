@@ -2,7 +2,7 @@
   font-family: 'Sinkin Sans';
   src: url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.eot');
   src: url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.svg#sinkin_sans400_regular') format('svg');
-  font-weight: normal;
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {
@@ -17,6 +17,20 @@
   src: url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.eot');
   src: url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.svg#sinkin_sans600_semibold') format('svg');
   font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.eot');
+  src: url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.svg#sinkin_sans800_black') format('svg');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.eot');
+  src: url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.svg#sinkin_sans900_x_black') format('svg');
+  font-weight: 900;
   font-style: normal;
 }
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
@@ -11658,7 +11672,6 @@ hr.on-light {
   top: 0px;
   opacity: 1;
 }
-/* The starting CSS styles for the enter animation */
 .horizontal-fadeout.ng-hide-add.ng-hide-add-active,
 .horizontal-fadeout.ng-leave.ng-leave-active {
   opacity: 0;
@@ -11690,6 +11703,54 @@ hr.on-light {
   opacity: 0;
   position: relative;
   top: 50px;
+}
+.fadein.ng-hide-remove,
+.fadein.ng-enter {
+  transition: .3s ease opacity;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+.fadein.ng-hide-remove.ng-hide-remove-active,
+.fadein.ng-enter.ng-enter-active {
+  opacity: 1;
+  width: 100%;
+}
+.fadeout.ng-hide-add,
+.fadeout.ng-leave {
+  transition: .3s ease opacity;
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+}
+.fadeout.ng-hide-add.ng-hide-add-active,
+.fadeout.ng-leave.ng-leave-active {
+  opacity: 0;
+  width: 100%;
+}
+.only-fade.ng-hide-remove,
+.only-fade.ng-enter {
+  transition: .3s ease opacity;
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+}
+.only-fade.ng-hide-remove.ng-hide-remove-active,
+.only-fade.ng-enter.ng-enter-active {
+  opacity: 1;
+  width: 100%;
+}
+.only-fade.ng-hide-add,
+.only-fade.ng-leave {
+  transition: .3s ease opacity;
+  opacity: 1;
+  position: absolute;
+  width: 100%;
+}
+.only-fade.ng-hide-add.ng-hide-add-active,
+.only-fade.ng-leave.ng-leave-active {
+  opacity: 0;
+  width: 100%;
 }
 .slide-down.ng-hide-remove,
 .slide-down.ng-enter {
@@ -11742,13 +11803,6 @@ hr.on-light {
 .relative {
   position: relative;
 }
-.grand-title {
-  font-size: 5em;
-  margin-bottom: .5em;
-}
-.text-tiny {
-  font-size: 0.9em;
-}
 .text-left {
   text-align: left;
 }
@@ -11758,63 +11812,77 @@ hr.on-light {
 .text-uppercase {
   text-transform: uppercase;
 }
-.title-compound {
-  position: relative;
+/* Deprecated? 
+
+.title-compound{
+    position: relative;
+
+    &-centered{
+        &__title{
+            display: block;
+            width: 100%;
+            text-align: center;         
+
+            & > *{
+                margin: 0;
+            }     
+
+            h1,h2,h3,h4,h5,h6{
+                display: inline-block;    
+                border-bottom: 1px solid white;
+                padding: .2em 1em;
+            }
+            
+        }
+
+        &__description{        
+            display: block;
+            width: 100%;
+            margin: 0;
+            text-align: center;        
+            padding: .5em 1em;  
+            font-size: 1.1em;     
+
+            & > *{
+                margin: 0;
+            } 
+        }
+    }    
+    
+    .card-icon{
+        position: absolute !important;
+        top: 0 !important;
+    }
+
+    &__title{
+        margin-left: 60px;
+    }
+
+    &__description{
+        margin-top: 1em;
+    }   
 }
-.title-compound-centered__title {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
-.title-compound-centered__title > * {
-  margin: 0;
-}
-.title-compound-centered__title h1,
-.title-compound-centered__title h2,
-.title-compound-centered__title h3,
-.title-compound-centered__title h4,
-.title-compound-centered__title h5,
-.title-compound-centered__title h6 {
-  display: inline-block;
-  border-bottom: 1px solid white;
-  padding: .2em 1em;
-}
-.title-compound-centered__description {
-  display: block;
-  width: 100%;
-  margin: 0;
-  text-align: center;
-  padding: .5em 1em;
-  font-size: 1.1em;
-}
-.title-compound-centered__description > * {
-  margin: 0;
-}
-.title-compound .card-icon {
-  position: absolute !important;
-  top: 0 !important;
-}
-.title-compound__title {
-  margin-left: 60px;
-}
-.title-compound__description {
-  margin-top: 1em;
-}
-.text-light {
-  color: rgba(255, 255, 255, 0.84) !important;
-}
-.text-dark {
-  color: rgba(0, 0, 0, 0.74) !important;
-}
+
+*/
 .text-color-primary {
   color: #ffd580;
 }
+.text-color-secondary {
+  color: #732ebb;
+}
+.font-normal {
+  font-weight: normal !important;
+}
+.font-black {
+  font-weight: 800;
+  line-height: 1.2em;
+}
+.font-xblack {
+  font-weight: 900;
+  line-height: 1.2em;
+}
 .font-title {
   font-family: 'Montserrat', sans-serif;
-}
-.bold-secondary {
-  color: #732ebb;
-  font-weight: bold;
 }
 .strong-text-muted,
 .card__lateral-menu__title {
@@ -11822,9 +11890,6 @@ hr.on-light {
   text-transform: uppercase;
   color: black;
   opacity: .4;
-}
-.font-size-inherit {
-  font-size: inherit;
 }
 .standout-text {
   font-family: 'Sinkin Sans';
@@ -11942,6 +12007,16 @@ hr.on-light {
   width: 8em;
   height: 8em;
 }
+.courtain {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.pic-creating {
+  background: url('/css/img/creating.jpg');
+}
 .clear-spacings {
   padding: 0em;
   margin: 0em;
@@ -11949,18 +12024,32 @@ hr.on-light {
 .separate-above,
 .separate-vertical,
 .separate {
+  display: block;
   margin-top: 3rem;
+}
+.separate-above-medium {
+  margin-top: 5rem;
 }
 .separate-above-more {
   margin-top: 8rem;
 }
+.separate-above-less {
+  margin-top: 1rem;
+}
 .separate-below,
 .separate-vertical,
 .separate {
+  display: block;
   margin-bottom: 3rem;
+}
+.separate-below-medium {
+  margin-bottom: 5rem;
 }
 .separate-below-more {
   margin-bottom: 8rem;
+}
+.separate-below-less {
+  margin-bottom: 1rem;
 }
 .separate-left {
   margin-left: 3rem;
@@ -13180,6 +13269,7 @@ label {
   font-size: 1.5em;
   height: auto !important;
   line-height: 2em;
+  font-weight: bold;
 }
 select.form-control {
   font-size: 1.3em;
@@ -13678,7 +13768,7 @@ td {
 }
 .btn-group .btn {
   text-transform: uppercase;
-  padding: 1em 2.5em;
+  padding: 1em;
   border-color: #e3e3e3;
 }
 /*
@@ -14962,6 +15052,7 @@ button.toast-close-button {
   color: #777777;
   margin: 0 1em;
   line-height: 2.4em;
+  font-weight: normal;
 }
 a:hover {
   color: #38dbc8;

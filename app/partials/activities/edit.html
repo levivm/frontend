@@ -32,7 +32,7 @@
                                     }">
                             </ng-pluralize>
 
-                            <strong class="bold-secondary">{{pc.steps_left}}
+                            <strong class="text-color-secondary">{{pc.steps_left}}
 
                                 <ng-pluralize count="pc.activity.steps_left"
                                     when="{
@@ -99,12 +99,10 @@
             
         </div>
 
-        <div class="col-sm-offset-2 col-sm-10 lateral-fade separate-below-more" ui-view>
+        <div class="col-md-offset-4 col-md-8 col-lg-offset-3 col-lg-9 separate-below-more" ui-view>
         </div>
 
-        <div ng-include="'partials/ui-components/footer-dashboard.html'">
-            
-        </div>
+        <div ng-include="'partials/ui-components/footer-dashboard.html'"></div>
 
     </div>
 </div>

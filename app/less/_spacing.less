@@ -1,5 +1,6 @@
 
 @spacing-more: 8rem;
+@spacing-medium: 5rem;
 @spacing-standard: 3rem;
 @spacing-less: 1rem;
 
@@ -9,18 +10,36 @@
 }
 
 .separate-above{
+    display: block;
     margin-top: @spacing-standard;
+
+    &-medium{
+        margin-top: @spacing-medium;        
+    }
 
     &-more{
         margin-top: @spacing-more;        
     }
+
+    &-less{
+        margin-top: @spacing-less;        
+    }
 }
 
 .separate-below{
+    display: block;
     margin-bottom: @spacing-standard;
+
+    &-medium{
+        margin-bottom: @spacing-medium;        
+    }
 
     &-more{
         margin-bottom: @spacing-more;        
+    }
+
+    &-less{
+        margin-bottom: @spacing-less;        
     }
 }
 
