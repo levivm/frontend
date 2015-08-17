@@ -2,10 +2,12 @@
 
 @import url('../_trulii-variables');
 
+@card-add-icon-height: 8em;
+
 .card{	
 	border-radius: @material-border-radius;
 	margin: 1.5em 0;
-	padding: 0;
+	padding: 0;	
 
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
@@ -74,8 +76,84 @@
 		height: auto;		
 	}
 
-	.card-list-item{
-		.card-footer
+	&-list-item{
+		display: block;
+		width: 100%;
+		border: 1px solid @gray-light-medium;
+		border-radius: @border-radius-standard;
+		padding: 3em 2em;
+		position: relative;
+		margin-bottom: 2em;
+		font-family: @font-sans-alt;
+
+		&__actions{
+			position: absolute;
+			top: 1em;
+			right: 1em;
+
+			i{
+				color: @gray-light-medium;
+				cursor: pointer;
+				font-size: 1.2em;
+				display: inline-block;
+				margin-left: 1em;
+
+				&:hover{
+					color: @success;
+				}
+			}
+		}
+
+		label, input{
+			font-size: .9em;
+		}
+
+		&--empty{
+			border-style: dashed;
+			border-width: 2px;
+			display: table;
+			font-weight: normal;
+			color: @gray-light;
+			cursor: pointer;
+
+			& > *{
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			}
+
+			&:hover{
+				border-color: @success;
+			}
+		}
+
+		&__add-icon{
+			background-color: @gray-light-medium;
+			border-radius: 50%;
+			width: @card-add-icon-height;
+			height: @card-add-icon-height;
+			display: inline-block;
+			margin-bottom: 1em;
+			font-weight: 200;					
+
+			&:before{
+				content: '+';
+				font-size: 4em;
+				display: inline-block;
+				width: 100%;
+				color: @gray-light;
+				line-height: (@card-add-icon-height - 4) / 2;
+
+			}
+
+			.card-list-item:hover &{
+				background-color: @success;
+
+				&:before{
+					color: white;
+				}
+			}
+		}
 	}
 
 	&--shrink{
