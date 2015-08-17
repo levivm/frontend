@@ -20,6 +20,7 @@
 	  'trulii.activities',
 	  'trulii.locations',
 	  'trulii.landing',
+	  'trulii.search',
     'trulii.utils'
 	]);
 
@@ -27,7 +28,7 @@
   	.module('trulii.config',['facebook']);
 
 	angular
-	.module('trulii.routes',['ui.router']);
+	.module('trulii.routes',['ui.router', 'trulii.routes.config']);
 
 	angular
 	  .module('trulii')

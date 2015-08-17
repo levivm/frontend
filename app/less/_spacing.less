@@ -1,5 +1,8 @@
 
+@spacing-more: 8rem;
+@spacing-medium: 5rem;
 @spacing-standard: 3rem;
+@spacing-less: 1rem;
 
 .clear-spacings{
     padding: 0em;
@@ -7,19 +10,53 @@
 }
 
 .separate-above{
+    display: block;
     margin-top: @spacing-standard;
+
+    &-medium{
+        margin-top: @spacing-medium;        
+    }
+
+    &-more{
+        margin-top: @spacing-more;        
+    }
+
+    &-less{
+        margin-top: @spacing-less;        
+    }
 }
 
 .separate-below{
+    display: block;
     margin-bottom: @spacing-standard;
+
+    &-medium{
+        margin-bottom: @spacing-medium;        
+    }
+
+    &-more{
+        margin-bottom: @spacing-more;        
+    }
+
+    &-less{
+        margin-bottom: @spacing-less;        
+    }
 }
 
 .separate-left{
     margin-left: @spacing-standard;
+
+    &-less{
+        margin-left: @spacing-less;
+    }
 }
 
 .separate-right{
     margin-right: @spacing-standard;
+
+    &-less{
+        margin-right: @spacing-less;
+    }
 }
 
 .separate-vertical{
@@ -47,5 +84,9 @@
 
 .no-margin-top{
     margin-top: 0 !important;
+}
+
+.no-margin{
+    margin: 0px !important;
 }
 

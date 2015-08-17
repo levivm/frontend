@@ -48,13 +48,19 @@
 
                 this.initial_date = new Date(this.initial_date);
                 this.closing_sale = new Date(this.closing_sale);
+                console.log("SETTING HERE",this.initial_date);
+                console.log("SETTING HERE");
+                console.log("SETTING HERE");
                 angular.forEach(this.sessions, function (session, index) {
 
                     session.date = new Date(session.date);
                     that.changeSessionDate(index, session);
 
+                    // session.end_time   = null;
+                    // session.start_time = null;
                     session.end_time = new Date(session.end_time);
                     session.start_time = new Date(session.start_time);
+
 
                 });
 
@@ -65,7 +71,6 @@
                 var that = this;
                 that.activity = activity_id;
 
-                console.log("activity_id ", activity_id);
                 // serverConf.url+'/api/activities/'+activity_id+'/calendar/'
                 return $http.get(api.calendars(activity_id))
                     .then(function (response) {
@@ -78,17 +83,8 @@
             },
             create : function () {
                 var activity_id = this.activity;
-                var _initial_date = this.initial_date;
-                var _closing_sale = this.closing_sale;
 
-                this.initial_date = this.initial_date.valueOf();
-                this.closing_sale = this.closing_sale.valueOf();
-
-                angular.forEach(this.sessions, function (session) {
-                    session.date = session.date.valueOf();
-                    session.end_time = session.end_time.valueOf();
-                    session.start_time = session.start_time.valueOf();
-                });
+                this.setToSave();
 
                 console.log(this);
                 var that = this;
@@ -105,11 +101,11 @@
             update : function () {
 
                 var activity_id = this.activity;
-                console.log("updating", this);
-                this.setToSave();
+                var calendar_copy = angular.copy(this);
+                calendar_copy.setToSave();
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'+this.id
-                return $http.put(api.calendar(activity_id, this.id), this)
+                return $http.put(api.calendar(activity_id, this.id), calendar_copy)
                     .then(function (response) {
                         that.setData(response.data);
                         return response.data
@@ -136,8 +132,6 @@
             changeStartDate : function () {
 
                 var initial_date = this.initial_date;
-                //this.initial_date = initial_date.valueOf ? initial_date.valueOf() : initial_date;
-                //this.initial_date = this.initial_date;
 
                 if (this.initial_date > this.closing_sale)
                     this.closing_sale = this.initial_date;
@@ -146,7 +140,6 @@
             changeCloseDate : function () {
 
                 var closing_sale = this.closing_sale;
-                //this.closing_sale = closing_sale.valueOf ? closing_sale.valueOf() : closing_sale;
 
                 if (this.initial_date > this.closing_sale)
                     this.closing_sale = this.initial_date;
@@ -183,26 +176,32 @@
 
                         var previous_s = index ? this.sessions[index - 1] : null;
 
-                        var date = index ? new Date(previous_s.date.getTime()) : this.initial_date;
 
+
+
+                        // var previous_s_date = previous_s.date.getTime();
+                        var date = index ? new Date(previous_s.date.getTime() + 24 * 60 * 60 * 1000) : this.initial_date;
+
+                        // var minDate = new Date(date.getTime() - 24 * 60 * 60 * 1000);
+                        var minDate = index ? new Date(previous_s.date.getTime()):this.initial_date;
                         //var minDate =index ? new Date(previous_s.date.getTime()+24*60*60*1000):date;
 
                         //var _start_time = previous_s && previous_s.date
-                        var hours = index ? previous_s.end_time.getHours() : 10;
-                        console.log(hours, "horas");
+                        var hours = index ? previous_s.start_time.getHours() : 10;
 
                         var start_time = new Date();
-                        start_time.setHours(hours + 1);
+                        start_time.setHours(hours);
                         start_time.setMinutes(0);
 
                         var end_time = new Date();
-                        end_time.setHours(hours + 4);
+                        end_time.setHours(hours + 3);
                         end_time.setMinutes(0);
+
 
                         var session = {
                             openDate : false,
                             date : date,
-                            minDate : date,
+                            minDate : minDate,
                             start_time : start_time,
                             end_time : end_time,
                         };
@@ -235,6 +234,9 @@
             },
             changeStartTime : function (session) {
 
+                session.end_time = new Date(session.end_time);
+                session.start_time = new Date(session.start_time);
+
                 var start_time = session.start_time.getHours();
                 var end_time = session.end_time.getHours();
 
@@ -247,6 +249,9 @@
             },
             changeEndTime : function (session) {
 
+                session.end_time = new Date(session.end_time);
+                session.start_time = new Date(session.start_time);
+
                 var start_time = session.start_time.getHours();
                 var end_time = session.end_time.getHours();
 
@@ -256,6 +261,9 @@
                     session.start_time = new_start_time;
                 }
 
+            },
+            hasAssistants: function(){
+                return this.assistants.length > 0
             },
             addAssistants : function (assistants) {
                 this.assistants = this.assistants.concat(assistants);

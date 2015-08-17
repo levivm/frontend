@@ -22,13 +22,16 @@
          * @propertyOf trulii.utils.services.Error
          */
         var NON_FIELD_ERRORS = "non_field_errors";
-        var SESSIONS_PREFIX = "sessions";
+        var SESSIONS_PREFIX  = "sessions";
+        var FORM_FIELD_ALL   = "__all__";
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
+            FORM_FIELD_ALL: FORM_FIELD_ALL,
             form: {
                 clear: clearErrors,
-                add: addErrors
+                add: addErrors,
+                addArrayErrors:addArrayErrors
             },
             session: {
                 process: processSessionErrors
@@ -38,15 +41,34 @@
         return service;
 
         function clearErrors(form) {
+
             form.$setPristine();
+
+            if (form.hasOwnProperty(FORM_FIELD_ALL))
+                form[FORM_FIELD_ALL].$setValidity(FORM_FIELD_ALL, true);
             
-            // form.$valid = true;
+        }
+
+        function addArrayErrors(form,responseErrors){
+
+            _.each(responseErrors, function (error_dict) {
+
+                _.each(error_dict, function (message, field) {
+                    // console.log("message,field",message,field);
+                    //
+                    console.log('message:',message);
+                    form[field].error_message = message.pop();
+                    form[field].$setValidity(field, false);
+                });
+            });
+
         }
 
         function addErrors(form, responseErrors) {
             
             // form.$valid = false;
             angular.forEach(responseErrors, function (fieldErrors, field) {
+
                 var message = fieldErrors[0];
 
                 // Error is unrelated to form fields

@@ -12,11 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBLocationController', ActivityDBLocationController);
 
-    ActivityDBLocationController.$inject = ['$scope', 'uiGmapGoogleMapApi', 'uiGmapIsReady', 'filterFilter',
-        'activity', 'cities', 'LocationManager', 'Toast', 'Elevator', 'Error'];
+    ActivityDBLocationController.$inject = ['activity', 'cities', 'LocationManager', 'Toast', 'Elevator', 'Error'];
 
-    function ActivityDBLocationController($scope, uiGmapGoogleMapApi, uiGmapIsReady, filterFilter,
-                                          activity, cities, LocationManager, Toast, Elevator, Error) {
+    function ActivityDBLocationController(activity, cities, LocationManager, Toast, Elevator, Error) {
 
         var vm = this;
 
@@ -37,15 +35,13 @@
             
             _setActivityPos();
             vm.activity.update_location()
-                .then(updateSuccess, error);
+                .then(updateSuccess, errored);
 
             function updateSuccess(response) {
                 vm.isCollapsed = false;
                 angular.extend(activity, vm.activity);
                 _onSectionUpdated();
-
                 vm.isSaving = false;
-
                 Toast.generics.weSaved();
             }
 
@@ -76,9 +72,11 @@
         }
 
         /*********RESPONSE HANDLERS***************/
-        
 
-
+        function errored(errors) {
+            Error.form.add(vm.activity_location_form, errors);
+            vm.isSaving = false;
+        }
 
         function _onSectionUpdated() {
             activity.updateSection('location');
@@ -98,10 +96,7 @@
             vm.marker = LocationManager.getMarker(vm.activity.location);
 
             Elevator.toTop();
-
         }
-
-
     }
 
 })();

@@ -1,22 +1,12 @@
 
 <div class="row">
-    <div class="col-md-2">
-        <ul class="nav nav-pills nav-stacked">
-            <li>
-                <label for="home-city-selector" class="sr-only">Cities</label>
-                <select id="home-city-selector" class="form-control" name="city" ng-model="home.current_city"
-                        ng-options="city as city.name for city in home.cities track by city.id"
-                        ng-change="home.setCurrentCity(current_city)">
-                </select>
-            </li>
-        </ul>
-    </div>
-    <div class="col-md-10">
+    <div class="col-md-10 col-md-offset-1">
         <div class="container-fluid">
-            <div class="row">
-                <trulii-activity-item
-                    ng-repeat="activity in home.activities track by activity.id"
-                    data-activity="activity"></trulii-activity-item>
+            <div class="row activity-grid">
+                <!--TODO agregar de nuevo el track by cuando Harvey haga fix "track by activity.id"-->
+                <trulii-activity-item 
+                        ng-repeat="activity in home.activities"
+                        data-activity="activity" data-options="{{home.options}}"></trulii-activity-item>
             </div>
         </div>
     </div>

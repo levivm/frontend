@@ -1,55 +1,96 @@
-<div class="container">
-	<div class="col-sm-2">
-	    <nav class="nav-sidebar">
-			<ul class="nav tabs">
-	          <li class="active"><a data-target="#actives" data-toggle="tab">Abiertos</a></li>
-	          <li class=""><a data-target="#inactives" data-toggle="tab">Anteriores</a></li>
-	          <li class=""><a data-target="#draft" data-toggle="tab">Borradores</a></li>      
-	           <!-- <tab heading="Cuenta" select="changeState('organizer-dashboard.account')">                         -->
-			</ul>
-		</nav>
-	</div>
-	<div class="tab-content">
 
-		<div class="tab-pane active text-style" id="actives">
-			<div class="row">
-				<div class="col-md-3" ng-repeat="activity in vm.actual_activities">
-					{{::activity.title}}
-					{{::activity.short_description}}
-					{{::activity.id}}
+<div class="navbar-secondary">
 
-					<img width="200px" height="200px" ng-src="{{activity.photos[0].photo}}">
-					<a ui-sref="dash.activities-edit.general({activity_id:activity.id})">editar</a>
+    <ul>
+        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#published-tab">            
+            <span ng-bind="::activities.strings.TAB_PUBLISHED"></span>
+        </li>
 
+        <li class="navbar-secondary__item" data-toggle="tab" data-target="#previous-tab">            
+            <span ng-bind="::activities.strings.TAB_PREVIOUS"></span>
+        </li>
 
-						<!-- <img ng-src="{{::activity.photo}}"> -->
-				</div>
-			</div>
-		</div>
-		<div class="tab-pane text-style" id="inactives">
-			<div>
-				<div class="col-md-3" ng-repeat="activity in vm.previous_activities">
-					{{::activity.title}}
-					{{::activity.id}}
-					{{::activity.short_description}}
-					<img width="200px" height="200px" ng-src="{{activity.photos[0].photo}}">
-					<a ui-sref="dash.activities-edit.general({activity_id:activity.id})">editar</a>
-				</div>
-			</div>
-
-		</div>
-		<div class="tab-pane text-style" id="draft">
-			<div>
-				<div class="col-md-3" ng-repeat="activity in vm.draft_activities">
-					{{::activity.title}}
-					{{::activity.short_description}}
-					{{::activity.id}}
-
-					<img width="200px" height="200px" ng-src="{{activity.photos[0].photo}}">
-					<a ui-sref="dash.activities-edit.general({activity_id:activity.id})">editar</a>
-				</div>
-			</div>
-
-		</div>
-	</div>
+        <li class="navbar-secondary__item" data-toggle="tab" data-target="#drafts-tab">            
+            <span ng-bind="::activities.strings.TAB_DRAFTS"></span>
+        </li>    
+    </ul>    
+    
 </div>
+
+
+<div class="row">
+
+    <div class="col-md-11 col-md-offset-1 tab-content">
+        <div class="tab-pane active fade in" id="published-tab">
+            
+            <div ng-if="activities.published_activities.length > 0">
+                <p ng-bind="activities.strings.COPY_PUBLISHED"></p>
+
+                <div class="row activity-grid">
+                    <trulii-activity-item 
+                          ng-repeat="activity in activities.published_activities track by activity.id"
+                          data-activity="activity"
+                          data-options="{{activities.currentOptions}}"></trulii-activity-item>
+                </div>
+
+            </div>
+            <!--If there are no activities-->            
+
+            <div class="row" ng-if="activities.published_activities.length <= 0">
+        
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_PUBLISHED">
+                        
+                    </div>
+
+                <a ui-sref="dash.activities-new.general" class="btn btn-lg btn-success">
+                    Crear Actividad
+                </a>    
+                <a ng-if="activities.previous_activities" data-toggle="tab" data-target="#previous-tab" class="btn btn-lg btn-default">
+                    Republicar anterior
+                </a>    
+            </div>
+                
+            </div>
+        </div>
+
+        <div class="tab-pane fade in" id="previous-tab">
+            
+            <p ng-bind="activities.strings.COPY_PREVIOUS"></p>
+
+            <div class="row activity-grid --left">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.previous_activities track by activity.id"
+                      data-activity="activity"
+                      data-options="{{activities.previousOptions}}"></trulii-activity-item>
+            </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.previous_activities.length <= 0" class="row">
+                <div class="col-md-12">
+                    <div class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_PREVIOUS"></div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane fade in" id="drafts-tab">
+            
+            <p ng-bind="activities.strings.COPY_DRAFTS"></p>
+
+            <div class="row activity-grid --left">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.draft_activities track by activity.id"
+                      data-activity="activity"
+                      data-options="{{activities.draftOptions}}"></trulii-activity-item>
+            </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.draft_activities.length <= 0" class="row">
+                <div class="col-md-12">
+                    <div class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_DRAFTS"></div>                    
+                </div>
+            </div>
+        </div>
+    </div>    
+
+</div>
+

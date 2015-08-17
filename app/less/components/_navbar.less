@@ -1,217 +1,270 @@
-
-
 @import url('../_trulii-variables');
-
 @import "_navbar";
 @import "navbar.less";
 
-
 @navbar-inner-height: @navbar-height - (@navbar-padding-vertical*2);
+@logo-width: 120px;
+@search-box-element-height: @navbar-inner-height - @navbar-padding-vertical;
 
-.navbar {
-	.shadow-z-1;
-
-	height: @navbar-height;
-	padding: @navbar-padding-vertical 1em;
-	//overflow: hidden;
+@navbar-secondary-height: 40px;
 
 
-	&__logo{
-		background: url(@res-trulii-logo) no-repeat;
-		height: @navbar-inner-height;
-		width: 120px;
-		display: inline-block;
-		background-size: contain;
-		position: absolute;
-		margin-left: 0.5em;
+.navbar {    
+    height: @navbar-height;    
 
-		.before-xs({
-			background: url(@res-trulii-logo-tiny) no-repeat center;			
-			width: 30px;			
-			background-size: contain;
-			position: relative;
-		});
-	}
+    .btn {
+        margin-top: 0;
+    }
 
-	&__user{
-		line-height: @navbar-inner-height;
-		display: inline-block;
-		//float:right;		
-		cursor: pointer;
-		position: absolute;
-		top: 0;
-		right: 0;
-		padding: @navbar-padding-vertical 1em @navbar-padding-vertical .5em;
+    &__link {
+        line-height: @search-box-element-height;
+        display: inline-block;
+        height: @navbar-inner-height;
+        vertical-align: top;
+        padding: @navbar-padding-vertical 1em @navbar-padding-vertical .5em;
 
-		* {
-			height: 100%;
-			display: inline-block;
-			color: @darkbg-text;			
-		}
-
-		&__picture{
-			.square(@navbar-inner-height);
-			border-radius: 50%;
-			border: 2px solid rgba(255,255,255,0.5);
-		}
-
-		&__name:extend(.show-after-md){						
-			font-weight: bold;			
-		}
-
-		.open &{			
-			background-color: @primary-dark;
-		}		
-		
-	}
-
-	.dropdown{
-		width: 14em;
-	}
-
-	&__center-wrapper{
-
-		vertical-align: top;
-		height: @navbar-inner-height;
-		width: 65%;		
-		.center-block();
-
-		.before-xs({
-			display: inline-block;
-		});
-	}
-
-	&__right-wrapper{
-
-		vertical-align: top;
-		height: @navbar-inner-height;
-		width: 80%;
-		text-align: right;
-
-		.before-xs({
-			display: inline-block;
-		});
-
-        .btn{
-            margin: 2px 1px;
+        * {
+            height: 100%;
+            display: inline-block;
+            color: @darkbg-text;
+            vertical-align: top;
+            font-weight: bold;
+            text-transform: capitalize;
         }
-	}
+    }
 
-	&__search-box{
-		background: white;
-		width: 100%;
-		height: 100%;
-		border-radius: @border-radius-base;
-		border: 1px solid darken(@primary, 4%);
+    &__logo-container{
+        background-color: @primary;
+        height: @navbar-height;
+        padding: @navbar-padding-vertical 1.8em;
+        display: inline-block;        
+        float: left;
+        text-align: center;
 
-		input{
-			font-size: 1.2em;
-			text-align: center;
-			background: transparent;
-			border: 0px;
-			height: 100%;
-			width: 75%;
-			float: left;
-			display: block;
-		
-		}
+        .--on-dash &{
+            width: @sidebar-width + 1.1;
+        }
+    }
 
-		&__city-select{
-			width: 15%;
-			display: inline-block;
-			height: 100%;
-			vertical-align: top;
-			line-height: @navbar-inner-height;
-			font-weight: bold;
-			border: 0;
-			border-left: 1px solid @color-delimeter-dark;
-			text-align: center;
-			background: transparent;
-			padding: 0 .5em;
-			.text-overflow();	
-			-webkit-appearance: none;
-			-moz-appearance: none;
+    &__logo {
+        background: url(@res-trulii-logo) no-repeat;
+        height: @navbar-inner-height;
+        //width: @logo-width;
+        width: 6em;
+        display: inline-block;
+        background-size: contain;        
+        margin-left: 0.5em;
 
-			&::-ms-expand{
-				display: none;
-			}
+        .before-xs({ background: url(@res-trulii-logo-tiny) no-repeat center; width: 30px; background-size: contain; position: relative; });
+    }
 
-			.before-sm({
-				width: 25%;
-			});
+    &__left-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        height: @navbar-inner-height;
+        width: 40%;
+        margin-left: @logo-width*2;
+    }
 
-		}
+    &__right-wrapper {
+        display: inline-block;
+        vertical-align: top;
+        height: @navbar-height;
+        //width: 40%;
+        text-align: right;
+        float: right;     
+        font-size: 0.9em;   
 
-		&__btn{
-			&:before{				
-				line-height: @navbar-inner-height;
-				display: inline-block;			
-				color: @lightbg-text;					
-				font-size: 1.2em;
-			}			
+        .before-xs({ display: inline-block; });
 
-			width: 10%;
-			text-align: center;
-			height: @navbar-inner-height;
-			display: inline-block;
-			border: 0;
-			border-left: 1px solid @color-delimeter-dark;
-			background: transparent;
+        .btn {
+            margin: (@navbar-padding-vertical+2) 1em;            
+        }
 
-			&:extend(.show-after-sm);
-		}
-	}
+        & > div{
+            display: inline-block;
+        }
+    }
 
-	[class*=mdi-navigation]:before{
-		position: relative;
-		top: 0.2em;
-	}
-		
+    &__option {
+        color: @lightbg-text;    
+        display: inline-block;
+        padding: @navbar-padding-vertical 1em; 
+        height: @navbar-height;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: @navbar-height - (@navbar-padding-vertical*2);
+
+        &:active, &.open{
+            color: white;
+            background-color: @success !important;
+        }
+
+        &--right{
+            width: 14em;            
+            float: right;            
+            border-left: 1px solid @color-delimeter-dark;
+            text-align: left;                  
+        }
+    }    
+
+    &__search-box {
+        background: white;
+        width: 100%;
+        height: 35px;
+        margin-top: 4px;
+        border-radius: @border-radius-base;
+        border: 1px solid darken(@primary, 4%);
+
+        input {
+            font-size: 1.1em;
+            text-align: center;
+            background: transparent;
+            border: 0;
+            padding: @navbar-padding-vertical;
+            height: 100%;
+            width: 60%;
+            float: left;
+            display: block;
+
+        }
+
+        &__city-select {
+            width: 28%;
+            display: inline-block;
+            height: @search-box-element-height;
+            vertical-align: top;
+            line-height: @search-box-element-height;
+            font-weight: bold;
+            border: 0;
+            border-left: 1px solid @color-delimeter-dark;
+            text-align: center;
+            background: transparent;
+            padding: 0 0.5em;
+            .text-overflow();
+            //-webkit-appearance: none;
+            //-moz-appearance: none;
+
+            &::-ms-expand {
+                display: none;
+            }
+
+            .before-sm({ width: 25%; });
+
+        }
+
+        &__btn {
+            &:before {
+                display: inline-block;
+                color: @lightbg-text;
+                font-size: 1.1em;
+            }
+
+            font-size: 18px;
+            width: 10%;
+            text-align: center;
+            height: @search-box-element-height;
+            display: inline-block;
+            border: 0;
+            border-left: 1px solid @color-delimeter-dark;
+            background: transparent;
+
+            &:extend(.show-after-sm);
+        }
+    }
+
+    &__user {        
+        display: inline-block;
+        cursor: pointer;            
+
+        * {
+            height: 100%;
+            display: inline-block;            
+            vertical-align: top;
+        }
+
+        &__picture:extend(.img-size-cover):extend(.img-position-center) {
+            .square(@navbar-inner-height - 8);
+            border-radius: 50%;            
+            margin: 4px;
+        }
+
+        &__name:extend(.show-after-md) {                        
+            min-width: 70px;
+            max-width: 90px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: bolder;
+            text-transform: uppercase;
+            line-height: @navbar-height - (@navbar-padding-vertical*2);
+        }    
+
+    }
+
+    .dropdown {
+        width: auto;
+        text-align: left;
+    }
+
+    [class*=mdi-navigation]:before {
+        position: relative;
+        top: 0.2em;
+    }
+
 }
 
-.navbar-secondary{
-	.shadow-z-1;
-	background: darken(@primary, 5%);
-	height: 40px;
-	width: 100%;
-	text-align: center;
-	position: fixed;
-	top: @navbar-height;
-	z-index: 100;
+.navbar-secondary {
+    background: @gray-lighter;
+    height:@navbar-secondary-height; 
+    width: 100%;
+    text-align: left;
+    position: fixed;
+    top: @navbar-height;
+    z-index: 200;    
+    padding: 0px 1em;
 
-	&__item{
-		color: @lightbg-text;
-		display: inline-block;
-		font-weight: bolder;
-		line-height: 37px;
-		padding: 0 1.7em;
-		text-transform: uppercase;
+    &__item {
+        font-family: @font-sans-alt;
+        font-size: .85em;
+        color: @lightbg-text;
+        display: inline-block;
+        font-weight: bolder;
+        line-height: 37px;
+        padding: 0 3.7em;
+        cursor: pointer;
 
-		
-		&--selected{
-			border-bottom: 3px solid @lightbg-text;
-		}
+        &--selected, &.active {
+            border-bottom: 3px solid @gray;            
+            font-weight: bold;
+        }
 
-		&:hover{
-			color: @secondary;
-			text-decoration: none;
-		}
+        &:hover:not(.active) {
+            text-decoration: none;
+            background-color: @gray-lighter;
+            border-bottom: 3px solid darken(@gray-lighter, 15%);
+            color: @lightbg-text;
+        }
 
-		&:focus{
-			color: @lightbg-text;
-		}
+        &:focus {
+            color: @lightbg-text;
+        }
 
-	}
+    }
 
-	& + *{
-		margin-top: @navbar-height + 40px;
-	}
+    & + * { 
+        margin-top: @navbar-secondary-height*1.5;
+    }
+
+    [class^="mdi-"] {
+        position: relative;
+        top: 5px;
+    }
 
 }
-	
 
 // Put on navbar sibling element
-.with-navbar{
-	margin-top: @navbar-height;
-	padding-top: @navbar-margin-bottom;
+.with-navbar {
+    margin-top: @navbar-height;
+    padding-top: @navbar-margin-bottom;
 }

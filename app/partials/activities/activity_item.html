@@ -1,30 +1,66 @@
-<div class="col-md-4 col-sm-6 col-xs-12">
-    <div class="panel panel-default">
-        <div>
-            <img ng-src="{{activity.main_photo}}" alt="{{activity.title}}" class="img-responsive"/>
-        </div>
-        <div class="panel-body">
-            <div class="row">
-                <div class="col-md-4">
-                    <a ui-sref="organizer-profile({organizer_id: {{activity.organizer.id}} })">
-                        <img ng-src="{{activity.organizer.photo}}" alt="{{activity.organizer.full_name}}" class="img-responsive img-circle"/>
-                    </a>
-                </div>
-                <div class="col-md-8 text-right">
-                    <a ui-sref="activities-detail({activity_id: {{activity.id}} })">
-                        <h3 ng-bind="activity.title"></h3>
-                    </a>
-                </div>
+<div class="activity-card">
+    <div class="activity-card__header " style="background-image: url('{{activity.main_photo}}') ">
+        <div ng-if="draft" class="activity-card__header__draft-cover"></div>
+        <div class="activity-card__category" style="background-color: {{activity.category_color}}"
+             ng-bind="::activity.category_display"></div>
+        <div class="activity-card__owner-picture"
+             style="background-image: url('{{::activity.organizer.photo}}') "></div>
+
+        <span class="activity-card__header__btn-more mdi-navigation-more-vert"
+              ng-click="showMenu = true">
+        </span>
+
+        <span class="activity-card__header__menu horizontal-fade" ng-show="showMenu">
+
+            <div class="activity-card__header__menu__btn-close  mdi-navigation-close"
+                 ng-click="showMenu = false">
             </div>
-            <div class="row">
-                <div class="col-md-8 col-md-offset-4">
-                    <div class="pull-right">
-                        <i class="mdi-action-grade"
-                           ng-repeat="star in activity.rating track by star"
-                           ng-style="getStarStyle(star)"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+            <a ng-repeat="action in actions track by $index"
+               class="activity-card__header__menu__item"
+               ui-sref="{{::action.state}}"
+               data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+                <i class=" activity-card__header__menu__item__icon" ng-class="action.icon"></i>
+                <span ng-bind="::action.name"></span>
+            </a>
+
+        </span>
     </div>
+
+    <a class="activity-card__body" ui-sref="activities-detail.info({activity_id: {{::activity.id}} })">
+        <span class="activity-card__body__title" ng-bind="::activity.title"></span>    
+        <span class="activity-card__body__owner-name" ng-bind="::activity.organizer.name">
+            
+        </span>
+
+        <div class="relative">
+            <span class="activity-card__body__date" ng-bind="activity.date_msg">
+                
+            </span>
+
+            <div class="activity-card__rating">
+
+                <i ng-repeat="star in activity.rating track by star"
+                   ng-class="getStarStyle(star)"></i>
+            </div>
+        </div>
+
+
+        <div class="activity-card__body__description" ng-bind="::activity.short_description">
+
+        </div>
+    </a>
+
+    <div class="activity-card__bottom">
+        <div ng-if="activity.closest_calendar.session_price">
+            $
+            <span
+                    ng-bind="::activity.closest_calendar.session_price | number"></span>
+        </div>
+
+        
+        <span ng-if="!activity.closest_calendar.session_price"
+              ng-bind="::strings.COPY_NA"></span>
+    </div>
+
 </div>

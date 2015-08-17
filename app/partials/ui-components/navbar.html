@@ -1,93 +1,73 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    
-        <div class="row">
-            <!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button> -->
+
+    <div class="row">
+        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button> -->
+        <div class="navbar__logo-container">
             <a ui-sref="home" class="navbar__logo"></a>
+        </div>
+        <div class="col-md-5">
+            <trulii-search-bar ng-if="isSearchVisible"></trulii-search-bar>
+        </div>
 
-            <div ng-if="!isOrganizer()" class="navbar__center-wrapper">
-                <div class="navbar__search-box">
-                    <input type="text" placeholder="¿Qué quieres aprender hoy?"><span
-                    class="navbar__search-box__city-select">Bogotá<span
-                    class="mdi-navigation-expand-more"></span></span><button class="navbar__search-box__btn mdi-action-search"></button>
-                </div>
 
-                <!--<div ng-if="isStudent()" class="navbar__search-box">-->
-                    <!--<input type="text" placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"><label for="city-select-landing" class="sr-only"-->
-                           <!--ng-bind="::strings.CITY_LABEL"></label><div class="input-group">-->
-                        <!--<select id="city-select-landing" name="city"-->
-                                <!--class="form-control navbar__search-box__city-select"-->
-                                <!--ng-model="current_city"-->
-                                <!--ng-options="city as city.name for city in cities"-->
-                                <!--ng-change="setCurrentCity(current_city)">-->
-                            <!--<option value="" selected ng-bind="::strings.CITY_DEFAULT_LABEL">-->
-                            <!--</option>-->
-                        <!--</select>-->
-                    <!--</div>-->
-                    <!--<button class="navbar__search-box__btn mdi-action-search"></button>-->
-                <!--</div>-->
+        <div class="navbar__right-wrapper">
+           <div ng-if="user">
+                <a ng-if="user.is_organizer" class="btn btn-primary text-light"
+                   ui-sref="dash.activities-new.general" ng-bind="::strings.ACTION_CREATE">
+                </a>                                
+            </div>                         
 
-                <!--<div class="navbar__actions" ng-if="isOrganizer()">-->
-                    <!--<a ui-sref="activities-new.general" class="btn btn-default btn-lg">-->
-                        <!--<i class="mdi-content-add"></i>-->
-                    <!--</a>-->
-                <!--</div>-->
-            </div>
-            <div ng-if="isOrganizer()" class="navbar__right-wrapper">
-                <a class="btn btn-xs btn-info" ui-sref="dash.activities-new.general">
-                    <span class="mdi-content-add"></span>
+            <div ng-if="!user">
+
+            <a class="navbar__option" ui-sref="organizer-landing">
+                    <span ng-bind="strings.COPY_BECOME_ORGANIZER"></span>
                 </a>
+                
+                <a class="navbar__option" ui-sref="login">
+                    <span ng-bind="strings.ACTION_LOGIN"></span>
+                </a>                
+                
             </div>
 
-            <div ng-if="!!user">
+            <div class="navbar__option navbar__option--right" ng-if="user">            
+            
                 <div class="navbar__user" data-toggle="dropdown">
-                    <img class="navbar__user__picture" ng-src="{{user.photo}}" alt="{{user.user.full_name}}">
-                    <span class="navbar__user__name" ng-bind="user.user.full_name"></span>
-                    <span class="mdi-navigation-expand-more"></span>
+                    <img ng-src="{{user.photo}}" class="navbar__user__picture"
+                         alt="{{user.user.full_name}}"/>
+                    <span class="navbar__user__name" ng-bind="user.user.full_name"></span> 
+                    <span class="mdi-navigation-expand-more"></span>               
                 </div>
 
                 <div class="dropdown" role="menu">
-                    <a ng-if="isOrganizer()" class="dropdown__item" ui-sref="organizer-dashboard.profile">
+                    <a ng-if="user.is_organizer" class="dropdown__item" ui-sref="organizer-dashboard.profile">
                         <span class="mdi-action-account-circle dropdown__item__icon"></span>
-                        <span ng-bind="strings.PROFILE_LABEL"></span>
+                        <span ng-bind="strings.LABEL_PROFILE"></span>
                     </a>
-                    <a ng-if="isStudent()" class="dropdown__item" ui-sref="student-dashboard.profile">
+                    <a ng-if="user.is_student" class="dropdown__item" ui-sref="student-dashboard.profile">
                         <span class="mdi-action-account-circle dropdown__item__icon"></span>
-                        <span ng-bind="strings.PROFILE_LABEL"></span>
+                        <span ng-bind="strings.LABEL_PROFILE"></span>
                     </a>
                     <a ui-sref="logout" class="dropdown__item">
                         <span class="mdi-action-exit-to-app dropdown__item__icon"></span>
-                        <span ng-bind="strings.LOGOUT_LABEL"></span>
+                        <span ng-bind="strings.LABEL_LOGOUT"></span>
                     </a>
-                </div>
+                </div>                                             
             </div>
-            <div ng-if="!user">
-                <div class="navbar__user" data-toggle="dropdown">
-                    <span class="navbar__user__name" ng-bind="strings.REGISTER_LABEL"></span>
-                    <span class="mdi-navigation-expand-more"></span>
-                </div>
-                <div class="dropdown" role="menu">
-                    <a class="dropdown__item" ui-sref="login">
-                        <span ng-bind="strings.LOGIN_LABEL"></span>
-                    </a>
-                    <div class="dropdown-header">¿No tienes cuenta?</div>
-                    <a class="dropdown__item" ui-sref="register">
-                        <span class="mdi-social-school dropdown__item__icon"></span>
-                        <span ng-bind="strings.STUDENT_LABEL"></span>
-                    </a>
-                    <a class="dropdown__item" ui-sref="organizer-landing" >
-                        <span class="mdi-social-domain dropdown__item__icon"></span>
-                        <span ng-bind="strings.ORGANIZER_LABEL"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
+            
+            <a class="navbar__option navbar__option--right" ui-sref="register" ng-if="!user">
+                <span class="mdi-action-account-circle"></span>
+                <span ng-bind="strings.ACTION_REGISTER"></span>
+            </a>        
+            
+
+        </div>                 
+
     </div>
-    
 </nav> 
 

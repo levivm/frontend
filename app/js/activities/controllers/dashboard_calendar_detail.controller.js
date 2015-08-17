@@ -42,9 +42,13 @@
         }
 
         function _errored(responseErrors) {
+
             if (responseErrors) {
+                Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
+                delete responseErrors['sessions'];
                 Error.form.add(vm.activity_calendar_form, responseErrors);
-                Error.session.process(vm.activity_calendar_form, responseErrors);
+                console.log("ERROR",vm.calendar);
+                console.log("ERROR",vm.calendar);
             }
 
             vm.isSaving = false;

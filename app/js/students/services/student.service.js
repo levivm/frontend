@@ -30,17 +30,25 @@
         Student.prototype = {
 
             setData : function (studentData) {
-                angular.extend(this, studentData);
-                if(!this.photo) {
-                    this.photo = defaultPicture;
+
+                var scope = this;
+
+                angular.extend(scope, studentData);
+                if(!scope.photo) {
+                    scope.photo = defaultPicture;
                 }
+                scope._setDates();
+
+            },
+            _setDates: function(){
+
+                this.birth_date = new Date(this.birth_date);
+
             },
 
             load : function (id) {
                 var scope = this;
                 return $http.get(api.student(id)).success(function (studentData) {
-                    console.log('response');
-                    console.log(studentData);
                     scope.setData(studentData);
                 });
             },
@@ -51,11 +59,11 @@
                     user: {
                         'first_name': scope.user.first_name,
                         'last_name': scope.user.last_name,
-                        'city': scope.user.city
                     },
-                    'birth_date': scope.birth_date,
+                    'birth_date': scope.birth_date.valueOf(),
                     'gender': scope.gender,
-                    'bio' : scope.bio
+                    'bio' : scope.bio,
+                    'city' : scope.city,
                 };
                 return scope.update(profile_data)
             },
@@ -67,6 +75,7 @@
 
             update : function (data) {
                 var scope = this;
+                console.log("updating STUDENT",scope);
                 return $http.put(api.student(this.id),data)
                     .then(success, error);
 
@@ -77,13 +86,14 @@
                 }
 
                 function error(response) {
+                    scope._setDates();
                     return $q.reject(response);
                 }
             },
 
             reload : function () {
                 var scope = this;
-                return Authentication.updateAuthenticatedAccount().then(function (response) {
+                return Authentication.getAuthenticatedAccount(true).then(function (response) {
                     scope.setData(response.data);
                 });
             },
@@ -94,7 +104,7 @@
                     .then(success, error);
 
                 function success(response) {
-                    Authentication.updateAuthenticatedAccount().then(function (response) {
+                    Authentication.getAuthenticatedAccount(true).then(function (response) {
                         scope.setData(response.data);
                     });
                     return response.data;
