@@ -2,36 +2,28 @@
 <div class="container-fluid">
     <div class="row">
         <div class="sidebar lateral-slide">
-                        
             <a ui-sref=".activities" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                 <i class="sidebar__item__icon mdi-social-school"></i>                    
                 <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>                                                                        
             </a>
-        
-
-        
             <a ui-sref=".account" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                 <i class="sidebar__item__icon mdi-action-settings"></i>                    
                 <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>                                                                        
             </a>
-        
-
-        
             <a ui-sref=".profile" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                 <i class="sidebar__item__icon mdi-action-account-circle"></i>                    
                 <span ng-bind="::dash.strings.SECTION_PROFILE"></span>                                                                        
-            </a>            
-            
-
+            </a>
+            <a ui-sref=".history" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                <i class="sidebar__item__icon mdi-action-history"></i>
+                <span ng-bind="::dash.strings.SECTION_HISTORY"></span>
+            </a>
         </div>
 
-        <div ui-view class="col-sm-10">
-            
-        </div>
+        <div ui-view class="col-sm-10"></div>
 
-        <div ng-include="'partials/ui-components/footer-dashboard.html'">
-            
-        </div>
+        <div ng-include="'partials/ui-components/footer-dashboard.html'"></div>
+
     </div>
 </div>
 

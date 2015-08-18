@@ -106,6 +106,13 @@
 
         function _activate(){
             toState = $stateParams.toState;
+            if(!toState){
+                toState = {
+                    state : 'home',
+                    params: {}
+                };
+            }
+
             console.log(toState);
             _setStrings();
             if (validatedData) {
