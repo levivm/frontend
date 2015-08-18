@@ -193,11 +193,6 @@
                     requiredAuthentication : true
                 }
             })
-            .state('organizer-dashboard.profile', {
-                url:'profile',
-                controller: 'OrganizerProfileCtrl as profile',
-                templateUrl: 'partials/organizers/dashboard_profile.html'
-            })
             .state('organizer-dashboard.account', {
                 url:'account',
                 controller: 'OrganizerAccountCtrl as account',
@@ -210,6 +205,16 @@
                 resolve: {
                     activities: getOrganizerActivities
                 }
+            })
+            .state('organizer-dashboard.history', {
+                url:'account',
+                controller: 'OrganizerHistoryCtrl as history',
+                templateUrl: 'partials/organizers/dashboard_history.html'
+            })
+            .state('organizer-dashboard.profile', {
+                url:'profile',
+                controller: 'OrganizerProfileCtrl as profile',
+                templateUrl: 'partials/organizers/dashboard_profile.html'
             })
             .state('organizer-profile', {
                 url: '/organizers/{organizer_id:int}/profile',

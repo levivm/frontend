@@ -1,19 +1,18 @@
 /**
- * Register controller
- * @namespace thinkster.organizers.controllers
+ * @ngdoc controller
+ * @name trulii.organizers.controllers.OrganizerDashboardCtrl
+ * @description Handles Organizer Dashboard
+ * @requires ui.router.state.$state
  */
+
 (function () {
     'use strict';
-
 
     angular
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
     OrganizerDashboardCtrl.$inject = ['$state'];
-    /**
-     * @namespace RegisterController
-     */
     function OrganizerDashboardCtrl($state) {
 
         var vm = this;
@@ -32,7 +31,8 @@
             angular.extend(vm.strings, {
                 SECTION_ACTIVITIES: "Actividades",
                 SECTION_ACCOUNT: "Cuenta",
-                SECTION_PROFILE: "Mi Perfil"
+                SECTION_PROFILE: "Mi Perfil",
+                SECTION_HISTORY: "Historial de Ventas"
             });
         }
 
