@@ -11803,6 +11803,9 @@ hr.on-light {
 .relative {
   position: relative;
 }
+.scroll-y {
+  overflow-y: scroll;
+}
 .text-left {
   text-align: left;
 }
@@ -12026,7 +12029,7 @@ hr.on-light {
 .separate-vertical,
 .separate {
   display: block;
-  margin-top: 3rem;
+  margin-top: 3rem !important;
 }
 .separate-above-medium {
   margin-top: 5rem;
@@ -12041,7 +12044,7 @@ hr.on-light {
 .separate-vertical,
 .separate {
   display: block;
-  margin-bottom: 3rem;
+  margin-bottom: 3rem !important;
 }
 .separate-below-medium {
   margin-bottom: 5rem;
