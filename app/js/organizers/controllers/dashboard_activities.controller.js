@@ -1,43 +1,44 @@
 /**
- * Register controller
- * @namespace thinkster.organizers.controllers
+ * @ngdoc controller
+ * @name trulii.organizers.controllers.OrganizerActivitiesCtrl
+ * @description Handles Organizer Activities Dashboard
+ * @requires organizer
+ * @requires activities
  */
+
 (function () {
     'use strict';
-
 
     angular
         .module('trulii.organizers.controllers')
         .controller('OrganizerActivitiesCtrl', OrganizerActivitiesCtrl);
 
     OrganizerActivitiesCtrl.$inject = ['organizer', 'activities'];
-    /**
-     * @namespace RegisterController
-     */
     function OrganizerActivitiesCtrl(organizer, activities) {
-
 
         var vm = this;
         vm.organizer = organizer;
         vm.isCollapsed = true;
-        vm.published_activities = [];
-        vm.previous_activities = [];
-        vm.draft_activities = [];
-        vm.currentOptions = {
+        vm.open_activities = [];
+        vm.closed_activities = [];
+        vm.inactive_activities = [];
+        vm.openOptions = {
             actions: ['view', 'edit', 'manage']
         };
-        vm.previousOptions = {
+        vm.closedOptions = {
             actions: ['view', 'republish'],
             disabled: true
         };
-        vm.draftOptions = {
+        vm.inactiveOptions = {
             actions: ['view', 'edit'],
-            isDraft: true
+            isInactive: true
         };
 
-        activate();
+        _activate();
 
-        function mapMainPicture(activity){
+        //--------- Internal Functions ---------//
+
+        function _mapMainPicture(activity){
             angular.forEach(activity.photos, function(photo, index, array){
                 if(photo.main_photo){
                     activity.main_photo = photo.photo;
@@ -51,34 +52,34 @@
             return activity;
         }
 
-        function setStrings() {
+        function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                COPY_PUBLISHED: "Revisa las actividades que tienes publicadas actualmente.",
-                COPY_PREVIOUS: "Revisa tus actividades que estuvieron publicadas en Trulii. Si lo deseas puedes"
+                COPY_OPEN: "Revisa las actividades que tienes publicadas actualmente.",
+                COPY_CLOSED: "Revisa tus actividades que estuvieron publicadas en Trulii. Si lo deseas puedes"
                     + " republicarlas.",
-                COPY_DRAFTS: "Revisa los registros que no has completado o publicado aún en Trulii ¿Qué esperas "
+                COPY_INACTIVE: "Revisa los registros que no has completado o publicado aún en Trulii ¿Qué esperas "
                     + "para publicarlos?",
                 
-                COPY_EMPTY_PUBLISHED: "Por ahora no tiene ninguna actividad publicada. ¿Se anima a publicar una actividad en este momento?",
-                LABEL_EMPTY_PREVIOUS: "No tienes actividades pasadas",
-                COPY_EMPTY_PREVIOUS: "Ninguna de tus actividades publicadas se han vencido hasta ahora",
-                LABEL_EMPTY_DRAFTS: "Actualmente no tienes borradores de actividades",
-                COPY_EMPTY_DRAFTS: "Parece ser el momento perfecto para crear y publicar una nueva actividad",
+                COPY_EMPTY_OPEN: "Por ahora no tiene ninguna actividad publicada. ¿Se anima a publicar una actividad en este momento?",
+                LABEL_EMPTY_CLOSED: "No tienes actividades pasadas",
+                COPY_EMPTY_CLOSED: "Ninguna de tus actividades publicadas se han vencido hasta ahora",
+                LABEL_EMPTY_INACTIVE: "Actualmente no tienes borradores de actividades",
+                COPY_EMPTY_INACTIVE: "Parece ser el momento perfecto para crear y publicar una nueva actividad",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                TAB_PUBLISHED: "Publicadas",
-                TAB_PREVIOUS: "Anteriores",
-                TAB_DRAFTS: "Borradores"
+                TAB_OPEN: "Abiertas",
+                TAB_CLOSED: "Cerradas",
+                TAB_INACTIVE: "Inactivas"
             });
         }
 
-        function activate() {
-            setStrings();
+        function _activate() {
+            _setStrings();
             console.log('activities:', activities);
-            activities.map(mapMainPicture);
-            vm.previous_activities = _.filter(activities, function (activity) {
+            activities.map(_mapMainPicture);
+            vm.closed_activities = _.filter(activities, function (activity) {
                 var today = new Date();
                 today.setHours(0, 0, 0, 0);
 
@@ -88,11 +89,11 @@
                 activity_date.setHours(0, 0, 0, 0);
                 return !!activity.last_date && activity_date < today && activity.published
             });
-            vm.draft_activities = _.filter(activities, 'published', false);
+            vm.inactive_activities = _.filter(activities, 'published', false);
             //vm.published_activities = _.difference(_.filter(activities, {'enroll_open': true, 'published': true}),
-            //    vm.previous_activities);
+            //    vm.closed_activities);
 
-            vm.published_activities = activities;
+            vm.open_activities = activities;
         }
 
     }

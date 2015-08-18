@@ -1,6 +1,6 @@
 <div class="activity-card">
     <div class="activity-card__header " style="background-image: url('{{activity.main_photo}}') ">
-        <div ng-if="draft" class="activity-card__header__draft-cover"></div>
+        <div ng-if="inactive" class="activity-card__header__inactive-cover"></div>
         <div class="activity-card__category" style="background-color: {{activity.category_color}}"
              ng-bind="::activity.category_display"></div>
         <div class="activity-card__owner-picture"
