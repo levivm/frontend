@@ -58,7 +58,6 @@
 
                 this.location.city = city;
             },
-
             load : function (id) {
                 var scope = this;
                 // serverConf.url+'/api/organizers/' + id

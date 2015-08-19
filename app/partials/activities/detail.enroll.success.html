@@ -46,8 +46,9 @@
                         <div ng-bind="::success.organizer.name"></div>
                         <div ng-bind="::success.strings.ACTION_VIEW_PROFILE"></div>
                     </a>
-                    <button class="btn btn-primary"
-                            ng-bind="::success.strings.ACTION_CONTACT"></button>
+                    <a class="btn btn-primary"
+                       ui-sref="contact-us(success.current_state)"
+                            ng-bind="::success.strings.ACTION_CONTACT"></a>
                 </div>
             </div>
         </div>

@@ -1,3 +1,6 @@
+# serverConf
+app/js/trulii.serverConf.js
+
 # Bower and NPM directories
 node_modules/
 bower_components/
@@ -13,11 +16,8 @@ docs/
 # Distribution directory
 public/
 
-# Temporal build files
-temp/
-
 # IntelliJ IDEs
 .idea/
 
 # Mac scumbag files
-**/.DS_Store
+**/*/.DS_Store

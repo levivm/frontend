@@ -64,8 +64,13 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'gallery' : function (idActivity) {
-                return renderUrl('activities/', [idActivity, 'gallery']);
+            'gallery' : function (idActivity,from_stock) {
+                
+                if(from_stock)
+                    return renderUrl('activities/', [idActivity, 'gallery','auto'])
+                else
+                    return renderUrl('activities/', [idActivity, 'gallery'])
+
             },
 
             /**

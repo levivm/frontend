@@ -5,8 +5,32 @@
 //@import url('inputs');
 @import "_inputs";
 
-.form-group:not(:first-child){
-	margin-top: 3.4em;
+input, textarea, select{
+	font-family: @font-sans-alt;
+	font-weight: normal;
+}
+
+::-webkit-input-placeholder {
+   font-weight: 200;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   font-weight: 200;  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   font-weight: 200;  
+}
+
+:-ms-input-placeholder {  
+   font-weight: 200;  
+}
+
+label{
+	font-family: @font-sans-alt;
+	font-weight: 200;
+	color: @gray !important;
+	font-size: 0.9em;
 }
 
 .input{

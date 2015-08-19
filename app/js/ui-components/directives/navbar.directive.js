@@ -12,13 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$state', '$timeout', 'UIComponentsTemplatesPath',
-        'ActivitiesManager', 'LocationManager', 'Authentication',
-        'defaultPicture'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture'];
 
-    function truliiNavbar($rootScope, $state, $timeout, UIComponentsTemplatesPath,
-                          ActivitiesManager, LocationManager, Authentication,
-                          defaultPicture) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "navbar.html",
@@ -26,40 +22,61 @@
 
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
-
-                scope.q = null;
-                scope.search_city = null;
-                scope.cities = [];
+                
                 scope.isSearchVisible = true;
-                scope.updateSearchCity = updateSearchCity;
-                scope.search = search;
 
-                activate();
+                _activate();
 
-                function search() {
+                //--------- Internal Functions ---------//
 
-                    console.log('navbar. search.', 'q:', scope.q, 'cityId:', scope.search_city.id);
-                    ActivitiesManager.searchActivities(scope.q, scope.search_city.id).then(success, error);
+                function _getUser() {
+                    Authentication.getAuthenticatedAccount().then(success, error);
 
-                    function success(response){
-                        console.log('search response:', response.data);
-                        $state.go('home', {'activities': response.data});
-                    }
-
-                    function error(response){
-                        if(!response){
-                            console.log("Error. Can't search without a city. Please specify a city to search on");
-                        } else {
-                            console.log('error searching for activities.', response);
+                    function success(user) {
+                        if (!user) {
+                            scope.user = null;
+                            return;
                         }
+                        scope.user = user;
+                        Authentication.isOrganizer().then(function (result) {
+                            scope.user.is_organizer = result;
+                            scope.isSearchVisible = !result;
+                        });
+                        Authentication.isStudent().then(function (result) {
+                            scope.user.is_student = result;
+                        });
+                        _mapDisplayName(scope.user);
+                    }
+
+                    function error() {
+                        console.log('navbar response reject');
+                        scope.user = null;
                     }
                 }
 
-                function updateSearchCity() {
-                    LocationManager.setSearchCity(scope.search_city);
+                function _mapDisplayName(data) {
+                    var user = data.user;
+                    var company = data.name;
+                    if (company) {
+                        user.full_name = company;
+                    } else if (user.full_name) {
+                        console.log('Full Name already defined');
+                    } else if (user.first_name && user.last_name) {
+                        user.full_name = user.first_name;
+                    } else {
+                        user.full_name = 'User';
+                    }
+
+                    if (!data.photo) {
+                        data.photo = defaultPicture;
+                    }
+
+                    $timeout(function () {
+                        scope.$apply();
+                    }, 0);
                 }
 
-                function setStrings() {
+                function _setStrings() {
                     if (!scope.strings) {
                         scope.strings = {};
                     }
@@ -79,93 +96,26 @@
                     });
                 }
 
-                function getUser() {
-                    Authentication.getAuthenticatedAccount().then(success, error);
-
-                    function success(user) {
-                        if (!user) {
-                            scope.user = null;
-                            return;
-                        }
-                        scope.user = user;
-                        Authentication.isOrganizer().then(function (result) {
-                            scope.user.is_organizer = result;
-                            scope.isSearchVisible = !result;
-                        });
-                        Authentication.isStudent().then(function (result) {
-                            scope.user.is_student = result;
-                        });
-                        mapDisplayName(scope.user);
-                        console.log('user:', user, '!!user:', !!user);
-                    }
-
-                    function error() {
-                        console.log('navbar response reject');
-                        scope.user = null;
-                    }
-                }
-
-                function mapDisplayName(data) {
-                    //console.log('mapDisplayName. data:', data);
-                    var user = data.user;
-                    var company = data.name;
-                    if (company) {
-                        user.full_name = company;
-                    } else if (user.full_name) {
-                        console.log('Full Name already defined');
-                    } else if (user.first_name && user.last_name) {
-                        user.full_name = [user.first_name, user.last_name].join(' ');
-                    } else {
-                        user.full_name = 'User';
-                    }
-
-                    if (!data.photo) {
-                        data.photo = defaultPicture;
-                    }
-
-                    $timeout(function () {
-                        scope.$apply();
-                    }, 0);
-                }
-
-                function getCities() {
-                    LocationManager.getAvailableCities().then(success, error);
-
-                    function success(cities) {
-                        scope.cities = cities;
-                    }
-
-                    function error() {
-                        console.log("truliiNavbar. Couldn't get cities");
-                    }
-                }
-
-                function setCurrentCity() {
-                    scope.search_city = LocationManager.getCurrentCity();
-                }
-
-                function cleanUp() {
+                function _cleanUp() {
                     unsubscribeUserChanged();
                     unsubscribeUserLoggedOut();
                 }
 
-                function activate() {
-                    setStrings();
-                    getUser();
-                    setCurrentCity();
-                    getCities();
+                function _activate() {
+                    _setStrings();
+                    _getUser();
 
                     unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
                         console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
-                        getUser();
+                        _getUser();
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
                         console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
-                        getUser();
+                        _getUser();
                     });
 
-                    scope.$on('$destroy', cleanUp);
+                    scope.$on('$destroy', _cleanUp);
 
                 }
             }

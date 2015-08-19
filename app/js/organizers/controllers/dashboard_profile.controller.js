@@ -39,6 +39,9 @@
         activate();
 
         function uploadPicture(image) {
+            if (!image)
+                return;
+
             vm.organizer.upload_photo(image)
                 .then(_successUploaded, _erroredUpload, _progressUpload);
         }
@@ -102,6 +105,7 @@
                 instances.forEach(function (inst) {
                     var map = inst.map;
                     google.maps.event.trigger(map, 'resize');
+                    vm.map.control.refresh(vm.map.center);
                 });
             });
         }
@@ -127,7 +131,10 @@
                 ACTION_SAVE: "Guardar",
                 ACTION_DELETE: "Eliminar",
                 ACTION_UPDATE_PICTURE: "Cambiar Foto",
+                ACTION_VIEW_PROFILE: "Ver mi Perfil",
                 SECTION_PROFILE: "Mi Perfil",
+                COPY_VIDEO: "¿Posee algún video donde describa o presente su organización?",
+                COPY_LOCATION: "¿Donde funciona su organización?",
                 TAB_INFO: "Información",
                 TAB_VIDEO: "Video",
                 TAB_LOCATION: "Ubicación",
@@ -135,7 +142,7 @@
                 LABEL_FULL_NAME: "Nombre Completo",
                 LABEL_BIO: "Biografía",
                 LABEL_HEADLINE: "Descripción Corta",
-                LABEL_VIDEO: "Video",
+                LABEL_VIDEO: "Dirección en Youtube del vídeo",
                 LABEL_CITY: "Ciudad",
                 LABEL_ADDRESS: "Dirección Exacta",
                 OPTION_SELECT: "Seleccione...",

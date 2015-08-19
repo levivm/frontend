@@ -1,8 +1,11 @@
 
 @import "_trulii-variables";
 
+@import "_fontface-sinkinsans";
+
 @import '_custom-bootstrap';
 @import '_custom-material';
+@import '_custom-nouislider';
 
 @import 'mixins/_responsive-helpers';
 @import 'mixins/_texts';
@@ -16,9 +19,12 @@
 @import "_spacing";
 @import '_backgrounds';
 @import '_anchors';
+@import '_maps';
 
 @import 'components/_navbar';
+@import 'components/_search';
 @import 'components/_sidebar';
+@import 'components/_sidebar_category';
 @import 'components/_inputs';
 @import 'components/_icons';
 @import "components/_buttons";
@@ -45,8 +51,14 @@
 @import "components/_containers";
 @import "components/_activities";
 
+@import "components/_footer";
+
 a{
-    color: @primary-dark;
+    
+    &:hover{
+    	color: @success;	
+    }
+    
 }
 
 ul{
@@ -58,8 +70,23 @@ body{
 	font-family: 'Roboto', sans-serif;
 }
 
-/*Agular Google Maps*/
+h1, h2, h3, h4, h5, h6{
+	font-family: @font-sans-alt;
+}
 
-.angular-google-map-container { height: 400px; }
+p{
+	font-family: @font-serif;
+	color: @gray-light;
+	font-size: 1.2em;
+	margin-bottom: 1.5em;
+}
 
+.tab-content{
+	padding-bottom: 5em;
+}
+
+.pagination-sm{
+	font-family: @font-sans-alt;
+	font-size: 1.1em;
+}
 

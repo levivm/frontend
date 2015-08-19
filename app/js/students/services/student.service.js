@@ -31,12 +31,19 @@
 
             setData : function (studentData) {
 
+                var scope = this;
 
-                this.birth_date = new Date(studentData.birth_date);
-                angular.extend(this, studentData);
-                if(!this.photo) {
-                    this.photo = defaultPicture;
+                angular.extend(scope, studentData);
+                if(!scope.photo) {
+                    scope.photo = defaultPicture;
                 }
+                scope._setDates();
+
+            },
+            _setDates: function(){
+
+                this.birth_date = new Date(this.birth_date);
+
             },
 
             load : function (id) {
@@ -68,6 +75,7 @@
 
             update : function (data) {
                 var scope = this;
+                console.log("updating STUDENT",scope);
                 return $http.put(api.student(this.id),data)
                     .then(success, error);
 
@@ -78,6 +86,7 @@
                 }
 
                 function error(response) {
+                    scope._setDates();
                     return $q.reject(response);
                 }
             },

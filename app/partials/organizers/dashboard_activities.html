@@ -1,74 +1,75 @@
-<div class="container">
-    <div class="card z-shadow-1" style="min-height: 30em">
-        <div class="row clearfix">
-            <div class="col-md-3 card__lateral-menu">
-                <div class="card__lateral-menu__title">
-                    <i class="mdi-action-settings"></i>
-                    <span> </span>
-                    <span ng-bind="::activities.strings.SECTION_ACTIVITIES"></span>
+<div class="navbar-secondary">
+    <ul>
+        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#open-tab">
+            <span ng-bind="::activities.strings.TAB_OPEN"></span>
+        </li>
+        <li class="navbar-secondary__item" data-toggle="tab" data-target="#closed-tab">
+            <span ng-bind="::activities.strings.TAB_CLOSED"></span>
+        </li>
+        <li class="navbar-secondary__item" data-toggle="tab" data-target="#inactive-tab">
+            <span ng-bind="::activities.strings.TAB_INACTIVE"></span>
+        </li>    
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-12 col-md-offset-1 tab-content">
+        <!--Open-->
+        <div class="tab-pane active fade in" id="open-tab">
+            <div ng-if="activities.open_activities.length > 0">
+                <p ng-bind="activities.strings.COPY_OPEN"></p>
+                <div class="row activity-grid">
+                    <trulii-activity-item 
+                          ng-repeat="activity in activities.open_activities track by activity.id"
+                          data-activity="activity"
+                          data-options="{{activities.openOptions}}"></trulii-activity-item>
                 </div>
-                <ul>
-                    <li class="card__lateral-menu__item active" data-toggle="tab" data-target="#published-tab">
-                        <a> <i class="mdi-action-view-carousel"></i>
-                            <span> </span>
-                            <span ng-bind="::activities.strings.TAB_PUBLISHED"></span>
-                        </a>
-                    </li>
-                    <li class="card__lateral-menu__item" data-toggle="tab" data-target="#previous-tab">
-                        <a> <i class="mdi-action-history"></i>
-                            <span> </span>
-                            <span ng-bind="::activities.strings.TAB_PREVIOUS"></span>
-                        </a>
-                    </li>
-                    <li class="card__lateral-menu__item" data-toggle="tab" data-target="#drafts-tab">
-                        <a> <i class="mdi-editor-mode-edit"></i>
-                            <span> </span>
-                            <span ng-bind="::activities.strings.TAB_DRAFTS"></span>
-                        </a>
-                    </li>
-                </ul>
             </div>
+            <!--If there are no activities-->            
 
-            <div class="col-md-9 col-md-offset-3">
-                <div class="card-body tab-content">
-                    <div class="tab-pane active fade in" id="published-tab">
-                        <h2 ng-bind="activities.strings.TAB_PUBLISHED"></h2>
-                        <h4 class="text-muted" ng-bind="activities.strings.COPY_PUBLISHED"></h4>
-
-                        <div class="row activity-grid">
-                            <trulii-activity-item class="col-md-6 col-xs-12"
-                                                  ng-repeat="activity in activities.published_activities track by activity.id"
-                                                  data-activity="activity"
-                                                  data-options="{{activities.currentOptions}}"></trulii-activity-item>
+            <div class="row" ng-if="activities.open_activities.length <= 0">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                        <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_OPEN">
                         </div>
-                    </div>
-
-                    <div class="tab-pane fade in" id="previous-tab">
-                        <h2 ng-bind="activities.strings.TAB_PREVIOUS"></h2>
-                        <h4 class="text-muted" ng-bind="activities.strings.COPY_PREVIOUS"></h4>
-
-                        <div class="row activity-grid">
-                            <trulii-activity-item class="col-md-6 col-xs-12"
-                                                  ng-repeat="activity in activities.previous_activities track by activity.id"
-                                                  data-activity="activity"
-                                                  data-options="{{activities.previousOptions}}"></trulii-activity-item>
-                        </div>
-                    </div>
-
-                    <div class="tab-pane fade in" id="drafts-tab">
-                        <h2 ng-bind="activities.strings.TAB_DRAFTS"></h2>
-                        <h4 class="text-muted" ng-bind="activities.strings.COPY_DRAFTS"></h4>
-
-                        <div class="row activity-grid">
-                            <trulii-activity-item class="col-md-6 col-xs-12"
-                                                  ng-repeat="activity in activities.draft_activities track by activity.id"
-                                                  data-activity="activity"
-                                                  data-options="{{activities.draftOptions}}"></trulii-activity-item>
-                        </div>
-                    </div>
+                    <a ui-sref="dash.activities-new.general" class="btn btn-lg btn-success">
+                        Crear Actividad
+                    </a>
+                    <a ng-if="activities.closed_activities" data-toggle="tab" data-target="#closed-tab" class="btn btn-lg btn-default">
+                        Republicar anterior
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!--Closed-->
+        <div class="tab-pane fade in" id="closed-tab">
+            <p ng-bind="activities.strings.COPY_CLOSED"></p>
+            <div class="row activity-grid --left">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.closed_activities track by activity.id"
+                      data-activity="activity"
+                      data-options="{{activities.closedOptions}}"></trulii-activity-item>
+            </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.closed_activities.length <= 0" class="row">
+                <div class="col-md-12">
+                    <div class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_CLOSED"></div>
+                </div>
+            </div>
+        </div>
+        <!--Inactive-->
+        <div class="tab-pane fade in" id="inactive-tab">
+            <p ng-bind="activities.strings.COPY_INACTIVE"></p>
+            <div class="row activity-grid --left">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.inactive_activities track by activity.id"
+                      data-activity="activity"
+                      data-options="{{activities.inactiveOptions}}"></trulii-activity-item>
+            </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.inactive_activities.length <= 0" class="row">
+                <div class="col-md-12">
+                    <div class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_INACTIVE"></div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

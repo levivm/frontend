@@ -16,9 +16,9 @@
 
         .directive('truliiActivityItem', truliiActivityItem);
 
-    truliiActivityItem.$inject = ['$filter', 'ActivitiesTemplatesPath', 'defaultPicture', 'defaultCover'];
+    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath', 'defaultPicture', 'defaultCover'];
 
-    function truliiActivityItem($filter, ActivitiesTemplatesPath, defaultPicture, defaultCover){
+    function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath, defaultPicture, defaultCover){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -31,20 +31,23 @@
                 var options;
                 var MAX_DAYS = 30;
 
+                scope.actions = [];
                 scope.dimmed = false;
-                scope.draft = false;
+                scope.inactive = false;
                 scope.getStarStyle = getStarStyle;
                 scope.hasAction = hasAction;
 
+                scope.showMenu = false;
+
                 _activate();
 
-                /////////////////////////////////////
+                //--------- Exposed Functions ---------//
 
                 function getStarStyle(star){
                     if(star < 4){
-                        return "rating-star mdi-action-grade";
+                        return "mdi-action-grade activity-card__rating__star";
                     } else {
-                        return "rating-star-empty mdi-action-grade";
+                        return "mdi-action-grade activity-card__rating__star --empty";
                     }
                 }
 
@@ -59,6 +62,8 @@
                         return currentAction === actionQuery;
                     }
                 }
+
+                //--------- Internal Functions ---------//
 
                 function _mapMainPicture(activity){
                     if(activity.photos.length > 0){
@@ -80,6 +85,8 @@
                 function _mapActions(actions){
                     if(!actions) return null;
 
+                    actions = actions.filter(filterActions);
+
                     actions = actions.map(function(action){
                         if(typeof action === 'string'){
                             return action.toLowerCase();
@@ -87,18 +94,10 @@
                             return null;
                         }
                     });
-                    console.log('actions.map(createActionObject):', actions.map(createActionObject));
                     return actions.map(createActionObject);
 
                     function createActionObject(action){
                         switch(action){
-                            case scope.strings.ACTION_VIEW:
-                                return {
-                                    'name': scope.strings.LABEL_VIEW,
-                                    'icon': 'mdi-action-visibility',
-                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
-                                };
-                                break;
                             case scope.strings.ACTION_EDIT:
                                 return {
                                     'name': scope.strings.LABEL_EDIT,
@@ -110,25 +109,35 @@
                                 return {
                                     'name': scope.strings.LABEL_MANAGE,
                                     'icon': 'mdi-action-settings',
-                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                    'state': "dash.activities-manage.orders({activity_id: " + scope.activity.id + "})"
                                 };
                                 break;
                             case scope.strings.ACTION_CONTACT:
                                 return {
                                     'name': scope.strings.LABEL_CONTACT,
                                     'icon': 'mdi-communication-email',
-                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                    'state': "contact-us(" + JSON.stringify(scope.current_state) + ")"
                                 };
                                 break;
                             case scope.strings.ACTION_REPUBLISH:
                                 return {
                                     'name': scope.strings.LABEL_REPUBLISH,
                                     'icon': 'mdi-content-redo',
-                                    'state': "activities-detail({activity_id: " + scope.activity.id + "})"
+                                    'state': "dash.activities-edit.calendars({activity_id: " + scope.activity.id
+                                        + ", republish: true})"
                                 };
                                 break;
                             default:
                                 return null;
+                        }
+                    }
+
+                    function filterActions(action){
+                        return (typeof action === 'string' && isValidAction(action));
+
+                        function isValidAction(action){
+                            return action == scope.strings.ACTION_EDIT || action == scope.strings.ACTION_MANAGE
+                                || action == scope.strings.ACTION_CONTACT || action == scope.strings.ACTION_REPUBLISH;
                         }
                     }
                 }
@@ -137,14 +146,14 @@
                     var today = Date.now();
                     activity.days_to_closest = null;
                     activity.closest_date = null;
-                    activity.closest_chronogram = null;
+                    activity.closest_calendar = null;
 
                     if(activity.chronograms){
                         activity.chronograms.forEach(function(chronogram){
                             if(chronogram.initial_date >= today
                                     && (chronogram.initial_date < activity.closest_date || !activity.closest_date)){
                                 activity.closest_date = chronogram.initial_date;
-                                activity.closest_chronogram = chronogram;
+                                activity.closest_calendar = chronogram;
                             }
                         });
                     }
@@ -155,12 +164,12 @@
                         activity.days_to_closest = -1;
                     }
 
-                    mapDateMsg(activity);
+                    _mapDateMsg(activity);
 
                     return activity;
                 }
 
-                function mapDateMsg(activity){
+                function _mapDateMsg(activity){
                     if(activity.days_to_closest < 0){
                         activity.date_msg = scope.strings.COPY_WAIT_NEW_DATES;
                     } else if(activity.days_to_closest === 0){
@@ -177,11 +186,18 @@
                     return activity;
                 }
 
+                function _setCurrentState(){
+                    scope.current_state = {
+                        toState: {
+                            state: $state.current.name,
+                            params: $stateParams
+                        }
+                    };
+                }
+
                 function _setStrings(){
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
-                        ACTION_VIEW: "view",
-                        LABEL_VIEW: "Ver",
                         ACTION_EDIT: "edit",
                         LABEL_EDIT: "Editar",
                         ACTION_MANAGE: "manage",
@@ -190,7 +206,7 @@
                         LABEL_CONTACT: "Contactar",
                         ACTION_REPUBLISH: "republish",
                         LABEL_REPUBLISH: "Republicar",
-                        LABEL_DRAFT: "Borrador",
+                        LABEL_INACTIVE: "Borrador",
                         COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                         COPY_NA: "N/A",
                         COPY_TODAY: "Hoy",
@@ -202,6 +218,8 @@
 
                 function _activate(){
                     _setStrings();
+                    _setCurrentState();
+
                     if(attrs.options){
                         options = JSON.parse(attrs.options);
                         if(options.actions){
@@ -212,8 +230,8 @@
                         if(options.disabled){
                             scope.dimmed = true;
                         }
-                        if(options.isDraft){
-                            scope.draft = true;
+                        if(options.isInactive){
+                            scope.inactive = true;
                         }
                     }
                     scope.activity.rating = [1, 2, 3, 4, 5];
@@ -224,9 +242,6 @@
                     _mapMainPicture(scope.activity);
                     _mapClosestCalendar(scope.activity);
                     console.log('directive activity:', scope.activity);
-
-                    //TODO para tooltips
-                    $('[data-toggle="tooltip"]').tooltip({'container': 'body'});
                 }
             }
         }

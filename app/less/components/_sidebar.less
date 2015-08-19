@@ -1,8 +1,7 @@
-
 @import url('../_trulii-variables');
 
 .sidebar{
-	.shadow-z-2;
+	font-family: @font-sans;
 	position: fixed;
 	top: @navbar-height;
 	bottom: 0;
@@ -13,91 +12,149 @@
 	overflow-y: visible;	
 	background: red;
 	padding: 20px 0;
-	background-color: white;	
-	width: 20%;
-	//text-transform: uppercase;
-	//letter-spacing: 1px;		
+	background-color: @sidebar-color;		
+	width: @sidebar-width;
+	
+	a:hover{
+		color: @primary;
+	}
+
+	&__activity{
+		padding: 1em.5em;
+		display: block;
+		width: 100%;
+		height: 9em;
+		color: white;
+		font-size: 1.2em;
+		text-align: center;
+		position: relative;
+		&:extend(.img-size-cover);
+        &:extend(.img-position-center);     
+
+        &__title{
+        	display: block;
+        	height: 3em;
+        	overflow: hidden;
+        	margin-bottom: .5em        	
+        }   
+
+        &__btn-back{
+        	color: white;
+        	display: block;
+        	margin-top: 1em;
+        	font-size: .8em;
+        }
+
+        &:after{
+        	content: '';
+        	display: block;
+        	position: absolute;
+        	background: fadeout(@sidebar-color, 55%) ;
+			width: 100%;
+			height: 100%;
+			top: 0;
+			right: 0;
+			z-index: 1;
+
+        }
+
+        & *{
+        	position: relative;
+        	z-index: 10;
+        }
+
+	}
 
 	&__item{
 		border-radius: 0px;
 		position: relative;
-		color: @text-color;
+		color: @darkbg-text;
 		display: block;
 		width: 100%;
 		padding: 10px;
-		padding-left: 1em;
-		border-top: 1px solid @color-delimeter-light;
+		padding-left: 1em;		
 		text-decoration: none;	
 		position: relative;	
 		line-height: 3em;
-		cursor: pointer;
+		cursor: pointer;		
 
 		&--selected{
-			background: @body-bg;
+			background: lighten(@dark-element, 10%);
 			//border-top: 1px solid @color-delimeter-light;			
 			//border-right: 1px solid $color-delimeter-light
-			border-left: 5px solid @secondary;
+			border-left: 5px solid @primary;
 			transition: ease all 0.1s;
-			color: @secondary;
+			color: @primary;
 		}
 
-		&:hover, &:focus{
-			color: @secondary;
+		&:hover, &:focus{			
 			text-decoration: none;
 			outline: 0;
+		}
+
+		&:first-child{
+			margin-top: 20px;
 		}
 
 		&__icon{			
 			top: 0;
 			bottom: 0;
+			margin-right: .5em;
 
-			&:before{
-				position: relative;
-				top: 0.2em;
-				font-size: .8em;
-				margin-right: .3em;
-			}
-		}		
+            &:before {
+                position: relative;
+                top: 0.2em;
+                font-size: .8em;
+                margin-right: .3em;
+            }
+        }
 
-		&__sign{
-			position: absolute;			
-			top: -1px;
-			height: 101%;
-			right: 0px;
-			background: darken(@gray-lighter, 5%);
-			z-index: 20;
-			color: darken(@gray-lighter, 18%);
+        &__sign {
+            position: absolute;
+            top: -1px;
+            height: 101%;
+            right: 0px;
+            background: darken(@gray-lighter, 5%);
+            z-index: 20;
+            color: darken(@gray-lighter, 18%);
 
-			&--completed{
-				color: white;
-				background-color: #FC3;				
-				z-index: 21;
-			}
-		}
-	}
+            &--completed {
+                color: white;
+                background-color: #FC3;
+                z-index: 21;
+            }
+        }
+    }
 
-	li{
-		display: block;
-	}
+    li {
+        display: block;
+    }
 
-	&__bottom-action{
-		position: absolute;
-		bottom: 0;
-		background: @gray-lighter;
-		width: 100%;
-		height: 8em;
-		padding: .5em;
-		z-index: 25;
+    &__bottom-action {
+        position: absolute;
+        bottom: 0;
+        background: @gray-lighter;
+        width: 100%;
+        height: 8em;
+        padding: .5em;
+        z-index: 25;
 
-		&.ng-hide-remove, &.ng-enter {
-			transition: .3s ease all;				
-			bottom: -7em;
-		}
+        &.ng-hide-remove, &.ng-enter {
+            transition: .3s ease all;
+            bottom: -7em;
+        }
 
-		&.ng-hide-remove.ng-hide-remove-active, 
-		&.ng-enter.ng-enter-active{
-			bottom: 0;
-		}
-	}
-
+        &.ng-hide-remove.ng-hide-remove-active,
+        &.ng-enter.ng-enter-active {
+            bottom: 0;
+        }
+    }
+    
+    & + *{
+        padding-left: 0;
+        margin-left: @sidebar-width;
+    }
 }
+
+
+

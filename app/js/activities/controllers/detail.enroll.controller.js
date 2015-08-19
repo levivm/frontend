@@ -5,10 +5,10 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'StudentsManager', 'Authentication', 'Toast', 'Error',
+    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error',
         'activity', 'calendar', 'currentUser'];
 
-    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, StudentsManager, Authentication, Toast, Error,
+    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser) {
 
         var vm = this;
@@ -52,20 +52,45 @@
 
         function enroll() {
             _clearErrors();
-            StudentsManager.getCurrentStudent().then(success, error);
+            StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
 
-            function success(student){
+            function getStudentSuccess(student){
                 var data = {
+                    "payerId": student.id,
+                    "name": "APPROVED",
+                    "identificationNumber": "32144457",
+                    "paymentMethod": "VISA",
+                    "number": "4111111111111111",
+                    "expirationDate": "2017/01"
+                };
+                Payments.getToken(data).then(getTokenSuccess, getTokenError);
+            }
+
+            function getStudentError(response){
+                console.log("Error getting current logged student:", response)
+            }
+
+            function getTokenSuccess(response){
+                console.log('token response:', response);
+                var token = response[Payments.KEY_CREDIT_CARD_TOKEN][Payments.KEY_CREDIT_CARD_TOKEN_ID];
+                var maskedNumber = response[Payments.KEY_CREDIT_CARD_TOKEN][Payments.KEY_MASKED_NUMBER];
+                var cardAssociation = response[Payments.KEY_CREDIT_CARD_TOKEN][Payments.KEY_PAYMENT_METHOD];
+                var buyer = {};
+                buyer[Payments.KEY_NAME] = response[Payments.KEY_CREDIT_CARD_TOKEN][Payments.KEY_NAME];
+                buyer[Payments.KEY_EMAIL] = currentUser.user.email;
+                var data = {
+                    activity: activity.id,
                     chronogram: calendar.id,
-                    student: student.id,
+                    token: token,
                     amount: vm.quantity * calendar.session_price,
                     quantity: vm.quantity,
-                    assistants: vm.assistants
+                    assistants: vm.assistants,
+                    buyer: buyer
                 };
+                data[Payments.KEY_MASKED_NUMBER] = maskedNumber;
+                data[Payments.KEY_CARD_ASSOCIATION] = cardAssociation;
 
-                ActivitiesManager.enroll(activity.id, data)
-                    .success(_enrollSuccess)
-                    .error(_enrollError);
+                ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
 
                 function _enrollSuccess(response) {
                     calendar.addAssistants(response.assistants);
@@ -77,8 +102,8 @@
                     Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
                 }
             }
-            function error(response){
-                console.log("Error getting current logged student:", response)
+            function getTokenError(error){
+                console.log("Couldn't get token from Pay U", error);
             }
         }
 

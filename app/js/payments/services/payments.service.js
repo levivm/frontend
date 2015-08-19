@@ -21,17 +21,21 @@
         var api = PaymentServerApi;
         var PAYU_API_DATA = null;
         var MERCHANT_DATA = null;
+        var KEY_CARD_ASSOCIATION = "card_association";
         var KEY_LANGUAGE = "language";
         var KEY_COMMAND = "command";
         var KEY_MERCHANT = "merchant";
         var KEY_API_LOGIN = "apiLogin";
         var KEY_API_KEY = "apiKey";
         var KEY_CREDIT_CARD_TOKEN = "creditCardToken";
+        var KEY_CREDIT_CARD_TOKEN_ID = "creditCardTokenId";
         var KEY_PAYER_ID = "payerId";
         var KEY_NAME = "name";
+        var KEY_EMAIL = "email";
         var KEY_ID_NUMBER = "identificationNumber";
         var KEY_PAYMENT_METHOD = "paymentMethod";
         var KEY_NUMBER = "number";
+        var KEY_MASKED_NUMBER = "maskedNumber";
         var KEY_EXPIRATION_DATE = "expirationDate";
         var COMMAND_CREATE_TOKEN = "CREATE_TOKEN";
 
@@ -57,12 +61,17 @@
              */
             getToken: getToken,
 
+            KEY_CARD_ASSOCIATION: KEY_CARD_ASSOCIATION,
             KEY_PAYER_ID : KEY_PAYER_ID,
             KEY_NAME : KEY_NAME,
             KEY_ID_NUMBER : KEY_ID_NUMBER,
             KEY_PAYMENT_METHOD : KEY_PAYMENT_METHOD,
             KEY_NUMBER : KEY_NUMBER,
-            KEY_EXPIRATION_DATE : KEY_EXPIRATION_DATE
+            KEY_EMAIL : KEY_EMAIL,
+            KEY_EXPIRATION_DATE : KEY_EXPIRATION_DATE,
+            KEY_CREDIT_CARD_TOKEN: KEY_CREDIT_CARD_TOKEN,
+            KEY_CREDIT_CARD_TOKEN_ID : KEY_CREDIT_CARD_TOKEN_ID,
+            KEY_MASKED_NUMBER: KEY_MASKED_NUMBER
         };
 
         return service;
@@ -104,20 +113,21 @@
                 requestData[KEY_MERCHANT] = MERCHANT_DATA;
                 requestData[KEY_CREDIT_CARD_TOKEN] = paymentData;
 
-                $http.post(PAYU_API_DATA.PAYU_URL, requestData).then(getTokenSuccess, getTokenError);
+                return $http.post(PAYU_API_DATA.PAYU_URL, requestData).then(getTokenSuccess, getTokenError);
             }
 
             function getDataError(error){
-                console.log('Error retrieving PayU data', error);
+                console.log('Error retrieving PayU data from Trulii servers', error);
+                return error;
             }
 
             function getTokenSuccess(response){
-
+                return response.data;
             }
 
             function getTokenError(response){
-                console.log('Error getting token from PayU.', response.data);
-                return null;
+                console.log('Error getting token from PayU.', response);
+                return response.data;
             }
 
             function hasPaymentData(data){

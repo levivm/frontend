@@ -55,7 +55,7 @@
                     that.updateSection(step.name);
                 });
 
-                console.log("Activity setData ", this);
+                //console.log("Activity setData ", this);
                 
                 that.checkSections();
             },
@@ -141,13 +141,31 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.Activity#addPhoto
-             * @description Publish an activity 
+             * @description Add photo to an activity gallery
              * @param {file} image The image to add.
              * @param {object} extra_data The extra data to send among the image
              * @methodOf trulii.activities.services.Activity
              */
             addPhoto : function (image,extra_data) {
                 return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
+            },
+            /**
+             * @ngdoc function
+             * @name trulii.activities.services.Activity#addPhotoFromStock
+             * @description Add photo to the activity gallery from our photo stock
+             * given a subcategory
+             * @param {sub_category} The activity subcategory
+             * @methodOf trulii.activities.services.Activity
+             */
+            addPhotoFromStock : function (sub_category) {
+                var from_stock = true;
+
+                return $http({
+                    method : 'post',
+                    url : api.gallery(this.id,from_stock),
+                    data : {'subcategory' : this.sub_category}
+                });
+                // return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
             },
 
             /**
@@ -275,11 +293,11 @@
             setSectionCompleted : function (section, value) {
                 var that = this;
 
-                console.log("detail",section,value);
+                //console.log("detail",section,value);
                 if(section in that.completed_steps){
                     that.completed_steps[section] = value;
                 }
-                console.log('Activity.setSectionCompleted: ', section, ', ', that.completed_steps[section]);
+                //console.log('Activity.setSectionCompleted: ', section, ', ', that.completed_steps[section]);
             },
 
             /**
@@ -364,7 +382,7 @@
             // console.log("ENTRE A CHEQUEAR")
             var isCompleted = false;
             if (!that.steps)
-                return
+                return;
             var subSections = that.steps[section];
             switch (section) {
                 case 'general':
@@ -409,28 +427,20 @@
 
             }
 
-            console.log('updateSection[' + section + ']: ', isCompleted);
+            //console.log('updateSection[' + section + ']: ', isCompleted);
             that.setSectionCompleted(section, isCompleted);
             that.setStepsLeft(section);
         }
 
         function resetSections() {
             var that = this;
-
             that.completed_steps = {};
 
             _.forEach(that.steps,function(value,key){
-
                 that.completed_steps[key] = false;
-
             });
 
-
-
-
             that.all_steps_completed = false;
-
-            console.log('resetSections. that:', that);
         }
 
 

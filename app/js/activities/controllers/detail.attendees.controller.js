@@ -20,7 +20,6 @@
         var vm = this;
 
         vm.pageChanged = pageChanged;
-        vm.getAssistantPicture = getAssistantPicture;
 
         initialize();
 
@@ -28,22 +27,20 @@
             _assistantByPage();
         }
 
-        function getAssistantPicture(assistant){
-            console.log('assistant:',assistant);
-            if(!!assistant.picture){
-                return assistant.picture;
-            } else {
-                return 'css/img/default_profile_pic.jpg';
-            }
-        }
-
         function _getAssistants() {
             var assistants = [];
             _.forEach(vm.calendars, function (calendar) {
                 assistants.push(calendar.assistants);
             });
-
-            return _.flatten(assistants, true);
+            assistants = _.flatten(assistants, true);
+            _.forEach(assistants, function(assistant){
+                if(assistant.hasOwnProperty('student') && assistant.student.photo){
+                    assistant.photo = assistant.student.photo;
+                } else {
+                    assistant.photo = 'css/img/default_profile_pic.jpg';
+                }
+            });
+            return assistants;
         }
 
         function _assistantByPage() {
@@ -63,6 +60,7 @@
             vm.calendars = $scope.detail.calendars;
             vm._assistants = _getAssistants();
             vm.totalItems = vm._assistants.length;
+            console.log('assistants:', vm._assistants);
 
             _assistantByPage();
         }

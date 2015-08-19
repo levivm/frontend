@@ -1,0 +1,12 @@
+{
+    "development" :{
+        "serverConf": {
+            "url": "http://localhost:8000"
+        }
+    },
+    "production": {
+        "serverConf": {
+            "url": "https://api.trulii.com"
+        }
+    }
+}

@@ -17,91 +17,74 @@
 
     function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast, LocationManager) {
 
-
+        var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var vm = this;
+        angular.extend(vm, {
+            format : FORMATS[0],
+            hstep : 1,
+            mstep : 15,
+            maxStartDate : new Date(),
+            dateOptions : {
+                formatYear: 'yy',
+                startingDay: 1
+            },
+            cities : cities,
+            ismeridian : true,
+            bio_max : 140,
+            student : student,
+            isChangingPicture : false,
+            isCollapsed : true,
+            photo : null,
+            photo_invalid : false,
+            photo_loading : false,
+            isSaving : false,
+            genders : [{id: 1,name:'Femenino' }, {id:2,name:'Masculino'}],
+            updateProfile : updateProfile,
+            uploadPicture : uploadPicture,
+            openDatePicker : openDatePicker,
+            selectCity : selectCity,
+            selectGender  : selectGender
+        });
 
-        vm.formats = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-        vm.format = vm.formats[0];
-        vm.hstep = 1;
-        vm.mstep = 15;
-        vm.maxStartDate = new Date();
-        vm.dateOptions = {
-            formatYear: 'yy',
-            startingDay: 1
-        };
-        vm.cities = cities;
-        vm.ismeridian = true;
-        vm.openDatePicker = openDatePicker;
-        vm.selectCity = selectCity;
-
-        vm.bio_max = 140;
-        vm.student = student;
-        vm.isChangingPicture = false;
-        vm.isCollapsed = true;
-        vm.photo = null;
-        vm.photo_invalid = false;
-        vm.photo_loading = false;
-        vm.genders = [{id: 1,name:'Femenino' }, {id:2,name:'Masculino'}];
-        vm.updateProfile = updateProfile;
-        vm.uploadPicture = uploadPicture;
-        vm.selectGender  = selectGender;
-
-        vm.isSaving = false;
-
-        initialize();
+        _activate();
 
         //--------- Functions Implementation ---------//
 
         function updateProfile(){
-            Error.form.clear(vm.profile_form);
-            vm.student.update_profile().then(updateSuccess, updateError);
+            console.log("updateProfile.Form:", vm.profile_form);
 
-            function updateSuccess(){
+            if(vm.student.birth_date){
+                Error.form.clear(vm.profile_form);
+                vm.student.update_profile().then(success, error);
+            } else {
+                console.log('Student Birth Date undefined');
+                var errorResponse = {
+                    data: {
+                        form_errors: {}
+                    }
+                };
+                errorResponse.data.form_errors[Error.FORM_FIELD_ALL] = [vm.strings.MESSAGE_INVALID_BIRTH_DATE];
+                error(errorResponse);
+            }
 
+            function success(){
                 Toast.generics.weSaved();
-
                 vm.isSaving = false;
             }
-            
-            function updateError(response){
+
+            function error(response){
+                console.log(response.data);
                 var responseErrors = response.data['form_errors'];
                 if (responseErrors) {
                     Error.form.add(vm.profile_form, responseErrors);
                 }
-
                 vm.isSaving = false;
             }
-            
         }
-
-
-        function selectCity(city){
-            console.log('selectCity. city:', city);
-            if(city){
-                vm.student.city = city.id;
-                LocationManager.setCurrentCity(city);
-            } else {
-                console.log('no city selected');
-            }
-        }
-
-        function selectGender(gender){
-            _setGender(gender.id)
-        }
-
-        function _setCity(city){
-
-            vm.selected_city = _.find(vm.cities, { 'id': city});
-
-        }
-
-        function _setGender(gender){
-            vm.selected_gender = _.find(vm.genders, { 'id': gender});
-            vm.student.gender  = gender;
-        }
-
 
         function uploadPicture(image){
+
+            if (!image) { return; }
             vm.photo_loading = true;
             vm.student.upload_photo(image).then(success, error);
 
@@ -134,7 +117,38 @@
             vm.opened = true;
         }
 
-        function setStrings() {
+        function selectCity(city){
+            console.log('selectCity. city:', city);
+            vm.student.city = city? city.id : null;
+            LocationManager.setCurrentCity(city);
+        }
+
+        function _setCity(city){
+            vm.selected_city = _.find(vm.cities, { 'id': city});
+        }
+
+        function selectGender(gender){
+            console.log('selectGender. gender:', gender);
+            if(gender){
+                var id = gender? gender.id : null;
+                _setGender(id);
+            } else {
+                var form_errors = {};
+                form_errors[Error.FORM_FIELD_ALL] = [vm.strings.MESSAGE_EMPTY_GENDER];
+                Error.form.add(vm.profile_form, form_errors);
+            }
+        }
+
+        function _setGender(gender){
+            vm.selected_gender = _.find(vm.genders, { 'id': gender});
+            vm.student.gender  = gender;
+        }
+
+        function _setDates(){
+            vm.student.birth_date = new Date(student.birth_date)
+        }
+
+        function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
@@ -148,18 +162,20 @@
                 LABEL_LAST_NAMES: "Apellidos",
                 LABEL_GENDER: "Género",
                 LABEL_CITY: "Ciudad",
+                MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
+                MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
                 OPTION_SELECT: "Seleccione...",
                 SECTION_ACCOUNT: "Cuenta",
                 SECTION_PROFILE: "Mi Perfil"
             });
         }
 
-        function initialize() {
-            setStrings();
+        function _activate() {
+            _setStrings();
             _setGender(vm.student.gender);
             _setCity(vm.student.city);
+            _setDates();
             datepickerPopupConfig.showButtonBar = false;
-
         }
 
     }

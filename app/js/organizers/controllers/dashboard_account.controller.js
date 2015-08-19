@@ -23,10 +23,12 @@
         vm.isSaving = false;
         vm.changeEmail = changeEmail;
         vm.changePassword = changePassword;
+        vm.sales = [];
+        vm.reimbursements = [];
 
-        activate();
+        _activate();
 
-        //Private functions
+        //--------- Exposed Functions ---------//
 
         function changeEmail() {
             vm.isSaving = true;
@@ -37,8 +39,7 @@
             function success() {
                 Authentication.updateAuthenticatedAccount();
                 vm.isSaving = false;
-            _toggleMessage();
-        }
+            }
 
             function error(response) {
                 vm.isSaving = false;
@@ -73,41 +74,32 @@
             }
         }
 
-        function setStrings() {
+        //--------- Internal Functions ---------//
+
+        function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
-                ACTION_REIMBURSE: "Reembolsar",
-                COPY_BANKING: "Coloca los datos de tu cuenta bancaria para que recibas los pagos que los usuarios"
-                    + " hacen al inscribirse. Tranquilo, esta información no la compartimos con nadie",
-                COPY_NOT_AVAILABLE : "No Disponible",
-                COPY_NA : "N/A",
-                COPY_SEARCH_ORDERS_HELPER : "Buscar por número de orden, pago, detalle, etc.",
+                COPY_BANKING: "Coloque los datos de su cuenta bancaria para recibir los pagos de las inscripciones. "
+                    + "Esta información no será compartida con nadie.",
+
+                COPY_PASSWORD: "¿Desea cambiar su contraseña?",
+                COPY_EMAIL: "¿Desea cambiar su correo electrónico?",
                 SECTION_ACCOUNT: "Cuenta",
                 TAB_EMAIL: "Correo Electrónico",
                 TAB_PASSWORD: "Contraseña",
                 TAB_BANKING: "Información Bancaria",
-                TAB_HISTORY: "Historial de Ventas",
-                TAB_SALES: "Ventas",
-                TAB_REIMBURSEMENTS: "Reembolsos",
-                LABEL_SEARCH_ORDERS : "Buscar Ordenes",
                 LABEL_CURRENT_PASSWORD: "Contraseña Actual",
                 LABEL_NEW_PASSWORD: "Nueva Contraseña",
                 LABEL_REPEAT_PASSWORD: "Repetir Nueva Contraseña",
-                LABEL_EMAIL: "Correo Electrónico",
-                LABEL_ORDER: "Orden",
-                LABEL_ACTIVITY: "Actividad",
-                LABEL_PAYMENT: "Pago",
-                LABEL_DETAIL: "Detalle",
-                LABEL_DATE: "Fecha",
-                LABEL_TOTAL: "Total",
+                LABEL_EMAIL: "Correo Electrónico"
             });
         }
 
-        function activate() {
-            setStrings();
+        function _activate() {
+            _setStrings();
         }
 
     }

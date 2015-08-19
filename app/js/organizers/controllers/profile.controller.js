@@ -5,52 +5,65 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileController', OrganizerProfileController);
 
-    OrganizerProfileController.$inject = ['LocationManager', 'organizer', 'activities'];
+    OrganizerProfileController.$inject = ['$state', '$stateParams', 'LocationManager', 'organizer', 'activities'];
 
-    function OrganizerProfileController(LocationManager, organizer, activities) {
+    function OrganizerProfileController($state, $stateParams, LocationManager, organizer, activities) {
 
         var vm = this;
 
-        vm.organizer = organizer;
-        vm.city = null;
-        vm.options = {
-            actions: ['view']
-        };
-        vm.paginationOpts = {
-            'totalItems': activities.length,
-            'itemsPerPage': 3
-        };
-        console.log('total-items:', vm.paginationOpts.totalItems);
-        console.log('items-per-page:', vm.paginationOpts.itemsPerPage);
+        angular.extend(vm, {
+            organizer : organizer,
+            city : null,
+            options : {
+                actions: ['view']
+            },
+            paginationOpts : {
+                'totalItems': activities.length,
+                'itemsPerPage': 3
+            },
+            pageNumber : 1,
+            activities : [],
+            activityPageChange : activityPageChange
+        });
 
-        vm.pageNumber = 1;
-        vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
-        vm.activityPageChange = activityPageChange;
+        _activate();
 
-        activate();
+        //--------- Functions Implementation ---------//
 
         function activityPageChange(){
             var offset = vm.paginationOpts['itemsPerPage'];
             var start = (vm.pageNumber - 1) * offset;
-            var end = start + offset;
+            var end = vm.pageNumber * offset;
             vm.activities = activities.slice(start, end);
         }
 
-        function getCity(cities, organizer){
+        function _getCity(cities, organizer){
             console.log('cities:', cities);
+            console.log('organizer:', organizer);
             if(organizer.locations.length > 0){
-                var cityId = organizer.locations[0].city;
+                var cityId = organizer.locations[0].city.id;
                 cities.find(isSameCity);
             } else {
                 return null;
             }
 
             function isSameCity(city){
+                console.log(city.id, cityId);
                 return city.id === cityId;
             }
         }
 
-        function setStrings(){
+        function _setCurrentState(){
+            vm.current_state = {
+                toState: {
+                    state: $state.current.name,
+                    params: $stateParams
+                }
+            };
+            console.log('vm.current_state:', vm.current_state);
+        }
+
+        function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 LABEL_PUBLISHED_ACTIVITIES: "Actividades Publicadas",
@@ -60,12 +73,14 @@
             });
         }
 
-        function activate(){
-            setStrings();
+        function _activate(){
+            _setStrings();
+            _setCurrentState();
             LocationManager.getAvailableCities().then(successCities);
+            vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
 
             function successCities(cities){
-                vm.city = getCity(cities, organizer);
+                vm.city = _getCity(cities, organizer);
                 console.log('vm.city:', vm.city);
             }
         }
