@@ -5,10 +5,10 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'Authentication', 'Toast', 'Error',
+    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'StudentsManager', 'Authentication', 'Toast', 'Error',
         'activity', 'calendar', 'currentUser'];
 
-    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, Authentication, Toast, Error,
+    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, StudentsManager, Authentication, Toast, Error,
                                             activity, calendar, currentUser) {
 
         var vm = this;
@@ -52,27 +52,34 @@
 
         function enroll() {
             _clearErrors();
+            StudentsManager.getCurrentStudent().then(success, error);
 
-            //TODO pedir de un Service
-            var student_data = JSON.parse(localStorage.getItem('ls.user'));
+            function success(student){
+                var data = {
+                    chronogram: calendar.id,
+                    student: student.id,
+                    amount: vm.quantity * calendar.session_price,
+                    quantity: vm.quantity,
+                    assistants: vm.assistants
+                };
 
-            var data = {
-                chronogram: calendar.id,
-                student: student_data.id,
-                amount: vm.quantity * calendar.session_price,
-                quantity: vm.quantity,
-                assistants: vm.assistants
-            };
+                ActivitiesManager.enroll(activity.id, data)
+                    .success(_enrollSuccess)
+                    .error(_enrollError);
 
-            ActivitiesManager.enroll(activity.id, data)
-                .success(_successCreation)
-                .error(_error);
-        }
+                function _enrollSuccess(response) {
+                    calendar.addAssistants(response.assistants);
+                    vm.success = true;
+                    $state.go('activities-enroll.success');
+                }
 
-        function _successCreation(response) {
-            calendar.addAssistants(response.assistants);
-            vm.success = true;
-            $state.go('activities-enroll.success');
+                function _enrollError(errors){
+                    Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
+                }
+            }
+            function error(response){
+                console.log("Error getting current logged student:", response)
+            }
         }
 
         function _calculateAmount() {
@@ -85,10 +92,6 @@
 
         function _clearErrors() {
             Error.form.clear(vm.enrollForm);
-        }
-
-        function _error(errors){
-            Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
         }
 
         function _setStrings() {

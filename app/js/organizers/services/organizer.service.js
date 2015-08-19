@@ -148,7 +148,14 @@
             getActivities : function () {
                 return $http.get(api.activities(this.id))
                     .then(function (response) {
-                        return response.data
+                        return response.data;
+                    });
+            },
+
+            getOrders : function () {
+                return $http.get(api.orders(this.id))
+                    .then(function (response) {
+                        return response.data;
                     });
             },
 

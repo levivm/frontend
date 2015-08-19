@@ -1,0 +1,131 @@
+/**
+ * @ngdoc service
+ * @name trulii.payments.services.Payments
+ * @description Payments Service
+ * @requires ng.$http
+ * @requires ng.$q
+ * @requires trulii.payments.services.PaymentServerApi
+ */
+
+(function () {
+    'use strict';
+
+    angular
+        .module('trulii.payments.services')
+        .factory('Payments', Payments);
+
+    Payments.$inject = ['$http', '$q', 'PaymentServerApi'];
+
+    function Payments($http, $q, PaymentServerApi) {
+
+        var api = PaymentServerApi;
+        var PAYU_API_DATA = null;
+        var MERCHANT_DATA = null;
+        var KEY_LANGUAGE = "language";
+        var KEY_COMMAND = "command";
+        var KEY_MERCHANT = "merchant";
+        var KEY_API_LOGIN = "apiLogin";
+        var KEY_API_KEY = "apiKey";
+        var KEY_CREDIT_CARD_TOKEN = "creditCardToken";
+        var KEY_PAYER_ID = "payerId";
+        var KEY_NAME = "name";
+        var KEY_ID_NUMBER = "identificationNumber";
+        var KEY_PAYMENT_METHOD = "paymentMethod";
+        var KEY_NUMBER = "number";
+        var KEY_EXPIRATION_DATE = "expirationDate";
+        var COMMAND_CREATE_TOKEN = "CREATE_TOKEN";
+
+        //noinspection UnnecessaryLocalVariableJS
+        var service = {
+
+            /**
+             * @ngdoc function
+             * @name trulii.payments.services.Payments#getPayUData
+             * @description Retrieves PayU data from Trulii servers
+             * @return {promise} Organizer Instance Promise
+             * @methodOf trulii.payments.services.Payments
+             */
+            getPayUData: getPayUData,
+
+            /**
+             * @ngdoc function
+             * @name trulii.payments.services.Payments#getToken
+             * @description Get Payment token from PayU
+             * @param {number} idStudent Student Id
+             * @return {promise} Student Instance Promise
+             * @methodOf trulii.payments.services.Payments
+             */
+            getToken: getToken,
+
+            KEY_PAYER_ID : KEY_PAYER_ID,
+            KEY_NAME : KEY_NAME,
+            KEY_ID_NUMBER : KEY_ID_NUMBER,
+            KEY_PAYMENT_METHOD : KEY_PAYMENT_METHOD,
+            KEY_NUMBER : KEY_NUMBER,
+            KEY_EXPIRATION_DATE : KEY_EXPIRATION_DATE
+        };
+
+        return service;
+
+        function getPayUData() {
+            // TODO Waiting for endpoint
+            var deferred = $q.defer();
+            var payUData = {
+                PAYU_API_KEY : '6u39nqhq8ftd0hlvnjfs66eh8c',
+                PAYU_MERCHANT_ID : '500238',
+                PAYU_API_LOGIN : '11959c415b33d0c',
+                PAYU_ACCOUNT_ID : '500538',
+                PAYU_URL : 'http://stg.api.payulatam.com/payments-api/4.0/service.cgi',
+                PAYU_NOTIFY_URL : "https://api.trulii.com/api/payments/notification",
+                PAYU_RESPONSE_URL : "https://api.trulii.com/api/payments/pse/response",
+                PAYU_TEST : true
+            };
+            PAYU_API_DATA = payUData;
+            MERCHANT_DATA = {};
+            MERCHANT_DATA[KEY_API_LOGIN] = payUData.PAYU_API_LOGIN;
+            MERCHANT_DATA[KEY_API_KEY] = payUData.PAYU_API_KEY;
+
+            deferred.resolve(payUData);
+            return deferred.promise;
+        }
+
+        function getToken(paymentData) {
+            if(hasPaymentData(paymentData)){
+                return getPayUData().then(getDataSuccess, getDataError);
+            } else {
+                return $q.reject('No payment data provided');
+            }
+
+            function getDataSuccess(){
+                var requestData = {};
+                // TODO Get Language from i18n Service
+                requestData[KEY_LANGUAGE] = "es";
+                requestData[KEY_COMMAND] = COMMAND_CREATE_TOKEN;
+                requestData[KEY_MERCHANT] = MERCHANT_DATA;
+                requestData[KEY_CREDIT_CARD_TOKEN] = paymentData;
+
+                $http.post(PAYU_API_DATA.PAYU_URL, requestData).then(getTokenSuccess, getTokenError);
+            }
+
+            function getDataError(error){
+                console.log('Error retrieving PayU data', error);
+            }
+
+            function getTokenSuccess(response){
+
+            }
+
+            function getTokenError(response){
+                console.log('Error getting token from PayU.', response.data);
+                return null;
+            }
+
+            function hasPaymentData(data){
+                return data.hasOwnProperty(KEY_PAYER_ID) && data.hasOwnProperty(KEY_NAME)
+                    && data.hasOwnProperty(KEY_ID_NUMBER) && data.hasOwnProperty(KEY_PAYMENT_METHOD)
+                    && data.hasOwnProperty(KEY_NUMBER) && data.hasOwnProperty(KEY_EXPIRATION_DATE);
+            }
+
+        }
+    }
+})();
