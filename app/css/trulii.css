@@ -11897,7 +11897,7 @@ hr.on-light {
 .standout-text {
   font-family: 'Sinkin Sans';
   font-weight: 200;
-  font-size: 1.3em;
+  font-size: 1.1em;
   color: #777777;
   margin: 1em 0;
 }
@@ -13651,8 +13651,11 @@ tags-input input {
   width: 100%;
   background-color: #eeeeee;
   font-family: 'Sinkin Sans';
-  padding: 1em 1.5em;
+  padding: 1em 2.5rem;
   font-size: 1.4em;
+}
+.section-title + form {
+  margin: 0 2.5rem;
 }
 .tag-container {
   display: inline-block;

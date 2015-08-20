@@ -34,13 +34,16 @@
 
 <div class="row only-fade" ng-show="vm.weHaveTitle">
     <div class="col-lg-9 col-md-11" ng-class="{ 'col-lg-offset-2': vm.creating }"> <!-- col-lg-offset-2 col-md-offset-1 -->
+
+        <div class="section-title" ng-hide="vm.creating">
+          General
+        </div>
+
         <form name='vm.activity_create_form'
               ng-submit="vm.save_activity()">
-            <fieldset>  
-                
-              <div class="section-title" ng-hide="true">
-                General
-              </div>
+            <fieldset>   
+
+              <div></div>
 
               <div class="form-group" trulii-input-errors-control="title" >
                 <label for="title">Título</label>

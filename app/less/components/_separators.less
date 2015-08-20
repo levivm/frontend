@@ -28,11 +28,17 @@
     }
 }
 
+@section-padding: 2.5rem;
+
 .section-title{
     display: block;
     width: 100%;
     background-color: @gray-lighter;
     font-family: @font-sans-alt;
-    padding: 1em 1.5em;
+    padding: 1em @section-padding;
     font-size: 1.4em;
+
+    & + form{
+        margin: 0 @section-padding;
+    }
 }
