@@ -39,6 +39,8 @@
         var KEY_EXPIRATION_DATE = "expirationDate";
         var COMMAND_CREATE_TOKEN = "CREATE_TOKEN";
 
+        _setPayUUp();
+
         //noinspection UnnecessaryLocalVariableJS
         var service = {
 
@@ -135,7 +137,43 @@
                     && data.hasOwnProperty(KEY_ID_NUMBER) && data.hasOwnProperty(KEY_PAYMENT_METHOD)
                     && data.hasOwnProperty(KEY_NUMBER) && data.hasOwnProperty(KEY_EXPIRATION_DATE);
             }
+        }
 
+        function _setPayUUp(){
+            payU.setURL('https://api.payulatam.com/payments-api/4.0/service');
+            payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
+            payU.setListBoxID('payu-franchise');
+            payU.setAccountID('539061');
+            payU.setLanguage("es");
+            payU.getPaymentMethods();
+            //payU.setCardDetails(
+            //    {
+            //        number:'4111111111111111',
+            //        name_card:'NOMBRE_TARJETA',
+            //        payer_id:'10',
+            //        exp_month:1,
+            //        exp_year:2017,
+            //        method:'VISA',
+            //        "name": "APPROVED",
+            //        "identificationNumber": "32144457"
+            //    }
+            //);
+            payU.setCardDetails(
+                {
+                    number:'5434481002839600',
+                    name_card:'JOSE RODRIGUEZ',
+                    payer_id:'10',
+                    exp_month:5,
+                    exp_year:2019,
+                    method:'MASTERCARD',
+                    "name": "JOSE RODRIGUEZ"
+                }
+            );
+            payU.createToken(responseHandler);
+
+            function responseHandler(response){
+                console.log('response de tokenization javascript:', response);
+            }
         }
     }
 })();
