@@ -26,6 +26,10 @@
             position: relative;
         }
     }
+
+    &-vertical{
+        border-left: 1px solid @color-delimeter-dark;
+    }
 }
 
 @section-padding: 2.5rem;
@@ -38,7 +42,15 @@
     padding: 1em @section-padding;
     font-size: 1.4em;
 
-    & + form{
+    & + form, & + div{
         margin: 0 @section-padding;
     }
+}
+
+.section-description{
+    font-family: @font-sans-alt;
+    color: @gray;
+    margin: 1em 0;
+    font-weight: normal;
+    font-size: 1.1em;
 }

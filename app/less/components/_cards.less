@@ -8,6 +8,26 @@
 	border-radius: @material-border-radius;
 	margin: 1.5em 0;
 	padding: 0;	
+	display: block;
+	width: 100%;
+	border: 1px solid @gray-light-medium;
+	border-radius: @border-radius-standard;
+
+	h1{
+		font-size: 1.2em;
+		font-weight: 700;
+	}
+
+	h5{
+		font-weight: normal;
+		color: @gray-light;
+	}
+
+	h3{
+		color: @gray-light;
+		font-weight: 700;
+		font-size: .9em;
+	}
 
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
@@ -71,20 +91,22 @@
 	}
 
 	.card-footer{
-		border-top: 1px solid @color-delimeter-dark;
-		padding: @card-padding;
-		height: auto;		
+		display: block;
+        width: 100%;
+        height: 3.5em;
+        line-height: 3.5em;
+        background: @gray-lighter;
+        color: @gray-light;
+        text-align: center;
+        font-weight: bold;
+        font-family: @font-sans-alt;		
 	}
 
-	&-list-item{
-		display: block;
-		width: 100%;
-		border: 1px solid @gray-light-medium;
-		border-radius: @border-radius-standard;
+	&-list-item{		
 		padding: 3em 2em;
 		position: relative;
-		margin-bottom: 2em;
-		font-family: @font-sans-alt;
+		//margin-bottom: 2em;
+		font-family: @font-sans-alt;		
 
 		&__actions{
 			position: absolute;
@@ -96,7 +118,7 @@
 				cursor: pointer;
 				font-size: 1.2em;
 				display: inline-block;
-				margin-left: 1em;
+				padding:  0 .5em;
 
 				&:hover{
 					color: @success;
