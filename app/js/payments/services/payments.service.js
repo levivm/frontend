@@ -14,30 +14,33 @@
         .module('trulii.payments.services')
         .factory('Payments', Payments);
 
-    Payments.$inject = ['$http', '$q', 'PaymentServerApi'];
+    Payments.$inject = ['$q', '$window'];
 
-    function Payments($http, $q, PaymentServerApi) {
+    function Payments($q, $window) {
 
-        var api = PaymentServerApi;
+        var payU = $window.payU;
+
+        //var api = PaymentServerApi;
         var PAYU_API_DATA = null;
         var MERCHANT_DATA = null;
+        //For trulii backend
         var KEY_CARD_ASSOCIATION = "card_association";
-        var KEY_LANGUAGE = "language";
-        var KEY_COMMAND = "command";
-        var KEY_MERCHANT = "merchant";
+        //Keys for PayU Auth
         var KEY_API_LOGIN = "apiLogin";
         var KEY_API_KEY = "apiKey";
-        var KEY_CREDIT_CARD_TOKEN = "creditCardToken";
-        var KEY_CREDIT_CARD_TOKEN_ID = "creditCardTokenId";
-        var KEY_PAYER_ID = "payerId";
-        var KEY_NAME = "name";
+        //Keys for PayU token
+        var KEY_PAYER_ID = "payer_id";
+        var KEY_NAME_CARD = "name_card";
         var KEY_EMAIL = "email";
-        var KEY_ID_NUMBER = "identificationNumber";
-        var KEY_PAYMENT_METHOD = "paymentMethod";
         var KEY_NUMBER = "number";
-        var KEY_MASKED_NUMBER = "maskedNumber";
-        var KEY_EXPIRATION_DATE = "expirationDate";
-        var COMMAND_CREATE_TOKEN = "CREATE_TOKEN";
+        var KEY_EXP_MONTH = "exp_month";
+        var KEY_EXP_YEAR = "exp_year";
+        var KEY_METHOD = "method";
+        var KEY_DOCUMENT = "document";
+        var KEY_IDENTIFICATION_NUMBER ="identificationNumber";
+        var KEY_CVV = "cvv";
+        var KEY_TOKEN = "token";
+        var cardTypes = ['VISA', 'MASTERCARD', 'AMEX', 'DINERS', 'DISCOVER'];
 
         _setPayUUp();
 
@@ -46,7 +49,7 @@
 
             /**
              * @ngdoc function
-             * @name trulii.payments.services.Payments#getPayUData
+             * @name .#getPayUData
              * @description Retrieves PayU data from Trulii servers
              * @return {promise} Organizer Instance Promise
              * @methodOf trulii.payments.services.Payments
@@ -55,7 +58,7 @@
 
             /**
              * @ngdoc function
-             * @name trulii.payments.services.Payments#getToken
+             * @name .#getToken
              * @description Get Payment token from PayU
              * @param {number} idStudent Student Id
              * @return {promise} Student Instance Promise
@@ -63,17 +66,50 @@
              */
             getToken: getToken,
 
+            /**
+             * @ngdoc function
+             * @name .#validateCardNumber
+             * @description Validate card number with PayU
+             * @param {string} cardNumber Card number
+             * @return {promise} Card number validation promise
+             * @methodOf trulii.payments.services.Payments
+             */
+            validateCardNumber: validateCardNumber,
+
+            /**
+             * @ngdoc function
+             * @name .#validateExpiryDate
+             * @description Validate expiry date with PayU
+             * @param {string} year Card expiry year
+             * @param {string} month Card expiry month
+             * @return {promise} Card expiry date validation promise
+             * @methodOf trulii.payments.services.Payments
+             */
+            validateExpiryDate : validateExpiryDate,
+
+            /**
+             * @ngdoc function
+             * @name .#validateCardType
+             * @description Get card type from PayU
+             * @param {string} cardNumber Card number
+             * @return {promise} Card type promise
+             * @methodOf trulii.payments.services.Payments
+             */
+            validateCardType : validateCardType,
+
             KEY_CARD_ASSOCIATION: KEY_CARD_ASSOCIATION,
             KEY_PAYER_ID : KEY_PAYER_ID,
-            KEY_NAME : KEY_NAME,
-            KEY_ID_NUMBER : KEY_ID_NUMBER,
-            KEY_PAYMENT_METHOD : KEY_PAYMENT_METHOD,
+            KEY_NAME : KEY_NAME_CARD,
             KEY_NUMBER : KEY_NUMBER,
             KEY_EMAIL : KEY_EMAIL,
-            KEY_EXPIRATION_DATE : KEY_EXPIRATION_DATE,
-            KEY_CREDIT_CARD_TOKEN: KEY_CREDIT_CARD_TOKEN,
-            KEY_CREDIT_CARD_TOKEN_ID : KEY_CREDIT_CARD_TOKEN_ID,
-            KEY_MASKED_NUMBER: KEY_MASKED_NUMBER
+            KEY_TOKEN: KEY_TOKEN,
+            KEY_NAME_CARD: KEY_NAME_CARD,
+            KEY_IDENTIFICATION_NUMBER: KEY_IDENTIFICATION_NUMBER,
+            KEY_EXP_MONTH: KEY_EXP_MONTH,
+            KEY_EXP_YEAR: KEY_EXP_YEAR,
+            KEY_CVV: KEY_CVV,
+            KEY_DOCUMENT: KEY_DOCUMENT,
+            KEY_METHOD: KEY_METHOD
         };
 
         return service;
@@ -108,14 +144,18 @@
             }
 
             function getDataSuccess(){
-                var requestData = {};
-                // TODO Get Language from i18n Service
-                requestData[KEY_LANGUAGE] = "es";
-                requestData[KEY_COMMAND] = COMMAND_CREATE_TOKEN;
-                requestData[KEY_MERCHANT] = MERCHANT_DATA;
-                requestData[KEY_CREDIT_CARD_TOKEN] = paymentData;
+                console.log(paymentData);
+                console.log(payU);
+                var deferred = $q.defer();
+                payU.getPaymentMethods();
+                payU.setCardDetails(paymentData);
+                payU.createToken(getTokenResponse);
+                return deferred.promise;
 
-                return $http.post(PAYU_API_DATA.PAYU_URL, requestData).then(getTokenSuccess, getTokenError);
+                function getTokenResponse(response){
+                    console.log('response de tokenization javascript:', response);
+                    deferred.resolve(response);
+                }
             }
 
             function getDataError(error){
@@ -123,19 +163,43 @@
                 return error;
             }
 
-            function getTokenSuccess(response){
-                return response.data;
-            }
-
-            function getTokenError(response){
-                console.log('Error getting token from PayU.', response);
-                return response.data;
-            }
-
             function hasPaymentData(data){
-                return data.hasOwnProperty(KEY_PAYER_ID) && data.hasOwnProperty(KEY_NAME)
-                    && data.hasOwnProperty(KEY_ID_NUMBER) && data.hasOwnProperty(KEY_PAYMENT_METHOD)
-                    && data.hasOwnProperty(KEY_NUMBER) && data.hasOwnProperty(KEY_EXPIRATION_DATE);
+                return data.hasOwnProperty(KEY_PAYER_ID) && data.hasOwnProperty(KEY_NAME_CARD)
+                    && data.hasOwnProperty(KEY_NUMBER) && data.hasOwnProperty(KEY_METHOD)
+                    && data.hasOwnProperty(KEY_EXP_MONTH) && data.hasOwnProperty(KEY_EXP_YEAR)
+                    && data.hasOwnProperty(KEY_IDENTIFICATION_NUMBER);
+            }
+        }
+
+        function validateCardNumber(cardNumber){
+            var deferred = $q.defer();
+            var isValid = payU.validateCard(cardNumber);
+            deferred.resolve(isValid);
+
+            return deferred.promise;
+        }
+
+        function validateExpiryDate(year, month){
+            var deferred = $q.defer();
+            var isValid = payU.validateExpiry(year, month);
+            deferred.resolve(isValid);
+
+            return deferred.promise;
+        }
+
+        function validateCardType(cardnumber){
+            var deferred = $q.defer();
+            var methodType = payU.cardPaymentMethod(cardnumber);
+            if(cardTypes.some(isValidType)){
+                deferred.resolve(methodType);
+            } else {
+                deferred.reject(methodType);
+            }
+
+            return deferred.promise;
+
+            function isValidType(card){
+                return methodType.toUpperCase() === card;
             }
         }
 
@@ -144,36 +208,10 @@
             payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
             payU.setListBoxID('payu-franchise');
             payU.setAccountID('539061');
+            // TODO Get Language from i18n Service
             payU.setLanguage("es");
-            payU.getPaymentMethods();
-            //payU.setCardDetails(
-            //    {
-            //        number:'4111111111111111',
-            //        name_card:'NOMBRE_TARJETA',
-            //        payer_id:'10',
-            //        exp_month:1,
-            //        exp_year:2017,
-            //        method:'VISA',
-            //        "name": "APPROVED",
-            //        "identificationNumber": "32144457"
-            //    }
-            //);
-            payU.setCardDetails(
-                {
-                    number:'5434481002839600',
-                    name_card:'JOSE RODRIGUEZ',
-                    payer_id:'10',
-                    exp_month:5,
-                    exp_year:2019,
-                    method:'MASTERCARD',
-                    "name": "JOSE RODRIGUEZ"
-                }
-            );
-            payU.createToken(responseHandler);
 
-            function responseHandler(response){
-                console.log('response de tokenization javascript:', response);
-            }
+            getPayUData();
         }
     }
 })();

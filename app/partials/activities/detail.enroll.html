@@ -148,15 +148,78 @@
                         <h4 ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></h4>
                     </div>
                     <div class="panel-body">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox">
-                        <span class="checkbox-material">
-                            <span class="check"></span>
-                        </span>
-                                <span ng-bind="::enroll.strings.LABEL_SAVE_PAYMENT_INFO"></span>
-                            </label>
+                        <div class="col-md-8 col-md-offset-2 separate-above">
+                            <div class="form-group">
+                                <label for="cardHolder" ng-bind="::enroll.strings.LABEL_CARD_HOLDER"></label>
+                                <input type="text" class="form-control" id="cardHolder"
+                                       ng-model="enroll.cardData.name_card"
+                                       placeholder="{{::enroll.strings.PLACEHOLDER_CARD_HOLDER}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="cardNumber" ng-bind="::enroll.strings.LABEL_CARD_NUMBER"></label>
+                                <input type="text" class="form-control" id="cardNumber"
+                                       ng-model="enroll.cardData.number"
+                                       ng-blur="enroll.getCardType()"
+                                       placeholder="{{::enroll.strings.PLACEHOLDER_CARD_NUMBER}}">
+                                <div class="form-group" trulii-input-errors-control="invalidNumber">
+                                    <input type="hidden" name="invalidNumber"/>
+                                </div>
+                            </div>
                         </div>
+                        <div class="col-md-8 col-md-offset-2 separate-above">
+                            <div class="form-group">
+                                <span ng-bind="::enroll.strings.LABEL_EXPIRY_DATE"></span>
+                            </div>
+                            <div class="form-group" trulii-input-errors-control="invalidExpiry">
+                                <input type="hidden" name="invalidExpiry"/>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-2">
+                            <div class="form-group">
+                                <label for="cardMonth" ng-bind="::enroll.strings.LABEL_MONTH"></label>
+                                <input type="number" min=1 max=12 class="form-control" id="cardMonth"
+                                       ng-model="enroll.cardData.exp_month"
+                                       ng-blur="enroll.checkCardExpiry()"
+                                       placeholder="{{::enroll.strings.PLACEHOLDER_MONTH}}">
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-1">
+                            <div class="form-group">
+                                <label for="cardYear" ng-bind="::enroll.strings.LABEL_YEAR"></label>
+                                <input type="number" class="form-control" id="cardYear"
+                                       ng-model="enroll.cardData.exp_year"
+                                       ng-blur="enroll.checkCardExpiry()"
+                                       placeholder="{{::enroll.strings.PLACEHOLDER_YEAR}}">
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-md-offset-2">
+                            <div class="form-group">
+                                <p class="form-control-static"
+                                   ng-show="enroll.cardData.method"
+                                   ng-bind="enroll.cardData.method"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-md-offset-1">
+                            <div class="form-group">
+                                <label for="cardCvv" ng-bind="::enroll.strings.LABEL_CVV"></label>
+                                <input type="text" class="form-control" id="cardCvv"
+                                       ng-model="enroll.cardData.cvv"
+                                       placeholder="{{::enroll.strings.PLACEHOLDER_CVV}}">
+                            </div>
+                        </div>
+                        <!--<div class="col-md-8 col-md-offset-2">-->
+                            <!--<div class="form-group">-->
+                                <!--<div class="checkbox">-->
+                                    <!--<label>-->
+                                        <!--<input type="checkbox">-->
+                                <!--<span class="checkbox-material">-->
+                                    <!--<span class="check"></span>-->
+                                <!--</span>-->
+                                        <!--<span ng-bind="::enroll.strings.LABEL_SAVE_PAYMENT_INFO"></span>-->
+                                    <!--</label>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <button type="submit" class="btn btn-lg btn-primary pull-right"
                                 ng-bind="::enroll.strings.ACTION_ENROLL"></button>
                     </div>
@@ -164,10 +227,9 @@
             </div>
         </div>
     </form>
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1 text-center">
-                <span class="text-muted" ng-bind="::enroll.strings.COPY_RELEASE"></span>
-            </div>
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1 text-center">
+            <span class="text-muted" ng-bind="::enroll.strings.COPY_RELEASE"></span>
         </div>
     </div>
 </div>
