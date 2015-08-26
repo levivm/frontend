@@ -160,6 +160,7 @@
                                 <input type="text" class="form-control" id="cardNumber"
                                        ng-model="enroll.cardData.number"
                                        ng-blur="enroll.getCardType()"
+                                       ng-change="enroll.getCardType()"
                                        placeholder="{{::enroll.strings.PLACEHOLDER_CARD_NUMBER}}">
                                 <div class="form-group" trulii-input-errors-control="invalidNumber">
                                     <input type="hidden" name="invalidNumber"/>
