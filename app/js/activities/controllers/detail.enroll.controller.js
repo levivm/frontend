@@ -119,7 +119,7 @@
             }
 
             function getStudentError(response){
-                console.log("Error getting current logged student:", response)
+                console.log("Error getting current logged student:", response);
             }
 
             function getTokenSuccess(response){
@@ -128,6 +128,7 @@
                 var buyer = {};
                 buyer[Payments.KEY_NAME] = response[Payments.KEY_NAME];
                 buyer[Payments.KEY_EMAIL] = currentUser.user.email;
+                console.log('-------buyer-------',buyer);
                 var data = {
                     activity: activity.id,
                     chronogram: calendar.id,
@@ -138,6 +139,8 @@
                     buyer: buyer
                 };
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
+
+                console.log('-------buyer-------',data);
 
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
 

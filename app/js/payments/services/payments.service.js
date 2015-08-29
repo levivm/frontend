@@ -31,6 +31,7 @@
         //Keys for PayU token
         var KEY_PAYER_ID = "payer_id";
         var KEY_NAME_CARD = "name_card";
+        var KEY_NAME = "name";
         var KEY_EMAIL = "email";
         var KEY_NUMBER = "number";
         var KEY_EXP_MONTH = "exp_month";
@@ -99,7 +100,7 @@
 
             KEY_CARD_ASSOCIATION: KEY_CARD_ASSOCIATION,
             KEY_PAYER_ID : KEY_PAYER_ID,
-            KEY_NAME : KEY_NAME_CARD,
+            KEY_NAME : KEY_NAME,
             KEY_NUMBER : KEY_NUMBER,
             KEY_EMAIL : KEY_EMAIL,
             KEY_TOKEN: KEY_TOKEN,
@@ -138,6 +139,7 @@
 
         function getToken(paymentData) {
             if(hasPaymentData(paymentData)){
+                console.log("PAYMENT DATA");
                 return getPayUData().then(getDataSuccess, getDataError);
             } else {
                 return $q.reject('No payment data provided');
@@ -168,10 +170,12 @@
             }
 
             function hasPaymentData(data){
-                return data.hasOwnProperty(KEY_PAYER_ID) && data.hasOwnProperty(KEY_NAME_CARD)
-                    && data.hasOwnProperty(KEY_NUMBER) && data.hasOwnProperty(KEY_METHOD)
-                    && data.hasOwnProperty(KEY_EXP_MONTH) && data.hasOwnProperty(KEY_EXP_YEAR)
-                    && data.hasOwnProperty(KEY_IDENTIFICATION_NUMBER);
+
+                console.log("Payment data ",data);
+                return !!data[KEY_PAYER_ID] && !!data[KEY_NAME_CARD]
+                    && !!data[KEY_NUMBER]
+                    && !!data[KEY_EXP_MONTH] && !!data[KEY_EXP_YEAR]
+                    && !!data[KEY_IDENTIFICATION_NUMBER];
             }
         }
 
@@ -208,7 +212,8 @@
         }
 
         function _setPayUUp(){
-            payU.setURL('https://api.payulatam.com/payments-api/4.0/service');
+            payU.setURL('https://stg.api.payulatam.com/payments-api/4.0/service');
+            // payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
             payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
             payU.setListBoxID('payu-franchise');
             payU.setAccountID('539061');
