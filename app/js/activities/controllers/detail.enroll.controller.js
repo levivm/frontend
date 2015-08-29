@@ -151,6 +151,7 @@
                     Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
                 }
             }
+
             function getTokenError(error){
                 console.log("Couldn't get token from Pay U", error);
             }

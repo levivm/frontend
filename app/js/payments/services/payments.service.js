@@ -154,7 +154,11 @@
 
                 function getTokenResponse(response){
                     console.log('response de tokenization javascript:', response);
-                    deferred.resolve(response);
+                    if(response.error){
+                        deferred.resolve(response);
+                    } else {
+                        deferred.reject(response);
+                    }
                 }
             }
 
