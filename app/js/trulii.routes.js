@@ -302,8 +302,7 @@
             })
             .state('dash.activities-edit.instructors', {
                 url:'instructors',
-                controller: 'ActivityDBInstructorsController',
-                controllerAs: 'vm',
+                controller: 'ActivityDBInstructorsController as instructors',
                 templateUrl: 'partials/activities/dashboard_instructors.html'
             })
             .state('dash.activities-edit.gallery', {

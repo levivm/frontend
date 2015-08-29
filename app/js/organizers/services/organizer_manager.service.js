@@ -116,7 +116,7 @@
 
             function success(response) {
                 var organizerData = response.data;
-                console.log("from back",response.data);
+                //console.log("from back",response.data);
                 var organizer = _retrieveInstance(organizerId, organizerData);
                 deferred.resolve(organizer);
             }

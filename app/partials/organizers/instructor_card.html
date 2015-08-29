@@ -1,0 +1,75 @@
+<div ng-if="!emptyInstructor">
+    <div class="card-list-item" ng-class="{'scroll-y' : !editMode}" ng-style="{'height': cardHeight}">
+        <div class="card-list-item__actions">
+            <i class="glyphicon glyphicon-pencil" ng-if="!editMode" ng-click="toggleEditMode()" title="{{strings.ACTION_EDIT}}"></i>
+            <i class="glyphicon glyphicon-remove" ng-click="deleteInstructor()" title="{{strings.ACTION_DELETE}}"></i>
+        </div>
+        <!--If on Edit Mode-->
+        <div ng-if="editMode">
+            <div class="form-group" trulii-input-errors-control="full_name">
+                <label for="full_name" class="control-label" ng-bind="strings.LABEL_FULL_NAME"></label>
+                <input type="text" id="full_name" name="full_name"
+                       ng-model="instructor.full_name"
+                       placeholder="{{strings.PLACEHOLDER_FULL_NAME}}"
+                       class="form-control">
+            </div>
+
+            <div class="form-group" trulii-input-errors-control="website">
+                <label for="website" class="control-label">
+                    <span ng-bind="strings.LABEL_WEBSITE"></span><span ng-bind="strings.LABEL_OPTIONAL"></span>
+                </label>
+                <input id="website" class="form-control" ng-model='instructor.website' name="website"/>
+            </div>
+
+            <div class="form-group" trulii-input-errors-control="bio">
+                <label for="bio" class="control-label" ng-bind="strings.LABEL_BIO"></label>
+                    <textarea id="bio" class="form-control" name="bio"
+                              rows="4" style="resize: none;"
+                              placeholder="{{strings.PLACEHOLDER_BIO}}"
+                              ng-model='instructor.bio'>
+                    </textarea>
+            </div>
+
+            <div class="text-right">
+                <button class="btn btn-default" type="button" ng-click="cancelEdition()" ng-bind="strings.ACTION_CANCEL"></button>
+                <button class="btn btn-success" type="button" ng-click="saveInstructor()" ng-bind="strings.ACTION_SAVE"></button>
+            </div>
+
+            <!--TODO reemplazar con Toast-->
+            <!--<alert type="danger" ng-show="vm.instructors_errors[$index].delete_instructor">-->
+                <!--{{vm.instructors_errors[$index].delete_instructor}}-->
+            <!--</alert>-->
+        </div>
+        <!--If on View Mode-->
+        <div ng-if="!editMode">
+            <div class="form-group" trulii-input-errors-control="full_name">
+                <label for="full_name" class="control-label" ng-bind="strings.LABEL_FULL_NAME"></label>
+                <div ng-bind="instructor.full_name"></div>
+            </div>
+
+            <div class="form-group separate-above" trulii-input-errors-control="website">
+                <label for="website" class="control-label" ng-bind="strings.LABEL_WEBSITE"></label><br/>
+                <a href="http://google.com">www.google.com</a>
+            </div>
+
+            <div class="form-group separate-above" trulii-input-errors-control="bio">
+                <label for="bio" class="control-label" ng-bind="strings.LABEL_BIO"></label>
+                <div>
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima veritatis harum, itaque temporibus
+                    eligendi mollitia aliquam, fuga perspiciatis architecto. Suscipit ducimus, quis accusantium at
+                    nihil tenetur, cumque laudantium eaque ipsa.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--if there's no instructor asigned-->
+<div ng-if="emptyInstructor">
+    <div class="card-list-item card-list-item--empty card-list-item--instructor" ng-style="{'height': cardHeight}">
+        <div>
+            <div class="card-list-item__add-icon" ng-click="addInstructor()"></div>
+            <br/>
+            <span>Agregar Instructor</span>
+        </div>
+    </div>
+</div>

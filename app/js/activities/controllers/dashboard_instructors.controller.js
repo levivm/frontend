@@ -12,114 +12,71 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBInstructorsController', ActivityDBInstructorsController);
 
-    ActivityDBInstructorsController.$inject = ['$modal', 'activity', 'organizer', 'Toast', 'Elevator', 'Error'];
+    ActivityDBInstructorsController.$inject = ['activity', 'organizer', 'Toast', 'Elevator', 'Error'];
 
-    function ActivityDBInstructorsController($modal, activity, organizer, Toast, Elevator, Error) {
+    function ActivityDBInstructorsController(activity, organizer, Toast, Elevator, Error) {
+
+        var MAX_INSTRUCTORS = organizer.max_allowed_instructors;
 
         var vm = this;
+
+        vm.isSaving = false;
         vm.activity = angular.copy(activity);
+        vm.organizer = organizer;
         vm.save_activity = _updateActivity;
-        vm.addInstructor = _addInstructor;
-        vm.removeInstructor = _removeInstructor;
+        //vm.addInstructor = _addInstructor;
+        //vm.removeInstructor = _removeInstructor;
         // vm.setInstructor = _setInstructor;
         // vm.deleteInstructor = _deleteInstructor;
-        vm.maxAllowedInstructors = organizer.max_allowed_instructors;
 
-        initialize();
-        _setInstructors();
-
-        function _addInstructor() {
-            if (vm.instructors.length >= organizer.max_allowed_instructors)
-                return;
-
-            vm.instructors.push({
-                full_name : null
-            });
-        }
-
-        function _removeInstructor() {
-            vm.instructors.pop();
-            _onSectionUpdated();
-        }
-
-        // function _deleteInstructor(instructor) {
-
-        //     var modalInstance = $modal.open({
-        //         templateUrl : 'partials/activities/messages/confirm_delete_instructor.html',
-        //         controller : 'ModalInstanceCtrl',
-        //         size : 'lg'
-        //     });
-
-        //     modalInstance.result.then(function () {
-        //         _initialize_errors_array();
-        //         organizer.deleteInstructor(instructor.id)
-        //             .then(success, error);
-        //     });
-
-        //     function success(response) {
-        //         _.remove(vm.activity.instructors, 'id', instructor.id);
-        //         angular.extend(activity, vm.activity);
-        //         organizer.reload().then(_setInstructors);
-
-        //         Toast.generics.deleted("El instructor se ha eliminado.");
-        //     }
-
-        //     function error(response) {
-        //         var index = _.indexOf(vm.instructors, instructor);
-        //         vm.instructors_errors[index].delete_instructor = response.data.detail;
-        //     }
-
-        // }
-
-        // function _setInstructor(selected_instructor, model, label, instructor) {
-        //     angular.extend(instructor, selected_instructor);
-        //     _.remove(vm.typeahead_instructors, 'id', selected_instructor.id);
-        // }
+        _activate();
 
         function _updateActivity() {
             Error.form.clear(vm.activity_instructors_forms);
-            vm.activity.update()
-                .then(success, error);
-
+            vm.activity.update().then(success, error);
             vm.isSaving = true;
 
             function success(response) {
                 vm.isCollapsed = false;
                 angular.extend(activity, vm.activity);
-                organizer.reload().then(_setInstructors);
-                _onSectionUpdated();
-
-                vm.isSaving = false;
-
+                _setInstructors();
                 Toast.generics.weSaved();
+                _onSectionUpdated();
+                vm.isSaving = false;
             }
 
             function error(responseErrors) {
                 Error.form.addArrayErrors(vm.activity_instructors_forms, responseErrors['instructors']);
-
                 _onSectionUpdated();
-
                 vm.isSaving = false;
             }
-
-
         }
 
         function _setInstructors() {
-            vm.instructors = vm.activity.instructors;
+            var EMPTY_INSTRUCTOR = {
+                'full_name': null,
+                'website': null,
+                'bio': null
+            };
+            var tempInstructor = null;
+
+            vm.instructors = angular.copy(vm.activity.instructors);
+            if(vm.instructors.length < MAX_INSTRUCTORS){
+                while(vm.instructors.length < MAX_INSTRUCTORS){
+                    tempInstructor = angular.extend({}, EMPTY_INSTRUCTOR);
+                    vm.instructors.push(tempInstructor);
+                    console.log(vm.instructors.length, vm.instructors[vm.instructors.length-1]);
+                }
+            }
+            console.log('vm.activity.instructors:', vm.activity.instructors);
+            console.log('vm.instructors:', vm.instructors);
+            console.log('vm.instructors:', JSON.stringify(vm.instructors, null, 1));
 
         }
 
-        function _onSectionUpdated() {
-            activity.updateSection('instructors');
-        }
-
-
-        function initialize() {
-            
-            vm.isSaving = false;
-
+        function _activate() {
             Elevator.toTop();
+            _setInstructors();
         }
 
     }

@@ -36,7 +36,6 @@
             setData : function (organizerData) {
                 angular.extend(this, organizerData);
                 this._setCity();
-                console.log( 'organizer photo:', !this.photo);
                 if(!this.photo) {
                     this.photo = defaultPicture;
                 }
@@ -139,7 +138,6 @@
             update_location : function (location_data_param) {
                 var location_data = angular.copy(location_data_param);
                 location_data.city = location_data.city ? location_data.city.id : undefined;
-                // 'http://localhost:8000/api/organizers/' + this.id + '/locations/'
                 return $http.post(api.locations(this.id), location_data);
 
             },
@@ -152,7 +150,6 @@
             },
 
             deleteInstructor : function (instructorID) {
-                // serverConf.url + '/api/organizers/' + this.id + '/instructors/' + instructorID
                 return $http.delete(api.instructor(this.id, instructorID));
             }
         };
