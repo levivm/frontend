@@ -199,15 +199,27 @@
                 templateUrl: 'partials/organizers/dashboard_account.html'
             })
             .state('organizer-dashboard.activities', {
-                url:'activities',
+                url:'activities/',
                 controller: 'OrganizerActivitiesCtrl as activities',
-                templateUrl: 'partials/organizers/dashboard_activities.html',
+                templateUrl: 'partials/organizers/dashboard/activities.html',
                 resolve: {
                     activities: getOrganizerActivities
                 }
             })
+            .state('organizer-dashboard.activities.open', {
+                url:'open',
+                templateUrl: 'partials/organizers/dashboard/activities_open.html'
+            })
+            .state('organizer-dashboard.activities.closed', {
+                url:'closed',
+                templateUrl: 'partials/organizers/dashboard/activities_closed.html'
+            })
+            .state('organizer-dashboard.activities.inactive', {
+                url:'inactive',
+                templateUrl: 'partials/organizers/dashboard/activities_inactive.html'
+            })
             .state('organizer-dashboard.history', {
-                url:'account',
+                url:'history',
                 controller: 'OrganizerHistoryCtrl as history',
                 templateUrl: 'partials/organizers/dashboard_history.html'
             })

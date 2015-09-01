@@ -1,0 +1,16 @@
+<div class="navbar-secondary">
+    <ul>
+        <li class="navbar-secondary__item" ui-sref=".open" ui-sref-active="active">
+            <span ng-bind="::activities.strings.TAB_OPEN"></span>
+        </li>
+        <li class="navbar-secondary__item" ui-sref=".closed" ui-sref-active="active">
+            <span ng-bind="::activities.strings.TAB_CLOSED"></span>
+        </li>
+        <li class="navbar-secondary__item" ui-sref=".inactive" ui-sref-active="active">
+            <span ng-bind="::activities.strings.TAB_INACTIVE"></span>
+        </li>    
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-10 col-md-offset-1 tab-content" ui-view></div>
+</div>

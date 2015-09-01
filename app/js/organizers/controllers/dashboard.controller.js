@@ -12,12 +12,17 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = [];
-    function OrganizerDashboardCtrl() {
+    OrganizerDashboardCtrl.$inject = ['$state'];
+    function OrganizerDashboardCtrl($state) {
 
         var vm = this;
+        vm.isActive = isActive;
 
         _activate();
+
+        function isActive(stateStr){
+            return $state.includes(stateStr);
+        }
 
         function _setStrings() {
             if (!vm.strings) {
