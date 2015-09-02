@@ -31,7 +31,7 @@
             angular.extend(vm.strings, {
                 SECTION_ACTIVITIES: "Actividades",
                 SECTION_ACCOUNT: "Cuenta",
-                SECTION_PROFILE: "Mi Perfil",
+                SECTION_PROFILE: "Perfil",
                 SECTION_HISTORY: "Historial de Ventas"
             });
         }

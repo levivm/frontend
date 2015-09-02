@@ -105,7 +105,7 @@
             .state('organizer-dashboard.profile', {
                 url:'profile',
                 controller: 'OrganizerProfileCtrl as profile',
-                templateUrl: 'partials/organizers/dashboard_profile.html'
+                templateUrl: 'partials/organizers/dashboard/profile.html'
             });
 
         /**
