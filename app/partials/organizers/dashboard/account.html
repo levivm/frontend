@@ -1,0 +1,17 @@
+<div class="navbar-secondary">
+    <ul>
+        <li class="navbar-secondary__item active" ui-sref=".password" ui-sref-active="active">
+            <span ng-bind="::account.strings.TAB_PASSWORD"></span>
+        </li>
+        <li class="navbar-secondary__item" ui-sref=".email" ui-sref-active="active">
+            <span ng-bind="::account.strings.TAB_EMAIL"></span>
+        </li>
+        <li class="navbar-secondary__item" ui-sref=".banking" ui-sref-active="active"
+            ng-click="profile.load_map()">
+            <span ng-bind="::account.strings.TAB_BANKING"></span>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-1" ui-view></div>
+</div>

@@ -194,9 +194,21 @@
                 }
             })
             .state('organizer-dashboard.account', {
-                url:'account',
+                url:'account/',
                 controller: 'OrganizerAccountCtrl as account',
-                templateUrl: 'partials/organizers/dashboard_account.html'
+                templateUrl: 'partials/organizers/dashboard/account.html'
+            })
+            .state('organizer-dashboard.account.password', {
+                url:'password',
+                templateUrl: 'partials/organizers/dashboard/account_password.html'
+            })
+            .state('organizer-dashboard.account.email', {
+                url:'email',
+                templateUrl: 'partials/organizers/dashboard/account_email.html'
+            })
+            .state('organizer-dashboard.account.banking', {
+                url:'banking',
+                templateUrl: 'partials/organizers/dashboard/account_banking.html'
             })
             .state('organizer-dashboard.activities', {
                 url:'activities/',
