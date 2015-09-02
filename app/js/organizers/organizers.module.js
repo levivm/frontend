@@ -65,13 +65,9 @@
                 controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard/account.html'
             })
-            .state('organizer-dashboard.account.password', {
-                url:'password',
-                templateUrl: 'partials/organizers/dashboard/account_password.html'
-            })
-            .state('organizer-dashboard.account.email', {
-                url:'email',
-                templateUrl: 'partials/organizers/dashboard/account_email.html'
+            .state('organizer-dashboard.account.settings', {
+                url:'settings',
+                templateUrl: 'partials/organizers/dashboard/account_settings.html'
             })
             .state('organizer-dashboard.account.banking', {
                 url:'banking',
