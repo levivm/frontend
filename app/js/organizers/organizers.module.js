@@ -155,7 +155,7 @@
          */
         getOrganizer.$inject = ['$stateParams', 'OrganizersManager'];
         function getOrganizer($stateParams, OrganizersManager) {
-            return OrganizersManager.getPayUData($stateParams.organizer_id);
+            return OrganizersManager.getOrganizer($stateParams.organizer_id);
         }
 
         /**
