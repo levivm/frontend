@@ -1,0 +1,13 @@
+<div class="navbar-secondary">
+    <ul>
+        <li class="navbar-secondary__item active" ui-sref=".sales" ui-sref-active="active">
+            <span ng-bind="::transactions.strings.TAB_SALES"></span>
+        </li>
+        <li class="navbar-secondary__item" ui-sref=".reimbursements" ui-sref-active="active">
+            <span ng-bind="::transactions.strings.TAB_REIMBURSEMENTS"></span>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-md-8 col-md-offset-1" ui-view></div>
+</div>

@@ -1,7 +1,7 @@
 /**
  * @ngdoc controller
- * @name trulii.organizers.controllers.OrganizerAccountCtrl
- * @description Handles Organizer Account Dashboard
+ * @name trulii.organizers.controllers.OrganizerTransactionsCtrl
+ * @description Handles Transactions section for Organizer Dashboard
  * @requires organizer
  */
 
@@ -10,10 +10,10 @@
 
     angular
         .module('trulii.organizers.controllers')
-        .controller('OrganizerHistoryCtrl', OrganizerHistoryCtrl);
+        .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerHistoryCtrl.$inject = ['organizer'];
-    function OrganizerHistoryCtrl(organizer) {
+    OrganizerTransactionsCtrl.$inject = ['organizer'];
+    function OrganizerTransactionsCtrl(organizer) {
 
         var vm = this;
 

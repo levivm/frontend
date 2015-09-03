@@ -19,11 +19,11 @@
                 <i class="sidebar__item__icon mdi-action-account-circle"></i>                    
                 <span ng-bind="::dash.strings.SECTION_PROFILE"></span>                                                                        
             </a>
-            <a ui-sref=".history"
+            <a ui-sref=".transactions.sales"
                class="sidebar__item"
-               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.history.*')}">
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.transactions.*')}">
                 <i class="sidebar__item__icon mdi-action-history"></i>
-                <span ng-bind="::dash.strings.SECTION_HISTORY"></span>
+                <span ng-bind="::dash.strings.SECTION_TRANSACTIONS"></span>
             </a>
         </div>
 

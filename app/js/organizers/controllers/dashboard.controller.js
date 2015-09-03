@@ -32,7 +32,7 @@
                 SECTION_ACTIVITIES: "Actividades",
                 SECTION_ACCOUNT: "Cuenta",
                 SECTION_PROFILE: "Perfil",
-                SECTION_HISTORY: "Historial de Ventas"
+                SECTION_TRANSACTIONS: "Transacciones"
             });
         }
 

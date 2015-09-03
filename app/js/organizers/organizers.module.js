@@ -1,3 +1,9 @@
+/**
+ * @ngdoc object
+ * @name trulii.organizers
+ * @description Trulii Organizers Module
+ */
+
 (function () {
     'use strict';
 
@@ -93,10 +99,18 @@
                 url:'inactive',
                 templateUrl: 'partials/organizers/dashboard/activities_inactive.html'
             })
-            .state('organizer-dashboard.history', {
-                url:'history',
-                controller: 'OrganizerHistoryCtrl as history',
-                templateUrl: 'partials/organizers/dashboard_history.html'
+            .state('organizer-dashboard.transactions', {
+                url:'transactions/',
+                controller: 'OrganizerTransactionsCtrl as transactions',
+                templateUrl: 'partials/organizers/dashboard/transactions.html'
+            })
+            .state('organizer-dashboard.transactions.sales', {
+                url:'sales',
+                templateUrl: 'partials/organizers/dashboard/transactions_sales.html'
+            })
+            .state('organizer-dashboard.transactions.reimbursements', {
+                url:'reimbursements',
+                templateUrl: 'partials/organizers/dashboard/transactions_reimbursements.html'
             })
             .state('organizer-dashboard.profile', {
                 url:'profile',
