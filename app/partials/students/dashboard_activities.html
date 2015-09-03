@@ -1,48 +1,66 @@
-<div class="container">
-    <div class="col-md-2">
-        <nav class="nav-sidebar">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a data-target="#current-tab" data-toggle="tab">Actuales</a></li>
-                <li class=""><a data-target="#history-tab" data-toggle="tab">Anteriores</a></li>
-            </ul>
-        </nav>
-    </div>
-    <div class="col-md-8 col-md-offset-1">
-        <div class="tab-content">
-            <div class="tab-pane active" id="current-tab">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <h3>Actuales</h3>
-                            <h4 class="text-muted">
-                                Revisa las actividades que estás cursando actualmente o que inician próximamente
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
-                              ng-repeat="activity in activities.activities track by activity.id"
-                              data-activity="activity" data-options="{{activities.options}}"></trulii-activity-item>
-                </div>
+
+<div class="navbar-secondary">
+
+    <ul>
+        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#current-tab">
+            <span ng-bind="::activities.strings.TAB_CURRENT"></span>
+        </li>
+
+        <li class="navbar-secondary__item" data-toggle="tab" data-toggle="tab" data-target="#history-tab">
+            <span ng-bind="::activities.strings.TAB_HISTORY"></span>
+        </li>
+    </ul>    
+    
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-11 col-md-offset-1 tab-content">
+        <div class="tab-pane text-style active fade  in" id="current-tab">
+            <!--If there are activities-->
+            <div class="row activity-grid">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.activities track by activity.id"
+                      data-activity="activity" data-options="{{activities.options}}">
+                </trulii-activity-item>
             </div>
-            <div class="tab-pane" id="history-tab">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <h3>Anteriores</h3>
-                            <h4 class="text-muted">
-                                Revisa las actividades en las que te has inscrito anteriormente
-                            </h4>
-                        </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.activities.length <= 0" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>                    
+
+                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_ORDERS">
+                                
                     </div>
-                </div>
-                <div class="row">
-                    <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
-                              ng-repeat="activity in activities.activities track by activity.id"
-                              data-activity="activity" data-options="{{activities.options}}"></trulii-activity-item>
+                    <a ui-sref="dash.activities-new.general" class="btn btn-lg btn-success">
+                        Buscar Actividad
+                    </a>                
                 </div>
             </div>
         </div>
+        <div class="tab-pane fade" id="history-tab">
+            <!--If there are activities-->
+            <div class="row activity-grid">
+                <trulii-activity-item 
+                      ng-repeat="activity in activities.activities track by activity.id"
+                      data-activity="activity" data-options="{{activities.options}}">
+                </trulii-activity-item>
+            </div>
+            <!--If there are no activities-->
+            <div ng-if="activities.activities.length <= 0" class="row">
+                <div class="col-md-8 col-md-offset-2 text-center">
+                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>                    
+
+                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_ORDERS">
+                                
+                    </div>
+                    <a class="btn btn-lg btn-success">
+                        Buscar Actividad
+                    </a>                
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>

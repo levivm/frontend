@@ -1,4 +1,5 @@
 
+// TODO Deprecated?
 .separator{
     border-bottom: 1px solid @color-delimeter-dark;
     margin: 1em 0;
@@ -25,4 +26,31 @@
             position: relative;
         }
     }
+
+    &-vertical{
+        border-left: 1px solid @color-delimeter-dark;
+    }
+}
+
+@section-padding: 2.5rem;
+
+.section-title{
+    display: block;
+    width: 100%;
+    background-color: @gray-lighter;
+    font-family: @font-sans-alt;
+    padding: 1em @section-padding;
+    font-size: 1.4em;
+
+    & + form, & + div{
+        margin: 0 @section-padding;
+    }
+}
+
+.section-description{
+    font-family: @font-sans-alt;
+    color: @gray;
+    margin: 1em 0;
+    font-weight: normal;
+    font-size: 1.1em;
 }

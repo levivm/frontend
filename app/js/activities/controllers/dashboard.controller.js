@@ -21,7 +21,7 @@
 
         var pc = this;
 
-        pc.steps = ActivitySteps;
+        pc.steps = angular.copy(ActivitySteps);
         pc.activity = activity;
         pc.sidebar = false;
         pc.allow_unpublish = true;
@@ -41,7 +41,6 @@
         pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
 
 
-        activate();
         initialize();
 
         function areAllStepsCompleted() {
@@ -53,10 +52,8 @@
         }
 
         function getCheckStyle(section) {
-            // console.log("APPLYING STYLE",pc.isSectionCompleted(section),section);
 
             var sectionIndex = _.indexOf(ActivitySteps, section);     
-
             var classes = {};
             classes['bg-primary-' + (sectionIndex)] = pc.isSectionCompleted(section.name);
 
@@ -92,13 +89,21 @@
             })
         }
 
-
-        function activate() {
-
-        }
-
         function initialize() {
             pc.sidebar = true;
+            activity.updateAllSections();
+
+            match_required_steps(pc.steps, pc.activity.required_steps);            
+
+            function match_required_steps(steps, required_steps){
+
+                _.each(steps, function(step){
+
+                    if ( required_steps[step.name] != undefined ){
+                        step.required = true;
+                    }
+                })
+            }
         }
 
     }

@@ -1,68 +1,90 @@
-
 @import url('../_trulii-variables');
 
-
 // ...Because there is a strange issue on bootstrap-material
-.btn-success, .btn-primary{
-	color: white !important;
+.btn-success, .btn-primary {
+    color: white !important;
 }
 
-.btn{
-	font-weight: bold;
-	
-	&.btn-active{
-		background: @secondary !important;
-		color: white !important;
+.btn {
+    font-family: @font-sans;
 
+    &-lg{
+        text-transform: uppercase;
+    }
+    
+    &-default{
+        background-color: transparent;
+        border: 1px solid @gray-lighter;
+        color: @gray-light;
+    }
 
-		&.btn-beginner-level{
-			background-color: @color-beginner !important;			
-		}
+    &-light{
+        color: white;
+        border: 1px solid white;
 
-		&.btn-intermediate-level{
-			background-color: @color-intermediate !important;
-		}
+        &:hover{
+            color: white !important;
+            border: 1px solid white !important;
+            background-color: fadeout(white, 80%);
+        }
+    }
 
-		&.btn-advanced-level{
-			background-color: @color-advanced !important;
+    &.btn-active {
+        background: @secondary !important;
+        color: white !important;
 
-		}
+        &.btn-beginner-level {
+            background-color: @color-beginner !important;
+        }
 
-		&-darken{
-			background: @secondary-dark !important;
-		}
-	}
+        &.btn-intermediate-level {
+            background-color: @color-intermediate !important;
+        }
 
-	&.btn-less{
-		font-weight: normal;
-		width: 9em !important;
-	}
+        &.btn-advanced-level {
+            background-color: @color-advanced !important;
+        }
 
-	&-grand:extend(.btn-lg){
+        &-darken {
+            background: @secondary-dark !important;
+        }
+    }
 
-		&:extend(.btn-lg);
-		padding: 1em;
+    &-secondary {
+        color: white !important;
+        background-color: @secondary !important;
+    }
 
-		&__icon{
-			line-height: 0;
+    &.btn-less {
+        font-weight: normal;
+        width: 9em !important;
+    }
 
-			&:before, &:after{
-				line-height: 0em;
-				position: relative;
-				font-size: 2em;
-				top: 0.2em;
-			}
-		}
-	}
+    &-grand:extend(.btn-lg) {
 
-	&-facebook{
-		color: white !important;
-		background-color: @facebook-blue !important;
-		text-transform: none;
+        &:extend(.btn-lg);
+        padding: 1em;
 
-		&:hover {
-			background-color: darken(@facebook-blue, 2%) !important ;
-		}		
-	}	
+        &__icon {
+            line-height: 0;
+
+            &:before, &:after {
+                line-height: 0em;
+                position: relative;
+                font-size: 2em;
+                top: 0.2em;
+            }
+        }
+    }
+
+    &-facebook {
+        color: white !important;
+        background-color: @facebook-blue !important;
+        text-transform: none;
+
+        &:hover {
+            background-color: darken(@facebook-blue, 2%) !important;
+        }
+    }
 
 }

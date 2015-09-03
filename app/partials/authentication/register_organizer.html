@@ -32,7 +32,7 @@
                                     <trulii-input-alert field="vm.signup_form.name"
                                                         errors="vm.errors"></trulii-input-alert>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" trulii-input-errors-control="email">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                           <i class="mdi-communication-email"></i>
@@ -44,7 +44,7 @@
                                     <trulii-input-alert field="vm.signup_form.email"
                                                         errors="vm.errors"></trulii-input-alert>
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" trulii-input-errors-control="password1">
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                           <i class="mdi-action-lock"></i>
@@ -56,8 +56,9 @@
                                     <trulii-input-alert field="vm.signup_form.password1"
                                                         errors="vm.errors"></trulii-input-alert>
                                 </div>
-
-                                <input type="hidden" ng-model="__all__" name="__all__"/>
+                                <div class="form-group" trulii-input-errors-control="__all__">
+                                    <input type="hidden" ng-model="__all__" name="__all__"/>
+                                </div>
                                 <input type="hidden" ng-model="vm.user_type" ng-init="vm.user_type='O'">
 
                                 <!--TODO replace with toast-->

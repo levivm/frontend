@@ -42,6 +42,7 @@
         }
 
         function _errored(responseErrors) {
+
             if (responseErrors) {
                 Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
                 delete responseErrors['sessions'];

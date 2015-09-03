@@ -9,6 +9,6 @@
 
     angular
         .module('trulii.utils.services')
-        .value("defaultCover", "css/img/trulii-inverse-med.png");
+        .value("defaultCover", "css/img/nocover.jpg");
 
 })();

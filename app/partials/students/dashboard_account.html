@@ -1,193 +1,86 @@
-<div class="container">
-    <div class="col-md-2">
-        <nav class="nav-sidebar">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active">
-                    <a data-target="#settings-tab" data-toggle="tab">Ajustes</a>
-                </li>
-                <li class="">
-                    <a data-target="#history-tab" data-toggle="tab">Historial de Compras</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <div class="col-md-8 col-md-offset-1">
-        <div class="tab-content">
-            <div class="tab-pane active text-style" id="settings-tab">
-                <form name='account.account_form_email' class="form-horizontal"
-                      ng-submit="account.changeEmail()">
-                    <fieldset>
-                        <div class="form-group">
-                            <h3>Correo Electrónico</h3>
-                            <h4 class="text-muted">
-                                Puedes modificar tu dirección de correo electrónico si así lo deseas
-                            </h4>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="email">Correo</label>
 
-                            <div class="col-md-6">
+
+
+<div class="navbar-secondary">
+
+    <ul>
+        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#change-password-tab">
+            <span ng-bind="::account.strings.TAB_PASSWORD"></span>
+        </li>
+
+        <li class="navbar-secondary__item" data-toggle="tab" data-toggle="tab" data-target="#settings-tab">
+            <span ng-bind="::account.strings.TAB_EMAIL"></span>
+        </li>   
+    </ul>    
+    
+</div>
+
+
+<div class="row">
+
+    <div class="col-md-6 col-md-offset-1 tab-content">
+        
+            <div class="tab-pane active fade  in" id="change-password-tab">
+
+                <p class="text-muted" ng-bind="::account.strings.COPY_TAB_PASSWORD"></p>
+                <form name='account.account_form_password' ng-submit="account.changePassword()">
+                    <fieldset>                                
+                                            
+                        <div class="form-group" trulii-input-errors-control="oldpassword">
+                            <label class="control-label" for="oldpassword"
+                                   ng-bind="::account.strings.LABEL_CURRENT_PASSWORD"></label>
+                            <input id="oldpassword" class="form-control" name="oldpassword"
+                                   type="password"
+                                   ng-model="account.password_data.oldpassword">
+                        </div>
+                        <div class="form-group" trulii-input-errors-control="password1">
+                            <label class="control-label" for="password1"
+                                   ng-bind="::account.strings.LABEL_NEW_PASSWORD"></label>
+                            <input id="password1" class="form-control" name="password1"
+                                   ng-model="account.password_data.password1"
+                                   type="password">
+                        </div>
+                        <div class="form-group" trulii-input-errors-control="password2">
+                            <label class="control-label" for="password2"
+                                   ng-bind="::account.strings.LABEL_CONFIRM_PASSWORD"></label>
+                            <input id="password2" class="form-control" name="password2"
+                                   type="password"
+                                   ng-model="account.password_data.password2">
+                        </div>
+                            
+                        
+                        <trulii-submit-controls is-saving="account.isSaving"
+                                data-value="{{::account.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                        
+                    </fieldset>
+                </form>
+
+            </div>
+            <div class="tab-pane fade" id="settings-tab">
+                <form name='account.account_form_email' ng-submit="account.changeEmail()">
+                    <fieldset>
+                        
+                            <p class="text-muted" ng-bind="::account.strings.COPY_TAB_EMAIL"></p>
+                                            
+                            
+                            <div class="form-group" trulii-input-errors-control="email">
+                                <label class="control-label" for="email"
+                                       ng-bind="::account.strings.LABEL_EMAIL"></label>
                                 <input id="email" class="form-control" name="email"
                                        ng-model="account.student.email" type="email"/>
                             </div>
-                            <trulii-input-alert field="account.account_form_email.email"
-                                                errors="account.errors"></trulii-input-alert>
-                        </div>
-
-                        <button type="submit" id="email-submit"
-                                class="btn btn-primary pull-right">Guardar
-                        </button>
-
-                        <div ng-hide="account.isCollapsed">Guardado</div>
+                        
+                        
+                            <trulii-submit-controls is-saving="account.isSaving"
+                                data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                        
+                        
                     </fieldset>
                 </form>
-                <hr>
-
-                <form name='account.account_form_password' class="form-horizontal"
-                      ng-submit="account.changePassword()">
-                    <fieldset>
-                        <div class="form-group">
-                            <h3>Contraseña</h3>
-                            <h4 class="text-muted">
-                                En caso de modificar tu contraseña te recomendamos crear una segura
-                                y fácil de recordar
-                            </h4>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="oldpassword">Contraseña actual</label>
-
-                            <div class="col-md-6">
-                                <input id="oldpassword" class="form-control" name="oldpassword" type="password"
-                                       ng-model="account.password_data.oldpassword" placeholder="Contraseña">
-                            </div>
-                            <trulii-input-alert field="account.account_form_password.oldpassword"
-                                                errors="account.errors"></trulii-input-alert>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2" for="password">Nueva Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="password" class="form-control" name="password"
-                                       ng-model="account.password_data.password1"
-                                       placeholder="Contraseña" type="password">
-                            </div>
-                            <trulii-input-alert field="account_form_password.password"
-                                                errors="account.errors"></trulii-input-alert>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label col-md-2"
-                                   for="re_password">Confirmar Nueva Contraseña</label>
-
-                            <div class="col-md-6">
-                                <input id="re_password" class="form-control" name="re_password" type="password"
-                                       ng-model="account.password_data.password2" placeholder="Contraseña">
-                            </div>
-                            <trulii-input-alert field="account_form_password.re_password"
-                                                errors="account.errors"></trulii-input-alert>
-                        </div>
-                        <button type="submit" id="password-submit"
-                                class="btn btn-primary pull-right">Cambiar Contraseña
-                        </button>
-                    </fieldset>
-                </form>
-                <hr>
             </div>
-            <div class="tab-pane text-style" id="history-tab">
-                <div class="row form-group">
-                    <div class="col-md-12">
-                        <ul class="nav nav-pills">
-                            <li class="active">
-                                <a data-target="#history-orders-tab"
-                                   data-toggle="tab">Compras</a>
-                            </li>
-                            <li>
-                                <a data-target="#history-reimbursements-tab"
-                                   data-toggle="tab">Reembolsos</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="tab-content">
-                    <div class="tab-pane active" id="history-orders-tab">
-                        <div ng-if="account.orders.length > 0">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label class="control-label sr-only">Buscar Ordenes</label>
-                                        <div class="input-group">
-                                            <input class="form-control floating-label" type="text"
-                                                   ng-model="account.orderQuery"
-                                                   placeholder="Buscar por número de orden, pago, detalle, etc.">
-                                            <span class="input-group-addon"><i class="mdi-action-search"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-hover">
-                                            <tr class="text-center">
-                                                <th class="text-center">#Orden</th>
-                                                <th class="text-center">Actividad</th>
-                                                <th class="text-center">Pago</th>
-                                                <th class="text-center">Detalle</th>
-                                                <th class="text-center">Fecha</th>
-                                                <th class="text-center">Total</th>
-                                                <th class="text-center"></th>
-                                            </tr>
-                                            <tr ng-repeat="order in account.orders track by order.id | filter:account.orderQuery">
-                                                <td>
-                                                    <span ng-bind="order.id"></span>
-                                                </td>
-                                                <td>
-                                                    <span>No Disponible</span>
-                                                </td>
-                                                <td>
-                                                    <span>N/A</span>
-                                                </td>
-                                                <td>
-                                                    <span>
-                                                        <ng-pluralize count="order.assistants.length"
-                                                                      when="{
-                                                                        'one': '{} asistente',
-                                                                        'other': '{} asistentes'
-                                                                      }">
-                                                        </ng-pluralize>
-                                                    </span>
-                                                </td>
-                                                <td>
-                                                    <span>DD/MM/YYYY</span>
-                                                </td>
-                                                <td>
-                                                    <span ng-bind="order.amount | currency"></span>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-info btn-xs pull-right">Reembolso</button>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </div>
 
-                                </div>
-                            </div>
-                        </div>
-                        <div ng-if="account.orders.length <= 0" class="row">
-                            <div class="col-md-12">
-                                <h4>Hasta ahora no has realizado compras</h4>
-                                <p>Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un
-                                    nuevo pasatiemo o mejores tu curriculo</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="history-reimbursements-tab">
-                        <div class="panel panel-default">
-                            <div class="panel-body">
-                                <p class="lead">Coming Soon!</p>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
+         
     </div>
+    
 </div>
+

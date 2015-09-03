@@ -1,3 +1,4 @@
+//noinspection JSValidateJSDoc
 /**
  * @ngdoc service
  * @name trulii.authentication.services.Authentication
@@ -19,8 +20,12 @@
     Authentication.$inject = [ '$rootScope', '$http', '$q', '$state',
         'AuthenticationServerApi', 'localStorageService','Facebook'];
 
-    function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService,Facebook) {
+    function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService, Facebook) {
 
+        var USER_CHANGED_EVENT = 'userChanged';
+        var USER_LOGOUT_EVENT = 'userLogout';
+        var TOKEN_KEY = 'token';
+        var USER_KEY = 'user';
         var api = AuthenticationServerApi;
 
         //noinspection UnnecessaryLocalVariableJS
@@ -31,24 +36,22 @@
             getAuthenticatedAccount: getAuthenticatedAccount,
             isAuthenticated: isAuthenticated,
             login: login,
-            facebookLogin:facebookLogin,
-            logout:logout,
-            confirmEmail:confirm_email,
-            reset_password:reset_password,
-            forgot_password:forgot_password,
+            facebookLogin: facebookLogin,
+            logout: logout,
+            confirmEmail: confirm_email,
+            reset_password: reset_password,
+            forgot_password: forgot_password,
             change_password: change_password,
             change_email: change_email,
-            updateAuthenticatedAccount: updateAuthenticatedAccount,
             setAuthenticatedAccount: setAuthenticatedAccount,
             unauthenticate: unauthenticate,
-            getCurrentUser:getCurrentUser,
             isStudent: isStudent,
             isOrganizer: isOrganizer,
-            isAnonymous:isAnonymous
+            USER_CHANGED_EVENT : USER_CHANGED_EVENT,
+            USER_LOGOUT_EVENT : USER_LOGOUT_EVENT
         };
 
         return Authentication;
-
 
         /** Helper function */
         function _parseParam(obj) {
@@ -84,52 +87,53 @@
 
         function register(register_data) {
 
-            console.log("register_data",register_data);
             return $http({
                 method: 'post',
-                url: api.signup(),
+                url: api.token(),
                 data:_parseParam(register_data),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             })
-            .then(function(register_response){
-                console.log(register_data);
+            .then(success,error);
 
-                var token_data = {'email':register_data.email,'password':register_data.password1};
-                return getToken(token_data)
-                    .then(function(response_token){
-                        console.log("RESPONSE TOKENN",response_token);
-                        setAuthenticationToken(response_token.data.token);
-                        setAuthenticatedAccount(response_token.data.user);
-                        return register_response
-                    })
-            });
+    
+            function success(response){
+
+                _updateData(response.data.user,response.data.token);
+                return response;
+            }
+
+            function error(response){
+                console.log("response BAD login",response);
+                return $q.reject(response);
+            }
         }
 
         function login(email, password) {
             return $http({
                 method: 'post',
-                url: api.login(),
-                data: _parseParam({
+                url: api.token(),
+                data: 
+                _parseParam({
                     login: email,
                     password: password
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             })
-            .then(function(login_response){
-                var login_data = {'email':email,'password':password};
-                return getToken(login_data)
-                    .then(function(response_token){
-                        setAuthenticationToken(response_token.data.token);
-                        return login_response;
-                    }
-                );
-            }, authenticationError);
+            .then(success, error);
+
+            function success(response){
+                _updateData(response.data.user, response.data.token);
+                return response;
+            }
+
+            function error(response){
+                console.log("Invalid Login Credentials. Response:",response);
+                return $q.reject(response);
+            }
         }
 
         function facebookLogin(){
-
             var deferred = $q.defer();
-
             return deferred.promise
                 .then(Facebook.login(function(response) {
                     if (response.status === 'connected') {
@@ -137,35 +141,38 @@
                         var access_token = response.authResponse.accessToken;
                         return $http.post(api.facebook(),
                                             { 'auth_token': access_token })
-                                .then(_successFbLogin);
+                                .then(success);
 
                     } else if (response.status === 'not_authorized') {
                         // The person is logged into Facebook, but not your app.
-                        _errorFbLogin(response);
+                        error(response);
                     } else {
                         // The person is not logged into Facebook, so we're not sure if
                         // they are logged into this app or not.
-                        _errorFbLogin(response);
+                        error(response);
                     }
-                })
+                },{scope: 'email'})
             );
-
-            // FB Login callbacks
     
-            function _successFbLogin(response){
+            function success(response){
                 setAuthenticatedAccount(response.data.user);
                 setAuthenticationToken(response.data.token);
                 deferred.resolve(response);
             }
 
-            function _errorFbLogin(response){
+            function error(response){
                 deferred.reject(response);
             }
         }
 
         function logout() {
             return $http.post(api.logout())
-                .then(unauthenticate, logoutError);
+                .then(unauthenticate, error);
+
+            function error(){
+                $rootScope.$emit(USER_LOGOUT_EVENT);
+                redirect();
+            }
         }
 
         function request_signup(data){
@@ -179,7 +186,7 @@
         function token_signup_validation(token){
             return $http.get(api.requestSignupToken(token))
                         .then(function(response){
-                            return response.data
+                            return response.data;
                         });
         }
 
@@ -192,7 +199,7 @@
             });
         }
 
-        function reset_password(key,password1,password2) {
+        function reset_password(key, password1, password2) {
             console.log("key111",key);
             return $http({
                 url: api.passwordReset(key),
@@ -211,7 +218,6 @@
             });
         }
 
-
         function change_email(email){
             console.log('Authentication.change_email.email:', email);
             return $http({
@@ -225,75 +231,86 @@
             });
         }
 
-        function getCurrentUser(){
-            return $http.get(api.current());
-        }
-
-        function getToken(login_data){
-            return $http({
-                method: 'post',
-                url: api.token(),
-                data: login_data
-            });
-        }
-
         /** AUTH HELPER / CALLBACKS METHODS */
 
-        function logoutError(response){
-            redirect();
-        }
+        function isStudent(){
+            return getAuthenticatedAccount().then(success, error);
 
-        function authenticationError(response){
-            console.log("response BAD login",response);
-            return $q.reject(response);
-        }
-
-        function isAnonymous(){
-            return getAuthenticatedAccount() ? false:true;
-        }
-
-        function getAuthenticatedAccount() {
-            if (!isAuthenticated()) {
-                return;
+            function success(user){
+                return (user && user.user_type && user.user_type === 'S');
             }
 
-            return localStorageService.get('user');
-        }
-
-        function isStudent(){
-            var user = getAuthenticatedAccount();
-            return (user && user.user_type && user.user_type === 'S')
+            function error(){
+                return false;
+            }
         }
 
         function isOrganizer(){
-            var user = getAuthenticatedAccount();
-            return (user && user.user_type && user.user_type === 'O')
-        }
+            return getAuthenticatedAccount().then(success, error);
 
-        function isAuthenticated() {
-            return !!localStorageService.get('user');
+            function success(user){
+                return (user && user.user_type && user.user_type === 'O');
+            }
+
+            function error(){
+                return false;
+            }
         }
 
         function setAuthenticatedAccount(data){
-            $rootScope.$emit('userChanged', data);
-            localStorageService.set('user',data);
+            _updateData(data);
             return data;
         }
 
         function setAuthenticationToken(token){
-            localStorageService.set('token',token);
+            _updateData(null, token);
         }
 
-        function updateAuthenticatedAccount() {
-            return getCurrentUser().then(function(response){
-                localStorageService.set('user',response.data);
-                return response;
-            });
+        function isAuthenticated() {
+            return !!localStorageService.get(USER_KEY);
+        }
+
+        function getAuthenticatedAccount(force_fetch) {
+            var deferred = $q.defer();
+
+            if(force_fetch){
+                 return $http.get(api.current()).then(success, error);
+            } else {
+                if (!isAuthenticated()) {
+                    deferred.resolve(null);
+                } else {
+                    deferred.resolve(localStorageService.get(USER_KEY));
+                }
+            }
+
+            return deferred.promise;
+
+            function success(response){
+                var user = response.data;
+                _updateData(user);
+                deferred.resolve(localStorageService.get(USER_KEY));
+            }
+
+            function error(){
+                deferred.reject(null);
+            }
+        }
+
+        function _updateData(user, token){
+            if(user){
+                localStorageService.set(USER_KEY, user);
+                $rootScope.$emit(USER_CHANGED_EVENT);
+            }
+
+            if(token){
+                localStorageService.set(TOKEN_KEY, token);
+            }
         }
 
         function unauthenticate() {
-            localStorageService.remove('user');
-            localStorageService.remove('token');
+            localStorageService.remove(USER_KEY);
+            localStorageService.remove(TOKEN_KEY);
+            $rootScope.$emit(USER_LOGOUT_EVENT);
         }
 
         function redirect(){

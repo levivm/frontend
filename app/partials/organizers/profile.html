@@ -3,7 +3,7 @@
         <div class="col-md-12 text-center">
             <img class="img-responsive img-circle center-block" ng-src="{{::profile.organizer.photo}}"
                  alt="{{profile.organizer.name}}" width="300" height="300"/>
-            <button class="btn btn-primary" ng-bind="profile.strings.LABEL_CONTACT"></button>
+            <a class="btn btn-primary" ui-sref="contact-us(profile.current_state)" ng-bind="profile.strings.LABEL_CONTACT"></a>
         </div>
     </div>
     <div class="row">
@@ -17,6 +17,12 @@
         <trulii-activity-item class="col-md-12"
                               ng-repeat="activity in profile.activities track by activity.id"
                               data-activity="activity" data-options="{{profile.options}}"></trulii-activity-item>
+        <pagination class="pagination-sm"
+                    ng-model="profile.pageNumber"
+                    ng-change="profile.activityPageChange()"
+                    data-total-items="profile.paginationOpts.totalItems"
+                    data-items-per-page="profile.paginationOpts.itemsPerPage"
+                    data-boundary-links="false"></pagination>
     </div>
 </div>
 <div class="col-md-6">

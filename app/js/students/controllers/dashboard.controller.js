@@ -19,10 +19,27 @@
         var vm = this;
         vm.changeState = _changeState;
 
+        activate();
+
         function _changeState(newState) {
             $state.go(newState);
         }
 
+        function setStrings() {
+            if (!vm.strings) {
+                vm.strings = {};
+            }
+            angular.extend(vm.strings, {
+                SECTION_ACTIVITIES: "Actividades",
+                SECTION_ACCOUNT: "Cuenta",
+                SECTION_PROFILE: "Mi Perfil",
+                SECTION_HISTORY: "Historial de Compras"
+            });
+        }
+
+        function activate() {
+            setStrings();
+        }
     }
 
 })();

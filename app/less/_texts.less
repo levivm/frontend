@@ -1,17 +1,17 @@
 
-.grand-title{
-	
-	font-size: 5em;
-	margin-bottom: .5em;
-}
-
-.text-tiny{
-    font-size: 0.9em;
-}
-
 .text-left{
     text-align: left;
 }
+
+.text-capitalize{
+    text-transform: capitalize;
+}
+
+.text-uppercase{
+    text-transform: uppercase;
+}
+
+/* Deprecated? 
 
 .title-compound{
     position: relative;
@@ -59,11 +59,61 @@
 
     &__description{
         margin-top: 1em;
-    }
-
-    
+    }   
 }
+
+*/
+
+// Text Colors
 
 .text-color-primary{
     color: @primary;
+}
+
+.text-color-secondary{
+    color: @secondary;
+}
+
+.text-sm{
+    font-size: .8em;
+}
+
+.text-md{
+    font-size: .9em;
+}
+
+
+// Text Weights
+
+.font-normal{
+    font-weight: normal !important;
+}
+
+.font-black{
+    font-weight: 800;
+    line-height: 1.2em;
+}
+
+.font-xblack{
+    font-weight: 900;
+    line-height: 1.2em;
+}
+
+.font-title{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.strong-text-muted{
+    font-weight: bold !important;
+    text-transform: uppercase;
+    color: black;
+    opacity: .4;
+}
+
+.standout-text{
+    font-family: @font-sans-alt;
+    font-weight: 200;   
+    font-size: 1.1em;
+    color: @gray-light;
+    margin: 1em 0;
 }

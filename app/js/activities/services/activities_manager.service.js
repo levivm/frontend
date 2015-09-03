@@ -17,9 +17,9 @@
         .factory('ActivitiesManager', ActivitiesManager);
 
     ActivitiesManager.$inject = ['$http', '$q', 'ActivityServerApi', 'OrganizerServerApi', 'StudentServerApi',
-        'Activity', 'CalendarsManager'];
+        'Activity'];
 
-    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity, CalendarsManager) {
+    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity) {
 
         var api = ActivityServerApi;
         var apiOrg = OrganizerServerApi;
@@ -27,6 +27,7 @@
         var _pool = {};
         var _activities = [];
         var presave_info = null;
+        var categories = null;
 
         //noinspection UnnecessaryLocalVariableJS
         var ActivitiesManager = {
@@ -49,6 +50,16 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             getActivity : getActivity,
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#getOrders
+             * @description Gets Orders related to an Activity
+             * @param {number} activityId Id of activity to retrieve orders for
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getOrders: getOrders,
 
             /**
              * @ngdoc method
@@ -78,6 +89,15 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             loadGeneralInfo : loadGeneralInfo,
+
+            /**
+             * @ngdoc method
+             * @name trulii.activities.services.ActivitiesManager#getCategories
+             * @description Returns activities categories with subcategories
+             * @return {array} Categories array
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getCategories : getCategories,
 
             /**
              * @ngdoc method
@@ -125,14 +145,25 @@
         function getActivity(activityId) {
             var deferred = $q.defer();
             var activity = _search(activityId);
+
             if (activity) {
                 deferred.resolve(activity);
             } else {
-
                 _load(activityId, deferred);
             }
 
             return deferred.promise;
+        }
+
+        function getOrders(activityId){
+            return $http.get(api.orders(activityId)).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                return response;
+            }
         }
 
         function loadOrganizerActivities(organizerId) {
@@ -162,7 +193,21 @@
                     deferred.resolve(presave_info);
                 });
             }
-            return deferred.promise
+            return deferred.promise;
+        }
+
+        function getCategories(){
+            var deferred = $q.defer();
+
+            if (presave_info) {
+                deferred.resolve(categories);
+            } else {
+                $http.get(api.categories()).then(function (response) {
+                    categories = response.data;
+                    deferred.resolve(categories);
+                });
+            }
+            return deferred.promise;
         }
 
         function enroll(activityId, data) {
@@ -171,6 +216,8 @@
 
         function _retrieveInstance(activityID, activityData) {
             var instance = _pool[activityID];
+
+
             if (instance) {
                 instance.setData(activityData);
             } else {

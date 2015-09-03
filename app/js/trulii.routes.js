@@ -1,63 +1,69 @@
+/**
+ * @ngdoc overview
+ * @name trulii.routes
+ * @description
+ * App Routes Module
+ */
+
 (function () {
     'use strict';
-
-    /**
-     * @ngdoc service
-     * @name trulii.routes.serverConf
-     * @description Server URL for API usage
-     * @property {string} url Backend Server URL
-     */
-    angular
-        .module('trulii.routes')
-        .constant("serverConf", {
-            //"url": "http://trulii-back.herokuapp.com"
-            "url": "http://localhost:8000"
-        });
 
     angular
         .module('trulii.routes')
         .config(config)
         .run(run);
 
-    config.$inject = ['$urlRouterProvider','$stateProvider','$urlMatcherFactoryProvider'];
-
+    //noinspection JSValidateJSDoc
     /**
-     * @name config
-     * @desc Define valid application routes
+     * @ngdoc object
+     * @name trulii.routes.config
+     * @description Routes Module Config function
+     * @requires ui.router.state.$stateProvider
+     * @requires ui.router.router.$urlRouterProvider
+     * @requires ui.router.util.$urlMatcherFactoryProvider
      */
-    function config($urlRouterProvider,$stateProvider,$urlMatcherFactoryProvider) {
+    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider'];
+    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider) {
 
         $urlMatcherFactoryProvider.strictMode(false);
-
+        $urlRouterProvider.otherwise('/404');
 
         $stateProvider
-
-            .state('brow', {                
-                templateUrl: 'partials/browsing.html'
+            .state('search', {
+                url: '/search',
+                controller:'SearchController as search',
+                templateUrl: 'partials/search.html',
+                params: {
+                    'activities': null
+                }
             })
-
-            .state('dash', {                
-                templateUrl: 'partials/browsing.html'
-            })
-
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
-                resolve:{
-                    cities:getAvailableCities,
-                    authenticatedUser: getAuthenticatedUser
-                },
                 templateUrl: 'partials/landing/landing.html'                        
             })
-            
+            .state('contact-us', {
+                url:'/contact/us',
+                controller:'ContactController as contact',
+                resolve:{
+                    cities:getAvailableCities
+                },
+                templateUrl: 'partials/landing/contact_us.html',
+                params: {
+                    'toState' : {
+                        'state' : 'home',
+                        'params' : {}
+                    }
+                }
+            })
             .state('register', {
                 url:'/register',
                 controller: 'RegisterController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/register.html',
                 params: {
-                    'from': {
-                        'state': undefined,
+                    'toState': {
+                        'state': 'home',
                         'params': {}
                     }
                 },
@@ -80,10 +86,9 @@
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/login.html',
                 params: {
-                    'from' : {
-                        'state' : undefined,
+                    'toState' : {
+                        'state' : 'home',
                         'params' : {}
-
                     }
                 }
             })
@@ -107,51 +112,13 @@
                 url:'/email/confirm/:key/',
                 controller: 'EmailConfirmCtrl',
                 controllerAs: 'vm',
-                //templateUrl: 'partials/email_confirm.html' url(r"
                 templateUrl: 'modalContainer'
             })
-            // .state('email-confirm', {
-            //     url:'/email/confirm/:status/',
-            //     controller: 'EmailConfirmCtrl',
-            //     controllerAs: 'vm',
-            //     //templateUrl: 'partials/email_confirm.html' url(r"
-            //     templateUrl: 'modalContainer'
-            // })
-
             .state('modal-dialog', {
                 url:'/',
                 controller: 'DialogModalCtrl',
                 controllerAs: 'vm'
-                // onEnter: function($stateParams, $state, $modal) {
-                //     var modalInstance = $modal.open({
-                //       templateUrl: 'partials/utils/base_dialog_modal.html',
-                //       controller: 'ModalInstanceCtrl',
-                //     });
-                // }
-                //templateUrl:'myModalContent.html'
-                // views:{
-                //   'modal':{
-                //     templateUrl:'myModalContent.html'
-                //   }
-                // }
-                //controllerAs: 'vm',
-                //templateUrl: 'partials/email_confirm.html' url(r"
-                //templateUrl: 'modalContainer'
-                //templateUrl: 'partials/utils/base_dialog_modal.html'
             })
-            // .state('modal-dialog.login', {
-            //   url:'login',
-            //   parent: 'modal-dialog',
-            //   views:{
-            //     'modal@':{
-            //       templateUrl: '/partials/authentication/login.html',
-            //       controller: 'LoginController',
-            //       controllerAs: 'vm',
-            //     }
-
-            //   }
-            //   //templateUrl: '/partials/authentication/forgot_password.html'
-            // })
             .state('modal-dialog.password-forgot', {
                 url:'password/forgot/',
                 parent: 'modal-dialog',
@@ -162,41 +129,11 @@
                         controllerAs: 'vm'
                     }
                 }
-                //templateUrl: '/partials/authentication/forgot_password.html'
             })
-            // .state('modal-dialog.password-reset', {
-            //   url:'password/reset/key/:reset_key/',
-            //   parent: 'modal-dialog',
-            //   views:{
-            //     'modal@':{
-            //       templateUrl: '/partials/authentication/reset_password.html',
-            //       controller: 'ResetPasswordCtrl',
-            //       controllerAs: 'vm',
-            //     }
-            //   }
-            //   //templateUrl: '/partials/authentication/forgot_password.html'
-            // })
-            // .state('password-reset', {
-            //   url:'/password/reset/',
-            //   controller: 'ForgotPasswordCtrl',
-            //   //controllerAs: 'vm',
-            //   //templateUrl: 'partials/email_confirm.html' url(r"
-            //   templateUrl: 'modalContainer'
-            // })
-            // .state('password-reset-key', {
-            //   url:'/password/reset/key/:reset_key/',
-            //   controller: 'ForgotPasswordCtrl',
-            //   //controllerAs: 'vm',
-            //   //templateUrl: 'partials/email_confirm.html' url(r"
-            //   templateUrl: 'modalContainer'
-            // })
             .state('general-message', {
                 url:'/messages/:module_name/:template_name/?redirect_state',
                 controller: 'SimpleModalMsgCtrl',
-                controllerAs: 'vm',
-                //templateUrl: 'partials/email_confirm.html' url(r"
-                templateUrl: 'modalContainer'
-                //templateUrl: 'partials/authentication/register.html'
+                controllerAs: 'vm'
             })
             .state('student-dashboard', {
                 abstract:true,
@@ -229,6 +166,11 @@
                     activities: getStudentActivities
                 }
             })
+            .state('student-dashboard.history', {
+                url:'history',
+                controller: 'StudentHistoryCtrl as history',
+                templateUrl: 'partials/students/dashboard_history.html'
+            })
             .state('organizer-landing', {
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl',
@@ -237,13 +179,11 @@
                 resolve:{
                     cities: getAvailableCities
                 }
-
             })
             .state('organizer-dashboard', {
                 abstract:true,
                 url:'/organizer/dashboard/',
-                controller: 'OrganizerDashboardCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerDashboardCtrl as dash',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
@@ -252,33 +192,25 @@
                 data: {
                     requiredAuthentication : true
                 }
-                //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.profile', {
                 url:'profile',
-                controller: 'OrganizerProfileCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerProfileCtrl as profile',
                 templateUrl: 'partials/organizers/dashboard_profile.html'
-                //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.account', {
                 url:'account',
-                controller: 'OrganizerAccountCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard_account.html'
-                //templateUrl: 'modalContainer'
             })
             .state('organizer-dashboard.activities', {
                 url:'activities',
-                controller: 'OrganizerActivitiesCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerActivitiesCtrl as activities',
                 templateUrl: 'partials/organizers/dashboard_activities.html',
-                //templateUrl: 'modalContainer'
                 resolve: {
                     activities: getOrganizerActivities
                 }
             })
-
             .state('organizer-profile', {
                 url: '/organizers/{organizer_id:int}/profile',
                 controller: 'OrganizerProfileController as profile',
@@ -288,8 +220,10 @@
                     activities: getOrganizerActivities
                 }
             })
+            .state('dash', {
+                templateUrl: 'partials/dashboard.html'
+            })
             .state('dash.activities-new', {
-
                 abstract: true,
                 url: '/activities/new',
                 data: {
@@ -307,7 +241,6 @@
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_general.html'
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit', {
                 abstract:true,
@@ -323,28 +256,18 @@
                 },
                 controllerAs: 'pc',
                 templateUrl: 'partials/activities/edit.html'
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.general', {
                 url:'',
                 controller: 'ActivityGeneralController',
                 controllerAs: 'vm',
-                resolve: {
-                    presaveInfo: getPresaveActivityInfo,
-                    activity: getActivity
-                },
                 templateUrl: 'partials/activities/dashboard_general.html'
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.detail', {
                 url:'detail',
                 controller: 'ActivityDBDetailController',
-                // resolve:{
-                //   activity : getParentActivity
-                // },
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_detail.html'
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.calendars', {
                 url:'calendars',
@@ -353,11 +276,13 @@
                 templateUrl: 'partials/activities/dashboard_calendars.html',
                 resolve:{
                     calendars:getCalendars
+                },
+                params: {
+                  'republish': false
                 }
-                //templateUrl: 'modalContainer'
             })
             .state('dash.activities-edit.calendars.detail', {
-                url:'?id',
+                url:'/:calendar_id',
                 controller: 'ActivityCalendarController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_calendar_detail.html',
@@ -365,15 +290,12 @@
                     calendar: getCalendar
                 }
             })
-
             .state('dash.activities-edit.location', {
-
                 url:'location',
                 controller: 'ActivityDBLocationController',
                 resolve:{
                     cities: getAvailableCities,
                     organizer : getCurrentOrganizer
-
                 },
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_location.html'
@@ -396,8 +318,26 @@
                 controllerAs: 'vm',
                 templateUrl: 'partials/activities/dashboard_return_policy.html'
             })
+            .state('dash.activities-manage', {
+                url:'/activities/manage/{activity_id:int}/',
+                abstract: true,
+                controller: 'ActivitiesManageCtrl as manage',
+                resolve: {
+                    activity: getActivity
+                },
+                templateUrl: 'partials/activities/manage.html'
+            })
+            .state('dash.activities-manage.orders', {
+                url:'orders',
+                templateUrl: 'partials/activities/manage_orders.html'
+            })
+            .state('dash.activities-manage.assistants', {
+                url:'assistants',
+                templateUrl: 'partials/activities/manage_assistants.html'
+            })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/',
+                abstract: true,
                 controller: 'ActivityDetailController as detail',
                 templateUrl: 'partials/activities/detail.html',
                 resolve: {
@@ -424,18 +364,17 @@
             })
             .state('activities-enroll', {
                 url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
-                controller: 'ActivityDetailEnrollController',
-                controllerAs: 'pc',
+                controller: 'ActivityDetailEnrollController as enroll',
                 templateUrl: 'partials/activities/detail.enroll.html',
                 resolve: {
                     activity: getActivity,
-                    calendar: fetchCalendar
+                    calendar: fetchCalendar,
+                    currentUser: getAuthenticatedUser
                 }
             })
             .state('activities-enroll.success', {
-                url: '',
-                controller: 'ActivityEnrollSuccessController',
-                controllerAs: 'vm',
+                url: '/success',
+                controller: 'ActivityEnrollSuccessController as success',
                 templateUrl: 'partials/activities/detail.enroll.success.html',
                 resolve: {
                     organizer: ['activity', function (activity) {
@@ -443,134 +382,265 @@
                     }],
                     organizerActivities: getOrganizerActivities
                 }
+            })
+            .state('not-found', {
+                url: '/404',
+                controller: 'NotFoundController as notFound',
+                templateUrl: 'partials/landing/not_found.html',
+                resolve:{
+                    cities: getAvailableCities
+                },
+                params: {
+                    message: '',
+                    fromState: null,
+                    fromParams: null
+                }
             });
-
-        $urlRouterProvider.otherwise('/');
     }
 
-    /****** RESOLVER FUNCTIONS USERS *******/
+    //--------- Resolver Functions Implementation ---------//
 
+    /**
+     * @ngdoc method
+     * @name .#tokenSignupValidation
+     * @description Token Sign Up Validation function. Checks if the presented token is not invalid or stale
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.authentication.services.Authentication
+     * @methodOf trulii.routes.config
+     */
     tokenSignupValidation.$inject = ['$stateParams','Authentication'];
-
     function tokenSignupValidation($stateParams,Authentication){
-        var token = $stateParams.token;
-        if (!(token))
-            return {};
-        return Authentication.requestSignupToken($stateParams.token);
+        return $stateParams.token? Authentication.requestSignupToken($stateParams.token) : {};
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getAuthenticatedUser
+     * @description Retrieves the current authenticated user from
+     * {@link trulii.authentication.services.Authentication Authentication} Service
+     * @requires trulii.authentication.services.Authentication
+     * @methodOf trulii.routes.config
+     */
     getAuthenticatedUser.$inject = ['Authentication'];
-
     function getAuthenticatedUser(Authentication){
         return Authentication.getAuthenticatedAccount();
     }
 
-    getCurrentOrganizer.$inject = ['$timeout','$state','Authentication', 'OrganizersManager'];
+    /**
+     * @ngdoc method
+     * @name .#getCurrentOrganizer
+     * @description Retrieves the current logged Organizer from
+     * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service otherwise returns ``null``
+     * @requires ng.$timeout
+     * @requires ui.router.state.$state
+     * @requires ng.$q
+     * @requires trulii.organizers.services.OrganizersManager
+     * @methodOf trulii.routes.config
+     */
+    getCurrentOrganizer.$inject = ['$timeout', '$state', '$q', 'OrganizersManager'];
+    function getCurrentOrganizer($timeout, $state, $q, OrganizersManager){
 
-    function getCurrentOrganizer($timeout,$state,Authentication, OrganizersManager){
+        return OrganizersManager.getCurrentOrganizer().then(success, error);
 
-        var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var is_organizer = true;
-        var force_fetch = true;
-
-        if(authenticatedUser){
-            is_organizer = authenticatedUser.user_type === 'O';
-            if (is_organizer) {
-                return OrganizersManager.getOrganizer(authenticatedUser.id, force_fetch);
+        function success(organizer){
+            if(organizer){
+                return organizer;
             } else {
-                $timeout(function() {
-                     $state.go('home');
-                });
-                return $q.reject()
+                //$timeout(function() { $state.go('home'); });
+                return $q.reject();
             }
+        }
+
+        function error(response){
+            if(response === null){
+                console.log("getCurrentOrganizer. There is no Authenticated User");
+            } else {
+                console.log("getCurrentOrganizer. The Authenticated User is not a Organizer");
+            }
+            return $q.reject();
         }
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getOrganizer
+     * @description Retrieves an Organizer from
+     * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service with
+     * the provided ``organizer_id`` from $stateParams
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.organizers.services.OrganizersManager
+     * @methodOf trulii.routes.config
+     */
     getOrganizer.$inject = ['$stateParams', 'OrganizersManager'];
-
     function getOrganizer($stateParams, OrganizersManager) {
         return OrganizersManager.getOrganizer($stateParams.organizer_id);
     }
 
-    getCurrentStudent.$inject = ['$timeout', '$state', 'Authentication', 'StudentsManager'];
+    /**
+     * @ngdoc method
+     * @name .#getCurrentStudent
+     * @description Retrieves the current logged Student from
+     * {@link trulii.students.services.StudentsManager StudentsManager} Service otherwise returns ``null``
+     * @requires ng.$timeout
+     * @requires ui.router.state.$state
+     * @requires ng.$q
+     * @requires trulii.students.services.StudentsManager
+     * @methodOf trulii.routes.config
+     */
+    getCurrentStudent.$inject = ['$timeout', '$state', '$q', 'StudentsManager'];
+    function getCurrentStudent($timeout, $state, $q, StudentsManager){
 
-    function getCurrentStudent($timeout, $state, Authentication, StudentsManager){
+        return StudentsManager.getCurrentStudent().then(success, error);
 
-        var authenticatedUser =  Authentication.getAuthenticatedAccount();
-        var is_student = false;
-        var force_fetch = true;
-
-        if(authenticatedUser){
-            is_student = (authenticatedUser.user_type === 'S');
-            if (is_student) {
-                return StudentsManager.getStudent(authenticatedUser.id, force_fetch);
+        function success(student){
+            if(student){
+                return student;
             } else {
-                $timeout(function() {
-                    $state.go('home');
-                }, 0);
-
-                return $q.reject()
+                $timeout(function() { $state.go('home'); });
+                return $q.reject();
             }
+        }
+
+        function error(response){
+            if(response === null){
+                console.error("getCurrentStudent. There is no Authenticated User");
+            } else {
+                console.warn("getCurrentStudent. The Authenticated User is not a Student");
+            }
+            return $q.reject();
         }
 
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getStudent
+     * @description Retrieves an Student from
+     * {@link trulii.students.services.StudentsManager StudentsManager} Service with the provided ``student_id``
+     * from $stateParams
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.students.services.StudentsManager
+     * @methodOf trulii.routes.config
+     */
     getStudent.$inject = ['$stateParams', 'StudentsManager'];
-
     function getStudent($stateParams, StudentsManager) {
-        console.log('$stateParams.student_id:', $stateParams.student_id);
         return StudentsManager.getStudent($stateParams.student_id);
     }
 
-
+    /**
+     * @ngdoc method
+     * @name .#getOrganizerActivities
+     * @description Retrieves an Organizer's Activities from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID
+     * @requires trulii.activities.services.ActivitiesManager
+     * @requires organizer
+     * @methodOf trulii.routes.config
+     */
     getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
-
     function getOrganizerActivities(ActivitiesManager, organizer){
         return ActivitiesManager.loadOrganizerActivities(organizer.id);
     }
 
-    /****** RESOLVER FUNCTIONS ACTIVITIES *******/
-
-    getAvailableCities.$inject = ['LocationManager'];
-
-    function getAvailableCities(LocationManager){
-        return LocationManager.getAvailableCities();
-    }
-
+    /**
+     * @ngdoc method
+     * @name .#getActivities
+     * @description Retrieves all Activities from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
     getActivities.$inject = ['ActivitiesManager'];
-
     function getActivities(ActivitiesManager){
         return ActivitiesManager.getActivities();
     }
 
-    getStudentActivities.$inject = ['ActivitiesManager', 'Authentication', 'StudentsManager'];
+    /**
+     * @ngdoc method
+     * @name .#getStudentActivities
+     * @description Retrieves all Activities from
+     * {@link trulii.students.services.StudentsManager StudentsManager} Service
+     * for the specified Student ID
+     * @requires trulii.activities.services.ActivitiesManager
+     * @requires trulii.students.services.StudentsManager
+     * @methodOf trulii.routes.config
+     */
+    getStudentActivities.$inject = ['ActivitiesManager', 'StudentsManager'];
+    function getStudentActivities(ActivitiesManager, StudentsManager){
+        return StudentsManager.getCurrentStudent().then(success, error);
 
-    function getStudentActivities(ActivitiesManager, Authentication, StudentsManager){
-        var currentUser =  Authentication.getAuthenticatedAccount();
-        if(currentUser.user_type === 'S'){
-            ActivitiesManager.getStudentActivities(currentUser.id).then(function(activities){
-                console.log('activities: ', activities);
-            });
-            return ActivitiesManager.getStudentActivities(currentUser.id);
+        function success(student){
+            return ActivitiesManager.getStudentActivities(student.id);
         }
 
+        function error(){
+            $q.reject();
+        }
     }
 
-    getCalendars.$inject = ['CalendarsManager','activity'];
+    /**
+     * @ngdoc method
+     * @name .#getActivity
+     * @description Retrieves an Activity by its ID from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
+    getActivity.$inject = ['$stateParams','ActivitiesManager'];
+    function getActivity($stateParams,ActivitiesManager){
+        return ActivitiesManager.getActivity($stateParams.activity_id);
+    }
 
+    /**
+     * @ngdoc method
+     * @name .#getPresaveActivityInfo
+     * @description Loads general activity info like categories, subcategories, levels, etc. from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
+    getPresaveActivityInfo.$inject = ['ActivitiesManager'];
+    function getPresaveActivityInfo(ActivitiesManager){
+        return ActivitiesManager.loadGeneralInfo();
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#getCalendars
+     * @description Gets all calendars for a given activity (using its ID) from
+     * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service
+     * @requires trulii.activities.services.CalendarsManager
+     * @requires activity
+     * @methodOf trulii.routes.config
+     */
+    getCalendars.$inject = ['CalendarsManager','activity'];
     function getCalendars(CalendarsManager, activity){
         return CalendarsManager.loadCalendars(activity.id);
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getCalendar
+     * @description Gets a Calendar by its ID from
+     * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.activities.services.CalendarsManager
+     * @methodOf trulii.routes.config
+     */
     getCalendar.$inject = ['$stateParams','CalendarsManager'];
-
     function getCalendar($stateParams, CalendarsManager){
-        var calendar_id = $stateParams.id;
-        return CalendarsManager.getCalendar(calendar_id);
+        return CalendarsManager.getCalendar($stateParams.calendar_id);
     }
 
+    /**
+     * @ngdoc method
+     * @name .#getActivities
+     * @description Fetches a Calendar by Activity ID and Calendar ID in $stateParams from
+     * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service
+     * @requires ui.router.state.$stateParams
+     * @requires trulii.activities.services.CalendarsManager
+     * @methodOf trulii.routes.config
+     */
     fetchCalendar.$inject = ['$stateParams', 'CalendarsManager'];
-
     function fetchCalendar($stateParams, CalendarsManager) {
         var activityId = $stateParams.activity_id;
         var calendarId = $stateParams.calendar_id;
@@ -578,41 +648,73 @@
         return CalendarsManager.fetchCalendar(activityId, calendarId);
     }
 
-    getActivity.$inject = ['$stateParams','ActivitiesManager'];
-
-    function getActivity($stateParams,ActivitiesManager){
-        return ActivitiesManager.getActivity($stateParams.activity_id);
+    /**
+     * @ngdoc method
+     * @name .#getAvailableCities
+     * @description Retrieves all available cities from
+     * {@link trulii.locations.services.LocationManager LocationManager} Service
+     * @requires trulii.locations.services.LocationManager
+     * @methodOf trulii.routes.config
+     */
+    getAvailableCities.$inject = ['LocationManager'];
+    function getAvailableCities(LocationManager){
+        return LocationManager.getAvailableCities();
     }
 
-    getPresaveActivityInfo.$inject = ['ActivitiesManager'];
+    //--------- Module Run Method ---------//
 
-    function getPresaveActivityInfo(ActivitiesManager){
-        return ActivitiesManager.loadGeneralInfo();
-    }
-
-    /****** RUN METHOD*******/
-
-    run.$inject = ['$rootScope','$state','$urlMatcherFactory','Authentication'];
-
-    function run($rootScope,$state,$urlMatcherFactory,Authentication){
+    /**
+     * @ngdoc function
+     * @name trulii.routes.run
+     * @description Routes Module Run function
+     * @requires ng.$rootScope
+     * @requires ui.router.state.$state
+     * @requires ui.router.util.$urlMatcherFactory
+     * @requires trulii.authentication.services.Authentication
+     */
+    run.$inject = ['$rootScope', '$state', '$urlMatcherFactory', 'Authentication'];
+    function run($rootScope, $state, $urlMatcherFactory, Authentication){
 
         $urlMatcherFactory.strictMode(false);
 
-        $rootScope.$on('$stateChangeStart', onStateChange);               
+        $rootScope.$on('$stateChangeStart', onStateChangeStart);
+        $rootScope.$on('$stateChangeError', onStateChangeError);
 
-        ///////////
+        //--------- Functions Implementation ---------//
 
-        function onStateChange(e, toState, toParams, fromState){
+        //noinspection JSUnusedLocalSymbols
+        function onStateChangeStart(e, toState, toParams, fromState){
             $state.previous = fromState;
-           
             if (toState.data && toState.data.requiredAuthentication) {
                 var _requiredAuthentication = toState.data.requiredAuthentication;
-
                 if (_requiredAuthentication && !Authentication.isAuthenticated()) {
+                    console.group('stateChange Rejected. Authentication Needed');
+                    console.warn('fromState: ', fromState.name);
+                    console.warn('toState: ', toState.name);
+                    console.groupEnd();
                     e.preventDefault();
                     $state.go('home', {'notify': false});
                 }
             }
+        }
+
+        //noinspection JSUnusedLocalSymbols
+        function onStateChangeError(event, toState, toParams, fromState, fromParams, error){
+            $state.previous = fromState;
+            console.group('stateChangeError');
+            console.error('fromState:', fromState);
+            console.error('event:', event);
+            console.error('error:', error);
+            console.groupEnd();
+
+            console.info('Resolve Error. Redirecting to "not-found"');
+            event.preventDefault();
+
+            $state.go('not-found', {
+                message: 'State Not Found',
+                fromState: fromState,
+                fromParams: fromParams
+            });
         }
        
     }

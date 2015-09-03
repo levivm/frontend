@@ -14,72 +14,57 @@
         .module('trulii.authentication.controllers')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state','$stateParams', '$q','Authentication','Error'];
+    LoginController.$inject = ['$state', '$stateParams', '$q', 'Authentication', 'Error'];
 
-    function LoginController($state, $stateParams, $q, Authentication,Error) {
+    function LoginController($state, $stateParams, $q, Authentication, Error) {
+
         var vm = this;
-        var fromState = null;
-        vm.errors = {};
-        vm.auth = {};
-        vm.is_new = true;
+        angular.extend(vm, {
+            errors : {},
+            auth : {},
+            is_new : true,
+            login : login,
+            facebookLogin : facebookLogin
+        });
 
-        vm.login = login;
-        vm.facebookLogin = _facebookLogin;
+        var toState = null;
 
-        initialize();
+        _activate();
 
         //--------- Functions Implementation ---------//
 
-
         function login() {
             Error.form.clear(vm.login_form);
-            console.log("vm auth",vm.auth);
+            console.log("vm auth:",vm.auth);
             return  Authentication.login(vm.auth.email, vm.auth.password)
-                .then(_loginSuccess,_loginError);
+                .then(_loginSuccess,error);
 
+            function error(response) {
+                var responseErrors = response.data['form_errors'];
+                if (responseErrors) { Error.form.add(vm.login_form, responseErrors); }
+                return $q.reject(response);
+            }
         }
-
     
-        function _facebookLogin() {
+        function facebookLogin() {
             return  Authentication.facebookLogin()
-                        .then(_loginSuccess ,errorFbLogin);
+                        .then(_loginSuccess ,error);
 
-            function errorFbLogin(response){
+            function error(response){
                 $state.go('general-message', {
                     'module_name':'authentication',
                     'template_name':'social_login_cancelled',
-                   'redirect_state':'home'
+                    'redirect_state':toState.state,
+                    'redirect_params':toState.params
                 });
             }
         }
 
         function _loginSuccess(redirect_state) {
-            Authentication.updateAuthenticatedAccount().then(success, _loginError);
-
-            function success(){
-                if(!!fromState.state){
-                    $state.go(fromState.state, fromState.params);
-                } else {
-                    $state.go("home");
-                }
-            }
+            $state.go(toState.state, toState.params);
         }
 
-        function _loginError(response) {
-                
-            var responseErrors = response.data['form_errors'];
-            if (responseErrors) {
-                Error.form.add(vm.login_form, responseErrors);
-            }
-
-            return $q.reject(response);
-
-        }
-
-
-
-
-        function setStrings(){
+        function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 LOGIN_LABEL : "Iniciar Sesión",
@@ -93,9 +78,9 @@
             });
         }
 
-        function initialize(){
-            fromState = $stateParams.from;
-            setStrings();
+        function _activate(){
+            toState = $stateParams.toState;
+            _setStrings();
         }
     }
 })();

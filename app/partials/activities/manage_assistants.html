@@ -1,0 +1,101 @@
+
+<div class="container-fluid">
+    
+    <div class="col-md-11 col-md-offset-1">
+
+        <p class="text-muted" ng-bind="manage.strings.COPY_ASSISTANTS"></p>
+
+        <div ng-if="manage.calendars.length > 0" class="row">
+            <div class="col-md-12">
+                <div class="panel panel-dark" style="cursor: pointer;"
+                     ng-repeat="calendar in manage.calendars track by calendar.id">
+                    <div class="panel-heading" ng-click="manage.expandCalendar(calendar)">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 ng-bind="::calendar.fromMsg"></h3>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <h3 ng-bind="::calendar.toMsg"></h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body" data-toggle="manage.activeCalendar.id == calendar.id" trulii-expandable-content>
+                        <div ng-if="calendar.assistants.length > 0">
+
+                            <div class="form-group">
+                                <label class="control-label sr-only"
+                                       ng-bind="::manage.strings.LABEL_SEARCH"></label>
+                                <div class="input-group">
+                                    <input class="form-control floating-label" type="text"
+                                           ng-model="manage.queries.assistantQuery"
+                                           ng-change="manage.updateByQuery(manage.TYPE_ASSISTANT)"
+                                           placeholder="{{manage.strings.COPY_SEARCH}}">
+                                    <span class="input-group-addon">
+                                        <i class="mdi-action-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-hover">
+                                    <tr class="text-center">
+                                        <th ng-bind="::manage.strings.HEADER_FIRST_NAME"></th>
+                                        <th ng-bind="::manage.strings.HEADER_LAST_NAME"></th>
+                                        <th ng-bind="::manage.strings.HEADER_EMAIL"></th>
+                                        <th ng-bind="::manage.strings.HEADER_ORDER"></th>
+                                        <th class=""></th>
+                                    </tr>
+                                    <tr ng-repeat="assistant in manage.assistants">
+                                        <td>
+                                            <span ng-bind="::assistant.first_name"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="::assistant.last_name"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="::assistant.email"></span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="assistant.order"></span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-xs btn-bgsecondary pull-right no-margin"
+                                                    ng-bind="::manage.strings.ACTION_REIMBURSE_ASSISTANT"></button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <pagination class="pagination-sm"
+                                        ng-model="manage.assistantPaginationOpts.pageNumber"
+                                        ng-change="manage.pageChange(manage.TYPE_ASSISTANT)"
+                                        data-total-items="manage.assistantPaginationOpts.totalItems"
+                                        data-items-per-page="manage.assistantPaginationOpts.itemsPerPage"></pagination>
+                        </div>
+                        <!--If there are no assistants-->
+                        <div ng-if="calendar.assistants.length <= 0" class="row">
+                            <br/>
+                            <div class="col-md-12">
+                                <h4 ng-bind="::manage.strings.LABEL_EMPTY_ASSISTANTS"></h4>
+                                <p ng-bind="::manage.strings.COPY_EMPTY_ASSISTANTS"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pagination class="pagination-sm"
+                            ng-model="manage.calendarPaginationOpts.pageNumber"
+                            ng-change="manage.pageChange(manage.TYPE_CALENDAR)"
+                            data-total-items="manage.calendarPaginationOpts.totalItems"
+                            data-items-per-page="manage.calendarPaginationOpts.itemsPerPage"></pagination>
+            </div>
+        </div>
+        <!--If there are no calendars-->
+        <div ng-if="manage.calendars.length <= 0" class="row">
+            <br/>
+            <div class="col-md-12">
+                <h4 ng-bind="::manage.strings.LABEL_EMPTY_CALENDARS"></h4>
+                <p ng-bind="::manage.strings.COPY_EMPTY_CALENDARS"></p>
+            </div>
+        </div>
+    </div>    
+</div>

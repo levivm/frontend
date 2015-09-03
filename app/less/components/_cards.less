@@ -2,10 +2,32 @@
 
 @import url('../_trulii-variables');
 
+@card-add-icon-height: 8em;
+
 .card{	
 	border-radius: @material-border-radius;
 	margin: 1.5em 0;
-	padding: 0;
+	padding: 0;	
+	display: block;
+	width: 100%;
+	border: 1px solid @gray-light-medium;
+	border-radius: @border-radius-standard;
+
+	h1{
+		font-size: 1.2em;
+		font-weight: 700;
+	}
+
+	h5{
+		font-weight: normal;
+		color: @gray-light;
+	}
+
+	h3{
+		color: @gray-light;
+		font-weight: 700;
+		font-size: .9em;
+	}
 
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
@@ -69,13 +91,91 @@
 	}
 
 	.card-footer{
-		border-top: 1px solid @color-delimeter-dark;
-		padding: @card-padding;
-		height: auto;		
+		display: block;
+        width: 100%;
+        height: 3.5em;
+        line-height: 3.5em;
+        background: @gray-lighter;
+        color: @gray-light;
+        text-align: center;
+        font-weight: bold;
+        font-family: @font-sans-alt;		
 	}
 
-	.card-list-item{
-		.card-footer
+	&-list-item{		
+		padding: 3em 2em;
+		position: relative;
+		//margin-bottom: 2em;
+		font-family: @font-sans-alt;		
+
+		&__actions{
+			position: absolute;
+			top: 1em;
+			right: 1em;
+
+			i{
+				color: @gray-light-medium;
+				cursor: pointer;
+				font-size: 1.2em;
+				display: inline-block;
+				padding:  0 .5em;
+
+				&:hover{
+					color: @success;
+				}
+			}
+		}
+
+		label, input{
+			font-size: .9em;
+		}
+
+		&--empty{
+			border-style: dashed;
+			border-width: 2px;
+			display: table;
+			font-weight: normal;
+			color: @gray-light;
+			cursor: pointer;
+
+			& > *{
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			}
+
+			&:hover{
+				border-color: @success;
+			}
+		}
+
+		&__add-icon{
+			background-color: @gray-light-medium;
+			border-radius: 50%;
+			width: @card-add-icon-height;
+			height: @card-add-icon-height;
+			display: inline-block;
+			margin-bottom: 1em;
+			font-weight: 200;					
+
+			&:before{
+				content: '+';
+				font-size: 4em;
+				display: inline-block;
+				width: 100%;
+				color: @gray-light;
+				line-height: (@card-add-icon-height - 4) / 2;
+
+			}
+
+			.card-list-item:hover &{
+				background-color: @success;
+
+				&:before{
+					color: white;
+				}
+			}
+		}
 	}
 
 	&--shrink{
@@ -86,11 +186,60 @@
 	}
 
 	&__lateral-menu{
-		border-right: 1px solid @color-delimeter-dark;
+		//border-right: 1px solid @color-delimeter-dark;
 		position: absolute;
 		top: 0px;
 		bottom: 0px;
-		padding: 0px;		
+		padding: 0px;	
+		background-color: @secondary;	
+		padding-top: 1.3em;
+
+		&__item{
+			display: block;
+			width: 100%;
+			padding: 1.5em 1em;
+			color: white;
+			background-color: darken(@secondary, 5%);
+			border-bottom: 1px solid @secondary;			
+			transition: .3s background-color ease;
+			cursor: pointer;
+			font-size: 1.1em;
+
+			&.active{
+				color: @secondary;
+				background-color: white;
+				font-weight: bold;
+
+				*{
+					color: @secondary;
+				}
+
+			}
+
+			* {
+				color: white;
+
+				&:hover{
+					color: white;
+				}
+			}
+		}
+
+		&__title{			
+			&:extend(.strong-text-muted);
+			display: block;
+			width: 100%;
+			text-align: center;			
+			padding-bottom: 1.5em;						
+			font-size: 1.2em;			
+
+			
+		}		
+	}
+
+	[class^="mdi-"]{
+		position: relative;
+		top: 4px;
 	}
 }
 

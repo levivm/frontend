@@ -22,10 +22,12 @@
          * @propertyOf trulii.utils.services.Error
          */
         var NON_FIELD_ERRORS = "non_field_errors";
-        var SESSIONS_PREFIX = "sessions";
+        var SESSIONS_PREFIX  = "sessions";
+        var FORM_FIELD_ALL   = "__all__";
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
+            FORM_FIELD_ALL: FORM_FIELD_ALL,
             form: {
                 clear: clearErrors,
                 add: addErrors,
@@ -39,19 +41,24 @@
         return service;
 
         function clearErrors(form) {
+
             form.$setPristine();
+
+            if (form.hasOwnProperty(FORM_FIELD_ALL))
+                form[FORM_FIELD_ALL].$setValidity(FORM_FIELD_ALL, true);
             
         }
 
         function addArrayErrors(form,responseErrors){
 
-            console.log("RESPONSE ERROR",responseErrors);
+          console.log("FOOOORMM",form);
+
             _.each(responseErrors, function (error_dict) {
 
-                console.log(error_dict,"ERROOOOR DICT");
                 _.each(error_dict, function (message, field) {
                     // console.log("message,field",message,field);
-                    console.log("FOOOORMM",form);
+                    //
+                    console.log('message:',message);
                     form[field].error_message = message.pop();
                     form[field].$setValidity(field, false);
                 });

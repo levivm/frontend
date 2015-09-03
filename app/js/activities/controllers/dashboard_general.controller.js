@@ -94,14 +94,16 @@
                 return;
             }
 
-            if (vm.activity.title != undefined && vm.activity.title != ""){
+            if (vm.activity_title != undefined && vm.activity_title != ""){
                 var whiteSpaces = 0;
-                for (var i = vm.activity.title.length-1; i > 0; i--){
-                    if ( vm.activity.title[i] == ' '){
+                for (var i = vm.activity_title.length-1; i > 0; i--){
+                    if ( vm.activity_title[i] == ' '){
                         whiteSpaces++;
                     }
                 }
                 vm.weHaveTitle = (whiteSpaces != vm.activity.length);
+
+                vm.activity.title = vm.activity_title;
             } else {
                 vm.weHaveTitle = false;
             }

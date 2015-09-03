@@ -107,6 +107,7 @@
 
         function _setInstructors() {
             vm.instructors = vm.activity.instructors;
+
         }
 
         function _onSectionUpdated() {
