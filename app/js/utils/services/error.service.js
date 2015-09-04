@@ -31,7 +31,8 @@
             form: {
                 clear: clearErrors,
                 add: addErrors,
-                addArrayErrors:addArrayErrors
+                addArrayErrors:addArrayErrors,
+                clearField:clearFieldError
             },
             session: {
                 process: processSessionErrors
@@ -39,6 +40,13 @@
         };
 
         return service;
+
+
+        function clearFieldError(form,field){
+
+            form[field].$setValidity(field, true);
+
+        }
 
         function clearErrors(form) {
 
@@ -75,6 +83,7 @@
                 if (field === NON_FIELD_ERRORS) return;
 
                 // Process remaining form field errors
+
                 if (field in form){
                     form[field].error_message = message;
                     form[field].$setValidity(field, false);

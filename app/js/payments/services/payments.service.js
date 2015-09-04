@@ -38,10 +38,17 @@
         var KEY_EXP_YEAR = "exp_year";
         var KEY_METHOD = "method";
         var KEY_DOCUMENT = "document";
+        var KEY_CC_PAYMENT_METHOD = "CC";
+        var KEY_PSE_PAYMENT_METHOD = "PSE";
         var KEY_IDENTIFICATION_NUMBER ="identificationNumber";
         var KEY_CVV = "cvv";
         var KEY_TOKEN = "token";
         var cardTypes = ['VISA', 'MASTERCARD', 'AMEX', 'DINERS', 'DISCOVER'];
+        var requiredCardFields = {};
+            requiredCardFields[KEY_NUMBER] = 'cardNumber';
+            requiredCardFields[KEY_NAME_CARD] = 'cardHolder';
+            requiredCardFields[KEY_EXP_YEAR]  = 'cardYear';
+
 
         _setPayUUp();
 
@@ -109,8 +116,11 @@
             KEY_EXP_MONTH: KEY_EXP_MONTH,
             KEY_EXP_YEAR: KEY_EXP_YEAR,
             KEY_CVV: KEY_CVV,
+            KEY_CC_PAYMENT_METHOD: KEY_CC_PAYMENT_METHOD,
+            KEY_PSE_PAYMENT_METHOD: KEY_PSE_PAYMENT_METHOD,
             KEY_DOCUMENT: KEY_DOCUMENT,
-            KEY_METHOD: KEY_METHOD
+            KEY_METHOD: KEY_METHOD,
+            requiredCardFields:requiredCardFields
         };
 
         return service;
@@ -132,17 +142,21 @@
             MERCHANT_DATA = {};
             MERCHANT_DATA[KEY_API_LOGIN] = payUData.PAYU_API_LOGIN;
             MERCHANT_DATA[KEY_API_KEY] = payUData.PAYU_API_KEY;
-
+            //Colocar aquí check ValidateMethod 
             deferred.resolve(payUData);
             return deferred.promise;
         }
 
         function getToken(paymentData) {
-            if(hasPaymentData(paymentData)){
-                console.log("PAYMENT DATA");
+
+            var emptyFields = getEmptyPaymentData(paymentData);
+            
+            console.log(emptyFields, "Empty Fields");
+
+            if(!emptyFields.length){
                 return getPayUData().then(getDataSuccess, getDataError);
             } else {
-                return $q.reject('No payment data provided');
+                return $q.reject(emptyFields);
             }
 
             function getDataSuccess(){
@@ -151,10 +165,13 @@
                 var deferred = $q.defer();
                 payU.getPaymentMethods();
                 payU.setCardDetails(paymentData);
+
                 payU.createToken(getTokenResponse);
+
                 return deferred.promise;
 
                 function getTokenResponse(response){
+
                     console.log('response de tokenization javascript:', response);
                     if(response.error){
                         deferred.reject(response);
@@ -169,13 +186,17 @@
                 return error;
             }
 
-            function hasPaymentData(data){
+            function getEmptyPaymentData(data){
 
-                console.log("Payment data ",data);
-                return !!data[KEY_PAYER_ID] && !!data[KEY_NAME_CARD]
-                    && !!data[KEY_NUMBER]
-                    && !!data[KEY_EXP_MONTH] && !!data[KEY_EXP_YEAR]
-                    && !!data[KEY_IDENTIFICATION_NUMBER];
+                console.log("Data - :",data);
+                var emptyFields = _.filter(requiredCardFields, function(value,key){
+                    return !data.hasOwnProperty(key) 
+                    || !data[key] ;
+
+                });
+
+                return emptyFields;
+
             }
         }
 
@@ -189,8 +210,15 @@
 
         function validateExpiryDate(year, month){
             var deferred = $q.defer();
-            var isValid = payU.validateExpiry(year, month);
-            deferred.resolve(isValid);
+            var isValid  = false;
+
+            if (!!month && !!year)
+                isValid = payU.validateExpiry(year.toString(), month.toString());
+
+            if (isValid)
+                deferred.resolve(isValid);
+            else
+                deferred.reject(isValid);
 
             return deferred.promise;
         }
@@ -212,7 +240,7 @@
         }
 
         function _setPayUUp(){
-            payU.setURL('https://stg.api.payulatam.com/payments-api/4.0/service');
+            payU.setURL('https://api.payulatam.com/payments-api/4.0/service');
             // payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
             payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
             payU.setListBoxID('payu-franchise');

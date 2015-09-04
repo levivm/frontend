@@ -110,6 +110,7 @@
              * @param {number} data.amount - Total amount of the enrollment action
              * @param {number} data.quantity - Quantity of enrollments
              * @param {number} data.assistants - Number of assistants
+             * @param {number} data.last_four_digits - Last credit card four digits
              * @return {promise} Enroll result promise
              * @methodOf trulii.activities.services.ActivitiesManager
              */

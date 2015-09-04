@@ -12,6 +12,7 @@
                                             activity, calendar, currentUser) {
 
         var vm = this;
+        
         angular.extend(vm, {
             success : false,
             calendar : null,
@@ -70,6 +71,9 @@
         //    }
         //}
 
+
+
+
         function getCardType(){
             Payments.validateCardType(vm.cardData.number).then(success, error);
 
@@ -79,56 +83,116 @@
 
             }
             function error(){
+                vm.cardData.method = null;
                 console.log("Couldn't check card type");
             }
         }
 
         function checkCardExpiry(){
+
+
             Error.form.clear(vm.enrollForm);
+            
             var card = vm.cardData;
+            
             if(card.exp_year && card.exp_month){
                 Payments.validateExpiryDate(card.exp_year, card.exp_month).then(success, error);
+
             }
 
             function success(isValid){
                 console.log("checkCardExpiry. isValid:", isValid);
+
                 if(isValid){
                     isValidDate = true;
+                    Error.form.clearField(vm.enrollForm,'invalidExpiry');
                 } else {
                     isValidDate = false;
                     Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
+
                 }
             }
             function error(){
                 console.log("Couldn't validate card expiry date");
                 isValidDate = false;
-                Error.form.add(vm.enrollForm, {'invalidExpiry': ["No se pudo validar fecha de vencimiento de su tarjeta"
-                    + ", por favor intente de nuevo"]});
+                Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
             }
 
         }
 
         function enroll() {
             Error.form.clear(vm.enrollForm);
+
             StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
 
             function getStudentSuccess(student){
                 vm.cardData[Payments.KEY_PAYER_ID] = student.id;
-                vm.cardData.expirationDate = [vm.cardData.exp_month, vm.cardData.exp_year].join('/');
-                Payments.getToken(vm.cardData).then(getTokenSuccess, getTokenError);
+                var exp_month = vm.cardData.exp_month;
+                var exp_year  = vm.cardData.exp_year;
+                vm.cardData.expirationDate = [exp_month, exp_year].join('/');
+
+
+                var card = vm.cardData;
+
+                Payments.validateExpiryDate(card.exp_year, card.exp_month)
+                    .then(successCheckCardExpiry,errorCheckCardExpiry);
+
             }
+
+
 
             function getStudentError(response){
                 console.log("Error getting current logged student:", response);
             }
 
+
+            function successCheckCardExpiry(isValid){
+                
+                isValidDate = true;
+
+                Error.form.clearField(vm.enrollForm,'invalidExpiry');
+                Payments.validateCardType(vm.cardData.number)
+                        .then(validateCardTypeSuccess,validateCardTypeError);
+
+            }
+
+            function errorCheckCardExpiry(response){
+
+                console.log("Couldn't validate card expiry date");
+                isValidDate = false;
+                Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
+
+            }
+
+
+            function validateCardTypeSuccess(cardType){
+
+                Error.form.clearField(vm.enrollForm,'cardMethod');
+                Error.form.clearField(vm.enrollForm,'generalError');
+
+                var cardData = _.clone(vm.cardData);
+
+                Payments.getToken(cardData).then(getTokenSuccess, getTokenError);
+
+            }
+
+            function validateCardTypeError(){
+
+                Error.form.add(vm.enrollForm, {'cardMethod': ["Tipo de tarjeta inválido"]});
+                console.log("Couldn't check card type");
+
+            }
+
+
             function getTokenSuccess(response){
-                console.log('token response:', response);
                 var token = response[Payments.KEY_TOKEN];
+                var cardNumber = vm.cardData.number;
+                var last_four_digits  = cardNumber.substr(cardNumber.length -4);
                 var buyer = {};
                 buyer[Payments.KEY_NAME] = response[Payments.KEY_NAME];
                 buyer[Payments.KEY_EMAIL] = currentUser.user.email;
-                console.log('-------buyer-------',buyer);
+
+
                 var data = {
                     activity: activity.id,
                     chronogram: calendar.id,
@@ -136,11 +200,11 @@
                     amount: vm.quantity * calendar.session_price,
                     quantity: vm.quantity,
                     assistants: vm.assistants,
-                    buyer: buyer
+                    buyer: buyer,
+                    last_four_digits: last_four_digits,
+                    payment_method: Payments.KEY_CC_PAYMENT_METHOD
                 };
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
-
-                console.log('-------buyer-------',data);
 
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
 
@@ -155,9 +219,47 @@
                 }
             }
 
-            function getTokenError(error){
-                console.log("Couldn't get token from Pay U", error);
+            function getTokenError(errors){
+
+
+                var isPayUError = !!errors.error;
+
+                if (isPayUError){
+                    Error.form.add(vm.enrollForm, {'generalError':["Error"]});
+                    return;
+                }
+
+
+                _.forEach(errors,addError);
+
+
+                function addError(error){
+
+                    var form_error = {};
+                        form_error[error] = ["Campo requerido"];
+                    Error.form.add(vm.enrollForm, form_error);
+
+
+                }
+
+                console.log("Couldn't get token from Pay U", errors);
             }
+
+            function checkCardType(){
+                Error.form.clear(vm.enrollForm);
+
+                Payments.validateCardType(vm.cardData.number).then(success, error);
+
+                function success(cardType){
+
+                }
+                function error(){
+                    Error.form.add(vm.enrollForm, {'cardMethod': ["Tipo de tarjeta inválido"]});
+                    console.log("Couldn't check card type");
+                }
+
+            }
+
         }
 
         function isAnonymous(){

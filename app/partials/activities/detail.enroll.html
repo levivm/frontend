@@ -149,15 +149,15 @@
                     </div>
                     <div class="panel-body">
                         <div class="col-md-8 col-md-offset-2 separate-above">
-                            <div class="form-group">
+                            <div class="form-group" trulii-input-errors-control="cardHolder">
                                 <label for="cardHolder" ng-bind="::enroll.strings.LABEL_CARD_HOLDER"></label>
-                                <input type="text" class="form-control" id="cardHolder"
+                                <input type="text" name="cardHolder"class="form-control" id="cardHolder"
                                        ng-model="enroll.cardData.name_card"
                                        placeholder="{{::enroll.strings.PLACEHOLDER_CARD_HOLDER}}">
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" trulii-input-errors-control="cardNumber">
                                 <label for="cardNumber" ng-bind="::enroll.strings.LABEL_CARD_NUMBER"></label>
-                                <input type="text" class="form-control" id="cardNumber"
+                                <input type="text" class="form-control" name="cardNumber" id="cardNumber"
                                        ng-model="enroll.cardData.number"
                                        ng-blur="enroll.getCardType()"
                                        ng-change="enroll.getCardType()"
@@ -172,33 +172,38 @@
                                 <span ng-bind="::enroll.strings.LABEL_EXPIRY_DATE"></span>
                             </div>
                             <div class="form-group" trulii-input-errors-control="invalidExpiry">
-                                <input type="hidden" name="invalidExpiry"/>
+                                <input type="hidden" ng-model="enroll.cardData.invalidExpiry" class="form-control" name="invalidExpiry"/>
                             </div>
                         </div>
                         <div class="col-md-3 col-md-offset-2">
-                            <div class="form-group">
+                            <div class="form-group" trulii-input-errors-control="cardMonth">
                                 <label for="cardMonth" ng-bind="::enroll.strings.LABEL_MONTH"></label>
-                                <input type="number" min=1 max=12 class="form-control" id="cardMonth"
+                                <input type="number" name="cardMonth" min=1 max=12 class="form-control" id="cardMonth"
                                        ng-model="enroll.cardData.exp_month"
                                        ng-blur="enroll.checkCardExpiry()"
                                        placeholder="{{::enroll.strings.PLACEHOLDER_MONTH}}">
                             </div>
                         </div>
                         <div class="col-md-4 col-md-offset-1">
-                            <div class="form-group">
+                            <div class="form-group" trulii-input-errors-control="cardYear">
                                 <label for="cardYear" ng-bind="::enroll.strings.LABEL_YEAR"></label>
-                                <input type="number" class="form-control" id="cardYear"
+                                <input type="number" name="cardYear" class="form-control" id="cardYear"
                                        ng-model="enroll.cardData.exp_year"
                                        ng-blur="enroll.checkCardExpiry()"
                                        placeholder="{{::enroll.strings.PLACEHOLDER_YEAR}}">
                             </div>
                         </div>
                         <div class="col-md-3 col-md-offset-2">
-                            <div class="form-group">
+                            <div class="form-group" trulii-input-errors-control="cardMethod">
                                 <p class="form-control-static"
                                    ng-show="enroll.cardData.method"
                                    ng-bind="enroll.cardData.method"></p>
+                                <input type="hidden" ng-model="enroll.cardData.method" name="cardMethod"/>
                             </div>
+                            <div class="form-group" trulii-input-errors-control="generalError">
+                                <input type="hidden" ng-model="enroll.cardData.method" name="generalError"/>
+                            </div>
+
                         </div>
                         <div class="col-md-4 col-md-offset-1">
                             <div class="form-group">
@@ -208,6 +213,7 @@
                                        placeholder="{{::enroll.strings.PLACEHOLDER_CVV}}">
                             </div>
                         </div>
+
                         <!--<div class="col-md-8 col-md-offset-2">-->
                             <!--<div class="form-group">-->
                                 <!--<div class="checkbox">-->
