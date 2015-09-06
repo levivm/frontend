@@ -12136,7 +12136,7 @@ hr.on-light {
 }
 .navbar {
   position: relative;
-  min-height: 50px;
+  min-height: 60px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -12245,7 +12245,7 @@ hr.on-light {
   padding: 5px 15px;
   font-size: 18px;
   line-height: 20px;
-  height: 50px;
+  height: 60px;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -12265,8 +12265,8 @@ hr.on-light {
   float: right;
   margin-right: 15px;
   padding: 9px 10px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 13px;
+  margin-bottom: 13px;
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
@@ -12340,8 +12340,8 @@ hr.on-light {
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 13px;
+  margin-bottom: 13px;
 }
 @media (min-width: 768px) {
   .navbar-form .form-group {
@@ -12426,20 +12426,20 @@ hr.on-light {
   border-bottom-left-radius: 0;
 }
 .navbar-btn {
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 13px;
+  margin-bottom: 13px;
 }
 .navbar-btn.btn-sm {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-.navbar-btn.btn-xs {
-  margin-top: 14px;
-  margin-bottom: 14px;
-}
-.navbar-text {
   margin-top: 15px;
   margin-bottom: 15px;
+}
+.navbar-btn.btn-xs {
+  margin-top: 19px;
+  margin-bottom: 19px;
+}
+.navbar-text {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 @media (min-width: 768px) {
   .navbar-text {
@@ -12659,15 +12659,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #444444;
 }
 .navbar {
-  height: 50px;
+  height: 60px;
 }
 .navbar .btn {
   margin-top: 0;
+  line-height: 30px;
 }
 .navbar__link {
-  line-height: 35px;
+  line-height: 45px;
   display: inline-block;
-  height: 40px;
+  height: 50px;
   vertical-align: top;
   padding: 5px 1em 5px 0.5em;
 }
@@ -12681,8 +12682,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar__logo-container {
   background-color: #ffd580;
-  height: 50px;
-  padding: 5px 1.8em;
+  height: 60px;
+  padding: 5px 2.3em;
   display: inline-block;
   float: left;
   text-align: center;
@@ -12692,7 +12693,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar__logo {
   background: url('img/logo-trulii.png') no-repeat;
-  height: 40px;
+  height: 50px;
   width: 6em;
   display: inline-block;
   background-size: contain;
@@ -12709,14 +12710,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__left-wrapper {
   display: inline-block;
   vertical-align: top;
-  height: 40px;
+  height: 50px;
   width: 40%;
   margin-left: 240px;
 }
 .navbar__right-wrapper {
   display: inline-block;
   vertical-align: top;
-  height: 50px;
+  height: 60px;
   text-align: right;
   float: right;
   font-size: 0.9em;
@@ -12736,10 +12737,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: rgba(0, 0, 0, 0.74);
   display: inline-block;
   padding: 5px 1em;
-  height: 50px;
+  height: 60px;
   font-weight: bold;
   text-transform: uppercase;
-  line-height: 40px;
+  line-height: 50px;
 }
 .navbar__option:active,
 .navbar__option.open {
@@ -12774,9 +12775,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__search-box__city-select {
   width: 28%;
   display: inline-block;
-  height: 35px;
+  height: 45px;
   vertical-align: top;
-  line-height: 35px;
+  line-height: 45px;
   font-weight: bold;
   border: 0;
   border-left: 1px solid #d7d7d7;
@@ -12799,7 +12800,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 18px;
   width: 10%;
   text-align: center;
-  height: 35px;
+  height: 45px;
   display: inline-block;
   border: 0;
   border-left: 1px solid #d7d7d7;
@@ -12820,8 +12821,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   vertical-align: top;
 }
 .navbar__user__picture {
-  width: 32px;
-  height: 32px;
+  width: 42px;
+  height: 42px;
   border-radius: 50%;
   margin: 4px;
 }
@@ -12833,7 +12834,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-overflow: ellipsis;
   font-weight: bolder;
   text-transform: uppercase;
-  line-height: 40px;
+  line-height: 50px;
 }
 .navbar .dropdown {
   width: auto;
@@ -12851,7 +12852,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 100%;
   text-align: left;
   position: fixed;
-  top: 50px;
+  top: 60px;
   z-index: 200;
   padding: 0px 1em;
 }
@@ -12887,7 +12888,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   top: 5px;
 }
 .with-navbar {
-  margin-top: 50px;
+  margin-top: 60px;
   padding-top: 20px;
 }
 .navbar-context-menu {
@@ -12934,7 +12935,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar {
   font-family: 'Montserrat', sans-serif;
   position: fixed;
-  top: 50px;
+  top: 60px;
   bottom: 0;
   left: 0;
   display: block;
@@ -13601,7 +13602,7 @@ tags-input input {
 .section-title {
   display: block;
   width: 100%;
-  background-color: #eeeeee;
+  background-color: #FAFAFA;
   font-family: 'Sinkin Sans';
   padding: 1em 2.5rem;
   font-size: 1.4em;
@@ -13613,7 +13614,7 @@ tags-input input {
 .section-description {
   font-family: 'Sinkin Sans';
   color: #555555;
-  margin: 1em 0;
+  margin: 1.5em 0;
   font-weight: normal;
   font-size: 1.1em;
 }
@@ -13737,6 +13738,35 @@ td {
   text-transform: uppercase;
   padding: 1em;
   border-color: #e3e3e3;
+}
+ul.dropdown-menu {
+  padding: 0;
+}
+ul.dropdown-menu table {
+  background-color: #eeeeee;
+}
+ul.dropdown-menu table thead tr:nth-child(1) {
+  background-color: #38dbc8;
+}
+ul.dropdown-menu table thead tr:nth-child(1) * {
+  color: white;
+}
+ul.dropdown-menu table .btn {
+  border-width: 0;
+  width: auto !important;
+  border-radius: 8px;
+}
+ul.dropdown-menu table .btn[disabled] {
+  background-color: transparent;
+}
+ul.dropdown-menu table .btn.active {
+  background-color: #38dbc8;
+}
+ul.dropdown-menu table .btn.active span {
+  color: white;
+}
+ul.dropdown-menu table td[id^="datepicker"] {
+  padding: 0 !important;
 }
 /*
 	Code from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss
@@ -14285,6 +14315,10 @@ td {
   font-size: 1.2em;
   font-weight: 700;
 }
+.card h2 {
+  font-size: 1.1em;
+  font-weight: 700;
+}
 .card h5 {
   font-weight: normal;
   color: #777777;
@@ -14416,12 +14450,12 @@ td {
 .card-list-item:hover .card-list-item__add-icon:before {
   color: white;
 }
-.card--shrink .card-body,
-.card--shrink .card-header,
-.card--shrink .card-list-item,
-.card--shrink .card-footer {
-  padding-left: 4em;
-  padding-right: 4em;
+.card--shrink {
+  padding-left: 3em;
+  padding-right: 3em;
+}
+.card--narrow {
+  padding: 1.5em;
 }
 .card__lateral-menu {
   position: absolute;
@@ -14805,6 +14839,9 @@ button.toast-close-button {
 }
 .timepicker .btn-default {
   padding: 5px 30px;
+}
+.timepicker td {
+  padding: 0 !important;
 }
 .detail-cover-container {
   position: relative;

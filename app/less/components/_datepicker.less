@@ -1,0 +1,42 @@
+
+ul.dropdown-menu {
+	padding: 0;
+
+	table{
+		background-color: @gray-lighter;
+
+		thead tr:nth-child(1){
+			// Cabezera con el mes y el año
+
+			background-color: @success;
+
+			*{
+				color: white;	
+			}
+			
+		}
+
+		.btn{
+			border-width: 0;
+			width: auto !important;		
+			border-radius: 8px;
+
+			&[disabled]{
+				background-color: transparent;
+			}
+
+			&.active{				
+				background-color: @success;
+
+				span{
+					color: white;
+				}
+			}
+		}
+
+		td[id^="datepicker"]{
+			padding: 0 !important;
+		}
+
+	}	
+}
