@@ -4,35 +4,14 @@
 
 @card-add-icon-height: 8em;
 
-.card{	
+.card{
 	border-radius: @material-border-radius;
 	margin: 1.5em 0;
-	padding: 0;	
+	padding: 0;
 	display: block;
 	width: 100%;
 	border: 1px solid @gray-light-medium;
 	border-radius: @border-radius-standard;
-
-	h1{
-		font-size: 1.2em;
-		font-weight: 700;
-	}
-
-	h2{
-		font-size: 1.1em;
-		font-weight: 700;
-	}
-
-	h5{
-		font-weight: normal;
-		color: @gray-light;
-	}
-
-	h3{
-		color: @gray-light;
-		font-weight: 700;
-		font-size: .9em;
-	}
 
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
@@ -41,10 +20,10 @@
 		-moz-border-radius-topright: @material-border-radius;
 		border-top-left-radius: @material-border-radius;
 		border-top-right-radius: @material-border-radius;
-		
+
 		padding: @card-padding;
 		color: @lightbg-text;
-		
+
 		&--primary{
 			background: @primary;
 			color: darken(@primary-dark, 15%);
@@ -60,7 +39,7 @@
 			// TODO: This must be extend from .input--main
 
 			.form-control{
-				display: inline-block;				
+				display: inline-block;
 				text-align: left;
 				padding-left: 1.5em;
 			}
@@ -70,7 +49,7 @@
 				width: 18%;
 				display: inline-block;
 			}
-			
+
 		}
 	}
 
@@ -85,9 +64,10 @@
 			color: @secondary;
 		}
 	}
-	
+
 	.card-body{
 		padding: @card-padding;
+		background-color: white;
 
 		&--shrink{
 			padding-left: @card-padding*2;
@@ -104,14 +84,35 @@
         color: @gray-light;
         text-align: center;
         font-weight: bold;
-        font-family: @font-sans-alt;		
+        font-family: @font-sans-alt;
 	}
 
-	&-list-item{		
+	&-list-item{
 		padding: 3em 2em;
 		position: relative;
 		//margin-bottom: 2em;
-		font-family: @font-sans-alt;		
+		font-family: @font-sans-alt;
+
+		h1{
+			font-size: 1.2em;
+			font-weight: 700;
+		}
+
+		h2{
+			font-size: 1.1em;
+			font-weight: 700;
+		}
+
+		h5{
+			font-weight: normal;
+			color: @gray-light;
+		}
+
+		h3{
+			color: @gray-light;
+			font-weight: 700;
+			font-size: .9em;
+		}
 
 		&__actions{
 			position: absolute;
@@ -161,7 +162,7 @@
 			height: @card-add-icon-height;
 			display: inline-block;
 			margin-bottom: 1em;
-			font-weight: 200;					
+			font-weight: 200;
 
 			&:before{
 				content: '+';
@@ -197,8 +198,8 @@
 		position: absolute;
 		top: 0px;
 		bottom: 0px;
-		padding: 0px;	
-		background-color: @secondary;	
+		padding: 0px;
+		background-color: @secondary;
 		padding-top: 1.3em;
 
 		&__item{
@@ -207,7 +208,7 @@
 			padding: 1.5em 1em;
 			color: white;
 			background-color: darken(@secondary, 5%);
-			border-bottom: 1px solid @secondary;			
+			border-bottom: 1px solid @secondary;
 			transition: .3s background-color ease;
 			cursor: pointer;
 			font-size: 1.1em;
@@ -232,16 +233,16 @@
 			}
 		}
 
-		&__title{			
+		&__title{
 			&:extend(.strong-text-muted);
 			display: block;
 			width: 100%;
-			text-align: center;			
-			padding-bottom: 1.5em;						
-			font-size: 1.2em;			
+			text-align: center;
+			padding-bottom: 1.5em;
+			font-size: 1.2em;
 
-			
-		}		
+
+		}
 	}
 
 	[class^="mdi-"]{
@@ -258,5 +259,3 @@
     margin-bottom: 2px;
     display: inline-block;
 }
-
-

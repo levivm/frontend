@@ -2,11 +2,33 @@
 .timepicker{
 
 	.btn-default{
-		padding: 5px 30px;	
+		padding: 5px 30px;
 	}
 
 	td{
 		padding: 0 !important;
 	}
-	
+
+	.btn-default{ // AM/PM Button
+		padding: 5px 12px;
+		margin-left: 8px;
+		border-width: 0;
+		background-color: @gray-lighter;
+	}
+
+	.btn-link{ // Up/Down Buttons
+		padding-top: 0;
+		padding-bottom: 0;
+		border-radius: 4px;
+
+		&:hover{
+			background-color: @gray-lighter;
+		}
+	}
+
+	[class*="glyphicon"]{ // Arrow
+		color: @gray-light;
+
+	}
+
 }
