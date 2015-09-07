@@ -1,5 +1,5 @@
 
-ul.dropdown-menu {
+ul.dropdown-menu { // Datepicker elemento raiz
 	padding: 0;
 
 	table{
@@ -11,32 +11,61 @@ ul.dropdown-menu {
 			background-color: @success;
 
 			*{
-				color: white;	
+				color: white;
 			}
-			
+
+			.btn{
+				text-transform: uppercase;
+
+				&:hover{
+					background-color: darken(@success, 10%);
+				}
+			}
+
 		}
 
 		.btn{
 			border-width: 0;
-			width: auto !important;		
+			//width: auto !important;
 			border-radius: 8px;
 
-			&[disabled]{
+			&[disabled]{ // Día no disponible para seleccionar
 				background-color: transparent;
+				color: lighten(@gray-light, 25%) !important;
 			}
 
-			&.active{				
+			&.active{ // Día seleccionado
 				background-color: @success;
 
 				span{
 					color: white;
 				}
+
 			}
 		}
 
-		td[id^="datepicker"]{
-			padding: 0 !important;
+		.text-muted{ // Día no perteneciente al mes actual
+			color: lighten(@gray-light, 15%);
 		}
 
-	}	
+		.text-info{ // Día actual
+			color: @success;
+		}
+
+		td[id^="datepicker"]{ // Botón de día
+			padding: 0 !important;
+		}
+	}
+
+	&:after{
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-left: 15px solid transparent;
+		border-right: 15px solid transparent;
+		border-bottom: 15px solid @success;
+		top: -15px;
+		right: 15px;
+	}
 }

@@ -13936,13 +13936,19 @@ ul.dropdown-menu table thead tr:nth-child(1) {
 ul.dropdown-menu table thead tr:nth-child(1) * {
   color: white;
 }
+ul.dropdown-menu table thead tr:nth-child(1) .btn {
+  text-transform: uppercase;
+}
+ul.dropdown-menu table thead tr:nth-child(1) .btn:hover {
+  background-color: #22beac;
+}
 ul.dropdown-menu table .btn {
   border-width: 0;
-  width: auto !important;
   border-radius: 8px;
 }
 ul.dropdown-menu table .btn[disabled] {
   background-color: transparent;
+  color: #b7b7b7 !important;
 }
 ul.dropdown-menu table .btn.active {
   background-color: #38dbc8;
@@ -13950,8 +13956,25 @@ ul.dropdown-menu table .btn.active {
 ul.dropdown-menu table .btn.active span {
   color: white;
 }
+ul.dropdown-menu table .text-muted {
+  color: #9d9d9d;
+}
+ul.dropdown-menu table .text-info {
+  color: #38dbc8;
+}
 ul.dropdown-menu table td[id^="datepicker"] {
   padding: 0 !important;
+}
+ul.dropdown-menu:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #38dbc8;
+  top: -15px;
+  right: 15px;
 }
 /*
 	Code from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss

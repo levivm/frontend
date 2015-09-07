@@ -84,7 +84,7 @@
             vm.dateOptions = {
                 formatYear : 'yy',
                 startingDay : 1,
-                showWeek: false
+                showWeeks: false
             };
 
             vm.ismeridian = true;
