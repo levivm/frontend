@@ -11881,6 +11881,16 @@ hr.on-light {
 .center-childs > * {
   display: inline-block;
 }
+.center-align {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.center-align > * {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
 .clear-href:hover,
 .dropdown__item:hover {
   text-decoration: none !important;
