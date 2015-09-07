@@ -12231,6 +12231,9 @@ hr.on-light {
 .no-margin-top {
   margin-top: 0 !important;
 }
+.no-margin-bottom {
+  margin-bottom: 0 !important;
+}
 .no-margin {
   margin: 0px !important;
 }
@@ -13959,6 +13962,7 @@ ul.dropdown-menu table thead tr:nth-child(1) * {
 }
 ul.dropdown-menu table thead tr:nth-child(1) .btn {
   text-transform: uppercase;
+  padding: 5px 10px;
 }
 ul.dropdown-menu table thead tr:nth-child(1) .btn:hover {
   background-color: #22beac;
@@ -13966,6 +13970,7 @@ ul.dropdown-menu table thead tr:nth-child(1) .btn:hover {
 ul.dropdown-menu table .btn {
   border-width: 0;
   border-radius: 8px;
+  padding: 2px 5px;
 }
 ul.dropdown-menu table .btn[disabled] {
   background-color: transparent;
@@ -13995,7 +14000,7 @@ ul.dropdown-menu:after {
   border-right: 15px solid transparent;
   border-bottom: 15px solid #38dbc8;
   top: -15px;
-  right: 15px;
+  left: 15px;
 }
 /*
 	Code from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss
