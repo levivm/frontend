@@ -1,132 +1,168 @@
-<div class="tab-pane active text-style">
+
     <div class="row">
-        <div class="col-sm-offset-1 col-md-8">
-            <div class="card card--shrink shadow-z-1">
-                <div class="card-header">
-                    <div class="title-compound">
-                        <i class="mdi-image-panorama card-icon"></i>
+        <div class="col-lg-9 col-md-11">
 
-                        <h1 class="title-compound__title" ng-bind="::vm.strings.LABEL_COVER_TITLE">
-                        
-                        </h1>
-                        <h4 class="text-muted title-compound__description" ng-bind="::vm.strings.COPY_COVER_PHOTO" >
-                            
-                        </h4>
+            <div>
 
-                    </div>
+              <div class="section-title" ng-bind="::vm.strings.LABEL_COVER_TITLE"></div>
+
+              <div>
+                <div class="section-description">
+                  Portada. Obligatorio.
                 </div>
-                <div class="card-body no-padding-top">
-                    <div class="drop-box" ng-show="!vm.main_photo_loading"
-                         ng-model="vm.main_photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
-                         drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                         ng-file-change="vm.addImage(vm.main_photo,true)"
-                         allow-dir="true" accept="image/*">
 
-                        <div class="center-childs" ng-show="!vm.main_image">
-                            <a class="btn btn-success btn-lg" role="button" ng-bind="::vm.strings.LABEL_UPLOAD_COVER"></a> <br/>                            
-                            <div class="text-center text-warning" ng-bind="::vm.strings.LABEL_REQUIRED"></div>
+                    <!-- Preview del cover express -->
+
+                    <div ng-show="!vm.main_image" class="img-dashed-frame">
+                      <div class="img-cover-preview"
+                           style="background-image: url('css/img/nocover.jpg')">
+                      </div>
+                    </div>
+
+
+                    <!-- Stock de covers -->
+
+                    <div class="gallery-grid gallery-grid--fixed" ng-show="!vm.main_image">
+                        <div class="gallery-grid__photo --small --selectable"
+                             style="background-image: url('css/img/nocover.jpg')">
+
                         </div>
 
-                        <div ng-show="vm.main_image"
-                             class="img-cover-preview img-actionable img-size-cover img-carpet img-position-center"
-                             style="background-image: url('{{vm.main_image.photo}}')">
-                            <div class="img-actionable__actions">
-                                <a class="img-actionable__actions__action" role="button" ng-bind="::vm.strings.LABEL_CHANGE_COVER">
-                                   
-                                </a>
-                            </div>
+                        <div class="gallery-grid__photo --small --selectable --unselected"
+                             style="background-image: url('css/img/nocover.jpg')">
+
+                        </div>
+                        <div class="gallery-grid__photo --small --selectable --unselected"
+                             style="background-image: url('css/img/nocover.jpg')">
+
+                        </div>
+
+                    </div>
+
+                    <!-- Cover seleccionado, una vez guardado -->
+                    <div ng-show="vm.main_image"
+                         class="img-cover-preview img-actionable"
+                         style="background-image: url('{{vm.main_image.photo}}')">
+                        <div class="img-actionable__actions">
+                            <a class="img-actionable__actions__action" role="button" ng-bind="::vm.strings.LABEL_CHANGE_COVER">
+
+                            </a>
                         </div>
                     </div>
-                    <div class="text-center" ng-show="!vm.main_image">
+
+                  <!--  <div class="text-center" ng-show="!vm.main_image">
                         <br/>
                         <span ng-bind="::vm.strings.COPY_COVER_FROM_STOCK">
                         </span>
                         <br/>
 
-                                
-                        <a ng-click="vm.loadImageFromStock()" class="btn btn-primary separate-above" role="button" ng-bind="::vm.strings.LABEL_COVER_FROM_STOCK"></a>       
-                    </div>
+                        <a ng-click="vm.loadImageFromStock()" class="btn btn-primary separate-above" role="button" ng-bind="::vm.strings.LABEL_COVER_FROM_STOCK"></a>
+                    </div> -->
 
 
                     <div trulii-preloader loader-control="vm.main_photo_loading">
                     </div>
-                </div>
+
+                    <div  class="drop-box" ng-show="!vm.main_photo_loading && !vm.main_image"
+                         ng-model="vm.main_photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                         drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                         ng-file-change="vm.addImage(vm.main_photo,true)"
+                         allow-dir="true" accept="image/*"
+                         >
+
+                         <div class="separate-vertical">
+                           <button class="btn btn-default" ng-bind="::vm.strings.LABEL_UPLOAD_COVER"></button>
+                           Para seleccionar una portada desde sus archivos.
+                         </div>
+
+                    </div>
+
+              </div>
+
             </div>
 
-            <form class="material-form" name='vm.activity_gallery_form' ng-submit="vm.save_activity()">
-                <fieldset class="card card--shrink shadow-z-1">
-                    <div class="card-header">
-                        <div class="title-compound">
-                            <i class="mdi-image-photo-library card-icon"></i>
+            <!-- GALLERY SECTION -->
 
-                            <h1 class="title-compound__title" ng-bind="::vm.strings.LABEL_GALLERY_TITLE">
-                            </h1>
-                            <h4 class="text-muted title-compound__description" ng-bind="::vm.strings.COPY_GALLERY"></h4>
-                        </div>
-                    </div>
-                    <div class="card-body no-padding-top">
-                        <div>
-                            <!--TODO revisar estos alerts-->
-                            <alert type="danger" ng-show="vm.errors.file">{{vm.errors.file}}</alert>
-                            <alert type="danger" ng-show="vm.errors.non_field_errors">
-                                {{vm.errors.non_field_errors}}
-                            </alert>
-                        </div>
-                        <div class="gallery-grid--fixed">
-                            <div class="gallery-grid__photo img-actionable img-actionable--small"
-                                 ng-repeat="image in vm.images track by $index"
-                                 style="background-image: url('{{image.photo}}')">
-                                <div class="img-actionable__actions">
-                                    <button type="button" class="img-actionable__actions__action" aria-label="Eliminar"
-                                            ng-click="vm.deleteImage(image)" alt="Eliminar">
-                                        <span class="mdi-action-delete" aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="gallery-grid__photo" ng-show="vm.photo_loading">
-                                <div trulii-preloader loader-control="true" center-loader="true"></div>
-                            </div>
-                        </div>
-                        <div class="drop-box center-childs"
-                             ng-show="vm.images.length < 5"
-                             ng-model="vm.photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
-                             drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                             ng-file-change="vm.addImage(vm.photo,false)"
-                             allow-dir="true" accept="image/*">
-                            <a class="btn btn-primary separate-above" ng-bind="::vm.strings.LABEL_GALLERY_ADD_IMAGE" role="button"></a>
-                        </div>
+            <div class="separate-above">
+              <div class="section-title" ng-bind="::vm.strings.LABEL_GALLERY_TITLE"></div>
 
-                        <p class="text-center separate-above" ng-bind="::vm.strings.COPY_MAX_IMAGE_ERROR" ng-show="vm.images.length == 5">
-                        </p>
-                    </div>
-                </fieldset>
+              <div>
+                <div class="section-description" ng-bind="::vm.strings.COPY_GALLERY"></div>
 
-                <div class="card card--shrink shadow-z-1">
-                    <div class="card-header">
-                        <div class="title-compound">
-                            <i class="mdi-action-theaters card-icon"></i>
-
-                            <h1 class="title-compound__title" ng-bind="::vm.strings.LABEL_VIDEO_TITLE">
-                            </h1>
-                            <h4 class="text-muted title-compound__description" ng-bind="::vm.strings.COPY_VIDEO"></h4>
-                        </div>
-                    </div>
-
-                    <div class="card-body no-padding-top">
-                        <div class="form-group" trulii-input-errors-control="youtube_video_url">
-                            <label for="youtube_video_url" class="control-label" ng-bind="::vm.strings.LABEL_YOUTUBE_LINK"></label>
-                            <input id="youtube_video_url" class="form-control" name="youtube_video_url"
-                                   placeholder="{{::vm.strings.PLACEHOLDER_YOUTUBE_LINK}}"
-                                   ng-model='vm.activity.youtube_video_url'/>
-                        </div>
-
-                        <youtube-video video-url="vm.activity.youtube_video_url" player-width="'100%'"></youtube-video>
-
-                        <div trulii-submit-controls class="separate-above" is-saving="vm.isSaving"
-                             value="{{::vm.strings.LABEL_SAVE_ACTIVITY}}"></div>
-                    </div>
+                <div>
+                    <!--TODO revisar estos alerts-->
+                    <alert type="danger" ng-show="vm.errors.file">{{vm.errors.file}}</alert>
+                    <alert type="danger" ng-show="vm.errors.non_field_errors">
+                        {{vm.errors.non_field_errors}}
+                    </alert>
                 </div>
-            </form>
+                <div class="gallery-grid--fixed">
+                    <div class="gallery-grid__photo img-actionable img-actionable--small"
+                         ng-repeat="image in vm.images track by $index"
+                         style="background-image: url('{{image.photo}}')">
+                        <div class="img-actionable__actions">
+                            <button type="button" class="img-actionable__actions__action" aria-label="Eliminar"
+                                    ng-click="vm.deleteImage(image)" alt="Eliminar">
+                                <span class="mdi-action-delete" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gallery-grid__photo" ng-show="vm.photo_loading">
+                        <div trulii-preloader loader-control="true" center-loader="true"></div>
+                    </div>
+
+                    <div class="gallery-grid__photo">
+                      <div class="no-margin card card-list-item card-list-item--empty drop-box no-padding" style="height: 12em"
+                        ng-show="vm.images.length < 5"
+                        ng-model="vm.photo" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                        drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                        ng-file-change="vm.addImage(vm.photo,false)"
+                        allow-dir="true" accept="image/*">
+                          <div>
+                              <div class="card-list-item__add-icon"></div><br/>
+                              <!--- <span ng-bind="::vm.strings.LABEL_GALLERY_ADD_IMAGE" ></span> -->
+                          </div>
+
+                      </div>
+                    </div>
+
+
+                </div>
+
+
+
+                <p class="text-center separate-above" ng-bind="::vm.strings.COPY_MAX_IMAGE_ERROR" ng-show="vm.images.length == 5">
+                </p>
+
+              </div>
+
+
+
+            </div>
+
+            <!-- VIDEO SECTION -->
+
+            <div class="separate-above">
+              <div class="section-title" ng-bind="::vm.strings.LABEL_VIDEO_TITLE"></div>
+
+              <form name='vm.activity_gallery_form' ng-submit="vm.save_activity()">
+
+                  <div class="section-description" ng-bind="::vm.strings.COPY_VIDEO"></div>
+
+                  <div class="form-group" trulii-input-errors-control="youtube_video_url">
+                      <label for="youtube_video_url" class="control-label" ng-bind="::vm.strings.LABEL_YOUTUBE_LINK"></label>
+                      <input id="youtube_video_url" class="form-control" name="youtube_video_url"
+                             placeholder="{{::vm.strings.PLACEHOLDER_YOUTUBE_LINK}}"
+                             ng-model='vm.activity.youtube_video_url'/>
+                  </div>
+
+                  <youtube-video video-url="vm.activity.youtube_video_url" player-width="'100%'"></youtube-video>
+
+                  <div trulii-submit-controls class="separate-above" is-saving="vm.isSaving"
+                       value="{{::vm.strings.LABEL_SAVE_ACTIVITY}}"></div>
+
+              </form>
+            </div>
         </div>
         <!-- <div class="col-md-3">
             <div class="sidebar-nav-fixed pull-right affix well">
@@ -163,6 +199,5 @@
                 </ul>
             </div>
         </div> -->
-        <hr>
+
     </div>
-</div>

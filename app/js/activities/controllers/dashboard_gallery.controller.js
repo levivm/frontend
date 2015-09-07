@@ -199,7 +199,7 @@
                 LABEL_REQUIRED: "Obligatorio",
                 LABEL_COVER_TITLE: "Portada",
                 LABEL_COVER_TITLE: "Portada",
-                LABEL_UPLOAD_COVER: "Seleccionar portada",
+                LABEL_UPLOAD_COVER: "Seleccionar archivo",
                 LABEL_CHANGE_COVER: "Cambiar portada",
                 LABEL_COVER_FROM_STOCK: "Portada Express",
                 COPY_COVER_FROM_STOCK: "Si no tienes foto de portada, nosotros tenemos un botón mágico para ti ",
@@ -219,13 +219,13 @@
             setStrings();
             vm.errors = {};
             vm.isCollapsed = true;
-            vm.photo_loading = false;            
+            vm.photo_loading = false;
             vm.main_photo_loading = false;
             vm.isSaving = false;
             vm.images = angular.copy(activity.photos);
-            vm.main_image = _.first(_.remove(vm.images, 'main_photo', true));      
+            vm.main_image = _.first(_.remove(vm.images, 'main_photo', true));
 
-            Elevator.toTop();      
+            Elevator.toTop();
         }
 
     }

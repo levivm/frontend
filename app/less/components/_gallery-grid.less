@@ -5,6 +5,7 @@
 @grid-spacing: 4px;
 
 .@{component-class}{
+  margin-top: 1em;
 
     [class*=col-]{
         padding-right: 0px;
@@ -12,55 +13,45 @@
         padding-bottom: @grid-spacing - 2px;
     }
 
-    &--fixed{
-        &:extend(.center-childs);    
-
-        & .@{component-class}__photo{
-            width: 12em;
-            height: 12em;
-        }
-
-    }
-
     &__photo{
-        &:extend(.img-size-cover);        
+        &:extend(.img-size-cover);
         &:extend(.img-carpet);
+        border-radius: @border-radius-standard;
         display: inline-block;
         vertical-align: top;
-        margin: 0 2px 2px 0;
+        margin: 0 2px 6px 0;
         padding: 0;
         height: 16em;
         width: 100%;
         position: relative;
-        background-color: @secondary;
+        background-color: @gray-light-medium;
+        width: 12em;
+        height: 12em;
 
-        &__price{
-            position: absolute;
-            top: 0;
-            right: 0;
-            background: fadeout(@primary, 10%);
-            color: @gray;
-            padding: .1em 1em;
-            font-size: 1.25em;
-            font-weight: bold;
-
-            &:before{
-                content: "$";
-                color: darken(@primary, 25%);
-                display: inline-block;
-            }
+        &.--small{
+          width: 8em;
+          height: 8em;
         }
 
-        &__caption{            
+        &.--selectable{
+          cursor: pointer;
+        }
+
+        &.--unselected{
+          opacity: .5;
+        }
+
+
+        &__caption{
             color: white;
             height: 45%;
             background: rgba(0,0,0,0.75);
-            width: 100%;            
+            width: 100%;
             position: absolute;
             bottom: 0;
             padding: .5em 1em;
-            transition: .5s background ease; 
-            .font-title;                       
+            transition: .5s background ease;
+            .font-title;
 
             &__title{
                 display: block;
@@ -71,7 +62,7 @@
 
             &__complement{
                 display: block;
-                font-size: .9em;                                
+                font-size: .9em;
             }
 
             &__organizer{
@@ -113,7 +104,7 @@
             height: 18em;
             margin-bottom: 1em;
 
-            .@{component-class}__photo{                
+            .@{component-class}__photo{
 
                 &__caption{
                     font-size: 1.25em;
@@ -127,10 +118,10 @@
                     //    font-size: 1.8em;
                     //}
                 }
-    
+
             }
 
-            
+
         }
 
         &:hover{
@@ -144,8 +135,8 @@
                 }
             }
         }
-        
+
     }
-    
-    
+
+
 }
