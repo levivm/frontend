@@ -93,7 +93,7 @@
       <div class="row">
 
         <div class="col-md-12" ng-repeat="session in vm.calendar.sessions track by $index">
-            <div class="card card-list-item card--narrow">
+            <div class="card card-list-item card--narrow no-margin-bottom">
 
             <h2>Sesión {{$index + 1}}</h2>
 
@@ -108,6 +108,7 @@
                            max-date="session.maxDate" id="date" datepicker-options="vm.dateOptions" close-text="Close"
                            ng-change="vm.calendar.changeSessionDate($index,session)"
                            ng-click="vm.calendar.openSessionDate($event,session)"
+                           style="margin-top: 2em;"
                         />
                 </div>
               </div>
@@ -131,13 +132,6 @@
               </div>
             </div>
 
-
-
-
-
-
-
-
               <!--TODO revisar alert-->
               <alert type="danger" ng-show="vm.errors.{{'sessions_'+$index}}">{{vm.errors.session_error}}</alert>
 
@@ -146,7 +140,7 @@
       </div>
 
 
-      <div ng-show="vm.calendar.sessions.length > 0 ">
+      <div class="separate-above" ng-show="vm.calendar.sessions.length > 0 ">
           <trulii-submit-controls is-saving="vm.isSaving" cancel-active="true" value="Guardar"></trulii-submit-controls>
 
       </div>
