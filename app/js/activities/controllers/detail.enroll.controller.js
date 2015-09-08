@@ -214,8 +214,12 @@
                     $state.go('activities-enroll.success');
                 }
 
-                function _enrollError(errors){
-                    Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
+                function _enrollError(response){
+                    var error = response.data;
+                    if (!(error.assistants))
+                        Error.form.add(vm.enrollForm, {'generalError': [error]});
+                    else
+                        Error.form.addArrayErrors(vm.enrollForm, error.assistants);
                 }
             }
 

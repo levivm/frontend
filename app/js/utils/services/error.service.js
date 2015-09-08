@@ -58,7 +58,6 @@
         }
 
         function addArrayErrors(form,responseErrors){
-
             _.each(responseErrors, function (error_dict) {
 
                 _.each(error_dict, function (message, field) {
