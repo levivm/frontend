@@ -128,11 +128,21 @@
         function getPayUData() {
             // TODO Waiting for endpoint
             var deferred = $q.defer();
+            // var payUData = {
+            //     PAYU_API_KEY : '6u39nqhq8ftd0hlvnjfs66eh8c',
+            //     PAYU_MERCHANT_ID : '500238',
+            //     PAYU_API_LOGIN : '11959c415b33d0c',
+            //     PAYU_ACCOUNT_ID : '500538',
+            //     PAYU_URL : 'https://api.payulatam.com/payments-api/4.0/service.cgi',
+            //     PAYU_NOTIFY_URL : "https://api.trulii.com/api/payments/notification",
+            //     PAYU_RESPONSE_URL : "https://api.trulii.com/api/payments/pse/response",
+            //     PAYU_TEST : false
+            // };
             var payUData = {
-                PAYU_API_KEY : '6u39nqhq8ftd0hlvnjfs66eh8c',
-                PAYU_MERCHANT_ID : '500238',
-                PAYU_API_LOGIN : '11959c415b33d0c',
-                PAYU_ACCOUNT_ID : '500538',
+                PAYU_API_KEY : '6RK49XdJYozqO05lnIJQonnbEx',
+                PAYU_MERCHANT_ID : '537033',
+                PAYU_API_LOGIN : 'xvoZMctc645I2Nc',
+                PAYU_ACCOUNT_ID : '539061',
                 PAYU_URL : 'https://api.payulatam.com/payments-api/4.0/service.cgi',
                 PAYU_NOTIFY_URL : "https://api.trulii.com/api/payments/notification",
                 PAYU_RESPONSE_URL : "https://api.trulii.com/api/payments/pse/response",
