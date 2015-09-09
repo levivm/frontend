@@ -14,107 +14,90 @@
         .module('trulii.activities.services')
         .factory('Activity', Activity);
 
-    Activity.$inject = ['$http', '$q', '$log', 'ActivityServerApi', 'UploadFile', 'ActivitySteps', 'CalendarsManager'];
+    Activity.$inject = ['$http', '$q', 'ActivityServerApi', 'UploadFile', 'ActivitySteps'];
 
-    function Activity($http, $q, $log, ActivityServerApi, UploadFile, ActivitySteps, CalendarsManager) {
+    function Activity($http, $q, ActivityServerApi, UploadFile, ActivitySteps) {
 
         var api = ActivityServerApi;
 
         function Activity(activityData) {
             var that = this;
-
             that.tags = [];
             that.certification = false;
             
-            if (activityData) {
-                //TODO eliminar cuando levi elimine del backend
-                delete activityData.completed_steps;
-
-                that.setData(activityData);
-
-            }
-
+            if (activityData) { that.setData(activityData); }
         }
 
         Activity.prototype = {
+
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#setData
+             * @name .#setData
              * @description Given an activity data, fill 'this' object with that data
-             * @param {activityData} activityData The activity data to set 
+             * @param {object} activityData The activity data to set
              * @methodOf trulii.activities.services.Activity
              */
             setData : function (activityData) {
                 angular.extend(this, activityData);
                 var that = this;
                 that.resetSections();
-
-
                 angular.forEach(ActivitySteps, function (step) {
-
                     that.updateSection(step.name);
                 });
-
-                //console.log("Activity setData ", this);
-                
                 that.checkSections();
             },
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#create
+             * @name .#create
              * @description Create an activity
              * @methodOf trulii.activities.services.Activity
              */
             create : function () {
                 return $http.post(api.activities(), this);
             },
+
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#load
+             * @name .#load
              * @description Get an activity from backend given a id
              * @param {number} id The activity id to retrieve 
              * @methodOf trulii.activities.services.Activity
              */
             load : function (id) {
                 var that = this;
-
-                if (!id) {
-                    id = that.id;
-                }
-
+                if (!id) { id = that.id; }
                 return $http.get(api.activity(id))
                     .then(function (response) {
                         that.setData(response.data);
                         return that;
                     });
             },
+
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#update
+             * @name .#update
              * @description Update the activity using 'this' object internal values
              * @methodOf trulii.activities.services.Activity
              */
             update : function () {
                 var that = this;
-
                 return $http({
                     method : 'put',
                     url : api.activity(this.id),
                     data : this
                 }).then(function (response) {
-
                     that.setData(response.data);
                     that.setAllSections();
-
                     return response;
                 }, function (response) {
                     return $q.reject(response.data);
                 });
             },
+
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#update_location
+             * @name .#update_location
              * @description Update the activity using 'this' object internal values
              * @methodOf trulii.activities.services.Activity
              */
@@ -128,15 +111,13 @@
                     url : api.locations(this.id),
                     data : location
                 }).then(function (response) {
-                    angular.extend(that.location,response.data)
+                    angular.extend(that.location,response.data);
                     that.setAllSections();
-                    // that.setData(response.data);
                     return response;
                 }, function (response) {
                     return $q.reject(response.data);
                 });
             },
-
 
             /**
              * @ngdoc function
@@ -149,12 +130,13 @@
             addPhoto : function (image,extra_data) {
                 return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
             },
+
             /**
              * @ngdoc function
              * @name trulii.activities.services.Activity#addPhotoFromStock
              * @description Add photo to the activity gallery from our photo stock
              * given a subcategory
-             * @param {sub_category} The activity subcategory
+             * @param {string} sub_category The activity subcategory
              * @methodOf trulii.activities.services.Activity
              */
             addPhotoFromStock : function (sub_category) {
@@ -165,7 +147,6 @@
                     url : api.gallery(this.id,from_stock),
                     data : {'subcategory' : this.sub_category}
                 });
-                // return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
             },
 
             /**
@@ -182,6 +163,7 @@
                     data : {'photo_id' : image.id}
                 });
             },
+
             /**
              * @ngdoc function
              * @name trulii.activities.services.Activity#publish
@@ -195,10 +177,11 @@
                     method : 'put',
                     url : api.publish(this.id)
                 })
-                    .then(function (response) {
-                        that.published = true;
-                    });
+                .then(function (response) {
+                    that.published = true;
+                });
             },
+
             /**
              * @ngdoc function
              * @name trulii.activities.services.Activity#unpublish
@@ -212,45 +195,39 @@
                     method : 'put',
                     url : api.unpublish(this.id)
                 })
-                    .then(function (response) {
-                        that.published = false;
-                    });
-
+                .then(function (response) {
+                    that.published = false;
+                });
             },
+
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#hasAssistants
+             * @name .#hasAssistants
              * @description Check if an activity has already assitants
              * @methodOf trulii.activities.services.Activity
              */
             hasAssistants: function(){
 
-                if (!this.chronograms)
-                    return false
+                if (!this.chronograms){ return false; }
 
                 return this.chronograms.some(function (chronogram) {
                         return chronogram.assistants.length > 0
                     });
             },
+
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#isFirstEdit
+             * @name .#isFirstEdit
              * @description Check and set a flag if the activity is beign edited for first time
              * @methodOf trulii.activities.services.Activity
              */
             isFirstEdit: function(){
-
-                if (!this.photos.length && !this.published)
-                    return true
-
-                return false
-
-
+                return (!this.photos.length && !this.published);
             },
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#checkSections
+             * @name .#checkSections
              * @description Checks the completion of all of the Activity's creation steps
              * @methodOf trulii.activities.services.Activity
              */
@@ -259,18 +236,13 @@
 
                 that.all_steps_completed = true;
                 angular.forEach(_.keys(that.required_steps), function (value) {
-
-                    if (!that.isSectionCompleted(value))
-                        that.all_steps_completed = false;
-
-
-                    // if (!value) that.all_steps_completed = false;
+                    if (!that.isSectionCompleted(value)){ that.all_steps_completed = false; }
                 });
             },
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#areAllStepsCompleted
+             * @name .#areAllStepsCompleted
              * @return {boolean} `true` if all of the activity creation steps
              * are completed, `false` otherwise
              * @methodOf trulii.activities.services.Activity
@@ -284,7 +256,7 @@
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#setSectionCompleted
+             * @name .#setSectionCompleted
              * @param {string} section The section to update.
              * Available values are ['general', 'detail', 'instructors', 'location', 'gallery', 'return-policy']
              * @param {boolean} value The value to assign to the section
@@ -293,11 +265,9 @@
             setSectionCompleted : function (section, value) {
                 var that = this;
 
-                //console.log("detail",section,value);
                 if(section in that.completed_steps){
                     that.completed_steps[section] = value;
                 }
-                //console.log('Activity.setSectionCompleted: ', section, ', ', that.completed_steps[section]);
             },
 
             /**
@@ -309,9 +279,9 @@
              */
             isSectionCompleted : function (section) {
                 var that = this;
-
                 return that.completed_steps[section];
             },
+
             /**
              * @ngdoc function
              * @name trulii.activities.services.Activity#setStepsLeft
@@ -321,17 +291,11 @@
             setStepsLeft: function(section){
                 var that = this;
 
-                if (!that.required_steps[section])
-                    return
-
+                if (!that.required_steps[section]) { return; }
                 that.steps_left = 0;
-
                 _.each(_.keys(that.required_steps),function(value){
-
                     that.steps_left += !that.completed_steps[value] ? 1:0;
-
                 });
-
 
             },
             /**
@@ -341,15 +305,10 @@
              * @methodOf trulii.activities.services.Activity
              */
             setAllSections: function(){
-
                 var that = this;
-
                 that.resetSections();
-
                 that.updateAllSections();
-
                 that.checkSections();
-
             },
 
             /**
@@ -360,21 +319,104 @@
              */
             updateAllSections: function(){
                 var that = this;
-
                 angular.forEach(ActivitySteps, function (step) {
-
                     that.updateSection(step.name);
                 });
-
             },
 
+            updateSection: updateSection,
 
-            updateSection : updateSection,
+            resetSections: resetSections,
 
-            resetSections : resetSections,
+            /**
+             * @ngdoc function
+             * @name .#getInstructors
+             * @description Retrieves all Activity related Instructors
+             * @methodOf trulii.activities.services.Activity
+             */
+            getInstructors: getInstructors,
+
+            /**
+             * @ngdoc function
+             * @name .#createInstructor
+             * @description Creates a new Instructor for the organizer and appends it to the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            createInstructor: createInstructor,
+
+            /**
+             * @ngdoc function
+             * @name .#updateInstructor
+             * @description Updates an Instructor from the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            updateInstructor: updateInstructor,
+
+            /**
+             * @ngdoc function
+             * @name .#deleteInstructor
+             * @description Deletes an Instructor from the Activity but not from the Organizer
+             * @methodOf trulii.activities.services.Activity
+             */
+            deleteInstructor: deleteInstructor
         };
 
         return Activity;
+
+        function getInstructors(){
+            var that = this;
+            return $http.get(api.instructors(that.id)).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                console.log('activity.get instructors error:', response.data);
+                return response.data;
+            }
+        }
+
+        function createInstructor(instructor){
+            var that = this;
+            return $http.post(api.instructors(that.id), instructor).then(success, error);
+
+            function success(response){
+                console.log('activity.create instructor success:', response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log('activity.create instructor error:', response);
+                return response.data;
+            }
+        }
+
+        function updateInstructor(instructor){
+            var that = this;
+            return $http.put(api.instructor(that.id, instructor.id), instructor).then(success, error);
+
+            function success(response){
+                console.log('activity.update instructor success:', response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log('activity.update instructor error:', response);
+                return response.data;
+            }
+        }
+
+        function deleteInstructor(instructor){
+            var that = this;
+            return $http.delete(api.instructor(that.id, instructor.id)).then(success, error);
+
+            function success(response){
+                console.log('activity.delete instructor success:', response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log('activity.delete instructor error:', response);
+                return response.data;
+            }
+        }
 
         function updateSection(section) {
             var that = this;

@@ -96,8 +96,8 @@
 <script src="js/organizers/organizers.module.js"></script>
 <script src="js/search/search.module.js"></script>
 <script src="js/students/students.module.js"></script>
-<script src="js/ui-components/ui-components.module.js"></script>
 <script src="js/utils/utils.module.js"></script>
+<script src="js/ui-components/ui-components.module.js"></script>
 <script src="js/activities/activities.config.js"></script>
 <script src="js/activities/services/activities_manager.service.js"></script>
 <script src="js/activities/services/activity.service.js"></script>
@@ -109,10 +109,10 @@
 <script src="js/authentication/services/authentication.service.js"></script>
 <script src="js/authentication/services/server_api.service.js"></script>
 <script src="js/authentication/services/session_injector.factory.js"></script>
-<script src="js/landing/services/contact.service.js"></script>
-<script src="js/landing/services/server_api.service.js"></script>
 <script src="js/locations/services/locations_manager.service.js"></script>
 <script src="js/locations/services/server_api.service.js"></script>
+<script src="js/landing/services/contact.service.js"></script>
+<script src="js/landing/services/server_api.service.js"></script>
 <script src="js/organizers/services/organizer.service.js"></script>
 <script src="js/organizers/services/organizer_constants.service.js"></script>
 <script src="js/organizers/services/organizer_manager.service.js"></script>
@@ -131,6 +131,9 @@
 <script src="js/authentication/directives/form_modal.directive.js"></script>
 <script src="js/organizers/directives/trulii-instructor-card.directive.js"></script>
 <script src="js/search/directives/search-bar.directive.js"></script>
+<script src="js/utils/directives/counter.directive.js"></script>
+<script src="js/utils/directives/datepicker_popup.directive.js"></script>
+<script src="js/utils/directives/saved_message.directive.js"></script>
 <script src="js/ui-components/directives/card-expandable.directive.js"></script>
 <script src="js/ui-components/directives/input-alert.directive.js"></script>
 <script src="js/ui-components/directives/input-autofocus.directive.js"></script>
@@ -140,9 +143,13 @@
 <script src="js/ui-components/directives/preloader.directive.js"></script>
 <script src="js/ui-components/directives/slider.directive.js"></script>
 <script src="js/ui-components/directives/submit.directive.js"></script>
-<script src="js/utils/directives/counter.directive.js"></script>
-<script src="js/utils/directives/datepicker_popup.directive.js"></script>
-<script src="js/utils/directives/saved_message.directive.js"></script>
+<script src="js/authentication/controllers/email_confirm.controller.js"></script>
+<script src="js/authentication/controllers/forgot_password.controller.js"></script>
+<script src="js/authentication/controllers/login.controller.js"></script>
+<script src="js/authentication/controllers/logout.controller.js"></script>
+<script src="js/authentication/controllers/register.controller.js"></script>
+<script src="js/authentication/controllers/reset_password.controller.js"></script>
+<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
 <script src="js/activities/controllers/dashboard.controller.js"></script>
 <script src="js/activities/controllers/dashboard_calendar_detail.controller.js"></script>
 <script src="js/activities/controllers/dashboard_calendars.controller.js"></script>
@@ -157,16 +164,6 @@
 <script src="js/activities/controllers/detail.enroll.controller.js"></script>
 <script src="js/activities/controllers/detail.enroll.success.controller.js"></script>
 <script src="js/activities/controllers/manage.controller.js"></script>
-<script src="js/authentication/controllers/email_confirm.controller.js"></script>
-<script src="js/authentication/controllers/forgot_password.controller.js"></script>
-<script src="js/authentication/controllers/login.controller.js"></script>
-<script src="js/authentication/controllers/logout.controller.js"></script>
-<script src="js/authentication/controllers/register.controller.js"></script>
-<script src="js/authentication/controllers/reset_password.controller.js"></script>
-<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
-<script src="js/landing/controllers/contact.controller.js"></script>
-<script src="js/landing/controllers/home.controller.js"></script>
-<script src="js/landing/controllers/not_found.controller.js"></script>
 <script src="js/organizers/controllers/dashboard.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_account.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_activities.controller.js"></script>
@@ -174,15 +171,18 @@
 <script src="js/organizers/controllers/landing.controller.js"></script>
 <script src="js/organizers/controllers/profile.controller.js"></script>
 <script src="js/search/controllers/search.controller.js"></script>
+<script src="js/landing/controllers/contact.controller.js"></script>
+<script src="js/landing/controllers/home.controller.js"></script>
+<script src="js/landing/controllers/not_found.controller.js"></script>
 <script src="js/students/controllers/dashboard.controller.js"></script>
 <script src="js/students/controllers/dashboard_account.controller.js"></script>
 <script src="js/students/controllers/dashboard_activities.controller.js"></script>
 <script src="js/students/controllers/dashboard_history.controller.js"></script>
 <script src="js/students/controllers/dashboard_profile.controller.js"></script>
-<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <script src="js/utils/controllers/modal.controller.js"></script>
 <script src="js/utils/controllers/modal_dialog.controller.js"></script>
 <script src="js/utils/controllers/simple_modal.controller.js"></script>
+<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <!-- endinject -->
 
 <script type="text/javascript">

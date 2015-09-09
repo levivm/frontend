@@ -33,18 +33,32 @@
                 angular.extend(scope, {
                     editMode : false,
                     onDashboard : !!attrs.onDashboard,
+                    setSelectedInstructor: setSelectedInstructor,
                     addInstructor: addInstructor,
                     deleteInstructor: deleteInstructor,
                     cancelEdition: cancelEdition,
                     toggleEditMode : toggleEditMode,
                     saveInstructor: saveInstructor,
+                    selectedInstructor: null,
                     emptyInstructor: true,
-                    cardHeight: '32em'
+                    cardHeight: '20em'
                 });
+
+                var EMPTY_INSTRUCTOR = {
+                    'full_name': null,
+                    'website': null,
+                    'bio': null
+                };
+
+                var resource = scope.onDashboard? scope.organizer: scope.activity;
 
                 _activate();
 
                 //--------- Exposed Functions ---------//
+
+                function setSelectedInstructor(selectedInstructor){
+                    angular.extend(scope.instructor, selectedInstructor);
+                }
 
                 function addInstructor(){
                     toggleEditMode();
@@ -62,12 +76,35 @@
 
                 function saveInstructor(){
                     var instructor = scope.instructor;
+
                     if(instructor.full_name && instructor.bio){
                         toggleEditMode();
-                        // TODO guardar en activity
+                        if(instructor.id){
+                            // Update Instructor
+                            resource.updateInstructor(instructor).then(successUpdate, errorUpdate);
+                        } else{
+                            // Create Instructor
+                            resource.createInstructor(instructor).then(successCreate, errorCreate);
+                        }
                     } else {
                         Toast.setPosition("toast-top-center");
                         Toast.error(scope.strings.MSG_MISSING_REQUIRED_FIELDS);
+                    }
+
+                    function successCreate(instructor){
+                        console.log('saveInstructor. Instructor created.', instructor);
+                    }
+
+                    function errorCreate(response){
+                        console.log('saveInstructor. Error creating Instructor.', response);
+                    }
+
+                    function successUpdate(instructor){
+                        console.log('saveInstructor. Instructor updated.', instructor);
+                    }
+
+                    function errorUpdate(response){
+                        console.log('saveInstructor. Error updating Instructor.', response);
                     }
                 }
 
@@ -78,14 +115,14 @@
                          size : 'lg'
                      });
                      modalInstance.result.then(function () {
-                         scope.organizer.deleteInstructor(scope.instructor.id)
-                             .then(success, error);
+                         resource.deleteInstructor(scope.instructor).then(success, error);
                      });
 
                      function success(response) {
-                         _.remove(scope.activity.instructors, 'id', scope.instructor.id);
-                         _onSectionUpdated();
-                         Toast.generics.info("El instructor se ha eliminado.");
+                         _.remove(resource.instructors, 'id', scope.instructor.id);
+                         _removeInstructor();
+                         _updateActivity();
+                         Toast.info(scope.strings.MSG_DELETE_SUCCESS);
                      }
 
                      function error(response) {
@@ -95,8 +132,24 @@
 
                 //--------- Internal Functions ---------//
 
+                function _removeInstructor(){
+                    scope.instructor= EMPTY_INSTRUCTOR;
+                    scope.emptyInstructor = true;
+                }
+
                 function _isValid(){
                     return scope.instructor.full_name && scope.instructor.bio;
+                }
+
+                function _updateActivity(){
+                    scope.activity.load().then(success, error);
+
+                    function success(){
+                        _onSectionUpdated();
+                    }
+                    function error(){
+                        _onSectionUpdated();
+                    }
                 }
 
                 function _onSectionUpdated() {
@@ -120,16 +173,15 @@
                         MSG_MISSING_REQUIRED_FIELDS : "Por favor asegurese de verificar todos los campos obligatorios" +
                             " para la creación del instructor",
                         MSG_DELETE_SUCCESS: "Instructor eliminado exitosamente.",
-                        MSG_DELETE_ERROR: "Error eliminando el instructor. Por favor intente de nuevo."
+                        MSG_DELETE_ERROR: "Error eliminando el instructor. Por favor intente de nuevo.",
+                        VALUE_UNSPECIFIED: "No Especificado"
                     });
                 }
 
                 function _activate(){
                     _setStrings();
-                    if(_isValid()){
-                        scope.emptyInstructor = false;
-                    }
-                    console.group('trulii-instructor-card:', scope.instructor.full_name);
+                    if(_isValid()){ scope.emptyInstructor = false; }
+                    console.group('trulii-instructor-card:', scope.instructor.full_name? scope.instructor.full_name : '');
                     console.log('instructor:', scope.instructor);
                     console.log('activity:', scope.activity);
                     console.log('organizer:', scope.organizer);

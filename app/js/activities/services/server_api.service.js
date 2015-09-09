@@ -61,15 +61,16 @@
              * @name trulii.activities.services.ActivityServerApi#gallery
              * @description Renders **`/api/activities/:idActivity/gallery`** Activity gallery URL
              * @param {number} idActivity Activity Id
+             * @param {boolean} from_stock Indicates wether to use a stock photo or not
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'gallery' : function (idActivity,from_stock) {
+            'gallery' : function (idActivity, from_stock) {
                 
                 if(from_stock)
-                    return renderUrl('activities/', [idActivity, 'gallery','auto'])
+                    return renderUrl('activities/', [idActivity, 'gallery','auto']);
                 else
-                    return renderUrl('activities/', [idActivity, 'gallery'])
+                    return renderUrl('activities/', [idActivity, 'gallery']);
 
             },
 
@@ -156,19 +157,44 @@
             /**
              * @ngdoc function
              * @name trulii.activities.services.ActivityServerApi#orders
-             * @description Renders **`/api/activities/orders`** Activities Orders URL
+             * @description Renders **`/api/activities/:idActivity/orders`** Activities Orders URL
              * @param {number} idActivity Activity Id
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
             'orders' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'orders']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#instructors
+             * @description Renders **`/api/activities/:idActivity/instructors`** Activity Instructors URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'instructors' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'instructors']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#instructor
+             * @description Renders **`/api/activities/:idActivity/instructors/:idInstructor`** Activity Instructor URL
+             * @param {number} idActivity Activity Id
+             * @param {number} idInstructor Instructor Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'instructor' : function (idActivity, idInstructor) {
+                return renderUrl('activities/', [idActivity, 'instructors', idInstructor]);
             }
         };
 
         /**
          * @ngdoc function
-         * @name trulii.activities.services.ActivityServerApi#renderUrl
+         * @name .#renderUrl
          * @description URL Renderer, takes multiple parameters
          * @param {string} endpoint server endpoint, must start and end with '/'
          * @param {Array=} urlParams (Optional) Array with URL params. Are rendered in the same order they come

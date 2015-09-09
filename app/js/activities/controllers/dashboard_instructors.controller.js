@@ -23,15 +23,13 @@
         vm.isSaving = false;
         vm.activity = angular.copy(activity);
         vm.organizer = organizer;
-        vm.save_activity = _updateActivity;
-        //vm.addInstructor = _addInstructor;
-        //vm.removeInstructor = _removeInstructor;
-        // vm.setInstructor = _setInstructor;
-        // vm.deleteInstructor = _deleteInstructor;
+        vm.updateActivity = updateActivity;
 
         _activate();
 
-        function _updateActivity() {
+        //--------- Exposed Functions ---------//
+
+        function updateActivity() {
             Error.form.clear(vm.activity_instructors_forms);
             vm.activity.update().then(success, error);
             vm.isSaving = true;
@@ -41,6 +39,7 @@
                 angular.extend(activity, vm.activity);
                 _setInstructors();
                 Toast.generics.weSaved();
+                // TODO Quitar onSectionUpdated
                 _onSectionUpdated();
                 vm.isSaving = false;
             }
@@ -51,6 +50,8 @@
                 vm.isSaving = false;
             }
         }
+
+        //--------- Internal Functions ---------//
 
         function _setInstructors() {
             var EMPTY_INSTRUCTOR = {
@@ -70,13 +71,24 @@
             }
             console.log('vm.activity.instructors:', vm.activity.instructors);
             console.log('vm.instructors:', vm.instructors);
-            console.log('vm.instructors:', JSON.stringify(vm.instructors, null, 1));
+        }
 
+        function _setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                SECTION_INSTRUCTORS: "Instructores",
+                COPY_INSTRUCTORS: "Cuéntanos de cada una de las personas que impartirán la actividad."
+            });
         }
 
         function _activate() {
+            _setStrings();
             Elevator.toTop();
             _setInstructors();
+            activity.getInstructors().then(function(instructors){
+                console.log('activity.getInstructors:', instructors);
+            });
+
         }
 
     }
