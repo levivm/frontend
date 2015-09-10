@@ -14537,7 +14537,6 @@ ul.dropdown-menu:after {
 }
 .card,
 .dropdown {
-  border-radius: 2px;
   margin: 1.5em 0;
   padding: 0;
   display: block;
@@ -14648,8 +14647,7 @@ ul.dropdown-menu:after {
   font-size: .9em;
 }
 .card-list-item--empty {
-  border-style: dashed;
-  border-width: 2px;
+  border: 1px dashed;
   display: table;
   font-weight: normal;
   color: #777777;

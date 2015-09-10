@@ -1,4 +1,4 @@
-<div ng-if="!emptyInstructor">
+<div ng-if="!emptyInstructor" class="card">
     <div class="card-list-item scroll-y" ng-style="{'height': cardHeight}">
         <div class="card-list-item__actions">
             <i class="glyphicon glyphicon-pencil" ng-if="!editMode" ng-click="toggleEditMode()"
@@ -33,11 +33,11 @@
 
             <div class="form-group" trulii-input-errors-control="bio">
                 <label for="bio" class="control-label" ng-bind="strings.LABEL_BIO"></label>
-                    <textarea id="bio" class="form-control" name="bio"
-                              rows="4" style="resize: none;"
-                              placeholder="{{strings.PLACEHOLDER_BIO}}"
-                              ng-model="instructor.bio">
-                    </textarea>
+                <textarea id="bio" class="form-control" name="bio"
+                          rows="4" style="resize: none;"
+                          placeholder="{{strings.PLACEHOLDER_BIO}}"
+                          ng-model="instructor.bio">
+                </textarea>
             </div>
 
             <!--TODO poner absoluto al fondo de la tarjeta-->
@@ -72,12 +72,13 @@
     </div>
 </div>
 <!--if there's no instructor asigned-->
-<div ng-if="emptyInstructor">
-    <div class="card-list-item card-list-item--empty card-list-item--instructor" ng-style="{'height': cardHeight}">
+<!--<div class="card">-->
+    <div ng-if="emptyInstructor" class="card card-list-item card-list-item--empty card-list-item--instructor" ng-style="{'height': cardHeight}">
         <div>
-            <div class="card-list-item__add-icon" ng-click="addInstructor()"></div>
-            <br/>
-            <span>Agregar Instructor</span>
+            <div class="card-list-item__add-icon" ng-click="addInstructor()">
+                <br/>
+                <div>Agregar Instructor</div>
+            </div>
         </div>
     </div>
-</div>
+<!--</div>-->
