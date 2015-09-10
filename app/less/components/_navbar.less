@@ -1,4 +1,4 @@
-@import url('../_trulii-variables');
+
 @import "_navbar";
 @import "navbar.less";
 
@@ -14,6 +14,7 @@
 
     .btn {
         margin-top: 0;
+        line-height: @navbar-height / 2;
     }
 
     &__link {
@@ -36,7 +37,7 @@
     &__logo-container{
         background-color: @primary;
         height: @navbar-height;
-        padding: @navbar-padding-vertical 1.8em;
+        padding: @navbar-padding-vertical 2.3em;
         display: inline-block;        
         float: left;
         text-align: center;
@@ -205,6 +206,7 @@
     .dropdown {
         width: auto;
         text-align: left;
+        background-color: white;
     }
 
     [class*=mdi-navigation]:before {

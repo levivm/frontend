@@ -3,6 +3,10 @@
     text-align: left;
 }
 
+.text-right{
+    text-align: right;
+}
+
 .text-capitalize{
     text-transform: capitalize;
 }
@@ -11,7 +15,7 @@
     text-transform: uppercase;
 }
 
-/* Deprecated? 
+/* Deprecated?
 
 .title-compound{
     position: relative;
@@ -20,34 +24,34 @@
         &__title{
             display: block;
             width: 100%;
-            text-align: center;         
+            text-align: center;
 
             & > *{
                 margin: 0;
-            }     
+            }
 
             h1,h2,h3,h4,h5,h6{
-                display: inline-block;    
+                display: inline-block;
                 border-bottom: 1px solid white;
                 padding: .2em 1em;
             }
-            
+
         }
 
-        &__description{        
+        &__description{
             display: block;
             width: 100%;
             margin: 0;
-            text-align: center;        
-            padding: .5em 1em;  
-            font-size: 1.1em;     
+            text-align: center;
+            padding: .5em 1em;
+            font-size: 1.1em;
 
             & > *{
                 margin: 0;
-            } 
+            }
         }
-    }    
-    
+    }
+
     .card-icon{
         position: absolute !important;
         top: 0 !important;
@@ -59,7 +63,7 @@
 
     &__description{
         margin-top: 1em;
-    }   
+    }
 }
 
 */
@@ -73,6 +77,15 @@
 .text-color-secondary{
     color: @secondary;
 }
+
+.text-sm{
+    font-size: .8em;
+}
+
+.text-md{
+    font-size: .9em;
+}
+
 
 // Text Weights
 
@@ -103,7 +116,7 @@
 
 .standout-text{
     font-family: @font-sans-alt;
-    font-weight: 200;   
+    font-weight: 200;
     font-size: 1.1em;
     color: @gray-light;
     margin: 1em 0;

@@ -13,9 +13,9 @@
         return {
             restrict : 'A',
             scope : {value : '=value', change : '&change', form : "=form"},
-            template : '<a href="javascript:;" class="counter-minus" ng-click="minus()">-</a>\
+            template : '<a href="javascript:;" class="counter-control" ng-click="minus()">-</a>\
                       <input type="text" class="counter-field" name="number_of_sessions" ng-model="value.number_of_sessions" ng-change="changed()" ng-readonly="readonly">\
-                      <a  href="javascript:;" class="counter-plus" ng-click="plus()">+</a>',
+                      <a  href="javascript:;" class="counter-control" ng-click="plus()">+</a>',
             link : function (scope, element, attributes) {
                 // Make sure the value attribute is not missing.
                 if (angular.isUndefined(scope.value)) {

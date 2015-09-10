@@ -51,6 +51,8 @@
 
         function addArrayErrors(form,responseErrors){
 
+          console.log("FOOOORMM",form);
+
             _.each(responseErrors, function (error_dict) {
 
                 _.each(error_dict, function (message, field) {

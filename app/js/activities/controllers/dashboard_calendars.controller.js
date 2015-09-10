@@ -116,7 +116,7 @@
             console.log('$stateParams:', $stateParams);
             vm.republish = $stateParams.republish;
             vm.calendar_errors = {};
-            _onSectionUpdated();
+            _onSectionUpdated();            
 
             stateChangeUnbinder = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
@@ -131,7 +131,7 @@
                         console.log('Creating New Calendar');
                     } else {
                         if(vm.republish){
-                            console.log('inside if');
+                            
                             event.preventDefault();
                             if(_hasNewCalendar()){
                                 console.log('Republish exiting. User set a valid calendar to republish');
