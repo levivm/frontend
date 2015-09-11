@@ -122,6 +122,8 @@
 
         function enroll() {
             Error.form.clear(vm.enrollForm);
+            Error.form.clearField(vm.enrollForm,'generalError');
+
 
             StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
 
@@ -217,7 +219,7 @@
                 function _enrollError(response){
                     var error = response.data;
                     if (!(error.assistants))
-                        Error.form.add(vm.enrollForm, {'generalError': [error]});
+                        Error.form.add(vm.enrollForm, error);
                     else
                         Error.form.addArrayErrors(vm.enrollForm, error.assistants);
                 }
