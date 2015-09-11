@@ -1,66 +1,60 @@
-
 <div class="navbar-secondary">
-
     <ul>
-        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#current-tab">
-            <span ng-bind="::activities.strings.TAB_CURRENT"></span>
+        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#open-tab">
+            <span ng-bind="::activities.strings.TAB_OPEN"></span>
         </li>
-
-        <li class="navbar-secondary__item" data-toggle="tab" data-toggle="tab" data-target="#history-tab">
-            <span ng-bind="::activities.strings.TAB_HISTORY"></span>
+        <li class="navbar-secondary__item" data-toggle="tab" data-target="#closed-tab">
+            <span ng-bind="::activities.strings.TAB_CLOSED"></span>
         </li>
-    </ul>    
-    
+    </ul>
 </div>
 
-
 <div class="row">
-
     <div class="col-md-11 col-md-offset-1 tab-content">
-        <div class="tab-pane text-style active fade  in" id="current-tab">
+        <div class="tab-pane text-style active fade  in" id="open-tab">
             <!--If there are activities-->
             <div class="row activity-grid">
-                <trulii-activity-item 
-                      ng-repeat="activity in activities.activities track by activity.id"
-                      data-activity="activity" data-options="{{activities.options}}">
+                <trulii-activity-item
+                        ng-repeat="activity in activities.open_activities track by activity.id"
+                        data-activity="activity" data-options="{{activities.options}}">
                 </trulii-activity-item>
             </div>
             <!--If there are no activities-->
-            <div ng-if="activities.activities.length <= 0" class="row">
+            <div ng-if="activities.open_activities.length <= 0" class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
-                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>                    
-
-                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_ORDERS">
-                                
+                    <img src="css/img/student_dashboard_activities_empty.png"
+                         alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
+                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES"></h4>
+                    <div class="separate-below separate-above standout-text"
+                         ng-bind="::activities.strings.COPY_EMPTY_ACTIVITIES">
                     </div>
-                    <a ui-sref="dash.activities-new.general" class="btn btn-lg btn-success">
-                        Buscar Actividad
-                    </a>                
+                    <a class="btn btn-lg btn-success" ui-sref="search"
+                       ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES">
+                    </a>
                 </div>
             </div>
         </div>
-        <div class="tab-pane fade" id="history-tab">
+        <div class="tab-pane fade" id="closed-tab">
             <!--If there are activities-->
             <div class="row activity-grid">
-                <trulii-activity-item 
-                      ng-repeat="activity in activities.activities track by activity.id"
-                      data-activity="activity" data-options="{{activities.options}}">
+                <trulii-activity-item
+                        ng-repeat="activity in activities.closed_activities track by activity.id"
+                        data-activity="activity" data-options="{{activities.options}}">
                 </trulii-activity-item>
             </div>
             <!--If there are no activities-->
-            <div ng-if="activities.activities.length <= 0" class="row">
+            <div ng-if="activities.closed_activities.length <= 0" class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
-                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ORDERS"></h4>                    
-
-                    <div class="separate-below separate-above standout-text" ng-bind="::activities.strings.COPY_EMPTY_ORDERS">
-                                
+                    <img src="css/img/student_dashboard_activities_empty.png"
+                         alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
+                    <h4 ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES"></h4>
+                    <div class="separate-below separate-above standout-text"
+                         ng-bind="::activities.strings.COPY_EMPTY_ACTIVITIES">
                     </div>
-                    <a class="btn btn-lg btn-success">
-                        Buscar Actividad
-                    </a>                
+                    <a class="btn btn-lg btn-success" ui-sref="search"
+                       ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES"></a>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

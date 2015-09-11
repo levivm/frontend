@@ -39,14 +39,11 @@
                 angular.extend(activity, vm.activity);
                 _setInstructors();
                 Toast.generics.weSaved();
-                // TODO Quitar onSectionUpdated
-                _onSectionUpdated();
                 vm.isSaving = false;
             }
 
             function error(responseErrors) {
                 Error.form.addArrayErrors(vm.activity_instructors_forms, responseErrors['instructors']);
-                _onSectionUpdated();
                 vm.isSaving = false;
             }
         }

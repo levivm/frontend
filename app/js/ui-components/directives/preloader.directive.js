@@ -33,7 +33,7 @@
                 //--------- Functions Implementation ---------//
 
                 function toggleLoader(event, toState, toParams, fromState, fromParams) {
-                    if (scope.isGlobal && toState.name.indexOf(".") == -1  || fromState.name.indexOf(".") == -1 ) {
+                    if (scope.isGlobal) {
                         scope.loaderControl = '$stateChangeStart' == event.name;
                     }
 

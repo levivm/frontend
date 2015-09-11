@@ -26,7 +26,8 @@
                 'instructor': '=',
                 'activity': '=',
                 'organizer': '=',
-                'onDashboard': '@?'
+                'onDashboard': '@?',
+                'onChange': '&'
             },
             link: function(scope, element, attrs){
 
@@ -93,6 +94,7 @@
 
                     function successCreate(instructor){
                         console.log('saveInstructor. Instructor created.', instructor);
+                        _onChange();
                     }
 
                     function errorCreate(response){
@@ -101,6 +103,7 @@
 
                     function successUpdate(instructor){
                         console.log('saveInstructor. Instructor updated.', instructor);
+                        _onChange();
                     }
 
                     function errorUpdate(response){
@@ -115,13 +118,18 @@
                          size : 'lg'
                      });
                      modalInstance.result.then(function () {
-                         resource.deleteInstructor(scope.instructor).then(success, error);
+                         if(scope.instructor.id){
+                             resource.deleteInstructor(scope.instructor).then(success, error);
+                         } else {
+                             _removeInstructor();
+                             _onChange();
+                         }
                      });
 
                      function success(response) {
                          _.remove(resource.instructors, 'id', scope.instructor.id);
                          _removeInstructor();
-                         _updateActivity();
+                         resource.load().then(updateSuccess, updateError);
                          Toast.info(scope.strings.MSG_DELETE_SUCCESS);
                      }
 
@@ -141,19 +149,19 @@
                     return scope.instructor.full_name && scope.instructor.bio;
                 }
 
-                function _updateActivity(){
-                    scope.activity.load().then(success, error);
-
-                    function success(){
-                        _onSectionUpdated();
-                    }
-                    function error(){
-                        _onSectionUpdated();
-                    }
+                function updateSuccess(){
+                    _onChange();
+                }
+                function updateError(){
+                    _onChange();
                 }
 
-                function _onSectionUpdated() {
-                    scope.activity.updateSection('instructors');
+                function _onChange(){
+                    if(scope.onChange) scope.onChange();
+
+                    if(!scope.onDashboard){
+                        scope.activity.updateSection('instructors');
+                    }
                 }
 
                 function _setStrings(){
@@ -186,6 +194,7 @@
                     console.log('activity:', scope.activity);
                     console.log('organizer:', scope.organizer);
                     console.log('onDashboard:', scope.onDashboard);
+                    console.log('emptyInstructor:', scope.emptyInstructor);
                     console.groupEnd();
                 }
             }

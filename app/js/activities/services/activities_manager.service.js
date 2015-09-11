@@ -6,8 +6,8 @@
  * @requires ng.$q
  * @requires trulii.activities.services.ActivityServerApi
  * @requires trulii.organizers.services.OrganizerServerApi
+ * @requires trulii.students.services.StudentServerApi
  * @requires trulii.activities.services.Activity
- * @requires trulii.activities.services.CalendarsManager
  */
 
 (function () {

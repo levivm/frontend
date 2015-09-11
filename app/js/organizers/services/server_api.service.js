@@ -37,6 +37,19 @@
 
             /**
              * @ngdoc function
+             * @name .#orders
+             * @name .#orders
+             * @description Renders **`/api/organizers/:idOrganizer/orders`** Orders List URL
+             * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'orders': function(idOrganizer){
+                return renderUrl('organizers/', [idOrganizer, 'orders']);
+            },
+
+            /**
+             * @ngdoc function
              * @name .#locations
              * @description Renders **`/api/organizers/:idOrganizer/locations`** Locations URL
              * @param {number} idOrganizer Organizer Id

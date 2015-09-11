@@ -57,10 +57,9 @@
 
                 this.location.city = city;
             },
-            load : function (id) {
+            load : function () {
                 var scope = this;
-                // serverConf.url+'/api/organizers/' + id
-                $http.get(api.organizer(id)).success(function (organizerData) {
+                return $http.get(api.organizer(scope.id)).success(function (organizerData) {
                     console.log('response');
                     console.log(organizerData);
                     scope.setData(organizerData);
@@ -145,7 +144,14 @@
             getActivities : function () {
                 return $http.get(api.activities(this.id))
                     .then(function (response) {
-                        return response.data
+                        return response.data;
+                    });
+            },
+
+            getOrders : function () {
+                return $http.get(api.orders(this.id))
+                    .then(function (response) {
+                        return response.data;
                     });
             },
 
