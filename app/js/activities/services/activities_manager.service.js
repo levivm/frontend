@@ -177,7 +177,7 @@
                 .then(function (response) {
                     _.each(response.data, function (activityData) {
                         var activity = _retrieveInstance(activityData.id, activityData);
-                        _activities.push(activity)
+                        _activities.push(activity);
                     });
                     return _activities;
                 });

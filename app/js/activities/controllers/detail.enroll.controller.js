@@ -12,9 +12,9 @@
                                             activity, calendar, currentUser) {
 
         var vm = this;
-        
         angular.extend(vm, {
             success : false,
+            loading_banks_list:false,
             calendar : null,
             activity : null,
             capacity : null,
@@ -36,7 +36,32 @@
                 exp_year: 2017,
                 cvv: null,
                 "method": ""
-            } 
+            },
+            changePSEPaymentMethod:changePSEPaymentMethod,
+            changeCCPaymentMethod:changeCCPaymentMethod,
+            enrollPSE:enrollPSE,
+            pseFormData : {
+                "banksList": [],
+                "userTypes":[
+                    {'description':'Natural','value':'N'},
+                    {'description':'Juridica','value':'J'},
+                ],
+                "idTypes":[
+                    {'description':'Cédula de ciudadanía','value':'CC'},
+                    {'description':'Cédula de extranjería','value':'CE'},
+                    {'description':'N.I.T','value':'NIT'},
+                    {'description':'Tarjeta de Indentidad','value':'TI'},
+                    {'description':'Pasaporte','value':'PP'},
+                    {'description':'Identificador único de cliente','value':'IDC'},
+                    {'description':'Número Móvil','value':'CEL'},
+                    {'description':'Registro civil de nacimiento','value':'RC'},
+                    {'description':'Documento de identificación extranjero','value':'DE'},
+                ],
+
+
+            },
+            pseData:{}
+
         });
 
         var isValidDate = false;
@@ -70,6 +95,119 @@
         //        + ", por favor intente de nuevo"]});
         //    }
         //}
+
+
+        /** PSE Payments Methods **/
+
+        function changePSEPaymentMethod(){
+
+
+            Error.form.resetForm(vm.enrollForm);
+
+            loadAvailableBanks();
+
+            function loadAvailableBanks(){
+                vm.loading_banks_list = true;
+                Payments.getAvailablePSEBanks().then(success,error).finally(stopLoader);
+
+                function success(response){
+                    vm.pseFormData.banksList = response;
+                }
+
+                function error(response){
+                    Error.form.add(vm.enrollForm, {'bank':["Error al cargar los bancos disponibles"]});
+                    return {}; 
+                }
+
+                function stopLoader(){
+                    vm.loading_banks_list = false;
+                }
+
+
+
+            }
+
+        }
+
+        function changeCCPaymentMethod(){
+
+            Error.form.resetForm(vm.enrollForm);
+
+        }
+
+
+        function enrollPSE(){
+            Error.form.clear(vm.enrollForm);
+            Error.form.clearField(vm.enrollForm,'generalError');
+
+            
+            StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
+
+            function getStudentSuccess(student){
+
+                var buyer = {};
+
+                buyer[Payments.KEY_NAME]  = vm.pseData.name;
+                buyer[Payments.KEY_PAYER_EMAIL] = vm.pseData.payerEmail;
+                buyer[Payments.KEY_CONTACT_PHONE] = vm.pseData.contactPhone; 
+
+                var bank = vm.pseData.selectedBank ? vm.pseData.selectedBank.pseCode : null;
+                var userType = vm.pseData.selectedUserType ? vm.pseData.selectedUserType.value : null;
+                var idType = vm.pseData.selectedIdType ? vm.pseData.selectedIdType.value : null;
+                var idNumber = vm.pseData.idNumber;
+
+                var buyer_pse_data = {
+                     response_url: Payments.PAYU_RESPONSE_URL,
+                     bank: bank,
+                     userType: userType,
+                     idType: idType,
+                     idNumber: idNumber
+                };
+
+                var data = {
+                    activity: activity.id,
+                    chronogram: calendar.id,
+                    amount: vm.quantity * calendar.session_price,
+                    quantity: vm.quantity,
+                    assistants: vm.assistants,
+                    buyer: buyer,
+                    buyer_pse_data:buyer_pse_data,
+                    payment_method: Payments.KEY_PSE_PAYMENT_METHOD,
+
+                };
+
+                ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
+
+                function _enrollSuccess(response) {
+                    calendar.addAssistants(response.assistants);
+                    vm.success = true;
+                    $state.go('activities-enroll.success');
+                }
+
+                function _enrollError(response){
+                    var errors = response.data;
+                    if (!(errors.assistants))
+                        Error.form.add(vm.enrollForm, errors);
+                    else
+                        Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
+                }
+
+
+
+
+            }
+
+            function getStudentError(response){
+                console.log("Error getting current logged student:", response);
+            }
+
+
+
+        }
+
+
+
+        /** -----/ PSE Payments Methods **/
 
 
 
@@ -123,7 +261,6 @@
         function enroll() {
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
-
 
             StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
 
@@ -334,6 +471,14 @@
                 LABEL_LAST_NAME: "Apellido",
                 LABEL_EMAIL: "Email",
                 LABEL_PAYMENT_INFO: "Información de Pago",
+
+                LABEL_ID_NUMBER:"Número de identificación",
+                LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
+                LABEL_BANKS:"Banco",
+                LABEL_USER_TYPE:"Tipo de Persona",
+                LABEL_ID_TYPE:"Tipo de Documento de Identificación",
+
+                LABEL_PHONE_NUMBER:"Teléfono",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
                 LABEL_CARD_HOLDER: "Nombre del Titular (Sobre la tarjeta)",
                 PLACEHOLDER_CARD_HOLDER: "Nombre en la tarjeta",
@@ -365,6 +510,9 @@
 
             vm.capacity = calendar.capacity;
             vm.amount = calendar.session_price;
+
+            if(currentUser)
+                 vm.pseData.email = currentUser.user.email;
 
             if(_isAllBooked()){
                 vm.quantity = 0;

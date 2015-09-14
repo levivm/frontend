@@ -31,6 +31,17 @@
              */
             'payUInfo' : function (){
                 return renderUrl('payment/', ['info']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name trulii.payments.services.PaymentServerApi#bankListPSE
+             * @description Renders **`/api/payment/pse/banks`** PayU available Banks for PSE transactions
+             * @return {string} Rendered URL
+             * @methodOf trulii.payments.services.PaymentServerApi
+             */
+            'PSEBankList' : function (){
+                return renderUrl('payments/', ['pse','banks']);
             }
         };
 

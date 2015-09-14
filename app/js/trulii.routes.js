@@ -374,7 +374,7 @@
                 resolve: {
                     activity: getActivity,
                     calendar: fetchCalendar,
-                    currentUser: getAuthenticatedUser
+                    currentUser: getAuthenticatedUser,
                 }
             })
             .state('activities-enroll.success', {
@@ -558,6 +558,7 @@
     function getActivities(ActivitiesManager){
         return ActivitiesManager.getActivities();
     }
+
 
     /**
      * @ngdoc method

@@ -14,11 +14,12 @@
         .module('trulii.payments.services')
         .factory('Payments', Payments);
 
-    Payments.$inject = ['$q', '$window'];
+    Payments.$inject = ['$q', '$window','$http','PaymentServerApi'];
 
-    function Payments($q, $window) {
+    function Payments($q, $window,$http,PaymentServerApi) {
 
         var payU = $window.payU;
+        var api = PaymentServerApi;
 
         //var api = PaymentServerApi;
         var PAYU_API_DATA = null;
@@ -33,7 +34,9 @@
         var KEY_NAME_CARD = "name_card";
         var KEY_NAME = "name";
         var KEY_EMAIL = "email";
+        var KEY_PAYER_EMAIL = "payerEmail";
         var KEY_NUMBER = "number";
+        var KEY_CONTACT_PHONE = "contactPhone";
         var KEY_EXP_MONTH = "exp_month";
         var KEY_EXP_YEAR = "exp_year";
         var KEY_METHOD = "method";
@@ -43,11 +46,14 @@
         var KEY_IDENTIFICATION_NUMBER ="identificationNumber";
         var KEY_CVV = "cvv";
         var KEY_TOKEN = "token";
+        var PAYU_RESPONSE_URL = "https://api.trulii.com/api/payments/pse/response";
         var cardTypes = ['VISA', 'MASTERCARD', 'AMEX', 'DINERS', 'DISCOVER'];
         var requiredCardFields = {};
             requiredCardFields[KEY_NUMBER] = 'cardNumber';
             requiredCardFields[KEY_NAME_CARD] = 'cardHolder';
             requiredCardFields[KEY_EXP_YEAR]  = 'cardYear';
+
+        var banksList = null;
 
 
         _setPayUUp();
@@ -73,6 +79,15 @@
              * @methodOf trulii.payments.services.Payments
              */
             getToken: getToken,
+
+            /**
+             * @ngdoc function
+             * @name .#getAvailablePSEBanks
+             * @description Get banks list from PayU
+             * @return {promise} Promise containing bank list
+             * @methodOf trulii.payments.services.Payments
+             */
+            getAvailablePSEBanks: getAvailablePSEBanks,
 
             /**
              * @ngdoc function
@@ -104,7 +119,7 @@
              * @methodOf trulii.payments.services.Payments
              */
             validateCardType : validateCardType,
-
+            // banks:banks,
             KEY_CARD_ASSOCIATION: KEY_CARD_ASSOCIATION,
             KEY_PAYER_ID : KEY_PAYER_ID,
             KEY_NAME : KEY_NAME,
@@ -120,6 +135,9 @@
             KEY_PSE_PAYMENT_METHOD: KEY_PSE_PAYMENT_METHOD,
             KEY_DOCUMENT: KEY_DOCUMENT,
             KEY_METHOD: KEY_METHOD,
+            KEY_CONTACT_PHONE:KEY_CONTACT_PHONE,
+            PAYU_RESPONSE_URL:PAYU_RESPONSE_URL,
+            KEY_PAYER_EMAIL:KEY_PAYER_EMAIL,
             requiredCardFields:requiredCardFields
         };
 
@@ -156,6 +174,36 @@
             deferred.resolve(payUData);
             return deferred.promise;
         }
+
+
+        /** PSE Payments Methods **/
+
+
+        function getAvailablePSEBanks(){
+            var deferred = $q.defer();
+
+            if(banksList)
+                deferred.resolve(banksList);
+            else
+                $http.get(api.PSEBankList()).then(success,error);
+
+            function success(response){
+                banksList = response.data;
+                deferred.resolve(banksList);
+            }
+
+            function error(response){   
+                deferred.reject({});                
+            }
+
+            return deferred.promise;
+
+
+        }
+
+        /**  --/PSE Payments Methods **/
+
+
 
         function getToken(paymentData) {
 

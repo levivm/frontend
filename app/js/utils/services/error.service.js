@@ -32,7 +32,8 @@
                 clear: clearErrors,
                 add: addErrors,
                 addArrayErrors:addArrayErrors,
-                clearField:clearFieldError
+                clearField:clearFieldError,
+                resetForm:resetForm
             },
             session: {
                 process: processSessionErrors
@@ -48,9 +49,24 @@
 
         }
 
+        function resetForm(form){
+            clearErrors(form);
+
+            for(var propertyName in form) {
+
+                if (propertyName.indexOf('$') < 0 ){
+                    form[propertyName].$setValidity(propertyName, true);
+                }
+
+            }
+
+
+        }
+
         function clearErrors(form) {
 
             form.$setPristine();
+
 
             if (form.hasOwnProperty(FORM_FIELD_ALL))
                 form[FORM_FIELD_ALL].$setValidity(FORM_FIELD_ALL, true);
