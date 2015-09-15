@@ -246,10 +246,9 @@
                                     <div class="panel-heading">
                                         <h4 ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></h4>
                                     </div>
-                                    <trulii-preloader loader-control="enroll.loading_banks_list"></trulii-preloader>
-                                    <div class="panel-body" ng-show="!enroll.loading_banks_list">
-                                        
-                                        <div class="col-md-8 col-md-offset-2 separate-above" >
+                                    <div class="panel-body" >
+                                        <trulii-preloader loader-control="enroll.loading_banks_list"></trulii-preloader>
+                                        <div class="col-md-8 col-md-offset-2 separate-above" ng-show="!enroll.loading_banks_list" >
                                             <div class="form-group" trulii-input-errors-control="bank">
                                                 <select  class="form-control" name="bank"
                                                         ng-model="enroll.pseData.selectedBank"

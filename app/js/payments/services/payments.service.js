@@ -187,6 +187,7 @@
             else
                 $http.get(api.PSEBankList()).then(success,error);
 
+
             function success(response){
                 banksList = response.data;
                 deferred.resolve(banksList);
