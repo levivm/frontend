@@ -1,3 +1,4 @@
+//noinspection JSValidateJSDoc
 /**
  * @ngdoc service
  * @name trulii.authentication.services.Authentication
@@ -42,10 +43,8 @@
             forgot_password: forgot_password,
             change_password: change_password,
             change_email: change_email,
-            // updateAuthenticatedAccount: updateAuthenticatedAccount,
             setAuthenticatedAccount: setAuthenticatedAccount,
             unauthenticate: unauthenticate,
-            // getCurrentUser:getCurrentUser,
             isStudent: isStudent,
             isOrganizer: isOrganizer,
             USER_CHANGED_EVENT : USER_CHANGED_EVENT,
@@ -99,7 +98,7 @@
     
             function success(response){
 
-                updateData(response.data.user,response.data.token);
+                _updateData(response.data.user,response.data.token);
                 return response;
             }
 
@@ -123,13 +122,12 @@
             .then(success, error);
 
             function success(response){
-
-                updateData(response.data.user,response.data.token);
+                _updateData(response.data.user, response.data.token);
                 return response;
             }
 
             function error(response){
-                console.log("response BAD login",response);
+                console.log("Invalid Login Credentials. Response:",response);
                 return $q.reject(response);
             }
         }
@@ -231,16 +229,6 @@
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             });
-            // .then(success, error);
-
-            // function success(response){
-            //     updateData(response.data);
-            //     return response.data;
-            // }
-
-            // function error(){
-
-            // }
         }
 
         /** AUTH HELPER / CALLBACKS METHODS */
@@ -269,34 +257,14 @@
             }
         }
 
-        // function getCurrentUser(){
-        //     return $http.get(api.current());
-        // }
-
-        function getToken(login_data){
-            return $http({
-                method: 'post',
-                url: api.token(),
-                data: login_data
-            });
-        }
-
         function setAuthenticatedAccount(data){
-            updateData(data);
+            _updateData(data);
             return data;
         }
 
         function setAuthenticationToken(token){
-            updateData(null, token);
+            _updateData(null, token);
         }
-
-        // function updateAuthenticatedAccount() {
-        //     return getAuthenticatedAccount(true)
-        //         .then(function(response){
-        //             updateData(response.data);
-        //             return response.data;
-        //         });
-        // }
 
         function isAuthenticated() {
             return !!localStorageService.get(USER_KEY);
@@ -319,7 +287,7 @@
 
             function success(response){
                 var user = response.data;
-                updateData(user);
+                _updateData(user);
                 deferred.resolve(localStorageService.get(USER_KEY));
             }
 
@@ -328,7 +296,7 @@
             }
         }
 
-        function updateData(user, token){
+        function _updateData(user, token){
             if(user){
                 localStorageService.set(USER_KEY, user);
                 $rootScope.$emit(USER_CHANGED_EVENT);

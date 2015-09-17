@@ -6,8 +6,8 @@
  * @requires ng.$q
  * @requires trulii.activities.services.ActivityServerApi
  * @requires trulii.organizers.services.OrganizerServerApi
+ * @requires trulii.students.services.StudentServerApi
  * @requires trulii.activities.services.Activity
- * @requires trulii.activities.services.CalendarsManager
  */
 
 (function () {
@@ -17,9 +17,9 @@
         .factory('ActivitiesManager', ActivitiesManager);
 
     ActivitiesManager.$inject = ['$http', '$q', 'ActivityServerApi', 'OrganizerServerApi', 'StudentServerApi',
-        'Activity', 'CalendarsManager'];
+        'Activity'];
 
-    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity, CalendarsManager) {
+    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity) {
 
         var api = ActivityServerApi;
         var apiOrg = OrganizerServerApi;
@@ -98,6 +98,15 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             getCategories : getCategories,
+
+            /**
+             * @ngdoc method
+             * @name .#getSubcategoryCovers
+             * @description Returns activity subcategory covers
+             * @return {array} Covers array
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getSubcategoryCovers: getSubcategoryCovers,
 
             /**
              * @ngdoc method
@@ -208,6 +217,22 @@
                 });
             }
             return deferred.promise;
+        }
+
+        function getSubcategoryCovers(subcategoryId){
+            if(subcategoryId === null){
+                console.log('ActivitiesManager.getSubcategoryCovers. subcategoryId not valid:');
+                return [];
+            }
+            return $http.get(api.subcategoryCovers(subcategoryId)).then(success, error);
+
+            function success(response){
+                return response.data.pictures;
+            }
+            function error(response){
+                console.log('Error retrieving Cover Pool for subcategory:', subcategoryId, '.', response);
+                return [];
+            }
         }
 
         function enroll(activityId, data) {

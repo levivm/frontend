@@ -98,10 +98,6 @@
             toastr.info( complement, "¡Información guardada!");   // TODO: From translate
         }
 
-        function deleted(complement){
-          toastr.info(complement, "Información eliminada");   // TODO: From translate 
-        }
-
         function setPosition(classPos) {
 
             toastr.options["positionClass"] = classPos;

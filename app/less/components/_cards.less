@@ -2,10 +2,15 @@
 
 @import url('../_trulii-variables');
 
-.card{	
-	border-radius: @material-border-radius;
-	margin: 1.5em 0;
+@card-add-icon-height: 8em;
+
+.card{
+  	margin: 1.5em 0;
 	padding: 0;
+	display: block;
+	width: 100%;
+	border: 1px solid @gray-light-medium;
+	border-radius: @border-radius-standard;
 
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
@@ -14,10 +19,10 @@
 		-moz-border-radius-topright: @material-border-radius;
 		border-top-left-radius: @material-border-radius;
 		border-top-right-radius: @material-border-radius;
-		
+
 		padding: @card-padding;
 		color: @lightbg-text;
-		
+
 		&--primary{
 			background: @primary;
 			color: darken(@primary-dark, 15%);
@@ -33,7 +38,7 @@
 			// TODO: This must be extend from .input--main
 
 			.form-control{
-				display: inline-block;				
+				display: inline-block;
 				text-align: left;
 				padding-left: 1.5em;
 			}
@@ -43,7 +48,7 @@
 				width: 18%;
 				display: inline-block;
 			}
-			
+
 		}
 	}
 
@@ -58,9 +63,10 @@
 			color: @secondary;
 		}
 	}
-	
+
 	.card-body{
 		padding: @card-padding;
+		background-color: white;
 
 		&--shrink{
 			padding-left: @card-padding*2;
@@ -69,20 +75,122 @@
 	}
 
 	.card-footer{
-		border-top: 1px solid @color-delimeter-dark;
-		padding: @card-padding;
-		height: auto;		
+		display: block;
+        width: 100%;
+        height: 3.5em;
+        line-height: 3.5em;
+        background: @gray-lighter;
+        color: @gray-light;
+        text-align: center;
+        font-weight: bold;
+        font-family: @font-sans-alt;
 	}
 
-	.card-list-item{
-		.card-footer
+	&-list-item{
+		padding: 3em 2em;
+		position: relative;
+		background-color: white !important;
+		//margin-bottom: 2em;
+		font-family: @font-sans-alt;
+
+		h1{
+			font-size: 1.2em;
+			font-weight: 700;
+		}
+
+		h2{
+			font-size: 1.1em;
+			font-weight: 700;
+		}
+
+		h5{
+			font-weight: normal;
+			color: @gray-light;
+		}
+
+		h3{
+			color: @gray-light;
+			font-weight: 700;
+			font-size: .9em;
+		}
+
+		&__actions{
+			position: absolute;
+			top: 1em;
+			right: 1em;
+
+			i{
+				color: @gray-light-medium;
+				cursor: pointer;
+				font-size: 1.2em;
+				display: inline-block;
+				padding:  0 .5em;
+
+				&:hover{
+					color: @success;
+				}
+			}
+		}
+
+		label, input{
+			font-size: .9em;
+		}
+
+		&--empty{
+		  	border: 1px dashed;
+		  	display: table;
+			font-weight: normal;
+			color: @gray-light;
+			cursor: pointer;
+			padding: 0;
+
+			& > *{
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			}
+
+			&:hover{
+				border-color: @success;
+			}
+		}
+
+		&__add-icon{
+			background-color: @gray-light-medium;
+			border-radius: 50%;
+			width: @card-add-icon-height;
+			height: @card-add-icon-height;
+			display: inline-block;
+			margin-bottom: 1em;
+			font-weight: 200;
+
+			&:before{
+				content: '+';
+				font-size: 4em;
+				display: inline-block;
+				width: 100%;
+				color: @gray-light;
+				line-height: (@card-add-icon-height - 4) / 2;
+
+			}
+
+			.card-list-item:hover &{
+				background-color: @success;
+
+				&:before{
+					color: white;
+				}
+			}
+		}
 	}
 
 	&--shrink{
-		.card-body, .card-header, .card-list-item, .card-footer{
-			padding-left: @card-padding + 2;
-			padding-right: @card-padding + 2;
-		}	
+		padding-left: 3em;
+		padding-right: 3em;
+	}
+
+	&--narrow{
+		padding: 1.5em;
 	}
 
 	&__lateral-menu{
@@ -90,8 +198,8 @@
 		position: absolute;
 		top: 0px;
 		bottom: 0px;
-		padding: 0px;	
-		background-color: @secondary;	
+		padding: 0px;
+		background-color: @secondary;
 		padding-top: 1.3em;
 
 		&__item{
@@ -100,7 +208,7 @@
 			padding: 1.5em 1em;
 			color: white;
 			background-color: darken(@secondary, 5%);
-			border-bottom: 1px solid @secondary;			
+			border-bottom: 1px solid @secondary;
 			transition: .3s background-color ease;
 			cursor: pointer;
 			font-size: 1.1em;
@@ -125,16 +233,16 @@
 			}
 		}
 
-		&__title{			
+		&__title{
 			&:extend(.strong-text-muted);
 			display: block;
 			width: 100%;
-			text-align: center;			
-			padding-bottom: 1.5em;						
-			font-size: 1.2em;			
+			text-align: center;
+			padding-bottom: 1.5em;
+			font-size: 1.2em;
 
-			
-		}		
+
+		}
 	}
 
 	[class^="mdi-"]{
@@ -151,5 +259,3 @@
     margin-bottom: 2px;
     display: inline-block;
 }
-
-

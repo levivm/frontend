@@ -47,8 +47,6 @@
                 Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
                 delete responseErrors['sessions'];
                 Error.form.add(vm.activity_calendar_form, responseErrors);
-                console.log("ERROR",vm.calendar);
-                console.log("ERROR",vm.calendar);
             }
 
             vm.isSaving = false;
@@ -85,7 +83,8 @@
 
             vm.dateOptions = {
                 formatYear : 'yy',
-                startingDay : 1
+                startingDay : 1,
+                showWeeks: false
             };
 
             vm.ismeridian = true;

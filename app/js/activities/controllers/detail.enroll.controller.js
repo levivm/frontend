@@ -5,28 +5,156 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'Authentication', 'Toast', 'Error',
+    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error',
         'activity', 'calendar', 'currentUser'];
 
-    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, Authentication, Toast, Error,
+    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser) {
 
         var vm = this;
+        angular.extend(vm, {
+            success : false,
+            calendar : null,
+            activity : null,
+            capacity : null,
+            amount : null,
+            quantity : 0,
+            assistants : [],
+            minus : minus,
+            plus : plus,
+            enroll : enroll,
+            isAnonymous : isAnonymous,
+            //checkCardNumber : checkCardNumber,
+            checkCardExpiry : checkCardExpiry,
+            getCardType: getCardType,
+            cardData : {
+                "name_card": "APPROVED",
+                "identificationNumber": "32144457",
+                "number": "4111111111111111",
+                exp_month: 1,
+                exp_year: 2017,
+                cvv: null,
+                "method": ""
+            } 
+        });
 
-        vm.success = false;
-        vm.calendar = null;
-        vm.activity = null;
-        vm.capacity = null;
-        vm.amount = null;
-        vm.quantity = 0;
-        vm.assistants = [];
-
-        vm.minus = minus;
-        vm.plus = plus;
-        vm.enroll = enroll;
-        vm.isAnonymous = isAnonymous;
+        var isValidDate = false;
+        //var isValidNumber = false;
 
         _activate();
+
+        //--------- Exposed Functions ---------//
+
+        //function checkCardNumber(){
+        //    Error.form.clear(vm.enrollForm);
+        //    //vm.cardData.number = vm.cardData.number.replace(/-|\s/g,"");
+        //    Payments.validateCardNumber().then(success, error);
+        //
+        //    function success(isValid){
+        //        console.log("checkCardNumber. isValid:", isValid);
+        //        if(isValid){
+        //            isValidNumber = true;
+        //        } else {
+        //            //TODO i18n
+        //            isValidNumber = false;
+        //            Error.form.add(vm.enrollForm, {'invalidNumber': ["Número inválido. Por favor verifique "
+        //            + "el número en su tarjeta"]});
+        //        }
+        //    }
+        //
+        //    function error(){
+        //        console.log("Couldn't validate card number");
+        //        isValidNumber = false;
+        //        Error.form.add(vm.enrollForm, {'invalidNumber': ["No se pudo validar su número de tarjeta"
+        //        + ", por favor intente de nuevo"]});
+        //    }
+        //}
+
+        function getCardType(){
+            Payments.validateCardType(vm.cardData.number).then(success, error);
+
+            function success(cardType){
+                console.log("card type:", cardType);
+                vm.cardData.method = cardType;
+
+            }
+            function error(){
+                console.log("Couldn't check card type");
+            }
+        }
+
+        function checkCardExpiry(){
+            Error.form.clear(vm.enrollForm);
+            var card = vm.cardData;
+            if(card.exp_year && card.exp_month){
+                Payments.validateExpiryDate(card.exp_year, card.exp_month).then(success, error);
+            }
+
+            function success(isValid){
+                console.log("checkCardExpiry. isValid:", isValid);
+                if(isValid){
+                    isValidDate = true;
+                } else {
+                    isValidDate = false;
+                    Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
+                }
+            }
+            function error(){
+                console.log("Couldn't validate card expiry date");
+                isValidDate = false;
+                Error.form.add(vm.enrollForm, {'invalidExpiry': ["No se pudo validar fecha de vencimiento de su tarjeta"
+                    + ", por favor intente de nuevo"]});
+            }
+
+        }
+
+        function enroll() {
+            Error.form.clear(vm.enrollForm);
+            StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
+
+            function getStudentSuccess(student){
+                vm.cardData[Payments.KEY_PAYER_ID] = student.id;
+                vm.cardData.expirationDate = [vm.cardData.exp_month, vm.cardData.exp_year].join('/');
+                Payments.getToken(vm.cardData).then(getTokenSuccess, getTokenError);
+            }
+
+            function getStudentError(response){
+                console.log("Error getting current logged student:", response)
+            }
+
+            function getTokenSuccess(response){
+                console.log('token response:', response);
+                var token = response[Payments.KEY_TOKEN];
+                var buyer = {};
+                buyer[Payments.KEY_NAME] = response[Payments.KEY_NAME];
+                buyer[Payments.KEY_EMAIL] = currentUser.user.email;
+                var data = {
+                    activity: activity.id,
+                    chronogram: calendar.id,
+                    token: token,
+                    amount: vm.quantity * calendar.session_price,
+                    quantity: vm.quantity,
+                    assistants: vm.assistants,
+                    buyer: buyer
+                };
+                data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
+
+                ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
+
+                function _enrollSuccess(response) {
+                    calendar.addAssistants(response.assistants);
+                    vm.success = true;
+                    $state.go('activities-enroll.success');
+                }
+
+                function _enrollError(errors){
+                    Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
+                }
+            }
+            function getTokenError(error){
+                console.log("Couldn't get token from Pay U", error);
+            }
+        }
 
         function isAnonymous(){
             return !Authentication.isAuthenticated();
@@ -50,30 +178,7 @@
             }
         }
 
-        function enroll() {
-            _clearErrors();
-
-            //TODO pedir de un Service
-            var student_data = JSON.parse(localStorage.getItem('ls.user'));
-
-            var data = {
-                chronogram: calendar.id,
-                student: student_data.id,
-                amount: vm.quantity * calendar.session_price,
-                quantity: vm.quantity,
-                assistants: vm.assistants
-            };
-
-            ActivitiesManager.enroll(activity.id, data)
-                .success(_successCreation)
-                .error(_error);
-        }
-
-        function _successCreation(response) {
-            calendar.addAssistants(response.assistants);
-            vm.success = true;
-            $state.go('activities-enroll.success');
-        }
+        //--------- Internal Functions ---------//
 
         function _calculateAmount() {
             vm.amount = vm.quantity * calendar.session_price;
@@ -81,14 +186,6 @@
 
         function _isAllBooked(){
             return calendar.capacity <= calendar.assistants.length;
-        }
-
-        function _clearErrors() {
-            Error.form.clear(vm.enrollForm);
-        }
-
-        function _error(errors){
-            Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
         }
 
         function _setStrings() {
@@ -103,16 +200,14 @@
                 COPY_NO_ASSISTANTS: "esta actividad no tiene asistentes ¡Sé tú el primero!",
                 COPY_ONE_ASSISTANT: "va 1 asistente ¡Faltas tú!",
                 COPY_MANY_ASSISTANTS: "van {} asistentes ¡Faltas tú!",
-                COPY_RELEASE: "Haciendo click en \"Pagar\" estoy de acuerdo con el monto total a cancelar,"
+                COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                     + " el cual incluye la comisión de la plataforma de pago,"
                     + " y con los Términos y Condiciones de Trulii",
                 ACTION_LOGIN: "Inicia Sesion",
                 ACTION_REGISTER: "Regístrate",
                 ACTION_ENROLL: "Inscribir",
                 ACTION_RETURN: "Volver a Actividad",
-                COPY_CONGRATULATIONS: "¡Felicidades!",
                 COPY_ASSISTANT_NUMBER: "Asistente #",
-                ACTION_VIEW_PROFILE: "Ver Perfil",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
@@ -128,6 +223,17 @@
                 LABEL_EMAIL: "Email",
                 LABEL_PAYMENT_INFO: "Información de Pago",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
+                LABEL_CARD_HOLDER: "Nombre del Titular (Sobre la tarjeta)",
+                PLACEHOLDER_CARD_HOLDER: "Nombre en la tarjeta",
+                LABEL_CARD_NUMBER:"Número de tarjeta",
+                PLACEHOLDER_CARD_NUMBER: "Número de tarjeta",
+                LABEL_EXPIRY_DATE : "Fecha de Expiración",
+                LABEL_MONTH: "Mes",
+                PLACEHOLDER_MONTH: "MM",
+                LABEL_YEAR: "Año",
+                PLACEHOLDER_YEAR: "YYYY",
+                LABEL_CVV:"CVV",
+                PLACEHOLDER_CVV:"CVV"
             });
         }
 

@@ -1,10 +1,18 @@
 /**
- * Register controller
- * @namespace thinkster.organizers.controllers
+ * @ngdoc controller
+ * @name trulii.organizers.controllers.OrganizerProfileCtrl
+ * @description Handles Organizer Account Dashboard section
+ * @requires ng.$timeout
+ * @requires uiGmapgoogle-maps.directives.api.utils.uiGmapIsReady
+ * @requires trulii.locations.services.LocationManager
+ * @requires trulii.ui-components.services.Toast
+ * @requires trulii.utils.services.Error
+ * @requires organizer
+ * @requires cities
  */
+
 (function () {
     'use strict';
-
 
     angular
         .module('trulii.organizers.controllers')
@@ -12,38 +20,32 @@
 
     OrganizerProfileCtrl.$inject = ['$timeout', 'uiGmapIsReady', 'LocationManager', 'Toast', 'Error',
         'organizer', 'cities'];
-    /**
-     * @namespace RegisterController
-     */
     function OrganizerProfileCtrl($timeout, uiGmapIsReady, LocationManager, Toast, Error, organizer, cities) {
 
         var vm = this;
+        angular.extend(vm, {
+            organizer : angular.copy(organizer),
+            cities : cities,
+            photo_path : organizer.photo,
+            errors : {},
+            photo_invalid : false,
+            photo_loading : false,
+            isSaving : false,
+            map : LocationManager.getMap(organizer.location),
+            marker : LocationManager.getMarker(organizer.location),
+            uploadPicture : uploadPicture,
+            submit_info : update_info,
+            submit_video : update_video,
+            submit_location : update_location
+        });
 
-        vm.organizer = angular.copy(organizer);
-        vm.cities = cities;
-        vm.photo_path = vm.organizer.photo;
-        vm.errors = {};
-        vm.photo_invalid = false;
-        vm.photo_loading = false;
-        vm.load_map = initialize_map;
+        _activate();
 
-        vm.map = LocationManager.getMap(vm.organizer.location);
-
-        vm.marker = LocationManager.getMarker(vm.organizer.location);
-        vm.uploadPicture = uploadPicture;
-        vm.submit_info = update_info;
-        vm.submit_video = update_video;
-        vm.submit_location = update_location;
-        vm.isSaving = false;
-
-        activate();
+        //--------- Exposed Functions ---------//
 
         function uploadPicture(image) {
-            if (!image)
-                return;
-
-            vm.organizer.upload_photo(image)
-                .then(_successUploaded, _erroredUpload, _progressUpload);
+            if (!image) { return; }
+            vm.organizer.upload_photo(image).then(_successUploaded, _errorUpload, _progressUpload);
         }
 
         function update_video() {
@@ -51,11 +53,27 @@
                 .then(_updateSuccess, _updateFail);
         }
 
+        function update_info() {
+            Error.form.clear(vm.profile_form_info);
+
+            vm.organizer.update_profile()
+                .then(_updateSuccess, _updateFail);
+        }
+
+        function update_location() {
+            Error.form.clear(vm.organizer_location_form);
+            _setOrganizerPos();
+            vm.organizer.update_location(vm.organizer.location)
+                .then(_successUpdatedLocation, _updateFail)
+        }
+
+        //--------- Internal Functions ---------//
+
         function _progressUpload() {
             vm.photo_loading = true;
         }
 
-        function _erroredUpload(response) {
+        function _errorUpload(response) {
             vm.photo_loading = false;
             if (response['errors']) {
                 vm.photo_invalid = true;
@@ -73,41 +91,10 @@
             vm.photo_loading = false;
         }
 
-        function update_info() {
-            Error.form.clear(vm.profile_form_info);
-
-            vm.organizer.update_profile()
-                .then(_updateSuccess, _updateFail);
-        }
-
-        function update_location() {
-            Error.form.clear(vm.organizer_location_form);
-            _setOrganizerPos();
-            vm.organizer.update_location(vm.organizer.location)
-                .then(_successUpdatedLocation, _updateFail)
-        }
-
         function _successUpdatedLocation(response) {
             vm.isSaving = false;
             angular.extend(organizer, vm.organizer);
             Toast.generics.weSaved();
-        }
-
-        function _setOrganizerPos() {
-            vm.organizer.location.point = [];
-            vm.organizer.location.point[0] = vm.marker.coords.latitude;
-            vm.organizer.location.point[1] = vm.marker.coords.longitude;
-        }
-
-
-        function initialize_map() {
-            uiGmapIsReady.promise(1).then(function (instances) {
-                instances.forEach(function (inst) {
-                    var map = inst.map;
-                    google.maps.event.trigger(map, 'resize');
-                    vm.map.control.refresh(vm.map.center);
-                });
-            });
         }
 
         function _updateSuccess() {
@@ -123,7 +110,23 @@
             vm.isSaving = false;
         }
 
-        function setStrings() {
+        function _setOrganizerPos() {
+            vm.organizer.location.point = [];
+            vm.organizer.location.point[0] = vm.marker.coords.latitude;
+            vm.organizer.location.point[1] = vm.marker.coords.longitude;
+        }
+
+        function _initialize_map() {
+            uiGmapIsReady.promise(1).then(function (instances) {
+                instances.forEach(function (inst) {
+                    var map = inst.map;
+                    google.maps.event.trigger(map, 'resize');
+                    vm.map.control.refresh(vm.map.center);
+                });
+            });
+        }
+
+        function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
@@ -132,15 +135,17 @@
                 ACTION_DELETE: "Eliminar",
                 ACTION_UPDATE_PICTURE: "Cambiar Foto",
                 ACTION_VIEW_PROFILE: "Ver Perfil",
-                SECTION_PROFILE: "Mi Perfil",
-                TAB_INFO: "Información",
-                TAB_VIDEO: "Video",
-                TAB_LOCATION: "Ubicación",
-                TAB_COMMENTS: "Comentarios",
+                SECTION_PROFILE: "Perfil",
+                COPY_PROFILE: "Esta información aparecerá en tu perfil y lo verán los demás usuarios",
+                COPY_VIDEO: "¿Posee algún video donde describa o presente su organización?",
+                COPY_LOCATION: "¿Donde funciona su organización?",
+                SUB_SECTION_VIDEO: "Video",
+                SUB_SECTION_LOCATION: "Ubicación",
+                SUB_SECTION_COMMENTS: "Comentarios",
                 LABEL_FULL_NAME: "Nombre Completo",
                 LABEL_BIO: "Biografía",
                 LABEL_HEADLINE: "Descripción Corta",
-                LABEL_VIDEO: "Video",
+                LABEL_VIDEO: "Dirección en Youtube del vídeo",
                 LABEL_CITY: "Ciudad",
                 LABEL_ADDRESS: "Dirección Exacta",
                 OPTION_SELECT: "Seleccione...",
@@ -152,12 +157,9 @@
             });
         }
 
-        function activate(){
-            setStrings();
-            // initialize_map();
-            console.log('organizer:', organizer);
-            console.log('vm.map:', vm.map);
-            console.log('vm.marker:', vm.marker);
+        function _activate(){
+            _setStrings();
+            _initialize_map();
         }
 
     }

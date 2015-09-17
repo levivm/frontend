@@ -16,6 +16,6 @@
              * @returns {number} Maximum number of instructors per activity
              * @propertyOf trulii.organizers.services.OrganizerConstants
              */
-            'max_allowed_instructors' : 3
+            'max_allowed_instructors' : 4
         });
 })();

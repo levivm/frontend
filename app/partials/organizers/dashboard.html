@@ -1,21 +1,45 @@
-<div class="container-fluid navbar-secondary" >
-    <a class="navbar-secondary__item"
-       ui-sref=".activities" ui-sref-active="navbar-secondary__item--selected">
-        <i class="mdi-social-school"></i>
-        <span> </span>
-        <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
-    </a>
-    <a class="navbar-secondary__item"
-       ui-sref=".account" ui-sref-active="navbar-secondary__item--selected">
-        <i class="mdi-action-settings"></i>
-        <span> </span>
-        <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span></a>
-    <a class="navbar-secondary__item"
-       ui-sref=".profile" ui-sref-active="navbar-secondary__item--selected">
-        <i class="mdi-action-account-circle"></i>
-        <span> </span>
-        <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
-    </a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="sidebar lateral-slide">
+            <a ui-sref=".profile"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.profile.*')}">
+                <i class="sidebar__item__icon mdi-action-account-circle"></i>
+                <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
+            </a>
+            <a ui-sref=".account.settings"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.account.*')}">
+                <i class="sidebar__item__icon mdi-action-settings"></i>                    
+                <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>                                                                        
+            </a>
+            <a ui-sref=".activities.open"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.activities.*')}">
+                <i class="sidebar__item__icon mdi-social-school"></i>
+                <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
+            </a>
+            <a ui-sref=".instructors"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.instructors')}">
+                <i class="sidebar__item__icon mdi-social-people"></i>
+                <span ng-bind="::dash.strings.SECTION_INSTRUCTORS"></span>
+            </a>
+            <a ui-sref=".reviews.pending"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.reviews.*')}">
+                <i class="sidebar__item__icon mdi-communication-comment"></i>
+                <span ng-bind="::dash.strings.SECTION_REVIEWS"></span>
+            </a>
+            <a ui-sref=".transactions.sales"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.transactions.*')}">
+                <i class="sidebar__item__icon mdi-action-history"></i>
+                <span ng-bind="::dash.strings.SECTION_TRANSACTIONS"></span>
+            </a>
+        </div>
+        <div ui-view class="col-sm-10"></div>
+        <div ng-include="'partials/ui-components/footer-dashboard.html'"></div>
+    </div>
 </div>
 
-<div ui-view class="lateral-fade"></div>

@@ -1,41 +1,36 @@
 <div class="row">
-    <div class="col-sm-offset-1 col-md-8">
-        <form class="card card--shrink shadow-z-1 material-form" name='vm.activity_location_form'
+    <div class="col-lg-9 col-md-11">
+        <div class="section-title">
+            Ubicación
+        </div>
+        <form  name='vm.activity_location_form'
               ng-submit="vm.save_activity()">
-            <fieldset>
-                <div class="card-header">
-                    <div class="title-compound">
-                        <i class="mdi-maps-pin-drop card-icon"></i>
-
-                        <h1 class="title-compound__title">
-                            Ubicación
-                        </h1>
-                        <h4 class="text-muted title-compound__description">Especifica en qué lugar se desarrollará tu
-                            actividad</h4>
-                    </div>
+            <fieldset>                                                                
+              
+                <div class="section-description">
+                    Especifica en qué lugar se desarrollará tu actividad.
+                </div>
+                
+                <div class="form-group" trulii-input-errors-control="city">
+                    <label for="city" class="control-label">Ciudad</label>
+                    <select class="form-control" id="city" ng-model="vm.activity.location.city"
+                            ng-options="city as city.name for city in vm.cities track by city.id" name="city">
+                        <option value="" selected ng-show="!vm.activity_location_form.city">Seleccione..
+                        </option>
+                    </select>
                 </div>
 
-                <div class="card-body">
-                    <div class="form-group" trulii-input-errors-control="city">
-                        <label for="city" class="control-label">Ciudad</label>
-                        <select class="form-control" id="city" ng-model="vm.activity.location.city"
-                                ng-options="city as city.name for city in vm.cities track by city.id" name="city">
-                            <option value="" selected ng-show="!vm.activity_location_form.city">Seleccione..
-                            </option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" trulii-input-errors-control="address">
-                        <label for="address" class="control-label">Dirección exacta</label>
-                            <textarea id="address" class="form-control" ng-model='vm.activity.location.address'
-                                      name="address">  </textarea>
-                    </div>
-                    <div class="text-center separate-above">
-                        <strong>Arrastre</strong> el indicador (<span class="mdi-action-room"
-                                                                      style="color: #F86161"></span>) en el mapa hasta
-                        el lugar donde se llevará a cabo su actividad.
-                    </div>
+                <div class="form-group" trulii-input-errors-control="address">
+                    <label for="address" class="control-label">Dirección exacta</label>
+                        <textarea id="address" class="form-control" ng-model='vm.activity.location.address'
+                                  name="address">  </textarea>
                 </div>
+                <div class="text-center separate-above">
+                    <strong>Arrastre</strong> el indicador (<span class="mdi-action-room"
+                                                                  style="color: #F86161"></span>) en el mapa hasta
+                    el lugar donde se llevará a cabo su actividad.
+                </div>
+                
 
                 <div>
                     <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' bounds="vm.map.bounds"
@@ -46,9 +41,11 @@
                     </ui-gmap-google-map>
                 </div>
 
-                <div class="card-body">
-                    <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
+                <div class="separate-above">
+                    <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>    
                 </div>
+                
+                
 
             </fieldset>
         </form>

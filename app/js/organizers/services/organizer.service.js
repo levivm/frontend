@@ -36,7 +36,6 @@
             setData : function (organizerData) {
                 angular.extend(this, organizerData);
                 this._setCity();
-                console.log( 'organizer photo:', !this.photo);
                 if(!this.photo) {
                     this.photo = defaultPicture;
                 }
@@ -58,10 +57,9 @@
 
                 this.location.city = city;
             },
-            load : function (id) {
+            load : function () {
                 var scope = this;
-                // serverConf.url+'/api/organizers/' + id
-                $http.get(api.organizer(id)).success(function (organizerData) {
+                return $http.get(api.organizer(scope.id)).success(function (organizerData) {
                     console.log('response');
                     console.log(organizerData);
                     scope.setData(organizerData);
@@ -139,7 +137,6 @@
             update_location : function (location_data_param) {
                 var location_data = angular.copy(location_data_param);
                 location_data.city = location_data.city ? location_data.city.id : undefined;
-                // 'http://localhost:8000/api/organizers/' + this.id + '/locations/'
                 return $http.post(api.locations(this.id), location_data);
 
             },
@@ -147,17 +144,104 @@
             getActivities : function () {
                 return $http.get(api.activities(this.id))
                     .then(function (response) {
-                        return response.data
+                        return response.data;
                     });
             },
 
-            deleteInstructor : function (instructorID) {
-                // serverConf.url + '/api/organizers/' + this.id + '/instructors/' + instructorID
-                return $http.delete(api.instructor(this.id, instructorID));
-            }
+            getOrders : function () {
+                return $http.get(api.orders(this.id))
+                    .then(function (response) {
+                        return response.data;
+                    });
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#getInstructors
+             * @description Retrieves all Instructors from an Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getInstructors: getInstructors,
+
+            /**
+             * @ngdoc function
+             * @name .#createInstructor
+             * @description Creates a new Instructor for the Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            createInstructor: createInstructor,
+
+            /**
+             * @ngdoc function
+             * @name .#updateInstructor
+             * @description Updates an Instructor for the Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            updateInstructor: updateInstructor,
+
+            /**
+             * @ngdoc function
+             * @name .#deleteInstructor
+             * @description Deletes an Instructor for the Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            deleteInstructor: deleteInstructor
         };
 
         return Organizer;
+
+        function getInstructors(){
+            var that = this;
+            return $http.get(api.instructors(that.id)).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                console.log('organizer.get instructors error:', response.data);
+                return response.data;
+            }
+        }
+
+        function createInstructor(instructor){
+            var that = this;
+            return $http.post(api.instructors(that.id), instructor).then(success, error);
+
+            function success(response){
+                console.log('organizer.create instructor success:', response);
+                return response.data;
+            }
+            function error(response){
+                console.log('organizer.create instructor error:', response);
+                return response.data;
+            }
+        }
+
+        function updateInstructor(instructor){
+            return $http.put(api.instructor(instructor.id), instructor).then(success, error);
+
+            function success(response){
+                console.log('organizer.update instructor success:', response);
+                return response.data;
+            }
+            function error(response){
+                console.log('organizer.update instructor error:', response);
+                return response.data;
+            }
+        }
+
+        function deleteInstructor(instructor){
+            return $http.delete(api.instructor(instructor.id)).then(success, error);
+
+            function success(response){
+                console.log('organizer.delete instructor success:', response);
+                return response.data;
+            }
+            function error(response){
+                console.log('organizer.delete instructor error:', response);
+                return response.data;
+            }
+        }
     }
 
 })();

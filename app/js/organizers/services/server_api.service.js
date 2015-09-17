@@ -25,7 +25,7 @@
 
             /**
              * @ngdoc function
-             * @name trulii.organizers.services.OrganizerServerApi#activities
+             * @name .#activities
              * @description Renders **`/api/organizers/:idOrganizer/activities`** Activities List URL
              * @param {number} idOrganizer Organizer Id
              * @return {string} Rendered URL
@@ -37,7 +37,20 @@
 
             /**
              * @ngdoc function
-             * @name trulii.organizers.services.OrganizerServerApi#locations
+             * @name .#orders
+             * @name .#orders
+             * @description Renders **`/api/organizers/:idOrganizer/orders`** Orders List URL
+             * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'orders': function(idOrganizer){
+                return renderUrl('organizers/', [idOrganizer, 'orders']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#locations
              * @description Renders **`/api/organizers/:idOrganizer/locations`** Locations URL
              * @param {number} idOrganizer Organizer Id
              * @return {string} Rendered URL
@@ -49,7 +62,7 @@
 
             /**
              * @ngdoc function
-             * @name trulii.organizers.services.OrganizerServerApi#organizer
+             * @name .#organizer
              * @description Renders **`/api/organizers/:idOrganizer`** Organizer URL
              * @param {number} idOrganizer Organizer Id
              * @return {string} Rendered URL
@@ -61,22 +74,33 @@
 
             /**
              * @ngdoc function
-             * @name trulii.organizers.services.OrganizerServerApi#instructor
-             * @description Renders **`/api/organizers/:idOrganizer/instructors/:idInstructor`**
-             * Organizer Instructor URL
+             * @name .#instructors
+             * @description Renders **`/api/organizers/:idOrganizer/instructors`** Organizer Instructors URL
              * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'instructors' : function (idOrganizer) {
+                return renderUrl('organizers/', [idOrganizer, 'instructors']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#instructor
+             * @description Renders **`/api/instructors/:idInstructor`**
+             * Organizer Instructor URL
              * @param {number} idInstructor Instructor Id
              * @return {string} Rendered URL
              * @methodOf trulii.organizers.services.OrganizerServerApi
              */
-            'instructor': function (idOrganizer, idInstructor){
-                return renderUrl('organizers/', [idOrganizer, 'instructors', idInstructor]);
+            'instructor': function (idInstructor){
+                return renderUrl('instructors/', [idInstructor]);
             }
         };
 
         /**
          * @ngdoc function
-         * @name trulii.organizers.services.OrganizerServerApi#renderUrl
+         * @name .#renderUrl
          * @description URL Renderer, takes multiple parameters
          * @param {string} endpoint Server endpoint, must end with '/'
          * @param {Array=} urlParams (Optional) Array with URL params. Are rendered in the same order they come

@@ -1,6 +1,10 @@
 
 @import "../_trulii-variables";
 
+.form-group:not(:first-child){
+	margin-top: 3.4em;
+}
+
 .form-submit-controls{
 	text-align: right;
 	position: relative;
@@ -9,19 +13,23 @@
 	.btn{
 		display: inline-block;
 		min-width: 12em;
+		font-size: 1em;
+		line-height: 1.5em;
+		margin-left: 1em;
+		font-weight: bold;
 	}
 
 	.progress{
 		position: absolute;
 		margin-top: 0;
 		top: 50%;
-	}	
+	}
 }
 
 .material-form{
 
 	.form-group{
-		.clearfix();	
+		.clearfix();
 	}
 
 	.control-label{
@@ -36,7 +44,3 @@
 		font-weight: bold;
 	}
 }
-	
-
-	
-	

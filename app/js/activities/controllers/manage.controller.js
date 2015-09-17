@@ -146,8 +146,8 @@
         }
 
         function _mapMainPicture(activity){
-            angular.forEach(activity.photos, function(photo, index, array){
-                if(photo.main_photo){ activity.main_photo = photo.photo; }
+            angular.forEach(activity.pictures, function(picture, index, array){
+                if(picture.main_photo){ activity.main_photo = picture.photo; }
 
                 if( index === (array.length - 1) && !activity.main_photo){ activity.main_photo = array[0].photo; }
             });
@@ -176,7 +176,7 @@
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
                 COPY_SEARCH: "Buscar orden por número, nombre o correo electrónico",
-                LABEL_ORDER_NUMBER: "Orden#",
+                LABEL_ORDER_NUMBER: "Orden N°",
                 LABEL_CALENDAR: "Calendario",
                 LABEL_SEARCH: "Buscar Ordenes",
                 LABEL_EMPTY_ORDERS: "No hay órdenes de compra",
@@ -208,9 +208,10 @@
 
         function _activate() {
             _setStrings();
-            activity = _mapMainPicture(activity);
+            vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
+
         }
 
     }

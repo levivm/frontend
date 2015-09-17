@@ -1,0 +1,73 @@
+
+ul.dropdown-menu { // Datepicker elemento raiz
+	padding: 0;
+
+	table{
+		background-color: @gray-lighter;
+
+		thead tr:nth-child(1){
+			// Cabezera con el mes y el año
+
+			background-color: @success;
+
+			*{
+				color: white;
+			}
+
+			.btn{
+				text-transform: uppercase;
+				padding: 5px 10px;
+
+				&:hover{
+					background-color: darken(@success, 10%);
+				}
+			}
+
+		}
+
+		.btn{
+			border-width: 0;
+			//width: auto !important;
+			border-radius: 8px;
+			padding: 2px 5px;
+
+			&[disabled]{ // Día no disponible para seleccionar
+				background-color: transparent;
+				color: lighten(@gray-light, 25%) !important;
+			}
+
+			&.active{ // Día seleccionado
+				background-color: @success;
+
+				span{
+					color: white;
+				}
+
+			}
+		}
+
+		.text-muted{ // Día no perteneciente al mes actual
+			color: lighten(@gray-light, 15%);
+		}
+
+		.text-info{ // Día actual
+			color: @success;
+		}
+
+		td[id^="datepicker"]{ // Botón de día
+			padding: 0 !important;
+		}
+	}
+
+	&:after{
+		content: "";
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-left: 15px solid transparent;
+		border-right: 15px solid transparent;
+		border-bottom: 15px solid @success;
+		top: -15px;
+		left: 15px;
+	}
+}

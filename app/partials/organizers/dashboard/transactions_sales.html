@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
+
+            <div class="input-group">
+                <input class="form-control floating-label" type="text"
+                       ng-model="transactions.orderQuery"
+                       placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}">
+                                        <span class="input-group-addon">
+                                             <i class="mdi-action-search"></i>
+                                        </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div ng-if="transactions.sales.length > 0" class="table-responsive">
+            <table class="table table-hover">
+                <tr class="text-center">
+                    <th ng-bind="::transactions.strings.LABEL_ORDER"></th>
+                    <th ng-bind="::transactions.strings.LABEL_ACTIVITY"></th>
+                    <th ng-bind="::transactions.strings.LABEL_PAYMENT"></th>
+                    <th ng-bind="::transactions.strings.LABEL_DETAIL"></th>
+                    <th ng-bind="::transactions.strings.LABEL_DATE"></th>
+                    <th ng-bind="::transactions.strings.LABEL_TOTAL"></th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="order in transactions.sales track by order.id | filter:transactions.orderQuery">
+                    <td>
+                        <span ng-bind="order.id"></span>
+                    </td>
+                    <td>
+                        <span ng-bind="::transactions.strings.COPY_NOT_AVAILABLE"></span>
+                    </td>
+                    <td>
+                        <span ng-bind="::transactions.strings.COPY_NA"></span>
+                    </td>
+                    <td>
+                                    <span>
+                                        <ng-pluralize count="order.assistants.length"
+                                                      when="{
+                                                        'one': transactions.strings.COPY_ONE_ASSISTANT,
+                                                        'other': transactions.strings.COPY_MANY_ASSISTANTS
+                                                      }">
+                                        </ng-pluralize>
+                                    </span>
+                    </td>
+                    <td>
+                        <span>DD/MM/YYYY</span>
+                    </td>
+                    <td>
+                        <span ng-bind="order.amount | currency"></span>
+                    </td>
+                    <td>
+                        <button class="btn btn-xs btn-bgsecondary pull-right no-margin"
+                                ng-bind="::transactions.strings.ACTION_REIMBURSE"></button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!--If there are no Sales-->
+        <div ng-if="transactions.sales.length <= 0">
+            <h4 ng-bind="::transactions.strings.LABEL_NO_ORDERS"></h4>
+            <span ng-bind="::transactions.strings.COPY_NO_ORDERS"></span>
+        </div>
+    </div>
+</div>

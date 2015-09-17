@@ -33,11 +33,11 @@
         _activate();
 
         function createCalendar() {
-            $state.go(DETAIL_STATE, {'id' : null});
+            $state.go(DETAIL_STATE, {'calendar_id' : null});
         }
 
         function loadCalendar(calendar) {
-            $state.go(DETAIL_STATE, {'id' : calendar.id});
+            $state.go(DETAIL_STATE, {'calendar_id' : calendar.id});
         }
 
         function setCalendar(calendar) {
@@ -116,7 +116,7 @@
             console.log('$stateParams:', $stateParams);
             vm.republish = $stateParams.republish;
             vm.calendar_errors = {};
-            _onSectionUpdated();
+            _onSectionUpdated();            
 
             stateChangeUnbinder = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
@@ -131,7 +131,7 @@
                         console.log('Creating New Calendar');
                     } else {
                         if(vm.republish){
-                            console.log('inside if');
+                            
                             event.preventDefault();
                             if(_hasNewCalendar()){
                                 console.log('Republish exiting. User set a valid calendar to republish');

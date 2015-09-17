@@ -1,9 +1,10 @@
 
+// TODO Deprecated?
 .separator{
     border-bottom: 1px solid @color-delimeter-dark;
     margin: 1em 0;
 
-    &-text{        
+    &-text{
         border-bottom: 0px;
 
         position: relative;
@@ -14,7 +15,7 @@
             position: absolute;
             bottom: 50%;
             width: 100%;
-            border-bottom: 1px solid @color-delimeter-dark;        
+            border-bottom: 1px solid @color-delimeter-dark;
         }
 
         p{
@@ -25,4 +26,31 @@
             position: relative;
         }
     }
+
+    &-vertical{
+        border-left: 1px solid @color-delimeter-dark;
+    }
+}
+
+@section-padding: 2.5rem;
+
+.section-title{
+    display: block;
+    width: 100%;
+    background-color: #FAFAFA;
+    font-family: @font-sans-alt;
+    padding: 1em @section-padding;
+    font-size: 1.2em;
+
+    & + form, & + div{
+        margin: 0 @section-padding;
+    }
+}
+
+.section-description{
+    font-family: @font-sans-alt;
+    color: @gray;
+    margin: 1.5em 0;
+    font-weight: normal;
+    font-size: 1.1em;
 }

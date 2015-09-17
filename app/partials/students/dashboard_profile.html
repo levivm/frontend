@@ -1,136 +1,132 @@
-<div class="container">
-    <div class="card z-shadow-1">
-        <div class="col-md-3 card__lateral-menu">
-            <div class="card__lateral-menu__title">
-                <i class="mdi-action-account-circle"></i><span ng-bind="::profile.strings.SECTION_PROFILE"></span>
-            </div>
 
-            <form name="picture_form">
-                <div class="form-group">
-                    <!--Photo Widget-->
-                    <div class="img-input center-childs">
-                        <img class="profile-photo profile-photo--xs img-size-cover img-position-center"
-                             ng-src="{{profile.student.photo}}" alt="{{profile.student.user.first_name}}"
-                             ng-hide="profile.photo_loading"/>
-                        <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
+<div class="row">
+    
+    <div class="col-md-8 col-md-offset-1 tab-content">
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <form name="profile.picture_form">
+                    <div class="form-group inline-childs">
+
+                        <div class="profile-photo-input">
+                            <img class="profile-photo-input__photo"
+                                 ng-src="{{profile.student.photo}}" alt="{{profile.student.user.first_name}}"
+                                 ng-hide="profile.photo_loading"/>
+                            <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
+
+                            <div class="separate-left" ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select=""
+                                 ng-multiple="false"
+                                 data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                 ng-file-change="profile.uploadPicture(profile.student.photo_url)"
+                                 data-allow-dir="true" data-accept="image/*">
+
+                                <button class="btn btn-default profile-photo-input__action"
+                                        aria-label="{{::profile.strings.ACTION_REPLACE_PICTURE}}">
+                                    <span ng-bind="::profile.strings.ACTION_REPLACE_PICTURE"></span>
+                                </button>
+
+                            </div>
+
+                        </div>
+                                            
+                        <!-- For view profile -->                    
+                        <!--<a class="btn btn-primary" >
+                            <div ng-bind="::profile.strings.ACTION_VIEW_PROFILE"></div>
+                        </a> -->
+                        
+                        <div class="form-group" trulii-input-errors-control="photo">
+                            <input type="hidden" name="photo"/>
+                        </div>
+                        
                     </div>
-                    <div class="center-childs">
-                        <div ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select=""
-                             ng-multiple="false"
-                             data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                             ng-file-change="profile.uploadPicture(profile.student.photo_url)"
-                             data-allow-dir="true" data-accept="image/*">
+                </form>
 
-                            <button class="btn btn-bgsecondary btn-raised"
-                                    aria-label="{{profile.strings.ACTION_REPLACE_PICTURE}}"
-                                    ng-bind="profile.strings.ACTION_REPLACE_PICTURE">
-                            </button>
+            </div>
+        </div>            
+
+        <form class="row separate-above" name="profile.profile_form" ng-submit="profile.updateProfile()">
+            <fieldset>                    
+
+                <div class="row separate-below">
+                    <div class="col-md-6">
+                        <div class="form-group" trulii-input-errors-control="name">
+                            <label class="control-label" ng-bind="::profile.strings.LABEL_FIRST_NAMES"></label>
+                            <input type="text" class="form-control" ng-model='profile.student.user.first_name'
+                                   name="first_name"
+                                   placeholder="{{::profile.strings.LABEL_FIRST_NAMES}}">
                         </div>
                     </div>
-                    <div class="form-group" trulii-input-errors-control="photo">
-                        <input type="hidden" name="photo"/>
+                    <div class="col-md-6">                        
+                       <div class="form-group">
+                            <label class="control-label" for="last-names" ng-bind="::profile.strings.LABEL_LAST_NAMES"></label>
+                            <input id="headline" class="form-control" ng-model='profile.student.user.last_name' name="last_name"
+                                      placeholder="{{::profile.strings.LABEL_LAST_NAMES}}"/>
+                        </div> 
                     </div>
                 </div>
-            </form>
-        </div>
-        <div class="col-md-9 col-md-offset-3 card-body">
-            <div class="tab-content">
-                <div class="tab-pane active text-style" id="profile-tab">
-                    <form name="profile.profile_form" class="form-horizontal material-form"
-                          ng-submit="profile.updateProfile()">
-                        <fieldset>
-                            <!--Names-->
-                            <div class="row clearfix">
-                                <div class="col-md-6">
-                                    <div class="form-group no-margin input--main">
-                                        <label for="first_name" class="control-label"
-                                               ng-bind="::profile.strings.LABEL_FIRST_NAMES"></label>
-                                        <input id="first_name" class="form-control text-left text-capitalize"
-                                               name="first_name"
-                                               ng-model="profile.student.user.first_name" type="text"
-                                               placeholder="{{::profile.strings.LABEL_FIRST_NAMES}}"/>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group no-margin input--main">
-                                        <label for="last_name" class="control-label"
-                                               ng-bind="::profile.strings.LABEL_LAST_NAMES"></label>
-                                        <input id="last_name" class="form-control text-left text-capitalize"
-                                               name="last_name"
-                                               ng-model="profile.student.user.last_name" type="text"
-                                               placeholder="{{::profile.strings.LABEL_LAST_NAMES}}"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix separate-above">
-                                <!--Gender-->
-                                <div class="col-md-6">
-                                    <div class="form-group no-margin">
-                                        <label class="control-label" for="gender"
-                                               ng-bind="::profile.strings.LABEL_GENDER"></label>
-                                        <select id="gender" class="form-control" ng-model="profile.selected_gender"
-                                                name="gender"
-                                                ng-options="gender as gender.name for gender in profile.genders track by gender.name"
-                                                ng-change="profile.selectGender(profile.selected_gender)">
-                                            <option value="" ng-show="!profile.student.gender"
-                                                    ng-bind="::profile.strings.OPTION_SELECT" selected>
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!--Birth Date-->
-                                <div class="col-md-6">
-                                    <div class="form-group no-margin" trulii-input-errors-control="birth_date">
-                                        <label class="control-label" for="birth_date"
-                                               ng-bind="::profile.strings.LABEL_BIRTH_DATE"></label>
-                                        <div class="row">
-                                            <div class="col-md-9">
-                                                <input id="birth_date" type="text" class="form-control"
-                                                       name="birth_date"
-                                                       ng-model="profile.student.birth_date"
-                                                       datepicker-popup="{{profile.format}}"
-                                                       data-is-open="profile.opened"
-                                                       data-max-date="profile.maxStartDate"
-                                                       data-datepicker-options="profile.dateOptions"
-                                                       data-close-text="{{profile.strings.ACTION_CLOSE}}"
-                                                       ng-click="profile.openDatePicker($event)"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--City-->
-                            <div class="row clearfix separate-above">
-                                <div class="col-md-6">
-                                    <div class="form-group no-margin" trulii-input-errors-control="city">
-                                        <label for="city" class="control-label"
-                                               ng-bind="::profile.strings.LABEL_CITY"></label>
-                                        <select id="city" class="form-control" name="city"
-                                                ng-model="profile.selected_city"
-                                                ng-options="city as city.name for city in profile.cities track by city.id"
-                                                ng-change="profile.selectCity(profile.selected_city)">
-                                            <option value="" ng-hide="profile.selected_city"
-                                                    ng-bind="::profile.strings.OPTION_SELECT" selected>
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row clearfix separate-above">
-                                <div class="col-md-12">
-                                    <div class="form-group no-margin" trulii-input-errors-control="__all__">
-                                        <input type="hidden" name="__all__" ng-model="__all__"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                        <div class="separate-above">
-                            <trulii-submit-controls is-saving="profile.isSaving"
-                                data-value="{{::profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
+
+                <div class="row separate-below">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="gender" ng-bind="::profile.strings.LABEL_GENDER"></label>
+                            <select id="gender" class="form-control" ng-model="profile.selected_gender"
+                                    name="gender"
+                                    ng-options="gender as gender.name for gender in profile.genders track by gender.name"
+                                    ng-change="profile.selectGender(profile.selected_gender)">
+                                <option value="" ng-show="!profile.student.gender"
+                                        ng-bind="::profile.strings.OPTION_SELECT" selected>
+                                </option>
+                            </select>
                         </div>
-                    </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="birth_date" ng-bind="::profile.strings.LABEL_BIRTH_DATE"></label>
+                            <input id="birth_date" type="text" class="form-control"
+                               name="birth_date"
+                               ng-model="profile.student.birth_date"
+                               datepicker-popup="{{profile.format}}"
+                               data-is-open="profile.opened"
+                               data-max-date="profile.maxStartDate"
+                               data-datepicker-options="profile.dateOptions"
+                               data-close-text="{{profile.strings.ACTION_CLOSE}}"
+                               ng-click="profile.openDatePicker($event)"/>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="control-label" for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
+                            <select id="city" class="form-control" name="city"
+                                    ng-model="profile.selected_city"
+                                    ng-options="city as city.name for city in profile.cities track by city.id"
+                                    ng-change="profile.selectCity(profile.selected_city)">
+                                <option value="" ng-hide="profile.selected_city"
+                                        ng-bind="::profile.strings.OPTION_SELECT" selected>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                                
+                <div class="col-md-12">
+                    
+                                                          
+
+                    <div class="form-group no-margin" trulii-input-errors-control="__all__">
+                        <input type="hidden" name="__all__" ng-model="__all__"/>
+                    </div>
+
+                 <trulii-submit-controls is-saving="profile.isSaving"
+                            data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                </div>                
+                
+            </fieldset>
+        </form> 
+        
     </div>
 </div>

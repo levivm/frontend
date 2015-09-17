@@ -15,16 +15,21 @@
         .module('trulii.locations.services')
         .factory('LocationManager', LocationManager);
 
-    LocationManager.$inject = ['$rootScope', '$http', '$q', '$cookies', 'serverConf','localStorageService'];
+    LocationManager.$inject = ['$rootScope', '$http', '$q', 'localStorageService', 'LocationServerApi'];
 
-    function LocationManager($rootScope, $http, $q, $cookies, serverConf,localStorageService) {
+    function LocationManager($rootScope, $http, $q, localStorageService, LocationServerApi) {
 
+        var api = LocationServerApi;
         var currentCity = null;
         var searchCity = null;
         var mapBounds = null;
+        var availableCities = null;
         var KEY_SEARCH_CITY = "search_city";
+        var KEY_CURRENT_CITY = "current_city";
         var KEY_AVAILABLE_CITIES = "availableCities";
         var CURRENT_CITY_MODIFIED_EVENT = "currentCityModified";
+
+        init();
 
         //noinspection UnnecessaryLocalVariableJS
         var LocationManager = {
@@ -36,7 +41,7 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {Array} Available cities
              */
-            getAvailableCities : _getAvailableCities,
+            getAvailableCities: getAvailableCities,
 
             /**
              * @ngdoc function
@@ -45,7 +50,7 @@
              * @description Sets the current city for the logged user
              * @methodOf trulii.locations.services.LocationManager
              */
-            setCurrentCity   : _setCurrentCity,
+            setCurrentCity: setCurrentCity,
 
             /**
              * @ngdoc function
@@ -54,7 +59,7 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} Current city
              */
-            getCurrentCity    : _getCurrentCity,
+            getCurrentCity: getCurrentCity,
 
             /**
              * @ngdoc function
@@ -64,7 +69,7 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} City
              */
-            getCityById   : _getCityById,
+            getCityById: getCityById,
 
             /**
              * @ngdoc function
@@ -73,7 +78,7 @@
              * @description Sets the current city for activities search
              * @methodOf trulii.locations.services.LocationManager
              */
-            setSearchCity   : _setSearchCity,
+            setSearchCity: setSearchCity,
 
             /**
              * @ngdoc function
@@ -81,7 +86,7 @@
              * @description Returns the city selected for activities search
              * @methodOf trulii.locations.services.LocationManager
              */
-            getSearchCity   : _getSearchCity,
+            getSearchCity: getSearchCity,
 
             /**
              * @ngdoc function
@@ -90,7 +95,7 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} Allowed boundaries
              */
-            getAllowedBounds: _getAllowedBounds,
+            getAllowedBounds: getAllowedBounds,
 
             /**
              * @ngdoc function
@@ -99,7 +104,7 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} With attributes to init google-maps-angular map
              */
-            getMap: _getMap,
+            getMap: getMap,
 
             /**
              * @ngdoc function
@@ -108,190 +113,211 @@
              * @methodOf trulii.locations.services.LocationManager
              * @return {object} With attributes to set google-maps-angular marker
              */
-            getMarker: _getMarker,
+            getMarker: getMarker,
 
             CURRENT_CITY_MODIFIED_EVENT: CURRENT_CITY_MODIFIED_EVENT
         };
 
-        function _getAvailableCities(){
+        function _setAvailableCities(cities) {
+            availableCities = cities;
+            localStorageService.set(KEY_AVAILABLE_CITIES, availableCities);
+        }
 
+        function getAvailableCities() {
             var deferred = $q.defer();
-            var availableCities = localStorageService.get('availableCities');
-            if(availableCities){
+            if (!availableCities) {
+                availableCities = localStorageService.get(KEY_AVAILABLE_CITIES);
+            }
+            if (availableCities) {
                 deferred.resolve(availableCities);
                 return deferred.promise;
             } else {
-                return $http.get(serverConf.url+'/api/locations/cities/').then(function(response){
-                    localStorageService.set('availableCities',response.data);
-                    return response.data;
-                });
+                return $http.get(api.cities()).then(success, error);
+            }
+
+            function success(response){
+                _setAvailableCities(response.data);
+                return availableCities;
+            }
+            function error(response){
+                return $q.reject(response.data);
             }
         }
 
-        function _getCityById(city_id){
+        function getCityById(city_id) {
+            return availableCities.filter(byId)[0];
 
-            var availableCities = localStorageService.get('availableCities');
-            
-            function byId(city){
+            function byId(city) {
                 return city.id === city_id;
             }
-
-            return availableCities.filter(byId)[0];
         }
 
 
-        function _setCurrentCity(city){
-            if (city){
-                localStorageService.set('current_city',city);
+        function setCurrentCity(city) {
+            if (city) {
+                localStorageService.set(KEY_CURRENT_CITY, city);
                 currentCity = city;
                 $rootScope.$emit(CURRENT_CITY_MODIFIED_EVENT);
             }
         }
 
-        function _getCurrentCity(){
-            var availableCities = localStorageService.get('availableCities');
-            var current_city = localStorageService.get('current_city');
-
-            if (current_city){
-                return availableCities.filter(byId)[0];
-            } else {
-                localStorageService.set('current_city',availableCities[0]);
-                return availableCities[0];
+        function getCurrentCity() {
+            if(!currentCity){
+                currentCity = localStorageService.get(KEY_CURRENT_CITY);
+                if(currentCity){
+                    currentCity = availableCities.filter(byId)[0];
+                    setCurrentCity(currentCity);
+                }
             }
 
-            function byId(city){
-                return city.id === current_city.id;
+            if (currentCity) {
+                return currentCity;
+            } else {
+                getAvailableCities().then(success, error);
+            }
+
+            function success() {
+                setCurrentCity(availableCities[0]);
+                return currentCity;
+            }
+
+            function error(response) {
+                console.log('Error getting cities.', response.data);
+            }
+
+            function byId(city) {
+                return city.id === currentCity.id;
             }
         }
 
-        function _setSearchCity(city){
-            if (city){
-                localStorageService.set(KEY_SEARCH_CITY,city);
+        function setSearchCity(city) {
+            if (city) {
+                localStorageService.set(KEY_SEARCH_CITY, city);
                 searchCity = city;
             }
         }
 
-        function _getSearchCity(){
-            var availableCities = localStorageService.get(KEY_AVAILABLE_CITIES);
-
-            if(!searchCity){
+        function getSearchCity() {
+            if (!searchCity) {
                 searchCity = localStorageService.get(KEY_SEARCH_CITY);
-                if (searchCity){
-                    return searchCity;
-                } else {
-                    localStorageService.set(KEY_SEARCH_CITY, availableCities[0]);
-                    searchCity = availableCities[0];
-                    return availableCities[0];
+                if(searchCity){
+                    searchCity = availableCities.filter(byId)[0];
+                    setSearchCity(searchCity);
                 }
+            }
+
+            if (searchCity) {
+                return searchCity;
+            } else {
+                getAvailableCities().then(success, error);
+            }
+
+            function byId(city) {
+                return city.id === searchCity.id;
+            }
+
+            function success(){
+                setSearchCity(availableCities[0]);
+                return searchCity;
+            }
+            function error(){
+                console.log('Error getting cities.', response.data);
             }
         }
 
-        function _getAllowedBounds(){
+        function getAllowedBounds() {
             mapBounds = {
                 northeast: {
-                    latitude:12,
-                    longitude:-67
+                    latitude: 12,
+                    longitude: -67
                 },
                 southwest: {
-                    latitude:-3,
-                    longitude:-78
+                    latitude: -3,
+                    longitude: -78
                 }
             };
-
             return mapBounds;
-
         }
 
-        function _getMap(location){
+        function getMap(location) {
 
             var latitude;
             var longitude;
 
             if (location.point)
-              location = angular.copy(location);
+                location = angular.copy(location);
             else
-              location = angular.copy(location.city);
+                location = angular.copy(location.city);
 
-            latitude  = location.point[0];
+            latitude = location.point[0];
             longitude = location.point[1];
 
-            console.log("latitude","longitude",latitude,longitude);
+            console.log("latitude", "longitude", latitude, longitude);
 
             var scope = this;
             var map = {
-              center: {latitude: latitude, longitude: longitude }, 
-              zoom: 14, 
-              bounds: scope.getAllowedBounds() ,
+                center: {latitude: latitude, longitude: longitude},
+                zoom: 14,
+                bounds: scope.getAllowedBounds(),
+                events: {
+                    bounds_changed: function (_map, eventName, args) {
+                        var _allowedBounds = scope.getAllowedBounds();
+                        var _northeast = _allowedBounds.northeast;
+                        var _southwest = _allowedBounds.southwest;
+                        var northeast = new google.maps.LatLng(_northeast.latitude, _northeast.longitude);
+                        var southwest = new google.maps.LatLng(_southwest.latitude, _southwest.longitude);
+                        var allowedBounds = new google.maps.LatLngBounds(southwest, northeast);
 
-              events: {
-
-                bounds_changed : function(_map, eventName, args) {
-
-                  var _allowedBounds = scope.getAllowedBounds();
-
-                  var _northeast = _allowedBounds.northeast;
-                  var _southwest = _allowedBounds.southwest;
-                  var  northeast = new google.maps.LatLng(_northeast.latitude,_northeast.longitude);
-                  var  southwest = new google.maps.LatLng(_southwest.latitude,_southwest.longitude);
-
-                  var allowedBounds = new google.maps.LatLngBounds(southwest,northeast);
-
-                  if (allowedBounds.contains(_map.getCenter())) {
-                    map.control.valid_center = _map.getCenter();
-                    return;
-                  }
-
-                  _map.panTo(map.control.valid_center);
-
+                        if (allowedBounds.contains(_map.getCenter())) {
+                            map.control.valid_center = _map.getCenter();
+                            return;
+                        }
+                        _map.panTo(map.control.valid_center);
+                    }
+                },
+                control: {
+                    allowedBounds: scope.getAllowedBounds()
                 }
-
-              },
-              control : {
-                allowedBounds : scope.getAllowedBounds()
-
-              }
-
             };
-
             return map;
-
         }
 
-        function _getMarker(location){
+        function getMarker(location) {
 
-          var latitude  = location.point ? 
-                         location.point[0] : location.city.point[0];
-          var longitude = location.point ? 
-                         location.point[1] : location.city.point[1];
+            var latitude = location.point ?
+                location.point[0] : location.city.point[0];
+            var longitude = location.point ?
+                location.point[1] : location.city.point[1];
 
-          var marker = {
-            id: 0,
-            coords: {
-              latitude: latitude,
-              longitude: longitude
-            },
-            options: { draggable: true },
-            events: {
-              dragend: function (_marker, eventName, args) {
-                var lat = _marker.getPosition().lat();
-                var lon = _marker.getPosition().lng();
-
-
-
-                marker.options = {
-                  draggable: true,
-                  labelAnchor: "100 0",
-                  labelClass: "marker-labels"
-                };
-              }
-            }
-          };
-          console.log("MARKER INFO",marker);
-          return marker
+            var marker = {
+                id: 0,
+                coords: {
+                    latitude: latitude,
+                    longitude: longitude
+                },
+                options: {draggable: true},
+                events: {
+                    dragend: function (_marker, eventName, args) {
+                        var lat = _marker.getPosition().lat();
+                        var lon = _marker.getPosition().lng();
+                        marker.options = {
+                            draggable: true,
+                            labelAnchor: "100 0",
+                            labelClass: "marker-labels"
+                        };
+                    }
+                }
+            };
+            return marker;
         }
 
+        function init(){
+            getAvailableCities().then(function(){
+                getCurrentCity();
+                getSearchCity();
+            });
+        }
 
         return LocationManager;
-
     }
 })();

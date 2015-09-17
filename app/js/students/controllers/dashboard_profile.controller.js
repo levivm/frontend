@@ -51,6 +51,7 @@
         //--------- Functions Implementation ---------//
 
         function updateProfile(){
+
             console.log("updateProfile.Form:", vm.profile_form);
 
             if(vm.student.birth_date){

@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture'];
 
-    function truliiNavbar($rootScope, $timeout, UIComponentsTemplatesPath, Authentication, defaultPicture) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "navbar.html",
@@ -62,7 +62,7 @@
                     } else if (user.full_name) {
                         console.log('Full Name already defined');
                     } else if (user.first_name && user.last_name) {
-                        user.full_name = [user.first_name, user.last_name].join(' ');
+                        user.full_name = user.first_name;
                     } else {
                         user.full_name = 'User';
                     }

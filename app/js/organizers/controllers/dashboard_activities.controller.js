@@ -1,46 +1,70 @@
 /**
- * Register controller
- * @namespace thinkster.organizers.controllers
+ * @ngdoc controller
+ * @name trulii.organizers.controllers.OrganizerActivitiesCtrl
+ * @description Handles Organizer Activities Dashboard
+ * @requires organizer
+ * @requires activities
  */
+
 (function () {
     'use strict';
-
 
     angular
         .module('trulii.organizers.controllers')
         .controller('OrganizerActivitiesCtrl', OrganizerActivitiesCtrl);
 
     OrganizerActivitiesCtrl.$inject = ['organizer', 'activities'];
-    /**
-     * @namespace RegisterController
-     */
     function OrganizerActivitiesCtrl(organizer, activities) {
 
-
         var vm = this;
-        vm.organizer = organizer;
-        vm.isCollapsed = true;
-        vm.published_activities = [];
-        vm.previous_activities = [];
-        vm.draft_activities = [];
-        vm.currentOptions = {
-            actions: ['view', 'edit', 'manage']
-        };
-        vm.previousOptions = {
-            actions: ['view', 'republish'],
-            disabled: true
-        };
-        vm.draftOptions = {
-            actions: ['view', 'edit'],
-            isDraft: true
-        };
+        angular.extend(vm, {
+            organizer : organizer,
+            isCollapsed : true,
+            open_activities : [],
+            closed_activities : [],
+            inactive_activities : [],
+            openOptions : {
+                actions: ['edit', 'manage']
+            },
+            closedOptions : {
+                actions: ['republish'],
+                disabled: true
+            },
+            inactiveOptions : {
+                actions: ['edit'],
+                isInactive: true
+            }
+        });
+        var active_activities = [];
 
-        activate();
+        _activate();
 
-        function mapMainPicture(activity){
-            angular.forEach(activity.photos, function(photo, index, array){
-                if(photo.main_photo){
-                    activity.main_photo = photo.photo;
+        //--------- Exposed Functions ---------//
+
+        //--------- Internal Functions ---------//
+
+        function _assignActivities(){
+            vm.open_activities = [];
+            vm.closed_activities = [];
+
+            active_activities = _.filter(activities, {'published': true});
+            vm.inactive_activities = _.filter(activities, {'published': false});
+
+            angular.forEach(active_activities, filterActivity);
+
+            function filterActivity(activity){
+                if(activity.last_date < Date.now()){
+                    vm.closed_activities.push(activity);
+                } else {
+                    vm.open_activities.push(activity);
+                }
+            }
+        }
+
+        function _mapMainPicture(activity){
+            angular.forEach(activity.pictures, function(picture, index, array){
+                if(picture.main_photo){
+                    activity.main_photo = picture.photo;
                 }
 
                 if( index === (array.length - 1) && !activity.main_photo){
@@ -51,47 +75,37 @@
             return activity;
         }
 
-        function setStrings() {
+        function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                COPY_PUBLISHED: "Revisa las actividades que tienes publicadas actualmente.",
-                COPY_PREVIOUS: "Revisa tus actividades que estuvieron publicadas en Trulii. Si lo deseas puedes"
+                ACTION_CREATE_ACTIVITY: "Crear Actividad",
+                ACTION_PUBLISH_ACTIVITY: "Publicar Actividad",
+                ACTION_REPUBLISH_ACTIVITY: "Republicar Actividad",
+                COPY_OPEN: "Revisa las actividades que tienes publicadas actualmente.",
+                COPY_CLOSED: "Revisa tus actividades que estuvieron publicadas. Si lo deseas puedes"
                     + " republicarlas.",
-                COPY_DRAFTS: "Revisa los registros que no has completado o publicado aún en Trulii ¿Qué esperas "
-                    + "para publicarlos?",
-                LABEL_EMPTY_PUBLISHED: "No tienes ninguna actividad publicada",
-                COPY_EMPTY_PUBLISHED: "Parece ser el momento perfecto para pulir y publicar una actividad que tengas como borrador, "
-                    + " republicar una actividad pasada o crear una desde cero",
-                LABEL_EMPTY_PREVIOUS: "No tienes actividades pasadas",
-                COPY_EMPTY_PREVIOUS: "Ninguna de tus actividades publicadas se han vencido hasta ahora",
-                LABEL_EMPTY_DRAFTS: "Actualmente no tienes borradores de actividades",
-                COPY_EMPTY_DRAFTS: "Parece ser el momento perfecto para crear y publicar una nueva actividad",
+                COPY_EMPTY_CLOSED: "Por ahora no tienes ninguna actividad cerrada. ¿Te animas a publicar " +
+                "una actividad en este momento? Te prometemos que será fácil.",
+                COPY_INACTIVE: "Revisa las actividades que no has completado o publicado aún",
+                COPY_EMPTY_OPEN: "Por ahora no tienes ninguna actividad abierta. ¿Te animas a publicar una "
+                + "actividad en este momento? Te prometemos que será fácil.",
+                COPY_EMPTY_INACTIVE: "Parece ser el momento perfecto para crear y publicar una nueva actividad",
+                LABEL_EMPTY_OPEN: "No tienes actividades abiertas",
+                LABEL_EMPTY_CLOSED: "No tienes actividades cerradas",
+                LABEL_EMPTY_INACTIVE: "Actualmente no tienes borradores de actividades",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                TAB_PUBLISHED: "Publicadas",
-                TAB_PREVIOUS: "Anteriores",
-                TAB_DRAFTS: "Borradores"
+                TAB_OPEN: "Abiertas",
+                TAB_CLOSED: "Cerradas",
+                TAB_INACTIVE: "Inactivas"
             });
         }
 
-        function activate() {
-            setStrings();
-            console.log('activities:', activities);
-            activities.map(mapMainPicture);
-            vm.previous_activities = _.filter(activities, function (activity) {
-                var today = new Date();
-                today.setHours(0, 0, 0, 0);
-
-                if (!(activity.last_date)) return false;
-
-                var activity_date = new Date(activity.last_date);
-                activity_date.setHours(0, 0, 0, 0);
-                return !!activity.last_date && activity_date < today && activity.published
-            });
-            vm.draft_activities = _.filter(activities, 'published', false);
-            vm.published_activities = _.difference(_.filter(activities, {'enroll_open': true, 'published': true}),
-                vm.previous_activities);
+        function _activate() {
+            _setStrings();
+            activities.map(_mapMainPicture);
+            _assignActivities();
         }
 
     }
