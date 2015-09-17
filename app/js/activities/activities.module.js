@@ -123,8 +123,7 @@
             })
             .state('dash.activities-edit.gallery', {
                 url:'gallery',
-                controller: 'ActivityDBGalleryController',
-                controllerAs: 'vm',
+                controller: 'ActivityDBGalleryController as gallery',
                 templateUrl: 'partials/activities/dashboard_gallery.html'
             })
             .state('dash.activities-edit.return-policy', {

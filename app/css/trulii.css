@@ -12084,6 +12084,7 @@ hr.on-light {
 .img-actionable__actions__action {
   transition: .2s all ease;
   text-align: center;
+  text-transform: uppercase;
   color: white;
   font-weight: bold;
   border: 2px solid white;

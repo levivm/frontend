@@ -24,7 +24,7 @@
             var that = this;
             that.tags = [];
             that.certification = false;
-            
+
             if (activityData) { that.setData(activityData); }
         }
 
@@ -37,15 +37,7 @@
              * @param {object} activityData The activity data to set
              * @methodOf trulii.activities.services.Activity
              */
-            setData : function (activityData) {
-                angular.extend(this, activityData);
-                var that = this;
-                that.resetSections();
-                angular.forEach(ActivitySteps, function (step) {
-                    that.updateSection(step.name);
-                });
-                that.checkSections();
-            },
+            setData : setData,
 
             /**
              * @ngdoc function
@@ -53,26 +45,16 @@
              * @description Create an activity
              * @methodOf trulii.activities.services.Activity
              */
-            create : function () {
-                return $http.post(api.activities(), this);
-            },
+            create : create,
 
             /**
              * @ngdoc function
              * @name .#load
              * @description Get an activity from backend given a id
-             * @param {number} id The activity id to retrieve 
+             * @param {number} id The activity id to retrieve
              * @methodOf trulii.activities.services.Activity
              */
-            load : function (id) {
-                var that = this;
-                if (!id) { id = that.id; }
-                return $http.get(api.activity(id))
-                    .then(function (response) {
-                        that.setData(response.data);
-                        return that;
-                    });
-            },
+            load : load,
 
             /**
              * @ngdoc function
@@ -80,20 +62,7 @@
              * @description Update the activity using 'this' object internal values
              * @methodOf trulii.activities.services.Activity
              */
-            update : function () {
-                var that = this;
-                return $http({
-                    method : 'put',
-                    url : api.activity(this.id),
-                    data : this
-                }).then(function (response) {
-                    that.setData(response.data);
-                    that.setAllSections();
-                    return response;
-                }, function (response) {
-                    return $q.reject(response.data);
-                });
-            },
+            update : update,
 
             /**
              * @ngdoc function
@@ -101,104 +70,60 @@
              * @description Update the activity using 'this' object internal values
              * @methodOf trulii.activities.services.Activity
              */
-            update_location: function () {
-                var that = this;
-                var location = angular.copy(this.location);
-                    location.city = location.city.id;
-                
-                return $http({
-                    method : 'put',
-                    url : api.locations(this.id),
-                    data : location
-                }).then(function (response) {
-                    angular.extend(that.location,response.data);
-                    that.setAllSections();
-                    return response;
-                }, function (response) {
-                    return $q.reject(response.data);
-                });
-            },
+            update_location: update_location,
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#addPhoto
-             * @description Add photo to an activity gallery
-             * @param {file} image The image to add.
-             * @param {object} extra_data The extra data to send among the image
+             * @name .#setStockCover
+             * @description Set a stock cover to a activity
+             * @param {object} cover The stock cover to set.
              * @methodOf trulii.activities.services.Activity
              */
-            addPhoto : function (image,extra_data) {
-                return UploadFile.upload_activity_photo(image, api.gallery(this.id),extra_data);
-            },
+            setStockCover : setStockCover,
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#addPhotoFromStock
-             * @description Add photo to the activity gallery from our photo stock
+             * @name .#addPicture
+             * @description Add picture to an activity gallery
+             * @param {object} picture The picture to add.
+             * @param {object} extra_data The extra data to send along with the picture
+             * @methodOf trulii.activities.services.Activity
+             */
+            addPicture : addPicture,
+
+            /**
+             * @ngdoc function
+             * @name .#addPictureFromStock
+             * @description Add picture to the activity gallery from our picture stock
              * given a subcategory
-             * @param {string} sub_category The activity subcategory
              * @methodOf trulii.activities.services.Activity
              */
-            addPhotoFromStock : function (sub_category) {
-                var from_stock = true;
-
-                return $http({
-                    method : 'post',
-                    url : api.gallery(this.id,from_stock),
-                    data : {'subcategory' : this.sub_category}
-                });
-            },
+            addPictureFromStock : addPictureFromStock,
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#deletePhoto
-             * @description Publish an activity 
-             * @param {file} image The image to delete.
+             * @name .#deletePicture
+             * @description Publish an activity
+             * @param {object} picture The picture to delete.
              * @methodOf trulii.activities.services.Activity
              */
-            deletePhoto : function (image) {
-                return $http({
-                    method : 'delete',
-                    url : api.gallery(this.id),
-                    data : {'photo_id' : image.id}
-                });
-            },
+            deletePicture : deletePicture,
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#publish
-             * @description Publish an activity 
+             * @name .#publish
+             * @description Publish an activity
              * @methodOf trulii.activities.services.Activity
              */
-            publish : function () {
-                var that = this;
-                
-                return $http({
-                    method : 'put',
-                    url : api.publish(this.id)
-                })
-                .then(function (response) {
-                    that.published = true;
-                });
-            },
+            publish : publish,
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#unpublish
-             * @description Unpublish an activity 
+             * @name .#unpublish
+             * @description Unpublish an activity
              * @methodOf trulii.activities.services.Activity
              */
-            unpublish: function(){
-                var that = this;
-
-                return $http({
-                    method : 'put',
-                    url : api.unpublish(this.id)
-                })
-                .then(function (response) {
-                    that.published = false;
-                });
-            },
+            unpublish: unpublish,
 
             /**
              * @ngdoc function
@@ -206,14 +131,7 @@
              * @description Check if an activity has already assitants
              * @methodOf trulii.activities.services.Activity
              */
-            hasAssistants: function(){
-
-                if (!this.chronograms){ return false; }
-
-                return this.chronograms.some(function (chronogram) {
-                        return chronogram.assistants.length > 0
-                    });
-            },
+            hasAssistants: hasAssistants,
 
             /**
              * @ngdoc function
@@ -221,9 +139,7 @@
              * @description Check and set a flag if the activity is beign edited for first time
              * @methodOf trulii.activities.services.Activity
              */
-            isFirstEdit: function(){
-                return (!this.photos.length && !this.published);
-            },
+            isFirstEdit: isFirstEdit,
 
             /**
              * @ngdoc function
@@ -231,14 +147,7 @@
              * @description Checks the completion of all of the Activity's creation steps
              * @methodOf trulii.activities.services.Activity
              */
-            checkSections : function () {
-                var that = this;
-
-                that.all_steps_completed = true;
-                angular.forEach(_.keys(that.required_steps), function (value) {
-                    if (!that.isSectionCompleted(value)){ that.all_steps_completed = false; }
-                });
-            },
+            checkSections : checkSections,
 
             /**
              * @ngdoc function
@@ -247,12 +156,7 @@
              * are completed, `false` otherwise
              * @methodOf trulii.activities.services.Activity
              */
-            areAllStepsCompleted : function () {
-                var that = this;
-
-                that.checkSections();
-                return that.all_steps_completed;
-            },
+            areAllStepsCompleted : areAllStepsCompleted,
 
             /**
              * @ngdoc function
@@ -262,70 +166,55 @@
              * @param {boolean} value The value to assign to the section
              * @methodOf trulii.activities.services.Activity
              */
-            setSectionCompleted : function (section, value) {
-                var that = this;
-
-                if(section in that.completed_steps){
-                    that.completed_steps[section] = value;
-                }
-            },
+            setSectionCompleted : setSectionCompleted,
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#isSectionCompleted
+             * @name .#isSectionCompleted
              * @param {string} section The section to get.
              * Available values are ['general', 'detail', 'instructors', 'location', 'gallery', 'return-policy']
              * @methodOf trulii.activities.services.Activity
              */
-            isSectionCompleted : function (section) {
-                var that = this;
-                return that.completed_steps[section];
-            },
+            isSectionCompleted : isSectionCompleted,
 
             /**
              * @ngdoc function
-             * @name trulii.activities.services.Activity#setStepsLeft
+             * @name .#setStepsLeft
              * @description set the steps left to publish an activity
              * @methodOf trulii.activities.services.Activity
              */
-            setStepsLeft: function(section){
-                var that = this;
-
-                if (!that.required_steps[section]) { return; }
-                that.steps_left = 0;
-                _.each(_.keys(that.required_steps),function(value){
-                    that.steps_left += !that.completed_steps[value] ? 1:0;
-                });
-
-            },
+            setStepsLeft: setStepsLeft,
             /**
              * @ngdoc function
              * @name trulii.activities.services.Activity#setAllSections
-             * @description reset and update activity section status from ActivitySteps steps
+             * @description Reset and update activity section status from ActivitySteps steps
              * @methodOf trulii.activities.services.Activity
              */
-            setAllSections: function(){
-                var that = this;
-                that.resetSections();
-                that.updateAllSections();
-                that.checkSections();
-            },
+            setAllSections: setAllSections,
 
             /**
              * @ngdoc function
              * @name trulii.activities.services.Activity#updateSections
-             * @description update activity section status from ActivitySteps steps
+             * @description Update activity section status from ActivitySteps steps
              * @methodOf trulii.activities.services.Activity
              */
-            updateAllSections: function(){
-                var that = this;
-                angular.forEach(ActivitySteps, function (step) {
-                    that.updateSection(step.name);
-                });
-            },
+            updateAllSections: updateAllSections,
 
+            /**
+             * @ngdoc function
+             * @name .#updateSection
+             * @description Update activity section status from ActivitySteps steps
+             * @param {string} section The section to update.
+             * @methodOf trulii.activities.services.Activity
+             */
             updateSection: updateSection,
 
+            /**
+             * @ngdoc function
+             * @name .#resetSections
+             * @description Reset all activity sections
+             * @methodOf trulii.activities.services.Activity
+             */
             resetSections: resetSections,
 
             /**
@@ -362,6 +251,226 @@
         };
 
         return Activity;
+
+        function setData(activityData) {
+            angular.extend(this, activityData);
+            var that = this;
+            that.resetSections();
+            angular.forEach(ActivitySteps, function (step) {
+                that.updateSection(step.name);
+            });
+            that.checkSections();
+        }
+
+        function create() {
+            return $http.post(api.activities(), this);
+        }
+
+        function load(id) {
+            var that = this;
+            if (!id) { id = that.id; }
+            return $http.get(api.activity(id))
+                .then(function (response) {
+                    that.setData(response.data);
+                    return that;
+                });
+        }
+
+        function update() {
+            var that = this;
+            return $http.put(api.activity(this.id), this).then(success, error);
+
+            function success(response) {
+                that.setData(response.data);
+                that.setAllSections();
+                return response;
+            }
+            function error(response) {
+                return $q.reject(response.data);
+            }
+        }
+
+        function update_location() {
+            var that = this;
+            var location = angular.copy(this.location);
+            location.city = location.city.id;
+
+            return $http.put(api.locations(this.id), location).then(success, error);
+
+            function success(response) {
+                angular.extend(that.location,response.data);
+                that.setAllSections();
+                return response;
+            }
+            function error(response) {
+                return $q.reject(response.data);
+            }
+        }
+
+        function setStockCover(cover) {
+            return $http.post(api.galleryCover(this.id), {'cover_id': cover.id});
+        }
+
+        function addPicture(picture,extra_data) {
+            return UploadFile.upload_activity_photo(picture, api.gallery(this.id),extra_data);
+        }
+
+        function addPictureFromStock() {
+            var from_stock = true;
+            return $http.post(api.gallery(this.id,from_stock), {'subcategory' : this.sub_category});
+        }
+
+        function deletePicture(picture) {
+            return $http.delete(api.galleryPicture(this.id, picture.id));
+        }
+
+        function publish() {
+            var that = this;
+
+            return $http.put(api.publish(this.id)).then(success);
+
+            function success(){
+                that.published = true;
+            }
+        }
+
+        function unpublish(){
+            var that = this;
+
+            return $http.put(api.unpublish(this.id)).then(success);
+
+            function success(){
+                that.published = false;
+            }
+        }
+
+        function hasAssistants(){
+            if (!this.chronograms){ return false; }
+
+            return this.chronograms.some(function (chronogram) {
+                return chronogram.assistants.length > 0
+            });
+        }
+
+        function isFirstEdit(){
+            return (!this.photos.length && !this.published);
+        }
+
+        function checkSections() {
+            var that = this;
+
+            that.all_steps_completed = true;
+            angular.forEach(_.keys(that.required_steps), function (value) {
+                if (!that.isSectionCompleted(value)){ that.all_steps_completed = false; }
+            });
+        }
+
+        function areAllStepsCompleted() {
+            var that = this;
+
+            that.checkSections();
+            return that.all_steps_completed;
+        }
+
+        function setSectionCompleted(section, value) {
+            var that = this;
+
+            if(section in that.completed_steps){
+                that.completed_steps[section] = value;
+            }
+        }
+
+        function isSectionCompleted(section) {
+            var that = this;
+            return that.completed_steps[section];
+        }
+
+        function setStepsLeft(section){
+            var that = this;
+
+            if (!that.required_steps[section]) { return; }
+
+            that.steps_left = 0;
+            _.each(_.keys(that.required_steps),function(value){
+                that.steps_left += !that.completed_steps[value] ? 1:0;
+            });
+        }
+
+        function setAllSections(){
+            var that = this;
+            that.resetSections();
+            that.updateAllSections();
+            that.checkSections();
+        }
+
+        function updateAllSections(){
+            var that = this;
+            angular.forEach(ActivitySteps, function (step) {
+                that.updateSection(step.name);
+            });
+        }
+
+        function updateSection(section) {
+            var that = this;
+            var isCompleted = false;
+
+            if (!that.steps)
+                return;
+
+            var subSections = that.steps[section];
+
+            switch (section) {
+                case 'general':
+                    isCompleted = subSections.every(function (subSection) {
+                        var value = that.hasOwnProperty(subSection) && !!that[subSection];
+                        return value;
+                    });
+                    break;
+                case 'detail':
+                    isCompleted = subSections.some(function (subSection) {
+                        return (that.hasOwnProperty(subSection) && !!that[subSection]);
+                    });
+                    break;
+                case 'location':
+                    var hasLocation = !!that[subSections];
+                    isCompleted = hasLocation;
+                    break;
+                case 'calendars':
+                    that.hasOwnProperty(subSections);
+                    var hasCalendars = !!that.chronograms && (that.chronograms.length > 0);
+                    isCompleted = hasCalendars;
+                    break;
+                case 'instructors':
+                    var hasInstructors = !!that[subSections] && (that[subSections].length > 0);
+                    isCompleted = hasInstructors;
+                    break;
+                case 'gallery':
+                    var photos = _.clone(that.photos);
+                    var main_photo = _.first(_.remove(photos, 'main_photo', true));
+                    var hasMainPhoto = !!main_photo;
+                    isCompleted = hasMainPhoto;
+                    break;
+                case 'return_policy':
+                    //TODO reemplazar por comentario al cambiar key en backend
+                    var hasReturnPolicy = !!that[subSections];
+                    isCompleted = hasReturnPolicy;
+                    break;
+            }
+
+            that.setSectionCompleted(section, isCompleted);
+            that.setStepsLeft(section);
+        }
+
+        function resetSections() {
+            var that = this;
+            that.completed_steps = {};
+
+            _.forEach(that.steps,function(value,key){
+                that.completed_steps[key] = false;
+            });
+
+            that.all_steps_completed = false;
+        }
 
         function getInstructors(){
             var that = this;
@@ -417,75 +526,5 @@
                 return response.data;
             }
         }
-
-        function updateSection(section) {
-            var that = this;
-
-            // console.log("ENTRE A CHEQUEAR")
-            var isCompleted = false;
-            if (!that.steps)
-                return;
-            var subSections = that.steps[section];
-            switch (section) {
-                case 'general':
-                    
-
-                    isCompleted = subSections.every(function (subSection) {
-                        var value = that.hasOwnProperty(subSection) && !!that[subSection];
-                        return value;
-                    });
-                    break;
-                case 'detail':
-                    isCompleted = subSections.some(function (subSection) {
-
-                        return (that.hasOwnProperty(subSection) && !!that[subSection]);
-                    });
-                    break;
-                case 'location':
-
-                    var hasLocation = !!that[subSections];
-                    isCompleted = hasLocation;
-                    break;
-                case 'calendars':
-                    that.hasOwnProperty(subSections);
-                    var hasCalendars = !!that.chronograms && (that.chronograms.length > 0);
-                    isCompleted = hasCalendars;
-                    break;
-                case 'instructors':
-                    var hasInstructors = !!that[subSections] && (that[subSections].length > 0);
-                    isCompleted = hasInstructors;
-                    break;
-                case 'gallery':
-                    var photos = _.clone(that.photos);
-                    var main_photo = _.first(_.remove(photos, 'main_photo', true));
-                    var hasMainPhoto = !!main_photo;
-                    isCompleted = hasMainPhoto;
-                    break;
-                case 'return_policy':
-                    //TODO reemplazar por comentario al cambiar key en backend
-                    var hasReturnPolicy = !!that[subSections];
-                    isCompleted = hasReturnPolicy;
-                    break;
-
-            }
-
-            //console.log('updateSection[' + section + ']: ', isCompleted);
-            that.setSectionCompleted(section, isCompleted);
-            that.setStepsLeft(section);
-        }
-
-        function resetSections() {
-            var that = this;
-            that.completed_steps = {};
-
-            _.forEach(that.steps,function(value,key){
-                that.completed_steps[key] = false;
-            });
-
-            that.all_steps_completed = false;
-        }
-
-
     }
-
 })();
