@@ -82,8 +82,8 @@
 
             function uploadSuccess(response) {
                 vm.isLoadingGalleryPicture = false;
-                vm.pictures.push(response.data.photo);
-                angular.extend(activity.photos, vm.pictures);
+                vm.pictures.push(response.data.picture);
+                angular.extend(activity.pictures, vm.pictures);
                 _onSectionUpdated();
                 Toast.success(vm.strings.TOAST_GALLERY_UPLOAD_SUCCESS);
             }
@@ -146,8 +146,8 @@
 
         function _coverUploadSuccess(response) {
             vm.isLoadingCover = false;
-            _.remove(activity.photos, 'main_photo', true);
-            activity.photos.push(response.data.photo);
+            _.remove(activity.pictures, 'main_photo', true);
+            activity.pictures.push(response.data.picture);
             _initializePictures();
             _onSectionUpdated();
             Toast.success(vm.strings.TOAST_COVER_SET_SUCCESS);
@@ -169,8 +169,8 @@
         }
 
         function _initializePictures(){
-            vm.pictures = _.filter(activity.photos, 'main_photo', false);
-            vm.activityCover = _.first(_.remove(activity.photos, 'main_photo', true));
+            vm.pictures = _.filter(activity.pictures, 'main_photo', false);
+            vm.activityCover = _.first(_.remove(activity.pictures, 'main_photo', true));
             _getSubcategoryCoverPool().then(success);
 
             function success(){

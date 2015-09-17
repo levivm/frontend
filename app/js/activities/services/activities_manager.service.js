@@ -227,7 +227,7 @@
             return $http.get(api.subcategoryCovers(subcategoryId)).then(success, error);
 
             function success(response){
-                return response.data.photos;
+                return response.data.pictures;
             }
             function error(response){
                 console.log('Error retrieving Cover Pool for subcategory:', subcategoryId, '.', response);

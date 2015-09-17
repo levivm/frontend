@@ -47,9 +47,9 @@
         }
 
         function _mapMainPicture(activity){
-            angular.forEach(activity.photos, function(photo, index, array){
-                if(photo.main_photo){
-                    activity.main_photo = photo.photo;
+            angular.forEach(activity.pictures, function(picture, index, array){
+                if(picture.main_photo){
+                    activity.main_photo = picture.photo;
                 }
 
                 if( index === (array.length - 1) && !activity.main_photo){

@@ -353,7 +353,7 @@
         }
 
         function isFirstEdit(){
-            return (!this.photos.length && !this.published);
+            return (!this.pictures.length && !this.published);
         }
 
         function checkSections() {
@@ -445,13 +445,11 @@
                     isCompleted = hasInstructors;
                     break;
                 case 'gallery':
-                    var photos = _.clone(that.photos);
-                    var main_photo = _.first(_.remove(photos, 'main_photo', true));
-                    var hasMainPhoto = !!main_photo;
-                    isCompleted = hasMainPhoto;
+                    var pictures = _.clone(that.pictures);
+                    var main_photo = _.first(_.remove(pictures, 'main_photo', true));
+                    isCompleted = !!main_photo;
                     break;
                 case 'return_policy':
-                    //TODO reemplazar por comentario al cambiar key en backend
                     var hasReturnPolicy = !!that[subSections];
                     isCompleted = hasReturnPolicy;
                     break;
