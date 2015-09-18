@@ -5,10 +5,10 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error',
+    ActivityDetailEnrollController.$inject = ['$state','$window', '$timeout','ActivitiesManager', 'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error',
         'activity', 'calendar', 'currentUser'];
 
-    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, StudentsManager, Payments, Authentication, Toast, Error,
+    function ActivityDetailEnrollController($state, $window, $timeout, ActivitiesManager, StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser) {
 
         var vm = this;
@@ -179,9 +179,9 @@
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
 
                 function _enrollSuccess(response) {
-                    calendar.addAssistants(response.assistants);
                     vm.success = true;
-                    $state.go('activities-enroll.success');
+                    var bank_url = response.data.bank_url;
+                    $window.location.href = bank_url;
                 }
 
                 function _enrollError(response){
@@ -512,7 +512,7 @@
             vm.amount = calendar.session_price;
 
             if(currentUser)
-                 vm.pseData.email = currentUser.user.email;
+                 vm.pseData.payerEmail = currentUser.user.email;
 
             if(_isAllBooked()){
                 vm.quantity = 0;
