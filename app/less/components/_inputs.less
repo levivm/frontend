@@ -15,26 +15,27 @@ input, textarea, select{
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   font-weight: 200;  
+   font-weight: 200;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   font-weight: 200;  
+   font-weight: 200;
 }
 
-:-ms-input-placeholder {  
-   font-weight: 200;  
+:-ms-input-placeholder {
+   font-weight: 200;
 }
 
 label{
 	font-family: @font-sans-alt;
 	font-weight: 200;
 	color: @gray !important;
-	font-size: 0.9em;
+	font-size: 1em;
+	margin-bottom: 1em
 }
 
 .input{
-	
+
 	&--main{
 		// TODO: Improve this for be used only with .form-group
 
@@ -45,15 +46,15 @@ label{
 			font-weight: bold;
 		}
 
-		&.form-group{			  
+		&.form-group{
 
 			.form-control{
 			  	font-size: 2.6em;
 				height: auto !important;
 			  	text-align: center;
-				background-image: linear-gradient(@secondary, @secondary), linear-gradient(@input-border, @input-border);			  	
+				background-image: linear-gradient(@secondary, @secondary), linear-gradient(@input-border, @input-border);
 			}
-			 
+
 		}
 
 		::-webkit-input-placeholder { /* WebKit browsers */
@@ -67,7 +68,7 @@ label{
 		}
 		:-ms-input-placeholder { /* Internet Explorer 10+ */
 		   color:    fadeout(gray, 20%) ;
-		} 
+		}
 	}
 
 	// TODO: Arreglar el input-group-lg para cuando se tiene un addon en material-bootstrap
@@ -75,12 +76,20 @@ label{
 		font-size: 1.3em;
 	}
 
+	&-lg{
+		font-size: 1.5em;
+		height: auto !important;
+		line-height: 2em;
+		font-weight: bold;
+	}
 
-	
+
+
 }
 
 select.form-control{
 	font-size: 1.3em;
+	height: auto;
 }
 
 tags-input{
@@ -95,7 +104,7 @@ tags-input{
 	}
 
 	.tag-item{
-		background: @brand-secondary;
+		background: @success;
 		display: inline-block;
 		color: white;
 		font-weight: bolder;
@@ -114,11 +123,15 @@ tags-input{
 	.remove-button{
 		cursor: pointer;
 		position: absolute;
-		top: 50%;		
+		top: 50%;
 		right: 0.25em;
 		font-size: 23px;
 		line-height: 0px;
-		color: darken(@secondary, 10%);
+		color: darken(@success, 10%);
+
+		&:hover{
+			color: darken(@success, 15%);
+		}
 	}
 
 	input{
@@ -133,24 +146,34 @@ tags-input{
 
 // TODO: Colocarle feedback a los botones
 .counter-input{
-	font-size: 1.5em;
+	font-size: 1.4em;
 	display: inline-block;
 
 	.counter-field{
-		font-weight: bold;
+		//font-weight: bold;
 		background-color: transparent;
 		border: 0;
 		outline: none;
 		text-align: center;
-		width: 2.5em;
+		width: 2em;
 	}
 
-	&-lg{
-		font-size: 3em;
-	}	
+	.counter-control{
+		color: @gray-light;
+		width: 1.3em;
+		line-height: 1.3em;
+		border: 1px solid @gray-light-medium;
+		text-align: center;
+		border-radius: 50%;
+
+		&:hover{
+			text-decoration: none;
+			background-color: @gray-lighter;
+		}
+	}
 
 	* {
-		display: inline-block;		
+		display: inline-block;
 	}
 
 	&__left-button, &__right-button{
@@ -179,7 +202,7 @@ tags-input{
 	}
 
 	&__right-button:before{
-		content: "+";	
+		content: "+";
 	}
 }
 
@@ -191,7 +214,7 @@ tags-input{
 }
 
 .img-input {
-    position: relative;    
+    position: relative;
 
 	.drop-box {
 		position: absolute;
@@ -200,5 +223,3 @@ tags-input{
 	}
 
 }
-
-	

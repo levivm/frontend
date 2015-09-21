@@ -88,13 +88,14 @@
                 COPY_PASSWORD: "¿Desea cambiar su contraseña?",
                 COPY_EMAIL: "¿Desea cambiar su correo electrónico?",
                 SECTION_ACCOUNT: "Cuenta",
-                TAB_EMAIL: "Correo Electrónico",
-                TAB_PASSWORD: "Contraseña",
+                TAB_SETTINGS: "Ajustes",
                 TAB_BANKING: "Información Bancaria",
                 LABEL_CURRENT_PASSWORD: "Contraseña Actual",
                 LABEL_NEW_PASSWORD: "Nueva Contraseña",
                 LABEL_REPEAT_PASSWORD: "Repetir Nueva Contraseña",
-                LABEL_EMAIL: "Correo Electrónico"
+                LABEL_EMAIL: "Correo Electrónico",
+                SUB_SECTION_EMAIL: "Correo Electrónico",
+                SUB_SECTION_PASSWORD: "Contraseña"
             });
         }
 

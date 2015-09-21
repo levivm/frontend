@@ -66,10 +66,10 @@
                 //--------- Internal Functions ---------//
 
                 function _mapMainPicture(activity){
-                    if(activity.photos.length > 0){
-                        angular.forEach(activity.photos, function(photo, index, array){
-                            if(photo.main_photo){
-                                activity.main_photo = photo.photo;
+                    if(activity.pictures.length > 0){
+                        angular.forEach(activity.pictures, function(picture, index, array){
+                            if(picture.main_photo){
+                                activity.main_photo = picture.photo;
                             }
 
                             if( index === (array.length - 1) && !activity.main_photo){

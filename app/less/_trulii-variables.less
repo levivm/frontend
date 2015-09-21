@@ -40,6 +40,8 @@
 @facebook-blue-weak:    #dfe3ee;
 @white: #fff;
 
+@border-radius-standard: 5px;
+
 
 //== Scaffolding
 //
@@ -190,6 +192,9 @@
 
 @btn-link-disabled-color:        @gray-light;
 
+@btn-border-radius-small: @border-radius-small;
+@btn-border-radius-base: @border-radius-base;
+@btn-border-radius-large: @border-radius-large;
 
 //== Forms
 //
@@ -372,7 +377,7 @@
 //##
 
 // Basics of a navbar
-@navbar-height:                    50px;
+@navbar-height:                    60px;
 @navbar-margin-bottom:             @line-height-computed;
 @navbar-border-radius:             @border-radius-base;
 @navbar-padding-horizontal:        floor((@grid-gutter-width / 2));
@@ -433,7 +438,7 @@
 //
 //##
 
-@sidebar-width: 17em;
+@sidebar-width: 18em;
 @sidebar-color: @dark-element;
 
 //== Footer
@@ -565,11 +570,11 @@
 //##
 
 //** Popover body background color
-@popover-bg:                          #fff;
+@popover-bg:                          @gray-light-medium;
 //** Popover maximum width
 @popover-max-width:                   276px;
 //** Popover border color
-@popover-border-color:                rgba(0,0,0,.2);
+@popover-border-color:                @popover-bg;
 //** Popover fallback border color
 @popover-fallback-border-color:       #ccc;
 
@@ -998,6 +1003,6 @@
 
 @light-hover: @color-delimeter-light;
 
-@color-beginner: @brand-primary;
-@color-intermediate: spin(@brand-primary, -15);
-@color-advanced: spin(@brand-primary, -30);
+@color-beginner: @brand-success;
+@color-intermediate: spin(@brand-success, -20);
+@color-advanced: spin(@brand-success, -35);

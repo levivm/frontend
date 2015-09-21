@@ -38,6 +38,7 @@
             /**
              * @ngdoc function
              * @name .#orders
+             * @name .#orders
              * @description Renders **`/api/organizers/:idOrganizer/orders`** Orders List URL
              * @param {number} idOrganizer Organizer Id
              * @return {string} Rendered URL
@@ -73,16 +74,27 @@
 
             /**
              * @ngdoc function
-             * @name .#instructor
-             * @description Renders **`/api/organizers/:idOrganizer/instructors/:idInstructor`**
-             * Organizer Instructor URL
+             * @name .#instructors
+             * @description Renders **`/api/organizers/:idOrganizer/instructors`** Organizer Instructors URL
              * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'instructors' : function (idOrganizer) {
+                return renderUrl('organizers/', [idOrganizer, 'instructors']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#instructor
+             * @description Renders **`/api/instructors/:idInstructor`**
+             * Organizer Instructor URL
              * @param {number} idInstructor Instructor Id
              * @return {string} Rendered URL
              * @methodOf trulii.organizers.services.OrganizerServerApi
              */
-            'instructor': function (idOrganizer, idInstructor){
-                return renderUrl('organizers/', [idOrganizer, 'instructors', idInstructor]);
+            'instructor': function (idInstructor){
+                return renderUrl('instructors/', [idInstructor]);
             }
         };
 

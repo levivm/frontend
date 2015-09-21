@@ -12,22 +12,29 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = [];
-    function OrganizerDashboardCtrl() {
+    OrganizerDashboardCtrl.$inject = ['$state'];
+    function OrganizerDashboardCtrl($state) {
 
         var vm = this;
+        vm.isActive = isActive;
 
         _activate();
+
+        function isActive(stateStr){
+            return $state.includes(stateStr);
+        }
 
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                SECTION_ACTIVITIES: "Actividades",
+                SECTION_PROFILE: "Perfil",
                 SECTION_ACCOUNT: "Cuenta",
-                SECTION_PROFILE: "Mi Perfil",
-                SECTION_HISTORY: "Historial de Ventas"
+                SECTION_ACTIVITIES: "Actividades",
+                SECTION_INSTRUCTORS: "Instructores",
+                SECTION_REVIEWS: "Comentarios",
+                SECTION_TRANSACTIONS: "Transacciones"
             });
         }
 

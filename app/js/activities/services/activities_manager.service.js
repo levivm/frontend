@@ -101,6 +101,15 @@
 
             /**
              * @ngdoc method
+             * @name .#getSubcategoryCovers
+             * @description Returns activity subcategory covers
+             * @return {array} Covers array
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getSubcategoryCovers: getSubcategoryCovers,
+
+            /**
+             * @ngdoc method
              * @name trulii.activities.services.ActivitiesManager#enroll
              * @description Enrolls a student on the specified activity
              * @param {number} activityId - Id of activity to enroll on
@@ -209,6 +218,22 @@
                 });
             }
             return deferred.promise;
+        }
+
+        function getSubcategoryCovers(subcategoryId){
+            if(subcategoryId === null){
+                console.log('ActivitiesManager.getSubcategoryCovers. subcategoryId not valid:');
+                return [];
+            }
+            return $http.get(api.subcategoryCovers(subcategoryId)).then(success, error);
+
+            function success(response){
+                return response.data.pictures;
+            }
+            function error(response){
+                console.log('Error retrieving Cover Pool for subcategory:', subcategoryId, '.', response);
+                return [];
+            }
         }
 
         function enroll(activityId, data) {

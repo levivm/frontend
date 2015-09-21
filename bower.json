@@ -34,7 +34,8 @@
     "angular-facebook": "~0.2.3",
     "google-code-prettify": "~1.0.4",
     "normalize.css": "~3.0.3",
-    "nouislider": "~8.0.2"
+    "nouislider": "~8.0.2",
+    "angular-i18n": "~1.4.4"
   },
   "resolutions": {
     "lodash": "~3.6.0",

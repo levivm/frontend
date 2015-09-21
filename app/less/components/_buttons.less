@@ -11,10 +11,10 @@
     &-lg{
         text-transform: uppercase;
     }
-    
+
     &-default{
         background-color: transparent;
-        border: 1px solid @gray-lighter;
+        border: 1px solid lighten(@gray-light, 30%); ;
         color: @gray-light;
     }
 
@@ -50,14 +50,19 @@
         }
     }
 
-    &-bgsecondary {
-        background-color: white !important;
-        color: @secondary !important;
+    &-secondary {
+        color: white !important;
+        background-color: @secondary !important;
     }
 
     &.btn-less {
         font-weight: normal;
         width: 9em !important;
+    }
+
+    &.btn-cancel{
+      color: white;
+      background-color: @gray-light;
     }
 
     &-grand:extend(.btn-lg) {

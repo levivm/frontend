@@ -18,11 +18,23 @@
     }
 }
 
+.center-align{
+  display: table;
+  width: 100%;
+  height: 100%;
+
+  & > *{
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+}
+
 //TODO: To mixinis
 
 .clear-href{
     &:hover{
-        text-decoration: none !important;        
+        text-decoration: none !important;
     }
 }
 
@@ -31,7 +43,7 @@
     position: fixed;
     z-index: 1;
     bottom: 0;
-    top: 0;    
+    top: 0;
     left: 0;
     right: 0;
 
@@ -55,4 +67,8 @@
 
 .relative{
     position: relative;
+}
+
+.scroll-y{
+    overflow-y: scroll;
 }

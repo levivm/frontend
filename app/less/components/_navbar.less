@@ -1,3 +1,4 @@
+
 @import url('../_trulii-variables');
 @import "_navbar";
 @import "navbar.less";
@@ -9,11 +10,12 @@
 @navbar-secondary-height: 40px;
 
 
-.navbar {    
-    height: @navbar-height;    
+.navbar {
+    height: @navbar-height;
 
     .btn {
         margin-top: 0;
+        line-height: @navbar-height / 2;
     }
 
     &__link {
@@ -36,8 +38,8 @@
     &__logo-container{
         background-color: @primary;
         height: @navbar-height;
-        padding: @navbar-padding-vertical 1.8em;
-        display: inline-block;        
+        padding: @navbar-padding-vertical 2.3em;
+        display: inline-block;
         float: left;
         text-align: center;
 
@@ -52,7 +54,7 @@
         //width: @logo-width;
         width: 6em;
         display: inline-block;
-        background-size: contain;        
+        background-size: contain;
         margin-left: 0.5em;
 
         .before-xs({ background: url(@res-trulii-logo-tiny) no-repeat center; width: 30px; background-size: contain; position: relative; });
@@ -72,13 +74,13 @@
         height: @navbar-height;
         //width: 40%;
         text-align: right;
-        float: right;     
-        font-size: 0.9em;   
+        float: right;
+        font-size: 0.9em;
 
         .before-xs({ display: inline-block; });
 
         .btn {
-            margin: (@navbar-padding-vertical+2) 1em;            
+            margin: (@navbar-padding-vertical+2) 1em;
         }
 
         & > div{
@@ -87,9 +89,9 @@
     }
 
     &__option {
-        color: @lightbg-text;    
+        color: @lightbg-text;
         display: inline-block;
-        padding: @navbar-padding-vertical 1em; 
+        padding: @navbar-padding-vertical 1em;
         height: @navbar-height;
         font-weight: bold;
         text-transform: uppercase;
@@ -101,17 +103,17 @@
         }
 
         &--right{
-            width: 14em;            
-            float: right;            
+            width: 14em;
+            float: right;
             border-left: 1px solid @color-delimeter-dark;
-            text-align: left;                  
+            text-align: left;
         }
-    }    
+    }
 
     &__search-box {
         background: white;
         width: 100%;
-        height: 35px;
+        height: 45px;
         margin-top: 4px;
         border-radius: @border-radius-base;
         border: 1px solid darken(@primary, 4%);
@@ -173,23 +175,23 @@
         }
     }
 
-    &__user {        
+    &__user {
         display: inline-block;
-        cursor: pointer;            
+        cursor: pointer;
 
         * {
             height: 100%;
-            display: inline-block;            
+            display: inline-block;
             vertical-align: top;
         }
 
         &__picture:extend(.img-size-cover):extend(.img-position-center) {
             .square(@navbar-inner-height - 8);
-            border-radius: 50%;            
+            border-radius: 50%;
             margin: 4px;
         }
 
-        &__name:extend(.show-after-md) {                        
+        &__name:extend(.show-after-md) {
             min-width: 70px;
             max-width: 90px;
             white-space: nowrap;
@@ -198,13 +200,14 @@
             font-weight: bolder;
             text-transform: uppercase;
             line-height: @navbar-height - (@navbar-padding-vertical*2);
-        }    
+        }
 
     }
 
     .dropdown {
         width: auto;
         text-align: left;
+        background-color: white;
     }
 
     [class*=mdi-navigation]:before {
@@ -216,12 +219,12 @@
 
 .navbar-secondary {
     background: @gray-lighter;
-    height:@navbar-secondary-height; 
+    height:@navbar-secondary-height;
     width: 100%;
     text-align: left;
     position: fixed;
     top: @navbar-height;
-    z-index: 200;    
+    z-index: 200;
     padding: 0px 1em;
 
     &__item {
@@ -235,7 +238,7 @@
         cursor: pointer;
 
         &--selected, &.active {
-            border-bottom: 3px solid @gray;            
+            border-bottom: 3px solid @gray;
             font-weight: bold;
         }
 
@@ -252,7 +255,7 @@
 
     }
 
-    & + * { 
+    & + * {
         margin-top: @navbar-secondary-height*1.5;
     }
 

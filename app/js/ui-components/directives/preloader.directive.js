@@ -1,3 +1,4 @@
+
 (function () {
     'use strict';
 
@@ -25,11 +26,8 @@
                     $rootScope.$on('$stateChangeCancel', toggleLoader);
                 }
 
-                if (attrs.centerLoader){
-                    var container = element.find('.preloader-container')[0];
-                    container.style.margin = 0;
-                    container.style.position = 'relative';
-                    container.style.marginTop = "30%";
+                if (scope.isGlobal){
+                    element.find('.preloader-container').addClass("--global");
                 }
 
                 //--------- Functions Implementation ---------//

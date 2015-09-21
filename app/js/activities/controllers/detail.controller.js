@@ -134,12 +134,12 @@
 
         function _mapPictures(activity){
             var gallery = [];
-            if(activity.hasOwnProperty('photos') && activity.photos.length > 0){
-                angular.forEach(activity.photos, function(photo, index, array){
-                    if(photo.main_photo){
-                        activity.main_photo = photo.photo;
+            if(activity.hasOwnProperty('pictures') && activity.pictures.length > 0){
+                angular.forEach(activity.pictures, function(picture, index, array){
+                    if(picture.main_photo){
+                        activity.main_photo = picture.photo;
                     } else {
-                        gallery.push(photo);
+                        gallery.push(picture);
                     }
 
                     if( index === (array.length - 1) && !activity.main_photo){
