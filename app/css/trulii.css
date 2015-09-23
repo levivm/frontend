@@ -12922,7 +12922,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   vertical-align: top;
   height: 50px;
   width: 40%;
-  margin-left: 240px;
+  margin: 0.2em 1em;
 }
 .navbar__right-wrapper {
   display: inline-block;
@@ -12958,7 +12958,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-color: #38dbc8 !important;
 }
 .navbar__option--right {
-  width: 14em;
+  width: 16em;
   float: right;
   border-left: 1px solid #d7d7d7;
   text-align: left;
@@ -12970,6 +12970,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-top: 4px;
   border-radius: 4px;
   border: 1px solid #ffce6c;
+}
+@media screen and (max-width: 992px) {
+  .navbar__search-box {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .navbar__search-box {
+    display: none !important;
+  }
 }
 .navbar__search-box input {
   font-size: 1.1em;
@@ -13030,6 +13040,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
 }
+.navbar__user *:before {
+  padding: 0.3em 0 !important;
+  display: inline-block;
+  vertical-align: top;
+}
 .navbar__user__picture {
   width: 42px;
   height: 42px;
@@ -13037,14 +13052,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 4px;
 }
 .navbar__user__name {
-  min-width: 70px;
-  max-width: 90px;
+  min-width: 80px;
+  max-width: 100px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-weight: bolder;
   text-transform: uppercase;
   line-height: 50px;
+  vertical-align: middle;
 }
 .navbar .dropdown {
   width: auto;
