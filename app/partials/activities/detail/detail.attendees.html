@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12">
-        <h2>
+        <p class="copy">
             Hasta ahora
             <ng-pluralize count="attendees.totalItems"
                           when="{
@@ -9,25 +9,27 @@
                          'other': 'van {} asistentes ¡Faltas tú!'
                          }">
             </ng-pluralize>
-        </h2>
+        </p>
     </div>
 </div>
-
-<div class="row">
-    <div class="user-thumbnail-container">
-        <div class="user-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.email">
-            <img class="user-img" ng-src="{{assistant.photo}}"
-                 alt="{{::assistant.first_name}}"/>
-            <h3 ng-bind="::assistant.first_name"></h3>
+<div ng-if="attendees.totalItems > 0">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="user-thumbnail-container">
+                <div class="user-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.email">
+                    <img class="user-img" ng-src="{{assistant.photo}}"
+                         alt="{{::assistant.first_name}}"/>
+                    <span ng-bind="::assistant.first_name"></span>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-md-12">
-        <pagination class="pull-right" total-items="attendees.totalItems" ng-model="attendees.currentPage"
-                    ng-change="attendees.pageChanged()"
-                    items-per-page="attendees.itemsPerPage">
-        </pagination>
+    <div class="row">
+        <div class="col-md-12">
+            <pagination class="pull-right" total-items="attendees.totalItems" ng-model="attendees.currentPage"
+                        ng-change="attendees.pageChanged()"
+                        items-per-page="attendees.itemsPerPage">
+            </pagination>
+        </div>
     </div>
 </div>

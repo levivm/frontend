@@ -1548,7 +1548,7 @@ pre code {
   }
 }
 .container-fluid,
-.detail-cover-container {
+.detail-cover {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -5205,8 +5205,8 @@ a.thumbnail.active {
 .navbar-header:after,
 .navbar-collapse:before,
 .navbar-collapse:after,
-.detail-cover-container:before,
-.detail-cover-container:after {
+.detail-cover:before,
+.detail-cover:after {
   content: " ";
   display: table;
 }
@@ -5224,7 +5224,7 @@ a.thumbnail.active {
 .navbar:after,
 .navbar-header:after,
 .navbar-collapse:after,
-.detail-cover-container:after {
+.detail-cover:after {
   clear: both;
 }
 .center-block {
@@ -12174,8 +12174,8 @@ hr.on-light {
   background: url('/css/img/creating.jpg');
 }
 .clear-spacings {
-  padding: 0em;
-  margin: 0em;
+  padding: 0;
+  margin: 0;
 }
 .separate-above,
 .separate-vertical,
@@ -12184,13 +12184,13 @@ hr.on-light {
   margin-top: 3rem !important;
 }
 .separate-above-medium {
-  margin-top: 5rem;
+  margin-top: 5rem !important;
 }
 .separate-above-more {
-  margin-top: 8rem;
+  margin-top: 8rem !important;
 }
 .separate-above-less {
-  margin-top: 1rem;
+  margin-top: 1rem !important;
 }
 .separate-below,
 .separate-vertical,
@@ -12199,13 +12199,13 @@ hr.on-light {
   margin-bottom: 3rem !important;
 }
 .separate-below-medium {
-  margin-bottom: 5rem;
+  margin-bottom: 5rem !important;
 }
 .separate-below-more {
-  margin-bottom: 8rem;
+  margin-bottom: 8rem !important;
 }
 .separate-below-less {
-  margin-bottom: 1rem;
+  margin-bottom: 1rem !important;
 }
 .separate-left {
   margin-left: 3rem;
@@ -13873,18 +13873,15 @@ tags-input input {
   position: relative;
 }
 .user-thumbnail-container {
-  margin-top: 16px;
-  margin-bottom: 16px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  border-top: 2px solid #d7d7d7;
+  margin: 1em auto;
+  padding: 1em 0;
+  text-align: center;
 }
 .user-thumbnail-container .user-thumbnail {
   display: inline-block;
   text-align: center;
-  padding-left: 5%;
-  padding-right: 5%;
-  width: 33%;
+  margin-right: 2em;
+  width: 6em;
 }
 .user-thumbnail-container .user-thumbnail .user-img {
   width: 100%;
@@ -15129,45 +15126,44 @@ button.toast-close-button {
 .timepicker [class*="glyphicon"] {
   color: #777777;
 }
-.detail-cover-container {
+.detail-cover {
+  padding: 0;
   position: relative;
-  padding-top: 48px;
-}
-.detail-cover-container .detail-cover {
-  position: absolute;
   width: 100%;
   min-height: 280px;
   height: 100%;
   top: 0;
   left: 0;
-  filter: blur(4px);
+  filter: opacity(0.7);
+  -webkit-filter: opacity(0.7);
   overflow: hidden;
 }
-.detail-cover-container .detail-cover img {
+.detail-cover img {
+  position: absolute;
   width: 100%;
   min-height: 280px;
   height: auto;
 }
-.detail-cover-container .detail-organizer {
+.detail-organizer {
   position: absolute;
   z-index: 4;
   left: 25%;
   text-align: center;
 }
-.detail-cover-container .detail-organizer .detail-organizer-picture {
+.detail-organizer .detail-organizer-picture {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   margin-bottom: 4px;
 }
-.detail-cover-container .detail-organizer div {
+.detail-organizer div {
   color: #ffd580;
   font-weight: 400;
 }
-.detail-cover-container .detail-organizer-name {
+.detail-organizer-name {
   margin-right: 20px;
 }
-.detail-cover-container * {
+* {
   color: rgba(0, 0, 0, 0.74);
 }
 .list {
@@ -15394,6 +15390,72 @@ button.toast-close-button {
 }
 .activity-grid {
   text-align: left;
+}
+.activity-detail * > .category-label {
+  margin-right: 0.3em;
+}
+.section .title {
+  font-size: 1.8em;
+  font-weight: 600;
+  color: #38dbc8;
+}
+.section .content {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+}
+.section::after {
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+.sub-section-title,
+.instructors-container .title,
+.attendees-container .title {
+  color: #ffd580;
+  font-size: 3.4em;
+  font-weight: 600;
+}
+.instructors-container {
+  padding: 6em 9.5em 9.5em 9.5em;
+  background-color: #f7f7f7;
+}
+.instructors-container .title {
+  margin-bottom: 1em;
+}
+.instructors-container .instructor .name {
+  color: rgba(0, 0, 0, 0.74);
+  font-size: 1.8em;
+  font-weight: 400;
+}
+.instructors-container .instructor .website {
+  color: #777777 !important;
+}
+.instructors-container .instructor .bio {
+  margin-top: 1.5em;
+  color: #777777;
+}
+.location .map {
+  width: 100%;
+  height: 24em;
+}
+.location .address {
+  padding: 1.2em;
+  background-color: #f7f7f7;
+  text-align: center;
+  font-size: 1.8em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+}
+.attendees-container {
+  padding: 6em 9.5em 9.5em 9.5em;
+}
+.attendees-container .title {
+  margin-bottom: 0.5em;
+  text-align: center;
+}
+.attendees-container .copy,
+.attendees-container .copy * {
+  font-size: 2rem;
+  text-align: center;
 }
 .popover {
   box-shadow: none;

@@ -1,7 +1,141 @@
-<div class="detail-cover-container">
+
+<div class="row">
     <div class="detail-cover">
         <img ng-src="{{detail.activity.main_photo}}" alt="detail.activity.title"/>
     </div>
+</div>
+<!--General Info and Sidebar-->
+<div class="row activity-detail">
+    <div class="col-md-7 col-md-offset-1">
+        <div class="row separate-above-medium">
+            <div class="col-md-12">
+                <h1 ng-bind="::detail.activity.title"></h1>
+            </div>
+        </div>
+        <!--Category and Social-->
+        <div class="row">
+            <div class="col-md-4">
+                <span class="category-label" ng-bind="::detail.strings.LABEL_CATEGORY"></span>
+                <span class="label" ng-bind="::detail.activity.category_display"
+                      ng-style="{'background-color': detail.activity.category_color}"></span>
+            </div>
+            <div class="col-md-8">
+                Te gustó? Compartelo con tus amigos /< Social Icons here />
+            </div>
+        </div>
+        <!--Description-->
+        <div class="row separate-above-medium">
+            <div class="col-md-12">
+                <p ng-bind="::detail.activity.short_description"></p>
+            </div>
+        </div>
+        <!--Gallery-->
+        <div class="row separate-above-medium">
+            <div class="col-md-12">
+                <div class="row gallery-grid">
+                    <div class="col-md-4" ng-repeat="picture in detail.activity.gallery track by picture.id">
+                        <img class="gallery-grid__photo" ng-src="{{picture.photo}}"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Audience-->
+        <div class="row separate-above-medium">
+            <div class="col-md-12 section">
+                <div class="title" ng-bind="::detail.strings.LABEL_AUDIENCE"></div>
+                <p class="content" ng-bind="::detail.activity.audience"></p>
+                <div class="separator separate-above-more"></div>
+            </div>
+        </div>
+        <!--Content-->
+        <div class="row separate-above-medium">
+            <div class="col-md-12 section">
+                <div class="title" ng-bind="::detail.strings.LABEL_CONTENT"></div>
+                <p class="content" ng-bind="::detail.activity.content"></p>
+                <div class="separator separate-above-more"></div>
+            </div>
+        </div>
+        <!--Goals-->
+        <div class="row separate-above-medium">
+            <div class="col-md-12 section">
+                <div class="title" ng-bind="::detail.strings.LABEL_GOALS"></div>
+                <p class="content" ng-bind="::detail.activity.goals"></p>
+            </div>
+        </div>
+
+        <!--Video-->
+        <div class="row" ng-if="detail.activity.youtube_video_url">
+            <div class="col-md-12 text-center">
+                <youtube-video video-url="detail.activity.youtube_video_url"></youtube-video>
+            </div>
+        </div>
+
+        <!--Methodology-->
+        <div class="row separate-above-medium">
+            <div class="col-md-12 section">
+                <div class="title" ng-bind="::detail.strings.LABEL_AUDIENCE"></div>
+                <p class="content" ng-bind="::detail.activity.audience"></p>
+                <div class="separator separate-above-more"></div>
+            </div>
+        </div>
+        <!--Requirements-->
+        <div class="row separate-above-medium">
+            <div class="col-md-12 section">
+                <div class="title" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></div>
+                <p class="content" ng-bind="::detail.activity.requirements"></p>
+                <div class="separator separate-above-more"></div>
+            </div>
+        </div>
+        <!--Extra-->
+        <div class="row separate-above-medium">
+            <div class="col-md-12 section">
+                <div class="title" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></div>
+                <p class="content" ng-bind="::detail.activity.extra_info"></p>
+                <div class="separator separate-above-more"></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
+
+<!--Instructors-->
+<div class="row">
+    <div class="col-md-12 instructors-container">
+        <div class="title" ng-bind="detail.strings.LABEL_INSTRUCTORS"></div>
+        <div class="instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
+            <div class="name" ng-bind="::instructor.full_name"></div>
+            <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}" ng-bind="::instructor.website"></a>
+            <p class="bio" ng-bind="::instructor.bio"></p>
+            <div ng-if="!$last" class="separator separate-below-more"></div>
+        </div>
+    </div>
+</div>
+
+<!--Reviews-->
+<div class="row">
+    <div class="col-md-12">
+    </div>
+</div>
+
+<!--Location-->
+<div class="row location">
+    <div class="map" id="map-canvas"></div>
+    <div class="address">
+        <span class="mdi-maps-place"></span>
+        <span ng-bind="detail.activity.location.address"></span>
+    </div>
+</div>
+
+<!--Attendees-->
+<div class="row">
+    <div class="col-md-12 attendees-container">
+        <div class="title" ng-bind="detail.strings.LABEL_ATTENDEES"></div>
+        <div ui-view="attendees"></div>
+    </div>
+</div>
+
+<div class="detail-cover-container">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
             <div class="row">
@@ -84,15 +218,6 @@
 </div>
 
 <div class="container">
-    <!--<div class="row">-->
-        <!--<div class="col-md-8 col-md-push-2">-->
-            <!--<tabset justified="true">-->
-                <!--<tab heading="{{::detail.strings.TAB_INFO}}" select="detail.changeState('info')"></tab>-->
-                <!--<tab heading="{{::detail.strings.TAB_CALENDARS}}" select="detail.changeState('calendar')"></tab>-->
-                <!--<tab heading="{{::detail.strings.TAB_ASSISTANTS}}" select="detail.changeState('attendees')"></tab>-->
-            <!--</tabset>-->
-        <!--</div>-->
-    <!--</div>-->
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <div class="btn-group btn-group-justified">
@@ -147,8 +272,4 @@
             <div ui-view></div>
         </div>
     </div>
-</div>
-
-<div class="row">
-    <div id="map-canvas" ng-style="::detail.getMapStyle()"></div>
 </div>

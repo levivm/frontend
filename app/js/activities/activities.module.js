@@ -150,9 +150,16 @@
             })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/',
-                abstract: true,
-                controller: 'ActivityDetailController as detail',
-                templateUrl: 'partials/activities/detail/detail.html',
+                views:{
+                    '@': {
+                        controller: 'ActivityDetailController as detail',
+                        templateUrl: 'partials/activities/detail/detail.html'
+                    },
+                    'attendees@activities-detail': {
+                        controller: 'ActivityDetailAttendeesController as attendees',
+                        templateUrl: 'partials/activities/detail/detail.attendees.html'
+                    }
+                },
                 resolve: {
                     activity: getActivity,
                     cities: getAvailableCities,
@@ -162,18 +169,9 @@
                     calendars: getCalendars
                 }
             })
-            .state('activities-detail.info', {
-                url: 'info',
-                templateUrl: 'partials/activities/detail/detail.info.html'
-            })
             .state('activities-detail.calendar', {
                 url: 'calendar',
                 templateUrl: 'partials/activities/detail/detail.calendar.html'
-            })
-            .state('activities-detail.attendees', {
-                url: 'attendees',
-                controller: 'ActivityDetailAttendeesController as attendees',
-                templateUrl: 'partials/activities/detail/detail.attendees.html'
             })
             .state('activities-enroll', {
                 url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',

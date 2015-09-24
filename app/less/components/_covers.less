@@ -1,52 +1,51 @@
 
 @import url('../_trulii-variables');
+@import url('../mixins/_image_processing');
 
-.detail-cover-container {
-    position: relative;
-    padding-top: 48px;
+
+.detail-cover{
     &:extend(.container-fluid);
+    padding: 0;
+    position: relative;
+    width: 100%;
+    min-height: 280px;
+    height: 100%;
+    top: 0;
+    left: 0;
+    .burn(0.7);
+    overflow: hidden;
 
-    .detail-cover{
+    img {
         position: absolute;
         width: 100%;
         min-height: 280px;
-        height: 100%;
-        top: 0;
-        left: 0;
-        filter: blur(4px);
-        overflow: hidden;
+        height: auto;
+    }
+}
 
-        img {
-            width: 100%;
-            min-height: 280px;
-            height: auto;
-        }
+.detail-organizer {
+    position: absolute;
+    z-index: 4;
+    left: 25%;
+    text-align: center;
+
+    .detail-organizer-picture {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 4px;
     }
 
-    .detail-organizer {
-        position: absolute;
-        z-index: 4;
-        left: 25%;
-        text-align: center;
-
-        .detail-organizer-picture {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin-bottom: 4px;
-        }
-
-        div {
-            color: @primary;
-            font-weight: 400;
-        }
+    div {
+        color: @primary;
+        font-weight: 400;
     }
+}
 
-    .detail-organizer-name {
-        margin-right: 20px;
-    }
+.detail-organizer-name {
+    margin-right: 20px;
+}
 
-    * {
-        color: @lightbg-text;
-    }
+* {
+    color: @lightbg-text;
 }

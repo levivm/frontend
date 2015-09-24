@@ -1,0 +1,92 @@
+@import url('../_trulii-variables');
+
+@secondary-bg: #F7F7F7;
+
+.activity-detail{
+    * > .category-label{
+        margin-right: 0.3em;
+    }
+
+}
+
+.section {
+    .title {
+        font-size: 1.8em;
+        font-weight: 600;
+        color: @brand-success;
+    }
+    .content {
+        margin-top: 0.6em;
+        margin-bottom: 0.6em;
+    }
+
+    &::after{
+        width: 100%;
+        border-bottom: 1px solid black;
+    }
+}
+
+.sub-section-title{
+    color: @brand-primary;
+    font-size: 3.4em;
+    font-weight: 600;
+}
+
+.instructors-container{
+    padding: 6em 9.5em 9.5em 9.5em;
+    background-color: @secondary-bg;
+
+    .title{
+        &:extend(.sub-section-title);
+        margin-bottom: 1em;
+    }
+
+    .instructor{
+        .name{
+            color: @lightbg-text;
+            font-size: 1.8em;
+            font-weight: 400;
+        }
+
+        .website{
+            color: @text-muted !important;
+        }
+
+        .bio{
+            margin-top: 1.5em;
+            color: @text-muted;
+        }
+    }
+}
+
+.location {
+    .map{
+        width: 100%;
+        height: 24em;
+    }
+
+    .address{
+        padding: 1.2em;
+        background-color: @secondary-bg;
+        text-align: center;
+        font-size: 1.8em;
+        font-weight: 400;
+        color: @lightbg-text;
+
+    }
+}
+
+.attendees-container {
+    padding: 6em 9.5em 9.5em 9.5em;
+
+    .title{
+        &:extend(.sub-section-title);
+        margin-bottom: 0.5em;
+        text-align: center;
+    }
+
+    .copy, .copy *{
+        font-size: 2rem;
+        text-align: center;
+    }
+}

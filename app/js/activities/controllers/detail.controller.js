@@ -36,7 +36,6 @@
             changeState : changeState,
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
-            getMapStyle : getMapStyle,
             getStarStyle : getStarStyle,
             isSelectedCalendarFull : isSelectedCalendarFull
         });
@@ -67,13 +66,6 @@
             } else {
                 return defaultPicture;
             }
-        }
-
-        function getMapStyle(){
-            return {
-                'width': $window.innerWidth + 'px',
-                'height': '240px'
-            };
         }
 
         function getStarStyle(star){
@@ -133,23 +125,19 @@
         }
 
         function _mapPictures(activity){
-            var gallery = [];
+            activity.gallery = [];
             if(activity.hasOwnProperty('pictures') && activity.pictures.length > 0){
-                angular.forEach(activity.pictures, function(picture, index, array){
+                angular.forEach(activity.pictures, function(picture){
                     if(picture.main_photo){
                         activity.main_photo = picture.photo;
                     } else {
-                        gallery.push(picture);
-                    }
-
-                    if( index === (array.length - 1) && !activity.main_photo){
-                        activity.main_photo = array[0].photo;
+                        activity.gallery.push(picture);
                     }
                 });
-                activity.gallery = gallery;
             } else {
                 activity.main_photo = defaultCover;
             }
+            console.log('_mapPictures. activity:', activity);
             return activity;
         }
 
@@ -216,6 +204,7 @@
                 COPY_DAY: "día ",
                 COPY_DAYS: "días ",
                 COPY_IN: "En ",
+                COPY_NOT_AVAILABLE: "No Disponible",
                 LABEL_CATEGORY: "Categoría",
                 LABEL_SUBCATEGORY: "Sub-Categoría",
                 LABEL_LEVEL: "Nivel",
@@ -223,21 +212,22 @@
                 LABEL_DESCRIPTION: "Descripción",
                 LABEL_GET_TO_KNOW_US: "Conócenos",
                 LABEL_CONTENT: "Contenido",
-                LABEL_AUDIENCE: "Audiencia",
+                LABEL_AUDIENCE: "Dirigido a",
                 LABEL_GOALS: "Objetivo(s)",
+                LABEL_INSTRUCTORS: "Instructores",
                 LABEL_REQUIREMENTS: "Requerimientos",
                 LABEL_EXTRA_INFO: "Información Adicional",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 TAB_INFO: "Información",
                 TAB_CALENDARS: "Calendarios",
-                TAB_ASSISTANTS: "Asistentes"
+                LABEL_ATTENDEES: "Asistentes"
             });
         }
 
         function _activate(){
             _setStrings();
             _setCurrentState();
-            //_setUpLocation(activity);
+            _setUpLocation(activity);
             vm.activity = _mapPictures(activity);
             vm.activity = _mapClosestCalendar(vm.activity);
             vm.activity = _mapInfo(vm.activity);
