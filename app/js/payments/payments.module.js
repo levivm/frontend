@@ -140,18 +140,18 @@
 
             if (pol_transaction_state == Payments.KEY_PSE_STATE_POL_CODE_4 &&
                pol_response_code == Payments.KEY_PSE_RESPONSE_CODE_POL_1){
-                state = Payments.KEY_PSE_APPROVED_PAYMENTs;
+                state = Payments.KEY_PSE_APPROVED_PAYMENT;
             }
             else if (pol_transaction_state == Payments.KEY_PSE_STATE_POL_CODE_6 &&
                      pol_response_code == Payments.KEY_PSE_RESPONSE_CODE_POL_5){
 
-                state = Payments.KEY_PSE_FAILED_PAYMENTs;
+                state = Payments.KEY_PSE_FAILED_PAYMENT;
 
             }
             else if (pol_transaction_state == Payments.KEY_PSE_STATE_POL_CODE_6 &&
                      pol_response_code == Payments.KEY_PSE_RESPONSE_CODE_POL_4){
 
-                state = Payments.KEY_PSE_REJECTED_PAYMENTs;
+                state = Payments.KEY_PSE_REJECTED_PAYMENT;
 
             }
             else if (pol_transaction_state == Payments.KEY_PSE_STATE_POL_CODE_12 &&
