@@ -170,8 +170,9 @@
 
             // console.log("transaction_status ",pol_transaction_state);
             // console.log("response_code_pol ",response_code_pol);
+            $state.go('activities-enroll.pse-response',params);
 
-            $timeout(function() { $state.go('activities-enroll.pse-response',params);});
+            // $timeout(function() { ;});
             // return $q.reject();
 
             // return $stateParams.token? Authentication.requestSignupToken($stateParams.token) : {};
