@@ -133,8 +133,8 @@
             var pol_response_code  = parameters.polResponseCode;
 
             var reference_data = parameters.referenceCode.split("-");
-            var calendar_id  = reference_data.pop();
-            var activity_id = reference_data.pop();
+            var calendar_id  = parseInt(reference_data.pop());
+            var activity_id = parseInt(reference_data.pop());
             var state;
 
 
