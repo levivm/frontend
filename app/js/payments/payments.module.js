@@ -28,7 +28,7 @@
     function config($stateProvider) {
         $stateProvider
             .state('payment-pse-response', {
-                url:'/payment/pse/response',
+                url:'/payments/pse/response',
                 // controller: 'RegisterController',
                 // controllerAs: 'vm',
                 // templateUrl: 'partials/authentication/register.html',
