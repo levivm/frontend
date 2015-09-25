@@ -196,6 +196,22 @@
                     }],
                     organizerActivities: getOrganizerActivities
                 }
+            })
+            .state('activities-enroll.pse-response', {
+                url: '/pse/response?referenceCode&transactionId&state&cus&pseBank' +
+                                   '&TX_VALUE&currency&description&pseReference1&merchant_name'+
+                                   '&merchant_address&telephone&pseReference3',
+                controller: 'ActivityEnrollPSEResponseController as pseResponse',
+                templateUrl: 'partials/activities/detail.enroll.pse.response.html',
+                resolve: {
+                    organizer: ['activity', function (activity) {
+                        return  activity.organizer;
+                    }],
+                    organizerActivities: getOrganizerActivities
+                },
+                params:{
+                    pseResponseData:null,
+                }
             });
 
         /**

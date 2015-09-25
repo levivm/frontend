@@ -115,7 +115,7 @@
                 }
 
                 function error(response){
-                    Error.form.add(vm.enrollForm, {'bank':["Error al cargar los bancos disponibles"]});
+                    Error.form.add(vm.enrollForm, {'bank':["Error al cargar  los bancos disponibles"]});
                     return {}; 
                 }
 
@@ -503,7 +503,8 @@
                 }
             };
 
-            vm.success = false;
+            vm.success =  _.endsWith($state.current.name, 'success') ? true:false || 
+                         _.endsWith($state.current.name, 'pse-response') ? true:false;
 
             vm.calendar = calendar;
             vm.activity = activity;

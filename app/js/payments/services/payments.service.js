@@ -46,6 +46,19 @@
         var KEY_IDENTIFICATION_NUMBER ="identificationNumber";
         var KEY_CVV = "cvv";
         var KEY_TOKEN = "token";
+        
+        var KEY_PSE_APPROVED_PAYMENT = "Aprobada";
+        var KEY_PSE_REJECTED_PAYMENT = "Rechazada";
+        var KEY_PSE_FAILED_PAYMENT   = "Fallida";
+        var KEY_PSE_PENDING_PAYMENT  = "Pendiente";
+        var KEY_PSE_STATE_POL_CODE_4 = '4';
+        var KEY_PSE_STATE_POL_CODE_6 = '6';
+        var KEY_PSE_STATE_POL_CODE_12 = '12';
+        var KEY_PSE_RESPONSE_CODE_POL_1 = '1';
+        var KEY_PSE_RESPONSE_CODE_POL_5 = '5';
+        var KEY_PSE_RESPONSE_CODE_POL_4 = '4';
+        var KEY_PSE_RESPONSE_CODE_POL_9994 = '9994';
+
         var PAYU_RESPONSE_URL = "https://api.trulii.com/api/payments/pse/response";
         var cardTypes = ['VISA', 'MASTERCARD', 'AMEX', 'DINERS', 'DISCOVER'];
         var requiredCardFields = {};
@@ -138,6 +151,17 @@
             KEY_CONTACT_PHONE:KEY_CONTACT_PHONE,
             PAYU_RESPONSE_URL:PAYU_RESPONSE_URL,
             KEY_PAYER_EMAIL:KEY_PAYER_EMAIL,
+            KEY_PSE_APPROVED_PAYMENT : KEY_PSE_APPROVED_PAYMENT,
+            KEY_PSE_REJECTED_PAYMENT : KEY_PSE_REJECTED_PAYMENT,
+            KEY_PSE_FAILED_PAYMENT : KEY_PSE_FAILED_PAYMENT,
+            KEY_PSE_PENDING_PAYMENT : KEY_PSE_PENDING_PAYMENT,
+            KEY_PSE_STATE_POL_CODE_4 : KEY_PSE_STATE_POL_CODE_4,
+            KEY_PSE_STATE_POL_CODE_6 : KEY_PSE_STATE_POL_CODE_6,
+            KEY_PSE_STATE_POL_CODE_12 : KEY_PSE_STATE_POL_CODE_12,
+            KEY_PSE_RESPONSE_CODE_POL_1 : KEY_PSE_RESPONSE_CODE_POL_1,
+            KEY_PSE_RESPONSE_CODE_POL_5 : KEY_PSE_RESPONSE_CODE_POL_5,
+            KEY_PSE_RESPONSE_CODE_POL_4 : KEY_PSE_RESPONSE_CODE_POL_4,
+            KEY_PSE_RESPONSE_CODE_POL_9994 : KEY_PSE_RESPONSE_CODE_POL_9994,
             requiredCardFields:requiredCardFields
         };
 
