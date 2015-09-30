@@ -1,12 +1,57 @@
 @import url('../_trulii-variables');
 
 @secondary-bg: #F7F7F7;
+@border-color: #DEDEDE;
 
-.activity-detail{
-    * > .category-label{
-        margin-right: 0.3em;
+.organizer-widget {
+
+    .card{
+        border-top: 1px solid @border-color;
+        border-right: 1px solid @border-color;
+        border-left: 1px solid @border-color;
+        border-radius: 0;
+        padding: 1em;
+        margin: 0;
+
+        .picture {
+            margin-right: 12px;
+            border-radius: 50%;
+            display: inline-block;
+            height: auto;
+            width: 20%;
+        }
+
+        .data {
+            width: 70%;
+            display: inline-block;
+            vertical-align: middle;
+
+            .name {
+                font-family: @font-family-sans-serif;
+                font-weight: 600;
+                font-size: 1.2em;
+                color: @lightbg-text;
+            }
+
+            .location {
+                font-family: @font-family-serif;
+                font-size: 0.8em;
+                color: @text-muted;
+            }
+        }
     }
 
+    .ratings {
+        border-right: 1px solid @border-color;
+        border-bottom: 1px solid @border-color;
+        border-left: 1px solid @border-color;
+        padding: 1em 2em 1em 2em;
+        text-align: center;
+    }
+}
+
+.calendar-widget {
+    &:extend(.separate-above-medium);
 }
 
 .section {

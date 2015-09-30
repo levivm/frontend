@@ -1,0 +1,32 @@
+@social-color-facebook: #48649F;
+@social-color-twitter: #75AAEA;
+@social-color-email: #38DBC8;
+
+.btn-share{
+    height: 2.4em;
+    width: 2.4em;
+    display: inline-block;
+    cursor: pointer;
+    padding: 0.5em;
+    margin: 0 0.2em;
+    border-radius: 50%;
+
+    &-fb{
+        &:extend(.btn-share);
+        background-color: @social-color-facebook;
+
+        &:hover{
+            background-color: lighten(@social-color-facebook, 10%);
+        }
+    }
+
+    &-twitter{
+        &:extend(.btn-share);
+        background-color: @social-color-twitter;
+    }
+
+    &-email{
+        &:extend(.btn-share);
+        background-color: @social-color-email;
+    }
+}

@@ -33,6 +33,10 @@
             activity : null,
             organizer : null,
             calendar_selected : null,
+            galleryOptions: {
+                interval: 0,
+                noWrap: false
+            },
             changeState : changeState,
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
@@ -205,8 +209,6 @@
                 COPY_DAYS: "días ",
                 COPY_IN: "En ",
                 COPY_NOT_AVAILABLE: "No Disponible",
-                LABEL_CATEGORY: "Categoría",
-                LABEL_SUBCATEGORY: "Sub-Categoría",
                 LABEL_LEVEL: "Nivel",
                 LABEL_DURATION: "Duration",
                 LABEL_DESCRIPTION: "Descripción",
