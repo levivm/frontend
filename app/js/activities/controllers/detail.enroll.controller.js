@@ -5,11 +5,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state','$window', '$timeout','ActivitiesManager', 'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error',
-        'activity', 'calendar', 'currentUser'];
+    ActivityDetailEnrollController.$inject = ['$state','$window','$sce', '$timeout','ActivitiesManager', 'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error',
+        'activity', 'calendar', 'currentUser','deviceSessionId'];
 
-    function ActivityDetailEnrollController($state, $window, $timeout, ActivitiesManager, StudentsManager, Payments, Authentication, Toast, Error,
-                                            activity, calendar, currentUser) {
+    function ActivityDetailEnrollController($state, $window, $sce,$timeout, ActivitiesManager, StudentsManager, Payments, Authentication, Toast, Error,
+                                            activity, calendar, currentUser,deviceSessionId) {
 
         var vm = this;
         angular.extend(vm, {
@@ -25,6 +25,8 @@
             plus : plus,
             enroll : enroll,
             isAnonymous : isAnonymous,
+            // payUUniqueId:_getPayUUniqueId,
+            appendPayUUniqueId:appendPayUUniqueId,
             //checkCardNumber : checkCardNumber,
             checkCardExpiry : checkCardExpiry,
             getCardType: getCardType,
@@ -63,9 +65,10 @@
             pseData:{}
 
         });
-
+        console.log("sessionID",deviceSessionId);
         var isValidDate = false;
         //var isValidNumber = false;
+
 
         _activate();
 
@@ -341,6 +344,7 @@
                     assistants: vm.assistants,
                     buyer: buyer,
                     last_four_digits: last_four_digits,
+                    deviceSessionId : deviceSessionId,
                     payment_method: Payments.KEY_CC_PAYMENT_METHOD
                 };
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
@@ -427,6 +431,12 @@
             }
         }
 
+        function appendPayUUniqueId(url){
+            var user_id = Payments.CC_USER_ID;
+            var payUUniqueId = deviceSessionId + user_id;
+            return  $sce.trustAsResourceUrl(url + payUUniqueId);
+        }
+
         //--------- Internal Functions ---------//
 
         function _calculateAmount() {
@@ -436,6 +446,12 @@
         function _isAllBooked(){
             return calendar.capacity <= calendar.assistants.length;
         }
+
+        // function _getPayUUniqueId(){
+        //     return deviceSessionId + currentUser.user.id;
+        // }
+
+
 
         function _setStrings() {
             if (!vm.strings) {
@@ -502,6 +518,8 @@
                     params : $state.params
                 }
             };
+
+            console.log("state----",currentUser);
 
             vm.success =  _.endsWith($state.current.name, 'success') ? true:false || 
                          _.endsWith($state.current.name, 'pse-response') ? true:false;

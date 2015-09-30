@@ -58,6 +58,7 @@
         var KEY_PSE_RESPONSE_CODE_POL_5 = '5';
         var KEY_PSE_RESPONSE_CODE_POL_4 = '4';
         var KEY_PSE_RESPONSE_CODE_POL_9994 = '9994';
+        var CC_USER_ID = '80200';
 
         var PAYU_RESPONSE_URL = "https://api.trulii.com/api/payments/pse/response";
         var cardTypes = ['VISA', 'MASTERCARD', 'AMEX', 'DINERS', 'DISCOVER'];
@@ -162,6 +163,7 @@
             KEY_PSE_RESPONSE_CODE_POL_5 : KEY_PSE_RESPONSE_CODE_POL_5,
             KEY_PSE_RESPONSE_CODE_POL_4 : KEY_PSE_RESPONSE_CODE_POL_4,
             KEY_PSE_RESPONSE_CODE_POL_9994 : KEY_PSE_RESPONSE_CODE_POL_9994,
+            CC_USER_ID:CC_USER_ID,
             requiredCardFields:requiredCardFields
         };
 

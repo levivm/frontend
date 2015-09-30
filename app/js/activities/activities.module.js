@@ -5,10 +5,12 @@
         .module('trulii.activities', [
             'uiGmapgoogle-maps',
             'youtube-embed',
+            'angular-md5',
             'trulii.activities.config',
             'trulii.activities.controllers',
             'trulii.activities.services',
             'trulii.activities.directives'
+
         ])
         .constant('ActivitiesTemplatesPath', "partials/activities/")
         .config(config);
@@ -183,8 +185,9 @@
                 resolve: {
                     activity: getActivity,
                     calendar: fetchCalendar,
-                    currentUser: getAuthenticatedUser
-                }
+                    currentUser: getAuthenticatedUser,
+                    deviceSessionId:getDeviceSessionId
+                },
             })
             .state('activities-enroll.success', {
                 url: '/success',
@@ -359,6 +362,23 @@
         function getAvailableCities(LocationManager){
             return LocationManager.getAvailableCities();
         }
+
+        /**
+         * @ngdoc method
+         * @name .#getDeviceSessionId
+         * @description Generates deviceSessionId used in Pay U endpoint
+         * @methodOf trulii.activities.config
+         */
+        getDeviceSessionId.$inject = ['currentUser','localStorageService','md5'];
+        function getDeviceSessionId(currentUser,localStorageService,md5){
+
+            var token = localStorageService.get('token');
+            var time_stamp = new Date().getTime();
+            var string = token + time_stamp.toString();
+            var deviceSessionId = md5.createHash(string);
+            return deviceSessionId;
+        }
+
     }
 
 })();

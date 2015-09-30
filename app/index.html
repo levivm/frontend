@@ -67,25 +67,26 @@
 
 <!-- inject:bower:js -->
 <script src="lib/angular/angular.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="lib/angular-cookies/angular-cookies.js"></script>
+<script src="lib/angular-facebook/lib/angular-facebook.js"></script>
 <script src="lib/lodash/lodash.js"></script>
-<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="lib/ng-file-upload/angular-file-upload.js"></script>
-<script src="lib/ng-tags-input/ng-tags-input.min.js"></script>
-<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="lib/angular-md5/angular-md5.js"></script>
+<script src="lib/angular-scroll/angular-scroll.js"></script>
+<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+<script src="lib/arrive/src/arrive.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/material.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
-<script src="lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
-<script src="lib/angular-animate/angular-animate.js"></script>
-<script src="lib/arrive/src/arrive.js"></script>
-<script src="lib/angular-scroll/angular-scroll.js"></script>
-<script src="lib/toastr/toastr.js"></script>
-<script src="lib/angular-facebook/lib/angular-facebook.js"></script>
 <script src="lib/google-code-prettify/bin/prettify.min.js"></script>
+<script src="lib/ng-file-upload/angular-file-upload.js"></script>
+<script src="lib/ng-tags-input/ng-tags-input.min.js"></script>
 <script src="lib/nouislider/distribute/nouislider.js"></script>
-<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="lib/toastr/toastr.js"></script>
 <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 <!-- endinject -->
 
 <!-- TODO Add with gulp -->
@@ -98,9 +99,9 @@
 <script src="js/trulii.serverConf.js"></script>
 <script src="js/activities/activities.module.js"></script>
 <script src="js/authentication/authentication.module.js"></script>
+<script src="js/locations/locations.module.js"></script>
 <script src="js/landing/landing.module.js"></script>
 <script src="js/organizers/organizers.module.js"></script>
-<script src="js/locations/locations.module.js"></script>
 <script src="js/payments/payments.module.js"></script>
 <script src="js/search/search.module.js"></script>
 <script src="js/students/students.module.js"></script>
@@ -141,9 +142,6 @@
 <script src="js/authentication/directives/form_modal.directive.js"></script>
 <script src="js/organizers/directives/trulii-instructor-card.directive.js"></script>
 <script src="js/search/directives/search-bar.directive.js"></script>
-<script src="js/utils/directives/counter.directive.js"></script>
-<script src="js/utils/directives/datepicker_popup.directive.js"></script>
-<script src="js/utils/directives/saved_message.directive.js"></script>
 <script src="js/ui-components/directives/card-expandable.directive.js"></script>
 <script src="js/ui-components/directives/input-alert.directive.js"></script>
 <script src="js/ui-components/directives/input-autofocus.directive.js"></script>
@@ -153,13 +151,9 @@
 <script src="js/ui-components/directives/preloader.directive.js"></script>
 <script src="js/ui-components/directives/slider.directive.js"></script>
 <script src="js/ui-components/directives/submit.directive.js"></script>
-<script src="js/authentication/controllers/email_confirm.controller.js"></script>
-<script src="js/authentication/controllers/forgot_password.controller.js"></script>
-<script src="js/authentication/controllers/login.controller.js"></script>
-<script src="js/authentication/controllers/logout.controller.js"></script>
-<script src="js/authentication/controllers/register.controller.js"></script>
-<script src="js/authentication/controllers/reset_password.controller.js"></script>
-<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
+<script src="js/utils/directives/counter.directive.js"></script>
+<script src="js/utils/directives/datepicker_popup.directive.js"></script>
+<script src="js/utils/directives/saved_message.directive.js"></script>
 <script src="js/activities/controllers/dashboard.controller.js"></script>
 <script src="js/activities/controllers/dashboard_calendar_detail.controller.js"></script>
 <script src="js/activities/controllers/dashboard_calendars.controller.js"></script>
@@ -175,6 +169,13 @@
 <script src="js/activities/controllers/detail.enroll.pse.response.controller.js"></script>
 <script src="js/activities/controllers/detail.enroll.success.controller.js"></script>
 <script src="js/activities/controllers/manage.controller.js"></script>
+<script src="js/authentication/controllers/email_confirm.controller.js"></script>
+<script src="js/authentication/controllers/forgot_password.controller.js"></script>
+<script src="js/authentication/controllers/login.controller.js"></script>
+<script src="js/authentication/controllers/logout.controller.js"></script>
+<script src="js/authentication/controllers/register.controller.js"></script>
+<script src="js/authentication/controllers/reset_password.controller.js"></script>
+<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
 <script src="js/landing/controllers/contact.controller.js"></script>
 <script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/landing/controllers/not_found.controller.js"></script>
@@ -192,10 +193,10 @@
 <script src="js/students/controllers/dashboard_activities.controller.js"></script>
 <script src="js/students/controllers/dashboard_history.controller.js"></script>
 <script src="js/students/controllers/dashboard_profile.controller.js"></script>
-<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <script src="js/utils/controllers/modal.controller.js"></script>
 <script src="js/utils/controllers/modal_dialog.controller.js"></script>
 <script src="js/utils/controllers/simple_modal.controller.js"></script>
+<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <!-- endinject -->
 
 </body>
