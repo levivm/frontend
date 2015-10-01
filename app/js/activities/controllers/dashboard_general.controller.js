@@ -41,7 +41,8 @@
 
             function _successCreation(response) {
                 vm.isSaving = false;
-                if (vm.creating) $state.go('dash.activities-edit.detail', {activity_id : response.id});
+                if (vm.creating) 
+                    $state.go('dash.activities-edit.detail', {activity_id : response.id});
                 Toast.generics.weSaved("Un paso menos para publicar tu actividad");
             }
         }
@@ -53,7 +54,9 @@
             vm.activity.update()
                 .then(updateSuccess, _errored);
 
-            function updateSuccess(response) {
+            function updateSuccess(response) {  
+                console.log("response ",response);
+
                 vm.isCollapsed = false;
                 vm.isSaving = false;
                 angular.extend(activity, vm.activity);
@@ -119,9 +122,9 @@
                 .then(_successLoadActivity);
 
             function _successLoadActivity(response) {
-                vm.selected_level = filterFilter(vm.activity_levels, {code : response.level})[0];
-                vm.selected_category = filterFilter(vm.activity_categories, {id : response.category_id})[0];
-                vm.selected_sub_category = filterFilter(vm.activity_sub_categories, {id : response.sub_category})[0];
+                vm.selected_level = _.find(vm.activity_levels, { 'code': response.level});
+                vm.selected_category = _.find(vm.activity_categories, { 'id': response.category.id});
+                vm.selected_sub_category = _.find(vm.activity_sub_categories, { 'id': response.sub_category});
                 vm.activity_tags = response.tags;
             }
         }
@@ -171,6 +174,7 @@
             vm.activity.category = vm.selected_category.id;
             vm.activity.sub_category = vm.selected_sub_category.id;
             vm.activity.level = vm.selected_level.code;
+            console.log("vm.activity",vm.activity);
         }
 
         function _errored(responseErrors) {
