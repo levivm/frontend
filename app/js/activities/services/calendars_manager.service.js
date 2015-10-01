@@ -97,27 +97,18 @@
             loadCalendars : function (activity_id, active) {
                 var actives = active || false;
                 this.activity_id = activity_id;
-
                 var scope = this;
 
                 if (scope.calendars.length > 0) {
                     var activity_calendar_id = scope.calendars[0].activity;
-                
-                    if (activity_calendar_id == this.activity_id){
-                        return scope.calendars
-                    }
-
+                    if (activity_calendar_id == this.activity_id){ return scope.calendars; }
                 }
 
-                // url += '?actives=true';
-                var config = {};
-                if (actives) {
-                    config.actives = true;
-                }
+                if (actives) { config.actives = true; }
 
-                // serverConf.url+'/api/activities/'+this.activity_id+'/calendars/'
-                return $http.get(api.calendars(this.activity_id), config)
+                return $http.get(api.calendars(this.activity_id))
                     .then(function (response) {
+                        console.log('CalendarsManagercalendars response:', response);
                         scope._setCalendars(response.data);
                         return scope.calendars
                     },

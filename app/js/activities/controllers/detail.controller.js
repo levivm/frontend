@@ -94,8 +94,8 @@
             activity.closest_date = null;
             activity.closest_calendar = null;
 
-            if(activity.chronograms){
-                activity.chronograms.forEach(function(calendar){
+            if(activity.calendars){
+                activity.calendars.forEach(function(calendar){
                     if(calendar.initial_date >= today
                         && (calendar.initial_date < activity.closest_date || !activity.closest_date)){
                         activity.closest_date = calendar.initial_date;
@@ -237,7 +237,7 @@
         function _activate(){
             _setStrings();
             _setCurrentState();
-            _setUpLocation(activity);
+            //_setUpLocation(activity);
             vm.activity = _mapPictures(activity);
             vm.activity = _mapClosestCalendar(vm.activity);
             vm.activity = _mapInfo(vm.activity);

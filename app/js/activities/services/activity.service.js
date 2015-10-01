@@ -37,7 +37,21 @@
              * @param {object} activityData The activity data to set
              * @methodOf trulii.activities.services.Activity
              */
-            setData : setData,
+            setData : function (activityData) {
+                angular.extend(this, activityData);
+                var that = this;
+                that.resetSections();
+
+
+                angular.forEach(ActivitySteps, function (step) {
+
+                    that.updateSection(step.name);
+                });
+
+                //console.log("Activity setData ", this);
+
+                that.checkSections();
+            },
 
             /**
              * @ngdoc function
@@ -255,6 +269,8 @@
         function setData(activityData) {
             angular.extend(this, activityData);
             var that = this;
+            this.calendars = this.chronograms;
+            delete this.chronograms;
             that.resetSections();
             angular.forEach(ActivitySteps, function (step) {
                 that.updateSection(step.name);
@@ -277,6 +293,7 @@
         }
 
         function update() {
+            this.chronograms = this.calendars;
             var that = this;
             return $http.put(api.activity(this.id), this).then(success, error);
 
@@ -345,10 +362,10 @@
         }
 
         function hasAssistants(){
-            if (!this.chronograms){ return false; }
+            if (!this.calendars){ return false; }
 
-            return this.chronograms.some(function (chronogram) {
-                return chronogram.assistants.length > 0
+            return this.calendars.some(function (calendar) {
+                return calendar.assistants.length > 0
             });
         }
 
@@ -437,7 +454,7 @@
                     break;
                 case 'calendars':
                     that.hasOwnProperty(subSections);
-                    var hasCalendars = !!that.chronograms && (that.chronograms.length > 0);
+                    var hasCalendars = !!that.calendars && (that.calendars.length > 0);
                     isCompleted = hasCalendars;
                     break;
                 case 'instructors':

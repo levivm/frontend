@@ -148,12 +148,12 @@
                     activity.closest_date = null;
                     activity.closest_calendar = null;
 
-                    if(activity.chronograms){
-                        activity.chronograms.forEach(function(chronogram){
-                            if(chronogram.initial_date >= today
-                                    && (chronogram.initial_date < activity.closest_date || !activity.closest_date)){
-                                activity.closest_date = chronogram.initial_date;
-                                activity.closest_calendar = chronogram;
+                    if(activity.calendars){
+                        activity.calendars.forEach(function(calendar){
+                            if(calendar.initial_date >= today
+                                    && (calendar.initial_date < activity.closest_date || !activity.closest_date)){
+                                activity.closest_date = calendar.initial_date;
+                                activity.closest_calendar = calendar;
                             }
                         });
                     }
