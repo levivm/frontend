@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app='trulii'>
 <head>
-
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Trulii</title>
 
     <!--Favicon Section-->
@@ -67,25 +67,26 @@
 
 <!-- inject:bower:js -->
 <script src="lib/angular/angular.js"></script>
+<script src="lib/angular-animate/angular-animate.js"></script>
+<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 <script src="lib/angular-cookies/angular-cookies.js"></script>
+<script src="lib/angular-facebook/lib/angular-facebook.js"></script>
 <script src="lib/lodash/lodash.js"></script>
-<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
-<script src="lib/ng-file-upload/angular-file-upload.js"></script>
-<script src="lib/ng-tags-input/ng-tags-input.min.js"></script>
-<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="lib/angular-md5/angular-md5.js"></script>
+<script src="lib/angular-scroll/angular-scroll.js"></script>
+<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
+<script src="lib/arrive/src/arrive.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/material.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
-<script src="lib/angular-youtube-mb/src/angular-youtube-embed.js"></script>
-<script src="lib/angular-animate/angular-animate.js"></script>
-<script src="lib/arrive/src/arrive.js"></script>
-<script src="lib/angular-scroll/angular-scroll.js"></script>
-<script src="lib/toastr/toastr.js"></script>
-<script src="lib/angular-facebook/lib/angular-facebook.js"></script>
 <script src="lib/google-code-prettify/bin/prettify.min.js"></script>
+<script src="lib/ng-file-upload/angular-file-upload.js"></script>
+<script src="lib/ng-tags-input/ng-tags-input.min.js"></script>
 <script src="lib/nouislider/distribute/nouislider.js"></script>
-<script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="lib/toastr/toastr.js"></script>
 <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 <!-- endinject -->
 
 <!-- TODO Add with gulp -->
@@ -100,6 +101,7 @@
 <script src="js/authentication/authentication.module.js"></script>
 <script src="js/landing/landing.module.js"></script>
 <script src="js/locations/locations.module.js"></script>
+<script src="js/landing/landing.module.js"></script>
 <script src="js/organizers/organizers.module.js"></script>
 <script src="js/payments/payments.module.js"></script>
 <script src="js/search/search.module.js"></script>
@@ -131,12 +133,12 @@
 <script src="js/students/services/server_api.service.js"></script>
 <script src="js/students/services/student.service.js"></script>
 <script src="js/students/services/student_manager.service.js"></script>
-<script src="js/ui-components/services/toast.service.js"></script>
 <script src="js/utils/services/default_cover.service.js"></script>
 <script src="js/utils/services/default_picture.service.js"></script>
 <script src="js/utils/services/elevator.service.js"></script>
 <script src="js/utils/services/error.service.js"></script>
 <script src="js/utils/services/upload_file.service.js"></script>
+<script src="js/ui-components/services/toast.service.js"></script>
 <script src="js/activities/directives/trulii-activity-item.directive.js"></script>
 <script src="js/authentication/directives/form_modal.directive.js"></script>
 <script src="js/organizers/directives/trulii-instructor-card.directive.js"></script>
@@ -165,6 +167,7 @@
 <script src="js/activities/controllers/detail.attendees.controller.js"></script>
 <script src="js/activities/controllers/detail.controller.js"></script>
 <script src="js/activities/controllers/detail.enroll.controller.js"></script>
+<script src="js/activities/controllers/detail.enroll.pse.response.controller.js"></script>
 <script src="js/activities/controllers/detail.enroll.success.controller.js"></script>
 <script src="js/activities/controllers/manage.controller.js"></script>
 <script src="js/authentication/controllers/email_confirm.controller.js"></script>
@@ -191,10 +194,10 @@
 <script src="js/students/controllers/dashboard_activities.controller.js"></script>
 <script src="js/students/controllers/dashboard_history.controller.js"></script>
 <script src="js/students/controllers/dashboard_profile.controller.js"></script>
-<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <script src="js/utils/controllers/modal.controller.js"></script>
 <script src="js/utils/controllers/modal_dialog.controller.js"></script>
 <script src="js/utils/controllers/simple_modal.controller.js"></script>
+<script src="js/ui-components/controllers/navbar.controller.js"></script>
 <!-- endinject -->
 
 </body>
