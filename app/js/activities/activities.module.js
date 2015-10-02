@@ -49,7 +49,8 @@
                 resolve: {
                     presaveInfo: getPresaveActivityInfo,
                     activity: getActivity,
-                    organizer : getCurrentOrganizer
+                    organizer : getCurrentOrganizer,
+                    // categories: getCategories
                 },
                 templateUrl: 'partials/activities/create.html'
             })

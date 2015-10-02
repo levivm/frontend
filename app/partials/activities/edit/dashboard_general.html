@@ -8,19 +8,18 @@
     <div class="card text-center">
 
       <div class="card-body card-body--shrink">
-        <h2 class="text-color-secondary font-black">
-          ¡Comencemos a registrar su actividad!
+        <h2 class="text-color-secondary font-black" ng-bind="::vm.strings.COPY_START_ACTIVITY_CREATION">
         </h2>
 
-        <div class="separate-above-medium separate-below-less standout-text font-normal">
-          Cuéntanos como titularías tu actividad
+        <div class="separate-above-medium separate-below-less standout-text font-normal" ng-bind="::vm.strings.COPY_SELECT_ACTIVITY_TITLE">
         </div>
 
         <input id="activity_title" class="form-control input-lg text-center text-capi" name="title"
            placeholder="Ej. Curso de Repostería" 
            ng-model='vm.activity_title' trulii-input-autofocus="{{!vm.creating}}"/>
 
-        <button type="button" class="separate-above-medium btn btn-success btn-lg btn-block" ng-click="vm.checkValidTitle()">Continuar</button>    
+        <button type="button" class="separate-above-medium btn btn-success btn-lg btn-block" 
+              ng-click="vm.checkValidTitle()" ng-bind="::vm.strings.ACTION_CONTINUE"></button>    
 
       </div>
       
@@ -55,7 +54,7 @@
               </div>
                               
               <div class="form-group" trulii-input-errors-control field="vm.activity_create_form.level">
-                  <label class="control-label ">Nivel</label>
+                  <label class="control-label " ng-bind="::vm.strings.LABEL_LEVEL"></label>
 
                   <br/>
                   <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
@@ -70,7 +69,7 @@
               </div>
 
               <div class="form-group" trulii-input-errors-control="certification">
-                  <label class="control-label">¿Entregará certificado u otorgará alguna certificación?</label>
+                  <label class="control-label" ng-bind="::vm.strings.COPY_CERTIFICATION"></label>
 
                   <br/>
                   <div class="btn-group" role="group" aria-label="Nivel">
@@ -79,43 +78,42 @@
                       <label class="btn"
                              ng-class="{'btn-success': vm.activity.certification == false, 'btn-default': vm.activity.certification === true }">
                           <input type="radio" name="certification" class="hidden"
-                                 ng-model="vm.activity.certification" ng-value="false">Sin certificación
+                                 ng-model="vm.activity.certification" ng-value="false">{{::vm.strings.OPTION_WITHOUT_CERTIFICATION}}
                       </label>
                       <label class="btn"
                              ng-class="{'btn-success': vm.activity.certification === true, 'btn-default': vm.activity.certification == false }">
                           <input type="radio" name="certification" class="hidden"
-                                 ng-model="vm.activity.certification" ng-value="true">Con certificación
+                                 ng-model="vm.activity.certification" ng-value="true">{{::vm.strings.OPTION_WITH_CERTIFICATION}}
                       </label>
                   </div>
               </div>
 
               <div class="row form-group">
                   <div class="col-md-6">
-                      <label class="control-label">Categoria</label>
+                      <label class="control-label" ng-bind="::vm.strings.LABEL_CATEGORY"></label>
 
                       
                       <div trulii-input-errors-control="category">
-                          <label for="select-category" class="control-label sr-only">Categoría</label>
+                          <label for="select-category" class="control-label sr-only" ng-bind="::vm.strings.LABEL_CATEGORY"></label>
                           <select id="select-category" class="form-control" ng-model="vm.selected_category"
                                   name="category"
                                   ng-options="category as category.name for (index,category) in vm.activity_categories"
                                   ng-change="vm.selectCategory(vm.selected_category)">
-                              <option value="" ng-show="!vm.selected_category" selected>Categoría
+                              <option value="" ng-show="!vm.selected_category" ng-bind="::vm.strings.LABEL_CATEGORY" selected>
                               </option>
                           </select>
                       </div>
                   </div>
 
                   <div class="col-md-6">
-                      <label class="control-label">Sub-categoria</label>
+                      <label class="control-label" ng-bind="::vm.strings.LABEL_SUB_CATEGORY"></label>
                       <div trulii-input-errors-control="sub_category">
-                          <label for="sub-category-select" class="control-label sr-only">Sub-Categoria</label>
+                          <label for="sub-category-select" class="control-label sr-only" ng-bind="::vm.strings.LABEL_SUB_CATEGORY"></label>
                           <select id="sub-category-select" class="form-control" name="sub_category"
                                   ng-model="vm.selected_sub_category"
-                                  ng-mouseover="vm.setOverElement('sub_category')"
                                   ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories">
-                              <option value="" ng-show="!vm.selected_sub_category" selected>
-                                  Sub-categoría
+                              <option value="" ng-show="!vm.selected_sub_category" selected ng-bind="::vm.strings.LABEL_SUB_CATEGORY">
+                                  
                               </option>
                           </select>
 
@@ -124,7 +122,7 @@
               </div>
 
               <div class="form-group" trulii-input-errors-control="short_description">
-                  <label for="short_description" class="control-label">Descripción Corta</label>
+                  <label for="short_description" class="control-label" ng-bind="::vm.strings.LABEL_SHOT_DESCRIPTION"></label>
                       <textarea id="short_description" class="form-control"                                  
                                 ng-model="vm.activity.short_description" name="short_description"
                                 trulii-input-popover="Descripción"
@@ -133,10 +131,10 @@
               </div>
 
               <div class="form-group">
-                  <label class="control-label">Tags / Etiquetas</label>
+                  <label class="control-label" ng-bind="::vm.strings.LABEL_TAGS"></label>
                   <tags-input display-property="name"
-                              ng-model="vm.activity_tags" ng-mouseover="vm.setOverElement('tags')">
-                      <auto-complete source="vm.loadTags()"></auto-complete>
+                              ng-model="vm.activity_tags">
+                      <auto-complete source="vm.loadAutocompleteTags()"></auto-complete>
                   </tags-input>
               </div>
 
