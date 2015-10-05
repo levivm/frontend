@@ -1,48 +1,44 @@
 <div class="row">
     <div class="col-lg-9 col-md-11">
-        <div class="section-title">
-            Ubicación
+        <div class="section-title" ng-bind="::editLocationCtrl.strings.LABEL_LOCATION" >
         </div>
-        <form  name='vm.activity_location_form'
-              ng-submit="vm.save_activity()">
+        <form  name='editLocationCtrl.activity_location_form'
+              ng-submit="editLocationCtrl.save_activity()">
             <fieldset>                                                                
               
-                <div class="section-description">
-                    Especifica en qué lugar se desarrollará tu actividad.
+                <div class="section-description" ng-bind="::editLocationCtrl.strings.COPY_CITY">
                 </div>
                 
                 <div class="form-group" trulii-input-errors-control="city">
-                    <label for="city" class="control-label">Ciudad</label>
-                    <select class="form-control" id="city" ng-model="vm.activity.location.city"
-                            ng-options="city as city.name for city in vm.cities track by city.id" name="city">
-                        <option value="" selected ng-show="!vm.activity_location_form.city">Seleccione..
+                    <label for="city" class="control-label" ng-bind="::editLocationCtrl.strings.LABEL_CITY"></label>
+                    <select class="form-control" id="city" ng-model="editLocationCtrl.activity.location.city"
+                            ng-options="city as city.name for city in editLocationCtrl.cities track by city.id" name="city">
+                        <option value="" selected ng-show="!editLocationCtrl.activity_location_form.city" ng-bind="::editLocationCtrl.strings.LABEL_SELECTED" >
                         </option>
                     </select>
                 </div>
 
                 <div class="form-group" trulii-input-errors-control="address">
-                    <label for="address" class="control-label">Dirección exacta</label>
-                        <textarea id="address" class="form-control" ng-model='vm.activity.location.address'
+                    <label for="address" class="control-label" ng-bind="::editLocationCtrl.strings.LABEL_ADDRESS"></label>
+                        <textarea id="address" class="form-control" ng-model='editLocationCtrl.activity.location.address'
                                   name="address">  </textarea>
                 </div>
                 <div class="text-center separate-above">
-                    <strong>Arrastre</strong> el indicador (<span class="mdi-action-room"
-                                                                  style="color: #F86161"></span>) en el mapa hasta
-                    el lugar donde se llevará a cabo su actividad.
+                    <strong><span ng-bind="::editLocationCtrl.strings.COPY_MAP_1"></span></strong> <span ng-bind="::editLocationCtrl.strings.COPY_MAP_2"></span> (<span class="mdi-action-room" style="color: #F86161"></span>) <span ng-bind="::editLocationCtrl.strings.COPY_MAP_3"></span>
                 </div>
                 
 
                 <div>
-                    <ui-gmap-google-map center='vm.map.center' zoom='vm.map.zoom' bounds="vm.map.bounds"
-                                        events="vm.map.events" control="vm.map.control">
-                        <ui-gmap-marker coords="vm.marker.coords" options="vm.marker.options"
-                                        events="vm.marker.events" idkey="vm.marker.id">
+                    <ui-gmap-google-map center='editLocationCtrl.map.center' zoom='editLocationCtrl.map.zoom' bounds="editLocationCtrl.map.bounds"
+                                        events="editLocationCtrl.map.events" control="editLocationCtrl.map.control">
+                        <ui-gmap-marker coords="editLocationCtrl.marker.coords" options="editLocationCtrl.marker.options"
+                                        events="editLocationCtrl.marker.events" idkey="editLocationCtrl.marker.id">
                         </ui-gmap-marker>
                     </ui-gmap-google-map>
                 </div>
 
                 <div class="separate-above">
-                    <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>    
+                    <trulii-submit-controls is-saving="editLocationCtrl.isSaving" ng-value="::editLocationCtrl.strings.ACTION_SAVE"></trulii-submit-controls>    
                 </div>
                 
                 
@@ -50,43 +46,5 @@
             </fieldset>
         </form>
     </div>
-    <!-- <div class="col-md-3">
-        <div class="sidebar-nav-fixed pull-right affix well">
-            <ul class="nav">
-                <li ng-show="vm.showTooltip('content')">
-                    ¿Tu actividad está dividida en
-                    módulos en donde cada uno
-                    tiene temas a enseñar?
-                </li>
-                <li ng-show="vm.showTooltip('goals')">
-                    ¿Cuál es la finalidad de tu activ-
-                    idad?
-
-                    Algunos ejemplos:
-                    ¿Tus alumnos saldrán domi-
-                    nando algún campo en particu-
-                    lar?
-                    ¿Tus inscritos saldrán agota-
-                    dos con muchas calorías
-                    menos?
-                </li>
-                <li ng-show="vm.showTooltip('methodology')">
-                    ¿Tu actividad será evaluada?
-                    ¿Cómo?
-                    ¿Aplicarás algún método de
-                    enseñanza en particular?
-                </li>
-                <li ng-show="vm.showTooltip('requirements')">
-                    ¿Para inscribirse hace falta
-                    conocimientos en algún tema
-                    en particular?
-                    ¿Deben llevar algún material
-                    para realizar la actividad?
-                    ¿Se requiere una docu-
-                    mentación?
-                </li>
-            </ul>
-        </div>
-    </div> -->
     <hr>
 </div>

@@ -12,34 +12,41 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBLocationController', ActivityDBLocationController);
 
-    ActivityDBLocationController.$inject = ['activity', 'cities', 'LocationManager', 'Toast', 'Elevator', 'Error'];
+    ActivityDBLocationController.$inject = ['activity', 'cities', 'organizer','LocationManager', 'Toast', 'Elevator', 'Error'];
 
-    function ActivityDBLocationController(activity, cities, LocationManager, Toast, Elevator, Error) {
+    function ActivityDBLocationController(activity, cities, organizer, LocationManager, Toast, Elevator, Error) {
 
         var vm = this;
 
-        vm.cities = cities;
-        vm.activity = angular.copy(activity);
-        vm.save_activity = _updateActivity;
-        vm.setOverElement = _setOverElement;
-        vm.showTooltip = _showTooltip;
+        angular.extend(vm, { 
+            organizer: organizer,
+            cities: cities,
+            activity: angular.copy(activity),
+            save_activity: updateActivity,
+            setOverElement: setOverElement,
+            showTooltip: showTooltip,
+            errors: {},
+            isCollapsed: true,
+            isSaving: false,
+        });
 
-        initialize();
+        _activate();
 
         /******************ACTIONS**************/
 
-        function _updateActivity() {
+        function updateActivity() {
             vm.isSaving = true;
 
             Error.form.clear(vm.activity_location_form);
             
             _setActivityPos();
             vm.activity.update_location()
-                .then(updateSuccess, errored);
+                .then(updateSuccess, error);
 
             function updateSuccess(response) {
                 vm.isCollapsed = false;
                 angular.extend(activity, vm.activity);
+                _setLocation();
                 _onSectionUpdated();
                 vm.isSaving = false;
                 Toast.generics.weSaved();
@@ -55,11 +62,11 @@
             
         }
 
-        function _showTooltip(element) {
+        function showTooltip(element) {
             return vm.currentOverElement === element;
         }
 
-        function _setOverElement(element) {
+        function setOverElement(element) {
             vm.currentOverElement = element;
         }
 
@@ -71,30 +78,53 @@
             vm.activity.location.point[1] = vm.marker.coords.longitude;
         }
 
-        /*********RESPONSE HANDLERS***************/
+        function _setLocation(){
 
-        function errored(errors) {
-            Error.form.add(vm.activity_location_form, errors);
-            vm.isSaving = false;
+            if (!vm.activity.location){ 
+
+                if (vm.organizer.location){
+                    vm.activity.location = vm.organizer.location;
+                }
+                else{
+                    vm.activity.location = {};
+                    vm.activity.location.city = LocationManager.getCurrentCity();
+                }
+
+            }
+            else{
+                vm.activity.location.city = LocationManager.getCityById(vm.activity.location.city);
+            }
+
+
+        }
+
+
+        function _setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                COPY_CITY: "Especifica en qué lugar se desarrollará tu actividad.",
+                COPY_MAP_1: "Arrastre",
+                COPY_MAP_2: "el indicador",
+                COPY_MAP_3: "en el mapa hasta el lugar donde se llevará a cabo su actividad.",
+                LABEL_CITY: "Ciudad",
+                LABEL_SELECT: "Seleccione...",
+                LABEL_ADDRESS: "Dirección exacta",
+                LABEL_LOCATION: "Ubicación",
+                ACTION_SAVE: "Guardar",
+            });
         }
 
         function _onSectionUpdated() {
+
             activity.updateSection('location');
         }
 
-        function initialize() {
-            vm.errors = {};
-            vm.isCollapsed = true;
-            vm.isSaving = false;
+        function _activate() {
 
-            if (!vm.activity.location)
-                vm.activity.location = {};
-                vm.activity.location.city = LocationManager.getCurrentCity();
-
+            _setLocation();
+            _setStrings();
             vm.map = LocationManager.getMap(vm.activity.location);
-            
             vm.marker = LocationManager.getMarker(vm.activity.location);
-
             Elevator.toTop();
         }
     }
