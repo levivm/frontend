@@ -19,10 +19,10 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Toast',
+    ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast',
         'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover'];
 
-    function ActivityDetailController($state, $stateParams, $window, uiGmapGoogleMapApi, Toast,
+    function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast,
                                       cities, activity, calendars, defaultPicture, defaultCover) {
         var MAX_DAYS = 30;
         var vm = this;
@@ -33,6 +33,7 @@
             activity : null,
             organizer : null,
             calendar_selected : null,
+            upcoming_calendars_count: 0,
             galleryOptions: {
                 interval: 0,
                 noWrap: false
@@ -89,6 +90,7 @@
             activity.days_to_closest = null;
             activity.closest_date = null;
             activity.closest_calendar = null;
+            activity.upcoming_calendars = [];
 
             if(activity.calendars){
                 activity.calendars.forEach(function(calendar){
@@ -96,6 +98,9 @@
                         && (calendar.initial_date < activity.closest_date || !activity.closest_date)){
                         activity.closest_date = calendar.initial_date;
                         activity.closest_calendar = calendar;
+                    }
+                    if(calendar.initial_date >= today){
+                        activity.upcoming_calendars.push(calendar);
                     }
                 });
             }
@@ -106,25 +111,6 @@
                 activity.days_to_closest = -1;
             }
 
-            _mapDateMsg(activity);
-
-            return activity;
-        }
-
-        function _mapDateMsg(activity){
-            if(activity.days_to_closest < 0){
-                activity.date_msg = vm.strings.COPY_WAIT_NEW_DATES;
-            } else if(activity.days_to_closest === 0){
-                activity.date_msg = vm.strings.COPY_TODAY;
-            } else if(activity.days_to_closest === 1){
-                activity.date_msg = vm.strings.COPY_IN + " "
-                    + activity.days_to_closest + " " + vm.strings.COPY_DAY;
-            } else if(activity.days_to_closest <= MAX_DAYS){
-                activity.date_msg = vm.strings.COPY_IN + " "
-                    + activity.days_to_closest + " " + vm.strings.COPY_DAYS;
-            } else {
-                activity.date_msg = $filter('date')(activity.closest_date, 'dd MMM');
-            }
             return activity;
         }
 
@@ -142,6 +128,17 @@
                 activity.main_photo = defaultCover;
             }
             console.log('_mapPictures. activity:', activity);
+            return activity;
+        }
+
+        function _mapCalendars(activity){
+            activity.calendars = activity.calendars.map(mapVacancy);
+
+            function mapVacancy(calendar){
+                calendar.vacancy = calendar.capacity - calendar.assistants.length;
+                return calendar;
+            }
+
             return activity;
         }
 
@@ -169,7 +166,8 @@
                     var position = new maps.LatLng(activity.location.point[0], activity.location.point[1]);
                     var gmapOptions = {
                         zoom: 16,
-                        center: position
+                        center: position,
+                        scrollwheel: false
                     };
 
                     var gmap = new maps.Map(document.getElementById('map-canvas'), gmapOptions);
@@ -208,35 +206,42 @@
                 COPY_DAY: "día ",
                 COPY_DAYS: "días ",
                 COPY_IN: "En ",
+                COPY_TO: " a ",
                 COPY_NOT_AVAILABLE: "No Disponible",
+                ONE_SESSION: "Sesión",
+                OTHER_SESSIONS: "Sesiones",
                 LABEL_LEVEL: "Nivel",
                 LABEL_DURATION: "Duration",
                 LABEL_DESCRIPTION: "Descripción",
                 LABEL_GET_TO_KNOW_US: "Conócenos",
                 LABEL_CONTENT: "Contenido",
                 LABEL_AUDIENCE: "Dirigido a",
-                LABEL_GOALS: "Objetivo(s)",
+                LABEL_GOALS: "Objetivo",
                 LABEL_INSTRUCTORS: "Instructores",
-                LABEL_REQUIREMENTS: "Requerimientos",
-                LABEL_EXTRA_INFO: "Información Adicional",
+                LABEL_REQUIREMENTS: "Requisitos",
+                LABEL_METHODOLOGY: "Metodologia",
+                LABEL_EXTRA_INFO: "Adicionales",
                 LABEL_RETURN_POLICY: "Política de Devolución",
-                TAB_INFO: "Información",
                 TAB_CALENDARS: "Calendarios",
-                LABEL_ATTENDEES: "Asistentes"
+                LABEL_ATTENDEES: "Asistentes",
+                VALUE_WITH_CERTIFICATION: "Con Certificado",
+                VALUE_WITHOUT_CERTIFICATION: "Sin Certificado"
             });
         }
 
         function _activate(){
             _setStrings();
             _setCurrentState();
-            _setUpLocation(activity);
-            vm.activity = _mapPictures(activity);
+            vm.activity = activity;
+            _setUpLocation(vm.activity);
+            vm.activity = _mapCalendars(vm.activity);
+            vm.activity = _mapPictures(vm.activity);
             vm.activity = _mapClosestCalendar(vm.activity);
             vm.activity = _mapInfo(vm.activity);
             vm.activity.rating = [1, 2, 3, 4, 5];
 
             vm.calendars = calendars;
-            vm.organizer = activity.organizer;
+            vm.organizer = vm.activity.organizer;
             vm.calendar_selected = vm.activity.closest_calendar;
 
             if(!(vm.activity.published)){

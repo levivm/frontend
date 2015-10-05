@@ -1285,7 +1285,9 @@ mark,
 .text-capitalize {
   text-transform: capitalize;
 }
-.text-muted {
+.text-muted,
+.attendees-container .copy,
+.attendees-container .copy * {
   color: #777777;
 }
 .text-primary {
@@ -15509,6 +15511,213 @@ button.toast-close-button {
   border-left: 1px solid #dedede;
   padding: 1em 2em 1em 2em;
   text-align: center;
+}
+.calendar-widget {
+  border: 1px solid #dedede;
+}
+.calendar-widget .header .next {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+}
+.calendar-widget .header .next .next-label {
+  font-size: 1em;
+}
+.calendar-widget .header .next .next-date {
+  font-size: 1.2em;
+}
+.calendar-widget .header .closing-date {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1em;
+  font-weight: 100;
+}
+.calendar-widget .header .vacancy {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+  padding: 1em;
+  font-size: 0.9em;
+  font-weight: 400;
+}
+.calendar-widget .price {
+  width: 100%;
+  height: auto;
+  padding: 1em;
+  font-size: 1.4em;
+  font-weight: 400;
+  text-align: center;
+  color: #ffffff;
+  background-color: #777777;
+}
+.calendar-widget .btn-sign-up {
+  width: 100%;
+  height: auto;
+  padding: 1em;
+  border-radius: 0;
+  font-size: 1.4em;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  color: #777777 !important;
+}
+.calendar-widget .info {
+  width: 100%;
+  text-align: center;
+}
+.calendar-widget .info .level {
+  width: 30%;
+  padding: 0.8em;
+  text-align: center;
+  display: inline-block;
+}
+.calendar-widget .info .level .title {
+  font-size: 0.8em;
+}
+.calendar-widget .info .certification {
+  width: 30%;
+  padding: 0.8em;
+  text-align: center;
+  display: inline-block;
+}
+.calendar-widget .info .certification .title {
+  font-size: 0.8em;
+}
+.calendar-widget .info .duration {
+  width: 30%;
+  padding: 0.8em;
+  text-align: center;
+  display: inline-block;
+}
+.calendar-widget .info .duration .title {
+  font-size: 0.8em;
+}
+.calendar-widget .sessions .sessions-title {
+  padding: 1em 1em 0 1em;
+  text-align: center;
+}
+.calendar-widget .sessions .sessions-title * {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 1.2em;
+  padding: 0;
+}
+.calendar-widget .sessions .sessions-list {
+  padding: 1em 0;
+}
+.calendar-widget .sessions .sessions-list .session-item {
+  padding: 0.8em;
+  border-top: 1px solid #dedede;
+}
+.calendar-widget .sessions .sessions-list .session-item:last-child {
+  border-bottom: 1px solid #dedede;
+}
+.calendar-widget .sessions .sessions-list .session-item-date {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0;
+  font-size: 1em;
+  font-weight: 400;
+  color: #777777;
+}
+.calendar-widget .sessions .sessions-list .session-item-time {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0.4em 0 0 0;
+  padding: 0;
+  font-size: 0.8em;
+  font-weight: 100;
+  color: #777777;
+}
+.calendar-widget .other-calendars {
+  padding: 1.6em;
+}
+.calendar-widget .other-calendars:hover {
+  background-color: #f7f7f7;
+}
+.calendar-widget .other-calendars-copy {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0;
+  font-size: 0.8em;
+  font-weight: 100;
+  color: #777777;
+}
+.calendar-widget .other-calendars-count {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #777777;
+}
+.calendar-widget .other-calendars-more {
+  width: 100%;
+  height: auto;
+  padding: 1em 1em 0;
+  font-size: 1.4em;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.74);
+  text-align: center;
+  text-transform: uppercase;
+  text-transform: none;
+  padding: 0;
+  font-size: 0.8em;
+  font-weight: 600;
+  color: #777777;
+  cursor: pointer;
+}
+.calendar-widget .other-calendars-more-copy {
+  width: 60%;
+  display: inline-block;
+}
+.calendar-widget .other-calendars-more-glyph {
+  width: 30%;
+  display: inline-block;
 }
 .section .title {
   font-size: 1.8em;

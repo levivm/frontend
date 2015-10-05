@@ -14,13 +14,11 @@
         </div>
         <!--Category and Social-->
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <span class="label" ng-bind="::detail.activity.category_display"
                       ng-style="{'background-color': detail.activity.category_color}"></span>
                 <span class="label" ng-bind="::detail.activity.sub_category_display"></span>
-            </div>
-            <div class="col-md-8">
-                <span>|</span>
+                <span style="margin: 0 0.2em;"> | </span>
                 <span>Te gustó? Compartelo con tus amigos </span>
                 <img class="img-responsive btn-share-fb" src="/css/img/activity-detail/share_facebook.png" alt="Share on Facebook"/>
                 <img class="img-responsive btn-share-twitter" src="/css/img/activity-detail/share_twitter.png" alt="Share on Twitter"/>
@@ -85,8 +83,8 @@
         <!--Methodology-->
         <div class="row separate-above-medium">
             <div class="col-md-12 section">
-                <div class="title" ng-bind="::detail.strings.LABEL_AUDIENCE"></div>
-                <p class="content" ng-bind="::detail.activity.audience"></p>
+                <div class="title" ng-bind="::detail.strings.LABEL_METHODOLOGY"></div>
+                <p class="content" ng-bind="::detail.activity.methodology"></p>
                 <div class="separator separate-above-more"></div>
             </div>
         </div>
@@ -126,6 +124,85 @@
                 <img src="/css/img/activity-detail/rating_star_off.png" alt="5 Stars"/>
                 <span>50</span>
                 <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
+            </div>
+        </div>
+
+        <div class="calendar-widget separate-above">
+            <div class="header">
+                <div class="next">
+                    <div class="next-label">Proximo Inicio</div>
+                    <div class="next-date" ng-bind="detail.calendar_selected.initial_date | date:'MMM d, y'"></div>
+                </div>
+                <div class="closing-date">
+                    <div>Ventas hasta</div>
+                    <div ng-bind="detail.calendar_selected.closing_sale | date:'MMM d, y'"></div>
+                </div>
+                <div class="vacancy">
+                    <span ng-bind="detail.calendar_selected.vacancy"></span><span> Vacantes</span>
+                </div>
+            </div>
+            <div class="price">{{1023000 | currency}}</div>
+            <a class="btn btn-primary btn-sign-up">Inscribirme</a>
+            <div class="info">
+                <div class="level">
+                    <img src="/css/img/activity-detail/widget_level.png" alt=""/>
+                    <div class="title" ng-bind="detail.activity.level_display"></div>
+                </div>
+                <div class="certification">
+                    <img src="/css/img/activity-detail/widget_certification.png" alt=""/>
+                    <div ng-if="detail.activity.certification" class="title"
+                         ng-bind="detail.strings.VALUE_WITH_CERTIFICATION"></div>
+                    <div ng-if="!detail.activity.certification" class="title"
+                         ng-bind="detail.strings.VALUE_WITHOUT_CERTIFICATION"></div>
+                </div>
+                <div class="duration">
+                    <img src="/css/img/activity-detail/widget_duration.png" alt=""/>
+                    <div class="title" ng-bind="detail.activity.level_display"></div>
+                </div>
+            </div>
+            <div class="sessions">
+                <div class="sessions-title">
+                    <span ng-bind="detail.calendar_selected.sessions.length"></span>
+                    <ng-pluralize count="detail.calendar_selected.sessions.length"
+                          when="{
+                          'one': detail.strings.ONE_SESSION,
+                          'other': detail.strings.OTHER_SESSIONS
+                         }">
+                    </ng-pluralize>
+                </div>
+                <div class="sessions-list">
+                    <div class="session-item" ng-repeat="session in detail.calendar_selected.sessions track by session.id">
+                        <div class="session-item-date" ng-bind="session.date | date:'EEE d MMM y'"></div>
+                        <div class="session-item-time">
+                            <span ng-bind="session.start_time | date: 'h:mm a'"></span>
+                            <span ng-bind="detail.strings.COPY_TO" style="text-transform: lowercase;" ></span>
+                            <span ng-bind="session.end_time | date: 'h:mm a'"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="other-calendars">
+                <div ng-if="detail.activity.upcoming_calendars.length == 2">
+                    <div class="other-calendars-copy">Esta actividad se realizara en otra oportunidad </div>
+                </div>
+                <div ng-if="detail.activity.upcoming_calendars.length > 2">
+                    <div class="other-calendars-copy">Esta actividad se realizara en otras </div>
+                    <div class="other-calendars-count">
+                        <span ng-bind="detail.activity.upcoming_calendars.length -1"></span>
+                        <span> oportunidades</span>
+                    </div>
+                </div>
+                <div ng-if="detail.activity.upcoming_calendars.length < 2">
+                    <div class="other-calendars-copy">Actualmente no hay otros calendarios disponibles</div>
+                </div>
+                <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
+                    <div class="other-calendars-more-copy">
+                        Ver más fechas de inicio
+                    </div>
+                    <div class="other-calendars-more-glyph">
+                        <i class="mdi-navigation-chevron-right"></i>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
