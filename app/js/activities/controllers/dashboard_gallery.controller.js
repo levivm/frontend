@@ -54,7 +54,7 @@
             var pictureToUpload = pictures.pop();
             if (pictureToUpload){
                 var extra_data = { 'main_photo': true };
-                activity.addPicture(pictureToUpload, extra_data)
+                vm.activity.addPicture(pictureToUpload, extra_data)
                     .then(_coverUploadSuccess, _uploadError, _coverUploadProgress);
             } else {
                 console.log('uploadActivityCover. No picture selected');
@@ -64,7 +64,7 @@
         function setActivityCover(){
             console.log('cover:', vm.selectedCover);
             if (!vm.selectedCover) { return; }
-            activity.setStockCover(vm.selectedCover).then(_coverUploadSuccess, _uploadError, _coverUploadProgress);
+            vm.activity.setStockCover(vm.selectedCover).then(_coverUploadSuccess, _uploadError, _coverUploadProgress);
         }
 
         function addGalleryPicture(pictures){
@@ -75,7 +75,7 @@
 
             if (pictureToUpload){
                 var extra_data = { 'main_photo': false };
-                activity.addPicture(pictureToUpload, extra_data).then(uploadSuccess, uploadError, uploadProgress);
+                vm.activity.addPicture(pictureToUpload, extra_data).then(uploadSuccess, uploadError, uploadProgress);
             } else {
                 console.log('addGalleryPicture. No picture specified');
             }
@@ -83,7 +83,9 @@
             function uploadSuccess(response) {
                 vm.isLoadingGalleryPicture = false;
                 vm.pictures.push(response.data.picture);
-                angular.extend(activity.pictures, vm.pictures);
+                vm.activity.pictures.push(response.data.picture);
+                // angular.extend(vm.activity.pictures, vm.pictures);
+                angular.extend(activity, vm.activity);
                 _onSectionUpdated();
                 Toast.success(vm.strings.TOAST_GALLERY_UPLOAD_SUCCESS);
             }
@@ -108,14 +110,19 @@
                 size : 'lg'
             });
             modalInstance.result.then(function () {
-                activity.deletePicture(picture).then(success, error)
+                vm.activity.deletePicture(picture).then(success, error);
             });
 
             function success(response) {
-                var image_id = response.data.photo_id;
-                angular.forEach(vm.pictures, function (picture, index) {
-                    if (picture.id == image_id) { vm.pictures.splice(index, 1); }
-                });
+                var image_id = parseInt(response.data.photo_id);
+
+                _.remove(vm.pictures,{'id':image_id});
+                _.remove(vm.activity.pictures,{'id':image_id});
+
+                angular.extend(activity, vm.activity);
+
+
+
                 Toast.info(vm.strings.TOAST_GALLERY_DELETE_SUCCESS);
                 _onSectionUpdated();
             }
@@ -147,10 +154,14 @@
 
         function _coverUploadSuccess(response) {
             vm.isLoadingCover = false;
-            _.remove(activity.pictures, 'main_photo', true);
-            activity.pictures.push(response.data.picture);
+            _.remove(vm.activity.pictures, 'main_photo', true);
+            vm.activity.pictures.push(response.data.picture);
+
+            angular.extend(activity, vm.activity);
+
             _initializePictures();
             _onSectionUpdated();
+
             Toast.success(vm.strings.TOAST_COVER_SET_SUCCESS);
         }
 
@@ -166,12 +177,12 @@
         }
 
         function _onSectionUpdated() {
-            activity.updateSection('gallery');
+            vm.activity.updateSection('gallery');
         }
 
         function _initializePictures(){
-            vm.pictures = _.filter(activity.pictures, 'main_photo', false);
-            vm.activityCover = _.first(_.remove(activity.pictures, 'main_photo', true));
+            vm.pictures = _.filter(vm.activity.pictures, 'main_photo', false);
+            vm.activityCover = _.first(_.remove(angular.copy(vm.activity.pictures), 'main_photo', true));
             _getSubcategoryCoverPool().then(success);
 
             function success(){
@@ -185,7 +196,7 @@
         function _getSubcategoryCoverPool(){
             var deferred = $q.defer();
 
-            ActivitiesManager.getSubcategoryCovers(activity.sub_category).then(success, error);
+            ActivitiesManager.getSubcategoryCovers(vm.activity.sub_category).then(success, error);
             return deferred.promise;
 
             function success(covers){
@@ -233,7 +244,7 @@
         function _activate() {
             _setStrings();
             _initializePictures();
-
+            console.log("Activity",vm.activity);
             vm.errors = {};
             vm.isCollapsed = true;
             vm.isLoadingGalleryPicture = false;
