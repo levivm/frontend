@@ -59,6 +59,7 @@
             var modalInstance = $modal.open({
                 templateUrl : 'partials/activities/messages/confirm_delete_calendar.html',
                 controller : 'ModalInstanceCtrl',
+                controllerAs:'modal',
                 size : 'lg'
             });
 
@@ -140,6 +141,7 @@
                                 var modalInstance = $modal.open({
                                     templateUrl : 'partials/activities/messages/confirm_leave_republish.html',
                                     controller : 'ModalInstanceCtrl',
+                                    controllerAs:'modal',
                                     size : 'md'
                                 });
                                 modalInstance.result.then(success, error);

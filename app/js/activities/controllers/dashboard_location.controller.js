@@ -83,7 +83,8 @@
             if (!vm.activity.location){ 
 
                 if (vm.organizer.location){
-                    vm.activity.location = vm.organizer.location;
+                    vm.activity.location = angular.copy(vm.organizer.location);
+                    vm.activity.location.address = null;
                 }
                 else{
                     vm.activity.location = {};
@@ -114,13 +115,19 @@
             });
         }
 
+        function _setAddressAutoComplete(){
+            if(!vm.activity.location && vm.organizer.location)
+                vm.address_autocomplete = [vm.organizer.location.address];
+
+        }
+
         function _onSectionUpdated() {
 
             activity.updateSection('location');
         }
 
         function _activate() {
-
+            _setAddressAutoComplete();
             _setLocation();
             _setStrings();
             vm.map = LocationManager.getMap(vm.activity.location);

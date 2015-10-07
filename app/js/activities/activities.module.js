@@ -115,7 +115,7 @@
                     cities: getAvailableCities,
                     organizer : getCurrentOrganizer
                 },
-                controllerAs: 'editLocationCtrl',
+                controllerAs: 'location',
                 templateUrl: 'partials/activities/edit/dashboard_location.html'
             })
             .state('dash.activities-edit.instructors', {

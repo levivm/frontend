@@ -16,9 +16,9 @@
 
         .directive('truliiInstructorCard', truliiInstructorCard);
 
-    truliiInstructorCard.$inject = ['$modal', 'Toast', 'OrganizersTemplatesPath'];
+    truliiInstructorCard.$inject = ['$modal', 'Toast', 'OrganizersTemplatesPath','ActivitiesTemplatesPath'];
 
-    function truliiInstructorCard($modal, Toast, OrganizersTemplatesPath){
+    function truliiInstructorCard($modal, Toast, OrganizersTemplatesPath,ActivitiesTemplatesPath){
         return {
             restrict: 'E',
             templateUrl: OrganizersTemplatesPath + "instructor_card.html",
@@ -26,15 +26,16 @@
                 'instructor': '=',
                 'activity': '=',
                 'organizer': '=',
+                'availableInstructors':'=',
                 'onDashboard': '@?',
-                'onChange': '&'
+                'onChange': '&',
             },
             link: function(scope, element, attrs){
 
                 angular.extend(scope, {
                     editMode : false,
                     onDashboard : !!attrs.onDashboard,
-                    setSelectedInstructor: setSelectedInstructor,
+                    selectInstructor: selectInstructor,
                     addInstructor: addInstructor,
                     deleteInstructor: deleteInstructor,
                     cancelEdition: cancelEdition,
@@ -57,8 +58,9 @@
 
                 //--------- Exposed Functions ---------//
 
-                function setSelectedInstructor(selectedInstructor){
-                    angular.extend(scope.instructor, selectedInstructor);
+                function selectInstructor($item, $model, $label){
+                    _.remove(scope.availableInstructors, { 'id': $item.id});
+                    angular.extend(scope.instructor, $item);
                 }
 
                 function addInstructor(){
@@ -87,14 +89,15 @@
                             // Create Instructor
                             resource.createInstructor(instructor).then(successCreate, errorCreate);
                         }
+                        
                     } else {
                         Toast.setPosition("toast-top-center");
                         Toast.error(scope.strings.MSG_MISSING_REQUIRED_FIELDS);
                     }
 
                     function successCreate(instructor){
+                        resource.load().then(_onChange, updateError);
                         console.log('saveInstructor. Instructor created.', instructor);
-                        _onChange();
                     }
 
                     function errorCreate(response){
@@ -102,8 +105,8 @@
                     }
 
                     function successUpdate(instructor){
+                        resource.load().then(_onChange, updateError);
                         console.log('saveInstructor. Instructor updated.', instructor);
-                        _onChange();
                     }
 
                     function errorUpdate(response){
@@ -112,9 +115,15 @@
                 }
 
                  function deleteInstructor() {
-                     var modalInstance = $modal.open({
-                         templateUrl : OrganizersTemplatesPath + 'messages/confirm_delete_instructor.html',
+
+
+                    var templateUrl = scope.onDashboard ? OrganizersTemplatesPath + 'messages/confirm_delete_instructor.html':
+                                                          ActivitiesTemplatesPath + 'messages/remove_activity_instructor.html';
+
+                    var modalInstance = $modal.open({
+                         templateUrl : templateUrl,
                          controller : 'ModalInstanceCtrl',
+                         controllerAs:"modal",
                          size : 'lg'
                      });
                      modalInstance.result.then(function () {
@@ -126,8 +135,11 @@
                          }
                      });
 
-                     function success(response) {
+                    function success(response) {
                          _.remove(resource.instructors, 'id', scope.instructor.id);
+                         if (!scope.onDashboard)
+                            scope.availableInstructors.
+                                push(_.find(scope.organizer.instructors,{'id':scope.instructor.id}));
                          _removeInstructor();
                          resource.load().then(updateSuccess, updateError);
                          Toast.info(scope.strings.MSG_DELETE_SUCCESS);
@@ -143,6 +155,16 @@
                 function _removeInstructor(){
                     scope.instructor= EMPTY_INSTRUCTOR;
                     scope.emptyInstructor = true;
+                }
+
+                function _setAvailableInstructors(){
+
+                    if(scope.onDashboard)
+                        return;
+
+                    scope.availableInstructors = _.filter(scope.availableInstructors, 
+                                function(instructor){ return !_.findWhere(resource.instructors, 
+                                    instructor); });
                 }
 
                 function _isValid(){
@@ -188,6 +210,7 @@
 
                 function _activate(){
                     _setStrings();
+                    _setAvailableInstructors();
                     if(_isValid()){ scope.emptyInstructor = false; }
                     console.group('trulii-instructor-card:', scope.instructor.full_name? scope.instructor.full_name : '');
                     console.log('instructor:', scope.instructor);

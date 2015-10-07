@@ -1,44 +1,44 @@
 <div class="row">
     <div class="col-lg-9 col-md-11">
-        <div class="section-title" ng-bind="::editLocationCtrl.strings.LABEL_LOCATION" >
+        <div class="section-title" ng-bind="::location.strings.LABEL_LOCATION" >
         </div>
-        <form  name='editLocationCtrl.activity_location_form'
-              ng-submit="editLocationCtrl.save_activity()">
+        <form  name='location.activity_location_form'
+              ng-submit="location.save_activity()">
             <fieldset>                                                                
               
-                <div class="section-description" ng-bind="::editLocationCtrl.strings.COPY_CITY">
+                <div class="section-description" ng-bind="::location.strings.COPY_CITY">
                 </div>
                 
                 <div class="form-group" trulii-input-errors-control="city">
-                    <label for="city" class="control-label" ng-bind="::editLocationCtrl.strings.LABEL_CITY"></label>
-                    <select class="form-control" id="city" ng-model="editLocationCtrl.activity.location.city"
-                            ng-options="city as city.name for city in editLocationCtrl.cities track by city.id" name="city">
-                        <option value="" selected ng-show="!editLocationCtrl.activity_location_form.city" ng-bind="::editLocationCtrl.strings.LABEL_SELECTED" >
+                    <label for="city" class="control-label" ng-bind="::location.strings.LABEL_CITY"></label>
+                    <select class="form-control" id="city" ng-model="location.activity.location.city"
+                            ng-options="city as city.name for city in location.cities track by city.id" name="city">
+                        <option value="" selected ng-show="!location.activity_location_form.city" ng-bind="::location.strings.LABEL_SELECTED" >
                         </option>
                     </select>
                 </div>
 
                 <div class="form-group" trulii-input-errors-control="address">
-                    <label for="address" class="control-label" ng-bind="::editLocationCtrl.strings.LABEL_ADDRESS"></label>
-                        <textarea id="address" class="form-control" ng-model='editLocationCtrl.activity.location.address'
-                                  name="address">  </textarea>
+                    <label for="address" class="control-label" ng-bind="::location.strings.LABEL_ADDRESS"></label>
+                        <textarea id="address" class="form-control" ng-model='location.activity.location.address'
+                                  name="address" typeahead="address for address in location.address_autocomplete ">  </textarea>
                 </div>
                 <div class="text-center separate-above">
-                    <strong><span ng-bind="::editLocationCtrl.strings.COPY_MAP_1"></span></strong> <span ng-bind="::editLocationCtrl.strings.COPY_MAP_2"></span> (<span class="mdi-action-room" style="color: #F86161"></span>) <span ng-bind="::editLocationCtrl.strings.COPY_MAP_3"></span>
+                    <strong><span ng-bind="::location.strings.COPY_MAP_1"></span></strong> <span ng-bind="::location.strings.COPY_MAP_2"></span> (<span class="mdi-action-room" style="color: #F86161"></span>) <span ng-bind="::location.strings.COPY_MAP_3"></span>
                 </div>
                 
 
                 <div>
-                    <ui-gmap-google-map center='editLocationCtrl.map.center' zoom='editLocationCtrl.map.zoom' bounds="editLocationCtrl.map.bounds"
-                                        events="editLocationCtrl.map.events" control="editLocationCtrl.map.control">
-                        <ui-gmap-marker coords="editLocationCtrl.marker.coords" options="editLocationCtrl.marker.options"
-                                        events="editLocationCtrl.marker.events" idkey="editLocationCtrl.marker.id">
+                    <ui-gmap-google-map center='location.map.center' zoom='location.map.zoom' bounds="location.map.bounds"
+                                        events="location.map.events" control="location.map.control">
+                        <ui-gmap-marker coords="location.marker.coords" options="location.marker.options"
+                                        events="location.marker.events" idkey="location.marker.id">
                         </ui-gmap-marker>
                     </ui-gmap-google-map>
                 </div>
 
                 <div class="separate-above">
-                    <trulii-submit-controls is-saving="editLocationCtrl.isSaving" ng-value="::editLocationCtrl.strings.ACTION_SAVE"></trulii-submit-controls>    
+                    <trulii-submit-controls is-saving="location.isSaving" ng-value="::location.strings.ACTION_SAVE"></trulii-submit-controls>    
                 </div>
                 
                 

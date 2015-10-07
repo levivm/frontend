@@ -104,6 +104,7 @@
             var modalInstance = $modal.open({
                 templateUrl : 'partials/activities/messages/confirm_delete_image.html',
                 controller : 'ModalInstanceCtrl',
+                controllerAs:'modal',
                 size : 'lg'
             });
             modalInstance.result.then(function () {

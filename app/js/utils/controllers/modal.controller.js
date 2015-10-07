@@ -1,4 +1,4 @@
--/**
+/**
  * ModalInstanceCtrl
  * @namespace thinkster.authentication.controllers
  */
@@ -7,7 +7,7 @@
 
         angular
             .module('trulii.utils.controllers')
-            .controller('ModalInstanceCtrl', function ($scope, $modalInstance, $state) {
+            .controller('ModalInstanceCtrl', function ($modalInstance, $state) {
 
                 var vm = this;
                 vm.strings = {};
@@ -15,37 +15,17 @@
                 vm.strings.REQUEST_SIGNUP_SUCCESS_MSG = "Su solicitud de registro fue procesada existosamente";
                 vm.strings.REQUEST_SIGNUP_SUCCESS_MSG += ". Pronto le enviaremos un correo de confirmación";
 
+                vm.ok = ok;
+                vm.cancel = cancel;
 
-                $scope.ok = function () {
+                function ok () {
                     $modalInstance.close();
-                };
+                }
 
-                $scope.cancel = function () {
+                function cancel() {
 
-                    // //$state.go('modal-dialog.login');
-
-                    // //console.log("cancel twicce");
                     $modalInstance.dismiss('cancel');
-                    // $state.go('home');
-                    // //$modalInstance.dismiss('cancel');
-
-                    // //$state.go($state.previous,{reload:true});
-                    // //console.log($state.previous,"pre");
-                    // //$state.reload();
-                    // $state.go($state.previous.name,{reload:true});
-                    // if($state.previous !== undefined && !$state.previous.abstract){
-
-
-                    // 	$state.go($state.previous.name,{reload:true});
-                    // 	//$modalInstance.close();
-                    // 	//$modalInstance.close();
-                    // 	//$state.go('modal-dialog.login',{reload:true});
-                    // 	//state.reload();
-                    // }
-
-                    // if($state.previous.abstract)
-                    // 	$state.go('home');
-                };
+                }
             });
 
 
