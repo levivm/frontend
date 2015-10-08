@@ -128,79 +128,111 @@
         </div>
 
         <div class="calendar-widget separate-above">
-            <div class="header">
-                <div class="next">
-                    <div class="next-label">Proximo Inicio</div>
-                    <div class="next-date" ng-bind="detail.calendar_selected.initial_date | date:'MMM d, y'"></div>
+            <div class="widget-card" ng-hide="detail.isListVisible">
+                <div class="header">
+                    <div class="next">
+                        <div class="next-label">Proximo Inicio</div>
+                        <div class="next-date" ng-bind="detail.calendar_selected.initial_date | date:'MMM d, y'"></div>
+                    </div>
+                    <div class="closing-date">
+                        <div>Ventas hasta</div>
+                        <div ng-bind="detail.calendar_selected.closing_sale | date:'MMM d, y'"></div>
+                    </div>
+                    <div class="vacancy">
+                        <span ng-bind="detail.calendar_selected.vacancy"></span><span> Vacantes</span>
+                    </div>
                 </div>
-                <div class="closing-date">
-                    <div>Ventas hasta</div>
-                    <div ng-bind="detail.calendar_selected.closing_sale | date:'MMM d, y'"></div>
+                <div class="price" ng-bind="detail.calendar_selected.total_price | currency"></div>
+                <a class="btn btn-primary btn-sign-up">Inscribirme</a>
+                <div class="info">
+                    <div class="level">
+                        <img src="/css/img/activity-detail/widget_level.png" alt=""/>
+                        <div class="title" ng-bind="detail.activity.level_display"></div>
+                    </div>
+                    <div class="certification">
+                        <img src="/css/img/activity-detail/widget_certification.png" alt=""/>
+                        <div ng-if="detail.activity.certification" class="title"
+                             ng-bind="detail.strings.VALUE_WITH_CERTIFICATION"></div>
+                        <div ng-if="!detail.activity.certification" class="title"
+                             ng-bind="detail.strings.VALUE_WITHOUT_CERTIFICATION"></div>
+                    </div>
+                    <div class="duration">
+                        <img src="/css/img/activity-detail/widget_duration.png" alt=""/>
+                        <div class="title" ng-bind="detail.activity.level_display"></div>
+                    </div>
                 </div>
-                <div class="vacancy">
-                    <span ng-bind="detail.calendar_selected.vacancy"></span><span> Vacantes</span>
-                </div>
-            </div>
-            <div class="price">{{1023000 | currency}}</div>
-            <a class="btn btn-primary btn-sign-up">Inscribirme</a>
-            <div class="info">
-                <div class="level">
-                    <img src="/css/img/activity-detail/widget_level.png" alt=""/>
-                    <div class="title" ng-bind="detail.activity.level_display"></div>
-                </div>
-                <div class="certification">
-                    <img src="/css/img/activity-detail/widget_certification.png" alt=""/>
-                    <div ng-if="detail.activity.certification" class="title"
-                         ng-bind="detail.strings.VALUE_WITH_CERTIFICATION"></div>
-                    <div ng-if="!detail.activity.certification" class="title"
-                         ng-bind="detail.strings.VALUE_WITHOUT_CERTIFICATION"></div>
-                </div>
-                <div class="duration">
-                    <img src="/css/img/activity-detail/widget_duration.png" alt=""/>
-                    <div class="title" ng-bind="detail.activity.level_display"></div>
-                </div>
-            </div>
-            <div class="sessions">
-                <div class="sessions-title">
-                    <span ng-bind="detail.calendar_selected.sessions.length"></span>
-                    <ng-pluralize count="detail.calendar_selected.sessions.length"
-                          when="{
+                <div class="sessions">
+                    <div class="sessions-title">
+                        <span ng-bind="detail.calendar_selected.sessions.length"></span>
+                        <ng-pluralize count="detail.calendar_selected.sessions.length"
+                                      when="{
                           'one': detail.strings.ONE_SESSION,
                           'other': detail.strings.OTHER_SESSIONS
                          }">
-                    </ng-pluralize>
-                </div>
-                <div class="sessions-list">
-                    <div class="session-item" ng-repeat="session in detail.calendar_selected.sessions track by session.id">
-                        <div class="session-item-date" ng-bind="session.date | date:'EEE d MMM y'"></div>
-                        <div class="session-item-time">
-                            <span ng-bind="session.start_time | date: 'h:mm a'"></span>
-                            <span ng-bind="detail.strings.COPY_TO" style="text-transform: lowercase;" ></span>
-                            <span ng-bind="session.end_time | date: 'h:mm a'"></span>
+                        </ng-pluralize>
+                    </div>
+                    <div class="sessions-list">
+                        <div class="session-item" ng-repeat="session in detail.calendar_selected.sessions track by session.id">
+                            <div class="session-item-date" ng-bind="session.date | date:'EEE d MMM y'"></div>
+                            <div class="session-item-time">
+                                <span ng-bind="session.start_time | date: 'h:mm a'"></span>
+                                <span ng-bind="detail.strings.COPY_TO" style="text-transform: lowercase;" ></span>
+                                <span ng-bind="session.end_time | date: 'h:mm a'"></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="other-calendars">
-                <div ng-if="detail.activity.upcoming_calendars.length == 2">
-                    <div class="other-calendars-copy">Esta actividad se realizara en otra oportunidad </div>
-                </div>
-                <div ng-if="detail.activity.upcoming_calendars.length > 2">
-                    <div class="other-calendars-copy">Esta actividad se realizara en otras </div>
-                    <div class="other-calendars-count">
-                        <span ng-bind="detail.activity.upcoming_calendars.length -1"></span>
-                        <span> oportunidades</span>
+                <div class="other-calendars"
+                     ng-click="detail.showList()"
+                     ng-class="{'other-calendars-has-more': detail.activity.upcoming_calendars.length > 1}">
+                    <div ng-if="detail.activity.upcoming_calendars.length == 2">
+                        <div class="other-calendars-copy">Esta actividad se realizara en otra oportunidad </div>
                     </div>
-                </div>
-                <div ng-if="detail.activity.upcoming_calendars.length < 2">
-                    <div class="other-calendars-copy">Actualmente no hay otros calendarios disponibles</div>
-                </div>
-                <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
-                    <div class="other-calendars-more-copy">
-                        Ver más fechas de inicio
+                    <div ng-if="detail.activity.upcoming_calendars.length > 2">
+                        <div class="other-calendars-copy">Esta actividad se realizara en otras </div>
+                        <div class="other-calendars-count">
+                            <span ng-bind="detail.activity.upcoming_calendars.length -1"></span>
+                            <span> oportunidades</span>
+                        </div>
                     </div>
-                    <div class="other-calendars-more-glyph">
+                    <div ng-if="detail.activity.upcoming_calendars.length < 2">
+                        <div class="other-calendars-copy">Actualmente no hay otros calendarios disponibles</div>
+                    </div>
+                    <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
+                        <span>Ver más fechas de inicio</span>
                         <i class="mdi-navigation-chevron-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="widget-list" ng-show="detail.isListVisible">
+                <div class="widget-list-item"
+                     ng-repeat="calendar in detail.activity.upcoming_calendars track by calendar.id"
+                     ng-class="{'selected': detail.calendar_selected.id == calendar.id}">
+                    <div class="row">
+                        <div class="col-md-6 clear-spacings float-left">
+                            <div class="next-label">Proximo Inicio</div>
+                            <div class="vacancy">
+                                <span ng-bind="detail.calendar_selected.vacancy"></span><span> Vacantes</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 clear-spacings float-right">
+                            <div class="closing-sale">Ventas hasta</div>
+                            <div class="closing-sale" ng-bind="calendar.closing_sale | date:'MMM d, y'"></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="start-date" ng-bind="calendar.initial_date | date:'MMM d, y'"></div>
+                    </div>
+                    <div class="row">
+                        <img class="btn-return" src="css/img/activity-detail/widget_navigation_back.png"
+                             alt="Return to selected calendar"
+                             ng-click="detail.hideList()"/>
+                        <div class="float-right">
+                            <span class="label price" ng-bind="calendar.total_price | currency"></span>
+                            <button class="btn btn-success btn-detail"
+                                    ng-bind="detail.strings.ACTION_SELECT_CALENDAR"
+                                ng-click="detail.setSelectedCalendar(calendar)"></button>
+                        </div>
                     </div>
                 </div>
             </div>

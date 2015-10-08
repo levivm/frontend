@@ -67,170 +67,244 @@
         text-transform: uppercase;
     }
 
-    .header {
+    .widget-card{
+        .header {
 
-        .next {
-            .HeaderText();
-            .next-label {
-                font-size: 1em;
-            }
-
-            .next-date {
-                font-size: 1.2em;
-            }
-        }
-
-        .closing-date {
-            .HeaderText();
-            font-size: 1em;
-            font-weight: 100;
-        }
-
-        .vacancy{
-            .HeaderText();
-            padding: 1em;
-            font-size: 0.9em;
-            font-weight: 400;
-        }
-
-    }
-
-    .price {
-        width: 100%;
-        height: auto;
-        padding: 1em;
-        font-size: 1.4em;
-        font-weight: 400;
-        text-align: center;
-        color: @white;
-        background-color: @text-muted;
-    }
-
-    .btn-sign-up {
-        width: 100%;
-        height: auto;
-        padding: 1em;
-        border-radius: 0;
-        font-size: 1.4em;
-        font-weight: 400;
-        text-transform: uppercase;
-        text-align: center;
-        color: @text-muted !important;
-    }
-
-    .info {
-        width: 100%;
-        text-align: center;
-
-        .InfoSection(){
-            width: 30%;
-            padding: 0.8em;
-            text-align: center;
-            display: inline-block;
-
-            .title {
-                font-size: 0.8em;
-            }
-        }
-
-        .level{
-            .InfoSection();
-        }
-
-        .certification{
-            .InfoSection();
-        }
-
-        .duration{
-            .InfoSection();
-        }
-    }
-
-    .sessions {
-        .sessions-title {
-            padding: 1em 1em 0 1em;
-            text-align: center;
-
-            * {
+            .next {
                 .HeaderText();
-                font-size: 1.2em;
-                padding: 0;
+                .next-label {
+                    font-size: 1em;
+                }
+
+                .next-date {
+                    font-size: 1.2em;
+                }
+            }
+
+            .closing-date {
+                .HeaderText();
+                font-size: 1em;
+                font-weight: 100;
+            }
+
+            .vacancy{
+                .HeaderText();
+                padding: 1em;
+                font-size: 0.9em;
+                font-weight: 400;
+            }
+
+        }
+
+        .price {
+            width: 100%;
+            height: auto;
+            padding: 1em;
+            font-size: 1.4em;
+            font-weight: 400;
+            text-align: center;
+            color: @white;
+            background-color: @text-muted;
+        }
+
+        .btn-sign-up {
+            width: 100%;
+            height: auto;
+            padding: 1em;
+            border-radius: 0;
+            font-size: 1.4em;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-align: center;
+            color: @text-muted !important;
+        }
+
+        .info {
+            width: 100%;
+            text-align: center;
+
+            .InfoSection(){
+                width: 30%;
+                padding: 0.8em;
+                text-align: center;
+                display: inline-block;
+
+                .title {
+                    font-size: 0.8em;
+                }
+            }
+
+            .level{
+                .InfoSection();
+            }
+
+            .certification{
+                .InfoSection();
+            }
+
+            .duration{
+                .InfoSection();
             }
         }
 
-        .sessions-list {
-            padding: 1em 0;
-
-            .session-item {
-                @padding-session-item: 0.8em;
-                padding: @padding-session-item;
+        .sessions {
+            .sessions-title {
+                padding: 1em;
+                text-align: center;
                 border-top: @border-widget;
 
-                &:last-child {
-                    border-bottom: @border-widget;
-                }
-
-                &-date{
+                * {
                     .HeaderText();
+                    font-size: 1.2em;
                     padding: 0;
-                    font-size: 1em;
-                    font-weight: 400;
-                    color: @text-muted;
                 }
+            }
 
-                &-time {
-                    .HeaderText();
-                    margin: @padding-session-item/2 0 0 0;
-                    padding: 0;
-                    font-size: 0.8em;
-                    font-weight: 100;
-                    color: @text-muted;
+            .sessions-list {
+                padding: 0;
+                max-height: 32em;
+                overflow-y: auto;
+
+                .session-item {
+                    @padding-session-item: 0.8em;
+                    padding: @padding-session-item;
+                    border-top: @border-widget;
+
+                    &:last-child {
+                        border-bottom: @border-widget;
+                    }
+
+                    &-date{
+                        .HeaderText();
+                        padding: 0;
+                        font-size: 1em;
+                        font-weight: 400;
+                        color: @text-muted;
+                    }
+
+                    &-time {
+                        .HeaderText();
+                        margin: @padding-session-item/2 0 0 0;
+                        padding: 0;
+                        font-size: 0.8em;
+                        font-weight: 100;
+                        color: @text-muted;
+                    }
                 }
+            }
+        }
+
+        .other-calendars {
+            padding: 1.6em;
+
+            &-has-more {
+                cursor: pointer;
+            }
+
+            &:hover{
+                background-color: @secondary-bg;
+            }
+
+            &:active{
+                background-color: darken(@secondary-bg, 20%);
+            }
+
+            &-copy {
+                .HeaderText();
+                padding: 0;
+                font-size: 0.8em;
+                font-weight: 100;
+                color: @text-muted;
+            }
+
+            &-count {
+                .HeaderText();
+                padding: 0;
+                font-size: 0.8em;
+                font-weight: 600;
+                color: @text-muted;
+            }
+
+            &-more {
+                .HeaderText();
+                text-transform: none;
+                padding: 0;
+                font-size: 0.8em;
+                font-weight: 600;
+                color: @text-muted;
             }
         }
     }
 
-    .other-calendars {
-        padding: 1.6em;
+    .widget-list {
 
-        &:hover{
-            background-color: @secondary-bg;
-        }
+        .widget-list-item {
+            padding: 2em;
 
-        &-copy {
-            .HeaderText();
-            padding: 0;
-            font-size: 0.8em;
-            font-weight: 100;
-            color: @text-muted;
-        }
-
-        &-count {
-            .HeaderText();
-            padding: 0;
-            font-size: 0.8em;
-            font-weight: 600;
-            color: @text-muted;
-        }
-
-        &-more {
-            .HeaderText();
-            text-transform: none;
-            padding: 0;
-            font-size: 0.8em;
-            font-weight: 600;
-            color: @text-muted;
-            cursor: pointer;
-
-            &-copy {
-                width: 60%;
-                //text-align: start;
-                display: inline-block;
+            &:not(:last-child) {
+                border-bottom: @border-widget;
             }
 
-            &-glyph {
-                width: 30%;
-                display: inline-block;
+            &:hover {
+                background-color: darken(@secondary-bg, 10%);
+            }
+
+            &.selected {
+                background-color: darken(@secondary-bg, 20%);
+
+                * {
+                    color: white !important;
+                }
+
+                &:hover {
+                    background-color: darken(@secondary-bg, 30%);
+                }
+            }
+
+            .start-date {
+                .HeaderText();
+                text-align: start;
+                padding: 0.6em 0 0 0;
+            }
+
+            .next-label {
+                .HeaderText();
+                padding: 0;
+                text-align: start;
+                font-size: 0.9em;
+                font-weight: 400;
+            }
+
+            .vacancy{
+                .HeaderText();
+                padding: 0;
+                text-align: start;
+                font-size: 0.9em;
+                font-weight: 200;
+            }
+
+            .closing-sale {
+                .HeaderText();
+                text-align: start;
+                padding: 0;
+                font-size: 0.9em;
+                font-weight: 100;
+            }
+
+            .btn-return {
+                cursor: pointer;
+                height: 2em;
+                width: 2em;
+            }
+
+            * .price {
+                font-size: 0.8em;
+                padding: 0.6em;
+                border-radius: 4px;
+            }
+
+            * .btn-detail {
+                font-size: 0.8em;
             }
         }
     }

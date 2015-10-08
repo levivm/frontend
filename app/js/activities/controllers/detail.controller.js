@@ -33,11 +33,15 @@
             activity : null,
             organizer : null,
             calendar_selected : null,
-            upcoming_calendars_count: 0,
+            // TODO poner en false al terminar
+            isListVisible: true,
             galleryOptions: {
                 interval: 0,
                 noWrap: false
             },
+            showList: showList,
+            hideList: hideList,
+            setSelectedCalendar: setSelectedCalendar,
             changeState : changeState,
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
@@ -48,6 +52,19 @@
         _activate();
 
         //--------- Functions Implementation ---------//
+
+        function showList(){
+            vm.isListVisible = true;
+        }
+
+        function hideList(){
+            vm.isListVisible = false;
+        }
+
+        function setSelectedCalendar(calendar){
+            vm.calendar_selected = calendar;
+            hideList();
+        }
 
         function isSelectedCalendarFull(){
             if(vm.calendar_selected){
@@ -136,6 +153,7 @@
 
             function mapVacancy(calendar){
                 calendar.vacancy = calendar.capacity - calendar.assistants.length;
+                calendar.total_price = calendar.session_price * calendar.sessions.length;
                 return calendar;
             }
 
@@ -198,6 +216,7 @@
                 ACTION_VIEW_PROFILE: "Ver Perfil",
                 ACTION_CONTACT: "Contactar",
                 ACTION_SIGN_UP: "Inscribirme",
+                ACTION_SELECT_CALENDAR: "Ver Detalle",
                 ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
                 ACTIVITY_SOLD_OUT: "No quedan cupos disponibles para esta actividad",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
