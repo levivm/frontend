@@ -2,43 +2,42 @@
         <div class="col-lg-9 col-md-11">
             <div ui-view>
 
-                <div class="section-title">
-                    Calendarios
+                <div class="section-title" ng-bind="::calendars.strings.LABEL_CALENDARS">
                 </div>
 
                 <div>
                     
-                    <div class="section-description">Añade el horario, precio, número de sesiones y más.</div>
+                    <div class="section-description" ng-bind="::calendars.strings.COPY_ADD_CALENDAR"></div>
 
-                    <div ng-if="vm.republish" class="alert alert-warning">
-                        <h4>Advertencia!</h4>
-                        <p>Estás republicando esta actividad. Recuerda que para republicarla exitosamente debes
-                            de agregar por lo menos un nuevo calendario.</p>
+                    <div ng-if="calendars.republish" class="alert alert-warning">
+                        <h4 ng-bind="::calendars.strings.LABEL_WARNING">Advertencia!</h4>
+                        <p ng-bind="::calendars.strings.COPY_REPUBLISH_CALENDAR"></p>
                     </div>
 
                     <div class="col-md-6">
-                        <div class="card card-list-item card-list-item--empty" style="height: 21.6em;" ng-click="vm.createCalendar()">
+                        <!-- <a ui-sref="dash.activities-edit.calendars.detail({ calendar_id: null})">hola</div>  -->
+                        <div class="card card-list-item card-list-item--empty" style="height: 21.6em;" ng-click="calendars.createCalendar()">
                             <div>
                                 <div class="card-list-item__add-icon"></div><br/>
-                                Agregar calendario
+                                <span ng-bind="::calendars.strings.LABEL_ADD_CALENDAR" ></span>
                                 
                             </div>                        
                             
                         </div>
                     </div>
 
-                    <div class="col-md-6" ng-repeat="calendar in vm.calendars | orderBy: 'initial_date'">
+                    <div class="col-md-6" ng-repeat="calendar in calendars.calendars | orderBy: 'initial_date'">
 
                         <div class="card">
                             <div class="card-list-item">
 
-                                <h1 class="no-margin">Fecha de inicio <span ng-bind="$index+1"></span></h1>
+                                <h1 class="no-margin" ng-bind="::calendars.strings.LABEL_START_DATE" ><span ng-bind="$index+1"></span></h1>
    
 
                                 <div class="row clearfix separate-vertical">
                                     <div class="col-md-7">       
 
-                                        <span class="text-sm">Ventas hasta</span>                         
+                                        <span class="text-sm" ng-bind="::calendars.strings.LABEL_CLOSE_SALE" ></span>                         
                                         <h3 class="clear-spacings">
 
                                         <!--
@@ -56,33 +55,33 @@
                                     <div class="col-md-5 text-right">                                                                        
                                         
                                         <div class="text-muted">
-                                            <strong ng-bind="calendar.capacity"></strong> Cupos
+                                            <strong ng-bind="calendar.capacity"></strong> <span ng-bind="::calendars.strings.LABEL_CALENDAR_SEATS" ></span>
                                         </div>  
                                     </div>         
                                 </div>
 
                                 <div class="row clearfix text-center">
                                     <div class="col-md-6">
-                                        <h5>Inicia </h5>
+                                        <h5 ng-bind="::calendars.strings.LABEL_START" ></h5>
                                         <span class="text-capitalize text-md" ng-bind="calendar.initial_date | date: 'dd MMM yyyy'"></span>
                                         <br/>
                                     </div>
 
                                     <div class="col-md-6 separator-vertical">
-                                        <h5>Finaliza</h5>                                        
+                                        <h5 ng-bind="::calendars.strings.LABEL_END" ></h5>                                        
                                         <span class="text-capitalize text-md" ng-bind="calendar.sessions[calendar.sessions.length-1].date | date: 'dd MMM yyyy'"></span>
                                     </div>  
 
                                 </div>
 
                                 <!--TODO revisar este alert-->
-                                <alert type="danger" ng-show="vm.calendar_errors[calendar.id]">
-                                    {{vm.calendar_errors[calendar.id]}}
+                                <alert type="danger" ng-show="calendars.calendar_errors[calendar.id]">
+                                    {{calendars.calendar_errors[calendar.id]}}
                                 </alert>
 
                                 <div class="card-list-item__actions">
-                                    <i class="glyphicon glyphicon-pencil" ng-click="vm.loadCalendar(calendar)" title="Editar calendario"></i>
-                                    <i class="glyphicon glyphicon-remove" ng-click="vm.deleteCalendar(calendar)" title="Eliminar calendario"></i>                            
+                                    <i class="glyphicon glyphicon-pencil" ng-click="calendars.loadCalendar(calendar)" title="{{::calendars.strings.LABEL_EDIT_CALENDAR}}"></i>
+                                    <i class="glyphicon glyphicon-remove" ng-click="calendars.deleteCalendar(calendar)" title="{{::calendars.strings.LABEL_DELETE_CALENDAR}}"></i>                             
                                 </div>
                                 
                             </div>

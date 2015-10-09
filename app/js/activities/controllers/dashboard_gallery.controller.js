@@ -177,7 +177,7 @@
         }
 
         function _onSectionUpdated() {
-            vm.activity.updateSection('gallery');
+            activity.updateSection('gallery');
         }
 
         function _initializePictures(){

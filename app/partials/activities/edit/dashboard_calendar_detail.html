@@ -1,44 +1,43 @@
 
-<form class="separate-above" name='vm.activity_calendar_form' ng-submit="vm.save_calendar()" novalidate>
+<form class="separate-above" name='calendar.activity_calendar_form' ng-submit="calendar.save_calendar()" novalidate>
 
   <div>
 
-      <div class="section-title">
-        Nuevo Calendario
-  </div>
+    <div class="section-title" ng-bind="::calendar.strings.LABEL_CALENDAR_TITLE">
+    </div>
 
     <div>
 
-      <div class="section-description">Especifique la información solicitada para continuar.</div>
+      <div class="section-description" ng-bind="::calendar.strings.COPY_CALENDAR_INFO"></div>
 
       <div class="row separate-vertical">
           <div class="col-md-6">
               <div class="form-group" trulii-input-errors-control="initial_date">
-                  <alert type="danger" ng-show="vm.errors.non_field_errors">
-                      {{vm.errors.non_field_errors}}
+                  <alert type="danger" ng-show="calendar.errors.non_field_errors">
+                      {{calendar.errors.non_field_errors}}
                   </alert>
 
-                  <label class="control-label" for="initial_date">Fecha de Inicio</label>
+                  <label class="control-label" for="initial_date" ng-bind="::calendar.strings.LABEL_START_DATE" ></label>
                   <input id="initial_date" type="text" class="form-control" name="initial_date"
-                         ng-model="vm.calendar.initial_date"
-                         ng-change="vm.calendar.changeStartDate()"
-                         datepicker-popup="{{vm.format}}" is-open="vm.calendar.startOpened"
-                         min-date="vm.minStartDate" datepicker-options="vm.dateOptions"
+                         ng-model="calendar.calendar.initial_date"
+                         ng-change="calendar.calendar.changeStartDate()"
+                         datepicker-popup="{{calendar.format}}" is-open="calendar.calendar.startOpened"
+                         min-date="calendar.minStartDate" datepicker-options="calendar.dateOptions"
                          close-text="Close"
-                         ng-click="vm.calendar.openStartDate($event)"
+                         ng-click="calendar.calendar.openStartDate($event)"
                          />
               </div>
           </div>
 
           <div class="col-md-6">
               <div class="form-group" trulii-input-errors-control="closing_sale">
-                  <label class="control-label" for="closing_sale">Cierre de ventas</label>
+                  <label class="control-label" for="closing_sale" ng-bind="::calendar.strings.LABEL_CLOSE_SALES"></label>
                   <input id="closing_sale" type="text" class="form-control" name="closing_sale"
-                         ng-model="vm.calendar.closing_sale" ng-change="vm.calendar.changeCloseDate()"
-                         datepicker-popup="{{vm.format}}" is-open="vm.calendar.endOpened"
-                         min-date="vm.calendar.initial_date" datepicker-options="vm.dateOptions"
+                         ng-model="calendar.calendar.closing_sale" ng-change="calendar.calendar.changeCloseDate()"
+                         datepicker-popup="{{calendar.format}}" is-open="calendar.calendar.endOpened"
+                         min-date="calendar.calendar.initial_date" datepicker-options="calendar.dateOptions"
                          max-date="null" close-text="Close"
-                         ng-click="vm.calendar.openCloseDate($event)"
+                         ng-click="calendar.calendar.openCloseDate($event)"
                          />
               </div>
           </div>
@@ -47,19 +46,19 @@
       <div class="row-fluid clearfix">
           <div class="col-md-6">
               <div class="form-group" trulii-input-errors-control="capacity">
-                  <label class="control-label" for="capacity">Cupos</label>
+                  <label class="control-label" for="capacity" ng-bind="::calendar.strings.LABEL_CALENDAR_SEATS"></label>
                   <input id="capacity" class="form-control center-input" type="number" name="capacity"
                          placeholder="0.00" min="1"
-                         ng-model="vm.calendar.capacity" />
+                         ng-model="calendar.calendar.capacity" />
               </div>
           </div>
 
           <div class="col-md-6">
               <div class="form-group" trulii-input-errors-control="session_price">
-                  <label class="control-label" for="session_price">Precio(COP)</label>
+                  <label class="control-label" for="session_price" ng-bind="::calendar.strings.LABEL_SESSION_PRICE"></label>
                   <input id="session_price" class="form-control center-input" type="number" name="session_price"
                          placeholder="0.00" min="0"
-                         ng-model="vm.calendar.session_price" />
+                         ng-model="calendar.calendar.session_price" />
               </div>
           </div>
 
@@ -70,7 +69,7 @@
   </div>
 
   <div class="separate-above">
-    <div class="section-title">
+    <div class="section-title" ng-bind="::calendar.strings.TITLE_SESSIONS">
       Sesiones
     </div>
 
@@ -79,12 +78,12 @@
       <div class="row separate-vertical">
 
         <div class="col-md-8">
-          <label for="">¿Cuantas sesiones o clases se realizarán?</label>
+          <label for="" ng-bind="::calendar.strings.LABEL_SESSIONS_AMOUNT"></label>
         </div>
 
         <div class="col-md-4 text-right">
-          <div trulii-counter class="counter-input counter-input-lg" form="vm.activity_calendar_form"
-               value="vm.calendar" change="vm.calendar.changeSessionsN()" min="0"></div>
+          <div trulii-counter class="counter-input counter-input-lg" form="calendar.activity_calendar_form"
+               value="calendar.calendar" change="calendar.calendar.changeSessionsN()" min="0"></div>
         </div>
 
       </div>
@@ -92,7 +91,7 @@
 
       <div class="row">
 
-        <div class="col-md-12" ng-repeat="session in vm.calendar.sessions track by $index">
+        <div class="col-md-12" ng-repeat="session in calendar.calendar.sessions track by $index">
             <div class="card card-list-item card--narrow no-margin-bottom">
 
             <h2>Sesión {{$index + 1}}</h2>
@@ -101,13 +100,13 @@
 
               <div class="col-md-4">
                 <div class="form-group" trulii-input-errors-control="date_{{$index}}">
-                    <label class="control-label">Día de la sesión</label>
+                    <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_DAY"></label>
 
-                    <input type="text" class="form-control" datepicker-popup="{{vm.format}}"
+                    <input type="text" class="form-control" datepicker-popup="{{calendar.format}}"
                            ng-model="session.date" is-open="session.openDate" name="date_{{$index}}" min-date="session.minDate"
-                           max-date="session.maxDate" id="date" datepicker-options="vm.dateOptions" close-text="Close"
-                           ng-change="vm.calendar.changeSessionDate($index,session)"
-                           ng-click="vm.calendar.openSessionDate($event,session)"
+                           max-date="session.maxDate" id="date" datepicker-options="calendar.dateOptions" close-text="Close"
+                           ng-change="calendar.calendar.changeSessionDate($index,session)"
+                           ng-click="calendar.calendar.openSessionDate($event,session)"
                            style="margin-top: 2em;"
                         />
                 </div>
@@ -116,16 +115,16 @@
                 <div class="row">
 
                     <div class="form-group col-md-6" trulii-input-errors-control="start_time_{{$index}}">
-                        <label class="control-label">Hora de inicio:</label>
-                        <timepicker name="start_time_{{$index}}"  class="timepicker" ng-model="session.start_time" ng-change="vm.calendar.changeStartTime(session)"
-                                    hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
+                        <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_START_TIME"></label>
+                        <timepicker name="start_time_{{$index}}"  class="timepicker" ng-model="session.start_time" ng-change="calendar.calendar.changeStartTime(session)"
+                                    hour-step="calendar.hstep" minute-step="calendar.mstep" show-meridian="calendar.ismeridian">
                         </timepicker>
 
                     </div>
                     <div class="col-md-6" trulii-input-errors-control="end_time_{{$index}}">
-                        <label class="control-label">Hora de fin:</label>
-                        <timepicker class="timepicker" name="end_time_{{$index}}" ng-model="session.end_time" ng-change="vm.calendar.changeEndTime(session)"
-                                    hour-step="vm.hstep" minute-step="vm.mstep" show-meridian="vm.ismeridian">
+                        <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_END_TIME" ></label>
+                        <timepicker class="timepicker" name="end_time_{{$index}}" ng-model="session.end_time" ng-change="calendar.calendar.changeEndTime(session)"
+                                    hour-step="calendar.hstep" minute-step="calendar.mstep" show-meridian="calendar.ismeridian">
                         </timepicker>
                     </div>
                 </div>
@@ -133,15 +132,15 @@
             </div>
 
               <!--TODO revisar alert-->
-              <alert type="danger" ng-show="vm.errors.{{'sessions_'+$index}}">{{vm.errors.session_error}}</alert>
+              <alert type="danger" ng-show="calendar.errors.{{'sessions_'+$index}}">{{calendar.errors.session_error}}</alert>
 
           </div>
         </div>
       </div>
 
 
-      <div class="separate-above" ng-show="vm.calendar.sessions.length > 0 ">
-          <trulii-submit-controls is-saving="vm.isSaving" cancel-active="true" value="Guardar"></trulii-submit-controls>
+      <div class="separate-above" ng-show="calendar.calendar.sessions.length > 0 ">
+          <trulii-submit-controls is-saving="calendar.isSaving" cancel-active="true" value="Guardar"></trulii-submit-controls>
 
       </div>
 

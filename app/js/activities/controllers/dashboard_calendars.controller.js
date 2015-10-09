@@ -23,12 +23,17 @@
         var vm = this;
         var DETAIL_STATE = '.detail';
         var stateChangeUnbinder = null;
-        vm.republish = false;
-        vm.calendars = calendars;
-        vm.createCalendar = createCalendar;
-        vm.loadCalendar = loadCalendar;
-        vm.setCalendar = setCalendar;
-        vm.deleteCalendar = deleteCalendar;
+
+        angular.extend(vm, { 
+
+            republish: false,
+            calendars: calendars,
+            createCalendar: createCalendar,
+            loadCalendar: loadCalendar,
+            setCalendar: setCalendar,
+            deleteCalendar: deleteCalendar,
+
+        });
 
         _activate();
 
@@ -108,13 +113,26 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                DELETE_CALENDAR_ERROR : "No puede eliminar este calendario, tiene estudiantes inscritos, contactanos"
+                DELETE_CALENDAR_ERROR: "No puede eliminar este calendario, tiene estudiantes inscritos, contactanos",
+                LABEL_CALENDARS: "Calendarios",
+                LABEL_START_DATE: "Fecha de Inicio",
+                LABEL_CLOSE_SALE: "Ventas hasta",
+                LABEL_CALENDAR_SEATS: "Cupos",
+                LABEL_START: "Inicia",
+                LABEL_END: "Finaliza",
+                LABEL_EDIT_CALENDAR: "Editar calendario",
+                LABEL_DELETE_CALENDAR: "Eliminar calendario",
+                LABEL_ADD_CALENDAR: "Agregar calendario",
+                COPY_ADD_CALENDAR: "Añade el horario, precio, número de sesiones y más",
+                COPY_REPUBLISH_CALENDAR: "Estás republicando esta actividad. Recuerda que para republicarla exitosamente debes" +
+                                         "de agregar por lo menos un nuevo calendario.",
+                LABEL_WARNING: "Advertencia!",
+
             });
         }
 
         function _activate() {
             _setStrings();
-            console.log('$stateParams:', $stateParams);
             vm.republish = $stateParams.republish;
             vm.calendar_errors = {};
             _onSectionUpdated();            

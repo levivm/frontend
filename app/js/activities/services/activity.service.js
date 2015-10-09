@@ -406,11 +406,11 @@
             var that = this;
 
             if (!that.required_steps[section]) { return; }
-
             that.steps_left = 0;
             _.each(_.keys(that.required_steps),function(value){
                 that.steps_left += !that.completed_steps[value] ? 1:0;
             });
+
         }
 
         function setAllSections(){
@@ -429,6 +429,8 @@
 
         function updateSection(section) {
             var that = this;
+            that.calendars = this.chronograms;
+
             var isCompleted = false;
 
             if (!that.steps)

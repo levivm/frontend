@@ -90,19 +90,19 @@
             .state('dash.activities-edit.calendars', {
                 url:'calendars',
                 controller: 'ActivityCalendarsController',
-                controllerAs: 'vm',
+                controllerAs: 'calendars',
                 templateUrl: 'partials/activities/edit/dashboard_calendars.html',
                 resolve:{
                     calendars:getCalendars
                 },
                 params: {
-                    'republish': false
+                    republish: null
                 }
             })
             .state('dash.activities-edit.calendars.detail', {
                 url:'/:calendar_id',
                 controller: 'ActivityCalendarController',
-                controllerAs: 'vm',
+                controllerAs: 'calendar',
                 templateUrl: 'partials/activities/edit/dashboard_calendar_detail.html',
                 resolve: {
                     calendar: getCalendar
