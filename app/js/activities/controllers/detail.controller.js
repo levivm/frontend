@@ -33,8 +33,7 @@
             activity : null,
             organizer : null,
             calendar_selected : null,
-            // TODO poner en false al terminar
-            isListVisible: true,
+            isListVisible: false,
             galleryOptions: {
                 interval: 0,
                 noWrap: false
@@ -51,7 +50,7 @@
 
         _activate();
 
-        //--------- Functions Implementation ---------//
+        //--------- Exposed Functions ---------//
 
         function showList(){
             vm.isListVisible = true;
@@ -101,6 +100,8 @@
                 }
             }
         }
+
+        //--------- Internal Functions ---------//
 
         function _mapClosestCalendar(activity){
             var today = Date.now();
@@ -218,7 +219,7 @@
                 ACTION_SIGN_UP: "Inscribirme",
                 ACTION_SELECT_CALENDAR: "Ver Detalle",
                 ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
-                ACTIVITY_SOLD_OUT: "No quedan cupos disponibles para esta actividad",
+                ACTIVITY_SOLD_OUT: "Agotado",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                 COPY_EMPTY_SECTION: "El Organizador no ha completado la información de esta sección aún ¡Regresa pronto!",
                 COPY_TODAY: "Hoy",

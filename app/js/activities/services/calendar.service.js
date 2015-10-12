@@ -48,9 +48,6 @@
 
                 this.initial_date = new Date(this.initial_date);
                 this.closing_sale = new Date(this.closing_sale);
-                console.log("SETTING HERE",this.initial_date);
-                console.log("SETTING HERE");
-                console.log("SETTING HERE");
                 angular.forEach(this.sessions, function (session, index) {
 
                     session.date = new Date(session.date);

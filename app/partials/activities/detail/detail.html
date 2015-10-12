@@ -15,8 +15,8 @@
         <!--Category and Social-->
         <div class="row">
             <div class="col-md-12">
-                <span class="label" ng-bind="::detail.activity.category_display"
-                      ng-style="{'background-color': detail.activity.category_color}"></span>
+                <span class="label" ng-bind="::detail.activity.category.name"
+                      ng-style="{'background-color': detail.activity.category.color}"></span>
                 <span class="label" ng-bind="::detail.activity.sub_category_display"></span>
                 <span style="margin: 0 0.2em;"> | </span>
                 <span>Te gustó? Compartelo con tus amigos </span>
@@ -143,7 +143,15 @@
                     </div>
                 </div>
                 <div class="price" ng-bind="detail.calendar_selected.total_price | currency"></div>
-                <a class="btn btn-primary btn-sign-up">Inscribirme</a>
+                <div class="btn btn-primary btn-sign-up"
+                   ng-show="detail.isSelectedCalendarFull()"
+                   ng-bind="::detail.strings.ACTIVITY_SOLD_OUT">
+                </div>
+                <a class="btn btn-primary btn-sign-up"
+                   ng-disabled="detail.isSelectedCalendarFull()"
+                   ng-hide="detail.isSelectedCalendarFull()"
+                   ui-sref="activities-enroll({activity_id: detail.activity.id, calendar_id: detail.calendar_selected.id})"
+                   ng-bind="::detail.strings.ACTION_SIGN_UP"></a>
                 <div class="info">
                     <div class="level">
                         <img src="/css/img/activity-detail/widget_level.png" alt=""/>
@@ -273,144 +281,5 @@
     <div class="col-md-12 attendees-container">
         <div class="title" ng-bind="detail.strings.LABEL_ATTENDEES"></div>
         <div ui-view="attendees"></div>
-    </div>
-</div>
-
-<div class="detail-cover-container">
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pull-right">
-                        <i class="mdi-action-favorite-outline icon-lg"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 ng-bind="::detail.city"></h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <h3>
-                        <i class="mdi-action-event"></i>
-                        <span ng-bind="::detail.activity.closest_calendar.initial_date | date: 'dd MMMM yyyy'"></span>
-                    </h3>
-                </div>
-                <div class="col-md-6">
-                    <div class="pull-right">
-                        <h3><span ng-bind="::detail.activity.closest_calendar.session_price | currency"></span></h3>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-8">
-                    <h1 ng-bind="::detail.activity.title"></h1>
-                    <h3 class="text-muted" ng-bind="::detail.activity.short_description"></h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="tag-container pull-right">
-                        <div class="tag-item" ng-repeat="tag in detail.activity.tags" ng-bind="::tag"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-1">
-                <div class="detail-organizer">
-                    <a ui-sref="organizer-profile({organizer_id: detail.organizer.id})">
-                        <img class="detail-organizer-picture"
-                             ng-src="{{::detail.getOrganizerPhoto()}}"
-                             alt="{{::detail.organizer.name}}"/>
-                        <div ng-bind="::detail.strings.ACTION_VIEW_PROFILE"></div>
-                    </a>
-                    <a ui-sref="contact-us(detail.current_state)" class="btn btn-primary"
-                       ng-bind="::detail.strings.ACTION_CONTACT"></a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h3>
-                    <span class="detail-organizer-name" ng-bind="::detail.organizer.name"></span>
-                </h3>
-                <div>
-                    <i class="mdi-action-grade"
-                       ng-repeat="star in detail.activity.rating track by star"
-                       ng-style="detail.getStarStyle(star)"></i>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="pull-right">
-                    <span class="text-muted"
-                          ng-show="detail.isSelectedCalendarFull()"
-                          ng-bind="::detail.strings.ACTIVITY_SOLD_OUT">
-                    </span>
-                    <a class="btn btn-lg btn-primary"
-                       ng-disabled="detail.isSelectedCalendarFull()"
-                       ng-show="detail.activity.published"
-                       ui-sref="activities-enroll({activity_id: detail.activity.id, calendar_id: detail.calendar_selected.id})"
-                       ng-bind="::detail.strings.ACTION_SIGN_UP"></a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="btn-group btn-group-justified">
-                <a class="btn btn-primary" ui-sref=".info" ng-bind="::detail.strings.TAB_INFO"></a>
-                <a class="btn btn-primary" ui-sref=".calendar" ng-bind="::detail.strings.TAB_CALENDARS"></a>
-                <a class="btn btn-primary" ui-sref=".attendees" ng-bind="::detail.strings.TAB_ASSISTANTS"></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="row remarks-container">
-        <div class="col-md-2 col-md-offset-2 text-center">
-            <div>
-                <i class="mdi-action-description icon-lg"></i>
-            </div>
-            <h3 ng-bind="::detail.strings.LABEL_CATEGORY"></h3>
-            <div class="text-muted">
-                <strong><span ng-bind="::detail.activity.category_display"></span></strong>
-            </div>
-        </div>
-        <div class="col-md-2 text-center">
-            <div>
-                <i class="mdi-action-list icon-lg"></i>
-            </div>
-            <h3 ng-bind="::detail.strings.LABEL_SUBCATEGORY"></h3>
-            <div class="text-muted">
-                <strong><span ng-bind="::detail.activity.sub_category_display"></span></strong>
-            </div>
-        </div>
-        <div class="col-md-2 text-center">
-            <div>
-                <i class="mdi-action-assessment icon-lg"></i>
-            </div>
-            <h3 ng-bind="::detail.strings.LABEL_LEVEL"></h3>
-            <div class="text-muted">
-                <strong><span ng-bind="::detail.activity.level_display"></span></strong>
-            </div>
-        </div>
-        <div class="col-md-2 text-center">
-            <div>
-                <i class="mdi-action-schedule icon-lg"></i>
-            </div>
-            <h3 ng-bind="::detail.strings.LABEL_DURATION"></h3>
-            <div class="text-muted">
-                <strong><span>3 horas</span></strong>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div ui-view></div>
-        </div>
     </div>
 </div>

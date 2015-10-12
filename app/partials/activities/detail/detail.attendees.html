@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-12">
         <p class="copy">
-            Hasta ahora
+            <span ng-bind="attendees.strings.COPY_SO_FAR"></span>
             <ng-pluralize count="attendees.totalItems"
                           when="{
-                          '0': 'esta actividad no tiene asistentes ¡Sé tú el primero!',
-                          'one': 'va 1 asistente ¡Faltas tú!',
-                         'other': 'van {} asistentes ¡Faltas tú!'
+                          '0': attendees.strings.COPY_ZERO_ATTENDEES,
+                          'one': attendees.strings.COPY_ONE_ATTENDEE,
+                         'other': attendees.strings.COPY_OTHER_ATTENDEES
                          }">
             </ng-pluralize>
         </p>
@@ -15,21 +15,19 @@
 <div ng-if="attendees.totalItems > 0">
     <div class="row">
         <div class="col-md-12">
-            <div class="user-thumbnail-container">
-                <div class="user-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.email">
-                    <img class="user-img" ng-src="{{assistant.photo}}"
+            <div class="paged-container">
+                <span class="pager-btn mdi-navigation-chevron-left"
+                      ng-class="{'disabled': !attendees.hasPrevious}"
+                      ng-click="attendees.goToPrevious()"></span>
+                <div class="attendee-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.email">
+                    <img class="attendee-img" ng-src="{{assistant.photo}}"
                          alt="{{::assistant.first_name}}"/>
                     <span ng-bind="::assistant.first_name"></span>
                 </div>
+                <span class="mdi-navigation-chevron-right pager-btn"
+                      ng-class="{'disabled': !attendees.hasNext}"
+                     ng-click="attendees.goToNext()"></span>
             </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <pagination class="pull-right" total-items="attendees.totalItems" ng-model="attendees.currentPage"
-                        ng-change="attendees.pageChanged()"
-                        items-per-page="attendees.itemsPerPage">
-            </pagination>
         </div>
     </div>
 </div>

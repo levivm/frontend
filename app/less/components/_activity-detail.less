@@ -391,4 +391,38 @@
         text-align: center;
         &:extend(.text-muted);
     }
+
+    .paged-container {
+        margin: 1em auto;
+        padding: 1em 0;
+        text-align: center;
+
+        .pager-btn {
+            font-size: 2em;
+            padding: 0.3em;
+            cursor: pointer;
+            display: inline-block;
+            height: 100%;
+            line-height: 100%;
+            color: lighten(@text-muted, 20%);
+
+            &.disabled {
+                cursor: default;
+                color: lighten(@text-muted, 40%);
+            }
+        }
+
+        .attendee-thumbnail {
+            display: inline-block;
+            text-align: center;
+            margin-right: 2em;
+            width: 6em;
+
+            .attendee-img {
+                width: 100%;
+                height: auto;
+                border-radius: 50%;
+            }
+        }
+    }
 }

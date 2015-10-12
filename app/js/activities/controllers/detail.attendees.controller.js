@@ -18,14 +18,54 @@
     function ActivityDetailAttendeesController(calendars) {
 
         var vm = this;
+        var assistants = [];
 
-        vm.pageChanged = pageChanged;
+        angular.extend(vm, {
+            currentPage : 1,
+            totalItems: 0,
+            hasPrevious: false,
+            hasNext: false,
+            pageOptions: {
+                itemsPerPage : 5,
+                maxPages: 0
+            },
+            calendars: [],
+            assistants: [],
+            pageChanged: pageChanged,
+            goToPrevious: goToPrevious,
+            goToNext: goToNext
+        });
 
         initialize();
 
+        //--------- Exposed Functions ---------//
+
         function pageChanged() {
-            _assistantByPage();
+            var page = vm.currentPage - 1;
+            var start = vm.pageOptions.itemsPerPage * page;
+            var end = start + vm.pageOptions.itemsPerPage;
+            vm.assistants = assistants.slice(start, end);
+
+            //Update pagination flags
+            vm.hasPrevious = vm.currentPage > 1;
+            vm.hasNext = vm.currentPage < vm.pageOptions.maxPages;
         }
+
+        function goToPrevious(){
+            if(vm.currentPage > 1){
+                vm.currentPage = vm.currentPage - 1;
+                pageChanged();
+            }
+        }
+
+        function goToNext(){
+            if(vm.currentPage < vm.pageOptions.maxPages){
+                vm.currentPage = vm.currentPage + 1;
+                pageChanged();
+            }
+        }
+
+        //--------- Internal Functions ---------//
 
         function _getAssistants() {
             var assistants = [];
@@ -33,13 +73,14 @@
                 assistants.push(calendar.assistants);
             });
             assistants = _.flatten(assistants, true);
-            assistants = [
-                {'first_name': "Fernando", "email": "fer@trulii.com"},
-                {'first_name': "Daniel", "email": "daniel@trulii.com"},
-                {'first_name': "Rodrigo", "email": "ror@trulii.com"},
-                {'first_name': "Levi", "email": "levi@trulii.com"},
-                {'first_name': "Harvey", "email": "harvey@trulii.com"},
-                {'first_name': "Maria", "email": "maria@trulii.com"}];
+            // TODO for testing purposes
+            //assistants = [
+            //    {'first_name': "Fernando", "email": "fer@trulii.com"},
+            //    {'first_name': "Daniel", "email": "daniel@trulii.com"},
+            //    {'first_name': "Rodrigo", "email": "ror@trulii.com"},
+            //    {'first_name': "Levi", "email": "levi@trulii.com"},
+            //    {'first_name': "Harvey", "email": "harvey@trulii.com"},
+            //    {'first_name': "Maria", "email": "maria@trulii.com"}];
             _.forEach(assistants, function(assistant){
                 if(assistant.hasOwnProperty('student') && assistant.student.photo){
                     assistant.photo = assistant.student.photo;
@@ -50,26 +91,24 @@
             return assistants;
         }
 
-        function _assistantByPage() {
-            var assistants = angular.copy(vm.assistants);
-
-            var page = vm.currentPage - 1;
-            var start = vm.itemsPerPage * page;
-            var end = start + vm.itemsPerPage;
-
-            vm.assistants = assistants.slice(start, end)
+        function _setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                COPY_SO_FAR: "Hasta ahora",
+                COPY_ZERO_ATTENDEES: "esta actividad no tiene asistentes ¡Sé tú el primero!",
+                COPY_ONE_ATTENDEE: "va 1 asistente ¡Faltas tú!",
+                COPY_OTHER_ATTENDEES: "van {} asistentes ¡Faltas tú!"
+            });
         }
 
         function initialize() {
-            vm.currentPage = 1;
-            vm.itemsPerPage = 10;
-            vm.maxSize = 5;
+            _setStrings();
             vm.calendars = calendars;
-            vm.assistants = _getAssistants();
-            vm.totalItems = vm.assistants.length;
-            console.log('assistants:', vm.assistants);
+            assistants = _getAssistants();
+            vm.totalItems = assistants.length;
+            vm.pageOptions.maxPages = Math.ceil(vm.totalItems / vm.pageOptions.itemsPerPage);
 
-            _assistantByPage();
+            pageChanged();
         }
     }
 
