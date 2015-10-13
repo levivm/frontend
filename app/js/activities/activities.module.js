@@ -138,15 +138,15 @@
                 resolve: {
                     activity: getActivity
                 },
-                templateUrl: 'partials/activities/manage.html'
+                templateUrl: 'partials/activities/manage/manage.html'
             })
             .state('dash.activities-manage.orders', {
                 url:'orders',
-                templateUrl: 'partials/activities/manage_orders.html'
+                templateUrl: 'partials/activities/manage/manage_orders.html'
             })
             .state('dash.activities-manage.assistants', {
                 url:'assistants',
-                templateUrl: 'partials/activities/manage_assistants.html'
+                templateUrl: 'partials/activities/manage/manage_assistants.html'
             })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/',
