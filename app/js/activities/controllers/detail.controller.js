@@ -20,20 +20,22 @@
         .controller('ActivityDetailController', ActivityDetailController);
 
     ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast',
-        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover'];
+        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager'];
 
     function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast,
-                                      cities, activity, calendars, defaultPicture, defaultCover) {
+                                      cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager) {
         var MAX_DAYS = 30;
         var vm = this;
         angular.extend(vm, {
             city : null,
             calendars : [],
+            relatedActivities: [],
             calendar : null,
             activity : null,
             organizer : null,
             calendar_selected : null,
             isListVisible: false,
+            currentGalleryPicture: 0,
             galleryOptions: {
                 interval: 0,
                 noWrap: false
@@ -45,12 +47,26 @@
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
             getStarStyle : getStarStyle,
-            isSelectedCalendarFull : isSelectedCalendarFull
+            isSelectedCalendarFull : isSelectedCalendarFull,
+            previousGalleryPicture: previousGalleryPicture,
+            nextGalleryPicture: nextGalleryPicture
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+
+        function previousGalleryPicture(){
+            if(vm.currentGalleryPicture > 0){
+                vm.currentGalleryPicture--;
+            }
+        }
+
+        function nextGalleryPicture(){
+            if(vm.currentGalleryPicture < (vm.activity.gallery.length - 1)){
+                vm.currentGalleryPicture++;
+            }
+        }
 
         function showList(){
             vm.isListVisible = true;
@@ -171,6 +187,14 @@
             return activity;
         }
 
+        function _getOrganizerActivities(organizer){
+            ActivitiesManager.loadOrganizerActivities(organizer.id).then(success);
+
+            function success(activities){
+                vm.relatedActivities = activities;
+            }
+        }
+
         function _setUpLocation(activity){
             if(activity.location && activity.location.city){
                 vm.city = _.result(_.findWhere(cities, {id: activity.location.city}), 'name');
@@ -230,7 +254,7 @@
                 COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizara en otra oportunidad ",
                 COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
                 COPY_NO_CALENDARS_AVAILABLE: "Actualmente no hay otros calendarios disponibles",
-                COPY_OPORTUNITIES: " oportunidades",
+                COPY_OPPORTUNITIES: " oportunidades",
                 COPY_EMPTY_SECTION: "El Organizador no ha completado la información de esta sección aún ¡Regresa pronto!",
                 COPY_TODAY: "Hoy",
                 COPY_DAY: "día ",
@@ -278,6 +302,7 @@
             _setCurrentState();
             vm.activity = activity;
             _setUpLocation(vm.activity);
+            _getOrganizerActivities(vm.activity.organizer);
             vm.activity = _mapCalendars(vm.activity);
             vm.activity = _mapPictures(vm.activity);
             vm.activity = _mapClosestCalendar(vm.activity);

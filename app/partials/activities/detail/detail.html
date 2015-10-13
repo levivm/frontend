@@ -36,19 +36,30 @@
         <!--Gallery-->
         <div class="row separate-above-medium">
             <div class="col-md-12">
-                <!--<div class="row gallery-grid">-->
-                    <!--<div class="col-md-4" ng-repeat="picture in detail.activity.gallery track by picture.id">-->
-                        <!--<img class="gallery-grid__photo" ng-src="{{picture.photo}}"/>-->
-                    <!--</div>-->
-                <!--</div>-->
-                <carousel interval="detail.galleryOptions.interval" no-wrap="detail.galleryOptions.noWrap">
-                    <slide ng-repeat="picture in detail.activity.gallery track by picture.id" active="picture.active">
-                        <img ng-src="{{picture.photo}}" style="margin:auto;">
-                        <!--<div class="carousel-caption">-->
-                            <!--<h4>{{$index + 1}} | {{detail.activity.gallery.length}}</h4>-->
-                        <!--</div>-->
-                    </slide>
-                </carousel>
+                <div class="gallery">
+                    <div class="gallery-slide" ng-repeat="picture in detail.activity.gallery track by picture.id">
+                        <img class=""
+                             src="{{ picture.photo }}" alt=""
+                             ng-show="detail.currentGalleryPicture === $index"/>
+                    </div>
+                    <img class="gallery-previous"
+                         src="css/img/activity-detail/gallery_slider_left.png" alt="Previous Picture"
+                            ng-click="detail.previousGalleryPicture()"/>
+                    <div class="gallery-info">
+                        <span ng-bind="detail.currentGalleryPicture + 1"></span>
+                        <span>|</span>
+                        <span ng-bind="::detail.activity.gallery.length"></span>
+                    </div>
+                    <img class="gallery-next"
+                         src="css/img/activity-detail/gallery_slider_right.png" alt="Next Picture"
+                         ng-click="detail.nextGalleryPicture()"/>
+                </div>
+                <!--<carousel interval="detail.galleryOptions.interval" no-wrap="detail.galleryOptions.noWrap">-->
+                    <!--<slide ng-repeat="picture in detail.activity.gallery track by picture.id" active="picture.active">-->
+                        <!--<img ng-src="{{picture.photo}}" style="width: 100%; height: auto;">-->
+
+                    <!--</slide>-->
+                <!--</carousel>-->
             </div>
         </div>
         <!--Audience-->
@@ -204,7 +215,7 @@
                         <div class="other-calendars-copy" ng-bind="detail.strings.COPY_MORE_CALENDARS_AVAILABLE"></div>
                         <div class="other-calendars-count">
                             <span ng-bind="detail.activity.upcoming_calendars.length -1"></span>
-                            <span ng-bind="detail.strings.COPY_OPORTUNITIES"></span>
+                            <span ng-bind="detail.strings.COPY_OPPORTUNITIES"></span>
                         </div>
                     </div>
                     <div ng-if="detail.activity.upcoming_calendars.length < 2">
@@ -317,11 +328,11 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="btn btn-primary"
+            <div class="btn btn-lg btn-primary"
                  ng-show="detail.isSelectedCalendarFull()"
                  ng-bind="::detail.strings.ACTIVITY_SOLD_OUT">
             </div>
-            <a class="btn btn-primary"
+            <a class="btn btn-lg btn-primary"
                ng-disabled="detail.isSelectedCalendarFull()"
                ng-hide="detail.isSelectedCalendarFull()"
                ui-sref="activities-enroll({activity_id: detail.activity.id, calendar_id: detail.calendar_selected.id})"
@@ -337,36 +348,46 @@
 
 <!--Why Use Trulii-->
 <div class="row">
-    <div class="col-md-12 text-center separate-above-medium">
-        <h3 ng-bind="detail.strings.COPY_HEADER_REASONS_TO_USE"></h3>
+    <div class="col-md-12 separate-above-medium">
+        <h3 class="text-center "><strong ng-bind="detail.strings.COPY_HEADER_REASONS_TO_USE"></strong></h3>
+        <div class="reasons-container">
+            <div class="reason">
+                <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png" alt="{{ detail.strings.REASON_NO_COMMISSIONS }}"/>
+                <div class="reason-text">
+                    <div class="reason-title" ng-bind="detail.strings.REASON_NO_COMMISSIONS"></div>
+                    <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_NO_COMMISSIONS"></div>
+                </div>
+            </div>
+            <div class="reason">
+                <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png" alt="{{ detail.strings.REASON_REFUND }}"/>
+                <div class="reason-text">
+                    <div class="reason-title" ng-bind="detail.strings.REASON_REFUND"></div>
+                    <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_REFUND"></div>
+                </div>
+            </div>
+            <div class="reason">
+                <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png" alt="{{ detail.strings.REASON_SECURE }}"/>
+                <div class="reason-text">
+                    <div class="reason-title" ng-bind="detail.strings.REASON_SECURE"></div>
+                    <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_SECURE"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-<div class="row reasons-container separate-above-medium">
-        <div class="reason">
-            <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png" alt="{{ detail.strings.REASON_NO_COMMISSIONS }}"/>
-            <div class="reason-text">
-                <div class="reason-title" ng-bind="detail.strings.REASON_NO_COMMISSIONS"></div>
-                <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_NO_COMMISSIONS"></div>
-            </div>
-        </div>
-        <div class="reason">
-            <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png" alt="{{ detail.strings.REASON_REFUND }}"/>
-            <div class="reason-text">
-                <div class="reason-title" ng-bind="detail.strings.REASON_REFUND"></div>
-                <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_REFUND"></div>
-            </div>
-        </div>
-        <div class="reason">
-            <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png" alt="{{ detail.strings.REASON_SECURE }}"/>
-            <div class="reason-text">
-                <div class="reason-title" ng-bind="detail.strings.REASON_SECURE"></div>
-                <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_SECURE"></div>
-            </div>
-        </div>
+<div class="row contact-us-container">
+    <div class="col-md-4 col-md-offset-4 text-center">
+        <div class="separator"></div>
+        <h5 class="separate-above">
+            <span ng-bind="detail.strings.COPY_DOUBTS"></span>
+            <a ui-sref="contact-us(detail.current_state)" ng-bind="detail.strings.ACTION_CONTACT_US"></a></h5>
+    </div>
 </div>
-<div class="row">
-    <div class="col-md-6 col-md-offset-3 text-center">
-        <h5><span ng-bind="detail.strings.COPY_DOUBTS"></span><a ui-sref="contact-us(detail.current_state)"
-                                                                 ng-bind="detail.strings.ACTION_CONTACT_US"></a></h5>
+<div class="row related-activities-container">
+    <div class="col-md-12">
+        <h3><strong>Actividades Similares</strong></h3>
+        <trulii-activity-item
+                ng-repeat="activity in detail.relatedActivities"
+                data-activity="activity"></trulii-activity-item>
     </div>
 </div>
