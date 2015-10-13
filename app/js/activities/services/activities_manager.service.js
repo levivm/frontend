@@ -119,6 +119,7 @@
              * @param {number} data.amount - Total amount of the enrollment action
              * @param {number} data.quantity - Quantity of enrollments
              * @param {number} data.assistants - Number of assistants
+             * @param {number} data.last_four_digits - Last credit card four digits
              * @return {promise} Enroll result promise
              * @methodOf trulii.activities.services.ActivitiesManager
              */
@@ -185,7 +186,7 @@
                 .then(function (response) {
                     _.each(response.data, function (activityData) {
                         var activity = _retrieveInstance(activityData.id, activityData);
-                        _activities.push(activity)
+                        _activities.push(activity);
                     });
                     return _activities;
                 });

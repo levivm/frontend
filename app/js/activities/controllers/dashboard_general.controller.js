@@ -12,22 +12,32 @@
         .module('trulii.activities.controllers')
         .controller('ActivityGeneralController', ActivityGeneralController);
 
-    ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Categories', 'Elevator', 'Toast', 'Error',
+    ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Elevator', 'Toast', 'Error',
             'activity', 'presaveInfo'];
 
-    function ActivityGeneralController($state, $q, filterFilter, Categories, Elevator, Toast, Error,
+    function ActivityGeneralController($state, $q, filterFilter, Elevator, Toast, Error,
             activity, presaveInfo) {
 
         var vm = this;
 
-        vm.activity = angular.copy(activity);
-        vm.selectCategory = selectCategory;
-        vm.setOverElement = setOverElement;
-        vm.getLevelClassStyle = getLevelClassStyle;
-        vm.checkValidTitle = checkValidTitle;
-        vm.getSubmitButtonText = getSubmitButtonText;
+        angular.extend(vm, { 
+            selected_category: {},
+            selected_sub_category: {},
+            selected_level: {},
+            isCollapsed: true,
+            duration: 1,
+            isSaving: false,
+            activity: angular.copy(activity),
+            selectCategory: selectCategory,
+            getLevelClassStyle: getLevelClassStyle,
+            checkValidTitle: checkValidTitle,
+            getSubmitButtonText: getSubmitButtonText,
+            loadAutocompleteTags: loadAutocompleteTags,
 
-        activate();
+        });
+
+
+        _activate();
 
         /******************ACTIONS**************/
 
@@ -41,7 +51,8 @@
 
             function _successCreation(response) {
                 vm.isSaving = false;
-                if (vm.creating) $state.go('dash.activities-edit.detail', {activity_id : response.id});
+                if (vm.creating) 
+                    $state.go('dash.activities-edit.detail', {activity_id : response.id});
                 Toast.generics.weSaved("Un paso menos para publicar tu actividad");
             }
         }
@@ -53,17 +64,15 @@
             vm.activity.update()
                 .then(updateSuccess, _errored);
 
-            function updateSuccess(response) {
+            function updateSuccess(response) {  
+                console.log("response ",response);
+
                 vm.isCollapsed = false;
                 vm.isSaving = false;
                 angular.extend(activity, vm.activity);
                 _onSectionUpdated();
                 Toast.generics.weSaved();
             }
-        }
-
-        function setOverElement(element) {
-            vm.currentOverElement = element;
         }
 
         function getLevelClassStyle(level) {
@@ -76,35 +85,30 @@
         }
 
         function selectCategory(category) {
-            console.log("category", category);
             vm.activity_sub_categories = category.subcategories;
         }
 
         function getSubmitButtonText(){
             if(activity.id){
-                return "Guardar";
+                return vm.strings.ACTION_SAVE;
             } else{
-                return "Continuar";
+                return vm.strings.ACTION_CONTINUE;
             }
         }
 
+
         function checkValidTitle(){
+
             if (!vm.creating){
                 vm.weHaveTitle = true;
                 return;
             }
 
-            if (vm.activity_title != undefined && vm.activity_title != ""){
-                var whiteSpaces = 0;
-                for (var i = vm.activity_title.length-1; i > 0; i--){
-                    if ( vm.activity_title[i] == ' '){
-                        whiteSpaces++;
-                    }
-                }
-                vm.weHaveTitle = (whiteSpaces != vm.activity.length);
-
+            if(vm.activity_title){
                 vm.activity.title = vm.activity_title;
-            } else {
+                vm.weHaveTitle = true;
+            }
+            else{
                 vm.weHaveTitle = false;
             }
         }
@@ -115,54 +119,47 @@
             vm.save_activity = updateActivity;
             vm.creating = false;
             vm.weHaveTitle = false;
-            _setPreSaveInfo(presaveInfo)
-                .then(_successLoadActivity);
 
-            function _successLoadActivity(response) {
-                vm.selected_level = filterFilter(vm.activity_levels, {code : response.level})[0];
-                vm.selected_category = filterFilter(vm.activity_categories, {id : response.category_id})[0];
-                vm.selected_sub_category = filterFilter(vm.activity_sub_categories, {id : response.sub_category})[0];
-                vm.activity_tags = response.tags;
-            }
+            _setPreSaveData();
+
+            vm.selected_level = _.find(vm.activity_levels, { 'code': vm.activity.level});
+            vm.selected_category = _.find(vm.activity_categories, { 'id': vm.activity.category.id});
+            selectCategory(vm.selected_category);
+            vm.selected_sub_category = _.find(vm.activity_sub_categories, { 'id': vm.activity.sub_category});
+            vm.activity_tags = vm.activity.tags;
+
         }
 
         function _setCreate() {
             vm.save_activity = createActivity;
             vm.creating = true;            
             vm.activity.certification = true;
-            _setPreSaveInfo(presaveInfo);
+            _setPreSaveData(presaveInfo);
             vm.selected_level = vm.activity_levels[0];
         }
 
-        function _setPreSaveInfo(data) {
-            vm.selected_category = {};
-            vm.selected_sub_category = {};
-            vm.selected_level = {};
+        function _setPreSaveData(){
 
-            var categories = new Categories(data.categories);
-            vm.activity_categories = categories;
-            vm.activity_sub_categories = data.subcategories;
-            vm.activity_levels = data.levels;
-
-            console.log('_setPreSaveInfo data: ', data);
-
-            vm.loadTags = function () {
-                var deferred = $q.defer();
-                deferred.resolve(data.tags);
-                return deferred.promise;
-            };
-
-            var deferred = $q.defer();
-            deferred.resolve(vm.activity);
-            return deferred.promise;
+            vm.activity_categories = presaveInfo.categories;
+            vm.activity_levels = presaveInfo.levels;
 
         }
+
 
         function _updateTags() {
             vm.activity.tags = [];
             angular.forEach(vm.activity_tags, function (value, index) {
                 vm.activity.tags.push(value.name);
             });
+        }
+
+
+        function loadAutocompleteTags(){
+
+            var deferred = $q.defer();
+            deferred.resolve(presaveInfo.tags);
+            return deferred.promise;
+
         }
 
         /*********RESPONSE HANDLERS***************/
@@ -181,13 +178,28 @@
             vm.isSaving = false;
         }
 
-        function activate() {
-            vm.isCollapsed = true;
-            vm.duration = 1;
-            vm.isSaving = false;
+        function _setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                COPY_START_ACTIVITY_CREATION: "¡Comencemos a registrar su actividad!",
+                COPY_SELECT_ACTIVITY_TITLE: "Cuéntanos como titularías tu actividad",
+                COPY_CERTIFICATION: "¿Entregará certificado u otorgará alguna certificación?",
+                ACTION_CONTINUE: "Continuar",
+                ACTION_SAVE: "Guardar",
+                OPTION_WITHOUT_CERTIFICATION: "Sin certificación",
+                OPTION_WITH_CERTIFICATION: "Con certificación",
+                LABEL_LEVEL: "Nivel",
+                LABEL_CATEGORY: "Categoría",
+                LABEL_SUB_CATEGORY: "Sub-categoria",
+                LABEL_SHOT_DESCRIPTION: "Descripción corta",
+                LABEL_TAGS: "Tags / Etiquetas",
+            });
+        }
+
+        function _activate() {
 
             Elevator.toTop();
-
+            _setStrings();
             if (activity.id)
                 _setUpdate();
             else
@@ -195,8 +207,7 @@
 
             vm.checkValidTitle();
             
-            
-
+        
             _onSectionUpdated();
         }
 

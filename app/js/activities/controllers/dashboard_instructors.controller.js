@@ -22,6 +22,7 @@
 
         vm.isSaving = false;
         vm.activity = angular.copy(activity);
+        vm.availableInstructors = angular.copy(organizer.instructors);
         vm.organizer = organizer;
         vm.updateActivity = updateActivity;
 
@@ -29,23 +30,10 @@
 
         //--------- Exposed Functions ---------//
 
+
         function updateActivity() {
             Error.form.clear(vm.activity_instructors_forms);
-            vm.activity.update().then(success, error);
-            vm.isSaving = true;
-
-            function success(response) {
-                vm.isCollapsed = false;
-                angular.extend(activity, vm.activity);
-                _setInstructors();
-                Toast.generics.weSaved();
-                vm.isSaving = false;
-            }
-
-            function error(responseErrors) {
-                Error.form.addArrayErrors(vm.activity_instructors_forms, responseErrors['instructors']);
-                vm.isSaving = false;
-            }
+            angular.extend(activity, vm.activity);
         }
 
         //--------- Internal Functions ---------//
@@ -57,8 +45,9 @@
                 'bio': null
             };
             var tempInstructor = null;
-
             vm.instructors = angular.copy(vm.activity.instructors);
+            console.log("Nuevos instructores",vm.instructors);
+            console.log("Nuevos instructores",vm.activity.instructors);
             if(vm.instructors.length < MAX_INSTRUCTORS){
                 while(vm.instructors.length < MAX_INSTRUCTORS){
                     tempInstructor = angular.extend({}, EMPTY_INSTRUCTOR);

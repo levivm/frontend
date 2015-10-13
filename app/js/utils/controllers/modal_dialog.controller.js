@@ -17,6 +17,8 @@
   	var modalInstance = $modal.open({
   	    templateUrl:'partials/utils/base_dialog_modal.html',
   	    controller: 'ModalInstanceCtrl',
+        controllerAs:'modal',
+
         //backdrop: 'static',
   	});
 

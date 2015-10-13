@@ -31,7 +31,9 @@
             form: {
                 clear: clearErrors,
                 add: addErrors,
-                addArrayErrors:addArrayErrors
+                addArrayErrors:addArrayErrors,
+                clearField:clearFieldError,
+                resetForm:resetForm
             },
             session: {
                 process: processSessionErrors
@@ -40,9 +42,31 @@
 
         return service;
 
+
+        function clearFieldError(form,field){
+
+            form[field].$setValidity(field, true);
+
+        }
+
+        function resetForm(form){
+            clearErrors(form);
+
+            for(var propertyName in form) {
+
+                if (propertyName.indexOf('$') < 0 ){
+                    form[propertyName].$setValidity(propertyName, true);
+                }
+
+            }
+
+
+        }
+
         function clearErrors(form) {
 
             form.$setPristine();
+
 
             if (form.hasOwnProperty(FORM_FIELD_ALL))
                 form[FORM_FIELD_ALL].$setValidity(FORM_FIELD_ALL, true);
@@ -50,9 +74,6 @@
         }
 
         function addArrayErrors(form,responseErrors){
-
-          console.log("FOOOORMM",form);
-
             _.each(responseErrors, function (error_dict) {
 
                 _.each(error_dict, function (message, field) {
@@ -77,6 +98,7 @@
                 if (field === NON_FIELD_ERRORS) return;
 
                 // Process remaining form field errors
+
                 if (field in form){
                     form[field].error_message = message;
                     form[field].$setValidity(field, false);

@@ -30,6 +30,8 @@
       var modalInstance = $modal.open({
           templateUrl: 'partials/authentication/email_confirmation_success.html',
           controller: 'ModalInstanceCtrl',
+          controllerAs:'modal',
+
         });
 
       modalInstance.result.then(function(){
@@ -45,6 +47,8 @@
       var modalInstance = $modal.open({
           templateUrl: 'partials/authentication/email_confirmation_error.html',
           controller: 'ModalInstanceCtrl',
+          controllerAs:'modal',
+
         });
 
       modalInstance.result.then(function(){

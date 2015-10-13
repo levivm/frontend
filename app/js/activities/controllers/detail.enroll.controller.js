@@ -5,15 +5,16 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', '$timeout','ActivitiesManager', 'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error',
-        'activity', 'calendar', 'currentUser'];
+    ActivityDetailEnrollController.$inject = ['$state','$window','$sce', '$timeout','ActivitiesManager', 'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error',
+        'activity', 'calendar', 'currentUser','deviceSessionId'];
 
-    function ActivityDetailEnrollController($state, $timeout, ActivitiesManager, StudentsManager, Payments, Authentication, Toast, Error,
-                                            activity, calendar, currentUser) {
+    function ActivityDetailEnrollController($state, $window, $sce,$timeout, ActivitiesManager, StudentsManager, Payments, Authentication, Toast, Error,
+                                            activity, calendar, currentUser,deviceSessionId) {
 
         var vm = this;
         angular.extend(vm, {
             success : false,
+            loading_banks_list:false,
             calendar : null,
             activity : null,
             capacity : null,
@@ -24,6 +25,8 @@
             plus : plus,
             enroll : enroll,
             isAnonymous : isAnonymous,
+            // payUUniqueId:_getPayUUniqueId,
+            appendPayUUniqueId:appendPayUUniqueId,
             //checkCardNumber : checkCardNumber,
             checkCardExpiry : checkCardExpiry,
             getCardType: getCardType,
@@ -35,11 +38,37 @@
                 exp_year: 2017,
                 cvv: null,
                 "method": ""
-            } 
-        });
+            },
+            changePSEPaymentMethod:changePSEPaymentMethod,
+            changeCCPaymentMethod:changeCCPaymentMethod,
+            enrollPSE:enrollPSE,
+            pseFormData : {
+                "banksList": [],
+                "userTypes":[
+                    {'description':'Natural','value':'N'},
+                    {'description':'Juridica','value':'J'},
+                ],
+                "idTypes":[
+                    {'description':'Cédula de ciudadanía','value':'CC'},
+                    {'description':'Cédula de extranjería','value':'CE'},
+                    {'description':'N.I.T','value':'NIT'},
+                    {'description':'Tarjeta de Indentidad','value':'TI'},
+                    {'description':'Pasaporte','value':'PP'},
+                    {'description':'Identificador único de cliente','value':'IDC'},
+                    {'description':'Número Móvil','value':'CEL'},
+                    {'description':'Registro civil de nacimiento','value':'RC'},
+                    {'description':'Documento de identificación extranjero','value':'DE'},
+                ],
 
+
+            },
+            pseData:{}
+
+        });
+        console.log("sessionID",deviceSessionId);
         var isValidDate = false;
         //var isValidNumber = false;
+
 
         _activate();
 
@@ -70,6 +99,122 @@
         //    }
         //}
 
+
+        /** PSE Payments Methods **/
+
+        function changePSEPaymentMethod(){
+
+
+            Error.form.resetForm(vm.enrollForm);
+
+            loadAvailableBanks();
+
+            function loadAvailableBanks(){
+                vm.loading_banks_list = true;
+                Payments.getAvailablePSEBanks().then(success,error).finally(stopLoader);
+
+                function success(response){
+                    vm.pseFormData.banksList = response;
+                }
+
+                function error(response){
+                    Error.form.add(vm.enrollForm, {'bank':["Error al cargar  los bancos disponibles"]});
+                    return {}; 
+                }
+
+                function stopLoader(){
+                    vm.loading_banks_list = false;
+                }
+
+
+
+            }
+
+        }
+
+        function changeCCPaymentMethod(){
+
+            Error.form.resetForm(vm.enrollForm);
+
+        }
+
+
+        function enrollPSE(){
+            Error.form.clear(vm.enrollForm);
+            Error.form.clearField(vm.enrollForm,'generalError');
+
+            
+            StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
+
+            function getStudentSuccess(student){
+
+                var buyer = {};
+
+                buyer[Payments.KEY_NAME]  = vm.pseData.name;
+                buyer[Payments.KEY_PAYER_EMAIL] = vm.pseData.payerEmail;
+                buyer[Payments.KEY_CONTACT_PHONE] = vm.pseData.contactPhone; 
+
+                var bank = vm.pseData.selectedBank ? vm.pseData.selectedBank.pseCode : null;
+                var userType = vm.pseData.selectedUserType ? vm.pseData.selectedUserType.value : null;
+                var idType = vm.pseData.selectedIdType ? vm.pseData.selectedIdType.value : null;
+                var idNumber = vm.pseData.idNumber;
+
+                var buyer_pse_data = {
+                     response_url: Payments.PAYU_RESPONSE_URL,
+                     bank: bank,
+                     userType: userType,
+                     idType: idType,
+                     idNumber: idNumber
+                };
+
+                var data = {
+                    activity: activity.id,
+                    chronogram: calendar.id,
+                    amount: vm.quantity * calendar.session_price,
+                    quantity: vm.quantity,
+                    assistants: vm.assistants,
+                    buyer: buyer,
+                    buyer_pse_data:buyer_pse_data,
+                    payment_method: Payments.KEY_PSE_PAYMENT_METHOD,
+
+                };
+
+                ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
+
+                function _enrollSuccess(response) {
+                    vm.success = true;
+                    var bank_url = response.data.bank_url;
+                    $window.location.href = bank_url;
+                }
+
+                function _enrollError(response){
+                    var errors = response.data;
+                    if (!(errors.assistants))
+                        Error.form.add(vm.enrollForm, errors);
+                    else
+                        Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
+                }
+
+
+
+
+            }
+
+            function getStudentError(response){
+                console.log("Error getting current logged student:", response);
+            }
+
+
+
+        }
+
+
+
+        /** -----/ PSE Payments Methods **/
+
+
+
+
         function getCardType(){
             Payments.validateCardType(vm.cardData.number).then(success, error);
 
@@ -79,55 +224,117 @@
 
             }
             function error(){
+                vm.cardData.method = null;
                 console.log("Couldn't check card type");
             }
         }
 
         function checkCardExpiry(){
+
+
             Error.form.clear(vm.enrollForm);
+            
             var card = vm.cardData;
+            
             if(card.exp_year && card.exp_month){
                 Payments.validateExpiryDate(card.exp_year, card.exp_month).then(success, error);
+
             }
 
             function success(isValid){
                 console.log("checkCardExpiry. isValid:", isValid);
+
                 if(isValid){
                     isValidDate = true;
+                    Error.form.clearField(vm.enrollForm,'invalidExpiry');
                 } else {
                     isValidDate = false;
                     Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
+
                 }
             }
             function error(){
                 console.log("Couldn't validate card expiry date");
                 isValidDate = false;
-                Error.form.add(vm.enrollForm, {'invalidExpiry': ["No se pudo validar fecha de vencimiento de su tarjeta"
-                    + ", por favor intente de nuevo"]});
+                Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
             }
 
         }
 
         function enroll() {
             Error.form.clear(vm.enrollForm);
+            Error.form.clearField(vm.enrollForm,'generalError');
+
             StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
 
             function getStudentSuccess(student){
                 vm.cardData[Payments.KEY_PAYER_ID] = student.id;
-                vm.cardData.expirationDate = [vm.cardData.exp_month, vm.cardData.exp_year].join('/');
-                Payments.getToken(vm.cardData).then(getTokenSuccess, getTokenError);
+                var exp_month = vm.cardData.exp_month;
+                var exp_year  = vm.cardData.exp_year;
+                vm.cardData.expirationDate = [exp_month, exp_year].join('/');
+
+
+                var card = vm.cardData;
+
+                Payments.validateExpiryDate(card.exp_year, card.exp_month)
+                    .then(successCheckCardExpiry,errorCheckCardExpiry);
+
             }
+
+
 
             function getStudentError(response){
-                console.log("Error getting current logged student:", response)
+                console.log("Error getting current logged student:", response);
             }
 
+
+            function successCheckCardExpiry(isValid){
+                
+                isValidDate = true;
+
+                Error.form.clearField(vm.enrollForm,'invalidExpiry');
+                Payments.validateCardType(vm.cardData.number)
+                        .then(validateCardTypeSuccess,validateCardTypeError);
+
+            }
+
+            function errorCheckCardExpiry(response){
+
+                console.log("Couldn't validate card expiry date");
+                isValidDate = false;
+                Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
+
+            }
+
+
+            function validateCardTypeSuccess(cardType){
+
+                Error.form.clearField(vm.enrollForm,'cardMethod');
+                Error.form.clearField(vm.enrollForm,'generalError');
+
+                var cardData = _.clone(vm.cardData);
+
+                Payments.getToken(cardData).then(getTokenSuccess, getTokenError);
+
+            }
+
+            function validateCardTypeError(){
+
+                Error.form.add(vm.enrollForm, {'cardMethod': ["Tipo de tarjeta inválido"]});
+                console.log("Couldn't check card type");
+
+            }
+
+
             function getTokenSuccess(response){
-                console.log('token response:', response);
                 var token = response[Payments.KEY_TOKEN];
+                var cardNumber = vm.cardData.number;
+                var last_four_digits  = cardNumber.substr(cardNumber.length -4);
                 var buyer = {};
                 buyer[Payments.KEY_NAME] = response[Payments.KEY_NAME];
                 buyer[Payments.KEY_EMAIL] = currentUser.user.email;
+
+
                 var data = {
                     activity: activity.id,
                     chronogram: calendar.id,
@@ -135,7 +342,10 @@
                     amount: vm.quantity * calendar.session_price,
                     quantity: vm.quantity,
                     assistants: vm.assistants,
-                    buyer: buyer
+                    buyer: buyer,
+                    last_four_digits: last_four_digits,
+                    deviceSessionId : deviceSessionId,
+                    payment_method: Payments.KEY_CC_PAYMENT_METHOD
                 };
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
 
@@ -147,13 +357,56 @@
                     $state.go('activities-enroll.success');
                 }
 
-                function _enrollError(errors){
-                    Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
+                function _enrollError(response){
+                    var error = response.data;
+                    if (!(error.assistants))
+                        Error.form.add(vm.enrollForm, error);
+                    else
+                        Error.form.addArrayErrors(vm.enrollForm, error.assistants);
                 }
             }
-            function getTokenError(error){
-                console.log("Couldn't get token from Pay U", error);
+
+            function getTokenError(errors){
+
+
+                var isPayUError = !!errors.error;
+
+                if (isPayUError){
+                    Error.form.add(vm.enrollForm, {'generalError':["Error"]});
+                    return;
+                }
+
+
+                _.forEach(errors,addError);
+
+
+                function addError(error){
+
+                    var form_error = {};
+                        form_error[error] = ["Campo requerido"];
+                    Error.form.add(vm.enrollForm, form_error);
+
+
+                }
+
+                console.log("Couldn't get token from Pay U", errors);
             }
+
+            function checkCardType(){
+                Error.form.clear(vm.enrollForm);
+
+                Payments.validateCardType(vm.cardData.number).then(success, error);
+
+                function success(cardType){
+
+                }
+                function error(){
+                    Error.form.add(vm.enrollForm, {'cardMethod': ["Tipo de tarjeta inválido"]});
+                    console.log("Couldn't check card type");
+                }
+
+            }
+
         }
 
         function isAnonymous(){
@@ -178,6 +431,12 @@
             }
         }
 
+        function appendPayUUniqueId(url){
+            var user_id = Payments.CC_USER_ID;
+            var payUUniqueId = deviceSessionId + user_id;
+            return  $sce.trustAsResourceUrl(url + payUUniqueId);
+        }
+
         //--------- Internal Functions ---------//
 
         function _calculateAmount() {
@@ -187,6 +446,12 @@
         function _isAllBooked(){
             return calendar.capacity <= calendar.assistants.length;
         }
+
+        // function _getPayUUniqueId(){
+        //     return deviceSessionId + currentUser.user.id;
+        // }
+
+
 
         function _setStrings() {
             if (!vm.strings) {
@@ -222,6 +487,14 @@
                 LABEL_LAST_NAME: "Apellido",
                 LABEL_EMAIL: "Email",
                 LABEL_PAYMENT_INFO: "Información de Pago",
+
+                LABEL_ID_NUMBER:"Número de identificación",
+                LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
+                LABEL_BANKS:"Banco",
+                LABEL_USER_TYPE:"Tipo de Persona",
+                LABEL_ID_TYPE:"Tipo de Documento de Identificación",
+
+                LABEL_PHONE_NUMBER:"Teléfono",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
                 LABEL_CARD_HOLDER: "Nombre del Titular (Sobre la tarjeta)",
                 PLACEHOLDER_CARD_HOLDER: "Nombre en la tarjeta",
@@ -246,13 +519,19 @@
                 }
             };
 
-            vm.success = false;
+            console.log("state----",currentUser);
+
+            vm.success =  _.endsWith($state.current.name, 'success') ? true:false || 
+                         _.endsWith($state.current.name, 'pse-response') ? true:false;
 
             vm.calendar = calendar;
             vm.activity = activity;
 
             vm.capacity = calendar.capacity;
             vm.amount = calendar.session_price;
+
+            if(currentUser)
+                 vm.pseData.payerEmail = currentUser.user.email;
 
             if(_isAllBooked()){
                 vm.quantity = 0;

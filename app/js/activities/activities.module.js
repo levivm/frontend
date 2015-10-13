@@ -5,10 +5,12 @@
         .module('trulii.activities', [
             'uiGmapgoogle-maps',
             'youtube-embed',
+            'angular-md5',
             'trulii.activities.config',
             'trulii.activities.controllers',
             'trulii.activities.services',
             'trulii.activities.directives'
+
         ])
         .constant('ActivitiesTemplatesPath', "partials/activities/")
         .config(config);
@@ -47,7 +49,8 @@
                 resolve: {
                     presaveInfo: getPresaveActivityInfo,
                     activity: getActivity,
-                    organizer : getCurrentOrganizer
+                    organizer : getCurrentOrganizer,
+                    // categories: getCategories
                 },
                 templateUrl: 'partials/activities/create.html'
             })
@@ -112,7 +115,7 @@
                     cities: getAvailableCities,
                     organizer : getCurrentOrganizer
                 },
-                controllerAs: 'vm',
+                controllerAs: 'location',
                 templateUrl: 'partials/activities/edit/dashboard_location.html'
             })
             .state('dash.activities-edit.instructors', {
@@ -180,8 +183,9 @@
                 resolve: {
                     activity: getActivity,
                     calendar: fetchCalendar,
-                    currentUser: getAuthenticatedUser
-                }
+                    currentUser: getAuthenticatedUser,
+                    deviceSessionId:getDeviceSessionId
+                },
             })
             .state('activities-enroll.success', {
                 url: '/success',
@@ -192,6 +196,22 @@
                         return  activity.organizer;
                     }],
                     organizerActivities: getOrganizerActivities
+                }
+            })
+            .state('activities-enroll.pse-response', {
+                url: '/pse/response?referenceCode&transactionId&state&cus&pseBank' +
+                                   '&TX_VALUE&currency&description&pseReference1&merchant_name'+
+                                   '&merchant_address&telephone&pseReference3',
+                controller: 'ActivityEnrollPSEResponseController as pseResponse',
+                templateUrl: 'partials/activities/detail.enroll.pse.response.html',
+                resolve: {
+                    organizer: ['activity', function (activity) {
+                        return  activity.organizer;
+                    }],
+                    organizerActivities: getOrganizerActivities
+                },
+                params:{
+                    pseResponseData:null,
                 }
             });
 
@@ -340,6 +360,23 @@
         function getAvailableCities(LocationManager){
             return LocationManager.getAvailableCities();
         }
+
+        /**
+         * @ngdoc method
+         * @name .#getDeviceSessionId
+         * @description Generates deviceSessionId used in Pay U endpoint
+         * @methodOf trulii.activities.config
+         */
+        getDeviceSessionId.$inject = ['currentUser','localStorageService','md5'];
+        function getDeviceSessionId(currentUser,localStorageService,md5){
+
+            var token = localStorageService.get('token');
+            var time_stamp = new Date().getTime();
+            var string = token + time_stamp.toString();
+            var deviceSessionId = md5.createHash(string);
+            return deviceSessionId;
+        }
+
     }
 
 })();

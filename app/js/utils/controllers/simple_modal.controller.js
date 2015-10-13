@@ -22,7 +22,7 @@
             var modalInstance = $modal.open({
                 templateUrl: 'partials/' + module_name + '/messages/' + template_name + '.html',
                 controller: 'ModalInstanceCtrl',
-                controllerAs: 'vm'
+                controllerAs: 'modal'
             });
 
             modalInstance.result.then(function () {

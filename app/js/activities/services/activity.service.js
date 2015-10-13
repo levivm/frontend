@@ -507,6 +507,7 @@
 
             function success(response){
                 console.log('activity.create instructor success:', response.data);
+                // that.load();
                 return response.data;
             }
             function error(response){
@@ -521,6 +522,9 @@
 
             function success(response){
                 console.log('activity.update instructor success:', response.data);
+                // that.setData(response.data);
+                // that.load();
+
                 return response.data;
             }
             function error(response){

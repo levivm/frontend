@@ -19,6 +19,8 @@
     var modalInstance = $modal.open({
       templateUrl: 'partials/socialaccount_login_cancelled.html',
       controller: 'ModalInstanceCtrl',
+      controllerAs:'modal',
+
     });
 
   };
