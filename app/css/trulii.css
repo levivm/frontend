@@ -16049,6 +16049,43 @@ button.toast-close-button {
   height: auto;
   border-radius: 50%;
 }
+.sign-up-container {
+  padding: 3em;
+  text-align: center;
+  background-color: #38dbc8;
+}
+.sign-up-container h1,
+.sign-up-container h2,
+.sign-up-container h3,
+.sign-up-container h4,
+.sign-up-container h5,
+.sign-up-container p {
+  color: #ffffff;
+  font-weight: 600;
+}
+.sign-up-container .calendar-info {
+  margin-top: 3em;
+  text-align: center;
+}
+.sign-up-container .calendar-info .date {
+  width: 40%;
+  display: inline-block;
+  text-align: right;
+  padding-right: 2em;
+  border-right: 1px solid #ffffff;
+}
+.sign-up-container .calendar-info .price {
+  width: 40%;
+  display: inline-block;
+  text-align: left;
+  padding-left: 2em;
+}
+.sign-up-container .btn {
+  margin-top: 2em;
+}
+.sign-up-container .btn-link {
+  color: rgba(0, 0, 0, 0.74);
+}
 .popover {
   box-shadow: none;
   font-family: 'PT Serif', serif;
