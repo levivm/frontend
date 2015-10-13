@@ -16067,12 +16067,15 @@ button.toast-close-button {
   margin-top: 3em;
   text-align: center;
 }
-.sign-up-container .calendar-info .date {
+.sign-up-container .calendar-info .date-info {
   width: 40%;
   display: inline-block;
   text-align: right;
   padding-right: 2em;
   border-right: 1px solid #ffffff;
+}
+.sign-up-container .calendar-info .date-info .date {
+  text-transform: uppercase;
 }
 .sign-up-container .calendar-info .price {
   width: 40%;
@@ -16085,6 +16088,31 @@ button.toast-close-button {
 }
 .sign-up-container .btn-link {
   color: rgba(0, 0, 0, 0.74);
+}
+.reasons-container {
+  padding: 3em;
+  text-align: center;
+}
+.reasons-container .reason {
+  text-align: start;
+  display: inline-block;
+  padding: 2em;
+}
+.reasons-container .reason .reason-img {
+  width: 6em;
+  height: 6em;
+}
+.reasons-container .reason .reason-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+.reasons-container .reason .reason-text .reason-title {
+  font-size: 1.4em;
+  font-weight: 400;
+}
+.reasons-container .reason .reason-text .reason-copy {
+  color: #777777;
+  font-size: 0.6em;
 }
 .popover {
   box-shadow: none;

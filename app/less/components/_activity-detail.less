@@ -440,12 +440,16 @@
     .calendar-info {
         margin-top: 3em;
         text-align: center;
-        .date {
+        .date-info {
             width: 40%;
             display: inline-block;
             text-align: right;
             padding-right: 2em;
             border-right: 1px solid @white;
+
+            .date{
+                text-transform: uppercase;
+            }
         }
 
         .price {
@@ -464,3 +468,35 @@
         color: @lightbg-text;
     }
 }
+
+.reasons-container {
+    padding: 3em;
+    text-align: center;
+
+    .reason {
+        text-align: start;
+        display: inline-block;
+        padding: 2em;
+
+        .reason-img {
+            width: 6em;
+            height: 6em;
+        }
+
+        .reason-text {
+            display: inline-block;
+            vertical-align: middle;
+
+            .reason-title {
+                font-size: 1.4em;
+                font-weight: 400;
+            }
+
+            .reason-copy {
+                color: @text-muted;
+                font-size: 0.6em;
+            }
+        }
+    }
+}
+

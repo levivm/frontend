@@ -216,6 +216,7 @@
             angular.extend(vm.strings, {
                 ACTION_VIEW_PROFILE: "Ver Perfil",
                 ACTION_CONTACT: "Contactar",
+                ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
                 ACTION_SELECT_CALENDAR: "Ver Detalle",
                 ACTION_VIEW_OTHER_DATES: "Ver otras fechas",
@@ -226,6 +227,10 @@
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
+                COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizara en otra oportunidad ",
+                COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
+                COPY_NO_CALENDARS_AVAILABLE: "Actualmente no hay otros calendarios disponibles",
+                COPY_OPORTUNITIES: " oportunidades",
                 COPY_EMPTY_SECTION: "El Organizador no ha completado la información de esta sección aún ¡Regresa pronto!",
                 COPY_TODAY: "Hoy",
                 COPY_DAY: "día ",
@@ -238,6 +243,9 @@
                 COPY_OTHER_SESSIONS: "Sesiones",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más seguro que la tabla del 1 ¡En serio!",
+                COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
+                COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días. Porque tú te lo mereces ",
+                LABEL_COST: "Precio",
                 LABEL_NEXT_DATE: "Próximo Inicio",
                 LABEL_CLOSING_DATE: "Ventas hasta",
                 LABEL_LEVEL: "Nivel",
@@ -255,7 +263,13 @@
                 TAB_CALENDARS: "Calendarios",
                 LABEL_ATTENDEES: "Asistentes",
                 VALUE_WITH_CERTIFICATION: "Con Certificado",
-                VALUE_WITHOUT_CERTIFICATION: "Sin Certificado"
+                VALUE_WITHOUT_CERTIFICATION: "Sin Certificado",
+                REASON_NO_COMMISSIONS: "Sin Comisiones",
+                REASON_COPY_NO_COMMISSIONS: "¡En serio Te lo prometemos!",
+                REASON_REFUND: "Devolución Garantizada",
+                REASON_COPY_REFUND: "Por si no se realiza la actividad",
+                REASON_SECURE: "Pago Seguro",
+                REASON_COPY_SECURE: "Inscribete con tranquilidad"
             });
         }
 

@@ -114,8 +114,7 @@
                      alt="{{::detail.organizer.name}}"/>
                 <div class="data">
                     <div class="name" ng-bind="::detail.organizer.name"></div>
-                    <!--<div class="location" ng-bind="::detail.organizer.locations[0].address"></div>-->
-                    <div class="location">Bogota, Colombia</div>
+                    <div class="location" ng-bind="::detail.organizer.locations[0].address"></div>
                 </div>
             </a>
             <div class="ratings">
@@ -199,20 +198,20 @@
                      ng-click="detail.showList()"
                      ng-class="{'other-calendars-has-more': detail.activity.upcoming_calendars.length > 1}">
                     <div ng-if="detail.activity.upcoming_calendars.length == 2">
-                        <div class="other-calendars-copy">Esta actividad se realizara en otra oportunidad </div>
+                        <div class="other-calendars-copy" ng-bind="detail.strings.COPY_ONE_CALENDAR_AVAILABLE"></div>
                     </div>
                     <div ng-if="detail.activity.upcoming_calendars.length > 2">
-                        <div class="other-calendars-copy">Esta actividad se realizara en otras </div>
+                        <div class="other-calendars-copy" ng-bind="detail.strings.COPY_MORE_CALENDARS_AVAILABLE"></div>
                         <div class="other-calendars-count">
                             <span ng-bind="detail.activity.upcoming_calendars.length -1"></span>
-                            <span> oportunidades</span>
+                            <span ng-bind="detail.strings.COPY_OPORTUNITIES"></span>
                         </div>
                     </div>
                     <div ng-if="detail.activity.upcoming_calendars.length < 2">
-                        <div class="other-calendars-copy">Actualmente no hay otros calendarios disponibles</div>
+                        <div class="other-calendars-copy" ng-bind="detail.strings.COPY_NO_CALENDARS_AVAILABLE"></div>
                     </div>
                     <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
-                        <span>Ver más fechas de inicio</span>
+                        <span ng-bind="detail.strings.ACTION_VIEW_OTHER_DATES"></span>
                         <i class="mdi-navigation-chevron-right"></i>
                     </div>
                 </div>
@@ -223,13 +222,14 @@
                      ng-class="{'selected': detail.calendar_selected.id == calendar.id}">
                     <div class="row">
                         <div class="col-md-6 clear-spacings float-left">
-                            <div class="next-label">Proximo Inicio</div>
+                            <div class="next-label" ng-bind="detail.strings.LABEL_NEXT_DATE"></div>
                             <div class="vacancy">
-                                <span ng-bind="detail.calendar_selected.vacancy"></span><span> Vacantes</span>
+                                <span ng-bind="detail.calendar_selected.vacancy"></span>
+                                <span ng-bind="detail.strings.COPY_VACANCY"></span>
                             </div>
                         </div>
                         <div class="col-md-6 clear-spacings float-right">
-                            <div class="closing-sale">Ventas hasta</div>
+                            <div class="closing-sale" ng-bind="detail.strings.COPY_CLOSING_DATE"></div>
                             <div class="closing-sale" ng-bind="calendar.closing_sale | date:'MMM d, y'"></div>
                         </div>
                     </div>
@@ -243,7 +243,7 @@
                         <div class="float-right">
                             <span class="label price" ng-bind="calendar.total_price | currency"></span>
                             <button class="btn btn-success btn-detail"
-                                    ng-bind="detail.strings.ACTION_SELECT_CALENDAR"
+                                ng-bind="detail.strings.ACTION_SELECT_CALENDAR"
                                 ng-click="detail.setSelectedCalendar(calendar)"></button>
                         </div>
                     </div>
@@ -304,13 +304,13 @@
 
     <div class="row">
         <div class="col-md-12 calendar-info">
-            <div class="date">
-                <h4>Proxima Fecha de Inicio</h4>
-                <h5>14 de Junio de 2015</h5>
+            <div class="date-info">
+                <h4 ng-bind="detail.strings.LABEL_NEXT_DATE"></h4>
+                <h5 class="date" ng-bind="detail.calendar_selected.initial_date | date:'MMM d, y'"></h5>
             </div>
             <div class="price">
-                <h4>Precio</h4>
-                <h5>¡Gratis!</h5>
+                <h4 ng-bind="detail.strings.LABEL_COST"></h4>
+                <h5 ng-bind="detail.calendar_selected.total_price | currency"></h5>
             </div>
         </div>
     </div>
@@ -332,5 +332,41 @@
         <div class="col-md-12">
             <div class="btn btn-link" ng-bind="detail.strings.ACTION_VIEW_OTHER_DATES"></div>
         </div>
+    </div>
+</div>
+
+<!--Why Use Trulii-->
+<div class="row">
+    <div class="col-md-12 text-center separate-above-medium">
+        <h3 ng-bind="detail.strings.COPY_HEADER_REASONS_TO_USE"></h3>
+    </div>
+</div>
+<div class="row reasons-container separate-above-medium">
+        <div class="reason">
+            <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png" alt="{{ detail.strings.REASON_NO_COMMISSIONS }}"/>
+            <div class="reason-text">
+                <div class="reason-title" ng-bind="detail.strings.REASON_NO_COMMISSIONS"></div>
+                <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_NO_COMMISSIONS"></div>
+            </div>
+        </div>
+        <div class="reason">
+            <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png" alt="{{ detail.strings.REASON_REFUND }}"/>
+            <div class="reason-text">
+                <div class="reason-title" ng-bind="detail.strings.REASON_REFUND"></div>
+                <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_REFUND"></div>
+            </div>
+        </div>
+        <div class="reason">
+            <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png" alt="{{ detail.strings.REASON_SECURE }}"/>
+            <div class="reason-text">
+                <div class="reason-title" ng-bind="detail.strings.REASON_SECURE"></div>
+                <div class="reason-copy" ng-bind="detail.strings.REASON_COPY_SECURE"></div>
+            </div>
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3 text-center">
+        <h5><span ng-bind="detail.strings.COPY_DOUBTS"></span><a ui-sref="contact-us(detail.current_state)"
+                                                                 ng-bind="detail.strings.ACTION_CONTACT_US"></a></h5>
     </div>
 </div>
