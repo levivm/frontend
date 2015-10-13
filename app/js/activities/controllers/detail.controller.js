@@ -262,6 +262,7 @@
                 COPY_IN: "En ",
                 COPY_TO: " a ",
                 COPY_NOT_AVAILABLE: "No Disponible",
+                COPY_FREE: " Gratis",
                 COPY_VACANCY: " Vacantes",
                 COPY_ONE_SESSION: "Sesión",
                 COPY_OTHER_SESSIONS: "Sesiones",

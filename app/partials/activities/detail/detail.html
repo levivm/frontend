@@ -54,12 +54,6 @@
                          src="css/img/activity-detail/gallery_slider_right.png" alt="Next Picture"
                          ng-click="detail.nextGalleryPicture()"/>
                 </div>
-                <!--<carousel interval="detail.galleryOptions.interval" no-wrap="detail.galleryOptions.noWrap">-->
-                    <!--<slide ng-repeat="picture in detail.activity.gallery track by picture.id" active="picture.active">-->
-                        <!--<img ng-src="{{picture.photo}}" style="width: 100%; height: auto;">-->
-
-                    <!--</slide>-->
-                <!--</carousel>-->
             </div>
         </div>
         <!--Audience-->
@@ -155,7 +149,10 @@
                         <span ng-bind="detail.strings.COPY_VACANCY"></span>
                     </div>
                 </div>
-                <div class="price" ng-bind="detail.calendar_selected.total_price | currency"></div>
+                <div class="price">
+                    <span ng-if="!detail.calendar_selected.is_free" ng-bind="detail.calendar_selected.total_price | currency"></span>
+                    <span ng-if="detail.calendar_selected.is_free" ng-bind="detail.strings.COPY_FREE"></span>
+                </div>
                 <div class="btn btn-primary btn-sign-up"
                    ng-show="detail.isSelectedCalendarFull()"
                    ng-bind="::detail.strings.ACTIVITY_SOLD_OUT">
@@ -252,7 +249,8 @@
                              alt="Return to selected calendar"
                              ng-click="detail.hideList()"/>
                         <div class="float-right">
-                            <span class="label price" ng-bind="calendar.total_price | currency"></span>
+                            <span ng-if="!calendar.is_free" class="label price" ng-bind="calendar.total_price | currency"></span>
+                            <span ng-if="calendar.is_free" class="label price" ng-bind="detail.strings.COPY_FREE"></span>
                             <button class="btn btn-success btn-detail"
                                 ng-bind="detail.strings.ACTION_SELECT_CALENDAR"
                                 ng-click="detail.setSelectedCalendar(calendar)"></button>
@@ -321,7 +319,8 @@
             </div>
             <div class="price">
                 <h4 ng-bind="detail.strings.LABEL_COST"></h4>
-                <h5 ng-bind="detail.calendar_selected.total_price | currency"></h5>
+                <h5 ng-if="!detail.calendar_selected.is_free" ng-bind="detail.calendar_selected.total_price | currency"></h5>
+                <h5 ng-if="detail.calendar_selected.is_free" ng-bind="detail.strings.COPY_FREE"></h5>
             </div>
         </div>
     </div>
