@@ -11,12 +11,11 @@
 	display: block;
 	z-index: 1000;
 	overflow-x: visible;
-	overflow-y: visible;	
-	background: red;
+	overflow-y: visible;
 	padding: 20px 0;
-	background-color: @sidebar-color;		
+	background-color: @sidebar-color;
 	width: @sidebar-width;
-	
+
 	a:hover{
 		color: @primary;
 	}
@@ -31,14 +30,14 @@
 		text-align: center;
 		position: relative;
 		&:extend(.img-size-cover);
-        &:extend(.img-position-center);     
+        &:extend(.img-position-center);
 
         &__title{
         	display: block;
         	height: 3em;
         	overflow: hidden;
-        	margin-bottom: .5em        	
-        }   
+        	margin-bottom: .5em
+        }
 
         &__btn-back{
         	color: white;
@@ -74,18 +73,18 @@
 		display: block;
 		width: 100%;
 		padding: 10px;
-		padding-left: 1em;		
-		text-decoration: none;	
-		position: relative;	
+		padding-left: 1em;
+		text-decoration: none;
+		position: relative;
 		line-height: 3em;
-		cursor: pointer;	
-        font-family: @font-sans-alt;	
+		cursor: pointer;
+        font-family: @font-sans-alt;
         font-weight: bold;
         font-size: .9em;
 
 		&--selected{
 			background: lighten(@dark-element, 10%);
-			//border-top: 1px solid @color-delimeter-light;			
+			//border-top: 1px solid @color-delimeter-light;
 			//border-right: 1px solid $color-delimeter-light
 			border-left: 5px solid @primary;
 			transition: ease all 0.1s;
@@ -99,7 +98,7 @@
             }
 		}
 
-		&:hover, &:focus{			
+		&:hover, &:focus{
 			text-decoration: none;
 			outline: 0;
 
@@ -112,7 +111,7 @@
 			margin-top: 20px;
 		}
 
-		&__icon{			
+		&__icon{
 			top: 0;
 			bottom: 0;
 			margin-right: .3em;
@@ -124,25 +123,6 @@
                 margin-right: .3em;
             }
         }
-
-/*
-        &__sign {
-            position: absolute;
-            top: -1px;
-            height: 101%;
-            right: 0px;
-            background: darken(@gray-lighter, 5%);
-            z-index: 20;
-            color: darken(@gray-lighter, 18%);
-
-            &--completed {
-                color: white;
-                background-color: #FC3;
-                z-index: 21;
-            }
-        }
-
-*/
 
         .@{sidebar-float-class} &{
             color: @lightbg-text;
@@ -159,28 +139,28 @@
         display: block;
     }
 
-    &__bottom-action {            
+    &__bottom-action {
         background: @gray-lighter;
-        width: 100%;        
-        padding: 1em;   
-        margin-top: 2em;     
+        width: 100%;
+        padding: 1em;
+        margin-top: 2em;
         font-family: @font-sans-alt;
         font-weight: normal;
-        font-size: .9em; 
-        color: @gray-light;       
+        font-size: .9em;
+        color: @gray-light;
 
         hr{
             display: block;
             width: 100%;
-            margin: 1.6em 0;            
+            margin: 1.6em 0;
             height: 0;
 
             &:before{
                 content: '';
                 display: inline-block;
-                border-bottom: 1px solid @gray-light;        
-                width: 20%;  
-                vertical-align: top;      
+                border-bottom: 1px solid @gray-light;
+                width: 20%;
+                vertical-align: top;
             }
         }
 
@@ -206,7 +186,7 @@
             margin: 1.2em;
         }
     }
-    
+
     & + *{
         padding-left: 0;
         margin-left: @sidebar-width;

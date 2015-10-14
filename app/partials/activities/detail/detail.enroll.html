@@ -1,348 +1,324 @@
-<p style="background:url(https://maf.pagosonline.net/ws/fp?id=9e07cde190aac1ff129e55a2396e20bf1)"></p>
+<!--PayU Script-->
+<div class="hide">
+    <p style="background:url(https://maf.pagosonline.net/ws/fp?id=9e07cde190aac1ff129e55a2396e20bf1)"></p>
+    <img ng-src="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/clear.png?id=')}}">
+    <script ng-src="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/check.js?id=')}}"></script>
+    <object type="application/x-shockwave-flash"
+            ng-data="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/fp.swf?id=')}}"
+            width="1" height="1" id="thm_fp">
+        <param name="movie" value="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/fp.swf?id=')}}"/>
+    </object>
+</div>
 
-  <img ng-src="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/clear.png?id=')}}">
-
-  <script ng-src="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/check.js?id=')}}"></script>
-
-  <object type="application/x-shockwave-flash"
-
-  ng-data="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/fp.swf?id=')}}" width="1" height="1"
-
-  id="thm_fp">
-
-
-  <param name="movie" value="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/fp.swf?id=')}}"/>
-
-</object>
-
-<div class="container">
-    <div ng-if="enroll.isAnonymous()" class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <h1 ng-bind="::enroll.strings.COPY_SIGN_UP"></h1>
-            <br/>
-            <h4>
-                <span ng-bind="::enroll.strings.COPY_ONE_MORE_STEP"></span>
-                <a ui-sref="login({{enroll.stateInfo}})" ng-bind="::enroll.strings.ACTION_LOGIN"></a>
-            </h4>
-            <h4>
-                <span class="text-muted" ng-bind="::enroll.strings.COPY_NO_ACCOUNT"></span>
-                <a ui-sref="register({{enroll.stateInfo}})" ng-bind="::enroll.strings.ACTION_REGISTER"></a>
-            </h4>
+<div class="row">
+    <div class="detail-cover">
+        <img ng-src="{{enroll.activity.main_photo}}" alt="enroll.activity.title"/>
+        <div class="text-container">
+            <h2 ng-bind="enroll.strings.COPY_COVER"></h2>
+            <h1><strong ng-bind="enroll.activity.title"></strong></h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1">
-            <div class="panel panel-dark">
-                <div class="panel-heading">
-                    <h4 ng-bind="::enroll.strings.LABEL_ACTIVITY_INFO"></h4>
-                </div>
-                <div class="panel-body">
-                    <h3 ng-bind="enroll.activity.title"></h3>
-                    <h4 class="text-muted" ng-bind="enroll.activity.content"></h4>
-                    <div class="form-group">
+</div>
+
+<div class="row separate-above">
+    <div class="col-md-7 col-md-offset-1">
+        <!--If Anonymous-->
+        <div ng-if="enroll.isAnonymous()" class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h1 ng-bind="::enroll.strings.COPY_SIGN_UP"></h1>
+                <br/>
+                <h4>
+                    <span ng-bind="::enroll.strings.COPY_ONE_MORE_STEP"></span>
+                    <a ui-sref="login({{enroll.stateInfo}})" ng-bind="::enroll.strings.ACTION_LOGIN"></a>
+                </h4>
+                <h4>
+                    <span class="text-muted" ng-bind="::enroll.strings.COPY_NO_ACCOUNT"></span>
+                    <a ui-sref="register({{enroll.stateInfo}})" ng-bind="::enroll.strings.ACTION_REGISTER"></a>
+                </h4>
+            </div>
+        </div>
+        <!--Activity Info-->
+        <div class="row separate-above">
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 ng-bind="::enroll.strings.LABEL_ACTIVITY_INFO"></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-hover">
+                                    <tr class="text-center">
+                                        <th ng-bind="::enroll.strings.LABEL_START_DATE"></th>
+                                        <th ng-bind="::enroll.strings.LABEL_NUMBER_OF_SESSIONS"></th>
+                                        <th ng-bind="::enroll.strings.LABEL_AVAILABLE_SEATS"></th>
+                                        <th ng-bind="::enroll.strings.LABEL_PRICE"></th>
+                                        <th ng-bind="::enroll.strings.LABEL_QUANTITY"></th>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td><span ng-bind="::enroll.calendar.initial_date | date:'dd MMMM yyyy'"></span></td>
+                                        <td><span ng-bind="::enroll.calendar.number_of_sessions"></span></td>
+                                        <td>
+                                            <span ng-bind="::(enroll.calendar.capacity - enroll.calendar.assistants.length)"></span>
+                                        </td>
+                                        <td><span ng-bind="::enroll.calendar.session_price | currency"></span></td>
+                                        <td class="text-center">
+                                            <button class="btn btn-info btn-xs" ng-click="enroll.minus()"
+                                                    style="cursor: pointer;">-</button>
+                                            <span ng-bind="enroll.quantity"></span>
+                                            <button class="btn btn-info btn-xs" ng-click="enroll.plus()">+</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="3">
+                                            <strong><span ng-bind="::enroll.strings.LABEL_TOTAL"></span></strong>
+                                        </td>
+                                        <td colspan="2" class="text-right">
+                                            <span ng-bind="enroll.amount | currency"></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-striped table-hover">
                                 <tr class="text-center">
-                                    <th ng-bind="::enroll.strings.LABEL_START_DATE"></th>
-                                    <th ng-bind="::enroll.strings.LABEL_NUMBER_OF_SESSIONS"></th>
-                                    <th ng-bind="::enroll.strings.LABEL_AVAILABLE_SEATS"></th>
-                                    <th ng-bind="::enroll.strings.LABEL_PRICE"></th>
-                                    <th ng-bind="::enroll.strings.LABEL_QUANTITY"></th>
+                                    <th colspan="2" ng-bind="::enroll.strings.LABEL_SCHEDULES"></th>
                                 </tr>
-                                <tr class="text-center">
-                                    <td><span ng-bind="::enroll.calendar.initial_date | date:'dd MMMM yyyy'"></span></td>
-                                    <td><span ng-bind="::enroll.calendar.number_of_sessions"></span></td>
+                                <tr ng-repeat="session in enroll.calendar.sessions">
                                     <td>
-                                        <span ng-bind="::(enroll.calendar.capacity - enroll.calendar.assistants.length)"></span>
+                                        <span ng-bind="session.date | date:'EEEE, dd MMMM'"></span>
                                     </td>
-                                    <td><span ng-bind="::enroll.calendar.session_price | currency"></span></td>
-                                    <td class="text-center">
-                                        <button class="btn btn-info btn-xs" ng-click="enroll.minus()"
-                                                style="cursor: pointer;">-</button>
-                                        <span ng-bind="enroll.quantity"></span>
-                                        <button class="btn btn-info btn-xs" ng-click="enroll.plus()">+</button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                        <strong><span ng-bind="::enroll.strings.LABEL_TOTAL"></span></strong>
-                                    </td>
-                                    <td colspan="2" class="text-right">
-                                        <span ng-bind="enroll.amount | currency"></span>
+                                    <td class="text-right">
+                                        <span ng-bind="session.start_time | date:'h:mma'"></span>
+                                        <span> - </span>
+                                        <span ng-bind="session.end_time | date:'h:mma'"></span>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <tr class="text-center">
-                                <th colspan="2" ng-bind="::enroll.strings.LABEL_SCHEDULES"></th>
-                            </tr>
-                            <tr ng-repeat="session in enroll.calendar.sessions">
-                                <td>
-                                    <span ng-bind="session.date | date:'EEEE, dd MMMM'"></span>
-                                </td>
-                                <td class="text-right">
-                                    <span ng-bind="session.start_time | date:'h:mma'"></span>
-                                    <span> - </span>
-                                    <span ng-bind="session.end_time | date:'h:mma'"></span>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <form class="form-horizontal" name="enroll.enrollForm" novalidate
-           ng-show="!enroll.success">
-        <div class="row">
-            <div class="col-md-10 col-md-offset-1">
-                <div class="panel panel-dark">
-                    <div class="panel-heading">
-                        <h4 ng-bind="::enroll.strings.LABEL_ASSISTANTS"></h4>
-                    </div>
-                    <div class="panel-body">
-                        <h4 class="text-muted">
-                            <span ng-bind="::enroll.strings.COPY_UNTIL_NOW"></span>
-                            <ng-pluralize count="enroll.calendar.assistants.length"
-                                          when="{
-                                '0': enroll.strings.COPY_NO_ASSISTANTS,
-                                'one': enroll.strings.COPY_ONE_ASSISTANT,
-                                'other': enroll.strings.COPY_MANY_ASSISTANTS
-                              }"
-                                    >
-                            </ng-pluralize>
-                        </h4>
-                        <br/>
-                        <fieldset>
-                            <div ng-repeat="assistant in enroll.assistants">
-                                <h4><span ng-bind="::enroll.strings.COPY_ASSISTANT_NUMBER"></span>
-                                    <span ng-bind="$index + 1"></span>
-                                </h4>
-                                <div class="row form-group" trulii-input-errors-control="first_name">
-                                    <label class="control-label col-md-2"
-                                           ng-bind="::enroll.strings.LABEL_FIRST_NAME"></label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" name="first_name" type="text"
-                                               placeholder="{{::enroll.strings.LABEL_FIRST_NAME}}"
-                                               ng-model="assistant.first_name" required/>
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="last_name">
-                                    <label class="control-label col-md-2"
-                                           ng-bind="::enroll.strings.LABEL_LAST_NAME"></label>
-                                    <div class="col-md-8">
-                                        <input class="form-control" name="last_name" type="text"
-                                               ng-model="assistant.last_name"
-                                               placeholder="{{::enroll.strings.LABEL_LAST_NAME}}" required/>
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="email">
-                                    <label class="control-label col-md-2" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
-                                    <div class="col-md-8">
-                                        <input class="form-control col-md-2" name="email" type="email"
-                                               ng-model="assistant.email"
-                                               placeholder="{{::enroll.strings.LABEL_EMAIL}}"
-                                               required/>
-                                    </div>
-                                </div>
-                                <hr/>
-                            </div>
-                            <div class="form-group" trulii-input-errors-control="detail">
-                                <input type="hidden" name="detail"/>
-                            </div>
-                        </fieldset>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <tabset justified="true">
-                    <tab heading="Tarjeta de Crédito" ng-click="enroll.changeCCPaymentMethod()">
-
-                        <div class="row">
-                            <div class="col-md-10 col-md-offset-1">
-                                <div class="panel panel-dark">
-                                    <div class="panel-heading">
-                                        <h4 ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></h4>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="col-md-8 col-md-offset-2 separate-above">
-                                            <div class="form-group" trulii-input-errors-control="cardHolder">
-                                                <label for="cardHolder" ng-bind="::enroll.strings.LABEL_CARD_HOLDER"></label>
-                                                <input type="text" name="cardHolder"class="form-control" id="cardHolder"
-                                                       ng-model="enroll.cardData.name_card"
-                                                       placeholder="{{::enroll.strings.PLACEHOLDER_CARD_HOLDER}}">
-                                            </div>
-                                            <div class="form-group" trulii-input-errors-control="cardNumber">
-                                                <label for="cardNumber" ng-bind="::enroll.strings.LABEL_CARD_NUMBER"></label>
-                                                <input type="text" class="form-control" name="cardNumber" id="cardNumber"
-                                                       ng-model="enroll.cardData.number"
-                                                       ng-blur="enroll.getCardType()"
-                                                       ng-change="enroll.getCardType()"
-                                                       placeholder="{{::enroll.strings.PLACEHOLDER_CARD_NUMBER}}">
-                                                <div class="form-group" trulii-input-errors-control="invalidNumber">
-                                                    <input type="hidden" name="invalidNumber"/>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-8 col-md-offset-2 separate-above">
-                                            <div class="form-group">
-                                                <span ng-bind="::enroll.strings.LABEL_EXPIRY_DATE"></span>
-                                            </div>
-                                            <div class="form-group" trulii-input-errors-control="invalidExpiry">
-                                                <input type="hidden" ng-model="enroll.cardData.invalidExpiry" class="form-control" name="invalidExpiry"/>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-md-offset-2">
-                                            <div class="form-group" trulii-input-errors-control="cardMonth">
-                                                <label for="cardMonth" ng-bind="::enroll.strings.LABEL_MONTH"></label>
-                                                <input type="number" name="cardMonth" min=1 max=12 class="form-control" id="cardMonth"
-                                                       ng-model="enroll.cardData.exp_month"
-                                                       ng-blur="enroll.checkCardExpiry()"
-                                                       placeholder="{{::enroll.strings.PLACEHOLDER_MONTH}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-md-offset-1">
-                                            <div class="form-group" trulii-input-errors-control="cardYear">
-                                                <label for="cardYear" ng-bind="::enroll.strings.LABEL_YEAR"></label>
-                                                <input type="number" name="cardYear" class="form-control" id="cardYear"
-                                                       ng-model="enroll.cardData.exp_year"
-                                                       ng-blur="enroll.checkCardExpiry()"
-                                                       placeholder="{{::enroll.strings.PLACEHOLDER_YEAR}}">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-3 col-md-offset-2">
-                                            <div class="form-group" trulii-input-errors-control="cardMethod">
-                                                <p class="form-control-static"
-                                                   ng-show="enroll.cardData.method"
-                                                   ng-bind="enroll.cardData.method"></p>
-                                                <input type="hidden" ng-model="enroll.cardData.method" name="cardMethod"/>
-                                            </div>
-
-                                        </div>
-                                        <div class="col-md-4 col-md-offset-1">
-                                            <div class="form-group">
-                                                <label for="cardCvv" ng-bind="::enroll.strings.LABEL_CVV"></label>
-                                                <input type="text" class="form-control" id="cardCvv"
-                                                       ng-model="enroll.cardData.cvv"
-                                                       placeholder="{{::enroll.strings.PLACEHOLDER_CVV}}">
-                                            </div>
-                                        </div>
-
-                                        <!--<div class="col-md-8 col-md-offset-2">-->
-                                            <!--<div class="form-group">-->
-                                                <!--<div class="checkbox">-->
-                                                    <!--<label>-->
-                                                        <!--<input type="checkbox">-->
-                                                <!--<span class="checkbox-material">-->
-                                                    <!--<span class="check"></span>-->
-                                                <!--</span>-->
-                                                        <!--<span ng-bind="::enroll.strings.LABEL_SAVE_PAYMENT_INFO"></span>-->
-                                                    <!--</label>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
-                                        <button type="button" ng-click="enroll.enroll()" class="btn btn-lg btn-primary pull-right"
-                                                ng-bind="::enroll.strings.ACTION_ENROLL"></button>
-                                    </div>
-                                </div>
-                            </div>
+        <!--Attendees Form-->
+        <form class="form-horizontal" name="enroll.enrollForm" novalidate
+              ng-show="!enroll.success">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h4 ng-bind="::enroll.strings.LABEL_ASSISTANTS"></h4>
                         </div>
-
-                    </tab>
-                    <tab heading="PSE" ng-click="enroll.changePSEPaymentMethod()" >
-
-                        <div class="row">
-                            <div class="col-md-10 col-md-offset-1">
-                                <div class="panel panel-dark">
-                                    <div class="panel-heading">
-                                        <h4 ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></h4>
+                        <div class="panel-body">
+                            <h4 class="text-muted">
+                                <span ng-bind="::enroll.strings.COPY_UNTIL_NOW"></span>
+                                <ng-pluralize count="enroll.calendar.assistants.length"
+                                              when="{
+                                    '0': enroll.strings.COPY_NO_ASSISTANTS,
+                                    'one': enroll.strings.COPY_ONE_ASSISTANT,
+                                    'other': enroll.strings.COPY_MANY_ASSISTANTS
+                                  }"
+                                        >
+                                </ng-pluralize>
+                            </h4>
+                            <br/>
+                            <fieldset>
+                                <div ng-repeat="assistant in enroll.assistants">
+                                    <h4><span ng-bind="::enroll.strings.COPY_ASSISTANT_NUMBER"></span>
+                                        <span ng-bind="$index + 1"></span>
+                                    </h4>
+                                    <div class="row form-group" trulii-input-errors-control="first_name">
+                                        <label class="control-label col-md-2"
+                                               ng-bind="::enroll.strings.LABEL_FIRST_NAME"></label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" name="first_name" type="text"
+                                                   placeholder="{{::enroll.strings.LABEL_FIRST_NAME}}"
+                                                   ng-model="assistant.first_name" required/>
+                                        </div>
                                     </div>
-                                    <div class="panel-body" >
-                                        <trulii-preloader loader-control="enroll.loading_banks_list"></trulii-preloader>
-                                        <div class="col-md-8 col-md-offset-2 separate-above" ng-show="!enroll.loading_banks_list" >
-                                            <div class="form-group" trulii-input-errors-control="bank">
-                                                <select  class="form-control" name="bank"
-                                                        ng-model="enroll.pseData.selectedBank"
-                                                        ng-options="bank as bank.description for (index,bank) in enroll.pseFormData.banksList">
-                                                    <option value="" ng-show="!enroll.pseData.selectedBank" selected ng-bind="::enroll.strings.LABEL_BANKS">
-                                                        
-                                                    </option>
-                                                </select>
+                                    <div class="form-group" trulii-input-errors-control="last_name">
+                                        <label class="control-label col-md-2"
+                                               ng-bind="::enroll.strings.LABEL_LAST_NAME"></label>
+                                        <div class="col-md-8">
+                                            <input class="form-control" name="last_name" type="text"
+                                                   ng-model="assistant.last_name"
+                                                   placeholder="{{::enroll.strings.LABEL_LAST_NAME}}" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" trulii-input-errors-control="email">
+                                        <label class="control-label col-md-2" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
+                                        <div class="col-md-8">
+                                            <input class="form-control col-md-2" name="email" type="email"
+                                                   ng-model="assistant.email"
+                                                   placeholder="{{::enroll.strings.LABEL_EMAIL}}"
+                                                   required/>
+                                        </div>
+                                    </div>
+                                    <hr/>
+                                </div>
+                                <div class="form-group" trulii-input-errors-control="detail">
+                                    <input type="hidden" name="detail"/>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Payment Methods-->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h4 ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></h4>
+                        </div>
+                        <div class="panel-body" >
+                            <tabset justified="true">
+                                <!--Credit Card-->
+                                <tab heading="Tarjeta de Crédito" ng-click="enroll.changeCCPaymentMethod()">
+                                    <div class="col-md-8 col-md-offset-2 separate-above">
+                                        <div class="form-group" trulii-input-errors-control="cardHolder">
+                                            <label for="cardHolder" ng-bind="::enroll.strings.LABEL_CARD_HOLDER"></label>
+                                            <input type="text" name="cardHolder"class="form-control" id="cardHolder"
+                                                   ng-model="enroll.cardData.name_card"
+                                                   placeholder="{{::enroll.strings.PLACEHOLDER_CARD_HOLDER}}">
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="cardNumber">
+                                            <label for="cardNumber" ng-bind="::enroll.strings.LABEL_CARD_NUMBER"></label>
+                                            <input type="text" class="form-control" name="cardNumber" id="cardNumber"
+                                                   ng-model="enroll.cardData.number"
+                                                   ng-blur="enroll.getCardType()"
+                                                   ng-change="enroll.getCardType()"
+                                                   placeholder="{{::enroll.strings.PLACEHOLDER_CARD_NUMBER}}">
+                                            <div class="form-group" trulii-input-errors-control="invalidNumber">
+                                                <input type="hidden" name="invalidNumber"/>
                                             </div>
-                                            <div class="form-group" trulii-input-errors-control="userType">
-                                                <select  class="form-control" name="userType"
-                                                        ng-model="enroll.pseData.selectedUserType"
-                                                        ng-options="type  as type.description for (index,type) in enroll.pseFormData.userTypes">
-                                                    <option value="" ng-show="!enroll.pseData.selectedBank" selected ng-bind="::enroll.strings.LABEL_USER_TYPE">
-                                                    </option>
-                                                </select>
-                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 col-md-offset-2 separate-above">
+                                        <div class="form-group">
+                                            <span ng-bind="::enroll.strings.LABEL_EXPIRY_DATE"></span>
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="invalidExpiry">
+                                            <input type="hidden" ng-model="enroll.cardData.invalidExpiry" class="form-control" name="invalidExpiry"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-2">
+                                        <div class="form-group" trulii-input-errors-control="cardMonth">
+                                            <label for="cardMonth" ng-bind="::enroll.strings.LABEL_MONTH"></label>
+                                            <input type="number" name="cardMonth" min=1 max=12 class="form-control" id="cardMonth"
+                                                   ng-model="enroll.cardData.exp_month"
+                                                   ng-blur="enroll.checkCardExpiry()"
+                                                   placeholder="{{::enroll.strings.PLACEHOLDER_MONTH}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-1">
+                                        <div class="form-group" trulii-input-errors-control="cardYear">
+                                            <label for="cardYear" ng-bind="::enroll.strings.LABEL_YEAR"></label>
+                                            <input type="number" name="cardYear" class="form-control" id="cardYear"
+                                                   ng-model="enroll.cardData.exp_year"
+                                                   ng-blur="enroll.checkCardExpiry()"
+                                                   placeholder="{{::enroll.strings.PLACEHOLDER_YEAR}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-2">
+                                        <div class="form-group" trulii-input-errors-control="cardMethod">
+                                            <p class="form-control-static"
+                                               ng-show="enroll.cardData.method"
+                                               ng-bind="enroll.cardData.method"></p>
+                                            <input type="hidden" ng-model="enroll.cardData.method" name="cardMethod"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-1">
+                                        <div class="form-group">
+                                            <label for="cardCvv" ng-bind="::enroll.strings.LABEL_CVV"></label>
+                                            <input type="text" class="form-control" id="cardCvv"
+                                                   ng-model="enroll.cardData.cvv"
+                                                   placeholder="{{::enroll.strings.PLACEHOLDER_CVV}}">
+                                        </div>
+                                    </div>
+                                    <button type="button" ng-click="enroll.enroll()" class="btn btn-lg btn-primary pull-right"
+                                            ng-bind="::enroll.strings.ACTION_ENROLL"></button>
+                                </tab>
+                                <!--PSE-->
+                                <tab heading="PSE" ng-click="enroll.changePSEPaymentMethod()" >
+                                    <trulii-preloader loader-control="enroll.loading_banks_list"></trulii-preloader>
+                                    <div class="col-md-8 col-md-offset-2 separate-above" ng-show="!enroll.loading_banks_list" >
+                                        <div class="form-group" trulii-input-errors-control="bank">
+                                            <select  class="form-control" name="bank"
+                                                     ng-model="enroll.pseData.selectedBank"
+                                                     ng-options="bank as bank.description for (index,bank) in enroll.pseFormData.banksList">
+                                                <option value="" ng-show="!enroll.pseData.selectedBank" selected ng-bind="::enroll.strings.LABEL_BANKS">
 
-                                            <div class="form-group" trulii-input-errors-control="idType">
-                                                <select  class="form-control" name="idType"
-                                                        ng-model="enroll.pseData.selectedIdType"
-                                                        ng-options="type  as type.description for (index,type) in enroll.pseFormData.idTypes">
-                                                    <option value="" ng-show="!enroll.pseData.selectedBank" ng-bind="::enroll.strings.LABEL_ID_TYPE" selected> 
-                                                    </option>
-                                                </select>
-                                            </div>                                                        
-                                            <div class="form-group" trulii-input-errors-control="idNumber">
-                                                <label for="idNumber" ng-bind="::enroll.strings.LABEL_ID_NUMBER"></label>
-                                                <input type="text" name="idNumber"class="form-control"
-                                                       ng-model="enroll.pseData.idNumber">
-                                            </div>
-                                            <div class="form-group" trulii-input-errors-control="name">
-                                                <label for="name" ng-bind="::enroll.strings.LABEL_CLIENT_NAME_LAST_NAME"></label>
-                                                <input type="text" name="name"class="form-control"
-                                                       ng-model="enroll.pseData.name">
-                                            </div>
-                                            <div class="form-group" trulii-input-errors-control="contactPhone">
-                                                <label for="contactPhone" ng-bind="::enroll.strings.LABEL_PHONE_NUMBER"></label>
-                                                <input type="text" name="contactPhone"class="form-control"
-                                                       ng-model="enroll.pseData.contactPhone">
-                                            </div>
-                                            <div class="form-group" trulii-input-errors-control="payerEmail">
-                                                <label for="payerEmail" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
-                                                <input type="email" name="payerEmail" class="form-control"
-                                                       ng-model="enroll.pseData.payerEmail">
-                                            </div>
-                                            <button type="button" ng-click="enroll.enrollPSE()" class="btn btn-lg btn-primary pull-right"
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="userType">
+                                            <select  class="form-control" name="userType"
+                                                     ng-model="enroll.pseData.selectedUserType"
+                                                     ng-options="type  as type.description for (index,type) in enroll.pseFormData.userTypes">
+                                                <option value="" ng-show="!enroll.pseData.selectedBank" selected ng-bind="::enroll.strings.LABEL_USER_TYPE">
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="idType">
+                                            <select  class="form-control" name="idType"
+                                                     ng-model="enroll.pseData.selectedIdType"
+                                                     ng-options="type  as type.description for (index,type) in enroll.pseFormData.idTypes">
+                                                <option value="" ng-show="!enroll.pseData.selectedBank" ng-bind="::enroll.strings.LABEL_ID_TYPE" selected>
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="idNumber">
+                                            <label for="idNumber" ng-bind="::enroll.strings.LABEL_ID_NUMBER"></label>
+                                            <input type="text" name="idNumber" id="idNumber" class="form-control"
+                                                   ng-model="enroll.pseData.idNumber">
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="name">
+                                            <label for="name" ng-bind="::enroll.strings.LABEL_CLIENT_NAME_LAST_NAME"></label>
+                                            <input type="text" name="name" id="name" class="form-control"
+                                                   ng-model="enroll.pseData.name">
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="contactPhone">
+                                            <label for="contactPhone" ng-bind="::enroll.strings.LABEL_PHONE_NUMBER"></label>
+                                            <input type="text" name="contactPhone" id="contactPhone" class="form-control"
+                                                   ng-model="enroll.pseData.contactPhone">
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="payerEmail">
+                                            <label for="payerEmail" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
+                                            <input type="email" name="payerEmail" id="payerEmail" class="form-control"
+                                                   ng-model="enroll.pseData.payerEmail">
+                                        </div>
+                                        <button type="button" ng-click="enroll.enrollPSE()" class="btn btn-lg btn-primary pull-right"
                                                 ng-bind="::enroll.strings.ACTION_ENROLL" ></button>
-
-                                        </div>
-                                   </div>
-                                </div>
-                            </div>
+                                    </div>
+                                </tab>
+                            </tabset>
                         </div>
-                    </tab>
-                </tabset>
-                <div class="form-group" trulii-input-errors-control="generalError">
-                    <input type="hidden" ng-model="enroll.pseData.generalError" name="generalError"/>
+                    </div>
+                    <span class="text-muted" ng-bind="::enroll.strings.COPY_RELEASE"></span>
+                    <div class="form-group" trulii-input-errors-control="generalError">
+                        <input type="hidden" ng-model="enroll.pseData.generalError" name="generalError"/>
+                    </div>
                 </div>
-
-
             </div>
-        </div>
-
-
-
-    </form>
-    <div class="row">
-        <div class="col-md-10 col-md-offset-1 text-center">
-            <span class="text-muted" ng-bind="::enroll.strings.COPY_RELEASE"></span>
+        </form>
+        <div ui-view></div>
+        <a class="btn btn-link" ui-sref="activities-detail({activity_id: enroll.activity.id})">
+            <i class="mdi-navigation-chevron-left"></i>
+            <span ng-bind="::enroll.strings.ACTION_RETURN"></span>
+        </a>
+    </div>
+    <div class="col-md-3">
+        <div class="organizer-widget">
+            <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
+                <img class="picture" ng-src="{{::enroll.getOrganizerPhoto()}}"
+                     alt="{{::enroll.activity.organizer.name}}"/>
+                <div class="data">
+                    <div class="name" ng-bind="::enroll.activity.organizer.name"></div>
+                    <div class="location" ng-bind="::enroll.activity.organizer.locations[0].address"></div>
+                </div>
+            </a>
         </div>
     </div>
 </div>
-
-<div ui-view></div>
-
-<a class="btn btn-link" ui-sref="activities-detail.info({activity_id: enroll.activity.id})">
-    <i class="mdi-navigation-chevron-left"></i>
-    <span ng-bind="::enroll.strings.ACTION_RETURN"></span>
-</a>

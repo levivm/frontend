@@ -13400,7 +13400,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   z-index: 1000;
   overflow-x: visible;
   overflow-y: visible;
-  background: red;
   padding: 20px 0;
   background-color: #393b3f;
   width: 18em;
@@ -13459,24 +13458,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-family: 'Sinkin Sans';
   font-weight: bold;
   font-size: .9em;
-  /*
-        &__sign {
-            position: absolute;
-            top: -1px;
-            height: 101%;
-            right: 0px;
-            background: darken(@gray-lighter, 5%);
-            z-index: 20;
-            color: darken(@gray-lighter, 18%);
-
-            &--completed {
-                color: white;
-                background-color: #FC3;
-                z-index: 21;
-            }
-        }
-
-*/
 }
 .sidebar__item--selected {
   background: #51545a;
@@ -15384,6 +15365,19 @@ button.toast-close-button {
   min-height: 280px;
   height: auto;
 }
+.detail-cover .text-container {
+  position: absolute;
+  text-align: center;
+  vertical-align: middle;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding-top: 4em;
+}
+.detail-cover .text-container * {
+  color: #ffffff;
+}
 .detail-organizer {
   position: absolute;
   z-index: 4;
@@ -15402,9 +15396,6 @@ button.toast-close-button {
 }
 .detail-organizer-name {
   margin-right: 20px;
-}
-* {
-  color: rgba(0, 0, 0, 0.74);
 }
 .list {
   margin: 8px 0;
