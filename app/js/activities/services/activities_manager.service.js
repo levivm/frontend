@@ -177,19 +177,22 @@
         }
 
         function loadOrganizerActivities(organizerId) {
+            var deferred = $q.defer();
 
             if (!(_.isEmpty(_activities))) {
-                return _activities;
+                deferred.resolve(_activities);
             }
 
-            return $http.get(apiOrg.activities(organizerId))
+            $http.get(apiOrg.activities(organizerId))
                 .then(function (response) {
                     _.each(response.data, function (activityData) {
                         var activity = _retrieveInstance(activityData.id, activityData);
                         _activities.push(activity);
                     });
-                    return _activities;
+                    deferred.resolve(_activities);
                 });
+
+            return deferred.promise;
         }
 
         function loadGeneralInfo() {
