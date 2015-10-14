@@ -89,6 +89,7 @@
             if(!pc.strings){ pc.strings = {}; }
 
             pc.strings.UNPUBLISH_ACTIVITY_LABEL = "Desactivar";
+            pc.strings.COPY_UNPUBLISH_ACTIVITY = "Remover publicación de los resultados de búsqueda";
             pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad saldrá de los motores de búsqueda";
             pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar";
             pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";

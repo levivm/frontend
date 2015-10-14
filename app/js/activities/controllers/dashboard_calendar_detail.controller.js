@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope', 'datepickerPopupConfig', 'Error', 'calendar'];
+    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'datepickerPopupConfig', 'Error', 'calendar'];
 
-    function ActivityCalendarController($scope, datepickerPopupConfig, Error, calendar) {
+    function ActivityCalendarController($scope, $state, activity, CalendarsManager, datepickerPopupConfig, Error, calendar) {
 
         var vm = this;
         vm.calendar = calendar;
@@ -28,17 +28,41 @@
 
         function _createCalendar() {
             Error.form.clear(vm.activity_calendar_form);
-            console.log(vm.calendar, "dd");
             vm.calendar.create()
-                .then(_successCreated, _errored);
+                .then(success, _errored);
+
+
+            function success(calendar){
+
+                //Change Save button functionality
+                vm.save_calendar = _updateCalendar;
+                
+                CalendarsManager.setCalendar(calendar);
+                _onSectionUpdated();
+
+                vm.isCollapsed = false;
+                vm.isSaving = false;
+
+            }
 
         }
 
         function _updateCalendar() {
             Error.form.clear(vm.activity_calendar_form);
-            console.log(vm.calendar, "dd");
+
             vm.calendar.update()
-                .then(_successUpdate, _errored);
+                .then(success, _errored);
+
+                function success(){
+
+                    vm.isCollapsed = false;
+
+                    CalendarsManager.setCalendar(calendar);
+                    _onSectionUpdated();
+
+                    vm.isSaving = false;
+
+                }
         }
 
         function _errored(responseErrors) {
@@ -52,21 +76,13 @@
             vm.isSaving = false;
         }
 
-        function _successCreated(calendar) {
-            //Change Save button functionality
-            vm.save_calendar = _updateCalendar;
+        function _onSectionUpdated() {
+            activity.load().then(function (data) {
+                activity.updateSection('calendars');
 
-            vm.isCollapsed = false;
-            $scope.$parent.calendars.setCalendar(calendar);
+            });
+            $state.go("^");
 
-            vm.isSaving = false;
-        }
-
-        function _successUpdate(calendar) {
-            vm.isCollapsed = false;
-            $scope.$parent.calendars.setCalendar(calendar);
-
-            vm.isSaving = false;
         }
 
         function _setStrings(){
@@ -81,12 +97,13 @@
                 LABEL_CALENDARS: "Calendarios",
                 LABEL_CALENDAR_TITLE: LABEL_CALENDAR_TITLE,
                 COPY_CALENDAR_INFO: "Especifique la información solicitada para continuar.",
+                LABEL_IS_FREE: "Marcar aquí para ofrecer la actividad gratuita",
                 LABEL_START_DATE: "Fecha de inicio",
                 LABEL_CLOSE_SALES: "Cierre de ventas",
                 LABEL_CALENDAR_SEATS: "Cupos",
                 LABEL_SESSION_PRICE: "Precio(COP)",
                 TITLE_SESSIONS: "Sesiones",
-                LABEL_SESSIONS_AMOUNT: "¿Cuantas sesiones o clases se realizarán",
+                LABEL_SESSIONS_AMOUNT: "¿Cuántas sesiones o clases se realizarán?",
                 LABEL_SESSION_DAY: "Día de la sesión",
                 LABEL_SESSION_START_TIME: "Hora de inicio:",
                 LABEL_SESSION_END_TIME: "Hora de fin:",

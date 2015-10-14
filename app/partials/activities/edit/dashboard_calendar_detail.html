@@ -56,9 +56,11 @@
           <div class="col-md-6">
               <div class="form-group" trulii-input-errors-control="session_price">
                   <label class="control-label" for="session_price" ng-bind="::calendar.strings.LABEL_SESSION_PRICE"></label>
-                  <input id="session_price" class="form-control center-input" type="number" name="session_price"
+                  <input id="session_price" class="form-control center-input" ng-class="{'text-strike':calendar.calendar.is_free}" type="text" ui-number-mask="0" name="session_price"
                          placeholder="0.00" min="0"
-                         ng-model="calendar.calendar.session_price" />
+                         ng-model="calendar.calendar.session_price" ng-disabled="calendar.calendar.is_free"/>
+                  <label class="control-label" for="is_free" ng-bind="::calendar.strings.LABEL_IS_FREE"></label>
+                  <input type="checkbox" id="is_free" ng-model="calendar.calendar.is_free" ng-check />
               </div>
           </div>
 

@@ -238,9 +238,10 @@
                 var start_time = session.start_time.getHours();
                 var end_time = session.end_time.getHours();
 
-                if (start_time > end_time) {
+                if (start_time >= end_time) {
                     var new_end_time = new Date();
                     new_end_time.setHours(start_time + 1);
+                    new_end_time.setMinutes(0);
                     session.end_time = new_end_time;
                 }
 
@@ -253,15 +254,16 @@
                 var start_time = session.start_time.getHours();
                 var end_time = session.end_time.getHours();
 
-                if (start_time > end_time) {
+                if (start_time >= end_time) {
                     var new_start_time = new Date();
                     new_start_time.setHours(end_time - 1);
+                    new_start_time.setMinutes(0);
                     session.start_time = new_start_time;
                 }
 
             },
             hasAssistants: function(){
-                return this.assistants.length > 0
+                return this.assistants.length > 0;
             },
             addAssistants : function (assistants) {
                 this.assistants = this.assistants.concat(assistants);

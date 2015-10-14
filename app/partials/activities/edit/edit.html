@@ -57,7 +57,7 @@
                     <div ng-show="pc.activity.published">
 
                         <div ng-show="pc.allow_unpublish" class="lateral-fade">
-                            <span>Para quitar al público</span>                
+                            <span ng-bind="::pc.strings.COPY_UNPUBLISH_ACTIVITY"></span>                
 
                             <button class="btn btn-warning btn-lg"                               
                                    ng-click="pc.unpublish_activity()">

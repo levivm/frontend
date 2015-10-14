@@ -46,7 +46,7 @@
         }
 
         function setCalendar(calendar) {
-            CalendarsManager.setCalendar(calendar);
+            // CalendarsManager.setCalendar(calendar);
             activity.load().then(function (data) {
                 _onSectionUpdated();
             });
@@ -120,10 +120,12 @@
                 LABEL_CALENDAR_SEATS: "Cupos",
                 LABEL_START: "Inicia",
                 LABEL_END: "Finaliza",
+                LABEL_FREE: "Gratis",
                 LABEL_EDIT_CALENDAR: "Editar calendario",
                 LABEL_DELETE_CALENDAR: "Eliminar calendario",
                 LABEL_ADD_CALENDAR: "Agregar calendario",
-                COPY_ADD_CALENDAR: "Añade el horario, precio, número de sesiones y más",
+                COPY_ADD_CALENDAR: "En una misma publicación puedes tener diferentes fechas de inicio, cada una con diferentes " +
+                                   "número de sesiones, fechas y horas.",
                 COPY_REPUBLISH_CALENDAR: "Estás republicando esta actividad. Recuerda que para republicarla exitosamente debes" +
                                          "de agregar por lo menos un nuevo calendario.",
                 LABEL_WARNING: "Advertencia!",

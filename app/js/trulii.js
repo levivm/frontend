@@ -26,7 +26,7 @@
         ]);
 
     angular
-        .module('trulii.config', ['facebook']);
+        .module('trulii.config', ['facebook', 'ui.utils.masks']);
 
     angular
         .module('trulii.routes', ['ui.router', 'trulii.routes.config']);
