@@ -39,6 +39,7 @@
              */
             setData : function (activityData) {
                 angular.extend(this, activityData);
+                this.calendars = this.chronograms;
                 var that = this;
                 that.resetSections();
 

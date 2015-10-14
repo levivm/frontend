@@ -19,31 +19,67 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Toast',
-        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover'];
+    ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast',
+        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager'];
 
-    function ActivityDetailController($state, $stateParams, $window, uiGmapGoogleMapApi, Toast,
-                                      cities, activity, calendars, defaultPicture, defaultCover) {
+    function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast,
+                                      cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager) {
         var MAX_DAYS = 30;
         var vm = this;
         angular.extend(vm, {
             city : null,
             calendars : [],
+            relatedActivities: [],
             calendar : null,
             activity : null,
             organizer : null,
             calendar_selected : null,
+            isListVisible: false,
+            currentGalleryPicture: 0,
+            galleryOptions: {
+                interval: 0,
+                noWrap: false
+            },
+            showList: showList,
+            hideList: hideList,
+            setSelectedCalendar: setSelectedCalendar,
             changeState : changeState,
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
-            getMapStyle : getMapStyle,
             getStarStyle : getStarStyle,
-            isSelectedCalendarFull : isSelectedCalendarFull
+            isSelectedCalendarFull : isSelectedCalendarFull,
+            previousGalleryPicture: previousGalleryPicture,
+            nextGalleryPicture: nextGalleryPicture
         });
 
         _activate();
 
-        //--------- Functions Implementation ---------//
+        //--------- Exposed Functions ---------//
+
+        function previousGalleryPicture(){
+            if(vm.currentGalleryPicture > 0){
+                vm.currentGalleryPicture--;
+            }
+        }
+
+        function nextGalleryPicture(){
+            if(vm.currentGalleryPicture < (vm.activity.gallery.length - 1)){
+                vm.currentGalleryPicture++;
+            }
+        }
+
+        function showList(){
+            vm.isListVisible = true;
+        }
+
+        function hideList(){
+            vm.isListVisible = false;
+        }
+
+        function setSelectedCalendar(calendar){
+            vm.calendar_selected = calendar;
+            hideList();
+        }
 
         function isSelectedCalendarFull(){
             if(vm.calendar_selected){
@@ -69,13 +105,6 @@
             }
         }
 
-        function getMapStyle(){
-            return {
-                'width': $window.innerWidth + 'px',
-                'height': '240px'
-            };
-        }
-
         function getStarStyle(star){
             if(star <= 4){
                 return {
@@ -88,11 +117,14 @@
             }
         }
 
+        //--------- Internal Functions ---------//
+
         function _mapClosestCalendar(activity){
             var today = Date.now();
             activity.days_to_closest = null;
             activity.closest_date = null;
             activity.closest_calendar = null;
+            activity.upcoming_calendars = [];
 
             if(activity.calendars){
                 activity.calendars.forEach(function(calendar){
@@ -100,6 +132,9 @@
                         && (calendar.initial_date < activity.closest_date || !activity.closest_date)){
                         activity.closest_date = calendar.initial_date;
                         activity.closest_calendar = calendar;
+                    }
+                    if(calendar.initial_date >= today){
+                        activity.upcoming_calendars.push(calendar);
                     }
                 });
             }
@@ -110,46 +145,35 @@
                 activity.days_to_closest = -1;
             }
 
-            _mapDateMsg(activity);
-
-            return activity;
-        }
-
-        function _mapDateMsg(activity){
-            if(activity.days_to_closest < 0){
-                activity.date_msg = vm.strings.COPY_WAIT_NEW_DATES;
-            } else if(activity.days_to_closest === 0){
-                activity.date_msg = vm.strings.COPY_TODAY;
-            } else if(activity.days_to_closest === 1){
-                activity.date_msg = vm.strings.COPY_IN + " "
-                    + activity.days_to_closest + " " + vm.strings.COPY_DAY;
-            } else if(activity.days_to_closest <= MAX_DAYS){
-                activity.date_msg = vm.strings.COPY_IN + " "
-                    + activity.days_to_closest + " " + vm.strings.COPY_DAYS;
-            } else {
-                activity.date_msg = $filter('date')(activity.closest_date, 'dd MMM');
-            }
             return activity;
         }
 
         function _mapPictures(activity){
-            var gallery = [];
+            activity.gallery = [];
             if(activity.hasOwnProperty('pictures') && activity.pictures.length > 0){
-                angular.forEach(activity.pictures, function(picture, index, array){
+                angular.forEach(activity.pictures, function(picture){
                     if(picture.main_photo){
                         activity.main_photo = picture.photo;
                     } else {
-                        gallery.push(picture);
-                    }
-
-                    if( index === (array.length - 1) && !activity.main_photo){
-                        activity.main_photo = array[0].photo;
+                        activity.gallery.push(picture);
                     }
                 });
-                activity.gallery = gallery;
             } else {
                 activity.main_photo = defaultCover;
             }
+            console.log('_mapPictures. activity:', activity);
+            return activity;
+        }
+
+        function _mapCalendars(activity){
+            activity.calendars = activity.calendars.map(mapVacancy);
+
+            function mapVacancy(calendar){
+                calendar.vacancy = calendar.capacity - calendar.assistants.length;
+                calendar.total_price = calendar.session_price * calendar.sessions.length;
+                return calendar;
+            }
+
             return activity;
         }
 
@@ -161,6 +185,14 @@
             if(!activity.extra_info){ activity.extra_info = vm.strings.COPY_EMPTY_SECTION; }
             if(!activity.return_policy){ activity.return_policy = vm.strings.COPY_EMPTY_SECTION; }
             return activity;
+        }
+
+        function _getOrganizerActivities(organizer){
+            ActivitiesManager.loadOrganizerActivities(organizer.id).then(success);
+
+            function success(activities){
+                vm.relatedActivities = activities;
+            }
         }
 
         function _setUpLocation(activity){
@@ -177,7 +209,8 @@
                     var position = new maps.LatLng(activity.location.point[0], activity.location.point[1]);
                     var gmapOptions = {
                         zoom: 16,
-                        center: position
+                        center: position,
+                        scrollwheel: false
                     };
 
                     var gmap = new maps.Map(document.getElementById('map-canvas'), gmapOptions);
@@ -207,44 +240,78 @@
             angular.extend(vm.strings, {
                 ACTION_VIEW_PROFILE: "Ver Perfil",
                 ACTION_CONTACT: "Contactar",
+                ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
+                ACTION_SELECT_CALENDAR: "Ver Detalle",
+                ACTION_VIEW_OTHER_DATES: "Ver otras fechas",
                 ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
-                ACTIVITY_SOLD_OUT: "No quedan cupos disponibles para esta actividad",
+                ACTIVITY_SOLD_OUT: "Agotado",
+                COPY_SOCIAL_BUTTONS: "Te gustó? Compartelo con tus amigos ",
+                COPY_SOCIAL_SHARE_FACEBOOK: "Compartir en Facebook",
+                COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
+                COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
+                COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizara en otra oportunidad ",
+                COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
+                COPY_NO_CALENDARS_AVAILABLE: "Actualmente no hay otros calendarios disponibles",
+                COPY_OPPORTUNITIES: " oportunidades",
                 COPY_EMPTY_SECTION: "El Organizador no ha completado la información de esta sección aún ¡Regresa pronto!",
                 COPY_TODAY: "Hoy",
                 COPY_DAY: "día ",
                 COPY_DAYS: "días ",
                 COPY_IN: "En ",
-                LABEL_CATEGORY: "Categoría",
-                LABEL_SUBCATEGORY: "Sub-Categoría",
+                COPY_TO: " a ",
+                COPY_NOT_AVAILABLE: "No Disponible",
+                COPY_FREE: " Gratis",
+                COPY_VACANCY: " Vacantes",
+                COPY_ONE_SESSION: "Sesión",
+                COPY_OTHER_SESSIONS: "Sesiones",
+                COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
+                COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más seguro que la tabla del 1 ¡En serio!",
+                COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
+                COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días. Porque tú te lo mereces ",
+                LABEL_COST: "Precio",
+                LABEL_NEXT_DATE: "Próximo Inicio",
+                LABEL_CLOSING_DATE: "Ventas hasta",
                 LABEL_LEVEL: "Nivel",
                 LABEL_DURATION: "Duration",
                 LABEL_DESCRIPTION: "Descripción",
                 LABEL_GET_TO_KNOW_US: "Conócenos",
                 LABEL_CONTENT: "Contenido",
-                LABEL_AUDIENCE: "Audiencia",
-                LABEL_GOALS: "Objetivo(s)",
-                LABEL_REQUIREMENTS: "Requerimientos",
-                LABEL_EXTRA_INFO: "Información Adicional",
+                LABEL_AUDIENCE: "Dirigido a",
+                LABEL_GOALS: "Objetivo",
+                LABEL_INSTRUCTORS: "Instructores",
+                LABEL_REQUIREMENTS: "Requisitos",
+                LABEL_METHODOLOGY: "Metodologia",
+                LABEL_EXTRA_INFO: "Adicionales",
                 LABEL_RETURN_POLICY: "Política de Devolución",
-                TAB_INFO: "Información",
                 TAB_CALENDARS: "Calendarios",
-                TAB_ASSISTANTS: "Asistentes"
+                LABEL_ATTENDEES: "Asistentes",
+                VALUE_WITH_CERTIFICATION: "Con Certificado",
+                VALUE_WITHOUT_CERTIFICATION: "Sin Certificado",
+                REASON_NO_COMMISSIONS: "Sin Comisiones",
+                REASON_COPY_NO_COMMISSIONS: "¡En serio Te lo prometemos!",
+                REASON_REFUND: "Devolución Garantizada",
+                REASON_COPY_REFUND: "Por si no se realiza la actividad",
+                REASON_SECURE: "Pago Seguro",
+                REASON_COPY_SECURE: "Inscribete con tranquilidad"
             });
         }
 
         function _activate(){
             _setStrings();
             _setCurrentState();
-            //_setUpLocation(activity);
-            vm.activity = _mapPictures(activity);
+            vm.activity = activity;
+            _setUpLocation(vm.activity);
+            _getOrganizerActivities(vm.activity.organizer);
+            vm.activity = _mapCalendars(vm.activity);
+            vm.activity = _mapPictures(vm.activity);
             vm.activity = _mapClosestCalendar(vm.activity);
             vm.activity = _mapInfo(vm.activity);
             vm.activity.rating = [1, 2, 3, 4, 5];
 
             vm.calendars = calendars;
-            vm.organizer = activity.organizer;
+            vm.organizer = vm.activity.organizer;
             vm.calendar_selected = vm.activity.closest_calendar;
 
             if(!(vm.activity.published)){

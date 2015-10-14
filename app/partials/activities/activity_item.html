@@ -27,15 +27,15 @@
         </span>
     </div>
 
-    <a class="activity-card__body" ui-sref="activities-detail.info({activity_id: {{::activity.id}} })">
-        <span class="activity-card__body__title" ng-bind="::activity.title"></span>    
+    <a class="activity-card__body" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
+        <span class="activity-card__body__title" ng-bind="::activity.title"></span>
         <span class="activity-card__body__owner-name" ng-bind="::activity.organizer.name">
-            
+
         </span>
 
         <div class="relative">
             <span class="activity-card__body__date" ng-bind="activity.date_msg">
-                
+
             </span>
 
             <div class="activity-card__rating">
@@ -58,7 +58,7 @@
                     ng-bind="::activity.closest_calendar.session_price | number"></span>
         </div>
 
-        
+
         <span ng-if="!activity.closest_calendar.session_price"
               ng-bind="::strings.COPY_NA"></span>
     </div>
