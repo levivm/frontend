@@ -13397,7 +13397,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   z-index: 1000;
   overflow-x: visible;
   overflow-y: visible;
-  background: red;
   padding: 20px 0;
   background-color: #393b3f;
   width: 18em;
@@ -13456,24 +13455,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-family: 'Sinkin Sans';
   font-weight: bold;
   font-size: .9em;
-  /*
-        &__sign {
-            position: absolute;
-            top: -1px;
-            height: 101%;
-            right: 0px;
-            background: darken(@gray-lighter, 5%);
-            z-index: 20;
-            color: darken(@gray-lighter, 18%);
-
-            &--completed {
-                color: white;
-                background-color: #FC3;
-                z-index: 21;
-            }
-        }
-
-*/
 }
 .sidebar__item--selected {
   background: #51545a;
