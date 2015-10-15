@@ -14,18 +14,24 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBDetailController', ActivityDBDetailController);
 
+
     ActivityDBDetailController.$inject = ['$scope', '$state', '$timeout', '$q', '$stateParams', 'activity', 'Elevator', 'Toast', 'Error'];
 
     function ActivityDBDetailController($scope, $state, $timeout, $q, $stateParams, activity, Elevator, Toast, Error) {
 
         var vm = this;
 
-        vm.activity = angular.copy(activity);
-        vm.save_activity = _updateActivity;
-        vm.setOverElement = _setOverElement;
-        vm.showTooltip = _showTooltip;
+        angular.extend(vm,{
+            activity: angular.copy(activity),
+            save_activity: _updateActivity,
+            setOverElement: _setOverElement,
+            showTooltip: _showTooltip,
+            errors: {},
+            isCollapsed: true,
+            isSaving: false,
+        });
 
-        initialize();
+        activate();
 
         /******************ACTIONS**************/
 
@@ -69,15 +75,41 @@
             activity.updateSection('detail');
         }
 
-        function activate() {
-            // If the user is authenticated, they should not be here.
+
+        function _setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                TITLE_DETAIL: "Detalles",
+                COPY_DETAIL: "Completa estos campos si deseas ser más preciso.",
+                LABEL_AUDIENCE: "Aundiencia",
+                LABEL_GOALS: "Objectivos",
+                LABEL_CONTENT: "Contenido",
+                LABEL_METHODOLOGY: "Metodología",
+                LABEL_REQUIREMENTS: "Requerimientos",
+                LABEL_EXTRA_INFO: "Información Extra",
+                ACTION_SAVE: "Guardar",
+                COPY_HELP_TEXT_EXTRA_INFO: "¿Alguna otra información adicional que quieras comunicar "+
+                                            "a tus posibles participantes?",
+                COPY_HELP_TEXT_REQUIREMETS: "¿Para inscribirse hace falta conocimientos previos en algún tema? "+
+                                            "¿Deben llevar algún material para realizar la actividad? ¿Se requiere " + 
+                                            "algunar documentación?",
+                COPY_HELP_TEXT_METHODOLOGY: "¿Aplicarás algún método de enseñanza en particular? "+  
+                                            "¿Su actividad será evaluadad? ¿Cómo?",
+                COPY_HELP_TEXT_CONTENT: "¿Cuáles son los temas que impartirá en su actividad?",  
+                COPY_HELP_TEXT_GOALS: "¿Cuál es la finalidad de su actividad?",  
+                COPY_HELP_TEXT_AUDIENCE: "¿A que tipo de personas va dirigido su actividad? "+  
+                                         "¿Profesionales o público en general?",
+
+                
+
+
+
+            });
         }
 
-        function initialize() {
-            vm.errors = {};
-            vm.isCollapsed = true;
-            vm.isSaving = false;
+        function activate() {
 
+            _setStrings();
             Elevator.toTop();
         }
 

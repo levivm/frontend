@@ -84,7 +84,7 @@
             .state('dash.activities-edit.detail', {
                 url:'detail',
                 controller: 'ActivityDBDetailController',
-                controllerAs: 'vm',
+                controllerAs: 'detail',
                 templateUrl: 'partials/activities/edit/dashboard_detail.html'
             })
             .state('dash.activities-edit.calendars', {
@@ -131,7 +131,7 @@
             .state('dash.activities-edit.return-policy', {
                 url:'return-policy',
                 controller: 'ActivityDBReturnPDashboard',
-                controllerAs: 'vm',
+                controllerAs: 'returnPolicy',
                 templateUrl: 'partials/activities/edit/dashboard_return_policy.html'
             })
             .state('dash.activities-manage', {

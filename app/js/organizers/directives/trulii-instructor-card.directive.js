@@ -62,6 +62,7 @@
                 function selectInstructor($item, $model, $label){
                     _.remove(scope.availableInstructors, { 'id': $item.id});
                     angular.extend(scope.instructorEditable, $item);
+                    console.log('instructorEditable',scope.instructorEditable);
                 }
 
                 function addInstructor(){
@@ -70,9 +71,11 @@
                 }
 
                 function cancelEdition(){
+                    if (!scope.onDashboard && scope.instructorEditable.id)
+                        _pushAutocompleteInstructor(scope.instructorEditable.id);
+
                     toggleEditMode();
                     scope.emptyInstructor = !_isValid();
-                    angular.extend(scope.instructorEditable,scope.instructor);
                 }
 
                 function toggleEditMode(){
@@ -143,8 +146,7 @@
                     function success(response) {
                          _.remove(resource.instructors, 'id', scope.instructor.id);
                          if (!scope.onDashboard)
-                            scope.availableInstructors.
-                                push(_.find(scope.organizer.instructors,{'id':scope.instructor.id}));
+                            _pushAutocompleteInstructor(scope.instructor.id);
                          _removeInstructor();
                          resource.load().then(updateSuccess, updateError);
                          Toast.info(scope.strings.MSG_DELETE_SUCCESS);
@@ -156,6 +158,11 @@
                  }
 
                 //--------- Internal Functions ---------//
+
+                function _pushAutocompleteInstructor(instructor_id){
+                    scope.availableInstructors.
+                        push(_.find(scope.organizer.instructors,{'id':instructor_id}));
+                }
 
                 function _removeInstructor(){
                     scope.instructor= EMPTY_INSTRUCTOR;

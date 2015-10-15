@@ -14,7 +14,7 @@
             <form name='instructors.organizer_instructors_forms'>
                 <div class="col-md-12 horizontal-fade" ng-repeat="instructor in instructors.instructors">
                     <trulii-instructor-card instructor="instructor"
-                                            organizer="instructors.organizer"  on-dashboard="true"
+                                            organizer="instructors.organizer"  on-dashboard="true" available-instructors="{}"
                                             on-change="instructors.onChange()" ></trulii-instructor-card>
                 </div>
             </form>
