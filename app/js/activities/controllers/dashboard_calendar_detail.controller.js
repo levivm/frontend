@@ -81,7 +81,7 @@
                 activity.updateSection('calendars');
 
             });
-            $state.go("^");
+            $state.go("^", {'republish':null});
 
         }
 
@@ -97,7 +97,7 @@
                 LABEL_CALENDARS: "Calendarios",
                 LABEL_CALENDAR_TITLE: LABEL_CALENDAR_TITLE,
                 COPY_CALENDAR_INFO: "Especifique la información solicitada para continuar.",
-                LABEL_IS_FREE: "Marcar aquí para ofrecer la actividad gratuita",
+                LABEL_IS_FREE: "Ofrecer la actividad gratuita",
                 LABEL_START_DATE: "Fecha de inicio",
                 LABEL_CLOSE_SALES: "Cierre de ventas",
                 LABEL_CALENDAR_SEATS: "Cupos",

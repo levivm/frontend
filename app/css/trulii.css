@@ -13995,6 +13995,9 @@ tags-input input {
   color: #bd362f;
   font-weight: bold;
 }
+.alert-warning p {
+  color: rgba(255, 255, 255, 0.84);
+}
 .alert-input {
   padding: 7px 15px;
   margin-top: .8em;

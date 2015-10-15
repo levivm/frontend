@@ -42,6 +42,7 @@
                     toggleEditMode : toggleEditMode,
                     saveInstructor: saveInstructor,
                     selectedInstructor: null,
+                    instructorEditable:null,
                     emptyInstructor: true,
                     cardHeight: '20em'
                 });
@@ -60,7 +61,7 @@
 
                 function selectInstructor($item, $model, $label){
                     _.remove(scope.availableInstructors, { 'id': $item.id});
-                    angular.extend(scope.instructor, $item);
+                    angular.extend(scope.instructorEditable, $item);
                 }
 
                 function addInstructor(){
@@ -71,19 +72,22 @@
                 function cancelEdition(){
                     toggleEditMode();
                     scope.emptyInstructor = !_isValid();
+                    angular.extend(scope.instructorEditable,scope.instructor);
                 }
 
                 function toggleEditMode(){
                     scope.editMode = !scope.editMode;
+                    scope.instructorEditable = angular.copy(scope.instructor);
                 }
 
                 function saveInstructor(){
-                    var instructor = scope.instructor;
+                    var instructor = scope.instructorEditable;
 
                     if(instructor.full_name && instructor.bio){
                         toggleEditMode();
                         if(instructor.id){
                             // Update Instructor
+                            // var instructor_data = angular.copy(instructor);
                             resource.updateInstructor(instructor).then(successUpdate, errorUpdate);
                         } else{
                             // Create Instructor
@@ -105,6 +109,7 @@
                     }
 
                     function successUpdate(instructor){
+                        angular.extend(scope.instructor,instructor);
                         resource.load().then(_onChange, updateError);
                         console.log('saveInstructor. Instructor updated.', instructor);
                     }
