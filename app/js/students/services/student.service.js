@@ -123,6 +123,13 @@
                     .then(function (response) {
                         return response.data;
                     });
+            },
+
+            getOrder : function (orderId) {
+                return $http.get(api.order(this.id, orderId))
+                    .then(function (response) {
+                        return response.data;
+                    });
             }
         };
 

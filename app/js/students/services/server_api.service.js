@@ -68,6 +68,19 @@
              */
             'orders': function(idStudent){
                 return renderUrl('students/', [idStudent, 'orders/']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#order
+             * @description Renders **`/api/students/:idStudent/orders/:idOrder`** Order URL
+             * @param {number} idStudent Student Id
+             * @param {number} idOrder Order Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.students.services.StudentServerApi
+             */
+            'order': function(idStudent, idOrder){
+                return renderUrl('students/', [idStudent, 'orders', idOrder]);
             }
 
         };

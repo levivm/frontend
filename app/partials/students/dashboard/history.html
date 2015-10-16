@@ -5,9 +5,9 @@
         <li class="navbar-secondary__item active" data-toggle="tab" data-target="#password-tab">
             <span ng-bind="::history.strings.SECTION_HISTORY"></span>
         </li>
-  
-    </ul>    
-    
+
+    </ul>
+
 </div>
 
 <div class="row">
@@ -50,7 +50,7 @@
                                     </tr>
                                     <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
                                         <td>
-                                            <span ng-bind="order.id"></span>
+                                            <a ui-sref="student-dashboard.history.orders.order({'orderId': order.id})" ng-bind="order.id"></a>
                                         </td>
                                         <td>
                                             <span ng-bind="::history.strings.COPY_NOT_AVAILABLE"></span>
@@ -94,9 +94,9 @@
                     </div>
                 </div>
             </div>
-                    
+
         </div>
-        
+
     </div>
 </div>
 
