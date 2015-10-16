@@ -46,8 +46,6 @@
             };
             var tempInstructor = null;
             vm.instructors = angular.copy(vm.activity.instructors);
-            console.log("Nuevos instructores",vm.instructors);
-            console.log("Nuevos instructores",vm.activity.instructors);
             if(vm.instructors.length < MAX_INSTRUCTORS){
                 while(vm.instructors.length < MAX_INSTRUCTORS){
                     tempInstructor = angular.extend({}, EMPTY_INSTRUCTOR);

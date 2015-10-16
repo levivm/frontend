@@ -103,6 +103,7 @@
                     }
 
                     function successCreate(instructor){
+                        angular.extend(scope.instructor,instructor);
                         resource.load().then(_onChange, updateError);
                         console.log('saveInstructor. Instructor created.', instructor);
                     }
