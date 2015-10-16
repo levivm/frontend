@@ -20,7 +20,7 @@
     function ActivityCalendarController($scope, $state, activity, CalendarsManager, datepickerPopupConfig, Error, calendar) {
 
         var vm = this;
-        vm.calendar = calendar;
+        vm.calendar = angular.copy(calendar);
 
         activate();
 
@@ -36,7 +36,7 @@
 
                 //Change Save button functionality
                 vm.save_calendar = _updateCalendar;
-                
+                // vm.extend(calendar,vm.calendar);
                 CalendarsManager.setCalendar(calendar);
                 _onSectionUpdated();
 
@@ -56,7 +56,7 @@
                 function success(){
 
                     vm.isCollapsed = false;
-
+                    angular.extend(calendar,vm.calendar);
                     CalendarsManager.setCalendar(calendar);
                     _onSectionUpdated();
 
@@ -96,12 +96,12 @@
             angular.extend(vm.strings, {
                 LABEL_CALENDARS: "Calendarios",
                 LABEL_CALENDAR_TITLE: LABEL_CALENDAR_TITLE,
-                COPY_CALENDAR_INFO: "Especifique la información solicitada para continuar.",
-                LABEL_IS_FREE: "Ofrecer la actividad gratuita",
+                COPY_CALENDAR_INFO: "Especifique cierre de ventas, cupos y precio de la clase.",
+                LABEL_IS_FREE: "Habilitar inscripción gratuita",
                 LABEL_START_DATE: "Fecha de inicio",
                 LABEL_CLOSE_SALES: "Cierre de ventas",
                 LABEL_CALENDAR_SEATS: "Cupos",
-                LABEL_SESSION_PRICE: "Precio(COP)",
+                LABEL_SESSION_PRICE: "Precio (COP)",
                 TITLE_SESSIONS: "Sesiones",
                 LABEL_SESSIONS_AMOUNT: "¿Cuántas sesiones o clases se realizarán?",
                 LABEL_SESSION_DAY: "Día de la sesión",

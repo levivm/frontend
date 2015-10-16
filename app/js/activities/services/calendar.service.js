@@ -20,6 +20,7 @@
     function Calendar($http, $q, $filter, ActivityServerApi) {
 
         var api = ActivityServerApi;
+        var DEFAULT_FREE_VALUE = 0;
 
         function Calendar(calendarData) {
             if (calendarData) {
@@ -31,6 +32,7 @@
                 this.initial_date = today;
                 this.minStartDate = today;
                 this.closing_sale = tomorrow;
+                // this.session_price = 0;
                 this.capacity = 1;
 
                 this.sessions = [];
@@ -43,18 +45,18 @@
             setData : function (calendarData) {
 
                 var that = this;
+                var sessions = angular.copy(calendarData.sessions);
                 angular.extend(this, calendarData);
                 this.sessions = $filter('orderBy')(this.sessions, 'date');
 
                 this.initial_date = new Date(this.initial_date);
                 this.closing_sale = new Date(this.closing_sale);
+
                 angular.forEach(this.sessions, function (session, index) {
 
                     session.date = new Date(session.date);
                     that.changeSessionDate(index, session);
 
-                    // session.end_time   = null;
-                    // session.start_time = null;
                     session.end_time = new Date(session.end_time);
                     session.start_time = new Date(session.start_time);
 
@@ -84,7 +86,6 @@
 
                 calendar_data.setToSave();
 
-                console.log(this);
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'
                 return $http.post(api.calendars(activity_id), calendar_data)
@@ -109,6 +110,7 @@
                         return response.data;
                     },
                     function (response) {
+
                         return $q.reject(response.data);
                     });
 
@@ -120,6 +122,9 @@
 
                 this.initial_date = this.initial_date.valueOf();
                 this.closing_sale = this.closing_sale.valueOf();
+
+                if (!this.session_price && this.is_free)
+                    this.session_price = DEFAULT_FREE_VALUE;
 
                 angular.forEach(this.sessions, function (session) {
                     session.date = session.date.valueOf();
@@ -139,8 +144,8 @@
 
                 var closing_sale = this.closing_sale;
 
-                if (this.initial_date > this.closing_sale)
-                    this.closing_sale = this.initial_date;
+                // if (this.initial_date > this.closing_sale)
+                //     this.closing_sale = this.initial_date;
             },
             openCloseDate : function ($event) {
                 $event.preventDefault();
@@ -160,6 +165,9 @@
             },
             changeSessionsN : function () {
 
+                if (this.number_of_sessions < 0)
+                    return;
+
                 if (this.number_of_sessions > 10)
                     return;
 
@@ -178,10 +186,11 @@
 
 
                         // var previous_s_date = previous_s.date.getTime();
-                        var date = index ? new Date(previous_s.date.getTime() + 24 * 60 * 60 * 1000) : this.initial_date;
+                        var date = index ? new Date(previous_s.date.getTime() + 24 * 60 * 60 * 1000) : this.closing_sale;
 
                         // var minDate = new Date(date.getTime() - 24 * 60 * 60 * 1000);
-                        var minDate = index ? new Date(previous_s.date.getTime()):this.initial_date;
+                        var minDate = index ? new Date(previous_s.date.getTime()):this.closing_sale;
+                            console.log("MIN DATE",minDate);
                         //var minDate =index ? new Date(previous_s.date.getTime()+24*60*60*1000):date;
 
                         //var _start_time = previous_s && previous_s.date
@@ -219,6 +228,10 @@
                 var size = this.sessions.length;
                 var rest_sessions = this.sessions.slice($index + 1, $index + size);
                 var previous_sessions = this.sessions.slice(0, $index);
+                var is_first_session = $index === 0;
+
+                if(is_first_session)
+                    session.minDate = this.closing_sale;
 
                 rest_sessions.map(function (value) {
                     value.date = value.date <= session.date ? session.date : value.date;

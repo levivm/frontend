@@ -12155,6 +12155,9 @@ hr.on-light {
 .text-left {
   text-align: left;
 }
+.text-center {
+  text-align: center;
+}
 .text-right {
   text-align: right;
 }
@@ -13991,7 +13994,8 @@ tags-input input {
   font-weight: 200;
   color: rgba(102, 102, 102, 0.74);
 }
-.form-group .input-error {
+.form-group .input-error,
+.form-group .input-error p {
   color: #bd362f;
   font-weight: bold;
 }

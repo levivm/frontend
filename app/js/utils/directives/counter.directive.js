@@ -12,9 +12,9 @@
 
         return {
             restrict : 'A',
-            scope : {value : '=value', change : '&change', form : "=form"},
+            scope : {value : '=value',model:'=model', change : '&change', form : "=form"},
             template : '<a href="javascript:;" class="counter-control" ng-click="minus()">-</a>\
-                      <input type="text" class="counter-field" name="number_of_sessions" ng-model="value.number_of_sessions" ng-change="changed()" ng-readonly="readonly">\
+                      <input type="text" class="counter-field" name="number_of_sessions" ng-model="model.number_of_sessions" ng-change="changed()" ng-readonly="readonly">\
                       <a  href="javascript:;" class="counter-control" ng-click="plus()">+</a>',
             link : function (scope, element, attributes) {
                 // Make sure the value attribute is not missing.
@@ -26,6 +26,7 @@
                 var max = angular.isUndefined(attributes.max) ? null : parseInt(attributes.max);
                 var step = angular.isUndefined(attributes.step) ? 1 : parseInt(attributes.step);
 
+
                 element.addClass('truliiCounter-container');
 
                 // If the 'editable' attribute is set, we will make the field editable.
@@ -36,7 +37,7 @@
                  */
                 var setValue = function (val) {
 
-                    scope.value.number_of_sessions = parseInt(val);
+                    scope.model.number_of_sessions = parseInt(val);
                     scope.form.number_of_sessions.$setDirty();
                     scope.change();
                 };
@@ -45,11 +46,12 @@
                  * Decrement the value and make sure we stay within the limits, if defined.
                  */
                 scope.minus = function () {
+                    console.log('value',min === 0 && scope.value < 1);
                     if (min && (scope.value <= min || scope.value - step <= min) || min === 0 && scope.value < 1) {
                         setValue(min);
                         return false;
                     }
-                    setValue(scope.value.number_of_sessions - step);
+                    setValue(scope.model.number_of_sessions - step);
                 };
 
                 /**
@@ -60,7 +62,7 @@
                         setValue(max);
                         return false;
                     }
-                    setValue(scope.value.number_of_sessions + step);
+                    setValue(scope.model.number_of_sessions + step);
                 };
 
                 /**
