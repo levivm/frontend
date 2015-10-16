@@ -14,6 +14,10 @@
                                             activity, calendar, currentUser,deviceSessionId, defaultPicture) {
 
         var vm = this;
+        var isValidDate = false;
+
+        var paymentWithPse = false;
+
         angular.extend(vm, {
             success : false,
             loading_banks_list:false,
@@ -27,8 +31,9 @@
             plus : plus,
             enroll : enroll,
             isAnonymous : isAnonymous,
+            hasCouponApplied: false,
             getOrganizerPhoto: getOrganizerPhoto,
-            appendPayUUniqueId:appendPayUUniqueId,
+            appendPayUUniqueId: appendPayUUniqueId,
             checkCardExpiry : checkCardExpiry,
             getCardType: getCardType,
             cardData : {
@@ -40,14 +45,14 @@
                 cvv: null,
                 "method": ""
             },
-            changePSEPaymentMethod:changePSEPaymentMethod,
-            changeCCPaymentMethod:changeCCPaymentMethod,
-            enrollPSE:enrollPSE,
-            pseFormData : {
+            changePSEPaymentMethod: changePSEPaymentMethod,
+            changeCCPaymentMethod: changeCCPaymentMethod,
+            enrollPSE: enrollPSE,
+            pseFormData: {
                 "banksList": [],
                 "userTypes":[
                     {'description':'Natural','value':'N'},
-                    {'description':'Juridica','value':'J'},
+                    {'description':'Juridica','value':'J'}
                 ],
                 "idTypes":[
                     {'description':'Cédula de ciudadanía','value':'CC'},
@@ -58,13 +63,13 @@
                     {'description':'Identificador único de cliente','value':'IDC'},
                     {'description':'Número Móvil','value':'CEL'},
                     {'description':'Registro civil de nacimiento','value':'RC'},
-                    {'description':'Documento de identificación extranjero','value':'DE'},
+                    {'description':'Documento de identificación extranjero','value':'DE'}
                 ]
             },
             pseData: {}
         });
+
         console.log("sessionID", deviceSessionId);
-        var isValidDate = false;
 
         _activate();
 
@@ -74,6 +79,7 @@
 
         function changePSEPaymentMethod(){
             Error.form.resetForm(vm.enrollForm);
+            paymentWithPse = true;
             loadAvailableBanks();
 
             function loadAvailableBanks(){
@@ -97,6 +103,7 @@
 
         function changeCCPaymentMethod(){
             Error.form.resetForm(vm.enrollForm);
+            paymentWithPse = false;
         }
 
         function enrollPSE(){
@@ -205,7 +212,11 @@
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
 
-            StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
+            if(paymentWithPse){
+                enrollPSE();
+            } else {
+                StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
+            }
 
             function getStudentSuccess(student){
                 vm.cardData[Payments.KEY_PAYER_ID] = student.id;
@@ -381,11 +392,26 @@
             return activity;
         }
 
+        function _mapVacancy(calendar){
+            calendar.vacancy = calendar.capacity - calendar.assistants.length;
+            calendar.total_price = calendar.session_price * calendar.sessions.length;
+            return calendar;
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
+                ACTION_LOGIN: "Inicia Sesion",
+                ACTION_REGISTER: "Regístrate",
+                ACTION_ENROLL: "Confirmar Inscripción",
+                ACTION_VIEW_RETURN_POLICY: "Ver Políticas de Reembolso del Organizador",
+                ACTION_RETURN: "Volver a Actividad",
+                COPY_ASSISTANT_NUMBER: "Asistente #",
+                COPY_STARTING_ON: "Con inicio el",
+                COPY_VACANCY: " Vacantes",
+                COPY_TO: " a ",
                 COPY_COVER: "Usted desea inscribir",
                 COPY_SIGN_UP: "¿Quieres inscribirte en esta actividad?",
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
@@ -393,18 +419,14 @@
                 COPY_UNTIL_NOW: "Hasta ahora",
                 COPY_NO_ASSISTANTS: "esta actividad no tiene asistentes ¡Sé tú el primero!",
                 COPY_ONE_ASSISTANT: "va 1 asistente ¡Faltas tú!",
-                COPY_MANY_ASSISTANTS: "van {} asistentes ¡Faltas tú!",
+                COPY_MANY_ASSISTANTS: "van {} asistentes inscritos ¡Faltas tú!",
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
-                    + " el cual incluye la comisión de la plataforma de pago,"
-                    + " y con los Términos y Condiciones de Trulii",
-                ACTION_LOGIN: "Inicia Sesion",
-                ACTION_REGISTER: "Regístrate",
-                ACTION_ENROLL: "Inscribir",
-                ACTION_RETURN: "Volver a Actividad",
-                COPY_ASSISTANT_NUMBER: "Asistente #",
+                + " el cual incluye la comisión de la plataforma de pago,"
+                + " y con los Términos y Condiciones de Trulii",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
+                LABEL_ACTIVITY_SESSIONS: "Sesiones",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",
@@ -451,7 +473,8 @@
             vm.success =  _.endsWith($state.current.name, 'success') ? true:false ||
                          _.endsWith($state.current.name, 'pse-response') ? true:false;
 
-            vm.calendar = calendar;
+            vm.calendar = _mapVacancy(calendar);
+
             vm.activity = activity;
             _mapMainPicture(vm.activity);
 
@@ -472,6 +495,10 @@
                     vm.assistants = [angular.extend({}, currentUser.user)];
                 }
             }
+
+            console.log('activity:', vm.activity);
+            console.log('calendar:', vm.calendar);
+            console.log('assistants:', vm.assistants);
         }
     }
 })();

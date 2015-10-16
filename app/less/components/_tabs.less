@@ -1,0 +1,37 @@
+@import url('../_trulii-variables');
+
+.nav-tabs-light {
+    background-color: lighten(@lightbg-text, 95%) !important;
+    border-top: 1px solid @gray-light-medium;
+
+    li {
+
+        height: 3em;
+        width: 10em;
+
+        a {
+            height: 100%;
+            padding: 0.8em 1.4em;
+            text-align: center;
+            color: @lightbg-text !important;
+        }
+
+        &.active {
+            background-color: @white;
+            border-right: 1px solid @gray-light-medium;
+
+            &:not(:first-child) {
+                border-left: 1px solid @gray-light-medium;
+            }
+
+             * {
+                 color: @lightbg-text !important;
+             }
+        }
+
+        &:hover {
+            background-color: @gray-light-medium;
+            color: @lightbg-text !important;
+        }
+    }
+}

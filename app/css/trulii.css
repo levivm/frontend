@@ -12152,6 +12152,9 @@ hr.on-light {
 .scroll-y {
   overflow-y: scroll;
 }
+.remove-shadow {
+  box-shadow: none;
+}
 .text-left {
   text-align: left;
 }
@@ -12481,10 +12484,10 @@ hr.on-light {
   margin-bottom: 0 !important;
 }
 .no-margin {
-  margin: 0px !important;
+  margin: 0 !important;
 }
 .no-padding {
-  margin: 0px !important;
+  padding: 0 !important;
 }
 .bg-primary {
   background: #ffd580;
@@ -14115,6 +14118,34 @@ tags-input input {
 .user-badge .user-badge-center {
   text-align: center;
 }
+.nav-tabs-light {
+  background-color: rgba(242, 242, 242, 0.74) !important;
+  border-top: 1px solid #e3e3e3;
+}
+.nav-tabs-light li {
+  height: 3em;
+  width: 10em;
+}
+.nav-tabs-light li a {
+  height: 100%;
+  padding: 0.8em 1.4em;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.74) !important;
+}
+.nav-tabs-light li.active {
+  background-color: #ffffff;
+  border-right: 1px solid #e3e3e3;
+}
+.nav-tabs-light li.active:not(:first-child) {
+  border-left: 1px solid #e3e3e3;
+}
+.nav-tabs-light li.active * {
+  color: rgba(0, 0, 0, 0.74) !important;
+}
+.nav-tabs-light li:hover {
+  background-color: #e3e3e3;
+  color: rgba(0, 0, 0, 0.74) !important;
+}
 table {
   font-family: 'Sinkin Sans';
 }
@@ -14784,7 +14815,8 @@ ul.dropdown-menu:after {
   margin: 6em 0em;
 }
 .card,
-.dropdown {
+.dropdown,
+.sessions-panel .session {
   margin: 1.5em 0;
   padding: 0;
   display: block;
@@ -16199,6 +16231,105 @@ button.toast-close-button {
   padding: 3em 9.5em;
   background-color: #f7f7f7;
   text-align: center;
+}
+.Panel {
+  box-shadow: none;
+  border: 1px solid #e3e3e3;
+}
+.Panel .panel-heading {
+  padding: 0.5em;
+}
+.Panel .panel-heading h4 {
+  margin: 0;
+}
+.sessions-panel {
+  box-shadow: none;
+  border: 1px solid #e3e3e3;
+}
+.sessions-panel .panel-heading {
+  padding: 0.5em;
+}
+.sessions-panel .panel-heading h4 {
+  margin: 0;
+}
+.sessions-panel .panel-body {
+  max-height: 24em;
+  overflow: scroll;
+}
+.sessions-panel .session {
+  padding: 1.5em;
+  margin: 0 0 0.5em 0;
+  color: #777777;
+}
+.attendees-panel {
+  box-shadow: none;
+  border: 1px solid #e3e3e3;
+}
+.attendees-panel .panel-heading {
+  padding: 0.5em;
+}
+.attendees-panel .panel-heading h4 {
+  margin: 0;
+}
+.payments-panel {
+  box-shadow: none;
+  border: 1px solid #e3e3e3;
+}
+.payments-panel .panel-heading {
+  padding: 0.5em;
+}
+.payments-panel .panel-heading h4 {
+  margin: 0;
+}
+.payments-panel .panel-body {
+  padding: 0;
+}
+.payments-panel .panel-footer {
+  padding: 3em 6em;
+  text-align: center;
+  background-color: #f7f7f7;
+}
+.payments-panel .panel-footer .btn {
+  padding: 1em;
+}
+.billing-widget {
+  border: 1px solid #e3e3e3;
+  font-size: 0.8em;
+  border-radius: 4px;
+}
+.billing-widget .item {
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 50%;
+  float: left;
+}
+.billing-widget .sub-item {
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 50%;
+  float: left;
+  padding-left: 3em;
+  font-size: 0.8em;
+}
+.billing-widget .value {
+  text-align: end;
+  font-weight: 600;
+  float: right;
+}
+.billing-widget .sub-value {
+  text-align: end;
+}
+.billing-widget .invoice {
+  padding: 1em;
+  background-color: #eeeeee;
+}
+.billing-widget .total {
+  background-color: #e3e3e3;
+  padding: 1em;
 }
 .popover {
   box-shadow: none;

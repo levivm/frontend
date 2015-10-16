@@ -239,7 +239,7 @@
                             </div>
                         </div>
                         <div class="col-md-6 clear-spacings float-right">
-                            <div class="closing-sale" ng-bind="::detail.strings.COPY_CLOSING_DATE"></div>
+                            <div class="closing-sale" ng-bind="::detail.strings.LABEL_CLOSING_DATE"></div>
                             <div class="closing-sale" ng-bind="calendar.closing_sale | date:'MMM d, y'"></div>
                         </div>
                     </div>
@@ -353,21 +353,24 @@
         <h3 class="text-center "><strong ng-bind="::detail.strings.COPY_HEADER_REASONS_TO_USE"></strong></h3>
         <div class="reasons-container">
             <div class="reason">
-                <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png" alt="{{ ::detail.strings.REASON_NO_COMMISSIONS }}"/>
+                <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png"
+                     alt="{{ ::detail.strings.REASON_NO_COMMISSIONS }}"/>
                 <div class="reason-text">
                     <div class="reason-title" ng-bind="::detail.strings.REASON_NO_COMMISSIONS"></div>
                     <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_NO_COMMISSIONS"></div>
                 </div>
             </div>
             <div class="reason">
-                <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png" alt="{{ ::detail.strings.REASON_REFUND }}"/>
+                <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png"
+                     alt="{{ ::detail.strings.REASON_REFUND }}"/>
                 <div class="reason-text">
                     <div class="reason-title" ng-bind="::detail.strings.REASON_REFUND"></div>
                     <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_REFUND"></div>
                 </div>
             </div>
             <div class="reason">
-                <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png" alt="{{ ::detail.strings.REASON_SECURE }}"/>
+                <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png"
+                     alt="{{ ::detail.strings.REASON_SECURE }}"/>
                 <div class="reason-text">
                     <div class="reason-title" ng-bind="::detail.strings.REASON_SECURE"></div>
                     <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_SECURE"></div>
