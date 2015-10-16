@@ -145,9 +145,12 @@
         }
 
         function getCityById(city_id) {
+            console.log('ciudades disponibles',availableCities.filter(byId));
             return availableCities.filter(byId)[0];
 
             function byId(city) {
+                console.log('city',city);
+                console.log('city_id',city_id);
                 return city.id === city_id;
             }
         }
