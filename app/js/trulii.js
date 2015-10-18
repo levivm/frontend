@@ -11,6 +11,8 @@
             'ngAnimate',
             'ui.bootstrap',
             'LocalStorageModule',
+            'angularMoment',
+            'ui.utils.masks',
             'trulii.config',
             'trulii.routes',
             'trulii.authentication',
@@ -25,8 +27,9 @@
             'trulii.payments'
         ]);
 
+
     angular
-        .module('trulii.config', ['facebook', 'ui.utils.masks']);
+        .module('trulii.config', ['facebook']);
 
     angular
         .module('trulii.routes', ['ui.router', 'trulii.routes.config']);

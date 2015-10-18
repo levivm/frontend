@@ -13,6 +13,9 @@
 
         ])
         .constant('ActivitiesTemplatesPath', "partials/activities/")
+        .constant('angularMomentConfig', {
+            timezone: 'America/Bogota' // e.g. 'Europe/London',
+        })
         .config(config);
 
     angular

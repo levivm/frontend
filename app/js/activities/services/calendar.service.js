@@ -15,9 +15,9 @@
         .module('trulii.activities.services')
         .factory('Calendar', Calendar);
 
-    Calendar.$inject = ['$http', '$q', '$filter', 'ActivityServerApi'];
+    Calendar.$inject = ['$http', '$q', '$filter', 'moment', 'angularMomentConfig', 'ActivityServerApi'];
 
-    function Calendar($http, $q, $filter, ActivityServerApi) {
+    function Calendar($http, $q, $filter, moment, angularMomentConfig, ActivityServerApi) {
 
         var api = ActivityServerApi;
         var DEFAULT_FREE_VALUE = 0;
@@ -57,8 +57,23 @@
                     session.date = new Date(session.date);
                     that.changeSessionDate(index, session);
 
-                    session.end_time = new Date(session.end_time);
-                    session.start_time = new Date(session.start_time);
+
+                    var end_time_tz = moment(session.end_time).tz(angularMomentConfig.timezone);
+                    var start_time_tz = moment(session.start_time).tz(angularMomentConfig.timezone);
+
+
+                    var end_time_datetime = new Date();
+                        end_time_datetime.setHours(end_time_tz.get('hour'));
+                        end_time_datetime.setMinutes(end_time_tz.get('minutes'));
+
+
+                    var start_time_datetime = new Date();
+                        start_time_datetime.setHours(start_time_tz.get('hour'));
+                        start_time_datetime.setMinutes(start_time_tz.get('minutes'));
+
+                    session.end_time   = end_time_datetime;
+                    session.start_time = start_time_datetime;
+
 
 
                 });
@@ -90,8 +105,8 @@
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'
                 return $http.post(api.calendars(activity_id), calendar_data)
                     .then(function (response) {
-                        that.setData(response.data);
-                        return that;
+                        // that.setData(response.data);
+                        return response.data;
                     }, function (response) {
                         return $q.reject(response.data);
                     });
@@ -106,7 +121,7 @@
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'+this.id
                 return $http.put(api.calendar(activity_id, this.id), calendar_copy)
                     .then(function (response) {
-                        that.setData(response.data);
+                        // that.setData(response.data);
                         return response.data;
                     },
                     function (response) {
@@ -128,8 +143,19 @@
 
                 angular.forEach(this.sessions, function (session) {
                     session.date = session.date.valueOf();
-                    session.end_time = session.end_time.valueOf();
-                    session.start_time = session.start_time.valueOf();
+
+                    var end_time_tz = moment().tz(angularMomentConfig.timezone);
+                        end_time_tz.minutes(session.end_time.getMinutes());
+                        end_time_tz.hour(session.end_time.getHours());
+
+                    var start_time_tz = moment().tz(angularMomentConfig.timezone);
+                        start_time_tz.minutes(session.start_time.getMinutes());
+                        start_time_tz.hour(session.start_time.getHours());
+
+
+
+                    session.end_time   =  end_time_tz.valueOf();
+                    session.start_time =  start_time_tz.valueOf();
                 });
             },
             changeStartDate : function () {
@@ -190,7 +216,6 @@
 
                         // var minDate = new Date(date.getTime() - 24 * 60 * 60 * 1000);
                         var minDate = index ? new Date(previous_s.date.getTime()):this.closing_sale;
-                            console.log("MIN DATE",minDate);
                         //var minDate =index ? new Date(previous_s.date.getTime()+24*60*60*1000):date;
 
                         //var _start_time = previous_s && previous_s.date

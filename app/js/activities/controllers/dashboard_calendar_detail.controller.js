@@ -53,11 +53,11 @@
             vm.calendar.update()
                 .then(success, _errored);
 
-                function success(){
+                function success(updatedCalendarData){
 
                     vm.isCollapsed = false;
                     angular.extend(calendar,vm.calendar);
-                    CalendarsManager.setCalendar(calendar);
+                    CalendarsManager.setCalendar(updatedCalendarData);
                     _onSectionUpdated();
 
                     vm.isSaving = false;
