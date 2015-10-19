@@ -41,6 +41,10 @@
   font-style: normal;
 }
 @font-face {
+  font-family: 'PT Serif';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/PTSerif.ttf');
+}
+@font-face {
   font-family: 'Sinkin Sans';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-100Thin.otf');
   font-weight: 100;
@@ -2340,11 +2344,6 @@ th {
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
-}
-.table > thead :nth-child(2) > td,
-.table > tbody :nth-child(2) > td,
-.table > tfoot :nth-child(2) > td {
-  border-top: none;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
