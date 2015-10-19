@@ -3,7 +3,7 @@
         <div class="card-list-item__actions">
             <i class="glyphicon glyphicon-pencil" ng-if="!editMode" ng-click="toggleEditMode()"
                title="{{strings.ACTION_EDIT}}"></i>
-            <i class="glyphicon glyphicon-remove" ng-click="deleteInstructor()" title="{{strings.ACTION_DELETE}}"></i>
+            <i class="glyphicon glyphicon-remove" ng-show="!editMode" ng-click="deleteInstructor()" title="{{strings.ACTION_DELETE}}"></i>
         </div>
         <!--If on Edit Mode-->
         <div ng-if="editMode">
@@ -11,7 +11,7 @@
                 <div class="form-group" trulii-input-errors-control="full_name">
                     <label for="full_name" class="control-label" ng-bind="strings.LABEL_FULL_NAME"></label>
                     <input type="text" id="full_name" name="full_name"
-                           ng-model="instructor.full_name"
+                           ng-model="instructorEditable.full_name"
                            placeholder="{{strings.PLACEHOLDER_FULL_NAME}}"
                            class="form-control"
                            typeahead="instructor as instructor.full_name  for instructor in availableInstructors"
@@ -23,7 +23,7 @@
                     <label for="website" class="control-label">
                         <span ng-bind="strings.LABEL_WEBSITE"></span><span ng-bind="strings.LABEL_OPTIONAL"></span>
                     </label>
-                    <input id="website" class="form-control" ng-model='instructor.website' name="website"/>
+                    <input id="website" class="form-control" ng-model='instructorEditable.website' name="website"/>
                 </div>
 
                 <div class="form-group" trulii-input-errors-control="bio">
@@ -31,7 +31,7 @@
                 <textarea id="bio" class="form-control" name="bio"
                           rows="4" style="resize: none;"
                           placeholder="{{strings.PLACEHOLDER_BIO}}"
-                          ng-model="instructor.bio">
+                          ng-model="instructorEditable.bio">
                 </textarea>
                 </div>
 

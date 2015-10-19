@@ -157,6 +157,7 @@
         function loadAutocompleteTags(){
 
             var deferred = $q.defer();
+            console.log('presaveInfo',presaveInfo.tags);
             deferred.resolve(presaveInfo.tags);
             return deferred.promise;
 

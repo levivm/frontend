@@ -42,6 +42,7 @@
                     toggleEditMode : toggleEditMode,
                     saveInstructor: saveInstructor,
                     selectedInstructor: null,
+                    instructorEditable:null,
                     emptyInstructor: true,
                     cardHeight: '20em'
                 });
@@ -60,7 +61,8 @@
 
                 function selectInstructor($item, $model, $label){
                     _.remove(scope.availableInstructors, { 'id': $item.id});
-                    angular.extend(scope.instructor, $item);
+                    angular.extend(scope.instructorEditable, $item);
+                    console.log('instructorEditable',scope.instructorEditable);
                 }
 
                 function addInstructor(){
@@ -69,21 +71,26 @@
                 }
 
                 function cancelEdition(){
+                    if (!scope.onDashboard && scope.instructorEditable.id)
+                        _pushAutocompleteInstructor(scope.instructorEditable.id);
+
                     toggleEditMode();
                     scope.emptyInstructor = !_isValid();
                 }
 
                 function toggleEditMode(){
                     scope.editMode = !scope.editMode;
+                    scope.instructorEditable = angular.copy(scope.instructor);
                 }
 
                 function saveInstructor(){
-                    var instructor = scope.instructor;
+                    var instructor = scope.instructorEditable;
 
                     if(instructor.full_name && instructor.bio){
                         toggleEditMode();
                         if(instructor.id){
                             // Update Instructor
+                            // var instructor_data = angular.copy(instructor);
                             resource.updateInstructor(instructor).then(successUpdate, errorUpdate);
                         } else{
                             // Create Instructor
@@ -96,6 +103,7 @@
                     }
 
                     function successCreate(instructor){
+                        angular.extend(scope.instructor,instructor);
                         resource.load().then(_onChange, updateError);
                         console.log('saveInstructor. Instructor created.', instructor);
                     }
@@ -105,6 +113,7 @@
                     }
 
                     function successUpdate(instructor){
+                        angular.extend(scope.instructor,instructor);
                         resource.load().then(_onChange, updateError);
                         console.log('saveInstructor. Instructor updated.', instructor);
                     }
@@ -138,8 +147,7 @@
                     function success(response) {
                          _.remove(resource.instructors, 'id', scope.instructor.id);
                          if (!scope.onDashboard)
-                            scope.availableInstructors.
-                                push(_.find(scope.organizer.instructors,{'id':scope.instructor.id}));
+                            _pushAutocompleteInstructor(scope.instructor.id);
                          _removeInstructor();
                          resource.load().then(updateSuccess, updateError);
                          Toast.info(scope.strings.MSG_DELETE_SUCCESS);
@@ -151,6 +159,11 @@
                  }
 
                 //--------- Internal Functions ---------//
+
+                function _pushAutocompleteInstructor(instructor_id){
+                    scope.availableInstructors.
+                        push(_.find(scope.organizer.instructors,{'id':instructor_id}));
+                }
 
                 function _removeInstructor(){
                     scope.instructor= EMPTY_INSTRUCTOR;

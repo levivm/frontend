@@ -103,6 +103,51 @@ tags-input{
 		padding: 0px;
 	}
 
+
+
+	.autocomplete {
+
+		.suggestion-list{
+			width: 11em;
+			padding: 5px 0;
+			margin: 2px 0 0; // override default ul
+			list-style: none;
+			font-size: @font-size-base;
+			text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
+			background-color: @dropdown-bg;
+			border: 1px solid @dropdown-fallback-border; // IE8 fallback
+			border: 1px solid @dropdown-border;
+			border-radius: @border-radius-base;
+			.box-shadow(0 6px 12px rgba(0,0,0,.175));
+			background-clip: padding-box;
+
+			.suggestion-item {
+			    padding: 5px 10px;
+			    cursor: pointer;
+			    white-space: nowrap;
+			    width: auto;
+			    overflow: hidden;
+			    text-overflow: ellipsis;
+			    color: @suggestion-color;
+			    background-color: @suggestion-bgcolor;
+
+			    &.selected {
+			      color: @suggestion-highlight-color;
+			      background-color:  @suggestion-highlight-bgcolor;
+
+			      em {
+			        color: @suggestion-highlight-color-selected;
+			      }
+			    }
+
+			    em {
+			      font-weight: normal;
+			      color: @suggestion-highlight-bgcolor-selected;
+			    }
+			}
+		}
+	}
+
 	.tag-item{
 		background: @success;
 		display: inline-block;
@@ -136,6 +181,7 @@ tags-input{
 
 	input{
 		border: 0px;
+		width:8em !important;
 	}
 
 }

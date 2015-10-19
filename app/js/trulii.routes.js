@@ -85,7 +85,7 @@
                     cities: getAvailableCities
                 },
                 params: {
-                    message: '',
+                    message: null,
                     fromState: null,
                     fromParams: null
                 }

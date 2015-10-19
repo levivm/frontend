@@ -18,10 +18,15 @@
 
         var vm = this;
 
-        vm.activity = activity;
-        vm.save_activity = _updateActivity;
-        vm.setOverElement = _setOverElement;
-        vm.showTooltip = _showTooltip;
+        angular.extend(vm,{
+            activity: angular.copy(activity),
+            save_activity: _updateActivity,
+            setOverElement: _setOverElement,
+            showTooltip: _showTooltip,
+            errors: {},
+            isCollapsed: true,
+            isSaving: false,
+        });
 
         activate();
 
@@ -29,6 +34,7 @@
 
         function _updateActivity() {
             console.log(vm.activity);
+            Error.form.clear(vm.activity_return_policy_form);
             vm.activity.update()
                 .then(_updateSuccess, _errored);
 
@@ -48,7 +54,8 @@
         /*********RESPONSE HANDLERS***************/
 
         function _updateSuccess(response) {
-            Error.form.clear(vm.activity_return_policy_form);
+
+            angular.extend(activity, vm.activity);
             vm.isCollapsed = false;
             _onSectionUpdated();
 
@@ -67,10 +74,18 @@
             activity.updateSection('return-policy');
         }
 
+        function _setStrings(){
+            if(!vm.strings){ vm.strings = {}; }
+            angular.extend(vm.strings, {
+                TITLE_RETURN_POLICY: "Política de Devolución",
+                COPY_RETURN_POLICY: "Especifica bajo qué condiciones aceptas reembolsar pagos",
+                LABEL_RETURN_POLICY: "Política de Devolución",
+                PLACEHOLDER_RETURN_POLICY: "Condiciones para reembolso",
+                ACTION_SAVE: "Guardar",
+            });
+        }
         function activate() {
-            vm.errors = {};
-            vm.isCollapsed = true;
-            vm.isSaving = false;
+            _setStrings();
         }
 
     }

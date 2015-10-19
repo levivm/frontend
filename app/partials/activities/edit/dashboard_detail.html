@@ -1,130 +1,73 @@
 <div class="row">
     <div class="col-lg-9 col-md-11">
 
-      <div class="section-title">
-        Detalles
+      <div class="section-title" ng-bind="::detail.strings.TITLE_DETAIL">
       </div>
 
-      <form name='vm.activity_detail_form' ng-submit="vm.save_activity()">
+      <form name='detail.activity_detail_form' ng-submit="detail.save_activity()">
             <fieldset>              
               
-              <div class="section-description">
-                Completa estos campos si deseas ser más preciso.
+              <div class="section-description" ng-bind="::detail.strings.COPY_DETAIL">
               </div>
                 
                 <div class="form-group" trulii-input-errors-control="audience">
-                    <label class="control-label" for="audience">Audencia</label>
-                        <textarea id="audience" class="form-control" name="audience"
-                                  ng-model='vm.activity.audience' ng-mouseover="vm.setOverElement('audience')"
-                                  trulii-input-popover="Audiencia"
-                                  help-text="'¿A que tipo de personas va dirigido su actividad? ¿Profesionales o público en general?'"
+                    <label class="control-label" for="audience" ng-bind="::detail.strings.LABEL_AUDIENCE"></label>
+                        <textarea elastic id="audience" class="form-control" name="audience"
+                                  ng-model='detail.activity.audience' ng-mouseover="detail.setOverElement('audience')"
+                                  trulii-input-popover="{{::detail.strings.LABEL_AUDIENCE}}"
+                                  help-text="::detail.strings.COPY_HELP_TEXT_AUDIENCE"
                                   trulii-input-autofocus
                                   >
                         </textarea>
                 </div>
                 <div class="form-group" trulii-input-errors-control="goals">
-                    <label class="control-label" for="goals">Objetivos</label>
-                        <textarea id="goals" class="form-control" name="goals"
-                                  ng-model='vm.activity.goals' ng-mouseover="vm.setOverElement('goals')"
-                                  trulii-input-popover="Objetivos"
-                                  help-text="'¿Cual es la finalidad de su actividad?'"
+                    <label class="control-label" for="goals" ng-bind="::detail.strings.LABEL_GOALS"></label>
+                        <textarea elastic id="goals" class="form-control" name="goals"
+                                  ng-model='detail.activity.goals' ng-mouseover="detail.setOverElement('goals')"
+                                  trulii-input-popover="{{::detail.strings.LABEL_GOALS}}"
+                                  help-text="::detail.strings.COPY_HELP_TEXT_GOALS"
                                   >
                         </textarea>
                 </div>
                 <div class="form-group" trulii-input-errors-control="content">
-                    <label class="control-label" for="content">Contenido</label>
-                        <textarea id="content" class="form-control" name="content"
-                                  ng-model='vm.activity.content' ng-mouseover="vm.setOverElement('content')"
-                                  trulii-input-popover="Contenido"
-                                  help-text="'¿Cuales son los temas que impartirá en su actividad?'">
+                    <label class="control-label" for="content" ng-bind="::detail.strings.LABEL_CONTENT"></label>
+                        <textarea elastic id="content" class="form-control" name="content"
+                                  ng-model='detail.activity.content' ng-mouseover="detail.setOverElement('content')"
+                                  trulii-input-popover="{{::detail.strings.LABEL_CONTENT}}"
+                                  help-text="::detail.strings.COPY_HELP_TEXT_CONTENT">
                         </textarea>
                 </div>                    
                 
                 <div class="form-group" trulii-input-errors-control="methodology">
-                    <label class="control-label" for="methodology">Metodología</label>
-                        <textarea id="methodology" class="form-control" name="methodology"
-                                  ng-model='vm.activity.methodology'                                      
-                                  trulii-input-popover="Metodología"
-                                  help-text="'¿Aplicarás algún método de enseñanza en particular? ¿Su actividad será evaluadad? ¿Cómo?'"
+                    <label class="control-label" for="methodology" ng-bind="::detail.strings.LABEL_METHODOLOGY"></label>
+                        <textarea elastic id="methodology" class="form-control" name="methodology"
+                                  ng-model='detail.activity.methodology'                                      
+                                  trulii-input-popover="{{::detail.strings.LABEL_METHODOLOGY}}"
+                                  help-text="::detail.strings.COPY_HELP_TEXT_METHODOLOGY"
                                   >
                         </textarea>
                 </div>
                 <div class="form-group" trulii-input-errors-control="requirements">
-                    <label class="control-label" for="requirements">Requerimientos</label>
-                        <textarea id="requirements" class="form-control" name="requirements"
-                                  ng-model='vm.activity.requirements'
-                                  ng-mouseover="vm.setOverElement('requirements')"
-                                  trulii-input-popover="Requerimientos"
-                                  help-text="'¿Para inscribirse hace falta conocimientos previos en algún tema? ¿Deben llevar algún material para realizar la actividad? ¿Se requiere algunar documentación?'"
+                    <label class="control-label" for="requirements" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></label>
+                        <textarea elastic id="requirements" class="form-control" name="requirements"
+                                  ng-model='detail.activity.requirements'
+                                  ng-mouseover="detail.setOverElement('requirements')"
+                                  trulii-input-popover="{{::detail.strings.LABEL_REQUIREMENTS}}"
+                                  help-text="::detail.strings.COPY_HELP_TEXT_REQUIREMETS"
                                   >
                         </textarea>
                 </div>
                 <div class="form-group" trulii-input-errors-control="extra_info">
-                    <label class="control-label" for="extra_info">Información Adicional</label>
-                        <textarea id="extra_info" class="form-control" ng-model='vm.activity.extra_info'
+                    <label class="control-label" for="extra_info" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></label>
+                        <textarea elastic id="extra_info" class="form-control" ng-model='detail.activity.extra_info'
                                   name="extra_info"
-                                  trulii-input-popover="Información adicional"
-                                  help-text="'¿Alguna otra información adicional que quieras comunicar a tus posibles participantes?'"                    
-                                  >
+                                  trulii-input-popover="{{::detail.strings.LABEL_EXTRA_INFO}}" 
+                                  help-text="::detail.strings.COPY_HELP_TEXT_EXTRA_INFO">
                         </textarea>
                 </div>
-                <trulii-submit-controls is-saving="vm.isSaving" value="Guardar"></trulii-submit-controls>
+                <trulii-submit-controls is-saving="detail.isSaving" value="{{::detail.strings.ACTION_SAVE}}"></trulii-submit-controls>
                 
             </fieldset>
       </form>
     </div>
-    <!--<div class="col-md-3">-->
-    <!--<div class="sidebar-nav-fixed pull-right affix well">-->
-    <!--<ul class="nav">-->
-    <!--<li ng-show="vm.showTooltip('content')">-->
-    <!--<p>-->
-    <!--¿Tu actividad está dividida en módulos en donde cada uno tiene temas a enseñar?-->
-    <!--</p>-->
-    <!--</li>-->
-    <!--<li ng-show="vm.showTooltip('audience')">-->
-    <!--<p>-->
-    <!--¿A qué tipo de público está dirigida tu actividad?-->
-    <!--</p>-->
-    <!--</li>-->
-    <!--<li ng-show="vm.showTooltip('goals')">-->
-    <!--<p>-->
-    <!--¿Cuál es la finalidad de tu actividad?-->
-    <!--</p>-->
-    <!-- -->
-    <!--<p>-->
-    <!--Algunos ejemplos:-->
-    <!--</p>-->
-    <!-- -->
-    <!--<p>-->
-    <!--¿Tus alumnos saldrán dominando algún campo en particular?-->
-    <!--</p>-->
-    <!-- -->
-    <!--<p>-->
-    <!--¿Tus inscritos saldrán agotados con muchas calorías menos?-->
-    <!--</p>-->
-    <!--</li>-->
-    <!--<li ng-show="vm.showTooltip('methodology')">-->
-    <!--<p>¿Tu actividad será evaluada?</p>-->
-    <!-- -->
-    <!--<p>¿Cómo?</p>-->
-    <!-- -->
-    <!--<p>¿Aplicarás algún método de enseñanza en particular?-->
-    <!--</p>-->
-    <!--</li>-->
-    <!--<li ng-show="vm.showTooltip('requirements')">-->
-    <!--<p>-->
-    <!--¿Para inscribirse hace falta conocimientos en algún tema en particular?-->
-    <!--</p>-->
-    <!-- -->
-    <!--<p>-->
-    <!--¿Deben llevar algún material para realizar la actividad?-->
-    <!--</p>-->
-    <!-- -->
-    <!--<p>-->
-    <!--¿Se requiere una documentación?-->
-    <!--</p>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
 </div>

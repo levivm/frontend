@@ -15,33 +15,28 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDashboardCtrl', ActivityDashboardCtrl);
 
-    ActivityDashboardCtrl.$inject = ['$scope','$state', 'Activity','Toast', 'ActivitySteps', 'activity'];
+    ActivityDashboardCtrl.$inject = ['$state','Toast', 'ActivitySteps', 'activity'];
 
-    function ActivityDashboardCtrl($scope,$state, Activity,Toast, ActivitySteps, activity) {
+    function ActivityDashboardCtrl($state, Toast, ActivitySteps, activity) {
 
         var pc = this;
 
-        pc.steps = angular.copy(ActivitySteps);
-        pc.activity = activity;
-        pc.sidebar = false;
-        pc.allow_unpublish = true;
-        pc.allow_publish = true;
-        pc.areAllStepsCompleted = areAllStepsCompleted;
-        pc.isSectionCompleted = isSectionCompleted;
-        pc.getCheckStyle = getCheckStyle;
-        pc.publish_activity = _publish_activity;
-        pc.unpublish_activity = _unpublish_activity;
-        pc.steps_left = activity.steps_left;
-        
-
-        pc.strings = {};
-        pc.strings.UNPUBLISH_ACTIVITY_LABEL = "Desactivar";
-        pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad saldrá de los motores de búsqueda";
-        pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar";
-        pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
+        angular.extend(pc,{ 
+            steps: angular.copy(ActivitySteps),
+            activity: activity,
+            sidebar: true,
+            allow_unpublish: true,
+            allow_publish: true,
+            areAllStepsCompleted: areAllStepsCompleted,
+            isSectionCompleted: isSectionCompleted,
+            getCheckStyle: getCheckStyle,
+            publish_activity: _publish_activity,
+            unpublish_activity: _unpublish_activity,
+            steps_left: activity.steps_left,
+        });
 
 
-        initialize();
+        activate();
 
         function areAllStepsCompleted() {
             return activity.areAllStepsCompleted();
@@ -71,9 +66,9 @@
                 Toast.success(pc.strings.ACTIVITY_PUBLISHED);
                 pc.allow_unpublish = true;
             },function(response){
-                Toast.error(response.data.detail)
+                Toast.error(response.data.detail);
                 pc.allow_publish = true;
-            })
+            });
         }
 
         function _unpublish_activity() {
@@ -84,13 +79,27 @@
                 pc.allow_publish = true;
 
             },function(response){
-                Toast.error(response.data.detail)
+                Toast.error(response.data.detail);
                 pc.allow_unpublish = true;
-            })
+            });
         }
 
-        function initialize() {
-            pc.sidebar = true;
+        function _setStrings(){
+
+            if(!pc.strings){ pc.strings = {}; }
+
+            pc.strings.UNPUBLISH_ACTIVITY_LABEL = "Desactivar";
+            pc.strings.COPY_UNPUBLISH_ACTIVITY = "Remover publicación de los resultados de búsqueda";
+            pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad saldrá de los motores de búsqueda";
+            pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar";
+            pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
+
+
+        }
+
+        function activate() {
+            _setStrings();
+            // pc.sidebar = true;
             activity.updateAllSections();
 
             match_required_steps(pc.steps, pc.activity.required_steps);            
@@ -99,10 +108,10 @@
 
                 _.each(steps, function(step){
 
-                    if ( required_steps[step.name] != undefined ){
+                    if ( required_steps[step.name] !== undefined ){
                         step.required = true;
                     }
-                })
+                });
             }
         }
 

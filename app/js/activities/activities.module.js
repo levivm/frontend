@@ -13,6 +13,9 @@
 
         ])
         .constant('ActivitiesTemplatesPath', "partials/activities/")
+        .constant('angularMomentConfig', {
+            timezone: 'America/Bogota' // e.g. 'Europe/London',
+        })
         .config(config);
 
     angular
@@ -84,25 +87,25 @@
             .state('dash.activities-edit.detail', {
                 url:'detail',
                 controller: 'ActivityDBDetailController',
-                controllerAs: 'vm',
+                controllerAs: 'detail',
                 templateUrl: 'partials/activities/edit/dashboard_detail.html'
             })
             .state('dash.activities-edit.calendars', {
                 url:'calendars',
                 controller: 'ActivityCalendarsController',
-                controllerAs: 'vm',
+                controllerAs: 'calendars',
                 templateUrl: 'partials/activities/edit/dashboard_calendars.html',
                 resolve:{
                     calendars:getCalendars
                 },
                 params: {
-                    'republish': false
+                    republish: null
                 }
             })
             .state('dash.activities-edit.calendars.detail', {
                 url:'/:calendar_id',
                 controller: 'ActivityCalendarController',
-                controllerAs: 'vm',
+                controllerAs: 'calendar',
                 templateUrl: 'partials/activities/edit/dashboard_calendar_detail.html',
                 resolve: {
                     calendar: getCalendar
@@ -131,7 +134,7 @@
             .state('dash.activities-edit.return-policy', {
                 url:'return-policy',
                 controller: 'ActivityDBReturnPDashboard',
-                controllerAs: 'vm',
+                controllerAs: 'returnPolicy',
                 templateUrl: 'partials/activities/edit/dashboard_return_policy.html'
             })
             .state('dash.activities-manage', {
@@ -326,8 +329,8 @@
          * @requires trulii.activities.services.CalendarsManager
          * @methodOf trulii.activities.config
          */
-        getCalendar.$inject = ['$stateParams','CalendarsManager'];
-        function getCalendar($stateParams, CalendarsManager){
+        getCalendar.$inject = ['$stateParams','calendars', 'CalendarsManager'];
+        function getCalendar($stateParams, calendars, CalendarsManager){
             return CalendarsManager.getCalendar($stateParams.calendar_id);
         }
 

@@ -15,11 +15,12 @@
         .module('trulii.activities.services')
         .factory('Calendar', Calendar);
 
-    Calendar.$inject = ['$http', '$q', '$filter', 'ActivityServerApi'];
+    Calendar.$inject = ['$http', '$q', '$filter', 'moment', 'angularMomentConfig', 'ActivityServerApi'];
 
-    function Calendar($http, $q, $filter, ActivityServerApi) {
+    function Calendar($http, $q, $filter, moment, angularMomentConfig, ActivityServerApi) {
 
         var api = ActivityServerApi;
+        var DEFAULT_FREE_VALUE = 0;
 
         function Calendar(calendarData) {
             if (calendarData) {
@@ -31,6 +32,7 @@
                 this.initial_date = today;
                 this.minStartDate = today;
                 this.closing_sale = tomorrow;
+                // this.session_price = 0;
                 this.capacity = 1;
 
                 this.sessions = [];
@@ -43,20 +45,35 @@
             setData : function (calendarData) {
 
                 var that = this;
+                var sessions = angular.copy(calendarData.sessions);
                 angular.extend(this, calendarData);
                 this.sessions = $filter('orderBy')(this.sessions, 'date');
 
                 this.initial_date = new Date(this.initial_date);
                 this.closing_sale = new Date(this.closing_sale);
+
                 angular.forEach(this.sessions, function (session, index) {
 
                     session.date = new Date(session.date);
                     that.changeSessionDate(index, session);
 
-                    // session.end_time   = null;
-                    // session.start_time = null;
-                    session.end_time = new Date(session.end_time);
-                    session.start_time = new Date(session.start_time);
+
+                    var end_time_tz = moment(session.end_time).tz(angularMomentConfig.timezone);
+                    var start_time_tz = moment(session.start_time).tz(angularMomentConfig.timezone);
+
+
+                    var end_time_datetime = new Date();
+                        end_time_datetime.setHours(end_time_tz.get('hour'));
+                        end_time_datetime.setMinutes(end_time_tz.get('minutes'));
+
+
+                    var start_time_datetime = new Date();
+                        start_time_datetime.setHours(start_time_tz.get('hour'));
+                        start_time_datetime.setMinutes(start_time_tz.get('minutes'));
+
+                    session.end_time   = end_time_datetime;
+                    session.start_time = start_time_datetime;
+
 
 
                 });
@@ -80,16 +97,16 @@
             },
             create : function () {
                 var activity_id = this.activity;
+                var calendar_data = angular.copy(this);
 
-                this.setToSave();
+                calendar_data.setToSave();
 
-                console.log(this);
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'
-                return $http.post(api.calendars(activity_id), this)
+                return $http.post(api.calendars(activity_id), calendar_data)
                     .then(function (response) {
-                        that.setData(response.data);
-                        return that;
+                        // that.setData(response.data);
+                        return response.data;
                     }, function (response) {
                         return $q.reject(response.data);
                     });
@@ -104,10 +121,11 @@
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'+this.id
                 return $http.put(api.calendar(activity_id, this.id), calendar_copy)
                     .then(function (response) {
-                        that.setData(response.data);
-                        return response.data
+                        // that.setData(response.data);
+                        return response.data;
                     },
                     function (response) {
+
                         return $q.reject(response.data);
                     });
 
@@ -120,10 +138,24 @@
                 this.initial_date = this.initial_date.valueOf();
                 this.closing_sale = this.closing_sale.valueOf();
 
+                if (!this.session_price && this.is_free)
+                    this.session_price = DEFAULT_FREE_VALUE;
+
                 angular.forEach(this.sessions, function (session) {
                     session.date = session.date.valueOf();
-                    session.end_time = session.end_time.valueOf();
-                    session.start_time = session.start_time.valueOf();
+
+                    var end_time_tz = moment().tz(angularMomentConfig.timezone);
+                        end_time_tz.minutes(session.end_time.getMinutes());
+                        end_time_tz.hour(session.end_time.getHours());
+
+                    var start_time_tz = moment().tz(angularMomentConfig.timezone);
+                        start_time_tz.minutes(session.start_time.getMinutes());
+                        start_time_tz.hour(session.start_time.getHours());
+
+
+
+                    session.end_time   =  end_time_tz.valueOf();
+                    session.start_time =  start_time_tz.valueOf();
                 });
             },
             changeStartDate : function () {
@@ -138,8 +170,8 @@
 
                 var closing_sale = this.closing_sale;
 
-                if (this.initial_date > this.closing_sale)
-                    this.closing_sale = this.initial_date;
+                // if (this.initial_date > this.closing_sale)
+                //     this.closing_sale = this.initial_date;
             },
             openCloseDate : function ($event) {
                 $event.preventDefault();
@@ -159,6 +191,9 @@
             },
             changeSessionsN : function () {
 
+                if (this.number_of_sessions < 0)
+                    return;
+
                 if (this.number_of_sessions > 10)
                     return;
 
@@ -177,10 +212,10 @@
 
 
                         // var previous_s_date = previous_s.date.getTime();
-                        var date = index ? new Date(previous_s.date.getTime() + 24 * 60 * 60 * 1000) : this.initial_date;
+                        var date = index ? new Date(previous_s.date.getTime() + 24 * 60 * 60 * 1000) : this.closing_sale;
 
                         // var minDate = new Date(date.getTime() - 24 * 60 * 60 * 1000);
-                        var minDate = index ? new Date(previous_s.date.getTime()):this.initial_date;
+                        var minDate = index ? new Date(previous_s.date.getTime()):this.closing_sale;
                         //var minDate =index ? new Date(previous_s.date.getTime()+24*60*60*1000):date;
 
                         //var _start_time = previous_s && previous_s.date
@@ -218,6 +253,10 @@
                 var size = this.sessions.length;
                 var rest_sessions = this.sessions.slice($index + 1, $index + size);
                 var previous_sessions = this.sessions.slice(0, $index);
+                var is_first_session = $index === 0;
+
+                if(is_first_session)
+                    session.minDate = this.closing_sale;
 
                 rest_sessions.map(function (value) {
                     value.date = value.date <= session.date ? session.date : value.date;
@@ -237,9 +276,10 @@
                 var start_time = session.start_time.getHours();
                 var end_time = session.end_time.getHours();
 
-                if (start_time > end_time) {
+                if (start_time >= end_time) {
                     var new_end_time = new Date();
                     new_end_time.setHours(start_time + 1);
+                    new_end_time.setMinutes(0);
                     session.end_time = new_end_time;
                 }
 
@@ -252,15 +292,16 @@
                 var start_time = session.start_time.getHours();
                 var end_time = session.end_time.getHours();
 
-                if (start_time > end_time) {
+                if (start_time >= end_time) {
                     var new_start_time = new Date();
                     new_start_time.setHours(end_time - 1);
+                    new_start_time.setMinutes(0);
                     session.start_time = new_start_time;
                 }
 
             },
             hasAssistants: function(){
-                return this.assistants.length > 0
+                return this.assistants.length > 0;
             },
             addAssistants : function (assistants) {
                 this.assistants = this.assistants.concat(assistants);
