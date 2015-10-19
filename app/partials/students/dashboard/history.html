@@ -43,10 +43,10 @@
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <tr class="text-center">
-                                        <th><strong ng-bind="::history.strings.HEADER_ORDER"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_DATE"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_TOTAL"></strong></th>
+                                        <th ng-bind="::history.strings.HEADER_ORDER"></th>
+                                        <th ng-bind="::history.strings.HEADER_ACTIVITY"></th>
+                                        <th ng-bind="::history.strings.HEADER_DATE"></th>
+                                        <th ng-bind="::history.strings.HEADER_TOTAL"></th>
                                     </tr>
                                     <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
                                         <td>
