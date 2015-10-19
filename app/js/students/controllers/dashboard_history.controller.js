@@ -42,10 +42,10 @@
             }
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Solicitar Reembolso",
-                SECTION_HISTORY: "Historial de Compras",
                 COPY_SEARCH: "Buscar por número de orden, pago, detalle, etc.",
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_NA : "N/A",
+                COPY_START_DATE: "Fecha inicio: ",
                 LABEL_SEARCH: "Buscar Ordenes",
                 LABEL_EMPTY_ORDERS: "Hasta ahora no has realizado compras",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un nuevo pasatiemo o mejores tu curriculo",
@@ -53,12 +53,12 @@
                 TAB_REIMBURSEMENTS: "Reembolsos",
                 PLURALIZE_ASSISTANT: "{} asistente",
                 PLURALIZE_ASSISTANTS: "{} asistentes",
-                HEADER_ORDER: "Orden",
+                HEADER_ORDER: "Nro. rden",
                 HEADER_ACTIVITY: "Actividad",
                 HEADER_PAYMENT: "Pago",
                 HEADER_DETAIL: "Detalle",
-                HEADER_DATE: "Fecha",
-                HEADER_TOTAL: "Total"
+                HEADER_DATE: "Fecha de compra",
+                HEADER_TOTAL: "Monto"
             });
         }
 
