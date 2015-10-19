@@ -1,37 +1,156 @@
 @font-face {
-  font-family: 'Sinkin Sans';
-  src: url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.eot');
-  src: url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-400Regular-webfont.svg#sinkin_sans400_regular') format('svg');
+  font-family: 'montserrat';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-UltraLight.otf');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-Light.otf');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-Regular.otf');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-SemiBold.otf');
   font-weight: 400;
   font-style: normal;
 }
 @font-face {
+  font-family: 'montserrat';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-Bold.otf');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-ExtraBold.otf');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'montserrat';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-Black.otf');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'PT Serif';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/PTSerif.ttc');
+}
+@font-face {
   font-family: 'Sinkin Sans';
-  src: url('/css/fonts/sinkinsans/SinkinSans-300Light-webfont.eot');
-  src: url('/css/fonts/sinkinsans/SinkinSans-300Light-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-300Light-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-300Light-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-300Light-webfont.svg#sinkin_sans300_light') format('svg');
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-100Thin.otf');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-100ThinItalic.otf');
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-200XLight.otf');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-200XLightItalic.otf');
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-300Light.otf');
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: 'Sinkin Sans';
-  src: url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.eot');
-  src: url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-600SemiBold-webfont.svg#sinkin_sans600_semibold') format('svg');
-  font-weight: bold;
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-300LightItalic.otf');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-400Regular.otf');
+  font-weight: 400;
   font-style: normal;
 }
 @font-face {
   font-family: 'Sinkin Sans';
-  src: url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.eot');
-  src: url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-800Black-webfont.svg#sinkin_sans800_black') format('svg');
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-400Italic.otf');
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-500Medium.otf');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-500MediumItalic.otf');
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-600SemiBold.otf');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-600SemiBoldItali.otf');
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-700Bold.otf');
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-700BoldItalic.otf');
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-800Black.otf');
   font-weight: 800;
   font-style: normal;
 }
 @font-face {
   font-family: 'Sinkin Sans';
-  src: url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.eot');
-  src: url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.eot?#iefix') format('embedded-opentype'), url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.woff') format('woff'), url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.ttf') format('truetype'), url('/css/fonts/sinkinsans/SinkinSans-900XBlack-webfont.svg#sinkin_sans900_x_black') format('svg');
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-800BlackItalic.otf');
+  font-weight: 800;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-900XBlack.otf');
   font-weight: 900;
   font-style: normal;
+}
+@font-face {
+  font-family: 'Sinkin Sans';
+  src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/SinkinSans-900XBlackItalic.otf');
+  font-weight: 900;
+  font-style: italic;
 }
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
