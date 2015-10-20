@@ -53,7 +53,7 @@
                 TAB_REIMBURSEMENTS: "Reembolsos",
                 PLURALIZE_ASSISTANT: "{} asistente",
                 PLURALIZE_ASSISTANTS: "{} asistentes",
-                HEADER_ORDER: "Nro. rden",
+                HEADER_ORDER: "Nro. orden",
                 HEADER_ACTIVITY: "Actividad",
                 HEADER_PAYMENT: "Pago",
                 HEADER_DETAIL: "Detalle",

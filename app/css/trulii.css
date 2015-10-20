@@ -2202,8 +2202,8 @@ table {
   background-color: transparent;
 }
 caption {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 35px 8px;
+  padding-bottom: 35px 8px;
   color: #777777;
   text-align: left;
 }
@@ -2221,10 +2221,20 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 35px 8px;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #ddd;
+}
+.table > thead > tr:nth-child(2) > td,
+.table > tbody > tr:nth-child(2) > td,
+.table > tfoot > tr:nth-child(2) > td {
+  border-top: none;
+}
+.table > thead > tr:last-child > td,
+.table > tbody > tr:last-child > td,
+.table > tfoot > tr:last-child > td {
+  border-bottom: 1px solid #ddd;
 }
 .table > thead > tr > th {
   vertical-align: bottom;
@@ -2437,6 +2447,9 @@ table th[class*="col-"] {
   .table-responsive > .table-bordered > tfoot > tr:last-child > td {
     border-bottom: 0;
   }
+}
+.table-fixed {
+  table-layout: fixed;
 }
 fieldset {
   padding: 0;
@@ -13883,6 +13896,9 @@ tags-input input {
   bottom: 0;
   right: 0;
 }
+.search-input {
+  margin: 10px 0px 50px 10px;
+}
 @font-face {
   font-family: 'fontello';
   src: url('fonts/fontello/fontello.eot?27890168');
@@ -14165,16 +14181,20 @@ tags-input input {
 table {
   font-family: 'Sinkin Sans';
 }
+table a {
+  text-decoration: underline;
+}
 th {
   border-top: 0px solid !important;
   font-weight: normal;
   color: #333333;
   text-align: left;
 }
-th,
-td {
+th {
   font-size: 1em;
-  padding: 15px 8px !important;
+}
+td {
+  font-size: 0.85em;
 }
 .order {
   position: relative;
