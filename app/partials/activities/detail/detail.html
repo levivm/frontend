@@ -267,7 +267,7 @@
 <!--Instructors-->
 <div class="row">
     <div class="col-md-12 instructors-container">
-        <div class="title" ng-bind="::detail.strings.LABEL_INSTRUCTORS"></div>
+        <h2 class="title" ng-bind="::detail.strings.LABEL_INSTRUCTORS"></h2>
         <div class="instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
             <div class="name" ng-bind="::instructor.full_name"></div>
             <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
@@ -296,7 +296,7 @@
 <!--Attendees-->
 <div class="row">
     <div class="col-md-12 attendees-container">
-        <div class="title" ng-bind="::detail.strings.LABEL_ATTENDEES"></div>
+        <h2 class="title" ng-bind="::detail.strings.LABEL_ATTENDEES"></h2>
         <div ui-view="attendees"></div>
     </div>
 </div>
