@@ -13668,6 +13668,9 @@ select.form-control {
   font-size: 1.3em;
   height: auto;
 }
+select.form-control.input-sm {
+  font-size: 1em;
+}
 tags-input .tags {
   display: block;
   width: 100%;
@@ -13881,6 +13884,15 @@ tags-input input {
 .btn-primary {
   color: white !important;
 }
+.btn-link {
+  color: rgba(0, 0, 0, 0.74);
+}
+.btn-link:hover {
+  color: #777777;
+}
+.btn-link:visited {
+  color: #ffbc33;
+}
 .btn {
   font-family: 'Montserrat', sans-serif;
 }
@@ -13952,6 +13964,9 @@ tags-input input {
 }
 .form-group:not(:first-child) {
   margin-top: 3.4em;
+}
+.form-group:not(:first-child).form-group-sm {
+  margin-top: 1em;
 }
 .form-submit-controls {
   text-align: right;
@@ -16188,7 +16203,6 @@ button.toast-close-button {
   margin-top: 2em;
 }
 .sign-up-container .btn-link {
-  color: rgba(0, 0, 0, 0.74);
   text-decoration: underline;
 }
 .reasons-container {

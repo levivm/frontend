@@ -1,0 +1,67 @@
+<div class="row">
+    <trulii-preloader loader-control="enroll.loading_banks_list"></trulii-preloader>
+    <div class="col-md-8 col-md-offset-2 separate-above" ng-show="!enroll.loading_banks_list" >
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group" trulii-input-errors-control="bank">
+                    <label for="bank" ng-bind="::enroll.strings.LABEL_BANK"></label>
+                    <select  class="form-control input-sm" name="bank" id="bank"
+                             ng-model="enroll.pseData.selectedBank"
+                             ng-options="bank as bank.description for (index,bank) in enroll.pseFormData.banksList">
+                        <option value="" ng-show="!enroll.pseData.selectedBank"
+                                ng-bind="::enroll.strings.OPTION_BANK_DEFAULT" selected>
+
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row separate-above-less">
+            <div class="col-md-12">
+                <div class="form-group" trulii-input-errors-control="idType">
+                    <label for="idType" ng-bind="::enroll.strings.LABEL_ID_TYPE"></label>
+                    <select  class="form-control input-sm" name="idType" id="idType"
+                             ng-model="enroll.pseData.selectedIdType"
+                             ng-options="type  as type.description for (index,type) in enroll.pseFormData.idTypes">
+                        <option value="" ng-show="!enroll.pseData.selectedBank" ng-bind="::enroll.strings.LABEL_ID_TYPE" selected>
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row separate-above-less">
+            <div class="col-md-12">
+                <div class="form-group" trulii-input-errors-control="idNumber">
+                    <label for="idNumber" ng-bind="::enroll.strings.LABEL_ID_NUMBER"></label>
+                    <input type="text" name="idNumber" id="idNumber" class="form-control"
+                           ng-model="enroll.pseData.idNumber">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group" trulii-input-errors-control="name">
+                    <label for="name" ng-bind="::enroll.strings.LABEL_CLIENT_NAME_LAST_NAME"></label>
+                    <input type="text" name="name" id="name" class="form-control"
+                           ng-model="enroll.pseData.name">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="form-group" trulii-input-errors-control="payerEmail">
+                    <label for="payerEmail" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
+                    <input type="email" name="payerEmail" id="payerEmail" class="form-control"
+                           ng-model="enroll.pseData.payerEmail">
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-2">
+                <div class="form-group" trulii-input-errors-control="contactPhone">
+                    <label for="contactPhone" ng-bind="::enroll.strings.LABEL_PHONE_NUMBER"></label>
+                    <input type="text" name="contactPhone" id="contactPhone" class="form-control"
+                           ng-model="enroll.pseData.contactPhone">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

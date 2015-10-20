@@ -5,37 +5,41 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', '$timeout', 'ActivitiesManager',
+    ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover'];
 
-    function ActivityDetailEnrollController($state, $window, $sce, $timeout, ActivitiesManager,
+    function ActivityDetailEnrollController($state, $window, $sce, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
-                                            activity, calendar, currentUser,deviceSessionId, defaultPicture) {
+                                            activity, calendar, currentUser,deviceSessionId, defaultPicture, defaultCover) {
 
         var vm = this;
         var isValidDate = false;
 
-        var paymentWithPse = false;
-
         angular.extend(vm, {
             success : false,
             loading_banks_list:false,
+            paymentWithPse : false,
+            hasCouponApplied: false,
             calendar : null,
             activity : null,
             capacity : null,
             amount : null,
             quantity : 0,
             assistants : [],
-            minus : minus,
-            plus : plus,
+
+            addAssistant : addAssistant,
+            removeAssistant: removeAssistant,
             enroll : enroll,
             isAnonymous : isAnonymous,
-            hasCouponApplied: false,
             getOrganizerPhoto: getOrganizerPhoto,
             appendPayUUniqueId: appendPayUUniqueId,
             checkCardExpiry : checkCardExpiry,
             getCardType: getCardType,
+            changePSEPaymentMethod: changePSEPaymentMethod,
+            changeCCPaymentMethod: changeCCPaymentMethod,
+            enrollPSE: enrollPSE,
+
             cardData : {
                 "name_card": "APPROVED",
                 "identificationNumber": "32144457",
@@ -45,9 +49,6 @@
                 cvv: null,
                 "method": ""
             },
-            changePSEPaymentMethod: changePSEPaymentMethod,
-            changeCCPaymentMethod: changeCCPaymentMethod,
-            enrollPSE: enrollPSE,
             pseFormData: {
                 "banksList": [],
                 "userTypes":[
@@ -79,7 +80,7 @@
 
         function changePSEPaymentMethod(){
             Error.form.resetForm(vm.enrollForm);
-            paymentWithPse = true;
+            vm.paymentWithPse = true;
             loadAvailableBanks();
 
             function loadAvailableBanks(){
@@ -103,7 +104,7 @@
 
         function changeCCPaymentMethod(){
             Error.form.resetForm(vm.enrollForm);
-            paymentWithPse = false;
+            vm.paymentWithPse = false;
         }
 
         function enrollPSE(){
@@ -212,7 +213,7 @@
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
 
-            if(paymentWithPse){
+            if(vm.paymentWithPse){
                 enrollPSE();
             } else {
                 StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
@@ -333,15 +334,17 @@
             return !Authentication.isAuthenticated();
         }
 
-        function minus() {
+        function removeAssistant(index) {
             if (vm.quantity > 1) {
                 vm.quantity -= 1;
-                vm.assistants.pop();
+                vm.assistants.splice(index, 1);
                 _calculateAmount();
+            } else {
+                Toast.warning('Es necesario al menos un asistente a inscribir');
             }
         }
 
-        function plus() {
+        function addAssistant() {
             if (vm.quantity + vm.calendar.assistants.length < vm.capacity) {
                 vm.quantity += 1;
                 vm.assistants.push({});
@@ -398,6 +401,21 @@
             return calendar;
         }
 
+        function _setAssistants() {
+            if(_isAllBooked()) {
+                vm.quantity = 0;
+                vm.assistants = [];
+            } else {
+                vm.quantity = 1;
+                if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
+                    console.log('Usuario ya esta inscrito');
+                    vm.assistants = [{}];
+                } else {
+                    vm.assistants = [angular.extend({}, currentUser.user)];
+                }
+            }
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -441,9 +459,12 @@
 
                 LABEL_ID_NUMBER:"Número de identificación",
                 LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
-                LABEL_BANKS:"Banco",
+                LABEL_BANK:"Banco",
+                OPTION_BANK_DEFAULT:"-- Seleccione Banco --",
                 LABEL_USER_TYPE:"Tipo de Persona",
+                OPTION_USER_TYPE_DEFAULT:"-- Seleccione --",
                 LABEL_ID_TYPE:"Tipo de Documento de Identificación",
+                OPTION_ID_TYPE_DEFAULT:"-- Seleccione Tipo de Documento --",
 
                 LABEL_PHONE_NUMBER:"Teléfono",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
@@ -470,31 +491,17 @@
                 }
             };
 
-            vm.success =  _.endsWith($state.current.name, 'success') ? true:false ||
-                         _.endsWith($state.current.name, 'pse-response') ? true:false;
-
+            vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
             vm.calendar = _mapVacancy(calendar);
+            vm.capacity = calendar.capacity;
+            vm.amount = calendar.session_price;
 
             vm.activity = activity;
             _mapMainPicture(vm.activity);
 
-            vm.capacity = calendar.capacity;
-            vm.amount = calendar.session_price;
-
             if(currentUser) { vm.pseData.payerEmail = currentUser.user.email; }
+            _setAssistants();
 
-            if(_isAllBooked()) {
-                vm.quantity = 0;
-                vm.assistants = [];
-            } else {
-                vm.quantity = 1;
-                if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
-                    console.log('Usuario ya esta inscrito');
-                    vm.assistants = [{}];
-                } else {
-                    vm.assistants = [angular.extend({}, currentUser.user)];
-                }
-            }
 
             console.log('activity:', vm.activity);
             console.log('calendar:', vm.calendar);

@@ -160,7 +160,7 @@
                     },
                     'attendees@activities-detail': {
                         controller: 'ActivityDetailAttendeesController as attendees',
-                        templateUrl: 'partials/activities/detail/detail.attendees.html'
+                        templateUrl: 'partials/activities/detail/attendees.html'
                     }
                 },
                 resolve: {
@@ -172,25 +172,21 @@
                     calendars: getCalendars
                 }
             })
-            .state('activities-detail.calendar', {
-                url: 'calendar',
-                templateUrl: 'partials/activities/detail/detail.calendar.html'
-            })
             .state('activities-enroll', {
                 url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
                 controller: 'ActivityDetailEnrollController as enroll',
-                templateUrl: 'partials/activities/detail/detail.enroll.html',
+                templateUrl: 'partials/activities/detail/enroll.html',
                 resolve: {
                     activity: getActivity,
                     calendar: fetchCalendar,
                     currentUser: getAuthenticatedUser,
                     deviceSessionId:getDeviceSessionId
-                },
+                }
             })
             .state('activities-enroll.success', {
                 url: '/success',
                 controller: 'ActivityEnrollSuccessController as success',
-                templateUrl: 'partials/activities/detail/detail.enroll.success.html',
+                templateUrl: 'partials/activities/detail/enroll.success.html',
                 resolve: {
                     organizer: ['activity', function (activity) {
                         return  activity.organizer;
@@ -203,7 +199,7 @@
                                    '&TX_VALUE&currency&description&pseReference1&merchant_name'+
                                    '&merchant_address&telephone&pseReference3',
                 controller: 'ActivityEnrollPSEResponseController as pseResponse',
-                templateUrl: 'partials/activities/detail.enroll.pse.response.html',
+                templateUrl: 'partials/activities/detail/enroll.pse.response.html',
                 resolve: {
                     organizer: ['activity', function (activity) {
                         return  activity.organizer;
