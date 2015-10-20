@@ -12158,6 +12158,9 @@ hr.on-light {
 .text-left {
   text-align: left;
 }
+.text-center {
+  text-align: center;
+}
 .text-right {
   text-align: right;
 }
@@ -12166,6 +12169,9 @@ hr.on-light {
 }
 .text-uppercase {
   text-transform: uppercase;
+}
+.text-strike {
+  text-decoration: line-through;
 }
 /* Deprecated?
 
@@ -13750,6 +13756,42 @@ tags-input .tag-list {
   display: inline-block;
   padding: 0px;
 }
+tags-input .autocomplete .suggestion-list {
+  width: 11em;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  list-style: none;
+  font-size: 14px;
+  text-align: left;
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
+}
+tags-input .autocomplete .suggestion-list .suggestion-item {
+  padding: 5px 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000000;
+  background-color: #ffffff;
+}
+tags-input .autocomplete .suggestion-list .suggestion-item.selected {
+  color: #ffffff;
+  background-color: #38dbc8;
+}
+tags-input .autocomplete .suggestion-list .suggestion-item.selected em {
+  color: #ffffff;
+}
+tags-input .autocomplete .suggestion-list .suggestion-item em {
+  font-weight: normal;
+  color: #38dbc8;
+}
 tags-input .tag-item {
   background: #38dbc8;
   display: inline-block;
@@ -13778,6 +13820,7 @@ tags-input .remove-button:hover {
 }
 tags-input input {
   border: 0px;
+  width: 8em !important;
 }
 .checkbox {
   padding-top: 0 !important;
@@ -14006,9 +14049,13 @@ tags-input input {
   font-weight: 200;
   color: rgba(102, 102, 102, 0.74);
 }
-.form-group .input-error {
+.form-group .input-error,
+.form-group .input-error p {
   color: #bd362f;
   font-weight: bold;
+}
+.alert-warning p {
+  color: rgba(255, 255, 255, 0.84);
 }
 .alert-input {
   padding: 7px 15px;

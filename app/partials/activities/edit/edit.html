@@ -31,8 +31,7 @@
                                     'other': 'Faltan'
                                     }">
                             </ng-pluralize>
-
-                            <strong class="text-color-secondary">{{pc.steps_left}}
+                            <strong class="text-color-secondary">{{pc.activity.steps_left}}
 
                                 <ng-pluralize count="pc.activity.steps_left"
                                     when="{
@@ -58,7 +57,7 @@
                     <div ng-show="pc.activity.published">
 
                         <div ng-show="pc.allow_unpublish" class="lateral-fade">
-                            <span>Para quitar al público</span>                
+                            <span ng-bind="::pc.strings.COPY_UNPUBLISH_ACTIVITY"></span>                
 
                             <button class="btn btn-warning btn-lg"                               
                                    ng-click="pc.unpublish_activity()">
@@ -99,7 +98,7 @@
             
         </div>
 
-        <div class="col-md-offset-4 col-md-8 col-lg-offset-3 col-lg-9 separate-below-more lateral-fade" ui-view>
+        <div class="col-md-offset-4 col-md-8 col-lg-offset-3 col-lg-9 separate-below-more " ui-view>
         </div>
 
         <div ng-include="'partials/ui-components/footer-dashboard.html'"></div>

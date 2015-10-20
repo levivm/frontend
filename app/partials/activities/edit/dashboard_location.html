@@ -21,7 +21,7 @@
                 <div class="form-group" trulii-input-errors-control="address">
                     <label for="address" class="control-label" ng-bind="::location.strings.LABEL_ADDRESS"></label>
                         <textarea id="address" class="form-control" ng-model='location.activity.location.address'
-                                  name="address" typeahead="address for address in location.address_autocomplete ">  </textarea>
+                                  name="address" typeahead="address for address in location.address_autocomplete " typeahead-focus-first="false">  </textarea>
                 </div>
                 <div class="text-center separate-above">
                     <strong><span ng-bind="::location.strings.COPY_MAP_1"></span></strong> <span ng-bind="::location.strings.COPY_MAP_2"></span> (<span class="mdi-action-room" style="color: #F86161"></span>) <span ng-bind="::location.strings.COPY_MAP_3"></span>
@@ -46,5 +46,4 @@
             </fieldset>
         </form>
     </div>
-    <hr>
 </div>
