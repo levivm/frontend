@@ -16392,6 +16392,25 @@ button.toast-close-button {
   background-color: #e3e3e3;
   padding: 1em;
 }
+.pse-panel {
+  box-shadow: none;
+  border: 1px solid #e3e3e3;
+}
+.pse-panel .panel-heading {
+  padding: 0.5em;
+}
+.pse-panel .panel-heading h4 {
+  margin: 0;
+}
+.pse-panel .panel-body {
+  padding: 0;
+}
+.pse-panel .panel-body .table {
+  margin-bottom: 0;
+}
+.pse-panel .panel-footer {
+  background-color: #ffffff;
+}
 .popover {
   box-shadow: none;
   font-family: 'PT Serif', serif;

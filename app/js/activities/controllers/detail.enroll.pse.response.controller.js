@@ -1,3 +1,15 @@
+/**
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityDetailEnrollController
+ * @description Controller for Activity Detail Enroll Component. Handles
+ * calendar sign ups and related payments.
+ * @requires ui.router.state.$state
+ * @requires ui.router.state.$stateParams
+ * @requires activity
+ * @requires calendar
+ * @requires trulii.payments.services.Payments
+ */
+
 (function () {
     'use strict';
 
@@ -5,43 +17,37 @@
         .module('trulii.activities.controllers')
         .controller('ActivityEnrollPSEResponseController', ActivityEnrollPSEResponseController);
 
-    ActivityEnrollPSEResponseController.$inject = ['$state', '$stateParams', 'activity', 'calendar', 'organizerActivities','Payments'];
+    ActivityEnrollPSEResponseController.$inject = ['$state', '$stateParams', 'activity', 'calendar', 'Payments'];
 
-    function ActivityEnrollPSEResponseController($state, $stateParams, activity, calendar, organizerActivities,Payments) {
+    function ActivityEnrollPSEResponseController($state, $stateParams, activity, calendar, Payments) {
 
         var vm = this;
-        vm.activity = activity;
-        vm.calendar = calendar;
-        vm.organizer = activity.organizer;
-        vm.organizerActivities = [];
-        vm.retryPayment = retryPayment;
-        vm.finishPayment = finishPayment;
+        angular.extend(vm, {
+            activity : activity,
+            calendar : calendar,
+            organizer : activity.organizer,
+            organizerActivities : [],
+            retryPayment : retryPayment,
+            finishPayment : finishPayment
+        });
+
         console.log("Parent params",$state.params.pseResponseData);
         console.log("Parent params",$state);
         _activate();
 
-        // function _getOrganizerActivities() {
-        //     return _.without(organizerActivities, activity).slice(0, 2);
-        // }
-
         function retryPayment(){
-            $state.go('^',
-                    {activity_id:vm.activity.id,calendar_id:calendar.id},{ reload: true });
+            $state.go('^',{ activity_id: vm.activity.id, calendar_id: calendar.id },{ reload: true});
         }
 
         function finishPayment(){
-            $state.go('^.success',
-                    {activity_id:vm.activity.id,calendar_id:calendar.id},{ reload: true });
+            $state.go('^.success',{ activity_id: vm.activity.id, calendar_id: calendar.id }, { reload: true });
         }
 
         function _checkPreviousState(){
-
             var from_enroll = _.endsWith($state.previous.name, 'activities-enroll');
             var from_success_enroll = _.endsWith($state.previous.name, 'success');
 
-            if (from_enroll || from_success_enroll)
-                $state.reload();
-            
+            if (from_enroll || from_success_enroll){ $state.reload(); }
         }
 
         function _setCurrentState(){
@@ -59,7 +65,7 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                COPY_PAYMENT_INFO: "Información del pago",
+                COPY_PAYMENT_INFO: "Resultado de transacción de pago",
                 COPY_PREPARE_TO_ASSIST_TO: "Prepárate para asistir a:",
                 COPY_ASSISTANCE: "Aprender algo nuevo siempre es más divertido si lo compartes con tus amigos. "
                     + "¡Invítalos y disfruta el doble! Ellos también asistirán",
@@ -88,15 +94,15 @@
                 {
                     name:  'Empresa',
                     value: params.merchant_name
-                },    
+                },
                 {
                     name:  'NIT',
                     value: params.pseReference3
-                },    
+                },
                 {
                     name:  'Estado',
                     value: params.state
-                },            
+                },
                 {
                     name:  'Referencia de Pedido',
                     value: params.referenceCode
@@ -128,7 +134,7 @@
                 {
                     name:  'IP de Origin',
                     value: params.pseReference1
-                },
+                }
 
             ];
             vm.pseData = pseData;
@@ -141,11 +147,8 @@
             _checkPreviousState();
             var declined_status = Payments.KEY_PSE_REJECTED_PAYMENT;
             var failed_status = Payments.KEY_PSE_FAILED_PAYMENT;
-            vm.paymentDeclined = _.endsWith($state.params.state, declined_status) || 
-                                 _.endsWith($state.params.state, failed_status) ? true:false;
-            // vm.data = $state.params;
-            // vm.organizerActivities = _getOrganizerActivities();
-            // console.log('vm.organizerActivities:', vm.organizerActivities);
+            vm.paymentDeclined = _.endsWith($state.params.state, declined_status)
+                || _.endsWith($state.params.state, failed_status);
         }
     }
 })();

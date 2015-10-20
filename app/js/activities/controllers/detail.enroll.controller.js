@@ -1,3 +1,25 @@
+/**
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityDetailEnrollController
+ * @description Controller for Activity Detail Enroll Component. Handles
+ * calendar sign ups and related payments.
+ * @requires ui.router.state.$state
+ * @requires ng.$window
+ * @requires ng.$sce
+ * @requires trulii.activities.services.ActivitiesManager
+ * @requires trulii.students.services.StudentsManager
+ * @requires trulii.payments.services.Payments
+ * @requires trulii.authentication.services.Authentication
+ * @requires trulii.ui-components.services.Toast
+ * @requires trulii.utils.services.Error
+ * @requires activity
+ * @requires calendar
+ * @requires currentUser
+ * @requires deviceSessionId
+ * @requires trulii.utils.services.defaultPicture
+ * @requires trulii.utils.services.defaultCover
+ */
+
 (function () {
     'use strict';
 
@@ -11,7 +33,7 @@
 
     function ActivityDetailEnrollController($state, $window, $sce, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
-                                            activity, calendar, currentUser,deviceSessionId, defaultPicture, defaultCover) {
+                                            activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover) {
 
         var vm = this;
         var isValidDate = false;
@@ -426,7 +448,9 @@
                 ACTION_ENROLL: "Confirmar Inscripción",
                 ACTION_VIEW_RETURN_POLICY: "Ver Políticas de Reembolso del Organizador",
                 ACTION_RETURN: "Volver a Actividad",
+                ACTION_ADD_ASSISTANT: "Agregar Asistente",
                 COPY_ASSISTANT_NUMBER: "Asistente #",
+                COPY_ASSISTANTS: "Agrega la información de las personas que asistiran a la actividad",
                 COPY_STARTING_ON: "Con inicio el",
                 COPY_VACANCY: " Vacantes",
                 COPY_TO: " a ",
@@ -435,9 +459,6 @@
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
                 COPY_UNTIL_NOW: "Hasta ahora",
-                COPY_NO_ASSISTANTS: "esta actividad no tiene asistentes ¡Sé tú el primero!",
-                COPY_ONE_ASSISTANT: "va 1 asistente ¡Faltas tú!",
-                COPY_MANY_ASSISTANTS: "van {} asistentes inscritos ¡Faltas tú!",
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los Términos y Condiciones de Trulii",

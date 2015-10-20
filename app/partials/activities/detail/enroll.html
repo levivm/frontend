@@ -9,7 +9,9 @@
         <param name="movie" value="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/fp.swf?id=')}}"/>
     </object>
 </div>
+<!--End PayU Script-->
 
+<!--Cover-->
 <div class="row">
     <div class="detail-cover">
         <img ng-src="{{enroll.activity.main_photo}}" alt="enroll.activity.title"/>
@@ -37,6 +39,7 @@
                 </h4>
             </div>
         </div>
+        <!--Info-->
         <div class="row text-center">
             <div class="col-md-12">
                 <h2 ng-bind="enroll.strings.COPY_STARTING_ON"></h2>
@@ -95,29 +98,14 @@
                             </h4>
                         </div>
                         <div class="panel-body">
-                            <h4 class="text-muted">
-                                <span ng-bind="::enroll.strings.COPY_UNTIL_NOW"></span>
-                                <ng-pluralize count="enroll.calendar.assistants.length"
-                                              when="{
-                                    '0': enroll.strings.COPY_NO_ASSISTANTS,
-                                    'one': enroll.strings.COPY_ONE_ASSISTANT,
-                                    'other': enroll.strings.COPY_MANY_ASSISTANTS
-                                  }"
-                                        >
-                                </ng-pluralize>
-                            </h4>
                             <br/>
-                            <h5 class="text-muted">Agrega la información de las personas que asistiran a la actividad</h5>
+                            <h5 class="text-muted" ng-bind="enroll.strings.COPY_ASSISTANTS"></h5>
                             <fieldset>
                                 <div class="row">
                                     <div class="col-md-6" ng-repeat="assistant in enroll.assistants">
                                         <div class="card">
                                             <div class="row separate-above">
                                                 <div class="col-md-10 col-md-offset-1">
-                                                    <!--<h4 class="separate-above">-->
-                                                        <!--<span ng-bind="::enroll.strings.COPY_ASSISTANT_NUMBER"></span>-->
-                                                        <!--<span ng-bind="$index + 1"></span>-->
-                                                    <!--</h4>-->
                                                     <i class="glyphicon glyphicon-remove text-muted pull-right"
                                                        ng-click="enroll.removeAssistant($index)"
                                                        title="Remove Assistant"></i>
@@ -149,11 +137,12 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <div class="card card-list-item card-list-item--empty card-list-item--instructor" style="height: 20em;">
+                                        <!--TODO set height in a better way-->
+                                        <div class="card card-list-item card-list-item--empty card-list-item--instructor" style="height: 29em;">
                                             <div>
                                                 <div class="card-list-item__add-icon" ng-click="enroll.addAssistant()" >
                                                     <br/>
-                                                    <div>Agregar Asistente</div>
+                                                    <div ng-bind="enroll.strings.ACTION_ADD_ASSISTANT"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -388,6 +377,7 @@
         </a>
     </div>
     <div class="col-md-3">
+        <!--Organizer-->
         <div class="organizer-widget">
             <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
                 <img class="picture" ng-src="{{::enroll.getOrganizerPhoto()}}"
@@ -398,7 +388,7 @@
                 </div>
             </a>
         </div>
-
+        <!--Billing-->
         <div class="billing-widget separate-above">
             <div class="invoice">
                 <h5><strong>Facturación</strong></h5>
@@ -418,8 +408,17 @@
                         <span ng-bind="enroll.calendar.session_price | currency"></span>
                     </div>
                 </div>
+                <!--if Free-->
+                <div class="row separate-above">
+                    <div class="col-md-6 item">
+                        <span>Actividad Gratis </span>
+                    </div>
+                    <div class="col-md-6 value">
+                        <span ng-bind="- enroll.calendar.session_price | currency"></span>
+                    </div>
+                </div>
                 <!--Coupons-->
-                <div class="row separate-above" ng-hide="enroll.hasCouponApplied">
+                <div class="row separate-above" ng-if="!enroll.calendar.is_free" ng-hide="enroll.hasCouponApplied">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="inputCoupon" class="sr-only">Aplicar Cupon</label>
@@ -443,7 +442,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <span class="item">Total a Pagar</span>
-                        <span class="value" ng-bind="enroll.calendar.session_price | currency"></span>
+                        <span class="value" ng-if="enroll.calendar.is_free" ng-bind="0 | currency"></span>
+                        <span class="value" ng-if="!enroll.calendar.is_free" ng-bind="enroll.calendar.session_price | currency"></span>
                     </div>
                 </div>
             </div>
