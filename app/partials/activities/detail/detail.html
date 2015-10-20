@@ -8,7 +8,7 @@
     <div class="col-md-7 col-md-offset-1">
         <div class="row ">
             <div class="col-md-12">
-                <h1 ng-bind="::detail.activity.title"></h1>
+                <h1 class="text-muted title" ng-bind="::detail.activity.title"></h1>
             </div>
         </div>
         <!--Category and Social-->
@@ -60,7 +60,7 @@
         <!--Audience-->
         <div class="row separate-above-medium">
             <div class="col-md-12 section">
-                <div class="title" ng-bind="::detail.strings.LABEL_AUDIENCE"></div>
+                <h2 class="title" ng-bind="::detail.strings.LABEL_AUDIENCE"></h2>
                 <p class="content" ng-bind="::detail.activity.audience"></p>
                 <div class="separator separate-above-more"></div>
             </div>
@@ -68,7 +68,7 @@
         <!--Content-->
         <div class="row separate-above-medium">
             <div class="col-md-12 section">
-                <div class="title" ng-bind="::detail.strings.LABEL_CONTENT"></div>
+                <h2 class="title" ng-bind="::detail.strings.LABEL_CONTENT"></h2>
                 <p class="content" ng-bind="::detail.activity.content"></p>
                 <div class="separator separate-above-more"></div>
             </div>
@@ -76,7 +76,7 @@
         <!--Goals-->
         <div class="row separate-above-medium">
             <div class="col-md-12 section">
-                <div class="title" ng-bind="::detail.strings.LABEL_GOALS"></div>
+                <h2 class="title" ng-bind="::detail.strings.LABEL_GOALS"></h2>
                 <p class="content" ng-bind="::detail.activity.goals"></p>
             </div>
         </div>
@@ -91,7 +91,7 @@
         <!--Methodology-->
         <div class="row separate-above-medium">
             <div class="col-md-12 section">
-                <div class="title" ng-bind="::detail.strings.LABEL_METHODOLOGY"></div>
+                <h3 class="title" ng-bind="::detail.strings.LABEL_METHODOLOGY"></h3>
                 <p class="content" ng-bind="::detail.activity.methodology"></p>
                 <div class="separator separate-above-more"></div>
             </div>
@@ -99,7 +99,7 @@
         <!--Requirements-->
         <div class="row separate-above-medium">
             <div class="col-md-12 section">
-                <div class="title" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></div>
+                <h3 class="title" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></h3>
                 <p class="content" ng-bind="::detail.activity.requirements"></p>
                 <div class="separator separate-above-more"></div>
             </div>
@@ -107,7 +107,7 @@
         <!--Extra-->
         <div class="row separate-above-medium">
             <div class="col-md-12 section">
-                <div class="title" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></div>
+                <h3 class="title" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></h3>
                 <p class="content" ng-bind="::detail.activity.extra_info"></p>
                 <div class="separate-above-more"></div>
             </div>
@@ -267,7 +267,7 @@
 <!--Instructors-->
 <div class="row">
     <div class="col-md-12 instructors-container">
-        <h2 class="title" ng-bind="::detail.strings.LABEL_INSTRUCTORS"></h2>
+        <h1 class="title" ng-bind="::detail.strings.LABEL_INSTRUCTORS"></h1>
         <div class="instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
             <div class="name" ng-bind="::instructor.full_name"></div>
             <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
@@ -350,13 +350,14 @@
 <!--Why Use Trulii-->
 <div class="row">
     <div class="col-md-12 separate-above-medium">
-        <h3 class="text-center "><strong ng-bind="::detail.strings.COPY_HEADER_REASONS_TO_USE"></strong></h3>
+        <h3 class="text-center title" ng-bind="::detail.strings.COPY_HEADER_REASONS_TO_USE">
+        </h3>
         <div class="reasons-container">
             <div class="reason">
                 <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png"
                      alt="{{ ::detail.strings.REASON_NO_COMMISSIONS }}"/>
                 <div class="reason-text">
-                    <div class="reason-title" ng-bind="::detail.strings.REASON_NO_COMMISSIONS"></div>
+                    <div class="reason-title text-uppercase" ng-bind="::detail.strings.REASON_NO_COMMISSIONS"></div>
                     <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_NO_COMMISSIONS"></div>
                 </div>
             </div>
@@ -364,7 +365,7 @@
                 <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png"
                      alt="{{ ::detail.strings.REASON_REFUND }}"/>
                 <div class="reason-text">
-                    <div class="reason-title" ng-bind="::detail.strings.REASON_REFUND"></div>
+                    <div class="reason-title text-uppercase" ng-bind="::detail.strings.REASON_REFUND"></div>
                     <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_REFUND"></div>
                 </div>
             </div>
@@ -372,7 +373,7 @@
                 <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png"
                      alt="{{ ::detail.strings.REASON_SECURE }}"/>
                 <div class="reason-text">
-                    <div class="reason-title" ng-bind="::detail.strings.REASON_SECURE"></div>
+                    <div class="reason-title text-uppercase" ng-bind="::detail.strings.REASON_SECURE"></div>
                     <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_SECURE"></div>
                 </div>
             </div>
@@ -382,14 +383,16 @@
 <div class="row contact-us-container">
     <div class="col-md-4 col-md-offset-4 text-center">
         <div class="separator"></div>
-        <h5 class="separate-above">
+        <h5 class="separate-above text-uppercase">
             <span ng-bind="::detail.strings.COPY_DOUBTS"></span>
             <a ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a></h5>
     </div>
 </div>
 <div class="row related-activities-container">
     <div class="col-md-12">
-        <h3><strong>Actividades Similares</strong></h3>
+        <h3 class="title">
+            Actividades Similares
+        </h3>
         <trulii-activity-item
                 ng-repeat="activity in detail.relatedActivities"
                 data-activity="activity"></trulii-activity-item>

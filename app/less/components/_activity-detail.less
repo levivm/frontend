@@ -4,6 +4,23 @@
 @border-color: #DEDEDE;
 @border-widget: 1px solid @border-color;
 
+
+h1.title, h2.title{
+    font-weight:600;
+}
+h3.title{
+    font-weight: 400;
+}
+h5{
+    font-weight: 100;
+    a{
+        font-weight: 400;
+    }
+}
+h1, h2, h3, h4, h5{
+    letter-spacing: -1px;
+}
+
 .organizer-widget {
 
     .card{
@@ -29,14 +46,14 @@
             vertical-align: middle;
 
             .name {
-                font-family: @font-family-sans-serif;
+                font-family: @font-sans;
                 font-weight: 600;
                 font-size: 1.2em;
                 color: @lightbg-text;
             }
 
             .location {
-                font-family: @font-family-serif;
+                font-family: @font-serif;
                 font-size: 0.8em;
                 color: @text-muted;
             }
@@ -313,7 +330,6 @@
 .section {
     .title {
         font-size: 1.8em;
-        font-weight: 600;
         color: @brand-success;
     }
     .content {
@@ -329,7 +345,7 @@
 
 .sub-section-title{
     color: @brand-primary;
-    font-weight: 600;
+    font-weight: 800;
 }
 
 .gallery {

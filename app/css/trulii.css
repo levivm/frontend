@@ -1149,7 +1149,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
   font-size: 14px;
   line-height: 1.42857143;
   color: #333333;
@@ -1282,7 +1282,7 @@ h6 .small,
 .h6 .small {
   font-weight: normal;
   line-height: 1;
-  color: #777777;
+  color: #999999;
 }
 h1,
 .h1,
@@ -1332,7 +1332,7 @@ h6 .small,
 }
 h1,
 .h1 {
-  font-size: 36px;
+  font-size: 39px;
 }
 h2,
 .h2 {
@@ -1404,7 +1404,7 @@ mark,
 .text-muted,
 .attendees-container .copy,
 .attendees-container .copy * {
-  color: #777777;
+  color: #999999;
 }
 .text-primary {
   color: #ffd580;
@@ -1538,7 +1538,7 @@ dd {
 abbr[title],
 abbr[data-original-title] {
   cursor: help;
-  border-bottom: 1px dotted #777777;
+  border-bottom: 1px dotted #999999;
 }
 .initialism {
   font-size: 90%;
@@ -1561,7 +1561,7 @@ blockquote .small {
   display: block;
   font-size: 80%;
   line-height: 1.42857143;
-  color: #777777;
+  color: #999999;
 }
 blockquote footer:before,
 blockquote small:before,
@@ -2323,7 +2323,7 @@ table {
 caption {
   padding-top: 8px;
   padding-bottom: 8px;
-  color: #777777;
+  color: #999999;
   text-align: left;
 }
 th {
@@ -3562,7 +3562,7 @@ fieldset[disabled] .btn-link {
 fieldset[disabled] .btn-link:hover,
 .btn-link[disabled]:focus,
 fieldset[disabled] .btn-link:focus {
-  color: #777777;
+  color: #999999;
   text-decoration: none;
 }
 .btn-lg,
@@ -3707,7 +3707,7 @@ tbody.collapse.in {
 .dropdown-menu > .disabled > a,
 .dropdown-menu > .disabled > a:hover,
 .dropdown-menu > .disabled > a:focus {
-  color: #777777;
+  color: #999999;
 }
 .dropdown-menu > .disabled > a:hover,
 .dropdown-menu > .disabled > a:focus {
@@ -3736,7 +3736,7 @@ tbody.collapse.in {
   padding: 3px 20px;
   font-size: 12px;
   line-height: 1.42857143;
-  color: #777777;
+  color: #999999;
   white-space: nowrap;
 }
 .dropdown-backdrop {
@@ -4118,11 +4118,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: #eeeeee;
 }
 .nav > li.disabled > a {
-  color: #777777;
+  color: #999999;
 }
 .nav > li.disabled > a:hover,
 .nav > li.disabled > a:focus {
-  color: #777777;
+  color: #999999;
   text-decoration: none;
   background-color: transparent;
   cursor: not-allowed;
@@ -4349,7 +4349,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .pagination > .disabled > a,
 .pagination > .disabled > a:hover,
 .pagination > .disabled > a:focus {
-  color: #777777;
+  color: #999999;
   background-color: #fff;
   border-color: #ddd;
   cursor: not-allowed;
@@ -4412,11 +4412,11 @@ a.label:focus {
   top: -1px;
 }
 .label-default {
-  background-color: #777777;
+  background-color: #999999;
 }
 .label-default[href]:hover,
 .label-default[href]:focus {
-  background-color: #5e5e5e;
+  background-color: #808080;
 }
 .label-primary {
   background-color: #ffd580;
@@ -5190,7 +5190,7 @@ a.thumbnail.active {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
   font-style: normal;
   font-weight: normal;
   letter-spacing: normal;
@@ -8414,7 +8414,8 @@ h6,
 .h2,
 .h3,
 .h4 {
-  font-family: "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  letter-spacing: -1px;
   font-weight: 300;
 }
 h5,
@@ -12008,7 +12009,7 @@ hr.on-light {
   background-color: #eeeeee;
 }
 .noUi-active {
-  background-color: #777777;
+  background-color: #999999;
   box-shadow: none;
 }
 .noUi-handle.noUi-active {
@@ -12381,7 +12382,7 @@ hr.on-light {
   line-height: 1.2em;
 }
 .font-title {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .strong-text-muted,
 .card__lateral-menu__title {
@@ -12394,7 +12395,7 @@ hr.on-light {
   font-family: 'Sinkin Sans';
   font-weight: 200;
   font-size: 1.1em;
-  color: #777777;
+  color: #999999;
   margin: 1em 0;
 }
 .img-size-cover,
@@ -12431,7 +12432,7 @@ hr.on-light {
 }
 .img-dashed-frame {
   padding: 5px;
-  border: 1px dashed #c4c4c4;
+  border: 1px dashed #e5e5e5;
   border-radius: 5px;
 }
 .img-actionable {
@@ -13045,18 +13046,18 @@ hr.on-light {
   border-color: #eeeeee;
 }
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: #999999;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
-  color: #5e5e5e;
+  color: #808080;
   background-color: transparent;
 }
 .navbar-default .navbar-text {
   color: #777;
 }
 .navbar-default .navbar-nav > li > a {
-  color: #777777;
+  color: #999999;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
@@ -13097,7 +13098,7 @@ hr.on-light {
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
-    color: #777777;
+    color: #999999;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -13118,13 +13119,13 @@ hr.on-light {
   }
 }
 .navbar-default .navbar-link {
-  color: #777777;
+  color: #999999;
 }
 .navbar-default .navbar-link:hover {
   color: #333333;
 }
 .navbar-default .btn-link {
-  color: #777777;
+  color: #999999;
 }
 .navbar-default .btn-link:hover,
 .navbar-default .btn-link:focus {
@@ -13141,7 +13142,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
-  color: #9d9d9d;
+  color: #bfbfbf;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
@@ -13149,10 +13150,10 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-text {
-  color: #9d9d9d;
+  color: #bfbfbf;
 }
 .navbar-inverse .navbar-nav > li > a {
-  color: #9d9d9d;
+  color: #bfbfbf;
 }
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
@@ -13199,7 +13200,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
     background-color: #080808;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-    color: #9d9d9d;
+    color: #bfbfbf;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus {
@@ -13220,13 +13221,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   }
 }
 .navbar-inverse .navbar-link {
-  color: #9d9d9d;
+  color: #bfbfbf;
 }
 .navbar-inverse .navbar-link:hover {
   color: #fff;
 }
 .navbar-inverse .btn-link {
-  color: #9d9d9d;
+  color: #bfbfbf;
 }
 .navbar-inverse .btn-link:hover,
 .navbar-inverse .btn-link:focus {
@@ -13513,7 +13514,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-bottom: 10px;
 }
 .navbar-context-menu .search-filter .search-slider span {
-  color: #777777;
+  color: #999999;
 }
 .navbar-context-menu .search-filter .checkbox {
   margin: 0;
@@ -13523,13 +13524,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-left: 4px;
 }
 .navbar-context-menu .search-info {
-  color: #777777;
+  color: #999999;
   padding: 8px;
   height: 40px;
   width: 100%;
 }
 .sidebar {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: fixed;
   top: 60px;
   bottom: 0;
@@ -13604,7 +13605,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #ffd580;
 }
 .--float .sidebar__item--selected {
-  background: #f7f7f7;
+  background: #ffffff;
   font-weight: bold !important;
   color: #38dbc8 !important;
   border-width: 0;
@@ -13638,7 +13639,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 0;
 }
 .--float .sidebar__item.--muted {
-  color: #aaaaaa;
+  color: #cccccc;
 }
 .sidebar li {
   display: block;
@@ -13651,7 +13652,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-family: 'Sinkin Sans';
   font-weight: normal;
   font-size: .9em;
-  color: #777777;
+  color: #999999;
 }
 .sidebar__bottom-action hr {
   display: block;
@@ -13662,7 +13663,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar__bottom-action hr:before {
   content: '';
   display: inline-block;
-  border-bottom: 1px solid #777777;
+  border-bottom: 1px solid #999999;
   width: 20%;
   vertical-align: top;
 }
@@ -13969,7 +13970,7 @@ tags-input input {
   width: 2em;
 }
 .counter-input .counter-control {
-  color: #777777;
+  color: #999999;
   width: 1.3em;
   line-height: 1.3em;
   border: 1px solid #e3e3e3;
@@ -14063,21 +14064,21 @@ tags-input input {
   color: rgba(0, 0, 0, 0.74);
 }
 .btn-link:hover {
-  color: #777777;
+  color: #999999;
 }
 .btn-link:visited {
   color: #ffbc33;
 }
 .btn {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .btn-lg {
   text-transform: uppercase;
 }
 .btn-default {
   background-color: transparent;
-  border: 1px solid #c4c4c4;
-  color: #777777;
+  border: 1px solid #e5e5e5;
+  color: #999999;
 }
 .btn-light {
   color: white;
@@ -14114,7 +14115,7 @@ tags-input input {
 }
 .btn.btn-cancel {
   color: white;
-  background-color: #777777;
+  background-color: #999999;
 }
 .btn-grand {
   padding: 1em;
@@ -14374,7 +14375,7 @@ td {
   font-family: 'Sinkin Sans';
   font-size: .9em;
   font-weight: 200;
-  color: #777777;
+  color: #999999;
 }
 .order__info__data {
   font-family: 'Sinkin Sans';
@@ -14447,7 +14448,7 @@ ul.dropdown-menu table .btn {
 }
 ul.dropdown-menu table .btn[disabled] {
   background-color: transparent;
-  color: #b7b7b7 !important;
+  color: #d9d9d9 !important;
 }
 ul.dropdown-menu table .btn.active {
   background-color: #38dbc8;
@@ -14456,7 +14457,7 @@ ul.dropdown-menu table .btn.active span {
   color: white;
 }
 ul.dropdown-menu table .text-muted {
-  color: #9d9d9d;
+  color: #bfbfbf;
 }
 ul.dropdown-menu table .text-info {
   color: #38dbc8;
@@ -15073,7 +15074,7 @@ ul.dropdown-menu:after {
   height: 3.5em;
   line-height: 3.5em;
   background: #eeeeee;
-  color: #777777;
+  color: #999999;
   text-align: center;
   font-weight: bold;
   font-family: 'Sinkin Sans';
@@ -15094,10 +15095,10 @@ ul.dropdown-menu:after {
 }
 .card-list-item h5 {
   font-weight: normal;
-  color: #777777;
+  color: #999999;
 }
 .card-list-item h3 {
-  color: #777777;
+  color: #999999;
   font-weight: 700;
   font-size: .9em;
 }
@@ -15124,7 +15125,7 @@ ul.dropdown-menu:after {
   border: 1px dashed;
   display: table;
   font-weight: normal;
-  color: #777777;
+  color: #999999;
   cursor: pointer;
   padding: 0;
 }
@@ -15150,7 +15151,7 @@ ul.dropdown-menu:after {
   font-size: 4em;
   display: inline-block;
   width: 100%;
-  color: #777777;
+  color: #999999;
   line-height: 2em;
 }
 .card-list-item:hover .card-list-item__add-icon {
@@ -15489,7 +15490,7 @@ button.toast-close-button {
   bottom: 0;
   padding: .5em 1em;
   transition: .5s background ease;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .gallery-grid__photo__caption__title {
   display: block;
@@ -15568,7 +15569,7 @@ button.toast-close-button {
   background-color: #eeeeee;
 }
 .timepicker [class*="glyphicon"] {
-  color: #777777;
+  color: #999999;
 }
 .detail-cover {
   padding: 0;
@@ -15642,7 +15643,7 @@ button.toast-close-button {
 }
 .list .list-item .content {
   font-size: 20px;
-  color: #777777;
+  color: #999999;
   width: 79%;
   display: inline-block;
 }
@@ -15729,7 +15730,7 @@ button.toast-close-button {
   color: #555555;
   display: block;
   font-size: .8em;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   padding: .7em .8em;
   cursor: pointer;
@@ -15781,9 +15782,9 @@ button.toast-close-button {
   white-space: nowrap;
 }
 .activity-card__body__description {
-  font-family: 'PT Serif', serif;
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
   padding-top: 1em;
-  color: #777777;
+  color: #999999;
   text-transform: capitalize;
   overflow: hidden;
   height: 5em;
@@ -15791,7 +15792,7 @@ button.toast-close-button {
 }
 .activity-card__body__date {
   font-family: 'Sinkin Sans';
-  color: #777777;
+  color: #999999;
   font-weight: bold;
   font-size: .7em;
   display: inline-block;
@@ -15810,7 +15811,7 @@ button.toast-close-button {
   height: 3.5em;
   line-height: 3.5em;
   background: #eeeeee;
-  color: #777777;
+  color: #999999;
   text-align: center;
   font-weight: bold;
   font-family: 'Sinkin Sans';
@@ -15838,12 +15839,32 @@ button.toast-close-button {
   font-size: .7em;
   padding: .2em 1em;
   border-radius: 2.5px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: .1em;
   line-height: 1em;
 }
 .activity-grid {
   text-align: left;
+}
+h1.title,
+h2.title {
+  font-weight: 600;
+}
+h3.title {
+  font-weight: 400;
+}
+h5 {
+  font-weight: 100;
+}
+h5 a {
+  font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4,
+h5 {
+  letter-spacing: -1px;
 }
 .organizer-widget .card {
   border-top: 1px solid #DEDEDE;
@@ -15866,15 +15887,15 @@ button.toast-close-button {
   vertical-align: middle;
 }
 .organizer-widget .card .data .name {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 1.2em;
   color: rgba(0, 0, 0, 0.74);
 }
 .organizer-widget .card .data .location {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
   font-size: 0.8em;
-  color: #777777;
+  color: #999999;
 }
 .organizer-widget .ratings {
   border-right: 1px solid #DEDEDE;
@@ -15934,7 +15955,7 @@ button.toast-close-button {
   font-weight: 400;
   text-align: center;
   color: #FFFFFF;
-  background-color: #777777;
+  background-color: #999999;
 }
 .calendar-widget .widget-card .btn-sign-up {
   width: 100%;
@@ -15945,7 +15966,7 @@ button.toast-close-button {
   font-weight: 400;
   text-transform: uppercase;
   text-align: center;
-  color: #777777 !important;
+  color: #999999 !important;
 }
 .calendar-widget .widget-card .info {
   width: 100%;
@@ -16018,7 +16039,7 @@ button.toast-close-button {
   padding: 0;
   font-size: 1em;
   font-weight: 400;
-  color: #777777;
+  color: #999999;
 }
 .calendar-widget .widget-card .sessions .sessions-list .session-item-time {
   width: 100%;
@@ -16033,7 +16054,7 @@ button.toast-close-button {
   padding: 0;
   font-size: 0.8em;
   font-weight: 100;
-  color: #777777;
+  color: #999999;
 }
 .calendar-widget .widget-card .other-calendars {
   padding: 1.6em;
@@ -16059,7 +16080,7 @@ button.toast-close-button {
   padding: 0;
   font-size: 0.8em;
   font-weight: 100;
-  color: #777777;
+  color: #999999;
 }
 .calendar-widget .widget-card .other-calendars-count {
   width: 100%;
@@ -16073,7 +16094,7 @@ button.toast-close-button {
   padding: 0;
   font-size: 0.8em;
   font-weight: 600;
-  color: #777777;
+  color: #999999;
 }
 .calendar-widget .widget-card .other-calendars-more {
   width: 100%;
@@ -16088,7 +16109,7 @@ button.toast-close-button {
   padding: 0;
   font-size: 0.8em;
   font-weight: 600;
-  color: #777777;
+  color: #999999;
 }
 .calendar-widget .widget-list .widget-list-item {
   padding: 2em;
@@ -16176,7 +16197,6 @@ button.toast-close-button {
 }
 .section .title {
   font-size: 1.8em;
-  font-weight: 600;
   color: #38dbc8;
 }
 .section .content {
@@ -16191,7 +16211,7 @@ button.toast-close-button {
 .instructors-container .title,
 .attendees-container .title {
   color: #ffd580;
-  font-weight: 600;
+  font-weight: 800;
 }
 .gallery {
   width: 100%;
@@ -16268,7 +16288,7 @@ button.toast-close-button {
 }
 .gallery .gallery-info * {
   color: rgba(255, 255, 255, 0.84);
-  font-family: 'PT Serif', serif;
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
   font-style: italic;
 }
 .instructors-container {
@@ -16284,11 +16304,11 @@ button.toast-close-button {
   font-weight: 400;
 }
 .instructors-container .instructor .website {
-  color: #777777 !important;
+  color: #999999 !important;
 }
 .instructors-container .instructor .bio {
   margin-top: 1.5em;
-  color: #777777;
+  color: #999999;
 }
 .location .map {
   width: 100%;
@@ -16326,11 +16346,11 @@ button.toast-close-button {
   display: inline-block;
   height: 100%;
   line-height: 100%;
-  color: #aaaaaa;
+  color: #cccccc;
 }
 .attendees-container .paged-container .pager-btn.disabled {
   cursor: default;
-  color: #dddddd;
+  color: #ffffff;
 }
 .attendees-container .paged-container .attendee-thumbnail {
   display: inline-block;
@@ -16404,7 +16424,7 @@ button.toast-close-button {
   font-weight: 400;
 }
 .reasons-container .reason .reason-text .reason-copy {
-  color: #777777;
+  color: #999999;
   font-size: 0.8em;
 }
 .contact-us-container {
@@ -16451,7 +16471,7 @@ button.toast-close-button {
 .sessions-panel .session {
   padding: 1.5em;
   margin: 0 0 0.5em 0;
-  color: #777777;
+  color: #999999;
 }
 .attendees-panel {
   box-shadow: none;
@@ -16479,7 +16499,7 @@ button.toast-close-button {
 .payments-panel .panel-footer {
   padding: 3em 6em;
   text-align: center;
-  background-color: #f7f7f7;
+  background-color: #ffffff;
 }
 .payments-panel .panel-footer .btn {
   padding: 1em;
@@ -16525,7 +16545,7 @@ button.toast-close-button {
 }
 .popover {
   box-shadow: none;
-  font-family: 'PT Serif', serif;
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
   color: #555555;
 }
 .popover-title {
@@ -16537,7 +16557,7 @@ button.toast-close-button {
   line-height: 1.6em;
 }
 .footer--dashboard {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   height: 2.4em;
   position: fixed;
@@ -16548,7 +16568,7 @@ button.toast-close-button {
 }
 .footer--dashboard .footer__item {
   font-size: .85em;
-  color: #777777;
+  color: #999999;
   margin: 0 1em;
   line-height: 2.4em;
   font-weight: normal;
@@ -16569,11 +16589,11 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Sinkin Sans';
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 p {
-  font-family: 'PT Serif', serif;
-  color: #777777;
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+  color: #999999;
   font-size: 1.2em;
   margin-bottom: 1.5em;
 }
