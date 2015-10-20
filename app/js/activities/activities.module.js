@@ -210,7 +210,7 @@
                     organizerActivities: getOrganizerActivities
                 },
                 params:{
-                    pseResponseData:null,
+                    pseResponseData: null
                 }
             });
 
