@@ -2,6 +2,7 @@
 
 @secondary-bg: #F7F7F7;
 @border-color: #DEDEDE;
+@title-color: #9E9E9E;
 @border-widget: 1px solid @border-color;
 
 .organizer-widget {
@@ -310,6 +311,13 @@
     }
 }
 
+.title{
+    
+    font-size: 2.8em;
+    color: @title-color;
+    font-weight: 800;
+}
+
 .section {
     .title {
         font-size: 1.8em;
@@ -450,7 +458,7 @@
 }
 
 .attendees-container {
-    padding: 6em 9.5em 9.5em 9.5em;
+    padding: 6em 9.5em 7.5em 9.5em;
 
     .title{
         &:extend(.sub-section-title);

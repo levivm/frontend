@@ -14121,7 +14121,6 @@ tags-input input {
 .btn-share-fb,
 .btn-share-twitter,
 .btn-share-email {
-  height: 2.4em;
   width: 2.4em;
   display: inline-block;
   cursor: pointer;
@@ -15408,6 +15407,7 @@ button.toast-close-button {
   width: 100%;
   min-height: 280px;
   height: auto;
+  top: -50%;
 }
 .detail-cover .text-container {
   position: absolute;
@@ -15995,6 +15995,11 @@ button.toast-close-button {
 .calendar-widget .widget-list .widget-list-item * .btn-detail {
   font-size: 0.8em;
 }
+.title {
+  font-size: 2.8em;
+  color: #9e9e9e;
+  font-weight: 800;
+}
 .section .title {
   font-size: 1.8em;
   font-weight: 600;
@@ -16125,7 +16130,7 @@ button.toast-close-button {
   color: rgba(0, 0, 0, 0.74);
 }
 .attendees-container {
-  padding: 6em 9.5em 9.5em 9.5em;
+  padding: 6em 9.5em 7.5em 9.5em;
 }
 .attendees-container .title {
   margin-bottom: 0.5em;

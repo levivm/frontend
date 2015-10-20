@@ -33,7 +33,6 @@
             checkValidTitle: checkValidTitle,
             getSubmitButtonText: getSubmitButtonText,
             loadAutocompleteTags: loadAutocompleteTags,
-
         });
 
 
@@ -112,7 +111,6 @@
                 vm.weHaveTitle = false;
             }
         }
-
         /*****************SETTERS********************/
 
         function _setUpdate() {
@@ -157,7 +155,6 @@
         function loadAutocompleteTags(){
 
             var deferred = $q.defer();
-            console.log('presaveInfo',presaveInfo.tags);
             deferred.resolve(presaveInfo.tags);
             return deferred.promise;
 
