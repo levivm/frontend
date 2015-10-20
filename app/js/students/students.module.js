@@ -64,7 +64,23 @@
             .state('student-dashboard.history', {
                 url:'history',
                 controller: 'StudentHistoryCtrl as history',
-                templateUrl: 'partials/students/dashboard_history.html'
+                templateUrl: 'partials/students/dashboard/history.html'
+            })
+            .state('student-dashboard.history.orders', {
+                url:'/orders',
+                templateUrl: 'partials/students/dashboard/history.orders.html'
+            })
+            .state('student-dashboard.history.orders.order', {
+                url:'/:orderId',
+                controller: 'StudentHistoryOrderCtrl as order',
+                templateUrl: 'partials/students/dashboard/history.order.html',
+                resolve: {
+                    order: getOrder
+                }
+            })
+            .state('student-dashboard.history.reimbursements', {
+                url:'/reimbursements',
+                templateUrl: 'partials/students/dashboard/history.reimbursements.html'
             });
 
         /**
@@ -100,7 +116,6 @@
                 }
                 return $q.reject();
             }
-
         }
 
         /**
@@ -137,6 +152,18 @@
         getAvailableCities.$inject = ['LocationManager'];
         function getAvailableCities(LocationManager){
             return LocationManager.getAvailableCities();
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getOrder
+         * @description Retrieves an Order by its ID from
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getOrder.$inject = ['$stateParams','student'];
+        function getOrder($stateParams, student){
+            return student.getOrder($stateParams.orderId);
         }
     }
 

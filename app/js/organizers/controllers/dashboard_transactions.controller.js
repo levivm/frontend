@@ -32,6 +32,7 @@
             organizer.getOrders().then(success, error);
 
             function success(orders){
+              vm.sales = orders;
                 console.log("orders:", orders);
             }
             function error(data){

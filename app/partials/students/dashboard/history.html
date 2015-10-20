@@ -1,13 +1,16 @@
-
 <div class="navbar-secondary">
 
     <ul>
-        <li class="navbar-secondary__item active" data-toggle="tab" data-target="#password-tab">
-            <span ng-bind="::history.strings.SECTION_HISTORY"></span>
+
+        <li class="navbar-secondary__item active" ui-sref=".orders" ui-sref-active="active">
+            <span ng-bind="::history.strings.TAB_ORDERS"></span>
         </li>
-  
-    </ul>    
-    
+        <li class="navbar-secondary__item" ui-sref=".reimbursements" ui-sref-active="active">
+            <span ng-bind="::history.strings.TAB_REIMBURSEMENTS"></span>
+        </li>
+
+    </ul>
+
 </div>
 
 <div class="row">
@@ -42,41 +45,23 @@
                                     <tr class="text-center">
                                         <th ng-bind="::history.strings.HEADER_ORDER"></th>
                                         <th ng-bind="::history.strings.HEADER_ACTIVITY"></th>
-                                        <th ng-bind="::history.strings.HEADER_PAYMENT"></th>
-                                        <th ng-bind="::history.strings.HEADER_DETAIL"></th>
                                         <th ng-bind="::history.strings.HEADER_DATE"></th>
                                         <th ng-bind="::history.strings.HEADER_TOTAL"></th>
-                                        <th class=""></th>
                                     </tr>
                                     <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
                                         <td>
-                                            <span ng-bind="order.id"></span>
+                                            <a ui-sref="student-dashboard.history.orders.order({'orderId': order.id})" ng-bind="order.id"></a>
                                         </td>
                                         <td>
-                                            <span ng-bind="::history.strings.COPY_NOT_AVAILABLE"></span>
+                                            <span ng-bind="::(history.strings.COPY_EMPTY_ORDERS | limitTo: 35) + '...'"></span>
+                                            <br/>
+                                            <strong ng-bind="::history.strings.COPY_START_DATE"></strong> <span>13 Jun 2015</span>
                                         </td>
                                         <td>
-                                            <span ng-bind="::history.strings.COPY_NA"></span>
-                                        </td>
-                                        <td>
-                                            <span>
-                                                <ng-pluralize count="order.assistants.length"
-                                                              when="{
-                                                    'one': history.strings.PLURALIZE_ASSISTANT,
-                                                    'other': history.strings.PLURALIZE_ASSISTANTS
-                                                  }">
-                                                </ng-pluralize>
-                                            </span>
-                                        </td>
-                                        <td>
-                                            <span>DD/MM/YYYY</span>
+                                            <span>14 Ene. 2015</span>
                                         </td>
                                         <td>
                                             <span ng-bind="order.amount | currency"></span>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-xs btn-default pull-right no-margin"
-                                                    ng-bind="::history.strings.ACTION_REIMBURSE"></button>
                                         </td>
                                     </tr>
                                 </table>
@@ -94,9 +79,9 @@
                     </div>
                 </div>
             </div>
-                    
+
         </div>
-        
+
     </div>
 </div>
 
