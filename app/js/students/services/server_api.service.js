@@ -80,7 +80,7 @@
              * @methodOf trulii.students.services.StudentServerApi
              */
             'order': function(idStudent, idOrder){
-                return renderUrl('students/', [idStudent, 'orders', idOrder]);
+                return renderUrl('orders/', [idOrder]);
             }
 
         };
