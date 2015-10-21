@@ -475,6 +475,12 @@
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los",
+                COPY_SLIDEBAR_TERMS_TITLE: "Terminos y condiciones",
+                COPY_SLIDEBAR_TERMS_HEADER: "Titulo de terminos y condiciones",
+                COPY_SLIDEBAR_TERMS_BODY: "All work and no play makes Jack a dull boy",
+                COPY_SLIDEBAR_REIMBURSEMENT_TITLE: "Políticas de Reembolso",
+                COPY_SLIDEBAR_REIMBURSEMENT_HEADER: "Titulo de politicas de reembolso",
+                COPY_SLIDEBAR_REIMBURSEMENT_BODY: "All work and no play makes Jack a dull boy",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
