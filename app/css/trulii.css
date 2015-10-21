@@ -12288,6 +12288,65 @@ hr.on-light {
 .remove-shadow {
   box-shadow: none;
 }
+.sidebar-popup.ng-hide-remove .sidebar-content {
+  transform: translate(50%, 0);
+}
+.sidebar-popup.ng-hide-add .sidebar-content {
+  transform: translate(100%, 0);
+}
+.sidebar-popup {
+  position: fixed;
+  width: 100vw;
+  z-index: 1050;
+  top: 0;
+}
+.sidebar-popup .sidebar-background {
+  background-color: #333333;
+  opacity: 0.8;
+  min-height: 100vh;
+  max-height: 100vh;
+  width: 100%;
+}
+.sidebar-popup .sidebar-content {
+  position: absolute;
+  background-color: white;
+  max-height: 100vh;
+  overflow-y: scroll;
+  padding: 0;
+  top: 0;
+  right: 0;
+  transition: transform 0.25s;
+  transform: translate(0%, 0);
+}
+.sidebar-popup .sidebar-content .sidebar-header {
+  height: 250px;
+  background-image: url('/css/img/activity-enroll/banner.png');
+  position: relative;
+  background-size: cover;
+  color: white;
+}
+.sidebar-popup .sidebar-content .sidebar-header > h1 {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translate(0px, -50%);
+  width: 100%;
+  font-weight: 500;
+}
+.sidebar-popup .sidebar-content .sidebar-header button {
+  -webkit-appearance: none;
+  padding: 0;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  width: 50px;
+  margin: 10px;
+}
+.sidebar-popup .sidebar-content .sidebar-body {
+  background-color: white;
+  width: 100%;
+  padding: 25px 50px;
+}
 .text-left {
   text-align: left;
 }
@@ -16560,7 +16619,7 @@ h5 {
   margin-bottom: 0;
 }
 .pse-panel .panel-footer {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
 }
 .popover {
   box-shadow: none;

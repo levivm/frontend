@@ -47,6 +47,8 @@
             activity : null,
             capacity : null,
             amount : null,
+            showTerms : false,
+            showReimbursement : false,
             quantity : 0,
             assistants : [],
 
@@ -61,6 +63,8 @@
             changePSEPaymentMethod: changePSEPaymentMethod,
             changeCCPaymentMethod: changeCCPaymentMethod,
             enrollPSE: enrollPSE,
+            toggleTerms : toggleTerms,
+            toggleReimbursement : toggleReimbursement,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -390,6 +394,14 @@
             return  $sce.trustAsResourceUrl(url + payUUniqueId);
         }
 
+        function toggleTerms(){
+            vm.showTerms = !vm.showTerms;
+        }
+
+        function toggleReimbursement(){
+            vm.showReimbursement = !vm.showReimbursement;
+        }
+
         //--------- Internal Functions ---------//
 
         function _calculateAmount() {
@@ -449,6 +461,7 @@
                 ACTION_VIEW_RETURN_POLICY: "Ver Políticas de Reembolso del Organizador",
                 ACTION_RETURN: "Volver a Actividad",
                 ACTION_ADD_ASSISTANT: "Agregar Asistente",
+                ACTION_VIEW_TERMS: "Términos y Condiciones de Trulii",
                 COPY_ASSISTANT_NUMBER: "Asistente #",
                 COPY_ASSISTANTS: "Agrega la información de las personas que asistiran a la actividad",
                 COPY_STARTING_ON: "Con inicio el",
@@ -461,7 +474,7 @@
                 COPY_UNTIL_NOW: "Hasta ahora",
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
-                + " y con los Términos y Condiciones de Trulii",
+                + " y con los",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
