@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Montserrat';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-UltraLight.otf');
-  font-weight: 200;
+  font-weight: 100;
   font-style: normal;
 }
 @font-face {
@@ -25,19 +25,19 @@
 @font-face {
   font-family: 'Montserrat';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-Bold.otf');
-  font-weight: 500;
+  font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-ExtraBold.otf');
-  font-weight: 600;
+  font-weight: 800;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-Black.otf');
-  font-weight: 700;
+  font-weight: 900;
   font-style: normal;
 }
 @font-face {
