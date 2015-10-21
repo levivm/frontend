@@ -11,6 +11,18 @@
 </div>
 <!--End PayU Script-->
 
+<!--Reimbursement sLidebar-->
+<trulii-slidebar show="enroll.showReimbursement" title="enroll.strings.COPY_SLIDEBAR_REIMBURSEMENT_TITLE"
+                 header="enroll.strings.COPY_SLIDEBAR_REIMBURSEMENT_HEADER"
+                 body="enroll.strings.COPY_SLIDEBAR_REIMBURSEMENT_BODY">
+</trulii-slidebar>
+<!--Terms sLidebar-->
+
+<trulii-slidebar show="enroll.showTerms" title="enroll.strings.COPY_SLIDEBAR_TERMS_TITLE"
+                 header="enroll.strings.COPY_SLIDEBAR_TERMS_HEADER"
+                 body="enroll.strings.COPY_SLIDEBAR_TERMS_BODY">
+</trulii-slidebar>
+
 <!--Cover-->
 <div class="row">
     <div class="detail-cover">
@@ -357,11 +369,13 @@
                         </div>
                         <div class="panel-footer">
                             <button class="btn btn-block btn-default separate-above text-uppercase"
-                                    ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY" ></button>
+                                    ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY" ng-click="enroll.toggleReimbursement()"></button>
                             <button class="btn btn-block btn-primary separate-above text-uppercase"
                                     ng-click="enroll.enroll()"
                                     ng-bind="::enroll.strings.ACTION_ENROLL" ></button>
-                            <div class="text-muted separate-above-more" ng-bind="::enroll.strings.COPY_RELEASE"></div>
+                            <div class="text-muted separate-above-more" >
+                                <span ng-bind="::enroll.strings.COPY_RELEASE"></span> <span><a href="javascript:void(0)" ng-bind="::enroll.strings.ACTION_VIEW_TERMS" ng-click="enroll.toggleTerms()"></a></span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group" trulii-input-errors-control="generalError">
