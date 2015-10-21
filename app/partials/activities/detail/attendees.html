@@ -19,7 +19,7 @@
                 <span class="pager-btn mdi-navigation-chevron-left"
                       ng-class="{'disabled': !attendees.hasPrevious}"
                       ng-click="attendees.goToPrevious()"></span>
-                <div class="attendee-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.email">
+                <div class="attendee-thumbnail" ng-repeat="assistant in attendees.assistants track by assistant.id">
                     <img class="attendee-img" ng-src="{{assistant.photo}}"
                          alt="{{::assistant.first_name}}"/>
                     <span ng-bind="::assistant.first_name"></span>

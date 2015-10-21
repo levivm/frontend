@@ -97,7 +97,7 @@
                           <label for="select-category" class="control-label sr-only" ng-bind="::vm.strings.LABEL_CATEGORY"></label>
                           <select id="select-category" class="form-control" ng-model="vm.selected_category"
                                   name="category"
-                                  ng-options="category as category.name for (index,category) in vm.activity_categories"
+                                  ng-options="category as category.name for (index,category) in vm.activity_categories | orderBy:'name'"
                                   ng-change="vm.selectCategory(vm.selected_category)">
                               <option value="" ng-show="!vm.selected_category" ng-bind="::vm.strings.LABEL_CATEGORY" selected>
                               </option>

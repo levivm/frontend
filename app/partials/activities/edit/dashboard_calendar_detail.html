@@ -15,10 +15,10 @@
               {{calendar.errors.non_field_errors}}
           </alert>
           <div class="col-md-5">
-              <div class="form-group text-center" trulii-input-errors-control="session_price">
+              <div class="form-group " trulii-input-errors-control="session_price">
                   <label class="control-label" for="session_price" ng-bind="::calendar.strings.LABEL_SESSION_PRICE"></label>
-                  <input id="session_price" class="form-control text-center" ng-class="{'text-strike':calendar.calendar.is_free}" type="text" ui-number-mask="0" name="session_price"
-                         placeholder="Precio mínimo 30.000 COP"
+                  <input id="session_price" class="form-control " ng-class="{'text-strike':calendar.calendar.is_free}" type="text" ui-number-mask="0" name="session_price"
+                         placeholder="{{::calendar.strings.PLACEHOLDER_SESSION_PRICE}}"
                          ng-model="calendar.calendar.session_price" min="0" ng-disabled="calendar.calendar.is_free"/>
                   
                   <input type="checkbox" id="is_free" ng-model="calendar.calendar.is_free" ng-check />
@@ -27,19 +27,19 @@
 
           </div>
           <div class="col-md-2">
-              <div class="form-group text-center" trulii-input-errors-control="capacity">
+              <div class="form-group " trulii-input-errors-control="capacity">
                   <label class="control-label" for="capacity" ng-bind="::calendar.strings.LABEL_CALENDAR_SEATS"></label>
-                  <input id="capacity" class="form-control text-center" type="number" name="capacity"
+                  <input id="capacity" class="form-control " type="number" name="capacity"
                          placeholder="0.00" min="1"
                          ng-model="calendar.calendar.capacity" />
               </div>
           </div>
           <div class="col-md-5">
-              <div class="form-group text-center" trulii-input-errors-control="closing_sale">
+              <div class="form-group " trulii-input-errors-control="closing_sale">
 
 
                   <label class="control-label" for="closing_sale" ng-bind="::calendar.strings.LABEL_CLOSE_SALES"></label>
-                  <input id="closing_sale" type="text" class="form-control text-center" name="closing_sale"
+                  <input id="closing_sale" type="text" class="form-control " name="closing_sale"
                          ng-model="calendar.calendar.closing_sale" ng-change="calendar.calendar.changeCloseDate()"
                          datepicker-popup="{{calendar.format}}" is-open="calendar.calendar.endOpened"
                          min-date="calendar.calendar.minStartDate" datepicker-options="calendar.dateOptions"
@@ -57,7 +57,6 @@
 
   <div class="separate-above">
     <div class="section-title" ng-bind="::calendar.strings.TITLE_SESSIONS">
-      Sesiones
     </div>
 
     <div class="separate-above" trulii-input-errors-control="number_of_sessions">
