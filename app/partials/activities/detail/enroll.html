@@ -9,6 +9,51 @@
         <param name="movie" value="{{enroll.appendPayUUniqueId('https://maf.pagosonline.net/ws/fp/fp.swf?id=')}}"/>
     </object>
 </div>
+<div class="sidebar-popup" ng-show="enroll.showReimbursement">
+    <div class="sidebar-background" ng-click="enroll.toggleReimbursement()"></div>
+    <div class="col-xs-10 col-sm-8 col-md-6 sidebar-content">
+        <div class="sidebar-header">
+            <button class="pull-right" ng-click="enroll.toggleReimbursement()"><img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/></button>
+            <h1>Politicas de reembolso</h1>
+        </div>
+        <div class="sidebar-body">
+            <h3 class="text-success">Does this unit have a soul?</h3>
+            <br/>
+            <p>
+                If I die, I'm haunting you, Shepard. Life is a negotiation. We all want. We have to give to get what we want. I am the very model of a scientist salarian, Find peace in the embrace of the goddess. I’m all for second chances. Not so sure about third ones.
+            </p>
+            <p>
+                Genophage modification project altered millions of lives. Then saw results. Ego, humility, juxtaposition. Frailty of life. Size of universe. Explored religions after work was completed. Different races. No answers. Many questions. Aware that you come by a great deal. Have had other species become attracted to me before. Awkward. Not interested. It’s always a good idea to RTFM, ma’am. I live a dangerous life. Dangerous men fit right in. You know what else is bad for business? A broken neck.
+            </p>
+            <p>
+                Certainly possible. Would require strengthening exercises. Get muscles to support weaker bone structure. That is a joke. Mating between species? A pointless exercise. Trapped inside a Reaper. Could be worse. Don’t know how, but… I guess it could be full of rats. Humanity needs a hero. And Shepard’s the best we’ve got.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="sidebar-popup" ng-show="enroll.showTerms">
+    <div class="sidebar-background" ng-click="enroll.toggleTerms()"></div>
+    <div class="col-xs-10 col-sm-8 col-md-6 sidebar-content">
+        <div class="sidebar-header">
+            <button class="pull-right" ng-click="enroll.toggleTerms()"><img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/></button>
+            <h1>Terminos y condiciones</h1>
+        </div>
+        <div class="sidebar-body">
+            <h3 class="text-success">Does this unit have a soul?</h3>
+            <br/>
+            <p>
+                If I die, I'm haunting you, Shepard. Life is a negotiation. We all want. We have to give to get what we want. I am the very model of a scientist salarian, Find peace in the embrace of the goddess. I’m all for second chances. Not so sure about third ones.
+            </p>
+            <p>
+                Genophage modification project altered millions of lives. Then saw results. Ego, humility, juxtaposition. Frailty of life. Size of universe. Explored religions after work was completed. Different races. No answers. Many questions. Aware that you come by a great deal. Have had other species become attracted to me before. Awkward. Not interested. It’s always a good idea to RTFM, ma’am. I live a dangerous life. Dangerous men fit right in. You know what else is bad for business? A broken neck.
+            </p>
+            <p>
+                Certainly possible. Would require strengthening exercises. Get muscles to support weaker bone structure. That is a joke. Mating between species? A pointless exercise. Trapped inside a Reaper. Could be worse. Don’t know how, but… I guess it could be full of rats. Humanity needs a hero. And Shepard’s the best we’ve got.
+            </p>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     <div class="detail-cover">
@@ -368,11 +413,13 @@
                         </div>
                         <div class="panel-footer">
                             <button class="btn btn-block btn-default separate-above text-uppercase"
-                                    ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY" ></button>
+                                    ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY" ng-click="enroll.toggleReimbursement()"></button>
                             <button class="btn btn-block btn-primary separate-above text-uppercase"
                                     ng-click="enroll.enroll()"
                                     ng-bind="::enroll.strings.ACTION_ENROLL" ></button>
-                            <div class="text-muted separate-above-more" ng-bind="::enroll.strings.COPY_RELEASE"></div>
+                            <div class="text-muted separate-above-more" >
+                                <span ng-bind="::enroll.strings.COPY_RELEASE"></span> <span><a href="javascript:void(0)" ng-bind="::enroll.strings.ACTION_VIEW_TERMS" ng-click="enroll.toggleTerms()"></a></span>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group" trulii-input-errors-control="generalError">
