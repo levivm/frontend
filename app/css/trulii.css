@@ -8415,8 +8415,13 @@ h6,
 .h3,
 .h4 {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  letter-spacing: -1px;
   font-weight: 300;
+}
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -1px;
 }
 h5,
 h6 {
@@ -16640,7 +16645,7 @@ ul {
 }
 body {
   overflow-x: hidden;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif;
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 h1,
 h2,
