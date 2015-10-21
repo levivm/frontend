@@ -12451,7 +12451,7 @@ hr.on-light {
   opacity: .4;
 }
 .standout-text {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
   font-size: 1.1em;
   color: #999999;
@@ -13513,7 +13513,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 0px 1em;
 }
 .navbar-secondary__item {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: .85em;
   color: rgba(0, 0, 0, 0.74);
   display: inline-block;
@@ -13653,7 +13653,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   position: relative;
   line-height: 3em;
   cursor: pointer;
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: .9em;
 }
@@ -13708,7 +13708,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 100%;
   padding: 1em;
   margin-top: 2em;
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: .9em;
   color: #999999;
@@ -13800,7 +13800,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 input,
 textarea,
 select {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
 ::-webkit-input-placeholder {
@@ -13818,7 +13818,7 @@ select {
   font-weight: 200;
 }
 label {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
   color: #555555 !important;
   font-size: 1em;
@@ -14312,7 +14312,7 @@ tags-input input {
   display: block;
   width: 100%;
   background-color: #FAFAFA;
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 1em 2.5rem;
   font-size: 1.2em;
 }
@@ -14321,7 +14321,7 @@ tags-input input {
   margin: 0 2.5rem;
 }
 .section-description {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #555555;
   margin: 1.5em 0;
   font-weight: normal;
@@ -14400,7 +14400,7 @@ tags-input input {
   color: rgba(0, 0, 0, 0.74) !important;
 }
 table {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 th {
   border-top: 0px solid !important;
@@ -14430,13 +14430,13 @@ td {
 }
 .order__info__label {
   margin-top: 2em;
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: .9em;
   font-weight: 200;
   color: #999999;
 }
 .order__info__data {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.1em;
 }
 .order__assistants {
@@ -15135,13 +15135,13 @@ ul.dropdown-menu:after {
   color: #999999;
   text-align: center;
   font-weight: bold;
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .card-list-item {
   padding: 3em 2em;
   position: relative;
   background-color: white !important;
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .card-list-item h1 {
   font-size: 1.2em;
@@ -15816,7 +15816,7 @@ button.toast-close-button {
   text-decoration: underline;
 }
 .activity-card__body__title {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: .85em;
   height: 3em;
@@ -15829,7 +15829,7 @@ button.toast-close-button {
 }
 .activity-card__body__owner-name {
   height: 2em;
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: .75em;
   width: 100%;
@@ -15850,7 +15850,7 @@ button.toast-close-button {
   font-size: .9em;
 }
 .activity-card__body__date {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #999999;
   font-weight: bold;
   font-size: .7em;
@@ -15873,7 +15873,7 @@ button.toast-close-button {
   color: #999999;
   text-align: center;
   font-weight: bold;
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .activity-card__rating {
   position: absolute;
@@ -16664,7 +16664,7 @@ ul {
 }
 body {
   overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif, sans-serif;
 }
 h1,
 h2,
@@ -16684,7 +16684,7 @@ p {
   padding-bottom: 5em;
 }
 .pagination-sm {
-  font-family: 'Sinkin Sans';
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.1em;
 }
 
