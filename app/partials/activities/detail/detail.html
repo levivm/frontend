@@ -403,7 +403,7 @@
     <div class="col-md-12">
         <h3><strong>Actividades Similares</strong></h3>
         <trulii-activity-item
-                ng-repeat="activity in detail.relatedActivities"
+                ng-repeat="activity in detail.relatedActivities track by activity.id"
                 data-activity="activity"></trulii-activity-item>
     </div>
 </div>

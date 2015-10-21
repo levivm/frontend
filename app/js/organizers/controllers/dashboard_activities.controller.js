@@ -46,11 +46,11 @@
         function _assignActivities(){
             vm.open_activities = [];
             vm.closed_activities = [];
-
             active_activities = _.filter(activities, {'published': true});
             vm.inactive_activities = _.filter(activities, {'published': false});
 
             angular.forEach(active_activities, filterActivity);
+
 
             function filterActivity(activity){
                 if(activity.last_date < Date.now()){

@@ -196,7 +196,8 @@
             ActivitiesManager.loadOrganizerActivities(organizer.id).then(success);
 
             function success(activities){
-                vm.relatedActivities = activities;
+                console.log("Related Activities",activities);
+                vm.relatedActivities = angular.copy(activities);
             }
         }
 
