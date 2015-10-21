@@ -7,12 +7,12 @@
 <div class="row activity-detail separate-above-medium">
     <div class="col-md-7 col-md-offset-1">
         <div class="row ">
-            <div class="col-md-12">
-                <h1 class="text-muted title" ng-bind="::detail.activity.title"></h1>
+            <div class="col-md-10">
+                <h1 class="title" ng-bind="::detail.activity.title"></h1>
             </div>
         </div>
         <!--Category and Social-->
-        <div class="row">
+        <div class="row separate-above-less">
             <div class="col-md-12">
                 <span class="label" ng-bind="::detail.activity.category.name"
                       ng-style="{'background-color': detail.activity.category.color}"></span>
@@ -58,26 +58,27 @@
             </div>
         </div>
         <!--Audience-->
-        <div class="row separate-above-medium">
+        <div class="row separate-above-medium" ng-show="detail.activity.audience">
             <div class="col-md-12 section">
                 <h2 class="title" ng-bind="::detail.strings.LABEL_AUDIENCE"></h2>
                 <p class="content" ng-bind="::detail.activity.audience"></p>
-                <div class="separator separate-above-more"></div>
+                <div class="separator separate-above-less"></div>
             </div>
         </div>
         <!--Content-->
-        <div class="row separate-above-medium">
+        <div class="row separate-above-less" ng-show="detail.activity.content">
             <div class="col-md-12 section">
                 <h2 class="title" ng-bind="::detail.strings.LABEL_CONTENT"></h2>
                 <p class="content" ng-bind="::detail.activity.content"></p>
-                <div class="separator separate-above-more"></div>
+                <div class="separator separate-above-less"></div>
             </div>
         </div>
         <!--Goals-->
-        <div class="row separate-above-medium">
+        <div class="row separate-above-less" ng-show="detail.activity.goals">
             <div class="col-md-12 section">
                 <h2 class="title" ng-bind="::detail.strings.LABEL_GOALS"></h2>
                 <p class="content" ng-bind="::detail.activity.goals"></p>
+                <div class="separator separate-above-less"></div>
             </div>
         </div>
 
@@ -89,29 +90,30 @@
         </div>
 
         <!--Methodology-->
-        <div class="row separate-above-medium">
+        <div class="row separate-above-less" ng-show="detail.activity.methodology">
             <div class="col-md-12 section">
                 <h3 class="title" ng-bind="::detail.strings.LABEL_METHODOLOGY"></h3>
                 <p class="content" ng-bind="::detail.activity.methodology"></p>
-                <div class="separator separate-above-more"></div>
+                <div class="separator separate-above-less"></div>
             </div>
         </div>
         <!--Requirements-->
-        <div class="row separate-above-medium">
+        <div class="row separate-above-less" ng-show="detail.activity.requirements">
             <div class="col-md-12 section">
                 <h3 class="title" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></h3>
                 <p class="content" ng-bind="::detail.activity.requirements"></p>
-                <div class="separator separate-above-more"></div>
+                <div class="separator separate-above-less"></div>
             </div>
         </div>
         <!--Extra-->
-        <div class="row separate-above-medium">
+        <div class="row separate-above-less" ng-show="detail.activity.extra_info">
             <div class="col-md-12 section">
                 <h3 class="title" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></h3>
                 <p class="content" ng-bind="::detail.activity.extra_info"></p>
                 <div class="separate-above-more"></div>
             </div>
         </div>
+        <div class="separate-above-more" ng-show="!detail.activity.extra_info"></div>
     </div>
     <div class="col-md-3">
         <div class="organizer-widget">
@@ -120,7 +122,7 @@
                      alt="{{::detail.organizer.name}}"/>
                 <div class="data">
                     <div class="name" ng-bind="::detail.organizer.name"></div>
-                    <div class="location" ng-bind="::detail.organizer.locations[0].address"></div>
+                    <div class="location" ng-bind="::detail.getOrganizerCity()"></div>
                 </div>
             </a>
             <!--TODO Fill with real data-->
@@ -148,7 +150,13 @@
                     </div>
                     <div class="vacancy">
                         <span ng-bind="detail.calendar_selected.vacancy"></span>
-                        <span ng-bind="::detail.strings.COPY_VACANCY"></span>
+                        <ng-pluralize count="detail.calendar_selected.vacancy"
+                            when="{
+                                '1': detail.strings.COPY_VACANCY_SINGULAR,
+                                'other': detail.strings.COPY_VACANCY
+                                }">
+                        </ng-pluralize>
+                        <!-- <span ng-bind="::detail.strings.COPY_VACANCY"></span> -->
                     </div>
                 </div>
                 <div class="price">
@@ -179,7 +187,8 @@
                     <!--TODO pendiente calcular duracion-->
                     <div class="duration">
                         <img src="/css/img/activity-detail/widget_duration.png" alt=""/>
-                        <div class="title" ng-bind="detail.activity.level_display"></div>
+                        <!-- <div class="title" ng-bind="::detail.getDuration(detail.calendar_selected)"></div> -->
+                        <div class="title" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></div>
                     </div>
                 </div>
                 <div class="sessions">
@@ -197,9 +206,9 @@
                              ng-repeat="session in detail.calendar_selected.sessions track by session.id">
                             <div class="session-item-date" ng-bind="session.date | date:'EEE d MMM y'"></div>
                             <div class="session-item-time">
-                                <span ng-bind="session.start_time | date: 'h:mm a'"></span>
+                                <span ng-bind="session.start_time | amDateFormat: 'h:mm a'"></span>
                                 <span ng-bind="::detail.strings.COPY_TO" style="text-transform: lowercase;" ></span>
-                                <span ng-bind="session.end_time | date: 'h:mm a'"></span>
+                                <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
                             </div>
                         </div>
                     </div>
@@ -235,7 +244,13 @@
                             <div class="next-label" ng-bind="::detail.strings.LABEL_NEXT_DATE"></div>
                             <div class="vacancy">
                                 <span ng-bind="calendar.vacancy"></span>
-                                <span ng-bind="::detail.strings.COPY_VACANCY"></span>
+                                <ng-pluralize count="calendar.vacancy"
+                                    when="{
+                                        '1': detail.strings.COPY_VACANCY_SINGULAR,
+                                        'other': detail.strings.COPY_VACANCY
+                                        }">
+                                </ng-pluralize>
+                                <!-- <span ng-bind="::detail.strings.COPY_VACANCY"></span> -->
                             </div>
                         </div>
                         <div class="col-md-6 clear-spacings float-right">
@@ -265,7 +280,7 @@
 </div>
 
 <!--Instructors-->
-<div class="row">
+<div class="row" ng-show="detail.activity.instructors.length">
     <div class="col-md-12 instructors-container">
         <h1 class="title" ng-bind="::detail.strings.LABEL_INSTRUCTORS"></h1>
         <div class="instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
@@ -394,7 +409,7 @@
             Actividades Similares
         </h3>
         <trulii-activity-item
-                ng-repeat="activity in detail.relatedActivities"
+                ng-repeat="activity in detail.relatedActivities track by activity.id"
                 data-activity="activity"></trulii-activity-item>
     </div>
 </div>

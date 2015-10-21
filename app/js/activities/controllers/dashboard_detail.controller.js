@@ -81,7 +81,7 @@
             angular.extend(vm.strings, {
                 TITLE_DETAIL: "Detalles",
                 COPY_DETAIL: "Completa estos campos si deseas ser más preciso.",
-                LABEL_AUDIENCE: "Aundiencia",
+                LABEL_AUDIENCE: "Audiencia",
                 LABEL_GOALS: "Objectivos",
                 LABEL_CONTENT: "Contenido",
                 LABEL_METHODOLOGY: "Metodología",

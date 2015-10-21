@@ -105,6 +105,7 @@
             _setStrings();
             vm.calendars = calendars;
             assistants = _getAssistants();
+            console.log("assistants",assistants);
             vm.totalItems = assistants.length;
             vm.pageOptions.maxPages = Math.ceil(vm.totalItems / vm.pageOptions.itemsPerPage);
 
