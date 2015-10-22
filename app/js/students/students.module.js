@@ -62,6 +62,7 @@
                 }
             })
             .state('student-dashboard.history', {
+                abstract:true,
                 url:'history',
                 controller: 'StudentHistoryCtrl as history',
                 templateUrl: 'partials/students/dashboard/history.html'
@@ -70,8 +71,8 @@
                 url:'/orders',
                 templateUrl: 'partials/students/dashboard/history.orders.html'
             })
-            .state('student-dashboard.history.orders.order', {
-                url:'/:orderId',
+            .state('student-dashboard.history.order', {
+                url:'/orders/:orderId',
                 controller: 'StudentHistoryOrderCtrl as order',
                 templateUrl: 'partials/students/dashboard/history.order.html',
                 resolve: {

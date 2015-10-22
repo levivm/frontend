@@ -8,6 +8,8 @@
 
 h1.title, h2.title{
     font-weight:600;
+    font-size: 3.5em;
+    color: @title-color;
 }
 h3.title{
     font-weight: 400;
@@ -55,7 +57,7 @@ h1, h2, h3, h4, h5{
 
             .location {
                 font-family: @font-serif;
-                font-size: 0.8em;
+                font-size: 0.9em;
                 color: @text-muted;
             }
         }
@@ -73,12 +75,13 @@ h1, h2, h3, h4, h5{
 .calendar-widget {
     &:extend(.separate-above-medium);
     border: 1px solid @border-color;
+    font-family: @font-sans;
 
     .HeaderText() {
         width: 100%;
         height: auto;
         padding: 1em 1em 0;
-        font-size: 1.4em;
+        font-size: 1.2em;
         font-weight: 400;
         color: @lightbg-text;
         text-align: center;
@@ -122,6 +125,7 @@ h1, h2, h3, h4, h5{
             font-weight: 400;
             text-align: center;
             color: @white;
+            font-family: @font-sans-alt;
             background-color: @text-muted;
         }
 
@@ -134,13 +138,14 @@ h1, h2, h3, h4, h5{
             font-weight: 400;
             text-transform: uppercase;
             text-align: center;
-            color: @text-muted !important;
+            color: @black !important;
         }
 
         .info {
             width: 100%;
             text-align: center;
-
+            color: @text-muted;
+            
             .InfoSection(){
                 width: 30%;
                 padding: 0.8em;
@@ -148,7 +153,8 @@ h1, h2, h3, h4, h5{
                 display: inline-block;
 
                 .title {
-                    font-size: 0.8em;
+                    font-size: 0.7em;
+                    font-weight:600;
                 }
             }
 
@@ -207,6 +213,7 @@ h1, h2, h3, h4, h5{
                         font-size: 0.8em;
                         font-weight: 100;
                         color: @text-muted;
+                        text-transform: lowercase;
                     }
                 }
             }
@@ -328,12 +335,7 @@ h1, h2, h3, h4, h5{
     }
 }
 
-.title{
-    
-    font-size: 2.8em;
-    color: @title-color;
-    font-weight: 800;
-}
+
 
 .section {
     .title {
@@ -527,10 +529,17 @@ h1, h2, h3, h4, h5{
     text-align: center;
     background-color: @brand-success;
 
+
     h1, h2, h3, h4, h5, p {
         color: @white;
         font-weight: 600;
     }
+
+    &-info h5 {
+        font-family: @font-sans-alt;
+        font-weight: 500;
+    }
+
 
     .calendar-info {
         margin-top: 3em;
@@ -543,6 +552,7 @@ h1, h2, h3, h4, h5{
             border-right: 1px solid @white;
 
             .date{
+                font-size: 3em;
                 text-transform: uppercase;
             }
         }
@@ -552,6 +562,10 @@ h1, h2, h3, h4, h5{
             display: inline-block;
             text-align:left;
             padding-left: 2em;
+
+            h5{
+                font-size: 3em;
+            }
         }
     }
 
@@ -573,7 +587,6 @@ h1, h2, h3, h4, h5{
         padding: 2em;
 
         .reason-img {
-            width: 6em;
             height: 6em;
         }
 
