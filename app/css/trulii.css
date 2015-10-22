@@ -16625,7 +16625,7 @@ h5 {
 }
 .sessions-panel .panel-body {
   max-height: 24em;
-  overflow: scroll;
+  overflow: auto;
 }
 .sessions-panel .session {
   padding: 1.5em;
