@@ -40,11 +40,12 @@ h1, h2, h3, h4, h5{
             border-radius: 50%;
             display: inline-block;
             height: auto;
+            margin-left: 20%;
             width: 20%;
         }
 
         .data {
-            width: 70%;
+            width: 50%;
             display: inline-block;
             vertical-align: middle;
 
@@ -69,6 +70,14 @@ h1, h2, h3, h4, h5{
         border-left: @border-widget;
         padding: 1em 2em 1em 2em;
         text-align: center;
+
+        span {
+            color: @text-muted;
+            margin-left:.7em;
+        }
+        img{
+            padding-bottom: 0.4em;
+        }
     }
 }
 
@@ -358,6 +367,11 @@ h1, h2, h3, h4, h5{
     font-weight: 800;
 }
 
+
+.gallery-container { 
+    margin-top:3rem;
+}
+
 .gallery {
     width: 100%;
     height: 32em;
@@ -431,12 +445,12 @@ h1, h2, h3, h4, h5{
 }
 
 .instructors-container{
-    padding: 6em 9.5em 9.5em 9.5em;
+    padding: 1.5em 9.5em 5em 9.5em;
     background-color: @secondary-bg;
 
     .title{
         &:extend(.sub-section-title);
-        margin-bottom: 1em;
+        margin-bottom: 0.8em;
     }
 
     .instructor{
@@ -475,7 +489,7 @@ h1, h2, h3, h4, h5{
 }
 
 .attendees-container {
-    padding: 6em 9.5em 7.5em 9.5em;
+    padding: 1em 9.5em 1em 9.5em;
 
     .title{
         &:extend(.sub-section-title);
@@ -586,6 +600,7 @@ h1, h2, h3, h4, h5{
         display: inline-block;
         padding: 2em;
 
+
         .reason-img {
             height: 6em;
         }
@@ -595,8 +610,8 @@ h1, h2, h3, h4, h5{
             vertical-align: middle;
 
             .reason-title {
-                font-size: 1.4em;
-                font-weight: 400;
+                font-size:0.9em;
+                font-weight: 700;
             }
 
             .reason-copy {

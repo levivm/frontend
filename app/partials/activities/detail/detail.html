@@ -34,7 +34,7 @@
             </div>
         </div>
         <!--Gallery-->
-        <div class="row separate-above-medium">
+        <div class="row gallery-container">
             <div class="col-md-12">
                 <div class="gallery">
                     <div class="gallery-slide" ng-repeat="picture in detail.activity.gallery track by picture.id">
@@ -142,11 +142,11 @@
                 <div class="header">
                     <div class="next">
                         <div class="next-label" ng-bind="::detail.strings.LABEL_NEXT_DATE"></div>
-                        <div class="next-date" ng-bind="detail.calendar_selected.initial_date | date:'MMM d, y'"></div>
+                        <div class="next-date" ng-bind="detail.calendar_selected.initial_date | date:'d MMM y'"></div>
                     </div>
                     <div class="closing-date">
                         <div ng-bind="::detail.strings.LABEL_CLOSING_DATE"></div>
-                        <div ng-bind="detail.calendar_selected.closing_sale | date:'MMM d, y'"></div>
+                        <div ng-bind="detail.calendar_selected.closing_sale | date:'d MMM y'"></div>
                     </div>
                     <div class="vacancy">
                         <span ng-bind="detail.calendar_selected.vacancy"></span>
@@ -283,12 +283,15 @@
 <div class="row" ng-show="detail.activity.instructors.length">
     <div class="col-md-12 instructors-container">
         <h1 class="title" ng-bind="::detail.strings.LABEL_INSTRUCTORS"></h1>
-        <div class="instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
-            <div class="name" ng-bind="::instructor.full_name"></div>
-            <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
-               ng-bind="::instructor.website"></a>
-            <p class="bio" ng-bind="::instructor.bio"></p>
-            <div ng-if="!$last" class="separator separate-below-more"></div>
+        <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
+             
+            <div class="col-md-8">
+                <div class="name" ng-bind="::instructor.full_name"></div>
+                <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
+                   ng-bind="::instructor.website"></a>
+                <p class="bio" ng-bind="::instructor.bio"></p>
+                <div ng-if="!$last" class="separator separate-below-less"></div>
+            </div>
         </div>
     </div>
 </div>
