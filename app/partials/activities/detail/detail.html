@@ -83,9 +83,10 @@
         </div>
 
         <!--Video-->
-        <div class="row" ng-if="detail.activity.youtube_video_url">
+        <div class="row youtube-video-container" ng-if="detail.activity.youtube_video_url">
             <div class="col-md-12 text-center">
-                <div class="separator separate-above-less"></div>
+                <div class="separator "></div>
+                <div class="separate-below-medium"></div>
                 <youtube-video video-url="detail.activity.youtube_video_url"></youtube-video>
             </div>
         </div>
