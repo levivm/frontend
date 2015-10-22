@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Montserrat';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-UltraLight.otf');
-  font-weight: 200;
+  font-weight: 100;
   font-style: normal;
 }
 @font-face {
@@ -25,19 +25,19 @@
 @font-face {
   font-family: 'Montserrat';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-Bold.otf');
-  font-weight: 500;
+  font-weight: 700;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-ExtraBold.otf');
-  font-weight: 600;
+  font-weight: 800;
   font-style: normal;
 }
 @font-face {
   font-family: 'Montserrat';
   src: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/css/fonts/Montserrat-Black.otf');
-  font-weight: 700;
+  font-weight: 900;
   font-style: normal;
 }
 @font-face {
@@ -2321,8 +2321,8 @@ table {
   background-color: transparent;
 }
 caption {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 35px 8px;
+  padding-bottom: 35px 8px;
   color: #999999;
   text-align: left;
 }
@@ -2340,7 +2340,7 @@ th {
 .table > thead > tr > td,
 .table > tbody > tr > td,
 .table > tfoot > tr > td {
-  padding: 8px;
+  padding: 35px 8px;
   line-height: 1.42857143;
   vertical-align: top;
   border-top: 1px solid #dddddd;
@@ -8417,7 +8417,7 @@ h6 {
 a,
 a:hover,
 a:focus {
-  color: #ffd580;
+  color: #38dbc8;
 }
 body .well,
 .container .well,
@@ -12302,7 +12302,7 @@ hr.on-light {
 .sidebar-popup .sidebar-content {
   position: absolute;
   background-color: white;
-  max-height: 100vh;
+  min-height: 100vh;
   overflow-y: scroll;
   padding: 0;
   top: 0;
@@ -12357,58 +12357,6 @@ hr.on-light {
 .text-strike {
   text-decoration: line-through;
 }
-/* Deprecated?
-
-.title-compound{
-    position: relative;
-
-    &-centered{
-        &__title{
-            display: block;
-            width: 100%;
-            text-align: center;
-
-            & > *{
-                margin: 0;
-            }
-
-            h1,h2,h3,h4,h5,h6{
-                display: inline-block;
-                border-bottom: 1px solid white;
-                padding: .2em 1em;
-            }
-
-        }
-
-        &__description{
-            display: block;
-            width: 100%;
-            margin: 0;
-            text-align: center;
-            padding: .5em 1em;
-            font-size: 1.1em;
-
-            & > *{
-                margin: 0;
-            }
-        }
-    }
-
-    .card-icon{
-        position: absolute !important;
-        top: 0 !important;
-    }
-
-    &__title{
-        margin-left: 60px;
-    }
-
-    &__description{
-        margin-top: 1em;
-    }
-}
-
-*/
 .text-color-primary {
   color: #ffd580;
 }
@@ -12448,6 +12396,86 @@ hr.on-light {
   font-size: 1.1em;
   color: #999999;
   margin: 1em 0;
+}
+.text-header {
+  margin-bottom: 1.5em;
+  font-size: 3.5em;
+}
+.font-family-sans {
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.font-family-sans-alt {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.font-family-serif {
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+}
+.montserrat-ultralight {
+  font-weight: 100;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.montserrat-light {
+  font-weight: 200;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.montserrat-regular {
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+.montserrat-semibold {
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+.montserrat-bold {
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+.montserrat-extrabold {
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+}
+.montserrat-black {
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+}
+.sinkin-thin {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 100;
+}
+.sinkin-ultralight {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 200;
+}
+.sinkin-light {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+}
+.sinkin-regular {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}
+.sinkin-medium {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
+.sinkin-semibold {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 600;
+}
+.sinkin-bold {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+.sinkin-black {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 800;
+}
+.sinkin-extrablack {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 900;
+}
+.pt-sans {
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
 }
 .img-size-cover,
 .img-fit,
@@ -13528,6 +13556,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar-secondary__item:focus {
   color: rgba(0, 0, 0, 0.74);
 }
+.navbar-secondary .sub-title {
+  position: absolute;
+  left: 70vw;
+  top: 0px;
+  font-weight: 500;
+  color: #555555;
+}
 .navbar-secondary + * {
   margin-top: 60px;
 }
@@ -14073,6 +14108,9 @@ tags-input input {
   bottom: 0;
   right: 0;
 }
+.search-input {
+  margin: 10px 0px 50px 10px;
+}
 @font-face {
   font-family: 'fontello';
   src: url('fonts/fontello/fontello.eot?27890168');
@@ -14394,16 +14432,20 @@ tags-input input {
 table {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+table a {
+  text-decoration: underline;
+}
 th {
   border-top: 0px solid !important;
   font-weight: 600;
   color: #333333;
   text-align: left;
 }
-th,
-td {
+th {
   font-size: 1em;
-  padding: 15px 8px !important;
+}
+td {
+  font-size: 0.85em;
 }
 .order {
   position: relative;
@@ -15149,8 +15191,8 @@ ul.dropdown-menu:after {
 }
 .card-list-item h3 {
   color: #999999;
-  font-weight: 700;
-  font-size: .9em;
+  font-weight: 300;
+  font-size: 1em;
 }
 .card-list-item__actions {
   position: absolute;
@@ -15900,6 +15942,8 @@ button.toast-close-button {
 h1.title,
 h2.title {
   font-weight: 600;
+  font-size: 3.5em;
+  color: #9e9e9e;
 }
 h3.title {
   font-weight: 400;
@@ -15945,7 +15989,7 @@ h5 {
 }
 .organizer-widget .card .data .location {
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: #999999;
 }
 .organizer-widget .ratings {
@@ -15957,12 +16001,13 @@ h5 {
 }
 .calendar-widget {
   border: 1px solid #dedede;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .calendar-widget .widget-card .header .next {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -15978,7 +16023,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -15990,7 +16035,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
@@ -16006,6 +16051,7 @@ h5 {
   font-weight: 400;
   text-align: center;
   color: #ffffff;
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #999999;
 }
 .calendar-widget .widget-card .btn-sign-up {
@@ -16017,11 +16063,12 @@ h5 {
   font-weight: 400;
   text-transform: uppercase;
   text-align: center;
-  color: #999999 !important;
+  color: #000000 !important;
 }
 .calendar-widget .widget-card .info {
   width: 100%;
   text-align: center;
+  color: #999999;
 }
 .calendar-widget .widget-card .info .level {
   width: 30%;
@@ -16030,7 +16077,8 @@ h5 {
   display: inline-block;
 }
 .calendar-widget .widget-card .info .level .title {
-  font-size: 0.8em;
+  font-size: 0.7em;
+  font-weight: 600;
 }
 .calendar-widget .widget-card .info .certification {
   width: 30%;
@@ -16039,7 +16087,8 @@ h5 {
   display: inline-block;
 }
 .calendar-widget .widget-card .info .certification .title {
-  font-size: 0.8em;
+  font-size: 0.7em;
+  font-weight: 600;
 }
 .calendar-widget .widget-card .info .duration {
   width: 30%;
@@ -16048,7 +16097,8 @@ h5 {
   display: inline-block;
 }
 .calendar-widget .widget-card .info .duration .title {
-  font-size: 0.8em;
+  font-size: 0.7em;
+  font-weight: 600;
 }
 .calendar-widget .widget-card .sessions .sessions-title {
   padding: 1em;
@@ -16059,7 +16109,6 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -16083,7 +16132,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
@@ -16096,7 +16145,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -16106,6 +16155,7 @@ h5 {
   font-size: 0.8em;
   font-weight: 100;
   color: #999999;
+  text-transform: lowercase;
 }
 .calendar-widget .widget-card .other-calendars {
   padding: 1.6em;
@@ -16123,7 +16173,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -16137,7 +16187,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -16151,7 +16201,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -16184,7 +16234,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -16196,7 +16246,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
@@ -16209,7 +16259,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -16223,7 +16273,7 @@ h5 {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
-  font-size: 1.4em;
+  font-size: 1.2em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
@@ -16245,11 +16295,6 @@ h5 {
 }
 .calendar-widget .widget-list .widget-list-item * .btn-detail {
   font-size: 0.8em;
-}
-.title {
-  font-size: 2.8em;
-  color: #9e9e9e;
-  font-weight: 800;
 }
 .section .title {
   font-size: 1.8em;
@@ -16433,6 +16478,10 @@ h5 {
   color: #ffffff;
   font-weight: 600;
 }
+.sign-up-container-info h5 {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+}
 .sign-up-container .calendar-info {
   margin-top: 3em;
   text-align: center;
@@ -16445,6 +16494,7 @@ h5 {
   border-right: 1px solid #ffffff;
 }
 .sign-up-container .calendar-info .date-info .date {
+  font-size: 3em;
   text-transform: uppercase;
 }
 .sign-up-container .calendar-info .price {
@@ -16452,6 +16502,9 @@ h5 {
   display: inline-block;
   text-align: left;
   padding-left: 2em;
+}
+.sign-up-container .calendar-info .price h5 {
+  font-size: 3em;
 }
 .sign-up-container .btn {
   margin-top: 2em;
@@ -16468,7 +16521,6 @@ h5 {
   padding: 2em;
 }
 .reasons-container .reason .reason-img {
-  width: 6em;
   height: 6em;
 }
 .reasons-container .reason .reason-text {
@@ -16522,7 +16574,7 @@ h5 {
 }
 .sessions-panel .panel-body {
   max-height: 24em;
-  overflow: scroll;
+  overflow: auto;
 }
 .sessions-panel .session {
   padding: 1.5em;
@@ -16708,22 +16760,32 @@ h5 {
 .popover-content {
   line-height: 1.6em;
 }
-.footer--dashboard {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 100%;
-  height: 2.4em;
-  position: fixed;
-  bottom: 0;
-  background: #eeeeee;
-  text-align: right;
-  padding-right: 2em;
+.order-detail {
+  background-color: #eeeeee;
+  display: flex;
+  margin: 0;
+  border: 1px solid #eeeeee;
 }
-.footer--dashboard .footer__item {
-  font-size: .85em;
-  color: #999999;
-  margin: 0 1em;
-  line-height: 2.4em;
-  font-weight: normal;
+.order-detail h5 {
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.order-detail .order-description,
+.order-detail .order-info {
+  align-items: stretch;
+}
+.order-detail .order-description {
+  padding: 25px 35px;
+}
+.order-detail .order-info {
+  background-color: white;
+  padding: 0px 35px 25px 35px;
+}
+.order-detail .order-info tbody > tr > td:last-child {
+  padding-top: 15px;
+}
+.order-detail .order-info .btn {
+  font-size: 1em;
+  font-weight: 300;
 }
 a:hover {
   color: #38dbc8;
