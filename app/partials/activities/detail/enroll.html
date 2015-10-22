@@ -362,6 +362,13 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group" trulii-input-errors-control="generalError">
+                                                        <input type="hidden" ng-model="enroll.pseData.generalError" name="generalError"/>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -369,17 +376,12 @@
                         </div>
                         <div class="panel-footer">
                             <button class="btn btn-block btn-default separate-above text-uppercase"
-                                    ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY" ng-click="enroll.toggleReimbursement()"></button>
+                                    ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY" ></button>
                             <button class="btn btn-block btn-primary separate-above text-uppercase"
                                     ng-click="enroll.enroll()"
                                     ng-bind="::enroll.strings.ACTION_ENROLL" ></button>
-                            <div class="text-muted separate-above-more" >
-                                <span ng-bind="::enroll.strings.COPY_RELEASE"></span> <span><a href="javascript:void(0)" ng-bind="::enroll.strings.ACTION_VIEW_TERMS" ng-click="enroll.toggleTerms()"></a></span>
-                            </div>
+                            <div class="text-muted separate-above-more" ng-bind="::enroll.strings.COPY_RELEASE"></div>
                         </div>
-                    </div>
-                    <div class="form-group" trulii-input-errors-control="generalError">
-                        <input type="hidden" ng-model="enroll.pseData.generalError" name="generalError"/>
                     </div>
                 </div>
             </div>
@@ -405,7 +407,7 @@
         <!--Billing-->
         <div class="billing-widget separate-above">
             <div class="invoice">
-                <h5><strong>Facturación</strong></h5>
+                <h5 class="text-uppercase"><strong>Facturación</strong></h5>
                 <div class="row separate-above">
                     <div class="col-md-6 item">
                         <span>Cupos X </span><span ng-bind="enroll.assistants.length"></span>
@@ -423,7 +425,7 @@
                     </div>
                 </div>
                 <!--if Free-->
-                <div class="row separate-above">
+                <div class="row separate-above" ng-if="enroll.calendar.is_free">
                     <div class="col-md-6 item">
                         <span>Actividad Gratis </span>
                     </div>

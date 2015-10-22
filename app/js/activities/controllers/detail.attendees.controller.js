@@ -75,12 +75,12 @@
             assistants = _.flatten(assistants, true);
             // TODO for testing purposes
             //assistants = [
-            //    {'first_name': "Fernando", "email": "fer@trulii.com"},
-            //    {'first_name': "Daniel", "email": "daniel@trulii.com"},
-            //    {'first_name': "Rodrigo", "email": "ror@trulii.com"},
-            //    {'first_name': "Levi", "email": "levi@trulii.com"},
-            //    {'first_name': "Harvey", "email": "harvey@trulii.com"},
-            //    {'first_name': "Maria", "email": "maria@trulii.com"}];
+            //    {'first_name': "Fernando", "email": "fer@trulii.com", id: 1},
+            //    {'first_name': "Daniel", "email": "daniel@trulii.com", id: 2},
+            //    {'first_name': "Rodrigo", "email": "ror@trulii.com", id: 3},
+            //    {'first_name': "Levi", "email": "levi@trulii.com", id: 4},
+            //    {'first_name': "Harvey", "email": "harvey@trulii.com", id: 5},
+            //    {'first_name': "Maria", "email": "maria@trulii.com", id: 6}];
             _.forEach(assistants, function(assistant){
                 if(assistant.hasOwnProperty('student') && assistant.student.photo){
                     assistant.photo = assistant.student.photo;
@@ -105,7 +105,6 @@
             _setStrings();
             vm.calendars = calendars;
             assistants = _getAssistants();
-            console.log("assistants",assistants);
             vm.totalItems = assistants.length;
             vm.pageOptions.maxPages = Math.ceil(vm.totalItems / vm.pageOptions.itemsPerPage);
 

@@ -5,20 +5,25 @@
         .module('trulii.activities.controllers')
         .controller('ActivityEnrollSuccessController', ActivityEnrollSuccessController);
 
-    ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'activity', 'calendar', 'organizerActivities'];
+    ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'LocationManager', 'activity', 'calendar', 'organizerActivities'];
 
-    function ActivityEnrollSuccessController($state, $stateParams, activity, calendar, organizerActivities) {
+    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, activity, calendar, organizerActivities) {
 
         var vm = this;
-        vm.activity = activity;
-        vm.calendar = calendar;
-        vm.organizer = activity.organizer;
-        vm.organizerActivities = [];
+        angular.extend(vm, {
+            activity : null,
+            calendar : calendar,
+            organizer : activity.organizer,
+            organizerActivities : []
+        });
 
         _activate();
 
         function _getOrganizerActivities() {
-            return _.without(organizerActivities, activity).slice(0, 2);
+            console.log('organizerActivities:', organizerActivities);
+            console.log('organizerActivities:', _.without(organizerActivities, activity));
+            //return _.without(organizerActivities, activity).slice(0, 2);
+            return _.without(organizerActivities, activity);
         }
 
         function _setCurrentState(){
@@ -31,36 +36,44 @@
             console.log('vm.current_state:', vm.current_state);
         }
 
+        function _setCity(activity){
+            if(activity.location && activity.location.city){
+                activity.location.city = LocationManager.getCityById(activity.location.city);
+            }
+            return activity;
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                COPY_CONGRATULATIONS: "¡Felicidades!",
-                COPY_PREPARE_TO_ASSIST_TO: "Prepárate para asistir a:",
-                COPY_ASSISTANCE: "Aprender algo nuevo siempre es más divertido si lo compartes con tus amigos. "
-                    + "¡Invítalos y disfruta el doble! Ellos también asistirán",
-                COPY_ACTIVITIES_FROM: "Actividades de ",
-                COPY_NO_ACTIVITIES: "El Organizador no tiene más Actividades disponibles",
-                COPY_PUBLISH: "¿Te interesa organizar tu propia clase, curso o diplomado? "
-                    + "Publica tu actividad con nosotros y comienza a aumentar tus inscripciones. ¡Crece con nosotros!",
-                ACTION_VIEW_PROFILE: "Ver Perfil",
-                ACTION_CONTACT: "Contactar",
+                COPY_HEADER_TITLE: "¡Excelente! Te acabas de inscribir en",
+                COPY_HEADER_DESCRIPTION: "Te hemos enviado un correo electrónico con toda la "
+                    + "información referente a la inscripcion y el pago",
+                LABEL_REMEMBER: "Recuerda que",
+                LABEL_START_DATE: "Inicio",
+                LABEL_LOCATION: "Ubicación",
+                LABEL_QUESTIONS: "¿Dudas?",
+                LABEL_REQUIREMENTS: "¿Qué debo llevar?",
+                LABEL_ATTENDEES: "Asistentes",
+                COPY_ASSISTANTS: "Estos son algunos de los asistentes a esta actividad. ¡Falta poco para conocerlos!",
+                LABEL_SHARE: "¡En compañia se la pasa mejor!",
+                COPY_SHARE: "Cuéntale a tus amigos sobre esta actividad",
+                LABEL_SIMILAR: "Actividades similares",
                 ACTION_GO_TO_ACTIVITIES: "Ir a Mis Actividades",
-                ACTION_VIEW_RECEIPT: "Ver Recibo",
-                ACTION_VIEW_MORE: "Ver Más",
-                ACTION_PUBLISH: "Publica Ya",
-                LABEL_ORGANIZER: "Organizador",
-                LABEL_ASSISTANTS: "Asistentes",
-                LABEL_PUBLISH_ACTIVITY: "Publica tu Actividad"
+                ACTION_GO_BACK: "Regresar",
+                ACTION_CONTACT_US: "Contactanos"
             });
         }
 
         function _activate() {
             _setStrings();
             _setCurrentState();
+            activity = _setCity(activity);
+            vm.activity = activity;
             vm.organizerActivities = _getOrganizerActivities();
-            console.log('vm.organizerActivities:', vm.organizerActivities);
+            console.log('activity:', activity);
         }
     }
 })();
