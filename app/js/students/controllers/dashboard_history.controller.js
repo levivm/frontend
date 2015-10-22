@@ -61,7 +61,10 @@
                 HEADER_ACTIVITY: "Actividad",
                 HEADER_PAYMENT: "Pago",
                 HEADER_DETAIL: "Detalle",
-                HEADER_DATE: "Fecha de compra",
+                HEADER_PURCHASE_DATE: "Fecha de compra",
+                HEADER_REIMBURSEMENT_DATE: "Fecha de reembolso",
+                HEADER_REIMBURSEMENT_TOTAL: "Monto reembolsado",
+                HEADER_REIMBURSEMENT_STATUS: "Estado del reembolso",
                 HEADER_TOTAL: "Monto"
             });
         }

@@ -2345,6 +2345,11 @@ th {
   vertical-align: top;
   border-top: 1px solid #ddd;
 }
+.table > thead tr:nth-child(2) > td,
+.table > tbody tr:nth-child(2) > td,
+.table > tfoot tr:nth-child(2) > td {
+  border-top: none;
+}
 .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 2px solid #ddd;
