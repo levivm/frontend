@@ -71,8 +71,8 @@
                 url:'/orders',
                 templateUrl: 'partials/students/dashboard/history.orders.html'
             })
-            .state('student-dashboard.history.orders.order', {
-                url:'/:orderId',
+            .state('student-dashboard.history.order', {
+                url:'/orders/:orderId',
                 controller: 'StudentHistoryOrderCtrl',
                 templateUrl: 'partials/students/dashboard/history.order.html',
                 resolve: {

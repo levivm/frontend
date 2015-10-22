@@ -115,7 +115,7 @@
             angular.extend(vm.strings, {
                 DELETE_CALENDAR_ERROR: "No puede eliminar este calendario, tiene estudiantes inscritos, contactanos",
                 LABEL_CALENDARS: "Calendarios",
-                LABEL_START_DATE: "Fecha de Inicio",
+                LABEL_START_DATE: "Calendario ",
                 LABEL_CLOSE_SALE: "Ventas hasta",
                 LABEL_CALENDAR_SEATS: "Cupos",
                 LABEL_START: "Inicia",

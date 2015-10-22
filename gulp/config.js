@@ -54,6 +54,7 @@ module.exports = {
         path.join(APP_ROOT, '/js/**/*.config.js'),
         path.join(APP_ROOT, '/js/**/services/**.js'),
         path.join(APP_ROOT, '/js/**/directives/*.directive.js'),
+        path.join(APP_ROOT, '/js/**/filters/*.filter.js'),
         path.join(APP_ROOT, '/js/**/controllers/*.controller.js')
     ],
     dist : {

@@ -24,11 +24,14 @@
         //var api = PaymentServerApi;
         var PAYU_API_DATA = null;
         var MERCHANT_DATA = null;
+
         //For trulii backend
         var KEY_CARD_ASSOCIATION = "card_association";
+
         //Keys for PayU Auth
         var KEY_API_LOGIN = "apiLogin";
         var KEY_API_KEY = "apiKey";
+
         //Keys for PayU token
         var KEY_PAYER_ID = "payer_id";
         var KEY_NAME_CARD = "name_card";
@@ -46,7 +49,8 @@
         var KEY_IDENTIFICATION_NUMBER ="identificationNumber";
         var KEY_CVV = "cvv";
         var KEY_TOKEN = "token";
-        
+
+        //PSE Keys
         var KEY_PSE_APPROVED_PAYMENT = "Aprobada";
         var KEY_PSE_REJECTED_PAYMENT = "Rechazada";
         var KEY_PSE_FAILED_PAYMENT   = "Fallida";
@@ -58,8 +62,9 @@
         var KEY_PSE_RESPONSE_CODE_POL_5 = '5';
         var KEY_PSE_RESPONSE_CODE_POL_4 = '4';
         var KEY_PSE_RESPONSE_CODE_POL_9994 = '9994';
-        var CC_USER_ID = '80200';
 
+        //PayU Values
+        var CC_USER_ID = '80200';
         var PAYU_RESPONSE_URL = "https://api.trulii.com/api/payments/pse/response";
         var cardTypes = ['VISA', 'MASTERCARD', 'AMEX', 'DINERS', 'DISCOVER'];
         var requiredCardFields = {};
@@ -68,7 +73,6 @@
             requiredCardFields[KEY_EXP_YEAR]  = 'cardYear';
 
         var banksList = null;
-
 
         _setPayUUp();
 
@@ -133,7 +137,7 @@
              * @methodOf trulii.payments.services.Payments
              */
             validateCardType : validateCardType,
-            // banks:banks,
+
             KEY_CARD_ASSOCIATION: KEY_CARD_ASSOCIATION,
             KEY_PAYER_ID : KEY_PAYER_ID,
             KEY_NAME : KEY_NAME,
@@ -150,8 +154,8 @@
             KEY_DOCUMENT: KEY_DOCUMENT,
             KEY_METHOD: KEY_METHOD,
             KEY_CONTACT_PHONE:KEY_CONTACT_PHONE,
-            PAYU_RESPONSE_URL:PAYU_RESPONSE_URL,
             KEY_PAYER_EMAIL:KEY_PAYER_EMAIL,
+
             KEY_PSE_APPROVED_PAYMENT : KEY_PSE_APPROVED_PAYMENT,
             KEY_PSE_REJECTED_PAYMENT : KEY_PSE_REJECTED_PAYMENT,
             KEY_PSE_FAILED_PAYMENT : KEY_PSE_FAILED_PAYMENT,
@@ -163,8 +167,10 @@
             KEY_PSE_RESPONSE_CODE_POL_5 : KEY_PSE_RESPONSE_CODE_POL_5,
             KEY_PSE_RESPONSE_CODE_POL_4 : KEY_PSE_RESPONSE_CODE_POL_4,
             KEY_PSE_RESPONSE_CODE_POL_9994 : KEY_PSE_RESPONSE_CODE_POL_9994,
-            CC_USER_ID:CC_USER_ID,
-            requiredCardFields:requiredCardFields
+
+            PAYU_RESPONSE_URL:PAYU_RESPONSE_URL,
+            CC_USER_ID: CC_USER_ID,
+            requiredCardFields: requiredCardFields
         };
 
         return service;
@@ -172,16 +178,6 @@
         function getPayUData() {
             // TODO Waiting for endpoint
             var deferred = $q.defer();
-            // var payUData = {
-            //     PAYU_API_KEY : '6u39nqhq8ftd0hlvnjfs66eh8c',
-            //     PAYU_MERCHANT_ID : '500238',
-            //     PAYU_API_LOGIN : '11959c415b33d0c',
-            //     PAYU_ACCOUNT_ID : '500538',
-            //     PAYU_URL : 'https://api.payulatam.com/payments-api/4.0/service.cgi',
-            //     PAYU_NOTIFY_URL : "https://api.trulii.com/api/payments/notification",
-            //     PAYU_RESPONSE_URL : "https://api.trulii.com/api/payments/pse/response",
-            //     PAYU_TEST : false
-            // };
             var payUData = {
                 PAYU_API_KEY : '6RK49XdJYozqO05lnIJQonnbEx',
                 PAYU_MERCHANT_ID : '537033',
@@ -196,7 +192,7 @@
             MERCHANT_DATA = {};
             MERCHANT_DATA[KEY_API_LOGIN] = payUData.PAYU_API_LOGIN;
             MERCHANT_DATA[KEY_API_KEY] = payUData.PAYU_API_KEY;
-            //Colocar aquí check ValidateMethod 
+            //Colocar aquí check ValidateMethod
             deferred.resolve(payUData);
             return deferred.promise;
         }
@@ -219,8 +215,8 @@
                 deferred.resolve(banksList);
             }
 
-            function error(response){   
-                deferred.reject({});                
+            function error(response){
+                deferred.reject({});
             }
 
             return deferred.promise;
@@ -235,11 +231,15 @@
         function getToken(paymentData) {
 
             var emptyFields = getEmptyPaymentData(paymentData);
-            
+
             console.log(emptyFields, "Empty Fields");
 
             if(!emptyFields.length){
-                return getPayUData().then(getDataSuccess, getDataError);
+                try{
+                    return getPayUData().then(getDataSuccess, getDataError);
+                } catch(e){
+                    return $q.reject([]);
+                }
             } else {
                 return $q.reject(emptyFields);
             }
@@ -272,22 +272,26 @@
             }
 
             function getEmptyPaymentData(data){
-
                 console.log("Data - :",data);
                 var emptyFields = _.filter(requiredCardFields, function(value,key){
-                    return !data.hasOwnProperty(key) 
+                    return !data.hasOwnProperty(key)
                     || !data[key] ;
 
                 });
 
                 return emptyFields;
-
             }
         }
 
         function validateCardNumber(cardNumber){
             var deferred = $q.defer();
-            var isValid = payU.validateCard(cardNumber);
+            var isValid = false;
+
+            try {
+                isValid = payU.validateCard(cardNumber);
+            } catch(e){
+                isValid = false;
+            }
             deferred.resolve(isValid);
 
             return deferred.promise;
@@ -297,20 +301,33 @@
             var deferred = $q.defer();
             var isValid  = false;
 
-            if (!!month && !!year)
-                isValid = payU.validateExpiry(year.toString(), month.toString());
+            if (!!month && !!year) {
+                try {
+                    isValid = payU.validateExpiry(year.toString(), month.toString());
+                } catch(e){
+                    isValid = false;
+                }
+            }
 
-            if (isValid)
+            if (isValid) {
                 deferred.resolve(isValid);
-            else
+            } else {
                 deferred.reject(isValid);
+            }
 
             return deferred.promise;
         }
 
         function validateCardType(cardnumber){
             var deferred = $q.defer();
-            var methodType = payU.cardPaymentMethod(cardnumber);
+            var methodType = null;
+
+            try {
+                methodType = payU.cardPaymentMethod(cardnumber);
+            } catch(e){
+                deferred.reject(null);
+            }
+
             if(cardTypes.some(isValidType)){
                 deferred.resolve(methodType);
             } else {
@@ -325,15 +342,19 @@
         }
 
         function _setPayUUp(){
-            payU.setURL('https://api.payulatam.com/payments-api/4.0/service');
-            // payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
-            payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
-            payU.setListBoxID('payu-franchise');
-            payU.setAccountID('539061');
-            // TODO Get Language from i18n Service
-            payU.setLanguage("es");
+            try {
+                payU.setURL('https://api.payulatam.com/payments-api/4.0/service');
+                payU.setPublicKey('PK64hMu62yQ9xxWAG66942468o');
+                payU.setListBoxID('payu-franchise');
+                payU.setAccountID('539061');
+                // TODO Get Language from i18n Service
+                payU.setLanguage("es");
 
-            getPayUData();
+                getPayUData();
+            } catch (e){
+                console.error('Exception. payU object not defined.', e);
+            }
+
         }
     }
 })();

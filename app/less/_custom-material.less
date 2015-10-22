@@ -25,10 +25,13 @@ body {
 
 
 body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
-  font-family: "RobotoDraft", "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: @font-sans;
   font-weight: 300;
 }
 
+h1, h2, h3, h4 {
+  letter-spacing: -1px;
+}
 h5, h6{
   font-weight: 400;
 }
@@ -141,3 +144,82 @@ legend {
 // Material shadows
 // Place them on bottom of stylesheet to increase the importance of it and override other same-specificity selectors
 @import "_shadows.less";
+
+
+.montserrat-ultralight{
+  font-weight: 100;
+  font-family: @font-sans;
+}
+.montserrat-light{
+  font-weight: 200;
+  font-family: @font-sans;
+}
+.montserrat-regular{
+  font-family: @font-sans;
+  font-weight: 300;
+}
+.montserrat-semibold{
+  font-family: @font-sans;
+  font-weight: 400;
+}
+.montserrat-bold{
+  font-family: @font-sans;
+  font-weight: 700;
+}
+
+.montserrat-extrabold{
+  font-family: @font-sans;
+  font-weight: 800;
+}
+
+.montserrat-black{
+  font-family: @font-sans;
+  font-weight: 900;
+}
+
+.sinkin-thin {
+  font-family: @font-sans-alt;
+  font-weight: 100;
+}
+
+.sinkin-ultralight {
+  font-family: @font-sans-alt;
+  font-weight: 200;
+}
+
+.sinkin-light {
+  font-family: @font-sans-alt;
+  font-weight: 300;
+}
+
+.sinkin-regular {
+  font-family: @font-sans-alt;
+  font-weight: 400;
+}
+.sinkin-medium {
+  font-family: @font-sans-alt;
+  font-weight: 500;
+}
+
+.sinkin-semibold {
+  font-family: @font-sans-alt;
+  font-weight: 600;
+}
+
+.sinkin-bold {
+  font-family: @font-sans-alt;
+  font-weight: 700;
+}
+
+.sinkin-black {
+  font-family: @font-sans-alt;
+  font-weight: 800;
+}
+
+.sinkin-extrablack {
+  font-family: @font-sans-alt;
+  font-weight: 900;
+}
+.pt-sans{
+  font-family: @font-serif;
+}

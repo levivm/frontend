@@ -29,63 +29,8 @@
         $stateProvider
             .state('payment-pse-response', {
                 url:'/payments/pse/response',
-                // controller: 'RegisterController',
-                // controllerAs: 'vm',
-                // templateUrl: 'partials/authentication/register.html',
-                // params: {
-                //     'toState': {
-                //         'state': 'home',
-                //         'params': {}
-                //     }
-                // },
                 onEnter: pseResponseProccessing,
-                // resolve:{
-                //     pseResponseProccessing: pseResponseProccessing
-                // }
             });
-            // .state('register-organizer', {
-            //     url:'/organizers/register/:token/',
-            //     controller: 'RegisterController',
-            //     controllerAs: 'vm',
-            //     resolve: {
-            //         validatedData :  tokenSignupValidation
-            //     },
-            //     templateUrl: 'partials/authentication/register_organizer.html'
-            // })
-            // .state('login', {
-            //     url:'/login',
-            //     controller: 'LoginController',
-            //     controllerAs: 'vm',
-            //     templateUrl: 'partials/authentication/login.html',
-            //     params: {
-            //         'toState' : {
-            //             'state' : 'home',
-            //             'params' : {}
-            //         }
-            //     }
-            // })
-            // .state('logout',{
-            //     url:'/logout',
-            //     controller: 'LogOutController'
-            // })
-            // .state('password-forgot', {
-            //     url:'/password/forgot',
-            //     controller: 'ForgotPasswordCtrl',
-            //     controllerAs: 'vm',
-            //     templateUrl: 'partials/authentication/forgot_password.html'
-            // })
-            // .state("password-reset", {
-            //     url:'/password/reset/key/:reset_key',
-            //     controller: 'ResetPasswordCtrl',
-            //     controllerAs: 'vm',
-            //     templateUrl: 'partials/authentication/reset_password.html'
-            // })
-            // .state('email-confirm', {
-            //     url:'/email/confirm/:key/',
-            //     controller: 'EmailConfirmCtrl',
-            //     controllerAs: 'vm',
-            //     templateUrl: 'modalContainer'
-            // });
 
         /*
          * @ngdoc method
@@ -104,13 +49,8 @@
             console.log("stateParams",$location.search());
 
             
-// polPaymentMethod: "25"
-// polPaymentMethodType: "4"
-// polResponseCode: "1"
-// polTransactionState: "4"
 
-        // transaction_status = data.get('state_pol')
-        // response_code_pol = data.get('response_code_pol')
+
             // #state_pol response_code_pol
             // #     4            1           Transacción aprobada
             // #     6            5           Transacción fallida
@@ -168,14 +108,8 @@
             var params = _.merge(state_params,parameters);
             
 
-            // console.log("transaction_status ",pol_transaction_state);
-            // console.log("response_code_pol ",response_code_pol);
             $state.go('activities-enroll.pse-response',params);
 
-            // $timeout(function() { ;});
-            // return $q.reject();
-
-            // return $stateParams.token? Authentication.requestSignupToken($stateParams.token) : {};
         }
 
     }

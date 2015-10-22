@@ -1,0 +1,109 @@
+@import url('../_trulii-variables');
+
+.Panel{
+    box-shadow: none;
+    border: 1px solid @gray-light-medium;
+
+    .panel-heading {
+        padding: 0.5em;
+
+        h4 {
+            margin: 0;
+        }
+    }
+}
+
+.sessions-panel {
+    .Panel;
+
+    .panel-body {
+        max-height: 24em;
+        overflow: scroll;
+    }
+
+    .session{
+        &:extend(.card);
+        padding: 1.5em;
+        margin: 0 0 0.5em 0;
+        color: @text-muted;
+    }
+}
+
+.attendees-panel {
+    .Panel;
+}
+
+.payments-panel{
+    .Panel;
+
+    .panel-body {
+        padding: 0;
+    }
+
+    .panel-footer {
+        padding: 3em 6em;
+        text-align: center;
+        background-color: lighten(@gray-light, 50%);
+
+         .btn {
+             padding: 1em;
+         }
+    }
+}
+
+.billing-widget {
+    border: 1px solid @gray-light-medium;
+    font-size: 0.8em;
+    border-radius: 4px;
+
+    .item {
+        text-transform: uppercase;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        max-width: 50%;
+        float: left;
+    }
+
+    .sub-item {
+        .item;
+        padding-left: 3em;
+        font-size: 0.8em;
+    }
+
+    .value {
+        text-align: end;
+        font-weight: 600;
+        float: right;
+    }
+
+    .sub-value {
+        text-align: end;
+    }
+
+    .invoice {
+        padding: 1em;
+        background-color: @gray-lighter;
+    }
+
+    .total {
+        background-color: @gray-light-medium;
+        padding: 1em;
+    }
+}
+
+.pse-panel {
+    .Panel;
+
+    .panel-body {
+        padding: 0;
+
+        .table {
+            margin-bottom: 0;
+        }
+    }
+
+    .panel-footer {
+        background-color: @white;
+    }
+}

@@ -22,7 +22,7 @@
 
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
-                
+
                 scope.isSearchVisible = true;
 
                 _activate();

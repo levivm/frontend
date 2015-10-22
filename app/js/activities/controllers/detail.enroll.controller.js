@@ -1,3 +1,25 @@
+/**
+ * @ngdoc controller
+ * @name trulii.activities.controllers.ActivityDetailEnrollController
+ * @description Controller for Activity Detail Enroll Component. Handles
+ * calendar sign ups and related payments.
+ * @requires ui.router.state.$state
+ * @requires ng.$window
+ * @requires ng.$sce
+ * @requires trulii.activities.services.ActivitiesManager
+ * @requires trulii.students.services.StudentsManager
+ * @requires trulii.payments.services.Payments
+ * @requires trulii.authentication.services.Authentication
+ * @requires trulii.ui-components.services.Toast
+ * @requires trulii.utils.services.Error
+ * @requires activity
+ * @requires calendar
+ * @requires currentUser
+ * @requires deviceSessionId
+ * @requires trulii.utils.services.defaultPicture
+ * @requires trulii.utils.services.defaultCover
+ */
+
 (function () {
     'use strict';
 
@@ -5,32 +27,45 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', '$timeout', 'ActivitiesManager',
+    ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover'];
 
-    function ActivityDetailEnrollController($state, $window, $sce, $timeout, ActivitiesManager,
+    function ActivityDetailEnrollController($state, $window, $sce, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
-                                            activity, calendar, currentUser,deviceSessionId, defaultPicture) {
+                                            activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover) {
 
         var vm = this;
+        var isValidDate = false;
+
         angular.extend(vm, {
             success : false,
             loading_banks_list:false,
+            paymentWithPse : false,
+            hasCouponApplied: false,
             calendar : null,
             activity : null,
             capacity : null,
             amount : null,
+            showTerms : false,
+            showReimbursement : false,
             quantity : 0,
             assistants : [],
-            minus : minus,
-            plus : plus,
+
+            addAssistant : addAssistant,
+            removeAssistant: removeAssistant,
             enroll : enroll,
             isAnonymous : isAnonymous,
             getOrganizerPhoto: getOrganizerPhoto,
-            appendPayUUniqueId:appendPayUUniqueId,
+            appendPayUUniqueId: appendPayUUniqueId,
             checkCardExpiry : checkCardExpiry,
             getCardType: getCardType,
+            changePSEPaymentMethod: changePSEPaymentMethod,
+            changeCCPaymentMethod: changeCCPaymentMethod,
+            enrollPSE: enrollPSE,
+            toggleTerms : toggleTerms,
+            toggleReimbursement : toggleReimbursement,
+
             cardData : {
                 "name_card": "APPROVED",
                 "identificationNumber": "32144457",
@@ -40,14 +75,11 @@
                 cvv: null,
                 "method": ""
             },
-            changePSEPaymentMethod:changePSEPaymentMethod,
-            changeCCPaymentMethod:changeCCPaymentMethod,
-            enrollPSE:enrollPSE,
-            pseFormData : {
+            pseFormData: {
                 "banksList": [],
                 "userTypes":[
                     {'description':'Natural','value':'N'},
-                    {'description':'Juridica','value':'J'},
+                    {'description':'Juridica','value':'J'}
                 ],
                 "idTypes":[
                     {'description':'Cédula de ciudadanía','value':'CC'},
@@ -58,13 +90,13 @@
                     {'description':'Identificador único de cliente','value':'IDC'},
                     {'description':'Número Móvil','value':'CEL'},
                     {'description':'Registro civil de nacimiento','value':'RC'},
-                    {'description':'Documento de identificación extranjero','value':'DE'},
+                    {'description':'Documento de identificación extranjero','value':'DE'}
                 ]
             },
             pseData: {}
         });
+
         console.log("sessionID", deviceSessionId);
-        var isValidDate = false;
 
         _activate();
 
@@ -74,6 +106,7 @@
 
         function changePSEPaymentMethod(){
             Error.form.resetForm(vm.enrollForm);
+            vm.paymentWithPse = true;
             loadAvailableBanks();
 
             function loadAvailableBanks(){
@@ -97,6 +130,7 @@
 
         function changeCCPaymentMethod(){
             Error.form.resetForm(vm.enrollForm);
+            vm.paymentWithPse = false;
         }
 
         function enrollPSE(){
@@ -205,7 +239,11 @@
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
 
-            StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
+            if(vm.paymentWithPse){
+                enrollPSE();
+            } else {
+                StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
+            }
 
             function getStudentSuccess(student){
                 vm.cardData[Payments.KEY_PAYER_ID] = student.id;
@@ -322,15 +360,17 @@
             return !Authentication.isAuthenticated();
         }
 
-        function minus() {
+        function removeAssistant(index) {
             if (vm.quantity > 1) {
                 vm.quantity -= 1;
-                vm.assistants.pop();
+                vm.assistants.splice(index, 1);
                 _calculateAmount();
+            } else {
+                Toast.warning('Es necesario al menos un asistente a inscribir');
             }
         }
 
-        function plus() {
+        function addAssistant() {
             if (vm.quantity + vm.calendar.assistants.length < vm.capacity) {
                 vm.quantity += 1;
                 vm.assistants.push({});
@@ -352,6 +392,14 @@
             var user_id = Payments.CC_USER_ID;
             var payUUniqueId = deviceSessionId + user_id;
             return  $sce.trustAsResourceUrl(url + payUUniqueId);
+        }
+
+        function toggleTerms(){
+            vm.showTerms = !vm.showTerms;
+        }
+
+        function toggleReimbursement(){
+            vm.showReimbursement = !vm.showReimbursement;
         }
 
         //--------- Internal Functions ---------//
@@ -381,30 +429,62 @@
             return activity;
         }
 
+        function _mapVacancy(calendar){
+            calendar.vacancy = calendar.capacity - calendar.assistants.length;
+            calendar.total_price = calendar.session_price * calendar.sessions.length;
+            return calendar;
+        }
+
+        function _setAssistants() {
+            if(_isAllBooked()) {
+                vm.quantity = 0;
+                vm.assistants = [];
+            } else {
+                vm.quantity = 1;
+                if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
+                    console.log('Usuario ya esta inscrito');
+                    vm.assistants = [{}];
+                } else {
+                    vm.assistants = [angular.extend({}, currentUser.user)];
+                }
+            }
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
+                ACTION_LOGIN: "Inicia Sesion",
+                ACTION_REGISTER: "Regístrate",
+                ACTION_ENROLL: "Confirmar Inscripción",
+                ACTION_VIEW_RETURN_POLICY: "Ver Políticas de Reembolso del Organizador",
+                ACTION_RETURN: "Volver a Actividad",
+                ACTION_ADD_ASSISTANT: "Agregar Asistente",
+                ACTION_VIEW_TERMS: "Términos y Condiciones de Trulii",
+                COPY_ASSISTANT_NUMBER: "Asistente #",
+                COPY_ASSISTANTS: "Agrega la información de las personas que asistiran a la actividad",
+                COPY_STARTING_ON: "Con inicio el",
+                COPY_VACANCY: " Vacantes",
+                COPY_TO: " a ",
                 COPY_COVER: "Usted desea inscribir",
                 COPY_SIGN_UP: "¿Quieres inscribirte en esta actividad?",
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
                 COPY_UNTIL_NOW: "Hasta ahora",
-                COPY_NO_ASSISTANTS: "esta actividad no tiene asistentes ¡Sé tú el primero!",
-                COPY_ONE_ASSISTANT: "va 1 asistente ¡Faltas tú!",
-                COPY_MANY_ASSISTANTS: "van {} asistentes ¡Faltas tú!",
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
-                    + " el cual incluye la comisión de la plataforma de pago,"
-                    + " y con los Términos y Condiciones de Trulii",
-                ACTION_LOGIN: "Inicia Sesion",
-                ACTION_REGISTER: "Regístrate",
-                ACTION_ENROLL: "Inscribir",
-                ACTION_RETURN: "Volver a Actividad",
-                COPY_ASSISTANT_NUMBER: "Asistente #",
+                + " el cual incluye la comisión de la plataforma de pago,"
+                + " y con los",
+                COPY_SLIDEBAR_TERMS_TITLE: "Terminos y condiciones",
+                COPY_SLIDEBAR_TERMS_HEADER: "Titulo de terminos y condiciones",
+                COPY_SLIDEBAR_TERMS_BODY: "All work and no play makes Jack a dull boy",
+                COPY_SLIDEBAR_REIMBURSEMENT_TITLE: "Políticas de Reembolso",
+                COPY_SLIDEBAR_REIMBURSEMENT_HEADER: "Titulo de politicas de reembolso",
+                COPY_SLIDEBAR_REIMBURSEMENT_BODY: "All work and no play makes Jack a dull boy",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
+                LABEL_ACTIVITY_SESSIONS: "Sesiones",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",
@@ -419,9 +499,12 @@
 
                 LABEL_ID_NUMBER:"Número de identificación",
                 LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
-                LABEL_BANKS:"Banco",
+                LABEL_BANK:"Banco",
+                OPTION_BANK_DEFAULT:"-- Seleccione Banco --",
                 LABEL_USER_TYPE:"Tipo de Persona",
+                OPTION_USER_TYPE_DEFAULT:"-- Seleccione --",
                 LABEL_ID_TYPE:"Tipo de Documento de Identificación",
+                OPTION_ID_TYPE_DEFAULT:"-- Seleccione Tipo de Documento --",
 
                 LABEL_PHONE_NUMBER:"Teléfono",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
@@ -448,30 +531,21 @@
                 }
             };
 
-            vm.success =  _.endsWith($state.current.name, 'success') ? true:false ||
-                         _.endsWith($state.current.name, 'pse-response') ? true:false;
-
-            vm.calendar = calendar;
-            vm.activity = activity;
-            _mapMainPicture(vm.activity);
-
+            vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
+            vm.calendar = _mapVacancy(calendar);
             vm.capacity = calendar.capacity;
             vm.amount = calendar.session_price;
 
-            if(currentUser) { vm.pseData.payerEmail = currentUser.user.email; }
+            vm.activity = activity;
+            _mapMainPicture(vm.activity);
 
-            if(_isAllBooked()) {
-                vm.quantity = 0;
-                vm.assistants = [];
-            } else {
-                vm.quantity = 1;
-                if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
-                    console.log('Usuario ya esta inscrito');
-                    vm.assistants = [{}];
-                } else {
-                    vm.assistants = [angular.extend({}, currentUser.user)];
-                }
-            }
+            if(currentUser) { vm.pseData.payerEmail = currentUser.user.email; }
+            _setAssistants();
+
+
+            console.log('activity:', vm.activity);
+            console.log('calendar:', vm.calendar);
+            console.log('assistants:', vm.assistants);
         }
     }
 })();

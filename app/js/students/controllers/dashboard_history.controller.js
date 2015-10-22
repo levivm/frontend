@@ -46,7 +46,9 @@
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE: "Fecha inicio: ",
-                LABEL_SEARCH: "Buscar Ordenes",
+                LABEL_SEARCH:"Revisa toda la informacion de tu orden de compra. "
+                + "Puedes incluso solicitar el reembolso del monto total de la orden o el monto "
+                + "correspondiente por cada asistente",
                 LABEL_EMPTY_ORDERS: "Hasta ahora no has realizado compras",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un nuevo pasatiemo o mejores tu curriculo",
                 TAB_ORDERS: "Compras",

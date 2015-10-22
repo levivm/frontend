@@ -20,10 +20,10 @@
         .controller('ActivityDetailController', ActivityDetailController);
 
     ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast',
-        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager'];
+        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager'];
 
     function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast,
-                                      cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager) {
+                                      cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager,LocationManager) {
         var MAX_DAYS = 30;
         var vm = this;
         angular.extend(vm, {
@@ -46,10 +46,11 @@
             changeState : changeState,
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
+            getOrganizerCity : getOrganizerCity,
             getStarStyle : getStarStyle,
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
-            nextGalleryPicture: nextGalleryPicture
+            nextGalleryPicture: nextGalleryPicture,
         });
 
         _activate();
@@ -105,6 +106,11 @@
             }
         }
 
+        function getOrganizerCity(){
+            var city_id = vm.organizer.locations[0].city;
+            return LocationManager.getCityById(city_id).name;
+        }
+
         function getStarStyle(star){
             if(star <= 4){
                 return {
@@ -116,7 +122,6 @@
                 }
             }
         }
-
         //--------- Internal Functions ---------//
 
         function _mapClosestCalendar(activity){
@@ -170,7 +175,7 @@
 
             function mapVacancy(calendar){
                 calendar.vacancy = calendar.capacity - calendar.assistants.length;
-                calendar.total_price = calendar.session_price * calendar.sessions.length;
+                calendar.total_price = calendar.session_price;
                 return calendar;
             }
 
@@ -191,7 +196,8 @@
             ActivitiesManager.loadOrganizerActivities(organizer.id).then(success);
 
             function success(activities){
-                vm.relatedActivities = activities;
+                console.log("Related Activities",activities);
+                vm.relatedActivities = angular.copy(activities);
             }
         }
 
@@ -236,6 +242,7 @@
         }
 
         function _setStrings(){
+
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_VIEW_PROFILE: "Ver Perfil",
@@ -251,7 +258,7 @@
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
-                COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizara en otra oportunidad ",
+                COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizará en otra oportunidad ",
                 COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
                 COPY_NO_CALENDARS_AVAILABLE: "Actualmente no hay otros calendarios disponibles",
                 COPY_OPPORTUNITIES: " oportunidades",
@@ -263,6 +270,7 @@
                 COPY_TO: " a ",
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_FREE: " Gratis",
+                COPY_VACANCY_SINGULAR: " Vacante",
                 COPY_VACANCY: " Vacantes",
                 COPY_ONE_SESSION: "Sesión",
                 COPY_OTHER_SESSIONS: "Sesiones",
@@ -287,6 +295,7 @@
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 TAB_CALENDARS: "Calendarios",
                 LABEL_ATTENDEES: "Asistentes",
+                // VALUE_DURATION: getDurationString(),
                 VALUE_WITH_CERTIFICATION: "Con Certificado",
                 VALUE_WITHOUT_CERTIFICATION: "Sin Certificado",
                 REASON_NO_COMMISSIONS: "Sin Comisiones",
@@ -295,7 +304,7 @@
                 REASON_COPY_REFUND: "Por si no se realiza la actividad",
                 REASON_SECURE: "Pago Seguro",
                 REASON_COPY_SECURE: "Inscribete con tranquilidad"
-            });
+                });
         }
 
         function _activate(){

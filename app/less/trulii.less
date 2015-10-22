@@ -1,8 +1,7 @@
 
 @import "_trulii-variables";
 
-@import "_fontface-sinkinsans";
-
+@import '_fonts';
 @import '_custom-bootstrap';
 @import '_custom-material';
 @import '_custom-nouislider';
@@ -35,6 +34,7 @@
 @import "components/_social";
 @import "components/_tags";
 @import "components/_user-badges";
+@import "components/_tabs";
 @import "components/_tables";
 @import "components/_ranking-star";
 @import "components/_panels";
@@ -53,9 +53,9 @@
 @import "components/_containers";
 @import "components/_activity-card";
 @import "components/_activity-detail";
+@import "components/_activity-detail-enroll";
 @import "components/_popover";
-
-@import "components/_footer";
+@import "components/_orders.less";
 
 a{
 
@@ -71,11 +71,11 @@ ul{
 
 body{
 	overflow-x: hidden;
-	font-family: 'Roboto', sans-serif;
+	font-family: @font-sans-alt;
 }
 
 h1, h2, h3, h4, h5, h6{
-	font-family: @font-sans-alt;
+	font-family: @font-sans;
 }
 
 p{

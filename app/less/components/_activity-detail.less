@@ -2,7 +2,27 @@
 
 @secondary-bg: #F7F7F7;
 @border-color: #DEDEDE;
+@title-color: #9E9E9E;
 @border-widget: 1px solid @border-color;
+
+
+h1.title, h2.title{
+    font-weight:600;
+    font-size: 3.5em;
+    color: @title-color;
+}
+h3.title{
+    font-weight: 400;
+}
+h5{
+    font-weight: 100;
+    a{
+        font-weight: 400;
+    }
+}
+h1, h2, h3, h4, h5{
+    letter-spacing: -1px;
+}
 
 .organizer-widget {
 
@@ -29,15 +49,15 @@
             vertical-align: middle;
 
             .name {
-                font-family: @font-family-sans-serif;
+                font-family: @font-sans;
                 font-weight: 600;
                 font-size: 1.2em;
                 color: @lightbg-text;
             }
 
             .location {
-                font-family: @font-family-serif;
-                font-size: 0.8em;
+                font-family: @font-serif;
+                font-size: 0.9em;
                 color: @text-muted;
             }
         }
@@ -55,12 +75,13 @@
 .calendar-widget {
     &:extend(.separate-above-medium);
     border: 1px solid @border-color;
+    font-family: @font-sans;
 
     .HeaderText() {
         width: 100%;
         height: auto;
         padding: 1em 1em 0;
-        font-size: 1.4em;
+        font-size: 1.2em;
         font-weight: 400;
         color: @lightbg-text;
         text-align: center;
@@ -104,6 +125,7 @@
             font-weight: 400;
             text-align: center;
             color: @white;
+            font-family: @font-sans-alt;
             background-color: @text-muted;
         }
 
@@ -116,13 +138,14 @@
             font-weight: 400;
             text-transform: uppercase;
             text-align: center;
-            color: @text-muted !important;
+            color: @black !important;
         }
 
         .info {
             width: 100%;
             text-align: center;
-
+            color: @text-muted;
+            
             .InfoSection(){
                 width: 30%;
                 padding: 0.8em;
@@ -130,7 +153,8 @@
                 display: inline-block;
 
                 .title {
-                    font-size: 0.8em;
+                    font-size: 0.7em;
+                    font-weight:600;
                 }
             }
 
@@ -189,6 +213,7 @@
                         font-size: 0.8em;
                         font-weight: 100;
                         color: @text-muted;
+                        text-transform: lowercase;
                     }
                 }
             }
@@ -310,10 +335,11 @@
     }
 }
 
+
+
 .section {
     .title {
         font-size: 1.8em;
-        font-weight: 600;
         color: @brand-success;
     }
     .content {
@@ -329,8 +355,7 @@
 
 .sub-section-title{
     color: @brand-primary;
-    font-size: 3.4em;
-    font-weight: 600;
+    font-weight: 800;
 }
 
 .gallery {
@@ -450,7 +475,7 @@
 }
 
 .attendees-container {
-    padding: 6em 9.5em 9.5em 9.5em;
+    padding: 6em 9.5em 7.5em 9.5em;
 
     .title{
         &:extend(.sub-section-title);
@@ -504,10 +529,17 @@
     text-align: center;
     background-color: @brand-success;
 
+
     h1, h2, h3, h4, h5, p {
         color: @white;
         font-weight: 600;
     }
+
+    &-info h5 {
+        font-family: @font-sans-alt;
+        font-weight: 500;
+    }
+
 
     .calendar-info {
         margin-top: 3em;
@@ -520,6 +552,7 @@
             border-right: 1px solid @white;
 
             .date{
+                font-size: 3em;
                 text-transform: uppercase;
             }
         }
@@ -529,6 +562,10 @@
             display: inline-block;
             text-align:left;
             padding-left: 2em;
+
+            h5{
+                font-size: 3em;
+            }
         }
     }
 
@@ -537,7 +574,6 @@
     }
 
     .btn-link {
-        color: @lightbg-text;
         text-decoration: underline;
     }
 }
@@ -551,7 +587,6 @@
         padding: 2em;
 
         .reason-img {
-            width: 6em;
             height: 6em;
         }
 
