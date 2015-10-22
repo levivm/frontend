@@ -173,6 +173,7 @@
                 ACTION_REIMBURSE_ASSISTANT: "Reembolsar Asistente",
                 COPY_ORDERS: "Revisa tus órdenes de compra y los asistentes asociados a ellas",
                 COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito esta actividad",
+                COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
                 COPY_SEARCH: "Buscar orden por número, nombre o correo electrónico",

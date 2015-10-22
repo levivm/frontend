@@ -11287,6 +11287,9 @@ icon-material-blue-grey {
 .panel-footer {
   background-color: #eeeeee;
 }
+hr {
+  width: 90%;
+}
 hr.on-dark {
   color: #1a1a1a;
 }
@@ -12516,6 +12519,10 @@ hr.on-light {
   color: #999999;
   margin: 1em 0;
 }
+.text-header {
+  margin-bottom: 1.5em;
+  font-size: 3.5em;
+}
 .img-size-cover,
 .img-fit,
 .profile-photo-input__photo,
@@ -13594,6 +13601,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar-secondary__item:focus {
   color: rgba(0, 0, 0, 0.74);
+}
+.navbar-secondary .sub-title {
+  position: absolute;
+  left: 70vw;
+  top: 0px;
+  font-weight: 500;
+  color: #555555;
 }
 .navbar-secondary + * {
   margin-top: 60px;
