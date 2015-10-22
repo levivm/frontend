@@ -12,13 +12,13 @@
             </div>
         </div>
         <!--Category and Social-->
-        <div class="row separate-above-less">
+        <div class="row social separate-above-less">
             <div class="col-md-12">
                 <span class="label" ng-bind="::detail.activity.category.name"
                       ng-style="{'background-color': detail.activity.category.color}"></span>
                 <span class="label" ng-bind="::detail.activity.sub_category_display"></span>
                 <span style="margin: 0 0.2em;"> | </span>
-                <span ng-bind="detail.strings.COPY_SOCIAL_BUTTONS"></span>
+                <span class="info" ng-bind="detail.strings.COPY_SOCIAL_BUTTONS"></span>
                 <img class="img-responsive btn-share-fb" src="/css/img/activity-detail/share_facebook.png"
                      alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
                 <img class="img-responsive btn-share-twitter" src="/css/img/activity-detail/share_twitter.png"
@@ -62,29 +62,30 @@
             <div class="col-md-12 section">
                 <h2 class="title" ng-bind="::detail.strings.LABEL_AUDIENCE"></h2>
                 <p class="content" ng-bind="::detail.activity.audience"></p>
-                <div class="separator separate-above-less"></div>
             </div>
         </div>
         <!--Content-->
         <div class="row separate-above-less" ng-show="detail.activity.content">
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
+
                 <h2 class="title" ng-bind="::detail.strings.LABEL_CONTENT"></h2>
                 <p class="content" ng-bind="::detail.activity.content"></p>
-                <div class="separator separate-above-less"></div>
             </div>
         </div>
         <!--Goals-->
         <div class="row separate-above-less" ng-show="detail.activity.goals">
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
                 <h2 class="title" ng-bind="::detail.strings.LABEL_GOALS"></h2>
                 <p class="content" ng-bind="::detail.activity.goals"></p>
-                <div class="separator separate-above-less"></div>
             </div>
         </div>
 
         <!--Video-->
         <div class="row" ng-if="detail.activity.youtube_video_url">
             <div class="col-md-12 text-center">
+                <div class="separator separate-above-less"></div>
                 <youtube-video video-url="detail.activity.youtube_video_url"></youtube-video>
             </div>
         </div>
@@ -92,22 +93,24 @@
         <!--Methodology-->
         <div class="row separate-above-less" ng-show="detail.activity.methodology">
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
                 <h3 class="title" ng-bind="::detail.strings.LABEL_METHODOLOGY"></h3>
                 <p class="content" ng-bind="::detail.activity.methodology"></p>
-                <div class="separator separate-above-less"></div>
             </div>
         </div>
         <!--Requirements-->
         <div class="row separate-above-less" ng-show="detail.activity.requirements">
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
                 <h3 class="title" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></h3>
                 <p class="content" ng-bind="::detail.activity.requirements"></p>
-                <div class="separator separate-above-less"></div>
             </div>
         </div>
         <!--Extra-->
         <div class="row separate-above-less" ng-show="detail.activity.extra_info">
+            
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
                 <h3 class="title" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></h3>
                 <p class="content" ng-bind="::detail.activity.extra_info"></p>
                 <div class="separate-above-more"></div>
@@ -283,6 +286,7 @@
 <div class="row" ng-show="detail.activity.instructors.length">
     <div class="col-md-12 instructors-container">
         <h1 class="title" ng-bind="::detail.strings.LABEL_INSTRUCTORS"></h1>
+        <div class="separate-below-medium"></div>
         <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
              
             <div class="col-md-8">
@@ -290,7 +294,7 @@
                 <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
                    ng-bind="::instructor.website"></a>
                 <p class="bio" ng-bind="::instructor.bio"></p>
-                <div ng-if="!$last" class="separator separate-below-less"></div>
+                <div ng-if="!$last" class="separator separate-below-medium"></div>
             </div>
         </div>
     </div>

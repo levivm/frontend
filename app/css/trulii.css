@@ -16264,6 +16264,11 @@ h5 {
 .calendar-widget .widget-list .widget-list-item * .btn-detail {
   font-size: 0.8em;
 }
+.social .info {
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+  font-size: 1.1em;
+  color: #999999;
+}
 .section .title {
   font-size: 1.8em;
   color: #38dbc8;
@@ -16364,7 +16369,7 @@ h5 {
   font-style: italic;
 }
 .instructors-container {
-  padding: 1.5em 9.5em 5em 9.5em;
+  padding: 3em 9.5em 5em 9.5em;
   background-color: #f7f7f7;
 }
 .instructors-container .title {
@@ -16395,7 +16400,7 @@ h5 {
   color: rgba(0, 0, 0, 0.74);
 }
 .attendees-container {
-  padding: 1em 9.5em 1em 9.5em;
+  padding: 2em 9.5em 2em 9.5em;
 }
 .attendees-container .title {
   margin-bottom: 0.5em;
@@ -16507,7 +16512,7 @@ h5 {
   font-size: 0.8em;
 }
 .contact-us-container {
-  padding: 2em;
+  padding-bottom: 5em;
 }
 .contact-us-container .separator {
   width: 30%;
@@ -16519,7 +16524,7 @@ h5 {
   text-decoration: underline;
 }
 .related-activities-container {
-  padding: 3em 9.5em;
+  padding: 4em 9.5em;
   background-color: #f7f7f7;
   text-align: center;
 }
