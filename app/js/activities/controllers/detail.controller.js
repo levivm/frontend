@@ -258,7 +258,7 @@
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
-                COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizara en otra oportunidad ",
+                COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizará en otra oportunidad ",
                 COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
                 COPY_NO_CALENDARS_AVAILABLE: "Actualmente no hay otros calendarios disponibles",
                 COPY_OPPORTUNITIES: " oportunidades",

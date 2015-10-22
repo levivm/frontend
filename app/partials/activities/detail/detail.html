@@ -204,7 +204,7 @@
                     <div class="sessions-list">
                         <div class="session-item"
                              ng-repeat="session in detail.calendar_selected.sessions track by session.id">
-                            <div class="session-item-date" ng-bind="session.date | date:'EEE d MMM y'"></div>
+                            <div class="session-item-date" ng-bind="session.date | date:'EEEE d MMM y'"></div>
                             <div class="session-item-time">
                                 <span ng-bind="session.start_time | amDateFormat: 'h:mm a'"></span>
                                 <span ng-bind="::detail.strings.COPY_TO" style="text-transform: lowercase;" ></span>
@@ -323,8 +323,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <h5 ng-bind="::detail.strings.COPY_SIGN_UP"></h5>
+        <div class="sign-up-container-info col-md-6 col-md-offset-3">
+            <h5 class="" ng-bind="::detail.strings.COPY_SIGN_UP"></h5>
         </div>
     </div>
 
