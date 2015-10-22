@@ -1,3 +1,70 @@
 <div class="fade in">
     <p class="text-muted" ng-bind="::account.strings.COPY_BANKING"></p>
+
+    <form name='account.account_form_password' ng-submit="account.changePassword()">
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-10 col-xs-offset-1 col-sm-7 col-sm-offset-1">
+                    <div class="form-group" trulii-input-errors-control="">
+                        <label>Beneficiario</label>
+                        <input id="beneficiary" class="form-control" name="beneficiary"
+                               ng-model="account.beneficiary"
+                               placeholder="Nombre y apellido"
+                               type="text">
+                    </div>
+                    <div class="form-group" trulii-input-errors-control="">
+                        <label>Banco</label>
+                        <select id="bank" class="form-control" name="bank" ng-model="account.bank">
+                            <option value="">Seleccione una opción</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="row separate-above">
+                        <div class="col-xs-4 separate-above">
+                            <div class="form-group" trulii-input-errors-control="">
+                                <select id="nit" class="form-control" name="nit" ng-model="account.nit.type">
+                                    <option value="">NIT</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-8 separate-above">
+                            <input id="nit_number" class="form-control" name="nit_number"
+                                   ng-model="account.nit.number"
+                                   placeholder="Ej. 1.009.099"
+                                   type="text">
+                        </div>
+                    </div>
+
+                    <div class="form-group" trulii-input-errors-control="">
+                        <label>Tipo de cuenta</label>
+                        <select id="account_type" class="form-control" name="account_type" ng-model="account.type">
+                            <option value="">Seleccione una opción</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                        </select>
+                    </div>
+                    <div class="form-group" trulii-input-errors-control="">
+                        <label>Nro. cuenta</label>
+                        <input id="account_number" class="form-control" name="account_number"
+                               ng-model="account.account_number"
+                               placeholder="Ej. 5009099"
+                               type="text">
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <trulii-submit-controls is-saving="account.isSaving"
+                                            data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                </div>
+            </div>
+        </fieldset>
+    </form>
 </div>
