@@ -11100,6 +11100,8 @@ icon-material-blue-grey {
 }
 .label {
   border-radius: 1px;
+  padding: .3em .6em .3em;
+  font-weight: 500;
 }
 .label,
 .label-default {
@@ -15974,10 +15976,11 @@ h5 {
   border-radius: 50%;
   display: inline-block;
   height: auto;
+  margin-left: 20%;
   width: 20%;
 }
 .organizer-widget .card .data {
-  width: 70%;
+  width: 50%;
   display: inline-block;
   vertical-align: middle;
 }
@@ -15998,6 +16001,13 @@ h5 {
   border-left: 1px solid #dedede;
   padding: 1em 2em 1em 2em;
   text-align: center;
+}
+.organizer-widget .ratings span {
+  color: #999999;
+  margin-left: .7em;
+}
+.organizer-widget .ratings img {
+  padding-bottom: 0.4em;
 }
 .calendar-widget {
   border: 1px solid #dedede;
@@ -16296,6 +16306,11 @@ h5 {
 .calendar-widget .widget-list .widget-list-item * .btn-detail {
   font-size: 0.8em;
 }
+.social .info {
+  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+  font-size: 1.1em;
+  color: #999999;
+}
 .section .title {
   font-size: 1.8em;
   color: #38dbc8;
@@ -16313,6 +16328,9 @@ h5 {
 .attendees-container .title {
   color: #ffd580;
   font-weight: 800;
+}
+.gallery-container {
+  margin-top: 3rem;
 }
 .gallery {
   width: 100%;
@@ -16393,11 +16411,11 @@ h5 {
   font-style: italic;
 }
 .instructors-container {
-  padding: 6em 9.5em 9.5em 9.5em;
+  padding: 3em 9.5em 5em 9.5em;
   background-color: #f7f7f7;
 }
 .instructors-container .title {
-  margin-bottom: 1em;
+  margin-bottom: 0.8em;
 }
 .instructors-container .instructor .name {
   color: rgba(0, 0, 0, 0.74);
@@ -16424,7 +16442,7 @@ h5 {
   color: rgba(0, 0, 0, 0.74);
 }
 .attendees-container {
-  padding: 6em 9.5em 7.5em 9.5em;
+  padding: 2em 9.5em 2em 9.5em;
 }
 .attendees-container .title {
   margin-bottom: 0.5em;
@@ -16528,15 +16546,18 @@ h5 {
   vertical-align: middle;
 }
 .reasons-container .reason .reason-text .reason-title {
-  font-size: 1.4em;
-  font-weight: 400;
+  font-size: 0.9em;
+  font-weight: 700;
 }
 .reasons-container .reason .reason-text .reason-copy {
   color: #999999;
   font-size: 0.8em;
 }
+.youtube-video-container {
+  margin-bottom: 2.5em;
+}
 .contact-us-container {
-  padding: 2em;
+  padding-bottom: 5em;
 }
 .contact-us-container .separator {
   width: 30%;
@@ -16548,7 +16569,7 @@ h5 {
   text-decoration: underline;
 }
 .related-activities-container {
-  padding: 3em 9.5em;
+  padding: 4em 9.5em;
   background-color: #f7f7f7;
   text-align: center;
 }

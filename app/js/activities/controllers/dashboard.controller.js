@@ -62,6 +62,7 @@
 
                 if(pc.activity.isFirstEdit())
                     $state.go('activities-detail',{'activity_id':pc.activity.id});
+
                 
                 Toast.success(pc.strings.ACTIVITY_PUBLISHED);
                 pc.allow_unpublish = true;
@@ -75,14 +76,18 @@
             pc.allow_unpublish = false;
             activity.unpublish().then(function (response) {
                 
+
                 Toast.warning(pc.strings.UNPUBLISH_ACTIVITY_WARNING);
                 pc.allow_publish = true;
+
 
             },function(response){
                 Toast.error(response.data.detail);
                 pc.allow_unpublish = true;
             });
         }
+
+
 
         function _setStrings(){
 
@@ -93,7 +98,8 @@
             pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad saldrá de los motores de búsqueda";
             pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar";
             pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
-
+            pc.strings.COPY_VIEW_ACTIVITY = "Visualizar Actividad";
+            pc.strings.COPY_PRE_VIEW_ACTIVITY = "Previsualizar Actividad";
 
         }
 
