@@ -37,7 +37,7 @@
         <div class="tab-pane fade" id="closed-tab">
             <!--If there are activities-->
 
-            <div class="row separate-above-medium separate-below-medium" ng-repeat="activity in activities.closed_activities track by activity.id">
+            <div class="row separate-above-medium separate-below-medium review-detail" ng-repeat="activity in activities.closed_activities track by activity.id">
                 <div class="col-xs-6 col-sm-4">
                     <trulii-activity-item
                             data-activity="activity" data-options="{{activities.options}}">
@@ -51,11 +51,11 @@
                         <div class="separate-above-medium separate-below-medium">
                             <h2 class="text-center text-muted montserrat-light">¿Cómo calificarías la experiencia?</h2>
                             <h3 class="text-center text-muted montserrat-light">
-                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
                                 <span>(3/5)</span>
                             </h3>
                         </div>
@@ -83,31 +83,33 @@
                         <!-- Comment -->
                         <div class="col-xs-2">
                             <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
-                            <h4 class="text-center text-uppercase montserrat-regular text-sm">Carlos Schiavino</h4>
+                            <h4 class="text-center text-sm text-uppercase montserrat-regular ">Carlos Schiavino</h4>
                         </div>
-                        <div class="col-xs-10">
-                            <p class="text-uppercase text-muted montserrat-regular">
-                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                        <div class="col-xs-10 paragraph-condensed">
+                            <p class="text-uppercase text-sm text-muted montserrat-regular">
+                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
                                 <span>(3/5)</span>
                             </p>
                             <p>
                                 Safety standards advise against manipulating drive settings while engines are powered and in use, Mr. Moreau.
                             </p>
-                            <p class="text-muted text-sm"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em></p>
+                            <p class="text-sm">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em>
+                            </p>
                         </div>
                     </div>
                     <!-- Response -->
                     <div class="row separate-above-medium separate-below-medium">
                         <div class="col-xs-2 col-xs-offset-1">
                             <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
-                            <h4 class="text-center text-uppercase montserrat-regular text-sm">Croydon School of Art</h4>
+                            <h4 class="text-center text-sm text-uppercase montserrat-regular">Croydon School of Art</h4>
                         </div>
-                        <div class="col-xs-9">
-                            <p class="montserrat-regular">
+                        <div class="col-xs-9 paragraph-condensed">
+                            <p class="montserrat-semibold organizer-name">
                                 Croydon School of Art
                             </p>
                             <p>
@@ -115,6 +117,8 @@
                                 Hearing about the Protheans makes me wonder if some distant civilization is going to find our artifacts someday and study us.
                                 </em>
                             </p>
+                            <p class="text-sm">
+                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span><em>11 Jun. 2015</em></p>
                         </div>
                     </div>
                 </div>

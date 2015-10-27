@@ -16721,6 +16721,24 @@ h5 {
 .pse-panel .panel-footer {
   background-color: #FFFFFF;
 }
+.review-detail p {
+  margin-bottom: 0.5em;
+  font-size: 1.125em;
+}
+.review-detail p.text-sm {
+  font-size: .8em;
+}
+.review-detail .star {
+  color: #ffd580;
+  font-size: 1.25em;
+}
+.review-detail .star-empty {
+  font-size: 1.25em;
+  color: #eeeeee;
+}
+.review-detail .organizer-name {
+  font-size: 1em;
+}
 .popover {
   box-shadow: none;
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
