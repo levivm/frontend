@@ -61,11 +61,23 @@
                 <!--If there are no orders-->
                 <div ng-if="history.orders.length <= 0" class="row">
                     <div class="col-md-12">
-                        <h4 ng-bind="::history.strings.LABEL_EMPTY_ORDERS"></h4>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+                                <img src="css/img/student_dashboard_activities_empty.png"
+                                     alt="{{history.strings.LABEL_EMPTY_ORDERS}}"/>
+                                <h3 class="separate-below separate-above montserrat-ultralight text-muted"
+                                    ng-bind="::history.strings.LABEL_EMPTY_ORDERS">
+                                </h3>
 
-                        <p ng-bind="::history.strings.COPY_EMPTY_ORDERS"></p>
+                                <a class="btn btn-lg btn-success"
+                                   ui-sref=""
+                                   ng-bind="history.strings.ACTION_FIND_ACTIVITY">
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
+
             </div>
 
         </div>
