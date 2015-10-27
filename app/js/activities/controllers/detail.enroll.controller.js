@@ -313,7 +313,7 @@
                 function _enrollSuccess(response) {
                     calendar.addAssistants(response.assistants);
                     vm.success = true;
-                    $state.go('activities-enroll.success');
+                    $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':calendar.id});
                 }
 
                 function _enrollError(response){
