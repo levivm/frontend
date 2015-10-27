@@ -34,13 +34,32 @@
         //noinspection UnnecessaryLocalVariableJS
         var service = {
 
+            /**
+             * @ngdoc method
+             * @name .#searchActivities
+             * @description Returns `searchData`. Also accepts an optional data object to extend or update current
+             * search query data
+             * @param {object=} data External Query Data
+             * @return {object} searchData Current Search Query Data
+             * @methodOf trulii.search.services.SearchManager
+             */
             getSearchData: getSearchData,
 
+            /**
+             * @ngdoc method
+             * @name .#searchActivities
+             * @description Used to set search Query Data from searchBar
+             * @param {object} data External Query Data
+             * @param {string} q User search String
+             * @param {number} city ID of the city to search from
+             * @return {object} searchData Current Search Query Data
+             * @methodOf trulii.search.services.SearchManager
+             */
             setSearchBarData: setSearchBarData,
 
             /**
              * @ngdoc method
-             * @name trulii.search.services.SearchManager#searchActivities
+             * @name .#searchActivities
              * @description Searches activities with provided search parameters
              * @param {string} data Query Data
              * @param {string=} data.q query string
@@ -53,7 +72,16 @@
              */
             searchActivities: searchActivities,
 
+            /**
+             * @ngdoc method
+             * @name .#searchActivities
+             * @description Clears the current search query data
+             * @param {object=} data External Query Data
+             * @return {object} searchData Current Search Query Data
+             * @methodOf trulii.search.services.SearchManager
+             */
             clearData: clearData,
+
             setCategory: setCategory,
             setSubCategory: setSubCategory,
             setDate: setDate,
@@ -91,16 +119,9 @@
 
             setSearchData(data);
 
-            //console.log('searchData:', searchData);
+            if(!searchData.hasOwnProperty(KEY_CITY)){ deferred.reject(null); }
 
-            if(!searchData.hasOwnProperty(KEY_CITY)){
-                deferred.reject(null);
-            }
-
-            requestConfig = {
-                'params': searchData
-            };
-
+            requestConfig = { 'params': searchData };
             $http.get(api.search(), requestConfig).then(success, error);
 
             return deferred.promise;
@@ -112,9 +133,7 @@
                 stateParams.activities = response.data;
                 deferred.resolve(stateParams);
             }
-            function error(response){
-                deferred.reject(response);
-            }
+            function error(response){ deferred.reject(response); }
         }
 
         function clearData(){
@@ -122,37 +141,8 @@
             searchData = {};
         }
 
-        function setCategory(category){
-            searchData[KEY_CATEGORY] = category;
-        }
-
-        function setSubCategory(subcategory){
-            searchData[KEY_SUBCATEGORY] = subcategory;
-        }
-
-        function setDate(date){
-            searchData[KEY_DATE] = date;
-        }
-
-        function setLevel(level){
-            searchData[KEY_LEVEL] = level;
-        }
-
-        function setCosts(start, end){
-            searchData[KEY_COST_START] = start;
-            searchData[KEY_COST_END] = end;
-        }
-
-        function setCertification(withCertification){
-            searchData[KEY_CERTIFICATION] = withCertification;
-        }
-
-        function setWeekends(withWeekends){
-            searchData[KEY_WEEKENDS] = withWeekends;
-        }
-
         function setSearchBarData(data){
-            console.log('incoming setSearchBarData', data);
+
             if(data.hasOwnProperty(KEY_CITY) && data[KEY_CITY]){ searchData[KEY_CITY] = parseInt(data[KEY_CITY]); }
 
             if(data.hasOwnProperty(KEY_QUERY) && data[KEY_QUERY]){
@@ -160,11 +150,13 @@
             } else {
                 delete searchData[KEY_QUERY];
             }
+
+            return searchData;
         }
 
         function setSearchData(data){
 
-            console.log('incoming setSearchData', data);
+            setSearchBarData(data);
 
             if(data.hasOwnProperty(KEY_CATEGORY) && data[KEY_CATEGORY]){
                 searchData[KEY_CATEGORY] = parseInt(data[KEY_CATEGORY]);
@@ -208,16 +200,42 @@
                 delete searchData[KEY_CERTIFICATION];
             }
 
-            console.log('data.hasOwnProperty(KEY_WEEKENDS)', data.hasOwnProperty(KEY_WEEKENDS),
-                'data[KEY_WEEKENDS]', (data[KEY_WEEKENDS] == 'true'), data[KEY_WEEKENDS]);
             if(data.hasOwnProperty(KEY_WEEKENDS) && (data[KEY_WEEKENDS] == 'true')){
                 searchData[KEY_WEEKENDS] = (data[KEY_WEEKENDS] == 'true');
             } else {
-                console.log('deleting weekend');
                 delete searchData[KEY_WEEKENDS];
             }
 
             return searchData;
+        }
+
+        function setCategory(category){
+            searchData[KEY_CATEGORY] = category;
+        }
+
+        function setSubCategory(subcategory){
+            searchData[KEY_SUBCATEGORY] = subcategory;
+        }
+
+        function setDate(date){
+            searchData[KEY_DATE] = date;
+        }
+
+        function setLevel(level){
+            searchData[KEY_LEVEL] = level;
+        }
+
+        function setCosts(start, end){
+            searchData[KEY_COST_START] = start;
+            searchData[KEY_COST_END] = end;
+        }
+
+        function setCertification(withCertification){
+            searchData[KEY_CERTIFICATION] = withCertification;
+        }
+
+        function setWeekends(withWeekends){
+            searchData[KEY_WEEKENDS] = withWeekends;
         }
     }
 

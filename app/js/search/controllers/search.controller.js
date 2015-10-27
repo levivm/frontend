@@ -161,8 +161,12 @@
             if(vm.searchData.hasOwnProperty(sm.KEY_COST_START)){ vm.searchStartCost = vm.searchData[sm.KEY_COST_START]; }
             if(vm.searchData.hasOwnProperty(sm.KEY_COST_END)){ vm.searchEndCost = vm.searchData[sm.KEY_COST_END]; }
 
-            if(vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION]){ vm.withCert = vm.searchData[sm.KEY_CERTIFICATION]; }
-            if(vm.searchData.hasOwnProperty(sm.KEY_WEEKENDS) && vm.searchData[sm.KEY_WEEKENDS]){ vm.onWeekends = vm.searchData[sm.KEY_WEEKENDS]; }
+            if(vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION]){
+                vm.withCert = vm.searchData[sm.KEY_CERTIFICATION];
+            }
+            if(vm.searchData.hasOwnProperty(sm.KEY_WEEKENDS) && vm.searchData[sm.KEY_WEEKENDS]){
+                vm.onWeekends = vm.searchData[sm.KEY_WEEKENDS];
+            }
 
 
             if(vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)){
