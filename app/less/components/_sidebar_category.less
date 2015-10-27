@@ -1,19 +1,26 @@
 @import url('../_trulii-variables');
 
-@selected-category-color: darken(@brand-secondary, 5%);
-@selected-subcategory-color: lighten(@brand-primary, 15%);
+@selected-category-color: #C177F0;
+@selected-subcategory-color: #FFCA72;
 
 .sidebar-category-container {
-    padding: 8px;
+    padding: 1.2em 0;
+    background-color: @white;
+    border-right: 1px solid @gray-lighter;
+
+    .title {
+        padding: 0.6em;
+    }
 
     .sidebar-category {
         cursor: pointer;
+        font-size: 0.8em;
 
         .header {
-            padding: 10px;
+            padding: 0.6em;
 
             &:hover {
-                background-color: @gray-lighter;
+                background-color: @lightbg-accent;
             }
 
             &.active{
@@ -24,8 +31,6 @@
             &__name {
                 display: inline-block;
                 width: 85%;
-
-                font-size: 16px;
             }
 
             &__expand {
@@ -34,18 +39,17 @@
             }
 
             &__icon {
-                font-size: 12px;
+                font-size: 1em;
             }
         }
 
         .subcategories{
-            margin-left: 20px;
 
             &__item {
-                padding: 8px;
+                padding: 0.6em 0.6em 0.6em 1.5em;
 
                 &:hover {
-                    background-color: @gray-lighter;
+                    background-color: lighten(@gray-base, 95%);
                 }
 
                 &.active{

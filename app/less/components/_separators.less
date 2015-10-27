@@ -1,3 +1,4 @@
+@import url('../_trulii-variables');
 
 // TODO Deprecated?
 .separator{
@@ -5,7 +6,7 @@
     margin: 1em 0;
 
     &-text{
-        border-bottom: 0px;
+        border-bottom: 0;
 
         position: relative;
 
@@ -30,6 +31,11 @@
     &-vertical{
         border-left: 1px solid @color-delimeter-dark;
     }
+}
+
+.separator-light{
+    border-bottom: 1px solid @color-delimeter-light;
+    margin: 1em 0;
 }
 
 @section-padding: 2.5rem;

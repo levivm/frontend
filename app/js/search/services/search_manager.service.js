@@ -26,13 +26,17 @@
         var KEY_COST_END = 'cost_end';
         var KEY_CERTIFICATION = 'certification';
         var KEY_WEEKENDS = 'weekends';
+        var EVENT_SEARCH_MODIFIED = "truliiSearchModified";
+
         var api = ActivityServerApi;
         var searchData = {};
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
 
-            getSearchData: function(){ return searchData; },
+            getSearchData: getSearchData,
+
+            setSearchBarData: setSearchBarData,
 
             /**
              * @ngdoc method
@@ -54,8 +58,7 @@
             setSubCategory: setSubCategory,
             setDate: setDate,
             setLevel: setLevel,
-            setCostStart: setCostStart,
-            setCostEnd: setCostEnd,
+            setCosts: setCosts,
             setCertification: setCertification,
             setWeekends: setWeekends,
 
@@ -68,22 +71,27 @@
             KEY_COST_START : KEY_COST_START,
             KEY_COST_END : KEY_COST_END,
             KEY_CERTIFICATION : KEY_CERTIFICATION,
-            KEY_WEEKENDS : KEY_WEEKENDS
+            KEY_WEEKENDS : KEY_WEEKENDS,
+            EVENT_SEARCH_MODIFIED: EVENT_SEARCH_MODIFIED
         };
 
         return service;
+
+        function getSearchData(data){
+            if(data){ setSearchData(data); }
+
+            if(!searchData[KEY_WEEKENDS]){ delete searchData[KEY_WEEKENDS];}
+
+            return searchData;
+        }
 
         function searchActivities(data){
             var deferred = $q.defer();
             var requestConfig;
 
-            if(data.hasOwnProperty(KEY_QUERY)){ searchData[KEY_QUERY] = data[KEY_QUERY]; }
-            if(data.hasOwnProperty(KEY_CITY)){ searchData[KEY_CITY] = data[KEY_CITY]; }
-            if(data.hasOwnProperty(KEY_CATEGORY)){ searchData[KEY_CATEGORY] = data[KEY_CATEGORY]; }
-            if(data.hasOwnProperty(KEY_SUBCATEGORY)){ searchData[KEY_SUBCATEGORY] = data[KEY_SUBCATEGORY]; }
-            if(data.hasOwnProperty(KEY_DATE)){ searchData[KEY_DATE] = data[KEY_DATE]; }
+            setSearchData(data);
 
-            console.log('searchData:', searchData);
+            //console.log('searchData:', searchData);
 
             if(!searchData.hasOwnProperty(KEY_CITY)){
                 deferred.reject(null);
@@ -99,7 +107,10 @@
 
             function success(response){
                 console.log(response.data);
-                deferred.resolve(response.data);
+                var stateParams = {};
+                angular.extend(stateParams, searchData);
+                stateParams.activities = response.data;
+                deferred.resolve(stateParams);
             }
             function error(response){
                 deferred.reject(response);
@@ -127,11 +138,8 @@
             searchData[KEY_LEVEL] = level;
         }
 
-        function setCostStart(start){
+        function setCosts(start, end){
             searchData[KEY_COST_START] = start;
-        }
-
-        function setCostEnd(end){
             searchData[KEY_COST_END] = end;
         }
 
@@ -141,6 +149,75 @@
 
         function setWeekends(withWeekends){
             searchData[KEY_WEEKENDS] = withWeekends;
+        }
+
+        function setSearchBarData(data){
+            console.log('incoming setSearchBarData', data);
+            if(data.hasOwnProperty(KEY_CITY) && data[KEY_CITY]){ searchData[KEY_CITY] = parseInt(data[KEY_CITY]); }
+
+            if(data.hasOwnProperty(KEY_QUERY) && data[KEY_QUERY]){
+                searchData[KEY_QUERY] = data[KEY_QUERY];
+            } else {
+                delete searchData[KEY_QUERY];
+            }
+        }
+
+        function setSearchData(data){
+
+            console.log('incoming setSearchData', data);
+
+            if(data.hasOwnProperty(KEY_CATEGORY) && data[KEY_CATEGORY]){
+                searchData[KEY_CATEGORY] = parseInt(data[KEY_CATEGORY]);
+            } else {
+                delete searchData[KEY_CATEGORY];
+            }
+
+            if(data.hasOwnProperty(KEY_SUBCATEGORY) && data[KEY_SUBCATEGORY]){
+                searchData[KEY_SUBCATEGORY] = parseInt(data[KEY_SUBCATEGORY]);
+            } else {
+                delete searchData[KEY_SUBCATEGORY];
+            }
+
+            if(data.hasOwnProperty(KEY_DATE) && data[KEY_DATE]){
+                searchData[KEY_DATE] = parseInt(data[KEY_DATE]);
+            } else {
+                delete searchData[KEY_DATE];
+            }
+
+            if(data.hasOwnProperty(KEY_LEVEL) && data[KEY_LEVEL]){
+                searchData[KEY_LEVEL] = data[KEY_LEVEL];
+            } else {
+                delete searchData[KEY_LEVEL];
+            }
+
+            if(data.hasOwnProperty(KEY_COST_START) && data[KEY_COST_START]){
+                searchData[KEY_COST_START] = parseInt(data[KEY_COST_START]);
+            } else {
+                delete searchData[KEY_COST_START];
+            }
+
+            if(data.hasOwnProperty(KEY_COST_END) && data[KEY_COST_END]){
+                searchData[KEY_COST_END] = parseInt(data[KEY_COST_END]);
+            } else {
+                delete searchData[KEY_COST_END];
+            }
+
+            if(data.hasOwnProperty(KEY_CERTIFICATION) && (data[KEY_CERTIFICATION] == 'true')){
+                searchData[KEY_CERTIFICATION] = (data[KEY_CERTIFICATION] == 'true');
+            } else {
+                delete searchData[KEY_CERTIFICATION];
+            }
+
+            console.log('data.hasOwnProperty(KEY_WEEKENDS)', data.hasOwnProperty(KEY_WEEKENDS),
+                'data[KEY_WEEKENDS]', (data[KEY_WEEKENDS] == 'true'), data[KEY_WEEKENDS]);
+            if(data.hasOwnProperty(KEY_WEEKENDS) && (data[KEY_WEEKENDS] == 'true')){
+                searchData[KEY_WEEKENDS] = (data[KEY_WEEKENDS] == 'true');
+            } else {
+                console.log('deleting weekend');
+                delete searchData[KEY_WEEKENDS];
+            }
+
+            return searchData;
         }
     }
 

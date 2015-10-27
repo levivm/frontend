@@ -12,11 +12,14 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope', '$stateParams', 'ActivitiesManager', 'SearchManager', 'datepickerPopupConfig'];
+    SearchController.$inject = ['$rootScope', '$scope', '$q', '$stateParams', 'ActivitiesManager', 'LocationManager', 'SearchManager',
+        'datepickerConfig', 'datepickerPopupConfig'];
 
-    function SearchController($rootScope, $scope, $stateParams, ActivitiesManager, SearchManager, datepickerPopupConfig) {
+    function SearchController($rootScope, $scope, $q, $stateParams, ActivitiesManager, LocationManager, SearchManager,
+          datepickerConfig, datepickerPopupConfig) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        var unsuscribeSearchModified = null;
         var vm = this;
         angular.extend(vm, {
             activities : [],
@@ -33,48 +36,7 @@
             searchEndCost: 250000,
             withCert: false,
             onWeekends: false,
-            categories: [
-                {
-                    name: "Arte",
-                    color: "#46416D"
-                },
-                {
-                    name: "Danza",
-                    color: "#38DBC7"
-                },
-                {
-                    name: "Estilo de Vida",
-                    color: "#00AAD1"
-                },
-                {
-                    name: "Fitness",
-                    color: "#C177EF"
-                },
-                {
-                    name: "Gastronomía",
-                    color: "#EB5369"
-                },
-                {
-                    name: "Geeks",
-                    color: "#00AA79"
-                },
-                {
-                    name: "Idioma",
-                    color: "#FF7E60"
-                },
-                {
-                    name: "Música",
-                    color: "#0084B4"
-                },
-                {
-                    name: "Niños",
-                    color: "#FFC971"
-                },
-                {
-                    name: "Profesional",
-                    color: "#EB9F61"
-                }
-            ],
+            categories: [],
             format : FORMATS[0],
             minStartDate : new Date(),
             dateOptions : {
@@ -82,15 +44,13 @@
                 startingDay: 1
             },
             opened: false,
-            options : {
-                actions: ['view', 'edit', 'contact', 'manage', 'republish']
-            },
             openDatePicker: openDatePicker,
             expandCategory: expandCategory,
             setCategory: setCategory,
             setSubCategory: setSubCategory,
             setLevel: setLevel,
             setDate: setDate,
+            updateCost: updateCost,
             setCertification: setCertification,
             setWeekends: setWeekends
         });
@@ -113,6 +73,8 @@
         }
 
         function setCategory(category){
+            if(!category){ return; }
+
             if(vm.searchCategory === category.id){
                 vm.searchCategory = null;
             } else {
@@ -145,23 +107,31 @@
             SearchManager.setDate(vm.searchDate.getTime());
         }
 
+        function updateCost(costStart, costEnd){
+            SearchManager.setCosts(costStart, costEnd);
+        }
+
         function setCertification(){
+            vm.withCert = !vm.withCert;
             console.log('setCert:', vm.withCert);
             SearchManager.setCertification(vm.withCert);
         }
 
         function setWeekends(){
+            vm.onWeekends = !vm.onWeekends;
             console.log('setWeekends:', vm.onWeekends);
             SearchManager.setWeekends(vm.onWeekends);
         }
 
         //--------- Internal Functions ---------//
 
-        function _getActivities(){
-            ActivitiesManager.getActivities().then(success, error);
+        function _getActivities(data){
+            console.log('getActivities.data:', data);
+            SearchManager.searchActivities(data).then(success, error);
 
             function success(response){
-                vm.activities = response;
+                vm.activities = response.activities;
+                console.log('response:', response);
                 console.log('activities from ActivitiesManager:', vm.activities);
             }
             function error(response){
@@ -170,43 +140,77 @@
         }
 
         function _getSearchParams(){
-            vm.searchData = SearchManager.getSearchData();
+            var deferred = $q.defer();
+            vm.searchData = SearchManager.getSearchData($stateParams);
             vm.searchQuery = vm.searchData[SearchManager.KEY_QUERY];
+            var sm = SearchManager;
+
+            console.group("_getSearchParams");
             console.log('searchData:', vm.searchData);
             console.log('searchQuery:', vm.searchQuery);
+
+            if($stateParams.city){
+                var city = LocationManager.getCityById(parseInt($stateParams.city));
+                LocationManager.setSearchCity(city);
+            }
+
+
+            if(vm.searchData.hasOwnProperty(sm.KEY_DATE)){ vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]); }
+            if(vm.searchData.hasOwnProperty(sm.KEY_LEVEL)){ vm.searchlevel = vm.searchData[sm.KEY_LEVEL]; }
+
+            if(vm.searchData.hasOwnProperty(sm.KEY_COST_START)){ vm.searchStartCost = vm.searchData[sm.KEY_COST_START]; }
+            if(vm.searchData.hasOwnProperty(sm.KEY_COST_END)){ vm.searchEndCost = vm.searchData[sm.KEY_COST_END]; }
+
+            if(vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION]){ vm.withCert = vm.searchData[sm.KEY_CERTIFICATION]; }
+            if(vm.searchData.hasOwnProperty(sm.KEY_WEEKENDS) && vm.searchData[sm.KEY_WEEKENDS]){ vm.onWeekends = vm.searchData[sm.KEY_WEEKENDS]; }
+
+
+            if(vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)){
+                var category = vm.categories.filter(categoryFilter)[0];
+                if(category){
+                    setCategory(category);
+                    console.log('searchCategory', category);
+                    vm.searchData["category_display"] = category.name;
+                }
+            }
+
+            if(vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)){
+                vm.searchSubCategory = vm.searchData[sm.KEY_SUBCATEGORY];
+            }
+
+            console.groupEnd();
+
+            deferred.resolve();
+
+            return deferred.promise;
+
+            function categoryFilter(category){ return category.id === vm.searchData[sm.KEY_CATEGORY]; }
         }
 
-        function _getSearchData(){
+        function _getGeneralInfo(){
+            var deferred = $q.defer();
             ActivitiesManager.loadGeneralInfo().then(successInfo, errorInfo);
-            ActivitiesManager.getCategories().then(successCategories, errorCategories);
+            return deferred.promise;
 
             function successInfo(response){
-                console.log('generalInfo:', response);
                 vm.levels = response.levels;
+                vm.categories = response.categories;
+                deferred.resolve();
             }
 
             function errorInfo(response){
                 console.log('Error getting GeneralInfo.', response.data);
-            }
-
-            function successCategories(categories){
-                console.log('categories:', categories);
-                vm.categories = categories;
-            }
-            function errorCategories(response){
-                console.log('Error getting Categories.', response.data);
+                deferred.reject();
             }
         }
 
         function _setWatches(){
             $rootScope.$watch(watchStartCost , function(newValue){
-                console.log('searchStartCost:', newValue);
-                SearchManager.setCostStart(newValue);
+                SearchManager.setCosts(newValue, vm.searchEndCost);
             });
 
             $rootScope.$watch(watchEndCost, function(newValue){
-                console.log('searchEndCost:', newValue);
-                SearchManager.setCostEnd(newValue);
+                SearchManager.setCosts(vm.searchStartCost, newValue);
             });
 
             function watchStartCost(){
@@ -224,37 +228,47 @@
                 ACTION_CLOSE: "Cerrar",
                 COPY_RESULTS_FOR: "resultados para ",
                 COPY_IN: "en",
-                OPTION_SELECT_LEVEL: "Nivel...",
-                OPTION_SELECT_COST: "Costo...",
-                OPTION_SELECT_DATA: "Fecha...",
+                OPTION_SELECT_LEVEL: "-- Nivel --",
+                PLACEHOLDER_DATE: "A Partir de",
+                COPY_INTERESTS: "¿Qué tema te interesa?",
                 LABEL_LEVEL: "Nivel",
                 LABEL_COST: "Costo",
-                LABEL_DATE: "Fecha"
+                LABEL_DATE: "Fecha",
+                LABEL_WITH_CERTIFICATE: "Con Certificado",
+                LABEL_WEEKENDS: "Fines de Semana",
+                LABEL_EMPTY_SEARCH:"Houston. Tenemos un problema.",
+                COPY_EMPTY_SEARCH: "Puede que no tengamos lo que estés buscando."
+                    + "Por si acaso, te recomendamos intentarlo de nuevo."
             });
+        }
+
+        function _cleanUp() {
+            unsuscribeSearchModified();
         }
 
         function _activate(){
             datepickerPopupConfig.showButtonBar = false;
-            _setStrings();
-            _getSearchData();
-            _getSearchParams();
-            if($stateParams.activities){
-                console.log('activities from $stateParams:', $stateParams.activities);
-                vm.activities = $stateParams.activities;
-            } else {
-                _getActivities();
-            }
-
+            datepickerConfig.showWeeks = false;
             _setWatches();
 
-            $scope.$on('$destroy', clearData);
+            _setStrings();
+            _getGeneralInfo().then(function(){
+                _getSearchParams();
+            });
 
-            function clearData(){
-                SearchManager.clearData();
-            }
+            _getActivities($stateParams);
+
+            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED
+                , function (event) {
+                    console.log('searchBar. on' + SearchManager.EVENT_SEARCH_MODIFIED);
+                    _getSearchParams().then(function(){
+                        _getActivities($stateParams);
+                    });
+                }
+            );
+
+            $scope.$on('$destroy', _cleanUp);
+
         }
-
-
-
     }
 })();

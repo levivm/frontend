@@ -22,7 +22,8 @@
                 start: '=',
                 end: '=',
                 min: '=',
-                max: '='
+                max: '=',
+                update: '&'
             },
             link: function (scope, element, attrs) {
                 var slider = document.getElementById('slider-anchor');
@@ -53,6 +54,7 @@
                             // Is moving the start handle
                             scope.start = parseInt(values[handle]);
                         }
+                        scope.$apply(scope.update({ 'start': scope.start, 'end': scope.end}));
                     }, 0);
                 });
             }
