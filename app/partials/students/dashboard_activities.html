@@ -46,30 +46,75 @@
                 <div class="col-xs-6 col-sm-7">
                     <h3><strong>Iniciado el 13 Jun. 2015</strong></h3>
                     <a href="">Detalle de la compra</a>
-                    <div class="separate-above-medium separate-below-medium">
-                        <h2 class="text-center text-muted montserrat-light">¿Cómo calificarías la experiencia?</h2>
-                        <h3 class="text-center text-muted montserrat-light">
-                            <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-                            <span>(3/5)</span>
-                        </h3>
-                    </div>
-                    <div class="separate-above-medium separate-below-more">
-                        <input id="" class="form-control" name=""
-                               ng-model=""
-                               placeholder="Deja tu comentario. Esto lo verá el organizador y demás usuarios"
-                               type="text">
-                    </div>
-                    <div class="separate-above-medium separate-below-medium">
-                        <div class="row">
-                            <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-8">
-                                <button class="btn btn-success btn-block btn-md">
-                                    Listo
-                                </button>
+                    <!-- If user hasnt posted a review yet -->
+                    <div ng-hide="true">
+                        <div class="separate-above-medium separate-below-medium">
+                            <h2 class="text-center text-muted montserrat-light">¿Cómo calificarías la experiencia?</h2>
+                            <h3 class="text-center text-muted montserrat-light">
+                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span>(3/5)</span>
+                            </h3>
+                        </div>
+                        <!-- Should be hidden until a score has been chosen-->
+                        <div ng-show="true">
+                            <div class="separate-above-medium separate-below-more">
+                                <input id="" class="form-control" name=""
+                                       ng-model=""
+                                       placeholder="Deja tu comentario. Esto lo verá el organizador y demás usuarios"
+                                       type="text">
                             </div>
+                            <div class="separate-above-medium separate-below-medium">
+                                <div class="row">
+                                    <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-8">
+                                        <button class="btn btn-success btn-block btn-md">
+                                            Listo
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- If it has a review -->
+                    <div class="row separate-above-medium">
+                        <!-- Comment -->
+                        <div class="col-xs-2">
+                            <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
+                            <h4 class="text-center text-uppercase montserrat-regular text-sm">Carlos Schiavino</h4>
+                        </div>
+                        <div class="col-xs-10">
+                            <p class="text-uppercase text-muted montserrat-regular">
+                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star text-primary" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                <span>(3/5)</span>
+                            </p>
+                            <p>
+                                Safety standards advise against manipulating drive settings while engines are powered and in use, Mr. Moreau.
+                            </p>
+                            <p class="text-muted text-sm"><span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em></p>
+                        </div>
+                    </div>
+                    <!-- Response -->
+                    <div class="row separate-above-medium separate-below-medium">
+                        <div class="col-xs-2 col-xs-offset-1">
+                            <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
+                            <h4 class="text-center text-uppercase montserrat-regular text-sm">Croydon School of Art</h4>
+                        </div>
+                        <div class="col-xs-9">
+                            <p class="montserrat-regular">
+                                Croydon School of Art
+                            </p>
+                            <p>
+                                <em>
+                                Hearing about the Protheans makes me wonder if some distant civilization is going to find our artifacts someday and study us.
+                                </em>
+                            </p>
                         </div>
                     </div>
                 </div>
