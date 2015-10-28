@@ -6,7 +6,7 @@
         <div class="activity-card__owner-picture"
              style="background-image: url('{{::activity.organizer.photo}}') "></div>
 
-        <span class="activity-card__header__btn-more mdi-navigation-more-vert"
+        <span ng-if="actions.length > 0" class="activity-card__header__btn-more mdi-navigation-more-vert"
               ng-click="showMenu = true">
         </span>
 

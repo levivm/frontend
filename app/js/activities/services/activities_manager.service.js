@@ -179,16 +179,13 @@
         function loadOrganizerActivities(organizerId) {
             var deferred = $q.defer();
 
-            if (!(_.isEmpty(_activities))) {
-                // console.log("DEVOLVIENDO ACTIVIDADES",_activities);
-                deferred.resolve(_activities);
-            }
+            if (!_.isEmpty(_activities)) { deferred.resolve(_activities); }
 
             $http.get(apiOrg.activities(organizerId))
                 .then(function (response) {
+                    _activities = [];
                     _.each(response.data, function (activityData) {
                         var activity = _retrieveInstance(activityData.id, activityData);
-                        _activities = [];
                         _activities.push(activity);
                     });
                     deferred.resolve(_activities);

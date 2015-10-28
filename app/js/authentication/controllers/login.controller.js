@@ -79,6 +79,11 @@
         }
 
         function _activate(){
+            console.log("voy a  ir a succes",$stateParams);
+            console.log("voy a  ir a succes",$stateParams);
+            console.log("voy a  ir a succes",$stateParams);
+
+
             toState = $stateParams.toState;
             _setStrings();
         }

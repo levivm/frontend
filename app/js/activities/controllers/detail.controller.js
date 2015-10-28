@@ -253,7 +253,7 @@
                 ACTION_VIEW_OTHER_DATES: "Ver otras fechas",
                 ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
                 ACTIVITY_SOLD_OUT: "Agotado",
-                COPY_SOCIAL_BUTTONS: "Te gustó? Compartelo con tus amigos ",
+                COPY_SOCIAL_BUTTONS: "¿Te gustó? Compartelo con tus amigos ",
                 COPY_SOCIAL_SHARE_FACEBOOK: "Compartir en Facebook",
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",

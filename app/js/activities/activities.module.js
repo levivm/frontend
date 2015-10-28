@@ -186,31 +186,40 @@
                     deviceSessionId:getDeviceSessionId
                 }
             })
-            .state('activities-enroll.success', {
-                url: '/success',
-                controller: 'ActivityEnrollSuccessController as success',
-                templateUrl: 'partials/activities/detail/enroll.success.html',
-                resolve: {
-                    organizer: ['activity', function (activity) {
-                        return  activity.organizer;
-                    }],
-                    organizerActivities: getOrganizerActivities
-                }
-            })
             .state('activities-enroll.pse-response', {
                 url: '/pse/response?referenceCode&transactionId&state&cus&pseBank' +
-                                   '&TX_VALUE&currency&description&pseReference1&merchant_name'+
-                                   '&merchant_address&telephone&pseReference3',
+                '&TX_VALUE&currency&description&pseReference1&merchant_name'+
+                '&merchant_address&telephone&pseReference3',
                 controller: 'ActivityEnrollPSEResponseController as pseResponse',
                 templateUrl: 'partials/activities/detail/enroll.pse.response.html',
                 resolve: {
-                    organizer: ['activity', function (activity) {
-                        return  activity.organizer;
-                    }],
+                    organizer: getActivityOrganizer,
                     organizerActivities: getOrganizerActivities
                 },
                 params:{
                     pseResponseData: null
+                }
+            })
+            .state('activities-enroll-success', {
+                url: '/activities/{activity_id:int}/enroll/{calendar_id:int}/success',
+                views:{
+                    '@': {
+                        controller: 'ActivityEnrollSuccessController as success',
+                        templateUrl: 'partials/activities/detail/enroll.success.html',
+                    },
+                    'attendees@activities-enroll-success': {
+                        controller: 'ActivityDetailAttendeesController as attendees',
+                        templateUrl: 'partials/activities/detail/attendees.html'
+                    }
+                },
+                resolve: {
+                    activity: getActivity,
+                    calendar: fetchCalendar,
+                    calendars: fetchCalendarArray,
+                    currentUser: getAuthenticatedUser,
+                    deviceSessionId: getDeviceSessionId,
+                    organizer: getActivityOrganizer,
+                    organizerActivities: getOrganizerActivities
                 }
             });
 
@@ -260,6 +269,18 @@
                 }
                 return $q.reject();
             }
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getActivityOrganizer
+         * @description Retrieves the Organizer Object from the resolved Activity
+         * @requires activity
+         * @methodOf trulii.activities.config
+         */
+        getActivityOrganizer.$inject = ['activity'];
+        function getActivityOrganizer(activity){
+            return  activity.organizer;
         }
 
         /**
@@ -345,6 +366,32 @@
             var calendarId = $stateParams.calendar_id;
 
             return CalendarsManager.fetchCalendar(activityId, calendarId);
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#fetchCalendarArray
+         * @description Fetches a Calendar by Activity ID and Calendar ID in $stateParams from
+         * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service and returns it inside an Array
+         * @requires ui.router.state.$stateParams
+         * @requires trulii.activities.services.CalendarsManager
+         * @methodOf trulii.activities.config
+         */
+        fetchCalendarArray.$inject = ['$stateParams', 'CalendarsManager'];
+        function fetchCalendarArray($stateParams, CalendarsManager) {
+            var activityId = $stateParams.activity_id;
+            var calendarId = $stateParams.calendar_id;
+
+            return CalendarsManager.fetchCalendar(activityId, calendarId).then(success, error);
+
+            function success(calendar){
+                return [calendar];
+            }
+
+            function error(response){
+                console.log('fetchCalendarArray. Error retrieving calendar', response.data);
+                return [];
+            }
         }
 
         /**

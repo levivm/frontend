@@ -54,6 +54,7 @@
 .billing-widget {
     border: 1px solid @gray-light-medium;
     font-size: 0.8em;
+    font-weight: 400;
     border-radius: 4px;
 
     .item {
@@ -75,6 +76,7 @@
         text-align: end;
         font-weight: 600;
         float: right;
+
     }
 
     .sub-value {
@@ -84,11 +86,24 @@
     .invoice {
         padding: 1em;
         background-color: @gray-lighter;
+
+        h4{
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
     }
 
     .total {
         background-color: @gray-light-medium;
         padding: 1em;
+
+        .item {
+            font-weight:600;
+        }
+
+        .value{
+            font-size:1.2em;
+        }
     }
 }
 
@@ -107,3 +122,100 @@
         background-color: @white;
     }
 }
+
+.success-panel {
+    .Panel;
+}
+
+.remember-container {
+    .separator {
+        width: 30%;
+        text-align: center;
+        margin: 2em auto;
+    }
+
+    .items-container {
+        text-align: center;
+
+        .item {
+            text-align: start;
+            display: inline-block;
+            padding: 1em;
+            width: 30%;
+
+            @media screen and (max-width: @screen-sm ){
+                width: 100%;
+            }
+
+            .item-img {
+                width: 30%;
+                height: auto;
+            }
+
+            .item-text {
+                display: inline-block;
+                vertical-align: middle;
+                width: 60%;
+
+                .item-title {
+                    font-size: 0.8em;
+                    font-weight: 500;
+                }
+
+                .item-copy {
+                    color: @text-muted;
+                    font-size: 0.8em;
+                }
+            }
+        }
+    }
+}
+
+.share-container {
+    text-align: center;
+    color: @white;
+    height: 32em;
+    padding: 6em;
+    z-index: 5;
+    //noinspection CssUnknownTarget
+    background: url('/css/img/activity-enroll/background_success_share.png') 50% 50%;
+    background-size: cover;
+
+    p {
+        font-family: @font-sans-alt;
+        color: @white;
+        font-size: 1.4em;
+    }
+
+    img {
+        width: 10em;
+        height: auto;
+    }
+}
+
+.navigation-container {
+
+    img {
+        padding: 0.2em 0.5em;
+    }
+
+    a {
+        text-decoration: none;
+        color: @text-muted;
+
+        &:hover {
+            text-decoration: none;
+            color: @lightbg-text;
+        }
+
+        &:visited {
+            color: @text-muted;
+
+            &:hover {
+                text-decoration: none;
+                color: @lightbg-text;
+            }
+        }
+    }
+}
+
