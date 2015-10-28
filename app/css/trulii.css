@@ -16785,6 +16785,26 @@ h5 {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.74);
 }
+.review-detail p {
+  margin-bottom: 0.5em;
+  font-size: 1.125em;
+}
+.review-detail p.text-sm {
+  font-size: .8em;
+}
+.review-detail .organizer-name {
+  font-size: 1em;
+}
+.star {
+  color: #ffd580;
+}
+.star-empty {
+  transition: all 0.25s;
+  color: #eeeeee;
+}
+.star-empty:hover {
+  color: #ffd580;
+}
 .popover {
   box-shadow: none;
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
