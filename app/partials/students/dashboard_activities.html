@@ -37,7 +37,7 @@
         <div class="tab-pane fade" id="closed-tab">
             <!--If there are activities-->
 
-            <div class="row separate-above-medium separate-below-medium review-detail" ng-repeat="activity in activities.closed_activities track by activity.id">
+            <div class="row separate-above-medium separate-below-medium" ng-repeat="activity in activities.closed_activities track by activity.id">
                 <div class="col-xs-6 col-sm-4">
                     <trulii-activity-item
                             data-activity="activity" data-options="{{activities.options}}">
@@ -47,23 +47,22 @@
                     <h3><strong>Iniciado el 13 Jun. 2015</strong></h3>
                     <a href="">Detalle de la compra</a>
                     <!-- If user hasnt posted a review yet -->
-                    <div ng-hide="true">
+                    <div ng-hide="false" ng-init="x = 0">
                         <div class="separate-above-medium separate-below-medium">
                             <h2 class="text-center text-muted montserrat-light">¿Cómo calificarías la experiencia?</h2>
-                            <h3 class="text-center text-muted montserrat-light">
-                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
-                                <span>(3/5)</span>
-                            </h3>
+
+                            <div >
+                                <h3 class="text-center text-muted montserrat-light">
+                                    <rating ng-model="x" max="5" state-on="'glyphicon glyphicon-star star'" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>({{x}}/5)
+                                </h3>
+                            </div>
+
                         </div>
                         <!-- Should be hidden until a score has been chosen-->
-                        <div ng-show="true">
+                        <div ng-show="x > 0">
                             <div class="separate-above-medium separate-below-more">
-                                <input id="" class="form-control" name=""
-                                       ng-model=""
+                                <input id="asdf" class="form-control" name="asdf"
+                                       ng-model="asdf"
                                        placeholder="Deja tu comentario. Esto lo verá el organizador y demás usuarios"
                                        type="text">
                             </div>
@@ -79,46 +78,49 @@
                         </div>
                     </div>
                     <!-- If it has a review -->
-                    <div class="row separate-above-medium">
-                        <!-- Comment -->
-                        <div class="col-xs-2">
-                            <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
-                            <h4 class="text-center text-sm text-uppercase montserrat-regular ">Carlos Schiavino</h4>
+                    <div class="review-detail" ng-hide="true">
+                        <div class="row separate-above-medium">
+                            <!-- Comment -->
+                            <div class="col-xs-2">
+                                <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
+                                <h4 class="text-center text-sm text-uppercase montserrat-regular ">Carlos Schiavino</h4>
+                            </div>
+                            <div class="col-xs-10 paragraph-condensed">
+                                <p class="text-uppercase text-muted montserrat-regular">
+                                    <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
+                                    <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
+                                    <span class="text-sm">(3/5)</span>
+                                </p>
+                                <p>
+                                    Safety standards advise against manipulating drive settings while engines are powered and in use, Mr. Moreau.
+                                </p>
+                                <p class="text-sm">
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em>
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-xs-10 paragraph-condensed">
-                            <p class="text-uppercase text-muted montserrat-regular">
-                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
-                                <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
-                                <span class="text-sm">(3/5)</span>
-                            </p>
-                            <p>
-                                Safety standards advise against manipulating drive settings while engines are powered and in use, Mr. Moreau.
-                            </p>
-                            <p class="text-sm">
-                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Response -->
-                    <div class="row separate-above-medium separate-below-medium">
-                        <div class="col-xs-2 col-xs-offset-1">
-                            <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
-                            <h4 class="text-center text-sm text-uppercase montserrat-regular">Croydon School of Art</h4>
-                        </div>
-                        <div class="col-xs-9 paragraph-condensed">
-                            <p class="montserrat-semibold organizer-name">
-                                Croydon School of Art
-                            </p>
-                            <p>
-                                <em>
-                                Hearing about the Protheans makes me wonder if some distant civilization is going to find our artifacts someday and study us.
-                                </em>
-                            </p>
-                            <p class="text-sm">
-                                <span class="glyphicon glyphicon-time" aria-hidden="true"></span><em>11 Jun. 2015</em></p>
+                        <!-- Response -->
+                        <div class="row separate-above-medium separate-below-medium">
+                            <div class="col-xs-2 col-xs-offset-1">
+                                <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
+                                <h4 class="text-center text-sm text-uppercase montserrat-regular">Croydon School of Art</h4>
+                            </div>
+                            <div class="col-xs-9 paragraph-condensed">
+                                <p class="montserrat-semibold organizer-name">
+                                    Croydon School of Art
+                                </p>
+                                <p>
+                                    <em>
+                                        Hearing about the Protheans makes me wonder if some distant civilization is going to find our artifacts someday and study us.
+                                    </em>
+                                </p>
+                                <p class="text-sm">
+                                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span><em>11 Jun. 2015</em>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

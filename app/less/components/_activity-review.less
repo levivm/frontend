@@ -8,16 +8,20 @@
       font-size: .8em;
     }
 
-    .star{
-      color: @primary;
-      
-      &-empty{
-        color: @gray-lighter;
-      }
-    }
-
     .organizer-name{
       font-size: 1em;
     }
 
+}
+
+.star{
+  color: @primary;
+
+  &-empty{
+    transition: all 0.25s;
+    color: @gray-lighter;
+  }
+  &-empty:hover{
+    color: @primary;
+  }
 }

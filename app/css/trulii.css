@@ -16728,14 +16728,18 @@ h5 {
 .review-detail p.text-sm {
   font-size: .8em;
 }
-.review-detail .star {
-  color: #ffd580;
-}
-.review-detail .star-empty {
-  color: #eeeeee;
-}
 .review-detail .organizer-name {
   font-size: 1em;
+}
+.star {
+  color: #ffd580;
+}
+.star-empty {
+  transition: all 0.25s;
+  color: #eeeeee;
+}
+.star-empty:hover {
+  color: #ffd580;
 }
 .popover {
   box-shadow: none;
