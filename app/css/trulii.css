@@ -15792,6 +15792,7 @@ button.toast-close-button {
 }
 .activity-card__header__btn-more {
   color: white;
+  background: rgba(255, 255, 255, 0.3);
   position: absolute;
   padding: 0.5rem;
   right: 0;
@@ -15802,7 +15803,7 @@ button.toast-close-button {
   margin: 0.5rem;
 }
 .activity-card__header__btn-more:hover {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.6);
 }
 .activity-card__header__menu {
   position: relative;
@@ -15814,7 +15815,7 @@ button.toast-close-button {
   padding-top: 1.5em;
   padding-bottom: .8em;
   z-index: 10;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .activity-card__header__menu__btn-close {
   position: absolute;
