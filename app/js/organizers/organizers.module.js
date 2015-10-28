@@ -121,6 +121,14 @@
                 url:'profile',
                 controller: 'OrganizerProfileCtrl as profile',
                 templateUrl: 'partials/organizers/dashboard/profile.html'
+            })
+            .state('organizer-dashboard.reviews', {
+                url:'reviews/',
+                templateUrl: 'partials/organizers/dashboard/reviews_pending.html'
+            })
+            .state('organizer-dashboard.reviews.pending', {
+                url:'pending',
+                templateUrl: 'partials/organizers/dashboard/transactions_reimbursements.html'
             });
 
         /**

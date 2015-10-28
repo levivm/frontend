@@ -12490,6 +12490,9 @@ hr.on-light {
 .text-color-secondary {
   color: #732ebb;
 }
+.text-dark {
+  color: #333333;
+}
 .text-sm {
   font-size: .8em;
 }
@@ -16730,6 +16733,30 @@ h5 {
 }
 .review-detail .organizer-name {
   font-size: 1em;
+}
+.review-detail .review-detail-header {
+  margin-bottom: 1em;
+}
+.review-detail .review-detail-header > span {
+  padding-right: 15px;
+}
+.review-detail .review-profile-picture {
+  padding-left: 5%;
+}
+.review-detail .report-alert {
+  background-color: #eeeeee;
+  padding: 30px 20px;
+  font-weight: 200;
+  border-radius: 4px;
+}
+.review-detail .report-alert .btn-default {
+  background-color: #999999;
+  color: white;
+}
+.review-detail .report-alert p {
+  font-size: 1em;
+  color: #333333;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .star {
   color: #ffd580;
