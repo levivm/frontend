@@ -11100,8 +11100,6 @@ icon-material-blue-grey {
 }
 .label {
   border-radius: 1px;
-  padding: .3em .6em .3em;
-  font-weight: 500;
 }
 .label,
 .label-default {
@@ -16730,7 +16728,7 @@ h5 {
   width: 60%;
 }
 .remember-container .items-container .item .item-text .item-title {
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: 500;
 }
 .remember-container .items-container .item .item-text .item-copy {
@@ -16741,7 +16739,7 @@ h5 {
   text-align: center;
   color: #ffffff;
   height: 32em;
-  padding: 8em;
+  padding: 6em;
   z-index: 5;
   background: url('/css/img/activity-enroll/background_success_share.png') 50% 50%;
   background-size: cover;
@@ -16749,6 +16747,11 @@ h5 {
 .share-container p {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #ffffff;
+  font-size: 1.4em;
+}
+.share-container img {
+  width: 10em;
+  height: auto;
 }
 .navigation-container img {
   padding: 0.2em 0.5em;
