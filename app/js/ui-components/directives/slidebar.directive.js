@@ -11,8 +11,8 @@
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "slidebar.html",
             scope: {
-                title: '=',
-                header: '=',
+                title: '@',
+                header: '@',
                 body: '=',
                 show:   '='
             },

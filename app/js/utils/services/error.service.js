@@ -33,7 +33,8 @@
                 add: addErrors,
                 addArrayErrors:addArrayErrors,
                 clearField:clearFieldError,
-                resetForm:resetForm
+                resetForm:resetForm,
+                addMultipleFormsErrors:addMultipleFormsErrors
             },
             session: {
                 process: processSessionErrors
@@ -73,12 +74,26 @@
             
         }
 
+        function addMultipleFormsErrors(forms,responseErrors){
+            _.each(responseErrors,function(error_dict,index){
+                if (!(_.isEmpty(error_dict))){
+                    var form = forms[index];
+
+                    _.each(error_dict, function (message, field) {
+                        form[field].error_message = message.pop();
+                        form[field].$setValidity(field, false);
+                    });
+
+                }
+
+            });
+
+        }
+
         function addArrayErrors(form,responseErrors){
             _.each(responseErrors, function (error_dict) {
-
+                console.log('responseErrors',error_dict);
                 _.each(error_dict, function (message, field) {
-                    // console.log("message,field",message,field);
-                    //
                     console.log('message:',message);
                     form[field].error_message = message.pop();
                     form[field].$setValidity(field, false);

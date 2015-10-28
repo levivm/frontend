@@ -29,11 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover','Elevator','$document','$scope'];
 
     function ActivityDetailEnrollController($state, $window, $sce, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
-                                            activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover) {
+                                            activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
+                                            Elevator,$document,$scope) {
 
         var vm = this;
         var isValidDate = false;
@@ -51,6 +52,7 @@
             showReimbursement : false,
             quantity : 0,
             assistants : [],
+            assistantsForms:[],
 
             addAssistant : addAssistant,
             removeAssistant: removeAssistant,
@@ -65,6 +67,8 @@
             enrollPSE: enrollPSE,
             toggleTerms : toggleTerms,
             toggleReimbursement : toggleReimbursement,
+            setForm:setForm,
+
 
             cardData : {
                 "name_card": "APPROVED",
@@ -99,6 +103,14 @@
         console.log("sessionID", deviceSessionId);
 
         _activate();
+
+
+
+        function setForm(form){
+
+            vm.assistantsForms.push(form);
+
+        }
 
         //--------- Exposed Functions ---------//
 
@@ -180,10 +192,12 @@
 
                 function _enrollError(response){
                     var errors = response.data;
+                    console.log('Errors ---------',errors);
                     if (!(errors.assistants))
                         Error.form.add(vm.enrollForm, errors);
                     else
                         Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
+
                 }
             }
 
@@ -198,8 +212,10 @@
             Payments.validateCardType(vm.cardData.number).then(success, error);
 
             function success(cardType){
+                Error.form.clearField(vm.enrollForm,'cardMethod');
                 console.log("card type:", cardType);
                 vm.cardData.method = cardType;
+
             }
 
             function error(){
@@ -263,6 +279,7 @@
 
             function successCheckCardExpiry(isValid){
                 isValidDate = true;
+                // vm.cardData.invalidExpiry = true;
                 Error.form.clearField(vm.enrollForm,'invalidExpiry');
                 Payments.validateCardType(vm.cardData.number)
                         .then(validateCardTypeSuccess,validateCardTypeError);
@@ -306,6 +323,7 @@
                     deviceSessionId : deviceSessionId,
                     payment_method: Payments.KEY_CC_PAYMENT_METHOD
                 };
+
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
 
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
@@ -318,10 +336,19 @@
 
                 function _enrollError(response){
                     var error = response.data;
-                    if (!(error.assistants))
+                    if (!(error.assistants)){  
                         Error.form.add(vm.enrollForm, error);
-                    else
-                        Error.form.addArrayErrors(vm.enrollForm, error.assistants);
+                    }
+                    else{
+                        var error_index = _.findIndex(error.assistants,function(error_dict){
+
+                            return (!(_.isEmpty(error_dict)));
+                        });
+                        var base_selector = 'assistant_card_';
+                        console.log('selector',base_selector.concat(error_index));
+                        Elevator.toElement(base_selector.concat(error_index));
+                        Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
+                    }                    
                 }
             }
 
@@ -364,6 +391,7 @@
             if (vm.quantity > 1) {
                 vm.quantity -= 1;
                 vm.assistants.splice(index, 1);
+                vm.assistantsForms.splice(index, 1);
                 _calculateAmount();
             } else {
                 Toast.warning('Es necesario al menos un asistente a inscribir');
@@ -372,6 +400,7 @@
 
         function addAssistant() {
             if (vm.quantity + vm.calendar.assistants.length < vm.capacity) {
+
                 vm.quantity += 1;
                 vm.assistants.push({});
                 _calculateAmount();
@@ -399,6 +428,7 @@
         }
 
         function toggleReimbursement(){
+            vm.strings.COPY_SLIDEBAR_REIMBURSEMENT_BODY = vm.activity.return_policy;
             vm.showReimbursement = !vm.showReimbursement;
         }
 
@@ -440,9 +470,8 @@
                 vm.quantity = 0;
                 vm.assistants = [];
             } else {
-                vm.quantity = 1;
+                vm.quantity = 0;
                 if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
-                    console.log('Usuario ya esta inscrito');
                     vm.assistants = [{}];
                 } else {
                     vm.assistants = [angular.extend({}, currentUser.user)];
@@ -475,12 +504,12 @@
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los",
-                COPY_SLIDEBAR_TERMS_TITLE: "Terminos y condiciones",
+                COPY_SLIDEBAR_TERMS_TITLE: "Términos y condiciones",
                 COPY_SLIDEBAR_TERMS_HEADER: "Titulo de terminos y condiciones",
                 COPY_SLIDEBAR_TERMS_BODY: "All work and no play makes Jack a dull boy",
                 COPY_SLIDEBAR_REIMBURSEMENT_TITLE: "Políticas de Reembolso",
-                COPY_SLIDEBAR_REIMBURSEMENT_HEADER: "Titulo de politicas de reembolso",
-                COPY_SLIDEBAR_REIMBURSEMENT_BODY: "All work and no play makes Jack a dull boy",
+                COPY_SLIDEBAR_REIMBURSEMENT_HEADER: "Políticas de reembolso",
+                COPY_SLIDEBAR_REIMBURSEMENT_BODY: "No hay politicas de reembolso",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
@@ -488,6 +517,7 @@
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",
+                LABEL_INVOICE: "Facturación",
                 LABEL_PRICE: "Precio",
                 LABEL_QUANTITY: "Cantidad",
                 LABEL_TOTAL: "Total",
@@ -525,7 +555,7 @@
         function _activate(){
             _setStrings();
             vm.stateInfo = {
-                from: {
+                toState: {
                     state : $state.current.name,
                     params : $state.params
                 }
@@ -539,13 +569,12 @@
             vm.activity = activity;
             _mapMainPicture(vm.activity);
 
-            if(currentUser) { vm.pseData.payerEmail = currentUser.user.email; }
-            _setAssistants();
+            if(currentUser) { 
+                vm.pseData.payerEmail = currentUser.user.email; 
+                _setAssistants();
+            }
 
 
-            console.log('activity:', vm.activity);
-            console.log('calendar:', vm.calendar);
-            console.log('assistants:', vm.assistants);
         }
     }
 })();
