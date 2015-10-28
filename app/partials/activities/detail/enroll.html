@@ -35,10 +35,10 @@
 </div>
 
 <div class="row separate-above">
-    <div class="col-md-7 col-md-offset-1">
+    <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1">
         <!--If Anonymous-->
         <div ng-if="enroll.isAnonymous()" class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-xs-10 col-xs-offset-1">
                 <h1 ng-bind="::enroll.strings.COPY_SIGN_UP"></h1>
                 <br/>
                 <h4>
@@ -53,14 +53,31 @@
         </div>
         <!--Info-->
         <div class="row text-center">
-            <div class="col-md-12">
-                <h2 ng-bind="enroll.strings.COPY_STARTING_ON"></h2>
-                <h1><strong class="text-capitalize" ng-bind="enroll.calendar.initial_date | date:'MMM d, y'"></strong></h1>
-                <h3>
+            <div class="col-xs-12">
+                <h3 class="no-margin sinkin-medium" ng-bind="enroll.strings.COPY_STARTING_ON"></h3>
+                <h2 class="sinkin-semibold text-capitalize" ng-bind="enroll.calendar.initial_date | date:'MMM d, y'"></h2>
+                <h3 class="no-margin font-family-sans-alt">
                     <span ng-bind="enroll.calendar.vacancy"></span>
                     <span ng-bind="enroll.strings.COPY_VACANCY"></span></h3>
             </div>
         </div>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
+        <!--Organizer-->
+        <div class="organizer-widget">
+            <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
+                <img class="picture" ng-src="{{::enroll.getOrganizerPhoto()}}"
+                     alt="{{::enroll.activity.organizer.name}}"/>
+                <div class="data">
+                    <div class="name" ng-bind="::enroll.activity.organizer.name"></div>
+                    <div class="location" ng-bind="::enroll.activity.organizer.locations[0].address"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row separate-above">
+    <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1">
         <!--Sessions-->
         <div class="row separate-above">
             <div class="col-md-12">
@@ -232,8 +249,8 @@
                                                 <div class="col-md-3 separate-above-medium text-center">
                                                     <div class="form-group" trulii-input-errors-control="cardMethod">
                                                         <span class="form-control-static"
-                                                           ng-show="enroll.cardData.method"
-                                                           ng-bind="enroll.cardData.method"></span>
+                                                              ng-show="enroll.cardData.method"
+                                                              ng-bind="enroll.cardData.method"></span>
                                                         <input type="hidden" ng-model="enroll.cardData.method" name="cardMethod"/>
                                                     </div>
                                                 </div>
@@ -392,24 +409,8 @@
                 </div>
             </div>
         </form>
-        <div ui-view></div>
-        <a class="btn btn-link" ui-sref="activities-detail({activity_id: enroll.activity.id})">
-            <i class="mdi-navigation-chevron-left"></i>
-            <span ng-bind="::enroll.strings.ACTION_RETURN"></span>
-        </a>
     </div>
-    <div class="col-md-3">
-        <!--Organizer-->
-        <div class="organizer-widget">
-            <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
-                <img class="picture" ng-src="{{::enroll.getOrganizerPhoto()}}"
-                     alt="{{::enroll.activity.organizer.name}}"/>
-                <div class="data">
-                    <div class="name" ng-bind="::enroll.activity.organizer.name"></div>
-                    <div class="location" ng-bind="::enroll.activity.organizer.locations[0].address"></div>
-                </div>
-            </a>
-        </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0">
         <!--Billing-->
         <div class="billing-widget separate-above">
             <div class="invoice">
@@ -470,5 +471,14 @@
                 </div>
             </div>
         </div>
+    </div>
+</div>
+<div class="row separate-above">
+    <div class="col-xs-10 col-xs-offset-1">
+        <div ui-view></div>
+        <a class="btn btn-link" ui-sref="activities-detail({activity_id: enroll.activity.id})">
+            <i class="mdi-navigation-chevron-left"></i>
+            <span ng-bind="::enroll.strings.ACTION_RETURN"></span>
+        </a>
     </div>
 </div>
