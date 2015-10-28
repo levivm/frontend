@@ -27,12 +27,6 @@
                 scope.form = formCtrl;
 
                 scope.$watch('field.$invalid && !field.$dirty', function(newValue, oldValue){
-                    //console.group("$watch. fieldName: ", scope.field.$name);
-                    //console.log('scope.field:', scope.field);
-                    //console.log('$invalid:', scope.field.$invalid);
-                    //console.log('$dirty:', scope.field.$dirty);
-                    //console.log('newValue:', newValue, 'oldValue:', oldValue);
-                    //console.log('formField:', scope.field);
                     console.groupEnd();
                     if(!scope.field){
                         console.log('watch. field non existent');
