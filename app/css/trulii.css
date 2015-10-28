@@ -13846,8 +13846,8 @@ select {
 }
 label {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 200;
-  color: #555555 !important;
+  font-weight: 300;
+  color: #999999 !important;
   font-size: 1em;
   margin-bottom: 1em;
 }
@@ -13887,7 +13887,7 @@ label {
   font-size: 1.5em;
   height: auto !important;
   line-height: 2em;
-  font-weight: bold;
+  font-weight: 500;
 }
 select.form-control {
   font-size: 1.3em;
@@ -13895,6 +13895,9 @@ select.form-control {
 }
 select.form-control.input-sm {
   font-size: 1em;
+}
+select.form-control.input-md {
+  font-size: 1.2em;
 }
 tags-input .tags {
   display: block;
@@ -14167,7 +14170,7 @@ tags-input input {
 .btn-default {
   background-color: transparent;
   border: 1px solid #e5e5e5;
-  color: #999999;
+  color: #999999 !important;
 }
 .btn-light {
   color: white;
@@ -14274,7 +14277,7 @@ tags-input input {
 .form-group .input-error,
 .form-group .input-error p {
   color: #bd362f;
-  font-weight: bold;
+  font-weight: 500;
 }
 .alert-warning p {
   color: rgba(255, 255, 255, 0.84);
@@ -16634,6 +16637,7 @@ h5 {
 .billing-widget {
   border: 1px solid #e3e3e3;
   font-size: 0.8em;
+  font-weight: 400;
   border-radius: 4px;
 }
 .billing-widget .item {
@@ -16666,9 +16670,19 @@ h5 {
   padding: 1em;
   background-color: #eeeeee;
 }
+.billing-widget .invoice h4 {
+  font-weight: 300;
+  letter-spacing: 0.1em;
+}
 .billing-widget .total {
   background-color: #e3e3e3;
   padding: 1em;
+}
+.billing-widget .total .item {
+  font-weight: 600;
+}
+.billing-widget .total .value {
+  font-size: 1.2em;
 }
 .pse-panel {
   box-shadow: none;

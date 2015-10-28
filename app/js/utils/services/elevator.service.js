@@ -38,11 +38,10 @@
 
     function toElement(id){
 
-      // NOTE: this is not working actually
+      var element_id = '#'+id;
+      var element = angular.element($document[0].querySelector(element_id));
 
-      var element = angular.element(id);
-
-      $document.scrollToElementAnimated(element, _defaultDuration, _easingFunction);
+      $document.scrollToElementAnimated(element, _defaultDuration);
 
     }    
 

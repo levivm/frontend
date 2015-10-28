@@ -54,6 +54,7 @@
 .billing-widget {
     border: 1px solid @gray-light-medium;
     font-size: 0.8em;
+    font-weight: 400;
     border-radius: 4px;
 
     .item {
@@ -75,6 +76,7 @@
         text-align: end;
         font-weight: 600;
         float: right;
+
     }
 
     .sub-value {
@@ -84,11 +86,24 @@
     .invoice {
         padding: 1em;
         background-color: @gray-lighter;
+
+        h4{
+            font-weight: 300;
+            letter-spacing: 0.1em;
+        }
     }
 
     .total {
         background-color: @gray-light-medium;
         padding: 1em;
+
+        .item {
+            font-weight:600;
+        }
+
+        .value{
+            font-size:1.2em;
+        }
     }
 }
 
