@@ -211,7 +211,7 @@
             function success(cardType){
                 Error.form.clearField(vm.enrollForm,'cardMethod');
                 console.log("card type:", cardType);
-                vm.cardData.method = cardType;
+                vm.cardData.method = cardType.toLowerCase();
 
             }
 
@@ -510,7 +510,7 @@
                 ACTION_APPLY: "Aplicar",
                 ACTION_GO_BACK: "Regresar",
                 COPY_ASSISTANT_NUMBER: "Asistente #",
-                COPY_ASSISTANTS: "Agrega la información de las personas que asistiran a la actividad",
+                COPY_ASSISTANTS: "Agrega la información de las personas que asistirán a la actividad",
                 COPY_STARTING_ON: "Con inicio el",
                 COPY_VACANCY_SINGULAR: " Vacante",
                 COPY_VACANCY: " Vacantes",
@@ -523,6 +523,11 @@
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los",
+                COPY_RELEASE_1: "Al confirmar la inscripción, estás de acuerdo con el monto total a cancelar, la ",
+                COPY_RELEASE_2: "Política de reembolso del organizador ",
+                COPY_RELEASE_3: "y con los ",
+                COPY_RELEASE_4: "Términos y condiciones ",
+                COPY_RELEASE_5: "de Trulii",
                 COPY_SLIDEBAR_TERMS_TITLE: "Términos y condiciones",
                 COPY_SLIDEBAR_TERMS_HEADER: "Titulo de terminos y condiciones",
                 COPY_SLIDEBAR_TERMS_BODY: "All work and no play makes Jack a dull boy",
