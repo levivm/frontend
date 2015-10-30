@@ -29,6 +29,8 @@
                 var instance = this._search(calendarId);
                 if (!(instance)) {
                     instance = new Calendar(calendarData);
+                    // instance.setData();
+
                     instance.activity = this.activity_id;
                 }
                 return instance;

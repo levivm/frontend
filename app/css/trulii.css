@@ -11100,6 +11100,8 @@ icon-material-blue-grey {
 }
 .label {
   border-radius: 1px;
+  padding: .3em .6em .3em;
+  font-weight: 500;
 }
 .label,
 .label-default {
@@ -12353,6 +12355,9 @@ hr.on-light {
 }
 .text-uppercase {
   text-transform: uppercase;
+}
+.text-lowercase {
+  text-transform: lowercase;
 }
 .text-strike {
   text-decoration: line-through;
@@ -14414,9 +14419,16 @@ tags-input input {
 }
 .nav-tabs-light li a {
   height: 100%;
-  padding: 0.8em 1.4em;
   text-align: center;
   color: rgba(0, 0, 0, 0.74) !important;
+  padding: 0em 1.4em;
+}
+.nav-tabs-light li a img {
+  padding-top: 0.5em;
+}
+.nav-tabs-light li a span {
+  display: inline-block;
+  padding-top: 1em;
 }
 .nav-tabs-light li.active {
   background-color: #ffffff;
@@ -15693,7 +15705,7 @@ button.toast-close-button {
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 4em;
+  padding-top: 5em;
 }
 .detail-cover .text-container * {
   color: #ffffff;
@@ -16674,12 +16686,16 @@ h5 {
   font-weight: 300;
   letter-spacing: 0.1em;
 }
+.billing-widget .invoice .seats {
+  margin-bottom: 2em !important;
+}
 .billing-widget .total {
   background-color: #e3e3e3;
   padding: 1em;
 }
 .billing-widget .total .item {
   font-weight: 600;
+  padding-top: 0.2rem;
 }
 .billing-widget .total .value {
   font-size: 1.2em;

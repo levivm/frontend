@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast',
+    ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast', 'currentUser',
         'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
         'serverConf'];
 
-    function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast,
+    function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast, currentUser,
                                       cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
@@ -53,9 +53,11 @@
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
+            nextState:nextState,
         });
 
         _activate();
+
 
         //--------- Exposed Functions ---------//
 
@@ -98,6 +100,17 @@
 
         function changeSelectedCalendar(calendar) {
             vm.calendar_selected = calendar;
+        }
+
+        function nextState(activity_id,calendar_id){
+            var next = currentUser ? $state.go('activities-enroll',{activity_id:vm.activity.id, calendar_id:calendar_id})
+                         :$state.go('register',{toState:{state:'activities-enroll',
+                                params:{activity_id:activity_id,calendar_id:calendar_id}}});
+
+            // var nextURL = currentUser ? 
+            //      'activities-enroll({activity_id:'vm.activity.id+', calendar_id:'+vm.calendar_selected.id+'})'
+            //     :'register({toState:{state:activities-enroll,params:{activity_id:'+vm.activity.id+',calendar_id:'+vm.calendar_selected.id+'}}})';
+            // return nextURL;
         }
 
         function getOrganizerPhoto(){
