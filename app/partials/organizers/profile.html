@@ -1,44 +1,54 @@
-<div class="col-xs-12 profile-cover">
-    <div class="profile-cover--content">
-        <div class="row">
-            <div class="profile-cover--picture">
-                <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
-            </div>
-        </div>
-        <div class="row">
+<div class="profile-cover">
+    <div class="profile-cover--container">
+        <div class="profile-cover--content">
             <div class="col-xs-12">
-                <h1 class="text-uppercase text-center">Croydon School of Art</h1>
-
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-                <p class="profile-cover--description">The universe is a dark place. I intend to make it brighter before I die. Humans don't have that. It’s necessary, Chief Williams. Even if it comes to a full-scale war, someone has to provide food to eat and a home to return to.</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="profile-cover--verified">
-                <img src="/css/img/verified_organizer.png" class="img-responsive img-circle pull-left"/>
-                <p class="pull-left">
-                    <strong>Organizador <br/> verificado por Trulii</strong>
-                </p>
+                <div class="row">
+                    <div class="profile-cover--picture">
+                        <img ng-src="{{::profile.organizer.photo}}" class="img-responsive img-circle"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="text-uppercase text-center" ng-bind="::profile.organizer.name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                        <p class="profile-cover--description">The universe is a dark place. I intend to make it brighter before I die. Humans don't have that. It’s necessary, Chief Williams. Even if it comes to a full-scale war, someone has to provide food to eat and a home to return to.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="profile-cover--verified">
+                        <img src="/css/img/verified_organizer.png" class="img-responsive img-circle pull-left"/>
+                        <p class="pull-left">
+                            <strong><span ng-bind="::profile.strings.COPY_VERIFIED_1"></span><br/><span ng-bind="::profile.strings.COPY_VERIFIED_2"></span></strong>
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
 
 <div class="col-xs-12 profile-biography">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-            <h1 class="text-primary text-center"><strong>Biografía</strong></h1>
+            <h1 class="text-primary text-center"><strong ng-bind="::profile.strings.LABEL_BIO"></strong></h1>
             <div class="profile-biography--content">
+                 <!--<p ng-bind="::profile.organizer.bio"></p>-->
+
+                <!-- Bio placeholder-->
                 <p>Alloy of EDI’s body not like organic tissue. Could cause unintentional damage. Recommend pillows, cushions, possibly gel packs. That's what I always liked about you, Wrex. I don’t remember anything after I ate the lamp. Life is a negotiation. We all want. We have to give to get what we want. Worried about my qualifications? I can crush a mech with my biotics or shoot its head off at 100 yards. Take your pick.</p>
 
                 <p>Rachni extinction tragic. Didn't want to repeat. All life precious. Universe demands diversity. Clan Urdnot has increased in strength after the destruction of Clan Weyrlock. In addition killing the thresher maw has produced several breeding requests for Grunt, and one for Shepard. Well, at least he’s making friends. Go now, and dream of bulbous women. That argument is logical for an individual mind. We are not fully individuals. There are pieces of us in the heretics. One of those may be at fault.</p>
 
                 <p>No matter what happens here… you know I love you, I always will. I'm done helping you. It’ll either be a night to treasure, or a horrible interspecies awkwardness thing. Clan Urdnot has increased in strength after the destruction of Clan Weyrlock. In addition killing the thresher maw has produced several breeding requests for Grunt, and one for Shepard. They’re just trying to control us. Think about it: If they wanted all organic life destroyed, they could it. There would be nothing left.</p>
+                <!-- End bioplaceholder-->
+
             </div>
             <div class="profile-biography--video">
+                <!--<youtube-video video-url="profile.organizer.youtube_video_url" player-width="'100%'"></youtube-video>-->
                 <iframe width="560" height="315" src="https://www.youtube.com/embed/XNtXNKdWao8" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
@@ -47,7 +57,7 @@
 
 <div class="col-xs-12 profile-activities">
     <h3 class="text-center separate-below">
-        <strong>Actividades de Croydon School of Art</strong>
+        <strong><span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span> <span ng-bind="::profile.organizer.name"></span></strong>
     </h3>
     <trulii-activity-item class="col-md-12"
                           ng-repeat="activity in profile.activities track by activity.id"
@@ -59,7 +69,7 @@
     <div class="map" id="map-canvas"></div>
     <div class="address">
         <span class="mdi-maps-place"></span>
-        <span ng-bind="'P Sherman, 42 Wallaby Way, Sydney '"></span>
+        <span ng-bind="::profile.city.address"></span>
     </div>
 </div>
 
@@ -83,14 +93,14 @@
                 </div>
                 <div class="ratings">
                     <img src="/css/img/activity-detail/rating_people.png" alt="Ratings">
-                    <span>50 en total</span>
+                    <span>50</span><span ng-bind="::profile.strings.LABEL_TOTAL"></span>
                 </div>
             </div>
 
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1 col-md-pull-3">
             <h3 class="separate-below separate-above-medium">
-                <strong>Comentarios</strong>
+                <strong ng-bind="::profile.strings.LABEL_COMMENTS"></strong>
             </h3>
             <!-- Comment container-->
             <div class="review-detail">
@@ -154,25 +164,24 @@
                     <div class="row separate-above-medium separate-below-medium">
                         <div class="col-xs-2 col-xs-offset-1 review-profile-picture">
                             <!-- Profile picture -->
-                            <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
+                            <img ng-src="{{::profile.organizer.photo}}" class="img-responsive img-circle"/>
                             <!-- End profile picture-->
                         </div>
                         <div class="col-xs-9 paragraph-condensed">
                             <p class="review-detail-header">
 
-                                <!-- Organizer name -->
-                        <span class="montserrat-semibold organizer-name">
-                            Croydon School of Art
+                        <!-- Organizer name -->
+                        <span class="montserrat-semibold organizer-name" ng-bind="::profile.organizer.name">
                         </span>
-                                <!-- End organizer name-->
+                        <!-- End organizer name-->
 
                                 <span>|</span>
 
-                                <!-- Date -->
+                        <!-- Date -->
                         <span class="text-sm">
                             <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em>
                         </span>
-                                <!-- End date-->
+                        <!-- End date-->
 
                             </p>
                             <p>
@@ -248,8 +257,7 @@
 
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
-                    <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase">
-                        ver más comentarios
+                    <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase" ng-bind="::profile.strings.LABEL_MORE_COMMENTS">
                     </button>
                 </div>
             </div>

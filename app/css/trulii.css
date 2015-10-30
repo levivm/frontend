@@ -16845,7 +16845,14 @@ h5 {
 }
 .profile-cover {
   min-height: 88vh;
-  background-color: rgba(125, 125, 125, 0.8);
+  width: 100%;
+  position: relative;
+}
+.profile-cover .row {
+  min-width: 100vw;
+}
+.profile-cover .profile-cover--container {
+  min-height: 88vh;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -16858,15 +16865,15 @@ h5 {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center;
-}
-.profile-cover .row {
-  width: 100vw;
+  z-index: 10;
+  background-color: rgba(75, 75, 75, 0.8);
 }
 .profile-cover .profile-cover--content {
   -webkit-box-flex: 0;
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+  width: 100%;
 }
 .profile-cover h1,
 .profile-cover h2,
@@ -16879,17 +16886,17 @@ h5 {
 .profile-cover h1 {
   letter-spacing: 5px;
   font-weight: 400;
-  line-height: 2.5em;
+  margin: 1em 0em;
 }
 .profile-cover p {
   font-size: 0.9em;
   font-weight: 200;
 }
 .profile-cover .profile-cover--description {
-  padding: 5px 20px;
+  padding: 0px 20px;
 }
 .profile-cover .profile-cover--picture {
-  width: 150px;
+  width: 125px;
   margin: 0 auto;
   float: none;
 }
@@ -16900,6 +16907,7 @@ h5 {
   width: 200px;
   margin: 0 auto;
   overflow: hidden;
+  padding: 20px 0px;
 }
 .profile-cover .profile-cover--verified p {
   padding: 3px 10px;
@@ -16912,7 +16920,7 @@ h5 {
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
-  z-index: -1;
+  z-index: -11;
   content: "";
   position: absolute;
   top: 0;

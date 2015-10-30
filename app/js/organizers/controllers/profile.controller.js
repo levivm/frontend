@@ -66,10 +66,15 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                LABEL_PUBLISHED_ACTIVITIES: "Actividades Publicadas",
+                LABEL_PUBLISHED_ACTIVITIES: "Actividades de ",
                 LABEL_BIO: "Biografía",
                 LABEL_CONTACT: "Contactar",
-                COPY_MEMBER_SINCE: "Miembro desde "
+                LABEL_COMMENTS: "Comentarios",
+                LABEL_TOTAL: "en total",
+                LABEL_MORE_COMMENTS: "Ver más comentarios",
+                COPY_MEMBER_SINCE: "Miembro desde ",
+                COPY_VERIFIED_1: "Organizador",
+                COPY_VERIFIED_2: "verficado por Trulii"
             });
         }
 
