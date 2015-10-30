@@ -13,8 +13,8 @@
             'LocalStorageModule',
             'angularMoment',
             'ui.utils.masks',
-            'trulii.config',
             'trulii.routes',
+            'trulii.config',
             'trulii.authentication',
             'trulii.ui-components',
             'trulii.organizers',
@@ -29,7 +29,7 @@
 
 
     angular
-        .module('trulii.config', ['facebook']);
+        .module('trulii.config', ['facebook','720kb.socialshare']);
 
     angular
         .module('trulii.routes', ['ui.router', 'trulii.routes.config']);

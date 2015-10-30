@@ -26,6 +26,7 @@
     "angular-md5": "~0.1.8",
     "angular-moment": "~0.10.3",
     "angular-scroll": "~0.7.0",
+    "angular-socialshare": "angularjs-socialshare#~0.1.14",
     "angular-ui-router": "0.2.14",
     "angular-youtube-mb": "~1.0.0",
     "arrive": "~2.1.0",
