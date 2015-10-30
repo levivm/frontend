@@ -16907,8 +16907,7 @@ h5 {
 }
 .profile-cover:after {
   width: 100vw;
-  min-height: 88vh;
-  background-image: url('/css/img/1.png');
+  background-image: url('/css/img/creating.jpg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
@@ -16918,6 +16917,8 @@ h5 {
   position: absolute;
   top: 0;
   left: 0;
+  display: block;
+  height: 100%;
 }
 .profile-biography {
   background-color: white;
