@@ -510,7 +510,7 @@
                 ACTION_APPLY: "Aplicar",
                 ACTION_GO_BACK: "Regresar",
                 COPY_ASSISTANT_NUMBER: "Asistente #",
-                COPY_ASSISTANTS: "Agrega la información de las personas que asistirán a la actividad",
+                COPY_ASSISTANTS: "Agrega la información de las personas que asistirán a la actividad.",
                 COPY_STARTING_ON: "Con inicio el",
                 COPY_VACANCY_SINGULAR: " Vacante",
                 COPY_VACANCY: " Vacantes",
