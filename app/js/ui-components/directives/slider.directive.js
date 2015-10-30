@@ -23,13 +23,14 @@
                 end: '=',
                 min: '=',
                 max: '=',
+                step : '=',
                 update: '&'
             },
             link: function (scope, element, attrs) {
                 var slider = document.getElementById('slider-anchor');
                 var options = {
                     start: [scope.start, scope.end],
-                    step: 10000,
+                    step: scope.step,
                     margin: 50,
                     connect: true,
                     direction: 'ltr',
@@ -40,6 +41,7 @@
                         max: scope.max
                     }
                 };
+                scope.currency = "COP ";
 
                 noUiSlider.create(slider, options);
 

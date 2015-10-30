@@ -210,11 +210,19 @@
         }
 
         function setCategory(category){
-            searchData[KEY_CATEGORY] = category;
+            if(category){
+                searchData[KEY_CATEGORY] = category;
+            } else {
+                delete searchData[KEY_CATEGORY];
+            }
         }
 
         function setSubCategory(subcategory){
-            searchData[KEY_SUBCATEGORY] = subcategory;
+            if(subcategory){
+                searchData[KEY_SUBCATEGORY] = subcategory;
+            } else {
+                delete searchData[KEY_SUBCATEGORY];
+            }
         }
 
         function setDate(date){

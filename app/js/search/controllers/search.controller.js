@@ -12,10 +12,10 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope', '$q', '$stateParams', 'ActivitiesManager', 'LocationManager', 'SearchManager',
+    SearchController.$inject = ['$rootScope', '$scope', '$q', '$state', '$stateParams', 'ActivitiesManager', 'LocationManager', 'SearchManager',
         'datepickerConfig', 'datepickerPopupConfig'];
 
-    function SearchController($rootScope, $scope, $q, $stateParams, ActivitiesManager, LocationManager, SearchManager,
+    function SearchController($rootScope, $scope, $q, $state, $stateParams, ActivitiesManager, LocationManager, SearchManager,
           datepickerConfig, datepickerPopupConfig) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -44,6 +44,12 @@
                 startingDay: 1
             },
             opened: false,
+            sliderOptions: {
+                min: 30000,
+                max: 1000000,
+                step: 50000
+            },
+            getLevelClassStyle: getLevelClassStyle,
             openDatePicker: openDatePicker,
             expandCategory: expandCategory,
             setCategory: setCategory,
@@ -60,7 +66,6 @@
         //--------- Exposed Functions ---------//
 
         function openDatePicker($event){
-            console.log('openDatePicker');
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -68,7 +73,6 @@
         }
 
         function expandCategory(category){
-            console.log('expandCategory:', category.id);
             vm.expandedCategory = vm.expandedCategory == category.id? null : category.id;
         }
 
@@ -81,8 +85,10 @@
                 vm.searchCategory = category.id;
             }
             vm.searchSubCategory = null;
-            console.log('setCategory:', vm.searchCategory);
+            expandCategory(category);
+            SearchManager.setSubCategory(vm.searchSubCategory);
             SearchManager.setCategory(vm.searchCategory);
+            $state.go('search', SearchManager.getSearchData());
         }
 
         function setSubCategory(subcategory){
@@ -94,7 +100,9 @@
             }
 
             console.log('setSubCategory:', vm.searchSubCategory);
+            SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
+            $state.go('search', SearchManager.getSearchData());
         }
 
         function setLevel(){
@@ -121,6 +129,15 @@
             vm.onWeekends = !vm.onWeekends;
             console.log('setWeekends:', vm.onWeekends);
             SearchManager.setWeekends(vm.onWeekends);
+        }
+
+        function getLevelClassStyle(level) {
+            return {
+                'btn-active' : vm.searchLevel? vm.searchLevel.code === level.code : false,
+                'btn-intermediate-level' : level.code === 'I',
+                'btn-advanced-level' : level.code === 'A',
+                'btn-beginner-level' : level.code === 'P'
+            };
         }
 
         //--------- Internal Functions ---------//
@@ -242,7 +259,7 @@
                 LABEL_WEEKENDS: "Fines de Semana",
                 LABEL_EMPTY_SEARCH:"Houston. Tenemos un problema.",
                 COPY_EMPTY_SEARCH: "Puede que no tengamos lo que estés buscando."
-                    + "Por si acaso, te recomendamos intentarlo de nuevo."
+                    + " Por si acaso, te recomendamos intentarlo de nuevo."
             });
         }
 

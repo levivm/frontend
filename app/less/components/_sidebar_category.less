@@ -1,8 +1,5 @@
 @import url('../_trulii-variables');
 
-@selected-category-color: #C177F0;
-@selected-subcategory-color: #FFCA72;
-
 .sidebar-category-container {
     padding: 1.2em 0;
     background-color: @white;
@@ -14,18 +11,20 @@
 
     .sidebar-category {
         cursor: pointer;
-        font-size: 0.8em;
+        font-size: 1em;
+        &:extend(.montserrat-semibold);
 
         .header {
             padding: 0.6em;
 
             &:hover {
-                background-color: @lightbg-accent;
+                * {
+                    text-decoration: underline;
+                }
             }
 
             &.active{
-                background-color: @selected-category-color;
-                color: @white;
+                background-color: @lightbg-accent;
             }
 
             &__name {
@@ -33,28 +32,27 @@
                 width: 85%;
             }
 
-            &__expand {
-                display: inline-block;
-                width: 10%;
-            }
-
             &__icon {
-                font-size: 1em;
+                width: 3em;
+                height: 3em;
+                margin: 0 0.4em;
             }
         }
 
         .subcategories{
 
             &__item {
-                padding: 0.6em 0.6em 0.6em 1.5em;
+                padding: 0.6em 0.6em 0.6em 6em;
+                background-color: @lightbg-accent;
+                width: 100%;
+                white-space: normal;
 
                 &:hover {
-                    background-color: lighten(@gray-base, 95%);
+                    text-decoration: underline;
                 }
 
                 &.active{
-                    background-color: lighten(@selected-subcategory-color, 5%);
-                    color: @white;
+                    background-color: @lightbg-accent;
                 }
             }
         }

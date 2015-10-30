@@ -12422,7 +12422,8 @@ hr.on-light {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
-.montserrat-semibold {
+.montserrat-semibold,
+.sidebar-category-container .sidebar-category {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
@@ -13591,6 +13592,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1em;
   height: 2em;
 }
+.search-filter .search-control .btn-group .btn {
+  text-transform: uppercase;
+  padding: 0.4em 1em;
+  border-color: #e3e3e3;
+}
+.search-filter .search-control label {
+  margin-top: 0.5em;
+}
 .search-filter .search-slider {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -13603,6 +13612,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 0.5em 4em;
   height: 40px;
   width: 100%;
+  font-size: 1em;
+  line-height: 2;
 }
 .with-context-menu {
   margin-top: 120px;
@@ -13785,38 +13796,37 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar-category-container .sidebar-category {
   cursor: pointer;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 .sidebar-category-container .sidebar-category .header {
   padding: 0.6em;
 }
-.sidebar-category-container .sidebar-category .header:hover {
-  background-color: #fbfbfb;
+.sidebar-category-container .sidebar-category .header:hover * {
+  text-decoration: underline;
 }
 .sidebar-category-container .sidebar-category .header.active {
-  background-color: #c177f0;
-  color: #ffffff;
+  background-color: #fbfbfb;
 }
 .sidebar-category-container .sidebar-category .header__name {
   display: inline-block;
   width: 85%;
 }
-.sidebar-category-container .sidebar-category .header__expand {
-  display: inline-block;
-  width: 10%;
-}
 .sidebar-category-container .sidebar-category .header__icon {
-  font-size: 1em;
+  width: 3em;
+  height: 3em;
+  margin: 0 0.4em;
 }
 .sidebar-category-container .sidebar-category .subcategories__item {
-  padding: 0.6em 0.6em 0.6em 1.5em;
+  padding: 0.6em 0.6em 0.6em 6em;
+  background-color: #fbfbfb;
+  width: 100%;
+  white-space: normal;
 }
 .sidebar-category-container .sidebar-category .subcategories__item:hover {
-  background-color: #f2f2f2;
+  text-decoration: underline;
 }
 .sidebar-category-container .sidebar-category .subcategories__item.active {
-  background-color: #ffd48c;
-  color: #ffffff;
+  background-color: #fbfbfb;
 }
 input,
 textarea,
