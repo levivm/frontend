@@ -124,11 +124,16 @@
             })
             .state('organizer-dashboard.reviews', {
                 url:'reviews/',
-                templateUrl: 'partials/organizers/dashboard/reviews_pending.html'
+                controller: 'OrganizerReviewCtrl as reviews',
+                templateUrl: 'partials/organizers/dashboard/reviews.html'
+            })
+            .state('organizer-dashboard.reviews.done', {
+                url:'done',
+                templateUrl: 'partials/organizers/dashboard/reviews_done.html'
             })
             .state('organizer-dashboard.reviews.pending', {
                 url:'pending',
-                templateUrl: 'partials/organizers/dashboard/transactions_reimbursements.html'
+                templateUrl: 'partials/organizers/dashboard/reviews_pending.html'
             });
 
         /**
