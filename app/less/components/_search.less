@@ -1,19 +1,9 @@
 @import url('../_trulii-variables');
 
 .search-filter {
-    height: 80px;
-
-    .buttons {
-        padding: 0.5em;
-
-        button {
-            margin: 0;
-            font-size: 0.9em;
-        }
-    }
+    height: 5.8em;
 
     .search-control {
-        padding-top: 1.4em;
         padding-bottom: 1.4em;
 
         select {
@@ -23,15 +13,24 @@
 
         .btn-group{
             .btn{
+                .text-sm;
                 text-transform: uppercase;
                 padding: 0.4em 1em;
                 border-color: @gray-light-medium;
             }
         }
+    }
 
-        label {
-            margin-top: 0.5em;
+    label {
+        margin-top: 0.3em;
+
+        &.margin-more {
+            margin-top: 1em;
         }
+    }
+
+    .btn-default {
+        color: @lightbg-text;
     }
 
     .search-slider {
@@ -40,6 +39,7 @@
 
         span {
             .text-muted;
+            .text-md;
         }
     }
 }

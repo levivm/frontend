@@ -13575,17 +13575,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-top: 20px;
 }
 .search-filter {
-  height: 80px;
-}
-.search-filter .buttons {
-  padding: 0.5em;
-}
-.search-filter .buttons button {
-  margin: 0;
-  font-size: 0.9em;
+  height: 5.8em;
 }
 .search-filter .search-control {
-  padding-top: 1.4em;
   padding-bottom: 1.4em;
 }
 .search-filter .search-control select {
@@ -13593,12 +13585,19 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 2em;
 }
 .search-filter .search-control .btn-group .btn {
+  font-size: .8em;
   text-transform: uppercase;
   padding: 0.4em 1em;
   border-color: #e3e3e3;
 }
-.search-filter .search-control label {
-  margin-top: 0.5em;
+.search-filter label {
+  margin-top: 0.3em;
+}
+.search-filter label.margin-more {
+  margin-top: 1em;
+}
+.search-filter .btn-default {
+  color: rgba(0, 0, 0, 0.74);
 }
 .search-filter .search-slider {
   padding-top: 10px;
@@ -13606,6 +13605,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-filter .search-slider span {
   color: #999999;
+  font-size: .9em;
 }
 .search-info {
   color: #999999;
@@ -13790,6 +13790,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 1.2em 0;
   background-color: #ffffff;
   border-right: 1px solid #eeeeee;
+  overflow: auto;
 }
 .sidebar-category-container .title {
   padding: 0.6em;

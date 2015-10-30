@@ -253,7 +253,7 @@
                 PLACEHOLDER_DATE: "A Partir de",
                 COPY_INTERESTS: "¿Qué tema te interesa?",
                 LABEL_LEVEL: "Nivel",
-                LABEL_COST: "Costo",
+                LABEL_COST: "Precio",
                 LABEL_DATE: "Fecha",
                 LABEL_WITH_CERTIFICATE: "Con Certificado",
                 LABEL_WEEKENDS: "Fines de Semana",

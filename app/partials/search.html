@@ -8,9 +8,6 @@
                          alt="{{ ::category.name }}"/>
                     <span ng-bind="::category.name"></span>
                 </div>
-                <!--<div class="header__expand" ng-click="search.expandCategory(category)">-->
-                    <!--<i class="mdi-navigation-expand-more"></i>-->
-                <!--</div>-->
             </div>
             <ul class="subcategories" data-toggle="category.id == search.expandedCategory" trulii-expandable-content>
                 <li class="subcategories__item" ng-repeat="subcategory in category.subcategories"
@@ -27,36 +24,46 @@
         <div class="col-xs-12">
             <div class="search-filter">
                 <div class="row">
-                    <div class="col-xs-12 col-sm-3">
+                    <label class="control-label col-xs-1" for="date"
+                           ng-bind="::search.strings.LABEL_DATE"></label>
+                    <div class="col-xs-12 col-sm-2">
                         <!--Date DatePicker-->
                         <div class="form-group search-control no-margin">
-                            <label class="control-label sr-only" for="date"
-                                   ng-bind="::search.strings.LABEL_DATE"></label>
-                            <input id="date" type="text" class="form-control"
-                                   placeholder="{{::search.strings.PLACEHOLDER_DATE}}"
-                                   name="date" ng-model="search.searchDate"
-                                   ng-change="search.setDate()"
-                                   datepicker-popup="{{search.format}}"
-                                   data-is-open="search.opened"
-                                   data-min-date="search.minStartDate"
-                                   data-datepicker-options="search.dateOptions"
-                                   data-close-text="{{search.strings.ACTION_CLOSE}}"
-                                   ng-click="search.openDatePicker($event)"/>
+                            <div class="form-inline">
+                                <input id="date" type="text" class="form-control"
+                                       placeholder="{{::search.strings.PLACEHOLDER_DATE}}"
+                                       name="date" ng-model="search.searchDate"
+                                       ng-change="search.setDate()"
+                                       datepicker-popup="{{search.format}}"
+                                       data-is-open="search.opened"
+                                       data-min-date="search.minStartDate"
+                                       data-datepicker-options="search.dateOptions"
+                                       data-close-text="{{search.strings.ACTION_CLOSE}}"
+                                       ng-click="search.openDatePicker($event)"/>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-xs-12 col-sm-6 col-sm-offset-1">
-                        <!--Cost Select-->
-                        <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
-                                       step="search.sliderOptions.step" start="search.searchStartCost"
-                                       end="search.searchEndCost" update="search.updateCost(start, end)"></trulii-slider>
+                    <div class="col-xs-11 col-md-7 col-md-offset-1">
+                        <div class="form-inline float-right">
+                            <!--Certificate Button-->
+                            <button class="btn btn-default"
+                                    ng-class="{'active': search.withCert}"
+                                    ng-bind="search.strings.LABEL_WITH_CERTIFICATE"
+                                    ng-click="search.setCertification()"></button>
+                            <!--Weekends Button-->
+                            <button class="btn btn-default"
+                                    ng-class="{'active': search.onWeekends}"
+                                    ng-bind="search.strings.LABEL_WEEKENDS"
+                                    ng-click="search.setWeekends()"></button>
+                        </div>
                     </div>
                 </div>
                 <div class="row separate-below-less">
-                    <div class="col-xs-12 col-sm-8">
+                    <div class="col-xs-12">
                         <!--Level Select-->
                         <div class="form-group search-control">
                             <label class="control-label col-xs-1 no-padding" for="level-btn-group" ng-bind="::search.strings.LABEL_LEVEL"></label>
-                            <div class="col-xs-10">
+                            <div class="col-xs-6 no-padding">
                                 <div id="level-btn-group" class="btn-group btn-group-justified" role="group"
                                      aria-label="{{::search.strings.LABEL_LEVEL}}">
                                     <label class="btn btn-default"
@@ -71,19 +78,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 col-xs-12">
-                        <div class="form-inline">
-                            <!--Certificate Button-->
-                            <button class="btn btn-default"
-                                    ng-class="{'active': search.withCert}"
-                                    ng-bind="search.strings.LABEL_WITH_CERTIFICATE"
-                                    ng-click="search.setCertification()"></button>
-                            <!--Weekends Button-->
-                            <button class="btn btn-default"
-                                    ng-class="{'active': search.onWeekends}"
-                                    ng-bind="search.strings.LABEL_WEEKENDS"
-                                    ng-click="search.setWeekends()"></button>
-                        </div>
+                    <label class="control-label margin-more col-xs-1" for="level-btn-group" ng-bind="::search.strings.LABEL_COST"></label>
+                    <div class="col-xs-6">
+                        <!--Cost Select-->
+                        <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
+                                       step="search.sliderOptions.step" start="search.searchStartCost"
+                                       end="search.searchEndCost" update="search.updateCost(start, end)"></trulii-slider>
                     </div>
                 </div>
             </div>
