@@ -12696,6 +12696,9 @@ hr.on-light {
 .no-padding-top {
   padding-top: 0 !important;
 }
+.no-padding-left {
+  padding-left: 0 !important;
+}
 .no-margin-top {
   margin-top: 0 !important;
 }
@@ -13612,8 +13615,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 0.5em 4em;
   height: 40px;
   width: 100%;
-  font-size: 1em;
   line-height: 2;
+}
+.search-info * {
+  font-size: 1em;
 }
 .with-context-menu {
   margin-top: 120px;
@@ -13818,7 +13823,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 0 0.4em;
 }
 .sidebar-category-container .sidebar-category .subcategories__item {
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
   padding: 0.6em 0.6em 0.6em 6em;
+  color: #555555;
   background-color: #fbfbfb;
   width: 100%;
   white-space: normal;

@@ -12,10 +12,10 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope', '$q', '$state', '$stateParams', 'ActivitiesManager', 'LocationManager', 'SearchManager',
+    SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$timeout', '$state', '$stateParams', 'ActivitiesManager', 'LocationManager', 'SearchManager',
         'datepickerConfig', 'datepickerPopupConfig'];
 
-    function SearchController($rootScope, $scope, $q, $state, $stateParams, ActivitiesManager, LocationManager, SearchManager,
+    function SearchController($rootScope, $scope, $q, $location, $timeout, $state, $stateParams, ActivitiesManager, LocationManager, SearchManager,
           datepickerConfig, datepickerPopupConfig) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -76,7 +76,7 @@
             vm.expandedCategory = vm.expandedCategory == category.id? null : category.id;
         }
 
-        function setCategory(category){
+        function setCategory(category, initializing){
             if(!category){ return; }
 
             if(vm.searchCategory === category.id){
@@ -84,11 +84,16 @@
             } else {
                 vm.searchCategory = category.id;
             }
-            vm.searchSubCategory = null;
             expandCategory(category);
-            SearchManager.setSubCategory(vm.searchSubCategory);
             SearchManager.setCategory(vm.searchCategory);
-            $state.go('search', SearchManager.getSearchData());
+
+            if(!initializing){
+                vm.searchSubCategory = null;
+                SearchManager.setSubCategory(vm.searchSubCategory);
+                var data = SearchManager.getSearchData();
+                var transitionOptions = {location: true, inherit: false};
+                    $state.go('search', data, transitionOptions);
+            }
         }
 
         function setSubCategory(subcategory){
@@ -99,7 +104,7 @@
                 vm.searchCategory = subcategory.category;
             }
 
-            console.log('setSubCategory:', vm.searchSubCategory);
+            //console.log('setSubCategory:', vm.searchSubCategory);
             SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
             $state.go('search', SearchManager.getSearchData());
@@ -143,12 +148,10 @@
         //--------- Internal Functions ---------//
 
         function _getActivities(data){
-            console.log('getActivities.data:', data);
             SearchManager.searchActivities(data).then(success, error);
 
             function success(response){
                 vm.activities = response.activities;
-                console.log('response:', response);
                 console.log('activities from ActivitiesManager:', vm.activities);
             }
             function error(response){
@@ -162,15 +165,10 @@
             vm.searchQuery = vm.searchData[SearchManager.KEY_QUERY];
             var sm = SearchManager;
 
-            console.group("_getSearchParams");
-            console.log('searchData:', vm.searchData);
-            console.log('searchQuery:', vm.searchQuery);
-
             if($stateParams.city){
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
                 LocationManager.setSearchCity(city);
             }
-
 
             if(vm.searchData.hasOwnProperty(sm.KEY_DATE)){ vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]); }
             if(vm.searchData.hasOwnProperty(sm.KEY_LEVEL)){ vm.searchlevel = vm.searchData[sm.KEY_LEVEL]; }
@@ -185,27 +183,28 @@
                 vm.onWeekends = vm.searchData[sm.KEY_WEEKENDS];
             }
 
-
             if(vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)){
                 var category = vm.categories.filter(categoryFilter)[0];
                 if(category){
-                    setCategory(category);
-                    console.log('searchCategory', category);
-                    vm.searchData["category_display"] = category.name;
+                    setCategory(category, true);
+                    if(category){
+                        vm.searchData["category_display"] = category.name;
+                        if(vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)){
+                            var subcategory = category.subcategories.filter(subCategoryFilter)[0];
+                            vm.searchSubCategory = vm.searchData[sm.KEY_SUBCATEGORY];
+                            SearchManager.setSubCategory(vm.searchSubCategory);
+                            if(subcategory){ vm.searchData["subcategory_display"] = subcategory.name; }
+                        }
+                    }
                 }
             }
-
-            if(vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)){
-                vm.searchSubCategory = vm.searchData[sm.KEY_SUBCATEGORY];
-            }
-
-            console.groupEnd();
 
             deferred.resolve();
 
             return deferred.promise;
 
             function categoryFilter(category){ return category.id === vm.searchData[sm.KEY_CATEGORY]; }
+            function subCategoryFilter(subcategory){ return subcategory.id === vm.searchData[sm.KEY_SUBCATEGORY]; }
         }
 
         function _getGeneralInfo(){

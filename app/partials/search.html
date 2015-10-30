@@ -46,12 +46,12 @@
                     <div class="col-xs-11 col-md-7 col-md-offset-1">
                         <div class="form-inline float-right">
                             <!--Certificate Button-->
-                            <button class="btn btn-default"
+                            <button class="btn btn-sm btn-default"
                                     ng-class="{'active': search.withCert}"
                                     ng-bind="search.strings.LABEL_WITH_CERTIFICATE"
                                     ng-click="search.setCertification()"></button>
                             <!--Weekends Button-->
-                            <button class="btn btn-default"
+                            <button class="btn btn-sm btn-default"
                                     ng-class="{'active': search.onWeekends}"
                                     ng-bind="search.strings.LABEL_WEEKENDS"
                                     ng-click="search.setWeekends()"></button>
@@ -63,10 +63,10 @@
                         <!--Level Select-->
                         <div class="form-group search-control">
                             <label class="control-label col-xs-1 no-padding" for="level-btn-group" ng-bind="::search.strings.LABEL_LEVEL"></label>
-                            <div class="col-xs-6 no-padding">
+                            <div class="col-xs-6 no-padding-left">
                                 <div id="level-btn-group" class="btn-group btn-group-justified" role="group"
                                      aria-label="{{::search.strings.LABEL_LEVEL}}">
-                                    <label class="btn btn-default"
+                                    <label class="btn btn-sm btn-default"
                                            ng-repeat="level in search.levels track by level.code"
                                            ng-class="search.getLevelClassStyle(level)">
                                         <input type="radio" name="level" class="hidden" ng-model="search.searchLevel"
@@ -106,6 +106,11 @@
                     <span ng-bind="::search.strings.COPY_IN"></span>
                     <span> </span>
                     <strong ng-bind="search.searchData.category_display"></strong>
+                </span>
+                <span ng-if="search.searchSubCategory">
+                    <i class="mdi-navigation-chevron-right"></i>
+                    <span> </span>
+                    <strong ng-bind="search.searchData.subcategory_display"></strong>
                 </span>
             </div>
         </div>

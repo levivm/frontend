@@ -127,7 +127,6 @@
             return deferred.promise;
 
             function success(response){
-                console.log(response.data);
                 var stateParams = {};
                 angular.extend(stateParams, searchData);
                 stateParams.activities = response.data;
