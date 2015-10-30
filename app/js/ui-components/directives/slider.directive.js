@@ -22,13 +22,15 @@
                 start: '=',
                 end: '=',
                 min: '=',
-                max: '='
+                max: '=',
+                step : '=',
+                update: '&'
             },
             link: function (scope, element, attrs) {
                 var slider = document.getElementById('slider-anchor');
                 var options = {
                     start: [scope.start, scope.end],
-                    step: 10000,
+                    step: scope.step,
                     margin: 50,
                     connect: true,
                     direction: 'ltr',
@@ -39,6 +41,7 @@
                         max: scope.max
                     }
                 };
+                scope.currency = "COP ";
 
                 noUiSlider.create(slider, options);
 
@@ -53,6 +56,7 @@
                             // Is moving the start handle
                             scope.start = parseInt(values[handle]);
                         }
+                        scope.$apply(scope.update({ 'start': scope.start, 'end': scope.end}));
                     }, 0);
                 });
             }

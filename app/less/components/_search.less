@@ -1,53 +1,60 @@
 @import url('../_trulii-variables');
 
-.navbar-context-menu {
-    &:extend(.navbar-secondary);
-    width: 80%;
-    text-align: start;
-    height: 120px;
+.search-filter {
+    height: 5.8em;
 
-    .search-filter {
-        background-color: @gray-lighter;
-        padding: 8px;
-        height: 80px;
-        width: 100%;
+    .search-control {
+        padding-bottom: 1.4em;
 
-        button {
-            margin: 0;
+        select {
+            font-size: 1em;
+            height:  2em;
         }
 
-        .search-control {
-            padding-top: 20px;
-            padding-bottom: 20px;
-
-            select {
-                font-size: 14px;
-            }
-        }
-
-        .search-slider {
-            padding-top: 10px;
-            padding-bottom: 10px;
-
-            span {
-                .text-muted;
-            }
-        }
-
-        .checkbox {
-            margin: 0;
-            font-size: 12px;
-
-            .text {
-                margin-left: 4px;
+        .btn-group{
+            .btn{
+                .text-sm;
+                text-transform: uppercase;
+                padding: 0.4em 1em;
+                border-color: @gray-light-medium;
             }
         }
     }
 
-    .search-info {
-        .text-muted;
-        padding: 8px;
-        height: 40px;
-        width: 100%;
+    label {
+        margin-top: 0.3em;
+
+        &.margin-more {
+            margin-top: 1em;
+        }
     }
+
+    .btn-default {
+        color: @lightbg-text;
+    }
+
+    .search-slider {
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        span {
+            .text-muted;
+            .text-md;
+        }
+    }
+}
+
+.search-info {
+    .text-muted;
+    padding: 0.5em 4em;
+    height: 40px;
+    width: 100%;
+    * {
+        font-size: 1em;
+    }
+    line-height: 2;
+}
+
+.with-context-menu {
+    margin-top: 120px;
 }
