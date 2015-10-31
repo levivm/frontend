@@ -19,12 +19,32 @@
                 <span class="label" ng-bind="::detail.activity.sub_category_display"></span>
                 <span style="margin: 0 0.2em;"> | </span>
                 <span class="info" ng-bind="detail.strings.COPY_SOCIAL_BUTTONS"></span>
-                <img class="img-responsive btn-share-fb" src="/css/img/activity-detail/share_facebook.png"
-                     alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
-                <img class="img-responsive btn-share-twitter" src="/css/img/activity-detail/share_twitter.png"
-                     alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
-                <img class="img-responsive btn-share-email" src="/css/img/activity-detail/share_email.png"
-                     alt="{{detail.strings.COPY_SOCIAL_SHARE_EMAIL}}"/>
+
+
+                <a href="#"
+                socialshare
+                socialshare-provider="{{::detail.social.FACEBOOK_SOCIAL_PROVIDER}}"
+                socialshare-type="{{::detail.social.FACEBOOK_SHARE_TYPE}}"
+                socialshare-via="{{::detail.social.FACEBOOK_API_KEY}}"
+                socialshare-redirect-uri="{{::detail.social.FACEBOOK_REDIRECT_URI}}"
+                socialshare-media="{{::detail.social.FACEBOOK_SHARE_MEDIA}}"
+                socialshare-text="{{::detail.social.FACEBOOK_SHARE_TEXT}}"
+                socialshare-caption="{{::detail.social.FACEBOOK_SHARE_CAPTION}}"
+                socialshare-description="{{::detail.social.FACEBOOK_SHARE_DESCRIPTION}}"
+                socialshare-url="{{::detail.social.FACEBOOK_SHARE_URL}}">
+                    <img class="img-responsive btn-share-fb" src="/css/img/activity-detail/share_facebook.png"
+                         alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+                </a>
+                <a href="#"
+                socialshare
+                socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
+                socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"
+                socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
+                socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
+                socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
+                    <img class="img-responsive btn-share-twitter" src="/css/img/activity-detail/share_twitter.png"
+                         alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+                </a>
             </div>
         </div>
         <!--Description-->

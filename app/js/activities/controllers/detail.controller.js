@@ -20,10 +20,12 @@
         .controller('ActivityDetailController', ActivityDetailController);
 
     ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast',
-        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager'];
+        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
+        'serverConf'];
 
     function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast,
-                                      cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager,LocationManager) {
+                                      cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
+                                      serverConf) {
         var MAX_DAYS = 30;
         var vm = this;
         angular.extend(vm, {
@@ -241,8 +243,33 @@
             console.log('vm.current_state:', vm.current_state);
         }
 
-        function _setStrings(){
+        function _setSocialShare(){
 
+            var current_url = $state.href($state.current.name, $state.params, {absolute: true});
+
+            vm.social = {};
+            angular.extend(vm.social, {
+                FACEBOOK_SOCIAL_PROVIDER: 'facebook',
+                FACEBOOK_API_KEY: serverConf.FACEBOOK_APP_KEY,
+                FACEBOOK_SHARE_TYPE: "feed",
+                FACEBOOK_SHARE_CAPTION: "Trulii.com | ¡Aprende lo que quieras en tu ciudad!",
+                FACEBOOK_SHARE_TEXT: vm.activity.title,
+                FACEBOOK_SHARE_MEDIA: vm.activity.main_photo,
+                FACEBOOK_SHARE_DESCRIPTION: vm.activity.short_description,
+                FACEBOOK_REDIRECT_URI: current_url,
+                FACEBOOK_SHARE_URL: current_url,
+                TWITTER_SOCIAL_PROVIDER: 'twitter',
+                TWITTER_SHARE_ACCOUNT:'Trulii_',
+                TWITTER_SHARE_TEXT:'Échale un vistazo a ' + vm.activity.title,
+                TWITTER_SHARE_URL:current_url,
+                TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(','),
+
+
+            });
+
+        }
+
+        function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_VIEW_PROFILE: "Ver Perfil",
@@ -309,8 +336,10 @@
 
         function _activate(){
             _setStrings();
+
             _setCurrentState();
             vm.activity = activity;
+
             _setUpLocation(vm.activity);
             _getOrganizerActivities(vm.activity.organizer);
             vm.activity = _mapCalendars(vm.activity);
@@ -327,6 +356,9 @@
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);
             }
+
+            _setSocialShare();
+
 
             console.log('detail. activity:', vm.activity);
 

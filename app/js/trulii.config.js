@@ -11,18 +11,18 @@
 
     angular
         .module('trulii.config')
-        .config(config)        
+        .config(config);    
 
-    config.$inject = ['$locationProvider','$httpProvider','FacebookProvider'];
+    config.$inject = ['$locationProvider','$httpProvider','FacebookProvider','serverConf'];
 
-    function config($locationProvider, $httpProvider,FacebookProvider) {
+    function config($locationProvider, $httpProvider,FacebookProvider, serverConf) {
 
 
 
 
 
         /* Facebook initialization */
-        FacebookProvider.init('1563536137193781');
+        FacebookProvider.init(serverConf.FACEBOOK_APP_KEY);
 
 
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
