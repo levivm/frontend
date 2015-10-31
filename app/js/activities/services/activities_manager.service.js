@@ -114,7 +114,7 @@
              * @description Enrolls a student on the specified activity
              * @param {number} activityId - Id of activity to enroll on
              * @param {object} data - Contains enrollment info
-             * @param {number} data.chronogram - Id of calendar
+             * @param {number} data.calendar - Id of calendar
              * @param {number} data.student - Id of student
              * @param {number} data.amount - Total amount of the enrollment action
              * @param {number} data.quantity - Quantity of enrollments

@@ -11105,6 +11105,8 @@ icon-material-blue-grey {
 }
 .label {
   border-radius: 1px;
+  padding: .3em .6em .3em;
+  font-weight: 500;
 }
 .label,
 .label-default {
@@ -12361,6 +12363,9 @@ hr.on-light {
 }
 .text-uppercase {
   text-transform: uppercase;
+}
+.text-lowercase {
+  text-transform: lowercase;
 }
 .text-strike {
   text-decoration: line-through;
@@ -14442,9 +14447,16 @@ tags-input input {
 }
 .nav-tabs-light li a {
   height: 100%;
-  padding: 0.8em 1.4em;
   text-align: center;
   color: rgba(0, 0, 0, 0.74) !important;
+  padding: 0em 1.4em;
+}
+.nav-tabs-light li a img {
+  padding-top: 0.5em;
+}
+.nav-tabs-light li a span {
+  display: inline-block;
+  padding-top: 1em;
 }
 .nav-tabs-light li.active {
   background-color: #FFFFFF;
@@ -15721,7 +15733,7 @@ button.toast-close-button {
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 4em;
+  padding-top: 5em;
 }
 .detail-cover .text-container * {
   color: #FFFFFF;
@@ -15998,7 +16010,7 @@ h5 {
   border-right: 1px solid #DEDEDE;
   border-left: 1px solid #DEDEDE;
   border-radius: 0;
-  padding: 1em;
+  padding: 1.5em 1em;
   margin: 0;
 }
 .organizer-widget .card .picture {
@@ -16006,8 +16018,8 @@ h5 {
   border-radius: 50%;
   display: inline-block;
   height: auto;
-  margin-left: 20%;
-  width: 20%;
+  margin-left: 10%;
+  width: 30%;
 }
 .organizer-widget .card .data {
   width: 50%;
@@ -16019,11 +16031,6 @@ h5 {
   font-weight: 600;
   font-size: 1.2em;
   color: rgba(0, 0, 0, 0.74);
-}
-.organizer-widget .card .data .location {
-  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
-  font-size: 0.9em;
-  color: #999999;
 }
 .organizer-widget .ratings {
   border-right: 1px solid #DEDEDE;
@@ -16703,12 +16710,16 @@ h5 {
   font-weight: 300;
   letter-spacing: 0.1em;
 }
+.billing-widget .invoice .seats {
+  margin-bottom: 2em !important;
+}
 .billing-widget .total {
   background-color: #e3e3e3;
   padding: 1em;
 }
 .billing-widget .total .item {
   font-weight: 600;
+  padding-top: 0.2rem;
 }
 .billing-widget .total .value {
   font-size: 1.2em;

@@ -146,7 +146,7 @@
                      alt="{{::detail.organizer.name}}"/>
                 <div class="data">
                     <div class="name" ng-bind="::detail.organizer.name"></div>
-                    <div class="location" ng-bind="::detail.getOrganizerCity()"></div>
+                    <div class="text-muted sinkin-light text-sm" ng-bind="detail.getOrganizerCity()"></div>
                 </div>
             </a>
             <!--TODO Fill with real data-->
@@ -194,7 +194,7 @@
                 <a class="btn btn-primary btn-sign-up"
                    ng-disabled="detail.isSelectedCalendarFull()"
                    ng-hide="detail.isSelectedCalendarFull()"
-                   ui-sref="activities-enroll({activity_id: detail.activity.id, calendar_id: detail.calendar_selected.id})"
+                   ng-click="detail.nextState(detail.activity.id,detail.calendar_selected.id)"
                    ng-bind="::detail.strings.ACTION_SIGN_UP"></a>
                 <div class="info">
                     <div class="level">
@@ -231,7 +231,7 @@
                             <div class="session-item-date" ng-bind="session.date | date:'EEEE d MMM y'"></div>
                             <div class="session-item-time">
                                 <span ng-bind="session.start_time | amDateFormat: 'h:mm a'"></span>
-                                <span ng-bind="::detail.strings.COPY_TO" style="text-transform: lowercase;" ></span>
+                                <span ng-bind="::detail.strings.COPY_TO" class="text-lowercase" ></span>
                                 <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
                             </div>
                         </div>
