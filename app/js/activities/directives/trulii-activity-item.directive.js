@@ -31,17 +31,29 @@
                 var options;
                 var MAX_DAYS = 30;
 
-                scope.actions = [];
-                scope.dimmed = false;
-                scope.inactive = false;
-                scope.getStarStyle = getStarStyle;
-                scope.hasAction = hasAction;
+                angular.extend(scope, {
+                    actions : [],
+                    dimmed : false,
+                    inactive : false,
+                    isMenuVisible : false,
+                    getStarStyle : getStarStyle,
+                    hasAction : hasAction,
+                    showMenu : showMenu,
+                    hideMenu : hideMenu
+                });
 
-                scope.showMenu = false;
 
                 _activate();
 
                 //--------- Exposed Functions ---------//
+
+                function showMenu(){
+                    scope.isMenuVisible = true;
+                }
+
+                function hideMenu(){
+                    scope.isMenuVisible = false;
+                }
 
                 function getStarStyle(star){
                     if(star < 4){

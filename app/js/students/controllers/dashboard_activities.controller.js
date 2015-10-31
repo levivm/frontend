@@ -71,8 +71,8 @@
                 SECTION_ACTIVITIES: "Mis Actividades",
                 LABEL_EMPTY_ACTIVITIES: "Hasta ahora no se ha inscrito en alguna actividad",
                 COPY_EMPTY_ACTIVITIES: "Parece ser el momento perfecto para que descubra una nueva pasión, aprenda un nuevo pasatiempo o mejore su currículo",
-                TAB_OPEN: "Abiertas",
-                TAB_CLOSED: "Cerradas"
+                TAB_OPEN: "Próximas",
+                TAB_CLOSED: "Anteriores"
             });
         }
 
