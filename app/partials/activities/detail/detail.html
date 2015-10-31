@@ -160,8 +160,7 @@
                 <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
             </div>
         </div>
-
-        <div class="calendar-widget separate-above">
+        <div class="calendar-widget separate-above" ng-class="{'fixed-widget': detail.originalWidgetPosition <= detail.scroll}">
             <div class="widget-card" ng-hide="detail.isListVisible">
                 <div class="header">
                     <div class="next">

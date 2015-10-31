@@ -68,6 +68,8 @@
             toggleTerms : toggleTerms,
             toggleReimbursement : toggleReimbursement,
             setForm:setForm,
+            scroll: 0,
+            originalWidgetPosition: 0,
 
 
             cardData : {
@@ -573,6 +575,15 @@
                 vm.pseData.payerEmail = currentUser.user.email; 
                 _setAssistants();
             }
+
+            vm.originalWidgetPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top;
+
+            $window.onscroll = function(){
+                console.log(document.body.scrollTop);
+                console.log(vm.originalWidgetPosition);
+                vm.scroll = document.body.scrollTop;
+                $scope.$apply(); //or simply $scope.$digest();
+            };
 
 
         }

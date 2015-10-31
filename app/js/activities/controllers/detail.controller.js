@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Toast',
         'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
         'serverConf'];
 
-    function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast,
+    function ActivityDetailController($scope, $state, $stateParams, $window, uiGmapGoogleMapApi, Toast,
                                       cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
@@ -53,9 +53,13 @@
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
+            scroll: 0,
+            originalWidgetPosition: 0
         });
 
         _activate();
+
+
 
         //--------- Exposed Functions ---------//
 
@@ -361,6 +365,15 @@
 
 
             console.log('detail. activity:', vm.activity);
+
+            vm.originalWidgetPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top;
+
+            $window.onscroll = function(){
+                console.log(document.body.scrollTop);
+                console.log(vm.originalWidgetPosition);
+                vm.scroll = document.body.scrollTop;
+                $scope.$apply(); //or simply $scope.$digest();
+            };
 
         }
     }
