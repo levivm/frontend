@@ -50,6 +50,12 @@
                 resolve: {
                     validatedData :  tokenSignupValidation
                 },
+               params: {
+                    'toState': {
+                        'state': 'home',
+                        'params': {}
+                    }
+                },
                 templateUrl: 'partials/authentication/register_organizer.html'
             })
             .state('login', {

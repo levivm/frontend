@@ -169,7 +169,7 @@
 
                 var data = {
                     activity: activity.id,
-                    chronogram: calendar.id,
+                    calendar: calendar.id,
                     amount: vm.quantity * calendar.session_price,
                     quantity: vm.quantity,
                     assistants: vm.assistants,
@@ -211,7 +211,7 @@
             function success(cardType){
                 Error.form.clearField(vm.enrollForm,'cardMethod');
                 console.log("card type:", cardType);
-                vm.cardData.method = cardType.toLowerCase();
+                vm.cardData.method = cardType;
 
             }
 
@@ -312,7 +312,7 @@
 
                 var data = {
                     activity: activity.id,
-                    chronogram: calendar.id,
+                    calendar: calendar.id,
                     token: token,
                     amount: vm.quantity * calendar.session_price,
                     quantity: vm.quantity,

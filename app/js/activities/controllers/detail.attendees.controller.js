@@ -97,7 +97,7 @@
                 COPY_SO_FAR: "Hasta ahora",
                 COPY_ZERO_ATTENDEES: "esta actividad no tiene asistentes ¡Sé tú el primero!",
                 COPY_ONE_ATTENDEE: "va 1 asistente ¡Faltas tú!",
-                COPY_OTHER_ATTENDEES: "van {} asistentes ¡Faltas tú!"
+                COPY_OTHER_ATTENDEES: "van {} asistentes ¡Faltas tú!",
             });
         }
 

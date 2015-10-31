@@ -39,7 +39,7 @@
              */
             setData : function (activityData) {
                 angular.extend(this, activityData);
-                this.calendars = this.chronograms;
+                this.calendars = this.calendars;
                 var that = this;
                 that.resetSections();
 
@@ -270,8 +270,8 @@
         function setData(activityData) {
             angular.extend(this, activityData);
             var that = this;
-            this.calendars = this.chronograms;
-            delete this.chronograms;
+            this.calendars = this.calendars;
+            delete this.calendars;
             that.resetSections();
             angular.forEach(ActivitySteps, function (step) {
                 that.updateSection(step.name);
@@ -294,7 +294,7 @@
         }
 
         function update() {
-            this.chronograms = this.calendars;
+            this.calendars = this.calendars;
             var that = this;
             return $http.put(api.activity(this.id), this).then(success, error);
 
@@ -430,7 +430,7 @@
 
         function updateSection(section) {
             var that = this;
-            that.calendars = this.chronograms;
+            // that.calendars = this.calendars;
 
             var isCompleted = false;
 
