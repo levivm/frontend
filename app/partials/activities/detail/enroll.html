@@ -240,7 +240,7 @@
                                                         <span class="form-control-static"
                                                               ng-show="enroll.cardData.method"
                                                               >
-                                                            <img ng-src="css/img/activity-enroll/card_{{enroll.cardData.method}}.png" alt="Visa"/>
+                                                            <img ng-src="css/img/activity-enroll/card_{{enroll.cardData.method | lowercase }}.png" alt="Visa"/>
                                                         </span>
 
                                                         <input type="hidden" ng-model="enroll.cardData.method" name="cardMethod"/>
