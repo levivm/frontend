@@ -44,14 +44,16 @@
         Calendar.prototype = {
             setData : function (calendarData) {
 
+
                 var that = this;
                 var sessions = angular.copy(calendarData.sessions);
                 angular.extend(this, calendarData);
                 this.sessions = $filter('orderBy')(this.sessions, 'date');
 
+
                 this.initial_date = new Date(this.initial_date);
                 this.closing_sale = new Date(this.closing_sale);
-
+                
                 angular.forEach(this.sessions, function (session, index) {
 
                     session.date = new Date(session.date);
@@ -73,6 +75,7 @@
 
                     session.end_time   = end_time_datetime;
                     session.start_time = start_time_datetime;
+
 
 
 

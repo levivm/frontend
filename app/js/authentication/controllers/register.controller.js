@@ -34,7 +34,8 @@
             register : register,
             isSelectedMethod : isSelectedMethod,
             setSelectedMethod : setSelectedMethod,
-            focusForm : focusForm
+            focusForm : focusForm,
+            toLoginState:toLoginState,
         });
 
         _activate();
@@ -62,6 +63,10 @@
                 alert("Couldn't Register with Facebook");
                 vm.facebook.error = true;
             }
+        }
+
+        function toLoginState(){
+            $state.go('login', $stateParams);
         }
 
         function register() {
@@ -106,14 +111,7 @@
 
         function _activate(){
             toState = $stateParams.toState;
-            // if(!toState){
-            //     toState = {
-            //         state : 'home',
-            //         params: {}
-            //     };
-            // }
 
-            console.log(toState);
             _setStrings();
             if (validatedData) {
                 vm.auth.email = validatedData.email;

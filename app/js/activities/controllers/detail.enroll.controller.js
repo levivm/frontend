@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover','Elevator','$document','$scope'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover','Elevator','LocationManager'];
 
     function ActivityDetailEnrollController($state, $window, $sce, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator,$document,$scope) {
+                                            Elevator, LocationManager) {
 
         var vm = this;
         var isValidDate = false;
@@ -68,6 +68,7 @@
             toggleTerms : toggleTerms,
             toggleReimbursement : toggleReimbursement,
             setForm:setForm,
+            getOrganizerCity:getOrganizerCity,
 
 
             cardData : {
@@ -106,13 +107,9 @@
 
 
 
-        function setForm(form){
-
-            vm.assistantsForms.push(form);
-
-        }
 
         //--------- Exposed Functions ---------//
+
 
         /** PSE Payments Methods **/
 
@@ -214,7 +211,7 @@
             function success(cardType){
                 Error.form.clearField(vm.enrollForm,'cardMethod');
                 console.log("card type:", cardType);
-                vm.cardData.method = cardType;
+                vm.cardData.method = cardType.toLowerCase();
 
             }
 
@@ -223,6 +220,8 @@
                 console.log("Couldn't check card type");
             }
         }
+
+
 
         function checkCardExpiry(){
             Error.form.clear(vm.enrollForm);
@@ -409,6 +408,24 @@
             }
         }
 
+
+        function getOrganizerCity(){
+            if (vm.activity.organizer.locations[0]){
+
+                var city_id = vm.activity.organizer.locations[0].city;
+                return LocationManager.getCityById(city_id).name;
+
+            }
+
+            return;
+        }
+
+        function setForm(form){
+
+            vm.assistantsForms.push(form);
+
+        }
+
         function getOrganizerPhoto(){
             if(vm.activity.organizer && !!vm.activity.organizer.photo){
                 return vm.activity.organizer.photo;
@@ -470,7 +487,7 @@
                 vm.quantity = 0;
                 vm.assistants = [];
             } else {
-                vm.quantity = 0;
+                vm.quantity = 1;
                 if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
                     vm.assistants = [{}];
                 } else {
@@ -488,12 +505,14 @@
                 ACTION_REGISTER: "Regístrate",
                 ACTION_ENROLL: "Confirmar Inscripción",
                 ACTION_VIEW_RETURN_POLICY: "Ver Políticas de Reembolso del Organizador",
-                ACTION_RETURN: "Volver a Actividad",
                 ACTION_ADD_ASSISTANT: "Agregar Asistente",
                 ACTION_VIEW_TERMS: "Términos y Condiciones de Trulii",
+                ACTION_APPLY: "Aplicar",
+                ACTION_GO_BACK: "Regresar",
                 COPY_ASSISTANT_NUMBER: "Asistente #",
-                COPY_ASSISTANTS: "Agrega la información de las personas que asistiran a la actividad",
+                COPY_ASSISTANTS: "Agrega la información de las personas que asistirán a la actividad.",
                 COPY_STARTING_ON: "Con inicio el",
+                COPY_VACANCY_SINGULAR: " Vacante",
                 COPY_VACANCY: " Vacantes",
                 COPY_TO: " a ",
                 COPY_COVER: "Usted desea inscribir",
@@ -504,14 +523,25 @@
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los",
+                COPY_RELEASE_1: "Al confirmar la inscripción, estás de acuerdo con el monto total a cancelar, la ",
+                COPY_RELEASE_2: "Política de reembolso del organizador ",
+                COPY_RELEASE_3: "y con los ",
+                COPY_RELEASE_4: "Términos y condiciones ",
+                COPY_RELEASE_5: "de Trulii",
                 COPY_SLIDEBAR_TERMS_TITLE: "Términos y condiciones",
                 COPY_SLIDEBAR_TERMS_HEADER: "Titulo de terminos y condiciones",
                 COPY_SLIDEBAR_TERMS_BODY: "All work and no play makes Jack a dull boy",
                 COPY_SLIDEBAR_REIMBURSEMENT_TITLE: "Políticas de Reembolso",
                 COPY_SLIDEBAR_REIMBURSEMENT_HEADER: "Políticas de reembolso",
                 COPY_SLIDEBAR_REIMBURSEMENT_BODY: "No hay politicas de reembolso",
+                LABEL_APPLY_COUPON: "Aplicar Cupón",
+                LABEL_FREE_CALENDAR: "Actividad Gratis",
+                COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
+                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a INSCRIBIRME y listo.",
+                LABEL_CREDIT: "Crédito",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
+                LABEL_SEATS_X: "Cupos X ",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
                 LABEL_ACTIVITY_SESSIONS: "Sesiones",
                 LABEL_START_DATE: "Fecha de Inicio",
@@ -526,6 +556,7 @@
                 LABEL_LAST_NAME: "Apellido",
                 LABEL_EMAIL: "Email",
                 LABEL_PAYMENT_INFO: "Información de Pago",
+                LABEL_TOTAL_AMOUNT: "Total a Pagar",
 
                 LABEL_ID_NUMBER:"Número de identificación",
                 LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
@@ -560,6 +591,7 @@
                     params : $state.params
                 }
             };
+            console.log("-------- CALENDAR",calendar);
 
             vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
             vm.calendar = _mapVacancy(calendar);

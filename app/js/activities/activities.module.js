@@ -172,7 +172,8 @@
                     active: function () {
                         return true;
                     },
-                    calendars: getCalendars
+                    calendars: getCalendars,
+                    currentUser: getAuthenticatedUser,
                 }
             })
             .state('activities-enroll', {
