@@ -356,7 +356,6 @@
             _setUpLocation(vm.activity);
             _getOrganizerActivities(vm.activity.organizer);
             vm.activity = _mapCalendars(vm.activity);
-            vm.activity = _mapPictures(vm.activity);
             vm.activity = _mapClosestCalendar(vm.activity);
             vm.activity = _mapInfo(vm.activity);
             vm.activity.rating = [1, 2, 3, 4, 5];

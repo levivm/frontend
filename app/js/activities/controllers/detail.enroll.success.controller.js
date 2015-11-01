@@ -5,9 +5,10 @@
         .module('trulii.activities.controllers')
         .controller('ActivityEnrollSuccessController', ActivityEnrollSuccessController);
 
-    ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'LocationManager', 'activity', 'calendar', 'organizerActivities'];
+    ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'LocationManager', 'activity', 'calendar', 'organizerActivities',
+                                                'serverConf'];
 
-    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, activity, calendar, organizerActivities) {
+    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, activity, calendar, organizerActivities,serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -43,6 +44,33 @@
             return activity;
         }
 
+
+        function _setSocialShare(){
+
+            var share_url = $state.href('activities-detail', $state.params, {absolute: true});
+            vm.social = {};
+            angular.extend(vm.social, {
+                FACEBOOK_SOCIAL_PROVIDER: 'facebook',
+                FACEBOOK_API_KEY: serverConf.FACEBOOK_APP_KEY,
+                FACEBOOK_SHARE_TYPE: "feed",
+                FACEBOOK_SHARE_CAPTION: "Trulii.com | ¡Aprende lo que quieras en tu ciudad!",
+                FACEBOOK_SHARE_TEXT: vm.activity.title,
+                FACEBOOK_SHARE_MEDIA: vm.activity.main_photo,
+                FACEBOOK_SHARE_DESCRIPTION: vm.activity.short_description,
+                FACEBOOK_REDIRECT_URI: share_url,
+                FACEBOOK_SHARE_URL: share_url,
+                TWITTER_SOCIAL_PROVIDER: 'twitter',
+                TWITTER_SHARE_ACCOUNT:'Trulii_',
+                TWITTER_SHARE_TEXT:'Échale un vistazo a ' + vm.activity.title,
+                TWITTER_SHARE_URL: share_url ,
+                TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(','),
+
+
+            });
+
+        }
+
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -74,6 +102,8 @@
             vm.activity = activity;
             vm.organizerActivities = _getOrganizerActivities();
             console.log('activity:', activity);
+            _setSocialShare();
+
         }
     }
 })();

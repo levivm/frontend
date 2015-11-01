@@ -344,6 +344,7 @@
          * @description Gets a Calendar by its ID from
          * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service
          * @requires ui.router.state.$stateParams
+         * @requires calendars
          * @requires trulii.activities.services.CalendarsManager
          * @methodOf trulii.activities.config
          */
@@ -372,27 +373,18 @@
         /**
          * @ngdoc method
          * @name .#fetchCalendarArray
-         * @description Fetches a Calendar by Activity ID and Calendar ID in $stateParams from
-         * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service and returns it inside an Array
+         * @description get fetched calendar and returns it inside an Array
          * @requires ui.router.state.$stateParams
-         * @requires trulii.activities.services.CalendarsManager
+         * @requires calendar
          * @methodOf trulii.activities.config
          */
-        fetchCalendarArray.$inject = ['$stateParams', 'CalendarsManager'];
-        function fetchCalendarArray($stateParams, CalendarsManager) {
-            var activityId = $stateParams.activity_id;
-            var calendarId = $stateParams.calendar_id;
+        fetchCalendarArray.$inject = ['$stateParams','calendar'];
+        function fetchCalendarArray($stateParams,calendar, CalendarsManager) {
 
-            return CalendarsManager.fetchCalendar(activityId, calendarId).then(success, error);
+            var array = [];
+            if (calendar){ array.push(calendar); }
+            return array;
 
-            function success(calendar){
-                return [calendar];
-            }
-
-            function error(response){
-                console.log('fetchCalendarArray. Error retrieving calendar', response.data);
-                return [];
-            }
         }
 
         /**
