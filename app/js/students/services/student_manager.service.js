@@ -115,7 +115,6 @@
 
             function success(response) {
                 var studentData = response.data;
-                console.log("from back",response.data);
                 var student = _retrieveInstance(studentId, studentData);
                 deferred.resolve(student);
             }

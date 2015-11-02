@@ -6,7 +6,7 @@
         <div class="card-body tab-content">
             <div class="tab-pane active fade in" id="history-orders-tab">
                 <!--If there are orders-->
-                <div ng-if="history.orders.length > 0">
+                <div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group search-input">
@@ -18,7 +18,8 @@
                                 </div>
                                 <div class="input-group">
                                     <input class="form-control floating-label" type="text"
-                                           ng-model="history.orderQuery"
+                                           ng-model="history.queries.orderQuery"
+                                           ng-change="history.updateByQuery(history.TYPE_ORDER)"
                                            placeholder="{{history.strings.COPY_SEARCH}}">
                                     <span class="input-group-addon">
                                         <i class="mdi-action-search"></i>
@@ -36,26 +37,37 @@
                                         <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
                                         <th><strong ng-bind="::history.strings.HEADER_PURCHASE_DATE"></strong></th>
                                         <th><strong ng-bind="::history.strings.HEADER_TOTAL"></strong></th>
+                                        <th><strong ng-bind="::history.strings.HEADER_STATUS"></strong></th>
                                     </tr>
                                     <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
                                         <td>
                                             <a ui-sref="student-dashboard.history.order({'orderId': order.id})" ng-bind="order.id"></a>
                                         </td>
                                         <td>
-                                            <span ng-bind="::(history.strings.COPY_EMPTY_ORDERS | limitTo: 35) + '...'"></span>
+                                            <span ng-bind="::(order.activity_name | truncateText:true:35:'...')"></span>
                                             <br/>
-                                            <strong ng-bind="::history.strings.COPY_START_DATE"></strong> <span>13 Jun 2015</span>
+                                            <strong ng-bind="::history.strings.COPY_START_DATE"></strong> <span class="text-capitalize" ng-bind="::order.calendar_initial_date | date:'EEEE d MMM y'"></span>
                                         </td>
                                         <td>
-                                            <span>14 Ene. 2015</span>
+                                            <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
                                         </td>
                                         <td>
-                                            <span ng-bind="order.amount | currency"></span>
+                                            <span ng-bind="order.amount | currency:$:0"></span>
+                                        </td>
+                                        <td>
+                                            <span class="text-capitalize"  ng-bind="::order.status"></span>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
+                    </div>
+                    <div class="text-center" ng-if="history.orderPaginationOpts.totalItems > history.orderPaginationOpts.itemsPerPage">
+                        <pagination class="pagination-sm"
+                        ng-model="history.orderPaginationOpts.pageNumber"
+                        ng-change="history.pageChange(history.TYPE_ORDER)"
+                        data-total-items="history.orderPaginationOpts.totalItems"
+                        data-items-per-page="history.orderPaginationOpts.itemsPerPage"></pagination>    
                     </div>
                 </div>
                 <!--If there are no orders-->
@@ -70,7 +82,6 @@
                                 </h3>
 
                                 <a class="btn btn-lg btn-success"
-                                   ui-sref=""
                                    ng-bind="history.strings.ACTION_FIND_ACTIVITY">
                                 </a>
                             </div>

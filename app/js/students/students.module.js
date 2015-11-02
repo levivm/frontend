@@ -65,11 +65,15 @@
                 abstract:true,
                 url:'history',
                 controller: 'StudentHistoryCtrl as history',
-                templateUrl: 'partials/students/dashboard/history.html'
+                templateUrl: 'partials/students/dashboard/history.html',
+                resolve: {
+                    orders: getOrders
+                }
             })
             .state('student-dashboard.history.orders', {
                 url:'/orders',
-                templateUrl: 'partials/students/dashboard/history.orders.html'
+                // controller: 'StudentHistoryOrdersCtrl as orders',
+                templateUrl: 'partials/students/dashboard/history.orders.html',
             })
             .state('student-dashboard.history.order', {
                 url:'/orders/:orderId',
@@ -154,6 +158,18 @@
         function getAvailableCities(LocationManager){
             return LocationManager.getAvailableCities();
         }
+        /**
+         * @ngdoc method
+         * @name .#getOrders
+         * @description Retrieves  all orders that belongs to a student
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getOrder.$inject = ['$stateParams','student'];
+        function getOrders($stateParams, student){
+            return student.getOrders();
+        }
+
 
         /**
          * @ngdoc method
