@@ -14,9 +14,9 @@
         .module('trulii.activities.services')
         .factory('Activity', Activity);
 
-    Activity.$inject = ['$http', '$q', 'ActivityServerApi', 'UploadFile', 'ActivitySteps'];
+    Activity.$inject = ['$http', '$q', 'ActivityServerApi', 'UploadFile', 'ActivitySteps','defaultCover'];
 
-    function Activity($http, $q, ActivityServerApi, UploadFile, ActivitySteps) {
+    function Activity($http, $q, ActivityServerApi, UploadFile, ActivitySteps,defaultCover) {
 
         var api = ActivityServerApi;
 
@@ -48,10 +48,11 @@
 
                     that.updateSection(step.name);
                 });
-
                 //console.log("Activity setData ", this);
 
                 that.checkSections();
+                that.mapPictures();
+
             },
 
             /**
@@ -123,6 +124,15 @@
              * @methodOf trulii.activities.services.Activity
              */
             deletePicture : deletePicture,
+
+
+            /**
+             * @ngdoc function
+             * @name .#mapPictures
+             * @description Map activity pictures to main_photo and gallery properties
+             * @methodOf trulii.activities.services.Activity
+             */
+            mapPictures : mapPictures,
 
             /**
              * @ngdoc function
@@ -340,6 +350,26 @@
 
         function deletePicture(picture) {
             return $http.delete(api.galleryPicture(this.id, picture.id));
+        }
+
+
+        function mapPictures(){
+            var that = this;
+
+            that.gallery = [];
+            if(that.hasOwnProperty('pictures') && that.pictures.length > 0){
+                angular.forEach(that.pictures, function(picture){
+                    if(picture.main_photo){
+                        that.main_photo = picture.photo;
+                    } else {
+                        that.gallery.push(picture);
+                    }
+                });
+            } else {
+                that.main_photo = defaultCover;
+            }
+
+
         }
 
         function publish() {

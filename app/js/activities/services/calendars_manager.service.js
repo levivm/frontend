@@ -27,12 +27,17 @@
             _retrieveInstance : function (calendarId, calendarData) {
                 console.log('pool', this._pool);
                 var instance = this._search(calendarId);
+                // if calendar does not exist, create new one using calendarData
                 if (!(instance)) {
                     instance = new Calendar(calendarData);
-                    // instance.setData();
-
                     instance.activity = this.activity_id;
                 }
+                else{
+                    // if calendar exists and calendarData is not NULL, update the calendar
+                    if(calendarData)
+                        instance.setData(calendarData);
+                }
+
                 return instance;
             },
             _search : function (calendarId) {
@@ -112,10 +117,10 @@
                     .then(function (response) {
                         console.log('CalendarsManagercalendars response:', response);
                         scope._setCalendars(response.data);
-                        return scope.calendars
+                        return scope.calendars;
                     },
                     function (response) {
-                        return response.data
+                        return response.data;
                     });
             },
 
@@ -125,8 +130,9 @@
                     scope.calendars  = [];
                 angular.forEach(calendarsData, function (calendarData) {
                     var calendar = new Calendar(calendarData);
-                    scope.calendars.push(calendar);
-                    scope._pool[calendar.id] = calendar;
+                    scope._addCalendar(calendar);
+                    // scope.calendars.push(calendar);
+                    // scope._pool[calendar.id] = calendar;
 
                 });
 

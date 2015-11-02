@@ -32,7 +32,6 @@
                 this.initial_date = today;
                 this.minStartDate = today;
                 this.closing_sale = tomorrow;
-                // this.session_price = 0;
                 this.capacity = 1;
 
                 this.sessions = [];
