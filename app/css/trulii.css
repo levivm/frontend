@@ -4376,7 +4376,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-bottom-right-radius: 3px;
   border-top-right-radius: 3px;
 }
-.label {
+.label,
+.activity-card__category {
   display: inline;
   padding: .2em .6em .3em;
   font-size: 75%;
@@ -12749,7 +12750,8 @@ hr {
   text-align: center;
   background: #eeeeee;
 }
-.label {
+.label,
+.activity-card__category {
   font-size: 8px;
   font-weight: bold;
   line-height: 1em;
@@ -15916,19 +15918,7 @@ button.toast-close-button {
   color: #eeeeee;
 }
 .activity-card__category {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  color: white;
-  background-color: #C29845;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: .7em;
-  padding: .2em 1em;
-  border-radius: 2.5px;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  letter-spacing: .1em;
-  line-height: 1em;
+  font-size: 0.7em;
 }
 .activity-grid {
   text-align: left;
@@ -16114,9 +16104,11 @@ h5 a {
   line-height: 1em;
 }
 .calendar-widget .widget-card .sessions .sessions-title {
-  padding: 1em;
+  padding: 1.5em;
   text-align: center;
   border-top: 1px solid #DEDEDE;
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: bold;
 }
 .calendar-widget .widget-card .sessions .sessions-title * {
   width: 100%;
@@ -16128,6 +16120,7 @@ h5 a {
   text-transform: uppercase;
   font-size: 1.2em;
   padding: 0;
+  font-weight: bold;
 }
 .calendar-widget .widget-card .sessions .sessions-list {
   padding: 0;
@@ -16166,7 +16159,7 @@ h5 a {
   margin: 0.4em 0 0 0;
   padding: 0;
   font-size: 0.8em;
-  font-weight: 100;
+  font-weight: 300;
   color: #999999;
   text-transform: lowercase;
 }
@@ -16175,6 +16168,7 @@ h5 a {
 }
 .calendar-widget .widget-card .other-calendars-has-more {
   cursor: pointer;
+  position: relative;
 }
 .calendar-widget .widget-card .other-calendars:hover {
   background-color: #F7F7F7;
@@ -16194,7 +16188,7 @@ h5 a {
   padding: 0;
   font-size: 0.8em;
   font-weight: 100;
-  color: #999999;
+  line-height: 1.5em;
 }
 .calendar-widget .widget-card .other-calendars-count {
   width: 100%;
@@ -16208,7 +16202,7 @@ h5 a {
   padding: 0;
   font-size: 0.8em;
   font-weight: 600;
-  color: #999999;
+  line-height: 1.5em;
 }
 .calendar-widget .widget-card .other-calendars-more {
   width: 100%;
@@ -16220,9 +16214,15 @@ h5 a {
   text-align: center;
   text-transform: uppercase;
   text-transform: none;
-  padding: 0;
-  font-size: 0.8em;
+  padding: 1em 0 0 0;
+  font-size: 1em;
   font-weight: 600;
+}
+.calendar-widget .widget-card .other-calendars-more i {
+  position: absolute;
+  font-size: 2em;
+  right: 1em;
+  line-height: 0.825em;
   color: #999999;
 }
 .calendar-widget .widget-list .widget-list-item {
@@ -16362,7 +16362,7 @@ h5 a {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1) 85%);
+  background: linear-gradient(to bottom, transparent, rgba(60, 61, 65, 0.4) 85%);
 }
 .gallery .gallery-slide img {
   z-index: 4;
@@ -16408,7 +16408,6 @@ h5 a {
 .gallery .gallery-info * {
   color: rgba(255, 255, 255, 0.84);
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
-  font-style: italic;
 }
 .instructors-container {
   padding: 3em 9.5em 5em 9.5em;
@@ -16502,7 +16501,6 @@ h5 a {
   text-align: center;
 }
 .sign-up-container .calendar-info .date-info {
-  width: 40%;
   display: inline-block;
   text-align: right;
   padding-right: 2em;
@@ -16513,13 +16511,20 @@ h5 a {
   text-transform: uppercase;
 }
 .sign-up-container .calendar-info .price {
-  width: 40%;
   display: inline-block;
   text-align: left;
   padding-left: 2em;
 }
 .sign-up-container .calendar-info .price h5 {
   font-size: 3em;
+}
+@media (max-width: 991px) {
+  .sign-up-container .calendar-info .date-info,
+  .sign-up-container .calendar-info .price {
+    text-align: center;
+    border: none;
+    float: none;
+  }
 }
 .sign-up-container .btn-link {
   text-decoration: underline;
@@ -16548,6 +16553,19 @@ h5 a {
   color: #999999;
   font-size: 0.8em;
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+}
+@media (max-width: 991px) {
+  .reasons-container .reason {
+    width: 100%;
+  }
+  .reasons-container .reason .reason-img {
+    display: block;
+    margin: 0 auto;
+  }
+  .reasons-container .reason .reason-text {
+    text-align: center;
+    width: 100%;
+  }
 }
 .contact-us-container {
   padding-bottom: 4em;
