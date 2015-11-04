@@ -576,14 +576,18 @@
                 _setAssistants();
             }
 
-            vm.originalWidgetPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top;
 
-            $window.onscroll = function(){
-                console.log(document.body.scrollTop);
-                console.log(vm.originalWidgetPosition);
+            angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
-                $scope.$apply(); //or simply $scope.$digest();
-            };
+                vm.originalWidgetPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top;
+                $window.onscroll = function(){
+                    console.log(document.body.scrollTop);
+                    console.log(vm.originalWidgetPosition);
+                    vm.scroll = document.body.scrollTop;
+                    $scope.$apply();
+                };
+            });
+
 
 
         }

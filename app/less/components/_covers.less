@@ -5,24 +5,18 @@
 
 .detail-cover{
     &:extend(.container-fluid);
-    padding: 0;
     position: relative;
     width: 100%;
     min-height: 280px;
     height: 100%;
-    top: 0;
-    left: 0;
-    .burn(0.7);
-    overflow: hidden;
+    background: fixed center center;
+    background-size: cover;
 
-    img {
-        position: absolute;
+    &:after{
+        height: 280px;
         width: 100%;
-        min-height: 280px;
-        height: auto;
-        top: -50%;
+        background-color:rgba(60, 61, 65, 0.4);
     }
-
     .text-container {
         position: absolute;
         text-align: center;

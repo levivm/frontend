@@ -113,8 +113,10 @@
         }
 
         function getOrganizerCity(){
-            var city_id = vm.organizer.locations[0].city;
-            return LocationManager.getCityById(city_id).name;
+            if(vm.organizer.locations[0]){
+                var city_id = vm.organizer.locations[0].city;
+                return LocationManager.getCityById(city_id).name;
+            }
         }
 
         function getStarStyle(star){
@@ -366,14 +368,19 @@
 
             console.log('detail. activity:', vm.activity);
 
-            vm.originalWidgetPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top;
-
-            $window.onscroll = function(){
-                console.log(document.body.scrollTop);
-                console.log(vm.originalWidgetPosition);
+            angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
-                $scope.$apply(); //or simply $scope.$digest();
-            };
+                vm.originalWidgetPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top;
+                $window.onscroll = function(){
+                    console.log(document.body.scrollTop);
+                    console.log(vm.originalWidgetPosition);
+                    vm.scroll = document.body.scrollTop;
+                    $scope.$apply();
+                };
+            });
+
+
+
 
         }
     }

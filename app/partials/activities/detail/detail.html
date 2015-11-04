@@ -1,6 +1,6 @@
 <div class="row">
-    <div class="detail-cover">
-        <img ng-src="{{detail.activity.main_photo}}" alt="detail.activity.title"/>
+    <div class="detail-cover" style="background-image:url({{detail.activity.main_photo}})">
+        <!--<img ng-src="{{detail.activity.main_photo}}" alt="detail.activity.title"/>-->
     </div>
 </div>
 <!--General Info and Sidebar-->
@@ -16,7 +16,8 @@
             <div class="col-md-12">
                 <span class="label" ng-bind="::detail.activity.category.name"
                       ng-style="{'background-color': detail.activity.category.color}"></span>
-                <span class="label" ng-bind="::detail.activity.sub_category_display"></span>
+                <span style="vertical-align: -2px;"> &gt; </span>
+                <span class="label label-default" ng-bind="::detail.activity.sub_category_display"></span>
                 <span style="margin: 0 0.2em;"> | </span>
                 <span class="info" ng-bind="detail.strings.COPY_SOCIAL_BUTTONS"></span>
 
@@ -43,6 +44,16 @@
                 socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
                 socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
                     <img class="img-responsive btn-share-twitter" src="/css/img/activity-detail/share_twitter.png"
+                         alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+                </a>
+                <a href="#"
+                   socialshare
+                   socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
+                   socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"
+                   socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
+                   socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
+                   socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
+                    <img class="img-responsive btn-share-email" src="/css/img/activity-detail/share_email.png"
                          alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
                 </a>
             </div>
@@ -77,64 +88,72 @@
                 </div>
             </div>
         </div>
+
         <!--Audience-->
         <div class="row separate-above-medium" ng-show="detail.activity.audience">
             <div class="col-md-12 section">
-                <h2 class="title" ng-bind="::detail.strings.LABEL_AUDIENCE"></h2>
+                <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_AUDIENCE"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.audience"></p>
             </div>
         </div>
+
+        <hr/>
+
         <!--Content-->
         <div class="row separate-above-less" ng-show="detail.activity.content">
             <div class="col-md-12 section">
-                <div class="separator separate-above-less"></div>
-
-                <h2 class="title" ng-bind="::detail.strings.LABEL_CONTENT"></h2>
+                <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_CONTENT"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.content"></p>
             </div>
         </div>
+
+        <hr/>
+
         <!--Goals-->
         <div class="row separate-above-less" ng-show="detail.activity.goals">
             <div class="col-md-12 section">
-                <div class="separator separate-above-less"></div>
-                <h2 class="title" ng-bind="::detail.strings.LABEL_GOALS"></h2>
+                <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_GOALS"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.goals"></p>
             </div>
         </div>
 
         <!--Video-->
-        <div class="row youtube-video-container" ng-if="detail.activity.youtube_video_url">
-            <div class="col-md-12 text-center">
-                <div class="separator "></div>
-                <div class="separate-below-medium"></div>
-                <youtube-video video-url="detail.activity.youtube_video_url"></youtube-video>
+        <div class="row separate-below" ng-if="detail.activity.youtube_video_url">
+            <div class="col-md-12">
+                <div class="youtube-container separate-above-medium">
+                    <youtube-video video-url="detail.activity.youtube_video_url"></youtube-video>
+                </div>
             </div>
         </div>
+
+        <hr/>
 
         <!--Methodology-->
         <div class="row separate-above-less" ng-show="detail.activity.methodology">
             <div class="col-md-12 section">
-                <div class="separator separate-above-less"></div>
-                <h3 class="title" ng-bind="::detail.strings.LABEL_METHODOLOGY"></h3>
+                <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.methodology"></p>
             </div>
         </div>
+
+        <hr/>
+
         <!--Requirements-->
         <div class="row separate-above-less" ng-show="detail.activity.requirements">
             <div class="col-md-12 section">
-                <div class="separator separate-above-less"></div>
-                <h3 class="title" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></h3>
+                <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.requirements"></p>
             </div>
         </div>
+
+        <hr/>
+
         <!--Extra-->
         <div class="row separate-above-less" ng-show="detail.activity.extra_info">
-            
-            <div class="col-md-12 section">
-                <div class="separator separate-above-less"></div>
-                <h3 class="title" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></h3>
+
+            <div class="col-md-12 section separate-below-more">
+                <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.extra_info"></p>
-                <div class="separate-above-more"></div>
             </div>
         </div>
         <div class="separate-above-more" ng-show="!detail.activity.extra_info"></div>
@@ -142,11 +161,13 @@
     <div class="col-md-3">
         <div class="organizer-widget">
             <a class="card" ui-sref="organizer-profile({organizer_id: detail.organizer.id})">
-                <img class="picture" ng-src="{{::detail.getOrganizerPhoto()}}"
-                     alt="{{::detail.organizer.name}}"/>
-                <div class="data">
-                    <div class="name" ng-bind="::detail.organizer.name"></div>
-                    <div class="location" ng-bind="::detail.getOrganizerCity()"></div>
+                <div class="content">
+                    <img class="picture" ng-src="{{::detail.getOrganizerPhoto()}}"
+                         alt="{{::detail.organizer.name}}"/>
+                    <div class="data">
+                        <div class="name" ng-bind="::detail.organizer.name"></div>
+                        <div class="location" ng-bind="::detail.getOrganizerCity()"></div>
+                    </div>
                 </div>
             </a>
             <!--TODO Fill with real data-->
@@ -157,7 +178,7 @@
                 <img src="/css/img/activity-detail/rating_star_on.png" alt="4 Stars"/>
                 <img src="/css/img/activity-detail/rating_star_off.png" alt="5 Stars"/>
                 <span>50</span>
-                <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
+                <img class="rating-icon" src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
             </div>
         </div>
         <div class="calendar-widget separate-above" ng-class="{'fixed-widget': detail.originalWidgetPosition <= detail.scroll}">
@@ -305,16 +326,18 @@
 <!--Instructors-->
 <div class="row" ng-show="detail.activity.instructors.length">
     <div class="col-md-12 instructors-container">
-        <h1 class="title" ng-bind="::detail.strings.LABEL_INSTRUCTORS"></h1>
-        <div class="separate-below-medium"></div>
-        <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
-             
-            <div class="col-md-8">
-                <div class="name" ng-bind="::instructor.full_name"></div>
-                <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
-                   ng-bind="::instructor.website"></a>
-                <p class="bio" ng-bind="::instructor.bio"></p>
-                <div ng-if="!$last" class="separator separate-below-medium"></div>
+        <h1 class="title text-primary">
+            <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
+        </h1>
+        <div class="separate-above-medium">
+            <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
+                <div class="col-md-8">
+                    <div class="name" ng-bind="::instructor.full_name"></div>
+                    <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
+                       ng-bind="::instructor.website"></a>
+                    <p class="bio" ng-bind="::instructor.bio"></p>
+                    <hr ng-if="!$last"/>
+                </div>
             </div>
         </div>
     </div>
@@ -330,7 +353,8 @@
 <div class="row location">
     <div class="map" id="map-canvas"></div>
     <div class="address">
-        <span class="mdi-maps-place"></span>
+        <!--<span class="mdi-maps-place"></span>-->
+        <img src="/css/img/activity-detail/map_location.png" alt=""/>
         <span ng-bind="detail.activity.location.address"></span>
     </div>
 </div>
@@ -338,7 +362,9 @@
 <!--Attendees-->
 <div class="row">
     <div class="col-md-12 attendees-container">
-        <h2 class="title" ng-bind="::detail.strings.LABEL_ATTENDEES"></h2>
+        <h1 class="text-primary text-center title">
+            <strong ng-bind="::detail.strings.LABEL_ATTENDEES"></strong>
+        </h1>
         <div ui-view="attendees"></div>
     </div>
 </div>
@@ -369,7 +395,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row separate-above">
         <div class="col-md-12">
             <div class="btn btn-lg btn-primary"
                  ng-show="detail.isSelectedCalendarFull()"
@@ -382,7 +408,7 @@
                ng-bind="::detail.strings.ACTION_SIGN_UP"></a>
         </div>
     </div>
-    <div class="row">
+    <div class="row separate-above-less">
         <div class="col-md-12">
             <div class="btn btn-link" ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></div>
         </div>
@@ -423,11 +449,14 @@
     </div>
 </div>
 <div class="row contact-us-container">
-    <div class="col-md-4 col-md-offset-4 text-center">
+    <div class="col-md-6 col-md-offset-3 text-center">
         <div class="separator"></div>
-        <h5 class="separate-above text-uppercase">
+        <h5 class="separate-above text-uppercase text-sm text-spaced montserrat-regular">
             <span ng-bind="::detail.strings.COPY_DOUBTS"></span>
-            <a ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a></h5>
+            <strong>
+                <a ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a>
+            </strong>
+        </h5>
     </div>
 </div>
 <div class="row related-activities-container">
@@ -435,8 +464,10 @@
         <h3 class="title">
             Actividades Similares
         </h3>
-        <trulii-activity-item
-                ng-repeat="activity in detail.relatedActivities track by activity.id"
-                data-activity="activity"></trulii-activity-item>
+        <div class="separate-above">
+            <trulii-activity-item
+                    ng-repeat="activity in detail.relatedActivities track by activity.id"
+                    data-activity="activity"></trulii-activity-item>
+        </div>
     </div>
 </div>
