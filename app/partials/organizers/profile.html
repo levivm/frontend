@@ -64,11 +64,20 @@
 </div>
 
 <!--Location-->
-<div class="row location">
-    <div class="map" id="map-canvas"></div>
+<div class="row profile-location">
+    <div class="map" id="map-canvas">
+        <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
+                            bounds="profile.map.bounds" options="profile.map.options"
+                            events="profile.map.events" control="profile.map.control">
+            <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
+                            events="profile.marker.events"
+                            idkey="profile.marker.id"></ui-gmap-marker>
+        </ui-gmap-google-map>
+    </div>
     <div class="address">
         <span class="mdi-maps-place"></span>
-        <span ng-bind="::profile.city.address"></span>
+        <!-- <span ng-bind="::profile.city.address">CARRERA 12 #KR120</span> -->
+        <span >Carrera 12 #KR120</span>
     </div>
 </div>
 

@@ -50,7 +50,9 @@
                 templateUrl: 'partials/organizers/profile.html',
                 resolve: {
                     organizer: getOrganizer,
-                    activities: getOrganizerActivities
+                    activities: getOrganizerActivities,
+                    cities:getAvailableCities,
+
                 }
             })
             .state('organizer-dashboard', {
