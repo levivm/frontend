@@ -18,9 +18,10 @@
         .factory('Authentication', Authentication);
 
     Authentication.$inject = [ '$rootScope', '$http', '$q', '$state',
-        'AuthenticationServerApi', 'localStorageService','Facebook'];
+        'AuthenticationServerApi', 'localStorageService', 'Facebook', 'defaultPicture'];
 
-    function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService, Facebook) {
+    function Authentication($rootScope, $http, $q, $state, AuthenticationServerApi, localStorageService,
+                            Facebook, defaultPicture) {
 
         var USER_CHANGED_EVENT = 'userChanged';
         var USER_LOGOUT_EVENT = 'userLogout';
@@ -95,7 +96,7 @@
             })
             .then(success,error);
 
-    
+
             function success(response){
 
                 _updateData(response.data.user,response.data.token);
@@ -112,7 +113,7 @@
             return $http({
                 method: 'post',
                 url: api.token(),
-                data: 
+                data:
                 _parseParam({
                     login: email,
                     password: password
@@ -153,7 +154,7 @@
                     }
                 },{scope: 'email'})
             );
-    
+
             function success(response){
                 setAuthenticatedAccount(response.data.user);
                 setAuthenticationToken(response.data.token);
@@ -274,7 +275,7 @@
             var deferred = $q.defer();
 
             if(force_fetch){
-                 return $http.get(api.current()).then(success, error);
+                 $http.get(api.current()).then(success, error);
             } else {
                 if (!isAuthenticated()) {
                     deferred.resolve(null);
@@ -286,14 +287,32 @@
             return deferred.promise;
 
             function success(response){
-                var user = response.data;
+                var user = _mapDisplayName(response.data);
                 _updateData(user);
-                deferred.resolve(localStorageService.get(USER_KEY));
+                deferred.resolve(user);
             }
 
             function error(){
                 deferred.reject(null);
             }
+        }
+
+        function _mapDisplayName(data) {
+            var user = data.user;
+            var company = data.name;
+            if (company) {
+                user.full_name = company;
+            } else if (user.full_name) {
+                console.log('Full Name already defined');
+            } else if (user.first_name && user.last_name) {
+                user.full_name = [user.first_name, user.last_name].join(' ');
+            } else {
+                user.full_name = 'User';
+            }
+
+            if (!data.photo) { data.photo = defaultPicture; }
+
+            return data;
         }
 
         function _updateData(user, token){

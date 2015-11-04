@@ -60,6 +60,18 @@
 
             /**
              * @ngdoc function
+             * @name trulii.students.services.StudentServerApi#reviews
+             * @description Renders **`/api/students/:idStudent/reviews/`** Reviews List URL
+             * @param {number} idStudent Student Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.students.services.StudentServerApi
+             */
+            'reviews': function(idStudent){
+                return renderUrl('students/', [idStudent, 'reviews/']);
+            },
+
+            /**
+             * @ngdoc function
              * @name trulii.students.services.StudentServerApi#orders
              * @description Renders **`/api/students/:idStudent/orders`** Order List URL
              * @param {number} idStudent Student Id

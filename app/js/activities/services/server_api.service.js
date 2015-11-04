@@ -58,6 +58,30 @@
 
             /**
              * @ngdoc function
+             * @name .#activity
+             * @description Renders **`/api/activities/:idActivity/reviews`** Activity Reviews URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'reviews' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'reviews/']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#activity
+             * @description Renders **`/api/reviews/:idReview`** Review URL
+             * @param {number} idReview Review Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'review' : function (idReview) {
+                return renderUrl('reviews/', [idReview]);
+            },
+
+            /**
+             * @ngdoc function
              * @name .#gallery
              * @description Renders **`/api/activities/:idActivity/gallery{=/auto}`** Activity gallery URL
              * @param {number} idActivity Activity Id

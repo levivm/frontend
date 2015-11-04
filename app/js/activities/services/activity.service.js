@@ -272,7 +272,16 @@
              * @description Deletes an Instructor from the Activity but not from the Organizer
              * @methodOf trulii.activities.services.Activity
              */
-            deleteInstructor: deleteInstructor
+            deleteInstructor: deleteInstructor,
+
+            /**
+             * @ngdoc function
+             * @name .#postReview
+             * @description Posts a Review related to this Activity to the Server
+             * @param {object} review Review of the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            postReview: postReview
         };
 
         return Activity;
@@ -576,6 +585,23 @@
             function error(response){
                 console.log('activity.delete instructor error:', response);
                 return response.data;
+            }
+        }
+
+        function postReview(review){
+            var that = this;
+            if(review.id){
+                return $http.put(api.review(review.id), review).then(success, error);
+            } else {
+                return $http.post(api.reviews(that.id), review).then(success, error);
+            }
+
+            function success(response){
+                console.log("Review Posted successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error posting review:", response);
             }
         }
     }

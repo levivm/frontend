@@ -124,7 +124,7 @@
             })
             .state('organizer-dashboard.reviews', {
                 url:'reviews/',
-                controller: 'OrganizerReviewCtrl as reviews',
+                controller: 'OrganizerReviewsCtrl as reviews',
                 templateUrl: 'partials/organizers/dashboard/reviews.html'
             })
             .state('organizer-dashboard.reviews.done', {

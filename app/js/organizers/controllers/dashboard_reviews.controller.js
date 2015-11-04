@@ -1,6 +1,6 @@
 /**
  * @ngdoc controller
- * @name trulii.organizers.controllers.OrganizerReviewCtrl
+ * @name trulii.organizers.controllers.OrganizerReviewsCtrl
  * @description Handles Organizer Review Dashboard
  * @requires organizer
  */
@@ -10,14 +10,15 @@
 
     angular
         .module('trulii.organizers.controllers')
-        .controller('OrganizerReviewCtrl', OrganizerReviewCtrl);
+        .controller('OrganizerReviewsCtrl', OrganizerReviewsCtrl);
 
-    OrganizerReviewCtrl.$inject = [];
-    function OrganizerReviewCtrl() {
+    OrganizerReviewsCtrl.$inject = ['organizer'];
+    function OrganizerReviewsCtrl(organizer) {
 
         var vm = this;
-
-
+        angular.extend(vm, {
+            reviews: [],
+        });
 
         _activate();
 
@@ -26,6 +27,18 @@
 
 
         //--------- Internal Functions ---------//
+
+        function _getReviews(){
+            vm.reviews = organizer.getReviews().then(success, error);
+
+            function success(reviews){
+                vm.reviews = reviews;
+                console.log(vm.reviews);
+            }
+            function error(response){
+                console.log('Error retrieving organizer reviews:', response);
+            }
+        }
 
         function _setStrings() {
             if (!vm.strings) {
@@ -49,6 +62,7 @@
 
         function _activate() {
             _setStrings();
+            _getReviews();
         }
 
     }

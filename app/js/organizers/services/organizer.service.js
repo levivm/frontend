@@ -157,6 +157,14 @@
 
             /**
              * @ngdoc function
+             * @name .#getReviews
+             * @description Retrieves all Reviews from an Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getReviews: getReviews,
+
+            /**
+             * @ngdoc function
              * @name .#getInstructors
              * @description Retrieves all Instructors from an Organizer
              * @methodOf trulii.organizers.services.Organizer
@@ -189,6 +197,19 @@
         };
 
         return Organizer;
+
+        function getReviews(){
+            var that = this;
+            return $http.get(api.reviews(that.id)).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                console.log('organizer.get reviews error:', response.data);
+                return response.data;
+            }
+        }
 
         function getInstructors(){
             var that = this;
