@@ -7,7 +7,6 @@
     </ul>
     <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
 </div>
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-xs-12">
@@ -17,112 +16,88 @@
         </div>
         <hr/>
     </div>
-    <div class="row">
-        <div class="col-md-11 col-md-offset-1">
-
-        <p class="text-muted separate-below" ng-bind="manage.strings.COPY_ORDERS">
-            
-        </p>
+    <div ui-view class="lateral-fade">
 
         <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="control-label sr-only"
-                           ng-bind="::manage.strings.LABEL_SEARCH"></label>
-                    <div class="input-group">
-                        <input class="form-control floating-label" type="text"
-                               ng-model="manage.queries.orderQuery"
-                               ng-change="manage.updateByQuery(manage.TYPE_ORDER)"
-                               placeholder="{{manage.strings.COPY_SEARCH}}">
-                        <span class="input-group-addon">
-                            <i class="mdi-action-search"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <div class="col-md-11 col-md-offset-1">
+                <p class="text-muted separate-below" ng-bind="::manage.strings.COPY_ORDERS">
+                </p>
+            <div class="row">
+                <div class="col-md-12">
 
-            <!-- Ordenes -->
+                    <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1">
+                                            <p class="control-label sr-only text-center pt-sans"
+                                               ng-bind="::manage.strings.LABEL_SEARCH"></p>
+                                        </div>
+                                    </div>
+                        <label class="control-label sr-only"
+                               ng-bind="::manage.strings.LABEL_SEARCH"></label>
+                        <div class="input-group">
 
-            <div class="col-md-12" ng-repeat="order in manage.orders track by order.id">
-
-                <div class="row order-detail">
-                    <!--ng-bind="::history.strings.HEADER_ACTIVITY"-->
-                    <div class="col-xs-4 order-description">
-                        <h5 class="sinkin-semibold separate-below"><span  ng-bind="::manage.strings.LABEL_ORDER_NUMBER"></span> <span ng-bind="::order.id"></span></h5>
-                        <h5 class="sinkin-ultralight">Realizado el dia</h5>
-                        <h5 class="sinkin-semibold separate-below">19 de Jun 2014</h5>
-                        <h5 class="sinkin-ultralight">Comprador</h5>
-                        <h5 class="sinkin-semibold separate-below">Mariana Schiavino</h5>
-                        <h5 class="sinkin-ultralight">Forma de pago</h5>
-                        <h5 class="sinkin-semibold separate-below">Debito Bancolombia</h5>
-                        <h5 class="sinkin-ultralight">Cupos</h5>
-                        <h5 class="sinkin-semibold">
-                            <span ng-bind="::order.assistants.length"></span>
-                            <ng-pluralize count="order.assistants.length"
-                                          when="{'one': manage.strings.COPY_SEAT, 'other': manage.strings.COPY_SEATS}">
-                            </ng-pluralize>
-                        </h5>
-                    </div>
-                    <div class="col-xs-8 order-info">
-                        <div class="table-responsive table-fixed table-condensed">
-                            <table class="table table-hover" valign="middle">
-                                <tr class="text-center">
-                                    <th><strong ng-bind="::manage.strings.HEADER_ASSISTANT">Asistente</strong></th>
-                                    <th><strong ng-bind="::manage.strings.HEADER_EMAIL">Correo</strong></th>
-                                    <th><strong ng-bind="::manage.strings.HEADER_PRICE">Precio</strong></th>
-                                    <th><strong></strong></th>
-                                </tr>
-                                <tr ng-repeat="assistant in order.assistants">
-                                    <td>
-                                        <span ng-bind="::assistant.full_name"></span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind="::assistant.email"></span>
-                                    </td>
-                                    <td>
-                                        <span ng-bind="order.amount | currency"></span>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-default" ng-bind="::manage.strings.ACTION_REIMBURSE_ASSISTANT"></button>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <h4>Total</h4>
-                            </div>
-                            <div class="col-xs-5">
-                                <h4 class="text-right" ng-bind="::order.amount | currency"></h4>
-                            </div>
-                            <div class="col-xs-4">
-                                <button class="btn btn-block btn-primary" ng-bind="::manage.strings.ACTION_REIMBURSE_ORDER"></button>
-                            </div>
+                            <input class="form-control floating-label" type="text"
+                                   ng-model="manage.queries.orderQuery"
+                                   ng-change="manage.updateByQuery(manage.TYPE_ORDER)"
+                                   placeholder="{{manage.strings.COPY_SEARCH}}">
+                            <span class="input-group-addon">
+                                <i class="mdi-action-search"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
-            </div>            
 
-            <div class="text-center" ng-if="manage.orders.length > manage.orderPaginationOpts.itemsPerPage">
-                <pagination class="pagination-sm"
-                        ng-model="manage.orderPaginationOpts.pageNumber"
-                        ng-change="manage.pageChange(manage.TYPE_ORDER)"
-                        data-total-items="manage.orderPaginationOpts.totalItems"
-                        data-items-per-page="manage.orderPaginationOpts.itemsPerPage"></pagination>    
+                <!-- Ordenes -->
+
+                <table class="table table-hover">
+                    <tr class="text-center">
+                        <th><strong ng-bind="::manage.strings.HEADER_ORDER"></strong></th>
+                        <th><strong ng-bind="::manage.strings.HEADER_SALE_DATA"></strong></th>
+                        <th><strong ng-bind="::manage.strings.HEADER_UNIT_PRICE"></strong></th>
+                        <th><strong ng-bind="::manage.strings.HEADER_TOTAL"></strong></th>
+                        <th><strong ng-bind="::manage.strings.HEADER_STATUS"></strong></th>
+                    </tr>
+                    <tr ng-repeat="order in manage.orders track by order.id | filter:manage.orderQuery">
+                        <td>
+                            <a ui-sref="dash.activities-manage.orders.order({'orderId': order.id})" ng-bind="order.id"></a>
+                        </td>
+                        <td>
+                            <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
+                        </td>
+                        <td>
+                            <span ng-bind="order.unit_price | currency:$:0"></span>
+                        </td>
+                        <td>
+                            <span ng-bind="order.amount | currency:$:0"></span>
+                        </td>
+                        <td>
+                            <span class="text-capitalize"  ng-bind="::order.status"></span>
+                        </td>
+                    </tr>
+                </table>        
+
+                <div class="text-center" ng-if="manage.orderPaginationOpts.totalItems > manage.orderPaginationOpts.itemsPerPage">
+                    <pagination class="pagination-sm"
+                            ng-model="manage.orderPaginationOpts.pageNumber"
+                            ng-change="manage.pageChange(manage.TYPE_ORDER)"
+                            data-total-items="manage.orderPaginationOpts.totalItems"
+                            data-items-per-page="manage.orderPaginationOpts.itemsPerPage"></pagination>    
+                </div>
+
+                
+            </div>
+            <!--If there are no orders-->
+            <div ng-if="manage.orders.length <= 0" class="row">
+                <br/>
+                <div class="col-md-12">
+                    <h4 ng-bind="::manage.strings.LABEL_EMPTY_ORDERS"></h4>
+                    <p ng-show="transactions.salesPaginationOpts.totalItems > 0" ng-bind="::manage.strings.COPY_EMPTY_ORDERS"></p>
+                </div>
             </div>
 
-            
-        </div>
-        <!--If there are no orders-->
-        <div ng-if="manage.orders.length <= 0" class="row">
-            <br/>
-            <div class="col-md-12">
-                <h4 ng-bind="::manage.strings.LABEL_EMPTY_ORDERS"></h4>
-                <p ng-bind="::manage.strings.COPY_EMPTY_ORDERS"></p>
-            </div>
+        </div>        
         </div>
 
-    </div>        
     </div>
 
 

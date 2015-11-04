@@ -16864,6 +16864,14 @@ h5 {
 .order-detail .order-description {
   padding: 25px 35px;
 }
+.order-detail .btn-return {
+  font-weight: 300;
+  text-decoration: none;
+  background-color: #d9d9d9;
+}
+.order-detail .btn-return img {
+  width: 25%;
+}
 .order-detail .order-info {
   background-color: white;
   padding: 0px 35px 25px 35px;

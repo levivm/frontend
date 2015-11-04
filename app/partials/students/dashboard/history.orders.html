@@ -1,97 +1,100 @@
 
 <div class="row">
 
-    <div class="col-md-10 col-md-offset-1 tab-content">
+    <div ui-view class="lateral-fade" class="col-sm-11 col-sm-offset-1">
+        <div class="col-md-10 col-md-offset-1 tab-content">
 
-        <div class="card-body tab-content">
-            <div class="tab-pane active fade in" id="history-orders-tab">
-                <!--If there are orders-->
-                <div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group search-input">
-                                <div class="row">
-                                    <div class="col-xs-10 col-xs-offset-1">
-                                        <p class="control-label sr-only text-center pt-sans"
-                                           ng-bind="::history.strings.LABEL_SEARCH"></p>
+
+            <div class="card-body tab-content">
+                <div class="tab-pane active fade in" id="history-orders-tab">
+                    <!--If there are orders-->
+                    <div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group search-input">
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1">
+                                            <p class="control-label sr-only text-center pt-sans"
+                                               ng-bind="::history.strings.LABEL_SEARCH"></p>
+                                        </div>
+                                    </div>
+                                    <div class="input-group">
+                                        <input class="form-control floating-label" type="text"
+                                               ng-model="history.queries.orderQuery"
+                                               ng-change="history.updateByQuery(history.TYPE_ORDER)"
+                                               placeholder="{{history.strings.COPY_SEARCH}}">
+                                        <span class="input-group-addon">
+                                            <i class="mdi-action-search"></i>
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="input-group">
-                                    <input class="form-control floating-label" type="text"
-                                           ng-model="history.queries.orderQuery"
-                                           ng-change="history.updateByQuery(history.TYPE_ORDER)"
-                                           placeholder="{{history.strings.COPY_SEARCH}}">
-                                    <span class="input-group-addon">
-                                        <i class="mdi-action-search"></i>
-                                    </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive table-fixed table-condensed">
+                                    <table class="table table-hover">
+                                        <tr class="text-center">
+                                            <th><strong ng-bind="::history.strings.HEADER_ORDER"></strong></th>
+                                            <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
+                                            <th><strong ng-bind="::history.strings.HEADER_PURCHASE_DATE"></strong></th>
+                                            <th><strong ng-bind="::history.strings.HEADER_TOTAL"></strong></th>
+                                            <th><strong ng-bind="::history.strings.HEADER_STATUS"></strong></th>
+                                        </tr>
+                                        <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
+                                            <td>
+                                                <a ui-sref="student-dashboard.history.orders.order({'orderId': order.id})" ng-bind="order.id"></a>
+                                            </td>
+                                            <td>
+                                                <span ng-bind="::(order.activity_name | truncateText:true:35:'...')"></span>
+                                                <br/>
+                                                <strong ng-bind="::history.strings.COPY_START_DATE"></strong> <span class="text-capitalize" ng-bind="::order.calendar_initial_date | date:'EEEE d MMM y'"></span>
+                                            </td>
+                                            <td>
+                                                <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
+                                            </td>
+                                            <td>
+                                                <span ng-bind="order.amount | currency:$:0"></span>
+                                            </td>
+                                            <td>
+                                                <span class="text-capitalize"  ng-bind="::order.status"></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center" ng-if="history.orderPaginationOpts.totalItems > history.orderPaginationOpts.itemsPerPage">
+                            <pagination class="pagination-sm"
+                            ng-model="history.orderPaginationOpts.pageNumber"
+                            ng-change="history.pageChange(history.TYPE_ORDER)"
+                            data-total-items="history.orderPaginationOpts.totalItems"
+                            data-items-per-page="history.orderPaginationOpts.itemsPerPage"></pagination>    
+                        </div>
+                    </div>
+                    <!--If there are no orders-->
+                    <div ng-if="history.orders.length <= 0" class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+                                    <img src="css/img/student_dashboard_activities_empty.png"
+                                         alt="{{history.strings.LABEL_EMPTY_ORDERS}}"/>
+                                    <h3 class="separate-below separate-above montserrat-ultralight text-muted"
+                                        ng-bind="::history.strings.LABEL_EMPTY_ORDERS">
+                                    </h3>
+
+                                    <a class="btn btn-lg btn-success"
+                                       ng-bind="history.strings.ACTION_FIND_ACTIVITY">
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="table-responsive table-fixed table-condensed">
-                                <table class="table table-hover">
-                                    <tr class="text-center">
-                                        <th><strong ng-bind="::history.strings.HEADER_ORDER"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_PURCHASE_DATE"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_TOTAL"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_STATUS"></strong></th>
-                                    </tr>
-                                    <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
-                                        <td>
-                                            <a ui-sref="student-dashboard.history.order({'orderId': order.id})" ng-bind="order.id"></a>
-                                        </td>
-                                        <td>
-                                            <span ng-bind="::(order.activity_name | truncateText:true:35:'...')"></span>
-                                            <br/>
-                                            <strong ng-bind="::history.strings.COPY_START_DATE"></strong> <span class="text-capitalize" ng-bind="::order.calendar_initial_date | date:'EEEE d MMM y'"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
-                                        </td>
-                                        <td>
-                                            <span ng-bind="order.amount | currency:$:0"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-capitalize"  ng-bind="::order.status"></span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center" ng-if="history.orderPaginationOpts.totalItems > history.orderPaginationOpts.itemsPerPage">
-                        <pagination class="pagination-sm"
-                        ng-model="history.orderPaginationOpts.pageNumber"
-                        ng-change="history.pageChange(history.TYPE_ORDER)"
-                        data-total-items="history.orderPaginationOpts.totalItems"
-                        data-items-per-page="history.orderPaginationOpts.itemsPerPage"></pagination>    
-                    </div>
-                </div>
-                <!--If there are no orders-->
-                <div ng-if="history.orders.length <= 0" class="row">
-                    <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
-                                <img src="css/img/student_dashboard_activities_empty.png"
-                                     alt="{{history.strings.LABEL_EMPTY_ORDERS}}"/>
-                                <h3 class="separate-below separate-above montserrat-ultralight text-muted"
-                                    ng-bind="::history.strings.LABEL_EMPTY_ORDERS">
-                                </h3>
 
-                                <a class="btn btn-lg btn-success"
-                                   ng-bind="history.strings.ACTION_FIND_ACTIVITY">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
             </div>
 
         </div>
-
     </div>
 </div>

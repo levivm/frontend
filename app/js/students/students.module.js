@@ -72,13 +72,18 @@
             })
             .state('student-dashboard.history.orders', {
                 url:'/orders',
-                // controller: 'StudentHistoryOrdersCtrl as orders',
                 templateUrl: 'partials/students/dashboard/history.orders.html',
             })
-            .state('student-dashboard.history.order', {
+            .state('student-dashboard.history.orders.order', {
                 url:'/orders/:orderId',
                 controller: 'StudentHistoryOrderCtrl as order',
-                templateUrl: 'partials/students/dashboard/history.order.html',
+                templateUrl: 'partials/commons/order.html',
+                params:{
+                    'previousState': {
+                        'state': 'student-dashboard.history.orders',
+                        'params': {}
+                    }
+                },
                 resolve: {
                     order: getOrder
                 }

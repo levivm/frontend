@@ -150,6 +150,20 @@
                 url:'orders',
                 templateUrl: 'partials/activities/manage/manage_orders.html'
             })
+            .state('dash.activities-manage.orders.order', {
+                url:'/:orderId',
+                controller: 'ActivityOrderCtrl as order',
+                templateUrl: 'partials/commons/order.html',
+                params:{
+                    'previousState': {
+                        'state': null,
+                        'params': {}
+                    }
+                },
+                resolve: {
+                    order: getOrder
+                }
+            })
             .state('dash.activities-manage.assistants', {
                 url:'assistants',
                 templateUrl: 'partials/activities/manage/manage_assistants.html'
@@ -386,6 +400,19 @@
             return array;
 
         }
+
+        /**
+         * @ngdoc method
+         * @name .#getOrder
+         * @description Retrieves an Order by its ID from
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getOrder.$inject = ['$stateParams','activity'];
+        function getOrder($stateParams, activity){
+            return activity.getOrder($stateParams.orderId);
+        }
+
 
         /**
          * @ngdoc method

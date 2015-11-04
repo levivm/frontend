@@ -88,6 +88,16 @@
              */
             update_location: update_location,
 
+
+            /**
+             * @ngdoc function
+             * @name .#getOrder
+             * @description Get an order from given id 
+             * @param {number} id The ID order to fetch
+             * @methodOf trulii.activities.services.Activity
+             */
+            getOrder : getOrder,
+
             /**
              * @ngdoc function
              * @name .#setStockCover
@@ -333,6 +343,16 @@
             function error(response) {
                 return $q.reject(response.data);
             }
+        }
+
+        function getOrder(orderId){
+
+
+            return $http.get(api.order(orderId))
+                .then(function (response) {
+                    return response.data;
+                });
+
         }
 
         function setStockCover(cover) {

@@ -199,6 +199,17 @@
             'orders' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'orders']);
             },
+            /**
+             * @ngdoc function
+             * @name .#order
+             * @description Renders **`/api/orders/:idOrder`** Order URL
+             * @param {number} idOrder Order Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'order': function(idOrder){
+                return renderUrl('orders/', [idOrder]);
+            },
 
             /**
              * @ngdoc function

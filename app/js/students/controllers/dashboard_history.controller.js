@@ -48,6 +48,9 @@
             switch(type){
                 case vm.TYPE_ORDER:
                     vm.orders = $filter('filter')(orders, vm.queries.orderQuery);
+                    vm.orderPaginationOpts.totalItems = vm.orders.length;
+                    vm.orderPaginationOpts.pageNumber = 1;
+                    vm.orders = vm.orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
                     console.log('Orders query order ',vm.orders);
                     break;
                 case vm.TYPE_ASSISTANT:
