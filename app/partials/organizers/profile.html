@@ -14,7 +14,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-                        <p class="profile-cover--description">The universe is a dark place. I intend to make it brighter before I die. Humans don't have that. It’s necessary, Chief Williams. Even if it comes to a full-scale war, someone has to provide food to eat and a home to return to.</p>
+                        <p class="profile-cover--description" ng-bind="::profile.organizer.headline"></p>
                     </div>
                 </div>
                 <div class="row">
@@ -38,17 +38,13 @@
             <div class="profile-biography--content">
                  <!--<p ng-bind="::profile.organizer.bio"></p>-->
 
-                <!-- Bio placeholder-->
-                <p>Alloy of EDI’s body not like organic tissue. Could cause unintentional damage. Recommend pillows, cushions, possibly gel packs. That's what I always liked about you, Wrex. I don’t remember anything after I ate the lamp. Life is a negotiation. We all want. We have to give to get what we want. Worried about my qualifications? I can crush a mech with my biotics or shoot its head off at 100 yards. Take your pick.</p>
-
-                <p>Rachni extinction tragic. Didn't want to repeat. All life precious. Universe demands diversity. Clan Urdnot has increased in strength after the destruction of Clan Weyrlock. In addition killing the thresher maw has produced several breeding requests for Grunt, and one for Shepard. Well, at least he’s making friends. Go now, and dream of bulbous women. That argument is logical for an individual mind. We are not fully individuals. There are pieces of us in the heretics. One of those may be at fault.</p>
-
-                <p>No matter what happens here… you know I love you, I always will. I'm done helping you. It’ll either be a night to treasure, or a horrible interspecies awkwardness thing. Clan Urdnot has increased in strength after the destruction of Clan Weyrlock. In addition killing the thresher maw has produced several breeding requests for Grunt, and one for Shepard. They’re just trying to control us. Think about it: If they wanted all organic life destroyed, they could it. There would be nothing left.</p>
-                <!-- End bioplaceholder-->
+                <!-- Bio-->
+                <p ng-bind="::profile.organizer.bio"></p>
+                <!-- End-->
 
             </div>
             <div class="youtube-container">
-                <youtube-video video-url="'https://www.youtube.com/embed/XNtXNKdWao8'" player-width="'100%'"></youtube-video>
+                <youtube-video video-url="::profile.organizer.youtube_video_url" player-width="'100%'"></youtube-video>
             </div>
         </div>
     </div>
@@ -58,7 +54,7 @@
     <h3 class="text-center separate-below">
         <strong><span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span> <span ng-bind="::profile.organizer.name"></span></strong>
     </h3>
-    <trulii-activity-item class="col-md-12"
+    <trulii-activity-item 
                           ng-repeat="activity in profile.activities track by activity.id"
                           data-activity="activity" data-options="{{profile.options}}"></trulii-activity-item>
 </div>
