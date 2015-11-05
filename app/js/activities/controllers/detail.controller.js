@@ -54,7 +54,9 @@
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
             scroll: 0,
-            originalWidgetPosition: 0
+            widgetOriginalPosition: 0,
+            widgetMaxPosition: 0,
+            widgetAbsolutePosition: 0
         });
 
         _activate();
@@ -370,10 +372,14 @@
 
             angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
-                vm.originalWidgetPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top;
+                vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
                 $window.onscroll = function(){
                     console.log(document.body.scrollTop);
-                    console.log(vm.originalWidgetPosition);
+                    console.log(vm.widgetOriginalPosition);
+                    console.log(vm.widgetMaxPosition);
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (document.getElementsByClassName('calendar-widget')[0].offsetHeight) * 2;
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                 };

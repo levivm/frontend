@@ -23,7 +23,6 @@
     -ms-flex-pack: center;
     justify-content: center;
     z-index: 10;
-    background-color: rgba(75, 75, 75, 0.8)
   }
   .profile-cover--content{
     -webkit-box-flex: 0;
@@ -70,7 +69,7 @@
 
 .profile-cover:after {
   width: 100vw;
-  background-image: url('/css/img/creating.jpg');
+  background-image: url('/css/img/organizer-profile/organizer_profile_bg.png');
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
@@ -95,6 +94,23 @@
   background-color: @secondary-bg;
   text-align:center;
   padding: @spacing-medium;
+}
+
+.profile-location {
+    width: 100%;
+    .map{
+        width: 100%;
+        height: 28em;
+    }
+    .address{
+        padding: 1.2em;
+        background-color: @secondary-bg;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: 400;
+        color: @lightbg-text;
+
+    }
 }
 
 .profile-comments{

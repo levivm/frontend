@@ -7,21 +7,43 @@
 
         <div ng-if="manage.calendars.length > 0" class="row">
             <div class="col-md-12">
-                <div class="panel panel-dark" style="cursor: pointer;"
+                <div class="panel panel-default" style="cursor: pointer;"
                      ng-repeat="calendar in manage.calendars track by calendar.id">
                     <div class="panel-heading" ng-click="manage.expandCalendar(calendar)">
                         <div class="row">
-                            <div class="col-md-6">
-                                <h3 ng-bind="::calendar.fromMsg"></h3>
+                            <div class="panel-date">
+                                <span>
+                                    <span>
+                                        <strong ng-bind="::manage.strings.LABEL_CALENDAR"></strong>
+                                    </span>
+                                    <br/>
+                                    <span ng-bind="::calendar.fromDate"></span>
+                                </span>
                             </div>
-                            <div class="col-md-6 text-right">
-                                <h3 ng-bind="::calendar.toMsg"></h3>
+                            <div class="panel-date">
+                                <span>
+                                    <span>
+                                        <strong ng-bind="::manage.strings.COPY_CLOSING_DATE"></strong>
+                                    </span>
+                                    <br/>
+                                    <span ng-bind="::calendar.fromDate"></span>
+                                </span>
                             </div>
+                            <div class="panel-counter">
+                                <span>
+                                    <strong class="numbers">23/25</strong> <span ng-bind="manage.strings.COPY_SEATS"></span>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                             <span class="sr-only">40% Complete (success)</span>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                            <i class="mdi-hardware-keyboard-arrow-down"></i>
                         </div>
                     </div>
                     <div class="panel-body" data-toggle="manage.activeCalendar.id == calendar.id" trulii-expandable-content>
                         <div ng-if="calendar.assistants.length > 0">
-
                             <div class="form-group">
                                 <label class="control-label sr-only"
                                        ng-bind="::manage.strings.LABEL_SEARCH"></label>
@@ -43,7 +65,7 @@
                                         <th ng-bind="::manage.strings.HEADER_LAST_NAME"></th>
                                         <th ng-bind="::manage.strings.HEADER_EMAIL"></th>
                                         <th ng-bind="::manage.strings.HEADER_ORDER"></th>
-                                        <th class=""></th>
+                                        <th ng-bind="::manage.strings.HEADER_CODE"></th>
                                     </tr>
                                     <tr ng-repeat="assistant in manage.assistants">
                                         <td>
@@ -59,8 +81,7 @@
                                             <span ng-bind="assistant.order"></span>
                                         </td>
                                         <td>
-                                            <button class="btn btn-xs btn-bgsecondary pull-right no-margin"
-                                                    ng-bind="::manage.strings.ACTION_REIMBURSE_ASSISTANT"></button>
+                                            <span ng-bind="assistant.orderid"></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -91,10 +112,12 @@
         </div>
         <!--If there are no calendars-->
         <div ng-if="manage.calendars.length <= 0" class="row">
-            <br/>
-            <div class="col-md-12">
-                <h4 ng-bind="::manage.strings.LABEL_EMPTY_CALENDARS"></h4>
-                <p ng-bind="::manage.strings.COPY_EMPTY_CALENDARS"></p>
+            <div class="col-md-12 text-center">
+                <img src="css/img/organizer_dashboard_calendars_empty.png"
+                     alt="{{manage.strings.LABEL_EMPTY_CALENDARS}}"/>
+                <div class="separate-below separate-above standout-text"
+                     ng-bind="::manage.strings.COPY_EMPTY_CALENDARS">
+                </div>
             </div>
         </div>
     </div>    

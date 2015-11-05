@@ -69,7 +69,7 @@
             toggleReimbursement : toggleReimbursement,
             setForm:setForm,
             scroll: 0,
-            originalWidgetPosition: 0,
+            widgetOriginalPosition: 0,
 
 
             cardData : {
@@ -579,10 +579,10 @@
 
             angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
-                vm.originalWidgetPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top;
+                vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
                 $window.onscroll = function(){
                     console.log(document.body.scrollTop);
-                    console.log(vm.originalWidgetPosition);
+                    console.log(vm.widgetOriginalPosition);
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                 };

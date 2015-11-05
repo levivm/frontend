@@ -257,6 +257,9 @@
             var map = {
                 center: {latitude: latitude, longitude: longitude},
                 zoom: 14,
+                options:{
+                    'scrollwheel':true
+                },
                 bounds: scope.getAllowedBounds(),
                 events: {
                     bounds_changed: function (_map, eventName, args) {

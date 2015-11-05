@@ -5,15 +5,17 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileController', OrganizerProfileController);
 
-    OrganizerProfileController.$inject = ['$state', '$stateParams', 'LocationManager', 'organizer', 'activities'];
+    OrganizerProfileController.$inject = ['$state', '$stateParams', 'LocationManager', 'organizer', 'activities','cities'];
 
-    function OrganizerProfileController($state, $stateParams, LocationManager, organizer, activities) {
+    function OrganizerProfileController($state, $stateParams, LocationManager, organizer, activities, cities) {
 
         var vm = this;
 
         angular.extend(vm, {
             organizer : organizer,
             city : null,
+            map : LocationManager.getMap(organizer.location),
+            marker : LocationManager.getMarker(organizer.location),
             options : {
                 actions: ['view']
             },
@@ -81,6 +83,9 @@
         function _activate(){
             _setStrings();
             _setCurrentState();
+            console.log('map',vm.map);
+            vm.map.options.scrollwheel = false;
+
             LocationManager.getAvailableCities().then(successCities);
             vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
 

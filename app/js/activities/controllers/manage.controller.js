@@ -156,11 +156,9 @@
         }
 
         function _mapDateMsg(calendar){
-            calendar.fromMsg = [vm.strings.LABEL_CALENDAR, ' ', vm.strings.COPY_FROM, ' ',
-                $filter('date')(calendar.initial_date, 'dd/MM/yy')].join('');
+            calendar.fromDate = $filter('date')(calendar.initial_date, 'dd MMM yy');
 
-            calendar.toMsg = [vm.strings.COPY_CLOSING_DATE, ' ',
-                $filter('date')(calendar.closing_sale, 'dd/MM/yy')].join('');
+            calendar.toDate = $filter('date')(calendar.closing_sale, 'dd MMM yy');
             return calendar;
         }
 
@@ -178,10 +176,10 @@
                 COPY_SEATS: "Cupos",
                 COPY_SEARCH: "Buscar orden por número, nombre o correo electrónico",
                 LABEL_ORDER_NUMBER: "Orden N°",
-                LABEL_CALENDAR: "Calendario",
+                LABEL_CALENDAR: "Inicio",
                 LABEL_SEARCH: "Buscar Ordenes",
                 LABEL_EMPTY_ORDERS: "No hay órdenes de compra",
-                COPY_EMPTY_ORDERS: "Aún no tienes órdenes de compra para esta actividad ¿No atrae lo suficiente"
+                COPY_EMPTY_ORDERS: "Aún no tienes órdenes de compra para esta actividad  ¿No atrae lo suficiente"
                     + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
                     + "un vídeo. ¡Ánimo!",
                 LABEL_EMPTY_CALENDARS: "No hay calendarios",
@@ -191,8 +189,8 @@
                 COPY_EMPTY_ASSISTANTS: "Aún no tienes asistentes registrados en esta actividad¿No atrae lo suficiente"
                 + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
                 + "un vídeo. ¡Ánimo!",
-                COPY_FROM: "del",
-                COPY_CLOSING_DATE: "Cierre:",
+                COPY_CLOSING_DATE: "Cierre",
+                COPY_VIEW_DETAIL: "Ver detalle",
                 SECTION_MANAGE: "Gestionar",
                 TAB_ORDERS: "Ordenes de Compra",
                 TAB_ASSISTANTS: "Lista de Asistentes",
@@ -201,9 +199,13 @@
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_EMAIL: "Correo",
                 HEADER_PRICE: "Precio",
-                HEADER_ORDER: "Orden",
+                HEADER_ORDER: "Nro. Orden",
                 HEADER_FIRST_NAME: "Nombre",
-                HEADER_LAST_NAME: "Apellido"
+                HEADER_LAST_NAME: "Apellido",
+                HEADER_CODE: "Código",
+                HEADER_MADE: "Realizado",
+                HEADER_AMOUNT: "Monto",
+                HEADER_TOTAL: "Total"
             });
         }
 

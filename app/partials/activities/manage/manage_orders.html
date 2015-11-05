@@ -21,28 +21,68 @@
         <div class="col-md-11 col-md-offset-1">
 
         <p class="text-muted separate-below" ng-bind="manage.strings.COPY_ORDERS">
-            
+
         </p>
 
         <div ng-if="manage.orders.length > 0" class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label class="control-label sr-only"
-                           ng-bind="::manage.strings.LABEL_SEARCH"></label>
-                    <div class="input-group">
-                        <input class="form-control floating-label" type="text"
-                               ng-model="manage.queries.orderQuery"
-                               ng-change="manage.updateByQuery(manage.TYPE_ORDER)"
-                               placeholder="{{manage.strings.COPY_SEARCH}}">
-                        <span class="input-group-addon">
-                            <i class="mdi-action-search"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            <!--<div class="col-md-12">-->
+                <!--<div class="form-group">-->
+                    <!--<label class="control-label sr-only"-->
+                           <!--ng-bind="::manage.strings.LABEL_SEARCH"></label>-->
+                    <!--<div class="input-group">-->
+                        <!--<input class="form-control floating-label" type="text"-->
+                               <!--ng-model="manage.queries.orderQuery"-->
+                               <!--ng-change="manage.updateByQuery(manage.TYPE_ORDER)"-->
+                               <!--placeholder="{{manage.strings.COPY_SEARCH}}">-->
+                        <!--<span class="input-group-addon">-->
+                            <!--<i class="mdi-action-search"></i>-->
+                        <!--</span>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
 
             <!-- Ordenes -->
 
+            <div class="col-xs-12 order-info">
+              <div class="table-responsive">
+                  <table class="table table-hover">
+                      <tr class="text-center">
+                          <th ng-bind="::manage.strings.HEADER_ORDER"></th>
+                          <th ng-bind="::manage.strings.HEADER_MADE"></th>
+                          <th ng-bind="::manage.strings.HEADER_AMMOUNT"></th>
+                          <th ng-bind="::manage.strings.HEADER_TOTAL"></th>
+                          <th></th>
+                      </tr>
+                      <!-- <tr ng-repeat="assistant in manage.assistants"> -->
+                      <tr>
+                          <td>
+                              <!-- <span ng-bind="::assistant.first_name"></span> -->
+                              <span>First name</span>
+                          </td>
+                          <td>
+                              <!-- <span ng-bind="::assistant.last_name"></span> -->
+                              <span>Last name</span>
+                          </td>
+                          <td>
+                              <!-- <span ng-bind="::assistant.email"></span> -->
+                              <span>Email</span>
+                          </td>
+                          <td>
+                              <!-- <span ng-bind="assistant.order"></span> -->
+                              <span>Order</span>
+                          </td>
+                          <td>
+                              <!-- <span ng-bind="assistant.orderid"></span> -->
+                              <span>
+                                <button class="btn btn-default montserrat-light" ng-bind="::manage.strings.COPY_VIEW_DETAIL"></button>
+                              </span>
+                          </td>
+                      </tr>
+                  </table>
+              </div>
+
+
+            </div>
             <div class="col-md-12" ng-repeat="order in manage.orders track by order.id">
 
                 <div class="row order-detail">
@@ -101,17 +141,17 @@
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
 
             <div class="text-center" ng-if="manage.orders.length > manage.orderPaginationOpts.itemsPerPage">
                 <pagination class="pagination-sm"
                         ng-model="manage.orderPaginationOpts.pageNumber"
                         ng-change="manage.pageChange(manage.TYPE_ORDER)"
                         data-total-items="manage.orderPaginationOpts.totalItems"
-                        data-items-per-page="manage.orderPaginationOpts.itemsPerPage"></pagination>    
+                        data-items-per-page="manage.orderPaginationOpts.itemsPerPage"></pagination>
             </div>
 
-            
+
         </div>
         <!--If there are no orders-->
         <div ng-if="manage.orders.length <= 0" class="row">
@@ -122,11 +162,8 @@
             </div>
         </div>
 
-    </div>        
+    </div>
     </div>
 
 
 </div>
-
-
-    
