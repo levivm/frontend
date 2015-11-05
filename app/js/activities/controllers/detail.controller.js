@@ -20,11 +20,11 @@
         .controller('ActivityDetailController', ActivityDetailController);
 
     ActivityDetailController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'Toast', 'currentUser',
-        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
+        'cities', 'activity', 'calendars', 'reviews', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
         'serverConf'];
 
     function ActivityDetailController($state, $stateParams, uiGmapGoogleMapApi, Toast, currentUser,
-                                      cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
+                                      cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
         var vm = this;
@@ -107,7 +107,7 @@
                          :$state.go('register',{toState:{state:'activities-enroll',
                                 params:{activity_id:activity_id,calendar_id:calendar_id}}});
 
-            // var nextURL = currentUser ? 
+            // var nextURL = currentUser ?
             //      'activities-enroll({activity_id:'vm.activity.id+', calendar_id:'+vm.calendar_selected.id+'})'
             //     :'register({toState:{state:activities-enroll,params:{activity_id:'+vm.activity.id+',calendar_id:'+vm.calendar_selected.id+'}}})';
             // return nextURL;
@@ -373,6 +373,7 @@
 
 
             console.log('detail. activity:', vm.activity);
+            console.log('detail. reviews:', reviews);
 
         }
     }

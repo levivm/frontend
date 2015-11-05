@@ -167,13 +167,14 @@
                     }
                 },
                 resolve: {
-                    activity: getActivity,
-                    cities: getAvailableCities,
                     active: function () {
                         return true;
                     },
-                    calendars: getCalendars,
                     currentUser: getAuthenticatedUser,
+                    cities: getAvailableCities,
+                    activity: getActivity,
+                    reviews: getReviews,
+                    calendars: getCalendars
                 }
             })
             .state('activities-enroll', {
@@ -336,6 +337,31 @@
         getCalendars.$inject = ['CalendarsManager','activity'];
         function getCalendars(CalendarsManager, activity){
             return CalendarsManager.loadCalendars(activity.id);
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getReviews
+         * @description Gets Reviews for Organizer
+         * @requires activity
+         * @methodOf trulii.activities.config
+         */
+        getReviews.$inject = ['Organizer', 'activity'];
+        function getReviews(Organizer, activity){
+            var organizer = new Organizer(activity.organizer);
+            return organizer.getReviews().then(success, error);
+
+            function success(reviews){
+                return reviews.filter(filterByActivity);
+
+                function filterByActivity(review){
+                    return review.activity === activity.id;
+                }
+            }
+            function error(response){
+                console.log('WTF');
+                return [];
+            }
         }
 
         /**

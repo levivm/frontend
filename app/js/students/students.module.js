@@ -51,17 +51,25 @@
             .state('student-dashboard.profile', {
                 url:'profile',
                 controller: 'StudentProfileCtrl as profile',
-                templateUrl: 'partials/students/dashboard_profile.html'
+                templateUrl: 'partials/students/dashboard/profile.html'
             })
             .state('student-dashboard.activities', {
-                url:'activities',
+                url:'activities/',
                 controller: 'StudentActivitiesCtrl as activities',
-                templateUrl: 'partials/students/dashboard_activities.html',
+                templateUrl: 'partials/students/dashboard/activities.html',
                 resolve:{
                     activities: getStudentActivities,
                     orders: getOrders,
                     reviews: getReviewsForActivities
                 }
+            })
+            .state('student-dashboard.activities.open', {
+                url:'open',
+                templateUrl: 'partials/students/dashboard/activities_open.html'
+            })
+            .state('student-dashboard.activities.closed', {
+                url:'closed',
+                templateUrl: 'partials/students/dashboard/activities_closed.html'
             })
             .state('student-dashboard.history', {
                 abstract:true,

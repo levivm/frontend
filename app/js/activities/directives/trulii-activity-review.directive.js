@@ -26,7 +26,7 @@
                 'activity': '=',
                 'onDashboard': '='
             },
-            link: function(scope, element, attrs){
+            link: function(scope){
 
                 angular.extend(scope, {
                     hasReview: false,
@@ -98,7 +98,12 @@
                     } else {
                         user.full_name = 'User';
                     }
+
+                    if(!author.photo){
+                        author.photo = defaultPicture;
+                    }
                     scope.user = author;
+                    console.log('scope.user', scope.user);
                 }
 
                 function _getLoggedUser(){
@@ -121,7 +126,7 @@
                         LABEL_REPLY_BUTTON: "Responder",
                         LABEL_CANCEL_BUTTON: "Cancelar",
                         LABEL_CONTINUE_BUTTON: "Continuar",
-                        PLACEHOLDER_REVIEW_COMMENT: "Deja tu comentario. Esto lo verá el organizador y demás usuarios",
+                        PLACEHOLDER_REVIEW_COMMENT: "Deja tu comentario. Esto lo verá el organizador y demás usuarios"
 
                     });
                 }
@@ -133,7 +138,10 @@
                     } else {
                         scope.hasReview = false;
                         angular.extend(scope.review, EMPTY_REVIEW);
-                        if(scope.activity){ scope.review.activity = scope.activity.id; }
+                        if(scope.activity){
+                            //noinspection JSPrimitiveTypeWrapperUsage
+                            scope.review.activity = scope.activity.id;
+                        }
                     }
 
                     // TODO Might be redundant
@@ -146,11 +154,11 @@
                     }
                 }
 
-                scope.$watch('activity', function(newValue, oldValue){
+                scope.$watch('activity', function(){
                     //console.log('review directive activity:', scope.activity);
                     _activate();
                 });
-                scope.$watch('review', function(newValue, oldValue){
+                scope.$watch('review', function(){
                     console.log('review directive review:', scope.review);
                     _activate();
                 });
