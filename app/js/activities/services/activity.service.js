@@ -285,12 +285,30 @@
 
             /**
              * @ngdoc function
+             * @name .#replyReview
+             * @description Posts a Reply to a Review
+             * @param {object} review Review of the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            replyReview: replyReview,
+
+            /**
+             * @ngdoc function
              * @name .#reportReview
              * @description Reports a Review related to this Activity to the Server
              * @param {object} review Review of the Activity
              * @methodOf trulii.activities.services.Activity
              */
-            reportReview: reportReview
+            reportReview: reportReview,
+
+            /**
+             * @ngdoc function
+             * @name .#markReviewAsRead
+             * @description Mark a Review as Read
+             * @param {object} review Review of the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            markReviewAsRead: markReviewAsRead
         };
 
         return Activity;
@@ -614,8 +632,32 @@
             }
         }
 
+        function replyReview(review){
+            return $http.put(api.review(review.id), review).then(success, error);
+
+            function success(response){
+                console.log("Review reply posted successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error posting reply:", response);
+            }
+        }
+
         function reportReview(review){
             return $http.post(api.report(review.id), review).then(success, error);
+
+            function success(response){
+                console.log("Review reported successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error posting review:", response);
+            }
+        }
+
+        function markReviewAsRead(review){
+            return $http.post(api.read(review.id), review).then(success, error);
 
             function success(response){
                 console.log("Review reported successfully.", response.data);

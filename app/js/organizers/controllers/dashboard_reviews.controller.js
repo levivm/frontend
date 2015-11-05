@@ -17,7 +17,8 @@
 
         var vm = this;
         angular.extend(vm, {
-            reviews: [],
+            unread_reviews: [],
+            read_reviews: [],
             getReviewActivity: getReviewActivity
         });
 
@@ -26,8 +27,7 @@
         //--------- Exposed Functions ---------//
 
         function getReviewActivity(review){
-            var activity = activities.filter(filterActivity)[0];
-            return activity;
+            return activities.filter(filterActivity)[0];
 
             function filterActivity(activityFilter){
                 return activityFilter.id === review.activity;
@@ -35,6 +35,28 @@
         }
 
         //--------- Internal Functions ---------//
+
+        function _classifyReviews(reviews){
+            vm.unread_reviews = [];
+            vm.read_reviews = [];
+            var deferred = $q.defer();
+            var promiseArray = [];
+            angular.forEach(reviews, function(review){
+                promiseArray.push(filterReview(review));
+            });
+
+            $q.all(promiseArray).then(function(){
+                deferred.resolve();
+            });
+
+            return deferred.promise;
+
+            function filterReview(review){
+                if(review.read){ vm.read_reviews.push(review); } else { vm.unread_reviews.push(review); }
+
+                return true;
+            }
+        }
 
         function _setReviews(){
             var deferred = $q.defer();
@@ -83,7 +105,7 @@
         function _activate() {
             _setStrings();
             _setReviews().then(function(){
-                vm.reviews = reviews;
+                _classifyReviews(reviews);
             });
         }
 

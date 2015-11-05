@@ -83,13 +83,25 @@
             /**
              * @ngdoc function
              * @name .#report
-             * @description Renders **`/api/reviews/:idReview/report`** Review URL
+             * @description Renders **`/api/reviews/:idReview/report`** Report Review URL
              * @param {number} idReview Review Id
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
             'report' : function (idReview) {
                 return renderUrl('reviews/', [idReview, 'report/']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#read
+             * @description Renders **`/api/reviews/:idReview/read`** Mark as Read Review URL
+             * @param {number} idReview Review Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'read' : function (idReview) {
+                return renderUrl('reviews/', [idReview, 'read/']);
             },
 
             /**

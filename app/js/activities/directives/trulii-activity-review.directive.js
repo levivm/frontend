@@ -35,7 +35,9 @@
                     isOrganizer: false,
                     postReview: postReview,
                     confirmReport: confirmReport,
-                    cancelReport: cancelReport
+                    cancelReport: cancelReport,
+                    markAsRead: markAsRead,
+                    reply: reply
                 });
 
                 var activityInstance = null;
@@ -47,12 +49,13 @@
                 };
 
                 _activate();
+                _getLoggedUser();
                 _setStrings();
 
                 //--------- Exposed Functions ---------//
 
                 function postReview(){
-                    activityInstance.postReview(scope.review).then(success, error);
+                    activityInstance.postReview(scope.review);
                 }
 
                 function cancelReport(){
@@ -64,6 +67,14 @@
                     activityInstance.reportReview(scope.review);
                 }
 
+                function reply(){
+                    activityInstance.replyReview(scope.review);
+                }
+
+                function markAsRead(){
+                    activityInstance.markReviewAsRead(scope.review);
+                }
+
                 //--------- Internal Functions ---------//
 
                 function _getActivityInstance(){
@@ -73,10 +84,13 @@
                 }
 
                 function _getUser(){
+                    if(!scope.review.author){
+                        return;
+                    }
                     var author = scope.review.author;
                     var user = author.user;
                     if (user.full_name) {
-                        console.log('Full Name already defined');
+                        //console.log('Full Name already defined');
                     } else if (user.first_name && user.last_name) {
                         user.full_name = [user.first_name, user.last_name].join(' ');
                     } else if(user.first_name) {
@@ -85,7 +99,12 @@
                         user.full_name = 'User';
                     }
                     scope.user = author;
-                    scope.isOrganizer = author.user_type.toUpperCase === 'O';
+                }
+
+                function _getLoggedUser(){
+                    Authentication.getAuthenticatedAccount().then(function(user){
+                        scope.isOrganizer = user.user_type.toUpperCase() == "O";
+                    });
                 }
 
                 function _setStrings(){
@@ -132,7 +151,7 @@
                     _activate();
                 });
                 scope.$watch('review', function(newValue, oldValue){
-                    //console.log('review directive review:', scope.review);
+                    console.log('review directive review:', scope.review);
                     _activate();
                 });
             }
