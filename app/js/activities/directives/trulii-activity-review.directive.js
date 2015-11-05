@@ -111,7 +111,7 @@
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
                         ACTION_DONE: "Listo",
-                        COPY_PENDING_APPROVAL: "Comentario siendo revisado por trulii",
+                        COPY_REPORTED: "Comentario siendo revisado por trulii",
                         COPY_COMMENT_PLACEHOLDER: "Escribe aqui tu respuesta al comentario",
                         COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por "
                             + "el equipo de Trulii para ser retirado público. Próximamente la enviaremos un correo "
