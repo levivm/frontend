@@ -65,7 +65,7 @@
                     'bio' : scope.bio,
                     'city' : scope.city,
                 };
-                return scope.update(profile_data)
+                return scope.update(profile_data);
             },
             upload_photo : function (image) {
                 var scope = this;
@@ -75,7 +75,6 @@
 
             update : function (data) {
                 var scope = this;
-                console.log("updating STUDENT",scope);
                 return $http.put(api.student(this.id),data)
                     .then(success, error);
 
@@ -113,7 +112,6 @@
                     return $q.reject(response);
                 }
             },
-
             change_password : function (password_data) {
                 return Authentication.change_password(password_data);
             },

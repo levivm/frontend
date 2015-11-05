@@ -230,6 +230,7 @@
         function getAvailableCities(LocationManager){
             return LocationManager.getAvailableCities();
         }
+
     }
 
 })();

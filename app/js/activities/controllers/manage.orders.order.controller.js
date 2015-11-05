@@ -1,27 +1,25 @@
 /**
  * @ngdoc controller
- * @name trulii.students.controllers.StudentHistoryOrderCtrl
- * @description Handles Student Orders History Dashboard
- * @requires student
+ * @name trulii.students.controllers.ActivityOrderCtrl
+ * @description Handles Activity Order History Dashboard
  * @requires order
  */
 (function () {
     'use strict';
 
     angular
-        .module('trulii.students.controllers')
-        .controller('StudentHistoryOrderCtrl', StudentHistoryOrderCtrl);
+        .module('trulii.activities.controllers')
+        .controller('ActivityOrderCtrl', ActivityOrderCtrl);
 
-    StudentHistoryOrderCtrl.$inject = ['$stateParams','student', 'order'];
+    ActivityOrderCtrl.$inject = ['$stateParams','order'];
 
-    function StudentHistoryOrderCtrl($stateParams,student, order) {
+    function ActivityOrderCtrl($stateParams,order) {
 
         var vm = this;
 
         angular.extend(vm,{
-            student: student,
             order: order,
-            previousState:null,
+            previousState: null,
         });
 
         _activate();
@@ -52,6 +50,14 @@
 
         function _activate() {
             vm.previousState = $stateParams.previousState;
+            if (!(vm.previousState.state)){
+                vm.previousState = {
+                    'state':'dash.activities-manage.orders',
+                    'params':{
+                        'activity_id':order.activity_id
+                    }
+                };
+            }
             _setStrings();
             console.log('order',order);
         }
