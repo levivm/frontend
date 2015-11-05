@@ -17,62 +17,13 @@
     </div>
 </div>
 <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 review-detail separate-above-medium separate-below-less"
+         ng-repeat="review in reviews.reviews track by review.id">
+        <trulii-activity-review data-review="review" data-activity="reviews.getReviewActivity(review)"
+                                data-on-dashboard="true"></trulii-activity-review>
+    </div>
+
     <div class="col-xs-10 col-xs-offset-1 review-detail separate-above-medium separate-below-less">
-
-        <!-- Comment -->
-        <div class="row">
-            <div class="col-xs-2 review-profile-picture">
-                <!-- Profile picture -->
-                <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle"/>
-                <!-- End profile picture-->
-            </div>
-            <div class="col-xs-10 paragraph-condensed">
-                <div class="review-detail-header text-muted">
-
-                    <!-- Name-->
-                    <span class="text-center text-sm text-uppercase text-dark montserrat-regular">
-                        Carlos Schiavino
-                    </span>
-                    <!-- End name -->
-
-                    <span>|</span>
-
-                    <!-- Score -->
-                    <span class="text-uppercase text-muted montserrat-regular">
-                        <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star star" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-star star-empty" aria-hidden="true"></span>
-                    </span>
-                    <!-- End score-->
-
-                    <span>|</span>
-
-                    <!-- Date -->
-                    <span class="text-sm">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em>
-                    </span>
-                    <!-- End date-->
-
-                    <!-- Activity link-->
-                    <span class="float-right text-sm">
-                        <a href="#">
-                            Yoga en el parque
-                        </a>
-                    </span>
-                    <!-- End activity link-->
-                </div>
-
-                <!-- Comment message -->
-                <p>
-                    Safety standards advise against manipulating drive settings while engines are powered and in use, Mr. Moreau.
-                </p>
-                <!-- End comment message -->
-
-            </div>
-        </div>
-
         <!-- Response -->
 
         <!-- Reply being approved -->
@@ -160,4 +111,5 @@
         </div>
         <hr/>
     </div>
+
 </div>

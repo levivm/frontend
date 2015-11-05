@@ -12,31 +12,49 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerReviewsCtrl', OrganizerReviewsCtrl);
 
-    OrganizerReviewsCtrl.$inject = ['organizer'];
-    function OrganizerReviewsCtrl(organizer) {
+    OrganizerReviewsCtrl.$inject = ['$q', 'activities', 'reviews', 'organizer'];
+    function OrganizerReviewsCtrl($q, activities, reviews, organizer) {
 
         var vm = this;
         angular.extend(vm, {
             reviews: [],
+            getReviewActivity: getReviewActivity
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
 
+        function getReviewActivity(review){
+            var activity = activities.filter(filterActivity)[0];
+            return activity;
 
+            function filterActivity(activityFilter){
+                return activityFilter.id === review.activity;
+            }
+        }
 
         //--------- Internal Functions ---------//
 
-        function _getReviews(){
-            vm.reviews = organizer.getReviews().then(success, error);
+        function _setReviews(){
+            var deferred = $q.defer();
+            var promiseArray = [];
+            activities.map(function(activity){
+                promiseArray.push(mapReview(activity));
+            });
 
-            function success(reviews){
-                vm.reviews = reviews;
-                console.log(vm.reviews);
-            }
-            function error(response){
-                console.log('Error retrieving organizer reviews:', response);
+            $q.all(promiseArray).then(function(){
+                deferred.resolve();
+            });
+
+            return deferred.promise;
+
+            function mapReview(activity){
+                activity.review = reviews.filter(filterReview)[0];
+
+                function filterReview(review){
+                    return review.activity === activity.id;
+                }
             }
         }
 
@@ -51,7 +69,9 @@
                 COPY_SEARCH_REVIEWS: "Revisa los comentarios que han hecho a tus actividades",
                 COPY_PENDING_APPROVAL: "Comentario siendo revisado por trulii",
                 COPY_COMMENT_PLACEHOLDER: "Escribe aqui tu respuesta al comentario",
-                COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por el equipo de Trulii para ser retirado público. Próximamente la enviaremos un correo con el resultado de nuestra evaluación",
+                COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por el "
+                    + "equipo de Trulii para ser retirado público. Próximamente la enviaremos un correo con"
+                    + " el resultado de nuestra evaluación",
                 LABEL_SEARCH_ORDERS: "Filtrar por nombre de actividad",
                 LABEL_REPORT_BUTTON: "Reportar",
                 LABEL_REPLY_BUTTON: "Responder",
@@ -62,7 +82,9 @@
 
         function _activate() {
             _setStrings();
-            _getReviews();
+            _setReviews().then(function(){
+                vm.reviews = reviews;
+            });
         }
 
     }

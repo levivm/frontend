@@ -281,7 +281,16 @@
              * @param {object} review Review of the Activity
              * @methodOf trulii.activities.services.Activity
              */
-            postReview: postReview
+            postReview: postReview,
+
+            /**
+             * @ngdoc function
+             * @name .#reportReview
+             * @description Reports a Review related to this Activity to the Server
+             * @param {object} review Review of the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            reportReview: reportReview
         };
 
         return Activity;
@@ -598,6 +607,18 @@
 
             function success(response){
                 console.log("Review Posted successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error posting review:", response);
+            }
+        }
+
+        function reportReview(review){
+            return $http.post(api.report(review.id), review).then(success, error);
+
+            function success(response){
+                console.log("Review reported successfully.", response.data);
                 return response.data;
             }
             function error(response){

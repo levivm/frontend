@@ -199,15 +199,30 @@
         return Organizer;
 
         function getReviews(){
-            var that = this;
-            return $http.get(api.reviews(that.id)).then(success, error);
+            var deferred = $q.defer();
+            var reviews = [];
 
-            function success(response){
-                return response.data;
-            }
-            function error(response){
-                console.log('organizer.get reviews error:', response.data);
-                return response.data;
+            collectReviews(api.reviews(this.id));
+
+            return deferred.promise;
+
+            function collectReviews(nextUrl){
+                return $http.get(nextUrl)
+                    .then(success, error);
+
+                function success(response) {
+                    reviews = reviews.concat(response.data.results);
+                    if(response.data.next){
+                        return collectReviews(response.data.next);
+                    } else {
+                        deferred.resolve(reviews);
+                    }
+                }
+
+                function error(response) {
+                    console.log("Error getting organizer reviews: ", response.data);
+                    deferred.reject(reviews);
+                }
             }
         }
 

@@ -22,6 +22,7 @@
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_review.html",
             scope: {
+                'review': '=',
                 'activity': '=',
                 'onDashboard': '='
             },
@@ -29,73 +30,111 @@
 
                 angular.extend(scope, {
                     hasReview: false,
+                    showReportWarning: false,
                     user: null,
                     isOrganizer: false,
-                    review: null,
-                    postReview: postReview
+                    postReview: postReview,
+                    confirmReport: confirmReport,
+                    cancelReport: cancelReport
                 });
+
+                var activityInstance = null;
+                var organizer = null;
 
                 var EMPTY_REVIEW = {
                     rating: 0,
-                    activity: scope.activity.id,
                     comment : ""
                 };
 
                 _activate();
+                _setStrings();
 
                 //--------- Exposed Functions ---------//
 
                 function postReview(){
-                    ActivitiesManager.getActivity(scope.activity.id).then(function(activityInstance){
-                        activityInstance.postReview(scope.review).then(success, error);
-                    });
+                    activityInstance.postReview(scope.review).then(success, error);
+                }
+
+                function cancelReport(){
+                    scope.showReportWarning = false;
+                }
+
+                function confirmReport(){
+                    scope.showReportWarning = false;
+                    activityInstance.reportReview(scope.review);
                 }
 
                 //--------- Internal Functions ---------//
 
-                function _getUser(){
-                    Authentication.getAuthenticatedAccount(true).then(success, error);
+                function _getActivityInstance(){
+                    ActivitiesManager.getActivity(scope.activity.id).then(function(activityInstanceResponse){
+                        activityInstance = activityInstanceResponse;
+                    });
+                }
 
-                    function success(user){
-                        scope.user = user;
-                        scope.isOrganizer = user.user_type.toUpperCase === 'O';
+                function _getUser(){
+                    var author = scope.review.author;
+                    var user = author.user;
+                    if (user.full_name) {
+                        console.log('Full Name already defined');
+                    } else if (user.first_name && user.last_name) {
+                        user.full_name = [user.first_name, user.last_name].join(' ');
+                    } else if(user.first_name) {
+                        user.full_name = user.first_name;
+                    } else {
+                        user.full_name = 'User';
                     }
-                    function error(error){
-                        console.log('_getUser error:', error);
-                        scope.isOrganizer = false; // Failsafe
-                    }
+                    scope.user = author;
+                    scope.isOrganizer = author.user_type.toUpperCase === 'O';
                 }
 
                 function _setStrings(){
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
+                        ACTION_DONE: "Listo",
+                        COPY_PENDING_APPROVAL: "Comentario siendo revisado por trulii",
+                        COPY_COMMENT_PLACEHOLDER: "Escribe aqui tu respuesta al comentario",
+                        COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por "
+                            + "el equipo de Trulii para ser retirado público. Próximamente la enviaremos un correo "
+                            + " con el resultado de nuestra evaluación",
                         LABEL_RATE_EXPERIENCE: "¿Cómo calificarías la experiencia?",
+                        LABEL_REPORT_BUTTON: "Reportar",
+                        LABEL_REPLY_BUTTON: "Responder",
+                        LABEL_CANCEL_BUTTON: "Cancelar",
+                        LABEL_CONTINUE_BUTTON: "Continuar",
                         PLACEHOLDER_REVIEW_COMMENT: "Deja tu comentario. Esto lo verá el organizador y demás usuarios",
-                        ACTION_DONE: "Listo"
 
                     });
                 }
 
                 function _activate(){
-                    _setStrings();
                     _getUser();
-                    if(scope.activity.review){
+                    if(scope.review.id){
                         scope.hasReview = true;
-                        scope.review = scope.activity.review;
                     } else {
                         scope.hasReview = false;
-                        scope.review = angular.copy(EMPTY_REVIEW);
+                        angular.extend(scope.review, EMPTY_REVIEW);
+                        if(scope.activity){ scope.review.activity = scope.activity.id; }
                     }
 
                     // TODO Might be redundant
-                    var organizer = scope.activity.organizer;
-                    if(!organizer.photo){
-                        organizer.photo = defaultPicture;
+                    if(scope.activity){
+                        organizer = scope.activity.organizer;
+                        if(!organizer.photo){
+                            organizer.photo = defaultPicture;
+                        }
+                        _getActivityInstance();
                     }
-
-                    console.log('review directive activity:', scope.activity);
-                    console.log('review directive review:', scope.activity.review);
                 }
+
+                scope.$watch('activity', function(newValue, oldValue){
+                    //console.log('review directive activity:', scope.activity);
+                    _activate();
+                });
+                scope.$watch('review', function(newValue, oldValue){
+                    //console.log('review directive review:', scope.review);
+                    _activate();
+                });
             }
         }
     }

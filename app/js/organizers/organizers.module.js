@@ -125,7 +125,11 @@
             .state('organizer-dashboard.reviews', {
                 url:'reviews/',
                 controller: 'OrganizerReviewsCtrl as reviews',
-                templateUrl: 'partials/organizers/dashboard/reviews.html'
+                templateUrl: 'partials/organizers/dashboard/reviews.html',
+                resolve: {
+                    activities: getOrganizerActivities,
+                    reviews: getOrganizerReviews
+                }
             })
             .state('organizer-dashboard.reviews.done', {
                 url:'done',
@@ -198,6 +202,20 @@
         getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
         function getOrganizerActivities(ActivitiesManager, organizer){
             return ActivitiesManager.loadOrganizerActivities(organizer.id);
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getOrganizerReviews
+         * @description Retrieves an Organizer's Activities from
+         * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID
+         * @requires trulii.activities.services.ActivitiesManager
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getOrganizerReviews.$inject = ['organizer'];
+        function getOrganizerReviews(organizer){
+            return organizer.getReviews();
         }
 
         /**

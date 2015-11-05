@@ -12,23 +12,35 @@
         .module('trulii.students.controllers')
         .controller('StudentActivitiesCtrl', StudentActivitiesCtrl);
 
-    StudentActivitiesCtrl.$inject = ['$q', 'activities', 'student'];
+    StudentActivitiesCtrl.$inject = ['$q', 'activities', 'reviews', 'orders', 'student'];
 
-    function StudentActivitiesCtrl($q, activities, student) {
+    function StudentActivitiesCtrl($q, activities, reviews, orders, student) {
 
         var vm = this;
-        var reviews =[];
         angular.extend(vm, {
             open_activities: [],
             closed_activities: [],
             options : {
                 actions: ["contact"]
-            }
+            },
+            getReviewByActivityId: getReviewByActivityId
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+
+        function getReviewByActivityId(activityId){
+            var review = reviews.filter(filterById)[0];
+            console.log('getReviewByActivityId', review);
+            if(review){
+               return review;
+            } else {
+                return {};
+            }
+
+            function filterById(review){ return review.activity.id === activityId; }
+        }
 
         //--------- Internal Functions ---------//
 
@@ -49,48 +61,29 @@
             }
         }
 
-        function _setReviews(){
-            return student.getReviews().then(success, error);
-
-            function success(reviewsResponse){
-                var deferred = $q.defer();
-                var promiseArray = [];
-                reviews = reviewsResponse;
-                activities.map(function(activity){
-                    promiseArray.push(mapReview(activity));
-                });
-
-                $q.all(promiseArray).then(function(){
-                    deferred.resolve();
-                });
-
-                return deferred.promise;
-
-                function mapReview(activity){
-                    activity.review = reviews.filter(filterReview)[0];
-
-                    function filterReview(review){
-                        return review.activity === activity.id;
-                    }
-                }
-            }
-            function error(response){
-                reviews = [];
-            }
-        }
-
-        function _mapMainPicture(activity){
-            angular.forEach(activity.pictures, function(picture, index, array){
-                if(picture.main_photo){
-                    activity.main_photo = picture.photo;
-                }
-
-                if( index === (array.length - 1) && !activity.main_photo){
-                    activity.main_photo = array[0].photo;
-                }
+        function _mapReviews(reviews){
+            console.log('reviews', reviews);
+            var deferred = $q.defer();
+            var promiseArray = [];
+            activities.map(function(activity){
+                promiseArray.push(mapReview(activity));
             });
 
-            return activity;
+            $q.all(promiseArray).then(function(){
+                deferred.resolve();
+            });
+
+            return deferred.promise;
+
+            function mapReview(activity){
+                var review = reviews.filter(filterReview)[0];
+                if(!review){ review = {}; }
+                activity.review = review;
+
+                function filterReview(review){
+                    return review.activity === activity.id;
+                }
+            }
         }
 
         function _mapOrders(activities, orders){
@@ -127,12 +120,8 @@
 
         function _activate() {
             _setStrings();
-            activities = activities ? activities.map(_mapMainPicture) : [] ;
-            _setReviews().then(function(){ _assignActivities(); });
-            student.getOrders().then(function(orders){
-                activities = _mapOrders(activities, orders);
-                console.log('activities', activities);
-            })
+            activities = _mapOrders(activities, orders);
+            _mapReviews(reviews).then(function(){ _assignActivities(); });
         }
 
     }
