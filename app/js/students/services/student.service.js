@@ -65,7 +65,7 @@
                     'bio' : scope.bio,
                     'city' : scope.city,
                 };
-                return scope.update(profile_data)
+                return scope.update(profile_data);
             },
             upload_photo : function (image) {
                 var scope = this;
@@ -75,7 +75,6 @@
 
             update : function (data) {
                 var scope = this;
-                console.log("updating STUDENT",scope);
                 return $http.put(api.student(this.id),data)
                     .then(success, error);
 
@@ -113,7 +112,6 @@
                     return $q.reject(response);
                 }
             },
-
             change_password : function (password_data) {
                 return Authentication.change_password(password_data);
             },
@@ -130,10 +128,41 @@
                     .then(function (response) {
                         return response.data;
                     });
-            }
+            },
+
+            getReviews: getReviews
         };
 
         return Student;
+
+        function getReviews(){
+
+            var deferred = $q.defer();
+            var reviews = [];
+
+            collectReviews(api.reviews(this.id));
+
+            return deferred.promise;
+
+            function collectReviews(nextUrl){
+                return $http.get(nextUrl)
+                    .then(success, error);
+
+                function success(response) {
+                    reviews = reviews.concat(response.data.results);
+                    if(response.data.next){
+                        return collectReviews(response.data.next);
+                    } else {
+                        deferred.resolve(reviews);
+                    }
+                }
+
+                function error(response) {
+                    console.log("Error getting student reviews: ", response.data);
+                    deferred.reject(reviews);
+                }
+            }
+        }
     }
 
 })();

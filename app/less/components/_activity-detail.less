@@ -20,27 +20,32 @@ h5{
         font-weight: 400;
     }
 }
+h1, h2, h3, h4, h5{
+    letter-spacing: -1px;
+}
 
 .organizer-widget {
 
-    .card{
+    .card {
         border-top: @border-widget;
         border-right: @border-widget;
         border-left: @border-widget;
 
         border-radius: 0;
-        padding: 1em;
+        padding: 1.5em 1em;
         margin: 0;
-        .content{
+
+        .content {
             width: 90%;
             margin: 0 auto;
 
             .picture {
                 margin-right: 12px;
-                border-radius: 100%;
+                border-radius: 50%;
                 display: inline-block;
-                height: 60px;
-                width: 60px;
+                height: auto;
+                margin-left: 10%;
+                width: 30%;
             }
 
             .data {
@@ -51,20 +56,19 @@ h5{
                 .name {
                     font-family: @font-sans;
                     font-weight: 600;
-                    font-size: 1em;
+                    font-size: 1.2em;
                     letter-spacing: 2px;
                     color: @lightbg-text;
                     text-transform: uppercase;
                 }
 
                 .location {
-                    font-family: @font-serif;
+                    font-family: @font-sans-alt;
                     font-size: 0.75em;
                     color: @text-muted;
                 }
             }
         }
-
     }
 
     .ratings {
@@ -76,16 +80,11 @@ h5{
 
         span {
             color: @text-muted;
-            margin-left:.7em;
-            font-family: @font-serif;
+            margin-left: .7em;
+            font-family: @font-sans-alt;
         }
-        img{
+        img {
             padding-bottom: 0.4em;
-            &.rating-icon{
-                width: 11px;
-                margin-top: 5px;
-
-            }
         }
     }
 }
@@ -158,14 +157,14 @@ h5{
             font-weight: 400;
             text-transform: uppercase;
             text-align: center;
-            color: @gray-light !important;
+            color: @black !important;
         }
 
         .info {
             width: 100%;
             text-align: center;
             color: @text-muted;
-            
+
             .InfoSection(){
                 width: 30%;
                 padding: 0.8em;
@@ -359,21 +358,16 @@ h5{
 
 
 .social{
-    
     .info{
-
         font-family: @font-serif;
         font-size: 1.1em;
         color: @text-muted;
-
     }
-
 }
 
 .section {
     .content {
-        margin-top: 1.5em;
-        line-height: 1.5em;
+        margin-top: 0.6em;
         margin-bottom: 0.6em;
     }
 
@@ -389,7 +383,7 @@ h5{
 }
 
 
-.gallery-container { 
+.gallery-container {
     margin-top:3rem;
 }
 
@@ -571,6 +565,7 @@ h5{
 
     &-info h5 {
         font-family: @font-sans-alt;
+        font-weight: 500;
     }
 
 
@@ -600,6 +595,10 @@ h5{
                 font-size: 3em;
             }
         }
+    }
+
+    .btn {
+        margin-top: 2em;
     }
 
     .btn-link {
@@ -639,6 +638,9 @@ h5{
     }
 }
 
+.youtube-video-container {
+    margin-bottom: 2.5em;
+}
 
 .contact-us-container {
     padding-bottom: 4em;
@@ -659,10 +661,11 @@ h5{
     padding: 4em 9.5em;
     background-color: @secondary-bg;
     text-align: center;
+
 }
 
 
-.title{
+.title {
     &:extend(.separate-above);
     &:extend(.separate-below-medium);
 }

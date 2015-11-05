@@ -50,6 +50,18 @@
 
             /**
              * @ngdoc function
+             * @name .#reviews
+             * @description Renders **`/api/organizers/:idOrganizer/reviews`** Organizer Reviews URL
+             * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'reviews': function(idOrganizer){
+                return renderUrl('organizers/', [idOrganizer, 'reviews']);
+            },
+
+            /**
+             * @ngdoc function
              * @name .#locations
              * @description Renders **`/api/organizers/:idOrganizer/locations`** Locations URL
              * @param {number} idOrganizer Organizer Id

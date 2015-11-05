@@ -1,0 +1,142 @@
+<!-- If user hasnt posted a review yet -->
+<div ng-hide="hasReview">
+    <div class="separate-above-medium separate-below-medium">
+        <h3 class="text-center text-muted montserrat-light" ng-bind="strings.LABEL_RATE_EXPERIENCE"></h3>
+        <div>
+            <h4 class="text-center text-muted montserrat-light">
+                <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
+                        state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
+                <span ng-bind="review.rating + ' / 5'"></span>
+            </h4>
+        </div>
+    </div>
+    <!-- Should be hidden until a score has been chosen-->
+    <div ng-show="review.rating">
+        <div class="separate-above-medium separate-below-more">
+            <input id="review-comment" class="form-control" name="review-comment"
+                   ng-model="review.comment"
+                   placeholder="{{ strings.PLACEHOLDER_REVIEW_COMMENT }}"
+                   type="text">
+        </div>
+        <div class="separate-above-medium separate-below-medium">
+            <div class="row">
+                <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-8">
+                    <button class="btn btn-success btn-block btn-md" ng-bind="strings.ACTION_DONE" ng-click="postReview()">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- If it has a review -->
+<div ng-show="hasReview" class="review-detail">
+    <div class="row separate-above-medium">
+        <!-- Comment -->
+        <div class="col-xs-2">
+            <!-- Profile picture -->
+            <img ng-src="{{user.photo}}" class="img-responsive img-circle"/>
+            <!-- End profile picture-->
+            <!-- Name-->
+            <h4 class="text-center text-sm text-uppercase text-dark montserrat-regular" ng-bind="user.user.full_name"></h4>
+            <!-- End name -->
+        </div>
+        <div class="col-xs-10 paragraph-condensed">
+            <div class="col-xs-12 text-muted">
+                <!-- Score -->
+                <span class="text-uppercase montserrat-regular">
+                    <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
+                            readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
+                    <span ng-bind="review.rating + ' / 5'"></span>
+                </span>
+                <!-- End score-->
+                <span>|</span>
+                <!-- Activity link-->
+                <span class="text-sm">
+                    <a ui-sref="activities-detail({'activity_id': activity.id})" ng-bind="activity.title"></a>
+                </span>
+                <!-- End activity link-->
+                <div class="float-right">
+                    <!-- Date -->
+                    <span class="text-sm">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em>
+                    </span>
+                    <!-- End date-->
+                </div>
+            </div>
+            <div class="col-xs-12 separate-above-less">
+                <p ng-bind="review.comment"></p>
+            </div>
+        </div>
+    </div>
+    <!-- Response -->
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-2">
+            <!-- Review being reviewed -->
+            <div ng-show="review.reported">
+                <h4 class="text-success text-right" ng-bind="::strings.COPY_REPORTED"></h4>
+            </div>
+        </div>
+    </div>
+    <!-- No response yet-->
+    <div class="row" ng-if="isOrganizer && onDashboard">
+        <div class="col-xs-10 col-xs-offset-2">
+            <div class="row" ng-hide="review.reply">
+                <div class="col-xs-12 separate-above-less separate-below-less">
+                    <input id="review-reply" class="form-control" name="review-reply"
+                           ng-model="review.reply"
+                           placeholder="{{strings.COPY_COMMENT_PLACEHOLDER}}"
+                           type="text">
+                </div>
+            </div>
+            <!--Buttons-->
+            <div class="row separate-above-less separate-below-less">
+                <div class="col-xs-12 col-md-3">
+                    <button class="btn btn-default btn-block" ng-bind="::strings.LABEL_REPORT_BUTTON"
+                            ng-click="showReportWarning = !showReportWarning">
+                    </button>
+                </div>
+                <div class="col-xs-12 col-xs-offset-0 col-md-3 col-md-offset-3">
+                    <button class="btn btn-primary btn-block" ng-bind="::strings.LABEL_REPLY_BUTTON"
+                            ng-click="reply()">
+                    </button>
+                </div>
+                <div class="col-xs-12 col-md-3">
+                    <button class="btn btn-success btn-block" ng-click="markAsRead()">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            <!-- Report alert-->
+            <div class="row" ng-show="showReportWarning">
+                <div class="col-xs-12 report-alert separate-above-less separate-below-less">
+                    <p ng-bind="::strings.COPY_REPORT_DISCLAIMER">
+                    </p>
+                    <div class="row">
+                        <div class="col-xs-12 col-xs-offset-0 col-md-3 col-md-offset-6">
+                            <button class="btn btn-block btn-default" ng-bind="::strings.LABEL_CANCEL_BUTTON"
+                                    ng-click="cancelReport()"></button>
+                        </div>
+                        <div class="col-xs-12 col-xs-offset-0 col-md-3">
+                            <button class="btn btn-block btn-success" ng-bind="::strings.LABEL_CONTINUE_BUTTON"
+                                    ng-click="confirmReport()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="review.reply" class="row separate-above-medium separate-below-medium">
+        <div class="col-xs-2 col-xs-offset-1">
+            <!--TODO organizer-->
+            <img ng-src="{{ activity.organizer.photo }}" class="img-responsive img-circle"/>
+            <h4 class="text-center text-sm text-uppercase montserrat-regular" ng-bind="activity.organizer.name"></h4>
+        </div>
+        <div class="col-xs-9 paragraph-condensed">
+            <span class="montserrat-semibold organizer-name" ng-bind="activity.organizer.name"></span>
+            <span class="text-sm text-muted pull-right">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span><em>11 Jun. 2015</em>
+            </span>
+            <p><em ng-bind="review.reply"></em></p>
+        </div>
+    </div>
+</div>

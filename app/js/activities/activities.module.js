@@ -150,6 +150,20 @@
                 url:'orders',
                 templateUrl: 'partials/activities/manage/manage_orders.html'
             })
+            .state('dash.activities-manage.orders.order', {
+                url:'/:orderId',
+                controller: 'ActivityOrderCtrl as order',
+                templateUrl: 'partials/commons/order.html',
+                params:{
+                    'previousState': {
+                        'state': null,
+                        'params': {}
+                    }
+                },
+                resolve: {
+                    order: getOrder
+                }
+            })
             .state('dash.activities-manage.assistants', {
                 url:'assistants',
                 templateUrl: 'partials/activities/manage/manage_assistants.html'
@@ -167,11 +181,13 @@
                     }
                 },
                 resolve: {
-                    activity: getActivity,
-                    cities: getAvailableCities,
                     active: function () {
                         return true;
                     },
+                    currentUser: getAuthenticatedUser,
+                    cities: getAvailableCities,
+                    activity: getActivity,
+                    reviews: getReviews,
                     calendars: getCalendars
                 }
             })
@@ -339,10 +355,36 @@
 
         /**
          * @ngdoc method
+         * @name .#getReviews
+         * @description Gets Reviews for Organizer
+         * @requires activity
+         * @methodOf trulii.activities.config
+         */
+        getReviews.$inject = ['Organizer', 'activity'];
+        function getReviews(Organizer, activity){
+            var organizer = new Organizer(activity.organizer);
+            return organizer.getReviews().then(success, error);
+
+            function success(reviews){
+                return reviews.filter(filterByActivity);
+
+                function filterByActivity(review){
+                    return review.activity === activity.id;
+                }
+            }
+            function error(response){
+                console.log('WTF');
+                return [];
+            }
+        }
+
+        /**
+         * @ngdoc method
          * @name .#getCalendar
          * @description Gets a Calendar by its ID from
          * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service
          * @requires ui.router.state.$stateParams
+         * @requires calendars
          * @requires trulii.activities.services.CalendarsManager
          * @methodOf trulii.activities.config
          */
@@ -371,28 +413,32 @@
         /**
          * @ngdoc method
          * @name .#fetchCalendarArray
-         * @description Fetches a Calendar by Activity ID and Calendar ID in $stateParams from
-         * {@link trulii.activities.services.CalendarsManager CalendarsManager} Service and returns it inside an Array
+         * @description get fetched calendar and returns it inside an Array
          * @requires ui.router.state.$stateParams
-         * @requires trulii.activities.services.CalendarsManager
+         * @requires calendar
          * @methodOf trulii.activities.config
          */
-        fetchCalendarArray.$inject = ['$stateParams', 'CalendarsManager'];
-        function fetchCalendarArray($stateParams, CalendarsManager) {
-            var activityId = $stateParams.activity_id;
-            var calendarId = $stateParams.calendar_id;
+        fetchCalendarArray.$inject = ['$stateParams','calendar'];
+        function fetchCalendarArray($stateParams,calendar, CalendarsManager) {
 
-            return CalendarsManager.fetchCalendar(activityId, calendarId).then(success, error);
+            var array = [];
+            if (calendar){ array.push(calendar); }
+            return array;
 
-            function success(calendar){
-                return [calendar];
-            }
-
-            function error(response){
-                console.log('fetchCalendarArray. Error retrieving calendar', response.data);
-                return [];
-            }
         }
+
+        /**
+         * @ngdoc method
+         * @name .#getOrder
+         * @description Retrieves an Order by its ID from
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getOrder.$inject = ['$stateParams','activity'];
+        function getOrder($stateParams, activity){
+            return activity.getOrder($stateParams.orderId);
+        }
+
 
         /**
          * @ngdoc method

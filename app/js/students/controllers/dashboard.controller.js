@@ -17,9 +17,20 @@
     function StudentDashboardCtrl($state) {
 
         var vm = this;
-        vm.changeState = _changeState;
+        angular.extend(vm, {
+            changeState : _changeState,
+            isActive : isActive
+        });
 
-        activate();
+        _activate();
+
+        //--------- Exposed Functions ---------//
+
+        function isActive(stateStr){
+            return $state.includes(stateStr);
+        }
+
+        //--------- Internal Functions ---------//
 
         function _changeState(newState) {
             $state.go(newState);
@@ -37,7 +48,7 @@
             });
         }
 
-        function activate() {
+        function _activate() {
             setStrings();
         }
     }

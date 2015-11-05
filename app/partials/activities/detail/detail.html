@@ -46,16 +46,17 @@
                     <img class="img-responsive btn-share-twitter" src="/css/img/activity-detail/share_twitter.png"
                          alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
                 </a>
-                <a href="#"
-                   socialshare
-                   socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
-                   socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"
-                   socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
-                   socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
-                   socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
-                    <img class="img-responsive btn-share-email" src="/css/img/activity-detail/share_email.png"
-                         alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
-                </a>
+
+                <!--<a href="#"-->
+                   <!--socialshare-->
+                   <!--socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"-->
+                   <!--socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"-->
+                   <!--socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"-->
+                   <!--socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"-->
+                   <!--socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">-->
+                    <!--<img class="img-responsive btn-share-email" src="/css/img/activity-detail/share_email.png"-->
+                         <!--alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>-->
+                <!--</a>-->
             </div>
         </div>
         <!--Description-->
@@ -88,7 +89,6 @@
                 </div>
             </div>
         </div>
-
         <!--Audience-->
         <div class="row separate-above-medium" ng-show="detail.activity.audience">
             <div class="col-md-12 section">
@@ -117,8 +117,10 @@
             </div>
         </div>
 
+        <hr/>
+
         <!--Video-->
-        <div class="row separate-below" ng-if="detail.activity.youtube_video_url">
+        <div class="row separate-below youtube-video-container" ng-if="detail.activity.youtube_video_url">
             <div class="col-md-12">
                 <div class="youtube-container separate-above-medium">
                     <youtube-video video-url="detail.activity.youtube_video_url"></youtube-video>
@@ -178,7 +180,7 @@
                 <img src="/css/img/activity-detail/rating_star_on.png" alt="4 Stars"/>
                 <img src="/css/img/activity-detail/rating_star_off.png" alt="5 Stars"/>
                 <span>50</span>
-                <img class="rating-icon" src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
+                <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
             </div>
         </div>
         <div class="calendar-widget separate-above" ng-class="{'fixed-widget': detail.originalWidgetPosition <= detail.scroll}">
@@ -214,7 +216,7 @@
                 <a class="btn btn-primary btn-sign-up"
                    ng-disabled="detail.isSelectedCalendarFull()"
                    ng-hide="detail.isSelectedCalendarFull()"
-                   ui-sref="activities-enroll({activity_id: detail.activity.id, calendar_id: detail.calendar_selected.id})"
+                   ng-click="detail.nextState(detail.activity.id,detail.calendar_selected.id)"
                    ng-bind="::detail.strings.ACTION_SIGN_UP"></a>
                 <div class="info">
                     <div class="level">
@@ -251,7 +253,7 @@
                             <div class="session-item-date" ng-bind="session.date | date:'EEEE d MMM y'"></div>
                             <div class="session-item-time">
                                 <span ng-bind="session.start_time | amDateFormat: 'h:mm a'"></span>
-                                <span ng-bind="::detail.strings.COPY_TO" style="text-transform: lowercase;" ></span>
+                                <span ng-bind="::detail.strings.COPY_TO" class="text-lowercase" ></span>
                                 <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
                             </div>
                         </div>

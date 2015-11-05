@@ -157,6 +157,14 @@
 
             /**
              * @ngdoc function
+             * @name .#getReviews
+             * @description Retrieves all Reviews from an Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getReviews: getReviews,
+
+            /**
+             * @ngdoc function
              * @name .#getInstructors
              * @description Retrieves all Instructors from an Organizer
              * @methodOf trulii.organizers.services.Organizer
@@ -189,6 +197,34 @@
         };
 
         return Organizer;
+
+        function getReviews(){
+            var deferred = $q.defer();
+            var reviews = [];
+
+            collectReviews(api.reviews(this.id));
+
+            return deferred.promise;
+
+            function collectReviews(nextUrl){
+                return $http.get(nextUrl)
+                    .then(success, error);
+
+                function success(response) {
+                    reviews = reviews.concat(response.data.results);
+                    if(response.data.next){
+                        return collectReviews(response.data.next);
+                    } else {
+                        deferred.resolve(reviews);
+                    }
+                }
+
+                function error(response) {
+                    console.log("Error getting organizer reviews: ", response.data);
+                    deferred.reject(reviews);
+                }
+            }
+        }
 
         function getInstructors(){
             var that = this;
