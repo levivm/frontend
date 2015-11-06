@@ -348,7 +348,32 @@
 
 <!--Reviews-->
 <div class="row">
-    <div class="col-md-12">
+    <div class="col-xs-7 col-xs-offset-1 reviews-container">
+      <h2>
+        <strong ng-bind="::detail.strings.COPY_HEADER_REVIEWS"></strong>
+        <br>
+        <span>Croydon School of art</span>
+      </h2>
+      <p class="reviews-container--ratings">
+        <span>
+          <i>50 evaluaciones</i>
+        </span>
+        <span>
+            <img src="/css/img/activity-detail/rating_star_on.png" alt="1 Star"/>
+            <img src="/css/img/activity-detail/rating_star_on.png" alt="2 Stars"/>
+            <img src="/css/img/activity-detail/rating_star_on.png" alt="3 Stars"/>
+            <img src="/css/img/activity-detail/rating_star_on.png" alt="4 Stars"/>
+            <img src="/css/img/activity-detail/rating_star_off.png" alt="5 Stars"/>
+        </span>
+        <span>(4/5)</span>
+    </p>
+
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+            <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase" ng-bind="::detail.strings.LABEL_MORE_COMMENTS">
+            </button>
+        </div>
+    </div>
     </div>
 </div>
 

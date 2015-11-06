@@ -1,0 +1,98 @@
+
+<div class="row">
+
+    <div class="col-md-10 col-md-offset-1 tab-content">
+
+        <div class="card-body tab-content">
+            <div class="tab-pane active fade in" id="history-orders-tab">
+                <!--If there are orders-->
+                <div ng-if="history.orders.length > 0">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group search-input">
+                                <div class="row">
+                                    <div class="col-xs-10 col-xs-offset-1">
+                                        <p class="control-label sr-only text-center pt-sans"
+                                           ng-bind="::history.strings.LABEL_SEARCH"></p>
+                                    </div>
+                                </div>
+                                <div class="input-group">
+                                    <input class="form-control floating-label" type="text"
+                                           ng-model="history.orderQuery"
+                                           placeholder="{{history.strings.COPY_SEARCH}}">
+                                    <span class="input-group-addon">
+                                        <i class="mdi-action-search"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row order-detail">
+                        <!--ng-bind="::history.strings.HEADER_ACTIVITY"-->
+                        <div class="col-xs-4 order-description">
+                            <h5 class="sinkin-semibold separate-below">Orden #4</h5>
+                            <h5 class="sinkin-ultralight ">Actividad</h5>
+                            <h5 class="sinkin-semibold separate-below">Yoga en el parque</h5>
+                            <h5 class="sinkin-ultralight">Forma de pago</h5>
+                            <h5 class="sinkin-semibold separate-below">Credito *****1234</h5>
+                            <h5 class="sinkin-ultralight">Realizado el dia:</h5>
+                            <h5 class="sinkin-semibold">19 Jun 2014</h5>
+                        </div>
+                        <div class="col-xs-8 order-info">
+                            <div class="table-responsive table-fixed table-condensed">
+                                <table class="table table-hover" valign="middle">
+                                    <tr class="text-center">
+                                        <th><strong>Asistente</strong></th>
+                                        <th><strong>Correo</strong></th>
+                                        <th><strong>Precio</strong></th>
+                                        <th><strong></strong></th>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Tyler Durden</span>
+                                        </td>
+                                        <td>
+                                            <span>tyler@fightclub.com</span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="100000 | currency"></span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-default">Reembolsar <br/>asistente</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <span>Tyler Durden</span>
+                                        </td>
+                                        <td>
+                                            <span>tyler@fightclub.com</span>
+                                        </td>
+                                        <td>
+                                            <span ng-bind="100000 | currency"></span>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-default">Reembolsar <br/>asistente</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <h4>Total</h4>
+                                </div>
+                                <div class="col-xs-5">
+                                    <h4 class="text-right" ng-bind="100000 | currency"></h4>
+                                </div>
+                                <div class="col-xs-4">
+                                    <button class="btn btn-block btn-primary">Reembolsar orden</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

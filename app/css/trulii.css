@@ -12756,7 +12756,7 @@ hr {
 }
 .label,
 .activity-card__category {
-  font-size: 8px;
+  font-size: 0.7em;
   font-weight: bold;
   line-height: 1em;
   text-transform: uppercase;
@@ -15993,9 +15993,6 @@ button.toast-close-button {
 .activity-card__rating__star.--empty {
   color: #eeeeee;
 }
-.activity-card__category {
-  font-size: 0.7em;
-}
 .activity-grid {
   text-align: left;
 }
@@ -16155,9 +16152,10 @@ h5 {
 }
 .calendar-widget .widget-card .info .level .title {
   padding-top: 0.5em;
-  font-size: 0.6em;
+  font-size: 0.825em;
   font-weight: 400;
   line-height: 1em;
+  margin-top: 0.75em !important;
 }
 .calendar-widget .widget-card .info .certification {
   width: 30%;
@@ -16167,9 +16165,10 @@ h5 {
 }
 .calendar-widget .widget-card .info .certification .title {
   padding-top: 0.5em;
-  font-size: 0.6em;
+  font-size: 0.825em;
   font-weight: 400;
   line-height: 1em;
+  margin-top: 0.75em !important;
 }
 .calendar-widget .widget-card .info .duration {
   width: 30%;
@@ -16179,9 +16178,10 @@ h5 {
 }
 .calendar-widget .widget-card .info .duration .title {
   padding-top: 0.5em;
-  font-size: 0.6em;
+  font-size: 0.825em;
   font-weight: 400;
   line-height: 1em;
+  margin-top: 0.75em !important;
 }
 .calendar-widget .widget-card .sessions .sessions-title {
   padding: 1em;
@@ -16495,6 +16495,12 @@ h5 {
   margin-top: 1.5em;
   color: #999999;
 }
+.reviews-container {
+  padding: 3em 5em;
+}
+.reviews-container--ratings span {
+  padding: 1em 0.5em;
+}
 .location .map {
   width: 100%;
   height: 24em;
@@ -16619,7 +16625,7 @@ h5 {
 }
 .reasons-container .reason .reason-text .reason-copy {
   color: #999999;
-  font-size: 0.8em;
+  font-size: 1em;
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
 }
 .youtube-video-container {
