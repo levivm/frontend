@@ -677,3 +677,31 @@ h5{
     &:extend(.separate-above);
     &:extend(.separate-below-medium);
 }
+
+@media (max-width: 991px){
+  .sign-up-container {
+    .calendar-info{
+      .price, .date-info {
+          width: 100%;
+          border: none;
+          display: block;
+          padding:0;
+          margin-bottom:1em;
+          text-align: center;
+      }
+    }
+  }
+  .reasons-container{
+    .reason {
+      width: 100%;
+      .reason-img{
+        margin: 0 auto;
+        display: block;
+      }
+      .reason-text{
+        display: block;
+        text-align: center;
+      }
+    }
+  }
+}

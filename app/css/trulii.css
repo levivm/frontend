@@ -12345,6 +12345,13 @@ hr.on-light {
   margin-bottom: 1.5em;
   font-size: 3.5em;
 }
+.dashboard-header {
+  background-color: #fafafa;
+  padding: 1em;
+  margin: 1em -1em 2em -1em;
+  letter-spacing: 0px;
+  color: #535353;
+}
 .font-family-sans {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
@@ -13659,7 +13666,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   line-height: 3em;
   cursor: pointer;
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bold;
+  font-weight: 500;
   font-size: .9em;
 }
 .sidebar__item--selected {
@@ -13673,6 +13680,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-weight: bold !important;
   color: #38dbc8 !important;
   border-width: 0;
+}
+.sidebar__item--selected:focus {
+  color: #ffd580;
 }
 .sidebar__item:hover,
 .sidebar__item:focus {
@@ -13873,8 +13883,8 @@ label {
   font-weight: 500;
 }
 select.form-control {
-  font-size: 1.3em;
-  height: auto;
+  font-size: 1em;
+  height: 28px;
 }
 select.form-control.input-sm {
   font-size: 1em;
@@ -15766,6 +15776,7 @@ button.toast-close-button {
   color: #999999;
 }
 .detail-cover {
+  margin-top: -20px;
   position: relative;
   width: 100%;
   min-height: 420px;
@@ -16666,6 +16677,28 @@ h5 a {
   padding: 4em 9.5em;
   background-color: #F7F7F7;
   text-align: center;
+}
+@media (max-width: 991px) {
+  .sign-up-container .calendar-info .price,
+  .sign-up-container .calendar-info .date-info {
+    width: 100%;
+    border: none;
+    display: block;
+    padding: 0;
+    margin-bottom: 1em;
+    text-align: center;
+  }
+  .reasons-container .reason {
+    width: 100%;
+  }
+  .reasons-container .reason .reason-img {
+    margin: 0 auto;
+    display: block;
+  }
+  .reasons-container .reason .reason-text {
+    display: block;
+    text-align: center;
+  }
 }
 .Panel {
   box-shadow: none;

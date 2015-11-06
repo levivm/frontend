@@ -10,8 +10,8 @@
             <a ui-sref=".account.settings"
                class="sidebar__item"
                ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.account.*')}">
-                <i class="sidebar__item__icon mdi-action-settings"></i>                    
-                <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>                                                                        
+                <i class="sidebar__item__icon mdi-action-settings"></i>
+                <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
             </a>
             <a ui-sref=".activities.open"
                class="sidebar__item"
@@ -34,7 +34,7 @@
             <a ui-sref=".transactions.sales"
                class="sidebar__item"
                ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.transactions.*')}">
-                <i class="sidebar__item__icon mdi-action-history"></i>
+                <i class="sidebar__item__icon mdi-editor-attach-money"></i>
                 <span ng-bind="::dash.strings.SECTION_TRANSACTIONS"></span>
             </a>
         </div>
@@ -42,4 +42,3 @@
         <div ng-include="'partials/ui-components/footer-dashboard.html'"></div>
     </div>
 </div>
-
