@@ -12425,8 +12425,7 @@ hr.on-light {
 h1,
 h2,
 h3,
-h4,
-h5 {
+h4 {
   line-height: 1.25em;
   letter-spacing: -1px;
 }
@@ -14366,8 +14365,6 @@ tags-input input {
 .btn-share-fb,
 .btn-share-twitter,
 .btn-share-email {
-  width: 1.75em;
-  height: 1.75em;
   display: inline-block;
   cursor: pointer;
   padding: -1.75em;
@@ -16039,13 +16036,6 @@ h5 {
 h5 a {
   font-weight: 400;
 }
-h1,
-h2,
-h3,
-h4,
-h5 {
-  letter-spacing: -1px;
-}
 .organizer-widget .card {
   border-top: 1px solid #DEDEDE;
   border-right: 1px solid #DEDEDE;
@@ -16114,10 +16104,10 @@ h5 {
   text-transform: uppercase;
 }
 .calendar-widget .widget-card .header .next .next-label {
-  font-size: 0.6em;
+  font-size: 0.85em;
 }
 .calendar-widget .widget-card .header .next .next-date {
-  font-size: 1em;
+  font-size: 1.5em;
   font-weight: 300;
   line-height: 2em;
 }
@@ -16130,7 +16120,7 @@ h5 {
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 100;
 }
 .calendar-widget .widget-card .header .vacancy {
@@ -16142,7 +16132,7 @@ h5 {
   text-align: center;
   text-transform: uppercase;
   padding: 1em;
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 400;
 }
 .calendar-widget .widget-card .price {
@@ -16403,6 +16393,7 @@ h5 {
   font-size: 0.8em;
   padding: 0.6em;
   border-radius: 4px;
+  color: #535353;
 }
 .calendar-widget .widget-list .widget-list-item * .btn-detail {
   font-size: 0.8em;

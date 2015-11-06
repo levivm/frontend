@@ -183,8 +183,8 @@
                 <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
             </div>
         </div>
-        <div class="calendar-widget separate-above" ng-class="{'fixed-widget': detail.scroll > detail.widgetOriginalPosition && detail.scroll <= detail.widgetMaxPosition, 'absolute-widget': detail.scroll > detail.widgetMaxPosition}"
-          ng-style="detail.scroll > detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}">
+        <div class="calendar-widget separate-above" ng-class="{'fixed-widget': detail.scroll > detail.widgetOriginalPosition && detail.scroll < detail.widgetMaxPosition, 'absolute-widget': detail.scroll >= detail.widgetMaxPosition}"
+          ng-style="detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetMaxPosition}">
             <div class="widget-card" ng-hide="detail.isListVisible">
                 <div class="header">
                     <div class="next">

@@ -386,13 +386,10 @@
 
             angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
-                var elementHeight = document.getElementsByClassName('calendar-widget')[0].offsetHeight;
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - elementHeight;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
                 $window.onscroll = function(){
-                    console.log(elementHeight);
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (elementHeight * 2);
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (elementHeight * 4);
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                 };
