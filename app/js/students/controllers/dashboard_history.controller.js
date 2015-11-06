@@ -12,31 +12,102 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryCtrl', StudentHistoryCtrl);
 
-    StudentHistoryCtrl.$inject = ['student'];
+    StudentHistoryCtrl.$inject = ['$filter','student'];
 
-    function StudentHistoryCtrl(student) {
+    function StudentHistoryCtrl($filter,student) {
 
         var vm = this;
-        vm.activities = null;
-        vm.orders = [];
-        vm.options = {
-            actions: ["view"]
-        };
+        angular.extend(vm,{
+            activities: null,
+            options: {actions: ['view']},
+            updateByQuery:updateByQuery,
+            pageChange: pageChange,
+            queries : {
+                orderQuery : null,
+                assistantQuery : null
+            },
+            orderPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 15,
+                pageNumber: 1
+            },
+            TYPE_ORDER: 'order',
+            TYPE_ASSISTANT: 'assistant',
+
+
+        });
 
         activate();
 
-        function getOrders(){
+        var orders = [];
+
+
+        /*      Exposed Functions      */ 
+
+        function updateByQuery(type){
+            switch(type){
+                case vm.TYPE_ORDER:
+                    vm.orders = $filter('filter')(orders, vm.queries.orderQuery);
+                    vm.orderPaginationOpts.totalItems = vm.orders.length;
+                    vm.orderPaginationOpts.pageNumber = 1;
+                    vm.orders = vm.orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
+                    console.log('Orders query order ',vm.orders);
+                    break;
+                case vm.TYPE_ASSISTANT:
+                    vm.assistants = $filter('filter')(assistants, vm.queries.assistantQuery);
+                    break;
+            }
+        }
+
+        function pageChange(type){
+            var offset = null;
+            var start = null;
+            var end = null;
+            switch(type){
+                case vm.TYPE_ORDER:
+                    offset = vm.orderPaginationOpts.itemsPerPage;
+                    start = (vm.orderPaginationOpts.pageNumber -1) * offset;
+                    end = vm.orderPaginationOpts.pageNumber * offset;
+                    vm.orders = orders.slice(start, end);
+                    break;
+                // case vm.TYPE_CALENDAR:
+                //     offset = vm.calendarPaginationOpts.itemsPerPage;
+                //     start = (vm.calendarPaginationOpts.pageNumber -1) * offset;
+                //     end = vm.calendarPaginationOpts.pageNumber * offset;
+                //     console.log(vm.calendarPaginationOpts.pageNumber, 'slice(' + start + ',' + end + ')');
+                //     vm.calendars = calendars.slice(start, end);
+                //     console.log('calendars:', vm.calendars);
+                //     break;
+                // case vm.TYPE_ASSISTANT:
+                //     offset = vm.assistantPaginationOpts.itemsPerPage;
+                //     start = (vm.assistantPaginationOpts.pageNumber -1) * offset;
+                //     end = vm.assistantPaginationOpts.pageNumber * offset;
+                //     console.log(vm.assistantPaginationOpts.pageNumber, 'slice(' + start + ',' + end + ')');
+                //     vm.assistants = assistants.slice(start, end);
+                //     console.log('assistants:', vm.assistants);
+                //     break;
+            }
+        }
+
+        /*       Internal Functions      */
+
+        function _getOrders(){
             student.getOrders().then(success, error);
 
-            function success(orders){
-                vm.orders = orders;
+            function success(ordersResponse){
+                orders = $filter('orderBy')(ordersResponse, 'id', true);
+                vm.orderPaginationOpts.totalItems = orders.length;
+                // vm.orders = orders;
+                vm.orders = orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
+
             }
             function error(orders){
                 console.log('Error retrieving Student Orders History');
             }
+
         }
 
-        function setStrings() {
+        function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
@@ -61,6 +132,7 @@
                 HEADER_ACTIVITY: "Actividad",
                 HEADER_PAYMENT: "Pago",
                 HEADER_DETAIL: "Detalle",
+                HEADER_STATUS: "Estatus",
                 HEADER_PURCHASE_DATE: "Fecha de compra",
                 HEADER_REIMBURSEMENT_DATE: "Fecha de reembolso",
                 HEADER_REIMBURSEMENT_TOTAL: "Monto reembolsado",
@@ -70,8 +142,8 @@
         }
 
         function activate() {
-            setStrings();
-            getOrders();
+            _setStrings();
+            _getOrders();
         }
 
     }

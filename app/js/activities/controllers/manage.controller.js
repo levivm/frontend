@@ -28,7 +28,7 @@
             },
             orderPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 4,
+                itemsPerPage: 10,
                 pageNumber: 1
             },
             calendarPaginationOpts: {
@@ -59,6 +59,9 @@
             switch(type){
                 case vm.TYPE_ORDER:
                     vm.orders = $filter('filter')(orders, vm.queries.orderQuery);
+                    vm.orderPaginationOpts.totalItems = vm.orders.length;
+                    vm.orderPaginationOpts.pageNumber = 1;
+                    vm.orders = vm.orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
                     break;
                 case vm.TYPE_ASSISTANT:
                     vm.assistants = $filter('filter')(assistants, vm.queries.assistantQuery);
@@ -120,29 +123,32 @@
 
             function mapOrder(order){
                 var cost = order.amount / order.quantity;
+                order.unit_price = cost;
                 // Bind is Awesome!!!
-                order.assistants = order.assistants.map(mapAssistant.bind(this, cost));
-                var user = order.student.user;
-                order.payer = {
-                    full_name: [user.first_name, user.last_name].join(' '),
-                    email: user.email,
-                    photo: order.student.photo
-                };
+                // order.assistants = order.assistants.map(mapAssistant.bind(this, cost));
+                // var user = order.student.user;
+                // order.payer = {
+                //     full_name: [user.first_name, user.last_name].join(' '),
+                //     email: user.email,
+                //     photo: order.student.photo
+                // };
                 return order;
             }
 
-            function mapAssistant(cost, assistant){
-                assistant.full_name = [assistant.first_name, assistant.last_name].join(' ');
-                assistant.cost = cost;
-                return assistant;
-            }
+            // function mapAssistant(cost, assistant){
+            //     assistant.full_name = [assistant.first_name, assistant.last_name].join(' ');
+            //     assistant.cost = cost;
+            //     return assistant;
+            // }
         }
 
         function _getCalendars(activity){
+          if(activity.calendars){
             calendars = activity.calendars.map(_mapDateMsg);
             vm.calendars = calendars.slice(0, vm.calendarPaginationOpts.itemsPerPage);
             console.log('calendars:', calendars);
             return calendars;
+          }
         }
 
         function _mapMainPicture(activity){
@@ -169,12 +175,12 @@
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE_ORDER: "Reembolsar Orden",
                 ACTION_REIMBURSE_ASSISTANT: "Reembolsar Asistente",
-                COPY_ORDERS: "Revisa tus órdenes de compra y los asistentes asociados a ellas",
+                COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad",
                 COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito esta actividad",
                 COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
-                COPY_SEARCH: "Buscar orden por número, nombre o correo electrónico",
+                COPY_SEARCH: "Buscar orden por número, fecha o monto",
                 LABEL_ORDER_NUMBER: "Orden N°",
                 LABEL_CALENDAR: "Inicio",
                 LABEL_SEARCH: "Buscar Ordenes",
@@ -205,7 +211,10 @@
                 HEADER_CODE: "Código",
                 HEADER_MADE: "Realizado",
                 HEADER_AMOUNT: "Monto",
-                HEADER_TOTAL: "Total"
+                HEADER_SALE_DATA:"Fecha de Venta",
+                HEADER_UNIT_PRICE:"Precio Unitario",
+                HEADER_TOTAL:"Venta Total",
+                HEADER_STATUS:"Estatus",
             });
         }
 

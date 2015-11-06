@@ -1,0 +1,13 @@
+<div class="navbar-secondary">
+    <ul>
+        <li class="navbar-secondary__item active" ui-sref=".pending" ui-sref-active="active">
+            <span ng-bind="::reviews.strings.TAB_REVIEWS_PENDING"></span>
+        </li>
+        <li class="navbar-secondary__item" ui-sref=".done" ui-sref-active="active">
+            <span ng-bind="::reviews.strings.TAB_REVIEWS_DONE"></span>
+        </li>
+    </ul>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1" ui-view></div>
+</div>

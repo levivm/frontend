@@ -58,6 +58,54 @@
 
             /**
              * @ngdoc function
+             * @name .#reviews
+             * @description Renders **`/api/activities/:idActivity/reviews`** Activity Reviews URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'reviews' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'reviews/']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#review
+             * @description Renders **`/api/reviews/:idReview`** Review URL
+             * @param {number} idReview Review Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'review' : function (idReview) {
+                return renderUrl('reviews/', [idReview]);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#report
+             * @description Renders **`/api/reviews/:idReview/report`** Report Review URL
+             * @param {number} idReview Review Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'report' : function (idReview) {
+                return renderUrl('reviews/', [idReview, 'report/']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#read
+             * @description Renders **`/api/reviews/:idReview/read`** Mark as Read Review URL
+             * @param {number} idReview Review Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'read' : function (idReview) {
+                return renderUrl('reviews/', [idReview, 'read/']);
+            },
+
+            /**
+             * @ngdoc function
              * @name .#gallery
              * @description Renders **`/api/activities/:idActivity/gallery{=/auto}`** Activity gallery URL
              * @param {number} idActivity Activity Id
@@ -198,6 +246,17 @@
              */
             'orders' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'orders']);
+            },
+            /**
+             * @ngdoc function
+             * @name .#order
+             * @description Renders **`/api/orders/:idOrder`** Order URL
+             * @param {number} idOrder Order Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'order': function(idOrder){
+                return renderUrl('orders/', [idOrder]);
             },
 
             /**

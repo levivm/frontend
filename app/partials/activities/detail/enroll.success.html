@@ -69,9 +69,32 @@
             <div class="col-md-12">
                 <h1 ng-bind="success.strings.LABEL_SHARE"></h1>
                 <p class="separate-above" ng-bind="success.strings.COPY_SHARE"></p>
-                <img src="css/img/activity-enroll/share_facebook.png" alt=""/>
-                <img src="css/img/activity-enroll/share_twitter.png" alt=""/>
-                <img src="css/img/activity-enroll/share_email.png" alt=""/>
+
+                <a href="#"
+                socialshare
+                socialshare-provider="{{::success.social.FACEBOOK_SOCIAL_PROVIDER}}"
+                socialshare-type="{{::success.social.FACEBOOK_SHARE_TYPE}}"
+                socialshare-via="{{::success.social.FACEBOOK_API_KEY}}"
+                socialshare-redirect-uri="{{::success.social.FACEBOOK_REDIRECT_URI}}"
+                socialshare-media="{{::success.social.FACEBOOK_SHARE_MEDIA}}"
+                socialshare-text="{{::success.social.FACEBOOK_SHARE_TEXT}}"
+                socialshare-caption="{{::success.social.FACEBOOK_SHARE_CAPTION}}"
+                socialshare-description="{{::success.social.FACEBOOK_SHARE_DESCRIPTION}}"
+                socialshare-url="{{::success.social.FACEBOOK_SHARE_URL}}">
+                    <img src="css/img/activity-enroll/share_facebook.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+                </a>
+
+                <a href="#"
+                socialshare
+                socialshare-provider="{{::success.social.TWITTER_SOCIAL_PROVIDER}}"
+                socialshare-via="{{::success.social.TWITTER_SHARE_ACCOUNT}}"
+                socialshare-text="{{::success.social.TWITTER_SHARE_TEXT}}"
+                socialshare-hashtags="{{::success.social.TWITTER_SHARE_HASHTAGS}}"
+                socialshare-url="{{::success.social.TWITTER_SHARE_URL}}">
+                    <img src="css/img/activity-enroll/share_twitter.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+                </a>
+                
+                
             </div>
         </div>
 

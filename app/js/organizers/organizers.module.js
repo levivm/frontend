@@ -126,11 +126,20 @@
             })
             .state('organizer-dashboard.reviews', {
                 url:'reviews/',
-                templateUrl: 'partials/organizers/dashboard/reviews_pending.html'
+                controller: 'OrganizerReviewsCtrl as reviews',
+                templateUrl: 'partials/organizers/dashboard/reviews.html',
+                resolve: {
+                    activities: getOrganizerActivities,
+                    reviews: getOrganizerReviews
+                }
+            })
+            .state('organizer-dashboard.reviews.done', {
+                url:'done',
+                templateUrl: 'partials/organizers/dashboard/reviews_done.html'
             })
             .state('organizer-dashboard.reviews.pending', {
                 url:'pending',
-                templateUrl: 'partials/organizers/dashboard/transactions_reimbursements.html'
+                templateUrl: 'partials/organizers/dashboard/reviews_pending.html'
             });
 
         /**
@@ -199,6 +208,20 @@
 
         /**
          * @ngdoc method
+         * @name .#getOrganizerReviews
+         * @description Retrieves an Organizer's Activities from
+         * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID
+         * @requires trulii.activities.services.ActivitiesManager
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getOrganizerReviews.$inject = ['organizer'];
+        function getOrganizerReviews(organizer){
+            return organizer.getReviews();
+        }
+
+        /**
+         * @ngdoc method
          * @name .#getAvailableCities
          * @description Retrieves all available cities from
          * {@link trulii.locations.services.LocationManager LocationManager} Service
@@ -209,6 +232,7 @@
         function getAvailableCities(LocationManager){
             return LocationManager.getAvailableCities();
         }
+
     }
 
 })();

@@ -20,27 +20,32 @@ h5{
         font-weight: 400;
     }
 }
+h1, h2, h3, h4, h5{
+    letter-spacing: -1px;
+}
 
 .organizer-widget {
 
-    .card{
+    .card {
         border-top: @border-widget;
         border-right: @border-widget;
         border-left: @border-widget;
 
         border-radius: 0;
-        padding: 1em;
+        padding: 1.5em 1em;
         margin: 0;
-        .content{
+
+        .content {
             width: 90%;
             margin: 0 auto;
 
             .picture {
                 margin-right: 12px;
-                border-radius: 100%;
+                border-radius: 50%;
                 display: inline-block;
-                height: 70px;
-                width: 70px;
+                height: auto;
+                margin-left: 10%;
+                width: 30%;
             }
 
             .data {
@@ -51,20 +56,19 @@ h5{
                 .name {
                     font-family: @font-sans;
                     font-weight: 600;
-                    font-size: 1em;
+                    font-size: 1.2em;
                     letter-spacing: 2px;
                     color: @lightbg-text;
                     text-transform: uppercase;
                 }
 
                 .location {
-                    font-family: @font-serif;
+                    font-family: @font-sans-alt;
                     font-size: 0.75em;
                     color: @text-muted;
                 }
             }
         }
-
     }
 
     .ratings {
@@ -76,16 +80,11 @@ h5{
 
         span {
             color: @text-muted;
-            margin-left:.7em;
-            font-family: @font-serif;
+            margin-left: .7em;
+            font-family: @font-sans-alt;
         }
-        img{
+        img {
             padding-bottom: 0.4em;
-            &.rating-icon{
-                width: 11px;
-                margin-top: 5px;
-
-            }
         }
     }
 }
@@ -116,15 +115,15 @@ h5{
                 }
 
                 .next-date {
-                    font-size: 1.5em;
+                    font-size: 1em;
                     font-weight: 300;
-                    padding-top: 0.25em;
+                    line-height: 2em;
                 }
             }
 
             .closing-date {
                 .HeaderText();
-                font-size: 1em;
+                font-size: 0.8em;
                 font-weight: 100;
             }
 
@@ -158,14 +157,14 @@ h5{
             font-weight: 400;
             text-transform: uppercase;
             text-align: center;
-            color: @gray-dark !important;
+            color: @black !important;
         }
 
         .info {
             width: 100%;
             text-align: center;
             color: @text-muted;
-            
+
             .InfoSection(){
                 width: 30%;
                 padding: 0.8em;
@@ -173,10 +172,10 @@ h5{
                 display: inline-block;
 
                 .title {
-                    font-size: 0.8em;
+                    padding-top:0.5em;
+                    font-size: 0.6em;
                     font-weight: 400;
                     line-height: 1em;
-                    margin-top: 0.5em !important;
                 }
             }
 
@@ -195,17 +194,14 @@ h5{
 
         .sessions {
             .sessions-title {
-                padding: 1.5em;
+                padding: 1em;
                 text-align: center;
                 border-top: @border-widget;
-                font-family: @font-sans-alt;
-                font-weight: bold;
 
                 * {
                     .HeaderText();
                     font-size: 1.2em;
                     padding: 0;
-                    font-weight: bold;
                 }
             }
 
@@ -216,7 +212,7 @@ h5{
 
                 .session-item {
                     @padding-session-item: 0.8em;
-                    padding: 1.5em @padding-session-item;
+                    padding: @padding-session-item;
                     border-top: @border-widget;
 
                     &:last-child {
@@ -236,7 +232,7 @@ h5{
                         margin: @padding-session-item/2 0 0 0;
                         padding: 0;
                         font-size: 0.8em;
-                        font-weight: 300;
+                        font-weight: 100;
                         color: @text-muted;
                         text-transform: lowercase;
                     }
@@ -249,7 +245,6 @@ h5{
 
             &-has-more {
                 cursor: pointer;
-                position: relative;
             }
 
             &:hover{
@@ -265,7 +260,7 @@ h5{
                 padding: 0;
                 font-size: 0.8em;
                 font-weight: 100;
-                line-height: 1.5em;
+                color: @text-muted;
             }
 
             &-count {
@@ -273,22 +268,16 @@ h5{
                 padding: 0;
                 font-size: 0.8em;
                 font-weight: 600;
-                line-height: 1.5em;
+                color: @text-muted;
             }
 
             &-more {
                 .HeaderText();
                 text-transform: none;
-                padding: 1em 0 0 0;
-                font-size: 1em;
+                padding: 0;
+                font-size: 0.8em;
                 font-weight: 600;
-                i{
-                    position: absolute;
-                    font-size: 2em;
-                    right: 1em;
-                    line-height: 0.825em;
-                    color: @gray-light;
-                }
+                color: @text-muted;
             }
         }
     }
@@ -328,7 +317,7 @@ h5{
                 .HeaderText();
                 padding: 0;
                 text-align: start;
-                font-size: 1em;
+                font-size: 0.9em;
                 font-weight: 400;
             }
 
@@ -369,21 +358,16 @@ h5{
 
 
 .social{
-    
     .info{
-
         font-family: @font-serif;
         font-size: 1.1em;
         color: @text-muted;
-
     }
-
 }
 
 .section {
     .content {
-        margin-top: 1.5em;
-        line-height: 1.5em;
+        margin-top: 0.6em;
         margin-bottom: 0.6em;
     }
 
@@ -399,7 +383,7 @@ h5{
 }
 
 
-.gallery-container { 
+.gallery-container {
     margin-top:3rem;
 }
 
@@ -435,7 +419,7 @@ h5{
         width: 100%;
         height: 100%;
         background-size: cover;
-        background: linear-gradient(to bottom, transparent, rgba(60, 61, 65, 0.4) 85%);
+        background: linear-gradient(to bottom, transparent, fadeout(black, 90%) 85%);
         //opacity: .6;
 
         img {
@@ -470,6 +454,7 @@ h5{
         * {
             color: @darkbg-text;
             font-family: @font-serif;
+            font-style: italic;
         }
     }
 }
@@ -580,6 +565,7 @@ h5{
 
     &-info h5 {
         font-family: @font-sans-alt;
+        font-weight: 500;
     }
 
 
@@ -587,6 +573,7 @@ h5{
         margin-top: 3em;
         text-align: center;
         .date-info {
+            width: 40%;
             display: inline-block;
             text-align: right;
             padding-right: 2em;
@@ -599,6 +586,7 @@ h5{
         }
 
         .price {
+            width: 40%;
             display: inline-block;
             text-align:left;
             padding-left: 2em;
@@ -607,14 +595,10 @@ h5{
                 font-size: 3em;
             }
         }
-        @media (max-width:991px){
-            .date-info, .price {
-                text-align: center;
-                border: none;
-                float: none;
-            }
+    }
 
-        }
+    .btn {
+        margin-top: 2em;
     }
 
     .btn-link {
@@ -651,21 +635,12 @@ h5{
                 font-family: @font-serif;
             }
         }
-
-        @media (max-width:991px){
-            width: 100%;
-            .reason-img{
-                display: block;
-                margin: 0 auto;
-            }
-            .reason-text{
-                text-align: center;
-                width: 100%;
-            }
-        }
     }
 }
 
+.youtube-video-container {
+    margin-bottom: 2.5em;
+}
 
 .contact-us-container {
     padding-bottom: 4em;
@@ -686,10 +661,11 @@ h5{
     padding: 4em 9.5em;
     background-color: @secondary-bg;
     text-align: center;
+
 }
 
 
-.title{
+.title {
     &:extend(.separate-above);
     &:extend(.separate-below-medium);
 }

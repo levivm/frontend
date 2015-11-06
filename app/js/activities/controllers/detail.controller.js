@@ -19,12 +19,12 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Toast',
-        'cities', 'activity', 'calendars', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Toast', 'currentUser',
+        'cities', 'activity', 'calendars', 'reviews', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
         'serverConf'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $window, uiGmapGoogleMapApi, Toast,
-                                      cities, activity, calendars, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
+    function ActivityDetailController($scope, $state, $stateParams, $window, uiGmapGoogleMapApi, Toast, currentUser,
+                                      cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
         var vm = this;
@@ -53,6 +53,7 @@
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
+            nextState:nextState,
             scroll: 0,
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
@@ -60,8 +61,6 @@
         });
 
         _activate();
-
-
 
         //--------- Exposed Functions ---------//
 
@@ -104,6 +103,17 @@
 
         function changeSelectedCalendar(calendar) {
             vm.calendar_selected = calendar;
+        }
+
+        function nextState(activity_id,calendar_id){
+            var next = currentUser ? $state.go('activities-enroll',{activity_id:vm.activity.id, calendar_id:calendar_id})
+                         :$state.go('register',{toState:{state:'activities-enroll',
+                                params:{activity_id:activity_id,calendar_id:calendar_id}}});
+
+            // var nextURL = currentUser ?
+            //      'activities-enroll({activity_id:'vm.activity.id+', calendar_id:'+vm.calendar_selected.id+'})'
+            //     :'register({toState:{state:activities-enroll,params:{activity_id:'+vm.activity.id+',calendar_id:'+vm.calendar_selected.id+'}}})';
+            // return nextURL;
         }
 
         function getOrganizerPhoto(){
@@ -181,7 +191,8 @@
         }
 
         function _mapCalendars(activity){
-            activity.calendars = activity.calendars.map(mapVacancy);
+            if(activity.calendars)
+              activity.calendars = activity.calendars.map(mapVacancy);
 
             function mapVacancy(calendar){
                 calendar.vacancy = calendar.capacity - calendar.assistants.length;
@@ -369,17 +380,17 @@
 
 
             console.log('detail. activity:', vm.activity);
+            console.log('detail. reviews:', reviews);
 
             angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
+                var elementHeight = document.getElementsByClassName('calendar-widget')[0].offsetHeight;
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - elementHeight;
                 $window.onscroll = function(){
-                    console.log(document.body.scrollTop);
-                    console.log(vm.widgetOriginalPosition);
-                    console.log(vm.widgetMaxPosition);
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (document.getElementsByClassName('calendar-widget')[0].offsetHeight) * 2;
+                    console.log(elementHeight);
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (elementHeight * 2);
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (elementHeight * 3);
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                 };

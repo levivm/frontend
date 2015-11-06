@@ -1,0 +1,38 @@
+<!--If there are activities-->
+
+<div class="row separate-above-medium separate-below-medium"
+     ng-repeat="activity in activities.closed_activities track by activity.id">
+    <div class="col-xs-6 col-sm-4">
+        <trulii-activity-item
+                data-activity="activity" data-options="{{activities.options}}">
+        </trulii-activity-item>
+    </div>
+    <div class="col-xs-6 col-sm-7">
+        <h3>
+            <strong>
+                <span ng-bind="activities.strings.COPY_BEGINNING_ON"></span>
+                            <span class="text-capitalize"
+                                  ng-bind="activity.orders[0].calendar_initial_date | date : 'MMM d, y'"></span>
+            </strong>
+        </h3>
+        <a ui-sref="student-dashboard.history.order({orderId: activity.orders[0].id})"
+           ng-bind="activities.strings.COPY_ORDER_DETAIL"></a>
+        <trulii-activity-review data-review="activity.review"
+                                data-activity="activity"
+                                data-on-dashboard="true" ></trulii-activity-review>
+    </div>
+    <hr/>
+</div>
+<!--If there are no activities-->
+<div ng-if="activities.closed_activities.length <= 0" class="row">
+    <div class="col-md-8 col-md-offset-2 text-center">
+        <img src="css/img/student_dashboard_activities_empty.png"
+             alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
+        <h4 ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES"></h4>
+        <div class="separate-below separate-above standout-text"
+             ng-bind="::activities.strings.COPY_EMPTY_ACTIVITIES">
+        </div>
+        <a class="btn btn-lg btn-success" ui-sref="search"
+           ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES"></a>
+    </div>
+</div>

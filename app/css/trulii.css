@@ -12288,6 +12288,9 @@ hr.on-light {
 .text-uppercase {
   text-transform: uppercase;
 }
+.text-lowercase {
+  text-transform: lowercase;
+}
 .text-strike {
   text-decoration: line-through;
 }
@@ -14419,9 +14422,16 @@ tags-input input {
 }
 .nav-tabs-light li a {
   height: 100%;
-  padding: 0.8em 1.4em;
   text-align: center;
   color: rgba(0, 0, 0, 0.74) !important;
+  padding: 0em 1.4em;
+}
+.nav-tabs-light li a img {
+  padding-top: 0.5em;
+}
+.nav-tabs-light li a span {
+  display: inline-block;
+  padding-top: 1em;
 }
 .nav-tabs-light li.active {
   background-color: #FFFFFF;
@@ -14442,6 +14452,7 @@ table {
 }
 table a {
   text-decoration: underline;
+  color: #000000;
 }
 th {
   border-top: 0px solid !important;
@@ -15750,7 +15761,7 @@ button.toast-close-button {
   left: 0;
   width: 100%;
   height: 100%;
-  padding-top: 4em;
+  padding-top: 5em;
 }
 .detail-cover .text-container * {
   color: #FFFFFF;
@@ -16003,12 +16014,19 @@ h5 {
 h5 a {
   font-weight: 400;
 }
+h1,
+h2,
+h3,
+h4,
+h5 {
+  letter-spacing: -1px;
+}
 .organizer-widget .card {
   border-top: 1px solid #DEDEDE;
   border-right: 1px solid #DEDEDE;
   border-left: 1px solid #DEDEDE;
   border-radius: 0;
-  padding: 1em;
+  padding: 1.5em 1em;
   margin: 0;
 }
 .organizer-widget .card .content {
@@ -16017,10 +16035,11 @@ h5 a {
 }
 .organizer-widget .card .content .picture {
   margin-right: 12px;
-  border-radius: 100%;
+  border-radius: 50%;
   display: inline-block;
-  height: 70px;
-  width: 70px;
+  height: auto;
+  margin-left: 10%;
+  width: 30%;
 }
 .organizer-widget .card .content .data {
   width: 50%;
@@ -16030,13 +16049,13 @@ h5 a {
 .organizer-widget .card .content .data .name {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
-  font-size: 1em;
+  font-size: 1.2em;
   letter-spacing: 2px;
   color: rgba(0, 0, 0, 0.74);
   text-transform: uppercase;
 }
 .organizer-widget .card .content .data .location {
-  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.75em;
   color: #999999;
 }
@@ -16050,14 +16069,10 @@ h5 a {
 .organizer-widget .ratings span {
   color: #999999;
   margin-left: .7em;
-  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .organizer-widget .ratings img {
   padding-bottom: 0.4em;
-}
-.organizer-widget .ratings img.rating-icon {
-  width: 11px;
-  margin-top: 5px;
 }
 .calendar-widget {
   border: 1px solid #DEDEDE;
@@ -16077,9 +16092,9 @@ h5 a {
   font-size: 0.6em;
 }
 .calendar-widget .widget-card .header .next .next-date {
-  font-size: 1.5em;
+  font-size: 1em;
   font-weight: 300;
-  padding-top: 0.25em;
+  line-height: 2em;
 }
 .calendar-widget .widget-card .header .closing-date {
   width: 100%;
@@ -16090,7 +16105,7 @@ h5 a {
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
-  font-size: 1em;
+  font-size: 0.8em;
   font-weight: 100;
 }
 .calendar-widget .widget-card .header .vacancy {
@@ -16125,7 +16140,7 @@ h5 a {
   font-weight: 400;
   text-transform: uppercase;
   text-align: center;
-  color: #3a3d3f !important;
+  color: #000000 !important;
 }
 .calendar-widget .widget-card .info {
   width: 100%;
@@ -16139,10 +16154,10 @@ h5 a {
   display: inline-block;
 }
 .calendar-widget .widget-card .info .level .title {
-  font-size: 0.8em;
+  padding-top: 0.5em;
+  font-size: 0.6em;
   font-weight: 400;
   line-height: 1em;
-  margin-top: 0.5em !important;
 }
 .calendar-widget .widget-card .info .certification {
   width: 30%;
@@ -16151,10 +16166,10 @@ h5 a {
   display: inline-block;
 }
 .calendar-widget .widget-card .info .certification .title {
-  font-size: 0.8em;
+  padding-top: 0.5em;
+  font-size: 0.6em;
   font-weight: 400;
   line-height: 1em;
-  margin-top: 0.5em !important;
 }
 .calendar-widget .widget-card .info .duration {
   width: 30%;
@@ -16163,17 +16178,15 @@ h5 a {
   display: inline-block;
 }
 .calendar-widget .widget-card .info .duration .title {
-  font-size: 0.8em;
+  padding-top: 0.5em;
+  font-size: 0.6em;
   font-weight: 400;
   line-height: 1em;
-  margin-top: 0.5em !important;
 }
 .calendar-widget .widget-card .sessions .sessions-title {
-  padding: 1.5em;
+  padding: 1em;
   text-align: center;
   border-top: 1px solid #DEDEDE;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bold;
 }
 .calendar-widget .widget-card .sessions .sessions-title * {
   width: 100%;
@@ -16185,7 +16198,6 @@ h5 a {
   text-transform: uppercase;
   font-size: 1.2em;
   padding: 0;
-  font-weight: bold;
 }
 .calendar-widget .widget-card .sessions .sessions-list {
   padding: 0;
@@ -16193,7 +16205,7 @@ h5 a {
   overflow-y: auto;
 }
 .calendar-widget .widget-card .sessions .sessions-list .session-item {
-  padding: 1.5em 0.8em;
+  padding: 0.8em;
   border-top: 1px solid #DEDEDE;
 }
 .calendar-widget .widget-card .sessions .sessions-list .session-item:last-child {
@@ -16224,7 +16236,7 @@ h5 a {
   margin: 0.4em 0 0 0;
   padding: 0;
   font-size: 0.8em;
-  font-weight: 300;
+  font-weight: 100;
   color: #999999;
   text-transform: lowercase;
 }
@@ -16233,7 +16245,6 @@ h5 a {
 }
 .calendar-widget .widget-card .other-calendars-has-more {
   cursor: pointer;
-  position: relative;
 }
 .calendar-widget .widget-card .other-calendars:hover {
   background-color: #F7F7F7;
@@ -16253,7 +16264,7 @@ h5 a {
   padding: 0;
   font-size: 0.8em;
   font-weight: 100;
-  line-height: 1.5em;
+  color: #999999;
 }
 .calendar-widget .widget-card .other-calendars-count {
   width: 100%;
@@ -16267,7 +16278,7 @@ h5 a {
   padding: 0;
   font-size: 0.8em;
   font-weight: 600;
-  line-height: 1.5em;
+  color: #999999;
 }
 .calendar-widget .widget-card .other-calendars-more {
   width: 100%;
@@ -16279,15 +16290,9 @@ h5 a {
   text-align: center;
   text-transform: uppercase;
   text-transform: none;
-  padding: 1em 0 0 0;
-  font-size: 1em;
+  padding: 0;
+  font-size: 0.8em;
   font-weight: 600;
-}
-.calendar-widget .widget-card .other-calendars-more i {
-  position: absolute;
-  font-size: 2em;
-  right: 1em;
-  line-height: 0.825em;
   color: #999999;
 }
 .calendar-widget .widget-list .widget-list-item {
@@ -16330,7 +16335,7 @@ h5 a {
   text-transform: uppercase;
   padding: 0;
   text-align: start;
-  font-size: 1em;
+  font-size: 0.9em;
   font-weight: 400;
 }
 .calendar-widget .widget-list .widget-list-item .vacancy {
@@ -16380,8 +16385,7 @@ h5 a {
   color: #999999;
 }
 .section .content {
-  margin-top: 1.5em;
-  line-height: 1.5em;
+  margin-top: 0.6em;
   margin-bottom: 0.6em;
 }
 .section::after {
@@ -16427,7 +16431,7 @@ h5 a {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background: linear-gradient(to bottom, transparent, rgba(60, 61, 65, 0.4) 85%);
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1) 85%);
 }
 .gallery .gallery-slide img {
   z-index: 4;
@@ -16473,6 +16477,7 @@ h5 a {
 .gallery .gallery-info * {
   color: rgba(255, 255, 255, 0.84);
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+  font-style: italic;
 }
 .instructors-container {
   padding: 3em 9.5em 5em 9.5em;
@@ -16560,12 +16565,14 @@ h5 a {
 }
 .sign-up-container-info h5 {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
 }
 .sign-up-container .calendar-info {
   margin-top: 3em;
   text-align: center;
 }
 .sign-up-container .calendar-info .date-info {
+  width: 40%;
   display: inline-block;
   text-align: right;
   padding-right: 2em;
@@ -16576,6 +16583,7 @@ h5 a {
   text-transform: uppercase;
 }
 .sign-up-container .calendar-info .price {
+  width: 40%;
   display: inline-block;
   text-align: left;
   padding-left: 2em;
@@ -16583,13 +16591,8 @@ h5 a {
 .sign-up-container .calendar-info .price h5 {
   font-size: 3em;
 }
-@media (max-width: 991px) {
-  .sign-up-container .calendar-info .date-info,
-  .sign-up-container .calendar-info .price {
-    text-align: center;
-    border: none;
-    float: none;
-  }
+.sign-up-container .btn {
+  margin-top: 2em;
 }
 .sign-up-container .btn-link {
   text-decoration: underline;
@@ -16619,18 +16622,8 @@ h5 a {
   font-size: 0.8em;
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
 }
-@media (max-width: 991px) {
-  .reasons-container .reason {
-    width: 100%;
-  }
-  .reasons-container .reason .reason-img {
-    display: block;
-    margin: 0 auto;
-  }
-  .reasons-container .reason .reason-text {
-    text-align: center;
-    width: 100%;
-  }
+.youtube-video-container {
+  margin-bottom: 2.5em;
 }
 .contact-us-container {
   padding-bottom: 4em;
@@ -16749,12 +16742,16 @@ h5 a {
   font-weight: 300;
   letter-spacing: 0.1em;
 }
+.billing-widget .invoice .seats {
+  margin-bottom: 2em !important;
+}
 .billing-widget .total {
   background-color: #e3e3e3;
   padding: 1em;
 }
 .billing-widget .total .item {
   font-weight: 600;
+  padding-top: 0.2rem;
 }
 .billing-widget .total .value {
   font-size: 1.2em;
@@ -17074,12 +17071,20 @@ h5 a {
 .order-detail .order-description {
   padding: 25px 35px;
 }
+.order-detail .btn-return {
+  font-weight: 300;
+  text-decoration: none;
+  background-color: #d9d9d9;
+}
+.order-detail .btn-return img {
+  width: 25%;
+}
 .order-detail .order-info {
   background-color: white;
   padding: 0px 35px 25px 35px;
 }
 .order-detail .order-info tbody > tr > td:last-child {
-  padding-top: 15px;
+  padding-top: 2.2em;
 }
 .order-detail .order-info .btn {
   font-size: 1em;

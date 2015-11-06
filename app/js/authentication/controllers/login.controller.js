@@ -24,7 +24,8 @@
             auth : {},
             is_new : true,
             login : login,
-            facebookLogin : facebookLogin
+            facebookLogin : facebookLogin,
+            goSignupState:goSignupState
         });
 
         var toState = null;
@@ -60,6 +61,12 @@
             }
         }
 
+        function goSignupState(){
+
+            $state.go('register', toState);
+
+        }
+
         function _loginSuccess(redirect_state) {
             $state.go(toState.state, toState.params);
         }
@@ -79,10 +86,6 @@
         }
 
         function _activate(){
-            console.log("voy a  ir a succes",$stateParams);
-            console.log("voy a  ir a succes",$stateParams);
-            console.log("voy a  ir a succes",$stateParams);
-
 
             toState = $stateParams.toState;
             _setStrings();

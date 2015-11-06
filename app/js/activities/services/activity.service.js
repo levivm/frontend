@@ -14,9 +14,9 @@
         .module('trulii.activities.services')
         .factory('Activity', Activity);
 
-    Activity.$inject = ['$http', '$q', 'ActivityServerApi', 'UploadFile', 'ActivitySteps'];
+    Activity.$inject = ['$http', '$q', 'ActivityServerApi', 'UploadFile', 'ActivitySteps','defaultCover'];
 
-    function Activity($http, $q, ActivityServerApi, UploadFile, ActivitySteps) {
+    function Activity($http, $q, ActivityServerApi, UploadFile, ActivitySteps,defaultCover) {
 
         var api = ActivityServerApi;
 
@@ -39,7 +39,7 @@
              */
             setData : function (activityData) {
                 angular.extend(this, activityData);
-                this.calendars = this.chronograms;
+                this.calendars = this.calendars;
                 var that = this;
                 that.resetSections();
 
@@ -48,10 +48,11 @@
 
                     that.updateSection(step.name);
                 });
-
                 //console.log("Activity setData ", this);
 
                 that.checkSections();
+                that.mapPictures();
+
             },
 
             /**
@@ -86,6 +87,16 @@
              * @methodOf trulii.activities.services.Activity
              */
             update_location: update_location,
+
+
+            /**
+             * @ngdoc function
+             * @name .#getOrder
+             * @description Get an order from given id 
+             * @param {number} id The ID order to fetch
+             * @methodOf trulii.activities.services.Activity
+             */
+            getOrder : getOrder,
 
             /**
              * @ngdoc function
@@ -123,6 +134,15 @@
              * @methodOf trulii.activities.services.Activity
              */
             deletePicture : deletePicture,
+
+
+            /**
+             * @ngdoc function
+             * @name .#mapPictures
+             * @description Map activity pictures to main_photo and gallery properties
+             * @methodOf trulii.activities.services.Activity
+             */
+            mapPictures : mapPictures,
 
             /**
              * @ngdoc function
@@ -262,7 +282,43 @@
              * @description Deletes an Instructor from the Activity but not from the Organizer
              * @methodOf trulii.activities.services.Activity
              */
-            deleteInstructor: deleteInstructor
+            deleteInstructor: deleteInstructor,
+
+            /**
+             * @ngdoc function
+             * @name .#postReview
+             * @description Posts a Review related to this Activity to the Server
+             * @param {object} review Review of the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            postReview: postReview,
+
+            /**
+             * @ngdoc function
+             * @name .#replyReview
+             * @description Posts a Reply to a Review
+             * @param {object} review Review of the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            replyReview: replyReview,
+
+            /**
+             * @ngdoc function
+             * @name .#reportReview
+             * @description Reports a Review related to this Activity to the Server
+             * @param {object} review Review of the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            reportReview: reportReview,
+
+            /**
+             * @ngdoc function
+             * @name .#markReviewAsRead
+             * @description Mark a Review as Read
+             * @param {object} review Review of the Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            markReviewAsRead: markReviewAsRead
         };
 
         return Activity;
@@ -270,8 +326,8 @@
         function setData(activityData) {
             angular.extend(this, activityData);
             var that = this;
-            this.calendars = this.chronograms;
-            delete this.chronograms;
+            this.calendars = this.calendars;
+            delete this.calendars;
             that.resetSections();
             angular.forEach(ActivitySteps, function (step) {
                 that.updateSection(step.name);
@@ -294,7 +350,7 @@
         }
 
         function update() {
-            this.chronograms = this.calendars;
+            this.calendars = this.calendars;
             var that = this;
             return $http.put(api.activity(this.id), this).then(success, error);
 
@@ -325,6 +381,16 @@
             }
         }
 
+        function getOrder(orderId){
+
+
+            return $http.get(api.order(orderId))
+                .then(function (response) {
+                    return response.data;
+                });
+
+        }
+
         function setStockCover(cover) {
             return $http.post(api.galleryCover(this.id), {'cover_id': cover.id});
         }
@@ -340,6 +406,26 @@
 
         function deletePicture(picture) {
             return $http.delete(api.galleryPicture(this.id, picture.id));
+        }
+
+
+        function mapPictures(){
+            var that = this;
+
+            that.gallery = [];
+            if(that.hasOwnProperty('pictures') && that.pictures.length > 0){
+                angular.forEach(that.pictures, function(picture){
+                    if(picture.main_photo){
+                        that.main_photo = picture.photo;
+                    } else {
+                        that.gallery.push(picture);
+                    }
+                });
+            } else {
+                that.main_photo = defaultCover;
+            }
+
+
         }
 
         function publish() {
@@ -430,7 +516,7 @@
 
         function updateSection(section) {
             var that = this;
-            that.calendars = this.chronograms;
+            // that.calendars = this.calendars;
 
             var isCompleted = false;
 
@@ -546,6 +632,59 @@
             function error(response){
                 console.log('activity.delete instructor error:', response);
                 return response.data;
+            }
+        }
+
+        function postReview(review){
+            var that = this;
+            if(review.id){
+                return $http.put(api.review(review.id), review).then(success, error);
+            } else {
+                return $http.post(api.reviews(that.id), review).then(success, error);
+            }
+
+            function success(response){
+                console.log("Review Posted successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error posting review:", response);
+            }
+        }
+
+        function replyReview(review){
+            return $http.put(api.review(review.id), review).then(success, error);
+
+            function success(response){
+                console.log("Review reply posted successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error posting reply:", response);
+            }
+        }
+
+        function reportReview(review){
+            return $http.post(api.report(review.id), review).then(success, error);
+
+            function success(response){
+                console.log("Review reported successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error posting review:", response);
+            }
+        }
+
+        function markReviewAsRead(review){
+            return $http.post(api.read(review.id), review).then(success, error);
+
+            function success(response){
+                console.log("Review reported successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error posting review:", response);
             }
         }
     }

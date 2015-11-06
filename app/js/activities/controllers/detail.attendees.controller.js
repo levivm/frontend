@@ -13,9 +13,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailAttendeesController', ActivityDetailAttendeesController);
 
-    ActivityDetailAttendeesController.$inject = ['calendars'];
+    ActivityDetailAttendeesController.$inject = ['$state','calendars'];
 
-    function ActivityDetailAttendeesController(calendars) {
+    function ActivityDetailAttendeesController($state,calendars) {
 
         var vm = this;
         var assistants = [];
@@ -69,10 +69,15 @@
 
         function _getAssistants() {
             var assistants = [];
+            console.log('calendars',vm.calendars);
             _.forEach(vm.calendars, function (calendar) {
                 assistants.push(calendar.assistants);
             });
+            console.log('assistants pre flatten',assistants);
+
             assistants = _.flatten(assistants, true);
+            console.log('assistants post flatten',assistants);
+
             // TODO for testing purposes
             //assistants = [
             //    {'first_name': "Fernando", "email": "fer@trulii.com", id: 1},
@@ -93,11 +98,14 @@
 
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
+
+            var join_us_string = $state.current.name !== 'activities-enroll-success' ? '¡Faltas tú¡': '';
+            
             angular.extend(vm.strings, {
                 COPY_SO_FAR: "Hasta ahora",
                 COPY_ZERO_ATTENDEES: "esta actividad no tiene asistentes ¡Sé tú el primero!",
-                COPY_ONE_ATTENDEE: "va 1 asistente ¡Faltas tú!",
-                COPY_OTHER_ATTENDEES: "van {} asistentes ¡Faltas tú!"
+                COPY_ONE_ATTENDEE: "va 1 asistente ".concat(join_us_string),
+                COPY_OTHER_ATTENDEES: "van {} asistentes ".concat(join_us_string),
             });
         }
 

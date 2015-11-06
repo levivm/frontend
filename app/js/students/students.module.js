@@ -51,30 +51,49 @@
             .state('student-dashboard.profile', {
                 url:'profile',
                 controller: 'StudentProfileCtrl as profile',
-                templateUrl: 'partials/students/dashboard_profile.html'
+                templateUrl: 'partials/students/dashboard/profile.html'
             })
             .state('student-dashboard.activities', {
-                url:'activities',
+                url:'activities/',
                 controller: 'StudentActivitiesCtrl as activities',
-                templateUrl: 'partials/students/dashboard_activities.html',
+                templateUrl: 'partials/students/dashboard/activities.html',
                 resolve:{
-                    activities: getStudentActivities
+                    activities: getStudentActivities,
+                    orders: getOrders,
+                    reviews: getReviewsForActivities
                 }
+            })
+            .state('student-dashboard.activities.open', {
+                url:'open',
+                templateUrl: 'partials/students/dashboard/activities_open.html'
+            })
+            .state('student-dashboard.activities.closed', {
+                url:'closed',
+                templateUrl: 'partials/students/dashboard/activities_closed.html'
             })
             .state('student-dashboard.history', {
                 abstract:true,
                 url:'history',
                 controller: 'StudentHistoryCtrl as history',
-                templateUrl: 'partials/students/dashboard/history.html'
+                templateUrl: 'partials/students/dashboard/history.html',
+                resolve: {
+                    orders: getOrders
+                }
             })
             .state('student-dashboard.history.orders', {
                 url:'/orders',
-                templateUrl: 'partials/students/dashboard/history.orders.html'
+                templateUrl: 'partials/students/dashboard/history.orders.html',
             })
-            .state('student-dashboard.history.order', {
+            .state('student-dashboard.history.orders.order', {
                 url:'/orders/:orderId',
                 controller: 'StudentHistoryOrderCtrl as order',
-                templateUrl: 'partials/students/dashboard/history.order.html',
+                templateUrl: 'partials/commons/order.html',
+                params:{
+                    'previousState': {
+                        'state': 'student-dashboard.history.orders',
+                        'params': {}
+                    }
+                },
                 resolve: {
                     order: getOrder
                 }
@@ -129,8 +148,8 @@
          * @requires trulii.students.services.StudentsManager
          * @methodOf trulii.students.config
          */
-        getStudentActivities.$inject = ['ActivitiesManager', 'StudentsManager'];
-        function getStudentActivities(ActivitiesManager, StudentsManager){
+        getStudentActivities.$inject = ['$q', 'ActivitiesManager', 'StudentsManager'];
+        function getStudentActivities($q, ActivitiesManager, StudentsManager){
             return StudentsManager.getCurrentStudent().then(success, error);
 
             function success(student){
@@ -153,6 +172,58 @@
         getAvailableCities.$inject = ['LocationManager'];
         function getAvailableCities(LocationManager){
             return LocationManager.getAvailableCities();
+        }
+        /**
+         * @ngdoc method
+         * @name .#getOrders
+         * @description Retrieves  all orders that belongs to a student
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getOrder.$inject = ['$stateParams','student'];
+        function getOrders($stateParams, student){
+            return student.getOrders();
+        }
+
+
+        /**
+         * @ngdoc method
+         * @name .#getReviewsForActivities
+         * @description Retrieves all of a Student's Reviews
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getReviewsForActivities.$inject = ['activities', 'student'];
+        function getReviewsForActivities(activities, student){
+            return student.getReviews().then(success, error);
+
+            function success(reviews){
+                angular.forEach(activities, checkReview);
+                return reviews;
+
+                function checkReview(activity){
+                    if(reviews.filter(hasActivity).length === 0){ reviews.push({}); }
+
+                    function hasActivity(review){ return review.activity === activity.id; }
+                }
+            }
+
+            function error(response){
+                console.log('Error retrieving Student Reviews', response);
+                return [];
+            }
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getOrders
+         * @description Retrieves all of a Student's Orders
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getOrders.$inject = ['student'];
+        function getOrders(student){
+            return student.getOrders();
         }
 
         /**
