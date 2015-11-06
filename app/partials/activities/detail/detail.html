@@ -97,7 +97,7 @@
             </div>
         </div>
 
-        <hr/>
+        <hr ng-show="detail.activity.audience"/>
 
         <!--Content-->
         <div class="row separate-above-less" ng-show="detail.activity.content">
@@ -107,7 +107,7 @@
             </div>
         </div>
 
-        <hr/>
+        <hr ng-show="detail.activity.content"/>
 
         <!--Goals-->
         <div class="row separate-above-less" ng-show="detail.activity.goals">
@@ -117,7 +117,7 @@
             </div>
         </div>
 
-        <hr/>
+        <hr ng-show="detail.activity.goals"/>
 
         <!--Video-->
         <div class="row separate-below youtube-video-container" ng-if="detail.activity.youtube_video_url">
@@ -128,7 +128,7 @@
             </div>
         </div>
 
-        <hr/>
+        <hr ng-if="detail.activity.youtube_video_url"/>
 
         <!--Methodology-->
         <div class="row separate-above-less" ng-show="detail.activity.methodology">
@@ -138,7 +138,7 @@
             </div>
         </div>
 
-        <hr/>
+        <hr ng-show="detail.activity.methodology"/>
 
         <!--Requirements-->
         <div class="row separate-above-less" ng-show="detail.activity.requirements">
@@ -148,7 +148,7 @@
             </div>
         </div>
 
-        <hr/>
+        <hr ng-show="detail.activity.requirements"/>
 
         <!--Extra-->
         <div class="row separate-above-less" ng-show="detail.activity.extra_info">

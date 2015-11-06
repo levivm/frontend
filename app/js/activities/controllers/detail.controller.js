@@ -392,7 +392,7 @@
                 $window.onscroll = function(){
                     console.log(elementHeight);
                     vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (elementHeight * 2);
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (elementHeight * 3);
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - (elementHeight * 4);
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                 };

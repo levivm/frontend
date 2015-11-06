@@ -8,13 +8,13 @@
                 <div>
                     <div class="row order-detail">
                         <!--ng-bind="::history.strings.HEADER_ACTIVITY"-->
-                        <div class="col-xs-4 order-description">
+                        <div class="col-xs-3 order-description">
                             <h5 class="sinkin-medium separate-below"><span ng-bind="::order.strings.LABEL_ORDER"></span>&nbsp;<span ng-bind="::order.order.id"></span></h5>
                             <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_ACTIVITY"></h5>
                             <h5 class="sinkin-medium separate-below" ng-bind="::order.order.activity_name"></h5>
                             <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_PAYMENT_TYPE"></h5>
                             <h5 class="sinkin-medium separate-below">
-                                <span ng-bind="::order.order.payment.payment_type"></span> 
+                                <span ng-bind="::order.order.payment.payment_type"></span>
                                 <span ng-show="::order.order.payment.last_four_digits">*****</span><span ng-bind="::order.order.payment.last_four_digits"></span>
                                 </h5>
                             <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_CREATE_AT"></h5>
@@ -25,13 +25,13 @@
                                     <img src="css/img/activity-enroll/navigation_back.png" alt="{{ ::order.strings.ACTION_GO_BACK }}"
                                          class="img-responsive inline-block"/>
                                     <span ng-bind="::order.strings.ACTION_GO_BACK"></span>
-                                    
+
                                 </a>
 
 
                             </div>
                         </div>
-                        <div class="col-xs-8 order-info">
+                        <div class="col-xs-9 order-info">
                             <div class="table-responsive table-fixed table-condensed">
                                 <table class="table table-hover" valign="middle">
                                     <tr class="text-center">
@@ -50,7 +50,7 @@
                                         <td>
                                             <span ng-bind="order.order.amount | currency:$:0"></span>
                                         </td>
-                                        <td>
+                                        <td class="td-button">
                                             <button class="btn btn-default" ng-bind="::order.strings.ACTION_REIMBURSE"></button>
                                         </td>
                                     </tr>

@@ -14157,7 +14157,7 @@ tags-input input {
   font-weight: bold;
 }
 .btn-default {
-  background-color: transparent;
+  background-color: white;
   border: 1px solid #e5e5e5;
   color: #999999 !important;
 }
@@ -14466,6 +14466,31 @@ th {
 td {
   font-size: 0.85em;
 }
+.table thead tr th,
+.table tbody tr th,
+.table tfoot tr th,
+.table thead tr td,
+.table tbody tr td,
+.table tfoot tr td {
+  padding: 35px 1.5em;
+}
+.table thead tr th.column-button,
+.table tbody tr th.column-button,
+.table tfoot tr th.column-button,
+.table thead tr td.column-button,
+.table tbody tr td.column-button,
+.table tfoot tr td.column-button {
+  padding-top: 2.2em;
+}
+.table thead tr th.column-button .btn,
+.table tbody tr th.column-button .btn,
+.table tfoot tr th.column-button .btn,
+.table thead tr td.column-button .btn,
+.table tbody tr td.column-button .btn,
+.table tfoot tr td.column-button .btn {
+  font-size: 1em;
+  font-weight: 300;
+}
 .order {
   position: relative;
   margin-bottom: 2em;
@@ -14509,6 +14534,9 @@ td {
   width: 25%;
   height: 100%;
   z-index: 1;
+}
+.table-dark th {
+  background-color: #e3e3e3;
 }
 .ranking-star {
   color: #ffd580;
@@ -17088,13 +17116,6 @@ h5 {
 .order-detail .order-info {
   background-color: white;
   padding: 0px 35px 25px 35px;
-}
-.order-detail .order-info tbody > tr > td:last-child {
-  padding-top: 2.2em;
-}
-.order-detail .order-info .btn {
-  font-size: 1em;
-  font-weight: 300;
 }
 a:hover {
   color: #38dbc8;
