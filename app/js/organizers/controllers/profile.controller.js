@@ -5,10 +5,10 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileController', OrganizerProfileController);
 
-    OrganizerProfileController.$inject = ['$state', '$stateParams', 'LocationManager', 'organizer', 'activities'
+    OrganizerProfileController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'LocationManager', 'organizer', 'activities'
         , 'reviews', 'cities'];
 
-    function OrganizerProfileController($state, $stateParams, LocationManager, organizer, activities
+    function OrganizerProfileController($state, $stateParams, uiGmapGoogleMapApi, LocationManager, organizer, activities
         , reviews, cities) {
 
         var vm = this;
@@ -69,6 +69,7 @@
         }
 
         function _getReviewRatingAvg(reviews){
+            if(reviews.length == 0){ return 0; }
             return reviews.map(getRatings).reduce(reduceRatings);
 
             function getRatings(review){ return review.rating; }
@@ -104,6 +105,35 @@
             };
         }
 
+        function _setUpLocation(organizer){
+            if(organizer.locations.length > 0){
+                vm.city = _.result(_.findWhere(cities, {id: activity.location.city}), 'name');
+            } else {
+                vm.city = null;
+            }
+
+            if(organizer.location && organizer.location.point &&
+                organizer.location.point[0] && organizer.location.point[1]){
+
+                uiGmapGoogleMapApi.then(function(maps) {
+                    var position = new maps.LatLng(organizer.location.point[0], organizer.location.point[1]);
+                    var gmapOptions = {
+                        zoom: 16,
+                        center: position,
+                        scrollwheel: false
+                    };
+
+                    var gmap = new maps.Map(document.getElementById('map-canvas'), gmapOptions);
+
+                    var marker = new maps.Marker({
+                        position: position,
+                        map: gmap
+                    });
+
+                });
+            }
+        }
+
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
@@ -122,19 +152,19 @@
         function _activate(){
             _setStrings();
             _setCurrentState();
+            _setUpLocation(organizer);
             _setReviews();
+            vm.map.options.scrollwheel = false;
 
             vm.reviewsAvg = _getReviewRatingAvg(reviews);
 
-            //console.log('map',vm.map);
-            vm.map.options.scrollwheel = false;
+            console.log(reviews);
 
             LocationManager.getAvailableCities().then(successCities);
             vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
 
             function successCities(cities){
                 vm.city = _getCity(cities, organizer);
-                //console.log('vm.city:', vm.city);
             }
         }
     }

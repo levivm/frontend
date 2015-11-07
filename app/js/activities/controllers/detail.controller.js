@@ -261,6 +261,7 @@
         }
 
         function _getReviewRatingAvg(reviews){
+            if(reviews.length === 0){ return 0; }
             return reviews.map(getRatings).reduce(reduceRatings);
 
             function getRatings(review){ return review.rating; }
