@@ -24,8 +24,16 @@
                 var unsubscribeUserLoggedOut = null;
 
                 scope.isSearchVisible = true;
+                scope.showBurger = false;
 
                 _activate();
+
+                // --------- Public Functions ----------//
+                // TODO : ARREGLAR ESTO
+                scope.toggleBurger = function(){
+                  console.log('show burger = ' + scope.showBurger);
+                  scope.showBurger = !scope.showBurger;
+                }
 
                 //--------- Internal Functions ---------//
 
@@ -114,6 +122,7 @@
                         console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         _getUser();
                     });
+
 
                     scope.$on('$destroy', _cleanUp);
 

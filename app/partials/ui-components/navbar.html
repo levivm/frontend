@@ -1,70 +1,161 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 
+  <div class="row">
+    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
+    data-target="#bs-example-navbar-collapse-1">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button> -->
+  <div class="navbar__logo-container">
+    <a ui-sref="home" class="navbar__logo"></a>
+  </div>
+  <div class="navbar__left-wrapper">
+    <trulii-search-bar ng-if="isSearchVisible"></trulii-search-bar>
+  </div>
+
+  <div class="navbar__right-wrapper">
+    <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
+      <span class="mdi-navigation-menu"></span>
+    </a>
+    <!-- <div ng-if="user">
+    <a ng-if="user.is_organizer" class="btn btn-primary text-light"
+    ui-sref="dash.activities-new.general" ng-bind="::strings.ACTION_CREATE">
+  </a>
+</div>
+
+<div ng-if="!user">
+<a class="navbar__option" ui-sref="organizer-landing">
+<span ng-bind="strings.COPY_BECOME_ORGANIZER"></span>
+</a>
+<a class="navbar__option" ui-sref="login">
+<span ng-bind="strings.ACTION_LOGIN"></span>
+</a>
+</div>
+
+<div class="navbar__option navbar__option--right" ng-if="user">
+
+<div class="navbar__user" data-toggle="dropdown">
+<img ng-src="{{user.photo}}" class="navbar__user__picture" alt="{{user.user.full_name}}"/>
+<span class="navbar__user__name">
+<span ng-bind="user.user.full_name"></span>
+<span class="mdi-navigation-expand-more"></span>
+</span>
+</div>
+
+<div class="dropdown" role="menu">
+<a ng-if="user.is_organizer" class="dropdown__item" ui-sref="organizer-dashboard.profile">
+<span class="mdi-action-account-circle dropdown__item__icon"></span>
+<span ng-bind="strings.LABEL_PROFILE"></span>
+</a>
+<a ng-if="user.is_student" class="dropdown__item" ui-sref="student-dashboard.profile">
+<span class="mdi-action-account-circle dropdown__item__icon"></span>
+<span ng-bind="strings.LABEL_PROFILE"></span>
+</a>
+<a ui-sref="logout" class="dropdown__item">
+<span class="mdi-action-exit-to-app dropdown__item__icon"></span>
+<span ng-bind="strings.LABEL_LOGOUT"></span>
+</a>
+</div>
+</div>
+
+<a class="navbar__option navbar__option--right" ui-sref="register" ng-if="!user">
+<span class="mdi-action-account-circle"></span>
+<span ng-bind="strings.ACTION_REGISTER"></span>
+</a>
+-->
+
+</div>
+
+</div>
+</nav>
+<div class="burger-menu" ng-show="showBurger">
+  <div class="col-xs-12">
     <div class="row">
-        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target="#bs-example-navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button> -->
-        <div class="navbar__logo-container">
-            <a ui-sref="home" class="navbar__logo"></a>
+      <div class="col-xs-12 col-md-8 burger-menu__column">
+        <div class="row">
+          <div class="col-xs-12">
+            <ul class="list-unstyled list-inline">
+              <li><img src="/css/img/logo-trulii.png" alt="" class="img-responsive"></li>
+              <li><a ui-sref="organizer-landing">¿Quieres ser organizador?</a></li>
+              <li><a href="">Invita a un amigo</a></li>
+              <li><a href="">Blog</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="navbar__left-wrapper">
-            <trulii-search-bar ng-if="isSearchVisible"></trulii-search-bar>
+        <div class="row burger-menu__links">
+          <div class="col-xs-10 col-xs-offset-1">
+            <div class="row row-stretch">
+              <div class="col-xs-12 col-md-6">
+                <p>Conócenos</p>
+                <ul class="list-unstyled">
+                  <li><a href="">Misión</a></li>
+                  <li><a href="">Cultura</a></li>
+                  <li><a href="">Equipo</a></li>
+                  <li><a href="">Guía de Estilo</a></li>
+                  <li><a href="">Contáctanos</a></li>
+                </ul>
+              </div>
+              <div class="col-xs-12 col-md-6">
+                <p>Organizador</p>
+                <ul class="list-unstyled">
+                  <li><a href="">¿Cómo funciona?</a></li>
+                  <li><a href="">Guía del Organizador</a></li>
+                  <li><a href="">Ayuda</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="row row-stretch">
+              <div class="col-xs-12 col-md-6">
+                <p>Asistentes</p>
+                <ul class="list-unstyled">
+                  <li><a href="">¿Cómo funciona?</a></li>
+                  <li><a href="">Sugiere un organizador</a></li>
+                  <li><a href="">Ayuda</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
-
-        <div class="navbar__right-wrapper">
-           <div ng-if="user">
-                <a ng-if="user.is_organizer" class="btn btn-primary text-light"
-                   ui-sref="dash.activities-new.general" ng-bind="::strings.ACTION_CREATE">
-                </a>
-            </div>
-
-            <div ng-if="!user">
-                <a class="navbar__option" ui-sref="organizer-landing">
-                    <span ng-bind="strings.COPY_BECOME_ORGANIZER"></span>
-                </a>
-                <a class="navbar__option" ui-sref="login">
-                    <span ng-bind="strings.ACTION_LOGIN"></span>
-                </a>
-            </div>
-
-            <div class="navbar__option navbar__option--right" ng-if="user">
-
-                <div class="navbar__user" data-toggle="dropdown">
-                    <img ng-src="{{user.photo}}" class="navbar__user__picture" alt="{{user.user.full_name}}"/>
-                    <span class="navbar__user__name">
-                        <span ng-bind="user.user.full_name"></span>
-                        <span class="mdi-navigation-expand-more"></span>
-                    </span>
-                </div>
-
-                <div class="dropdown" role="menu">
-                    <a ng-if="user.is_organizer" class="dropdown__item" ui-sref="organizer-dashboard.profile">
-                        <span class="mdi-action-account-circle dropdown__item__icon"></span>
-                        <span ng-bind="strings.LABEL_PROFILE"></span>
-                    </a>
-                    <a ng-if="user.is_student" class="dropdown__item" ui-sref="student-dashboard.profile">
-                        <span class="mdi-action-account-circle dropdown__item__icon"></span>
-                        <span ng-bind="strings.LABEL_PROFILE"></span>
-                    </a>
-                    <a ui-sref="logout" class="dropdown__item">
-                        <span class="mdi-action-exit-to-app dropdown__item__icon"></span>
-                        <span ng-bind="strings.LABEL_LOGOUT"></span>
-                    </a>
-                </div>
-            </div>
-
-            <a class="navbar__option navbar__option--right" ui-sref="register" ng-if="!user">
-                <span class="mdi-action-account-circle"></span>
-                <span ng-bind="strings.ACTION_REGISTER"></span>
+      </div>
+      <div class="col-xs-12 col-md-4 burger-menu__buttons" ng-if="!user">
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <a ui-sref="login">
+              <button class="btn btn-block btn-default btn-login">
+                Iniciar sesión
+              </button>
             </a>
-
-
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <a ui-sref="register">
+              <button class="btn btn-block btn-default btn-reg">
+                Registrarme
+              </button>
+            </a>
+          </div>
         </div>
+      </div>
+      <div class="col-xs-12 col-md-4 burger-menu__column burger-menu__user-links" ng-if="user">
+        <img ng-src="{{user.photo}}" class="burger-menu__user__picture" alt="{{user.user.full_name}}"/>
+        <span class="burger-menu__user__name" ng-bind="user.user.full_name"></span>
+        <ul class="list-unstyled">
+          <li>Mis Actividades</li>
+          <li>Mis Ventas</li>
+          <li ng-if="user.is_organizer"><a ui-sref="organizer-dashboard.profile">Perfil</a></li>
+          <li ng-if="user.is_student"><a ui-sref="student-dashboard.profile">Perfil</a></li>
+          <li>Cuenta</li>
+          <li>Comentarios Recibidos</li>
+          <li>Mis Contactos</li>
+          <li>Mis Instructores</li>
+          <li><a ui-sref="logout">Salir</a></li>
+        </ul>
+      </div>
 
     </div>
-</nav>
 
+    <button class="pull-right burger-menu__close" ng-click="toggleBurger()">
+      <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+    </button>
+  </div>
