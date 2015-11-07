@@ -205,7 +205,7 @@
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_EMAIL: "Correo",
                 HEADER_PRICE: "Precio",
-                HEADER_ORDER: "Nro. Orden",
+                HEADER_ORDER: "Orden",
                 HEADER_FIRST_NAME: "Nombre",
                 HEADER_LAST_NAME: "Apellido",
                 HEADER_CODE: "Código",
@@ -213,7 +213,7 @@
                 HEADER_AMOUNT: "Monto",
                 HEADER_SALE_DATA:"Fecha de Venta",
                 HEADER_UNIT_PRICE:"Precio Unitario",
-                HEADER_TOTAL:"Venta Total",
+                HEADER_TOTAL:"Total",
                 HEADER_STATUS:"Estatus",
             });
         }
