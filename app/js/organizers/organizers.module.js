@@ -51,8 +51,8 @@
                 resolve: {
                     organizer: getOrganizer,
                     activities: getOrganizerActivities,
-                    cities:getAvailableCities,
-
+                    reviews: getOrganizerReviews,
+                    cities: getAvailableCities
                 }
             })
             .state('organizer-dashboard', {

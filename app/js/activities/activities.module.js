@@ -356,7 +356,7 @@
         /**
          * @ngdoc method
          * @name .#getReviews
-         * @description Gets Reviews for Organizer
+         * @description Gets Reviews for Activity
          * @requires activity
          * @methodOf trulii.activities.config
          */
@@ -373,7 +373,6 @@
                 }
             }
             function error(response){
-                console.log('WTF');
                 return [];
             }
         }
