@@ -61,18 +61,20 @@
 
 <!--Location-->
 <div class="row profile-location">
-    <div class="map" id="map-canvas">
-        <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
-                            bounds="profile.map.bounds" options="profile.map.options"
-                            events="profile.map.events" control="profile.map.control">
-            <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
-                            events="profile.marker.events"
-                            idkey="profile.marker.id"></ui-gmap-marker>
-        </ui-gmap-google-map>
-    </div>
-    <div class="address">
-        <img src="/css/img/activity-detail/map_location.png" alt=""/>
-        <span ng-bind="profile.organizer.location.address"></span> <span ng-bind="profile.organizer.location.city.name"></span>
+    <div class="col-xs-12">
+        <div class="map" id="map-canvas">
+            <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
+                                bounds="profile.map.bounds" options="profile.map.options"
+                                events="profile.map.events" control="profile.map.control">
+                <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
+                                events="profile.marker.events"
+                                idkey="profile.marker.id"></ui-gmap-marker>
+            </ui-gmap-google-map>
+        </div>
+        <div class="address">
+            <img src="/css/img/activity-detail/map_location.png" alt=""/>
+            <span ng-bind="profile.organizer.location.address"></span> <span ng-bind="profile.organizer.location.city.name"></span>
+        </div>
     </div>
 </div>
 
