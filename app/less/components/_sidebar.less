@@ -77,9 +77,9 @@
 		text-decoration: none;
 		line-height: 3em;
 		cursor: pointer;
-        font-family: @font-sans-alt;
-        font-weight: bold;
-        font-size: .9em;
+    font-family: @font-sans-alt;
+    font-weight: 500;
+    font-size: .9em;
 
 		&--selected{
 			background: lighten(@dark-element, 10%);
@@ -89,12 +89,15 @@
 			transition: ease all 0.1s;
 			color: @primary;
 
-            .@{sidebar-float-class} &{
-                background: lighten(@gray-light, 50%);
-                font-weight: bold !important;
-                color: @success !important;
-                border-width: 0;
-            }
+      .@{sidebar-float-class} &{
+          background: lighten(@gray-light, 50%);
+          font-weight: bold !important;
+          color: @success !important;
+          border-width: 0;
+      }
+			&:focus{
+				color:@primary;
+			}
 		}
 
 		&:hover, &:focus{
@@ -200,6 +203,3 @@
         padding-bottom: 0;
     }
 }
-
-
-

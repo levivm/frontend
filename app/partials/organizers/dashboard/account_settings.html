@@ -1,6 +1,6 @@
 <div class="fade in">
     <div>
-        <h4 ng-bind="::account.strings.SUB_SECTION_EMAIL"></h4>
+        <h4 class="dashboard-header" ng-bind="::account.strings.SUB_SECTION_EMAIL"></h4>
         <p ng-bind="::account.strings.COPY_EMAIL"></p>
     </div>
     <form name='account.account_form_email' ng-submit="account.changeEmail()">
@@ -15,8 +15,8 @@
         </fieldset>
     </form>
 
-    <div>
-        <h4 ng-bind="::account.strings.SUB_SECTION_PASSWORD"></h4>
+    <div class="separate-above-more">
+        <h4 class="dashboard-header" ng-bind="::account.strings.SUB_SECTION_PASSWORD"></h4>
         <p ng-bind="::account.strings.COPY_PASSWORD"></p>
     </div>
     <form name='account.account_form_password' ng-submit="account.changePassword()">
@@ -25,18 +25,15 @@
                 <label ng-bind="::account.strings.LABEL_CURRENT_PASSWORD"></label>
                 <input id="id_oldpassword" class="form-control" name="oldpassword"
                        ng-model="account.password_data.oldpassword"
-                       placeholder="{{account.strings.LABEL_CURRENT_PASSWORD}}"
                        type="password">
             </div>
             <div class="form-group" trulii-input-errors-control="password1">
                 <label ng-bind="::account.strings.LABEL_NEW_PASSWORD"></label>
-                <input class="form-control" name="password1" ng-model="account.password_data.password1"
-                       placeholder="{{::account.strings.LABEL_NEW_PASSWORD}}" type="password">
+                <input class="form-control" name="password1" ng-model="account.password_data.password1" type="password">
             </div>
             <div class="form-group" trulii-input-errors-control="password2">
                 <label ng-bind="::account.strings.LABEL_REPEAT_PASSWORD"></label>
-                <input class="form-control" name="password2" ng-model="account.password_data.password2"
-                       placeholder="{{::account.strings.LABEL_REPEAT_PASSWORD}}" type="password">
+                <input class="form-control" name="password2" ng-model="account.password_data.password2"type="password">
             </div>
 
             <trulii-submit-controls is-saving="account.isSaving"

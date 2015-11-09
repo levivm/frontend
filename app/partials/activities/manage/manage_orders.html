@@ -78,27 +78,6 @@
                 </a>
               </td>
             </tr>
-            <tr ng-repeat="order in manage.orders track by order.id | filter:manage.orderQuery">
-              <td>
-                <strong>#<span ng-bind="order.id"></span></strong>
-              </td>
-              <td>
-                <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
-              </td>
-              <td>
-                <span ng-bind="order.amount | currency:$:0"></span>
-              </td>
-              <td>
-                <span ng-bind="order.unit_price * order.amount | currency:$:0"></span>
-              </td>
-              <td class="column-button">
-                <a ui-sref="dash.activities-manage.orders.order({'orderId': order.id})">
-                  <button class="btn btn-default">
-                    Ver detalle
-                  </button>
-                </a>
-              </td>
-            </tr>
           </table>
 
           <div class="text-center" ng-if="manage.orderPaginationOpts.totalItems > manage.orderPaginationOpts.itemsPerPage">

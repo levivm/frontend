@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div >
-                    <h4 ng-bind="profile.strings.SECTION_PROFILE"></h4>
+                    <h4 class="dashboard-header" ng-bind="profile.strings.SECTION_PROFILE"></h4>
                     <p ng-bind="::profile.strings.COPY_PROFILE"></p>
                 </div>
                 <form name="profile.picture_form">
@@ -46,20 +46,17 @@
                     <div class="form-group" trulii-input-errors-control="name">
                         <label class="control-label" ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
                         <input type="text" class="form-control" ng-model='profile.organizer.name'
-                               name="name"
-                               placeholder="{{::profile.strings.HELPER_FULL_NAME}}">
+                               name="name">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="headline"
                                ng-bind="::profile.strings.LABEL_HEADLINE"></label>
                             <textarea id="headline" class="form-control" ng-model='profile.organizer.headline'
-                                      name="headline"
-                                      placeholder="{{::profile.strings.HELPER_HEADLINE}}"></textarea>
+                                      name="headline"></textarea>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
-                            <textarea id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"
-                                      placeholder="{{::profile.strings.HELPER_BIO}}"></textarea>
+                            <textarea id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"></textarea>
                     </div>
                     <trulii-submit-controls is-saving="profile.isSaving"
                                             data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
@@ -68,8 +65,8 @@
         </form>
 
         <!--Video-->
-        <div class="separate-above">
-            <h4 ng-bind="profile.strings.SUB_SECTION_VIDEO"></h4>
+        <div class="separate-above-more">
+            <h4 class="dashboard-header" ng-bind="profile.strings.SUB_SECTION_VIDEO"></h4>
             <p ng-bind="::profile.strings.COPY_VIDEO"></p>
         </div>
         <form name='profile.profile_form_photo' ng-submit="profile.submit_video()">
@@ -77,8 +74,7 @@
                 <div class="form-group">
                     <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
                     <input type="text" class="form-control" ng-model="profile.organizer.youtube_video_url"
-                           name="video"
-                           placeholder="{{::profile.strings.PLACEHOLDER_VIDEO}}">
+                           name="video">
                 </div>
                 <div class="form-group">
                     <youtube-video video-url="profile.organizer.youtube_video_url" player-width="'100%'">
@@ -90,8 +86,8 @@
         </form>
 
         <!--Location-->
-        <div class="separate-above">
-            <h4 ng-bind="profile.strings.SUB_SECTION_LOCATION"></h4>
+        <div class="separate-above-more">
+            <h4 class="dashboard-header" ng-bind="profile.strings.SUB_SECTION_LOCATION"></h4>
             <p ng-bind="::profile.strings.COPY_LOCATION"></p>
         </div>
         <form name='profile.organizer_location_form' ng-submit="profile.submit_location()">
