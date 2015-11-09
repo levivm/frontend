@@ -215,7 +215,7 @@
             border: 2px solid white;
         }
 
-        &__name:extend(.show-after-md) {
+        &__name{
             min-width: 80px;
             max-width: 100px;
             white-space: nowrap;
@@ -315,7 +315,11 @@
   color: white;
   z-index: 10000;
   overflow-y: auto;
-
+  opacity: 1;
+  transition: all 0.25s;
+  &.ng-hide{
+    opacity: 0;
+  }
   p{
     margin: 0.5em 0em;
     font-weight: 400;
@@ -346,8 +350,12 @@
   }
   &__buttons{
     padding-top: 3.5em;
+    [class*="col-"] {
+      padding: 0 1em;
+    }
     .btn{
       margin: 1em 0em;
+      padding: 0.75em 1em;
     }
     .btn-login{
       background-color:transparent;
@@ -405,7 +413,7 @@
         }
       }
     }
-    &__name:extend(.show-after-md) {
+    &__name{
         min-width: 80px;
         max-width: 100px;
         white-space: nowrap;
@@ -422,8 +430,51 @@
         border-radius: 50%;
         width: 80px;
         height: 80px;
-        border: 2px solid white;
+        // border: 2px solid white;
         margin: 0em 1em;
+    }
+  }
+}
+
+@media (max-width: 991px){
+  .burger-menu{
+    &__buttons{
+      padding-top: 1.5em;
+      [class*="col-"] {
+        padding: 0 30%;
+      }
+    }
+    &__user-links{
+      max-height: none;
+    }
+    &__links{
+      padding-top: 0;
+    }
+    &__header-links{
+      ul{
+        &.list-inline{
+          li{
+            display: block;
+            margin-left: 0;
+            font-size:1.5em !important;
+            line-height: 1.5em;
+          }
+          li:not(:first-child){
+            padding: 0;
+          }
+        }
+      }
+    }
+    &__user-links{
+      ul{
+        padding: 3em 1em;
+      }
+    }
+    &__close {
+        top: 20px;
+    }
+    &__mobile-logo{
+      padding: 0.5em 0.5em 0.75em 0.5em;
     }
   }
 }
