@@ -114,7 +114,7 @@
                 LABEL_TOTAL: "Total Ventas",
                 LABEL_FINAL_TOTAL: "Ventas Netas",
                 LABEL_NO_ORDERS: "No hay ordenes en el historial",
-                LABEL_NO_REIMBURSEMENTS: "No hay reembolsos en el historial"
+                LABEL_NO_REIMBURSEMENTS: "No hay reembolsos en el historial",
             });
         }
 

@@ -85,7 +85,7 @@
                 templateUrl: 'partials/students/dashboard/history.orders.html',
             })
             .state('student-dashboard.history.orders.order', {
-                url:'/orders/:orderId',
+                url:'/:orderId',
                 controller: 'StudentHistoryOrderCtrl as order',
                 templateUrl: 'partials/commons/order.html',
                 params:{

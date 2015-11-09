@@ -127,7 +127,8 @@
                     <div class="col-md-12">
                         <span class="item" ng-bind="::enroll.strings.LABEL_TOTAL_AMOUNT"></span>
                         <span class="value final" ng-if="enroll.calendar.is_free" ng-bind="0 | currency"></span>
-                        <span class="value final" ng-if="!enroll.calendar.is_free" ng-bind="enroll.calendar.session_price | currency"></span>
+                        <span class="value final" ng-if="!enroll.calendar.is_free" 
+                            ng-bind="enroll.calendar.session_price * enroll.assistants.length | currency"></span>
                     </div>
                 </div>
             </div>

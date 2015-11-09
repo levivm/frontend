@@ -17,8 +17,11 @@
                                 <span ng-bind="::order.order.payment.payment_type"></span>
                                 <span ng-show="::order.order.payment.last_four_digits">*****</span><span ng-bind="::order.order.payment.last_four_digits"></span>
                                 </h5>
+                            <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_STATUS"></h5>
+                            <h5 class="sinkin-medium separate-below" ng-bind="::order.order.status"></h5>
                             <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_CREATE_AT"></h5>
                             <h5 class="sinkin-medium"><span class="text-capitalize"  ng-bind="::order.order.created_at | date:'EEEE d MMM y'"></span></h5>
+
 
                             <div class="separate-above-more">
                                 <a class="btn btn-default btn-return" ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
@@ -33,38 +36,56 @@
                         </div>
                         <div class="col-xs-9 order-info">
                             <div class="table-responsive table-fixed table-condensed">
-                                <table class="table table-hover" valign="middle">
+                                <table class="table table-hover border-bottom" valign="middle">
                                     <tr class="text-center">
                                         <th><strong ng-bind="::order.strings.HEADER_ASSISTANT"></strong></th>
                                         <th><strong ng-bind="::order.strings.HEADER_EMAIL"></strong></th>
                                         <th><strong ng-bind="::order.strings.HEADER_PRICE"></strong></th>
                                         <th><strong></strong></th>
                                     </tr>
-                                    <tr ng-repeat="assistant in order.order.assistants">
+                                    <tr ng-repeat="assistant in order.order.assistants track by assistant.id">
                                         <td>
                                             <span ng-bind="::(assistant.first_name +' '+ assistant.last_name)"></span>
                                         </td>
                                         <td>
                                             <span ng-bind="::assistant.email"></span>
-                                        </td>
+                                        </td> 
                                         <td>
-                                            <span ng-bind="order.order.amount | currency:$:0"></span>
+                                            <span ng-bind="::(order.order.amount / order.order.assistants.length | currency:$:0)"  ng-class="{'text-strike':assistant.lastest_refund.status === order.strings.REFUND_APPROVED_STATUS}"></span>
                                         </td>
-                                        <td class="column-button">
-                                            <button class="btn btn-default" ng-bind="::order.strings.ACTION_REIMBURSE"></button>
+                                        <td ng-show="assistant.lastest_refund">
+                                            <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span><br/>
+                                            <span class="sinkin-medium" ng-bind="assistant.lastest_refund.status"></span>                                                
+                                        </td>
+                                        <td class="column-button" ng-show="!assistant.lastest_refund">
+                                            <button class="btn btn-default" ng-show="!assistant.lastest_refund && !order.order.lastest_refund" ng-click="order.requestAssistantRefund(order.order.id,assistant)"ng-bind="::order.strings.ACTION_REIMBURSE"></button>
                                         </td>
                                     </tr>
                                 </table>
+
                             </div>
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <h4 ng-bind="::order.strings.LABEL_TOTAL"></h4>
+
+                            <div class="row no-margin">
+                                <div class="col-xs-3 no-padding">
+                                    <h4 class="text-lg montserrat-light" ng-bind="::order.strings.LABEL_SUB_TOTAL" ng-show="order.order.total_refunds_amount > 0"></h4>
+                                    <h4 class="text-lg montserrat-light" ng-show="order.order.total_refunds_amount > 0" ng-bind="order.strings.LABEL_REIMBURSEMENTS"></h4>
+                                    <hr class="complete no-margin" ng-show="order.order.total !== order.order.amount"/>
+                                    <h4 class="separate-above-less" ng-bind="::order.strings.LABEL_TOTAL"></h4>
+
                                 </div>
-                                <div class="col-xs-5">
-                                    <h4 class="text-right" ng-bind="order.order.amount | currency:$:0"></h4>
+                                <div class="col-xs-5 no-padding">
+                                    
+                                    <h4 class="text-right text-lg montserrat-light" ng-show="order.order.total !== order.order.amount" ng-bind="order.order.amount | currency:$:0" ></h4>                                    
+                                    <h4 class="text-right text-lg montserrat-light" ng-bind="'-' + (order.order.total_refunds_amount | currency:$:0)" ng-show="order.order.total_refunds_amount > 0"></h4> 
+                                    <hr class="complete no-margin" ng-show="order.order.total !== order.order.amount"/>
+                                    <h4 class="text-right " ng-bind="order.order.total | currency:$:0" ></h4>
                                 </div>
                                 <div class="col-xs-4">
-                                    <button class="btn btn-block btn-primary" ng-bind="::order.strings.ACTION_REIMBURSE_ORDER"></button>
+                                    <div ng-show="order.order.lastest_refund" >
+                                        <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span>
+                                        <span class="sinkin-medium" ng-bind="order.order.lastest_refund.status"></span>
+                                    </div>
+                                    <button class="btn btn-block btn-primary" ng-show="!order.order.lastest_refund && !(order.order.total_refunds_amount > 0)" ng-click="order.requestOrderRefund(order.order.id)" ng-bind="::order.strings.ACTION_REIMBURSE_ORDER"></button>
                                 </div>
                             </div>
                         </div>

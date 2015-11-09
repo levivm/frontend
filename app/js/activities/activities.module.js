@@ -161,6 +161,7 @@
                     }
                 },
                 resolve: {
+                    organizer : getCurrentOrganizer,
                     order: getOrder
                 }
             })

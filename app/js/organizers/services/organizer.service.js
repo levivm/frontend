@@ -193,10 +193,42 @@
              * @description Deletes an Instructor for the Organizer
              * @methodOf trulii.organizers.services.Organizer
              */
-            deleteInstructor: deleteInstructor
+            deleteInstructor: deleteInstructor,
+
+            /**
+             * @ngdoc function
+             * @name .#requestRefund
+             * @description Request a refund over an assistant if assistantId is not NULL, otherwhise 
+             * a refund is requested over an order, given by orderId
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            requestRefund: requestRefund,
+
         };
 
         return Organizer;
+
+
+        function requestRefund(orderId,assistantId){
+
+            //if assistantId is null, the refund is requested 
+            //over whole order instead of an assitant
+            return $http.post(api.refund(),{order:orderId,assistant:assistantId})
+                .then(success,error);
+
+            function success(response){
+
+                console.log('requesting order refund success', response);
+                return response.data;
+            }
+
+            function error(response){
+                console.log('requesting order refund error', response);
+                return $q.reject(response.data);
+
+            }
+
+        }
 
         function getReviews(){
             var deferred = $q.defer();
