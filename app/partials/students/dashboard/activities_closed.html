@@ -17,11 +17,9 @@
         </h3>
         <a ui-sref="student-dashboard.history.order({orderId: activity.orders[0].id})"
            ng-bind="activities.strings.COPY_ORDER_DETAIL"></a>
-        <div ng-repeat="order in activity.orders track by order.id">
-            <trulii-activity-review data-review="order.review"
-                                    data-activity="order.activity"
-                                    data-on-dashboard="true" ></trulii-activity-review>
-        </div>
+        <trulii-activity-review data-review="activity.review"
+                                data-activity="activity"
+                                data-on-dashboard="true" ></trulii-activity-review>
     </div>
     <hr/>
 </div>

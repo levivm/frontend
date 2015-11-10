@@ -118,6 +118,7 @@
             return deferred.promise;
 
             function classifyActivity(activity){
+                activity = _mapReviews(activity, reviews);
                 var orders;
                 // Filter pastOrders
                 orders = pastOrders.filter(filterOrdersByActivity);
@@ -140,6 +141,22 @@
             }
         }
 
+        function _mapReviews(activity, reviews){
+            console.log('reviews', reviews);
+            console.log('activity', activity);
+            var review = reviews.filter(function(review){
+                return review.activity == activity.id;
+            })[0];
+
+            if(!review){
+                review = {
+                    'activity' : activity.id
+                };
+            }
+            activity.review = review;
+            return activity;
+        }
+
         function _mapOrders(orders, activities, reviews){
             var COMPARISON_DATE = Date.now();
             var deferred = $q.defer();
@@ -157,7 +174,6 @@
 
             function processOrder(order){
                 order = setOrderActivity(order, activities);
-                order = setOrderReview(order, reviews);
                 if(order.calendar_initial_date < COMPARISON_DATE){
                     pastOrders.push(order);
                 } else {
@@ -170,22 +186,6 @@
                     return activity.id == order.activity_id;
                 })[0];
 
-                return order;
-            }
-
-            function setOrderReview(order, reviews){
-                console.log('reviews', reviews);
-                var review = reviews.filter(function(review){
-                    return review.calendar == order.calendar;
-                })[0];
-
-                if(!review){
-                    review = {
-                        'activity' : order.activity.id,
-                        'calendar' : order.calendar
-                    };
-                }
-                order.review = review;
                 return order;
             }
         }
@@ -213,6 +213,8 @@
             _setStrings();
             _mapOrders(orders, activities, reviews).then(function(){
                 _classifyActivities(activities, pastOrders, futureOrders);
+            }).then(function(){
+                _mapReviews(vm.past_activities, reviews);
             });
         }
 
