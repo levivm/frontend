@@ -55,10 +55,11 @@
                     <a ui-sref="activities-detail({'activity_id': activity.id})" ng-bind="activity.title"></a>
                 </span>
                 <!-- End activity link-->
-                <div class="float-right">
+                <div class="float-right" ng-if="review.created_at">
                     <!-- Date -->
                     <span class="text-sm">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span> <em>11 Jun. 2015</em>
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <em class="text-capitalize" ng-bind="review.created_at | date : 'MMM d, y'"></em>
                     </span>
                     <!-- End date-->
                 </div>
@@ -133,8 +134,9 @@
         </div>
         <div class="col-xs-9 paragraph-condensed">
             <span class="montserrat-semibold organizer-name" ng-bind="activity.organizer.name"></span>
-            <span class="text-sm text-muted pull-right">
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span><em>11 Jun. 2015</em>
+            <span class="text-sm text-muted pull-right" ng-if="review.replied_at">
+                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                <em class="text-capitalize" ng-bind="review.replied_at | date : 'MMM d, y'"></em>
             </span>
             <p><em ng-bind="review.reply"></em></p>
         </div>

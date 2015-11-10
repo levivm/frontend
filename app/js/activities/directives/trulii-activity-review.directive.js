@@ -55,7 +55,13 @@
                 //--------- Exposed Functions ---------//
 
                 function postReview(){
-                    activityInstance.postReview(scope.review);
+                    activityInstance.postReview(scope.review).then(success);
+
+                    function success(review){
+                        console.log('review success:', review);
+                        scope.review = review;
+                        scope.hasReview = true;
+                    }
                 }
 
                 function cancelReport(){

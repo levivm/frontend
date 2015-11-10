@@ -1,12 +1,12 @@
 <!--If there are activities-->
 <div class="row activity-grid">
     <trulii-activity-item
-            ng-repeat="activity in activities.open_activities track by activity.id"
+            ng-repeat="activity in activities.future_activities track by activity.id"
             data-activity="activity" data-options="{{activities.options}}">
     </trulii-activity-item>
 </div>
 <!--If there are no activities-->
-<div ng-if="activities.open_activities.length <= 0" class="row">
+<div ng-if="activities.future_activities.length <= 0" class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
         <img src="css/img/student_dashboard_activities_empty.png"
              alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>

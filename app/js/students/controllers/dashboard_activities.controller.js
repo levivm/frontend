@@ -16,10 +16,12 @@
 
     function StudentActivitiesCtrl($q, activities, reviews, orders, student) {
 
+        var futureOrders = [];
+        var pastOrders = [];
         var vm = this;
         angular.extend(vm, {
-            open_activities: [],
-            closed_activities: [],
+            future_activities: [],
+            past_activities: [],
             options : {
                 actions: ["contact"]
             },
@@ -44,58 +46,147 @@
 
         //--------- Internal Functions ---------//
 
-        function _assignActivities(){
-            vm.open_activities = [];
-            vm.closed_activities = [];
-            angular.forEach(activities, filterActivity);
+        //function _classifyActivities(){
+        //    vm.future_activities = [];
+        //    vm.past_activities = [];
+        //    angular.forEach(activities, filterActivity);
+        //
+        //    function filterActivity(activity){
+        //        var deferred = $q.defer();
+        //        if(activity.last_date < Date.now()){
+        //            vm.past_activities.push(activity);
+        //        } else {
+        //            vm.future_activities.push(activity);
+        //        }
+        //        deferred.resolve();
+        //        return deferred.promise;
+        //    }
+        //}
 
-            function filterActivity(activity){
-                var deferred = $q.defer();
-                if(activity.last_date < Date.now()){
-                    vm.closed_activities.push(activity);
-                } else {
-                    vm.open_activities.push(activity);
-                }
-                deferred.resolve();
-                return deferred.promise;
-            }
-        }
+        //function _mapReviews(reviews){
+        //    console.log('reviews', reviews);
+        //    var deferred = $q.defer();
+        //    var promiseArray = [];
+        //    activities.map(function(activity){
+        //        promiseArray.push(mapReview(activity));
+        //    });
+        //
+        //    $q.all(promiseArray).then(function(){
+        //        deferred.resolve();
+        //    });
+        //
+        //    return deferred.promise;
+        //
+        //    function mapReview(activity){
+        //        var review = reviews.filter(filterReview)[0];
+        //        if(!review){ review = {}; }
+        //        activity.review = review;
+        //
+        //        function filterReview(review){
+        //            return review.activity === activity.id;
+        //        }
+        //    }
+        //}
 
-        function _mapReviews(reviews){
-            console.log('reviews', reviews);
+        //function _mapOrders(activities, orders){
+        //    angular.forEach(activities, mapOrders);
+        //    return activities;
+        //
+        //    function mapOrders(activity){
+        //        activity.orders = orders.filter(filterOrders);
+        //
+        //        function filterOrders(order){
+        //            return order.activity_id === activity.id;
+        //        }
+        //    }
+        //}
+
+        function _classifyActivities(activities, pastOrders, futureOrders){
             var deferred = $q.defer();
             var promiseArray = [];
-            activities.map(function(activity){
-                promiseArray.push(mapReview(activity));
+
+            activities.forEach(function(activity){
+                promiseArray.push(classifyActivity(activity));
             });
 
             $q.all(promiseArray).then(function(){
+                console.log('future_activities:', vm.future_activities);
+                console.log('past_activities:', vm.past_activities);
                 deferred.resolve();
             });
 
             return deferred.promise;
 
-            function mapReview(activity){
-                var review = reviews.filter(filterReview)[0];
-                if(!review){ review = {}; }
-                activity.review = review;
+            function classifyActivity(activity){
+                var orders;
+                // Filter pastOrders
+                orders = pastOrders.filter(filterOrdersByActivity);
+                if(orders.length > 0){
+                    var pastActivity = angular.copy(activity);
+                    pastActivity.orders = orders;
+                    vm.past_activities.push(pastActivity);
+                }
+                // Filter futureOrders
+                orders = futureOrders.filter(filterOrdersByActivity);
+                if(orders.length > 0){
+                    var futureActivity = angular.copy(activity);
+                    futureActivity.orders = orders;
+                    vm.future_activities.push(futureActivity);
+                }
 
-                function filterReview(review){
-                    return review.activity === activity.id;
+                function filterOrdersByActivity(order){
+                    return activity.id === order.activity_id;
                 }
             }
         }
 
-        function _mapOrders(activities, orders){
-            angular.forEach(activities, mapOrders);
-            return activities;
+        function _mapOrders(orders, activities, reviews){
+            var COMPARISON_DATE = Date.now();
+            var deferred = $q.defer();
+            var promiseArray = [];
 
-            function mapOrders(activity){
-                activity.orders = orders.filter(filterOrders);
+            orders.forEach(function(order){
+                promiseArray.push(processOrder(order));
+            });
 
-                function filterOrders(order){
-                    return order.activity_id === activity.id;
+            $q.all(promiseArray).then(function(){
+                deferred.resolve(orders);
+            });
+
+            return deferred.promise;
+
+            function processOrder(order){
+                order = setOrderActivity(order, activities);
+                order = setOrderReview(order, reviews);
+                if(order.calendar_initial_date < COMPARISON_DATE){
+                    pastOrders.push(order);
+                } else {
+                    futureOrders.push(order);
                 }
+            }
+
+            function setOrderActivity(order, activities){
+                order.activity = activities.filter(function(activity){
+                    return activity.id == order.activity_id;
+                })[0];
+
+                return order;
+            }
+
+            function setOrderReview(order, reviews){
+                console.log('reviews', reviews);
+                var review = reviews.filter(function(review){
+                    return review.calendar == order.calendar;
+                })[0];
+
+                if(!review){
+                    review = {
+                        'activity' : order.activity.id,
+                        'calendar' : order.calendar
+                    };
+                }
+                order.review = review;
+                return order;
             }
         }
 
@@ -120,8 +211,9 @@
 
         function _activate() {
             _setStrings();
-            activities = _mapOrders(activities, orders);
-            _mapReviews(reviews).then(function(){ _assignActivities(); });
+            _mapOrders(orders, activities, reviews).then(function(){
+                _classifyActivities(activities, pastOrders, futureOrders);
+            });
         }
 
     }
