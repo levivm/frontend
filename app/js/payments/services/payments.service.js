@@ -138,6 +138,15 @@
              */
             validateCardType : validateCardType,
 
+            /**
+             * @ngdoc function
+             * @name .#getBankingInfo
+             * @description Get Banking Info Choices
+             * @return {promise} Banking Info promise
+             * @methodOf trulii.payments.services.Payments
+             */
+            getBankingInfo: getBankingInfo,
+
             KEY_CARD_ASSOCIATION: KEY_CARD_ASSOCIATION,
             KEY_PAYER_ID : KEY_PAYER_ID,
             KEY_NAME : KEY_NAME,
@@ -338,6 +347,17 @@
 
             function isValidType(card){
                 return methodType.toUpperCase() === card;
+            }
+        }
+
+        function getBankingInfo(){
+            return $http.get(api.bankingInfo()).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                console.log('Error obtaining banking info:', response.data);
             }
         }
 

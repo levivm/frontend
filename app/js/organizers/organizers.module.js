@@ -71,7 +71,10 @@
             .state('organizer-dashboard.account', {
                 url:'account/',
                 controller: 'OrganizerAccountCtrl as account',
-                templateUrl: 'partials/organizers/dashboard/account.html'
+                templateUrl: 'partials/organizers/dashboard/account.html',
+                resolve: {
+                    bankingInfo: getBankingInfo
+                }
             })
             .state('organizer-dashboard.account.settings', {
                 url:'settings',
@@ -231,6 +234,19 @@
         getAvailableCities.$inject = ['LocationManager'];
         function getAvailableCities(LocationManager){
             return LocationManager.getAvailableCities();
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getBankingInfo
+         * @description Retrieves Banking Choices Info from
+         * {@link trulii.payments.services.Payments Payments} Service
+         * @requires trulii.payments.services.Payments
+         * @methodOf trulii.organizers.config
+         */
+        getBankingInfo.$inject = ['Payments'];
+        function getBankingInfo(Payments){
+            return Payments.getBankingInfo();
         }
 
     }

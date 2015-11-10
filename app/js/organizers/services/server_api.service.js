@@ -107,6 +107,19 @@
              */
             'instructor': function (idInstructor){
                 return renderUrl('instructors/', [idInstructor]);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#bankingInfo
+             * @description Renders **`/api/organizer/:idOrganizer/bankinfo`**
+             * Organizer Instructor URL
+             * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'bankingInfo': function (idOrganizer){
+                return renderUrl('organizer/', [idOrganizer, 'bankinfo/']);
             }
         };
 

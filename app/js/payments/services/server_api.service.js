@@ -24,7 +24,7 @@
 
             /**
              * @ngdoc function
-             * @name trulii.payments.services.PaymentServerApi#payUInfo
+             * @name .#payUInfo
              * @description Renders **`/api/payment/info`** PayU configuration data URL
              * @return {string} Rendered URL
              * @methodOf trulii.payments.services.PaymentServerApi
@@ -35,13 +35,24 @@
 
             /**
              * @ngdoc function
-             * @name trulii.payments.services.PaymentServerApi#bankListPSE
+             * @name .#bankListPSE
              * @description Renders **`/api/payment/pse/banks`** PayU available Banks for PSE transactions
              * @return {string} Rendered URL
              * @methodOf trulii.payments.services.PaymentServerApi
              */
             'PSEBankList' : function (){
                 return renderUrl('payments/', ['pse','banks']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#bankingInfo
+             * @description Renders **`/api/bankinfo/choices/`** Organizer Banking Info Choices
+             * @return {string} Rendered URL
+             * @methodOf trulii.payments.services.PaymentServerApi
+             */
+            'bankingInfo' : function (){
+                return renderUrl('bankinfo/', ['choices/']);
             }
         };
 
