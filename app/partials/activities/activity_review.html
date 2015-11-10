@@ -69,7 +69,7 @@
             </div>
         </div>
     </div>
-    <!-- Response -->
+    <!-- Review Reported -->
     <div class="row">
         <div class="col-xs-10 col-xs-offset-2">
             <!-- Review being reviewed -->
@@ -79,9 +79,9 @@
         </div>
     </div>
     <!-- No response yet-->
-    <div class="row" ng-if="isOrganizer && onDashboard">
+    <div class="row" ng-if="isOrganizer && onDashboard" ng-hide="hasReply">
         <div class="col-xs-10 col-xs-offset-2">
-            <div class="row" ng-hide="review.reply">
+            <div class="row">
                 <div class="col-xs-12 separate-above-less separate-below-less">
                     <input id="review-reply" class="form-control" name="review-reply"
                            ng-model="review.reply"
@@ -126,7 +126,8 @@
             </div>
         </div>
     </div>
-    <div ng-show="review.reply" class="row separate-above-medium separate-below-medium">
+    <!-- Response -->
+    <div ng-show="hasReply" class="row separate-above-medium separate-below-medium">
         <div class="col-xs-2 col-xs-offset-1">
             <!--TODO organizer-->
             <img ng-src="{{ activity.organizer.photo }}" class="img-responsive img-circle"/>
