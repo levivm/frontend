@@ -364,7 +364,7 @@
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
                 vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
                 $window.onscroll = function(){
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2 - 50;
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                 };
