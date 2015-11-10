@@ -24,11 +24,18 @@
         isCollapsed: true,
         isSaving: false,
         sales: [],
+        refunds: [],
         reimbursements: [],
         queries : {
             saleQuery : null,
+            refundQuery : null,
         },
         salesPaginationOpts: {
+            totalItems: 0,
+            itemsPerPage: 10,
+            pageNumber: 1
+        },
+        refundsPaginationOpts: {
             totalItems: 0,
             itemsPerPage: 10,
             pageNumber: 1
@@ -36,12 +43,13 @@
         pageChange:pageChange,
         updateByQuery:updateByQuery,
         TYPE_SALES: 'sales',
-
+        TYPE_REFUNDS: 'refunds',
 
         });
 
         _activate();
         var sales = [];
+        var refunds = [];
 
         /*         EXPOSED FUNCTIONS       */
         function updateByQuery(type){
@@ -53,6 +61,14 @@
                     vm.salesPaginationOpts.pageNumber = 1;
                     vm.sales = vm.sales.slice(0, vm.salesPaginationOpts.itemsPerPage);
                     break;
+                case vm.TYPE_REFUNDS:
+                console.log('updating',vm.queries.refundQuery);
+                    vm.refunds = $filter('filter')(refunds, vm.queries.refundQuery);
+                    vm.refundsPaginationOpts.totalItems = vm.refunds.length;
+                    vm.refundsPaginationOpts.pageNumber = 1;
+                    vm.refunds = vm.refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+                    break;
+
             }
         }
 
@@ -68,6 +84,12 @@
                     vm.sales = sales.slice(start, end);
                     console.log('sales:', vm.sales);
                     break;
+                case vm.TYPE_REFUNDS:
+                    offset = vm.refundsPaginationOpts.itemsPerPage;
+                    start = (vm.refundsPaginationOpts.pageNumber -1) * offset;
+                    end = vm.refundsPaginationOpts.pageNumber * offset;
+                    vm.refunds = refunds.slice(start, end);
+                    break;
             }
         }
 
@@ -78,10 +100,22 @@
             organizer.getOrders().then(success, error);
 
             function success(orders){
-                // vm.sales = orders;
                 sales = $filter('orderBy')(orders, 'id', true);
                 vm.salesPaginationOpts.totalItems = sales.length;
                 vm.sales = sales.slice(0, vm.salesPaginationOpts.itemsPerPage);
+            }
+            function error(data){
+                console.log("Error getting Organizer's orders");
+            }
+        }
+
+        function _getRefunds(){
+            organizer.getRefunds().then(success,error);
+
+            function success(data){
+                refunds = $filter('orderBy')(data, 'id', true);
+                vm.refundsPaginationOpts.totalItems = refunds.length;
+                vm.refunds = refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
             }
             function error(data){
                 console.log("Error getting Organizer's orders");
@@ -94,6 +128,7 @@
             }
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Reembolsar",
+                ACTION_VIEW_DETAIL: "Ver detalle",
                 COPY_EMAIL: "¿Desea cambiar su correo electrónico?",
                 COPY_NOT_AVAILABLE : "No Disponible",
                 COPY_NA : "N/A",
@@ -111,6 +146,9 @@
                 LABEL_PAYMENT: "Pago",
                 LABEL_DETAIL: "Detalle",
                 LABEL_DATE: "Fecha de venta",
+                LABEL_REFUND_DATE: "Fecha de Reembolso",
+                LABEL_REFUND_AMOUNT: "Monto",
+                LABEL_REFUND_STATE: "Estado del Reembolso",
                 LABEL_TOTAL: "Total Ventas",
                 LABEL_FINAL_TOTAL: "Ventas Netas",
                 LABEL_NO_ORDERS: "No hay ordenes en el historial",
@@ -121,6 +159,7 @@
         function _activate() {
             _setStrings();
             _getOrders();
+            _getRefunds();
             console.log('organizer:', organizer);
         }
 
