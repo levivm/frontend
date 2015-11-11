@@ -17,6 +17,7 @@ ul.dropdown-menu { // Datepicker elemento raiz
 			.btn{
 				text-transform: uppercase;
 				padding: 5px 10px;
+				background-color: transparent;
 
 				&:hover{
 					background-color: darken(@success, 10%);
@@ -28,7 +29,7 @@ ul.dropdown-menu { // Datepicker elemento raiz
 		.btn{
 			border-width: 0;
 			//width: auto !important;
-			border-radius: 8px;
+			border-radius: @border-radius-base;
 			padding: 2px 5px;
 
 			&[disabled]{ // Día no disponible para seleccionar
