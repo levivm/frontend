@@ -1,7 +1,7 @@
 <!--If there are activities-->
 
 <div class="row separate-above-medium separate-below-medium"
-     ng-repeat="activity in activities.closed_activities track by activity.id">
+     ng-repeat="activity in activities.past_activities track by activity.id">
     <div class="col-xs-6 col-sm-4">
         <trulii-activity-item
                 data-activity="activity" data-options="{{activities.options}}">
@@ -24,7 +24,7 @@
     <hr/>
 </div>
 <!--If there are no activities-->
-<div ng-if="activities.closed_activities.length <= 0" class="row">
+<div ng-if="activities.past_activities.length <= 0" class="row">
     <div class="col-md-8 col-md-offset-2 text-center">
         <img src="css/img/student_dashboard_activities_empty.png"
              alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>

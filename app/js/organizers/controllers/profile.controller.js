@@ -5,11 +5,15 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileController', OrganizerProfileController);
 
-    OrganizerProfileController.$inject = ['$state', '$stateParams', 'LocationManager', 'organizer', 'activities','cities'];
+    OrganizerProfileController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'LocationManager', 'organizer', 'activities'
+        , 'reviews', 'cities'];
 
-    function OrganizerProfileController($state, $stateParams, LocationManager, organizer, activities, cities) {
+    function OrganizerProfileController($state, $stateParams, uiGmapGoogleMapApi, LocationManager, organizer, activities
+        , reviews, cities) {
 
         var vm = this;
+        var visibleReviewListSize = 5;
+        var reviewObjects = [];
 
         angular.extend(vm, {
             organizer : organizer,
@@ -25,7 +29,10 @@
             },
             pageNumber : 1,
             activities : [],
-            activityPageChange : activityPageChange
+            reviewObjects: [],
+            hasMoreReviews: true,
+            activityPageChange : activityPageChange,
+            showMoreReviews: showMoreReviews
         });
 
         _activate();
@@ -39,9 +46,16 @@
             vm.activities = activities.slice(start, end);
         }
 
+        function showMoreReviews(){
+            if(visibleReviewListSize < reviews.length){
+                visibleReviewListSize += 5;
+                vm.reviewObjects = reviewObjects.slice(0, visibleReviewListSize);
+            } else {
+                vm.hasMoreReviews = false;
+            }
+        }
+
         function _getCity(cities, organizer){
-            console.log('cities:', cities);
-            console.log('organizer:', organizer);
             if(organizer.locations.length > 0){
                 var cityId = organizer.locations[0].city.id;
                 cities.find(isSameCity);
@@ -50,8 +64,35 @@
             }
 
             function isSameCity(city){
-                console.log(city.id, cityId);
                 return city.id === cityId;
+            }
+        }
+
+        function _getReviewRatingAvg(reviews){
+            if(reviews.length == 0){ return 0; }
+            return reviews.map(getRatings).reduce(reduceRatings);
+
+            function getRatings(review){ return review.rating; }
+
+            function reduceRatings(previous, current){ return previous + current; }
+        }
+
+        function _setReviews(){
+            reviewObjects = reviews.map(mapActivityToReview);
+            vm.reviewObjects = reviewObjects.slice(0, 5);
+            console.log('reviewObjects', vm.reviewObjects);
+
+            function mapActivityToReview(review){
+                var activity = activities.filter(filterById)[0];
+
+                return {
+                    'activity': activity,
+                    'review': review
+                };
+
+                function filterById(activity){
+                    return activity.id === review.activity;
+                }
             }
         }
 
@@ -62,7 +103,6 @@
                     params: $stateParams
                 }
             };
-            console.log('vm.current_state:', vm.current_state);
         }
 
         function _setStrings(){
@@ -83,15 +123,18 @@
         function _activate(){
             _setStrings();
             _setCurrentState();
-            console.log('map',vm.map);
+            _setReviews();
             vm.map.options.scrollwheel = false;
+
+            vm.reviewsAvg = _getReviewRatingAvg(reviews);
+
+            console.log(reviews);
 
             LocationManager.getAvailableCities().then(successCities);
             vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
 
             function successCities(cities){
                 vm.city = _getCity(cities, organizer);
-                console.log('vm.city:', vm.city);
             }
         }
     }

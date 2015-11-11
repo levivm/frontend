@@ -30,6 +30,7 @@
 
                 angular.extend(scope, {
                     hasReview: false,
+                    hasReply: false,
                     showReportWarning: false,
                     user: null,
                     isOrganizer: false,
@@ -55,7 +56,13 @@
                 //--------- Exposed Functions ---------//
 
                 function postReview(){
-                    activityInstance.postReview(scope.review);
+                    activityInstance.postReview(scope.review).then(success);
+
+                    function success(review){
+                        console.log('review success:', review);
+                        scope.review = review;
+                        scope.hasReview = true;
+                    }
                 }
 
                 function cancelReport(){
@@ -68,7 +75,11 @@
                 }
 
                 function reply(){
-                    activityInstance.replyReview(scope.review);
+                    activityInstance.replyReview(scope.review).then(success);
+
+                    function success(){
+                        scope.hasReply = true;
+                    }
                 }
 
                 function markAsRead(){
@@ -133,6 +144,8 @@
 
                 function _activate(){
                     _getUser();
+                    scope.hasReply = !!scope.review.reply;
+                    console.log('hasReply:', scope.hasReply);
                     if(scope.review.id){
                         scope.hasReview = true;
                     } else {

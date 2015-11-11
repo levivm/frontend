@@ -27,10 +27,13 @@
                                       cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
+        var visibleReviewListSize = 5;
         var vm = this;
         angular.extend(vm, {
             city : null,
             calendars : [],
+            reviews: [],
+            hasMoreReviews: true,
             relatedActivities: [],
             calendar : null,
             activity : null,
@@ -49,11 +52,11 @@
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
             getOrganizerCity : getOrganizerCity,
-            getStarStyle : getStarStyle,
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
-            nextState:nextState,
+            nextState: nextState,
+            showMoreReviews: showMoreReviews,
             scroll: 0,
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
@@ -65,24 +68,16 @@
         //--------- Exposed Functions ---------//
 
         function previousGalleryPicture(){
-            if(vm.currentGalleryPicture > 0){
-                vm.currentGalleryPicture--;
-            }
+            if(vm.currentGalleryPicture > 0){ vm.currentGalleryPicture--; }
         }
 
         function nextGalleryPicture(){
-            if(vm.currentGalleryPicture < (vm.activity.gallery.length - 1)){
-                vm.currentGalleryPicture++;
-            }
+            if(vm.currentGalleryPicture < (vm.activity.gallery.length - 1)){ vm.currentGalleryPicture++; }
         }
 
-        function showList(){
-            vm.isListVisible = true;
-        }
+        function showList(){ vm.isListVisible = true; }
 
-        function hideList(){
-            vm.isListVisible = false;
-        }
+        function hideList(){ vm.isListVisible = false; }
 
         function setSelectedCalendar(calendar){
             vm.calendar_selected = calendar;
@@ -97,23 +92,31 @@
             }
         }
 
-        function changeState(state) {
-            $state.go('activities-detail.' + state);
-        }
+        function changeState(state) { $state.go('activities-detail.' + state); }
 
-        function changeSelectedCalendar(calendar) {
-            vm.calendar_selected = calendar;
-        }
+        function changeSelectedCalendar(calendar) { vm.calendar_selected = calendar; }
 
-        function nextState(activity_id,calendar_id){
-            var next = currentUser ? $state.go('activities-enroll',{activity_id:vm.activity.id, calendar_id:calendar_id})
-                         :$state.go('register',{toState:{state:'activities-enroll',
-                                params:{activity_id:activity_id,calendar_id:calendar_id}}});
+        function nextState(activity_id, calendar_id){
+            var enrollParams = {
+                activity_id: vm.activity.id,
+                calendar_id: calendar_id
+            };
 
-            // var nextURL = currentUser ?
-            //      'activities-enroll({activity_id:'vm.activity.id+', calendar_id:'+vm.calendar_selected.id+'})'
-            //     :'register({toState:{state:activities-enroll,params:{activity_id:'+vm.activity.id+',calendar_id:'+vm.calendar_selected.id+'}}})';
-            // return nextURL;
+            var registerParams = {
+                toState: {
+                    state: 'activities-enroll',
+                    params: {
+                        activity_id: activity_id,
+                        calendar_id: calendar_id
+                    }
+                }
+            };
+
+            if(currentUser){
+                $state.go('activities-enroll', enrollParams);
+            } else {
+                $state.go('register', registerParams);
+            }
         }
 
         function getOrganizerPhoto(){
@@ -131,17 +134,15 @@
             }
         }
 
-        function getStarStyle(star){
-            if(star <= 4){
-                return {
-                    'color': 'yellow'
-                };
+        function showMoreReviews(){
+            if(visibleReviewListSize < reviews.length){
+                visibleReviewListSize += 5;
+                vm.reviews = reviews.slice(0, visibleReviewListSize);
             } else {
-                return {
-                    'color': 'white'
-                }
+                vm.hasMoreReviews = false;
             }
         }
+
         //--------- Internal Functions ---------//
 
         function _mapClosestCalendar(activity){
@@ -186,7 +187,6 @@
             } else {
                 activity.main_photo = defaultCover;
             }
-            console.log('_mapPictures. activity:', activity);
             return activity;
         }
 
@@ -248,7 +248,6 @@
                     });
 
                 });
-
             }
         }
 
@@ -259,13 +258,19 @@
                     params: $stateParams
                 }
             };
-            console.log('vm.current_state:', vm.current_state);
+        }
+
+        function _getReviewRatingAvg(reviews){
+            if(reviews.length === 0){ return 0; }
+            return reviews.map(getRatings).reduce(reduceRatings);
+
+            function getRatings(review){ return review.rating; }
+
+            function reduceRatings(previous, current){ return previous + current; }
         }
 
         function _setSocialShare(){
-
             var current_url = $state.href($state.current.name, $state.params, {absolute: true});
-
             vm.social = {};
             angular.extend(vm.social, {
                 FACEBOOK_SOCIAL_PROVIDER: 'facebook',
@@ -282,10 +287,7 @@
                 TWITTER_SHARE_TEXT:'Échale un vistazo a ' + vm.activity.title,
                 TWITTER_SHARE_URL:current_url,
                 TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(','),
-
-
             });
-
         }
 
         function _setStrings(){
@@ -320,6 +322,8 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_ONE_SESSION: "Sesión",
                 COPY_OTHER_SESSIONS: "Sesiones",
+                COPY_ONE_REVIEW: " Evaluación",
+                COPY_OTHER_REVIEWS: " Evaluaciones",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más seguro que la tabla del 1 ¡En serio!",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
@@ -343,7 +347,6 @@
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
                 TAB_CALENDARS: "Calendarios",
                 LABEL_ATTENDEES: "Asistentes",
-                // VALUE_DURATION: getDurationString(),
                 VALUE_WITH_CERTIFICATION: "Con Certificado",
                 VALUE_WITHOUT_CERTIFICATION: "Sin Certificado",
                 REASON_NO_COMMISSIONS: "Sin Comisiones",
@@ -355,23 +358,42 @@
                 });
         }
 
+        function _initWidget(){
+            angular.element(document).ready(function () {
+                vm.scroll = document.body.scrollTop;
+                vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                $window.onscroll = function(){
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2 - 50;
+                    vm.scroll = document.body.scrollTop;
+                    $scope.$apply();
+                };
+            });
+        }
+
         function _activate(){
             _setStrings();
 
             _setCurrentState();
-            vm.activity = activity;
+            _setUpLocation(activity);
+            _getOrganizerActivities(activity.organizer);
+            activity = _mapCalendars(activity);
+            activity = _mapPictures(activity);
+            activity = _mapClosestCalendar(activity);
+            activity = _mapInfo(activity);
 
-            _setUpLocation(vm.activity);
-            _getOrganizerActivities(vm.activity.organizer);
-            vm.activity = _mapCalendars(vm.activity);
-            vm.activity = _mapPictures(vm.activity);
-            vm.activity = _mapClosestCalendar(vm.activity);
-            vm.activity = _mapInfo(vm.activity);
-            vm.activity.rating = [1, 2, 3, 4, 5];
+            var reviewsAvg = _getReviewRatingAvg(reviews);
+            console.log('avg', reviewsAvg);
 
-            vm.calendars = calendars;
-            vm.organizer = vm.activity.organizer;
-            vm.calendar_selected = vm.activity.closest_calendar;
+            angular.extend(vm, {
+                activity : activity,
+                calendars : calendars,
+                reviews : reviews,
+                reviewsAvg: reviewsAvg,
+                totalReviews: reviews.length,
+                organizer : activity.organizer,
+                calendar_selected : activity.closest_calendar
+            });
 
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
@@ -379,25 +401,10 @@
             }
 
             _setSocialShare();
-
+            _initWidget();
 
             console.log('detail. activity:', vm.activity);
             console.log('detail. reviews:', reviews);
-
-            angular.element(document).ready(function () {
-                vm.scroll = document.body.scrollTop;
-                vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                $window.onscroll = function(){
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
-                    vm.scroll = document.body.scrollTop;
-                    $scope.$apply();
-                };
-            });
-
-
-
-
         }
     }
 })();

@@ -12,23 +12,35 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
 
-    OrganizerAccountCtrl.$inject = ['$location', '$timeout', '$state', 'Authentication', 'Error', 'organizer'];
-    function OrganizerAccountCtrl($location, $timeout, $state, Authentication, Error, organizer) {
+    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Error', 'organizer', 'bankingInfo'];
+    function OrganizerAccountCtrl($state, Authentication, Error, organizer, bankingInfo) {
 
         var vm = this;
-
-        vm.organizer = organizer;
-        vm.password_data = {};
-        vm.isCollapsed = true;
-        vm.isSaving = false;
-        vm.changeEmail = changeEmail;
-        vm.changePassword = changePassword;
-        vm.sales = [];
-        vm.reimbursements = [];
+        angular.extend(vm, {
+            organizer : organizer,
+            bankingInfo: bankingInfo,
+            bankingData: {
+                'organizer': organizer.id
+            },
+            password_data : {},
+            isCollapsed : true,
+            isSaving : false,
+            sales : [],
+            reimbursements : [],
+            changeEmail : changeEmail,
+            changePassword : changePassword,
+            updateBankingInfo: updateBankingInfo
+        });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+
+        function updateBankingInfo(){
+            organizer.saveBankingInfo(vm.bankingData).then(function(response){
+                console.log('bankingData response', response);
+            });
+        }
 
         function changeEmail() {
             vm.isSaving = true;
@@ -76,6 +88,15 @@
 
         //--------- Internal Functions ---------//
 
+        function _getOrganizerBankingInfo(){
+
+            organizer.getBankingInfo().then(success);
+
+            function success(bankingData){
+                if(bankingData){ vm.bankingData = bankingData; }
+            }
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -94,13 +115,26 @@
                 LABEL_NEW_PASSWORD: "Nueva Contraseña",
                 LABEL_REPEAT_PASSWORD: "Repetir Nueva Contraseña",
                 LABEL_EMAIL: "Correo Electrónico",
+                LABEL_BANK: "Banco",
+                LABEL_DOCUMENT: "Documento",
+                LABEL_DOCUMENT_TYPE: "Tipo de Documento",
+                LABEL_DOCUMENT_NUMBER: "Número de Documento",
+                LABEL_BENEFICIARY: "Beneficiario",
+                LABEL_ACCOUNT_TYPE: "Tipo de Cuenta",
+                LABEL_ACCOUNT_NUMBER: "Número de Cuenta",
+                PLACEHOLDER_DOCUMENT_NUMBER: "Ej. 1.009.099",
+                PLACEHOLDER_ACCOUNT_NUMBER: "Ej. 5009099",
                 SUB_SECTION_EMAIL: "Correo Electrónico",
-                SUB_SECTION_PASSWORD: "Contraseña"
+                SUB_SECTION_PASSWORD: "Contraseña",
+                OPTION_DEFAULT_SELECT_BANK: "Seleccione un banco",
+                OPTION_DEFAULT_SELECT_DOCUMENT_TYPE: "Tipo de Documento",
+                OPTION_DEFAULT_SELECT_ACCOUNT_TYPE: "Tipo de Cuenta"
             });
         }
 
         function _activate() {
             _setStrings();
+            _getOrganizerBankingInfo();
         }
 
     }

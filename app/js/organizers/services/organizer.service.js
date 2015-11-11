@@ -204,6 +204,22 @@
              */
             requestRefund: requestRefund,
 
+            /**
+             * @ngdoc function
+             * @name .#getBankingInfo
+             * @description Retrieves the Organizer Banking Info
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getBankingInfo: getBankingInfo,
+
+            /**
+             * @ngdoc function
+             * @name .#saveBankingInfo
+             * @description Updates the Organizer Banking Info
+             * @params data Organizer banking Info
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            saveBankingInfo: saveBankingInfo
         };
 
         return Organizer;
@@ -308,6 +324,28 @@
             function error(response){
                 console.log('organizer.delete instructor error:', response);
                 return response.data;
+            }
+        }
+
+        function getBankingInfo(){
+            return $http.get(api.bankingInfo(this.id)).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                console.log("Error retrieving Organizer's Banking Info:", response.data);
+            }
+        }
+
+        function saveBankingInfo(data){
+            return $http.post(api.bankingInfo(this.id), data).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                console.log("Error updating Organizer's Banking Info:", response.data);
             }
         }
     }
