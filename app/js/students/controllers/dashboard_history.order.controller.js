@@ -21,6 +21,7 @@
         angular.extend(vm,{
             student: student,
             order: order,
+            isStudent:true,
             previousState:null,
             requestAssistantRefund: requestAssistantRefund,
             requestOrderRefund: requestOrderRefund,

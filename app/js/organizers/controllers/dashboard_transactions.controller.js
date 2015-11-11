@@ -93,7 +93,6 @@
             }
         }
 
-
         //Private functions
 
         function _getOrders(){
@@ -126,6 +125,7 @@
             if (!vm.strings) {
                 vm.strings = {};
             }
+
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Reembolsar",
                 ACTION_VIEW_DETAIL: "Ver detalle",
@@ -133,13 +133,14 @@
                 COPY_NOT_AVAILABLE : "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE : "Fecha de inicio:",
-                COPY_SEARCH_ORDERS_HELPER : "Buscar por número de orden, pago, detalle, etc.",
+                COPY_SEARCH_ORDERS_HELPER : "Buscar por número de orden, pago, asistente, etc.",
                 COPY_NO_ORDERS: "Aún no tienes ordenes en tu historial de Ventas",
                 COPY_NO_REIMBURSEMENTS: "Aún no tienes reembolsos en tu historial de Ventas",
-                COPY_ONE_ASSISTANT: "1 asistente",
-                COPY_MANY_ASSISTANTS: "{} asistentes",
+                COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de venta restando la comisión de Trulii, consulte el detalle "+
+                                          "para mayor información",
+                COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de la orden sin contar la comisión de Trulii",
                 TAB_SALES: "Ventas",
-                TAB_REIMBURSEMENTS: "Reembolsos",
+                TAB_REFUNDS: "Reembolsos",
                 LABEL_SEARCH_ORDERS : "Buscar Ordenes",
                 LABEL_ORDER: "Orden",
                 LABEL_ACTIVITY: "Actividad",
@@ -148,8 +149,10 @@
                 LABEL_DATE: "Fecha de venta",
                 LABEL_REFUND_DATE: "Fecha de Reembolso",
                 LABEL_REFUND_AMOUNT: "Monto",
-                LABEL_REFUND_STATE: "Estado del Reembolso",
+                LABEL_REFUND_STATE: "Estado",
+                LABEL_ASSISTANT: "Asistente",
                 LABEL_TOTAL: "Total Ventas",
+                LABEL_EVERYBODY: "Todos",
                 LABEL_FINAL_TOTAL: "Ventas Netas",
                 LABEL_NO_ORDERS: "No hay ordenes en el historial",
                 LABEL_NO_REIMBURSEMENTS: "No hay reembolsos en el historial",

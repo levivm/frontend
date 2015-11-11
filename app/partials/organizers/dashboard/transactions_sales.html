@@ -24,8 +24,16 @@
                     <th ng-bind="::transactions.strings.LABEL_ORDER"></th>
                     <th ng-bind="::transactions.strings.LABEL_ACTIVITY"></th>
                     <th ng-bind="::transactions.strings.LABEL_DATE"></th>
-                    <th ng-bind="::transactions.strings.LABEL_TOTAL"></th>
-                    <th ng-bind="::transactions.strings.LABEL_FINAL_TOTAL"></th>
+                    <th>
+                        <span ng-bind="::transactions.strings.LABEL_TOTAL"></span>
+                        <a class="no-text-decoration" href="#" tooltip-placement="right" 
+                                tooltip="{{::transactions.strings.COPY_TOTAL_SALES_TOOLTIP}}">?</a>
+                    </th>
+                    <th>
+                        <span ng-bind="::transactions.strings.LABEL_FINAL_TOTAL"></span>
+                        <a class="no-text-decoration" href="#" tooltip-placement="left" 
+                                tooltip="{{::transactions.strings.COPY_FINAL_TOTAL_SALES_TOOLTIP}}" >?</a>                        
+                    </th>
                 </tr>
                 <tr ng-repeat="order in transactions.sales track by order.id | filter:transactions.queries.saleQuery">
                     <td>
@@ -41,10 +49,10 @@
                         <span class="text-capitalize" ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
                     </td>
                     <td>
-                        <span ng-bind="order.amount | currency:$:0"></span>
+                        <span ng-bind="::(order.amount | currency:$:0)"></span>
                     </td>
                     <td>
-                        <span ng-bind="order.amount | currency:$:0"></span>
+                        <span ng-bind="::(order.amount - order.amount*order.fee | currency:$:0)"></span>
                     </td>
                 </tr>
             </table>

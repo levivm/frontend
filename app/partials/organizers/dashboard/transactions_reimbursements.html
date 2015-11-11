@@ -24,6 +24,7 @@
                     <th ng-bind="::transactions.strings.LABEL_ACTIVITY"></th>
                     <th ng-bind="::transactions.strings.LABEL_REFUND_DATE"></th>
                     <th ng-bind="::transactions.strings.LABEL_REFUND_AMOUNT"></th>
+                    <th ng-bind="::transactions.strings.LABEL_ASSISTANT"></th>
                     <th ng-bind="::transactions.strings.LABEL_REFUND_STATE"></th>
                     <th></th>
                 </tr>
@@ -32,13 +33,17 @@
                         <span ng-bind="::refund.order"></span>
                     </td>
                     <td>
-                        <span ng-bind="::refund.activity.title"></span>
+                        <span ng-bind="::(refund.activity.title | truncateText:true:35:'...')"></span>
                     </td>
                     <td>
                         <span class="text-capitalize" ng-bind="::refund.created_at | date:'EEEE d MMM y'"></span>
                     </td>
                     <td>
                         <span ng-bind="::(refund.amount | currency:$:0)"></span>
+                    </td>
+                    <td>
+                        <span class="text-capitalize" ng-show="::refund.assistant" ng-bind="::(refund.assistant.full_name)"></span>
+                        <span ng-show="::!refund.assistant" ng-bind="::transactions.strings.LABEL_EVERYBODY"></span>
                     </td>
                     <td>
                         <span ng-bind="::refund.status"></span>

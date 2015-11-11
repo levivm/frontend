@@ -19,6 +19,7 @@
 
         angular.extend(vm,{
             order: order,
+            isOrganizer: true,
             previousState: null,
             requestAssistantRefund: requestAssistantRefund,
             requestOrderRefund: requestOrderRefund,
@@ -81,6 +82,15 @@
         }
 
 
+        function _setFeeAmount(){
+
+            vm.feeAmount = vm.order.fee * vm.order.total;
+        }
+
+        function _setTotalMinusFee(){
+            vm.totalAmount = vm.order.total - vm.feeAmount;
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -99,6 +109,7 @@
                 LABEL_REIMBURSEMENTS: "Reembolsos",
                 LABEL_ORDER_STATUS: "Estatus: ",
                 LABEL_REIMBURSEMENTS_STATUS: "Estatus reembolso:",
+                LABEL_TRULII_FEE: "Comisión",
                 REFUND_APPROVED_STATUS: "Aprobado",
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_EMAIL: "Correo",
@@ -120,6 +131,8 @@
                 };
             }
             _setStrings();
+            _setFeeAmount();
+            _setTotalMinusFee();
             console.log('order',order);
         }
 
