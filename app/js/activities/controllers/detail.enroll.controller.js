@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', '$document', '$scope', 'LocationManager'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', '$scope', 'LocationManager', 'Referrals'];
 
     function ActivityDetailEnrollController($state, $window, $sce, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, $document, $scope, LocationManager) {
+                                            Elevator, $scope, LocationManager, Referrals) {
 
         var vm = this;
         var isValidDate = false;
@@ -50,15 +50,17 @@
             amount : null,
             showTerms : false,
             showReimbursement : false,
+            couponCode: 'REFERRAL-OQTJZ',
             quantity : 0,
             assistants : [],
             assistantsForms:[],
+            scroll: 0,
+            widgetOriginalPosition: 0,
 
             addAssistant : addAssistant,
             removeAssistant: removeAssistant,
             enroll : enroll,
             isAnonymous : isAnonymous,
-            getOrganizerPhoto: getOrganizerPhoto,
             appendPayUUniqueId: appendPayUUniqueId,
             checkCardExpiry : checkCardExpiry,
             getCardType: getCardType,
@@ -67,11 +69,8 @@
             enrollPSE: enrollPSE,
             toggleTerms : toggleTerms,
             toggleReimbursement : toggleReimbursement,
-            setForm:setForm,
-            scroll: 0,
-            widgetOriginalPosition: 0,
-            getOrganizerCity:getOrganizerCity,
-
+            setForm: setForm,
+            applyCoupon: applyCoupon,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -106,14 +105,6 @@
         console.log("sessionID", deviceSessionId);
 
         _activate();
-
-
-
-        function setForm(form){
-
-            vm.assistantsForms.push(form);
-
-        }
 
         //--------- Exposed Functions ---------//
 
@@ -254,6 +245,18 @@
             }
         }
 
+        function applyCoupon(){
+            if(!vm.couponCode){ return; }
+            Referrals.getCoupon(vm.couponCode).then(success, error);
+
+            function success(coupon){
+                console.log('coupon', coupon);
+            }
+            function error(error){
+                console.log('Error retrieving coupon', error);
+            }
+        }
+
         function enroll() {
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
@@ -328,6 +331,10 @@
                 };
 
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
+
+                if(vm.couponCode){
+                    data.coupon_code = vm.couponCode;
+                }
 
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
 
@@ -412,25 +419,8 @@
             }
         }
 
-
-        function getOrganizerCity(){
-            if (vm.activity.organizer.locations[0]){
-                var city_id = vm.activity.organizer.locations[0].city;
-                return LocationManager.getCityById(city_id).name;
-            }
-            return;
-        }
-
         function setForm(form){
             vm.assistantsForms.push(form);
-        }
-
-        function getOrganizerPhoto(){
-            if(vm.activity.organizer && !!vm.activity.organizer.photo){
-                return vm.activity.organizer.photo;
-            } else {
-                return defaultPicture;
-            }
         }
 
         function appendPayUUniqueId(url){
@@ -492,6 +482,17 @@
                 } else {
                     vm.assistants = [angular.extend({}, currentUser.user)];
                 }
+            }
+        }
+
+        function _setOrganizer(){
+            if(!activity.organizer.photo){
+                activity.organizer.photo = defaultPicture;
+            }
+
+            if (activity.organizer.locations[0]){
+                var city_id = activity.organizer.locations[0].city;
+                activity.organizer.city = LocationManager.getCityById(city_id).name;
             }
         }
 
@@ -585,6 +586,7 @@
 
         function _activate(){
             _setStrings();
+            _setOrganizer();
             vm.stateInfo = {
                 toState: {
                     state : $state.current.name,
@@ -596,7 +598,6 @@
             vm.calendar = _mapVacancy(calendar);
             vm.capacity = calendar.capacity;
             vm.amount = calendar.session_price;
-
             vm.activity = activity;
             _mapMainPicture(vm.activity);
 
@@ -610,8 +611,8 @@
                 vm.scroll = document.body.scrollTop;
                 vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
                 $window.onscroll = function(){
-                    console.log(document.body.scrollTop);
-                    console.log(vm.widgetOriginalPosition);
+                    //console.log(document.body.scrollTop);
+                    //console.log(vm.widgetOriginalPosition);
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                 };

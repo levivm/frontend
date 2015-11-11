@@ -59,11 +59,11 @@
         <div class="organizer-widget">
             <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
                 <div class="content">
-                    <img class="picture" ng-src="{{::enroll.getOrganizerPhoto()}}"
+                    <img class="picture" ng-src="{{::enroll.activity.organizer.photo}}"
                          alt="{{::enroll.activity.organizer.name}}"/>
                     <div class="data">
                         <div class="name" ng-bind="::enroll.activity.organizer.name"></div>
-                        <div class="location" ng-bind="::enroll.getOrganizerCity()"></div>
+                        <div class="location" ng-bind="::enroll.activity.organizer.city"></div>
                     </div>
                 </div>
             </a>
@@ -107,9 +107,9 @@
                         <div class="form-group">
                             <label for="inputCoupon" class="sr-only" ng-bind="::enroll.strings.LABEL_APPLY_COUPON"></label>
                             <div class="col-md-8 no-padding">
-                                <input type="text" class="form-control input-sm" id="inputCoupon" placeholder="Aplicar Cupon">
+                                <input type="text" class="form-control input-sm" id="inputCoupon" ng-model="enroll.couponCode" placeholder="Aplicar Cupon">
                             </div>
-                            <button class="col-md-3 pull-right btn btn-xs btn-default" ng-bind="::enroll.strings.ACTION_APPLY"></button>
+                            <button class="col-md-3 pull-right btn btn-xs btn-default" ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
                         </div>
                     </div>
                 </div>
