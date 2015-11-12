@@ -315,6 +315,7 @@
             }
             function error(response){
                 console.log("Error updating Organizer's Banking Info:", response.data);
+                return $q.reject(response.data);
             }
         }
     }
