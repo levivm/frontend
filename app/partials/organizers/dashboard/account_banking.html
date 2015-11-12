@@ -4,13 +4,13 @@
         <fieldset>
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-sm-8">
-                    <div class="form-group" trulii-input-errors-control="">
+                    <div class="form-group" trulii-input-errors-control="beneficiary">
                         <label for="beneficiary" ng-bind="::account.strings.LABEL_BENEFICIARY"></label>
                         <input id="beneficiary" class="form-control" name="beneficiary"
                                ng-model="account.bankingData.beneficiary"
                                type="text">
                     </div>
-                    <div class="form-group" trulii-input-errors-control="">
+                    <div class="form-group" trulii-input-errors-control="bank">
                         <label for="bank" ng-bind="::account.strings.LABEL_BANK"></label>
                         <select id="bank" class="form-control" name="bank" ng-model="account.bankingData.bank"
                             ng-options="bank.bank_id as bank.bank_name for bank in account.bankingInfo.banks">
@@ -22,36 +22,39 @@
                             <label ng-bind="::account.strings.LABEL_DOCUMENT"></label>
                         </div>
                         <div class="col-xs-6">
-                            <div class="form-group" trulii-input-errors-control="">
-                                <label class="sr-only" for="document-type" ng-bind="::account.strings.LABEL_DOCUMENT"></label>
-                                <select id="document-type" class="form-control" name="nit" ng-model="account.bankingData.document_type"
+                            <div class="form-group" trulii-input-errors-control="document_type">
+                                <label class="sr-only" for="document_type" ng-bind="::account.strings.LABEL_DOCUMENT"></label>
+                                <select id="document_type" class="form-control" name="document_type" ng-model="account.bankingData.document_type"
                                         ng-options="document.document_id as document.document_name for document in account.bankingInfo.documents">
                                     <option value="" ng-bind="::account.strings.OPTION_DEFAULT_SELECT_DOCUMENT_TYPE"></option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-xs-6">
-                            <label class="sr-only" for="document-number" ng-bind="::account.strings.LABEL_DOCUMENT_NUMBER"></label>
-                            <input id="document-number" class="form-control" name="document-number"
-                                   ng-model="account.bankingData.document"
-                                   placeholder="{{ ::account.strings.PLACEHOLDER_DOCUMENT_NUMBER }}"
-                                   type="text">
+                            <div class="form-group" trulii-input-errors-control="document">
+                                <label class="sr-only" for="document" ng-bind="::account.strings.LABEL_DOCUMENT_NUMBER"></label>
+                                <input id="document" class="form-control" name="document"
+                                       ng-model="account.bankingData.document"
+                                       placeholder="{{ ::account.strings.PLACEHOLDER_DOCUMENT_NUMBER }}"
+                                       type="text">
+                                </div>
                         </div>
                     </div>
-                    <div class="form-group" trulii-input-errors-control="">
-                        <label for="account-type" ng-bind="::account.strings.LABEL_ACCOUNT_TYPE"></label>
-                        <select id="account-type" class="form-control" name="account-type" ng-model="account.bankingData.account_type"
+                    <div class="form-group" trulii-input-errors-control="account_type">
+                        <label for="account_type" ng-bind="::account.strings.LABEL_ACCOUNT_TYPE"></label>
+                        <select id="account_type" class="form-control" name="account_type" ng-model="account.bankingData.account_type"
                                 ng-options="account.account_id as account.account_name for account in account.bankingInfo.accounts">
                             <option value="" ng-bind="::account.strings.OPTION_DEFAULT_SELECT_ACCOUNT_TYPE"></option>
                         </select>
                     </div>
-                    <div class="form-group" trulii-input-errors-control="">
-                        <label for="account-number" ng-bind="::account.strings.LABEL_ACCOUNT_NUMBER"></label>
-                        <input id="account-number" class="form-control" name="account-number"
+                    <div class="form-group" trulii-input-errors-control="account">
+                        <label for="account" ng-bind="::account.strings.LABEL_ACCOUNT_NUMBER"></label>
+                        <input id="account" class="form-control" name="account"
                                ng-model="account.bankingData.account"
                                placeholder="{{ ::account.strings.PLACEHOLDER_ACCOUNT_NUMBER }}"
                                type="text">
                     </div>
+                    <!--TODO Hidden organizer input-->
                 </div>
             </div>
             <div class="row">

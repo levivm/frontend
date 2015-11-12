@@ -37,9 +37,22 @@
         //--------- Exposed Functions ---------//
 
         function updateBankingInfo(){
-            organizer.saveBankingInfo(vm.bankingData).then(function(response){
-                console.log('bankingData response', response);
-            });
+            vm.isSaving = true;
+            Error.form.clear(vm.account_form_banking_info);
+            organizer.saveBankingInfo(vm.bankingData).then(success, error);
+
+            function success(bankingData){
+                vm.isSaving = false;
+                console.log('bankingData response', bankingData);
+            }
+
+            function error(responseErrors){
+                vm.isSaving = false;
+                console.log('Error updating bankingData', responseErrors);
+                if(responseErrors){
+                    Error.form.add(vm.account_form_banking_info, responseErrors);
+                }
+            }
         }
 
         function changeEmail() {
