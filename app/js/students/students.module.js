@@ -44,9 +44,17 @@
                 }
             })
             .state('student-dashboard.account', {
-                url:'account',
+                url:'account/',
                 controller: 'StudentAccountCtrl as account',
-                templateUrl: 'partials/students/dashboard_account.html'
+                templateUrl: 'partials/students/dashboard/account.html'
+            })
+            .state('student-dashboard.account.password', {
+                url:'password',
+                templateUrl: 'partials/students/dashboard/account_password.html'
+            })
+            .state('student-dashboard.account.email', {
+                url:'email',
+                templateUrl: 'partials/students/dashboard/account_email.html'
             })
             .state('student-dashboard.profile', {
                 url:'profile',
@@ -82,7 +90,7 @@
             })
             .state('student-dashboard.history.orders', {
                 url:'/orders',
-                templateUrl: 'partials/students/dashboard/history.orders.html',
+                templateUrl: 'partials/students/dashboard/history.orders.html'
             })
             .state('student-dashboard.history.orders.order', {
                 url:'/:orderId',
