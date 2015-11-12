@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
 
-    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Error', 'organizer', 'bankingInfo'];
-    function OrganizerAccountCtrl($state, Authentication, Error, organizer, bankingInfo) {
+    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Toast', 'Error', 'organizer', 'bankingInfo'];
+    function OrganizerAccountCtrl($state, Authentication, Toast, Error, organizer, bankingInfo) {
 
         var vm = this;
         angular.extend(vm, {
@@ -44,6 +44,7 @@
             function success(bankingData){
                 vm.isSaving = false;
                 console.log('bankingData response', bankingData);
+                Toast.generics.weSaved();
             }
 
             function error(responseErrors){

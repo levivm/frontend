@@ -379,7 +379,11 @@
         }
 
         function saveBankingInfo(data){
-            return $http.post(api.bankingInfo(this.id), data).then(success, error);
+            if (data.id)
+                return $http.put(api.bankingInfo(this.id), data).then(success, error);
+            else
+                return $http.post(api.bankingInfo(this.id), data).then(success, error);
+
 
             function success(response){
                 return response.data;
