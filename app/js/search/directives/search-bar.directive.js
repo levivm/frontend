@@ -26,11 +26,13 @@
                 var KEY_SEARCH_Q = SearchManager.KEY_QUERY;
                 var KEY_SEARCH_CITY = SearchManager.KEY_CITY;
 
-                scope.q = null;
-                scope.search_city = null;
-                scope.cities = [];
-                scope.updateSearchCity = updateSearchCity;
-                scope.search = search;
+                angular.extend(scope, {
+                    q : "",
+                    search_city : null,
+                    cities : [],
+                    updateSearchCity : updateSearchCity,
+                    search : search
+                });
 
                 _activate();
 
