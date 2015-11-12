@@ -98,9 +98,9 @@
                     order: getOrder
                 }
             })
-            .state('student-dashboard.history.reimbursements', {
-                url:'/reimbursements',
-                templateUrl: 'partials/students/dashboard/history.reimbursements.html'
+            .state('student-dashboard.history.refunds', {
+                url:'/refunds',
+                templateUrl: 'partials/students/dashboard/history.refunds.html'
             });
 
         /**

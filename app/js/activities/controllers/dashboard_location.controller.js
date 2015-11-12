@@ -23,8 +23,8 @@
             cities: cities,
             activity: angular.copy(activity),
             save_activity: updateActivity,
-            setOverElement: setOverElement,
-            showTooltip: showTooltip,
+            // setOverElement: setOverElement,
+            // showTooltip: showTooltip,
             errors: {},
             isCollapsed: true,
             isSaving: false,
@@ -63,13 +63,13 @@
             
         }
 
-        function showTooltip(element) {
-            return vm.currentOverElement === element;
-        }
+        // function showTooltip(element) {
+        //     return vm.currentOverElement === element;
+        // }
 
-        function setOverElement(element) {
-            vm.currentOverElement = element;
-        }
+        // function setOverElement(element) {
+        //     vm.currentOverElement = element;
+        // }
 
         /*****************SETTERS********************/
 

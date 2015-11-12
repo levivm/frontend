@@ -57,6 +57,16 @@
             'refund': function(){
                 return renderUrl('refunds/', []);
             },
+            /**
+             * @ngdoc function
+             * @name .#refunds
+             * @description Renders **`/api/refunds/`** Refund URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'refunds': function(){
+                return renderUrl('refunds/', []);
+            },
 
             /**
              * @ngdoc function

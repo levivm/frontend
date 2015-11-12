@@ -51,12 +51,12 @@
                     <div class="form-group">
                         <label class="control-label" for="headline"
                                ng-bind="::profile.strings.LABEL_HEADLINE"></label>
-                            <textarea id="headline" class="form-control" ng-model='profile.organizer.headline'
+                            <textarea elastic id="headline" class="form-control" ng-model='profile.organizer.headline'
                                       name="headline"></textarea>
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
-                            <textarea id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"></textarea>
+                            <textarea elastic id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"></textarea>
                     </div>
                     <trulii-submit-controls is-saving="profile.isSaving"
                                             data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>

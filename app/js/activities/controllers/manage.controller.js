@@ -146,6 +146,7 @@
           if(activity.calendars){
             calendars = activity.calendars.map(_mapDateMsg);
             vm.calendars = calendars.slice(0, vm.calendarPaginationOpts.itemsPerPage);
+            vm.calendarPaginationOpts.totalItems = calendars.length;
             console.log('calendars:', calendars);
             return calendars;
           }
@@ -175,6 +176,7 @@
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE_ORDER: "Reembolsar Orden",
                 ACTION_REIMBURSE_ASSISTANT: "Reembolsar Asistente",
+                ACTION_VIEW_DETAIL: "Ver detalle",
                 COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad",
                 COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito esta actividad",
                 COPY_MANAGE: "Gestionar",

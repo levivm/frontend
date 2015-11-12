@@ -219,7 +219,15 @@
              * @params data Organizer banking Info
              * @methodOf trulii.organizers.services.Organizer
              */
-            saveBankingInfo: saveBankingInfo
+            saveBankingInfo: saveBankingInfo,
+            /**
+             * @ngdoc function
+             * @name .#getRefunds
+             * @description Retrieves all refunds requested by the Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getRefunds: getRefunds,
+
         };
 
         return Organizer;
@@ -245,6 +253,38 @@
             }
 
         }
+
+        function getRefunds(){
+
+            var deferred = $q.defer();
+            var refunds = [];
+
+            collectRefunds(api.refunds());
+
+            return deferred.promise;
+
+            function collectRefunds(nextUrl){
+                return $http.get(nextUrl)
+                    .then(success, error);
+
+                function success(response) {
+                    refunds = refunds.concat(response.data.results);
+                    if(response.data.next){
+                        return collectRefunds(response.data.next);
+                    } else {
+                        deferred.resolve(refunds);
+                    }
+                }
+
+                function error(response) {
+                    console.log("Error getting organizer refunds: ", response.data);
+                    deferred.reject(refunds);
+                }
+            }
+
+
+        }
+
 
         function getReviews(){
             var deferred = $q.defer();

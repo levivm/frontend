@@ -141,6 +141,15 @@
              */
             requestRefund:requestRefund,
 
+            /**
+             * @ngdoc function
+             * @name .#getRefunds
+             * @description Retrieves all refunds requested by the Student
+             * @methodOf trulii.students.services.Student
+             */
+            getRefunds: getRefunds,
+
+
         };
 
         return Student;
@@ -165,6 +174,37 @@
                 return $q.reject(response.data);
 
             }
+
+        }
+
+        function getRefunds(){
+
+            var deferred = $q.defer();
+            var refunds = [];
+
+            collectRefunds(api.refunds());
+
+            return deferred.promise;
+
+            function collectRefunds(nextUrl){
+                return $http.get(nextUrl)
+                    .then(success, error);
+
+                function success(response) {
+                    refunds = refunds.concat(response.data.results);
+                    if(response.data.next){
+                        return collectRefunds(response.data.next);
+                    } else {
+                        deferred.resolve(refunds);
+                    }
+                }
+
+                function error(response) {
+                    console.log("Error getting organizer refunds: ", response.data);
+                    deferred.reject(refunds);
+                }
+            }
+
 
         }
 
