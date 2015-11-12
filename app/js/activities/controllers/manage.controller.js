@@ -146,6 +146,7 @@
           if(activity.calendars){
             calendars = activity.calendars.map(_mapDateMsg);
             vm.calendars = calendars.slice(0, vm.calendarPaginationOpts.itemsPerPage);
+            vm.calendarPaginationOpts.totalItems = calendars.length;
             console.log('calendars:', calendars);
             return calendars;
           }

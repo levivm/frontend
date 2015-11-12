@@ -68,19 +68,21 @@
                                     </tr>
                                     <tr ng-repeat="assistant in manage.assistants">
                                         <td>
-                                            <span ng-bind="::assistant.first_name"></span>
+                                            <span class="text-capitalize" ng-bind="::assistant.first_name"></span>
                                         </td>
                                         <td>
-                                            <span ng-bind="::assistant.last_name"></span>
+                                            <span class="text-capitalize" ng-bind="::assistant.last_name"></span>
                                         </td>
                                         <td>
                                             <span ng-bind="::assistant.email"></span>
                                         </td>
                                         <td>
-                                            <span ng-bind="assistant.order"></span>
+                                            <a ng-bind="::assistant.order" ui-sref="dash.activities-manage.orders.order({'orderId': assistant.order,
+                                                    'previousState':{'state':'dash.activities-manage.assistants'}})">
+                                            </a>
                                         </td>
                                         <td>
-                                            <span ng-bind="assistant.orderid"></span>
+                                            <span ng-bind="assistant.token"></span>
                                         </td>
                                     </tr>
                                 </table>
