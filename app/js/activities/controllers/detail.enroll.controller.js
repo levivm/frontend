@@ -44,16 +44,18 @@
             loading_banks_list:false,
             paymentWithPse : false,
             hasCouponApplied: false,
+            invalidCoupon: false,
             calendar : null,
             activity : null,
             capacity : null,
             amount : null,
             showTerms : false,
             showReimbursement : false,
-            couponCode: 'REFERRAL-OQTJZ',
+            coupon: {},
             quantity : 0,
             assistants : [],
             assistantsForms:[],
+            totalCost: null,
             scroll: 0,
             widgetOriginalPosition: 0,
 
@@ -246,14 +248,22 @@
         }
 
         function applyCoupon(){
-            if(!vm.couponCode){ return; }
-            Referrals.getCoupon(vm.couponCode).then(success, error);
+            if(!vm.coupon.code){ return; }
+            Referrals.getCoupon(vm.coupon.code).then(success, error);
 
             function success(coupon){
-                console.log('coupon', coupon);
+                console.log('coupon response', coupon);
+                if(coupon){
+                    vm.hasCouponApplied = true;
+                    vm.invalidCoupon = false;
+                    angular.extend(vm.coupon, coupon);
+                    console.log('vm.coupon', vm.coupon);
+                    _setTotalCost(vm.coupon.amount);
+                }
             }
             function error(error){
                 console.log('Error retrieving coupon', error);
+                vm.invalidCoupon = true;
             }
         }
 
@@ -332,8 +342,8 @@
 
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
 
-                if(vm.couponCode){
-                    data.coupon_code = vm.couponCode;
+                if(vm.coupon.code){
+                    data.coupon_code = vm.coupon.code;
                 }
 
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
@@ -442,6 +452,7 @@
 
         function _calculateAmount() {
             vm.amount = vm.quantity * calendar.session_price;
+            _setTotalCost();
         }
 
         function _isAllBooked(){
@@ -469,6 +480,17 @@
             calendar.vacancy = calendar.capacity - calendar.assistants.length;
             calendar.total_price = calendar.session_price * calendar.sessions.length;
             return calendar;
+        }
+
+        function _setTotalCost(){
+            if(calendar.is_free) {
+             vm.totalCost = 0;
+            } else {
+                vm.totalCost = vm.amount;
+                if(vm.coupon.amount){
+                    vm.totalCost = vm.amount - vm.coupon.amount;
+                }
+            }
         }
 
         function _setAssistants() {
@@ -535,11 +557,13 @@
                 COPY_SLIDEBAR_REIMBURSEMENT_TITLE: "Políticas de Reembolso",
                 COPY_SLIDEBAR_REIMBURSEMENT_HEADER: "Políticas de reembolso",
                 COPY_SLIDEBAR_REIMBURSEMENT_BODY: "No hay politicas de reembolso",
+                COPY_INVALID_COUPON: "Número de Cupón Inválido",
                 LABEL_APPLY_COUPON: "Aplicar Cupón",
                 LABEL_FREE_CALENDAR: "Actividad Gratis",
                 COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
                 COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a INSCRIBIRME y listo.",
                 LABEL_CREDIT: "Crédito",
+                LABEL_COUPON: "Cupón",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
@@ -600,6 +624,7 @@
             vm.amount = calendar.session_price;
             vm.activity = activity;
             _mapMainPicture(vm.activity);
+            _setTotalCost();
 
             if(currentUser) {
                 vm.pseData.payerEmail = currentUser.user.email;

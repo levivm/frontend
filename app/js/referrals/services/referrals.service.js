@@ -40,12 +40,13 @@
             return $http.get(api.coupon(couponCode)).then(success, error);
 
             function success(response){
+                console.log('response:', response);
                 return response.data;
             }
 
             function error(response){
                 console.log('Error retrieving coupon with code ', couponCode, ":", response.data);
-                return null;
+                return $q.reject(response.data);
             }
         }
     }

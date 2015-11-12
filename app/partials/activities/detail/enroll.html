@@ -81,7 +81,7 @@
                         <span ng-bind="enroll.strings.LABEL_SEATS_X"></span><span ng-bind="enroll.assistants.length"></span>
                     </div>
                     <div class="col-md-6 value">
-                        <span ng-bind="enroll.calendar.session_price | currency"></span>
+                        <span ng-bind="enroll.amount | currency"></span>
                     </div>
                 </div>
                 <div class="row separate-below-less" ng-repeat="assistant in enroll.assistants" ng-if="assistant.first_name">
@@ -102,32 +102,42 @@
                     </div>
                 </div>
                 <!--Coupons-->
+                <!--Coupon Form-->
                 <div class="row separate-above" ng-if="!enroll.calendar.is_free" ng-hide="enroll.hasCouponApplied">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <div class="form-group">
                             <label for="inputCoupon" class="sr-only" ng-bind="::enroll.strings.LABEL_APPLY_COUPON"></label>
                             <div class="col-md-8 no-padding">
-                                <input type="text" class="form-control input-sm" id="inputCoupon" ng-model="enroll.couponCode" placeholder="Aplicar Cupon">
+                                <input type="text" class="form-control input-sm" id="inputCoupon"
+                                       ng-model="enroll.coupon.code" placeholder="Aplicar Cupon">
                             </div>
-                            <button class="col-md-3 pull-right btn btn-xs btn-default" ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
+                            <button class="col-md-3 pull-right btn btn-xs btn-default"
+                                    ng-class="{'disabled': enroll.hasCouponApplied}"
+                                    ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
                         </div>
                     </div>
-                </div>
-                <div class="row separate-above" ng-show="enroll.hasCouponApplied">
-                    <div class="col-md-6 item">
-                        <span ng-bind="enroll.strings.LABEL_SEATS_X"></span><span ng-bind="enroll.assistants.length"></span>
+                    <div class="col-xs-12" ng-show="enroll.invalidCoupon">
+                            <p class="text-danger text-sm font-family-sans-alt" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
                     </div>
-                    <div class="col-md-6 value">
-                        <span ng-bind="enroll.calendar.session_price | currency"></span>
+                </div>
+                <!--Coupon Render-->
+                <div class="row separate-above" ng-show="enroll.hasCouponApplied">
+                    <div class="col-xs-12">
+                        <span class="item" ng-bind="::enroll.strings.LABEL_COUPON"></span>
+                    </div>
+                    <div class="col-xs-8 sub-item">
+                        <span class="text-success"><strong ng-bind="enroll.coupon.code"></strong></span>
+                    </div>
+                    <div class="col-xs-4 value">
+                        <span ng-bind="enroll.coupon.amount | currency"></span>
                     </div>
                 </div>
             </div>
             <div class="total">
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-xs-12">
                         <span class="item" ng-bind="::enroll.strings.LABEL_TOTAL_AMOUNT"></span>
-                        <span class="value final" ng-if="enroll.calendar.is_free" ng-bind="0 | currency"></span>
-                        <span class="value final" ng-if="!enroll.calendar.is_free" ng-bind="enroll.calendar.session_price | currency"></span>
+                        <span class="value final" ng-bind="enroll.totalCost | currency"></span>
                     </div>
                 </div>
             </div>
