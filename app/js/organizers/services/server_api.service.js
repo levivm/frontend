@@ -47,6 +47,26 @@
             'orders': function(idOrganizer){
                 return renderUrl('organizers/', [idOrganizer, 'orders']);
             },
+            /**
+             * @ngdoc function
+             * @name .#refund
+             * @description Renders **`/api/refunds/`** Refund URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'refund': function(){
+                return renderUrl('refunds/', []);
+            },
+            /**
+             * @ngdoc function
+             * @name .#refunds
+             * @description Renders **`/api/refunds/`** Refund URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'refunds': function(){
+                return renderUrl('refunds/', []);
+            },
 
             /**
              * @ngdoc function

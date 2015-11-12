@@ -18,7 +18,8 @@
                                 </div>
                                 <div class="input-group">
                                     <input class="form-control floating-label" type="text"
-                                           ng-model="history.orderQuery"
+                                           ng-model="history.queries.refundQuery"
+                                           ng-change="history.updateByQuery(history.TYPE_REFUNDS)"
                                            placeholder="{{history.strings.COPY_SEARCH}}">
                                     <span class="input-group-addon">
                                         <i class="mdi-action-search"></i>
@@ -35,49 +36,56 @@
                                     <tr class="text-center">
                                         <th><strong ng-bind="::history.strings.HEADER_ORDER"></strong></th>
                                         <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_REIMBURSEMENT_DATE"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_REIMBURSEMENT_TOTAL"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_REIMBURSEMENT_STATUS"></strong></th>
+                                        <th><strong ng-bind="::history.strings.HEADER_REFUND_DATE"></strong></th>
+                                        <th><strong ng-bind="::history.strings.HEADER_REFUND_TOTAL"></strong></th>
+                                        <th><strong ng-bind="::history.strings.HEADER_ASSISTANT"></strong></th>
+                                        <th><strong ng-bind="::history.strings.HEADER_REFUND_STATUS"></strong></th>
                                     </tr>
-                                    <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
+                                    <tr ng-repeat="refund in history.refunds track by refund.id | filter:history.refundQuery">
                                         <td>
-                                            <a ui-sref="student-dashboard.history.order({'orderId': order.id})" ng-bind="order.id"></a>
+                                            <a ui-sref="student-dashboard.history.orders.order({'orderId': refund.order,
+                                            'previousState':{'state':'student-dashboard.history.refunds'}}) " ng-bind="refund.order"></a>
                                         </td>
                                         <td>
-                                            <span ng-bind="::(history.strings.COPY_EMPTY_ORDERS | limitTo: 35) + '...'"></span>
-                                            <br/>
-                                            <strong ng-bind="::history.strings.COPY_START_DATE"></strong> <span>13 Jun 2015</span>
+                                            <span ng-bind="::(refund.activity.title | truncateText:true:35:'...')"></span>
                                         </td>
                                         <td>
-                                            <span>14 Ene. 2015</span>
+                                            <span class="text-capitalize" ng-bind="::refund.created_at | date:'EEEE d MMM y'"></span>
                                         </td>
                                         <td>
-                                            <span ng-bind="order.amount | currency"></span>
+                                            <span ng-bind="::(refund.amount | currency:$:0)"></span>
                                         </td>
                                         <td>
-                                            <span class="sinkin-medium">APROBADO</span>
+                                            <span class="text-capitalize" ng-show="::refund.assistant" ng-bind="::(refund.assistant.full_name)"></span>
+                                            <span ng-show="::!refund.assistant" ng-bind="::history.strings.LABEL_EVERYBODY"></span>
+                                        </td>
+                                        <td>
+                                            <span class="sinkin-medium" ng-bind="::refund.status"></span>
                                         </td>
                                     </tr>
                                 </table>
+                                <div class="text-center" ng-if="history.refundsPaginationOpts.totalItems > history.refundsPaginationOpts.itemsPerPage">
+                                    <pagination class="pagination-sm"
+                                            ng-model="history.refundsPaginationOpts.pageNumber"
+                                            ng-change="history.pageChange(history.TYPE_REFUNDS)"
+                                            data-total-items="history.refundsPaginationOpts.totalItems"
+                                            data-items-per-page="history.refundsPaginationOpts.itemsPerPage"></pagination>    
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!--If there are no orders-->
-                <div ng-if="history.orders.length <= 0" class="row">
+                <!--If there are no refunds-->
+                <div ng-if="history.refunds.length <= 0" class="row">
                     <div class="row">
                         <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
                             <img src="css/img/student_dashboard_activities_empty.png"
                                  alt="{{history.strings.LABEL_EMPTY_REIMBURSEMENT}}"/>
-                            <h3 class="separate-below separate-above montserrat-ultralight text-muted"
-                                ng-bind="::history.strings.LABEL_EMPTY_REIMBURSEMENT">
+                            <h3 ng-show="history.refundsPaginationOpts.totalItems > 0" class="separate-below separate-above montserrat-ultralight text-muted"
+                                ng-bind="::history.strings.LABEL_EMPTY_REFUND">
                             </h3>
-
-                            <a class="btn btn-lg btn-success"
-                               ui-sref=""
-                               ng-bind="history.strings.ACTION_FIND_ACTIVITY">
-                            </a>
                         </div>
                     </div>
                 </div>
