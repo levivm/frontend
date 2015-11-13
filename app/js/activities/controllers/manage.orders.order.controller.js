@@ -14,9 +14,7 @@
     ActivityOrderCtrl.$inject = ['$modal', '$stateParams','Toast', 'organizer', 'order'];
 
     function ActivityOrderCtrl($modal, $stateParams, Toast, organizer, order) {
-
         var vm = this;
-
         angular.extend(vm,{
             order: order,
             isOrganizer: true,
@@ -28,11 +26,7 @@
         _activate();
 
         /*  EXPOSED FUNCTIONS     */
-
-
         function requestOrderRefund(orderId){
-
-
             var modalInstance = $modal.open({
                 templateUrl : 'partials/commons/messages/confirm_request_refund.html',
                 controller : 'ModalInstanceCtrl',
@@ -44,20 +38,15 @@
                 organizer.requestRefund(orderId,null).then(success,error);
             });
 
-
-
             function success(response){
                 vm.order.lastest_refund = response;
             }
-
             function error(response){
                 Toast.error(response.non_field_errors.pop());
             }
-
         }
 
         function requestAssistantRefund(orderId,assistant){
-
             var modalInstance = $modal.open({
                 templateUrl : 'partials/commons/messages/confirm_request_refund.html',
                 controller : 'ModalInstanceCtrl',
@@ -69,21 +58,15 @@
                 organizer.requestRefund(orderId,assistant.id).then(success,error);
             });
 
-
             function success(response){
                 assistant.lastest_refund = response;
             }
-
             function error(response){
                 Toast.error(response.non_field_errors.pop());
-
             }
-
         }
 
-
         function _setFeeAmount(){
-
             vm.feeAmount = vm.order.fee * vm.order.total;
         }
 
@@ -97,7 +80,7 @@
             }
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Solicitar Reembolso",
-                ACTION_REIMBURSE_ORDER: "Reembolsar de Ordén",
+                ACTION_REIMBURSE_ORDER: "Reembolsar Orden",
                 ACTION_GO_BACK: "Regresar",
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Ordén",
@@ -135,7 +118,5 @@
             _setTotalMinusFee();
             console.log('order',order);
         }
-
     }
-
 })();
