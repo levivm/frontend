@@ -65,14 +65,14 @@
                 <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
               </td>
               <td>
-                <span ng-bind="order.amount | currency:$:0"></span>
+                <span ng-bind="::(order.amount | currency:$:0)"></span>
               </td>
               <td>
-                <span ng-bind="order.unit_price * order.amount | currency:$:0"></span>
+                <span ng-bind="::(order.amount | currency:$:0)"></span>
               </td>
               <td class="column-button">
                 <a ui-sref="dash.activities-manage.orders.order({'orderId': order.id})">
-                  <button class="btn btn-default">
+                  <button class="btn btn-default" ng-bind="::manage.strings.ACTION_VIEW_DETAIL">
                     Ver detalle
                   </button>
                 </a>

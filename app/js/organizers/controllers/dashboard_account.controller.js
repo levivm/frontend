@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
 
-    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Error', 'organizer', 'bankingInfo'];
-    function OrganizerAccountCtrl($state, Authentication, Error, organizer, bankingInfo) {
+    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Toast', 'Error', 'organizer', 'bankingInfo'];
+    function OrganizerAccountCtrl($state, Authentication, Toast, Error, organizer, bankingInfo) {
 
         var vm = this;
         angular.extend(vm, {
@@ -37,9 +37,23 @@
         //--------- Exposed Functions ---------//
 
         function updateBankingInfo(){
-            organizer.saveBankingInfo(vm.bankingData).then(function(response){
-                console.log('bankingData response', response);
-            });
+            vm.isSaving = true;
+            Error.form.clear(vm.account_form_banking_info);
+            organizer.saveBankingInfo(vm.bankingData).then(success, error);
+
+            function success(bankingData){
+                vm.isSaving = false;
+                console.log('bankingData response', bankingData);
+                Toast.generics.weSaved();
+            }
+
+            function error(responseErrors){
+                vm.isSaving = false;
+                console.log('Error updating bankingData', responseErrors);
+                if(responseErrors){
+                    Error.form.add(vm.account_form_banking_info, responseErrors);
+                }
+            }
         }
 
         function changeEmail() {

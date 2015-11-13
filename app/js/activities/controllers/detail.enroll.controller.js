@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', '$document', '$scope', 'LocationManager'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', '$scope', 'LocationManager', 'Referrals'];
 
     function ActivityDetailEnrollController($state, $window, $sce, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, $document, $scope, LocationManager) {
+                                            Elevator, $scope, LocationManager, Referrals) {
 
         var vm = this;
         var isValidDate = false;
@@ -44,21 +44,25 @@
             loading_banks_list:false,
             paymentWithPse : false,
             hasCouponApplied: false,
+            invalidCoupon: false,
             calendar : null,
             activity : null,
             capacity : null,
             amount : null,
             showTerms : false,
             showReimbursement : false,
+            coupon: {},
             quantity : 0,
             assistants : [],
             assistantsForms:[],
+            totalCost: null,
+            scroll: 0,
+            widgetOriginalPosition: 0,
 
             addAssistant : addAssistant,
             removeAssistant: removeAssistant,
             enroll : enroll,
             isAnonymous : isAnonymous,
-            getOrganizerPhoto: getOrganizerPhoto,
             appendPayUUniqueId: appendPayUUniqueId,
             checkCardExpiry : checkCardExpiry,
             getCardType: getCardType,
@@ -67,11 +71,8 @@
             enrollPSE: enrollPSE,
             toggleTerms : toggleTerms,
             toggleReimbursement : toggleReimbursement,
-            setForm:setForm,
-            scroll: 0,
-            widgetOriginalPosition: 0,
-            getOrganizerCity:getOrganizerCity,
-
+            setForm: setForm,
+            applyCoupon: applyCoupon,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -106,14 +107,6 @@
         console.log("sessionID", deviceSessionId);
 
         _activate();
-
-
-
-        function setForm(form){
-
-            vm.assistantsForms.push(form);
-
-        }
 
         //--------- Exposed Functions ---------//
 
@@ -254,6 +247,26 @@
             }
         }
 
+        function applyCoupon(){
+            if(!vm.coupon.code){ return; }
+            Referrals.getCoupon(vm.coupon.code).then(success, error);
+
+            function success(coupon){
+                console.log('coupon response', coupon);
+                if(coupon){
+                    vm.hasCouponApplied = true;
+                    vm.invalidCoupon = false;
+                    angular.extend(vm.coupon, coupon);
+                    console.log('vm.coupon', vm.coupon);
+                    _setTotalCost(vm.coupon.amount);
+                }
+            }
+            function error(error){
+                console.log('Error retrieving coupon', error);
+                vm.invalidCoupon = true;
+            }
+        }
+
         function enroll() {
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
@@ -328,6 +341,10 @@
                 };
 
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
+
+                if(vm.coupon.code){
+                    data.coupon_code = vm.coupon.code;
+                }
 
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
 
@@ -412,25 +429,8 @@
             }
         }
 
-
-        function getOrganizerCity(){
-            if (vm.activity.organizer.locations[0]){
-                var city_id = vm.activity.organizer.locations[0].city;
-                return LocationManager.getCityById(city_id).name;
-            }
-            return;
-        }
-
         function setForm(form){
             vm.assistantsForms.push(form);
-        }
-
-        function getOrganizerPhoto(){
-            if(vm.activity.organizer && !!vm.activity.organizer.photo){
-                return vm.activity.organizer.photo;
-            } else {
-                return defaultPicture;
-            }
         }
 
         function appendPayUUniqueId(url){
@@ -452,6 +452,7 @@
 
         function _calculateAmount() {
             vm.amount = vm.quantity * calendar.session_price;
+            _setTotalCost();
         }
 
         function _isAllBooked(){
@@ -481,6 +482,17 @@
             return calendar;
         }
 
+        function _setTotalCost(){
+            if(calendar.is_free) {
+             vm.totalCost = 0;
+            } else {
+                vm.totalCost = vm.amount;
+                if(vm.coupon.amount){
+                    vm.totalCost = vm.amount - vm.coupon.amount;
+                }
+            }
+        }
+
         function _setAssistants() {
             if(_isAllBooked()) {
                 vm.quantity = 0;
@@ -492,6 +504,17 @@
                 } else {
                     vm.assistants = [angular.extend({}, currentUser.user)];
                 }
+            }
+        }
+
+        function _setOrganizer(){
+            if(!activity.organizer.photo){
+                activity.organizer.photo = defaultPicture;
+            }
+
+            if (activity.organizer.locations[0]){
+                var city_id = activity.organizer.locations[0].city;
+                activity.organizer.city = LocationManager.getCityById(city_id).name;
             }
         }
 
@@ -534,11 +557,13 @@
                 COPY_SLIDEBAR_REIMBURSEMENT_TITLE: "Políticas de Reembolso",
                 COPY_SLIDEBAR_REIMBURSEMENT_HEADER: "Políticas de reembolso",
                 COPY_SLIDEBAR_REIMBURSEMENT_BODY: "No hay politicas de reembolso",
+                COPY_INVALID_COUPON: "Número de Cupón Inválido",
                 LABEL_APPLY_COUPON: "Aplicar Cupón",
                 LABEL_FREE_CALENDAR: "Actividad Gratis",
                 COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
                 COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a INSCRIBIRME y listo.",
                 LABEL_CREDIT: "Crédito",
+                LABEL_COUPON: "Cupón",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
@@ -585,6 +610,7 @@
 
         function _activate(){
             _setStrings();
+            _setOrganizer();
             vm.stateInfo = {
                 toState: {
                     state : $state.current.name,
@@ -596,9 +622,9 @@
             vm.calendar = _mapVacancy(calendar);
             vm.capacity = calendar.capacity;
             vm.amount = calendar.session_price;
-
             vm.activity = activity;
             _mapMainPicture(vm.activity);
+            _setTotalCost();
 
             if(currentUser) {
                 vm.pseData.payerEmail = currentUser.user.email;
@@ -610,8 +636,8 @@
                 vm.scroll = document.body.scrollTop;
                 vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
                 $window.onscroll = function(){
-                    console.log(document.body.scrollTop);
-                    console.log(vm.widgetOriginalPosition);
+                    //console.log(document.body.scrollTop);
+                    //console.log(vm.widgetOriginalPosition);
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                 };

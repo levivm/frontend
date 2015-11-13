@@ -157,7 +157,6 @@
                 ACTION_REPLACE_PICTURE: "Cambiar foto",
                 ACTION_SAVE: "Guardar",
                 ACTION_CLOSE: "Cerrar",
-                COPY_BIO: "Cuéntanos un poco sobre tí, otros querrán conocerte",
                 LABEL_FIRST_NAMES: "Nombres",
                 LABEL_BIRTH_DATE: "Fecha de Nacimiento",
                 LABEL_LAST_NAMES: "Apellidos",
@@ -165,8 +164,7 @@
                 LABEL_CITY: "Ciudad",
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
-                OPTION_SELECT: "Seleccione...",
-                SECTION_ACCOUNT: "Cuenta",
+                OPTION_SELECT: "Seleccione Ciudad",
                 SECTION_PROFILE: "Mi Perfil"
             });
         }

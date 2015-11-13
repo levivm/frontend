@@ -111,6 +111,8 @@
                         ACTION_LOGIN: 'Iniciar Sesión',
                         ACTION_REGISTER: 'Registrarme',
                         ACTION_CREATE: 'Crear Actividad',
+                        ACTION_CLOSE: "Cerrar",
+                        ACTION_EXIT: "Salir",
                         LABEL_ORGANIZER_ACTIVITIES: 'Mis Actividades',
                         LABEL_ORGANIZER_SALES: 'Mis Ventas',
                         LABEL_ORGANIZER_PROFILE: 'Perfil',
@@ -123,8 +125,7 @@
                         LABEL_STUDENT_PROFILE: 'Perfil',
                         LABEL_STUDENT_ACCOUNT: 'Cuenta',
                         LABEL_STUDENT_FAVORITES: 'Mis Favoritos',
-                        LABEL_STUDENT_PURCHASES: 'Mis Compras',
-                        LABEL_EXIT: 'Salir'
+                        LABEL_STUDENT_PURCHASES: 'Mis Compras'
                     });
                 }
 

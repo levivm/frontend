@@ -197,6 +197,15 @@
 
             /**
              * @ngdoc function
+             * @name .#requestRefund
+             * @description Request a refund over an assistant if assistantId is not NULL, otherwhise 
+             * a refund is requested over an order, given by orderId
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            requestRefund: requestRefund,
+
+            /**
+             * @ngdoc function
              * @name .#getBankingInfo
              * @description Retrieves the Organizer Banking Info
              * @methodOf trulii.organizers.services.Organizer
@@ -210,10 +219,72 @@
              * @params data Organizer banking Info
              * @methodOf trulii.organizers.services.Organizer
              */
-            saveBankingInfo: saveBankingInfo
+            saveBankingInfo: saveBankingInfo,
+            /**
+             * @ngdoc function
+             * @name .#getRefunds
+             * @description Retrieves all refunds requested by the Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getRefunds: getRefunds,
+
         };
 
         return Organizer;
+
+
+        function requestRefund(orderId,assistantId){
+
+            //if assistantId is null, the refund is requested 
+            //over whole order instead of an assitant
+            return $http.post(api.refund(),{order:orderId,assistant:assistantId})
+                .then(success,error);
+
+            function success(response){
+
+                console.log('requesting order refund success', response);
+                return response.data;
+            }
+
+            function error(response){
+                console.log('requesting order refund error', response);
+                return $q.reject(response.data);
+
+            }
+
+        }
+
+        function getRefunds(){
+
+            var deferred = $q.defer();
+            var refunds = [];
+
+            collectRefunds(api.refunds());
+
+            return deferred.promise;
+
+            function collectRefunds(nextUrl){
+                return $http.get(nextUrl)
+                    .then(success, error);
+
+                function success(response) {
+                    refunds = refunds.concat(response.data.results);
+                    if(response.data.next){
+                        return collectRefunds(response.data.next);
+                    } else {
+                        deferred.resolve(refunds);
+                    }
+                }
+
+                function error(response) {
+                    console.log("Error getting organizer refunds: ", response.data);
+                    deferred.reject(refunds);
+                }
+            }
+
+
+        }
+
 
         function getReviews(){
             var deferred = $q.defer();
@@ -308,13 +379,18 @@
         }
 
         function saveBankingInfo(data){
-            return $http.post(api.bankingInfo(this.id), data).then(success, error);
+            if (data.id)
+                return $http.put(api.bankingInfo(this.id), data).then(success, error);
+            else
+                return $http.post(api.bankingInfo(this.id), data).then(success, error);
+
 
             function success(response){
                 return response.data;
             }
             function error(response){
                 console.log("Error updating Organizer's Banking Info:", response.data);
+                return $q.reject(response.data);
             }
         }
     }

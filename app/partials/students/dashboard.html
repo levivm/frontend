@@ -8,7 +8,8 @@
                 <i class="sidebar__item__icon mdi-social-school"></i>
                 <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
             </a>
-            <a ui-sref=".account" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+            <a ui-sref=".account.password" class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account.*')}">
                 <i class="sidebar__item__icon mdi-action-settings"></i>
                 <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
             </a>
