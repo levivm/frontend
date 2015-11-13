@@ -12409,6 +12409,9 @@ hr.on-light {
 .text-strike {
   text-decoration: line-through;
 }
+.text-no-decoration {
+  text-decoration: none;
+}
 .text-color-primary {
   color: #ffd580;
 }
@@ -12561,7 +12564,7 @@ h4 {
 .burger-menu__user__picture,
 .sidebar__activity,
 .gallery-grid__photo,
-.activity-card__header,
+.activity-card__header__cover-container,
 .activity-card__owner-picture,
 .img-cover-preview {
   background-size: cover !important;
@@ -12572,7 +12575,7 @@ h4 {
 .navbar__user__picture,
 .burger-menu__user__picture,
 .sidebar__activity,
-.activity-card__header,
+.activity-card__header__cover-container,
 .activity-card__owner-picture,
 .img-cover-preview {
   background-position: center !important;
@@ -16473,7 +16476,16 @@ button.toast-close-button {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
 }
-.activity-card__header__inactive-cover {
+.activity-card__header__cover-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.activity-card__header__cover-container.inactive-cover:before {
+  content: '';
   position: absolute;
   width: 100%;
   height: 100%;
@@ -16538,8 +16550,9 @@ button.toast-close-button {
 .activity-card__body {
   padding: 1em;
   display: block;
-  cursor: pointer;
-  text-decoration: none !important;
+}
+.activity-card__body a:hover {
+  color: rgba(0, 0, 0, 0.74);
 }
 .activity-card__body:hover .activity-card__body__title {
   text-decoration: underline;
@@ -16603,6 +16616,11 @@ button.toast-close-button {
   text-align: center;
   font-weight: bold;
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+}
+.activity-card__bottom:hover {
+  color: rgba(0, 0, 0, 0.74);
+  text-decoration: none;
 }
 .activity-card__rating {
   position: absolute;
@@ -16615,6 +16633,10 @@ button.toast-close-button {
 }
 .activity-card__rating__star.--empty {
   color: #eeeeee;
+}
+.activity-card__category {
+  position: absolute;
+  z-index: 1;
 }
 .activity-grid {
   text-align: left;
