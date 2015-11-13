@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Toast', 'currentUser',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Elevator', 'Toast', 'currentUser',
         'cities', 'activity', 'calendars', 'reviews', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
         'serverConf'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $window, uiGmapGoogleMapApi, Toast, currentUser,
+    function ActivityDetailController($scope, $state, $stateParams, $window, uiGmapGoogleMapApi, Elevator, Toast, currentUser,
                                       cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
@@ -57,6 +57,7 @@
             nextGalleryPicture: nextGalleryPicture,
             nextState: nextState,
             showMoreReviews: showMoreReviews,
+            viewMoreDates: viewMoreDates,
             scroll: 0,
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
@@ -141,6 +142,12 @@
             } else {
                 vm.hasMoreReviews = false;
             }
+        }
+
+        function viewMoreDates(){
+            console.log('VIEW MORE DAATESSS');
+            Elevator.toElement('calendar_widget');
+
         }
 
         //--------- Internal Functions ---------//

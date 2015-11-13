@@ -363,7 +363,7 @@
          */
         getReviews.$inject = ['Organizer', 'activity'];
         function getReviews(Organizer, activity){
-            var organizer = new Organizer(activity.organizer);
+            var organizer = new Organizer(angular.copy(activity.organizer));
             return organizer.getReviews().then(success, error);
 
             function success(reviews){

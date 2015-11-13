@@ -96,63 +96,63 @@
             </div>
         </div>
 
-        <hr ng-show="detail.activity.audience"/>
 
         <!--Content-->
         <div class="row separate-above-less" ng-show="detail.activity.content">
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
                 <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_CONTENT"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.content"></p>
             </div>
         </div>
 
-        <hr ng-show="detail.activity.content"/>
 
         <!--Goals-->
         <div class="row separate-above-less" ng-show="detail.activity.goals">
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
                 <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_GOALS"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.goals"></p>
             </div>
         </div>
 
-        <hr ng-show="detail.activity.goals"/>
 
         <!--Video-->
         <div class="row separate-below youtube-video-container" ng-if="detail.activity.youtube_video_url">
             <div class="col-md-12">
-                <div class="youtube-container separate-above separate-below">
+                <div class="separator separate-above-less"></div>
+                <div class="youtube-container separate-above-medium separate-below-less">
                     <youtube-video video-url="detail.activity.youtube_video_url"></youtube-video>
                 </div>
             </div>
         </div>
 
-        <hr ng-if="detail.activity.youtube_video_url"/>
 
         <!--Methodology-->
         <div class="row separate-above-less" ng-show="detail.activity.methodology">
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
                 <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.methodology"></p>
             </div>
         </div>
 
-        <hr ng-show="detail.activity.methodology"/>
 
         <!--Requirements-->
         <div class="row separate-above-less" ng-show="detail.activity.requirements">
             <div class="col-md-12 section">
+                <div class="separator separate-above-less"></div>
                 <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.requirements"></p>
             </div>
         </div>
 
-        <hr ng-show="detail.activity.requirements"/>
 
         <!--Extra-->
         <div class="row separate-above-less" ng-show="detail.activity.extra_info">
 
             <div class="col-md-12 section separate-below-more">
+                <div class="separator separate-above-less"></div>
                 <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong></h2>
                 <p class="content" ng-bind="::detail.activity.extra_info"></p>
             </div>
@@ -180,7 +180,7 @@
                 <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
             </div>
         </div>
-        <div class="calendar-widget separate-above" ng-class="{'fixed-widget': detail.scroll > detail.widgetOriginalPosition && detail.scroll < detail.widgetMaxPosition, 'absolute-widget': detail.scroll >= detail.widgetMaxPosition}"
+        <div class="calendar-widget separate-above" id="calendar_widget" ng-class="{'fixed-widget': detail.scroll > detail.widgetOriginalPosition && detail.scroll < detail.widgetMaxPosition, 'absolute-widget': detail.scroll >= detail.widgetMaxPosition}"
           ng-style="detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetMaxPosition}">
             <div class="widget-card" ng-hide="detail.isListVisible">
                 <div class="header">
@@ -451,7 +451,7 @@
     </div>
     <div class="row separate-above-less">
         <div class="col-md-12">
-            <div class="btn btn-link" ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></div>
+            <div class="btn btn-link"  ng-click="detail.viewMoreDates()" ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></div>
         </div>
     </div>
 </div>
