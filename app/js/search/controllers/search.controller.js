@@ -112,7 +112,7 @@
 
         function setLevel(){
             console.log('setLevel:', vm.searchLevel);
-            SearchManager.setLevel(vm.searchLevel);
+            SearchManager.setLevel(vm.searchLevel.code);
         }
 
         function setDate(){
