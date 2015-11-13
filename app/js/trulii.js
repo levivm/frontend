@@ -24,7 +24,8 @@
             'trulii.landing',
             'trulii.search',
             'trulii.utils',
-            'trulii.payments'
+            'trulii.payments',
+            'ngVideo'
         ]);
 
 
@@ -52,6 +53,3 @@
     }
 
 })();
-
-
-

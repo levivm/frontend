@@ -74,6 +74,7 @@
     justify-content: center;
     z-index: 10;
     width: 100%;
+    position: relative;
   }
   &__content{
     -webkit-box-flex: 0;
@@ -84,6 +85,7 @@
     color: white;
     h1{
       font-size: 4em;
+      line-height: 1.0625em;
     }
     p{
       color:white;
@@ -176,6 +178,13 @@
     left: 0;
     display: block;
     height: 100%;
+    overflow: hidden;
+    &-video{
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
   }
   &__background:after {
     width: 100%;
@@ -189,6 +198,11 @@
   }
   &__background.background-warning:after{
     background-color: fade(@brand-warning, 40%);
+  }
+  &__background.background-dots:after{
+    background-image: url('/css/img/dots.png');
+    background-color: transparent;
+    background-attachment: fixed;
   }
 }
 
@@ -213,4 +227,25 @@
 
 .detail-organizer-name {
     margin-right: 20px;
+}
+
+
+@media (min-aspect-ratio: 16/9) {
+  .trulii-cover__background-video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .trulii-cover__background-video {
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .trulii-cover__background-video {
+    display: none;
+  }
 }

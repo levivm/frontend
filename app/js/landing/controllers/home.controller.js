@@ -13,9 +13,9 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['ActivitiesManager'];
+    HomeController.$inject = ['ActivitiesManager', 'video'];
 
-    function HomeController(ActivitiesManager) {
+    function HomeController(ActivitiesManager, video) {
 
         var vm = this;
         angular.extend(vm, {
@@ -23,10 +23,15 @@
             options : {
                 actions: ['view', 'edit', 'contact', 'manage', 'republish']
             }
+
         });
 
         _activate();
 
+        function next(){
+          console.log(video.next());
+          console.log(video);
+        }
         //--------- Internal Functions ---------//
 
         function _getActivities(){
@@ -86,7 +91,17 @@
                 PUBLISH_TEXT_9: "gratuita",
                 PUBLISH_TEXT_10: "en tus primeras tres actividades.",
                 PUBLISH_TEXT_11: "¡Crece con nosotros!",
-                PUBLISH_BUTTON_COPY: "Ser organizador"
+                PUBLISH_BUTTON_COPY: "Ser organizador",
+                CATEGORY_FITNESS: "Fitness",
+                CATEGORY_MUSIC: "Música",
+                CATEGORY_LIFESTYLE: "Estilo de vida",
+                CATEGORY_PROFESSIONAL: "Profesional",
+                CATEGORY_ART: "Arte",
+                CATEGORY_TECHNOLOGY: "Tecnología",
+                CATEGORY_KIDS: "Niños",
+                CATEGORY_GASTRONOMY: "Gastronomía",
+                CATEGORY_LANGUAGES: "Idiomas",
+                CATEGORY_DANCE: "Danza"
 
             });
         }
@@ -94,6 +109,9 @@
         function _activate(){
             _setStrings();
             _getActivities();
+            video.addSource('webm', '/videos/home1.webm');
+            video.addSource('webm', '/videos/home2.webm');
+            video.addSource('webm', '/videos/home3.webm');
         }
 
     }
