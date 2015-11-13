@@ -25,18 +25,21 @@
         font-size: 0.75em;
         font-weight: bold;
         margin-bottom: 1em;
-        img{
-          padding-right: 1em;
+        .icon{
+          width:15px;
+          height:15px;
+          padding-right: 2.5em;
+          display: inline-block
         }
         a{
           color: @gray-light;
         }
         a:hover, a:focus{
-          color: @brand-success;
+          color: white;
         }
       }
       &.bordered{
-        border-right: 1px solid @gray-light;
+        border-right: 1px solid @gray;
       }
     }
   }
@@ -44,10 +47,12 @@
     height: 60px;
     background-color: @footer-medium-color;
     p{
-      font-size: 1.125em;
+      font-size: 1em;
       padding-top: 20px;
       font-family: @font-sans;
+      font-weight: 400;
       color: white;
+      letter-spacing: 1px;
       img{
         padding: 0 0.25em;
       }
