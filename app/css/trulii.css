@@ -15632,6 +15632,7 @@ ul.dropdown-menu:after {
   font-weight: bold;
   color: white;
   z-index: 500;
+  font-size: 3em;
   transition: all 0.125s;
 }
 .category-card-container .category-card__veil {
@@ -17631,28 +17632,33 @@ h5 a {
   font-weight: bold;
   margin-bottom: 1em;
 }
-.home-footer__links .link-column .link img {
-  padding-right: 1em;
+.home-footer__links .link-column .link .icon {
+  width: 15px;
+  height: 15px;
+  padding-right: 2.5em;
+  display: inline-block;
 }
 .home-footer__links .link-column .link a {
   color: #999999;
 }
 .home-footer__links .link-column .link a:hover,
 .home-footer__links .link-column .link a:focus {
-  color: #38dbc8;
+  color: white;
 }
 .home-footer__links .link-column.bordered {
-  border-right: 1px solid #999999;
+  border-right: 1px solid #535353;
 }
 .home-footer__love {
   height: 60px;
   background-color: #2E3034;
 }
 .home-footer__love p {
-  font-size: 1.125em;
+  font-size: 1em;
   padding-top: 20px;
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 400;
   color: white;
+  letter-spacing: 1px;
 }
 .home-footer__love p img {
   padding: 0 0.25em;
