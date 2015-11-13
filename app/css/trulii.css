@@ -16166,7 +16166,6 @@ button.toast-close-button {
 .trulii-cover__background {
   width: 100vw;
   background-size: cover;
-  background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
   z-index: -11;
