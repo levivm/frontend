@@ -1,72 +1,18 @@
 <!--suppress HtmlUnknownTarget -->
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="row">
-        <!-- <button type="button" class="navbar-toggle" data-toggle="collapse"
-        data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button> -->
-        <div class="navbar__logo-container">
-            <a ui-sref="home" class="navbar__logo"></a>
-        </div>
-        <div class="navbar__left-wrapper">
-            <trulii-search-bar ng-if="isSearchVisible"></trulii-search-bar>
-        </div>
-
-        <div class="navbar__right-wrapper">
-            <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
-                <span class="mdi-navigation-menu"></span>
-            </a>
-            <!-- <div ng-if="user">
-            <a ng-if="user.is_organizer" class="btn btn-primary text-light"
-            ui-sref="dash.activities-new.general" ng-bind="::strings.ACTION_CREATE">
-          </a>
-        </div>
-
-        <div ng-if="!user">
-        <a class="navbar__option" ui-sref="organizer-landing">
-        <span ng-bind="strings.COPY_BECOME_ORGANIZER"></span>
-        </a>
-        <a class="navbar__option" ui-sref="login">
-        <span ng-bind="strings.ACTION_LOGIN"></span>
-        </a>
-        </div>
-
-        <div class="navbar__option navbar__option--right" ng-if="user">
-
-        <div class="navbar__user" data-toggle="dropdown">
-        <img ng-src="{{user.photo}}" class="navbar__user__picture" alt="{{user.user.full_name}}"/>
-        <span class="navbar__user__name">
-        <span ng-bind="user.user.full_name"></span>
-        <span class="mdi-navigation-expand-more"></span>
-        </span>
-        </div>
-
-        <div class="dropdown" role="menu">
-        <a ng-if="user.is_organizer" class="dropdown__item" ui-sref="organizer-dashboard.profile">
-        <span class="mdi-action-account-circle dropdown__item__icon"></span>
-        <span ng-bind="strings.LABEL_PROFILE"></span>
-        </a>
-        <a ng-if="user.is_student" class="dropdown__item" ui-sref="student-dashboard.profile">
-        <span class="mdi-action-account-circle dropdown__item__icon"></span>
-        <span ng-bind="strings.LABEL_PROFILE"></span>
-        </a>
-        <a ui-sref="logout" class="dropdown__item">
-        <span class="mdi-action-exit-to-app dropdown__item__icon"></span>
-        <span ng-bind="strings.LABEL_LOGOUT"></span>
-        </a>
-        </div>
-        </div>
-
-        <a class="navbar__option navbar__option--right" ui-sref="register" ng-if="!user">
-        <span class="mdi-action-account-circle"></span>
-        <span ng-bind="strings.ACTION_REGISTER"></span>
-        </a>
-        -->
-        </div>
+  <div class="row">
+    <div class="navbar__logo-container">
+      <a ui-sref="home" class="navbar__logo"></a>
     </div>
+    <div class="navbar__left-wrapper">
+      <trulii-search-bar ng-if="isSearchVisible"></trulii-search-bar>
+    </div>
+    <div class="navbar__right-wrapper">
+      <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
+        <img src="/css/img/menu.png" alt="" class="img-responsive">
+      </a>
+    </div>
+  </div>
 </nav>
 <div class="burger-menu" ng-show="showBurger">
     <div class="col-xs-12">

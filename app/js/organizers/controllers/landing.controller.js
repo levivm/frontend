@@ -83,7 +83,7 @@
                 CITY_DEFAULT_LABEL: 'Seleccione Ciudad..',
                 REQUEST_SIGNUP_LABEL : 'Solicitar Registro',
                 EMAIL_LABEL : "Correo electrónico",
-                LOGIN_LABEL : "Inicia Sesión"
+                LOGIN_LABEL : "Inicia Sesión",
             });
         }
 
