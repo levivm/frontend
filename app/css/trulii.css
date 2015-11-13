@@ -15663,11 +15663,6 @@ ul.dropdown-menu:after {
 .category-card-container .category-card:hover .category-card__title {
   font-size: 2.5em;
 }
-.category-card-container .category-card:hover .category-card__background {
-  -moz-transform: scale(1.5, 1.5);
-  -webkit-transform: scale(1.5, 1.5);
-  transform: scale(1.5, 1.5);
-}
 .toast-title {
   font-weight: bold;
 }
