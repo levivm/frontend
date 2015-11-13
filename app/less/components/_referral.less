@@ -1,0 +1,75 @@
+.referral-input{
+  background-color: @gray-lighter;
+  padding: 36px;
+  height: 55px;
+  box-sizing: content-box;
+  border-radius: 12px;
+  input, button{
+    height: 55px;
+  }
+  input, input:focus{
+    width:70%;
+    height: 55px;
+    background-color: white;
+    padding: 0 2em;
+  }
+  input{
+    background-image: none;
+  }
+  button{
+    width:30%;
+  }
+}
+
+input[type=text].form-control.referral-link{
+  border: 1px solid @gray-light;
+  color: @gray-light;
+  height: 55px;
+  border-radius: @border-radius-base;
+  background-image: none;
+  padding: 0 2em;
+  text-decoration: underline;
+}
+input[type=text].form-control.referral-link:focus{
+  border: 1px solid @brand-primary;
+  height: 55px;
+}
+
+.referral-item{
+  padding: 2em 0em;
+  display: inline-block;
+  width: 100%;
+  &__picture, &__info, &__status{
+    padding: 0 0.25em;
+    display: inline-block;
+    float: left;
+    color: @gray-light;
+    h4{
+      font-size: 1.125em;
+      span{
+        font-weight: 300;
+      }
+    }
+  }
+  &__info{
+    padding-left: 1em;
+  }
+  &__picture{
+    width:40px;
+    margin-top: 10px;
+  }
+  &__status{
+    float: right;
+    padding-right: 2em;
+    h4{
+      text-align: right;
+      padding-top: 1.75em;
+    }
+    .btn{
+      margin-top: 10px;
+    }
+  }
+}
+.referral-item:not(:last-child){
+  border-bottom: 2px solid @gray-light-medium;
+}
