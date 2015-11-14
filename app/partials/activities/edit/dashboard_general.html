@@ -95,7 +95,7 @@
                             help-text="'Describe tu actividad de forma atractiva, especifica y díficil de olvidar.'"
                             maxlength="{{ vm.MAX_LENGTH_SHORT_DESC }}"
                             ></textarea>
-                  <span class="text-muted pull-right" ng-bind="vm.activity.short_description.length"></span>
+                            <span class="text-muted pull-right" ng-bind="vm.MAX_LENGTH_SHORT_DESC - vm.activity.short_description.length"></span>
               </div>
               <div class="form-group">
                   <label class="control-label" ng-bind="::vm.strings.LABEL_TAGS"></label>
