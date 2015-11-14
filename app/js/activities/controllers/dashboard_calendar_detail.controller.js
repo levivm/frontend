@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'datepickerPopupConfig', 'Error', 'calendar'];
+    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator','datepickerPopupConfig', 'Error', 'calendar'];
 
-    function ActivityCalendarController($scope, $state, activity, CalendarsManager, datepickerPopupConfig, Error, calendar) {
+    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, datepickerPopupConfig, Error, calendar) {
 
         var vm = this;
         vm.calendar = angular.copy(calendar);
@@ -49,7 +49,6 @@
 
         function _updateCalendar() {
             Error.form.clear(vm.activity_calendar_form);
-
             vm.calendar.update()
                 .then(success, _errored);
 
@@ -70,7 +69,14 @@
             if (responseErrors) {
                 Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
                 delete responseErrors['sessions'];
-                Error.form.add(vm.activity_calendar_form, responseErrors);
+                console.log('responseErrors',responseErrors);
+
+                if (!_.isEmpty(responseErrors)){
+                    Elevator.toElement('activity_calendar_form');
+                    Error.form.add(vm.activity_calendar_form, responseErrors);
+                }
+
+                // if responseErrors
             }
 
             vm.isSaving = false;
