@@ -1,17 +1,24 @@
 <div class="activity-card">
-    <div class="activity-card__header " style="background-image: url('{{activity.main_photo}}') ">
-        <div ng-if="inactive" class="activity-card__header__inactive-cover"></div>
+    <div class="activity-card__header ">
         <div class="activity-card__category" style="background-color: {{activity.category.color}}"
              ng-bind="::activity.category.name"></div>
-        <div class="activity-card__owner-picture"
-             style="background-image: url('{{::activity.organizer.photo}}') "></div>
+        <a class="activity-card__header__cover-container"
+           ui-sref="activities-detail({activity_id: {{::activity.id}} })"
+           ng-class="{'activity-card__header__inactive-cover': inactive}"
+           style="background-image: url('{{activity.main_photo}}') ">
+
+        </a>
+        <a class="activity-card__owner-picture" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
+             style="background-image: url('{{::activity.organizer.photo}}') "></a>
         <span ng-if="actions.length > 0" class="activity-card__header__btn-more mdi-navigation-more-vert"
               ng-click="showMenu()">
         </span>
+        <!--Actions Menu-->
         <span class="activity-card__header__menu horizontal-fade" ng-show="isMenuVisible">
             <div class="activity-card__header__menu__btn-close  mdi-navigation-close"
                  ng-click="hideMenu()">
             </div>
+            <!--Actions-->
             <a ng-repeat="action in actions track by $index"
                class="activity-card__header__menu__item"
                ui-sref="{{::action.state}}"
@@ -21,9 +28,13 @@
             </a>
         </span>
     </div>
-    <a class="activity-card__body" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
-        <span class="activity-card__body__title" ng-bind="::activity.title"></span>
-        <span class="activity-card__body__owner-name" ng-bind="::activity.organizer.name"></span>
+    <!--Body-->
+    <div class="activity-card__body">
+        <a class="activity-card__body__title" ui-sref="activities-detail({activity_id: {{::activity.id}} })"
+           ng-bind="::activity.title">
+        </a>
+        <a class="activity-card__body__owner-name" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
+           ng-bind="::activity.organizer.name"></a>
         <div class="relative">
             <span class="activity-card__body__date" ng-bind="activity.date_msg"></span>
             <div class="activity-card__rating">
@@ -33,13 +44,14 @@
         </div>
         <div class="activity-card__body__description" ng-bind="::activity.short_description">
         </div>
-    </a>
-    <div class="activity-card__bottom">
+    </div>
+    <!--Cost-->
+    <a class="activity-card__bottom" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
         <div ng-if="activity.closest_calendar.session_price">
             $
             <span ng-bind="::activity.closest_calendar.session_price | number"></span>
         </div>
         <span ng-if="!activity.closest_calendar.session_price"
               ng-bind="::strings.COPY_NA"></span>
-    </div>
+    </a>
 </div>

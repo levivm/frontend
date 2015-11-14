@@ -15,8 +15,20 @@
     margin-bottom: 8px;
 }
 
-.gray-container{
+.container-muted{
   background-color: @gray-lightest;
+}
+.container-success{
+  background-color: @brand-success;
+  *{
+    color:white;
+  }
+  &-dark{
+    background-color: darken(@brand-success, 10%);
+    *{
+      color:white;
+    }
+  }
 }
 
 .absolute-container{

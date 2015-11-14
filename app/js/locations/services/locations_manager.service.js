@@ -132,15 +132,7 @@
                 deferred.resolve(availableCities);
                 return deferred.promise;
             } else {
-                return $http.get(api.cities()).then(success, error);
-            }
-
-            function success(response){
-                _setAvailableCities(response.data);
-                return availableCities;
-            }
-            function error(response){
-                return $q.reject(response.data);
+                return _requestAvailableCities();
             }
         }
 
@@ -151,7 +143,6 @@
                 return city.id === city_id;
             }
         }
-
 
         function setCurrentCity(city) {
             if (city) {
@@ -313,8 +304,21 @@
             return marker;
         }
 
+        function _requestAvailableCities(){
+            return $http.get(api.cities()).then(success, error);
+
+            function success(response){
+                _setAvailableCities(response.data);
+                return availableCities;
+            }
+            function error(response){
+                return $q.reject(response.data);
+            }
+        }
+
         function init(){
-            getAvailableCities().then(function(){
+            _requestAvailableCities().then(function(availableCities){
+                _setAvailableCities(availableCities);
                 getCurrentCity();
                 getSearchCity();
             });

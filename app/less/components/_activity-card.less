@@ -33,16 +33,28 @@
         -moz-border-radius-topright: @activity-border-radius;
         border-top-left-radius: @activity-border-radius;
         border-top-right-radius: @activity-border-radius;
-        &:extend(.img-size-cover);
-        &:extend(.img-position-center);
 
-        &__inactive-cover{
+        &__cover-container {
+            &:extend(.img-size-cover);
+            &:extend(.img-position-center);
             position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            background-color: fadeout(white, 50%);
-            top: 0;
-            left: 0;
+
+            &.inactive-cover {
+                &:before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    background-color: fadeout(white, 50%);
+                    top: 0;
+                    left: 0;
+                }
+            }
         }
 
         &__btn-more{
@@ -113,8 +125,12 @@
     &__body{
         padding: 1em;
         display: block;
-        cursor: pointer;
-        text-decoration: none !important;
+
+        a {
+            &:hover {
+                color: @lightbg-text;
+            }
+        }
 
         &:hover .activity-card__body__title{
             text-decoration: underline;
@@ -188,6 +204,12 @@
         text-align: center;
         font-weight: bold;
         font-family: @font-sans-alt;
+        text-decoration: none;
+
+        &:hover{
+            color: @lightbg-text;
+            text-decoration: none;
+        }
     }
 
     &__rating{
@@ -203,12 +225,12 @@
                 color: @gray-lighter;
             }
         }
-
-
     }
 
     &__category{
         &:extend(.label);
+        position: absolute;
+        z-index: 1;
 
     }
 }

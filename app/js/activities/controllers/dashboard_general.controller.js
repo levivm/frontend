@@ -19,8 +19,9 @@
             activity, presaveInfo) {
 
         var vm = this;
+        var MAX_LENGTH_SHORT_DESC = 300;
 
-        angular.extend(vm, { 
+        angular.extend(vm, {
             selected_category: {},
             selected_sub_category: {},
             selected_level: {},
@@ -28,6 +29,7 @@
             duration: 1,
             isSaving: false,
             activity: angular.copy(activity),
+            MAX_LENGTH_SHORT_DESC: MAX_LENGTH_SHORT_DESC,
             selectCategory: selectCategory,
             getLevelClassStyle: getLevelClassStyle,
             checkValidTitle: checkValidTitle,
@@ -50,7 +52,7 @@
 
             function _successCreation(response) {
                 vm.isSaving = false;
-                if (vm.creating) 
+                if (vm.creating)
                     $state.go('dash.activities-edit.detail', {activity_id : response.id});
                 Toast.generics.weSaved("Un paso menos para publicar tu actividad");
             }
@@ -63,7 +65,7 @@
             vm.activity.update()
                 .then(updateSuccess, _errored);
 
-            function updateSuccess(response) {  
+            function updateSuccess(response) {
                 console.log("response ",response);
 
                 vm.isCollapsed = false;
@@ -130,7 +132,7 @@
 
         function _setCreate() {
             vm.save_activity = createActivity;
-            vm.creating = true;            
+            vm.creating = true;
             vm.activity.certification = true;
             _setPreSaveData(presaveInfo);
             vm.selected_level = vm.activity_levels[0];
@@ -204,8 +206,8 @@
                 _setCreate();
 
             vm.checkValidTitle();
-            
-        
+
+
             _onSectionUpdated();
         }
 
