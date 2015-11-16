@@ -12294,6 +12294,9 @@ hr.on-light {
 .float-right {
   float: right;
 }
+.float-none {
+  float: none;
+}
 .text-left {
   text-align: left !important;
 }
@@ -12411,6 +12414,9 @@ hr.on-light {
 }
 .text-no-decoration {
   text-decoration: none;
+}
+.text-underline {
+  text-decoration: underline;
 }
 .text-color-primary {
   color: #ffd580;
@@ -16220,6 +16226,9 @@ button.toast-close-button {
   margin-top: 1em;
   margin-bottom: 1.5em;
 }
+.trulii-cover__content .btn-lg {
+  font-size: 1em;
+}
 .trulii-cover__content__search > * {
   background-color: white;
   height: 75px !important;
@@ -16403,8 +16412,20 @@ button.toast-close-button {
   margin-top: 8px;
   margin-bottom: 8px;
 }
-.gray-container {
+.container-muted {
   background-color: #fafafa;
+}
+.container-success {
+  background-color: #38dbc8;
+}
+.container-success * {
+  color: white;
+}
+.container-success-dark {
+  background-color: #22beac;
+}
+.container-success-dark * {
+  color: white;
 }
 .absolute-container {
   max-width: 100vw;
@@ -17821,6 +17842,87 @@ h5 a {
   .home-footer__links .link-column.bordered {
     border-right: none;
   }
+}
+.referral-input {
+  background-color: #eeeeee;
+  padding: 36px;
+  height: 55px;
+  box-sizing: content-box;
+  border-radius: 12px;
+}
+.referral-input input,
+.referral-input button {
+  height: 55px;
+}
+.referral-input input,
+.referral-input input:focus {
+  width: 70%;
+  height: 55px;
+  background-color: white;
+  padding: 0 2em;
+}
+.referral-input input {
+  background-image: none;
+}
+.referral-input button {
+  width: 30%;
+}
+input[type=text].form-control.referral-link {
+  border: 1px solid #999999;
+  color: #999999;
+  height: 55px;
+  border-radius: 4px;
+  background-image: none;
+  padding: 0 2em;
+  text-decoration: underline;
+}
+input[type=text].form-control.referral-link:focus {
+  border: 1px solid #ffd580;
+  height: 55px;
+}
+.referral-item {
+  padding: 2em 0em;
+  display: inline-block;
+  width: 100%;
+}
+.referral-item__picture,
+.referral-item__info,
+.referral-item__status {
+  padding: 0 0.25em;
+  display: inline-block;
+  float: left;
+  color: #999999;
+}
+.referral-item__picture h4,
+.referral-item__info h4,
+.referral-item__status h4 {
+  font-size: 1.125em;
+}
+.referral-item__picture h4 span,
+.referral-item__info h4 span,
+.referral-item__status h4 span {
+  font-weight: 300;
+}
+.referral-item__info {
+  padding-left: 1em;
+}
+.referral-item__picture {
+  width: 40px;
+  margin-top: 10px;
+}
+.referral-item__status {
+  float: right;
+  padding-right: 2em;
+}
+.referral-item__status h4 {
+  text-align: right;
+  padding-top: 1.75em;
+}
+.referral-item__status .btn {
+  margin-top: 10px;
+}
+.referral-item:not(:last-child) {
+  border-bottom: 2px solid #e3e3e3;
 }
 a:hover {
   color: #38dbc8;
