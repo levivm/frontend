@@ -156,8 +156,10 @@
             if(!currentCity){
                 currentCity = localStorageService.get(KEY_CURRENT_CITY);
                 if(currentCity){
-                    currentCity = availableCities.filter(byId)[0];
-                    setCurrentCity(currentCity);
+                    _requestAvailableCities().then(function(availableCities){
+                        currentCity = availableCities.filter(byId)[0];
+                        setCurrentCity(currentCity);
+                    });
                 }
             }
 
