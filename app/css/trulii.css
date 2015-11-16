@@ -12393,7 +12393,8 @@ hr.on-light {
 }
 .flex-center-container,
 .circular-image-container,
-.trulii-cover__container {
+.trulii-cover__container,
+.trulii-cover-small__container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12408,7 +12409,8 @@ hr.on-light {
   justify-content: center;
 }
 .flex-center-item,
-.trulii-cover__content {
+.trulii-cover__content,
+.trulii-cover-small__content {
   -webkit-box-flex: 0;
   -webkit-flex: none;
   -ms-flex: none;
@@ -12453,6 +12455,67 @@ hr.on-light {
   z-index: 100;
   transition: all 0.25s;
 }
+.team-card {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  background-color: gray;
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+  display: flex;
+}
+.team-card__content {
+  color: white;
+  font-size: 2em;
+  font-weight: 200;
+  z-index: 102;
+  opacity: 0;
+  transition: all 0.25s;
+  padding: 1em;
+}
+.team-card__content-header h5 {
+  line-height: 0.5em;
+}
+.team-card__content-social {
+  position: absolute;
+  left: 1em;
+  bottom: 0px;
+}
+.team-card__content hr {
+  margin: 5px 0px 10px 0px;
+}
+.team-card__content h5 {
+  font-weight: 200;
+  line-height: 1.25em;
+}
+.team-card__veil {
+  background-color: #333333;
+  opacity: 0;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  width: 100%;
+  z-index: 101;
+  transition: all 0.25s;
+}
+.team-card__background {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: all 0.25s;
+}
+.team-card:hover .team-card__content {
+  opacity: 1;
+}
+.team-card:hover .team-card__veil {
+  opacity: 0.75;
+}
 .fade-hide {
   opacity: 1;
   transition: all 0.25s;
@@ -12496,6 +12559,9 @@ hr.on-light {
 .text-dark {
   color: #3a3d3f;
 }
+.text-ssm {
+  font-size: 0.5em;
+}
 .text-sm,
 .btn-link {
   font-size: .8em;
@@ -12505,6 +12571,12 @@ hr.on-light {
 }
 .text-lg {
   font-size: 1.2em;
+}
+.text-xlg {
+  font-size: 1.5em;
+}
+.text-xxlg {
+  font-size: 4em;
 }
 .text-spaced {
   letter-spacing: 3px;
@@ -12867,6 +12939,10 @@ h4 {
 }
 .no-padding {
   padding: 0 !important;
+}
+.padding-vertical-regular {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 .padding-more {
   padding: 8rem;
@@ -14599,6 +14675,10 @@ tags-input input {
 .btn-facebook:hover {
   background-color: #385591 !important;
 }
+.btn-multiline {
+  white-space: normal !important;
+  word-wrap: break-word;
+}
 .btn-rounded {
   border-radius: 30px;
 }
@@ -16266,73 +16346,87 @@ button.toast-close-button {
 .detail-cover .text-container * {
   color: #FFFFFF;
 }
-.trulii-cover {
+.trulii-cover,
+.trulii-cover-small {
   margin-top: -20px;
   min-height: 92vh;
   width: 100%;
   position: relative;
 }
-.trulii-cover-small {
-  min-height: 60vh;
-}
-.trulii-cover .row {
+.trulii-cover .row,
+.trulii-cover-small .row {
   min-width: 100%;
 }
-.trulii-cover__container {
+.trulii-cover__container,
+.trulii-cover-small__container {
   min-height: inherit;
   z-index: 10;
   width: 100%;
   position: relative;
 }
-.trulii-cover__content {
+.trulii-cover__content,
+.trulii-cover-small__content {
   width: 100%;
   color: white;
 }
-.trulii-cover__content h1 {
+.trulii-cover__content h1,
+.trulii-cover-small__content h1 {
   font-size: 4em;
   line-height: 1.0625em;
 }
-.trulii-cover__content p {
+.trulii-cover__content p,
+.trulii-cover-small__content p {
   color: white;
   padding: 0 5em;
   font-size: 1.5em;
   margin-top: 1em;
   margin-bottom: 1.5em;
 }
-.trulii-cover__content .btn-lg {
+.trulii-cover__content .btn-lg,
+.trulii-cover-small__content .btn-lg {
   font-size: 1em;
 }
-.trulii-cover__content__search > * {
+.trulii-cover__content__search > *,
+.trulii-cover-small__content__search > * {
   background-color: white;
   height: 75px !important;
 }
-.trulii-cover__content__search > *:nth-child(1) {
+.trulii-cover__content__search > *:nth-child(1),
+.trulii-cover-small__content__search > *:nth-child(1) {
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
   border-right: 1px solid #eeeeee;
 }
-.trulii-cover__content__search > *:not(:nth-child(1)):not(:last-child) {
+.trulii-cover__content__search > *:not(:nth-child(1)):not(:last-child),
+.trulii-cover-small__content__search > *:not(:nth-child(1)):not(:last-child) {
   border-right: 1px solid #eeeeee;
 }
-.trulii-cover__content__search > *:last-child {
+.trulii-cover__content__search > *:last-child,
+.trulii-cover-small__content__search > *:last-child {
   border-top-right-radius: 4px !important;
   border-bottom-right-radius: 4px !important;
 }
-.trulii-cover__content__search > *:not(.btn) {
+.trulii-cover__content__search > *:not(.btn),
+.trulii-cover-small__content__search > *:not(.btn) {
   padding: 0 2em;
 }
-.trulii-cover__content__search .form-control {
+.trulii-cover__content__search .form-control,
+.trulii-cover-small__content__search .form-control {
   background-image: none;
 }
 .trulii-cover__content__search input,
-.trulii-cover__content__search input:focus {
+.trulii-cover-small__content__search input,
+.trulii-cover__content__search input:focus,
+.trulii-cover-small__content__search input:focus {
   width: 50%;
   display: inline-block;
   float: left;
   border-top: 5px solid #ffd580;
 }
 .trulii-cover__content__search select,
-.trulii-cover__content__search select:focus {
+.trulii-cover-small__content__search select,
+.trulii-cover__content__search select:focus,
+.trulii-cover-small__content__search select:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   background-size: initial;
@@ -16345,7 +16439,8 @@ button.toast-close-button {
   width: 35%;
   border-top: 5px solid #38dbc8;
 }
-.trulii-cover__content__search .btn.btn-default {
+.trulii-cover__content__search .btn.btn-default,
+.trulii-cover-small__content__search .btn.btn-default {
   width: 15%;
   border-radius: 0;
   border-color: transparent;
@@ -16353,27 +16448,33 @@ button.toast-close-button {
   border-top: 5px solid #732ebb;
   font-size: 1.25em;
 }
-.trulii-cover__content .well-container {
+.trulii-cover__content .well-container,
+.trulii-cover-small__content .well-container {
   float: none;
   margin: 0 auto;
 }
-.trulii-cover__content .well-container .well {
+.trulii-cover__content .well-container .well,
+.trulii-cover-small__content .well-container .well {
   font-size: 13px;
   padding: 5em 7em;
 }
-.trulii-cover__content .well-container .well p {
+.trulii-cover__content .well-container .well p,
+.trulii-cover-small__content .well-container .well p {
   color: #535353 !important;
   padding: 0;
 }
-.trulii-cover__content .well-container .well h3 {
+.trulii-cover__content .well-container .well h3,
+.trulii-cover-small__content .well-container .well h3 {
   font-size: 1.65em;
 }
-.trulii-cover__content .well-container .well h4 {
+.trulii-cover__content .well-container .well h4,
+.trulii-cover-small__content .well-container .well h4 {
   font-size: 1.25em;
   font-weight: 200;
   line-height: 1.5em;
 }
-.trulii-cover__background {
+.trulii-cover__background,
+.trulii-cover-small__background {
   width: 100vw;
   background-size: cover;
   background-position: center center;
@@ -16387,13 +16488,15 @@ button.toast-close-button {
   height: 100%;
   overflow: hidden;
 }
-.trulii-cover__background-video {
+.trulii-cover__background-video,
+.trulii-cover-small__background-video {
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.trulii-cover__background:after {
+.trulii-cover__background:after,
+.trulii-cover-small__background:after {
   width: 100%;
   height: 100%;
   content: "";
@@ -16403,13 +16506,18 @@ button.toast-close-button {
   top: 0;
   left: 0;
 }
-.trulii-cover__background.background-warning:after {
+.trulii-cover__background.background-warning:after,
+.trulii-cover-small__background.background-warning:after {
   background-color: rgba(252, 171, 84, 0.4);
 }
-.trulii-cover__background.background-dots:after {
+.trulii-cover__background.background-dots:after,
+.trulii-cover-small__background.background-dots:after {
   background-image: url('/css/img/dots.png');
   background-color: transparent;
   background-attachment: fixed;
+}
+.trulii-cover-small {
+  min-height: 60vh;
 }
 .detail-organizer {
   position: absolute;

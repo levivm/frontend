@@ -48,16 +48,12 @@
   }
 }
 
-.trulii-cover{
+.trulii-cover, .trulii-cover-small{
 
   margin-top: -20px; // Mientras se arregla la barra de navegacion
   min-height: @trulii-cover-height;
   width: 100%;
   position:relative;
-  &-small{
-    min-height: @trulii-cover-height-small;
-
-  }
   .row{
     min-width:100%;
 
@@ -206,6 +202,9 @@
   }
 }
 
+.trulii-cover-small{
+  min-height: @trulii-cover-height-small;
+}
 .detail-organizer {
     position: absolute;
     z-index: 4;
