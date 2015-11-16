@@ -31,6 +31,7 @@
         vm.cities = cities;
         vm.errors = {};
         vm.request = {};
+        vm.sent = false;
 
         initialize();
 
@@ -76,14 +77,67 @@
             }
 
             angular.extend(vm.strings, {
-                PLACEHOLDER_NAME : 'Nombre de Compañía',
-                PLACEHOLDER_TELEPHONE : 'Teléfono',
-                PLACEHOLDER_WANT_TO_TEACH : '¿Qué deseas enseñar?',
-                CITY_LABEL: 'Ciudad',
-                CITY_DEFAULT_LABEL: 'Seleccione Ciudad..',
-                REQUEST_SIGNUP_LABEL : 'Solicitar Registro',
-                EMAIL_LABEL : "Correo electrónico",
-                LOGIN_LABEL : "Inicia Sesión",
+                HEADER_TITLE_COPY: "Enfócate en enseñar lo que te apasiona",
+                HEADER_TEXT_COPY: "¡Nosotros nos encargamos del resto!",
+                HEADER_ACTION_START_NOW: "Comienza ya",
+                PUBLISH_TITLE_COPY: "¿Por qué publicar tu actividad en Trulii?",
+                PUBLISH_TEXT_COPY_1: "No hacemos dinero por suscripción ni por publicidad. Solo hacemos dinero si tú tambien lo haces. por lo que estamos juntos en esto. ",
+                PUBLISH_TEXT_COPY_2: "¡Crece con nosotros!",
+                PUBLISH_DIRT_WORK_TITLE: "Hacemos el trabajo sucio",
+                PUBLISH_DIRTY_WORK_TEXT: "Incrementamos las inscripciones, manejamos la atención al cliente y nos aseguramos de que recibas tu dinero.",
+                PUBLISH_VISIBILITY_TITLE: "Incrementamos tu visibilidad",
+                PUBLISH_VISIBILITY_TEXT: "Impulsamos tu marca a través de nuestro blog, redes sociales y casos de éxito.",
+                PUBLISH_EASY_TITLE: "Fácil y cómodo",
+                PUBLISH_EAST_TEXT: "Publica de forma fácil y rápida. Además, las publicaciones lucen atractivas para el ojo del posible cliente",
+                PUBLISH_TRUST_TITLE: "Genera confianza",
+                PUBLISH_TRUST_TEXT: "Nuestra plataforma garantiza a tus posibles clientes seguridad y confianza en el proceso. ¡Saca provecho de ello!",
+                HOW_TITLE: "¿Cómo funciona?",
+                HOW_TEXT_1: "Llena tus datos y te contactaremos para validarlos.",
+                HOW_TEXT_2: "Publica tu actividad y comienza a recibir inscripciones.",
+                HOW_TEXT_3: "Enseña lo que te apasiona y recibe tu pago.",
+                MORE_INFO_TITLE: "¿Necesitas más información?",
+                MORE_INFO_MONETIZATION_TITLE: "Monetización",
+                MORE_INFO_MONETIZATION_TEXT: "Solo cobramos 8% por transacción incluyendo la comisión de plataforma de pago. ¿Todo lo demás? Gratuito.",
+                MORE_INFO_TIPS_TITLE: "Tips",
+                MORE_INFO_TIPS_TEXT_1: "¿Quieres que tu publicación destaque por encima del resto? Te invitamos a que sigas estos",
+                MORE_INFO_TIPS_TEXT_2: "tips",
+                MORE_INFO_FAQ_TITLE: "Faq",
+                MORE_INFO_FAQ_TEXT_1: "En nuestro ",
+                MORE_INFO_FAQ_TEXT_2: "FAQ",
+                MORE_INFO_FAQ_TEXT_3: "y",
+                MORE_INFO_FAQ_TEXT_4: "Soporte",
+                MORE_INFO_FAQ_TEXT_5: "puedes encontrar las respuestas. Para más información, ",
+                MORE_INFO_FAQ_TEXT_6: "contáctanos.",
+                SIGN_UP_TITLE: "¿Listo para ser organizador?",
+                SIGN_UP_TEXT: "Llena el formulario y te contactaremos muy pronto",
+                SIGN_UP_SUCCESS_TITLE: "¡Cool!",
+                SIGN_UP_SUCCESS_TEXT_1: "Dentro de poco te contactaremos.",
+                SIGN_UP_SUCCESS_TEXT_2: "¡Eres lo máximo!",
+                PLACEHOLDER_NAME : 'Nombre del Organizador',
+                PLACEHOLDER_EMAIL : "Correo electrónico",
+                PLACEHOLDER_TELEPHONE : 'Número teléfonico',
+                PLACEHOLDER_ID : 'Número',
+                REQUEST_SIGNUP_LABEL : 'Únete',
+                FOOTER_LINKS_ABOUT_US_HEADER: "Conócenos",
+                FOOTER_LINKS_ABOUT_US_ABOUT: "Sobre Nosotros",
+                FOOTER_LINKS_ABOUT_US_BLOG: "Blog",
+                FOOTER_LINKS_ABOUT_US_TERMS: "Términos y Condiciones",
+                FOOTER_LINKS_ABOUT_US_PRIVACY: "Políticas de Privacidad",
+                FOOTER_LINKS_ABOUT_US_CONTACT: "Contáctanos",
+                FOOTER_LINKS_STUDENTS_HEADER: "Asistentes",
+                FOOTER_LINKS_STUDENTS_HOW: "¿Cómo funciona?",
+                FOOTER_LINKS_STUDENTS_SUGGEST: "Sugiere un organizador",
+                FOOTER_LINKS_STUDENTS_FEEDBACK: "Danos tu feedback",
+                FOOTER_LINKS_STUDENTS_SUPPORT: "Soporte",
+                FOOTER_LINKS_STUDENTS_FAQ: "FAQ",
+                FOOTER_LINKS_ORGANIZER_HEADER: "Organizador",
+                FOOTER_LINKS_ORGANIZER_BE: "Sé Organizador",
+                FOOTER_LINKS_ORGANIZER_HOW: "¿Cómo funciona?",
+                FOOTER_LINKS_ORGANIZER_TIPS: "Tips para publicar",
+                FOOTER_LINKS_ORGANIZER_FEEDBACK: "Dano tu feedback",
+                FOOTER_LINKS_ORGANIZER_SUPPORT: "Soporte",
+                FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
+                FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"
             });
         }
 

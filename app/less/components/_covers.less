@@ -53,34 +53,19 @@
   min-height: @trulii-cover-height;
   width: 100%;
   position:relative;
-
   .row{
-    min-width:100vw;
+    min-width:100%;
 
   }
   &__container{
+    &:extend(.flex-center-container);
     min-height: @trulii-cover-height;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-    -ms-flex-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-    -ms-flex-pack: center;
-    justify-content: center;
     z-index: 10;
     width: 100%;
     position: relative;
   }
   &__content{
-    -webkit-box-flex: 0;
-    -webkit-flex: none;
-    -ms-flex: none;
-    flex: none;
+    &:extend(.flex-center-item);
     width: 100%;
     color: white;
     h1{

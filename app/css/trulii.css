@@ -12391,6 +12391,75 @@ hr.on-light {
     align-items: stretch;
   }
 }
+.flex-center-container,
+.circular-image-container,
+.trulii-cover__container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+.flex-center-item,
+.trulii-cover__content {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+}
+.circular-image-container {
+  border-radius: 100%;
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+  background-color: gray;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+}
+.circular-image-container__title {
+  color: white;
+  font-size: 2em;
+  text-transform: uppercase;
+  font-weight: 400;
+  z-index: 102;
+}
+.circular-image-container__veil {
+  background-color: #504530;
+  opacity: 0.4;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  width: 100%;
+  border-radius: 100%;
+  z-index: 101;
+}
+.circular-image-container__background {
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: all 0.25s;
+}
+.fade-hide {
+  opacity: 1;
+  transition: all 0.25s;
+}
+.fade-hide.ng-hide {
+  opacity: 0;
+}
 .text-left {
   text-align: left;
 }
@@ -12798,6 +12867,9 @@ h4 {
 }
 .no-padding {
   padding: 0 !important;
+}
+.padding-more {
+  padding: 8rem;
 }
 hr {
   width: 98%;
@@ -14585,6 +14657,20 @@ tags-input input {
   color: #BD362F;
   font-weight: 500;
 }
+.form-classic input,
+.form-classic select,
+.form-classic textarea,
+.form-classic input:focus,
+.form-classic select:focus,
+.form-classic textarea:focus {
+  background-color: white;
+  padding: 2em;
+  border-radius: 3px;
+  background-image: none;
+}
+.form-classic .form-group:not(:first-child) {
+  margin-top: 2em;
+}
 .alert-warning p {
   color: rgba(255, 255, 255, 0.84);
 }
@@ -15728,7 +15814,7 @@ ul.dropdown-menu:after {
   margin-bottom: 2px;
   display: inline-block;
 }
-.category-card-container .category-card {
+.category-card {
   text-decoration: none !important;
   height: 22vw;
   min-height: 300px;
@@ -15752,11 +15838,11 @@ ul.dropdown-menu:after {
   -ms-flex-pack: center;
   justify-content: center;
 }
-.category-card-container .category-card.category-card-lg {
+.category-card.category-card-lg {
   height: 30vw;
   min-height: 400px;
 }
-.category-card-container .category-card__title {
+.category-card__title {
   -webkit-box-flex: 0;
   -webkit-flex: none;
   -ms-flex: none;
@@ -15767,7 +15853,7 @@ ul.dropdown-menu:after {
   font-size: 3em;
   transition: all 0.125s;
 }
-.category-card-container .category-card__veil {
+.category-card__veil {
   background-color: #504530;
   opacity: 0.4;
   height: 100%;
@@ -15779,7 +15865,7 @@ ul.dropdown-menu:after {
   transition: all 0.125s;
   z-index: 101;
 }
-.category-card-container .category-card__background {
+.category-card__background {
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -15789,10 +15875,10 @@ ul.dropdown-menu:after {
   z-index: 100;
   transition: all 0.25s;
 }
-.category-card-container .category-card:hover .category-card__veil {
+.category-card:hover .category-card__veil {
   opacity: 0.6;
 }
-.category-card-container .category-card:hover .category-card__title {
+.category-card:hover .category-card__title {
   font-size: 2.5em;
 }
 .toast-title {
@@ -16187,31 +16273,15 @@ button.toast-close-button {
   position: relative;
 }
 .trulii-cover .row {
-  min-width: 100vw;
+  min-width: 100%;
 }
 .trulii-cover__container {
   min-height: 92vh;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   z-index: 10;
   width: 100%;
   position: relative;
 }
 .trulii-cover__content {
-  -webkit-box-flex: 0;
-  -webkit-flex: none;
-  -ms-flex: none;
-  flex: none;
   width: 100%;
   color: white;
 }
