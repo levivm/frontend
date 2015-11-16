@@ -16272,11 +16272,14 @@ button.toast-close-button {
   width: 100%;
   position: relative;
 }
+.trulii-cover-small {
+  min-height: 60vh;
+}
 .trulii-cover .row {
   min-width: 100%;
 }
 .trulii-cover__container {
-  min-height: 92vh;
+  min-height: inherit;
   z-index: 10;
   width: 100%;
   position: relative;

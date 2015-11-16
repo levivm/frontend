@@ -2,6 +2,7 @@
 @import url('../_trulii-variables');
 @import url('../mixins/_image_processing');
 @trulii-cover-height: 92vh;
+@trulii-cover-height-small: 60vh;
 .cover{
   margin-top: -20px; // Mientras se arregla la barra de navegacion
   position: relative;
@@ -53,13 +54,17 @@
   min-height: @trulii-cover-height;
   width: 100%;
   position:relative;
+  &-small{
+    min-height: @trulii-cover-height-small;
+
+  }
   .row{
     min-width:100%;
 
   }
   &__container{
     &:extend(.flex-center-container);
-    min-height: @trulii-cover-height;
+    min-height: inherit;
     z-index: 10;
     width: 100%;
     position: relative;
