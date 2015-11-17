@@ -44,9 +44,12 @@
                 templateUrl: 'partials/students/referrals/home-anonymous.html'
             })
             .state('referrals-invitation', {
-                url: '/referrals/invitation:idReferrer',
+                url: '/referrals/invitation/:idReferrer',
                 controller: 'ReferralsInvitationCtrl as referrals',
-                templateUrl: 'partials/students/referrals/invitation.html'
+                templateUrl: 'partials/students/referrals/invitation.html',
+                resolve: {
+                    hasReferrerId: hasReferrerId
+                }
             })
         ;
     }
@@ -83,6 +86,26 @@
             }
             $timeout(function() { $state.go('referrals-home-anon'); });
         }
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#hasReferrerId
+     * @description Checks for referrerId param, otherwise rejects the resolve
+     * @requires ui.router.state.$stateParams
+     * @methodOf trulii.activities.config
+     */
+    hasReferrerId.$inject = ['$stateParams', '$q', '$timeout'];
+    function hasReferrerId($stateParams, $q, $timeout) {
+        var deferred = $q.defer();
+
+        if ($stateParams.referredId) {
+            deferred.resolve(true);
+        } else {
+            $timeout(function() { $state.go('referrals-home'); });
+        }
+
+        return deferred.promise;
     }
 
 })();
