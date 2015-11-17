@@ -172,3 +172,267 @@
 	  }
 	}
 }
+
+.flex-center-container{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+}
+
+.flex-center-item{
+	-webkit-box-flex: 0;
+	-webkit-flex: none;
+	-ms-flex: none;
+	flex: none;
+}
+
+.circular-image-container{
+	border-radius: 100%;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+  background-color: gray;
+  text-align:center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+  &:extend(.flex-center-container);
+
+	&__title{
+		color: white;
+    font-size: 2em;
+    text-transform: uppercase;
+    font-weight: 400;
+		z-index: 102;
+  }
+
+  &__veil{
+    border-radius: 100%;
+		background-color: desaturate(darken(@brand-primary, 50%), 75%);
+    opacity: 0.4;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    width: 100%;
+    border-radius: 100%;
+    z-index: 101;
+  }
+
+	&__background{
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: all 0.25s;
+  }
+
+}
+
+.team-card{
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	background-color: gray;
+	position: relative;
+	overflow: hidden;
+	margin-top: 3rem;
+	display: flex;
+
+	&__content{
+		color: white;
+		font-size: 2em;
+		font-weight: 200;
+		z-index: 102;
+		opacity: 0;
+		transition: all 0.25s;
+		padding: 1em;
+		&-header{
+			h5{
+	    	line-height: 0.5em;
+			}
+		}
+		&-social{
+			position: absolute;
+	    left: 1em;
+	    bottom: 0px;
+		}
+		hr{
+			margin: 5px 0px 10px 0px;
+		}
+		h5{
+			font-weight: 200;
+	    line-height: 1.25em;
+		}
+	}
+
+	&__veil{
+		background-color: lighten(black, 20%);
+		opacity: 0;
+		height: 100%;
+		left: 0px;
+		top: 0px;
+		position: absolute;
+		width: 100%;
+		z-index: 101;
+		transition: all 0.25s;
+	}
+
+	&__background{
+		background-size: cover;
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		transition: all 0.25s;
+	}
+	&:hover{
+		.team-card__content{
+			opacity: 1;
+		}
+		.team-card__veil{
+			opacity: 0.75;
+		}
+	}
+}
+
+.fade-hide{
+  opacity: 1;
+  transition: all 0.25s;
+  &.ng-hide{
+    opacity: 0;
+  }
+}
+
+.navigation-widget{
+	background-color: white;
+	height: auto;
+	width: auto;
+	position: fixed;
+	padding: 15px 35px;
+	z-index: 200;
+	border-radius: @border-radius-base;
+	top: 30vh;
+	left: 10vw;
+	border: 1px solid @gray-lighter;
+
+	.active{
+
+		.navigation-widget{
+
+			&__icon{
+				display: none;
+			}
+
+			&__icon-active{
+				display: inline-block;
+			}
+
+			&__title{
+				font-weight: 300;
+				color: @brand-success;
+			}
+
+		}
+
+	}
+
+	li{
+		margin: 15px 0px;
+	}
+
+	&__title{
+		font-weight: 200;
+		color: @gray-light;
+		display: inline-block;
+		padding: 0 10px;
+	}
+
+	&__icon{
+		display: inline-block;
+	}
+
+	&__icon-active{
+		display: none;
+	}
+
+	a:hover, a:focus{
+
+		text-decoration: none;
+
+		.navigation-widget{
+
+			&__title{
+				color: @brand-success;
+			}
+
+			&__icon{
+				display: none;
+			}
+
+			&__icon-active{
+				display: inline-block;
+			}
+
+		}
+
+	}
+
+	a:hover{
+		.navigation-widget{
+			&__title{
+				color: @brand-success;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	&.absolute-widget{
+
+		width: auto;
+		height: auto;
+		overflow-y: auto;
+
+	}
+
+}
+
+@media (max-width: 991px){
+
+	.navigation-widget{
+
+		width: 100%;
+    left: 0;
+    top: 60px;
+    padding: 5px;
+    border-radius: 0;
+
+		ul{
+
+			padding-left: 0;
+	    list-style: none;
+	    text-align: center;
+
+			li{
+				display: inline-block;
+			}
+
+		}
+
+	}
+
+}
