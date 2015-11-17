@@ -28,6 +28,8 @@
                 TEAM_TITLE_TEXT_COPY: "Poniéndole mucho corazón y talento para alcanzar la excelencia",
                 MISSION_TITLE_COPY: "Ofreciendo una nueva forma",
                 MISSION_TITLE_TEXT_COPY: "de encontrar y aprender lo que te apasiona en tu ciudad. Y apenas estamos calentando motores...",
+                CULTURE_TITLE_COPY: "Comienza el viaje",
+                CULTURE_TITLE_TEXT_COPY: "Nuesto deseo es lelgar a cada rincón del planeta.",
                 FOOTER_LINKS_ABOUT_US_HEADER: "Conócenos",
                 FOOTER_LINKS_ABOUT_US_ABOUT: "Sobre Nosotros",
                 FOOTER_LINKS_ABOUT_US_BLOG: "Blog",
