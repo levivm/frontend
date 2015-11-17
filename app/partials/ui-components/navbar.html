@@ -4,9 +4,6 @@
     <div class="navbar__logo-container">
       <a ui-sref="home" class="navbar__logo"></a>
     </div>
-    <div class="navbar__left-wrapper">
-      <trulii-search-bar ng-if="isSearchVisible"></trulii-search-bar>
-    </div>
     <div class="navbar__right-wrapper">
       <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
         <img src="/css/img/menu.png" alt="" class="img-responsive">
@@ -158,15 +155,15 @@
                                 <p ng-bind="::strings.LABEL_ABOUT_US"></p>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ui-sref="about.mission" ng-click="toggleBurger()"
                                            ng-bind="::strings.LABEL_ABOUT_MISSION"></a>
                                     </li>
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ui-sref="about.culture" ng-click="toggleBurger()"
                                            ng-bind="::strings.LABEL_ABOUT_CULTURE"></a>
                                     </li>
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ui-sref="about.team" ng-click="toggleBurger()"
                                            ng-bind="::strings.LABEL_ABOUT_TEAM"></a>
                                     </li>
                                     <li>
