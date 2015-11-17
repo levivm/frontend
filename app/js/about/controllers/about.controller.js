@@ -12,10 +12,17 @@
         .module('trulii.about.controllers')
         .controller('AboutController', AboutController);
 
-    AboutController.$inject = [];
+    AboutController.$inject = ['$scope', '$window'];
 
-    function AboutController() {
+    function AboutController($scope, $window) {
         var vm = this;
+
+        angular.extend(vm,{
+          scroll: 0,
+          widgetOriginalPosition: 0,
+          widgetMaxPosition: 0,
+          widgetAbsolutePosition: 0
+        });
 
         _activate();
 
@@ -29,7 +36,7 @@
                 MISSION_TITLE_COPY: "Ofreciendo una nueva forma",
                 MISSION_TITLE_TEXT_COPY: "de encontrar y aprender lo que te apasiona en tu ciudad. Y apenas estamos calentando motores...",
                 CULTURE_TITLE_COPY: "Comienza el viaje",
-                CULTURE_TITLE_TEXT_COPY: "Nuesto deseo es lelgar a cada rincón del planeta.",
+                CULTURE_TITLE_TEXT_COPY: "Nuesto deseo es llegar a cada rincón del planeta.",
                 FOOTER_LINKS_ABOUT_US_HEADER: "Conócenos",
                 FOOTER_LINKS_ABOUT_US_ABOUT: "Sobre Nosotros",
                 FOOTER_LINKS_ABOUT_US_BLOG: "Blog",
@@ -53,9 +60,26 @@
             });
         }
 
+        function _initWidget(){
+            angular.element(document).ready(function () {
+                vm.scroll = document.body.scrollTop;
+                vm.widgetMaxPosition = document.getElementsByClassName('home-footer')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 2;
+                $window.onscroll = function(){
+                    vm.widgetMaxPosition = document.getElementsByClassName('home-footer')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 2;
+                    vm.scroll = document.body.scrollTop;
+                    $scope.$apply();
+                    console.log(vm.widgetMaxPosition);
+                    console.log(vm.scroll);
+                };
+            });
+        }
+
+
         function _activate(){
             _setStrings();
-            console.log(vm.strings);
+            _initWidget();
+            console.log(vm.widgetMaxPosition);
+            console.log(vm.scroll);
         };
 
     }

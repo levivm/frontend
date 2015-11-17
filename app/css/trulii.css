@@ -12523,6 +12523,61 @@ hr.on-light {
 .fade-hide.ng-hide {
   opacity: 0;
 }
+.navigation-widget {
+  background-color: white;
+  height: auto;
+  width: auto;
+  position: fixed;
+  padding: 15px 35px;
+  z-index: 200;
+  border-radius: 4px;
+  top: 30vh;
+  left: 10vw;
+  border: 1px solid #eeeeee;
+}
+.navigation-widget .active .navigation-widget__icon {
+  display: none;
+}
+.navigation-widget .active .navigation-widget__icon-active {
+  display: inline-block;
+}
+.navigation-widget .active .navigation-widget__title {
+  font-weight: 300;
+  color: #38dbc8;
+}
+.navigation-widget li {
+  margin: 15px 0px;
+}
+.navigation-widget__title {
+  font-weight: 200;
+  color: #999999;
+  display: inline-block;
+  padding: 0 10px;
+}
+.navigation-widget__icon {
+  display: inline-block;
+}
+.navigation-widget__icon-active {
+  display: none;
+}
+.navigation-widget a:hover {
+  text-decoration: none;
+}
+.navigation-widget a:hover .navigation-widget__title {
+  color: #38dbc8;
+  text-decoration: underline;
+}
+.navigation-widget a:hover .navigation-widget__icon {
+  display: none;
+}
+.navigation-widget a:hover .navigation-widget__icon-active {
+  display: inline-block;
+}
+.navigation-widget.absolute-widget {
+  width: auto;
+  height: auto;
+  overflow-y: auto;
+}
 .text-left {
   text-align: left;
 }
@@ -16483,6 +16538,27 @@ button.toast-close-button {
   font-size: 1.25em;
   font-weight: 200;
   line-height: 1.5em;
+}
+.trulii-cover__content-presentation-controlers,
+.trulii-cover-small__content-presentation-controlers {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  width: 350px;
+  padding: 2em 2em;
+}
+.trulii-cover__content-presentation-controlers a,
+.trulii-cover-small__content-presentation-controlers a,
+.trulii-cover__content-presentation-controlers a:hover,
+.trulii-cover-small__content-presentation-controlers a:hover,
+.trulii-cover__content-presentation-controlers a:focus,
+.trulii-cover-small__content-presentation-controlers a:focus {
+  color: white;
+}
+.trulii-cover__content-presentation-controlers img,
+.trulii-cover-small__content-presentation-controlers img {
+  width: 50px;
+  margin-top: 11px;
 }
 .trulii-cover__background,
 .trulii-cover-small__background {

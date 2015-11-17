@@ -317,3 +317,69 @@
     opacity: 0;
   }
 }
+
+.navigation-widget{
+	background-color: white;
+	height: auto;
+	width: auto;
+	position: fixed;
+	padding: 15px 35px;
+	z-index: 200;
+	border-radius: @border-radius-base;
+	top: 30vh;
+	left: 10vw;
+	border: 1px solid @gray-lighter;
+
+	.active{
+		.navigation-widget{
+			&__icon{
+				display: none;
+			}
+			&__icon-active{
+				display: inline-block;
+			}
+			&__title{
+				font-weight: 300;
+				color: @brand-success;
+			}
+		}
+
+	}
+	li{
+		margin: 15px 0px;
+	}
+	&__title{
+		font-weight: 200;
+		color: @gray-light;
+		display: inline-block;
+		padding: 0 10px;
+	}
+
+	&__icon{
+		display: inline-block;
+	}
+	&__icon-active{
+		display: none;
+	}
+	a:hover{
+		text-decoration: none;
+		.navigation-widget{
+			&__title{
+				color: @brand-success;
+				text-decoration: underline;
+			}
+			&__icon{
+				display: none;
+			}
+			&__icon-active{
+				display: inline-block;
+			}
+		}
+
+	}
+	&.absolute-widget{
+		width: auto;
+		height: auto;
+		overflow-y: auto;
+	}
+}
