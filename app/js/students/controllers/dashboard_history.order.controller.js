@@ -103,6 +103,7 @@
                 LABEL_TOTAL: "Total",
                 LABEL_SUB_TOTAL: "Sub-Total",
                 LABEL_REIMBURSEMENTS: "Reembolsos",
+                LABEL_COUPON: "Cupón",
                 LABEL_ORDER_STATUS: "Estatus: ",
                 LABEL_REIMBURSEMENTS_STATUS: "Estatus reembolso:",
                 REFUND_APPROVED_STATUS: "Aprobado",

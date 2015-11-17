@@ -117,27 +117,7 @@
                 PLACEHOLDER_EMAIL : "Correo electrónico",
                 PLACEHOLDER_TELEPHONE : 'Número teléfonico',
                 PLACEHOLDER_ID : 'Número',
-                REQUEST_SIGNUP_LABEL : 'Únete',
-                FOOTER_LINKS_ABOUT_US_HEADER: "Conócenos",
-                FOOTER_LINKS_ABOUT_US_ABOUT: "Sobre Nosotros",
-                FOOTER_LINKS_ABOUT_US_BLOG: "Blog",
-                FOOTER_LINKS_ABOUT_US_TERMS: "Términos y Condiciones",
-                FOOTER_LINKS_ABOUT_US_PRIVACY: "Políticas de Privacidad",
-                FOOTER_LINKS_ABOUT_US_CONTACT: "Contáctanos",
-                FOOTER_LINKS_STUDENTS_HEADER: "Asistentes",
-                FOOTER_LINKS_STUDENTS_HOW: "¿Cómo funciona?",
-                FOOTER_LINKS_STUDENTS_SUGGEST: "Sugiere un organizador",
-                FOOTER_LINKS_STUDENTS_FEEDBACK: "Danos tu feedback",
-                FOOTER_LINKS_STUDENTS_SUPPORT: "Soporte",
-                FOOTER_LINKS_STUDENTS_FAQ: "FAQ",
-                FOOTER_LINKS_ORGANIZER_HEADER: "Organizador",
-                FOOTER_LINKS_ORGANIZER_BE: "Sé Organizador",
-                FOOTER_LINKS_ORGANIZER_HOW: "¿Cómo funciona?",
-                FOOTER_LINKS_ORGANIZER_TIPS: "Tips para publicar",
-                FOOTER_LINKS_ORGANIZER_FEEDBACK: "Dano tu feedback",
-                FOOTER_LINKS_ORGANIZER_SUPPORT: "Soporte",
-                FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
-                FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"
+                REQUEST_SIGNUP_LABEL : 'Únete'
             });
         }
 

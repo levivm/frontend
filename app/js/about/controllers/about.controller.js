@@ -117,36 +117,15 @@
                 TEAM_CONTENT_SECTION_1_TEXT: "Somos un equipo pequeño conformado en su mayoría por programadores, creativos y diseñadores trabajando con muchísimas ganas para llevar nuestra misión a escala global.",
 
                 // END TEAM
-
-                FOOTER_LINKS_ABOUT_US_HEADER: "Conócenos",
-                FOOTER_LINKS_ABOUT_US_ABOUT: "Sobre Nosotros",
-                FOOTER_LINKS_ABOUT_US_BLOG: "Blog",
-                FOOTER_LINKS_ABOUT_US_TERMS: "Términos y Condiciones",
-                FOOTER_LINKS_ABOUT_US_PRIVACY: "Políticas de Privacidad",
-                FOOTER_LINKS_ABOUT_US_CONTACT: "Contáctanos",
-                FOOTER_LINKS_STUDENTS_HEADER: "Asistentes",
-                FOOTER_LINKS_STUDENTS_HOW: "¿Cómo funciona?",
-                FOOTER_LINKS_STUDENTS_SUGGEST: "Sugiere un organizador",
-                FOOTER_LINKS_STUDENTS_FEEDBACK: "Danos tu feedback",
-                FOOTER_LINKS_STUDENTS_SUPPORT: "Soporte",
-                FOOTER_LINKS_STUDENTS_FAQ: "FAQ",
-                FOOTER_LINKS_ORGANIZER_HEADER: "Organizador",
-                FOOTER_LINKS_ORGANIZER_BE: "Sé Organizador",
-                FOOTER_LINKS_ORGANIZER_HOW: "¿Cómo funciona?",
-                FOOTER_LINKS_ORGANIZER_TIPS: "Tips para publicar",
-                FOOTER_LINKS_ORGANIZER_FEEDBACK: "Dano tu feedback",
-                FOOTER_LINKS_ORGANIZER_SUPPORT: "Soporte",
-                FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
-                FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"
             });
         }
 
         function _initWidget(){
             angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
-                vm.widgetMaxPosition = document.getElementsByClassName('home-footer')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 2;
+                vm.widgetMaxPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().bottom + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 1.85;
                 $window.onscroll = function(){
-                    vm.widgetMaxPosition = document.getElementsByClassName('home-footer')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 2;
+                    vm.widgetMaxPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().bottom + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 1.85;
                     vm.scroll = document.body.scrollTop;
                     $scope.$apply();
                     console.log(vm.widgetMaxPosition);

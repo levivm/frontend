@@ -1,8 +1,8 @@
 
 /**
  * @ngdoc controller
- * @name trulii.landing.controllers.HomeController
- * @description HomeController
+ * @name trulii.referrals.controllers.ReferralsInvitationCtrl
+ * @description ReferralsInvitationCtrl
  * @requires trulii.activities.services.ActivitiesManager
  */
 
@@ -11,23 +11,24 @@
 
     angular
         .module('trulii.referrals.controllers')
-        .controller('ReferralsInvitationCtrl', HomeController);
+        .controller('ReferralsInvitationCtrl', ReferralsInvitationCtrl);
 
-    HomeController.$inject = [];
+    ReferralsInvitationCtrl.$inject = [];
 
-    function HomeController() {
+    function ReferralsInvitationCtrl() {
 
         var vm = this;
         angular.extend(vm, {
-            showVideo: false
-
+            showVideo: false,
+            toggleVideoShow: toggleVideoShow
         });
 
         _activate();
 
-        vm.toggleVideoShow = function(){
+        function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
         }
+
         //--------- Internal Functions ---------//
 
         function _setStrings() {
@@ -67,26 +68,6 @@
                 CATEGORY_GASTRONOMY: "Gastronomía",
                 CATEGORY_LANGUAGES: "Idiomas",
                 CATEGORY_DANCE: "Danza",
-                FOOTER_LINKS_ABOUT_US_HEADER: "Conócenos",
-                FOOTER_LINKS_ABOUT_US_ABOUT: "Sobre Nosotros",
-                FOOTER_LINKS_ABOUT_US_BLOG: "Blog",
-                FOOTER_LINKS_ABOUT_US_TERMS: "Términos y Condiciones",
-                FOOTER_LINKS_ABOUT_US_PRIVACY: "Políticas de Privacidad",
-                FOOTER_LINKS_ABOUT_US_CONTACT: "Contáctanos",
-                FOOTER_LINKS_STUDENTS_HEADER: "Asistentes",
-                FOOTER_LINKS_STUDENTS_HOW: "¿Cómo funciona?",
-                FOOTER_LINKS_STUDENTS_SUGGEST: "Sugiere un organizador",
-                FOOTER_LINKS_STUDENTS_FEEDBACK: "Danos tu feedback",
-                FOOTER_LINKS_STUDENTS_SUPPORT: "Soporte",
-                FOOTER_LINKS_STUDENTS_FAQ: "FAQ",
-                FOOTER_LINKS_ORGANIZER_HEADER: "Organizador",
-                FOOTER_LINKS_ORGANIZER_BE: "Sé Organizador",
-                FOOTER_LINKS_ORGANIZER_HOW: "¿Cómo funciona?",
-                FOOTER_LINKS_ORGANIZER_TIPS: "Tips para publicar",
-                FOOTER_LINKS_ORGANIZER_FEEDBACK: "Dano tu feedback",
-                FOOTER_LINKS_ORGANIZER_SUPPORT: "Soporte",
-                FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
-                FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!",
                 LEARN_MORE: "Aprende más sobre cómo funciona nuestro sistema de invitaciones"
 
             });

@@ -19,15 +19,23 @@
 
         var vm = this;
         angular.extend(vm, {
-            showVideo: false
-
+            showVideo: false,
+            stateInfo : {
+                toState: {
+                    state: 'referrals-home'
+                }
+            },
+            toggleVideoShow: toggleVideoShow
         });
 
         _activate();
 
-        vm.toggleVideoShow = function(){
+        //--------- Exposed Functions ---------//
+
+        function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
         }
+
         //--------- Internal Functions ---------//
 
         function _setStrings() {
@@ -47,28 +55,7 @@
                 BODY_TEXT_5: "a que se unan a Trulii. Una vez registrados, estos recibirán un",
                 BODY_TEXT_6: "cupón por COP 20.000,",
                 BODY_TEXT_7: "y tú recibirás el tuyo apenas se inscriban a una actividad paga. Tu cupón lo podrás aplicar en tu próxima inscripción a una actividad.",
-                FOOTER_LINKS_ABOUT_US_HEADER: "Conócenos",
-                FOOTER_LINKS_ABOUT_US_ABOUT: "Sobre Nosotros",
-                FOOTER_LINKS_ABOUT_US_BLOG: "Blog",
-                FOOTER_LINKS_ABOUT_US_TERMS: "Términos y Condiciones",
-                FOOTER_LINKS_ABOUT_US_PRIVACY: "Políticas de Privacidad",
-                FOOTER_LINKS_ABOUT_US_CONTACT: "Contáctanos",
-                FOOTER_LINKS_STUDENTS_HEADER: "Asistentes",
-                FOOTER_LINKS_STUDENTS_HOW: "¿Cómo funciona?",
-                FOOTER_LINKS_STUDENTS_SUGGEST: "Sugiere un organizador",
-                FOOTER_LINKS_STUDENTS_FEEDBACK: "Danos tu feedback",
-                FOOTER_LINKS_STUDENTS_SUPPORT: "Soporte",
-                FOOTER_LINKS_STUDENTS_FAQ: "FAQ",
-                FOOTER_LINKS_ORGANIZER_HEADER: "Organizador",
-                FOOTER_LINKS_ORGANIZER_BE: "Sé Organizador",
-                FOOTER_LINKS_ORGANIZER_HOW: "¿Cómo funciona?",
-                FOOTER_LINKS_ORGANIZER_TIPS: "Tips para publicar",
-                FOOTER_LINKS_ORGANIZER_FEEDBACK: "Dano tu feedback",
-                FOOTER_LINKS_ORGANIZER_SUPPORT: "Soporte",
-                FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
-                FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!",
                 LEARN_MORE: "Aprende más sobre cómo funciona nuestro sistema de invitaciones"
-
             });
         }
 
