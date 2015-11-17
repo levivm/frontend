@@ -1,8 +1,8 @@
 
 /**
  * @ngdoc controller
- * @name trulii.landing.controllers.HomeController
- * @description HomeController
+ * @name trulii.referrals.controllers.ReferralsInvitationCtrl
+ * @description ReferralsInvitationCtrl
  * @requires trulii.activities.services.ActivitiesManager
  */
 
@@ -11,23 +11,24 @@
 
     angular
         .module('trulii.referrals.controllers')
-        .controller('ReferralsInvitationCtrl', HomeController);
+        .controller('ReferralsInvitationCtrl', ReferralsInvitationCtrl);
 
-    HomeController.$inject = [];
+    ReferralsInvitationCtrl.$inject = [];
 
-    function HomeController() {
+    function ReferralsInvitationCtrl() {
 
         var vm = this;
         angular.extend(vm, {
-            showVideo: false
-
+            showVideo: false,
+            toggleVideoShow: toggleVideoShow
         });
 
         _activate();
 
-        vm.toggleVideoShow = function(){
+        function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
         }
+
         //--------- Internal Functions ---------//
 
         function _setStrings() {

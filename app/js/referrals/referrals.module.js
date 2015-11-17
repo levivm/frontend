@@ -10,7 +10,7 @@
     angular
         .module('trulii.referrals', [
             'trulii.referrals.services',
-            'trulii.referrals.controllers',
+            'trulii.referrals.controllers'
         ])
         .config(config);
 
@@ -29,29 +29,60 @@
      */
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
-        //$stateProvider
-        //    .state('payment-pse-response', {
-        //        url:'/payments/pse/response',
-        //        onEnter: pseResponseProccessing,
-        //    });
-
         $stateProvider
-           .state('referrals-home', {
-               url:'/referrals',
-               controller: 'ReferralsHomeCtrl as referrals',
-               templateUrl: 'partials/students/referrals/home.html'
-           })
-           .state('referrals-home-anon', {
-             url: '/referrals/anonymous',
-             controller: 'ReferralsAnonCtrl as referrals',
-             templateUrl: 'partials/students/referrals/home-anonymous.html'
-           })
-           .state('referrals-invitation', {
-             url: '/referrals/invitation',
-             controller: 'ReferralsInvitationCtrl as referrals',
-             templateUrl: 'partials/students/referrals/invitation.html'
-           })
-           ;
+            .state('referrals-home', {
+                url: '/referrals',
+                controller: 'ReferralsHomeCtrl as referrals',
+                templateUrl: 'partials/students/referrals/home.html',
+                resolve: {
+                    getCurrentStudent: getCurrentStudent
+                }
+            })
+            .state('referrals-home-anon', {
+                url: '/referrals/anonymous',
+                controller: 'ReferralsAnonCtrl as referrals',
+                templateUrl: 'partials/students/referrals/home-anonymous.html'
+            })
+            .state('referrals-invitation', {
+                url: '/referrals/invitation:idReferrer',
+                controller: 'ReferralsInvitationCtrl as referrals',
+                templateUrl: 'partials/students/referrals/invitation.html'
+            })
+        ;
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#getCurrentStudent
+     * @description Retrieves the current logged Student from
+     * {@link trulii.students.services.StudentsManager StudentsManager} Service otherwise returns ``null``
+     * @requires ng.$timeout
+     * @requires ui.router.state.$state
+     * @requires ng.$q
+     * @requires trulii.students.services.StudentsManager
+     * @methodOf trulii.students.config
+     */
+    getCurrentStudent.$inject = ['$timeout', '$state', '$q', 'StudentsManager'];
+    function getCurrentStudent($timeout, $state, $q, StudentsManager){
+
+        return StudentsManager.getCurrentStudent().then(success, error);
+
+        function success(student){
+            if(student){
+                return student;
+            } else {
+                $timeout(function() { $state.go('referrals-home-anon'); });
+            }
+        }
+
+        function error(response){
+            if(response === null || !response){
+                console.warn("getCurrentStudent. There is no Authenticated User");
+            } else {
+                console.warn("getCurrentStudent. The Authenticated User is not a Student");
+            }
+            $timeout(function() { $state.go('referrals-home-anon'); });
+        }
     }
 
 })();
