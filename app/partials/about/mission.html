@@ -5,9 +5,9 @@
         <div class="row">
           <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-4">
             <h1>
-              <strong ng-bind="::about.strings.MISSION_TITLE_COPY"></strong>
+              <strong ng-bind="::about.strings.MISSION_TITLE"></strong>
             </h1>
-            <h3 class="pt-sans no-margin-top" ng-bind="::about.strings.MISSION_TITLE_TEXT_COPY"></h3>
+            <h3 class="pt-sans no-margin-top" ng-bind="::about.strings.MISSION_TITLE_TEXT"></h3>
           </div>
         </div>
       </div>
@@ -19,41 +19,31 @@
 <div class="row padding-more">
   <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-4">
     <h1 class="text-muted text-xxlg">
-      <strong>
-        Nuestra misión
-      </strong>
+      <strong ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TITLE"></strong>
     </h1>
-    <p>
-      La vida es muy corta. Todos lo sabemos y es por ello que debemos tratar de vivirla al máximo; para ello, no hay mejor forma de hacerlo que a través de experiencias que te enseñen. Descubrir una nueva pasión, mejorar tus habilidades profesionales o simplemente aprender algo nuevo no tiene por qué ser una tarea imposible.
-    </p>
-    <p>
-      Cada ciudad es un mundo propio con un sinfín de opciones para aprender cosas que realmente te apasionan y te llenan como persona. ¿Por qué entonces no lo hacemos? En realidad, no había una plataforma digital de calidad, segura e intuitiva que permitiera encontrar lo que quieres aprender cerca de donde vives y que, además, facilitara la posibilidad de inscribirse de manera rápida, fácil y sin costo alguno.
-    </p>
-    <p class="montserrat-bold">
-      En Trulii queremos cambiar esto creando el primer marketplace local de clases y eventos educativos con la misión bonita de cambiar (y mejorar) cómo se conectan las personas que quieren enseñar su pasión con las que quieren aprender. En pocas palabras, queremos abrirte las puertas para aprender algo nuevo, mejorar tu currículo o descubrir una nueva pasión.
-    </p>
+    <p ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_1"></p>
+    <p ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_2"></p>
+    <p class="montserrat-bold" ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_3"></p>
     <img src="/css/img/about/mission_2.jpg" alt="" class="img-responsive separate-above-medium separate-below-medium">
-    <p>
-      Somos un equipo pequeño y apasionado conformado por jóvenes programadores, diseñadores y comunicadores reunidos en Colombia para llevar a cabo esta linda tarea. Aunque etamos comenzando nada más en Colombia, no somos egoístas: estamos trabajando día y noche para compartir este sueño en todos los rincones del planeta. Y en este preciso momento, nos enorgullece compartirlo contigo.
-    </p>
+    <p ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_4"></p>
   </div>
 </div>
 <div class="row container-muted padding-more">
   <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-4">
-    <h1 class="text-center text-muted">¡Bienvenido a Trulii!</h1>
+    <h1 class="text-center text-muted" ng-bind="::about.strings.MISSION_CONTENT_SECTION_2_TITLE"></h1>
     <div class="row separate-above-medium separate-below-medium">
       <div class="col-xs-12 col-md-5">
         <button class="btn btn-multiline btn-success btn-block padding-vertical-regular">
-          <strong>¡Hoy es un nuevo dia para aprender!</strong>
+          <strong ng-bind="::about.strings.MISSION_ACTION_LEARN_1"></strong>
           <br>
-          <span class="montserrat-light">¡Quiero aprender ahora!</span>
+          <span class="montserrat-light" ng-bind="::about.strings.MISSION_ACTION_LEARN_2"></span>
         </button>
       </div>
       <div class="col-xs-12 col-md-5 col-md-offset-1">
         <button class="btn btn-multiline btn-primary btn-block padding-vertical-regular">
-          <strong>Publicar mi actividad</strong>
+          <strong ng-bind="::about.strings.MISSION_ACTION_PUBLISH_1"></strong>
           <br>
-          <span class="montserrat-light">¡Quiero organizar mi actividad!</span>
+          <span class="montserrat-light" ng-bind="::about.strings.MISSION_ACTION_PUBLISH_2"></span>
         </button>
       </div>
     </div>
