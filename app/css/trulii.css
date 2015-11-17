@@ -12560,23 +12560,44 @@ hr.on-light {
 .navigation-widget__icon-active {
   display: none;
 }
-.navigation-widget a:hover {
+.navigation-widget a:hover,
+.navigation-widget a:focus {
   text-decoration: none;
 }
-.navigation-widget a:hover .navigation-widget__title {
+.navigation-widget a:hover .navigation-widget__title,
+.navigation-widget a:focus .navigation-widget__title {
   color: #38dbc8;
   text-decoration: underline;
 }
-.navigation-widget a:hover .navigation-widget__icon {
+.navigation-widget a:hover .navigation-widget__icon,
+.navigation-widget a:focus .navigation-widget__icon {
   display: none;
 }
-.navigation-widget a:hover .navigation-widget__icon-active {
+.navigation-widget a:hover .navigation-widget__icon-active,
+.navigation-widget a:focus .navigation-widget__icon-active {
   display: inline-block;
 }
 .navigation-widget.absolute-widget {
   width: auto;
   height: auto;
   overflow-y: auto;
+}
+@media (max-width: 991px) {
+  .navigation-widget {
+    width: 100%;
+    left: 0;
+    top: 60px;
+    padding: 5px;
+    border-radius: 0;
+  }
+  .navigation-widget ul {
+    padding-left: 0;
+    list-style: none;
+    text-align: center;
+  }
+  .navigation-widget ul li {
+    display: inline-block;
+  }
 }
 .text-left {
   text-align: left;
@@ -15218,6 +15239,84 @@ ul.dropdown-menu:after {
   top: -15px;
   left: 15px;
 }
+.values-container {
+  position: relative;
+  padding: 2em;
+}
+.values-container p {
+  position: absolute;
+  color: #000000;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 200;
+}
+.values-container__humility {
+  top: 14%;
+  left: 44%;
+}
+.values-container__clarity {
+  top: 34%;
+  left: 75%;
+}
+.values-container__empathy {
+  top: 76%;
+  left: 75%;
+}
+.values-container__eficiency {
+  left: 44%;
+  bottom: -7%;
+}
+.values-container__curiosity {
+  top: 78%;
+  right: 76%;
+}
+.values-container__passion {
+  top: 34%;
+  right: 76%;
+}
+@media (max-width: 710px) {
+  .values-container__humility {
+    top: 15%;
+    left: 37%;
+  }
+  .values-container__clarity {
+    left: 90%;
+  }
+  .values-container__empathy {
+    top: 77%;
+    left: 90%;
+  }
+  .values-container__curiosity {
+    right: 90%;
+  }
+  .values-container__passion {
+    right: 90%;
+  }
+  .values-container__eficiency {
+    left: 37%;
+  }
+}
+@media (min-width: 711px) and (max-width: 991px) {
+  .values-container__humility {
+    left: 42%;
+  }
+  .values-container__clarity {
+    top: 31%;
+    left: 82%;
+  }
+  .values-container__empathy {
+    left: 80%;
+  }
+  .values-container__curiosity {
+    right: 80%;
+  }
+  .values-container__passion {
+    top: 31%;
+    right: 82%;
+  }
+  .values-container__eficiency {
+    left: 42%;
+  }
+}
 /*
 	Code from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss
 */
@@ -16559,6 +16658,7 @@ button.toast-close-button {
 .trulii-cover-small__content-presentation-controlers img {
   width: 50px;
   margin-top: 11px;
+  margin-right: 5px;
 }
 .trulii-cover__background,
 .trulii-cover-small__background {
