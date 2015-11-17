@@ -73,6 +73,7 @@
             toggleReimbursement : toggleReimbursement,
             setForm: setForm,
             applyCoupon: applyCoupon,
+            removeCoupon, removeCoupon,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -265,6 +266,14 @@
                 console.log('Error retrieving coupon', error);
                 vm.invalidCoupon = true;
             }
+        }
+
+        function removeCoupon(){
+
+            vm.coupon = {};
+            vm.hasCouponApplied = false;
+            _setTotalCost(0);
+
         }
 
         function enroll() {
