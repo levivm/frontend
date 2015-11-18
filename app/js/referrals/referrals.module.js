@@ -30,24 +30,33 @@
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
         $stateProvider
-            .state('referrals-home', {
+            .state('referrals', {
                 url: '/referrals',
+                abstract: true,
+                resolve: {
+                    student: getCurrentStudent,
+                    referrerUrl: getReferrerUrl
+                },
+                template: '<ui-view />'
+            })
+            .state('referrals.home', {
+                url: '/',
                 controller: 'ReferralsHomeCtrl as referrals',
                 templateUrl: 'partials/students/referrals/home.html',
                 resolve: {
-                    student: getCurrentStudent
+                    isStudent: isStudent
                 }
             })
-            .state('referrals-home-anon', {
-                url: '/referrals/anonymous',
+            .state('referrals.home-anon', {
+                url: '/anonymous',
                 controller: 'ReferralsAnonCtrl as referrals',
                 templateUrl: 'partials/students/referrals/home-anonymous.html',
                 resolve: {
                     isAnon: isAnon
                 }
             })
-            .state('referrals-invitation', {
-                url: '/referrals/invitation/:idReferrer',
+            .state('referrals.invitation', {
+                url: '/invitation/:idReferrer',
                 controller: 'ReferralsInvitationCtrl as referrals',
                 templateUrl: 'partials/students/referrals/invitation.html',
                 resolve: {
@@ -80,7 +89,7 @@
             if(student){
                 deferred.resolve(student);
             } else {
-                deferred.reject(null);
+                deferred.resolve(null);
             }
         }
 
@@ -90,6 +99,43 @@
             } else {
                 console.warn("getCurrentStudent. The Authenticated User is not a Student");
             }
+            deferred.reject(response);
+        }
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#isStudent
+     * @description Checks if logged user is a Student
+     * @requires student
+     * @methodOf trulii.students.config
+     */
+    isStudent.$inject = ['student'];
+    function isStudent(student){
+        return !!student;
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#getReferrerUrl
+     * @description Assembles the referrer URL
+     * @requires trulii.routes.serverConf
+     * @requires trulii.referrals.services.Referrals
+     * @methodOf trulii.students.config
+     */
+    getReferrerUrl.$inject = ['$q', 'serverConf', 'Referrals'];
+    function getReferrerUrl($q, serverConf, Referrals){
+        var deferred = $q.defer();
+
+        Referrals.getInviteUrl().then(success, error);
+
+        return deferred.promise;
+
+        function success(inviteUrl){
+            deferred.resolve([serverConf.url, inviteUrl].join());
+        }
+
+        function error(response){
             deferred.reject(response);
         }
     }

@@ -11,23 +11,43 @@
 
     angular
         .module('trulii.referrals.controllers')
-        .controller('ReferralsHomeCtrl', HomeController);
+        .controller('ReferralsHomeCtrl', ReferralsHomeCtrl);
 
-    HomeController.$inject = [];
+    ReferralsHomeCtrl.$inject = ['referrerUrl', 'Referrals', 'Toast'];
 
-    function HomeController() {
+    function ReferralsHomeCtrl(referrerUrl, Referrals, Toast) {
 
         var vm = this;
         angular.extend(vm, {
-            showVideo: false
-
+            showVideo: false,
+            referrerUrl: referrerUrl,
+            toggleVideoShow: toggleVideoShow,
+            postInvite: postInvite
         });
 
         _activate();
 
-        vm.toggleVideoShow = function(){
+        function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
         }
+
+        function postInvite(){
+            if(vm.emails){
+                Referrals.postInvite(vm.emails).then(success, error);
+            } else {
+                Toast.warning("Por favor ingrese correos validos separados por comas");
+            }
+
+            function success(response){
+                console.log('success invite:', response);
+                Toast.success("Invitaciones enviadas exitosamente");
+            }
+
+            function error(response){
+                console.log('error invite:', response);
+            }
+        }
+
         //--------- Internal Functions ---------//
 
         function _setStrings() {

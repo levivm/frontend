@@ -155,12 +155,12 @@
             console.groupEnd();
             event.preventDefault();
 
-            if(toState.name === 'referrals-home'){
-                $state.go('referrals-home-anon');
-            } else if(toState.name === 'referrals-home-anon') {
-                $state.go('referrals-home');
-            } else if(toState.name === 'referrals-invitation'){
-                $state.go('referrals-home');
+            if(toState.name === 'referrals.home'){
+                $state.go('referrals.home-anon');
+            } else if(toState.name === 'referrals.home-anon') {
+                $state.go('referrals.home');
+            } else if(toState.name === 'referrals.invitation'){
+                $state.go('referrals.home');
             } else {
                 console.info('Resolve Error. Redirecting to "not-found"');
                 $state.go('not-found', {

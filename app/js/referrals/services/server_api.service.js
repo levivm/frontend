@@ -43,6 +43,17 @@
              */
             'referrer' : function (referrerCode){
                 return renderUrl('referrals/', [referrerCode+'/']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#invite
+             * @description Renders **`/api/referrals/invite`** Referrer Invite URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.referrals.services.ReferralServerApi
+             */
+            'invite' : function (){
+                return renderUrl('referrals/', ['invite/']);
             }
         };
 

@@ -22,7 +22,7 @@
             showVideo: false,
             stateInfo : {
                 toState: {
-                    state: 'referrals-home'
+                    state: 'referrals.home'
                 }
             },
             toggleVideoShow: toggleVideoShow,

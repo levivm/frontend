@@ -41,7 +41,26 @@
              * @return {promise} Referrer Object Promise
              * @methodOf trulii.referrals.services.Referrals
              */
-            getReferrer: getReferrer
+            getReferrer: getReferrer,
+
+            /**
+             * @ngdoc function
+             * @name .#getInviteUrl
+             * @description Requests a Referrer referral url
+             * @param {string} referrerCode The referrer's code
+             * @return {promise} Referrer Object Promise
+             * @methodOf trulii.referrals.services.Referrals
+             */
+            getInviteUrl: getInviteUrl,
+
+            /**
+             * @ngdoc function
+             * @name .#postInvite
+             * @description Posts invites to a comma separated group of emails
+             * @param {string} emails Emails string
+             * @methodOf trulii.referrals.services.Referrals
+             */
+            postInvite: postInvite
         };
 
         return service;
@@ -68,6 +87,32 @@
 
             function error(response){
                 console.log('Error retrieving coupon with code ', couponCode, ":", response.data);
+                return $q.reject(response.data);
+            }
+        }
+
+        function getInviteUrl(){
+            return $http.get(api.invite()).then(success, error);
+
+            function success(response){
+                return response.data.invite_url;
+            }
+
+            function error(response){
+                console.log('Error retrieving invite URL', response.data);
+                return $q.reject(response.data);
+            }
+        }
+
+        function postInvite(emails){
+            return $http.post(api.invite(), {emails: emails}).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+
+            function error(response){
+                console.log('Error posting invites', response.data);
                 return $q.reject(response.data);
             }
         }

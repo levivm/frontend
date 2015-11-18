@@ -25,9 +25,9 @@
             'trulii.search',
             'trulii.utils',
             'trulii.payments',
+            'trulii.referrals',
             'trulii.about',
-            'ngVideo',
-            'trulii.referrals'
+            'ngVideo'
         ]);
 
 

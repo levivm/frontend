@@ -16,8 +16,11 @@
     <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 separate-above separate-below-medium">
         <div class="referral-input">
             <input type="text" class="form-control pull-left"
+                   ng-model="referrals.emails"
                    placeholder=" {{ ::referrals.strings.PLACEHOLDER_REFERRAL_EMAILS  }}">
-            <button class="btn btn-success text-uppercase pull-left" ng-bind="::referrals.strings.ACTION_SEND_INVITES">
+            <button class="btn btn-success text-uppercase pull-left"
+                    ng-click="referrals.postInvite()"
+                    ng-bind="::referrals.strings.ACTION_SEND_INVITES">
             </button>
         </div>
     </div>
@@ -32,7 +35,7 @@
             <li>
                 <label for="referral-link" class="sr-only" ng-bind="::referrals.strings.SHARE_URL_COPY"></label>
                 <input type="text" id="referral-link" class="form-control referral-link"
-                       value="http://localhost:8080/referrals/">
+                       ng-model="::referrals.referrerUrl">
             </li>
             <li>
                 <img src="/css/img/referrals/fb.png" alt="">

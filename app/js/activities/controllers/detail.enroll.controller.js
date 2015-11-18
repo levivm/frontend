@@ -73,6 +73,7 @@
             toggleReimbursement : toggleReimbursement,
             setForm: setForm,
             applyCoupon: applyCoupon,
+            removeCoupon: removeCoupon,
 
             cardData : {
                 "name_card": "APPROVED",
