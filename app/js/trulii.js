@@ -41,7 +41,7 @@
         .module('trulii')
         .run(run);
 
-    run.$inject = ['$http'];
+    run.$inject = ['$http', 'LocationManager'];
 
     /**
      * @ngdoc function
@@ -49,7 +49,7 @@
      * @description Update xsrf $http headers to align with Django's defaults
      * @requires ng.$http
      */
-    function run($http) {
+    function run($http, LocationManager) {
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
         $http.defaults.xsrfCookieName = 'csrftoken';
     }

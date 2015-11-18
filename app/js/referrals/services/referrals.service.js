@@ -86,7 +86,7 @@
             }
 
             function error(response){
-                console.log('Error retrieving coupon with code ', couponCode, ":", response.data);
+                console.log('Error retrieving referrer with code ', referrerCode, ":", response.data);
                 return $q.reject(response.data);
             }
         }

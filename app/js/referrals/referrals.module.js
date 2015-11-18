@@ -40,7 +40,7 @@
                 template: '<ui-view />'
             })
             .state('referrals.home', {
-                url: '/',
+                url: '',
                 controller: 'ReferralsHomeCtrl as referrals',
                 templateUrl: 'partials/students/referrals/home.html',
                 resolve: {
@@ -119,25 +119,15 @@
      * @ngdoc method
      * @name .#getReferrerUrl
      * @description Assembles the referrer URL
-     * @requires trulii.routes.serverConf
-     * @requires trulii.referrals.services.Referrals
+     * @requires ui.router.state.$state
+     * @requires student
      * @methodOf trulii.students.config
      */
-    getReferrerUrl.$inject = ['$q', 'serverConf', 'Referrals'];
-    function getReferrerUrl($q, serverConf, Referrals){
-        var deferred = $q.defer();
-
-        Referrals.getInviteUrl().then(success, error);
-
-        return deferred.promise;
-
-        function success(inviteUrl){
-            deferred.resolve([serverConf.url, inviteUrl].join());
-        }
-
-        function error(response){
-            deferred.reject(response);
-        }
+    getReferrerUrl.$inject = ['$state', 'student'];
+    function getReferrerUrl($state, student){
+        //noinspection UnnecessaryLocalVariableJS
+        var referrerUrl = $state.href('referrals.invitation', {idReferrer: student.referrer_code}, {absolute: true});
+        return referrerUrl;
     }
 
     /**
