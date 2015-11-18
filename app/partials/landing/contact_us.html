@@ -1,4 +1,159 @@
-<div class="row">
+<div class="trulii-cover-small">
+  <div class="trulii-cover__container">
+    <div class="trulii-cover__content ">
+      <div class="col-xs-12">
+         <div class="row padding-vertical-regular" ng-hide="true">
+          <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <h1 class="text-center">
+              <strong>
+                <span>Puedes encontrarnos</span>
+                <br>
+                <span>literalmente en donde sea</span>
+              </strong>
+            </h1>
+            <h3 class="pt-sans no-margin-top text-center separate-above">
+              Hablamos en serio cuando decimos que nos encantaría saber de ti.
+            </h3>
+          </div>
+          <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
+            <form name='contact.contact_form' ng-submit="contact.sendContactForm()" class="separate-above-medium separate-below-more form-classic">
+              <fieldset>
+                <div class="form-group" trulii-input-errors-control="name">
+                    <label for="name" class="sr-only"
+                           ng-bind="::contact.strings.LABEL_NAME"></label>
+                    <input id="name" class="form-control" name="name" type="text"
+                                  ng-model="contact.formData.name"
+                                  placeholder="{{::contact.strings.LABEL_NAME}}" >
+                </div>
+                <div class="form-group" trulii-input-errors-control="email">
+                    <label for="email" class="sr-only"
+                           ng-bind="::contact.strings.LABEL_EMAIL"></label>
+                     <input id="email" class="form-control" name="email" type="text"
+                            ng-model="contact.formData.email"
+                            placeholder="{{::contact.strings.LABEL_EMAIL}}">
+                </div>
+                <div class="form-group" trulii-input-errors-control="phone_number">
+                    <label for="phone" class="sr-only"
+                            ng-bind="::contact.strings.LABEL_PHONE"></label>
+                    <input id="phone" name="phone_number" class="form-control" type="tel"
+                            placeholder="{{::contact.strings.LABEL_PHONE}}"
+                            ng-model="contact.formData.phone_number" value="">
+                </div>
+                <div class="form-group" trulii-input-errors-control="topic">
+                    <label for="topic-select" class="sr-only"
+                           ng-bind="::contact.strings.LABEL_TOPIC"></label>
+                    <select id="topic-select" name="topic"
+                           class="form-control" ng-model="contact.selectedTopic"
+                           ng-options="topic as topic.title for topic in contact.topics track by topic.id">
+                       <option value="" ng-hide="contact.selectedTopic"
+                               ng-bind="::contact.strings.OPTION_TOPIC_DEFAULT" selected>
+                       </option>
+                    </select>
+                </div>
+
+                <div class="form-group" trulii-input-errors-control="description">
+                  <textarea name="description" class="form-control"
+                            ng-model="contact.formData.description"
+                            placeholder="{{::contact.strings.PLACEHOLDER_DESCRIPTION}}">
+                  </textarea>
+                </div>
+                <div class="form-group" trulii-input-errors-control="__all__">
+                    <input type="hidden" name="__all__" ng-model="__all__"/>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" id="submit"
+                            class="btn btn-lg btn-success btn-block"
+                            ng-bind="::contact.strings.ACTION_SEND">
+                    </button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div class="row fade-hide" ng-hide="false">
+          <div class="col-xs-12 padding-vertical-more">
+            <img src="/css/img/contact/brayan.png" alt="" class="img-responsive center-block padding-top-more">
+            <h1 class="text-center">
+              <strong>¡Cool!</strong>
+            </h1>
+            <h3 class="text-center">
+              Dentro de poco atenderemos tu solicutd
+            </h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 trulii-cover__content-contact-controllers">
+            <ul class="list-unstyled list-inline text-center">
+              <li>
+                <img src="/css/img/contact/icon_phone.png" alt="" />
+                <h4>
+                  <strong>¡Llámanos!</strong>
+                  <br>
+                  <span>(345) 678.90.33</span>
+                </h4>
+              </li>
+              <li>
+                <img src="/css/img/contact/icon_twitter.png" alt="" />
+                <h4>
+                  <strong>¡Síguenos!</strong>
+                  <br>
+                  <span>@Trulii_</span>
+                </h4>
+              </li>
+              <li>
+                <img src="/css/img/contact/icon_facebook.png" alt="" />
+                <h4>
+                  <strong>¡Like!</strong>
+                  <br>
+                  <span>Trulii</span>
+                </h4>
+              </li>
+              <li>
+                <img src="/css/img/contact/icon_in.png" alt="" />
+                <h4>
+                  <strong>¡Síguenos!</strong>
+                  <br>
+                  <span>Trulii</span>
+                </h4>
+              </li>
+              <li>
+                <img src="/css/img/contact/icon_angel.png" alt="" />
+                <h4>
+                  <strong>¡Llámanos!</strong>
+                  <br>
+                  <span>(345) 678.90.33</span>
+                </h4>
+              </li>
+              <li>
+                <img src="/css/img/contact/icon_press.png" alt="" />
+                <h4>
+                  <strong>¡Llámanos!</strong>
+                  <br>
+                  <span>(345) 678.90.33</span>
+                </h4>
+              </li>
+              <li>
+                <img src="/css/img/contact/icon_location.png" alt="" />
+                <h4>
+                  <strong>¡Llámanos!</strong>
+                  <br>
+                  <span>(345) 678.90.33</span>
+                </h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="trulii-cover__background" style="background-image:url(/css/img/contact/banner.jpg)">
+    </div>
+  </div>
+</div>
+<trulii-footer>
+</trulii-footer>
+
+<!-- <div class="row">
     <div class="col-sm-6 col-md-8 col-md-offset-2">
         <div class="card">
             <div class="card-header text-center">
@@ -124,4 +279,4 @@
 
         </div>
     </div>
-</div>
+</div> -->

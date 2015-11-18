@@ -95,7 +95,7 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                ACTION_SEND: "Enviar",
+                ACTION_SEND: "Enviar ahora",
                 COPY_ALL_FIELDS_REQUIRED: "Por favor llene todos los campos",
                 COPY_SUCCESS_SENDING_FORM: "Tu solicitud fue enviada con éxito. Pronto nos pondremos en contacto contigo",
                 COPY_ERROR_SENDING_FORM: "Hubo un error enviando tu solicitud. Por faovr intenta de nuevo",
@@ -107,10 +107,10 @@
                 LABEL_EMAIL: "Email",
                 LABEL_PHONE: "Teléfono",
                 LABEL_CITY: "Ciudad",
-                OPTION_TOPIC_DEFAULT: "Seleccione un tópico",
+                OPTION_TOPIC_DEFAULT: "Tema",
                 OPTION_SUBTOPIC_DEFAULT: "Seleccione un sub-tópico",
                 OPTION_CITY_DEFAULT: "Seleccione ciudad",
-                PLACEHOLDER_DESCRIPTION: "Describe la inquietud por la que nos contactas"
+                PLACEHOLDER_DESCRIPTION: "Cuéntanos, ¿en qué podemos colaborarte?"
             });
         }
 

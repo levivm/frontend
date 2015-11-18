@@ -47,9 +47,9 @@
                 url: '/referrals/invitation/:idReferrer',
                 controller: 'ReferralsInvitationCtrl as referrals',
                 templateUrl: 'partials/students/referrals/invitation.html',
-                resolve: {
-                    hasReferrerId: hasReferrerId
-                }
+                // resolve: {
+                //     hasReferrerId: hasReferrerId
+                // }
             })
         ;
     }
