@@ -11,11 +11,11 @@
 
     angular
         .module('trulii.referrals.controllers')
-        .controller('ReferralsAnonCtrl', HomeController);
+        .controller('ReferralsAnonCtrl', ReferralsAnonCtrl);
 
-    HomeController.$inject = [];
+    ReferralsAnonCtrl.$inject = ['$state'];
 
-    function HomeController() {
+    function ReferralsAnonCtrl($state) {
 
         var vm = this;
         angular.extend(vm, {
@@ -25,7 +25,8 @@
                     state: 'referrals-home'
                 }
             },
-            toggleVideoShow: toggleVideoShow
+            toggleVideoShow: toggleVideoShow,
+            goToLogin: goToLogin
         });
 
         _activate();
@@ -34,6 +35,10 @@
 
         function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
+        }
+
+        function goToLogin(){
+            $state.go('login', vm.stateInfo);
         }
 
         //--------- Internal Functions ---------//

@@ -52,6 +52,7 @@
                 ACTION_RESEND_INVITE: "Reenviar invitación",
                 SHARES_PENDING: "Pendientes",
                 SHARES_NOT_REGISTED_YET: "No se ha registrado aún",
+                PLACEHOLDER_REFERRAL_EMAILS: "Ingresa correos electrónicos. Sepáralos entre sí con comas",
                 TRULII_MANIA_TEXT: "Comparte la truliimanía por tus redes sociales o por correo electrónico.",
                 TRULII_INVITED_TEXT: "Tus invitados recibirán un cupón por COP 20.000 para inscribirse en lo que quieran aprender.",
                 TRULII_COUPON_TEXT: "Cuando tus invitados se inscriban a una actividad paga, tú recibirás un cupón por COP 20.000 también.",

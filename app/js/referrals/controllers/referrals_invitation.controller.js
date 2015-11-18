@@ -13,13 +13,14 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsInvitationCtrl', ReferralsInvitationCtrl);
 
-    ReferralsInvitationCtrl.$inject = [];
+    ReferralsInvitationCtrl.$inject = ['referrer'];
 
-    function ReferralsInvitationCtrl() {
+    function ReferralsInvitationCtrl(referrer) {
 
         var vm = this;
         angular.extend(vm, {
             showVideo: false,
+            referrer: referrer,
             toggleVideoShow: toggleVideoShow
         });
 
@@ -75,6 +76,7 @@
 
         function _activate(){
             _setStrings();
+            console.log('referrer:', referrer);
         }
 
     }

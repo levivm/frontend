@@ -31,7 +31,17 @@
              * @return {promise} Coupon Object Promise
              * @methodOf trulii.referrals.services.Referrals
              */
-            getCoupon: getCoupon
+            getCoupon: getCoupon,
+
+            /**
+             * @ngdoc function
+             * @name .#getReferrer
+             * @description Requests a Referrer object
+             * @param {string} referrerCode The referrer's code
+             * @return {promise} Referrer Object Promise
+             * @methodOf trulii.referrals.services.Referrals
+             */
+            getReferrer: getReferrer
         };
 
         return service;
@@ -40,7 +50,19 @@
             return $http.get(api.coupon(couponCode)).then(success, error);
 
             function success(response){
-                console.log('response:', response);
+                return response.data;
+            }
+
+            function error(response){
+                console.log('Error retrieving coupon with code ', couponCode, ":", response.data);
+                return $q.reject(response.data);
+            }
+        }
+
+        function getReferrer(referrerCode){
+            return $http.get(api.referrer(referrerCode)).then(success, error);
+
+            function success(response){
                 return response.data;
             }
 

@@ -148,19 +148,27 @@
         function onStateChangeError(event, toState, toParams, fromState, fromParams, error){
             $state.previous = fromState;
             console.group('stateChangeError');
-            console.error('fromState:', fromState);
-            console.error('event:', event);
-            console.error('error:', error);
+            console.info('fromState:', fromState);
+            console.info('toState:', toState);
+            console.info('event:', event);
+            console.info('error:', error);
             console.groupEnd();
-
-            console.info('Resolve Error. Redirecting to "not-found"');
             event.preventDefault();
 
-            $state.go('not-found', {
-                message: 'State Not Found',
-                fromState: fromState,
-                fromParams: fromParams
-            });
+            if(toState.name === 'referrals-home'){
+                $state.go('referrals-home-anon');
+            } else if(toState.name === 'referrals-home-anon') {
+                $state.go('referrals-home');
+            } else if(toState.name === 'referrals-invitation'){
+                $state.go('referrals-home');
+            } else {
+                console.info('Resolve Error. Redirecting to "not-found"');
+                $state.go('not-found', {
+                    message: 'State Not Found',
+                    fromState: fromState,
+                    fromParams: fromParams
+                });
+            }
         }
 
     }

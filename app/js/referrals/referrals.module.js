@@ -35,20 +35,23 @@
                 controller: 'ReferralsHomeCtrl as referrals',
                 templateUrl: 'partials/students/referrals/home.html',
                 resolve: {
-                    getCurrentStudent: getCurrentStudent
+                    student: getCurrentStudent
                 }
             })
             .state('referrals-home-anon', {
                 url: '/referrals/anonymous',
                 controller: 'ReferralsAnonCtrl as referrals',
-                templateUrl: 'partials/students/referrals/home-anonymous.html'
+                templateUrl: 'partials/students/referrals/home-anonymous.html',
+                resolve: {
+                    isAnon: isAnon
+                }
             })
             .state('referrals-invitation', {
                 url: '/referrals/invitation/:idReferrer',
                 controller: 'ReferralsInvitationCtrl as referrals',
                 templateUrl: 'partials/students/referrals/invitation.html',
                 resolve: {
-                    hasReferrerId: hasReferrerId
+                    referrer: getReferrer
                 }
             })
         ;
@@ -65,16 +68,19 @@
      * @requires trulii.students.services.StudentsManager
      * @methodOf trulii.students.config
      */
-    getCurrentStudent.$inject = ['$timeout', '$state', '$q', 'StudentsManager'];
-    function getCurrentStudent($timeout, $state, $q, StudentsManager){
+    getCurrentStudent.$inject = ['$q', 'StudentsManager'];
+    function getCurrentStudent($q, StudentsManager){
+        var deferred = $q.defer();
 
-        return StudentsManager.getCurrentStudent().then(success, error);
+        StudentsManager.getCurrentStudent().then(success, error);
+
+        return deferred.promise;
 
         function success(student){
             if(student){
-                return student;
+                deferred.resolve(student);
             } else {
-                $timeout(function() { $state.go('referrals-home-anon'); });
+                deferred.reject(null);
             }
         }
 
@@ -84,28 +90,74 @@
             } else {
                 console.warn("getCurrentStudent. The Authenticated User is not a Student");
             }
-            $timeout(function() { $state.go('referrals-home-anon'); });
+            deferred.reject(response);
         }
     }
 
     /**
      * @ngdoc method
-     * @name .#hasReferrerId
-     * @description Checks for referrerId param, otherwise rejects the resolve
+     * @name .#isAnon
+     * @description Checks if there's a Student logged in from
+     * {@link trulii.students.services.StudentsManager StudentsManager} Service otherwise returns ``null``
+     * @requires ng.$timeout
+     * @requires ui.router.state.$state
+     * @requires ng.$q
+     * @requires trulii.students.services.StudentsManager
+     * @methodOf trulii.students.config
+     */
+    isAnon.$inject = ['$q', 'StudentsManager'];
+    function isAnon($q, StudentsManager){
+        var deferred = $q.defer();
+
+        StudentsManager.getCurrentStudent().then(success, error);
+
+        return deferred.promise;
+
+        function success(student){
+            if(student){
+                deferred.reject(null);
+            } else {
+                deferred.resolve(true);
+            }
+        }
+
+        function error(response){
+            if(response === null || !response){
+                console.warn("getCurrentStudent. There is no Authenticated User");
+            } else {
+                console.warn("getCurrentStudent. The Authenticated User is not a Student");
+            }
+            deferred.resolve(true);
+        }
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#getReferrer
+     * @description Checks for referrerId param and retrieves referrer, otherwise rejects the resolve
      * @requires ui.router.state.$stateParams
      * @methodOf trulii.activities.config
      */
-    hasReferrerId.$inject = ['$stateParams', '$q', '$timeout'];
-    function hasReferrerId($stateParams, $q, $timeout) {
+    getReferrer.$inject = ['$stateParams', '$q', 'Referrals'];
+    function getReferrer($stateParams, $q, Referrals) {
         var deferred = $q.defer();
 
-        if ($stateParams.referredId) {
-            deferred.resolve(true);
+        if ($stateParams.idReferrer) {
+            Referrals.getReferrer($stateParams.idReferrer).then(success, error);
         } else {
-            $timeout(function() { $state.go('referrals-home'); });
+            deferred.reject(null);
         }
 
         return deferred.promise;
+
+        function success(referrer){
+            deferred.resolve(referrer);
+        }
+
+        function error(response){
+            console.warn("getReferrer. There is no Referrer with that code");
+            deferred.reject(response);
+        }
     }
 
 })();

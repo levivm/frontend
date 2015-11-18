@@ -1,147 +1,145 @@
 <div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
-    <h1 class="text-primary text-center separate-above-medium">
-      <strong ng-bind="::referrals.strings.HEADER_TITLE_COPY"></strong>
-    </h1>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-    <h4 class="text-center text-muted" ng-bind="::referrals.strings.HEADER_TEXT_COPY">
-    </h4>
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 separate-above separate-below-medium">
-    <div class="referral-input">
-      <input type="text" class="form-control pull-left" placeholder="Ingresa correos electrónicos. Sepáralos entre sí con comas">
-      <button class="btn btn-success text-uppercase pull-left" ng-bind="::referrals.strings.ACTION_SEND_INVITES">
-      </button>
+    <div class="col-xs-10 col-xs-offset-1">
+        <h1 class="text-primary text-center separate-above-medium">
+            <strong ng-bind="::referrals.strings.HEADER_TITLE_COPY"></strong>
+        </h1>
     </div>
-  </div>
+    <a ui-sref="referrals-home-anon">Go to Anon</a>
 </div>
 <div class="row">
-  <div class="col-xs-12">
-    <ul class="list-inline list-unstyled text-center">
-      <li>
-        <strong class="text-muted" ng-bind="::referrals.strings.SHARE_URL_COPY">
-        </strong>
-      </li>
-      <li>
-        <!--  Poner link aqui-->
-        <input type="text" class="form-control referral-link" value="http://localhost:8080/referrals/">
-      </li>
-      <li>
-        <img src="/css/img/referrals/fb.png" alt="">
-      </li>
-      <li>
-        <img src="/css/img/referrals/tw.png" alt="">
-      </li>
-    </ul>
-  </div>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+        <h4 class="text-center text-muted" ng-bind="::referrals.strings.HEADER_TEXT_COPY">
+        </h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 separate-above separate-below-medium">
+        <div class="referral-input">
+            <input type="text" class="form-control pull-left"
+                   placeholder=" {{ ::referrals.strings.PLACEHOLDER_REFERRAL_EMAILS  }}">
+            <button class="btn btn-success text-uppercase pull-left" ng-bind="::referrals.strings.ACTION_SEND_INVITES">
+            </button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <ul class="list-inline list-unstyled text-center">
+            <li>
+                <strong class="text-muted" ng-bind="::referrals.strings.SHARE_URL_COPY">
+                </strong>
+            </li>
+            <li>
+                <label for="referral-link" class="sr-only" ng-bind="::referrals.strings.SHARE_URL_COPY"></label>
+                <input type="text" id="referral-link" class="form-control referral-link"
+                       value="http://localhost:8080/referrals/">
+            </li>
+            <li>
+                <img src="/css/img/referrals/fb.png" alt="">
+            </li>
+            <li>
+                <img src="/css/img/referrals/tw.png" alt="">
+            </li>
+        </ul>
+    </div>
 </div>
 <div class="row separate-above-more separate-below-more">
-  <div class="col-xs-10 col-xs-offset-1">
-    <h3 class="text-uppercase text-muted text-center">
-      <strong>
-        <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_1"></span>
-        <!--  Cantidad para gastar -->
-        <span class="text-primary">COP 40.000</span>
-        <!--  Fin cantidad para gastar -->
-        <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_2"></span>
-      </strong>
-    </h3>
-    <p class="montserrat-regular text-center" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
-    </p>
-    <div class="row separate-above-medium referral-sent">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-        <!--  Registrado-->
-        <div class="referral-item">
-          <div class="referral-item__picture">
-            <!--  Imagen de perfil de usuario-->
-            <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle" alt="">
-            <!--  Fin imagen de perfil-->
-          </div>
-          <div class="referral-item__info">
-            <h4><strong>Mariana Schiavino</strong></h4>
-            <!--  Registrado e inscrito-->
-            <h4>
-              <span ng-bind="::referrals.strings.SHARES_REGISTERED"></span>
-              <!--  Codigo de cupon-->
-              <strong>XXYZ.</strong>
-              <!--  Fin codigo de cupon-->
-              <span ng-bind="::referrals.strings.SHARES_EMAIL_CHECK"></span>
-            </h4>
-            <!--  Fin registrado e inscrito-->
-            <!--  Registrado sin inscribir-->
-            <h4 ng-bind="::referrals.strings.SHARES_NOT_REGISTERED">
-            </h4>
-            <!--  Fin registrado sin inscribir-->
-          </div>
-          <div class="referral-item__status">
-            <h4>
-              <strong>COP 20.000</strong>
-              <span ng-bind="::referrals.strings.SHARES_AVAILABLE"></span>
-            </h4>
-          </div>
+    <div class="col-xs-10 col-xs-offset-1">
+        <h3 class="text-uppercase text-muted text-center">
+            <strong>
+                <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_1"></span>
+                <!--  Cantidad para gastar -->
+                <span class="text-primary">COP 40.000</span>
+                <!--  Fin cantidad para gastar -->
+                <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_2"></span>
+            </strong>
+        </h3>
+        <p class="montserrat-regular text-center" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
+        </p>
+        <!--Referral ng-repeat-->
+        <div class="row separate-above-medium referral-sent">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                <!--  Registrado-->
+                <div class="referral-item">
+                    <!--  Imagen de perfil de usuario-->
+                    <div class="referral-item__picture">
+                        <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle" alt="">
+                    </div>
+                    <div class="referral-item__info">
+                        <h4><strong>Mariana Schiavino</strong></h4>
+                        <!--  Registrado e inscrito-->
+                        <h4>
+                            <span ng-bind="::referrals.strings.SHARES_REGISTERED"></span>
+                            <!--  Codigo de cupon-->
+                            <strong>XXYZ.</strong>
+                            <span ng-bind="::referrals.strings.SHARES_EMAIL_CHECK"></span>
+                        </h4>
+                        <!--  Registrado sin inscribir-->
+                        <h4 ng-bind="::referrals.strings.SHARES_NOT_REGISTERED">
+                        </h4>
+                    </div>
+                    <div class="referral-item__status">
+                        <h4>
+                            <strong>COP 20.000</strong>
+                            <span ng-bind="::referrals.strings.SHARES_AVAILABLE"></span>
+                        </h4>
+                    </div>
+                </div>
+                <!--  Sin registrar -->
+                <div class="referral-item">
+                    <div class="referral-item__picture">
+                        <img src="/css/img/referrals/email.png" class="img-responsive img-circle" alt="">
+                    </div>
+                    <div class="referral-item__info">
+                        <h4>
+                            <strong>roroferreira88@hotmail.com</strong>
+                            <span ng-bind="::referrals.strings.SHARES_NOT_REGISTED_YET"></span>
+                        </h4>
+                        <h4>
+                            <strong>COP 20.000</strong>
+                            <span></span>
+                        </h4>
+                    </div>
+                    <div class="referral-item__status">
+                        <!--  Boton de reenvio de invitacion-->
+                        <button class="btn-default btn" ng-bind="::referrals.strings.ACTION_RESEND_INVITE">
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
-        <!--  Fin registrado -->
-        <!--  Sin registrar -->
-        <div class="referral-item">
-          <div class="referral-item__picture">
-            <img src="/css/img/referrals/email.png" class="img-responsive img-circle" alt="">
-          </div>
-          <div class="referral-item__info">
-            <h4>
-              <strong>roroferreira88@hotmail.com</strong>
-              <span ng-bind="::referrals.strings.SHARES_NOT_REGISTED_YET"></span>
-            </h4>
-            <h4>
-              <strong>COP 20.000</strong>
-              <span ></span>
-            </h4>
-          </div>
-          <div class="referral-item__status">
-            <!--  Boton de reenvio de invitacion-->
-            <button class="btn-default btn" ng-bind="::referrals.strings.ACTION_RESEND_INVITE">
-            </button>
-            <!--  Fin boton de reenvio-->
-          </div>
-        </div>
-        <!--  Fin sin registrar-->
-      </div>
     </div>
-  </div>
 </div>
 <div class="row container-success">
     <div class="col-xs-10 col-xs-offset-1 separate-below-medium">
-      <div class="row">
-        <div class="col-xs-12 col-md-4">
-          <div class="container-fluid separate-above-less">
-            <img src="/css/img/referrals/truliimania.png" alt="" class="img-responsive center-block separate-above">
-            <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_MANIA_TEXT"></p>
-          </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="container-fluid separate-above-less">
+                    <img src="/css/img/referrals/truliimania.png" alt=""
+                         class="img-responsive center-block separate-above">
+                    <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_MANIA_TEXT"></p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="container-fluid separate-above-less">
+                    <img src="/css/img/referrals/invited.png" alt="" class="img-responsive center-block separate-above">
+                    <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_INVITED_TEXT"></p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="container-fluid separate-above-less">
+                    <img src="/css/img/referrals/coupon.png" alt="" class="img-responsive center-block separate-above">
+                    <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_COUPON_TEXT"></p>
+                </div>
+            </div>
         </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="container-fluid separate-above-less">
-            <img src="/css/img/referrals/invited.png" alt="" class="img-responsive center-block separate-above">
-            <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_INVITED_TEXT"></p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="container-fluid separate-above-less">
-            <img src="/css/img/referrals/coupon.png" alt="" class="img-responsive center-block separate-above">
-            <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_COUPON_TEXT"></p>
-          </div>
-        </div>
-      </div>
     </div>
 </div>
 <div class="row container-success-dark">
-  <div class="col-xs-12">
-    <a href="">
-      <h4 class="text-center text-underline" ng-bind="::referrals.strings.LEARN_MORE"></h4>
-    </a>
-  </div>
+    <div class="col-xs-12">
+        <a href="">
+            <h4 class="text-center text-underline" ng-bind="::referrals.strings.LEARN_MORE"></h4>
+        </a>
+    </div>
 </div>
 <trulii-footer></trulii-footer>
