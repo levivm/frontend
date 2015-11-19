@@ -13019,6 +13019,13 @@ h4 {
 .no-padding {
   padding: 0 !important;
 }
+.padding-vertical-more {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+.padding-top-more {
+  padding-top: 8rem;
+}
 .padding-vertical-regular {
   padding-top: 3rem;
   padding-bottom: 3rem;
@@ -14838,6 +14845,14 @@ tags-input input {
   border-radius: 3px;
   background-image: none;
 }
+.form-classic ::-webkit-input-placeholder {
+  font-weight: 400;
+}
+.form-classic select,
+.form-classic select:focus {
+  height: 56px;
+  padding: 1.25em;
+}
 .form-classic .form-group:not(:first-child) {
   margin-top: 2em;
 }
@@ -16641,27 +16656,100 @@ button.toast-close-button {
   font-weight: 200;
   line-height: 1.5em;
 }
-.trulii-cover__content-presentation-controlers,
-.trulii-cover-small__content-presentation-controlers {
+.trulii-cover__content-presentation-controllers,
+.trulii-cover-small__content-presentation-controllers {
   position: absolute;
   right: 0px;
   bottom: 0px;
   width: 350px;
   padding: 2em 2em;
 }
-.trulii-cover__content-presentation-controlers a,
-.trulii-cover-small__content-presentation-controlers a,
-.trulii-cover__content-presentation-controlers a:hover,
-.trulii-cover-small__content-presentation-controlers a:hover,
-.trulii-cover__content-presentation-controlers a:focus,
-.trulii-cover-small__content-presentation-controlers a:focus {
+.trulii-cover__content-presentation-controllers a,
+.trulii-cover-small__content-presentation-controllers a,
+.trulii-cover__content-presentation-controllers a:hover,
+.trulii-cover-small__content-presentation-controllers a:hover,
+.trulii-cover__content-presentation-controllers a:focus,
+.trulii-cover-small__content-presentation-controllers a:focus {
   color: white;
 }
-.trulii-cover__content-presentation-controlers img,
-.trulii-cover-small__content-presentation-controlers img {
+.trulii-cover__content-presentation-controllers img,
+.trulii-cover-small__content-presentation-controllers img {
   width: 50px;
   margin-top: 11px;
   margin-right: 5px;
+}
+.trulii-cover__content-contact-controllers,
+.trulii-cover-small__content-contact-controllers {
+  background-color: rgba(83, 83, 83, 0.4);
+}
+.trulii-cover__content-contact-controllers li,
+.trulii-cover-small__content-contact-controllers li {
+  padding: 0 2.5%;
+}
+.trulii-cover__content-contact-controllers li .item,
+.trulii-cover-small__content-contact-controllers li .item {
+  position: relative;
+  height: 120px;
+  width: 110px;
+  transition: all 0.5s;
+}
+.trulii-cover__content-contact-controllers li .item a,
+.trulii-cover-small__content-contact-controllers li .item a,
+.trulii-cover__content-contact-controllers li .item a:hover,
+.trulii-cover-small__content-contact-controllers li .item a:hover,
+.trulii-cover__content-contact-controllers li .item a:focus,
+.trulii-cover-small__content-contact-controllers li .item a:focus {
+  color: white;
+}
+.trulii-cover__content-contact-controllers li .item img,
+.trulii-cover-small__content-contact-controllers li .item img {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  transition: all 0.25s;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.trulii-cover__content-contact-controllers li .item .item-description,
+.trulii-cover-small__content-contact-controllers li .item .item-description {
+  position: absolute;
+  width: 160px;
+  bottom: 0px;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.25s;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.trulii-cover__content-contact-controllers li .item .item-img,
+.trulii-cover-small__content-contact-controllers li .item .item-img {
+  opacity: 1;
+}
+.trulii-cover__content-contact-controllers li .item .item-img-active,
+.trulii-cover-small__content-contact-controllers li .item .item-img-active {
+  opacity: 0;
+}
+.trulii-cover__content-contact-controllers li .item:hover,
+.trulii-cover-small__content-contact-controllers li .item:hover {
+  height: 135px;
+}
+.trulii-cover__content-contact-controllers li .item:hover img,
+.trulii-cover-small__content-contact-controllers li .item:hover img {
+  padding-bottom: 40px;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-img,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-img {
+  opacity: 0;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-img-active,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-img-active {
+  opacity: 1;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-description,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-description {
+  max-height: 100%;
 }
 .trulii-cover__background,
 .trulii-cover-small__background {
@@ -16690,7 +16778,7 @@ button.toast-close-button {
   width: 100%;
   height: 100%;
   content: "";
-  background-color: rgba(60, 61, 65, 0.4);
+  background-color: rgba(60, 61, 65, 0.6);
   z-index: 100000;
   position: absolute;
   top: 0;
@@ -18221,15 +18309,20 @@ h5 a {
   }
 }
 .referral-input {
-  background-color: #eeeeee;
-  padding: 36px;
   height: 55px;
   box-sizing: content-box;
   border-radius: 12px;
 }
 .referral-input input,
+.referral-input input:focus {
+  border: 1px solid #eeeeee;
+  border-bottom: 3px solid #ffd580;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.referral-input input,
 .referral-input button {
-  height: 55px;
+  height: 75px !important;
 }
 .referral-input input,
 .referral-input input:focus {
@@ -18243,6 +18336,8 @@ h5 a {
 }
 .referral-input button {
   width: 30%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 input[type=text].form-control.referral-link {
   border: 1px solid #999999;
@@ -18252,6 +18347,7 @@ input[type=text].form-control.referral-link {
   background-image: none;
   padding: 0 2em;
   text-decoration: underline;
+  width: 450px;
 }
 input[type=text].form-control.referral-link:focus {
   border: 1px solid #ffd580;

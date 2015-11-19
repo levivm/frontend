@@ -1,11 +1,17 @@
 .referral-input{
-  background-color: @gray-lighter;
-  padding: 36px;
+  // background-color: @gray-lighter;
+  // padding: 36px;
   height: 55px;
   box-sizing: content-box;
   border-radius: 12px;
+  input, input:focus{
+    border: 1px solid @gray-lighter;
+    border-bottom: 3px solid @brand-primary;
+    border-top-left-radius: @border-radius-base;
+    border-bottom-left-radius: @border-radius-base;
+  }
   input, button{
-    height: 55px;
+    height: 75px !important;
   }
   input, input:focus{
     width:70%;
@@ -18,6 +24,8 @@
   }
   button{
     width:30%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
   }
 }
 
@@ -29,12 +37,12 @@ input[type=text].form-control.referral-link{
   background-image: none;
   padding: 0 2em;
   text-decoration: underline;
+  width:450px;
+  &:focus{
+    border: 1px solid @brand-primary;
+    height: 55px;
+  }
 }
-input[type=text].form-control.referral-link:focus{
-  border: 1px solid @brand-primary;
-  height: 55px;
-}
-
 .referral-item{
   padding: 2em 0em;
   display: inline-block;

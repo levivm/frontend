@@ -58,6 +58,7 @@
             totalCost: null,
             scroll: 0,
             widgetOriginalPosition: 0,
+            showWidget: true,
 
             addAssistant : addAssistant,
             removeAssistant: removeAssistant,
@@ -266,6 +267,14 @@
                 console.log('Error retrieving coupon', error);
                 vm.invalidCoupon = true;
             }
+        }
+
+        function removeCoupon(){
+
+            vm.coupon = {};
+            vm.hasCouponApplied = false;
+            _setTotalCost(0);
+
         }
 
         function enroll() {
@@ -519,6 +528,13 @@
             }
         }
 
+        function _showWidget(){
+
+            var currentState = $state.current.name;
+            if (currentState === 'activities-enroll.pse-response')
+                vm.showWidget = false;
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -612,6 +628,7 @@
         function _activate(){
             _setStrings();
             _setOrganizer();
+            _showWidget();
             vm.stateInfo = {
                 toState: {
                     state : $state.current.name,
@@ -632,17 +649,20 @@
                 _setAssistants();
             }
 
-
-            angular.element(document).ready(function () {
-                vm.scroll = document.body.scrollTop;
-                vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
-                $window.onscroll = function(){
-                    //console.log(document.body.scrollTop);
-                    //console.log(vm.widgetOriginalPosition);
+            if (vm.showWidget){
+                angular.element(document).ready(function () {
                     vm.scroll = document.body.scrollTop;
-                    $scope.$apply();
-                };
-            });
+                    if (!(document.getElementsByClassName('billing-widget')[0]))
+                        return
+                    vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
+                    $window.onscroll = function(){
+                        //console.log(document.body.scrollTop);
+                        //console.log(vm.widgetOriginalPosition);
+                        vm.scroll = document.body.scrollTop;
+                        $scope.$apply();
+                    };
+                });
+            }
 
 
 

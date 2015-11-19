@@ -40,7 +40,7 @@
         }
 
         function finishPayment(){
-            $state.go('^.success',{ activity_id: vm.activity.id, calendar_id: calendar.id }, { reload: true });
+            $state.go('activities-enroll-success',{ activity_id: vm.activity.id, calendar_id: calendar.id }, { reload: true });
         }
 
         function _checkPreviousState(){

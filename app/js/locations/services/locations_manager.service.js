@@ -29,8 +29,6 @@
         var KEY_AVAILABLE_CITIES = "availableCities";
         var CURRENT_CITY_MODIFIED_EVENT = "currentCityModified";
 
-        init();
-
         //noinspection UnnecessaryLocalVariableJS
         var LocationManager = {
 
@@ -114,6 +112,8 @@
              * @return {object} With attributes to set google-maps-angular marker
              */
             getMarker: getMarker,
+
+            init: init,
 
             CURRENT_CITY_MODIFIED_EVENT: CURRENT_CITY_MODIFIED_EVENT
         };
@@ -319,6 +319,7 @@
         }
 
         function init(){
+            console.log('init');
             _requestAvailableCities().then(function(availableCities){
                 _setAvailableCities(availableCities);
                 getCurrentCity();
