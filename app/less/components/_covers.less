@@ -187,8 +187,12 @@
           height: 120px;
           width: 110px;
           transition: all 0.5s;
+          a, a:hover, a:focus{
+            color: white;
+          }
           img{
-            padding-bottom:10px;
+            padding-top: 20px;
+            padding-bottom: 20px;
             transition: all 0.5s;
             position: absolute;
             bottom: 0px;
@@ -198,10 +202,12 @@
           }
           .item-description{
             position: absolute;
-            bottom: 0;
+            top: 100px;
             max-height: 0;
             overflow: hidden;
             transition: all 0.5s;
+            margin-left: 50%;
+            transform: translateX(-50%);
           }
           .item-img{
             opacity: 1;
@@ -211,9 +217,9 @@
           }
         }
         .item:hover{
-          height: 160px;
+          height: 170px;
           img{
-            padding-bottom: 80px;
+            padding-bottom: 70px;
           }
           .item-img{
             opacity: 0;

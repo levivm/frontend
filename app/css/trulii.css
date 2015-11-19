@@ -16693,9 +16693,18 @@ button.toast-close-button {
   width: 110px;
   transition: all 0.5s;
 }
+.trulii-cover__content-contact-controllers li .item a,
+.trulii-cover-small__content-contact-controllers li .item a,
+.trulii-cover__content-contact-controllers li .item a:hover,
+.trulii-cover-small__content-contact-controllers li .item a:hover,
+.trulii-cover__content-contact-controllers li .item a:focus,
+.trulii-cover-small__content-contact-controllers li .item a:focus {
+  color: white;
+}
 .trulii-cover__content-contact-controllers li .item img,
 .trulii-cover-small__content-contact-controllers li .item img {
-  padding-bottom: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   transition: all 0.5s;
   position: absolute;
   bottom: 0px;
@@ -16706,10 +16715,12 @@ button.toast-close-button {
 .trulii-cover__content-contact-controllers li .item .item-description,
 .trulii-cover-small__content-contact-controllers li .item .item-description {
   position: absolute;
-  bottom: 0;
+  top: 100px;
   max-height: 0;
   overflow: hidden;
   transition: all 0.5s;
+  margin-left: 50%;
+  transform: translateX(-50%);
 }
 .trulii-cover__content-contact-controllers li .item .item-img,
 .trulii-cover-small__content-contact-controllers li .item .item-img {
@@ -16721,11 +16732,11 @@ button.toast-close-button {
 }
 .trulii-cover__content-contact-controllers li .item:hover,
 .trulii-cover-small__content-contact-controllers li .item:hover {
-  height: 160px;
+  height: 170px;
 }
 .trulii-cover__content-contact-controllers li .item:hover img,
 .trulii-cover-small__content-contact-controllers li .item:hover img {
-  padding-bottom: 80px;
+  padding-bottom: 70px;
 }
 .trulii-cover__content-contact-controllers li .item:hover .item-img,
 .trulii-cover-small__content-contact-controllers li .item:hover .item-img {
