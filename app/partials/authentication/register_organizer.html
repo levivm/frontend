@@ -1,101 +1,79 @@
-
-
-
 <div class="white-curtain"></div>
 
 <div class="container-fluid">
     <div class="row center-childs">
-        <div class="size-xs fit-in-xs separate-horizontal-inner">            
-        
-                <a ui-sref="home">
-                    <div class="trulii-inverse-med">
-                        
-                    </div>    
-                </a>
-                
-
-                <div class="row">                    
-
-                    <form name='vm.signup_form' ng-submit="vm.register()">
-                        <fieldset>
-
-                            <div>
-                                <div class="form-group">
-                                    <div class="input-group">
+        <div class="size-xs fit-in-xs separate-horizontal-inner">
+            <a ui-sref="home">
+                <div class="trulii-inverse-med"></div>
+            </a>
+            <div class="row">
+                <form name='vm.signup_form' ng-submit="vm.register()">
+                    <fieldset>
+                        <div>
+                            <div class="form-group">
+                                <div class="input-group">
                                         <span class="input-group-addon">
                                           <i class="mdi-social-person"></i>
                                         </span>
-                                        <input class="form-control input--med" ng-readonly="true" name="name"
-                                               ng-model="vm.auth.name" placeholder="Nombre de la Organización"
-                                               type="text" trulii-input-autofocus>
-                                    </div>
-                                    <trulii-input-alert field="vm.signup_form.name"
-                                                        errors="vm.errors"></trulii-input-alert>
+                                    <input class="form-control input--med" ng-readonly="true" name="name"
+                                           ng-model="vm.auth.name" placeholder="Nombre de la Organización"
+                                           type="text" trulii-input-autofocus>
                                 </div>
-                                <div class="form-group" trulii-input-errors-control="email">
-                                    <div class="input-group">
+                                <trulii-input-alert field="vm.signup_form.name"
+                                                    errors="vm.errors"></trulii-input-alert>
+                            </div>
+                            <div class="form-group" trulii-input-errors-control="email">
+                                <div class="input-group">
                                         <span class="input-group-addon">
                                           <i class="mdi-communication-email"></i>
                                         </span>
-                                        <input class="form-control input--med" ng-readonly="true" name="email"
-                                               ng-model="vm.auth.email" placeholder="Correo electrónico"
-                                               type="text" autofocus>
-                                    </div>
-                                    <trulii-input-alert field="vm.signup_form.email"
-                                                        errors="vm.errors"></trulii-input-alert>
+                                    <input class="form-control input--med" ng-readonly="true" name="email"
+                                           ng-model="vm.auth.email" placeholder="Correo electrónico"
+                                           type="text" autofocus>
                                 </div>
-                                <div class="form-group" trulii-input-errors-control="password1">
-                                    <div class="input-group">
+                                <trulii-input-alert field="vm.signup_form.email"
+                                                    errors="vm.errors"></trulii-input-alert>
+                            </div>
+                            <div class="form-group" trulii-input-errors-control="password1">
+                                <div class="input-group">
                                         <span class="input-group-addon">
                                           <i class="mdi-action-lock"></i>
                                         </span>
-                                        <input class="form-control input--med"
-                                               placeholder="{{::vm.strings.PASSWORD_LABEL}}" name="password1"
-                                               ng-model="vm.auth.password1" type="password" value="">
-                                    </div>
-                                    <trulii-input-alert field="vm.signup_form.password1"
-                                                        errors="vm.errors"></trulii-input-alert>
+                                    <input class="form-control input--med"
+                                           placeholder="{{::vm.strings.PASSWORD_LABEL}}" name="password1"
+                                           ng-model="vm.auth.password1" type="password" value="">
                                 </div>
-                                <div class="form-group" trulii-input-errors-control="__all__">
-                                    <input type="hidden" ng-model="__all__" name="__all__"/>
-                                </div>
-                                <input type="hidden" ng-model="vm.user_type" ng-init="vm.user_type='O'">
-
-                                <!--TODO replace with toast-->
-                                <div class="alert alert-error" ng-show="vm.errors.__all__">
-                                    <strong>{{vm.errors.__all__}}</strong>
-                                </div>
+                                <trulii-input-alert field="vm.signup_form.password1"
+                                                    errors="vm.errors"></trulii-input-alert>
                             </div>
+                            <div class="form-group" trulii-input-errors-control="__all__">
+                                <input type="hidden" ng-model="__all__" name="__all__"/>
+                            </div>
+                            <input type="hidden" ng-model="vm.user_type" ng-init="vm.user_type='O'">
 
-
-                            
-                                <button type="submit" id="submit" class="btn btn-grand btn-primary btn-block"
-                                       ng-bind="::vm.strings.SIGNUP_LABEL"></button>
-                            
-                        </fieldset>
-                    </form>
-                </div>
-
-                <div class="row">
-                    <p class="text-muted text-tiny text-left">Registrandome estoy aceptando los
-                        <strong>Términos y Condiciones</strong>
-                        y la <strong>Política de Privacidad</strong> de Trulii.</p>
-                </div>
-
-
+                            <!--TODO replace with toast-->
+                            <div class="alert alert-error" ng-show="vm.errors.__all__">
+                                <strong>{{vm.errors.__all__}}</strong>
+                            </div>
+                        </div>
+                        <button type="submit" id="submit" class="btn btn-grand btn-primary btn-block"
+                                ng-bind="::vm.strings.SIGNUP_LABEL"></button>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="row">
+                <p class="text-muted text-tiny text-left">Registrandome estoy aceptando los
+                    <strong>Términos y Condiciones</strong>
+                    y la <strong>Política de Privacidad</strong> de Trulii.</p>
+            </div>
             <div class="row">
                 <div class="separator"></div>
-            
                 <div class="text-center separate-vertical">
                     <span class="fit-in-xs">¿Ya tienes cuenta en Trulii?</span>
-                     <a ui-sref="register" class="lightbg-strong-anchor separate-horizontal" ng-bind="::vm.strings.LOGIN_LABEL"></a>
-                </div>    
-                   
+                    <a ui-sref="register" class="lightbg-strong-anchor separate-horizontal"
+                       ng-bind="::vm.strings.LOGIN_LABEL"></a>
+                </div>
             </div>
-            
-            
-      
-        </div>        
+        </div>
     </div>
-
 </div>

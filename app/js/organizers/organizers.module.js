@@ -37,8 +37,7 @@
         $stateProvider
             .state('organizer-landing', {
                 url:'/organizers/landing/',
-                controller: 'OrganizerLandingCtrl',
-                controllerAs: 'vm',
+                controller: 'OrganizerLandingCtrl as landing',
                 templateUrl: 'partials/organizers/landing.html',
                 resolve:{
                     cities: getAvailableCities
