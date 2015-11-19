@@ -13,9 +13,9 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsHomeCtrl', ReferralsHomeCtrl);
 
-    ReferralsHomeCtrl.$inject = ['referrerUrl', 'Referrals', 'Toast'];
+    ReferralsHomeCtrl.$inject = ['referrerUrl', 'Referrals', 'Toast', 'serverConf', 'student'];
 
-    function ReferralsHomeCtrl(referrerUrl, Referrals, Toast) {
+    function ReferralsHomeCtrl(referrerUrl, Referrals, Toast, serverConf, student) {
 
         var vm = this;
         angular.extend(vm, {
@@ -50,12 +50,37 @@
 
         //--------- Internal Functions ---------//
 
+        function _setSocialShare(){
+            var shareText = "Regístrate y obtén un cupón por 20.000 COP para tu primera actividad";
+            vm.social = {};
+            angular.extend(vm.social, {
+                FACEBOOK_SOCIAL_PROVIDER: 'facebook',
+                FACEBOOK_API_KEY: serverConf.FACEBOOK_APP_KEY,
+                FACEBOOK_SHARE_TYPE: "feed",
+                FACEBOOK_SHARE_CAPTION: "Trulii.com | ¡Aprende lo que quieras en tu ciudad!",
+                FACEBOOK_SHARE_TEXT: shareText,
+                FACEBOOK_SHARE_MEDIA: "https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/share.png",
+                FACEBOOK_SHARE_DESCRIPTION: "Únete a " + student.user.first_name + " y encuentra e inscribete en"
+                    + " las mejores actividades y eventos educativos de tu ciudad",
+                FACEBOOK_REDIRECT_URI: referrerUrl,
+                FACEBOOK_SHARE_URL: referrerUrl,
+                TWITTER_SOCIAL_PROVIDER: 'twitter',
+                TWITTER_SHARE_ACCOUNT:'Trulii_',
+                TWITTER_SHARE_TEXT: shareText,
+                TWITTER_SHARE_URL: referrerUrl
+            });
+
+            //console.log(vm.social.FACEBOOK_SHARE_DESCRIPTION);
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
 
             angular.extend(vm.strings, {
+                COPY_SOCIAL_SHARE_FACEBOOK: "Compartir en Facebook",
+                COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 HEADER_TITLE_COPY: "¡Comparte tu pasión por aprender!",
                 HEADER_TEXT_COPY: "Cuando un amigo se inscribe a una actividad paga de Trulii, ambos recibirán un cupón por COP 20.000. ¡Todos salen ganando!",
                 HEADER_ACTION_REGISTER: "Regístrate",
@@ -83,6 +108,7 @@
 
         function _activate(){
             _setStrings();
+            _setSocialShare();
         }
 
     }
