@@ -16,8 +16,9 @@
                 </div>
                 <div class="row separate-above separate-below">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4">
-                        <a class="btn btn-block btn-success btn-lg"
-                                ng-bind="::landing.strings.HEADER_ACTION_START_NOW" href="#organizer_signup_form"></a>
+                        <button class="btn btn-block btn-success btn-lg"
+                                ng-click="landing.goToForm()"
+                                ng-bind="::landing.strings.HEADER_ACTION_START_NOW"></button>
                     </div>
                 </div>
             </div>
@@ -207,7 +208,6 @@
                             <h3 class="text-center no-margin-top" ng-bind="::landing.strings.SIGN_UP_TEXT"></h3>
                         </div>
                         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                            <!--  -->
                             <form class="form-classic separate-above-medium separate-below-more"
                                   name='landing.pre_signup_form' id="organizer_signup_form" ng-submit="landing.request_signup()">
                                 <fieldset>
@@ -270,4 +270,5 @@
          style="background-image:url(/css/img/organizer-landing/banners/form-banner.png)">
     </div>
 </div>
+<div id="anchor"></div>
 <trulii-footer></trulii-footer>

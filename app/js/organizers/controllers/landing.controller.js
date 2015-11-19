@@ -15,9 +15,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['$state', 'LocationManager', 'Authentication', 'Error', 'cities'];
+    OrganizerLandingCtrl.$inject = ['$state', 'LocationManager', 'Authentication', 'Elevator', 'Error', 'cities'];
 
-    function OrganizerLandingCtrl($state, LocationManager, Authentication, Error, cities) {
+    function OrganizerLandingCtrl($state, LocationManager, Authentication, Elevator, Error, cities) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -29,7 +29,8 @@
                 document_type: documentTypes[0].id
             },
             sent : false,
-            request_signup : requestSignup
+            request_signup : requestSignup,
+            goToForm: goToForm
         });
 
         _activate();
@@ -54,6 +55,10 @@
                     Error.form.add(vm.pre_signup_form, responseErrors);
                 }
             }
+        }
+
+        function goToForm(){
+            Elevator.toElement('anchor');
         }
 
         function setStrings() {

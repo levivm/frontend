@@ -1,54 +1,47 @@
-(function(){
-	'use strict';
+(function () {
+    'use strict';
 
-	angular
-	    .module('trulii.utils.services')
-	    .factory('Elevator', Elevator);
+    angular
+        .module('trulii.utils.services')
+        .factory('Elevator', Elevator);
 
-  Elevator.$inject = ['$document'];
+    Elevator.$inject = ['$document'];
 
-  function Elevator($document){
+    function Elevator($document) {
 
-  	var Elevator = {
-  		toTop: toTop,
-      toBottom: toBottom,
-      toElement: toElement
-  	};
+        var _defaultDuration = 1000;
 
-  	return Elevator;
+        var Elevator = {
+            toTop: toTop,
+            toBottom: toBottom,
+            toElement: toElement
+        };
 
-  	//////////////  	
+        return Elevator;
 
-    var _defaultDuration = 1000;
+        function toTop(duration) {
+            var durationFinal = duration ? duration : _defaultDuration;
 
-  	function toTop(duration){
+            if ($document.scrollTop() > 0)
+                $document.scrollTopAnimated(0, durationFinal, _easingFunction);
+        }
 
-      var durationFinal = duration ? duration : _defaultDuration;
+        function toBottom(duration) {
+            var durationFinal = duration ? duration : _defaultDuration;
+            $document.scrollTopAnimated($document.height(), durationFinal, _easingFunction);
+        }
 
-  		if ( $document.scrollTop() > 0)
-  			$document.scrollTopAnimated(0, durationFinal, _easingFunction);
-  	}
+        function toElement(id) {
+            var element_id = '#' + id;
+            var element = angular.element($document[0].querySelector(element_id));
 
-    function toBottom(duration){
+            $document.scrollToElementAnimated(element, _defaultDuration);
+        }
 
-        var durationFinal = duration ? duration : _defaultDuration;
+        function _easingFunction(t) {
+            return t * (2 - t); // More easing funtions in https://gist.github.com/gre/1650294
+        }
 
-        $document.scrollTopAnimated($document.height(), durationFinal, _easingFunction);
     }
-
-    function toElement(id){
-
-      var element_id = '#'+id;
-      var element = angular.element($document[0].querySelector(element_id));
-
-      $document.scrollToElementAnimated(element, _defaultDuration);
-
-    }    
-
-    function _easingFunction(t){
-      return t*(2-t); // More easing funtions in https://gist.github.com/gre/1650294
-    }
-
-  }
 
 })();
