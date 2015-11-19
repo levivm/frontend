@@ -16686,6 +16686,59 @@ button.toast-close-button {
 .trulii-cover-small__content-contact-controllers li {
   padding: 0 2.5%;
 }
+.trulii-cover__content-contact-controllers li .item,
+.trulii-cover-small__content-contact-controllers li .item {
+  position: relative;
+  height: 120px;
+  width: 110px;
+  transition: all 0.5s;
+}
+.trulii-cover__content-contact-controllers li .item img,
+.trulii-cover-small__content-contact-controllers li .item img {
+  padding-bottom: 10px;
+  transition: all 0.5s;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.trulii-cover__content-contact-controllers li .item .item-description,
+.trulii-cover-small__content-contact-controllers li .item .item-description {
+  position: absolute;
+  bottom: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+}
+.trulii-cover__content-contact-controllers li .item .item-img,
+.trulii-cover-small__content-contact-controllers li .item .item-img {
+  opacity: 1;
+}
+.trulii-cover__content-contact-controllers li .item .item-img-active,
+.trulii-cover-small__content-contact-controllers li .item .item-img-active {
+  opacity: 0;
+}
+.trulii-cover__content-contact-controllers li .item:hover,
+.trulii-cover-small__content-contact-controllers li .item:hover {
+  height: 160px;
+}
+.trulii-cover__content-contact-controllers li .item:hover img,
+.trulii-cover-small__content-contact-controllers li .item:hover img {
+  padding-bottom: 80px;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-img,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-img {
+  opacity: 0;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-img-active,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-img-active {
+  opacity: 1;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-description,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-description {
+  max-height: 100%;
+}
 .trulii-cover__background,
 .trulii-cover-small__background {
   width: 100vw;

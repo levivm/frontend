@@ -182,6 +182,49 @@
       background-color: fade(@gray, 40%);
       li{
         padding: 0 2.5%;
+        .item{
+          position:relative;
+          height: 120px;
+          width: 110px;
+          transition: all 0.5s;
+          img{
+            padding-bottom:10px;
+            transition: all 0.5s;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+          }
+          .item-description{
+            position: absolute;
+            bottom: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s;
+          }
+          .item-img{
+            opacity: 1;
+          }
+          .item-img-active{
+            opacity: 0;
+          }
+        }
+        .item:hover{
+          height: 160px;
+          img{
+            padding-bottom: 80px;
+          }
+          .item-img{
+            opacity: 0;
+          }
+          .item-img-active{
+            opacity: 1;
+          }
+          .item-description{
+            max-height: 100%;
+          }
+        }
       }
     }
   }
