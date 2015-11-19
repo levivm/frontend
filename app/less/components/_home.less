@@ -34,8 +34,14 @@
         a{
           color: @gray-light;
         }
-        a:hover, a:focus{
+        a, a:hover, a:focus{
+          text-decoration: none;
+        }
+        a:hover{
           color: white;
+          span{
+            text-decoration: underline;
+          }
         }
       }
       &.bordered{
