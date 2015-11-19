@@ -31,7 +31,8 @@
                 'email': null,
                 'phone_number': null,
                 'description': null
-            }
+            },
+            sent: false
         });
 
         var toState = {};
@@ -58,6 +59,7 @@
 
             function success(response){
                 console.log('Success Sending Contact Form');
+                vm.sent = true;
                 Toast.success(vm.strings.COPY_SUCCESS_SENDING_FORM);
                 $state.go(toState.state, toState.params);
             }
@@ -96,6 +98,11 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_SEND: "Enviar ahora",
+                CONTACT_COVER_TITLE_1: "Puedes encontrarnos",
+                CONTACT_COVER_TITLE_2: "literalmente en donde sea",
+                CONTACT_COVER_TEXT: "Hablamos en serio cuando decimos que nos encantaría saber de ti.",
+                CONTACT_SUCCESS_COVER_TITLE: "¡Cool!",
+                CONTACT_SUCCESS_COVER_TEXT: "Dentro de poco atenderemos tu solictud",
                 COPY_ALL_FIELDS_REQUIRED: "Por favor llene todos los campos",
                 COPY_SUCCESS_SENDING_FORM: "Tu solicitud fue enviada con éxito. Pronto nos pondremos en contacto contigo",
                 COPY_ERROR_SENDING_FORM: "Hubo un error enviando tu solicitud. Por faovr intenta de nuevo",

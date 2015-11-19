@@ -2,18 +2,16 @@
   <div class="trulii-cover__container">
     <div class="trulii-cover__content ">
       <div class="col-xs-12">
-         <div class="row padding-vertical-regular" ng-hide="true">
+         <div class="row padding-vertical-regular" ng-hide="contact.sent">
           <div class="col-xs-12 col-md-10 col-md-offset-1">
             <h1 class="text-center">
               <strong>
-                <span>Puedes encontrarnos</span>
+                <span ng-bind="::contact.strings.CONTACT_COVER_TITLE_1"></span>
                 <br>
-                <span>literalmente en donde sea</span>
+                <span ng-bind="::contact.strings.CONTACT_COVER_TITLE_2"></span>
               </strong>
             </h1>
-            <h3 class="pt-sans no-margin-top text-center separate-above">
-              Hablamos en serio cuando decimos que nos encantaría saber de ti.
-            </h3>
+            <h3 class="pt-sans no-margin-top text-center separate-above" ng-bind="::contact.strings.CONTACT_COVER_TEXT"></h3>
           </div>
           <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
             <form name='contact.contact_form' ng-submit="contact.sendContactForm()" class="separate-above-medium separate-below-more form-classic">
@@ -71,15 +69,13 @@
             </form>
           </div>
         </div>
-        <div class="row fade-hide" ng-hide="false">
+        <div class="row fade-hide" ng-hide="!contact.sent">
           <div class="col-xs-12 padding-vertical-more">
             <img src="/css/img/contact/brayan.png" alt="" class="img-responsive center-block padding-top-more">
             <h1 class="text-center">
-              <strong>¡Cool!</strong>
+              <strong ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TITLE"></strong>
             </h1>
-            <h3 class="text-center">
-              Dentro de poco atenderemos tu solicutd
-            </h3>
+            <h3 class="text-center" ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TEXT"></h3>
           </div>
         </div>
         <div class="row">
@@ -91,9 +87,7 @@
                     <img src="/css/img/contact/icon_phone.png" alt="" class="item-img" />
                     <img src="/css/img/contact/icon_phone_active.png" alt="" class="item-img-active"/>
                     <h4 class="item-description">
-                      <strong>¡Llámanos!</strong>
-                      <br>
-                      <span>(345) 678.90.33</span>
+                      <strong>(345) 678.90.33</strong>
                     </h4>
                   </a>
                 </div>
@@ -105,8 +99,6 @@
                     <img src="/css/img/contact/icon_twitter_active.png" alt="" class="item-img-active"/>
                     <h4 class="item-description">
                       <strong>Twitter</strong>
-                      <br>
-                      <span>@Trulii_</span>
                     </h4>
                   </a>
                 </div>
@@ -118,8 +110,6 @@
                     <img src="/css/img/contact/icon_facebook_active.png" alt="" class="item-img-active"/>
                     <h4 class="item-description">
                       <strong>Facebook</strong>
-                      <br>
-                      <span>Trulii</span>
                     </h4>
 
                   </a>
@@ -132,8 +122,6 @@
                     <img src="/css/img/contact/icon_in_active.png" alt="" class="item-img-active"/>
                     <h4 class="item-description">
                       <strong>LinkedIn</strong>
-                      <br>
-                      <span>Trulii</span>
                     </h4>
                   </a>
                 </div>
@@ -145,8 +133,6 @@
                     <img src="/css/img/contact/icon_angel_active.png" alt="" class="item-img-active"/>
                     <h4 class="item-description">
                       <strong>AngelList</strong>
-                      <br>
-                      <span>Trulii</span>
                     </h4>
                   </a>
                 </div>
@@ -158,8 +144,6 @@
                     <img src="/css/img/contact/icon_press_active.png" alt="" class="item-img-active"/>
                     <h4 class="item-description">
                       <strong>Prensa</strong>
-                      <br>
-                      <span> </span>
                     </h4>
                   </a>
                 </div>
@@ -171,8 +155,6 @@
                     <img src="/css/img/contact/icon_location_active.png" alt="" class="item-img-active"/>
                     <h4 class="item-description">
                       <strong>Visitanos</strong>
-                      <br>
-                      <span> </span>
                     </h4>
                   </a>
                 </div>
