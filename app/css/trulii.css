@@ -16555,13 +16555,13 @@ button.toast-close-button {
 .trulii-cover__content h1,
 .trulii-cover-small__content h1 {
   font-size: 4em;
-  line-height: 1.0625em;
+  line-height: 0.9em;
 }
 .trulii-cover__content p,
 .trulii-cover-small__content p {
   color: white;
   padding: 0 5em;
-  font-size: 1.5em;
+  font-size: 1.75em;
   margin-top: 1em;
   margin-bottom: 1.5em;
 }
@@ -16569,47 +16569,55 @@ button.toast-close-button {
 .trulii-cover-small__content .btn-lg {
   font-size: 1em;
 }
-.trulii-cover__content__search > *,
-.trulii-cover-small__content__search > * {
+.trulii-cover__content__search.form-classic input,
+.trulii-cover-small__content__search.form-classic input,
+.trulii-cover__content__search.form-classic select,
+.trulii-cover-small__content__search.form-classic select,
+.trulii-cover__content__search.form-classic button,
+.trulii-cover-small__content__search.form-classic button {
+  border-radius: 0;
+}
+.trulii-cover__content__search.form-classic > *,
+.trulii-cover-small__content__search.form-classic > * {
   background-color: white;
   height: 75px !important;
 }
-.trulii-cover__content__search > *:nth-child(1),
-.trulii-cover-small__content__search > *:nth-child(1) {
+.trulii-cover__content__search.form-classic > *:nth-child(1),
+.trulii-cover-small__content__search.form-classic > *:nth-child(1) {
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
   border-right: 1px solid #eeeeee;
 }
-.trulii-cover__content__search > *:not(:nth-child(1)):not(:last-child),
-.trulii-cover-small__content__search > *:not(:nth-child(1)):not(:last-child) {
+.trulii-cover__content__search.form-classic > *:not(:nth-child(1)):not(:last-child),
+.trulii-cover-small__content__search.form-classic > *:not(:nth-child(1)):not(:last-child) {
   border-right: 1px solid #eeeeee;
 }
-.trulii-cover__content__search > *:last-child,
-.trulii-cover-small__content__search > *:last-child {
+.trulii-cover__content__search.form-classic > *:last-child,
+.trulii-cover-small__content__search.form-classic > *:last-child {
   border-top-right-radius: 4px !important;
   border-bottom-right-radius: 4px !important;
 }
-.trulii-cover__content__search > *:not(.btn),
-.trulii-cover-small__content__search > *:not(.btn) {
+.trulii-cover__content__search.form-classic > *:not(.btn),
+.trulii-cover-small__content__search.form-classic > *:not(.btn) {
   padding: 0 2em;
 }
-.trulii-cover__content__search .form-control,
-.trulii-cover-small__content__search .form-control {
+.trulii-cover__content__search.form-classic .form-control,
+.trulii-cover-small__content__search.form-classic .form-control {
   background-image: none;
 }
-.trulii-cover__content__search input,
-.trulii-cover-small__content__search input,
-.trulii-cover__content__search input:focus,
-.trulii-cover-small__content__search input:focus {
+.trulii-cover__content__search.form-classic input,
+.trulii-cover-small__content__search.form-classic input,
+.trulii-cover__content__search.form-classic input:focus,
+.trulii-cover-small__content__search.form-classic input:focus {
   width: 50%;
   display: inline-block;
   float: left;
   border-top: 5px solid #ffd580;
 }
-.trulii-cover__content__search select,
-.trulii-cover-small__content__search select,
-.trulii-cover__content__search select:focus,
-.trulii-cover-small__content__search select:focus {
+.trulii-cover__content__search.form-classic select,
+.trulii-cover-small__content__search.form-classic select,
+.trulii-cover__content__search.form-classic select:focus,
+.trulii-cover-small__content__search.form-classic select:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   background-size: initial;
@@ -16622,8 +16630,8 @@ button.toast-close-button {
   width: 35%;
   border-top: 5px solid #38dbc8;
 }
-.trulii-cover__content__search .btn.btn-default,
-.trulii-cover-small__content__search .btn.btn-default {
+.trulii-cover__content__search.form-classic .btn.btn-default,
+.trulii-cover-small__content__search.form-classic .btn.btn-default {
   width: 15%;
   border-radius: 0;
   border-color: transparent;
@@ -16687,7 +16695,9 @@ button.toast-close-button {
   padding: 0 2.5%;
 }
 .trulii-cover__content-contact-controllers li .item,
-.trulii-cover-small__content-contact-controllers li .item {
+.trulii-cover-small__content-contact-controllers li .item,
+.trulii-cover__content-contact-controllers li .item-long,
+.trulii-cover-small__content-contact-controllers li .item-long {
   position: relative;
   height: 120px;
   width: 110px;
@@ -16695,14 +16705,22 @@ button.toast-close-button {
 }
 .trulii-cover__content-contact-controllers li .item a,
 .trulii-cover-small__content-contact-controllers li .item a,
+.trulii-cover__content-contact-controllers li .item-long a,
+.trulii-cover-small__content-contact-controllers li .item-long a,
 .trulii-cover__content-contact-controllers li .item a:hover,
 .trulii-cover-small__content-contact-controllers li .item a:hover,
+.trulii-cover__content-contact-controllers li .item-long a:hover,
+.trulii-cover-small__content-contact-controllers li .item-long a:hover,
 .trulii-cover__content-contact-controllers li .item a:focus,
-.trulii-cover-small__content-contact-controllers li .item a:focus {
+.trulii-cover-small__content-contact-controllers li .item a:focus,
+.trulii-cover__content-contact-controllers li .item-long a:focus,
+.trulii-cover-small__content-contact-controllers li .item-long a:focus {
   color: white;
 }
 .trulii-cover__content-contact-controllers li .item img,
-.trulii-cover-small__content-contact-controllers li .item img {
+.trulii-cover-small__content-contact-controllers li .item img,
+.trulii-cover__content-contact-controllers li .item-long img,
+.trulii-cover-small__content-contact-controllers li .item-long img {
   padding-top: 20px;
   padding-bottom: 20px;
   transition: all 0.25s;
@@ -16713,9 +16731,11 @@ button.toast-close-button {
   transform: translateX(-50%);
 }
 .trulii-cover__content-contact-controllers li .item .item-description,
-.trulii-cover-small__content-contact-controllers li .item .item-description {
+.trulii-cover-small__content-contact-controllers li .item .item-description,
+.trulii-cover__content-contact-controllers li .item-long .item-description,
+.trulii-cover-small__content-contact-controllers li .item-long .item-description {
   position: absolute;
-  width: 160px;
+  width: 200%;
   bottom: 0px;
   max-height: 0;
   overflow: hidden;
@@ -16724,12 +16744,34 @@ button.toast-close-button {
   transform: translateX(-50%);
 }
 .trulii-cover__content-contact-controllers li .item .item-img,
-.trulii-cover-small__content-contact-controllers li .item .item-img {
+.trulii-cover-small__content-contact-controllers li .item .item-img,
+.trulii-cover__content-contact-controllers li .item-long .item-img,
+.trulii-cover-small__content-contact-controllers li .item-long .item-img {
   opacity: 1;
 }
 .trulii-cover__content-contact-controllers li .item .item-img-active,
-.trulii-cover-small__content-contact-controllers li .item .item-img-active {
+.trulii-cover-small__content-contact-controllers li .item .item-img-active,
+.trulii-cover__content-contact-controllers li .item-long .item-img-active,
+.trulii-cover-small__content-contact-controllers li .item-long .item-img-active {
   opacity: 0;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-img,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-img,
+.trulii-cover__content-contact-controllers li .item-long:hover .item-img,
+.trulii-cover-small__content-contact-controllers li .item-long:hover .item-img {
+  opacity: 0;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-img-active,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-img-active,
+.trulii-cover__content-contact-controllers li .item-long:hover .item-img-active,
+.trulii-cover-small__content-contact-controllers li .item-long:hover .item-img-active {
+  opacity: 1;
+}
+.trulii-cover__content-contact-controllers li .item:hover .item-description,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-description,
+.trulii-cover__content-contact-controllers li .item-long:hover .item-description,
+.trulii-cover-small__content-contact-controllers li .item-long:hover .item-description {
+  max-height: 100%;
 }
 .trulii-cover__content-contact-controllers li .item:hover,
 .trulii-cover-small__content-contact-controllers li .item:hover {
@@ -16739,17 +16781,13 @@ button.toast-close-button {
 .trulii-cover-small__content-contact-controllers li .item:hover img {
   padding-bottom: 40px;
 }
-.trulii-cover__content-contact-controllers li .item:hover .item-img,
-.trulii-cover-small__content-contact-controllers li .item:hover .item-img {
-  opacity: 0;
+.trulii-cover__content-contact-controllers li .item-long:hover,
+.trulii-cover-small__content-contact-controllers li .item-long:hover {
+  height: 150px;
 }
-.trulii-cover__content-contact-controllers li .item:hover .item-img-active,
-.trulii-cover-small__content-contact-controllers li .item:hover .item-img-active {
-  opacity: 1;
-}
-.trulii-cover__content-contact-controllers li .item:hover .item-description,
-.trulii-cover-small__content-contact-controllers li .item:hover .item-description {
-  max-height: 100%;
+.trulii-cover__content-contact-controllers li .item-long:hover img,
+.trulii-cover-small__content-contact-controllers li .item-long:hover img {
+  padding-bottom: 60px;
 }
 .trulii-cover__background,
 .trulii-cover-small__background {
@@ -18273,9 +18311,16 @@ h5 a {
 .home-footer__links .link-column .link a {
   color: #999999;
 }
+.home-footer__links .link-column .link a,
 .home-footer__links .link-column .link a:hover,
 .home-footer__links .link-column .link a:focus {
+  text-decoration: none;
+}
+.home-footer__links .link-column .link a:hover {
   color: white;
+}
+.home-footer__links .link-column .link a:hover span {
+  text-decoration: underline;
 }
 .home-footer__links .link-column.bordered {
   border-right: 1px solid #535353;
