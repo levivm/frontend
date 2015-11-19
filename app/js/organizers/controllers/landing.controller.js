@@ -15,66 +15,49 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['$state', 'LocationManager', 'Authentication','Error', 'cities'];
+    OrganizerLandingCtrl.$inject = ['$state', 'LocationManager', 'Authentication', 'Error', 'cities'];
 
-    function OrganizerLandingCtrl($state, LocationManager, Authentication, Error,cities) {
+    function OrganizerLandingCtrl($state, LocationManager, Authentication, Error, cities) {
 
         var vm = this;
+        var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
+        angular.extend(vm, {
+            cities : cities,
+            documentTypes: documentTypes,
+            errors : {},
+            request : {
+                document_type: documentTypes[0].id
+            },
+            sent : false,
+            request_signup : requestSignup
+        });
 
-        /**
-         * @name requestSignup
-         * @desc Anonymous user request a organizer signup
-         * @memberOf trulii.organizers.controllers.OrganizerLandingCtrl
-         */
-        vm.request_signup = requestSignup;
-
-        vm.cities = cities;
-        vm.errors = {};
-        vm.request = {};
-        vm.sent = false;
-
-        initialize();
-
+        _activate();
 
         function requestSignup() {
             Error.form.clear(vm.pre_signup_form);
             vm.request.city = vm.request.current_city.id;
             Authentication.requestSignup(vm.request).then(success, error);
 
-
             function success() {
                 $state.go('general-message', {
-                    'module_name' : 'authentication',
-                    'template_name' : 'request_signup_success',
-                    'redirect_state' : 'home'
+                    'module_name': 'authentication',
+                    'template_name': 'request_signup_success',
+                    'redirect_state': 'home'
                 });
             }
 
-            function error(response){
-                console.log("response.dsad",response);
+            function error(response) {
+                console.log("response", response);
                 var responseErrors = response.data;
                 if (responseErrors) {
                     Error.form.add(vm.pre_signup_form, responseErrors);
                 }
-
-
             }
-
         }
-
-        function activate() {
-            console.log("activating");
-            vm.request.current_city = LocationManager.getCurrentCity();
-            console.log("city",vm.request.current_city);
-
-        }
-
-
 
         function setStrings() {
-            if (!vm.strings) {
-                vm.strings = {};
-            }
+            if (!vm.strings) { vm.strings = {}; }
 
             angular.extend(vm.strings, {
                 HEADER_TITLE_COPY: "Enfócate en enseñar lo que te apasiona",
@@ -113,17 +96,19 @@
                 SIGN_UP_SUCCESS_TITLE: "¡Cool!",
                 SIGN_UP_SUCCESS_TEXT_1: "Dentro de poco te contactaremos.",
                 SIGN_UP_SUCCESS_TEXT_2: "¡Eres lo máximo!",
-                PLACEHOLDER_NAME : 'Nombre del Organizador',
-                PLACEHOLDER_EMAIL : "Correo electrónico",
-                PLACEHOLDER_TELEPHONE : 'Número teléfonico',
-                PLACEHOLDER_ID : 'Número',
-                REQUEST_SIGNUP_LABEL : 'Únete'
+                PLACEHOLDER_NAME: 'Nombre del Organizador',
+                PLACEHOLDER_EMAIL: "Correo electrónico",
+                PLACEHOLDER_TELEPHONE: 'Número teléfonico',
+                PLACEHOLDER_DOCUMENT: '# de Documento',
+                LABEL_DOCUMENT_TYPE: "Tipo de Documento",
+                LABEL_DOCUMENT: "Documento",
+                REQUEST_SIGNUP_LABEL: 'Únete'
             });
         }
 
-        function initialize(){
+        function _activate() {
             setStrings();
-            activate();
+            vm.request.current_city = LocationManager.getCurrentCity().id;
         }
 
     }

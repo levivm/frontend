@@ -42,7 +42,7 @@
                         FOOTER_LINKS_ORGANIZER_BE: "Sé Organizador",
                         FOOTER_LINKS_ORGANIZER_HOW: "¿Cómo funciona?",
                         FOOTER_LINKS_ORGANIZER_TIPS: "Tips para publicar",
-                        FOOTER_LINKS_ORGANIZER_FEEDBACK: "Dano tu feedback",
+                        FOOTER_LINKS_ORGANIZER_FEEDBACK: "Danos tu feedback",
                         FOOTER_LINKS_ORGANIZER_SUPPORT: "Soporte",
                         FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
                         FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"

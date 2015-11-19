@@ -71,19 +71,22 @@
     color: white;
     h1{
       font-size: 4em;
-      line-height: 1.0625em;
+      line-height: 0.9em;
     }
     p{
       color:white;
       padding:0 5em;
-      font-size: 1.5em;
+      font-size: 1.75em;
       margin-top: 1em;
       margin-bottom: 1.5em;
     }
     .btn-lg{
       font-size: 1em;
     }
-    &__search{
+    &__search.form-classic{
+      input, select, button{
+        border-radius: 0;
+      }
       > *{
         background-color: white;
         height: 75px !important;
@@ -182,7 +185,7 @@
       background-color: fade(@gray, 40%);
       li{
         padding: 0 2.5%;
-        .item{
+        .item, .item-long{
           position:relative;
           height: 120px;
           width: 110px;
@@ -202,7 +205,7 @@
           }
           .item-description{
             position: absolute;
-            width: 160px;
+            width: 200%;
             bottom: 0px;
             max-height: 0;
             overflow: hidden;
@@ -217,11 +220,8 @@
             opacity: 0;
           }
         }
-        .item:hover{
-          height: 135px;
-          img{
-            padding-bottom: 40px;
-          }
+        .item:hover, .item-long:hover{
+
           .item-img{
             opacity: 0;
           }
@@ -230,6 +230,18 @@
           }
           .item-description{
             max-height: 100%;
+          }
+        }
+        .item:hover{
+          height: 135px;
+          img{
+            padding-bottom: 40px;
+          }
+        }
+        .item-long:hover{
+          height: 150px;
+          img{
+            padding-bottom: 55px;
           }
         }
       }
