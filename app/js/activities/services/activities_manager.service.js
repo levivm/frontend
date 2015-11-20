@@ -239,7 +239,14 @@
         }
 
         function enroll(activityId, data) {
-            return $http.post(api.orders(activityId), data);
+            return $http.post(api.orders(activityId), data).then(success,error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                return response;
+            }
         }
 
         function _retrieveInstance(activityID, activityData) {
