@@ -12773,7 +12773,7 @@ hr.on-light {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
 }
-.pt-sans {
+.pt-serif {
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
 }
 h1,
@@ -16787,7 +16787,7 @@ button.toast-close-button {
 }
 .trulii-cover__content-contact-controllers li .item-long:hover img,
 .trulii-cover-small__content-contact-controllers li .item-long:hover img {
-  padding-bottom: 60px;
+  padding-bottom: 55px;
 }
 .trulii-cover__background,
 .trulii-cover-small__background {
@@ -18441,6 +18441,97 @@ input[type=text].form-control.referral-link:focus {
 }
 .referral-item:not(:last-child) {
   border-bottom: 2px solid #e3e3e3;
+}
+.page {
+  width: 216mm;
+  min-height: 279mm;
+  padding: 20mm;
+  margin: 10mm auto;
+  border: 1px #D3D3D3 solid;
+  border-radius: 5px;
+  background: white;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.subpage {
+  position: relative;
+  height: 239mm;
+  /* .page height -40mm (20 off top/bottom) */
+}
+@page {
+  size: Letter;
+  margin: 0;
+}
+@media print {
+  html,
+  body {
+    width: 216mm;
+    height: 279mm;
+  }
+  .page {
+    margin: 0;
+    border: initial;
+    border-radius: initial;
+    width: initial;
+    min-height: initial;
+    box-shadow: initial;
+    background: initial;
+    page-break-after: always;
+  }
+}
+.page .table thead tr th,
+.page .table tbody tr th,
+.page .table tfoot tr th,
+.page .table thead tr td,
+.page .table tbody tr td,
+.page .table tfoot tr td {
+  padding: 30px 15px;
+}
+.assistants-list__info > *,
+.assistants-list__header > * {
+  display: inline-block;
+}
+.assistants-list__header {
+  border: 1px solid #eeeeee;
+  background-color: #eeeeee;
+  padding: 16px 18px 25px 16px;
+}
+.assistants-list__header > span {
+  padding-top: 5px;
+}
+.assistants-list__header strong {
+  font-weight: 400;
+}
+.assistants-list__body {
+  border: 1px solid #e3e3e3;
+  border-top: none;
+}
+.assistants-list__info {
+  float: right;
+  font-size: 11px;
+}
+.assistants-list__info div {
+  border-right: 1px solid #999999;
+  padding: 0 10px;
+}
+.assistants-list__info div:last-child {
+  border-right: none;
+}
+.assistants-list__footer {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+}
+.assistants-list__footer span:nth-child(1) {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  font-weight: semibold;
+}
+.assistants-list__footer span:nth-child(2) {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  font-weight: semibold;
 }
 a:hover {
   color: #38dbc8;
