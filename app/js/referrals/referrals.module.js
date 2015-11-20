@@ -33,10 +33,6 @@
             .state('referrals', {
                 url: '/referrals',
                 abstract: true,
-                resolve: {
-                    student: getCurrentStudent,
-                    referrerUrl: getReferrerUrl
-                },
                 template: '<ui-view />'
             })
             .state('referrals.home', {
@@ -44,7 +40,9 @@
                 controller: 'ReferralsHomeCtrl as referrals',
                 templateUrl: 'partials/students/referrals/home.html',
                 resolve: {
-                    isStudent: isStudent
+                    isStudent: isStudent,
+                    student: getCurrentStudent,
+                    referrerUrl: getReferrerUrl
                 }
             })
             .state('referrals.home-anon', {
@@ -60,7 +58,8 @@
                 controller: 'ReferralsInvitationCtrl as referrals',
                 templateUrl: 'partials/students/referrals/invitation.html',
                 resolve: {
-                    referrer: getReferrer
+                    referrer: getReferrer,
+                    student: getCurrentStudent
                 }
             })
         ;

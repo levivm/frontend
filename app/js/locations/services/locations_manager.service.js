@@ -319,7 +319,6 @@
         }
 
         function init(){
-            console.log('init');
             _requestAvailableCities().then(function(availableCities){
                 _setAvailableCities(availableCities);
                 getCurrentCity();

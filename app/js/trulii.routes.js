@@ -40,7 +40,11 @@
             .state('home',{
                 url:'/',
                 controller:'HomeController as home',
-                templateUrl: 'partials/landing/landing.html'
+                templateUrl: 'partials/landing/landing.html',
+                resolve: {
+                    activities: getActivities,
+                    generalInfo: getPresaveActivityInfo
+                }
             })
             .state('contact-us', {
                 url:'/contact/us',
@@ -93,6 +97,44 @@
     }
 
     //--------- Resolver Functions Implementation ---------//
+
+    /**
+     * @ngdoc method
+     * @name .#getPresaveActivityInfo
+     * @description Loads general activity info like categories, subcategories, levels, etc. from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
+    getPresaveActivityInfo.$inject = ['ActivitiesManager'];
+    function getPresaveActivityInfo(ActivitiesManager){
+        return ActivitiesManager.loadGeneralInfo();
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#getActivities
+     * @description Retrieves all activities
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.routes.config
+     */
+    getActivities.$inject = ['$q', 'ActivitiesManager'];
+    function getActivities($q, ActivitiesManager){
+        var deferred = $q.defer();
+
+        ActivitiesManager.getActivities().then(success, error);
+
+        return deferred.promise;
+
+        function success(activities){
+            deferred.resolve(activities);
+        }
+        function error(response){
+            console.log('getActivities. Error obtaining Activities from ActivitiesManager', response);
+            deferred.reject(null);
+        }
+    }
 
     /**
      * @ngdoc method

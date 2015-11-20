@@ -13,46 +13,112 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['ActivitiesManager', 'video'];
+    HomeController.$inject = ['video', 'activities', 'generalInfo'];
+    function HomeController(video, activities, generalInfo) {
 
-    function HomeController(ActivitiesManager, video) {
-
+        var ACTIVITIES_STEP = 5;
+        var activitiesIndex = 0;
+        var categories = [];
         var vm = this;
         angular.extend(vm, {
             activities : [],
+            categories: [],
             options : {
                 actions: ['view', 'edit', 'contact', 'manage', 'republish']
             },
-            showVideo: false
+            showVideo: false,
+            activitiesCount: activities.length,
+            hasMoreActivities: true,
+            toggleVideoShow: toggleVideoShow,
+            loadActivities: loadActivities
 
         });
 
         _activate();
 
-        vm.toggleVideoShow = function(){
+        //--------- Exposed Functions ---------//
+
+        function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
         }
-        //--------- Internal Functions ---------//
 
-        function _getActivities(){
-            ActivitiesManager.getActivities().then(success, error);
-
-            function success(response){
-                vm.activities = response;
-            }
-            function error(response){
-                console.log('getActivities. Error obtaining Activities from ActivitiesManager');
+        function loadActivities(){
+            if(activities.length > activitiesIndex){
+                var begin = activitiesIndex;
+                var end = activitiesIndex + ACTIVITIES_STEP;
+                if(activities.length < end) { end = activities.length; }
+                vm.activities = activities.slice(begin, end);
+                activitiesIndex = end;
+            } else {
+                vm.hasMoreActivities = false;
+                console.log('End of activities reached');
             }
         }
 
-        //function _setStrings(){
-        //    if(!vm.strings){ vm.strings = {}; }
-        //    angular.extend(vm.strings, {});
-        //}
-        function _setStrings() {
-            if (!vm.strings) {
-                vm.strings = {};
+        //--------- Internal Functions ---------//
+
+        function _setCategories(){
+            categories = [
+                {
+                    id: 1,
+                    cover: "/css/img/categories/languages.jpg"
+                },
+                {
+                    id: 2,
+                    cover: "/css/img/categories/fitness.jpg"
+                },
+                {
+                    id: 3,
+                    cover: "/css/img/categories/lifestyle.jpg"
+                },
+                {
+                    id: 4,
+                    cover: "/css/img/categories/technology.jpg"
+                },
+                {
+                    id: 5,
+                    cover: "/css/img/categories/kids.jpg"
+                },
+                {
+                    id: 6,
+                    cover: "/css/img/categories/art.jpeg"
+                },
+                {
+                    id: 7,
+                    cover: "/css/img/categories/professional.jpg"
+                },
+                {
+                    id: 8,
+                    cover: "/css/img/categories/gastronomy.jpg"
+                },
+                {
+                    id: 9,
+                    cover: "/css/img/categories/dance.jpg"
+                },
+                {
+                    id: 10,
+                    cover: "/css/img/categories/music.jpeg"
+                }
+            ];
+            categories.forEach(extendCategory);
+            vm.categories = categories;
+
+            function extendCategory(category){
+                var categoryInfo = getCategoryById(category.id);
+                if(categoryInfo){
+                    angular.extend(category, categoryInfo);
+                }
+
+                function getCategoryById(id){
+                    return generalInfo.categories.filter(function(category){
+                        return category.id === id;
+                    })[0];
+                }
             }
+        }
+
+        function _setStrings() {
+            if (!vm.strings) { vm.strings = {}; }
 
             angular.extend(vm.strings, {
                 HEADER_TITLE_COPY: "¡Hoy es un nuevo día para aprender!",
@@ -101,14 +167,14 @@
                 CATEGORY_KIDS: "Niños",
                 CATEGORY_GASTRONOMY: "Gastronomía",
                 CATEGORY_LANGUAGES: "Idiomas",
-                CATEGORY_DANCE: "Danza",
-
+                CATEGORY_DANCE: "Danza"
             });
         }
 
         function _activate(){
             _setStrings();
-            _getActivities();
+            _setCategories();
+            loadActivities();
             video.addSource('webm', '/videos/home1.webm');
             video.addSource('webm', '/videos/home2.webm');
             video.addSource('webm', '/videos/home3.webm');
