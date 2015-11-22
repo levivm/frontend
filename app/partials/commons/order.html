@@ -57,10 +57,12 @@
                                         <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span><br/>
                                         <span class="sinkin-medium"
                                               ng-bind="assistant.lastest_refund.status"></span>
+                                        <i ng-show="!assistant.lastest_refund.requested_by_me" class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::order.strings.COPY_REFUND_REQUESTED_BY_OTHER}}"></i>
                                     </td>
                                     <td class="column-button" ng-show="!assistant.lastest_refund">
-                                        <button class="btn btn-default"
-                                                ng-show="!assistant.lastest_refund && !order.order.lastest_refund"
+                                        <trulii-preloader loader-control="order.requestingRefund[assistant.id]"></trulii-preloader>
+                                        <button class="btn btn-default" 
+                                                ng-show="!assistant.lastest_refund && !order.order.lastest_refund && !order.requestingRefund[assistant.id]"
                                                 ng-click="order.requestAssistantRefund(order.order.id,assistant)"
                                                 ng-bind="::order.strings.ACTION_REIMBURSE"></button>
                                     </td>
@@ -99,6 +101,7 @@
                                 <h4 class="text-right text-lg montserrat-light"
                                     ng-bind="::('-' + (order.order.coupon.amount | currency:$:0))"></h4>
                             </div>
+                            <i ng-show="::(order.order.total_without_coupon === 0)"  class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::order.strings.COPY_COUPON_NOT_REFUND_TOOLTIP}}"></i>
                         </div>
                         <!--Fee-->
                         <div class="row no-margin" ng-show="::order.isOrganizer">
@@ -138,9 +141,12 @@
                                 <div ng-show="order.order.lastest_refund">
                                     <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span>
                                     <span class="sinkin-medium" ng-bind="order.order.lastest_refund.status"></span>
+                                    <i ng-show="!order.order.lastest_refund.requested_by_me" class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::order.strings.COPY_REFUND_REQUESTED_BY_OTHER}}"></i>
                                 </div>
+                                <trulii-preloader loader-control="order.requestingOrderRefund"></trulii-preloader>
+
                                 <button class="btn btn-block btn-primary"
-                                        ng-show="!order.order.lastest_refund && !(order.order.total_refunds_amount > 0)"
+                                        ng-show="!order.order.lastest_refund && !(order.order.total_refunds_amount > 0) && !order.requestingOrderRefund"
                                         ng-click="order.requestOrderRefund(order.order.id)"
                                         ng-bind="::order.strings.ACTION_REIMBURSE_ORDER"></button>
                             </div>
