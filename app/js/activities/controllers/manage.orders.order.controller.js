@@ -67,11 +67,11 @@
         }
 
         function _setFeeAmount(){
-            vm.feeAmount = vm.order.fee * vm.order.total;
+            vm.feeAmount = vm.order.fee * vm.order.total_without_coupon;
         }
 
         function _setTotalMinusFee(){
-            vm.totalAmount = vm.order.total - vm.feeAmount;
+            vm.totalAmount = vm.order.total_without_coupon - vm.feeAmount;
         }
 
         function _setStrings() {
@@ -85,6 +85,7 @@
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Ordén",
                 LABEL_ACTIVITY: "Actividad",
+                LABEL_BUYER: "Comprador",
                 LABEL_PAYMENT_TYPE: "Forma de pago",
                 LABEL_ORDER_CREATE_AT: "Realizado el día:",
                 LABEL_TOTAL: "Total",

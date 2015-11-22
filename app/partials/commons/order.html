@@ -8,6 +8,9 @@
                                 ng-bind="::order.order.id"></span></h5>
                         <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_ACTIVITY"></h5>
                         <h5 class="sinkin-medium separate-below" ng-bind="::order.order.activity_name"></h5>
+                        <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_BUYER"></h5>
+                        <h5 class="sinkin-medium separate-below" ng-bind="::(order.order.student.user.first_name + ' ' +
+                                                order.order.student.user.last_name)"></h5>
                         <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_PAYMENT_TYPE"></h5>
                         <h5 class="sinkin-medium separate-below">
                             <span ng-bind="::order.order.payment.payment_type"></span>
@@ -65,7 +68,7 @@
                             </table>
                         </div>
                         <!--Sub-Total-->
-                        <div class="row no-margin" ng-show="::(order.order.total !== order.order.amount)">
+                        <div class="row no-margin" >
                             <div class="col-xs-3 no-padding">
                                 <h4 class="text-lg montserrat-light" ng-bind="::order.strings.LABEL_SUB_TOTAL"></h4>
                             </div>
@@ -87,7 +90,7 @@
                             </div>
                         </div>
                         <!--Coupons-->
-                        <div class="row no-margin" ng-show="::(order.order.coupon.amount > 0)">
+                        <div class="row no-margin" ng-show="::(order.order.coupon.amount > 0 && order.isStudent)">
                             <div class="col-xs-3 no-padding">
                                 <h4 class="text-lg montserrat-light"
                                     ng-bind="::(order.strings.LABEL_COUPON +' '+ order.order.coupon.code)"></h4>

@@ -98,6 +98,7 @@
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Ordén",
                 LABEL_ACTIVITY: "Actividad",
+                LABEL_BUYER: "Comprador",
                 LABEL_PAYMENT_TYPE: "Forma de pago",
                 LABEL_ORDER_CREATE_AT: "Realizado el día:",
                 LABEL_TOTAL: "Total",
