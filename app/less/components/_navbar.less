@@ -72,7 +72,6 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-height;
-        //width: 40%;
         text-align: right;
         float: right;
         font-size: 0.9em;
@@ -114,78 +113,6 @@
         }
     }
 
-    &__search-box {
-        background: white;
-        width: 100%;
-        height: 45px;
-        margin-top: 4px;
-        border-radius: @border-radius-base;
-        border: 1px solid darken(@primary, 4%);
-
-        @media screen and (max-width: @screen-md ){
-            width: 40%;
-        }
-
-        @media screen and (max-width: @screen-sm ){
-            display: none !important;
-        }
-
-        input {
-            font-size: 1.1em;
-            text-align: center;
-            background: transparent;
-            border: 0;
-            padding: @navbar-padding-vertical;
-            height: 100%;
-            width: 60%;
-            float: left;
-            display: block;
-
-        }
-
-        &__city-select {
-            width: 28%;
-            display: inline-block;
-            height: @search-box-element-height;
-            vertical-align: top;
-            line-height: @search-box-element-height;
-            font-weight: bold;
-            border: 0;
-            border-left: 1px solid @color-delimeter-dark;
-            text-align: center;
-            background: transparent;
-            padding: 0 0.5em;
-            .text-overflow();
-
-            //noinspection CssInvalidPseudoSelector
-            &::-ms-expand {
-                display: none;
-            }
-
-            .before-sm({ width: 25%; });
-
-        }
-
-        &__btn {
-            &:before {
-                display: inline-block;
-                color: @lightbg-text;
-                font-size: 1.1em;
-            }
-
-            font-size: 18px;
-            width: 10%;
-            text-align: center;
-            height: @search-box-element-height;
-            display: inline-block;
-            border: 0;
-            border-left: 1px solid @color-delimeter-dark;
-            background: transparent;
-
-            &:extend(.show-after-sm);
-        }
-    }
-
     &__user {
         display: inline-block;
         cursor: pointer;
@@ -203,8 +130,6 @@
 
         &__picture:extend(.img-size-cover):extend(.img-position-center) {
             .square(@navbar-inner-height - 8);
-            border-radius: 50%;
-            margin: 4px;
             width: 80px;
             height: 80px;
             border-radius: 50%;
