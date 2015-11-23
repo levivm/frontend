@@ -16,6 +16,7 @@
                             <trulii-search-bar></trulii-search-bar>
                         </div>
                     </div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -32,7 +33,6 @@
             <div class="reason">
                 <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png"
                      alt="{{ ::home.strings.REASON_NO_COMMISSIONS }}"/>
-
                 <div class="reason-text">
                     <div class="reason-title text-uppercase" ng-bind="::home.strings.REASON_NO_COMMISSIONS"></div>
                     <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_NO_COMMISSIONS"></div>
@@ -41,7 +41,6 @@
             <div class="reason">
                 <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png"
                      alt="{{ ::home.strings.REASON_REFUND }}"/>
-
                 <div class="reason-text">
                     <div class="reason-title text-uppercase" ng-bind="::home.strings.REASON_REFUND"></div>
                     <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_REFUND"></div>
@@ -50,7 +49,6 @@
             <div class="reason">
                 <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png"
                      alt="{{ ::home.strings.REASON_SECURE }}"/>
-
                 <div class="reason-text">
                     <div class="reason-title text-uppercase" ng-bind="::home.strings.REASON_SECURE"></div>
                     <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_SECURE"></div>
@@ -61,38 +59,36 @@
 </div>
 <div class="row separate-above separate-below-more">
     <div class="col-xs-10 col-xs-offset-1">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1 class="text-primary text-center"><strong ng-bind="::home.strings.ACTIVITIES_TITLE_COPY"></strong>
-                </h1>
-            </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-primary title text-center"><strong ng-bind="::home.strings.ACTIVITIES_TITLE_COPY"></strong></h1>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
-                <h3 class="text-center pt-sans text-muted" ng-bind="::home.strings.ACTIVITIES_TEXT_COPY"></h3>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+          <h3 class="text-center pt-serif text-muted sub-title" ng-bind="::home.strings.ACTIVITIES_TEXT_COPY"></h3>
         </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="container-fluid separate-above-medium">
-                    <div class="row activity-grid">
-                        <trulii-activity-item
-                                ng-repeat="activity in home.activities track by activity.id"
-                                data-activity="activity" data-options="{{home.options}}"></trulii-activity-item>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="container-fluid separate-above-medium">
+              <div class="row activity-grid">
+                  <!--TODO agregar de nuevo el track by cuando Harvey haga fix "track by activity.id"-->
+                  <trulii-activity-item
+                          ng-repeat="activity in home.activities"
+                          data-activity="activity" data-options="{{home.options}}"></trulii-activity-item>
+              </div>
+          </div>
         </div>
-        <div class="row separate-above">
-            <div class="col-xs-12">
-                <button class="btn btn-primary btn-block btn-lg"
-                        ng-show=""
-                        ng-click="home.loadActivities()">
-                    <span ng-bind="::home.strings.ACTIVITIES_BUTTON_COPY"></span>
-                    <span ng-bind="'(' + home.activitiesCount + ')'"></span>
-                </button>
-            </div>
+      </div>
+      <div class="row separate-above">
+        <div class="col-xs-12">
+          <button class="btn btn-primary btn-block btn-lg">
+            <span ng-bind="::home.strings.ACTIVITIES_BUTTON_COPY"></span>
+            <span>(1024)</span>
+          </button>
         </div>
+      </div>
     </div>
 </div>
 <div class="trulii-cover">
@@ -100,17 +96,16 @@
         <div class="trulii-cover__content">
             <div class="col-xs-12">
                 <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-                        <h1 class="text-center"><strong ng-bind="::home.strings.VIDEO_COPY"></strong></h1>
-                        <a href="" ng-click="home.toggleVideoShow()">
-                            <img src="/css/img/home/play.png" alt="" class="img-responsive center-block separate-above">
-                        </a>
-                    </div>
+                  <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                    <h1 class="text-center"><strong ng-bind="::home.strings.VIDEO_COPY"></strong></h1>
+                    <a href="" ng-click="home.toggleVideoShow()">
+                      <img src="/css/img/home/play.png" alt="" class="img-responsive center-block separate-above play-button">
+                    </a>
+                  </div>
                 </div>
             </div>
         </div>
-        <div class="trulii-cover__background background-dots"
-             style="background-image:url(/css/img/home/banners/video.png)"></div>
+        <div class="trulii-cover__background background-dots" style="background-image:url(/css/img/home/banners/video.png)"></div>
     </div>
 </div>
 <div class="absolute-container" ng-show="home.showVideo">
@@ -122,78 +117,143 @@
             <youtube-video video-url="'https://www.youtube.com/watch?v=fCED7SMj3Kg&feature=youtu.be'"></youtube-video>
         </div>
     </div>
+  </div>
 </div>
 <div class="row separate-above-more separate-below-more">
     <div class="col-xs-10 col-xs-offset-1">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-primary text-center title"><strong ng-bind="::home.strings.CATEGORIES_TITLE_COPY"></strong></h1>
+        </div>
+      </div>
+      <div class="row separate-below-medium">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h3 class="text-center pt-serif text-muted sub-title" ng-bind="::home.strings.CATEGORIES_TEXT_COPY"></h3>
+        </div>
+      </div>
+      <div class="category-card-container">
         <div class="row">
-            <div class="col-xs-12">
-                <h1 class="text-primary text-center"><strong ng-bind="::home.strings.CATEGORIES_TITLE_COPY"></strong>
-                </h1>
-            </div>
+          <div class="col-xs-12 col-md-6">
+            <a href="" class="category-card category-card-lg">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/fitness.jpg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_FITNESS"></h2>
+            </a>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <a href="" class="category-card category-card-lg">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/music.jpeg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_MUSIC"></h2>
+            </a>
+          </div>
         </div>
-        <div class="row separate-below-medium">
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
-                <h3 class="text-center pt-sans text-muted" ng-bind="::home.strings.CATEGORIES_TEXT_COPY"></h3>
-            </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <a href="" class="category-card">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/lifestyle.jpg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_LIFESTYLE"></h2>
+            </a>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <a href="" class="category-card">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/professional.jpg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_PROFESSIONAL"></h2>
+            </a>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <a href="" class="category-card">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/art.jpeg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_ART"></h2>
+            </a>
+          </div>
         </div>
-        <div class="category-card-container">
-            <div class="row">
-                <div class="col-xs-12 col-md-6" ng-repeat="category in home.categories track by category.id">
-                    <a ui-sref="search({category:category.id})" class="category-card category-card-lg">
-                        <div class="category-card__veil"></div>
-                        <div class="category-card__background"
-                             ng-style="{'background-image': 'url(' + category.cover + ')'}"></div>
-                        <h2 class="category-card__title" ng-bind="::category.name"></h2>
-                    </a>
-                </div>
-            </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-8">
+            <a href="" class="category-card">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/technology.jpg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_TECHNOLOGY"></h2>
+            </a>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <a href="" class="category-card">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/kids.jpg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_KIDS"></h2>
+            </a>
+          </div>
         </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-4">
+            <a href="" class="category-card">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/gastronomy.jpg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_GASTRONOMY"></h2>
+            </a>
+          </div>
+          <div class="col-xs-12 col-md-4">
+              <a href="" class="category-card">
+                <div class="category-card__veil"></div>
+                <div class="category-card__background" style="background-image:url(/css/img/categories/languages.jpg)"></div>
+                <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_LANGUAGES"></h2>
+              </a>
+          </div>
+          <div class="col-xs-12 col-md-4">
+            <a href="" class="category-card">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" style="background-image:url(/css/img/categories/dance.jpg)"></div>
+              <h2 class="category-card__title" ng-bind="::home.strings.CATEGORY_DANCE"></h2>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 <div class="row container-muted">
     <div class="col-xs-10 col-xs-offset-1 separate-above-more separate-below-more">
-        <div class="row">
-            <div class="col-xs-12">
-                <h1 class="text-primary text-center"><strong ng-bind="::home.strings.HOW_TITLE_COPY"></strong></h1>
-            </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-primary text-center title"><strong ng-bind="::home.strings.HOW_TITLE_COPY"></strong></h1>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-6 col-md-offset-3">
-                <h3 class="text-center pt-sans text-muted" ng-bind="::home.strings.HOW_TEXT_COPY"></h3>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+          <h3 class="text-center pt-serif text-muted sub-title" ng-bind="::home.strings.HOW_TEXT_COPY"></h3>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-4">
-                <div class="container-fluid separate-above-medium">
-                    <img src="/css/img/home/find.png" alt="" class="img-responsive center-block separate-above">
-
-                    <p class="text-uppercase text-center text-color-secondary font-family-sans separate-above-less separate-below-less"
-                       ng-bind="::home.strings.HOW_FIND_COPY"></p>
-
-                    <p class="text-center" ng-bind="::home.strings.HOW_FIND_TEXT"></p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="container-fluid separate-above-medium">
-                    <img src="/css/img/home/signup.png" alt="" class="img-responsive center-block separate-above">
-
-                    <p class="text-uppercase text-center text-success font-family-sans separate-above-less separate-below-less"
-                       ng-bind="::home.strings.HOW_SIGN_UP_COPY"></p>
-
-                    <p class="text-center" ng-bind="::home.strings.HOW_SIGN_UP_TEXT"></p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-                <div class="container-fluid separate-above-medium">
-                    <img src="/css/img/home/learn.png" alt="" class="img-responsive center-block separate-above">
-
-                    <p class="text-uppercase text-center text-warning font-family-sans separate-above-less separate-below-less"
-                       ng-bind="::home.strings.HOW_LEARN_COPY"></p>
-
-                    <p class="text-center" ng-bind="::home.strings.HOW_LEARN_TEXT"></p>
-                </div>
-            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-md-4">
+          <div class="container-fluid separate-above-medium">
+            <img src="/css/img/home/find.png" alt="" class="img-responsive center-block separate-above">
+            <p class="text-uppercase text-center text-color-secondary font-family-sans text-spaced separate-above separate-below-less">
+              <strong ng-bind="::home.strings.HOW_FIND_COPY"></strong>
+            </p>
+            <p class="text-center montserrat-regular" ng-bind="::home.strings.HOW_FIND_TEXT"></p>
+          </div>
         </div>
+        <div class="col-xs-12 col-md-4">
+          <div class="container-fluid separate-above-medium">
+            <img src="/css/img/home/signup.png" alt="" class="img-responsive center-block separate-above">
+            <p class="text-uppercase text-center text-success font-family-sans text-spaced separate-above separate-below-less">
+              <strong ng-bind="::home.strings.HOW_SIGN_UP_COPY"></strong>
+            </p>
+            <p class="text-center montserrat-regular" ng-bind="::home.strings.HOW_SIGN_UP_TEXT"></p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-4">
+          <div class="container-fluid separate-above-medium">
+            <img src="/css/img/home/learn.png" alt="" class="img-responsive center-block separate-above">
+            <p class="text-uppercase text-center text-warning font-family-sans text-spaced separate-above separate-below-less">
+              <strong ng-bind="::home.strings.HOW_LEARN_COPY"></strong>
+            </p>
+            <p class="text-center montserrat-regular" ng-bind="::home.strings.HOW_LEARN_TEXT"></p>
+          </div>
+        </div>
+      </div>
     </div>
 </div>
 <div class="trulii-cover">
@@ -201,41 +261,38 @@
         <div class="trulii-cover__content">
             <div class="col-xs-12">
                 <div class="row separate-above-more">
-                    <div class="col-xs-10 col-md-6 well-container">
-                        <div class="well separate-above-more separate-below-more">
-                            <h1 class="text-center text-color-secondary separate-below-medium">
-                                <strong ng-bind="::home.strings.PUBLISH_COPY"></strong>
-                            </h1>
-                            <h4 class="text-justify">
-                                <span ng-bind="::home.strings.PUBLISH_TEXT_1"></span>
-                                <strong ng-bind="::home.strings.PUBLISH_TEXT_2"></strong>
-                                <span ng-bind="::home.strings.PUBLISH_TEXT_3"></span>
-                                <strong ng-bind="::home.strings.PUBLISH_TEXT_4"></strong>
-                                <span ng-bind="::home.strings.PUBLISH_TEXT_5"></span>
-                            </h4>
-                            <h4 class="text-justify">
-                                <span ng-bind="::home.strings.PUBLISH_TEXT_6"></span>
-                                <strong ng-bind="::home.strings.PUBLISH_TEXT_7"></strong>
-                                <span ng-bind="::home.strings.PUBLISH_TEXT_8"></span>
-                                <strong ng-bind="::home.strings.PUBLISH_TEXT_9"></strong>
-                                <span ng-bind="::home.strings.PUBLISH_TEXT_10"></span>
-                            </h4>
-                            <h3 class="text-center separate-below">
-                                <strong ng-bind="::home.strings.PUBLISH_TEXT_11"></strong>
-                            </h3>
-                            <div class="col-xs-8 col-xs-offset-2">
-                                <a class="btn btn-block btn-secondary btn-lg"
-                                    ui-sref="organizer-landing"
-                                    ng-bind="::home.strings.PUBLISH_BUTTON_COPY">
-                                </a>
-                            </div>
-                        </div>
+                  <div class="col-xs-10 col-md-6 well-container">
+                    <div class="well separate-above-more separate-below-more">
+                      <h1 class="text-center text-color-secondary separate-below-medium">
+                        <strong ng-bind="::home.strings.PUBLISH_COPY"></strong>
+                      </h1>
+                      <h4 class="text-justify">
+                        <span ng-bind="::home.strings.PUBLISH_TEXT_1"></span>
+                        <strong ng-bind="::home.strings.PUBLISH_TEXT_2"></strong>
+                        <span ng-bind="::home.strings.PUBLISH_TEXT_3"></span>
+                        <strong ng-bind="::home.strings.PUBLISH_TEXT_4"></strong>
+                        <span ng-bind="::home.strings.PUBLISH_TEXT_5"></span>
+                      </h4>
+                      <h4 class="text-justify">
+                        <span ng-bind="::home.strings.PUBLISH_TEXT_6"></span>
+                        <strong ng-bind="::home.strings.PUBLISH_TEXT_7"></strong>
+                        <span ng-bind="::home.strings.PUBLISH_TEXT_8"></span>
+                        <strong ng-bind="::home.strings.PUBLISH_TEXT_9"></strong>
+                        <span ng-bind="::home.strings.PUBLISH_TEXT_10"></span>
+                      </h4>
+                      <h3 class="text-center separate-below">
+                        <strong ng-bind="::home.strings.PUBLISH_TEXT_11"></strong>
+                      </h3>
+                      <div class="col-xs-8 col-xs-offset-2">
+                        <button class="btn btn-block btn-secondary btn-lg" ng-bind="::home.strings.PUBLISH_BUTTON_COPY">
+                        </button>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
         </div>
-        <div class="trulii-cover__background background-dots"
-             style="background-image:url(/css/img/home/banners/publish.jpg)"></div>
+        <div class="trulii-cover__background background-dots" style="background-image:url(/css/img/home/banners/publish.jpg)"></div>
     </div>
 </div>
 <trulii-footer></trulii-footer>

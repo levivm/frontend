@@ -209,10 +209,6 @@
                 '&merchant_address&telephone&pseReference3',
                 controller: 'ActivityEnrollPSEResponseController as pseResponse',
                 templateUrl: 'partials/activities/detail/enroll.pse.response.html',
-                resolve: {
-                    organizer: getActivityOrganizer,
-                    organizerActivities: getOrganizerActivities
-                },
                 params:{
                     pseResponseData: null
                 }
@@ -237,6 +233,9 @@
                     deviceSessionId: getDeviceSessionId,
                     organizer: getActivityOrganizer,
                     organizerActivities: getOrganizerActivities
+                },
+                params:{
+                    order_id:null,
                 }
             });
 

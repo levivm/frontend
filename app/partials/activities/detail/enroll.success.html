@@ -7,6 +7,8 @@
                     <strong ng-bind="::success.activity.title"></strong>
                 </h1>
                 <h4 class="text-muted font-family-sans-alt separate-above" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h4>
+                <a ng-show="::success.orderId" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId, 
+                                             })" ng-bind="success.strings.COPY_VIEW_YOUR_ORDER"></a>
             </div>
         </div>
         <div class="row">

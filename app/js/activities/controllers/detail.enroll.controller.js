@@ -59,6 +59,7 @@
             scroll: 0,
             widgetOriginalPosition: 0,
             showWidget: true,
+            processingPayment: false,
 
             addAssistant : addAssistant,
             removeAssistant: removeAssistant,
@@ -179,8 +180,9 @@
                     payment_method: Payments.KEY_PSE_PAYMENT_METHOD,
 
                 };
-
-                ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
+                _startProccesingPayment();
+                ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
+                            .finally(_finishProccesingPayment);
 
                 function _enrollSuccess(response) {
                     vm.success = true;
@@ -189,12 +191,21 @@
                 }
 
                 function _enrollError(response){
-                    var errors = response.data;
-                    console.log('Errors ---------',errors);
-                    if (!(errors.assistants))
-                        Error.form.add(vm.enrollForm, errors);
-                    else
-                        Error.form.addArrayErrors(vm.enrollForm, errors.assistants);
+
+                    var error = response.data;
+                    if (!(error.assistants)){
+                        Error.form.add(vm.enrollForm, error);
+                    }
+                    else{
+                        var error_index = _.findIndex(error.assistants,function(error_dict){
+
+                            return (!(_.isEmpty(error_dict)));
+                        });
+                        var base_selector = 'assistant_card_';
+                        console.log('selector',base_selector.concat(error_index));
+                        Elevator.toElement(base_selector.concat(error_index));
+                        Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
+                    }
 
                 }
             }
@@ -284,6 +295,7 @@
             if(vm.paymentWithPse){
                 enrollPSE();
             } else {
+                _startProccesingPayment();
                 StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
             }
 
@@ -321,7 +333,7 @@
                 Error.form.clearField(vm.enrollForm,'cardMethod');
                 Error.form.clearField(vm.enrollForm,'generalError');
                 var cardData = _.clone(vm.cardData);
-                Payments.getToken(cardData).then(getTokenSuccess, getTokenError);
+                Payments.getToken(cardData).then(getTokenSuccess, getTokenError).finally(_finishProccesingPayment);
             }
 
             function validateCardTypeError(){
@@ -356,12 +368,16 @@
                     data.coupon_code = vm.coupon.code;
                 }
 
+                vm.processingPayment = true;
+
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
 
-                function _enrollSuccess(response) {
-                    calendar.addAssistants(response.assistants);
+
+                function _enrollSuccess(order) {
+                    calendar.addAssistants(order.assistants);
                     vm.success = true;
-                    $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':calendar.id});
+                    $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':calendar.id,
+                                        'order_id':order.id});
                 }
 
                 function _enrollError(response){
@@ -380,6 +396,7 @@
                         Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                     }
                 }
+
             }
 
             function getTokenError(errors){
@@ -534,6 +551,17 @@
             if (currentState === 'activities-enroll.pse-response')
                 vm.showWidget = false;
         }
+
+        function _startProccesingPayment(){
+            vm.processingPayment = true;
+
+        }
+
+        function _finishProccesingPayment(){
+            vm.processingPayment = false;
+
+        }
+
 
         function _setStrings() {
             if (!vm.strings) {

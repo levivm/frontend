@@ -468,9 +468,10 @@
                             <button class="btn btn-block btn-default text-uppercase"
                                     ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY"
                                     ng-click="enroll.toggleReimbursement()"></button>
+                            <trulii-preloader loader-control="enroll.processingPayment" class="separate-above"></trulii-preloader>
                             <button class="btn btn-block btn-primary separate-above text-uppercase"
                                     ng-click="enroll.enroll()"
-                                    ng-bind="::enroll.strings.ACTION_ENROLL" ></button>
+                                    ng-bind="::enroll.strings.ACTION_ENROLL" ng-show="!enroll.processingPayment"></button>
                             <div class="text-muted separate-above-medium" >
                                 <span ng-bind="::enroll.strings.COPY_RELEASE_1">
                                 </span>

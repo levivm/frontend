@@ -12,6 +12,8 @@
 
 .navbar {
     height: @navbar-height;
+    width: 100vw;
+    padding-right: 15px;
 
     .btn {
         margin-top: 0;
@@ -38,7 +40,7 @@
     &__logo-container {
         background-color: @primary;
         height: @navbar-height;
-        padding: @navbar-padding-vertical 2.3em;
+        width: @sidebar-width + 1.1;
         display: inline-block;
         float: left;
         text-align: center;
@@ -49,13 +51,13 @@
     }
 
     &__logo {
-        background: url(@res-trulii-logo) no-repeat;
-        height: @navbar-inner-height;
-        //width: @logo-width;
-        width: 6em;
-        display: inline-block;
-        background-size: contain;
-        margin-left: 0.5em;
+      background: url('img/logo-trulii.png') no-repeat;
+      height: @navbar-inner-height;
+      width: 9em;
+      display: inline-block;
+      background-size: contain;
+      margin: 0 auto;
+      margin-top: 5px;
 
         .before-xs({ background: url(@res-trulii-logo-tiny) no-repeat center; width: 30px; background-size: contain; position: relative; });
     }
@@ -72,9 +74,11 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-height;
+        //width: 40%;
         text-align: right;
         float: right;
         font-size: 0.9em;
+        margin-right: 10px;
 
         .before-xs({ display: inline-block; });
 
@@ -108,8 +112,109 @@
             text-align: left;
             cursor: pointer;
             img{
-              padding: 13px;
+              padding: 17px;
+              margin-top: 3px;
             }
+        }
+    }
+
+    &__search-box {
+        background: white;
+        width: 100%;
+        height: 50px;
+        margin-top: 10px;
+        margin-left: 20px;
+        border-radius: 0px;
+
+        @media screen and (max-width: @screen-md ){
+            width: 40%;
+        }
+
+        @media screen and (max-width: @screen-sm ){
+            display: none !important;
+        }
+        ::-webkit-input-placeholder,
+        ::-moz-placeholder,
+        :-ms-input-placeholder,
+        input:-moz-placeholder {
+          font-weight: 400;
+        }
+        input {
+            background: transparent;
+            height: 100%;
+            width: 60%;
+            float: left;
+            display: block;
+            border: 1px solid darken(@gray-lighter, 4%);
+            border-top: 3px solid @brand-primary;
+            border-right: none;
+            position: relative;
+            padding-left:26px;
+        }
+        input, select{
+          font-family: @font-sans;
+          font-size: 0.95em;
+          font-weight: 200;
+        }
+        input:before{
+          content: '';
+          display: block;
+          width: 14px;
+          height: 14px;
+          background-image: url(/css/img/home/search.png);
+          position: absolute;
+          top: 5px;
+          left: 5px;
+          z-index:1500;
+        }
+
+        &__city-select {
+            width: 28%;
+            display: inline-block;
+            height: 100%;
+            vertical-align: top;
+            border: 1px solid darken(@gray-lighter, 4%);
+            background: transparent;
+            padding: 0 0.5em;
+            color: @gray;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-size: 15px auto;
+            background-position: 93% 50%;
+            background-repeat: no-repeat;
+            background-image: url(/css/img/about/arrow.png) !important;
+            .text-overflow();
+
+            //noinspection CssInvalidPseudoSelector
+            &::-ms-expand {
+                display: none;
+            }
+
+            .before-sm({ width: 25%; });
+          :focus{
+            background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
+            background-position: 0 bottom;
+          }
+
+        }
+
+        &__btn {
+            &:before {
+                display: inline-block;
+                color: @lightbg-text;
+                font-size: 1.1em;
+            }
+
+            font-size: 18px;
+            width: 10%;
+            text-align: center;
+            height: 100%;
+            display: inline-block;
+            border: 0;
+            border-left: 1px solid @color-delimeter-dark;
+            background: transparent;
+
+            &:extend(.show-after-sm);
         }
     }
 
@@ -130,6 +235,8 @@
 
         &__picture:extend(.img-size-cover):extend(.img-position-center) {
             .square(@navbar-inner-height - 8);
+            border-radius: 50%;
+            margin: 4px;
             width: 80px;
             height: 80px;
             border-radius: 50%;
@@ -307,6 +414,13 @@
     position: absolute;
     right: 10px;
     top: 10px;
+    img{
+      border-radius: 100%;
+      transition: all 0.25s;
+      &:hover{
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
   }
   &__column {
     padding: 3em 2em;
