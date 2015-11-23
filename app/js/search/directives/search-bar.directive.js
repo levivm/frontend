@@ -30,6 +30,7 @@
                     q : "",
                     search_city : null,
                     cities : [],
+                    onNavbar : !!attrs.onNavbar,
                     updateSearchCity : updateSearchCity,
                     search : search
                 });
