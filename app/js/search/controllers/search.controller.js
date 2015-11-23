@@ -138,10 +138,7 @@
 
         function getLevelClassStyle(level) {
             return {
-                'btn-active' : vm.searchLevel? vm.searchLevel.code === level.code : false,
-                'btn-intermediate-level' : level.code === 'I',
-                'btn-advanced-level' : level.code === 'A',
-                'btn-beginner-level' : level.code === 'P'
+                'btn-active' : vm.searchLevel? vm.searchLevel.code === level.code : false
             };
         }
 
@@ -256,7 +253,7 @@
                 LABEL_DATE: "Fecha",
                 LABEL_WITH_CERTIFICATE: "Con Certificado",
                 LABEL_WEEKENDS: "Fines de Semana",
-                LABEL_EMPTY_SEARCH:"Houston. Tenemos un problema.",
+                LABEL_EMPTY_SEARCH:"Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH: "Puede que no tengamos lo que estés buscando."
                     + " Por si acaso, te recomendamos intentarlo de nuevo."
             });
