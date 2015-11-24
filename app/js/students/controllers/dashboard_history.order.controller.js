@@ -23,6 +23,8 @@
             order: order,
             isStudent:true,
             previousState:null,
+            requestingRefund: {},
+            requestingOrderRefund: false,
             requestAssistantRefund: requestAssistantRefund,
             requestOrderRefund: requestOrderRefund,
         });
@@ -36,6 +38,7 @@
         function requestOrderRefund(orderId){
 
 
+
             var modalInstance = $modal.open({
                 templateUrl : 'partials/commons/messages/confirm_request_refund.html',
                 controller : 'ModalInstanceCtrl',
@@ -44,10 +47,10 @@
             });
 
             modalInstance.result.then(function () {
-                student.requestRefund(orderId,null).then(success,error);
+                enableOrderRefundLoader();
+                student.requestRefund(orderId,null).then(success,error)
+                        .finally(disableOrderRefundLoader);
             });
-
-
 
             function success(response){
                 vm.order.lastest_refund = response;
@@ -55,6 +58,14 @@
 
             function error(response){
                 Toast.error(response.non_field_errors.pop());
+            }
+
+            function enableOrderRefundLoader(assistantId){
+                vm.requestingOrderRefund = true;
+            }
+
+            function disableOrderRefundLoader(){
+                vm.requestingOrderRefund = false;
             }
 
         }
@@ -69,7 +80,9 @@
             });
 
             modalInstance.result.then(function () {
-                student.requestRefund(orderId,assistant.id).then(success,error);
+                enableRefundLoader(assistant.id);
+                student.requestRefund(orderId,assistant.id).then(success,error).
+                                finally(disableRefundLoader);
             });
 
 
@@ -82,10 +95,25 @@
 
             }
 
+            function enableRefundLoader(assistantId){
+                vm.requestingRefund[assistantId] = true;
+                vm.currentAssistantLoader = assistantId;
+
+            }
+
+            function disableRefundLoader(){
+                vm.requestingRefund[vm.currentAssistantLoader] = false;
+            }
+
         }
 
 
         /*  INTERNAL FUNCTIONS     */
+
+
+
+
+
 
         function _setStrings() {
             if (!vm.strings) {
@@ -95,9 +123,12 @@
                 ACTION_REIMBURSE: "Solicitar Reembolso",
                 ACTION_REIMBURSE_ORDER: "Reembolso de orden",
                 ACTION_GO_BACK: "Regresar",
+                COPY_COUPON_NOT_REFUND_TOOLTIP: "El cupón no es reembolsable",
+                COPY_REFUND_REQUESTED_BY_OTHER: "El reembolso fue solicitado por el organizador",
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Ordén",
                 LABEL_ACTIVITY: "Actividad",
+                LABEL_BUYER: "Comprador",
                 LABEL_PAYMENT_TYPE: "Forma de pago",
                 LABEL_ORDER_CREATE_AT: "Realizado el día:",
                 LABEL_TOTAL: "Total",

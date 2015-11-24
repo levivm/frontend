@@ -19,6 +19,8 @@
             order: order,
             isOrganizer: true,
             previousState: null,
+            requestingRefund: {},
+            requestingOrderRefund: false,
             requestAssistantRefund: requestAssistantRefund,
             requestOrderRefund: requestOrderRefund,
         });
@@ -35,7 +37,9 @@
             });
 
             modalInstance.result.then(function () {
-                organizer.requestRefund(orderId,null).then(success,error);
+                enableOrderRefundLoader();
+                organizer.requestRefund(orderId,null).then(success,error)
+                                .finally(disableOrderRefundLoader);
             });
 
             function success(response){
@@ -44,6 +48,16 @@
             function error(response){
                 Toast.error(response.non_field_errors.pop());
             }
+
+            function enableOrderRefundLoader(){
+                vm.requestingOrderRefund = true;
+
+            }
+
+            function disableOrderRefundLoader(){
+                vm.requestingOrderRefund = false;
+            }
+
         }
 
         function requestAssistantRefund(orderId,assistant){
@@ -55,7 +69,9 @@
             });
 
             modalInstance.result.then(function () {
-                organizer.requestRefund(orderId,assistant.id).then(success,error);
+                enableRefundLoader(assistant.id);
+                organizer.requestRefund(orderId,assistant.id).then(success,error)
+                            .finally(disableRefundLoader);
             });
 
             function success(response){
@@ -64,14 +80,26 @@
             function error(response){
                 Toast.error(response.non_field_errors.pop());
             }
+
+            function enableRefundLoader(assistantId){
+                vm.requestingRefund[assistantId] = true;
+                vm.currentAssistantLoader = assistantId;
+
+            }
+
+            function disableRefundLoader(){
+                vm.requestingRefund[vm.currentAssistantLoader] = false;
+            }
+
+
         }
 
         function _setFeeAmount(){
-            vm.feeAmount = vm.order.fee * vm.order.total;
+            vm.feeAmount = vm.order.fee * vm.order.total_without_coupon;
         }
 
         function _setTotalMinusFee(){
-            vm.totalAmount = vm.order.total - vm.feeAmount;
+            vm.totalAmount = vm.order.total_without_coupon - vm.feeAmount;
         }
 
         function _setStrings() {
@@ -83,8 +111,10 @@
                 ACTION_REIMBURSE_ORDER: "Reembolsar Orden",
                 ACTION_GO_BACK: "Regresar",
                 SECTION_HISTORY: "Historial de Compras",
+                COPY_REFUND_REQUESTED_BY_OTHER: "El reembolso fue solicitado por el estudiante",
                 LABEL_ORDER: "Ordén",
                 LABEL_ACTIVITY: "Actividad",
+                LABEL_BUYER: "Comprador",
                 LABEL_PAYMENT_TYPE: "Forma de pago",
                 LABEL_ORDER_CREATE_AT: "Realizado el día:",
                 LABEL_TOTAL: "Total",
