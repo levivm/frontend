@@ -118,44 +118,6 @@
         }
     }
 
-    &__user {
-        display: inline-block;
-        cursor: pointer;
-
-        * {
-            height: 100%;
-            display: inline-block;
-            vertical-align: top;
-            &:before {
-                padding: 0.3em 0 !important;
-                display: inline-block;
-                vertical-align: top;
-            }
-        }
-
-        &__picture:extend(.img-size-cover):extend(.img-position-center) {
-            .square(@navbar-inner-height - 8);
-            border-radius: 50%;
-            margin: 4px;
-            width: 80px;
-            height: 80px;
-            border: 2px solid white;
-        }
-
-        &__name{
-            min-width: 80px;
-            max-width: 100px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            font-weight: bolder;
-            text-transform: uppercase;
-            line-height: @navbar-height - (@navbar-padding-vertical*2);
-            vertical-align: middle;
-        }
-
-    }
-
     .dropdown {
         width: auto;
         text-align: left;
