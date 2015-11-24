@@ -122,7 +122,7 @@
 
             angular.extend(vm.strings, {
                 HEADER_TITLE_COPY: "¡Hoy es un nuevo día para aprender!",
-                HEADER_TEXT_COPY: "Consigue e inscríbete en las mejores actividades y eventos educativos de tu ciudad",
+                HEADER_TEXT_COPY: "Consigue e inscríbete en las mejores actividades y eventos educativos de tu ciudad.",
                 HEADER_SEARCH_PLACEHOLDER: "¿Qué quieres aprender hoy?",
                 HEADER_CITY_PLACEHOLDER: "Elige tu ciudad",
                 REASON_NO_COMMISSIONS: "Sin comisiones",
@@ -140,9 +140,9 @@
                 HOW_TITLE_COPY: "¿Cómo funciona?",
                 HOW_TEXT_COPY: "En cada rincón de tu ciudad existe algo nuevo que aprender. Nosotros te lo facilitamos en tres pasos:",
                 HOW_FIND_COPY: "Encuentra",
-                HOW_FIND_TEXT: "Lo que quieras aprender",
+                HOW_FIND_TEXT: "Lo que quieras aprender.",
                 HOW_SIGN_UP_COPY: "Inscríbete",
-                HOW_SIGN_UP_TEXT: "Tu pago está en buenas manos con nosotros",
+                HOW_SIGN_UP_TEXT: "Tu pago está en buenas manos con nosotros.",
                 HOW_LEARN_COPY: "Aprende",
                 HOW_LEARN_TEXT: "La vida es corta. ¡Aprende todo lo que puedas!",
                 PUBLISH_COPY: "¿Quieres publicar una actividad?",
