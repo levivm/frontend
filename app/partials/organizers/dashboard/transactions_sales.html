@@ -26,13 +26,11 @@
                     <th ng-bind="::transactions.strings.LABEL_DATE"></th>
                     <th>
                         <span ng-bind="::transactions.strings.LABEL_TOTAL"></span>
-                        <a class="no-text-decoration" href="#" tooltip-placement="right" 
-                                tooltip="{{::transactions.strings.COPY_TOTAL_SALES_TOOLTIP}}">?</a>
+                        <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="left"  tooltip="{{::transactions.strings.COPY_TOTAL_SALES_TOOLTIP}}"></i>
                     </th>
                     <th>
                         <span ng-bind="::transactions.strings.LABEL_FINAL_TOTAL"></span>
-                        <a class="no-text-decoration" href="#" tooltip-placement="left" 
-                                tooltip="{{::transactions.strings.COPY_FINAL_TOTAL_SALES_TOOLTIP}}" >?</a>                        
+                        <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="left" tooltip="{{::transactions.strings.COPY_FINAL_TOTAL_SALES_TOOLTIP}}"></i>
                     </th>
                 </tr>
                 <tr ng-repeat="order in transactions.sales track by order.id | filter:transactions.queries.saleQuery">
