@@ -30,7 +30,8 @@
             activitiesCount: activities.length,
             hasMoreActivities: true,
             toggleVideoShow: toggleVideoShow,
-            loadActivities: loadActivities
+            loadActivities: loadActivities,
+            coverVideo: {}
 
         });
 
@@ -165,6 +166,23 @@
             });
         }
 
+        function _replayVideos(){
+            angular.element(document).ready(function () {
+                document.getElementsByClassName('trulii-cover__background-video')[0].addEventListener("ended",
+                  function(){
+                    setTimeout(
+                      function(){
+                        // document.getElementsByClassName('trulii-cover__background-video')[0].play();
+                        video.addSource('webm', '/videos/home1.webm');
+                        video.addSource('webm', '/videos/home2.webm');
+                        video.addSource('webm', '/videos/home3.webm');
+                      }, 1000
+                    );
+                  },
+                true);
+            });
+        }
+
         function _activate(){
             _setStrings();
             _setCategories();
@@ -172,6 +190,8 @@
             video.addSource('webm', '/videos/home1.webm');
             video.addSource('webm', '/videos/home2.webm');
             video.addSource('webm', '/videos/home3.webm');
+            _replayVideos();
+
         }
 
     }

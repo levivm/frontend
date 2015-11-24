@@ -85,40 +85,55 @@
     .form-control {
         background-image: none;
     }
+
     input, input:focus {
-        width: 50%;
         display: inline-block;
+        width: 50%;
         float: left;
         border-top: 5px solid @brand-primary;
     }
+
     select, select:focus {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background-size: initial;
-        background-position: right 50%;
-        background-repeat: no-repeat;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAMCAYAAABSgIzaAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NDZFNDEwNjlGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NDZFNDEwNkFGNzFEMTFFMkJEQ0VDRTM1N0RCMzMyMkIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo0NkU0MTA2N0Y3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo0NkU0MTA2OEY3MUQxMUUyQkRDRUNFMzU3REIzMzIyQiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PuGsgwQAAAA5SURBVHjaYvz//z8DOYCJgUxAf42MQIzTk0D/M+KzkRGPoQSdykiKJrBGpOhgJFYTWNEIiEeAAAMAzNENEOH+do8AAAAASUVORK5CYII=) !important;
-        padding: 0 2em;
         display: inline-block;
         float: left;
         width: 35%;
+        padding: 0 2em;
         border-top: 5px solid @brand-success;
+        -webkit-appearance: none;
+        -moz-appearance: none;
     }
+
+    select{
+      background-size: 15px auto;
+      background-position: 93% 50%;
+      background-repeat: no-repeat;
+      background-image: url(/css/img/about/arrow.png) !important;
+    }
+
+    select:focus{
+      animation: input-highlight 0.5s forwards;
+      box-shadow: none;
+      background-size: 0 2px, 100% 1px;
+      background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
+      background-position: 0 bottom;
+    }
+
     .btn.btn-default {
         width: 15%;
+        color: @gray !important;
         border-radius: 0;
         border-color: transparent;
-        color: @gray !important;
         border-top: 5px solid @brand-secondary;
         font-size: 1.25em;
     }
 
     &__navbar {
-        background: white;
+
         width: 100%;
         height: 50px;
         margin-top: 10px;
         margin-left: 20px;
+        background: white;
         border-radius: 0;
 
         @media screen and (max-width: @screen-md ) {
@@ -128,57 +143,55 @@
         @media screen and (max-width: @screen-sm ) {
             display: none !important;
         }
+
         ::-webkit-input-placeholder,
         ::-moz-placeholder,
         :-ms-input-placeholder,
         input:-moz-placeholder {
             font-weight: 400;
         }
-        input {
-            background: transparent;
+
+        input, input:focus {
+            display: block;
+            position: relative;
+            float: left;
             height: 100%;
             width: 60%;
-            float: left;
-            display: block;
+            padding-left: 26px;
             border: 1px solid darken(@gray-lighter, 4%);
             border-top: 3px solid @brand-primary;
             border-right: none;
-            position: relative;
-            padding-left: 26px;
         }
+
         input, select {
+            background-color: transparent;
+            background-image: none;
             font-family: @font-sans;
             font-size: 0.95em;
             font-weight: 200;
-        }
-        input:before {
-            content: '';
-            display: block;
-            width: 14px;
-            height: 14px;
-            background-image: url(/css/img/home/search.png);
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            z-index: 1500;
+            &:focus{
+
+            }
         }
 
         select.form-control {
-            width: 28%;
             display: inline-block;
-            height: 100%;
             vertical-align: top;
-            border: 1px solid darken(@gray-lighter, 4%);
-            background: transparent;
+            height: 100%;
+            width: 28%;
             padding: 0 0.5em;
             color: @gray;
+            background: transparent;
+            border: 1px solid darken(@gray-lighter, 4%);
+            .text-overflow();
+
+            // Arrow
             -webkit-appearance: none;
             -moz-appearance: none;
             background-size: 15px auto;
             background-position: 93% 50%;
             background-repeat: no-repeat;
             background-image: url(/css/img/about/arrow.png) !important;
-            .text-overflow();
 
             //noinspection CssInvalidPseudoSelector
             &::-ms-expand {
@@ -186,9 +199,13 @@
             }
 
             .before-sm({ width: 25%; });
-            :focus {
-                background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
-                background-position: 0 bottom;
+
+            &:focus {
+              animation: input-highlight 0.5s forwards;
+              box-shadow: none;
+              background-size: 0 2px, 100% 1px;
+              background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
+              background-position: 0 bottom;
             }
         }
 
