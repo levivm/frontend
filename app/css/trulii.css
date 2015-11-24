@@ -18393,10 +18393,10 @@ blockquote {
   overflow: hidden;
 }
 .home-footer__links {
-  min-height: 300px;
+  min-height: 200px;
   color: #e3e3e3;
   background-color: #393b3f;
-  padding: 4em 0em;
+  padding: 2em 0em;
 }
 .home-footer__links .link-column {
   padding: 0em 2em;
