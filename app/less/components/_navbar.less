@@ -118,106 +118,6 @@
         }
     }
 
-    &__search-box {
-        background: white;
-        width: 100%;
-        height: 50px;
-        margin-top: 10px;
-        margin-left: 20px;
-        border-radius: 0px;
-
-        @media screen and (max-width: @screen-md ){
-            width: 40%;
-        }
-
-        @media screen and (max-width: @screen-sm ){
-            display: none !important;
-        }
-        ::-webkit-input-placeholder,
-        ::-moz-placeholder,
-        :-ms-input-placeholder,
-        input:-moz-placeholder {
-          font-weight: 400;
-        }
-        input {
-            background: transparent;
-            height: 100%;
-            width: 60%;
-            float: left;
-            display: block;
-            border: 1px solid darken(@gray-lighter, 4%);
-            border-top: 3px solid @brand-primary;
-            border-right: none;
-            position: relative;
-            padding-left:26px;
-        }
-        input, select{
-          font-family: @font-sans;
-          font-size: 0.95em;
-          font-weight: 200;
-        }
-        input:before{
-          content: '';
-          display: block;
-          width: 14px;
-          height: 14px;
-          background-image: url(/css/img/home/search.png);
-          position: absolute;
-          top: 5px;
-          left: 5px;
-          z-index:1500;
-        }
-
-        &__city-select {
-            width: 28%;
-            display: inline-block;
-            height: 100%;
-            vertical-align: top;
-            border: 1px solid darken(@gray-lighter, 4%);
-            background: transparent;
-            padding: 0 0.5em;
-            color: @gray;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            background-size: 15px auto;
-            background-position: 93% 50%;
-            background-repeat: no-repeat;
-            background-image: url(/css/img/about/arrow.png) !important;
-            .text-overflow();
-
-            //noinspection CssInvalidPseudoSelector
-            &::-ms-expand {
-                display: none;
-            }
-
-            .before-sm({ width: 25%; });
-          :focus{
-            background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
-            background-position: 0 bottom;
-          }
-
-        }
-
-        &__btn {
-            &:before {
-                display: inline-block;
-                color: @lightbg-text;
-                font-size: 1.1em;
-            }
-
-            font-size: 18px;
-            width: 10%;
-            text-align: center;
-            height: 100%;
-            display: inline-block;
-            border: 0;
-            border-left: 1px solid @color-delimeter-dark;
-            background: transparent;
-
-            &:extend(.show-after-sm);
-        }
-    }
-
     &__user {
         display: inline-block;
         cursor: pointer;
@@ -239,8 +139,6 @@
             margin: 4px;
             width: 80px;
             height: 80px;
-            border-radius: 50%;
-            margin: 4px;
             border: 2px solid white;
         }
 
@@ -312,7 +210,7 @@
     .sub-title{
         position: absolute;
         right: 20vw;
-        top: 0px;
+        top: 0;
         font-weight:500;
         color:@gray;
     }
@@ -350,7 +248,7 @@
     opacity: 0;
   }
   p{
-    margin: 0.5em 0em;
+    margin: 0.5em 0;
     font-weight: 400;
     font-family: @font-sans;
     color: darken(@brand-success, 20%);
@@ -360,7 +258,7 @@
       li:not(:first-child){
         vertical-align: 1.5em;
         font-size: 1em;
-        padding: 0em 1em;
+        padding: 0 1em;
       }
     }
     li{
@@ -383,7 +281,7 @@
       padding: 0 1em;
     }
     .btn{
-      margin: 1em 0em;
+      margin: 1em 0;
       padding: 0.75em 1em;
     }
     .btn-login{
@@ -438,7 +336,7 @@
     &-links{
       min-height:100vh;
       background-color: darken(@brand-success, 5%);
-      padding: 10vh 5em 0em 5em;
+      padding: 10vh 5em 0 5em;
       max-height: 100vh;
       overflow-y: auto;
       ul{
@@ -466,8 +364,7 @@
         border-radius: 50%;
         width: 80px;
         height: 80px;
-        // border: 2px solid white;
-        margin: 0em 1em;
+        margin: 0 1em;
     }
   }
 }

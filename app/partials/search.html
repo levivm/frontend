@@ -1,5 +1,4 @@
 <div class="sidebar sidebar-category-container">
-    <div class="title" ng-bind="search.strings.COPY_INTERESTS"></div>
     <ul>
         <li class="sidebar-category" ng-repeat="category in search.categories">
             <div class="header" ng-class="{'active': search.searchCategory === category.id}">
@@ -66,7 +65,7 @@
                             <div class="col-xs-6 no-padding-left">
                                 <div id="level-btn-group" class="btn-group btn-group-justified" role="group"
                                      aria-label="{{::search.strings.LABEL_LEVEL}}">
-                                    <label class="btn btn-sm btn-default"
+                                    <label class="btn btn-sm btn-default btn-beginner-level"
                                            ng-repeat="level in search.levels track by level.code"
                                            ng-class="search.getLevelClassStyle(level)">
                                         <input type="radio" name="level" class="hidden" ng-model="search.searchLevel"

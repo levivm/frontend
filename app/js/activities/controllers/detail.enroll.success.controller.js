@@ -15,9 +15,10 @@
             activity : null,
             calendar : calendar,
             organizer : activity.organizer,
-            organizerActivities : []
+            organizerActivities : [],
+            orderId: $stateParams.order_id
         });
-
+        console.log($stateParams);
         _activate();
 
         function _getOrganizerActivities() {
@@ -78,12 +79,13 @@
             angular.extend(vm.strings, {
                 COPY_HEADER_TITLE: "¡Excelente! Te acabas de inscribir en",
                 COPY_HEADER_DESCRIPTION: "Te hemos enviado un correo electrónico con toda la "
-                    + "información referente a la inscripcion y el pago",
+                    + "información referente a la inscripcion y el pago.",
                 LABEL_REMEMBER: "Recuerda que",
                 LABEL_START_DATE: "Inicio",
                 LABEL_LOCATION: "Ubicación",
                 LABEL_QUESTIONS: "¿Dudas?",
                 LABEL_REQUIREMENTS: "¿Qué debo llevar?",
+                COPY_VIEW_YOUR_ORDER: "También puedes revisar tu ordén aquí",
                 LABEL_ATTENDEES: "Asistentes",
                 COPY_ASSISTANTS: "Estos son algunos de los asistentes a esta actividad. ¡Falta poco para conocerlos!",
                 LABEL_SHARE: "¡En compañia se la pasa mejor!",
