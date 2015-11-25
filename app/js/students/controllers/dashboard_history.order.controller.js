@@ -127,6 +127,7 @@
                 COPY_REFUND_REQUESTED_BY_OTHER: "El reembolso fue solicitado por el organizador",
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Ordén",
+                LABEL_FREE: "GRATIS",
                 LABEL_ACTIVITY: "Actividad",
                 LABEL_BUYER: "Comprador",
                 LABEL_PAYMENT_TYPE: "Forma de pago",

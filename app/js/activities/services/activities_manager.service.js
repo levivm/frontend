@@ -113,6 +113,7 @@
              * @name trulii.activities.services.ActivitiesManager#enroll
              * @description Enrolls a student on the specified activity
              * @param {number} activityId - Id of activity to enroll on
+             * @param {boolean} data.is_free - Indicates if the enrollment is free
              * @param {object} data - Contains enrollment info
              * @param {number} data.calendar - Id of calendar
              * @param {number} data.student - Id of student

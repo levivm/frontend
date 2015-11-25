@@ -27,14 +27,14 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailEnrollController', ActivityDetailEnrollController);
 
-    ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce', 'ActivitiesManager',
+    ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', '$scope', 'LocationManager', 'Referrals'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals'];
 
-    function ActivityDetailEnrollController($state, $window, $sce, ActivitiesManager,
+    function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, $scope, LocationManager, Referrals) {
+                                            Elevator, LocationManager, Referrals) {
 
         var vm = this;
         var isValidDate = false;
@@ -62,7 +62,7 @@
             processingPayment: false,
 
             addAssistant : addAssistant,
-            removeAssistant: removeAssistant,
+            removeAssistant : removeAssistant,
             enroll : enroll,
             isAnonymous : isAnonymous,
             appendPayUUniqueId: appendPayUUniqueId,
@@ -288,13 +288,60 @@
 
         }
 
+        function enrollFree(){
+
+            Error.form.clear(vm.enrollForm);
+            Error.form.clearField(vm.enrollForm,'generalError');
+
+            var data = {
+                activity: activity.id,
+                calendar: calendar.id,
+                amount: vm.quantity * calendar.session_price,
+                quantity: vm.quantity,
+                assistants: vm.assistants,
+            };
+
+            ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
+
+
+            function _enrollSuccess(order) {
+                calendar.addAssistants(order.assistants);
+                vm.success = true;
+                $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':calendar.id,
+                                    'order_id':order.id});
+            }
+
+            function _enrollError(response){
+                var error = response.data;
+                if (!(error.assistants)){
+                    Error.form.add(vm.enrollForm, error);
+                }
+                else{
+                    var error_index = _.findIndex(error.assistants,function(error_dict){
+
+                        return (!(_.isEmpty(error_dict)));
+                    });
+                    var base_selector = 'assistant_card_';
+                    console.log('selector',base_selector.concat(error_index));
+                    Elevator.toElement(base_selector.concat(error_index));
+                    Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
+                }
+                }
+
+        }
+
         function enroll() {
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
 
             if(vm.paymentWithPse){
                 enrollPSE();
-            } else {
+            }
+            else if (calendar.is_free){
+
+                enrollFree();
+            } 
+             else {
                 _startProccesingPayment();
                 StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
             }

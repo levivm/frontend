@@ -6,19 +6,25 @@
                     <div class="col-xs-3 order-description">
                         <h5 class="sinkin-medium separate-below"><span ng-bind="::order.strings.LABEL_ORDER"></span>&nbsp;<span
                                 ng-bind="::order.order.id"></span></h5>
+                        <!--Activity-->
                         <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_ACTIVITY"></h5>
                         <h5 class="sinkin-medium separate-below" ng-bind="::order.order.activity_name"></h5>
+                        <!--Buyer-->
                         <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_BUYER"></h5>
                         <h5 class="sinkin-medium separate-below" ng-bind="::(order.order.student.user.first_name + ' ' +
                                                 order.order.student.user.last_name)"></h5>
+                        <!--Payment-Type-->
                         <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_PAYMENT_TYPE"></h5>
+                        <h5 class="sinkin-medium separate-below" ng-show="::order.order.is_free" ng-bind="::order.strings.LABEL_FREE"></h5>
                         <h5 class="sinkin-medium separate-below">
                             <span ng-bind="::order.order.payment.payment_type"></span>
                             <span ng-show="::order.order.payment.last_four_digits">*****</span><span
                                 ng-bind="::order.order.payment.last_four_digits"></span>
                         </h5>
+                        <!--Status-->
                         <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_STATUS"></h5>
                         <h5 class="sinkin-medium separate-below" ng-bind="::order.order.status"></h5>
+                        <!--Date-->
                         <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_CREATE_AT"></h5>
                         <h5 class="sinkin-medium"><span class="text-capitalize"
                                                         ng-bind="::order.order.created_at | date:'EEEE d MMM y'"></span>
@@ -128,12 +134,16 @@
                             <div class="col-xs-3 no-padding">
                                 <h4 class="separate-above-less" ng-bind="::order.strings.LABEL_TOTAL"></h4>
                             </div>
+
                             <div class="col-xs-5 no-padding">
                                 <h4 class="text-right " ng-show="::order.isStudent"
-                                    ng-bind="::(order.order.total | currency:$:0)"></h4>
+                                    ng-bind="::(order.order.total | currency:$:0)" ng-class="{'text-strike':order.order.is_free}"></h4>
                                 <h4 class="text-right " ng-show="::order.isOrganizer"
-                                    ng-bind="::(order.totalAmount | currency:$:0)"></h4>
+                                    ng-bind="::(order.totalAmount | currency:$:0)" ng-class="{'text-strike':order.order.is_free}"></h4>
+                                <h4 class="text-right" ng-show="::order.order.is_free" ng-bind="::order.strings.LABEL_FREE"></h4>
                             </div>
+                            
+                            
                         </div>
                         <!--Refund Button-->
                         <div class="row no-margin">
