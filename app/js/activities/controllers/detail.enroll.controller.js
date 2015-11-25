@@ -158,14 +158,12 @@
 
                 var bank = vm.pseData.selectedBank ? vm.pseData.selectedBank.pseCode : null;
                 var userType = vm.pseData.selectedUserType ? vm.pseData.selectedUserType.value : null;
-                var idType = vm.pseData.selectedIdType ? vm.pseData.selectedIdType.value : null;
                 var idNumber = vm.pseData.idNumber;
 
                 var buyer_pse_data = {
                      response_url: Payments.PAYU_RESPONSE_URL,
                      bank: bank,
                      userType: userType,
-                     // idType: idType,
                      idNumber: idNumber
                 };
 

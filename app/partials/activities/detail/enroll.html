@@ -385,35 +385,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-<!--                                                 <div class="col-md-6 col-md-offset-1">
-                                                    <div class="form-group" trulii-input-errors-control="idType">
-                                                        <label for="idType" ng-bind="::enroll.strings.LABEL_ID_TYPE"></label>
-                                                        <select  class="form-control input-md" name="idType" id="idType"
-                                                                 ng-model="enroll.pseData.selectedIdType"
-                                                                 ng-options="type  as type.description for (index,type) in enroll.pseFormData.idTypes">
-                                                            <option value="" ng-show="!enroll.pseData.selectedBank"
-                                                                    ng-bind="::enroll.strings.OPTION_ID_TYPE_DEFAULT" selected>
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div> -->
-                                            </div>
-<!--                                             <div class="row separate-above">
-                                                <div class="col-md-6">
-                                                    <div class="form-group" trulii-input-errors-control="idType">
-                                                        <label for="idType" ng-bind="::enroll.strings.LABEL_ID_TYPE"></label>
-                                                        <select  class="form-control input-md" name="idType" id="idType"
-                                                                 ng-model="enroll.pseData.selectedIdType"
-                                                                 ng-options="type  as type.description for (index,type) in enroll.pseFormData.idTypes">
-                                                            <option value="" ng-show="!enroll.pseData.selectedBank"
-                                                                    ng-bind="::enroll.strings.OPTION_ID_TYPE_DEFAULT" selected>
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div> -->
-                                            <div class="row separate-above">
-                                                <div class="col-md-4">
+                                                <div class="col-md-4 col-md-offset-2">
                                                     <div class="form-group" trulii-input-errors-control="userType">
                                                         <label for="userType" ng-bind="::enroll.strings.LABEL_USER_TYPE"></label>
                                                         <select  class="form-control input-md" name="userType" id="userType"
@@ -425,11 +397,20 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-7 col-md-offset-1">
+                                            </div>
+                                            <div class="row separate-above">
+                                                <div class="col-md-6">
                                                     <div class="form-group" trulii-input-errors-control="idNumber">
                                                         <label for="idNumber" ng-bind="::enroll.strings.LABEL_ID_NUMBER"></label>
                                                         <input type="text" name="idNumber" id="idNumber" class="form-control"
                                                                ng-model="enroll.pseData.idNumber">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-5 col-md-offset-1">
+                                                    <div class="form-group" trulii-input-errors-control="contactPhone">
+                                                        <label for="contactPhone" ng-bind="::enroll.strings.LABEL_PHONE_NUMBER"></label>
+                                                        <input type="text" name="contactPhone" id="contactPhone" class="form-control"
+                                                               ng-model="enroll.pseData.contactPhone">
                                                     </div>
                                                 </div>
                                             </div>
@@ -443,20 +424,7 @@
                                                 </div>
                                             </div>
                                             <div class="row separate-above">
-<!--                                                 <div class="col-md-5">
-                                                    <div class="form-group" trulii-input-errors-control="payerEmail">
-                                                        <label for="payerEmail" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
-                                                        <input type="email" name="payerEmail" id="payerEmail" class="form-control"
-                                                               ng-model="enroll.pseData.payerEmail">
-                                                    </div>
-                                                </div> -->
-                                                <div class="col-md-5 col-md-offset-2">
-                                                    <div class="form-group" trulii-input-errors-control="contactPhone">
-                                                        <label for="contactPhone" ng-bind="::enroll.strings.LABEL_PHONE_NUMBER"></label>
-                                                        <input type="text" name="contactPhone" id="contactPhone" class="form-control"
-                                                               ng-model="enroll.pseData.contactPhone">
-                                                    </div>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
