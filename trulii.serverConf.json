@@ -7,7 +7,7 @@
     },
     "production": {
         "serverConf": {
-            "url": "https://dev.trulii.com",
+            "url": "https://api.trulii.com",
             "FACEBOOK_APP_KEY":"1698391543708239"
         }
     }
