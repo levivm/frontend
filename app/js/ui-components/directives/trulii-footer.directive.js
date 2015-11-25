@@ -41,7 +41,7 @@
                         FOOTER_LINKS_ORGANIZER_HEADER: "Organizador",
                         FOOTER_LINKS_ORGANIZER_BE: "Sé Organizador",
                         FOOTER_LINKS_ORGANIZER_HOW: "¿Cómo funciona?",
-                        FOOTER_LINKS_ORGANIZER_TIPS: "Tips para publicar",
+                        FOOTER_LINKS_ORGANIZER_TIPS: "Guía del Organizador",
                         FOOTER_LINKS_ORGANIZER_FEEDBACK: "Danos tu feedback",
                         FOOTER_LINKS_ORGANIZER_SUPPORT: "Soporte",
                         FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
