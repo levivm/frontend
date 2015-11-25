@@ -4,6 +4,12 @@
 @border-color: #DEDEDE;
 @border-widget: 1px solid @border-color;
 
+
+.activity-detail{
+  p{
+    word-break: break-all;
+  }
+}
 .organizer-widget {
 
     .card {
@@ -25,7 +31,11 @@
                 display: inline-block;
                 height: auto;
                 margin-left: 10%;
-                width: 30%;
+                min-width: 80px;
+                min-height: 80px;
+                width: 6vw;
+                height: 6vw;
+
             }
 
             .data {
@@ -545,7 +555,7 @@
 }
 
 .sign-up-container {
-    padding: 3em;
+    // padding: 3em;
     text-align: center;
     background-color: @brand-success;
 

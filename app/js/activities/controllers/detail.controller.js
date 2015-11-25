@@ -27,7 +27,7 @@
                                       cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
-        var visibleReviewListSize = 5;
+        var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
             city : null,
@@ -137,7 +137,7 @@
 
         function showMoreReviews(){
             if(visibleReviewListSize < reviews.length){
-                visibleReviewListSize += 5;
+                visibleReviewListSize += 3;
                 vm.reviews = reviews.slice(0, visibleReviewListSize);
             } else {
                 vm.hasMoreReviews = false;
@@ -308,7 +308,7 @@
                 ACTION_VIEW_OTHER_DATES: "Ver otras fechas",
                 ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
                 ACTIVITY_SOLD_OUT: "Agotado",
-                COPY_SOCIAL_BUTTONS: "¿Te gustó? Compartelo con tus amigos ",
+                COPY_SOCIAL_BUTTONS: "¿Te gustó? Compártelo con tus amigos",
                 COPY_SOCIAL_SHARE_FACEBOOK: "Compartir en Facebook",
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
@@ -348,7 +348,7 @@
                 LABEL_GOALS: "Objetivo",
                 LABEL_INSTRUCTORS: "Instructores",
                 LABEL_REQUIREMENTS: "Requisitos",
-                LABEL_METHODOLOGY: "Metodologia",
+                LABEL_METHODOLOGY: "Metodología",
                 LABEL_EXTRA_INFO: "Adicionales",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
@@ -357,23 +357,32 @@
                 VALUE_WITH_CERTIFICATION: "Con Certificado",
                 VALUE_WITHOUT_CERTIFICATION: "Sin Certificado",
                 REASON_NO_COMMISSIONS: "Sin Comisiones",
-                REASON_COPY_NO_COMMISSIONS: "¡En serio Te lo prometemos!",
+                REASON_COPY_NO_COMMISSIONS: "En serio, ¡te lo prometemos!",
                 REASON_REFUND: "Devolución Garantizada",
-                REASON_COPY_REFUND: "Por si no se realiza la actividad",
+                REASON_COPY_REFUND: "Por si no se realiza la actividad.",
                 REASON_SECURE: "Pago Seguro",
-                REASON_COPY_SECURE: "Inscribete con tranquilidad"
+                REASON_COPY_SECURE: "Inscribete con tranquilidad."
                 });
         }
 
         function _initWidget(){
             angular.element(document).ready(function () {
-                vm.scroll = document.body.scrollTop;
+                vm.scroll = window.scrollY;
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY  - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
                 $window.onscroll = function(){
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2 - 50;
-                    vm.scroll = document.body.scrollTop;
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 200 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
+                    vm.scroll = window.scrollY;
                     $scope.$apply();
+                    console.log(vm.scroll);
+                    console.log(vm.widgetOriginalPosition);
+                    console.log(vm.widgetMaxPosition);
+                    console.log('scroll');
+                    console.log(vm.scroll);
+                    console.log('detail.widgetMaxPosition');
+                    console.log(vm.widgetMaxPosition);
                 };
             });
         }
@@ -401,6 +410,10 @@
                 organizer : activity.organizer,
                 calendar_selected : activity.closest_calendar
             });
+
+            if(vm.reviews.length < 3){
+              vm.hasMoreReviews = false;
+            }
 
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");

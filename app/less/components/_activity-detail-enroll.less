@@ -230,13 +230,13 @@
         width: inherit;
         z-index: 100;
         background-color: white;
-        max-height: 84vh;
-        overflow-y: scroll;
-        overflow-x: hidden;
     }
     .fixed-widget{
         position: fixed;
-        top: 50px;
+        max-height: 84vh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        top: @navbar-height + 20;
     }
     .absolute-widget{
         position: absolute;
