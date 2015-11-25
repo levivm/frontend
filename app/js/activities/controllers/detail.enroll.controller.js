@@ -164,8 +164,8 @@
                 var buyer_pse_data = {
                      response_url: Payments.PAYU_RESPONSE_URL,
                      bank: bank,
-                     userType: userType,
-                     idType: idType,
+                     userType: null,
+                     idType: null,
                      idNumber: idNumber
                 };
 
