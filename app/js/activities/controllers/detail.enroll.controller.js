@@ -653,7 +653,7 @@
                 LABEL_APPLY_COUPON: "Aplicar Cupón",
                 LABEL_FREE_CALENDAR: "Actividad Gratis",
                 COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
-                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a INSCRIBIRME y listo.",
+                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a CONFIRMAR INSCRIPCIÓN",
                 LABEL_CREDIT: "Crédito",
                 LABEL_COUPON: "Cupón",
                 LABEL_ORGANIZER: "Organizador",
@@ -686,7 +686,7 @@
 
                 LABEL_PHONE_NUMBER:"Teléfono",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
-                LABEL_CARD_HOLDER: "Nombre del Titular (Sobre la tarjeta)",
+                LABEL_CARD_HOLDER: "Nombre en la tarjeta",
                 PLACEHOLDER_CARD_HOLDER: "Nombre en la tarjeta",
                 LABEL_CARD_NUMBER:"Número de tarjeta",
                 PLACEHOLDER_CARD_NUMBER: "Número de tarjeta",

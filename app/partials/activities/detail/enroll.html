@@ -109,7 +109,7 @@
                             <label for="inputCoupon" class="sr-only" ng-bind="::enroll.strings.LABEL_APPLY_COUPON"></label>
                             <div class="col-md-8 no-padding">
                                 <input type="text" class="form-control input-sm" id="inputCoupon"
-                                       ng-model="enroll.coupon.code" placeholder="Aplicar Cupon">
+                                       ng-model="enroll.coupon.code" placeholder="{{::enroll.strings.LABEL_APPLY_COUPON}}">
                             </div>
                             <button class="col-md-3 pull-right btn btn-xs btn-default"
                                     ng-class="{'disabled': enroll.hasCouponApplied}"
@@ -165,7 +165,7 @@
                                         <strong ng-bind="session.date | date:'EEEE'"></strong>
                                     </div>
                                     <div class="text-capitalize">
-                                        <strong ng-bind="session.date | date:'dd MMMM'"></strong>
+                                        <strong ng-bind="session.date | date:'d MMM y'"></strong>
                                     </div>
                                     <div class="separate-above-less">
                                         <span ng-bind="session.start_time | date: 'h:mm a'"></span>
@@ -325,7 +325,7 @@
                                             <div class="row">
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <span ng-bind="::enroll.strings.LABEL_EXPIRY_DATE"></span>
+                                                        <label ng-bind="::enroll.strings.LABEL_EXPIRY_DATE"></label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -372,7 +372,7 @@
                                         <trulii-preloader loader-control="enroll.loading_banks_list"></trulii-preloader>
                                         <div class="col-xs-8 col-xs-offset-2 separate-above" ng-show="!enroll.loading_banks_list" >
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-md-5">
                                                     <div class="form-group" trulii-input-errors-control="bank">
                                                         <label for="bank" ng-bind="::enroll.strings.LABEL_BANK"></label>
                                                         <select  class="form-control input-md" name="bank" id="bank"
@@ -385,9 +385,21 @@
                                                         </select>
                                                     </div>
                                                 </div>
+<!--                                                 <div class="col-md-6 col-md-offset-1">
+                                                    <div class="form-group" trulii-input-errors-control="idType">
+                                                        <label for="idType" ng-bind="::enroll.strings.LABEL_ID_TYPE"></label>
+                                                        <select  class="form-control input-md" name="idType" id="idType"
+                                                                 ng-model="enroll.pseData.selectedIdType"
+                                                                 ng-options="type  as type.description for (index,type) in enroll.pseFormData.idTypes">
+                                                            <option value="" ng-show="!enroll.pseData.selectedBank"
+                                                                    ng-bind="::enroll.strings.OPTION_ID_TYPE_DEFAULT" selected>
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div> -->
                                             </div>
-                                            <div class="row separate-above">
-                                                <div class="col-md-12">
+<!--                                             <div class="row separate-above">
+                                                <div class="col-md-6">
                                                     <div class="form-group" trulii-input-errors-control="idType">
                                                         <label for="idType" ng-bind="::enroll.strings.LABEL_ID_TYPE"></label>
                                                         <select  class="form-control input-md" name="idType" id="idType"
@@ -399,7 +411,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="row separate-above">
                                                 <div class="col-md-4">
                                                     <div class="form-group" trulii-input-errors-control="userType">
@@ -431,13 +443,13 @@
                                                 </div>
                                             </div>
                                             <div class="row separate-above">
-                                                <div class="col-md-5">
+<!--                                                 <div class="col-md-5">
                                                     <div class="form-group" trulii-input-errors-control="payerEmail">
                                                         <label for="payerEmail" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
                                                         <input type="email" name="payerEmail" id="payerEmail" class="form-control"
                                                                ng-model="enroll.pseData.payerEmail">
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 <div class="col-md-5 col-md-offset-2">
                                                     <div class="form-group" trulii-input-errors-control="contactPhone">
                                                         <label for="contactPhone" ng-bind="::enroll.strings.LABEL_PHONE_NUMBER"></label>
