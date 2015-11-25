@@ -182,9 +182,9 @@
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                             .finally(_finishProccesingPayment);
 
-                function _enrollSuccess(response) {
+                function _enrollSuccess(data) {
                     vm.success = true;
-                    var bank_url = response.data.bank_url;
+                    var bank_url = data.bank_url;
                     $window.location.href = bank_url;
                 }
 
