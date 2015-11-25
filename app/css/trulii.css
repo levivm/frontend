@@ -17977,14 +17977,8 @@ blockquote {
   color: #999999;
 }
 .attendees-panel {
+  border: none;
   box-shadow: none;
-  border: 1px solid #e3e3e3;
-}
-.attendees-panel .panel-heading {
-  padding: 0.5em;
-}
-.attendees-panel .panel-heading h4 {
-  margin: 0;
 }
 .payments-panel {
   box-shadow: none;

@@ -90,7 +90,7 @@
                 "banksList": [],
                 "userTypes":[
                     {'description':'Natural','value':'N'},
-                    {'description':'Juridica','value':'J'}
+                    {'description':'Jurídica','value':'J'}
                 ],
                 "idTypes":[
                     {'description':'Cédula de ciudadanía','value':'CC'},
@@ -184,7 +184,7 @@
 
                 function _enrollSuccess(data) {
                     vm.success = true;
-                    var bank_url = data.bank_url;
+                    var bank_url = response.bank_url;
                     $window.location.href = bank_url;
                 }
 
@@ -633,6 +633,7 @@
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
                 COPY_UNTIL_NOW: "Hasta ahora",
+                COPY_ANY_DOUBT: "¿Alguna duda? ",
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los",
@@ -654,6 +655,7 @@
                 COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a CONFIRMAR INSCRIPCIÓN",
                 LABEL_CREDIT: "Crédito",
                 LABEL_COUPON: "Cupón",
+                LABEL_CONTACT_US: "Contáctanos",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",

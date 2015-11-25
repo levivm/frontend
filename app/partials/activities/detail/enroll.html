@@ -222,7 +222,7 @@
                                                         <label class="control-label" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
                                                         <input class="form-control col-md-2" name="email" type="email"
                                                                ng-model="assistant.email"
-                                                               placeholder="{{::enroll.strings.LABEL_EMAIL}}"
+                                                               
                                                               />
                                                     </div>
                                                     <div class="form-group" trulii-input-errors-control="detail">
@@ -452,7 +452,7 @@
                             <button class="btn btn-block btn-primary separate-above text-uppercase"
                                     ng-click="enroll.enroll()"
                                     ng-bind="::enroll.strings.ACTION_ENROLL" ng-show="!enroll.processingPayment"></button>
-                            <div class="text-muted separate-above-medium" >
+                            <div class="text-muted separate-above-medium text-sm" >
                                 <span ng-bind="::enroll.strings.COPY_RELEASE_1">
                                 </span>
                                 <a ng-click='enroll.toggleReimbursement()' href="#" ng-bind="::enroll.strings.COPY_RELEASE_2"></a>
@@ -462,6 +462,12 @@
                                 <span ng-bind="::enroll.strings.COPY_RELEASE_5">
                                 </span>
 
+                            </div>
+                            <div class="text-muted separate-above text-sm" >
+                                <span ng-bind="::enroll.strings.COPY_ANY_DOUBT">
+                                </span>
+                                <a href="#"  ui-sref="contact-us" ng-bind="::enroll.strings.LABEL_CONTACT_US"></a>
+                                
                             </div>
                         </div>
                     </div>
