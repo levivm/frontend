@@ -18135,8 +18135,10 @@ blockquote {
   font-size: 1.4em;
 }
 .share-container img {
-  width: 10em;
+  width: 7em;
   height: auto;
+  margin-right: 2em;
+  margin-left: 2em;
 }
 .navigation-container img {
   padding: 0.2em 0.5em;
