@@ -7,7 +7,7 @@
                     <strong ng-bind="::success.activity.title"></strong>
                 </h1>
                 <h4 class="text-muted font-family-sans-alt separate-above" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h4>
-                <a ng-show="::success.orderId" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId, 
+                <a ng-show="::success.orderId" target="_blank" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId, 
                                              })" ng-bind="success.strings.COPY_VIEW_YOUR_ORDER"></a>
             </div>
         </div>
@@ -27,7 +27,9 @@
                             <div class="item-title text-uppercase"
                                  ng-bind="::success.strings.LABEL_START_DATE"></div>
                             <div class="item-copy text-capitalize"
-                                 ng-bind="::success.calendar.initial_date | date : 'fullDate'"></div>
+                                 ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')"></div>
+                            <div class="item-copy "
+                                 ng-bind="::('A las ' + (success.calendar.sessions[0].start_time | date: 'h:mm a'))"></div>
                         </div>
                     </div>
                     <div class="item">
@@ -46,6 +48,7 @@
                         <img class="item-img" src="css/img/activity-enroll/remember_doubts.png" alt="Doubts"/>
                         <div class="item-text">
                             <div class="item-title text-uppercase" ng-bind="success.strings.LABEL_QUESTIONS"></div>
+                            <div class="item-copy" ng-bind="success.strings.LABEL_ANY_DOUBT"></div>
                             <div class="item-copy"><a ui-sref="contact-us({'toState': success.currentState})"
                                                       ng-bind="::success.strings.ACTION_CONTACT_US"></a></div>
                         </div>
@@ -118,7 +121,7 @@
 
         <div class="row navigation-container img-carpet">
             <div class="col-md-6">
-                <a class="btn btn-link" ui-sref="activities-detail({activity_id: enroll.activity.id})">
+                <a class="btn btn-link" ui-sref="activities-detail({activity_id: success.activity.id})">
                     <img src="css/img/activity-enroll/navigation_back.png" alt="{{ ::success.strings.ACTION_GO_BACK }}"
                          class="img-responsive inline-block"/>
                     <span ng-bind="::success.strings.ACTION_GO_BACK"></span>

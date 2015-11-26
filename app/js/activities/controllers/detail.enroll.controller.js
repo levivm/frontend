@@ -90,7 +90,7 @@
                 "banksList": [],
                 "userTypes":[
                     {'description':'Natural','value':'N'},
-                    {'description':'Juridica','value':'J'}
+                    {'description':'Jurídica','value':'J'}
                 ],
                 "idTypes":[
                     {'description':'Cédula de ciudadanía','value':'CC'},
@@ -158,14 +158,12 @@
 
                 var bank = vm.pseData.selectedBank ? vm.pseData.selectedBank.pseCode : null;
                 var userType = vm.pseData.selectedUserType ? vm.pseData.selectedUserType.value : null;
-                var idType = vm.pseData.selectedIdType ? vm.pseData.selectedIdType.value : null;
                 var idNumber = vm.pseData.idNumber;
 
                 var buyer_pse_data = {
                      response_url: Payments.PAYU_RESPONSE_URL,
                      bank: bank,
                      userType: userType,
-                     idType: idType,
                      idNumber: idNumber
                 };
 
@@ -184,9 +182,9 @@
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                             .finally(_finishProccesingPayment);
 
-                function _enrollSuccess(response) {
+                function _enrollSuccess(data) {
                     vm.success = true;
-                    var bank_url = response.data.bank_url;
+                    var bank_url = response.bank_url;
                     $window.location.href = bank_url;
                 }
 
@@ -635,6 +633,7 @@
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
                 COPY_UNTIL_NOW: "Hasta ahora",
+                COPY_ANY_DOUBT: "¿Alguna duda? ",
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los",
@@ -653,9 +652,10 @@
                 LABEL_APPLY_COUPON: "Aplicar Cupón",
                 LABEL_FREE_CALENDAR: "Actividad Gratis",
                 COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
-                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a INSCRIBIRME y listo.",
+                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a CONFIRMAR INSCRIPCIÓN",
                 LABEL_CREDIT: "Crédito",
                 LABEL_COUPON: "Cupón",
+                LABEL_CONTACT_US: "Contáctanos",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
@@ -686,7 +686,7 @@
 
                 LABEL_PHONE_NUMBER:"Teléfono",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
-                LABEL_CARD_HOLDER: "Nombre del Titular (Sobre la tarjeta)",
+                LABEL_CARD_HOLDER: "Nombre en la tarjeta",
                 PLACEHOLDER_CARD_HOLDER: "Nombre en la tarjeta",
                 LABEL_CARD_NUMBER:"Número de tarjeta",
                 PLACEHOLDER_CARD_NUMBER: "Número de tarjeta",
