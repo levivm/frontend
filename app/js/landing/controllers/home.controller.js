@@ -30,7 +30,8 @@
             activitiesCount: activities.length,
             hasMoreActivities: true,
             toggleVideoShow: toggleVideoShow,
-            loadActivities: loadActivities
+            loadActivities: loadActivities,
+            coverVideo: {}
 
         });
 
@@ -146,17 +147,11 @@
                 HOW_LEARN_COPY: "Aprende",
                 HOW_LEARN_TEXT: "La vida es corta. ¡Aprende todo lo que puedas!",
                 PUBLISH_COPY: "¿Quieres publicar una actividad?",
-                PUBLISH_TEXT_1: "Trulii es el mejor espacio para",
-                PUBLISH_TEXT_2: "dar a conocer",
-                PUBLISH_TEXT_3: "tu actividad. Bien sea un curso de cocina, una classe de crossfit, un foro de negocios o un diplomado universitario, nosotros",
-                PUBLISH_TEXT_4: "te abrimos la puerta",
-                PUBLISH_TEXT_5: "a nuevos clientes y hacemos el trabjao sucio por ti.",
-                PUBLISH_TEXT_6: "Regístrate",
-                PUBLISH_TEXT_7: "sin costo alguno",
-                PUBLISH_TEXT_8: "y disfruta de nuestra prueba",
-                PUBLISH_TEXT_9: "gratuita",
-                PUBLISH_TEXT_10: "en tus primeras tres actividades.",
-                PUBLISH_TEXT_11: "¡Crece con nosotros!",
+                PUBLISH_TEXT_1: "Trulii es el mejor espacio para dar a conocer " +
+                "tu actividad. Bien sea un curso de cocina, una classe de crossfit, un foro de negocios o un diplomado universitario, nosotros " +
+                "te abrimos la puerta a nuevos clientes y hacemos el trabjao sucio por ti.",
+                PUBLISH_TEXT_2: "Regístrate sin costo alguno y disfruta de nuestra prueba gratuita en tus primeras tres actividades.",
+                PUBLISH_TEXT_3: "¡Crece con nosotros!",
                 PUBLISH_BUTTON_COPY: "Ser organizador",
                 CATEGORY_FITNESS: "Fitness",
                 CATEGORY_MUSIC: "Música",
@@ -171,6 +166,23 @@
             });
         }
 
+        function _replayVideos(){
+            angular.element(document).ready(function () {
+                document.getElementsByClassName('trulii-cover__background-video')[0].addEventListener("ended",
+                  function(){
+                    setTimeout(
+                      function(){
+                        // document.getElementsByClassName('trulii-cover__background-video')[0].play();
+                        video.addSource('webm', '/videos/home1.webm');
+                        video.addSource('webm', '/videos/home2.webm');
+                        video.addSource('webm', '/videos/home3.webm');
+                      }, 1000
+                    );
+                  },
+                true);
+            });
+        }
+
         function _activate(){
             _setStrings();
             _setCategories();
@@ -178,6 +190,8 @@
             video.addSource('webm', '/videos/home1.webm');
             video.addSource('webm', '/videos/home2.webm');
             video.addSource('webm', '/videos/home3.webm');
+            _replayVideos();
+
         }
 
     }

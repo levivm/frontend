@@ -67,9 +67,6 @@
                            ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
                     </li>
                     <li>
-                        <a href="" ng-bind="::strings.LABEL_ORGANIZER_CONTACTS"></a>
-                    </li>
-                    <li>
                         <a ui-sref="organizer-dashboard.instructors"
                            ng-click="toggleBurger()"
                            ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
@@ -88,7 +85,7 @@
                            ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
                     </li>
                     <li>
-                        <a href=""
+                        <a ui-sref="referrals"
                            ng-click="toggleBurger()"
                            ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
                     </li>
@@ -103,11 +100,6 @@
                            ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
                     </li>
                     <li>
-                        <a href=""
-                           ng-click="toggleBurger()"
-                           ng-bind="::strings.LABEL_STUDENT_FAVORITES"></a>
-                    </li>
-                    <li>
                         <a ui-sref="student-dashboard.history.orders"
                            ng-click="toggleBurger()"
                            ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
@@ -120,34 +112,78 @@
                 </ul>
             </div>
             <div class="col-xs-12 col-md-8 col-md-pull-4 burger-menu__column">
-                <!--Student Options-->
-                <div class="row">
-                    <div class="col-xs-12 burger-menu__header-links">
-                        <ul class="list-unstyled list-inline">
-                            <li class="hidden-sm hidden-xs">
-                                <img src="/css/img/logo-trulii.png" alt="" class="img-responsive">
-                            </li>
-                            <li>
-                                <a ui-sref="organizer-landing"
-                                   ng-click="toggleBurger()"
-                                   ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
-                            </li>
-                            <li ng-if="user">
-                                <a ui-sref="referrals-home"
-                                   ng-click="toggleBurger()"
-                                   ng-bind="::strings.COPY_INVITE_FRIEND"></a>
-                            </li>
-                            <li ng-if="!user">
-                                <a ui-sref="referrals-home-anon"
-                                   ng-click="toggleBurger()"
-                                   ng-bind="::strings.COPY_INVITE_FRIEND"></a>
-                            </li>
-                            <li>
-                                <a href=""
-                                   ng-click="toggleBurger()"
-                                   ng-bind="::strings.COPY_BLOG"></a>
-                            </li>
-                        </ul>
+                <div ng-if="!user">
+                    <div class="row">
+                        <div class="col-xs-12 burger-menu__header-links">
+                            <ul class="list-unstyled list-inline">
+                                <li class="hidden-sm hidden-xs">
+                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                </li>
+                                <li>
+                                    <a ui-sref="organizer-landing"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
+                                </li>
+                                <li ng-if="!user">
+                                    <a ui-sref="referrals-home-anon"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.COPY_INVITE_FRIEND"></a>
+                                </li>
+                                <li>
+                                    <a href="https://trulii.com/blog"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.LABEL_BLOG"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="user">
+                    <!--Student Options-->
+                    <div class="row" ng-if="user.is_student">
+                        <div class="col-xs-12 burger-menu__header-links">
+                            <ul class="list-unstyled list-inline">
+                                <li class="hidden-sm hidden-xs">
+                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                </li>
+                                <li>
+                                    <a ui-sref="organizer-landing"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
+                                </li>
+                                <li>
+                                    <a ui-sref="referrals-home"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.COPY_INVITE_FRIEND"></a>
+                                </li>
+                                <li>
+                                    <a href="https://trulii.com/blog"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.LABEL_BLOG"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Organizer Options-->
+                    <div class="row" ng-if="user && !user.is_student">
+                        <div class="col-xs-12 burger-menu__header-links">
+                            <ul class="list-unstyled list-inline">
+                                <li class="hidden-sm hidden-xs">
+                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                </li>
+                                <li>
+                                    <a ui-sref="dash.activities-new"
+                                       class="btn btn-primary"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.ACTION_CREATE"></a>
+                                </li>
+                                <li>
+                                    <a href="https://trulii.com/blog"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.LABEL_BLOG"></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <!--About Trulii-->
@@ -170,10 +206,6 @@
                                            ng-bind="::strings.LABEL_ABOUT_TEAM"></a>
                                     </li>
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
-                                           ng-bind="::strings.LABEL_ABOUT_STYLE_GUIDE"></a>
-                                    </li>
-                                    <li>
                                         <a ui-sref="contact-us" ng-click="toggleBurger()"
                                            ng-bind="::strings.LABEL_ABOUT_CONTACT_US"></a>
                                     </li>
@@ -187,11 +219,7 @@
                                            ng-bind="::strings.LABEL_ORGANIZER_HOW"></a>
                                     </li>
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
-                                           ng-bind="::strings.LABEL_ORGANIZER_GUIDE"></a>
-                                    </li>
-                                    <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ui-sref="help.organizer" ng-click="toggleBurger()"
                                            ng-bind="::strings.LABEL_ORGANIZER_HELP"></a>
                                     </li>
                                 </ul>
@@ -206,7 +234,7 @@
                                            ng-bind="::strings.LABEL_STUDENT_HOW"></a>
                                     </li>
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ui-sef="help.student" ng-click="toggleBurger()"
                                            ng-bind="::strings.LABEL_STUDENT_HELP"></a>
                                     </li>
                                 </ul>
