@@ -85,15 +85,16 @@
                 LABEL_LOCATION: "Ubicación",
                 LABEL_QUESTIONS: "¿Dudas?",
                 LABEL_REQUIREMENTS: "¿Qué debo llevar?",
+                LABEL_ANY_DOUBT: "Cualquier pregunta",
                 COPY_VIEW_YOUR_ORDER: "También puedes revisar tu ordén aquí",
                 LABEL_ATTENDEES: "Asistentes",
                 COPY_ASSISTANTS: "Estos son algunos de los asistentes a esta actividad. ¡Falta poco para conocerlos!",
-                LABEL_SHARE: "¡En compañia se la pasa mejor!",
-                COPY_SHARE: "Cuéntale a tus amigos sobre esta actividad",
+                LABEL_SHARE: "¡En compañía se la pasa mejor!",
+                COPY_SHARE: "Cuéntale a tus amigos sobre esta actividad.",
                 LABEL_SIMILAR: "Actividades similares",
                 ACTION_GO_TO_ACTIVITIES: "Ir a Mis Actividades",
                 ACTION_GO_BACK: "Regresar",
-                ACTION_CONTACT_US: "Contactanos"
+                ACTION_CONTACT_US: "Contáctanos"
             });
         }
 

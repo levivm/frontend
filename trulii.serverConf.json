@@ -2,13 +2,13 @@
     "development" :{
         "serverConf": {
             "url": "http://localhost:8000",
-            "FACEBOOK_APP_KEY":"1698391543708239" 
+            "FACEBOOK_APP_KEY":"1701354690078591" 
         }
     },
     "production": {
         "serverConf": {
             "url": "https://api.trulii.com",
-            "FACEBOOK_APP_KEY":"1563536137193781"
+            "FACEBOOK_APP_KEY":"1698391543708239"
         }
     }
 }

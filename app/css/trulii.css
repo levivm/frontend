@@ -17959,14 +17959,8 @@ blockquote {
   color: #999999;
 }
 .attendees-panel {
+  border: none;
   box-shadow: none;
-  border: 1px solid #e3e3e3;
-}
-.attendees-panel .panel-heading {
-  padding: 0.5em;
-}
-.attendees-panel .panel-heading h4 {
-  margin: 0;
 }
 .payments-panel {
   box-shadow: none;
@@ -18123,8 +18117,10 @@ blockquote {
   font-size: 1.4em;
 }
 .share-container img {
-  width: 10em;
+  width: 7em;
   height: auto;
+  margin-right: 2em;
+  margin-left: 2em;
 }
 .navigation-container img {
   padding: 0.2em 0.5em;

@@ -246,7 +246,7 @@
                 return response.data;
             }
             function error(response){
-                return response;
+                return $q.reject(response);
             }
         }
 
