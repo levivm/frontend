@@ -22,16 +22,19 @@
 
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
-
-                scope.isSearchVisible = true;
-                scope.showBurger = false;
+                var unsubscribeStateChange = null;
+                angular.extend(scope, {
+                    state: null,
+                    isSearchVisible : true,
+                    showBurger : false,
+                    toggleBurger: toggleBurger
+                });
 
                 _activate();
 
-                // --------- Public Functions ----------//
-                // TODO : ARREGLAR ESTO
-                scope.toggleBurger = function(){
-                  console.log('show burger = ' + scope.showBurger);
+                // --------- Exposed Functions ----------//
+
+                function toggleBurger(){
                   scope.showBurger = !scope.showBurger;
                 }
 
@@ -132,6 +135,11 @@
                 function _activate() {
                     _setStrings();
                     _getUser();
+
+                    unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
+                        scope.state = toState.name;
+                        console.log(scope.state);
+                    });
 
                     unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
                         console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
