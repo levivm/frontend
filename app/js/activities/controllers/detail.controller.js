@@ -61,7 +61,8 @@
             scroll: 0,
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
-            widgetAbsolutePosition: 0
+            widgetAbsolutePosition: 0,
+            selectedActivity: 0
         });
 
         _activate();
@@ -269,6 +270,9 @@
 
         function _getReviewRatingAvg(reviews){
             if(reviews.length === 0){ return 0; }
+            if(reviews.length < 3){
+              vm.hasMoreReviews = false;
+            }
             return reviews.map(getRatings).reduce(reduceRatings);
 
             function getRatings(review){ return review.rating; }
@@ -318,15 +322,18 @@
                 COPY_NO_CALENDARS_AVAILABLE: "Actualmente no hay otros calendarios disponibles",
                 COPY_OPPORTUNITIES: " oportunidades",
                 COPY_EMPTY_SECTION: "El Organizador no ha completado la información de esta sección aún ¡Regresa pronto!",
+                COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_TODAY: "Hoy",
                 COPY_DAY: "día ",
                 COPY_DAYS: "días ",
                 COPY_IN: "En ",
                 COPY_TO: " a ",
+                COPY_OF: " de ",
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_FREE: " Gratis",
                 COPY_VACANCY_SINGULAR: " Vacante",
                 COPY_VACANCY: " Vacantes",
+                COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
                 COPY_OTHER_SESSIONS: "Sesiones",
                 COPY_ONE_REVIEW: " Evaluación",
@@ -376,15 +383,12 @@
                     vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 200 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
                     vm.scroll = window.scrollY;
                     $scope.$apply();
-                    console.log(vm.scroll);
-                    console.log(vm.widgetOriginalPosition);
-                    console.log(vm.widgetMaxPosition);
-                    console.log('scroll');
-                    console.log(vm.scroll);
-                    console.log('detail.widgetMaxPosition');
-                    console.log(vm.widgetMaxPosition);
                 };
             });
+        }
+
+        function _initSignup(){
+          vm.selectedActivity = 0;
         }
 
         function _activate(){
@@ -411,10 +415,6 @@
                 calendar_selected : activity.closest_calendar
             });
 
-            if(vm.reviews.length < 3){
-              vm.hasMoreReviews = false;
-            }
-
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);
@@ -422,6 +422,7 @@
 
             _setSocialShare();
             _initWidget();
+            _initSignup();
 
             console.log('detail. activity:', vm.activity);
             console.log('detail. reviews:', reviews);

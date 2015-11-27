@@ -3,6 +3,8 @@
 @secondary-bg: #F7F7F7;
 @border-color: #DEDEDE;
 @border-widget: 1px solid @border-color;
+@selected-accent: desaturate(darken(@brand-success, 15%), 5%);
+@selected-accent-darker: desaturate(darken(@brand-success, 20%), 5%);
 
 
 .activity-detail{
@@ -10,6 +12,12 @@
     word-break: break-all;
   }
 }
+
+.widget-container{
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 .organizer-widget {
 
     .card {
@@ -18,7 +26,7 @@
         border-left: @border-widget;
 
         border-radius: 0;
-        padding: 1.5em 1em;
+        padding: 1.5em 0;
         margin: 0;
 
         .content {
@@ -46,7 +54,7 @@
                 .name {
                     font-family: @font-sans;
                     font-weight: 600;
-                    font-size: 1.2em;
+                    font-size: 1em;
                     letter-spacing: 2px;
                     color: @lightbg-text;
                     text-transform: uppercase;
@@ -374,7 +382,6 @@
     font-weight: 800;
 }
 
-
 .gallery-container {
     margin-top:3rem;
 }
@@ -487,6 +494,7 @@
   }
 
 }
+
 .location {
     .map{
         width: 100%;
@@ -555,57 +563,136 @@
 }
 
 .sign-up-container {
-    // padding: 3em;
-    text-align: center;
-    background-color: @brand-success;
+  text-align: center;
+  background-color: @brand-success;
 
+  h1, h2, h3, h4, h5, p, td, th {
+      color: @white;
+  }
 
-    h1, h2, h3, h4, h5, p {
-        color: @white;
-        font-weight: 600;
-    }
+  h5{
+    font-weight: 200;
+  }
 
-    &-info h5 {
-        font-family: @font-sans-alt;
-        font-weight: 500;
-    }
+  .calendars-container{
+    border-radius: @border-radius-base;
+    border: 1px solid darken(@brand-success, 10%);
+    background-color: darken(@brand-success, 7.5%);
 
+    .table{
 
-    .calendar-info {
-        margin-top: 3em;
-        text-align: center;
-        .date-info {
-            width: 40%;
-            display: inline-block;
-            text-align: right;
-            padding-right: 2em;
-            border-right: 1px solid @white;
+      thead, tbody, tfoot{
 
-            .date{
-                font-size: 3em;
-                text-transform: uppercase;
+        tr{
+
+          .checkbox {
+            display:inline-block;
+            width:19px;
+            height:19px;
+            margin:-1px 4px 0 0;
+            vertical-align:middle;
+            cursor:pointer;
+            -moz-border-radius:  50%;
+            border-radius:  50%;
+            border: 3px solid @selected-accent-darker;
+            background-color: @selected-accent-darker;
+          }
+
+          .checkbox, td{
+            transition: background-color 0.25s linear;
+          }
+
+          th, td{
+            vertical-align: middle;
+            border-top: none;
+          }
+
+          th{
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 1.5em;
+            text-align: center;
+          }
+
+          td{
+            cursor:pointer;
+            font-weight: 600;
+            padding: 15px 1.5em;
+          }
+
+        }
+        tr.active{
+          td{
+            padding: 5px 1.5em;
+            line-height: 0;
+            border-top: 6px solid darken(@brand-success, 7.5%);
+            line-height: 2em;
+          }
+
+          .checkbox{
+            background-color: @brand-success;
+
+          }
+
+          td:first-child{
+            background-color: transparent;
+          }
+
+          td:not(:first-child){
+            background-color: @selected-accent;
+          }
+
+          td:nth-child(2){
+            border-top-left-radius: 17%;
+            border-bottom-left-radius: 4px;
+          }
+
+          td:last-child{
+            border-top-right-radius: 17%;
+            border-bottom-right-radius: 4px;
+          }
+
+        }
+        tr.signup-row{
+          border-bottom: 15px solid darken(@brand-success, 7.5%);
+          text-align: left;
+          td{
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: @selected-accent-darker;
+            .btn{
+              text-transform: uppercase;
+              font-size: 0.9em;
+              text-decoration: none;
             }
+          }
+          td:nth-child(2){
+            padding-left: 1.5em;
+          }
+          td:not(:first-child){
+            background-color: @brand-success;
+          }
         }
 
-        .price {
-            width: 40%;
-            display: inline-block;
-            text-align:left;
-            padding-left: 2em;
+      }
 
-            h5{
-                font-size: 3em;
-            }
-        }
     }
 
-    .btn {
-        margin-top: 2em;
-    }
+  }
 
-    .btn-link {
-        text-decoration: underline;
+  .sessions-container{
+
+    padding-left:20px;
+
+    .sessions{
+      text-align: left;
+      border-radius: @border-radius-base;
+      border: 1px solid darken(@brand-success, 10%);
+      padding: 2em 2.5em;
+      background-color: darken(@brand-success, 12.5%);
     }
+  }
+
 }
 
 .reasons-container {

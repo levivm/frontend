@@ -227,7 +227,6 @@
 
 @media (min-width: 992px){
     .absolute-widget, .fixed-widget{
-        width: inherit;
         z-index: 100;
         background-color: white;
     }
@@ -237,9 +236,10 @@
         overflow-y: scroll;
         overflow-x: hidden;
         top: @navbar-height + 20;
+        width: ~"calc(25% - 30px)"; //Width - el padding derecho
     }
     .absolute-widget{
         position: absolute;
-        width:100%;
+        width: ~"calc(100% - 50px)"; // Ni idea de porque 50, pero se ve bien
     }
 }
