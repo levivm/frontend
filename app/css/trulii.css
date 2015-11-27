@@ -15273,7 +15273,7 @@ td {
   display: inline-block;
   border: 1px solid #999999;
 }
-.panel-default i {
+.panel-default .expand {
   position: absolute;
   right: 1em;
   top: 1em;
@@ -18544,16 +18544,20 @@ input[type=text].form-control.referral-link:focus {
 .page {
   width: 216mm;
   min-height: 279mm;
-  padding: 20mm;
+  padding: 10mm;
   margin: 10mm auto;
   border: 1px #D3D3D3 solid;
-  border-radius: 5px;
   background: white;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+@media screen {
+  .page {
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  }
 }
 .subpage {
   position: relative;
-  height: 239mm;
+  min-height: 239mm;
   /* .page height -40mm (20 off top/bottom) */
 }
 @page {
@@ -18574,7 +18578,6 @@ input[type=text].form-control.referral-link:focus {
     min-height: initial;
     box-shadow: initial;
     background: initial;
-    page-break-after: always;
   }
 }
 .page .table thead tr th,

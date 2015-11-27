@@ -166,14 +166,23 @@
             return deferred.promise;
         }
 
-        function getOrders(activityId){
+        function getOrders(activityId, calendarId){
             return $http.get(api.orders(activityId)).then(success, error);
 
             function success(response){
-                return response.data;
+                if(calendarId){
+                    return response.data.filter(filterByCalendarId);
+                } else {
+                    return response.data;
+                }
             }
+
             function error(response){
                 return response;
+            }
+
+            function filterByCalendarId(order){
+                return order.calendar === parseInt(calendarId);
             }
         }
 
