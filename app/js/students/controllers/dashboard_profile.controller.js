@@ -25,8 +25,9 @@
             mstep : 15,
             maxStartDate : new Date(),
             dateOptions : {
-                formatYear: 'yy',
-                startingDay: 1
+                formatYear: 'yyyy',
+                startingDay: 1,
+                showWeeks:false,
             },
             cities : cities,
             ismeridian : true,
@@ -129,7 +130,6 @@
         }
 
         function selectGender(gender){
-            console.log('selectGender. gender:', gender);
             if(gender){
                 var id = gender? gender.id : null;
                 _setGender(id);
@@ -146,7 +146,7 @@
         }
 
         function _setDates(){
-            vm.student.birth_date = new Date(student.birth_date)
+            vm.student.birth_date = new Date(student.birth_date);
         }
 
         function _setStrings() {
@@ -154,14 +154,16 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                ACTION_REPLACE_PICTURE: "Cambiar foto",
+                ACTION_REPLACE_PICTURE: "Cambiar imagen",
                 ACTION_SAVE: "Guardar",
                 ACTION_CLOSE: "Cerrar",
                 LABEL_FIRST_NAMES: "Nombres",
-                LABEL_BIRTH_DATE: "Fecha de Nacimiento",
+                LABEL_BIRTH_DATE: "Fecha de nacimiento",
                 LABEL_LAST_NAMES: "Apellidos",
                 LABEL_GENDER: "Género",
                 LABEL_CITY: "Ciudad",
+                LABEL_TELEPHONE: "Teléfono",
+                COPY_PRIVATE_DATA_TOOLTIP: "Esta información no la compartiremos con nadie.",
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
                 OPTION_SELECT: "Seleccione Ciudad",

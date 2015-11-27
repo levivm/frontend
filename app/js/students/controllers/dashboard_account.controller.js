@@ -53,7 +53,14 @@
 
             function success(response) {
                 vm.isSaving = false;
-                Toast.info("Password cambiado");
+                angular.extend(vm.password_data,{
+                    'oldpassword':null,
+                    'password1':null,
+                    'password2':null,
+                });
+
+                Toast.info(vm.strings.COPY_TOAST_CHANGE_PASSWORD_INFO,
+                        vm.strings.COPY_TOAST_CHANGE_PASSWORD,{timeOut: 10000});
             }
 
             function fail(response){
@@ -65,7 +72,8 @@
         function _changeSuccess(response) {
             Authentication.getAuthenticatedAccount(true);
             vm.isSaving = false;
-            Toast.info("Correo cambiado");
+            Toast.info(vm.strings.COPY_TOAST_EMAIL_CHANGED_INFO, 
+                    vm.strings.COPY_TOAST_EMAIL_CHANGED,{timeOut: 10000});
         }
 
         function _changeFail(response, form) {
@@ -93,16 +101,20 @@
             }
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
-                COPY_TAB_EMAIL: "Puedes modificar tu dirección de correo electrónico si así lo deseas",
-                COPY_TAB_PASSWORD: "En caso de modificar tu contraseña te recomendamos crear una segura "
-                    + "y fácil de recordar.",
-                LABEL_CURRENT_PASSWORD: "Contraseña Actual",
-                LABEL_NEW_PASSWORD: "Nueva Contraseña",
-                LABEL_CONFIRM_PASSWORD: "Confirmar Nueva Contraseña",
-                LABEL_EMAIL: "Correo Electrónico",
+                COPY_TAB_EMAIL: "Luego de cambiar tu dirección de correo electrónico te enviaremos un" 
+                       + " correo a tu nueva dirección.",
+                COPY_TAB_PASSWORD: "En caso de modificar tu contraseña te recomendamos crear una segura y fácil de recordar.",
+                LABEL_CURRENT_PASSWORD: "Contraseña actual",
+                LABEL_NEW_PASSWORD: "Nueva contraseña",
+                LABEL_CONFIRM_PASSWORD: "Confirmar nueva contraseña",
+                LABEL_EMAIL: "Correo electrónico",
                 SECTION_ACCOUNT: "Cuenta",
-                TAB_PASSWORD: "Cambiar Contraseña",
-                TAB_EMAIL: "Correo Electrónico"
+                TAB_PASSWORD: "Cambiar contraseña",
+                TAB_EMAIL: "Correo electrónico",
+                COPY_TOAST_EMAIL_CHANGED: "Correo cambiado",
+                COPY_TOAST_EMAIL_CHANGED_INFO: "Si el correo electrónico llegó a tu nueva dirección, cierra sesión "
+                        + "e inicia nuevamente con tu nueva dirección.",
+                COPY_TOAST_CHANGE_PASSWORD: "Contraseña cambiada"
             });
         }
 
