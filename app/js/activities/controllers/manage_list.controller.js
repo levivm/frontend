@@ -43,24 +43,16 @@
 
 
         function _mapPages(){
-          // for(var i = 6; i < 36; i++){
-          //     vm.assistants.push({
-          //         'email': 'fer@trulii.com',
-          //         'first_name': 'Fernando' + i,
-          //         'last_name': 'De Freitas' + i,
-          //         'id': i
-          //     });
-          // }
-          // console.log(vm.assistants);
-
           vm.pages = new Array( Math.floor(vm.assistants.length/7) );
 
           for(var i =0; i < vm.assistants.length/7; i++){
             vm.pages[i] = new Array();
           }
+
           for(var i = 0; i < vm.assistants.length; i++){
             vm.pages[ Math.floor(i/7) ].push(vm.assistants[i]);
           }
+          
         }
 
         function _mapOrders(){
