@@ -5,6 +5,12 @@
   margin: 10mm auto;
   border: 1px #D3D3D3 solid;
   background: white;
+  overflow: visible !important;
+  position: relative !important;
+  // * {
+  //   overflow: visible !important;
+  //   position: relative !important;
+  // }
   @media screen {
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
@@ -12,7 +18,7 @@
 }
 .subpage {
   position: relative;
-  min-height: 239mm; /* .page height -40mm (20 off top/bottom) */
+  min-height: 258mm; /* .page height -40mm (20 off top/bottom) */
 }
 
 @page {
@@ -23,6 +29,8 @@
   html, body {
     width: 216mm;
     height: 279mm;
+    overflow: visible !important;
+    position: relative !important;
   }
   .page {
     margin: 0;
@@ -76,7 +84,7 @@
   }
   &__footer{
     position: absolute;
-    bottom:0px;
+    bottom:20px;
     left: 0px;
     span:nth-child(1){
       position: absolute;

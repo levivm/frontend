@@ -20,32 +20,47 @@
         angular.extend(vm, {
             calendar : calendar,
             assistants : calendar.assistants,
-            printList: printList
+            printList: printList,
+            pages: []
         });
 
         _activate();
 
-        for(var i = 6; i < 36; i++){
-            vm.assistants.push({
-                'email': 'fer@trulii.com',
-                'first_name': 'Fernando' + i,
-                'last_name': 'De Freitas' + i,
-                'id': i
-            });
-        }
-        console.log(vm.assistants);
+
 
         function printList(){
             var book = angular.element.find('.book')[0];
             var link = $window.document.createElement("link");
-            link.href = "http://localhost:8080/css/trulii.css";
+            link.href = "/css/trulii.css";
             link.type = "text/css";
             link.rel = "stylesheet";
             book.appendChild(link);
             var table = book.innerHTML;
-            var myWindow = window.open('', '', 'width=1200, height=600');
+            var myWindow = window.open('', '', 'width=1200, height=600, scrollbars=yes');
             myWindow.document.write(table);
             setTimeout(function(){ myWindow.print(); }, 1000);
+        }
+
+
+        function _mapPages(){
+          // for(var i = 6; i < 36; i++){
+          //     vm.assistants.push({
+          //         'email': 'fer@trulii.com',
+          //         'first_name': 'Fernando' + i,
+          //         'last_name': 'De Freitas' + i,
+          //         'id': i
+          //     });
+          // }
+          // console.log(vm.assistants);
+
+          vm.pages = new Array( Math.floor(vm.assistants.length/7) );
+
+          for(var i =0; i < vm.assistants.length/7; i++){
+            vm.pages[i] = new Array();
+          }
+          for(var i = 0; i < vm.assistants.length; i++){
+            vm.pages[ Math.floor(i/7) ].push(vm.assistants[i]);
+          }
         }
 
         function _mapOrders(){
@@ -116,8 +131,10 @@
             _setStrings();
             vm.activity = _mapMainPicture(activity);
             _mapOrders(activity.id);
+            _mapPages();
             console.log('activity:', activity);
             console.log('calendar:', calendar);
+            console.log(vm.pages);
 
         }
 
