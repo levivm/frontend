@@ -787,7 +787,7 @@
     .sessions-container{
       padding: 0;
     }
-    
+
   }
 
 
@@ -802,6 +802,27 @@
         display: block;
         text-align: center;
       }
+    }
+  }
+}
+
+.modal-email{
+  border-radius: @border-radius-base;
+  .modal-header{
+    color: @gray;
+    padding: 5px 5px 10px 5px;
+    background-color: @brand-success;
+    border-top-left-radius: @border-radius-base;
+    border-top-right-radius: @border-radius-base;
+  }
+  .modal-body{
+    padding: 10px 60px;
+    label{
+      font-weight: 500;
+      color: @gray-dark !important;
+    }
+    input, textarea{
+      border: 1px solid @gray-light-medium;
     }
   }
 }

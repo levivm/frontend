@@ -62,7 +62,9 @@
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
             widgetAbsolutePosition: 0,
-            selectedActivity: 0
+            selectedActivity: 0,
+            showEmail: false,
+            toggleEmailShow: toggleEmailShow,
         });
 
         _activate();
@@ -149,6 +151,10 @@
             console.log('VIEW MORE DAATESSS');
             Elevator.toElement('calendar_widget');
 
+        }
+
+        function toggleEmailShow(){
+          vm.showEmail = !vm.showEmail;
         }
 
         //--------- Internal Functions ---------//
@@ -368,7 +374,16 @@
                 REASON_REFUND: "Devolución Garantizada",
                 REASON_COPY_REFUND: "Por si no se realiza la actividad.",
                 REASON_SECURE: "Pago Seguro",
-                REASON_COPY_SECURE: "Inscribete con tranquilidad."
+                REASON_COPY_SECURE: "Inscribete con tranquilidad.",
+                EMAIL_MODAL_HEADER: "Comparte vía correo electrónico",
+                EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
+                EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
+                EMAIL_MODAL_MESSAGE_LABEL: "Escribe un mensaje:",
+                EMAIL_MODAL_MESSAGE_PLACEHOLDER: "Hey, échale un vistazo a esta actividad en Trulii. ¡Sé que te encantará!",
+                EMAIL_MODAL_SEND: "Enviar invitacion"
+
+
+
                 });
         }
 
@@ -380,7 +395,7 @@
                 vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
                 $window.onscroll = function(){
                     vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 200 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
                     vm.scroll = window.scrollY;
                     $scope.$apply();
                 };
