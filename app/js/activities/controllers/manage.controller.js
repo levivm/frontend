@@ -12,9 +12,9 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$rootScope', '$filter', 'activity', 'ActivitiesManager'];
+    ActivitiesManageCtrl.$inject = ['$window', '$filter', 'activity', 'ActivitiesManager'];
 
-    function ActivitiesManageCtrl($rootScope, $filter, activity, ActivitiesManager) {
+    function ActivitiesManageCtrl($window, $filter, activity, ActivitiesManager) {
 
         var vm = this;
         angular.extend(vm, {
@@ -101,6 +101,10 @@
         }
 
         function expandCalendar(calendar){
+            if(vm.activeCalendar && vm.activeCalendar.id === calendar.id){
+                vm.activeCalendar = null;
+                return;
+            }
             vm.activeCalendar = calendar;
             assistants = calendar.assistants;
             vm.assistantPaginationOpts.totalItems = assistants.length;
@@ -115,7 +119,6 @@
                 orders = $filter('orderBy')(ordersResponse.map(mapOrder), 'id', true);
                 vm.orderPaginationOpts.totalItems = orders.length;
                 vm.orders = orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
-                console.log('orders:', orders);
             }
             function error(response){
                 console.error('_getOrders. Error in orders response:', response);
@@ -147,7 +150,6 @@
             calendars = activity.calendars.map(_mapDateMsg);
             vm.calendars = calendars.slice(0, vm.calendarPaginationOpts.itemsPerPage);
             vm.calendarPaginationOpts.totalItems = calendars.length;
-            console.log('calendars:', calendars);
             return calendars;
           }
         }
@@ -177,12 +179,14 @@
                 ACTION_REIMBURSE_ORDER: "Reembolsar Orden",
                 ACTION_REIMBURSE_ASSISTANT: "Reembolsar Asistente",
                 ACTION_VIEW_DETAIL: "Ver detalle",
+                ACTION_PRINT: "Imprimir",
                 COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad",
                 COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito esta actividad",
                 COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
                 COPY_SEARCH: "Buscar orden por número, fecha o monto",
+                LABEL_MANAGE: "Gestionar",
                 LABEL_ORDER_NUMBER: "Orden N°",
                 LABEL_CALENDAR: "Inicio",
                 LABEL_SEARCH: "Buscar Ordenes",
@@ -216,7 +220,7 @@
                 HEADER_SALE_DATA:"Fecha de Venta",
                 HEADER_UNIT_PRICE:"Precio Unitario",
                 HEADER_TOTAL:"Total",
-                HEADER_STATUS:"Estatus",
+                HEADER_STATUS:"Estatus"
             });
         }
 

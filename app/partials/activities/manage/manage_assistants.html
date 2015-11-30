@@ -1,10 +1,13 @@
-
+<div class="navbar-secondary">
+    <ul>
+        <li class="navbar-secondary__item active">
+            <span ng-bind="::manage.strings.LABEL_MANAGE"></span>
+        </li>
+    </ul>
+</div>
 <div class="container-fluid">
-
     <div class="col-md-11 col-md-offset-1">
-
         <p class="text-muted" ng-bind="manage.strings.COPY_ASSISTANTS"></p>
-
         <div ng-if="manage.calendars.length > 0" class="row">
             <div class="col-md-12">
                 <div class="panel panel-default" style="cursor: pointer;"
@@ -38,22 +41,30 @@
                                     </div>
                                 </span>
                             </div>
-                            <i class="mdi-hardware-keyboard-arrow-down"></i>
+                            <i class=" expand mdi-hardware-keyboard-arrow-down"></i>
                         </div>
                     </div>
                     <div class="panel-body" data-toggle="manage.activeCalendar.id == calendar.id" trulii-expandable-content>
                         <div ng-if="calendar.assistants.length > 0">
-                            <div class="form-group">
-                                <label class="control-label sr-only"
-                                       ng-bind="::manage.strings.LABEL_SEARCH"></label>
-                                <div class="input-group">
-                                    <input class="form-control floating-label" type="text"
-                                           ng-model="manage.queries.assistantQuery"
-                                           ng-change="manage.updateByQuery(manage.TYPE_ASSISTANT)"
-                                           placeholder="{{manage.strings.COPY_SEARCH}}">
+                            <div class="row">
+                                <div class="col-xs-8">
+                                    <div class="form-group">
+                                        <label class="control-label sr-only"
+                                               ng-bind="::manage.strings.LABEL_SEARCH"></label>
+                                        <div class="input-group">
+                                            <input class="form-control floating-label" type="text"
+                                                   ng-model="manage.queries.assistantQuery"
+                                                   ng-change="manage.updateByQuery(manage.TYPE_ASSISTANT)"
+                                                   placeholder="{{manage.strings.COPY_SEARCH}}">
                                     <span class="input-group-addon">
                                         <i class="mdi-action-search"></i>
                                     </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4">
+                                    <a ui-sref="^.assistants-list({'calendar_id': calendar.id})" class="btn btn-default pull-right text-align-vertical"
+                                       ng-bind="::manage.strings.ACTION_PRINT"></a>
                                 </div>
                             </div>
 
@@ -197,8 +208,6 @@
                                 </div>
                               </div>
                             </div>
-
-
                         </div>
                         <!--If there are no assistants-->
                         <div ng-if="calendar.assistants.length <= 0" class="row">

@@ -169,6 +169,15 @@
                 url:'assistants',
                 templateUrl: 'partials/activities/manage/manage_assistants.html'
             })
+            .state('dash.activities-manage.assistants-list', {
+                url:'list/:calendar_id',
+                controller: 'ActivitiesManageListCtrl as print',
+                templateUrl: 'partials/activities/manage/manage_assistants_list.html',
+                resolve: {
+                    calendar: fetchCalendar,
+                    orders: getOrders
+                }
+            })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/',
                 views:{
@@ -235,7 +244,7 @@
                     organizerActivities: getOrganizerActivities
                 },
                 params:{
-                    order_id:null,
+                    order_id: null
                 }
             });
 
@@ -387,8 +396,8 @@
          * @requires trulii.activities.services.CalendarsManager
          * @methodOf trulii.activities.config
          */
-        getCalendar.$inject = ['$stateParams','calendars', 'CalendarsManager'];
-        function getCalendar($stateParams, calendars, CalendarsManager){
+        getCalendar.$inject = ['$stateParams', 'CalendarsManager'];
+        function getCalendar($stateParams, CalendarsManager){
             return CalendarsManager.getCalendar($stateParams.calendar_id);
         }
 
@@ -436,6 +445,18 @@
         getOrder.$inject = ['$stateParams','activity'];
         function getOrder($stateParams, activity){
             return activity.getOrder($stateParams.orderId);
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getOrders
+         * @description Retrieves the orders for an activity
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getOrders.$inject = ['$stateParams','ActivitiesManager'];
+        function getOrders($stateParams, ActivitiesManager){
+            return ActivitiesManager.getOrders($stateParams.activity_id, $stateParams.calendar_id);
         }
 
 

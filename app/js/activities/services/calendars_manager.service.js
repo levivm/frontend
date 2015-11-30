@@ -25,7 +25,7 @@
             _pool : {},
             calendars : [],
             _retrieveInstance : function (calendarId, calendarData) {
-                console.log('pool', this._pool);
+                //console.log('pool', this._pool);
                 var instance = this._search(calendarId);
                 // if calendar does not exist, create new one using calendarData
                 if (!(instance)) {
