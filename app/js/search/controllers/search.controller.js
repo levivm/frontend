@@ -12,15 +12,21 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$timeout', '$state', '$stateParams', 'ActivitiesManager', 'LocationManager', 'SearchManager',
-        'datepickerConfig', 'datepickerPopupConfig'];
+    SearchController.$inject = ['$rootScope', '$scope','$filter', '$q', '$location','$anchorScroll', '$timeout', '$state', '$stateParams', 'generalInfo','ActivitiesManager', 'LocationManager', 'SearchManager',
+        'datepickerConfig', 'datepickerPopupConfig' ];
 
-    function SearchController($rootScope, $scope, $q, $location, $timeout, $state, $stateParams, ActivitiesManager, LocationManager, SearchManager,
-          datepickerConfig, datepickerPopupConfig) {
+    function SearchController($rootScope, $scope, $filter, $q, $location,$anchorScroll, $timeout, $state, $stateParams, generalInfo, ActivitiesManager, LocationManager, SearchManager,
+          datepickerConfig, datepickerPopupConfig ) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var unsuscribeSearchModified = null;
+        var activities = [];
         var vm = this;
+        var ORDERING_BY_SCORE_KEY = 'score';
+        var ORDERING_BY_SOONEST_DATE_KEY  = 'calendar_soonest';
+        var ORDERING_BY_LOWEST_PRICE_KEY  = 'closest_calendar.session_price';
+        var ORDERING_BY_HIGHEST_PRICE_KEY = '-closest_calendar.session_price';
+        var ORDERING_BY_ASSISTANT_AMOUNT_KEY  = '-closest_calendar.assistants.length';
         angular.extend(vm, {
             activities : [],
             levels: [],
@@ -40,8 +46,14 @@
             format : FORMATS[0],
             minStartDate : new Date(),
             dateOptions : {
-                formatYear: 'yy',
+                formatYear: 'yyyy',
                 startingDay: 1
+            },
+            activitiesPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 1,
+                pageNumber: 1,
+                maxPagesSize:10,
             },
             opened: false,
             sliderOptions: {
@@ -49,6 +61,30 @@
                 max: 1000000,
                 step: 50000
             },
+            orderByOptions:[
+                {
+                    'predicate':ORDERING_BY_LOWEST_PRICE_KEY,
+                    'name':'Menor precio'
+                },
+                {
+                    'predicate':ORDERING_BY_HIGHEST_PRICE_KEY,
+                    'name':'Mayor precio'
+                },
+                {
+                    'predicate':ORDERING_BY_SCORE_KEY,
+                    'name':'Relevancia'
+                },
+                {
+                    'predicate':ORDERING_BY_SOONEST_DATE_KEY,
+                    'name':'Más próxima'
+                },
+                 {
+                    'predicate':ORDERING_BY_ASSISTANT_AMOUNT_KEY,
+                    'name':'Asistentes'
+                },               
+
+            ],
+            pageChange:pageChange,
             getLevelClassStyle: getLevelClassStyle,
             openDatePicker: openDatePicker,
             expandCategory: expandCategory,
@@ -57,8 +93,12 @@
             setLevel: setLevel,
             setDate: setDate,
             updateCost: updateCost,
+            stopDrag:stopDrag,
             setCertification: setCertification,
-            setWeekends: setWeekends
+            setWeekends: setWeekends,
+            changeOrderBy:changeOrderBy,
+
+
         });
 
         _activate();
@@ -104,36 +144,67 @@
                 vm.searchCategory = subcategory.category;
             }
 
-            //console.log('setSubCategory:', vm.searchSubCategory);
             SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
-            $state.go('search', SearchManager.getSearchData());
+            var transitionOptions = {location: true, inherit: false,reload:false};
+            
+            $state.go('search', SearchManager.getSearchData(),transitionOptions);
         }
 
         function setLevel(){
             console.log('setLevel:', vm.searchLevel);
             SearchManager.setLevel(vm.searchLevel.code);
+            _search();
         }
 
         function setDate(){
             console.log('setDate:', vm.searchDate.getTime());
             SearchManager.setDate(vm.searchDate.getTime());
+            _search();
         }
 
         function updateCost(costStart, costEnd){
             SearchManager.setCosts(costStart, costEnd);
         }
 
+        function stopDrag(){
+            _search();
+        }
+
         function setCertification(){
             vm.withCert = !vm.withCert;
             console.log('setCert:', vm.withCert);
             SearchManager.setCertification(vm.withCert);
+            _search();
         }
 
         function setWeekends(){
             vm.onWeekends = !vm.onWeekends;
             console.log('setWeekends:', vm.onWeekends);
             SearchManager.setWeekends(vm.onWeekends);
+            _search();
+        }
+
+        function pageChange(){
+            var offset = null;
+            var start = null;
+            var end = null;
+            offset = vm.activitiesPaginationOpts.itemsPerPage;
+            start = (vm.activitiesPaginationOpts.pageNumber -1) * offset;
+            end = vm.activitiesPaginationOpts.pageNumber * offset;
+            vm.activities = activities.slice(start, end);
+            console.log('activities:', vm.activities);
+        }
+
+        function changeOrderBy(predicate){
+            console.log("pedricado",predicate);
+            if (predicate === ORDERING_BY_SOONEST_DATE_KEY)
+                activities = $filter('orderBy')(activities,_orderBySoonestDate);
+            else
+                activities = $filter('orderBy')(activities,predicate);
+            
+            vm.activitiesPaginationOpts.pageNumber = 1;
+            pageChange();
         }
 
         function getLevelClassStyle(level) {
@@ -144,11 +215,21 @@
 
         //--------- Internal Functions ---------//
 
+        function _orderBySoonestDate(activity){
+            var today = Date.now();
+            if (activity.closest_calendar.initial_date < today){
+                return activity.closest_calendar.initial_date;
+            }
+            return -activity.closest_calendar.initial_date;
+        }
+
         function _getActivities(data){
-            SearchManager.searchActivities(data).then(success, error);
+            return SearchManager.searchActivities(data).then(success, error);
 
             function success(response){
-                vm.activities = response.activities;
+                activities = response.activities;
+                vm.activitiesPaginationOpts.totalItems = activities.length;
+                vm.activities = activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
                 console.log('activities from ActivitiesManager:', vm.activities);
             }
             function error(response){
@@ -168,8 +249,8 @@
             }
 
             if(vm.searchData.hasOwnProperty(sm.KEY_DATE)){ vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]); }
-            if(vm.searchData.hasOwnProperty(sm.KEY_LEVEL)){ vm.searchlevel = vm.searchData[sm.KEY_LEVEL]; }
-
+            if(vm.searchData.hasOwnProperty(sm.KEY_LEVEL)){_setLevel(vm.searchData[sm.KEY_LEVEL]);}
+            
             if(vm.searchData.hasOwnProperty(sm.KEY_COST_START)){ vm.searchStartCost = vm.searchData[sm.KEY_COST_START]; }
             if(vm.searchData.hasOwnProperty(sm.KEY_COST_END)){ vm.searchEndCost = vm.searchData[sm.KEY_COST_END]; }
 
@@ -182,12 +263,14 @@
 
             if(vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)){
                 var category = vm.categories.filter(categoryFilter)[0];
+
                 if(category){
                     setCategory(category, true);
                     if(category){
                         vm.searchData["category_display"] = category.name;
                         if(vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)){
                             var subcategory = category.subcategories.filter(subCategoryFilter)[0];
+
                             vm.searchSubCategory = vm.searchData[sm.KEY_SUBCATEGORY];
                             SearchManager.setSubCategory(vm.searchSubCategory);
                             if(subcategory){ vm.searchData["subcategory_display"] = subcategory.name; }
@@ -200,25 +283,20 @@
 
             return deferred.promise;
 
+
+            function _setLevel(level){ vm.searchLevel = {'code':level};}
             function categoryFilter(category){ return category.id === vm.searchData[sm.KEY_CATEGORY]; }
             function subCategoryFilter(subcategory){ return subcategory.id === vm.searchData[sm.KEY_SUBCATEGORY]; }
         }
 
-        function _getGeneralInfo(){
-            var deferred = $q.defer();
-            ActivitiesManager.loadGeneralInfo().then(successInfo, errorInfo);
-            return deferred.promise;
+        function _setGeneralInfo(){
 
-            function successInfo(response){
-                vm.levels = response.levels;
-                vm.categories = response.categories;
-                deferred.resolve();
-            }
+            vm.levels = generalInfo.levels;
+            vm.categories = generalInfo.categories;
+            angular.extend(vm.sliderOptions,generalInfo.price_range);
+            vm.searchEndCost= vm.sliderOptions.max;
 
-            function errorInfo(response){
-                console.log('Error getting GeneralInfo.', response.data);
-                deferred.reject();
-            }
+
         }
 
         function _setWatches(){
@@ -238,6 +316,20 @@
                 return vm.searchEndCost;
             }
         }
+
+        function _scrollToCurrentCategory(){
+
+            $location.hash(vm.searchData["category_display"]);
+            $anchorScroll();
+
+        }
+
+        function _search(){
+            var searchData = SearchManager.getSearchData();
+            var transitionOptions = {location: true, inherit: false};
+            $state.go('search', searchData,transitionOptions);
+        }
+
 
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
@@ -269,12 +361,14 @@
             _setWatches();
 
             _setStrings();
-            _getGeneralInfo().then(function(){
-                _getSearchParams();
+            _setGeneralInfo();
+            _getSearchParams();
+
+            _getActivities($stateParams).then(function(){
+                _scrollToCurrentCategory();
+
             });
-
-            _getActivities($stateParams);
-
+            vm.orderByPredicate = 'closest_calendar.session_price';
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED
                 , function (event) {
                     console.log('searchBar. on' + SearchManager.EVENT_SEARCH_MODIFIED);
@@ -283,7 +377,6 @@
                     });
                 }
             );
-
             $scope.$on('$destroy', _cleanUp);
 
         }

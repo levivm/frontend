@@ -49,8 +49,11 @@
     <a class="activity-card__bottom" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
         <div ng-if="activity.closest_calendar.session_price">
             $
-            <span ng-bind="::activity.closest_calendar.session_price | number"></span>
+            <span ng-class="{'text-strike':activity.closest_calendar.is_free}" ng-bind="::activity.closest_calendar.session_price | number"></span>
+            <strong ng-show="activity.closest_calendar.is_free" ng-bind="::strings.COPY_FREE"></strong>
+
         </div>
+
         <span ng-if="!activity.closest_calendar.session_price"
               ng-bind="::strings.COPY_NA"></span>
     </a>

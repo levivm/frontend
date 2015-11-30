@@ -33,6 +33,9 @@
                 url: '/search?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends',
                 controller:'SearchController as search',
                 templateUrl: 'partials/search.html',
+                resolve:{
+                    'generalInfo':getPresaveActivityInfo
+                },
                 params: {
                     'activities': []
                 }

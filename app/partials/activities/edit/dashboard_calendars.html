@@ -85,7 +85,7 @@
                             </div>
 
                             <div class="card-footer"> 
-                                <span ng-class="{'text-strike':calendar.is_free}">
+                                <span ng-class="{'text-strike': ::calendar.is_free}">
                                     <strong >$ </strong><strong ng-bind="::calendar.session_price | currency: '':0"></strong> 
                                 </span>
                                 <strong ng-show="calendar.is_free" ng-bind="::calendars.strings.LABEL_FREE"></strong>

@@ -221,6 +221,7 @@
                         LABEL_INACTIVE: "Borrador",
                         COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                         COPY_NA: "N/A",
+                        COPY_FREE: "Gratis",
                         COPY_TODAY: "Hoy",
                         COPY_DAY: "día ",
                         COPY_DAYS: "días ",
@@ -252,7 +253,7 @@
                         organizer.photo = defaultPicture;
                     }
                     _mapMainPicture(scope.activity);
-                    _mapClosestCalendar(scope.activity);
+                    // _mapClosestCalendar(scope.activity);
                     //console.log('directive activity:', scope.activity);
                 }
             }

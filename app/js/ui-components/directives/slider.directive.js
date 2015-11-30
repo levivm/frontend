@@ -24,7 +24,8 @@
                 min: '=',
                 max: '=',
                 step : '=',
-                update: '&'
+                update: '&',
+                stopDrag: '&'
             },
             link: function (scope, element, attrs) {
                 var slider = document.getElementById('slider-anchor');
@@ -35,13 +36,14 @@
                     connect: true,
                     direction: 'ltr',
                     orientation: 'horizontal',
-                    behaviour: 'tap-drag',
+                    behaviour: 'drag-tap',
                     range: {
                         min: scope.min,
                         max: scope.max
                     }
                 };
                 scope.currency = "COP ";
+                scope.more = '+';
 
                 noUiSlider.create(slider, options);
 
@@ -51,12 +53,19 @@
                     $timeout(function(){
                         if (handle) {
                             // Is moving end handle
-                            scope.end = parseInt(values[handle]);
+                            scope.end =  parseInt(values[handle]);
+                            // scope.end = parseInt(values[handle]);
                         } else {
                             // Is moving the start handle
                             scope.start = parseInt(values[handle]);
                         }
                         scope.$apply(scope.update({ 'start': scope.start, 'end': scope.end}));
+                    }, 0);
+                });
+
+                slider.noUiSlider.on('change', function(){
+                    $timeout(function(){
+                        scope.$apply(scope.stopDrag());
                     }, 0);
                 });
             }

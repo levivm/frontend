@@ -1,6 +1,7 @@
 <div class="sidebar sidebar-category-container">
     <ul>
-        <li class="sidebar-category" ng-repeat="category in search.categories">
+        <li class="sidebar-category" ng-repeat="category in search.categories | orderBy:'name'">
+            <a href="#" id="{{::category.name}}"></a>
             <div class="header" ng-class="{'active': search.searchCategory === category.id}">
                 <div class="header__name" ng-click="search.setCategory(category)">
                     <img class="header__icon" ng-src="{{ search.searchCategory === category.id? category.icon_active : category.icon_default }}"
@@ -9,10 +10,10 @@
                 </div>
             </div>
             <ul class="subcategories" data-toggle="category.id == search.expandedCategory" trulii-expandable-content>
-                <li class="subcategories__item" ng-repeat="subcategory in category.subcategories"
+                <li  class="subcategories__item" ng-repeat="subcategory in category.subcategories"
                         ng-class="{'active': search.searchSubCategory === subcategory.id}"
                         ng-click="search.setSubCategory(subcategory)">
-                    <span ng-bind="::subcategory.name"></span>
+                    <span ng-bind="::subcategory.name" ></span>
                 </li>
             </ul>
         </li>
@@ -82,7 +83,7 @@
                         <!--Cost Select-->
                         <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
                                        step="search.sliderOptions.step" start="search.searchStartCost"
-                                       end="search.searchEndCost" update="search.updateCost(start, end)"></trulii-slider>
+                                       end="search.searchEndCost" update="search.updateCost(start, end)" stop-drag="search.stopDrag()"></trulii-slider>
                     </div>
                 </div>
             </div>
@@ -111,8 +112,23 @@
                     <span> </span>
                     <strong ng-bind="search.searchData.subcategory_display"></strong>
                 </span>
+                <select class="pull-right" name="repeatSelect" id="repeatSelect" 
+                       ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
+                    <option ng-show="!search.orderByPredicate" selected="selected" >Ordernar por</option>
+                    <option  ng-repeat="option in search.orderByOptions track by option.name" 
+                            value="{{::option.predicate}}" ng-bind="::option.name"></option>
+                </select>
+<!--                 <select class="pull-right" name="repeatSelect" id="repeatSelect" 
+                        ng-init="search.orderByPredicate = search.orderByOptions[0].predicate"
+                        ng-model="search.orderByPredicate">
+                    <option ng-change="search.changeOrderBy()"ng-repeat="option in search.orderByOptions track by option.name" 
+                            value="{{::option.predicate}}" ng-bind="::option.name"></option>
+                </select> -->
             </div>
+
         </div>
+
+
         <div class="row separator-light no-margin"></div>
     </div>
     <div class="row separate-above">
@@ -120,9 +136,22 @@
             <div class="row activity-grid" ng-if="search.activities.length > 0">
                 <!--track by activity.id-->
                 <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
-                                      ng-repeat="activity in search.activities"
+                                      ng-repeat="activity in search.activities" 
                                       data-activity="activity"></trulii-activity-item>
+
             </div>
+            <!--pagionation-->
+            <div class="text-center" ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">
+                <pagination class="pagination-sm"
+                        ng-model="search.activitiesPaginationOpts.pageNumber"
+                        ng-change="search.pageChange()"
+                        data-total-items="search.activitiesPaginationOpts.totalItems"
+                        data-items-per-page="search.activitiesPaginationOpts.itemsPerPage"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                        max-size="search.activitiesPaginationOpts.maxPagesSize"></pagination>    
+            </div>
+
+            <!--empty search-->
             <div class="text-center text-muted separate-above-more" ng-if="search.activities.length == 0">
                 <div class="col-xs-6 col-xs-offset-3">
                     <img src="css/img/search_empty.png" alt="{{ search.strings.LABEL_EMPTY_SEARCH }}"/>
