@@ -27,7 +27,7 @@
                                       cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
-        var visibleReviewListSize = 5;
+        var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
             city : null,
@@ -61,7 +61,8 @@
             scroll: 0,
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
-            widgetAbsolutePosition: 0
+            widgetAbsolutePosition: 0,
+            selectedActivity: 0
         });
 
         _activate();
@@ -137,7 +138,7 @@
 
         function showMoreReviews(){
             if(visibleReviewListSize < reviews.length){
-                visibleReviewListSize += 5;
+                visibleReviewListSize += 3;
                 vm.reviews = reviews.slice(0, visibleReviewListSize);
             } else {
                 vm.hasMoreReviews = false;
@@ -269,6 +270,9 @@
 
         function _getReviewRatingAvg(reviews){
             if(reviews.length === 0){ return 0; }
+            if(reviews.length < 3){
+              vm.hasMoreReviews = false;
+            }
             return reviews.map(getRatings).reduce(reduceRatings);
 
             function getRatings(review){ return review.rating; }
@@ -308,7 +312,7 @@
                 ACTION_VIEW_OTHER_DATES: "Ver otras fechas",
                 ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
                 ACTIVITY_SOLD_OUT: "Agotado",
-                COPY_SOCIAL_BUTTONS: "¿Te gustó? Compartelo con tus amigos ",
+                COPY_SOCIAL_BUTTONS: "¿Te gustó? Compártelo con tus amigos",
                 COPY_SOCIAL_SHARE_FACEBOOK: "Compartir en Facebook",
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
@@ -318,15 +322,18 @@
                 COPY_NO_CALENDARS_AVAILABLE: "Actualmente no hay otros calendarios disponibles",
                 COPY_OPPORTUNITIES: " oportunidades",
                 COPY_EMPTY_SECTION: "El Organizador no ha completado la información de esta sección aún ¡Regresa pronto!",
+                COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_TODAY: "Hoy",
                 COPY_DAY: "día ",
                 COPY_DAYS: "días ",
                 COPY_IN: "En ",
                 COPY_TO: " a ",
+                COPY_OF: " de ",
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_FREE: " Gratis",
                 COPY_VACANCY_SINGULAR: " Vacante",
                 COPY_VACANCY: " Vacantes",
+                COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
                 COPY_OTHER_SESSIONS: "Sesiones",
                 COPY_ONE_REVIEW: " Evaluación",
@@ -348,7 +355,7 @@
                 LABEL_GOALS: "Objetivo",
                 LABEL_INSTRUCTORS: "Instructores",
                 LABEL_REQUIREMENTS: "Requisitos",
-                LABEL_METHODOLOGY: "Metodologia",
+                LABEL_METHODOLOGY: "Metodología",
                 LABEL_EXTRA_INFO: "Adicionales",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
@@ -357,25 +364,31 @@
                 VALUE_WITH_CERTIFICATION: "Con Certificado",
                 VALUE_WITHOUT_CERTIFICATION: "Sin Certificado",
                 REASON_NO_COMMISSIONS: "Sin Comisiones",
-                REASON_COPY_NO_COMMISSIONS: "¡En serio Te lo prometemos!",
+                REASON_COPY_NO_COMMISSIONS: "En serio, ¡te lo prometemos!",
                 REASON_REFUND: "Devolución Garantizada",
-                REASON_COPY_REFUND: "Por si no se realiza la actividad",
+                REASON_COPY_REFUND: "Por si no se realiza la actividad.",
                 REASON_SECURE: "Pago Seguro",
-                REASON_COPY_SECURE: "Inscribete con tranquilidad"
+                REASON_COPY_SECURE: "Inscribete con tranquilidad."
                 });
         }
 
         function _initWidget(){
             angular.element(document).ready(function () {
-                vm.scroll = document.body.scrollTop;
+                vm.scroll = window.scrollY;
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY  - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
                 $window.onscroll = function(){
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2 - 50;
-                    vm.scroll = document.body.scrollTop;
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 200 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
+                    vm.scroll = window.scrollY;
                     $scope.$apply();
                 };
             });
+        }
+
+        function _initSignup(){
+          vm.selectedActivity = 0;
         }
 
         function _activate(){
@@ -409,6 +422,7 @@
 
             _setSocialShare();
             _initWidget();
+            _initSignup();
 
             console.log('detail. activity:', vm.activity);
             console.log('detail. reviews:', reviews);

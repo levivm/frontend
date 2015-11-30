@@ -2,13 +2,6 @@
     <div class="col-md-12">
         <p class="copy">
             <span ng-bind="attendees.strings.COPY_SO_FAR"></span>
-            <ng-pluralize count="attendees.totalItems"
-                          when="{
-                          '0': attendees.strings.COPY_ZERO_ATTENDEES,
-                          'one': attendees.strings.COPY_ONE_ATTENDEE,
-                         'other': attendees.strings.COPY_OTHER_ATTENDEES
-                         }">
-            </ng-pluralize>
         </p>
     </div>
 </div>
