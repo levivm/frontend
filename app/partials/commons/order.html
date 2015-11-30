@@ -30,7 +30,12 @@
                                                         ng-bind="::order.order.created_at | date:'EEEE d MMM y'"></span>
                         </h5>
                         <div class="separate-above-more">
-                            <a class="btn btn-default btn-return"
+                            <button class="btn btn-default btn-block"
+                                    ng-click="order.printOrder()"
+                                    ng-bind="::order.strings.ACTION_PRINT"></button>
+                        </div>
+                        <div class="separate-above-less">
+                            <a class="btn btn-default btn-return btn-block"
                                ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
                                 <img src="css/img/activity-enroll/navigation_back.png"
                                      alt="{{ ::order.strings.ACTION_GO_BACK }}"
@@ -63,11 +68,11 @@
                                         <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span><br/>
                                         <span class="sinkin-medium"
                                               ng-bind="assistant.lastest_refund.status"></span>
-                                        <i ng-show="!assistant.lastest_refund.requested_by_me" class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::order.strings.COPY_REFUND_REQUESTED_BY_OTHER}}"></i>
+                                        <i ng-show="!assistant.lastest_refund.requested_by_me" class="glyphicon glyphicon-question-sign order-tooltip" aria-hidden="true" tooltip-placement="right"  tooltip="{{::order.strings.COPY_REFUND_REQUESTED_BY_OTHER}}"></i>
                                     </td>
                                     <td class="column-button" ng-show="!assistant.lastest_refund">
                                         <trulii-preloader loader-control="order.requestingRefund[assistant.id]"></trulii-preloader>
-                                        <button class="btn btn-default" 
+                                        <button class="btn btn-default"
                                                 ng-show="!assistant.lastest_refund && !order.order.lastest_refund && !order.requestingRefund[assistant.id]"
                                                 ng-click="order.requestAssistantRefund(order.order.id,assistant)"
                                                 ng-bind="::order.strings.ACTION_REIMBURSE"></button>
@@ -100,13 +105,13 @@
                         <!--Reimbursements-->
                         <div class="row no-margin" ng-show="order.order.total_refunds_amount > 0" >
                             <div class="col-xs-3 no-padding">
-                                <h4 class="text-lg montserrat-light" 
+                                <h4 class="text-lg montserrat-light"
                                     ng-bind="order.strings.LABEL_REIMBURSEMENTS"></h4>
 
                             </div>
                             <div class="col-xs-5 no-padding">
-                                <h4 class="text-right text-lg montserrat-light" 
-                                ng-bind="'-' + (order.order.total_refunds_amount | currency:$:0)"></h4> 
+                                <h4 class="text-right text-lg montserrat-light"
+                                ng-bind="'-' + (order.order.total_refunds_amount | currency:$:0)"></h4>
                             </div>
                         </div>
                         <!--Fee-->
@@ -142,8 +147,8 @@
                                     ng-bind="::(order.totalAmount | currency:$:0)" ng-class="{'text-strike':order.order.is_free}"></h4>
                                 <h4 class="text-right" ng-show="::order.order.is_free" ng-bind="::order.strings.LABEL_FREE"></h4>
                             </div>
-                            
-                            
+
+
                         </div>
                         <!--Refund Button-->
                         <div class="row no-margin">

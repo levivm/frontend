@@ -27,4 +27,17 @@
     background-color:white;
     padding: 0px 35px 25px 35px;
   }
+
+  @media print {
+    .order-description {
+      background-color: @gray-lighter;
+    }
+    .order-tooltip, .order-tooltip:before, .order-tooltip:after {
+      display: none;
+    }
+    a, button, .btn {
+      display: none;
+    }
+
+  }
 }
