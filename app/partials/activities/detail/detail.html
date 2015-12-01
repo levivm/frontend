@@ -50,12 +50,7 @@
 
         <a href="#"
           class="text-no-decoration btn-share-email"
-          socialshare
-          socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
-          socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"
-          socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
-          socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
-          socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
+          ng-click="detail.toggleEmailShow()">
           <img class="img-responsive" src="/css/img/activity-detail/share_email.png"
           alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
         </a>
@@ -424,10 +419,10 @@
       <h4 class="" ng-bind="::detail.strings.COPY_SIGN_UP"></h4>
     </div>
   </div>
-  <div class="row separate-above-medium">
-    <div class="col-xs-10 col-xs-offset-1">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
       <div class="row">
-        <div class="col-xs-9 calendars-container">
+        <div class="col-xs-10 col-xs-offset-1 col-md-9 col-md-offset-0 calendars-container separate-above-medium">
           <table class="table table-responsive table-justified">
             <tr>
               <th>
@@ -494,7 +489,7 @@
             </tr>
           </table>
         </div>
-        <div class="col-xs-3 sessions-container">
+        <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0 sessions-container separate-above-medium">
           <div class="sessions">
             <h4 class="text-uppercase" ng-bind="::detail.strings.COPY_OTHER_SESSIONS"></h4>
             <h5 ng-repeat="session in detail.activity.calendars[detail.selectedActivity].sessions">
@@ -574,3 +569,55 @@
     </div>
   </div>
 </div>
+
+<div class="absolute-container" ng-show="detail.showEmail">
+  <button class="pull-right absolute-container__close" ng-click="detail.toggleEmailShow()">
+    <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+  </button>
+  <div class="col-xs-12 col-md-7">
+    <div class="modal-content modal-email">
+      <div class="modal-header">
+        <div class="well-title">
+          <h3 class="text-center" ng-bind="::detail.strings.EMAIL_MODAL_HEADER">
+          </h3>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form name='detail.email_form' ng-submit="detail.shareEmailForm()" class="separate-above separate-below-less form-classic">
+          <fieldset>
+            <div class="form-group" trulii-input-errors-control="name">
+                <label for="emails" ng-bind="detail.strings.EMAIL_MODAL_SEND_TO_LABEL">
+                </label>
+                <input id="emails" class="form-control" name="emails" type="text"
+                  ng-model="detail.formData.emails"
+                  placeholder="{{detail.strings.EMAIL_MODAL_SEND_TO_PLACEHOLDER}}" >
+            </div>
+            <div class="form-group" trulii-input-errors-control="message">
+              <label for="message" ng-bind="detail.strings.EMAIL_MODAL_MESSAGE_LABEL"></label>
+              <textarea name="message" class="form-control"
+                        ng-model="detail.formData.message"
+                        placeholder="{{detail.strings.EMAIL_MODAL_MESSAGE_PLACEHOLDER}}">
+              </textarea>
+            </div>
+            <div class="form-group" trulii-input-errors-control="__all__">
+                <input type="hidden" name="__all__" ng-model="__all__"/>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+                  <button type="submit" id="submit"
+                    class="btn btn-lg btn-success btn-block"
+                    ng-bind="::detail.strings.EMAIL_MODAL_SEND">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<trulii-footer>
+</trulii-footer>

@@ -14029,6 +14029,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .burger-menu__mobile-logo {
     padding: 0.5em 0.5em 0.75em 0.5em;
   }
+  .navbar__left-wrapper {
+    width: 50%;
+  }
 }
 .search-filter {
   height: 5.8em;
@@ -18029,6 +18032,20 @@ blockquote {
     margin-bottom: 1em;
     text-align: center;
   }
+  .sign-up-container .calendars-container .table {
+    border: none;
+  }
+  .sign-up-container .calendars-container .table thead tr td,
+  .sign-up-container .calendars-container .table tbody tr td,
+  .sign-up-container .calendars-container .table tfoot tr td,
+  .sign-up-container .calendars-container .table thead tr th,
+  .sign-up-container .calendars-container .table tbody tr th,
+  .sign-up-container .calendars-container .table tfoot tr th {
+    padding: 1.5em 5px;
+  }
+  .sign-up-container .sessions-container {
+    padding: 0;
+  }
   .reasons-container .reason {
     width: 100%;
   }
@@ -18040,6 +18057,27 @@ blockquote {
     display: block;
     text-align: center;
   }
+}
+.modal-email {
+  border-radius: 4px;
+}
+.modal-email .modal-header {
+  color: #535353;
+  padding: 5px 5px 10px 5px;
+  background-color: #38dbc8;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.modal-email .modal-body {
+  padding: 10px 60px;
+}
+.modal-email .modal-body label {
+  font-weight: 500;
+  color: #3a3d3f !important;
+}
+.modal-email .modal-body input,
+.modal-email .modal-body textarea {
+  border: 1px solid #e3e3e3;
 }
 .Panel {
   box-shadow: none;
