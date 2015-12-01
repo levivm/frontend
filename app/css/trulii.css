@@ -17406,6 +17406,9 @@ blockquote {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #999999;
 }
+.calendar-widget .widget-card .price .text-muted {
+  color: #e3e3e3;
+}
 .calendar-widget .widget-card .btn-sign-up {
   width: 100%;
   height: auto;
@@ -17421,6 +17424,8 @@ blockquote {
   width: 100%;
   text-align: center;
   color: #999999;
+  padding: 1.6em 0em;
+  border-bottom: 1px solid #DEDEDE;
 }
 .calendar-widget .widget-card .info .level {
   width: 30%;
@@ -17520,6 +17525,7 @@ blockquote {
 }
 .calendar-widget .widget-card .other-calendars {
   padding: 1.6em;
+  border-bottom: 1px solid #DEDEDE;
 }
 .calendar-widget .widget-card .other-calendars-has-more {
   cursor: pointer;
@@ -17539,24 +17545,23 @@ blockquote {
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
-  padding: 0;
-  font-size: 0.8em;
-  font-weight: 100;
-  color: #999999;
+  padding: 0 2em;
+  font-size: 0.9em;
+  font-weight: 200;
+  color: #535353;
 }
 .calendar-widget .widget-card .other-calendars-count {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
   font-size: 1.2em;
-  font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
   padding: 0;
-  font-size: 0.8em;
-  font-weight: 600;
-  color: #999999;
+  font-size: 0.85em;
+  font-weight: 400;
+  color: #535353;
 }
 .calendar-widget .widget-card .other-calendars-more {
   width: 100%;
@@ -17568,9 +17573,16 @@ blockquote {
   text-align: center;
   text-transform: uppercase;
   text-transform: none;
-  padding: 0;
-  font-size: 0.8em;
+  padding: 1em 4.5em 0em;
+  font-size: 1em;
   font-weight: 600;
+  color: #535353;
+}
+.calendar-widget .widget-card .share {
+  padding: 1.6em 0;
+}
+.calendar-widget .widget-card .share p {
+  font-size: 1em;
   color: #999999;
 }
 .calendar-widget .widget-list .widget-list-item {
@@ -18302,7 +18314,7 @@ blockquote {
   }
   .fixed-widget {
     position: fixed;
-    max-height: 84vh;
+    max-height: 72.5vh;
     overflow-y: scroll;
     overflow-x: hidden;
     top: 100px;
