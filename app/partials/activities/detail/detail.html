@@ -202,6 +202,7 @@
       </div>
       <div class="price">
         <span ng-if="!detail.calendar_selected.is_free" ng-bind="detail.calendar_selected.total_price | currency:$:0"></span>
+        <s ng-if="detail.calendar_selected.is_free" class="text-muted" ng-bind="detail.calendar_selected.total_price | currency"></s>
         <span ng-if="detail.calendar_selected.is_free" ng-bind="::detail.strings.COPY_FREE"></span>
       </div>
       <div class="btn btn-primary btn-sign-up"
@@ -212,7 +213,31 @@
         ng-disabled="detail.isSelectedCalendarFull()"
         ng-hide="detail.isSelectedCalendarFull()"
         ng-click="detail.nextState(detail.activity.id,detail.calendar_selected.id)"
-        ng-bind="::detail.strings.ACTION_SIGN_UP"></a>
+        ng-bind="::detail.strings.ACTION_SIGN_UP">
+
+      </a>
+
+
+        <div class="other-calendars"
+          ng-click="detail.showList()"
+          ng-class="{'other-calendars-has-more': detail.activity.upcoming_calendars.length > 1}">
+          <div ng-if="detail.activity.upcoming_calendars.length == 2">
+            <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_ONE_CALENDAR_AVAILABLE"></div>
+          </div>
+          <div ng-if="detail.activity.upcoming_calendars.length > 2">
+            <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_MORE_CALENDARS_AVAILABLE"></div>
+            <div class="other-calendars-count">
+              <span ng-bind="detail.activity.upcoming_calendars.length -1"></span>
+              <span ng-bind="::detail.strings.COPY_OPPORTUNITIES"></span>
+            </div>
+          </div>
+          <div ng-if="detail.activity.upcoming_calendars.length < 2">
+            <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_NO_CALENDARS_AVAILABLE"></div>
+          </div>
+          <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
+            <span ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></span>
+          </div>
+        </div>
         <div class="info">
           <div class="level">
             <img src="/css/img/activity-detail/widget_level.png" alt=""/>
@@ -232,48 +257,48 @@
             <div class="title" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></div>
           </div>
         </div>
-        <div class="sessions">
-          <div class="sessions-title">
-            <span ng-bind="detail.calendar_selected.sessions.length"></span>
-            <ng-pluralize count="detail.calendar_selected.sessions.length"
-              when="{
-                'one': detail.strings.COPY_ONE_SESSION,
-                'other': detail.strings.COPY_OTHER_SESSIONS
-              }">
-            </ng-pluralize>
-          </div>
-          <div class="sessions-list">
-            <div class="session-item"
-              ng-repeat="session in detail.calendar_selected.sessions track by session.id">
-              <div class="session-item-date" ng-bind="session.date | date:'EEEE d MMM y'"></div>
-              <div class="session-item-time">
-                <span ng-bind="session.start_time | amDateFormat: 'h:mm a'"></span>
-                <span ng-bind="::detail.strings.COPY_TO" class="text-lowercase" ></span>
-                <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="other-calendars"
-          ng-click="detail.showList()"
-          ng-class="{'other-calendars-has-more': detail.activity.upcoming_calendars.length > 1}">
-          <div ng-if="detail.activity.upcoming_calendars.length == 2">
-            <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_ONE_CALENDAR_AVAILABLE"></div>
-          </div>
-          <div ng-if="detail.activity.upcoming_calendars.length > 2">
-            <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_MORE_CALENDARS_AVAILABLE"></div>
-            <div class="other-calendars-count">
-              <span ng-bind="detail.activity.upcoming_calendars.length -1"></span>
-              <span ng-bind="::detail.strings.COPY_OPPORTUNITIES"></span>
-            </div>
-          </div>
-          <div ng-if="detail.activity.upcoming_calendars.length < 2">
-            <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_NO_CALENDARS_AVAILABLE"></div>
-          </div>
-          <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
-            <span ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></span>
-            <i class="mdi-navigation-chevron-right"></i>
-          </div>
+        <div class="share">
+          <p class="text-center" ng-bind="::detail.strings.COPY_SHARE_WIDGET"></p>
+          <ul class="text-center list-unstyled list-inline">
+            <li>
+              <a href="#"
+                class="text-no-decoration btn-share-fb"
+                socialshare
+                socialshare-provider="{{::detail.social.FACEBOOK_SOCIAL_PROVIDER}}"
+                socialshare-type="{{::detail.social.FACEBOOK_SHARE_TYPE}}"
+                socialshare-via="{{::detail.social.FACEBOOK_API_KEY}}"
+                socialshare-redirect-uri="{{::detail.social.FACEBOOK_REDIRECT_URI}}"
+                socialshare-media="{{::detail.social.FACEBOOK_SHARE_MEDIA}}"
+                socialshare-text="{{::detail.social.FACEBOOK_SHARE_TEXT}}"
+                socialshare-caption="{{::detail.social.FACEBOOK_SHARE_CAPTION}}"
+                socialshare-description="{{::detail.social.FACEBOOK_SHARE_DESCRIPTION}}"
+                socialshare-url="{{::detail.social.FACEBOOK_SHARE_URL}}">
+                <img class="img-responsive" src="/css/img/activity-detail/share_facebook.png"
+                alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+              </a>
+            </li>
+            <li>
+              <a href="#"
+                class="text-no-decoration btn-share-twitter"
+                socialshare
+                socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
+                socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"
+                socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
+                socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
+                socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
+                <img class="img-responsive" src="/css/img/activity-detail/share_twitter.png"
+                alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+              </a>
+            </li>
+            <li>
+              <a href="#"
+                class="text-no-decoration btn-share-email"
+                ng-click="detail.toggleEmailShow()">
+                <img class="img-responsive" src="/css/img/activity-detail/share_email.png"
+                alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
