@@ -17585,6 +17585,18 @@ blockquote {
   font-size: 1em;
   color: #999999;
 }
+.calendar-widget .widget-card .share .btn-share-fb,
+.calendar-widget .widget-card .share .btn-share-twitter,
+.calendar-widget .widget-card .share .btn-share-email {
+  width: 35px;
+  height: 35px;
+  padding-top: 5px;
+}
+.calendar-widget .widget-card .share .btn-share-fb img,
+.calendar-widget .widget-card .share .btn-share-twitter img,
+.calendar-widget .widget-card .share .btn-share-email img {
+  margin: 0 auto;
+}
 .calendar-widget .widget-list .widget-list-item {
   padding: 2em;
 }
