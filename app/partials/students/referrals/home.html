@@ -11,25 +11,24 @@
         </h4>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 separate-above separate-below-medium">
+<div class="row container-success">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 separate-above separate-below">
         <div class="referral-input">
             <input type="text" class="form-control pull-left"
                    ng-model="referrals.emails"
                    placeholder=" {{ ::referrals.strings.PLACEHOLDER_REFERRAL_EMAILS  }}">
-            <button class="btn btn-success text-uppercase pull-left"
+            <button class="btn btn-primary text-uppercase pull-left"
                     ng-click="referrals.postInvite()"
                     ng-bind="::referrals.strings.ACTION_SEND_INVITES">
             </button>
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-xs-12">
+<div class="row container-muted padding-vertical-regular">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
         <ul class="list-inline list-unstyled text-center">
             <li>
-                <strong class="text-muted" ng-bind="::referrals.strings.SHARE_URL_COPY">
-                </strong>
+                <strong class="text-muted" ng-bind="::referrals.strings.SHARE_URL_COPY"></strong>
             </li>
             <li>
                 <label for="referral-link" class="sr-only" ng-bind="::referrals.strings.SHARE_URL_COPY"></label>
@@ -73,16 +72,16 @@
             <strong>
                 <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_1"></span>
                 <!--  Cantidad para gastar -->
-                <span class="text-primary">COP 40.000</span>
+                <span class="text-primary">COP 20.000</span>
                 <!--  Fin cantidad para gastar -->
                 <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_2"></span>
             </strong>
         </h3>
-        <p class="montserrat-regular text-center" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
-        </p>
+        <h4 class="sinkin-regular text-muted text-center separate-above" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
+        </h4>
         <!--Referral ng-repeat-->
-        <div class="row separate-above-medium referral-sent">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+        <div class="row separate-above-less referral-sent">
+            <div class="col-xs-10 col-xs-offset-1">
                 <!--  Registrado-->
                 <div class="referral-item">
                     <!--  Imagen de perfil de usuario-->
@@ -90,23 +89,40 @@
                         <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle" alt="">
                     </div>
                     <div class="referral-item__info">
-                        <h4><strong>Mariana Schiavino</strong></h4>
+                        <h4 class="sinkin-semibold">Mariana Schiavino</h4>
                         <!--  Registrado e inscrito-->
-                        <h4>
+                        <h5 class="sinkin-regular">
                             <span ng-bind="::referrals.strings.SHARES_REGISTERED"></span>
                             <!--  Codigo de cupon-->
-                            <strong>XXYZ.</strong>
+                            <span class="sinkin-bold">XXYZ</span>
+                            <span>.</span>
                             <span ng-bind="::referrals.strings.SHARES_EMAIL_CHECK"></span>
-                        </h4>
-                        <!--  Registrado sin inscribir-->
-                        <h4 ng-bind="::referrals.strings.SHARES_NOT_REGISTERED">
-                        </h4>
+                        </h5>
                     </div>
                     <div class="referral-item__status">
-                        <h4>
-                            <strong>COP 20.000</strong>
-                            <span ng-bind="::referrals.strings.SHARES_AVAILABLE"></span>
-                        </h4>
+                        <h5>
+                            <span class="sinkin-bold">COP 20.000</span>
+                            <span class="sinkin-light" ng-bind="::referrals.strings.SHARES_AVAILABLE"></span>
+                        </h5>
+                    </div>
+                </div>
+                <div class="referral-item">
+                    <!--  Imagen de perfil de usuario-->
+                    <div class="referral-item__picture">
+                        <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle" alt="">
+                    </div>
+
+                    <div class="referral-item__info">
+                        <h4 class="sinkin-semibold">Daniel Schiavino</h4>
+                        <!--  Registrado sin inscribir-->
+                        <h5 class="sinkin-regular" ng-bind="::referrals.strings.SHARES_NOT_REGISTERED">
+                        </h5>
+                    </div>
+                    <div class="referral-item__status sinkin-regular">
+                        <h5>
+                            <span class="sinkin-bold">COP 20.000</span>
+                            <span class="sinkin-light" ng-bind="::referrals.strings.SHARES_PENDING"></span>
+                        </h5>
                     </div>
                 </div>
                 <!--  Sin registrar -->
@@ -115,18 +131,17 @@
                         <img src="/css/img/referrals/email.png" class="img-responsive img-circle" alt="">
                     </div>
                     <div class="referral-item__info">
-                        <h4>
-                            <strong>roroferreira88@hotmail.com</strong>
-                            <span ng-bind="::referrals.strings.SHARES_NOT_REGISTED_YET"></span>
+                        <h4 class="sinkin-semibold inline-block">roroferreira88@hotmail.com
                         </h4>
-                        <h4>
-                            <strong>COP 20.000</strong>
-                            <span></span>
-                        </h4>
+                        <span class="sinkin-regular" ng-bind="::referrals.strings.SHARES_NOT_REGISTERED_YET"></span>
+                        <h5>
+                            <span class="sinkin-bold">COP 20.000</span>
+                            <span class="sinkin-light" ng-bind="::referrals.strings.SHARES_PENDING"></span>
+                        </h5>
                     </div>
                     <div class="referral-item__status">
                         <!--  Boton de reenvio de invitacion-->
-                        <button class="btn-default btn" ng-bind="::referrals.strings.ACTION_RESEND_INVITE">
+                        <button class="btn btn-default sinkin-light" ng-bind="::referrals.strings.ACTION_RESEND_INVITE">
                         </button>
                     </div>
                 </div>
@@ -161,9 +176,9 @@
 </div>
 <div class="row container-success-dark">
     <div class="col-xs-12">
-        <a href="">
-            <h4 class="text-center text-underline" ng-bind="::referrals.strings.LEARN_MORE"></h4>
-        </a>
+        <h4 class="text-center text-underline">
+            <a ui-sref="about.terms" ng-bind="::referrals.strings.LEARN_MORE"></a>
+        </h4>
     </div>
 </div>
 <trulii-footer></trulii-footer>

@@ -152,17 +152,7 @@
                 "te abrimos la puerta a nuevos clientes y hacemos el trabjao sucio por ti.",
                 PUBLISH_TEXT_2: "Regístrate sin costo alguno y disfruta de nuestra prueba gratuita en tus primeras tres actividades.",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
-                PUBLISH_BUTTON_COPY: "Ser organizador",
-                CATEGORY_FITNESS: "Fitness",
-                CATEGORY_MUSIC: "Música",
-                CATEGORY_LIFESTYLE: "Estilo de vida",
-                CATEGORY_PROFESSIONAL: "Profesional",
-                CATEGORY_ART: "Arte",
-                CATEGORY_TECHNOLOGY: "Tecnología",
-                CATEGORY_KIDS: "Niños",
-                CATEGORY_GASTRONOMY: "Gastronomía",
-                CATEGORY_LANGUAGES: "Idiomas",
-                CATEGORY_DANCE: "Danza"
+                PUBLISH_BUTTON_COPY: "Ser organizador"
             });
         }
 

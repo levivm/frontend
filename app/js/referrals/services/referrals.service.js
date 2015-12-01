@@ -14,11 +14,12 @@
         .module('trulii.referrals.services')
         .factory('Referrals', Referrals);
 
-    Referrals.$inject = ['$q', '$http', 'ReferralServerApi'];
+    Referrals.$inject = ['$q', '$http', 'localStorageService', 'ReferralServerApi'];
 
-    function Referrals($q, $http, ReferralServerApi) {
+    function Referrals($q, $http, localStorageService, ReferralServerApi) {
 
         var api = ReferralServerApi;
+        var KEY_REF_HASH = 'refHash';
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
@@ -32,6 +33,23 @@
              * @methodOf trulii.referrals.services.Referrals
              */
             getCoupon: getCoupon,
+
+            /**
+             * @ngdoc function
+             * @name .#getRefHash
+             * @description Returns the stored refHash, `null` otherwise
+             * @return {string} refHash
+             * @methodOf trulii.referrals.services.Referrals
+             */
+            getRefHash: getRefHash,
+
+            /**
+             * @ngdoc function
+             * @name .#deleteRefHash
+             * @description Deletes the stored refHash
+             * @methodOf trulii.referrals.services.Referrals
+             */
+            deleteRefHash: deleteRefHash,
 
             /**
              * @ngdoc function
@@ -78,10 +96,19 @@
             }
         }
 
+        function getRefHash(){
+
+        }
+
+        function deleteRefHash(){
+
+        }
+
         function getReferrer(referrerCode){
             return $http.get(api.referrer(referrerCode)).then(success, error);
 
             function success(response){
+                if(response.data.refHash){ localStorageService.set(KEY_REF_HASH, response.data.refHash); }
                 return response.data;
             }
 
