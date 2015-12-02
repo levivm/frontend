@@ -14,12 +14,12 @@
         .module('trulii.referrals.services')
         .factory('Referrals', Referrals);
 
-    Referrals.$inject = ['$q', '$http', 'localStorageService', 'ReferralServerApi'];
+    Referrals.$inject = ['$q', '$http', '$cookies', 'localStorageService', 'ReferralServerApi'];
 
-    function Referrals($q, $http, localStorageService, ReferralServerApi) {
+    function Referrals($q, $http, $cookies, localStorageService, ReferralServerApi) {
 
         var api = ReferralServerApi;
-        var KEY_REF_HASH = 'refHash';
+        var KEY_REF_HASH = 'refhash';
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
@@ -78,7 +78,9 @@
              * @param {string} emails Emails string
              * @methodOf trulii.referrals.services.Referrals
              */
-            postInvite: postInvite
+            postInvite: postInvite,
+
+            KEY_REF_HASH: KEY_REF_HASH
         };
 
         return service;
@@ -97,18 +99,20 @@
         }
 
         function getRefHash(){
-
+            return $cookies[KEY_REF_HASH];
         }
 
         function deleteRefHash(){
-
+            if($cookies.get(KEY_REF_HASH)){
+                delete $cookies[KEY_REF_HASH];
+            }
         }
 
         function getReferrer(referrerCode){
             return $http.get(api.referrer(referrerCode)).then(success, error);
 
             function success(response){
-                if(response.data.refHash){ localStorageService.set(KEY_REF_HASH, response.data.refHash); }
+                if(response.data.hasOwnProperty(KEY_REF_HASH)){ $cookies[KEY_REF_HASH] = response.data[KEY_REF_HASH]; }
                 return response.data;
             }
 

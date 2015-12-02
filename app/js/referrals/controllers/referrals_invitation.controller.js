@@ -13,9 +13,9 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsInvitationCtrl', ReferralsInvitationCtrl);
 
-    ReferralsInvitationCtrl.$inject = ['$state', 'referrer', 'student', 'generalInfo'];
+    ReferralsInvitationCtrl.$inject = ['$state', 'referrer', 'generalInfo', 'student'];
 
-    function ReferralsInvitationCtrl($state, referrer, student, generalInfo) {
+    function ReferralsInvitationCtrl($state, referrer, generalInfo, student) {
 
         var categories = [];
         var vm = this;
@@ -29,7 +29,8 @@
                     params: {
                         idReferrer: referrer.referrer_code
                     }
-                }
+                },
+                refhash: referrer.refhash
             },
             toggleVideoShow: toggleVideoShow,
             claimCoupon: claimCoupon,
@@ -125,11 +126,16 @@
             }
 
             angular.extend(vm.strings, {
+                HEADER_IS_STUDENT: "Oops! Ya estás registrado en Trulii",
+                COPY_IS_STUDENT_HI: "Hola",
+                COPY_IS_STUDENT_COPY: ", las invitaciones son una funcionalidad sólo para nuevos usuarios",
+                COPY_IS_STUDENT_DISCOVER: "Te invitamos a descubrir nuevas actividades de tu interés",
                 HEADER_TITLE_COPY_1: "te dio COP",
                 HEADER_TITLE_COPY_2: "de cupón",
                 HEADER_TEXT_COPY: "Trulii es la mejor forma de encontrar e inscribirte en lo que quieres aprender en tu ciudad.",
                 ACTION_REGISTER: "Regístrate",
                 ACTION_LOGIN: "Inicia Sesión",
+                ACTION_SEARCH_ACTIVITIES: "Buscar Actividades",
                 COPY_TO_CLAIM_COUPON: "Ya te falta solo un paso para reclamar tu cupón",
                 ACTION_REDEEM: "Registrarme para reclamar mi cupón",
                 REASON_NO_COMMISSIONS: "Sin comisiones",
@@ -157,7 +163,7 @@
         function _activate(){
             _setStrings();
             _setCategories();
-            console.log('referrer:', referrer);
+            console.log(student);
         }
 
     }

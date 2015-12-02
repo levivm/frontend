@@ -85,7 +85,7 @@
                            ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
                     </li>
                     <li>
-                        <a ui-sref="referrals"
+                        <a ui-sref="referrals.home"
                            ng-click="toggleBurger()"
                            ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
                     </li>
@@ -125,7 +125,7 @@
                                        ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
                                 </li>
                                 <li ng-if="!user">
-                                    <a ui-sref="referrals-home-anon"
+                                    <a ui-sref="referrals.home-anon"
                                        ng-click="toggleBurger()"
                                        ng-bind="::strings.COPY_INVITE_FRIEND"></a>
                                 </li>
@@ -152,7 +152,7 @@
                                        ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
                                 </li>
                                 <li>
-                                    <a ui-sref="referrals-home"
+                                    <a ui-sref="referrals.home"
                                        ng-click="toggleBurger()"
                                        ng-bind="::strings.COPY_INVITE_FRIEND"></a>
                                 </li>

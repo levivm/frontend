@@ -58,8 +58,8 @@
                 controller: 'ReferralsInvitationCtrl as referrals',
                 templateUrl: 'partials/students/referrals/invitation.html',
                 resolve: {
-                    referrer: getReferrer,
                     student: getCurrentStudent,
+                    referrer: getReferrer,
                     generalInfo: getPresaveActivityInfo
                 }
             })

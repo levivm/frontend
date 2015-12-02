@@ -200,19 +200,25 @@
             console.groupEnd();
             event.preventDefault();
 
-            if(toState.name === 'referrals.home'){
-                $state.go('referrals.home-anon');
-            } else if(toState.name === 'referrals.home-anon') {
-                $state.go('referrals.home');
-            } else if(toState.name === 'referrals.invitation'){
-                $state.go('referrals.home');
-            } else {
-                console.info('Resolve Error. Redirecting to "not-found"');
-                $state.go('not-found', {
-                    message: 'State Not Found',
-                    fromState: fromState,
-                    fromParams: fromParams
-                });
+            switch(toState.name){
+                case 'referrals.home':
+                    $state.go('referrals.home-anon');
+                    break;
+                case 'referrals.home-anon':
+                case 'referrals.invitation':
+                    $state.go('referrals.home');
+                    break;
+                case 'register':
+                case 'login':
+                    $state.go('home');
+                    break;
+                default:
+                    console.info('Resolve Error. Redirecting to "not-found"');
+                    $state.go('not-found', {
+                        message: 'State Not Found',
+                        fromState: fromState,
+                        fromParams: fromParams
+                    });
             }
         }
 
