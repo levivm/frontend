@@ -4,7 +4,7 @@
     <div class="navbar__logo-container">
       <a ui-sref="home" class="navbar__logo"></a>
     </div>
-    <div class="navbar__left-wrapper" ng-if="state != 'home'">
+    <div class="navbar__left-wrapper" ng-if="isSearchVisible">
       <trulii-search-bar data-on-navbar="true"></trulii-search-bar>
     </div>
     <div class="navbar__right-wrapper">

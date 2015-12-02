@@ -18554,6 +18554,9 @@ blockquote {
   background-color: white;
   padding: 0px 35px 25px 35px;
 }
+.not-found-search-bar {
+  background-color: #393b3f;
+}
 .home-footer {
   overflow: hidden;
 }

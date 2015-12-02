@@ -138,6 +138,7 @@
 
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
+                        scope.isSearchVisible = !(toState.name == 'home' || toState.name == 'not-found');
                     });
 
                     unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
