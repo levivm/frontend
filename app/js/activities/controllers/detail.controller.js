@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Elevator', 'Toast', 'currentUser',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'moment', 'uiGmapGoogleMapApi', 'Elevator', 'Toast', 'currentUser',
         'cities', 'activity', 'calendars', 'reviews', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
         'serverConf'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $window, uiGmapGoogleMapApi, Elevator, Toast, currentUser,
+    function ActivityDetailController($scope, $state, $stateParams, $window, moment, uiGmapGoogleMapApi, Elevator, Toast, currentUser,
                                       cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
@@ -39,15 +39,11 @@
             activity : null,
             organizer : null,
             calendar_selected : null,
-            isListVisible: false,
             currentGalleryPicture: 0,
             galleryOptions: {
                 interval: 0,
                 noWrap: false
             },
-            showList: showList,
-            hideList: hideList,
-            setSelectedCalendar: setSelectedCalendar,
             changeState : changeState,
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
@@ -57,7 +53,7 @@
             nextGalleryPicture: nextGalleryPicture,
             nextState: nextState,
             showMoreReviews: showMoreReviews,
-            viewMoreDates: viewMoreDates,
+            viewMoreCalendars: viewMoreCalendars,
             scroll: 0,
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
@@ -77,15 +73,6 @@
 
         function nextGalleryPicture(){
             if(vm.currentGalleryPicture < (vm.activity.gallery.length - 1)){ vm.currentGalleryPicture++; }
-        }
-
-        function showList(){ vm.isListVisible = true; }
-
-        function hideList(){ vm.isListVisible = false; }
-
-        function setSelectedCalendar(calendar){
-            vm.calendar_selected = calendar;
-            hideList();
         }
 
         function isSelectedCalendarFull(){
@@ -147,9 +134,8 @@
             }
         }
 
-        function viewMoreDates(){
-            console.log('VIEW MORE DAATESSS');
-            Elevator.toElement('calendar_widget');
+        function viewMoreCalendars(){
+            Elevator.toElement('more_calendars_section');
 
         }
 
@@ -160,27 +146,14 @@
         //--------- Internal Functions ---------//
 
         function _mapClosestCalendar(activity){
-            var today = Date.now();
             activity.days_to_closest = null;
-            activity.closest_date = null;
-            activity.closest_calendar = null;
-            activity.upcoming_calendars = [];
 
-            if(activity.calendars){
-                activity.calendars.forEach(function(calendar){
-                    if(calendar.initial_date >= today
-                        && (calendar.initial_date < activity.closest_date || !activity.closest_date)){
-                        activity.closest_date = calendar.initial_date;
-                        activity.closest_calendar = calendar;
-                    }
-                    if(calendar.initial_date >= today){
-                        activity.upcoming_calendars.push(calendar);
-                    }
-                });
+            if(activity.closest_calendar){
+                activity.closest_date = activity.closest_calendar.initial_date;
             }
 
             if(activity.closest_date){
-                activity.days_to_closest = Math.floor((activity.closest_date - today)/(1000*60*60*24));
+                activity.days_to_closest = moment(activity.closest_date).diff(moment(), 'days');
             } else {
                 activity.days_to_closest = -1;
             }
@@ -205,11 +178,20 @@
         }
 
         function _mapCalendars(activity){
-            if(activity.calendars)
-              activity.calendars = activity.calendars.map(mapVacancy);
+            activity.upcoming_calendars = [];
+            if(activity.calendars){
+                activity.calendars = activity.calendars.map(mapVacancy);
+                var calendars = angular.copy(activity.calendars);
+                activity.upcoming_calendars = _.remove(calendars,removePassedCalendars);
+            }
+
+            function removePassedCalendars(calendar){
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf(), 'day'); 
+                return !(passed);
+            }
 
             function mapVacancy(calendar){
-                calendar.vacancy = calendar.capacity - calendar.assistants.length;
+                calendar.vacancy = calendar.available_capacity;
                 calendar.total_price = calendar.session_price;
                 return calendar;
             }
@@ -352,6 +334,9 @@
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días. Porque tú te lo mereces ",
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
+                LABEL_START: "Inicio",
+                LABEL_VACANCY: "Vacantes",
+                LABEL_SESSIONS_NUMBER: "N° Sesiones",
                 LABEL_COST: "Precio",
                 LABEL_NEXT_DATE: "Próximo Inicio",
                 LABEL_CLOSING_DATE: "Ventas hasta",
@@ -422,7 +407,6 @@
 
             var reviewsAvg = _getReviewRatingAvg(reviews);
             console.log('avg', reviewsAvg);
-
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
