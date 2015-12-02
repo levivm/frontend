@@ -14036,6 +14036,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .burger-menu__mobile-logo {
     padding: 0.5em 0.5em 0.75em 0.5em;
   }
+  .navbar__left-wrapper {
+    width: 50%;
+  }
 }
 .search-filter {
   height: 5.8em;
@@ -17416,6 +17419,9 @@ blockquote {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #999999;
 }
+.calendar-widget .widget-card .price .text-muted {
+  color: #e3e3e3;
+}
 .calendar-widget .widget-card .btn-sign-up {
   width: 100%;
   height: auto;
@@ -17431,6 +17437,8 @@ blockquote {
   width: 100%;
   text-align: center;
   color: #999999;
+  padding: 1.6em 0em;
+  border-bottom: 1px solid #dedede;
 }
 .calendar-widget .widget-card .info .level {
   width: 30%;
@@ -17530,6 +17538,7 @@ blockquote {
 }
 .calendar-widget .widget-card .other-calendars {
   padding: 1.6em;
+  border-bottom: 1px solid #dedede;
 }
 .calendar-widget .widget-card .other-calendars-has-more {
   cursor: pointer;
@@ -17549,24 +17558,23 @@ blockquote {
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
-  padding: 0;
-  font-size: 0.8em;
-  font-weight: 100;
-  color: #999999;
+  padding: 0 2em;
+  font-size: 0.9em;
+  font-weight: 200;
+  color: #535353;
 }
 .calendar-widget .widget-card .other-calendars-count {
   width: 100%;
   height: auto;
   padding: 1em 1em 0;
   font-size: 1.2em;
-  font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
   text-align: center;
   text-transform: uppercase;
   padding: 0;
-  font-size: 0.8em;
-  font-weight: 600;
-  color: #999999;
+  font-size: 0.85em;
+  font-weight: 400;
+  color: #535353;
 }
 .calendar-widget .widget-card .other-calendars-more {
   width: 100%;
@@ -17578,10 +17586,29 @@ blockquote {
   text-align: center;
   text-transform: uppercase;
   text-transform: none;
-  padding: 0;
-  font-size: 0.8em;
+  padding: 1em 4.5em 0em;
+  font-size: 1em;
   font-weight: 600;
+  color: #535353;
+}
+.calendar-widget .widget-card .share {
+  padding: 1.6em 0;
+}
+.calendar-widget .widget-card .share p {
+  font-size: 1em;
   color: #999999;
+}
+.calendar-widget .widget-card .share .btn-share-fb,
+.calendar-widget .widget-card .share .btn-share-twitter,
+.calendar-widget .widget-card .share .btn-share-email {
+  width: 35px;
+  height: 35px;
+  padding-top: 5px;
+}
+.calendar-widget .widget-card .share .btn-share-fb img,
+.calendar-widget .widget-card .share .btn-share-twitter img,
+.calendar-widget .widget-card .share .btn-share-email img {
+  margin: 0 auto;
 }
 .calendar-widget .widget-list .widget-list-item {
   padding: 2em;
@@ -18042,6 +18069,20 @@ blockquote {
     margin-bottom: 1em;
     text-align: center;
   }
+  .sign-up-container .calendars-container .table {
+    border: none;
+  }
+  .sign-up-container .calendars-container .table thead tr td,
+  .sign-up-container .calendars-container .table tbody tr td,
+  .sign-up-container .calendars-container .table tfoot tr td,
+  .sign-up-container .calendars-container .table thead tr th,
+  .sign-up-container .calendars-container .table tbody tr th,
+  .sign-up-container .calendars-container .table tfoot tr th {
+    padding: 1.5em 5px;
+  }
+  .sign-up-container .sessions-container {
+    padding: 0;
+  }
   .reasons-container .reason {
     width: 100%;
   }
@@ -18053,6 +18094,27 @@ blockquote {
     display: block;
     text-align: center;
   }
+}
+.modal-email {
+  border-radius: 4px;
+}
+.modal-email .modal-header {
+  color: #535353;
+  padding: 5px 5px 10px 5px;
+  background-color: #38dbc8;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.modal-email .modal-body {
+  padding: 10px 60px;
+}
+.modal-email .modal-body label {
+  font-weight: 500;
+  color: #3a3d3f !important;
+}
+.modal-email .modal-body input,
+.modal-email .modal-body textarea {
+  border: 1px solid #e3e3e3;
 }
 .Panel {
   box-shadow: none;
@@ -18273,7 +18335,7 @@ blockquote {
   }
   .fixed-widget {
     position: fixed;
-    max-height: 84vh;
+    max-height: 72.5vh;
     overflow-y: scroll;
     overflow-x: hidden;
     top: 100px;

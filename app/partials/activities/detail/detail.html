@@ -50,12 +50,7 @@
 
         <a href="#"
           class="text-no-decoration btn-share-email"
-          socialshare
-          socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
-          socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"
-          socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
-          socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
-          socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
+          ng-click="detail.toggleEmailShow()">
           <img class="img-responsive" src="/css/img/activity-detail/share_email.png"
           alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
         </a>
@@ -182,6 +177,7 @@
         <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
       </div>
     </div>
+    <!--Calendar Widget-->
     <div class="calendar-widget separate-above" id="calendar_widget" ng-class="{'fixed-widget': (detail.scroll + 80 > detail.widgetOriginalPosition - 80) && (detail.scroll + 80 < detail.widgetMaxPosition), 'absolute-widget': detail.scroll + 80 >= detail.widgetMaxPosition}"
       ng-style="detail.scroll + 80 >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}">
       <div class="widget-card" ng-hide="detail.isListVisible">
@@ -207,6 +203,7 @@
       </div>
       <div class="price">
         <span ng-if="!detail.calendar_selected.is_free" ng-bind="detail.calendar_selected.total_price | currency:$:0"></span>
+        <s ng-if="detail.calendar_selected.is_free" class="text-muted" ng-bind="detail.calendar_selected.total_price | currency"></s>
         <span ng-if="detail.calendar_selected.is_free" ng-bind="::detail.strings.COPY_FREE"></span>
       </div>
       <div class="btn btn-primary btn-sign-up"
@@ -217,50 +214,13 @@
         ng-disabled="detail.isSelectedCalendarFull()"
         ng-hide="detail.isSelectedCalendarFull()"
         ng-click="detail.nextState(detail.activity.id,detail.calendar_selected.id)"
-        ng-bind="::detail.strings.ACTION_SIGN_UP"></a>
-        <div class="info">
-          <div class="level">
-            <img src="/css/img/activity-detail/widget_level.png" alt=""/>
-            <div class="title" ng-bind="detail.activity.level_display"></div>
-          </div>
-          <div class="certification">
-            <img src="/css/img/activity-detail/widget_certification.png" alt=""/>
-            <div ng-if="detail.activity.certification" class="title"
-              ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></div>
-            <div ng-if="!detail.activity.certification" class="title"
-              ng-bind="::detail.strings.VALUE_WITHOUT_CERTIFICATION"></div>
-          </div>
-          <!--TODO pendiente calcular duracion-->
-          <div class="duration">
-            <img src="/css/img/activity-detail/widget_duration.png" alt=""/>
-            <!-- <div class="title" ng-bind="::detail.getDuration(detail.calendar_selected)"></div> -->
-            <div class="title" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></div>
-          </div>
-        </div>
-        <div class="sessions">
-          <div class="sessions-title">
-            <span ng-bind="detail.calendar_selected.sessions.length"></span>
-            <ng-pluralize count="detail.calendar_selected.sessions.length"
-              when="{
-                'one': detail.strings.COPY_ONE_SESSION,
-                'other': detail.strings.COPY_OTHER_SESSIONS
-              }">
-            </ng-pluralize>
-          </div>
-          <div class="sessions-list">
-            <div class="session-item"
-              ng-repeat="session in detail.calendar_selected.sessions track by session.id">
-              <div class="session-item-date" ng-bind="session.date | date:'EEEE d MMM y'"></div>
-              <div class="session-item-time">
-                <span ng-bind="session.start_time | amDateFormat: 'h:mm a'"></span>
-                <span ng-bind="::detail.strings.COPY_TO" class="text-lowercase" ></span>
-                <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
-              </div>
-            </div>
-          </div>
-        </div>
+        ng-bind="::detail.strings.ACTION_SIGN_UP">
+
+      </a>
+
+
         <div class="other-calendars"
-          ng-click="detail.showList()"
+          ng-click="detail.viewMoreCalendars()"
           ng-class="{'other-calendars-has-more': detail.activity.upcoming_calendars.length > 1}">
           <div ng-if="detail.activity.upcoming_calendars.length == 2">
             <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_ONE_CALENDAR_AVAILABLE"></div>
@@ -277,49 +237,67 @@
           </div>
           <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
             <span ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></span>
-            <i class="mdi-navigation-chevron-right"></i>
           </div>
         </div>
-      </div>
-
-      <div class="widget-list" ng-show="detail.isListVisible">
-        <div class="widget-list-item"
-          ng-repeat="calendar in detail.activity.upcoming_calendars track by calendar.id"
-          ng-class="{'selected': detail.calendar_selected.id == calendar.id}">
-          <div class="row">
-            <div class="col-md-6 clear-spacings float-left">
-              <div class="next-label" ng-bind="::detail.strings.LABEL_NEXT_DATE"></div>
-              <div class="vacancy">
-                <span ng-bind="calendar.vacancy"></span>
-                <ng-pluralize count="calendar.vacancy"
-                  when="{
-                    '1': detail.strings.COPY_VACANCY_SINGULAR,
-                    'other': detail.strings.COPY_VACANCY
-                  }">
-                </ng-pluralize>
-              </div>
-            </div>
-            <div class="col-md-6 clear-spacings float-right">
-              <div class="closing-sale" ng-bind="::detail.strings.LABEL_CLOSING_DATE"></div>
-              <div class="closing-sale" ng-bind="calendar.closing_sale | date:'MMM d, y'"></div>
-            </div>
+        <div class="info">
+          <div class="level">
+            <img src="/css/img/activity-detail/widget_level.png" alt=""/>
+            <div class="title" ng-bind="detail.activity.level_display"></div>
           </div>
-          <div class="row">
-            <div class="start-date" ng-bind="calendar.initial_date | date:'MMM d, y'"></div>
+          <div class="certification">
+            <img src="/css/img/activity-detail/widget_certification.png" alt=""/>
+            <div ng-if="detail.activity.certification" class="title"
+              ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></div>
+            <div ng-if="!detail.activity.certification" class="title"
+              ng-bind="::detail.strings.VALUE_WITHOUT_CERTIFICATION"></div>
           </div>
-          <div class="row">
-            <img class="btn-return" src="css/img/activity-detail/widget_navigation_back.png"
-              alt="Return to selected calendar"
-              ng-click="detail.hideList()"/>
-            <div class="float-right">
-              <span ng-if="!calendar.is_free" class="label price" ng-bind="calendar.total_price | currency"></span>
-              <span ng-if="calendar.is_free" class="label price" ng-bind="::detail.strings.COPY_FREE"></span>
-              <button class="btn btn-success btn-detail"
-                ng-bind="::detail.strings.ACTION_SELECT_CALENDAR"
-                ng-click="detail.setSelectedCalendar(calendar)">
-              </button>
-            </div>
+          <div class="duration">
+            <img src="/css/img/activity-detail/widget_duration.png" alt=""/>
+            <div class="title" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></div>
           </div>
+        </div>
+        <div class="share">
+          <p class="text-center" ng-bind="::detail.strings.COPY_SHARE_WIDGET"></p>
+          <ul class="text-center list-unstyled list-inline">
+            <li>
+              <a href="#"
+                class="text-no-decoration btn-share-fb"
+                socialshare
+                socialshare-provider="{{::detail.social.FACEBOOK_SOCIAL_PROVIDER}}"
+                socialshare-type="{{::detail.social.FACEBOOK_SHARE_TYPE}}"
+                socialshare-via="{{::detail.social.FACEBOOK_API_KEY}}"
+                socialshare-redirect-uri="{{::detail.social.FACEBOOK_REDIRECT_URI}}"
+                socialshare-media="{{::detail.social.FACEBOOK_SHARE_MEDIA}}"
+                socialshare-text="{{::detail.social.FACEBOOK_SHARE_TEXT}}"
+                socialshare-caption="{{::detail.social.FACEBOOK_SHARE_CAPTION}}"
+                socialshare-description="{{::detail.social.FACEBOOK_SHARE_DESCRIPTION}}"
+                socialshare-url="{{::detail.social.FACEBOOK_SHARE_URL}}">
+                <img class="img-responsive" src="/css/img/activity-detail/share_facebook.png"
+                alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+              </a>
+            </li>
+            <li>
+              <a href="#"
+                class="text-no-decoration btn-share-twitter"
+                socialshare
+                socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
+                socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"
+                socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
+                socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
+                socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
+                <img class="img-responsive" src="/css/img/activity-detail/share_twitter.png"
+                alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+              </a>
+            </li>
+            <li>
+              <a href="#"
+                class="text-no-decoration btn-share-email"
+                ng-click="detail.toggleEmailShow()">
+                <img class="img-responsive" src="/css/img/activity-detail/share_email.png"
+                alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -413,7 +391,8 @@
   </div>
 </div>
 
-<div class="sign-up-container padding-vertical-more">
+<!--Calendars-->
+<div class="sign-up-container padding-vertical-more" id="more_calendars_section">
   <div class="row">
     <div class="col-md-12">
       <h1 class="title" ng-bind="::detail.strings.COPY_HEADER_SIGN_UP"></h1>
@@ -424,32 +403,27 @@
       <h4 class="" ng-bind="::detail.strings.COPY_SIGN_UP"></h4>
     </div>
   </div>
-  <div class="row separate-above-medium">
-    <div class="col-xs-10 col-xs-offset-1">
+  <div class="row">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
       <div class="row">
-        <div class="col-xs-9 calendars-container">
+        <div class="col-xs-10 col-xs-offset-1 col-md-9 col-md-offset-0 calendars-container separate-above-medium">
           <table class="table table-responsive table-justified">
             <tr>
               <th>
               </th>
-              <th>
-                Inicio
+              <th ng-bind="::detail.strings.LABEL_START">
               </th>
-              <th>
-                Ventas hasta
+              <th ng-bind="::detail.strings.LABEL_VACANCY">
               </th>
-              <th>
-                Vacantes
+              <th ng-bind="::detail.strings.LABEL_CLOSING_DATE">
               </th>
-              <th>
-                N° Sesiones
+              <th ng-bind="::detail.strings.LABEL_SESSIONS_NUMBER">
               </th>
-              <th>
-                Precio
+              <th ng-bind="::detail.strings.LABEL_COST">
               </th>
             </tr>
             <tr
-              ng-repeat-start="calendar in detail.activity.calendars track by calendar.id"
+              ng-repeat-start="calendar in detail.activity.upcoming_calendars track by calendar.id"
               ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index">
               <td>
                 <span class="checkbox"></span>
@@ -494,15 +468,15 @@
             </tr>
           </table>
         </div>
-        <div class="col-xs-3 sessions-container">
+        <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0 sessions-container separate-above-medium">
           <div class="sessions">
             <h4 class="text-uppercase" ng-bind="::detail.strings.COPY_OTHER_SESSIONS"></h4>
-            <h5 ng-repeat="session in detail.activity.calendars[detail.selectedActivity].sessions">
+            <h5 ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
               <strong ng-bind="session.date | date: 'EEE d MMM y' "></strong>
               <br>
-              <span ng-bind="session.start_time | date: 'h:mm a' "></span>
+              <span ng-bind="session.start_time | amDateFormat: 'h:mm a' "></span>
               <span ng-bind="detail.COPY_TO"></span>
-              <span ng-bind="session.end_time | date: 'h:mm a'"></span>
+              <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
             </h5>
           </div>
         </div>
@@ -574,3 +548,55 @@
     </div>
   </div>
 </div>
+
+<div class="absolute-container" ng-show="detail.showEmail">
+  <button class="pull-right absolute-container__close" ng-click="detail.toggleEmailShow()">
+    <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+  </button>
+  <div class="col-xs-12 col-md-7">
+    <div class="modal-content modal-email">
+      <div class="modal-header">
+        <div class="well-title">
+          <h3 class="text-center" ng-bind="::detail.strings.EMAIL_MODAL_HEADER">
+          </h3>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form name='detail.email_form' ng-submit="detail.shareEmailForm()" class="separate-above separate-below-less form-classic">
+          <fieldset>
+            <div class="form-group" trulii-input-errors-control="name">
+                <label for="emails" ng-bind="detail.strings.EMAIL_MODAL_SEND_TO_LABEL">
+                </label>
+                <input id="emails" class="form-control" name="emails" type="text"
+                  ng-model="detail.formData.emails"
+                  placeholder="{{detail.strings.EMAIL_MODAL_SEND_TO_PLACEHOLDER}}" >
+            </div>
+            <div class="form-group" trulii-input-errors-control="message">
+              <label for="message" ng-bind="detail.strings.EMAIL_MODAL_MESSAGE_LABEL"></label>
+              <textarea name="message" class="form-control"
+                        ng-model="detail.formData.message"
+                        placeholder="{{detail.strings.EMAIL_MODAL_MESSAGE_PLACEHOLDER}}">
+              </textarea>
+            </div>
+            <div class="form-group" trulii-input-errors-control="__all__">
+                <input type="hidden" name="__all__" ng-model="__all__"/>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+                  <button type="submit" id="submit"
+                    class="btn btn-lg btn-success btn-block"
+                    ng-bind="::detail.strings.EMAIL_MODAL_SEND">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<trulii-footer>
+</trulii-footer>

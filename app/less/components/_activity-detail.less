@@ -144,6 +144,9 @@
             color: @white;
             font-family: @font-sans-alt;
             background-color: @text-muted;
+            .text-muted{
+              color: @gray-light-medium;
+            }
         }
 
         .btn-sign-up {
@@ -162,6 +165,8 @@
             width: 100%;
             text-align: center;
             color: @text-muted;
+            padding: 1.6em 0em;
+            border-bottom: @border-widget;
 
             .InfoSection(){
                 width: 30%;
@@ -241,7 +246,7 @@
 
         .other-calendars {
             padding: 1.6em;
-
+            border-bottom: @border-widget;
             &-has-more {
                 cursor: pointer;
             }
@@ -256,28 +261,44 @@
 
             &-copy {
                 .HeaderText();
-                padding: 0;
-                font-size: 0.8em;
-                font-weight: 100;
-                color: @text-muted;
+                padding: 0 2em;
+                font-size: 0.9em;
+                font-weight: 200;
+                color: @gray;
             }
 
             &-count {
                 .HeaderText();
                 padding: 0;
-                font-size: 0.8em;
-                font-weight: 600;
-                color: @text-muted;
+                font-size: 0.85em;
+                font-weight: 400;
+                color: @gray;
             }
 
             &-more {
                 .HeaderText();
                 text-transform: none;
-                padding: 0;
-                font-size: 0.8em;
+                padding: 1em 4.5em 0em;
+                font-size: 1em;
                 font-weight: 600;
-                color: @text-muted;
+                color: @gray;
             }
+        }
+
+        .share{
+          padding: 1.6em 0;
+          p{
+            font-size: 1em;
+            color: @text-muted;
+          }
+          .btn-share-fb, .btn-share-twitter, .btn-share-email{
+            width: 35px;
+            height: 35px;
+            padding-top: 5px;
+            img{
+              margin: 0 auto;
+            }
+          }
         }
     }
 
@@ -771,7 +792,26 @@
           text-align: center;
       }
     }
+    .calendars-container{
+      .table {
+        border: none;
+        thead, tbody, tfoot{
+          tr{
+            td, th{
+                  padding: 1.5em 5px;
+            }
+          }
+        }
+      }
+    }
+
+    .sessions-container{
+      padding: 0;
+    }
+
   }
+
+
   .reasons-container{
     .reason {
       width: 100%;
@@ -783,6 +823,27 @@
         display: block;
         text-align: center;
       }
+    }
+  }
+}
+
+.modal-email{
+  border-radius: @border-radius-base;
+  .modal-header{
+    color: @gray;
+    padding: 5px 5px 10px 5px;
+    background-color: @brand-success;
+    border-top-left-radius: @border-radius-base;
+    border-top-right-radius: @border-radius-base;
+  }
+  .modal-body{
+    padding: 10px 60px;
+    label{
+      font-weight: 500;
+      color: @gray-dark !important;
+    }
+    input, textarea{
+      border: 1px solid @gray-light-medium;
     }
   }
 }

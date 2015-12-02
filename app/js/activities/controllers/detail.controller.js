@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'uiGmapGoogleMapApi', 'Elevator', 'Toast', 'currentUser',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'moment', 'uiGmapGoogleMapApi', 'Elevator', 'Toast', 'currentUser',
         'cities', 'activity', 'calendars', 'reviews', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
         'serverConf'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $window, uiGmapGoogleMapApi, Elevator, Toast, currentUser,
+    function ActivityDetailController($scope, $state, $stateParams, $window, moment, uiGmapGoogleMapApi, Elevator, Toast, currentUser,
                                       cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
                                       serverConf) {
         var MAX_DAYS = 30;
@@ -39,15 +39,11 @@
             activity : null,
             organizer : null,
             calendar_selected : null,
-            isListVisible: false,
             currentGalleryPicture: 0,
             galleryOptions: {
                 interval: 0,
                 noWrap: false
             },
-            showList: showList,
-            hideList: hideList,
-            setSelectedCalendar: setSelectedCalendar,
             changeState : changeState,
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
@@ -57,12 +53,14 @@
             nextGalleryPicture: nextGalleryPicture,
             nextState: nextState,
             showMoreReviews: showMoreReviews,
-            viewMoreDates: viewMoreDates,
+            viewMoreCalendars: viewMoreCalendars,
             scroll: 0,
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
             widgetAbsolutePosition: 0,
-            selectedActivity: 0
+            selectedActivity: 0,
+            showEmail: false,
+            toggleEmailShow: toggleEmailShow,
         });
 
         _activate();
@@ -75,15 +73,6 @@
 
         function nextGalleryPicture(){
             if(vm.currentGalleryPicture < (vm.activity.gallery.length - 1)){ vm.currentGalleryPicture++; }
-        }
-
-        function showList(){ vm.isListVisible = true; }
-
-        function hideList(){ vm.isListVisible = false; }
-
-        function setSelectedCalendar(calendar){
-            vm.calendar_selected = calendar;
-            hideList();
         }
 
         function isSelectedCalendarFull(){
@@ -145,36 +134,26 @@
             }
         }
 
-        function viewMoreDates(){
-            console.log('VIEW MORE DAATESSS');
-            Elevator.toElement('calendar_widget');
+        function viewMoreCalendars(){
+            Elevator.toElement('more_calendars_section');
 
+        }
+
+        function toggleEmailShow(){
+          vm.showEmail = !vm.showEmail;
         }
 
         //--------- Internal Functions ---------//
 
         function _mapClosestCalendar(activity){
-            var today = Date.now();
             activity.days_to_closest = null;
-            activity.closest_date = null;
-            activity.closest_calendar = null;
-            activity.upcoming_calendars = [];
 
-            if(activity.calendars){
-                activity.calendars.forEach(function(calendar){
-                    if(calendar.initial_date >= today
-                        && (calendar.initial_date < activity.closest_date || !activity.closest_date)){
-                        activity.closest_date = calendar.initial_date;
-                        activity.closest_calendar = calendar;
-                    }
-                    if(calendar.initial_date >= today){
-                        activity.upcoming_calendars.push(calendar);
-                    }
-                });
+            if(activity.closest_calendar){
+                activity.closest_date = activity.closest_calendar.initial_date;
             }
 
             if(activity.closest_date){
-                activity.days_to_closest = Math.floor((activity.closest_date - today)/(1000*60*60*24));
+                activity.days_to_closest = moment(activity.closest_date).diff(moment(), 'days');
             } else {
                 activity.days_to_closest = -1;
             }
@@ -199,11 +178,20 @@
         }
 
         function _mapCalendars(activity){
-            if(activity.calendars)
-              activity.calendars = activity.calendars.map(mapVacancy);
+            activity.upcoming_calendars = [];
+            if(activity.calendars){
+                activity.calendars = activity.calendars.map(mapVacancy);
+                var calendars = angular.copy(activity.calendars);
+                activity.upcoming_calendars = _.remove(calendars,removePassedCalendars);
+            }
+
+            function removePassedCalendars(calendar){
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf(), 'day'); 
+                return !(passed);
+            }
 
             function mapVacancy(calendar){
-                calendar.vacancy = calendar.capacity - calendar.assistants.length;
+                calendar.vacancy = calendar.available_capacity;
                 calendar.total_price = calendar.session_price;
                 return calendar;
             }
@@ -309,13 +297,14 @@
                 ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
                 ACTION_SELECT_CALENDAR: "Ver Detalle",
-                ACTION_VIEW_OTHER_DATES: "Ver otras fechas",
+                ACTION_VIEW_OTHER_DATES: "Ver más fechas de inicio",
                 ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
                 ACTIVITY_SOLD_OUT: "Agotado",
                 COPY_SOCIAL_BUTTONS: "¿Te gustó? Compártelo con tus amigos",
                 COPY_SOCIAL_SHARE_FACEBOOK: "Compartir en Facebook",
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
+                COPY_SHARE_WIDGET: "¡Compártelo con tus amigos!",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                 COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizará en otra oportunidad ",
                 COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
@@ -336,6 +325,8 @@
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
                 COPY_OTHER_SESSIONS: "Sesiones",
+                COPY_OTHER_OPORTUNITY: "Oportunidad",
+                COPY_OTHER_OPORTUNITIES: "Oportunidades",
                 COPY_ONE_REVIEW: " Evaluación",
                 COPY_OTHER_REVIEWS: " Evaluaciones",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
@@ -343,6 +334,9 @@
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días. Porque tú te lo mereces ",
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
+                LABEL_START: "Inicio",
+                LABEL_VACANCY: "Vacantes",
+                LABEL_SESSIONS_NUMBER: "N° Sesiones",
                 LABEL_COST: "Precio",
                 LABEL_NEXT_DATE: "Próximo Inicio",
                 LABEL_CLOSING_DATE: "Ventas hasta",
@@ -368,7 +362,16 @@
                 REASON_REFUND: "Devolución Garantizada",
                 REASON_COPY_REFUND: "Por si no se realiza la actividad.",
                 REASON_SECURE: "Pago Seguro",
-                REASON_COPY_SECURE: "Inscribete con tranquilidad."
+                REASON_COPY_SECURE: "Inscribete con tranquilidad.",
+                EMAIL_MODAL_HEADER: "Comparte vía correo electrónico",
+                EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
+                EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
+                EMAIL_MODAL_MESSAGE_LABEL: "Escribe un mensaje:",
+                EMAIL_MODAL_MESSAGE_PLACEHOLDER: "Hey, échale un vistazo a esta actividad en Trulii. ¡Sé que te encantará!",
+                EMAIL_MODAL_SEND: "Enviar invitacion"
+
+
+
                 });
         }
 
@@ -380,7 +383,7 @@
                 vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
                 $window.onscroll = function(){
                     vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 200 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
                     vm.scroll = window.scrollY;
                     $scope.$apply();
                 };
@@ -404,7 +407,6 @@
 
             var reviewsAvg = _getReviewRatingAvg(reviews);
             console.log('avg', reviewsAvg);
-
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
