@@ -80,8 +80,8 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                ACTION_CREATE_ACTIVITY: "Crear Actividad",
-                ACTION_PUBLISH_ACTIVITY: "Publicar Actividad",
+                ACTION_CREATE_ACTIVITY: "Crear Nueva Actividad",
+                ACTION_PUBLISH_ACTIVITY: "Publicar Actividad Existente",
                 ACTION_REPUBLISH_ACTIVITY: "Republicar Actividad",
                 COPY_OPEN: "Revisa las actividades que tienes publicadas actualmente.",
                 COPY_CLOSED: "Revisa tus actividades que estuvieron publicadas. Si lo deseas puedes"
@@ -105,7 +105,7 @@
         function _activate() {
             _setStrings();
             activities.map(_mapMainPicture);
-            _assignActivities();
+            //_assignActivities();
         }
 
     }

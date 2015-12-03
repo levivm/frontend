@@ -13073,6 +13073,12 @@ h5 a {
 .padding-more {
   padding: 8rem;
 }
+.margin-horizontal {
+  margin: 0 3rem;
+}
+.margin-horizontal-less {
+  margin: 0 1rem;
+}
 hr {
   width: 98%;
 }
