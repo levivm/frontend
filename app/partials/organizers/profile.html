@@ -29,18 +29,12 @@
         </div>
     </div>
 </div>
-
 <div class="col-xs-12 profile-biography">
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
             <h1 class="text-primary text-center"><strong ng-bind="::profile.strings.LABEL_BIO"></strong></h1>
             <div class="profile-biography--content">
-                 <!--<p ng-bind="::profile.organizer.bio"></p>-->
-
-                <!-- Bio-->
                 <p ng-bind="::profile.organizer.bio"></p>
-                <!-- End-->
-
             </div>
             <div ng-if="profile.organizer.youtube_video_url"  class="youtube-container">
                 <youtube-video video-url="::profile.organizer.youtube_video_url" player-width="'100%'"></youtube-video>
@@ -48,16 +42,13 @@
         </div>
     </div>
 </div>
-
 <div class="col-xs-12 profile-activities">
     <h3 class="text-center separate-below">
         <strong><span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span> <span ng-bind="::profile.organizer.name"></span></strong>
     </h3>
-    <trulii-activity-item
-                          ng-repeat="activity in profile.activities track by activity.id"
-                          data-activity="activity" data-options="{{profile.options}}"></trulii-activity-item>
+    <trulii-activity-item ng-repeat="activity in profile.activities track by activity.id"
+          data-activity="activity" data-options="{{profile.options}}"></trulii-activity-item>
 </div>
-
 <!--Location-->
 <div class="row profile-location">
     <div class="col-xs-12">
@@ -76,7 +67,6 @@
         </div>
     </div>
 </div>
-
 <!-- Comments -->
 <div class="col-xs-12 profile-comments">
     <div class="row">
@@ -96,7 +86,6 @@
                     <span ng-bind="profile.reviewObjects.length"></span><span ng-bind="::profile.strings.LABEL_TOTAL"></span>
                 </div>
             </div>
-
         </div>
         <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1 col-md-pull-3">
             <h3 class="separate-below separate-above-medium">
@@ -109,19 +98,20 @@
                     <trulii-activity-review data-review="reviewObject.review"
                                             data-activity="reviewObject.activity"
                                             data-on-dashboard="false" ></trulii-activity-review>
-                    <hr/>
+                    <div class="separator-light"></div>
                 </div>
             </div>
 
-            <div class="row" ng-show="profile.hasMoreReviews">
+            <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
                     <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase"
-                            ng-bind="::profile.strings.LABEL_MORE_COMMENTS"
+                            ng-class="{'disabled': !profile.hasMoreReviews}"
                             ng-click="profile.showMoreReviews()">
+                        <span ng-if="profile.hasMoreReviews" ng-bind="::profile.strings.LABEL_MORE_COMMENTS"></span>
+                        <span ng-if="!profile.hasMoreReviews" ng-bind="::profile.strings.LABEL_NO_MORE_COMMENTS"></span>
                     </button>
                 </div>
             </div>
         </div>
-
     </div>
 </div>

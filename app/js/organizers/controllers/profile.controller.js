@@ -114,6 +114,7 @@
                 LABEL_COMMENTS: "Comentarios",
                 LABEL_TOTAL: "en total",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
+                LABEL_NO_MORE_COMMENTS: "No hay más comentarios",
                 COPY_MEMBER_SINCE: "Miembro desde ",
                 COPY_VERIFIED_1: "Organizador",
                 COPY_VERIFIED_2: "verficado por Trulii"
@@ -136,6 +137,8 @@
             function successCities(cities){
                 vm.city = _getCity(cities, organizer);
             }
+
+            console.log('organizer:', organizer);
         }
     }
 })();
