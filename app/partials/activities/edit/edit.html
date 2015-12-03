@@ -6,24 +6,13 @@
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected" ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} ">
                         <i class="{{::step.icon}} sidebar__item__icon"></i>
                         <span ng-bind="::step.title"></span>
-
-                        <i class="mandatory-mark --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>                        
-                        
+                        <i class="mandatory-mark --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
                     </a>
-
-                </li>                
-
-                <!-- <div ng-show="pc.activity.published">
-                    <input type="submit" id="submit" class="btn btn-primary" value="{{pc.strings.UNPUBLISH_ACTIVITY_LABEL}}"
-                           ng-show="pc.allow_unpublish"        
-                           ng-click="pc.unpublish_activity()"/>
-                </div> -->                
-                
+                </li>
                 <div class="sidebar__bottom-action text-center" >
 
                     <div ng-show="!pc.areAllStepsCompleted()">
                         <div>
-                        
                             <ng-pluralize count="pc.activity.steps_left"
                                 when="{
                                     '0':'',
@@ -42,74 +31,46 @@
                                 </ng-pluralize>
 
                             </strong>
-                        
                         </div>
-
                         <span>Para publicar tu actividad</span><br/>
-
                         <hr>
-
                         <div class="text-uppercase">
                             <span class="mandatory-mark"></span> Obligatorios
-                        </div>     
+                        </div>
                     </div>
-
                     <div ng-show="pc.activity.published">
-
                         <div ng-show="pc.allow_unpublish" class="lateral-fade">
-                            <span ng-bind="::pc.strings.COPY_UNPUBLISH_ACTIVITY"></span>                
-
-                            <button class="btn btn-warning btn-lg"                               
+                            <span ng-bind="::pc.strings.COPY_UNPUBLISH_ACTIVITY"></span>
+                            <button class="btn btn-warning btn-lg"
                                    ng-click="pc.unpublish_activity()">
-
                                 <span ng-bind="::pc.strings.UNPUBLISH_ACTIVITY_LABEL"></span>
-                            </button>    
-                        </div> 
-                        
+                            </button>
+                        </div>
                         <div class="lateral-fade strong-text-muted separate-above" ng-show="!pc.allow_unpublish">
                             Desactivando...
                         </div>
-
                     </div>
-                    
                     <div ng-show="pc.areAllStepsCompleted() && !pc.activity.published">
-
-
                         <div class="lateral-fade" ng-show="pc.allow_publish">
                             <span>¡Actividad lista para publicar!</span><br/>
-
-                            <button class="btn btn-secondary btn-lg" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"                               
+                            <button class="btn btn-secondary btn-lg" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
                                    ng-click="pc.publish_activity()">
-
                                     <span ng-bind="::pc.strings.PUBLISH_ACTIVITY_LABEL"></span>
-
-                            </button>    
+                            </button>
                         </div>
-                        
                         <div class="lateral-fade strong-text-muted separate-above" ng-show="!pc.allow_publish">
                             Publicando...
-                        </div> 
-                    </div> 
+                        </div>
+                    </div>
                     <div class="text-center separate-above-less">
-                        <a ui-sref="activities-detail({'activity_id':pc.activity.id})" 
-                                ng-show="!pc.activity.published" ng-bind="pc.strings.COPY_PRE_VIEW_ACTIVITY"></a> 
-                        <a ui-sref="activities-detail({'activity_id':pc.activity.id})" 
-                                ng-show="pc.activity.published" ng-bind="pc.strings.COPY_VIEW_ACTIVITY"></a> 
-                    </div>  
-       
-                    
+                        <a ui-sref="activities-detail({'activity_id':pc.activity.id})"
+                                ng-show="!pc.activity.published" ng-bind="pc.strings.COPY_PRE_VIEW_ACTIVITY"></a>
+                        <a ui-sref="activities-detail({'activity_id':pc.activity.id})"
+                                ng-show="pc.activity.published" ng-bind="pc.strings.COPY_VIEW_ACTIVITY"></a>
+                    </div>
                 </div>
-   
             </nav>
-
-
-            
         </div>
-
-        <div class="col-md-offset-4 col-md-8 col-lg-offset-3 col-lg-9 separate-below-more " ui-view>
-        </div>
-
-        <div ng-include="'partials/ui-components/footer-dashboard.html'"></div>
-
+        <div class="col-md-offset-4 col-md-8 col-lg-offset-3 col-lg-9 separate-below-more " ui-view></div>
     </div>
 </div>

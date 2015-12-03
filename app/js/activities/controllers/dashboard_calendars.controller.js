@@ -24,7 +24,7 @@
         var DETAIL_STATE = '.detail';
         var stateChangeUnbinder = null;
 
-        angular.extend(vm, { 
+        angular.extend(vm, {
 
             republish: false,
             calendars: calendars,
@@ -137,7 +137,7 @@
             _setStrings();
             vm.republish = $stateParams.republish;
             vm.calendar_errors = {};
-            _onSectionUpdated();            
+            _onSectionUpdated();
 
             stateChangeUnbinder = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
@@ -152,7 +152,7 @@
                         console.log('Creating New Calendar');
                     } else {
                         if(vm.republish){
-                            
+
                             event.preventDefault();
                             if(_hasNewCalendar()){
                                 console.log('Republish exiting. User set a valid calendar to republish');
@@ -192,6 +192,7 @@
             );
 
             $scope.$on('$destroy', stateChangeUnbinder);
+            console.log('calendars:', calendars);
         }
 
     }
