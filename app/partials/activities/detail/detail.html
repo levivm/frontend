@@ -257,49 +257,6 @@
             <div class="title" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></div>
           </div>
         </div>
-        <div class="share">
-          <p class="text-center" ng-bind="::detail.strings.COPY_SHARE_WIDGET"></p>
-          <ul class="text-center list-unstyled list-inline">
-            <li>
-              <a href="#"
-                class="text-no-decoration btn-share-fb"
-                socialshare
-                socialshare-provider="{{::detail.social.FACEBOOK_SOCIAL_PROVIDER}}"
-                socialshare-type="{{::detail.social.FACEBOOK_SHARE_TYPE}}"
-                socialshare-via="{{::detail.social.FACEBOOK_API_KEY}}"
-                socialshare-redirect-uri="{{::detail.social.FACEBOOK_REDIRECT_URI}}"
-                socialshare-media="{{::detail.social.FACEBOOK_SHARE_MEDIA}}"
-                socialshare-text="{{::detail.social.FACEBOOK_SHARE_TEXT}}"
-                socialshare-caption="{{::detail.social.FACEBOOK_SHARE_CAPTION}}"
-                socialshare-description="{{::detail.social.FACEBOOK_SHARE_DESCRIPTION}}"
-                socialshare-url="{{::detail.social.FACEBOOK_SHARE_URL}}">
-                <img class="img-responsive" src="/css/img/activity-detail/share_facebook.png"
-                alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
-              </a>
-            </li>
-            <li>
-              <a href="#"
-                class="text-no-decoration btn-share-twitter"
-                socialshare
-                socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
-                socialshare-via="{{::detail.social.TWITTER_SHARE_ACCOUNT}}"
-                socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
-                socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
-                socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
-                <img class="img-responsive" src="/css/img/activity-detail/share_twitter.png"
-                alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
-              </a>
-            </li>
-            <li>
-              <a href="#"
-                class="text-no-decoration btn-share-email"
-                ng-click="detail.toggleEmailShow()">
-                <img class="img-responsive" src="/css/img/activity-detail/share_email.png"
-                alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
 
       <div class="widget-list" ng-show="detail.isListVisible">

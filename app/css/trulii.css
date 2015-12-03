@@ -17424,7 +17424,7 @@ blockquote {
   width: 100%;
   text-align: center;
   color: #999999;
-  padding: 1.6em 0em;
+  padding: 0.5em 0em;
   border-bottom: 1px solid #DEDEDE;
 }
 .calendar-widget .widget-card .info .level {
@@ -18326,10 +18326,10 @@ blockquote {
   }
   .fixed-widget {
     position: fixed;
-    max-height: 72.5vh;
-    overflow-y: scroll;
+    max-height: 83vh;
+    overflow-y: auto;
     overflow-x: hidden;
-    top: 100px;
+    top: 10vh;
     width: calc(25% - 30px);
   }
   .absolute-widget {
