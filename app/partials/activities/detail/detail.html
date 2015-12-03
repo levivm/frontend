@@ -202,8 +202,11 @@
       </div>
       <div class="price">
         <span ng-if="!detail.calendar_selected.is_free" ng-bind="detail.calendar_selected.total_price | currency:$:0"></span>
-        <s ng-if="detail.calendar_selected.is_free" class="text-muted" ng-bind="detail.calendar_selected.total_price | currency"></s>
-        <span ng-if="detail.calendar_selected.is_free" ng-bind="::detail.strings.COPY_FREE"></span>
+        <div ng-if="detail.calendar_selected.is_free">
+          <s class="price-free text-muted" ng-bind="detail.calendar_selected.total_price | currency"></s>
+          <br>
+          <span ng-bind="::detail.strings.COPY_FREE"></span>
+        </div>
       </div>
       <div class="btn btn-primary btn-sign-up"
         ng-show="detail.isSelectedCalendarFull()"
@@ -290,7 +293,7 @@
               ng-click="detail.hideList()"/>
             <div class="float-right">
               <span ng-if="!calendar.is_free" class="label price" ng-bind="calendar.total_price | currency"></span>
-              <span ng-if="calendar.is_free" class="label price" ng-bind="::detail.strings.COPY_FREE"></span>
+              <span ng-if="calendar.is_free" class="label price-free" ng-bind="::detail.strings.COPY_FREE"></span>
               <button class="btn btn-success btn-detail"
                 ng-bind="::detail.strings.ACTION_SELECT_CALENDAR"
                 ng-click="detail.setSelectedCalendar(calendar)">

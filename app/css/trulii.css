@@ -17398,7 +17398,7 @@ blockquote {
 .calendar-widget .widget-card .price {
   width: 100%;
   height: auto;
-  padding: 1em;
+  padding: 0.8em;
   font-size: 1.4em;
   font-weight: 400;
   text-align: center;
@@ -17408,6 +17408,9 @@ blockquote {
 }
 .calendar-widget .widget-card .price .text-muted {
   color: #e3e3e3;
+}
+.calendar-widget .widget-card .price-free {
+  font-size: 0.75em;
 }
 .calendar-widget .widget-card .btn-sign-up {
   width: 100%;
@@ -17424,7 +17427,7 @@ blockquote {
   width: 100%;
   text-align: center;
   color: #999999;
-  padding: 0.5em 0em;
+  padding: 0.4em 0em;
   border-bottom: 1px solid #DEDEDE;
 }
 .calendar-widget .widget-card .info .level {
@@ -17524,7 +17527,7 @@ blockquote {
   text-transform: lowercase;
 }
 .calendar-widget .widget-card .other-calendars {
-  padding: 1.6em;
+  padding: 1em;
   border-bottom: 1px solid #DEDEDE;
 }
 .calendar-widget .widget-card .other-calendars-has-more {
@@ -18326,10 +18329,10 @@ blockquote {
   }
   .fixed-widget {
     position: fixed;
-    max-height: 83vh;
+    max-height: 87vh;
     overflow-y: auto;
     overflow-x: hidden;
-    top: 10vh;
+    top: 8vh;
     width: calc(25% - 30px);
   }
   .absolute-widget {
