@@ -13770,8 +13770,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 70px;
-  width: 40%;
+  width: 65%;
   margin: 0.2em 1em;
+}
+.navbar__left-wrapper .buttons .btn {
+  margin-top: 7px;
 }
 .navbar__right-wrapper {
   display: inline-block;
@@ -13808,15 +13811,31 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-color: #38dbc8 !important;
 }
 .navbar__option--right {
-  width: 7em;
-  float: right;
+  text-decoration: none;
   border-left: 1px solid #d7d7d7;
   text-align: left;
   cursor: pointer;
 }
-.navbar__option--right img {
-  padding: 17px;
+.navbar__option--right:hover {
+  text-decoration: none;
+}
+.navbar__option--right .user-picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  padding: 0.7em;
+  width: 5em;
+  display: inline-block;
+}
+.navbar__option--right .menu-icon {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  padding: 1.4em;
   margin-top: 3px;
+  width: 4em;
+  display: inline-block;
 }
 .navbar .dropdown {
   width: auto;

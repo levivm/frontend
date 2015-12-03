@@ -1,18 +1,30 @@
 <!--suppress HtmlUnknownTarget -->
 <nav class="navbar navbar-default navbar-fixed-top">
-  <div class="row">
-    <div class="navbar__logo-container">
-      <a ui-sref="home" class="navbar__logo"></a>
+    <div class="row">
+        <div class="navbar__logo-container">
+            <a ui-sref="home" class="navbar__logo"></a>
+        </div>
+        <div class="navbar__left-wrapper">
+            <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true"></trulii-search-bar>
+            <div class="buttons float-right">
+                <div class="row" ng-if="!user">
+                    <a ui-sref="login" class="btn btn-default margin-horizontal-less" ng-bind="::strings.ACTION_LOGIN"></a>
+                    <a ui-sref="register" class="btn btn-primary" ng-bind="::strings.ACTION_REGISTER"></a>
+                </div>
+                <div class="row" ng-if="user.is_organizer">
+                    <div class="col-xs-12 col-md-5">
+                        <a ui-sref="dash.activities-new" class="btn btn-primary" ng-bind="::strings.ACTION_CREATE"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar__right-wrapper">
+            <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
+                <img ng-if="user" ng-src="{{user.photo}}" class="user-picture" alt="{{user.user.full_name}}"/>
+                <img src="/css/img/menu.png" alt="Menu" class="menu-icon">
+            </a>
+        </div>
     </div>
-    <div class="navbar__left-wrapper" ng-if="isSearchVisible">
-      <trulii-search-bar data-on-navbar="true"></trulii-search-bar>
-    </div>
-    <div class="navbar__right-wrapper">
-      <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
-        <img src="/css/img/menu.png" alt="" class="img-responsive">
-      </a>
-    </div>
-  </div>
 </nav>
 <div class="burger-menu" ng-show="showBurger">
     <div class="col-xs-12">
@@ -21,20 +33,20 @@
                 <img src="/css/img/logo-trulii.png" alt="" class="img-responsive center-block burger-menu__mobile-logo">
             </div>
             <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons" ng-if="!user">
-                <div class="row">
-                    <div class="col-xs-12 col-md-5">
-                        <a ui-sref="login" ng-click="toggleBurger()">
-                            <button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_LOGIN">
-                            </button>
-                        </a>
-                    </div>
-                    <div class="col-xs-12 col-md-5">
-                        <a ui-sref="register" ng-click="toggleBurger()">
-                            <button class="btn btn-block btn-default btn-reg" ng-bind="::strings.ACTION_REGISTER">
-                            </button>
-                        </a>
-                    </div>
-                </div>
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-12 col-md-5">-->
+                        <!--<a ui-sref="login" ng-click="toggleBurger()">-->
+                            <!--<button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_LOGIN">-->
+                            <!--</button>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-12 col-md-5">-->
+                        <!--<a ui-sref="register" ng-click="toggleBurger()">-->
+                            <!--<button class="btn btn-block btn-default btn-reg" ng-bind="::strings.ACTION_REGISTER">-->
+                            <!--</button>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
             <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__column burger-menu__user-links" ng-if="user">
                 <img ng-src="{{user.photo}}" class="burger-menu__user__picture" alt="{{user.user.full_name}}"/>
@@ -170,12 +182,6 @@
                             <ul class="list-unstyled list-inline">
                                 <li class="hidden-sm hidden-xs">
                                     <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
-                                </li>
-                                <li>
-                                    <a ui-sref="dash.activities-new"
-                                       class="btn btn-primary"
-                                       ng-click="toggleBurger()"
-                                       ng-bind="::strings.ACTION_CREATE"></a>
                                 </li>
                                 <li>
                                     <a href="https://trulii.com/blog"
