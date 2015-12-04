@@ -226,6 +226,12 @@
                                                placeholder="{{::landing.strings.PLACEHOLDER_TELEPHONE}}"
                                                ng-model="landing.request.telephone" value="">
                                     </div>
+                                    <div class="form-group" trulii-input-errors-control="city">
+                                        <select class="form-control" name="city" ng-model="landing.request.city"
+                                          ng-options="city as city.name for city in landing.cities track by city.id">
+                                          <option value="" ng-bind="::landing.strings.PLACEHOLDER_CITY"></option>
+                                        </select>
+                                    </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xs-4">
@@ -254,7 +260,7 @@
 
                                     <div class="form-group">
                                         <button class="btn btn-block btn-success btn-lg" type="submit" id="submit"
-                                                ng-bind="landing.strings.REQUEST_SIGNUP_LABEL" ng-click="landing.sent = !landing.sent">
+                                                ng-bind="landing.strings.REQUEST_SIGNUP_LABEL">
                                         </button>
                                     </div>
                                 </fieldset>
