@@ -2,7 +2,8 @@
 @import url('../_trulii-variables');
 @import url('../mixins/_image_processing');
 @trulii-cover-height: 92vh;
-@trulii-cover-height-small: 60vh;
+@trulii-cover-height-medium: 60vh;
+@trulii-cover-height-small: 55vh;
 .cover{
   margin-top: -20px; // Mientras se arregla la barra de navegacion
   position: relative;
@@ -48,7 +49,7 @@
   }
 }
 
-.trulii-cover, .trulii-cover-small{
+.trulii-cover, .trulii-cover-small, .trulii-cover-medium{
 
   margin-top: -20px; // Mientras se arregla la barra de navegacion
   min-height: @trulii-cover-height;
@@ -72,6 +73,16 @@
     h1{
       font-size: 4em;
       line-height: 0.9em;
+    }
+    .sub-title{
+      font-size: 3.5em;
+      &-light{
+        font-weight: 200;
+      }
+    }
+    .title{
+      font-size: 4em;
+      margin-top: 0.25em !important;
     }
     p{
       color:white;
@@ -264,7 +275,7 @@
   &__background{
     width: 100vw;
     background-size: cover;
-    // background-attachment: fixed; Performance :(
+    background-attachment: fixed; // Performance :(
     background-position: center center;
     background-repeat: no-repeat;
     z-index: -11;
@@ -305,6 +316,10 @@
 .trulii-cover-small{
   min-height: @trulii-cover-height-small;
 }
+.trulii-cover-medium{
+  min-height: @trulii-cover-height-medium;
+}
+
 .detail-organizer {
     position: absolute;
     z-index: 4;
@@ -344,6 +359,12 @@
 }
 
 @media (max-width: 767px) {
+
+  .trulii-cover__background{
+    video{
+      display: none;
+    }
+  }
   .trulii-cover__background-video {
     display: none;
   }

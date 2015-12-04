@@ -1,5 +1,9 @@
-<div class="row">
-  <div class="detail-cover" style="background-image:url({{detail.activity.main_photo}})">
+<div class="trulii-cover-medium">
+  <div class="trulii-cover__container">
+    <div class="trulii-cover__content">
+    </div>
+    <div class="trulii-cover__background" style="background-image: url({{detail.activity.main_photo}});">
+    </div>
   </div>
 </div>
 <!--General Info and Sidebar-->
@@ -171,7 +175,7 @@
       <!--TODO Fill with real data-->
       <div class="ratings">
         <rating ng-model="detail.reviewsAvg" max="5" state-on="'glyphicon glyphicon-star star'"
-        readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
+        readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1" readonly="true"></rating>
         <span ng-bind="detail.reviewsAvg + ' / 5'"></span>
         <span ng-bind="detail.totalReviews"></span>
         <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
@@ -306,7 +310,7 @@
     </span>
     <span class="text-uppercase">
       <rating ng-model="detail.reviewsAvg" max="5" state-on="'glyphicon glyphicon-star star'"
-      readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
+      readonly="true" state-off="'glyphicon glyphicon-star star-empty'" readonly="true" aria-labelledby="custom-icons-1"></rating>
       <span ng-bind="detail.reviewsAvg + ' / 5'"></span>
     </span>
   </p>
