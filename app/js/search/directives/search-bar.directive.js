@@ -12,10 +12,10 @@
     angular.module('trulii.search.directives')
         .directive('truliiSearchBar', truliiSearchBar);
 
-    truliiSearchBar.$inject = ['$rootScope', '$state', '$stateParams', 'UIComponentsTemplatesPath',
+    truliiSearchBar.$inject = ['$rootScope', '$state','$http', '$stateParams', 'UIComponentsTemplatesPath',
         'SearchManager', 'LocationManager'];
 
-    function truliiSearchBar($rootScope, $state, $stateParams, UIComponentsTemplatesPath,
+    function truliiSearchBar($rootScope, $state,$http, $stateParams, UIComponentsTemplatesPath,
                           SearchManager, LocationManager) {
         return {
             restrict: 'AE',
@@ -32,7 +32,8 @@
                     cities : [],
                     onNavbar : !!attrs.onNavbar,
                     updateSearchCity : updateSearchCity,
-                    search : search
+                    search : search,
+                    getSuggestions:getSuggestions
                 });
 
                 _activate();
@@ -54,6 +55,21 @@
 
                     $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
                     $state.go('search', data);
+                }
+
+                function getSuggestions(keyword){
+
+                    return SearchManager.getSuggestions(keyword)
+                                .then(success,error);
+
+                    function success(response){
+                        return response.data;
+                    }
+
+                    function error(response){
+                        return [];
+                    }
+
                 }
 
                 function updateSearchCity() {

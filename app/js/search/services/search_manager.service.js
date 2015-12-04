@@ -81,6 +81,14 @@
              * @methodOf trulii.search.services.SearchManager
              */
             clearData: clearData,
+            /**
+             * @ngdoc method
+             * @name .#getSuggestions
+             * @description Returns suggestions to use in search autocomplete
+             * @return {promise} Suggestions Promise
+             * @methodOf trulii.search.services.SearchManager
+             */
+            getSuggestions: getSuggestions,
 
             setCategory: setCategory,
             setSubCategory: setSubCategory,
@@ -111,6 +119,11 @@
             if(!searchData[KEY_WEEKENDS]){ delete searchData[KEY_WEEKENDS];}
 
             return searchData;
+        }
+
+        function getSuggestions(keyword){
+            console.log('keyword keyword',keyword);
+            return $http.get(api.autocomplete(),{params:{q: keyword}});
         }
 
         function searchActivities(data){

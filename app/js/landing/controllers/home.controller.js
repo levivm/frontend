@@ -31,8 +31,7 @@
             hasMoreActivities: true,
             toggleVideoShow: toggleVideoShow,
             loadActivities: loadActivities,
-            coverVideo: {}
-
+            coverVideo: {},
         });
 
         _activate();

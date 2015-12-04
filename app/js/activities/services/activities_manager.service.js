@@ -107,7 +107,6 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             getSubcategoryCovers: getSubcategoryCovers,
-
             /**
              * @ngdoc method
              * @name trulii.activities.services.ActivitiesManager#enroll

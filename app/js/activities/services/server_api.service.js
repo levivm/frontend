@@ -282,8 +282,17 @@
              */
             'instructor' : function (idActivity, idInstructor) {
                 return renderUrl('activities/', [idActivity, 'instructors', idInstructor]);
-            }
-        };
+            },
+            /**
+             * @ngdoc function
+             * @name .#autocomplete
+             * @description Renders **`/api/activities/autocomplete`** Activity Instructor URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'autocomplete' : function () {
+                return renderUrl('activities/', ['autocomplete']);
+            }        };
 
         /**
          * @ngdoc function
