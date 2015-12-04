@@ -44,6 +44,7 @@
         //--------- Internal Functions ---------//
 
         function _assignActivities(){
+            console.log("ACvitii",activities);
             vm.open_activities = [];
             vm.closed_activities = [];
             active_activities = _.filter(activities, {'published': true});
@@ -105,7 +106,7 @@
         function _activate() {
             _setStrings();
             activities.map(_mapMainPicture);
-            //_assignActivities();
+            _assignActivities();
         }
 
     }

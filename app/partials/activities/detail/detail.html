@@ -202,8 +202,8 @@
         </div>
       </div>
       <div class="price">
-        <span ng-if="!detail.calendar_selected.is_free" ng-bind="detail.calendar_selected.total_price | currency:$:0"></span>
-        <s ng-if="detail.calendar_selected.is_free" class="text-muted" ng-bind="detail.calendar_selected.total_price | currency"></s>
+        <span ng-if="!detail.calendar_selected.is_free" ng-bind="detail.calendar_selected.session_price | currency:$:0"></span>
+        <s ng-if="detail.calendar_selected.is_free" class="text-muted" ng-bind="detail.calendar_selected.session_price | currency"></s>
         <span ng-if="detail.calendar_selected.is_free" ng-bind="::detail.strings.COPY_FREE"></span>
       </div>
       <div class="btn btn-primary btn-sign-up"
