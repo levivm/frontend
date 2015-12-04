@@ -70,12 +70,12 @@
                 CULTURE_SECTION_2_CONTENT_TITLE: "¿Cuáles valores son importantes para nosotros?",
                 CULTURE_SECTION_2_CONTENT_TEXT_1: "Determinamos un conjunto de valores que:",
 
-                CULTURE_DETERMINING_VALUE_1: "Se apliquen en el trabajo",
-                CULTURE_DETERMINING_VALUE_2: "Optimicen nuestra relación con los usuarios",
-                CULTURE_DETERMINING_VALUE_3: "Hagan un ambiente inspirador y agradable",
-                CULTURE_DETERMINING_VALUE_4: "Puedan extrapolarse a la vida cotidiana",
-                CULTURE_DETERMINING_VALUE_5: "Nos hagan eficientes para deleitar a los usuarios",
-                CULTURE_DETERMINING_VALUE_6: "Permita discernir candidatos en nuestro proceso de reclutamiento",
+                CULTURE_DETERMINING_VALUE_1: "Se apliquen en el trabajo.",
+                CULTURE_DETERMINING_VALUE_2: "Optimicen nuestra relación con los usuarios.",
+                CULTURE_DETERMINING_VALUE_3: "Hagan un ambiente inspirador y agradable.",
+                CULTURE_DETERMINING_VALUE_4: "Puedan extrapolarse a la vida cotidiana.",
+                CULTURE_DETERMINING_VALUE_5: "Nos hagan eficientes para deleitar a los usuarios.",
+                CULTURE_DETERMINING_VALUE_6: "Permita discernir candidatos en nuestro proceso de reclutamiento.",
 
                 CULTURE_VALUE_1: "Humildad",
                 CULTURE_VALUE_2: "Claridad",

@@ -41,7 +41,7 @@
     function config($stateProvider) {
         $stateProvider
             .state('dash', {
-                    templateUrl: 'partials/dashboard.html'
+                    template: '<div ui-view></div>'
                 })
             .state('dash.activities-new', {
                 abstract: true,

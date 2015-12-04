@@ -8,17 +8,18 @@
     </div>
     <!--If there are no activities-->
     <div ng-if="activities.closed_activities.length <= 0" class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-xs-8 col-xs-offset-2 text-center">
             <img src="css/img/organizer_dashboard_activities_empty.png"
                  alt="{{activities.strings.LABEL_EMPTY_CLOSED}}"/>
-            <h4 class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_CLOSED"></h4>
-            <div class="separate-below separate-above standout-text"
+            <h4 class="text-muted" ng-bind="::activities.strings.LABEL_EMPTY_CLOSED"></h4>
+            <p class="separate-below separate-above font-family-sans-alt text-muted"
                  ng-bind="::activities.strings.COPY_EMPTY_CLOSED">
-            </div>
-            <a class="btn btn-lg btn-primary"
+            </p>
+            <a class="btn btn-lg btn-primary margin-horizontal-less"
                ui-sref="dash.activities-new.general"
                ng-bind="activities.strings.ACTION_CREATE_ACTIVITY"></a>
-            <a ng-if="activities.inactive_activities" class="btn btn-lg btn-default"
+            <a ng-if="activities.inactive_activities"
+               class="btn btn-lg btn-success margin-horizontal-less"
                ui-sref="^.inactive"
                ng-bind="activities.strings.ACTION_PUBLISH_ACTIVITY">
             </a>

@@ -15,40 +15,36 @@
         .module('trulii.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator','Error'];
+    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator', 'Error', 'Referrals'];
 
-    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator,Error) {
+    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator, Error, Referrals) {
 
-        var vm = this;
         var selectedMethod = null;
         var toState = null;
 
+        var vm = this;
         angular.extend(vm, {
-            auth : {},
-            errors : {},
-            user_type : 'S',
-            facebook : {
-                'error': false
+            auth: {},
+            errors: {},
+            user_type: 'S',
+            facebook: {
+                error: false
             },
-            fbRegister : fbRegister,
-            register : register,
-            isSelectedMethod : isSelectedMethod,
-            setSelectedMethod : setSelectedMethod,
-            focusForm : focusForm,
-            toLoginState:toLoginState,
+            fbRegister: fbRegister,
+            register: register,
+            isSelectedMethod: isSelectedMethod,
+            setSelectedMethod: setSelectedMethod,
+            focusForm: focusForm,
+            toLoginState: toLoginState
         });
 
         _activate();
 
-        //--------- Functions Implementation ---------//
+        //--------- Exposed Functions ---------//
 
-        function isSelectedMethod(method){
-            return selectedMethod === method;
-        }
+        function isSelectedMethod(method){ return selectedMethod === method; }
 
-        function setSelectedMethod(method){
-            selectedMethod = method;
-        }
+        function setSelectedMethod(method){ selectedMethod = method; }
 
         function focusForm(){
             // this must be to use toElement but is not working :(
@@ -65,32 +61,29 @@
             }
         }
 
-        function toLoginState(){
-            $state.go('login', $stateParams);
-        }
-
         function register() {
             vm.signup_form.$setPristine();
             Error.form.clear(vm.signup_form);
             vm.auth.user_type = vm.user_type;
 
-            return Authentication.register(vm.auth)
-                .then(_registerSuccess, error);
-
+            return Authentication.register(vm.auth).then(_registerSuccess, error);
 
             function error(response) {
-
                 var responseErrors = response.data['form_errors'];
-                if (responseErrors) {
-                    Error.form.add(vm.signup_form, responseErrors);
-                }
-                // _errored(response.data);
+                if (responseErrors){ Error.form.add(vm.signup_form, responseErrors); }
+
                 return $q.reject(response);
             }
-
         }
 
+        function toLoginState(){
+            $state.go('login', $stateParams);
+        }
+
+        //--------- Internal Functions ---------//
+
         function _registerSuccess(){
+            Referrals.deleteRefHash();
             $state.go(toState.state, toState.params);
         }
 
@@ -110,14 +103,13 @@
         }
 
         function _activate(){
+            _setStrings();
             toState = $stateParams.toState;
 
-            _setStrings();
             if (validatedData) {
                 vm.auth.email = validatedData.email;
                 vm.auth.name = validatedData.name;
             }
         }
     }
-
 })();

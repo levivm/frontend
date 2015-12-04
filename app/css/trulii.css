@@ -13052,6 +13052,10 @@ h5 a {
   padding-top: 3rem;
   padding-bottom: 3rem;
 }
+.padding-vertical-less {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
 .padding-horizontal-less {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -13060,11 +13064,20 @@ h5 a {
   padding-left: 3rem;
   padding-right: 3rem;
 }
+.padding-less {
+  padding: 1rem;
+}
 .padding-regular {
   padding: 3rem;
 }
 .padding-more {
   padding: 8rem;
+}
+.margin-horizontal {
+  margin: 0 3rem;
+}
+.margin-horizontal-less {
+  margin: 0 1rem;
 }
 hr {
   width: 98%;
@@ -13757,8 +13770,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 70px;
-  width: 40%;
+  width: 65%;
   margin: 0.2em 1em;
+}
+.navbar__left-wrapper .buttons .btn {
+  margin-top: 7px;
 }
 .navbar__right-wrapper {
   display: inline-block;
@@ -13795,15 +13811,31 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-color: #38dbc8 !important;
 }
 .navbar__option--right {
-  width: 7em;
-  float: right;
+  text-decoration: none;
   border-left: 1px solid #d7d7d7;
   text-align: left;
   cursor: pointer;
 }
-.navbar__option--right img {
-  padding: 17px;
+.navbar__option--right:hover {
+  text-decoration: none;
+}
+.navbar__option--right .user-picture {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  padding: 0.7em;
+  width: 5em;
+  display: inline-block;
+}
+.navbar__option--right .menu-icon {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  padding: 1.4em;
   margin-top: 3px;
+  width: 4em;
+  display: inline-block;
 }
 .navbar .dropdown {
   width: auto;
@@ -14145,12 +14177,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1.25em;
 }
 .search-bar__navbar {
-  width: 100%;
+  width: 40em;
   height: 50px;
   margin-top: 10px;
   margin-left: 20px;
   background: white;
   border-radius: 0;
+  display: inline-block;
 }
 @media screen and (max-width: 992px) {
   .search-bar__navbar {
@@ -17033,6 +17066,12 @@ button.toast-close-button {
 .container-success * {
   color: white;
 }
+.container-success-light {
+  background-color: #8eebe0;
+}
+.container-success-light * {
+  color: white;
+}
 .container-success-dark {
   background-color: #22beac;
 }
@@ -18541,6 +18580,9 @@ blockquote {
   background-color: white;
   padding: 0px 35px 25px 35px;
 }
+.not-found-search-bar {
+  background-color: #393b3f;
+}
 .home-footer {
   overflow: hidden;
 }
@@ -18627,7 +18669,7 @@ blockquote {
   background-color: rgba(255, 255, 255, 0.5);
 }
 .referral-input {
-  height: 55px;
+  height: 52px;
   box-sizing: content-box;
   border-radius: 12px;
 }
@@ -18640,7 +18682,7 @@ blockquote {
 }
 .referral-input input,
 .referral-input button {
-  height: 75px !important;
+  height: 100% !important;
 }
 .referral-input input,
 .referral-input input:focus {
@@ -18660,7 +18702,7 @@ blockquote {
 input[type=text].form-control.referral-link {
   border: 1px solid #999999;
   color: #999999;
-  height: 55px;
+  height: 48px;
   border-radius: 4px;
   background-image: none;
   padding: 0 2em;
@@ -18687,25 +18729,20 @@ input[type=text].form-control.referral-link:focus {
 .referral-item__picture h4,
 .referral-item__info h4,
 .referral-item__status h4 {
-  font-size: 1.125em;
-}
-.referral-item__picture h4 span,
-.referral-item__info h4 span,
-.referral-item__status h4 span {
-  font-weight: 300;
+  font-size: 1.3em;
 }
 .referral-item__info {
   padding-left: 1em;
 }
 .referral-item__picture {
-  width: 40px;
+  width: 3.5em;
   margin-top: 10px;
 }
 .referral-item__status {
   float: right;
   padding-right: 2em;
 }
-.referral-item__status h4 {
+.referral-item__status h5 {
   text-align: right;
   padding-top: 1.75em;
 }

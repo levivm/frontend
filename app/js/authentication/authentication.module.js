@@ -40,6 +40,7 @@
                     }
                 },
                 resolve:{
+                    isAuthenticated: isAuthenticated,
                     validatedData: tokenSignupValidation
                 }
             })
@@ -68,6 +69,9 @@
                         'state' : 'home',
                         'params' : {}
                     }
+                },
+                resolve: {
+                    isAuthenticated: isAuthenticated
                 }
             })
             .state('logout',{
@@ -104,6 +108,18 @@
         tokenSignupValidation.$inject = ['$stateParams','Authentication'];
         function tokenSignupValidation($stateParams,Authentication){
             return $stateParams.token? Authentication.requestSignupToken($stateParams.token) : {};
+        }
+
+        isAuthenticated.$inject = ['$q', 'Authentication'];
+        function isAuthenticated($q, Authentication){
+            var deferred = $q.defer();
+            var isAuthenticated = Authentication.isAuthenticated();
+            if(isAuthenticated){
+                deferred.reject({ isAuthenticated: isAuthenticated });
+            }
+            deferred.resolve({ isAuthenticated: isAuthenticated });
+
+            return deferred.promise;
         }
 
     }

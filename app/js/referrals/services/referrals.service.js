@@ -14,11 +14,12 @@
         .module('trulii.referrals.services')
         .factory('Referrals', Referrals);
 
-    Referrals.$inject = ['$q', '$http', 'ReferralServerApi'];
+    Referrals.$inject = ['$q', '$http', '$cookies', 'localStorageService', 'ReferralServerApi'];
 
-    function Referrals($q, $http, ReferralServerApi) {
+    function Referrals($q, $http, $cookies, localStorageService, ReferralServerApi) {
 
         var api = ReferralServerApi;
+        var KEY_REF_HASH = 'refhash';
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
@@ -32,6 +33,23 @@
              * @methodOf trulii.referrals.services.Referrals
              */
             getCoupon: getCoupon,
+
+            /**
+             * @ngdoc function
+             * @name .#getRefHash
+             * @description Returns the stored refHash, `null` otherwise
+             * @return {string} refHash
+             * @methodOf trulii.referrals.services.Referrals
+             */
+            getRefHash: getRefHash,
+
+            /**
+             * @ngdoc function
+             * @name .#deleteRefHash
+             * @description Deletes the stored refHash
+             * @methodOf trulii.referrals.services.Referrals
+             */
+            deleteRefHash: deleteRefHash,
 
             /**
              * @ngdoc function
@@ -60,7 +78,9 @@
              * @param {string} emails Emails string
              * @methodOf trulii.referrals.services.Referrals
              */
-            postInvite: postInvite
+            postInvite: postInvite,
+
+            KEY_REF_HASH: KEY_REF_HASH
         };
 
         return service;
@@ -78,10 +98,21 @@
             }
         }
 
+        function getRefHash(){
+            return $cookies[KEY_REF_HASH];
+        }
+
+        function deleteRefHash(){
+            if($cookies.get(KEY_REF_HASH)){
+                delete $cookies[KEY_REF_HASH];
+            }
+        }
+
         function getReferrer(referrerCode){
             return $http.get(api.referrer(referrerCode)).then(success, error);
 
             function success(response){
+                if(response.data.hasOwnProperty(KEY_REF_HASH)){ $cookies[KEY_REF_HASH] = response.data[KEY_REF_HASH]; }
                 return response.data;
             }
 

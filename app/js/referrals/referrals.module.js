@@ -58,11 +58,12 @@
                 controller: 'ReferralsInvitationCtrl as referrals',
                 templateUrl: 'partials/students/referrals/invitation.html',
                 resolve: {
+                    student: getCurrentStudent,
                     referrer: getReferrer,
-                    student: getCurrentStudent
+                    generalInfo: getPresaveActivityInfo
                 }
             })
-        ;
+            ;
     }
 
     /**
@@ -74,7 +75,7 @@
      * @requires ui.router.state.$state
      * @requires ng.$q
      * @requires trulii.students.services.StudentsManager
-     * @methodOf trulii.students.config
+     * @methodOf trulii.referrals.config
      */
     getCurrentStudent.$inject = ['$q', 'StudentsManager'];
     function getCurrentStudent($q, StudentsManager){
@@ -107,7 +108,7 @@
      * @name .#isStudent
      * @description Checks if logged user is a Student
      * @requires student
-     * @methodOf trulii.students.config
+     * @methodOf trulii.referrals.config
      */
     isStudent.$inject = ['student'];
     function isStudent(student){
@@ -120,7 +121,7 @@
      * @description Assembles the referrer URL
      * @requires ui.router.state.$state
      * @requires student
-     * @methodOf trulii.students.config
+     * @methodOf trulii.referrals.config
      */
     getReferrerUrl.$inject = ['$state', 'student'];
     function getReferrerUrl($state, student){
@@ -138,7 +139,7 @@
      * @requires ui.router.state.$state
      * @requires ng.$q
      * @requires trulii.students.services.StudentsManager
-     * @methodOf trulii.students.config
+     * @methodOf trulii.referrals.config
      */
     isAnon.$inject = ['$q', 'StudentsManager'];
     function isAnon($q, StudentsManager){
@@ -171,10 +172,10 @@
      * @name .#getReferrer
      * @description Checks for referrerId param and retrieves referrer, otherwise rejects the resolve
      * @requires ui.router.state.$stateParams
-     * @methodOf trulii.activities.config
+     * @methodOf trulii.referrals.config
      */
-    getReferrer.$inject = ['$stateParams', '$q', 'Referrals'];
-    function getReferrer($stateParams, $q, Referrals) {
+    getReferrer.$inject = ['$stateParams', '$q', 'Referrals', 'defaultPicture'];
+    function getReferrer($stateParams, $q, Referrals, defaultPicture) {
         var deferred = $q.defer();
 
         if ($stateParams.idReferrer) {
@@ -186,6 +187,9 @@
         return deferred.promise;
 
         function success(referrer){
+            if(!referrer.photo){
+                referrer.photo = defaultPicture;
+            }
             deferred.resolve(referrer);
         }
 
@@ -193,6 +197,19 @@
             console.warn("getReferrer. There is no Referrer with that code");
             deferred.reject(response);
         }
+    }
+
+    /**
+     * @ngdoc method
+     * @name .#getPresaveActivityInfo
+     * @description Loads general activity info like categories, subcategories, levels, etc. from
+     * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
+     * @requires trulii.activities.services.ActivitiesManager
+     * @methodOf trulii.referrals.config
+     */
+    getPresaveActivityInfo.$inject = ['ActivitiesManager'];
+    function getPresaveActivityInfo(ActivitiesManager){
+        return ActivitiesManager.loadGeneralInfo();
     }
 
 })();

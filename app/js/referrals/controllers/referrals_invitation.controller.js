@@ -13,10 +13,11 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsInvitationCtrl', ReferralsInvitationCtrl);
 
-    ReferralsInvitationCtrl.$inject = ['$state', 'referrer', 'student'];
+    ReferralsInvitationCtrl.$inject = ['$state', 'referrer', 'generalInfo', 'student'];
 
-    function ReferralsInvitationCtrl($state, referrer, student) {
+    function ReferralsInvitationCtrl($state, referrer, generalInfo, student) {
 
+        var categories = [];
         var vm = this;
         angular.extend(vm, {
             showVideo: false,
@@ -28,7 +29,8 @@
                     params: {
                         idReferrer: referrer.referrer_code
                     }
-                }
+                },
+                refhash: referrer.refhash
             },
             toggleVideoShow: toggleVideoShow,
             claimCoupon: claimCoupon,
@@ -58,19 +60,84 @@
 
         //--------- Internal Functions ---------//
 
+        function _setCategories(){
+            categories = [
+                {
+                    id: 1,
+                    cover: "/css/img/categories/languages.jpg"
+                },
+                {
+                    id: 2,
+                    cover: "/css/img/categories/fitness.jpg"
+                },
+                {
+                    id: 3,
+                    cover: "/css/img/categories/lifestyle.jpg"
+                },
+                {
+                    id: 4,
+                    cover: "/css/img/categories/technology.jpg"
+                },
+                {
+                    id: 5,
+                    cover: "/css/img/categories/kids.jpg"
+                },
+                {
+                    id: 6,
+                    cover: "/css/img/categories/art.jpeg"
+                },
+                {
+                    id: 7,
+                    cover: "/css/img/categories/professional.jpg"
+                },
+                {
+                    id: 8,
+                    cover: "/css/img/categories/gastronomy.jpg"
+                },
+                {
+                    id: 9,
+                    cover: "/css/img/categories/dance.jpg"
+                },
+                {
+                    id: 10,
+                    cover: "/css/img/categories/music.jpeg"
+                }
+            ];
+            categories.forEach(extendCategory);
+            vm.categories = categories;
+
+            function extendCategory(category){
+                var categoryInfo = getCategoryById(category.id);
+                if(categoryInfo){
+                    angular.extend(category, categoryInfo);
+                }
+
+                function getCategoryById(id){
+                    return generalInfo.categories.filter(function(category){
+                        return category.id === id;
+                    })[0];
+                }
+            }
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
 
             angular.extend(vm.strings, {
+                HEADER_IS_STUDENT: "Oops! Ya estás registrado en Trulii",
+                COPY_IS_STUDENT_HI: "Hola",
+                COPY_IS_STUDENT_COPY: ", las invitaciones son una funcionalidad sólo para nuevos usuarios",
+                COPY_IS_STUDENT_DISCOVER: "Te invitamos a descubrir nuevas actividades de tu interés",
                 HEADER_TITLE_COPY_1: "te dio COP",
                 HEADER_TITLE_COPY_2: "de cupón",
-                HEADER_TEXT_COPY: "Trulii es la mejor forma de encontrar e inscribirte en lo que quieres aprender en tu ciudad",
+                HEADER_TEXT_COPY: "Trulii es la mejor forma de encontrar e inscribirte en lo que quieres aprender en tu ciudad.",
                 ACTION_REGISTER: "Regístrate",
                 ACTION_LOGIN: "Inicia Sesión",
+                ACTION_SEARCH_ACTIVITIES: "Buscar Actividades",
                 COPY_TO_CLAIM_COUPON: "Ya te falta solo un paso para reclamar tu cupón",
-                ACTION_REDEEM: "Reclamar cupón",
+                ACTION_REDEEM: "Registrarme para reclamar mi cupón",
                 REASON_NO_COMMISSIONS: "Sin comisiones",
                 REASON_COPY_NO_COMMISSIONS: "En serio ¡Te lo prometemos!",
                 REASON_REFUND: "Devolución Garantizada",
@@ -88,16 +155,6 @@
                 HOW_SIGN_UP_TEXT: "Tu pago está en buenas manos con nosotros",
                 HOW_LEARN_COPY: "Aprende",
                 HOW_LEARN_TEXT: "La vida es corta. ¡Aprende todo lo que puedas!",
-                CATEGORY_FITNESS: "Fitness",
-                CATEGORY_MUSIC: "Música",
-                CATEGORY_LIFESTYLE: "Estilo de vida",
-                CATEGORY_PROFESSIONAL: "Profesional",
-                CATEGORY_ART: "Arte",
-                CATEGORY_TECHNOLOGY: "Tecnología",
-                CATEGORY_KIDS: "Niños",
-                CATEGORY_GASTRONOMY: "Gastronomía",
-                CATEGORY_LANGUAGES: "Idiomas",
-                CATEGORY_DANCE: "Danza",
                 LEARN_MORE: "Aprende más sobre cómo funciona nuestro sistema de invitaciones"
 
             });
@@ -105,7 +162,8 @@
 
         function _activate(){
             _setStrings();
-            console.log('referrer:', referrer);
+            _setCategories();
+            console.log(student);
         }
 
     }

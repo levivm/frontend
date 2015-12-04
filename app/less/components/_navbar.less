@@ -66,8 +66,14 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-inner-height;
-        width: 40%;
+        width: 65%;
         margin: 0.2em 1em;
+
+        .buttons{
+            .btn{
+                margin-top: 7px;
+            }
+        }
     }
 
     &__right-wrapper {
@@ -106,14 +112,26 @@
         }
 
         &--right {
-            width: 7em;
-            float: right;
+            text-decoration: none;
+            &:hover{
+                text-decoration: none;
+            }
             border-left: 1px solid @color-delimeter-dark;
             text-align: left;
             cursor: pointer;
-            img{
-              padding: 17px;
-              margin-top: 3px;
+            .user-picture{
+                .img-responsive;
+                .img-circle;
+                padding: 0.7em;
+                width: 5em;
+                display: inline-block;
+            }
+            .menu-icon{
+                .img-responsive;
+                padding: 1.4em;
+                margin-top: 3px;
+                width: 4em;
+                display: inline-block;
             }
         }
     }

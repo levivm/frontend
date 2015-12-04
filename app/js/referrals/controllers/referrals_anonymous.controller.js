@@ -49,7 +49,7 @@
             }
 
             angular.extend(vm.strings, {
-                HEADER_TITLE_COPY: "¡Gana cupones de Trulii por COP 20.000 por cada amigo que invites!",
+                HEADER_TITLE_COPY: "¡Gana cupones de COP 20.000 para cualquier actividad por cada amigo que invites!",
                 HEADER_TEXT_COPY: "¿No tienes cuenta aún?",
                 HEADER_ACTION_REGISTER: "Regístrate",
                 HEADER_ACTION_LOGIN: "Iniciar sesión para invitar a mis amigos",
