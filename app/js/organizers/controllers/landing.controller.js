@@ -37,15 +37,11 @@
 
         function requestSignup() {
             Error.form.clear(vm.pre_signup_form);
-            vm.request.city = vm.request.current_city.id;
+            vm.request.city = vm.request.city.id;
             Authentication.requestSignup(vm.request).then(success, error);
 
             function success() {
-                $state.go('general-message', {
-                    'module_name': 'authentication',
-                    'template_name': 'request_signup_success',
-                    'redirect_state': 'home'
-                });
+                vm.sent = true;
             }
 
             function error(response) {
@@ -105,6 +101,7 @@
                 PLACEHOLDER_EMAIL: "Correo electrónico",
                 PLACEHOLDER_TELEPHONE: 'Número teléfonico',
                 PLACEHOLDER_DOCUMENT: '# de Documento',
+                PLACEHOLDER_CITY: "Ciudad",
                 LABEL_DOCUMENT_TYPE: "Tipo de Documento",
                 LABEL_DOCUMENT: "Documento",
                 REQUEST_SIGNUP_LABEL: 'Únete'
