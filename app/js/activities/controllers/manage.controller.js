@@ -12,9 +12,9 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$window', '$filter', 'activity', 'ActivitiesManager'];
+    ActivitiesManageCtrl.$inject = ['$window', '$filter','$state', 'activity', 'ActivitiesManager'];
 
-    function ActivitiesManageCtrl($window, $filter, activity, ActivitiesManager) {
+    function ActivitiesManageCtrl($window, $filter, $state, activity, ActivitiesManager) {
 
         var vm = this;
         angular.extend(vm, {
@@ -111,12 +111,16 @@
             switch(type){
 
                 case vm.TYPE_ASSISTANT:
-
+                    // vm.onAssistantsState = true;
+                   
                     vm.activeCalendar = calendar;
                     assistants = calendar.assistants;
                     vm.assistants = assistants;
+
                     break;
                 case vm.TYPE_ORDER:
+                    
+                    // vm.onAssistantsState = false;
                     vm.orders =  _.filter(orders,orderBelongsToCalendar);
                     vm.total  = _.sum(vm.orders,getTotal);
                     vm.totalWithFee = _.sum(vm.orders,getTotalWithFee);
@@ -269,6 +273,7 @@
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
+            console.log("reloadin");
 
         }
 

@@ -23,12 +23,12 @@
                     
             <ul>
             
-                <a ui-sref=".assistants" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                <a ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                     <i class="sidebar__item__icon mdi-social-people"></i>                    
                     <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>                                                                        
                 </a>
                 
-                <a ui-sref=".orders" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                <a ui-sref=".orders" ui-sref-opts="{reload: true}" class="sidebar__item" ui-sref-active="sidebar__item--selected">
                     <i class="sidebar__item__icon mdi-maps-local-atm"></i>                    
                     <span ng-bind="::manage.strings.TAB_ORDERS"></span>                                                                        
                 </a>            
