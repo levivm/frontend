@@ -12,7 +12,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default" style="cursor: pointer;"
                      ng-repeat="calendar in manage.calendars track by calendar.id">
-                    <div class="panel-heading" ng-click="manage.expandCalendar(calendar)">
+                    <div class="panel-heading" ng-click="manage.expandCalendar(calendar,manage.TYPE_ASSISTANT)">
                         <div class="row">
                             <div class="panel-date">
                                 <span>
@@ -45,6 +45,7 @@
                         </div>
                     </div>
                     <div class="panel-body" data-toggle="manage.activeCalendar.id == calendar.id" trulii-expandable-content>
+                        <!-- Assistants -->
                         <div ng-if="calendar.assistants.length > 0">
                             <div class="row">
                                 <div class="col-xs-8">
@@ -99,11 +100,11 @@
                                 </table>
                             </div>
 
-                            <pagination class="pagination-sm"
+<!--                             <pagination class="pagination-sm"
                                         ng-model="manage.assistantPaginationOpts.pageNumber"
                                         ng-change="manage.pageChange(manage.TYPE_ASSISTANT)"
                                         data-total-items="manage.assistantPaginationOpts.totalItems"
-                                        data-items-per-page="manage.assistantPaginationOpts.itemsPerPage"></pagination>
+                                        data-items-per-page="manage.assistantPaginationOpts.itemsPerPage"></pagination> -->
 
                             <div class="book" style="display: none">
                               <div class="page">
@@ -223,7 +224,10 @@
                             ng-model="manage.calendarPaginationOpts.pageNumber"
                             ng-change="manage.pageChange(manage.TYPE_CALENDAR)"
                             data-total-items="manage.calendarPaginationOpts.totalItems"
-                            data-items-per-page="manage.calendarPaginationOpts.itemsPerPage"></pagination>
+                            data-items-per-page="manage.calendarPaginationOpts.itemsPerPage"
+                            previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                            max-size="manage.calendarPaginationOpts.maxPagesSize">
+                </pagination>
             </div>
         </div>
         <!--If there are no calendars-->
