@@ -154,34 +154,14 @@
                     }
                 }
 
-                function _mapClosestCalendar(activity){
+                function _mapDateMsg(activity){
                     var today = Date.now();
-                    activity.days_to_closest = null;
-                    activity.closest_date = null;
-                    activity.closest_calendar = null;
-
-                    if(activity.calendars){
-                        activity.calendars.forEach(function(calendar){
-                            if(calendar.initial_date >= today
-                                    && (calendar.initial_date < activity.closest_date || !activity.closest_date)){
-                                activity.closest_date = calendar.initial_date;
-                                activity.closest_calendar = calendar;
-                            }
-                        });
-                    }
-
-                    if(activity.closest_date){
-                        activity.days_to_closest = Math.floor((activity.closest_date - today)/(1000*60*60*24));
+                    if(!!activity.closest_calendar){
+                        activity.days_to_closest = Math.floor((activity.closest_calendar.initial_date - today)/(1000*60*60*24));
                     } else {
                         activity.days_to_closest = -1;
                     }
 
-                    _mapDateMsg(activity);
-
-                    return activity;
-                }
-
-                function _mapDateMsg(activity){
                     if(activity.days_to_closest < 0){
                         activity.date_msg = scope.strings.COPY_WAIT_NEW_DATES;
                     } else if(activity.days_to_closest === 0){
@@ -247,14 +227,13 @@
                             scope.inactive = true;
                         }
                     }
-                    scope.activity.rating = [1, 2, 3, 4, 5];
                     var organizer = scope.activity.organizer;
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
                     _mapMainPicture(scope.activity);
-                    // _mapClosestCalendar(scope.activity);
-                    //console.log('directive activity:', scope.activity);
+                    _mapDateMsg(scope.activity);
+                    console.log('directive activity:', scope.activity);
                 }
             }
         }

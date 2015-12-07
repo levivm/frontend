@@ -11,9 +11,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityOrderCtrl', ActivityOrderCtrl);
 
-    ActivityOrderCtrl.$inject = ['$modal', '$stateParams','Toast', 'organizer', 'order'];
+    ActivityOrderCtrl.$inject = ['$modal', '$window', '$stateParams','Toast', 'organizer', 'order'];
 
-    function ActivityOrderCtrl($modal, $stateParams, Toast, organizer, order) {
+    function ActivityOrderCtrl($modal, $window, $stateParams, Toast, organizer, order) {
         var vm = this;
         angular.extend(vm,{
             order: order,
@@ -23,11 +23,26 @@
             requestingOrderRefund: false,
             requestAssistantRefund: requestAssistantRefund,
             requestOrderRefund: requestOrderRefund,
+            printOrder: printOrder
         });
 
         _activate();
 
-        /*  EXPOSED FUNCTIONS     */
+        //--------- Exposed Functions ---------//
+
+        function printOrder(){
+            var book = angular.element.find('.tab-pane')[0];
+            var link = $window.document.createElement("link");
+            link.href = "/css/trulii.css";
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            book.appendChild(link);
+            var table = book.innerHTML;
+            var myWindow = window.open('', '', 'width=1200, height=600, scrollbars=yes');
+            myWindow.document.write(table);
+            setTimeout(function(){ myWindow.print(); }, 1000);
+        }
+
         function requestOrderRefund(orderId){
             var modalInstance = $modal.open({
                 templateUrl : 'partials/commons/messages/confirm_request_refund.html',
@@ -57,7 +72,6 @@
             function disableOrderRefundLoader(){
                 vm.requestingOrderRefund = false;
             }
-
         }
 
         function requestAssistantRefund(orderId,assistant){
@@ -77,6 +91,7 @@
             function success(response){
                 assistant.lastest_refund = response;
             }
+
             function error(response){
                 Toast.error(response.non_field_errors.pop());
             }
@@ -84,15 +99,14 @@
             function enableRefundLoader(assistantId){
                 vm.requestingRefund[assistantId] = true;
                 vm.currentAssistantLoader = assistantId;
-
             }
 
             function disableRefundLoader(){
                 vm.requestingRefund[vm.currentAssistantLoader] = false;
             }
-
-
         }
+
+        //--------- Internal Functions ---------//
 
         function _setFeeAmount(){
             vm.feeAmount = vm.order.fee * vm.order.total_without_coupon;
@@ -103,12 +117,11 @@
         }
 
         function _setStrings() {
-            if (!vm.strings) {
-                vm.strings = {};
-            }
+            if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Solicitar Reembolso",
                 ACTION_REIMBURSE_ORDER: "Reembolsar Orden",
+                ACTION_PRINT: "Imprimir",
                 ACTION_GO_BACK: "Regresar",
                 SECTION_HISTORY: "Historial de Compras",
                 COPY_REFUND_REQUESTED_BY_OTHER: "El reembolso fue solicitado por el estudiante",

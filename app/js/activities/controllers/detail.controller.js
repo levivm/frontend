@@ -186,7 +186,7 @@
             }
 
             function removePassedCalendars(calendar){
-                var passed = moment(calendar.initial_date).isBefore(moment().valueOf(), 'day'); 
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf(), 'day');
                 return !(passed);
             }
 
@@ -285,7 +285,7 @@
                 TWITTER_SHARE_ACCOUNT:'Trulii_',
                 TWITTER_SHARE_TEXT:'Échale un vistazo a ' + vm.activity.title,
                 TWITTER_SHARE_URL:current_url,
-                TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(','),
+                TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(',')
             });
         }
 
@@ -305,6 +305,7 @@
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
                 COPY_SHARE_WIDGET: "¡Compártelo con tus amigos!",
+                COPY_NO_RATINGS: "Sin Reviews",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                 COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizará en otra oportunidad ",
                 COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
@@ -414,7 +415,9 @@
                 reviewsAvg: reviewsAvg,
                 totalReviews: reviews.length,
                 organizer : activity.organizer,
-                calendar_selected : activity.closest_calendar
+                calendar_selected : moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ? 
+                                    null:activity.closest_calendar
+
             });
 
             if(!(vm.activity.published)){

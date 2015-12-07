@@ -12,9 +12,9 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$window', '$filter', 'activity', 'ActivitiesManager'];
+    ActivitiesManageCtrl.$inject = ['$window', '$filter','$state', 'activity', 'ActivitiesManager'];
 
-    function ActivitiesManageCtrl($window, $filter, activity, ActivitiesManager) {
+    function ActivitiesManageCtrl($window, $filter, $state, activity, ActivitiesManager) {
 
         var vm = this;
         angular.extend(vm, {
@@ -29,17 +29,14 @@
             orderPaginationOpts: {
                 totalItems: 0,
                 itemsPerPage: 10,
-                pageNumber: 1
+                pageNumber: 1,
+                maxPagesSize:5
             },
             calendarPaginationOpts: {
                 totalItems: 0,
                 itemsPerPage: 4,
-                pageNumber: 1
-            },
-            assistantPaginationOpts: {
-                totalItems: 0,
-                itemsPerPage: 6,
-                pageNumber: 1
+                pageNumber: 1,
+                maxPagesSize:5
             },
             expandCalendar : expandCalendar,
             updateByQuery: updateByQuery,
@@ -59,9 +56,6 @@
             switch(type){
                 case vm.TYPE_ORDER:
                     vm.orders = $filter('filter')(orders, vm.queries.orderQuery);
-                    vm.orderPaginationOpts.totalItems = vm.orders.length;
-                    vm.orderPaginationOpts.pageNumber = 1;
-                    vm.orders = vm.orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
                     break;
                 case vm.TYPE_ASSISTANT:
                     vm.assistants = $filter('filter')(assistants, vm.queries.assistantQuery);
@@ -89,27 +83,47 @@
                     vm.calendars = calendars.slice(start, end);
                     console.log('calendars:', vm.calendars);
                     break;
-                case vm.TYPE_ASSISTANT:
-                    offset = vm.assistantPaginationOpts.itemsPerPage;
-                    start = (vm.assistantPaginationOpts.pageNumber -1) * offset;
-                    end = vm.assistantPaginationOpts.pageNumber * offset;
-                    console.log(vm.assistantPaginationOpts.pageNumber, 'slice(' + start + ',' + end + ')');
-                    vm.assistants = assistants.slice(start, end);
-                    console.log('assistants:', vm.assistants);
-                    break;
             }
         }
 
-        function expandCalendar(calendar){
+        function expandCalendar(calendar,type){
             if(vm.activeCalendar && vm.activeCalendar.id === calendar.id){
                 vm.activeCalendar = null;
                 return;
             }
-            vm.activeCalendar = calendar;
-            assistants = calendar.assistants;
-            vm.assistantPaginationOpts.totalItems = assistants.length;
-            vm.assistants = assistants.slice(0, vm.assistantPaginationOpts.itemsPerPage);
-            console.log('assistants:', assistants, 'length:', assistants.length);
+
+            switch(type){
+
+                case vm.TYPE_ASSISTANT:                   
+                    vm.activeCalendar = calendar;
+                    assistants = calendar.assistants;
+                    vm.assistants = assistants;
+
+                    break;
+                case vm.TYPE_ORDER:
+                    
+                    vm.orders =  _.filter(orders,orderBelongsToCalendar);
+                    vm.total  = _.sum(vm.orders,getTotal);
+                    vm.totalWithFee = _.sum(vm.orders,getTotalWithFee);
+                    vm.netTotal = vm.total - vm.totalWithFee;
+                    vm.activeCalendar = calendar;
+                    break;
+
+            }
+
+            function orderBelongsToCalendar(order){
+                return order.calendar === calendar.id;
+            }
+
+            function getTotal(order){
+
+                return order.is_free ? 0 : order.amount;
+            }
+
+            function getTotalWithFee(order){
+                return order.is_free ? 0 : order.amount * order.fee;
+            }
+
         }
 
         function _getOrders(activityId){
@@ -118,7 +132,7 @@
             function success(ordersResponse){
                 orders = $filter('orderBy')(ordersResponse.map(mapOrder), 'id', true);
                 vm.orderPaginationOpts.totalItems = orders.length;
-                vm.orders = orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
+                vm.orders = orders;
             }
             function error(response){
                 console.error('_getOrders. Error in orders response:', response);
@@ -127,27 +141,13 @@
             function mapOrder(order){
                 var cost = order.amount / order.quantity;
                 order.unit_price = cost;
-                // Bind is Awesome!!!
-                // order.assistants = order.assistants.map(mapAssistant.bind(this, cost));
-                // var user = order.student.user;
-                // order.payer = {
-                //     full_name: [user.first_name, user.last_name].join(' '),
-                //     email: user.email,
-                //     photo: order.student.photo
-                // };
                 return order;
             }
-
-            // function mapAssistant(cost, assistant){
-            //     assistant.full_name = [assistant.first_name, assistant.last_name].join(' ');
-            //     assistant.cost = cost;
-            //     return assistant;
-            // }
         }
 
         function _getCalendars(activity){
           if(activity.calendars){
-            calendars = activity.calendars.map(_mapDateMsg);
+            calendars = $filter('orderBy')(activity.calendars.map(_mapDateMsg), '-initial_date');
             vm.calendars = calendars.slice(0, vm.calendarPaginationOpts.itemsPerPage);
             vm.calendarPaginationOpts.totalItems = calendars.length;
             return calendars;
@@ -180,12 +180,14 @@
                 ACTION_REIMBURSE_ASSISTANT: "Reembolsar Asistente",
                 ACTION_VIEW_DETAIL: "Ver detalle",
                 ACTION_PRINT: "Imprimir",
-                COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad",
+                COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad agrupadas por calendario",
                 COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito esta actividad",
                 COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
-                COPY_SEARCH: "Buscar orden por número, fecha o monto",
+                COPY_SEARCH: "Buscar por número, fecha o monto",
+                COPY_FREE: "Gratis",
+                COPY_SEARCH_ASSISTANTS: "Buscar nombre, apellido, correo, orden o código",
                 LABEL_MANAGE: "Gestionar",
                 LABEL_ORDER_NUMBER: "Orden N°",
                 LABEL_CALENDAR: "Inicio",
@@ -201,6 +203,9 @@
                 COPY_EMPTY_ASSISTANTS: "Aún no tienes asistentes registrados en esta actividad¿No atrae lo suficiente"
                 + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
                 + "un vídeo. ¡Ánimo!",
+                COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de ventas total restando la comisión de Trulii",
+                COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de la ordenes sin contar la comisión de Trulii",
+                COPY_TOTAL_FEE_TOOLTIP: "Este es el monto total de la comisión de Trulii",
                 COPY_CLOSING_DATE: "Cierre",
                 COPY_VIEW_DETAIL: "Ver detalle",
                 SECTION_MANAGE: "Gestionar",
@@ -220,7 +225,10 @@
                 HEADER_SALE_DATA:"Fecha de Venta",
                 HEADER_UNIT_PRICE:"Precio Unitario",
                 HEADER_TOTAL:"Total",
-                HEADER_STATUS:"Estatus"
+                HEADER_STATUS:"Estatus",
+                LABEL_FINAL_TOTAL: "Ventas Netas",
+                LABEL_TOTAL: "Total Ventas",
+                LABEL_FEE: "Comisión Trulii",
             });
         }
 
@@ -229,6 +237,7 @@
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
+            console.log("reloadin");
 
         }
 

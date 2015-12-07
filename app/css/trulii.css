@@ -15566,6 +15566,11 @@ ul.dropdown-menu:after {
  *      CONTAINERWIDTH = 28px
  *      SHRINK_TIME = 400ms
  */
+@media print {
+  .preloader-container {
+    display: none;
+  }
+}
 .preloader-wrapper {
   display: inline-block;
   position: relative;
@@ -17365,6 +17370,7 @@ blockquote {
   color: #999999;
   text-transform: capitalize;
   overflow: hidden;
+  word-break: break-all;
   height: 5em;
   font-size: .9em;
 }
@@ -18719,6 +18725,28 @@ blockquote {
   background-color: white;
   padding: 0px 35px 25px 35px;
 }
+@media print {
+  .order-detail .order-description {
+    background-color: #eeeeee;
+  }
+  .order-detail .order-tooltip,
+  .order-detail .order-tooltip:before,
+  .order-detail .order-tooltip:after {
+    display: none;
+  }
+  .order-detail .order-info {
+    width: auto;
+  }
+  .order-detail a,
+  .order-detail button,
+  .order-detail .btn {
+    display: none;
+  }
+  .order-detail .glyphicon,
+  .order-detail .column-button {
+    display: none;
+  }
+}
 .not-found-search-bar {
   background-color: #393B3F;
 }
@@ -18933,14 +18961,14 @@ input[type=text].form-control.referral-link:focus {
     box-shadow: initial;
     background: initial;
   }
-}
-.page .table thead tr th,
-.page .table tbody tr th,
-.page .table tfoot tr th,
-.page .table thead tr td,
-.page .table tbody tr td,
-.page .table tfoot tr td {
-  padding: 30px 15px;
+  .page .table thead tr th,
+  .page .table tbody tr th,
+  .page .table tfoot tr th,
+  .page .table thead tr td,
+  .page .table tbody tr td,
+  .page .table tfoot tr td {
+    padding: 30px 15px;
+  }
 }
 .assistants-list__info > *,
 .assistants-list__header > * {

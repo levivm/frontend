@@ -3,6 +3,7 @@
   display: flex;
   margin: 0;
   border: 1px solid @gray-lighter;
+
   h5{
     font-family: @font-sans-alt;
   }
@@ -26,5 +27,25 @@
   .order-info{
     background-color:white;
     padding: 0px 35px 25px 35px;
+
   }
+
+  @media print {
+    .order-description {
+      background-color: @gray-lighter;
+    }
+    .order-tooltip, .order-tooltip:before, .order-tooltip:after {
+      display: none;
+    }
+    .order-info{
+      width: auto;
+    }
+    a, button, .btn {
+      display: none;
+    }
+    .glyphicon, .column-button{
+      display: none;
+    }
+  }
+
 }
