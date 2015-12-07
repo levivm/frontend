@@ -38,11 +38,6 @@
                 pageNumber: 1,
                 maxPagesSize:5
             },
-            // assistantPaginationOpts: {
-            //     totalItems: 0,
-            //     itemsPerPage: 6,
-            //     pageNumber: 1
-            // },
             expandCalendar : expandCalendar,
             updateByQuery: updateByQuery,
             pageChange: pageChange,
@@ -61,9 +56,6 @@
             switch(type){
                 case vm.TYPE_ORDER:
                     vm.orders = $filter('filter')(orders, vm.queries.orderQuery);
-                    // vm.orderPaginationOpts.totalItems = vm.orders.length;
-                    // vm.orderPaginationOpts.pageNumber = 1;
-                    // vm.orders = vm.orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
                     break;
                 case vm.TYPE_ASSISTANT:
                     vm.assistants = $filter('filter')(assistants, vm.queries.assistantQuery);
@@ -91,14 +83,6 @@
                     vm.calendars = calendars.slice(start, end);
                     console.log('calendars:', vm.calendars);
                     break;
-                // case vm.TYPE_ASSISTANT:
-                //     offset = vm.assistantPaginationOpts.itemsPerPage;
-                //     start = (vm.assistantPaginationOpts.pageNumber -1) * offset;
-                //     end = vm.assistantPaginationOpts.pageNumber * offset;
-                //     console.log(vm.assistantPaginationOpts.pageNumber, 'slice(' + start + ',' + end + ')');
-                //     vm.assistants = assistants.slice(start, end);
-                //     console.log('assistants:', vm.assistants);
-                //     break;
             }
         }
 
@@ -110,9 +94,7 @@
 
             switch(type){
 
-                case vm.TYPE_ASSISTANT:
-                    // vm.onAssistantsState = true;
-                   
+                case vm.TYPE_ASSISTANT:                   
                     vm.activeCalendar = calendar;
                     assistants = calendar.assistants;
                     vm.assistants = assistants;
@@ -120,7 +102,6 @@
                     break;
                 case vm.TYPE_ORDER:
                     
-                    // vm.onAssistantsState = false;
                     vm.orders =  _.filter(orders,orderBelongsToCalendar);
                     vm.total  = _.sum(vm.orders,getTotal);
                     vm.totalWithFee = _.sum(vm.orders,getTotalWithFee);
@@ -135,16 +116,14 @@
             }
 
             function getTotal(order){
-                return order.amount;
+
+                return order.is_free ? 0 : order.amount;
             }
 
             function getTotalWithFee(order){
-                return order.amount * order.fee;
+                return order.is_free ? 0 : order.amount * order.fee;
             }
 
-            // vm.assistantPaginationOpts.totalItems = assistants.length;
-            // vm.assistants = assistants.slice(0, vm.assistantPaginationOpts.itemsPerPage);
-            // console.log('assistants:', assistants, 'length:', assistants.length);
         }
 
         function _getOrders(activityId){
@@ -153,7 +132,6 @@
             function success(ordersResponse){
                 orders = $filter('orderBy')(ordersResponse.map(mapOrder), 'id', true);
                 vm.orderPaginationOpts.totalItems = orders.length;
-                // vm.orders = orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
                 vm.orders = orders;
             }
             function error(response){
@@ -163,27 +141,12 @@
             function mapOrder(order){
                 var cost = order.amount / order.quantity;
                 order.unit_price = cost;
-                // Bind is Awesome!!!
-                // order.assistants = order.assistants.map(mapAssistant.bind(this, cost));
-                // var user = order.student.user;
-                // order.payer = {
-                //     full_name: [user.first_name, user.last_name].join(' '),
-                //     email: user.email,
-                //     photo: order.student.photo
-                // };
                 return order;
             }
-
-            // function mapAssistant(cost, assistant){
-            //     assistant.full_name = [assistant.first_name, assistant.last_name].join(' ');
-            //     assistant.cost = cost;
-            //     return assistant;
-            // }
         }
 
         function _getCalendars(activity){
           if(activity.calendars){
-            // activity.calendars.map(_mapDateMsg);
             calendars = $filter('orderBy')(activity.calendars.map(_mapDateMsg), '-initial_date');
             vm.calendars = calendars.slice(0, vm.calendarPaginationOpts.itemsPerPage);
             vm.calendarPaginationOpts.totalItems = calendars.length;
@@ -217,12 +180,13 @@
                 ACTION_REIMBURSE_ASSISTANT: "Reembolsar Asistente",
                 ACTION_VIEW_DETAIL: "Ver detalle",
                 ACTION_PRINT: "Imprimir",
-                COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad",
+                COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad agrupadas por calendario",
                 COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito esta actividad",
                 COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
                 COPY_SEARCH: "Buscar por número, fecha o monto",
+                COPY_FREE: "Gratis",
                 COPY_SEARCH_ASSISTANTS: "Buscar nombre, apellido, correo, orden o código",
                 LABEL_MANAGE: "Gestionar",
                 LABEL_ORDER_NUMBER: "Orden N°",

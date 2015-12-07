@@ -51,7 +51,7 @@
             },
             activitiesPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 1,
+                itemsPerPage: 12,
                 pageNumber: 1,
                 maxPagesSize:10,
             },
