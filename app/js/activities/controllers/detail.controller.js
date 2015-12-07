@@ -415,7 +415,9 @@
                 reviewsAvg: reviewsAvg,
                 totalReviews: reviews.length,
                 organizer : activity.organizer,
-                calendar_selected : activity.closest_calendar
+                calendar_selected : moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ? 
+                                    null:activity.closest_calendar
+
             });
 
             if(!(vm.activity.published)){
