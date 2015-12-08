@@ -99,7 +99,7 @@
             } else {
                 console.warn("getCurrentStudent. The Authenticated User is not a Student");
             }
-            deferred.reject(response);
+            deferred.resolve(null);
         }
     }
 

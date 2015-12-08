@@ -12,71 +12,47 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerReviewsCtrl', OrganizerReviewsCtrl);
 
-    OrganizerReviewsCtrl.$inject = ['$q', 'activities', 'reviews', 'organizer'];
-    function OrganizerReviewsCtrl($q, activities, reviews, organizer) {
+    OrganizerReviewsCtrl.$inject = ['$q', 'reviewObjects'];
+    function OrganizerReviewsCtrl($q, reviewObjects) {
 
         var vm = this;
         angular.extend(vm, {
             unread_reviews: [],
             read_reviews: [],
-            getReviewActivity: getReviewActivity
+            searchUnreadQuery: "",
+            searchReadQuery: ""
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
 
-        function getReviewActivity(review){
-            return activities.filter(filterActivity)[0];
-
-            function filterActivity(activityFilter){
-                return activityFilter.id === review.activity;
-            }
-        }
-
         //--------- Internal Functions ---------//
 
-        function _classifyReviews(reviews){
+        function _classifyReviews(reviewObjects){
             vm.unread_reviews = [];
             vm.read_reviews = [];
             var deferred = $q.defer();
             var promiseArray = [];
-            angular.forEach(reviews, function(review){
-                promiseArray.push(filterReview(review));
+            angular.forEach(reviewObjects, function(reviewObject){
+                promiseArray.push(filterReview(reviewObject));
             });
 
             $q.all(promiseArray).then(function(){
                 deferred.resolve();
+                console.log('unread_reviews:', vm.unread_reviews);
+                console.log('read_reviews:', vm.read_reviews);
             });
 
             return deferred.promise;
 
-            function filterReview(review){
-                if(review.read){ vm.read_reviews.push(review); } else { vm.unread_reviews.push(review); }
-
-                return true;
-            }
-        }
-
-        function _setReviews(){
-            var deferred = $q.defer();
-            var promiseArray = [];
-            activities.map(function(activity){
-                promiseArray.push(mapReview(activity));
-            });
-
-            $q.all(promiseArray).then(function(){
-                deferred.resolve();
-            });
-
-            return deferred.promise;
-
-            function mapReview(activity){
-                activity.review = reviews.filter(filterReview)[0];
-
-                function filterReview(review){
-                    return review.activity === activity.id;
+            function filterReview(reviewObject){
+                if(reviewObject.review.read){
+                    vm.read_reviews.push(reviewObject);
+                } else {
+                    vm.unread_reviews.push(reviewObject);
                 }
+                return true;
             }
         }
 
@@ -104,9 +80,7 @@
 
         function _activate() {
             _setStrings();
-            _setReviews().then(function(){
-                _classifyReviews(reviews);
-            });
+            _classifyReviews(reviewObjects);
         }
 
     }

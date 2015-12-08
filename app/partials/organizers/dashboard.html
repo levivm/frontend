@@ -30,6 +30,7 @@
                ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.reviews.*')}">
                 <i class="sidebar__item__icon mdi-communication-comment"></i>
                 <span ng-bind="::dash.strings.SECTION_REVIEWS"></span>
+                <span class="label label-success" ng-bind="::dash.reviews.length"></span>
             </a>
             <a ui-sref=".transactions.sales"
                class="sidebar__item"

@@ -61,7 +61,8 @@
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
-                    organizer : getCurrentOrganizer
+                    organizer : getCurrentOrganizer,
+                    reviews: getUnreadOrganizerReviews,
                 },
                 data: {
                     requiredAuthentication : true
@@ -132,7 +133,8 @@
                 templateUrl: 'partials/organizers/dashboard/reviews.html',
                 resolve: {
                     activities: getOrganizerActivities,
-                    reviews: getOrganizerReviews
+                    reviews: getOrganizerReviews,
+                    reviewObjects: getReviewObjects
                 }
             })
             .state('organizer-dashboard.reviews.done', {
@@ -211,15 +213,61 @@
         /**
          * @ngdoc method
          * @name .#getOrganizerReviews
-         * @description Retrieves an Organizer's Activities from
-         * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID
-         * @requires trulii.activities.services.ActivitiesManager
+         * @description Retrieves an Organizer's Reviews from
+         * {@link trulii.organizers.services.Organizer Organizer}
          * @requires organizer
          * @methodOf trulii.organizers.config
          */
         getOrganizerReviews.$inject = ['organizer'];
         function getOrganizerReviews(organizer){
             return organizer.getReviews();
+        }
+
+        getReviewObjects.$inject = ['reviews', 'activities'];
+        function getReviewObjects(reviews, activities){
+            return reviews.map(mapActivityToReview);
+
+            function mapActivityToReview(review){
+                var activity = activities.filter(filterById)[0];
+
+                return {
+                    'activity': activity,
+                    'review': review
+                };
+
+                function filterById(activity){
+                    return activity.id === review.activity;
+                }
+            }
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getUnreadOrganizerReviews
+         * @description Retrieves an Organizer's Unread Reviews from
+         * {@link trulii.organizers.services.Organizer Organizer}
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getUnreadOrganizerReviews.$inject = ['$q', 'organizer'];
+        function getUnreadOrganizerReviews($q, organizer){
+            var deferred = $q.defer();
+
+            organizer.getReviews().then(success, error);
+
+            return deferred.promise;
+
+            function success(reviews){
+                reviews = reviews.filter(filterUnread);
+                deferred.resolve(reviews);
+            }
+
+            function filterUnread(review){ return !review.is_read; }
+
+            function error(error){
+                console.error('Error retrieving reviews for organizer ', organizer.name, error);
+                deferred.reject(error);
+            }
         }
 
         /**

@@ -12,11 +12,14 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = ['$state'];
-    function OrganizerDashboardCtrl($state) {
+    OrganizerDashboardCtrl.$inject = ['$state', 'reviews'];
+    function OrganizerDashboardCtrl($state, reviews) {
 
         var vm = this;
-        vm.isActive = isActive;
+        angular.extend(vm, {
+            isActive: isActive,
+            reviews: reviews
+        });
 
         _activate();
 
