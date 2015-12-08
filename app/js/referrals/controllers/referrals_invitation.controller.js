@@ -17,7 +17,6 @@
 
     function ReferralsInvitationCtrl($state, referrer, generalInfo, student) {
 
-        var categories = [];
         var vm = this;
         angular.extend(vm, {
             showVideo: false,
@@ -56,66 +55,6 @@
         }
 
         //--------- Internal Functions ---------//
-
-        function _setCategories(){
-            categories = [
-                {
-                    id: 1,
-                    cover: "/css/img/categories/languages.jpg"
-                },
-                {
-                    id: 2,
-                    cover: "/css/img/categories/fitness.jpg"
-                },
-                {
-                    id: 3,
-                    cover: "/css/img/categories/lifestyle.jpg"
-                },
-                {
-                    id: 4,
-                    cover: "/css/img/categories/technology.jpg"
-                },
-                {
-                    id: 5,
-                    cover: "/css/img/categories/kids.jpg"
-                },
-                {
-                    id: 6,
-                    cover: "/css/img/categories/art.jpeg"
-                },
-                {
-                    id: 7,
-                    cover: "/css/img/categories/professional.jpg"
-                },
-                {
-                    id: 8,
-                    cover: "/css/img/categories/gastronomy.jpg"
-                },
-                {
-                    id: 9,
-                    cover: "/css/img/categories/dance.jpg"
-                },
-                {
-                    id: 10,
-                    cover: "/css/img/categories/music.jpeg"
-                }
-            ];
-            categories.forEach(extendCategory);
-            vm.categories = categories;
-
-            function extendCategory(category){
-                var categoryInfo = getCategoryById(category.id);
-                if(categoryInfo){
-                    angular.extend(category, categoryInfo);
-                }
-
-                function getCategoryById(id){
-                    return generalInfo.categories.filter(function(category){
-                        return category.id === id;
-                    })[0];
-                }
-            }
-        }
 
         function _setStrings() {
             if (!vm.strings) {
@@ -159,7 +98,7 @@
 
         function _activate(){
             _setStrings();
-            _setCategories();
+            vm.categories = generalInfo.categories;
             console.log(student);
         }
 
