@@ -88,7 +88,7 @@
                                     <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
                                   </td>
                                   <td>
-                                    <span ng-class="{'text-strike': order.is_free}" 
+                                    <span ng-class="{'text-strike': order.is_free}"
                                             ng-bind="::(order.amount | currency:$:0)"></span>
                                     <span ng-show="::order.is_free"
                                             ng-bind="::manage.strings.COPY_FREE"></span>
@@ -106,20 +106,26 @@
                                 </tr>
                               </table>
                             </div>
-                            <div class="row" ng-if="manage.orders.length > 0">
+                            <div class="order-total" ng-if="manage.orders.length > 0">
                               <!--TO-DO Fix Style like invision-->
                               <div class="col-xs-12">
-                                <span ng-bind="::manage.strings.LABEL_TOTAL"></span>
-                                <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::manage.strings.COPY_TOTAL_SALES_TOOLTIP}}"></i>
-                                <span ng-bind="manage.total | currency:$:0"></span>
-                                <span ng-bind="::manage.strings.LABEL_FEE"></span>
-                                <span ng-bind="manage.totalWithFee | currency:$:0"></span>
-                                <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::manage.strings.COPY_TOTAL_FEE_TOOLTIP}}"></i>
-                                <span ng-bind="::manage.strings.LABEL_FINAL_TOTAL"></span>
-                                <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::manage.strings.COPY_FINAL_TOTAL_SALES_TOOLTIP}}"></i>
-                                <span ng-bind="manage.netTotal | currency:$:0"></span>
-                                
-
+                                <ul class="list-unstyled list-inline text-center">
+                                  <li>
+                                    <span ng-bind="::manage.strings.LABEL_TOTAL"></span>
+                                    <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::manage.strings.COPY_TOTAL_SALES_TOOLTIP}}"></i>
+                                    <span ng-bind="manage.total | currency:$:0"></span>
+                                  </li>
+                                  <li>
+                                    <span ng-bind="::manage.strings.LABEL_FEE"></span>
+                                    <span ng-bind="manage.totalWithFee | currency:$:0"></span>
+                                    <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::manage.strings.COPY_TOTAL_FEE_TOOLTIP}}"></i>
+                                  </li>
+                                  <li>
+                                    <strong ng-bind="::manage.strings.LABEL_FINAL_TOTAL"></strong>
+                                    <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  tooltip="{{::manage.strings.COPY_FINAL_TOTAL_SALES_TOOLTIP}}"></i>
+                                    <strong ng-bind="manage.netTotal | currency:$:0"></strong>
+                                  </li>
+                                </ul>
                               </div>
 
                             </div>
@@ -139,7 +145,7 @@
                             ng-change="manage.pageChange(manage.TYPE_CALENDAR)"
                             data-total-items="manage.calendarPaginationOpts.totalItems"
                             data-items-per-page="manage.calendarPaginationOpts.itemsPerPage"
-                            previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                            previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
                             max-size="manage.calendarPaginationOpts.maxPagesSize"></pagination>
             </div>
         </div>
