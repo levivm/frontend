@@ -24,23 +24,43 @@
 </trulii-slidebar>
 
 <!--Cover-->
-<div class="row">
+<!-- <div class="row">
     <div class="detail-cover" style="background-image: url({{enroll.activity.main_photo}});">
         <div class="text-container">
             <h2 ng-bind="enroll.strings.COPY_COVER"></h2>
             <h1><strong ng-bind="enroll.activity.title"></strong></h1>
         </div>
     </div>
+</div> -->
+<div class="trulii-cover-small">
+  <div class="trulii-cover__container">
+    <div class="trulii-cover__content">
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+            <h1 class="text-center  sub-title-light" ng-bind="enroll.strings.COPY_COVER"></h1>
+            <h1 class="text-center title">
+              <strong ng-bind="enroll.activity.title"></strong>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="trulii-cover__background" style="background-image: url({{enroll.activity.main_photo}});">
+    </div>
+  </div>
 </div>
 
-<div class="row separate-above">
+<div class="row separate-above-medium">
     <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1">
         <!--Info-->
         <div class="row text-center separate-above-less">
             <div class="col-xs-12 text-uppercase">
-                <h4 class="no-margin sinkin-medium" ng-bind="enroll.strings.COPY_STARTING_ON"></h4>
-                <h2 class="sinkin-semibold text-uppercase separate-above-less" ng-bind="enroll.calendar.initial_date | date:'d MMM  y'"></h2>
-                <h3 class="no-margin font-family-sans-alt">
+                <h4 class="text-spaced no-margin sinkin-medium">
+                  <strong ng-bind="enroll.strings.COPY_STARTING_ON"></strong>
+                </h4>
+                <h2 class="text-spaced sinkin-semibold text-uppercase separate-above-less" ng-bind="enroll.calendar.initial_date | date:'d MMM  y'"></h2>
+                <h4 class="text-spaced no-margin font-family-sans-alt">
                     <span ng-bind="enroll.calendar.vacancy"></span>
                     <span>
                         <ng-pluralize count="enroll.calendar.vacancy"
@@ -50,11 +70,11 @@
                                 }">
                         </ng-pluralize>
                     </span>
-                </h3>
+                </h4>
             </div>
         </div>
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0 no-padding">
+    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0 widget-container">
         <!--Organizer-->
         <div class="organizer-widget">
             <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
@@ -71,9 +91,10 @@
     </div>
 </div>
 <div class="row separate-above-less">
-    <div class="col-xs-10 col-xs-offset-1 col-md-push-8 col-md-3 col-md-offset-0 no-padding">
+    <div class="col-xs-10 col-xs-offset-1 col-md-push-8 col-md-3 col-md-offset-0 widget-container">
         <!--Billing-->
-        <div ng-show="::enroll.showWidget" class="billing-widget separate-above" ng-class="{'fixed-widget': enroll.scroll > enroll.widgetOriginalPosition}">
+        <div ng-show="::enroll.showWidget" class="billing-widget separate-above" ng-class="{'fixed-widget': (enroll.scroll + 80 > enroll.widgetOriginalPosition - 80) && (enroll.scroll + 80 < enroll.widgetMaxPosition), 'absolute-widget': enroll.scroll + 80 >= enroll.widgetMaxPosition}"
+          ng-style="enroll.scroll + 80 >= enroll.widgetMaxPosition && {'top': enroll.widgetAbsolutePosition}">
             <div class="invoice">
                 <h4 class="text-uppercase" ng-bind="::enroll.strings.LABEL_INVOICE"></h4>
                 <div class="row seats separate-above separate-below-less">
@@ -105,19 +126,26 @@
                 <!--Coupon Form-->
                 <div class="row separate-above" ng-if="!enroll.calendar.is_free" ng-hide="enroll.hasCouponApplied">
                     <div class="col-xs-12">
-                        <div class="form-group">
+                        <div class="form-group form-classic">
                             <label for="inputCoupon" class="sr-only" ng-bind="::enroll.strings.LABEL_APPLY_COUPON"></label>
-                            <div class="col-md-8 no-padding">
+                            <div class="col-md-12 no-padding">
+                              <div class="input-group">
                                 <input type="text" class="form-control input-sm" id="inputCoupon"
                                        ng-model="enroll.coupon.code" placeholder="{{::enroll.strings.LABEL_APPLY_COUPON}}">
+                                 <span class="input-group-btn">
+                                  <button class="btn btn-default discount-button"
+                                          ng-class="{'disabled': enroll.hasCouponApplied}"
+                                          ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
+                                 </span>
+                               </div>
+                               <div ng-show="enroll.invalidCoupon">
+                                <br>
+                                <p class="text-danger text-sm font-family-sans-alt" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
+                               </div>
                             </div>
-                            <button class="col-md-3 pull-right btn btn-xs btn-default"
-                                    ng-class="{'disabled': enroll.hasCouponApplied}"
-                                    ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
                         </div>
                     </div>
                     <div class="col-xs-12" ng-show="enroll.invalidCoupon">
-                            <p class="text-danger text-sm font-family-sans-alt" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
                     </div>
                 </div>
                 <!--Coupon Render-->
@@ -221,9 +249,7 @@
                                                     <div class="form-group" trulii-input-errors-control="email">
                                                         <label class="control-label" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
                                                         <input class="form-control col-md-2" name="email" type="email"
-                                                               ng-model="assistant.email"
-                                                               
-                                                              />
+                                                               ng-model="assistant.email" />
                                                     </div>
                                                     <div class="form-group" trulii-input-errors-control="detail">
                                                         <input type="hidden" name="detail"/>
@@ -238,7 +264,7 @@
                                             <div>
                                                 <div class="card-list-item__add-icon" ng-click="enroll.addAssistant()" >
                                                     <br/>
-                                                    <div ng-bind="enroll.strings.ACTION_ADD_ASSISTANT"></div>
+                                                    <div class="separate-above" ng-bind="enroll.strings.ACTION_ADD_ASSISTANT"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -280,7 +306,7 @@
                                     <div class="row">
                                         <div class="col-xs-8 col-xs-offset-2">
                                             <div class="row">
-                                                <div class="col-md-12 text-center separate-above">
+                                                <div class="col-md-12 text-center separate-above separate-below">
                                                     <img src="css/img/activity-enroll/card_mastercard.png" alt="Mastercard"/>
                                                     <img src="css/img/activity-enroll/card_visa.png" alt="Visa"/>
                                                     <img src="css/img/activity-enroll/card_amex.png" alt="American Express"/>
@@ -445,14 +471,22 @@
                                     <h4 class="text-muted montserrat-light" ng-bind="::enroll.strings.COPY_FREE_CALENDAR_2"></h4>
                                 </div>
                             </div>
-                            <button class="btn btn-block btn-default text-uppercase"
-                                    ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY"
-                                    ng-click="enroll.toggleReimbursement()"></button>
+                            <div class="row">
+                              <div class="col-xs-12 col-md-8 col-md-offset-2">
+                                <button class="btn btn-block btn-default text-uppercase"
+                                        ng-bind="::enroll.strings.ACTION_VIEW_RETURN_POLICY"
+                                        ng-click="enroll.toggleReimbursement()"></button>
+                              </div>
+                            </div>
                             <trulii-preloader loader-control="enroll.processingPayment" class="separate-above"></trulii-preloader>
-                            <button class="btn btn-block btn-primary separate-above text-uppercase"
-                                    ng-click="enroll.enroll()"
-                                    ng-bind="::enroll.strings.ACTION_ENROLL" ng-show="!enroll.processingPayment"></button>
-                            <div class="text-muted separate-above-medium text-sm" >
+                            <div class="row">
+                              <div class="col-xs-12 col-md-8 col-md-offset-2">
+                                <button class="btn btn-block btn-primary separate-above-less text-uppercase"
+                                        ng-click="enroll.enroll()"
+                                        ng-bind="::enroll.strings.ACTION_ENROLL" ng-show="!enroll.processingPayment"></button>
+                              </div>
+                            </div>
+                            <div class="text-muted separate-above-medium text-md montserrat-semibold" >
                                 <span ng-bind="::enroll.strings.COPY_RELEASE_1">
                                 </span>
                                 <a ng-click='enroll.toggleReimbursement()' href="#" ng-bind="::enroll.strings.COPY_RELEASE_2"></a>
@@ -463,11 +497,11 @@
                                 </span>
 
                             </div>
-                            <div class="text-muted separate-above text-sm" >
+                            <div class="text-muted separate-above text-lg montserrat-semibold" >
                                 <span ng-bind="::enroll.strings.COPY_ANY_DOUBT">
                                 </span>
-                                <a href="#"  ui-sref="contact-us" ng-bind="::enroll.strings.LABEL_CONTACT_US"></a>
-                                
+                                <a class="text-md" href="#"  ui-sref="contact-us" ng-bind="::enroll.strings.LABEL_CONTACT_US"></a>
+
                             </div>
                         </div>
                     </div>
@@ -486,3 +520,5 @@
         </a>
     </div>
 </div>
+<trulii-footer>
+</trulii-footer>

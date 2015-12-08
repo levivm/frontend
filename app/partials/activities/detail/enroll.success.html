@@ -1,30 +1,25 @@
 <div class="row">
     <div class="col-xs-12">
-        <div class="row">
+        <div class="row padding-vertical-medium">
             <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-                <h3 class="text-muted font-family-sans-alt" ng-bind="success.strings.COPY_HEADER_TITLE"></h3>
-                <h1 class="text-primary">
+                <h2 class="text-gray font-family-sans-alt" ng-bind="success.strings.COPY_HEADER_TITLE"></h2>
+                <h1 class="text-primary title separate-above-less">
                     <strong ng-bind="::success.activity.title"></strong>
                 </h1>
-                <h4 class="text-muted font-family-sans-alt separate-above" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h4>
-                <a ng-show="::success.orderId" target="_blank" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId, 
+                <h3 class="text-gray text-spaced-less montserrat-regular separate-above" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h3>
+                <a ng-show="::success.orderId" target="_blank" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId,
                                              })" ng-bind="success.strings.COPY_VIEW_YOUR_ORDER"></a>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 remember-container text-center separate-below-less">
-                <div class="separator"></div>
-            </div>
-        </div>
-        <div class="row">
+      </div>
+        <div class="row container-muted padding-vertical-medium">
             <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 remember-container text-center">
-                <h4 class="text-muted text-uppercase sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REMEMBER"></h4>
+                <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REMEMBER"></h4>
                 <div class="items-container">
                     <div class="item">
                         <img class="item-img" src="css/img/activity-enroll/remember_start.png"
                              alt="{{::success.strings.LABEL_START_DATE}}"/>
                         <div class="item-text">
-                            <div class="item-title text-uppercase"
+                            <div class="item-title text-spaced text-uppercase"
                                  ng-bind="::success.strings.LABEL_START_DATE"></div>
                             <div class="item-copy text-capitalize"
                                  ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')"></div>
@@ -36,7 +31,7 @@
                         <img class="item-img" src="css/img/activity-enroll/remember_location.png"
                              alt="{{::success.strings.LABEL_LOCATION}}"/>
                         <div class="item-text">
-                            <div class="item-title text-uppercase" ng-bind="::success.strings.LABEL_LOCATION"></div>
+                            <div class="item-title text-spaced text-uppercase" ng-bind="::success.strings.LABEL_LOCATION"></div>
                             <div class="item-copy">
                                 <span ng-bind="::success.activity.location.address"></span>
                                 <span>, </span>
@@ -47,7 +42,7 @@
                     <div class="item">
                         <img class="item-img" src="css/img/activity-enroll/remember_doubts.png" alt="Doubts"/>
                         <div class="item-text">
-                            <div class="item-title text-uppercase" ng-bind="success.strings.LABEL_QUESTIONS"></div>
+                            <div class="item-title text-spaced text-uppercase" ng-bind="success.strings.LABEL_QUESTIONS"></div>
                             <div class="item-copy" ng-bind="success.strings.LABEL_ANY_DOUBT"></div>
                             <div class="item-copy"><a ui-sref="contact-us({'toState': success.currentState})"
                                                       ng-bind="::success.strings.ACTION_CONTACT_US"></a></div>
@@ -56,24 +51,24 @@
                 </div>
                 <div class="separator"></div>
             </div>
-        </div>
-        <div class="row separate-above-less">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h4 class="text-muted text-uppercase sinkin-semibold" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
-                <p class="separate-above separate-below-more" ng-bind="success.activity.requirements"></p>
+            <div class="col-md-8 col-md-offset-2 text-center separate-above-less">
+                <h4 class="text-gray-alt text-uppercase sinkin-semibold" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
+                <p class="text-gray-alt separate-above separate-below-more" ng-bind="success.activity.requirements"></p>
             </div>
         </div>
         <!--Attendees-->
         <div class="row">
-            <div class="col-md-12 attendees-container img-carpet">
-                <h1 class="text-primary text-center"><strong ng-bind="::success.strings.LABEL_ATTENDEES"></strong></h1>
+            <div class="col-md-12 attendees-container">
+                <h1 class="text-primary title text-center"><strong ng-bind="::success.strings.LABEL_ATTENDEES"></strong></h1>
                 <div ui-view="attendees"></div>
             </div>
         </div>
         <div class="row share-container">
             <div class="col-md-12">
-                <h1 ng-bind="success.strings.LABEL_SHARE"></h1>
-                <p class="separate-above" ng-bind="success.strings.COPY_SHARE"></p>
+                <h1 class="title">
+                  <strong ng-bind="success.strings.LABEL_SHARE"></strong>
+                </h1>
+                <h3 class="text-spaced-less montserrat-regular separate-above-less separate-below-medium" ng-bind="success.strings.COPY_SHARE"></h3>
 
                 <a href="#"
                 socialshare
@@ -98,8 +93,12 @@
                 socialshare-url="{{::success.social.TWITTER_SHARE_URL}}">
                     <img src="css/img/activity-enroll/share_twitter.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
                 </a>
-                
-                
+                <a href="#"
+                  ng-click="success.toggleEmailShow()">
+                    <img src="css/img/activity-enroll/share_email.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+                </a>
+
+
             </div>
         </div>
 
@@ -119,21 +118,71 @@
             </div>
         </div>
 
-        <div class="row navigation-container img-carpet">
+        <div class="row navigation-container container-gray-light">
             <div class="col-md-6">
                 <a class="btn btn-link" ui-sref="activities-detail({activity_id: success.activity.id})">
                     <img src="css/img/activity-enroll/navigation_back.png" alt="{{ ::success.strings.ACTION_GO_BACK }}"
                          class="img-responsive inline-block"/>
-                    <span ng-bind="::success.strings.ACTION_GO_BACK"></span>
+                    <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_BACK"></span>
                 </a>
             </div>
             <div class="col-md-6">
                 <a class="btn btn-link pull-right" ui-sref="student-dashboard.activities">
-                    <span ng-bind="::success.strings.ACTION_GO_TO_ACTIVITIES"></span>
+                    <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_TO_ACTIVITIES"></span>
                     <img src="css/img/activity-enroll/navigation_go.png" alt="{{ ::success.strings.ACTION_GO_TO_ACTIVITIES }}"
                          class="img-responsive inline-block"/>
                 </a>
             </div>
         </div>
     </div>
+</div>
+<trulii-footer></trulii-footer>
+<div class="absolute-container" ng-show="success.showEmail">
+  <button class="pull-right absolute-container__close" ng-click="success.toggleEmailShow()">
+    <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+  </button>
+  <div class="col-xs-12 col-md-7">
+    <div class="modal-content modal-email">
+      <div class="modal-header">
+        <div class="well-title">
+          <h3 class="text-center" ng-bind="::success.strings.EMAIL_MODAL_HEADER">
+          </h3>
+        </div>
+      </div>
+      <div class="modal-body">
+        <form name='success.email_form' ng-submit="success.shareEmailForm()" class="separate-above separate-below-less form-classic">
+          <fieldset>
+            <div class="form-group" trulii-input-errors-control="name">
+                <label for="emails" ng-bind="success.strings.EMAIL_MODAL_SEND_TO_LABEL">
+                </label>
+                <input id="emails" class="form-control" name="emails" type="text"
+                  ng-model="success.formData.emails"
+                  placeholder="{{success.strings.EMAIL_MODAL_SEND_TO_PLACEHOLDER}}" >
+            </div>
+            <div class="form-group" trulii-input-errors-control="message">
+              <label for="message" ng-bind="success.strings.EMAIL_MODAL_MESSAGE_LABEL"></label>
+              <textarea name="message" class="form-control"
+                        ng-model="success.formData.message"
+                        placeholder="{{success.strings.EMAIL_MODAL_MESSAGE_PLACEHOLDER}}">
+              </textarea>
+            </div>
+            <div class="form-group" trulii-input-errors-control="__all__">
+                <input type="hidden" name="__all__" ng-model="__all__"/>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+                  <button type="submit" id="submit"
+                    class="btn btn-lg btn-success btn-block"
+                    ng-bind="::success.strings.EMAIL_MODAL_SEND">
+                  </button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>

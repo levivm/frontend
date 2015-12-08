@@ -16,10 +16,16 @@
             calendar : calendar,
             organizer : activity.organizer,
             organizerActivities : [],
-            orderId: $stateParams.order_id
+            orderId: $stateParams.order_id,
+            showEmail: false,
+            toggleEmailShow: toggleEmailShow,
         });
         console.log($stateParams);
         _activate();
+
+        function toggleEmailShow(){
+          vm.showEmail = !vm.showEmail;
+        }
 
         function _getOrganizerActivities() {
             console.log('organizerActivities:', organizerActivities);
@@ -79,7 +85,7 @@
             angular.extend(vm.strings, {
                 COPY_HEADER_TITLE: "¡Excelente! Te acabas de inscribir en",
                 COPY_HEADER_DESCRIPTION: "Te hemos enviado un correo electrónico con toda la "
-                    + "información referente a la inscripcion y el pago.",
+                    + "información referente a la inscripción y el pago.",
                 LABEL_REMEMBER: "Recuerda que",
                 LABEL_START_DATE: "Inicio",
                 LABEL_LOCATION: "Ubicación",
@@ -94,7 +100,13 @@
                 LABEL_SIMILAR: "Actividades similares",
                 ACTION_GO_TO_ACTIVITIES: "Ir a Mis Actividades",
                 ACTION_GO_BACK: "Regresar",
-                ACTION_CONTACT_US: "Contáctanos"
+                ACTION_CONTACT_US: "Contáctanos",
+                EMAIL_MODAL_HEADER: "Comparte vía correo electrónico",
+                EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
+                EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
+                EMAIL_MODAL_MESSAGE_LABEL: "Escribe un mensaje:",
+                EMAIL_MODAL_MESSAGE_PLACEHOLDER: "Hey, échale un vistazo a esta actividad en Trulii. ¡Sé que te encantará!",
+                EMAIL_MODAL_SEND: "Enviar invitacion"
             });
         }
 
