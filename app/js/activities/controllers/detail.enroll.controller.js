@@ -58,6 +58,8 @@
             totalCost: null,
             scroll: 0,
             widgetOriginalPosition: 0,
+            widgetMaxPosition: 0,
+            widgetAbsolutePosition: 0,
             showWidget: true,
             processingPayment: false,
 
@@ -338,7 +340,7 @@
             else if (calendar.is_free){
 
                 enrollFree();
-            } 
+            }
              else {
                 _startProccesingPayment();
                 StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
@@ -628,7 +630,7 @@
                 COPY_VACANCY_SINGULAR: " Vacante",
                 COPY_VACANCY: " Vacantes",
                 COPY_TO: " a ",
-                COPY_COVER: "Usted desea inscribir",
+                COPY_COVER: "Te quieres inscribir en:",
                 COPY_SIGN_UP: "¿Quieres inscribirte en esta actividad?",
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
@@ -726,14 +728,16 @@
 
             if (vm.showWidget){
                 angular.element(document).ready(function () {
-                    vm.scroll = document.body.scrollTop;
-                    if (!(document.getElementsByClassName('billing-widget')[0]))
-                        return
+                  if (!(document.getElementsByClassName('billing-widget')[0]))
+                      return
+                    vm.scroll = window.scrollY;
                     vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
+                    vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY  - 80 - document.getElementsByClassName('billing-widget')[0].offsetHeight;
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - 160 - document.getElementsByClassName('billing-widget')[0].offsetHeight * 4;
                     $window.onscroll = function(){
-                        //console.log(document.body.scrollTop);
-                        //console.log(vm.widgetOriginalPosition);
-                        vm.scroll = document.body.scrollTop;
+                        vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('billing-widget')[0].offsetHeight;
+                        vm.widgetAbsolutePosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - 160 - document.getElementsByClassName('billing-widget')[0].offsetHeight * 4;
+                        vm.scroll = window.scrollY;
                         $scope.$apply();
                     };
                 });

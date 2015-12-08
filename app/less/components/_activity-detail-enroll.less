@@ -5,10 +5,12 @@
     border: 1px solid @gray-light-medium;
 
     .panel-heading {
-        padding: 0.5em;
+        padding: 1.5em 1em;
 
         h4 {
             margin: 0;
+            font-family: @font-sans-alt;
+            color: @gray;
         }
     }
 }
@@ -26,36 +28,63 @@
         padding: 1.5em;
         margin: 0 0 0.5em 0;
         color: @text-muted;
+        div:last-child{
+          font-size: 0.85em;
+          font-weight: 400;
+        }
     }
 }
 
 .attendees-panel {
+    .Panel;
     border: none;
     box-shadow: none;
 }
 
 .payments-panel{
     .Panel;
+    border: none;
 
     .panel-body {
         padding: 0;
+        border: 1px solid @gray-light-medium;
+        margin-top: @spacing-medium;
+        border-top-right: @border-radius-base;
+        border-top-left: @border-radius-base;
+    }
+    .panel-header{
+      border: 1px solid @gray-light-medium;
     }
 
     .panel-footer {
         padding: 3em 6em;
         text-align: center;
-        background-color: lighten(@gray-light, 50%);
+        background-color: @gray-lightest;
+        border: 1px solid @gray-light-medium;
+        border-top: none;
+        border-bottom-right: @border-radius-base;
+        border-bottom-left: @border-radius-base;
 
          .btn {
              padding: 1em;
          }
     }
+    .nav-tabs-light{
+      li{
+        height: 4em;
+        padding: 0.5em;
+      }
+    }
+    .form-control{
+      font-size: 1.25em;
+    }
 }
 
 .billing-widget {
+    font-family: @font-sans;
     border: 1px solid @gray-light-medium;
     font-size: 0.8em;
-    font-weight: 400;
+    font-weight: 300;
     border-radius: 4px;
 
     .item {
@@ -112,6 +141,11 @@
             font-size:1.2em;
         }
     }
+    .discount-button{
+      background-color: @gray-light-medium;
+      color: white !important;
+      font-weight: 300;
+    }
 }
 
 .pse-panel {
@@ -165,13 +199,13 @@
                 width: 60%;
 
                 .item-title {
-                    font-size: 0.8em;
+                    font-size: 1em;
                     font-weight: 500;
                 }
 
                 .item-copy {
                     color: @text-muted;
-                    font-size: 0.8em;
+                    font-size: 0.9em;
                 }
             }
         }
@@ -209,6 +243,7 @@
     }
 
     a {
+        font-size: 1em;
         text-decoration: none;
         color: @text-muted;
 
