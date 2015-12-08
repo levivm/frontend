@@ -126,19 +126,26 @@
                 <!--Coupon Form-->
                 <div class="row separate-above" ng-if="!enroll.calendar.is_free" ng-hide="enroll.hasCouponApplied">
                     <div class="col-xs-12">
-                        <div class="form-group">
+                        <div class="form-group form-classic">
                             <label for="inputCoupon" class="sr-only" ng-bind="::enroll.strings.LABEL_APPLY_COUPON"></label>
-                            <div class="col-md-8 no-padding">
+                            <div class="col-md-12 no-padding">
+                              <div class="input-group">
                                 <input type="text" class="form-control input-sm" id="inputCoupon"
                                        ng-model="enroll.coupon.code" placeholder="{{::enroll.strings.LABEL_APPLY_COUPON}}">
+                                 <span class="input-group-btn">
+                                  <button class="btn btn-default discount-button"
+                                          ng-class="{'disabled': enroll.hasCouponApplied}"
+                                          ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
+                                 </span>
+                               </div>
+                               <div ng-show="enroll.invalidCoupon">
+                                <br>
+                                <p class="text-danger text-sm font-family-sans-alt" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
+                               </div>
                             </div>
-                            <button class="col-md-3 pull-right btn btn-xs btn-default"
-                                    ng-class="{'disabled': enroll.hasCouponApplied}"
-                                    ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
                         </div>
                     </div>
                     <div class="col-xs-12" ng-show="enroll.invalidCoupon">
-                            <p class="text-danger text-sm font-family-sans-alt" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
                     </div>
                 </div>
                 <!--Coupon Render-->
@@ -242,9 +249,7 @@
                                                     <div class="form-group" trulii-input-errors-control="email">
                                                         <label class="control-label" ng-bind="::enroll.strings.LABEL_EMAIL"></label>
                                                         <input class="form-control col-md-2" name="email" type="email"
-                                                               ng-model="assistant.email"
-
-                                                              />
+                                                               ng-model="assistant.email" />
                                                     </div>
                                                     <div class="form-group" trulii-input-errors-control="detail">
                                                         <input type="hidden" name="detail"/>
@@ -476,7 +481,7 @@
                             <trulii-preloader loader-control="enroll.processingPayment" class="separate-above"></trulii-preloader>
                             <div class="row">
                               <div class="col-xs-12 col-md-8 col-md-offset-2">
-                                <button class="btn btn-block btn-primary separate-above text-uppercase"
+                                <button class="btn btn-block btn-primary separate-above-less text-uppercase"
                                         ng-click="enroll.enroll()"
                                         ng-bind="::enroll.strings.ACTION_ENROLL" ng-show="!enroll.processingPayment"></button>
                               </div>

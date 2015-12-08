@@ -12640,6 +12640,12 @@ hr.on-light {
 .text-color-secondary {
   color: #732ebb;
 }
+.text-gray {
+  color: #535353;
+}
+.text-gray-alt {
+  color: #7a7a7a !important;
+}
 .text-dark {
   color: #3a3d3f;
 }
@@ -12664,6 +12670,9 @@ hr.on-light {
 }
 .text-spaced {
   letter-spacing: 3px;
+}
+.text-spaced-less {
+  letter-spacing: 1px;
 }
 .text-line-more {
   line-height: 1.5em;
@@ -13053,6 +13062,10 @@ h5 a {
 .padding-vertical-regular {
   padding-top: 3rem;
   padding-bottom: 3rem;
+}
+.padding-vertical-medium {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 .padding-vertical-less {
   padding-top: 1rem;
@@ -14973,6 +14986,15 @@ tags-input input {
   border-radius: 3px;
   background-image: none;
 }
+.form-classic input.input-sm,
+.form-classic select.input-sm,
+.form-classic textarea.input-sm,
+.form-classic input:focus.input-sm,
+.form-classic select:focus.input-sm,
+.form-classic textarea:focus.input-sm {
+  padding: 5px 15px;
+  height: 35px;
+}
 .form-classic ::-webkit-input-placeholder {
   font-weight: 400;
 }
@@ -14983,6 +15005,12 @@ tags-input input {
 }
 .form-classic .form-group:not(:first-child) {
   margin-top: 2em;
+}
+.form-classic .input-group-btn .btn {
+  border: none;
+  height: 35px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 .alert-warning p {
   color: rgba(255, 255, 255, 0.84);
@@ -17158,6 +17186,9 @@ button.toast-close-button {
 .container-muted {
   background-color: #fafafa;
 }
+.container-gray-light {
+  background-color: #eeeeee;
+}
 .container-success {
   background-color: #38dbc8;
 }
@@ -18336,6 +18367,9 @@ blockquote {
   height: 4em;
   padding: 0.5em;
 }
+.payments-panel .form-control {
+  font-size: 1.25em;
+}
 .billing-widget {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #e3e3e3;
@@ -18390,6 +18424,11 @@ blockquote {
 }
 .billing-widget .total .value {
   font-size: 1.2em;
+}
+.billing-widget .discount-button {
+  background-color: #e3e3e3;
+  color: white !important;
+  font-weight: 300;
 }
 .pse-panel {
   box-shadow: none;
@@ -18453,12 +18492,12 @@ blockquote {
   width: 60%;
 }
 .remember-container .items-container .item .item-text .item-title {
-  font-size: 0.8em;
+  font-size: 1em;
   font-weight: 500;
 }
 .remember-container .items-container .item .item-text .item-copy {
   color: #999999;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 .share-container {
   text-align: center;
@@ -18484,6 +18523,7 @@ blockquote {
   padding: 0.2em 0.5em;
 }
 .navigation-container a {
+  font-size: 1em;
   text-decoration: none;
   color: #999999;
 }

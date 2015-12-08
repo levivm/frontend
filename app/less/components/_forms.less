@@ -58,6 +58,10 @@
 		padding: 2em;
 		border-radius: 3px;
 		background-image: none;
+		&.input-sm{
+			padding: 5px 15px;
+			height: 35px;
+		}
 	}
 	::-webkit-input-placeholder{
 		font-weight: 400;
@@ -68,5 +72,13 @@
 	}
 	.form-group:not(:first-child){
   	margin-top: 2em;
+	}
+	.input-group-btn{
+		.btn{
+			border: none;
+	    height: 35px;
+	    border-top-left-radius: 0px;
+	    border-bottom-left-radius: 0px;
+		}
 	}
 }
