@@ -103,7 +103,7 @@
         }
 
         function deleteRefHash(){
-            if($cookies.get(KEY_REF_HASH)){
+            if($cookies[KEY_REF_HASH]){
                 delete $cookies[KEY_REF_HASH];
             }
         }

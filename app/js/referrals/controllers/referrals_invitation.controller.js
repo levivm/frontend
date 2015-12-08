@@ -25,10 +25,7 @@
             student: student,
             stateInfo : {
                 toState: {
-                    state: 'referrals.invitation',
-                    params: {
-                        idReferrer: referrer.referrer_code
-                    }
+                    state: 'home'
                 },
                 refhash: referrer.refhash
             },

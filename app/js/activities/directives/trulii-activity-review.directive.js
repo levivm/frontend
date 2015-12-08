@@ -59,7 +59,7 @@
                     activityInstance.postReview(scope.review).then(success);
 
                     function success(review){
-                        console.log('review success:', review);
+                        //console.log('review success:', review);
                         scope.review = review;
                         scope.hasReview = true;
                     }
@@ -114,7 +114,7 @@
                         author.photo = defaultPicture;
                     }
                     scope.user = author;
-                    console.log('scope.user', scope.user);
+                    //console.log('scope.user', scope.user);
                 }
 
                 function _getLoggedUser(){
@@ -127,6 +127,7 @@
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
                         ACTION_DONE: "Listo",
+                        ACTION_MARK_AS_READ: "Marcar como Leído",
                         COPY_REPORTED: "Comentario siendo revisado por trulii",
                         COPY_COMMENT_PLACEHOLDER: "Escribe aqui tu respuesta al comentario",
                         COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por "
@@ -145,7 +146,6 @@
                 function _activate(){
                     _getUser();
                     scope.hasReply = !!scope.review.reply;
-                    console.log('hasReply:', scope.hasReply);
                     if(scope.review.id){
                         scope.hasReview = true;
                     } else {
