@@ -1,52 +1,56 @@
 <div class="navbar-secondary">
 </div>
-<div class="row" style="margin-bottom:60px;">
-    <div class="col-md-8 col-md-offset-1">
+<div class="row separate-below-more">
+    <div class="col-xs-10 col-xs-offset-1">
         <!--Profile-->
         <div class="row">
-            <div class="col-md-12">
-                <div >
-                    <h4 class="dashboard-header" ng-bind="profile.strings.SECTION_PROFILE"></h4>
-                    <p ng-bind="::profile.strings.COPY_PROFILE"></p>
-                </div>
-                <form name="profile.picture_form">
-                    <div class="form-group inline-childs">
-                        <div class="profile-photo-input">
-                            <img class="profile-photo-input__photo"
-                                 ng-src="{{profile.organizer.photo}}" alt="{{profile.organizer.name}}"
-                                 ng-hide="profile.photo_loading"/>
-                            <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
-                            <div class="separate-left" ng-model="profile.organizer.photo_url" ng-file-drop=""
-                                 ng-file-select=""
-                                 ng-multiple="false"
-                                 data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                                 ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
-                                 data-allow-dir="true" data-accept="image/*">
+            <div class="col-xs-12">
+                <h4 class="dashboard-header" ng-bind="profile.strings.SECTION_PROFILE"></h4>
+                <p ng-bind="::profile.strings.COPY_PROFILE"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <form name="profile.profile_picture_form">
+                    <fieldset>
+                        <div class="form-group inline-childs">
+                            <div class="profile-photo-input">
+                                <img class="profile-photo-input__photo"
+                                     ng-src="{{profile.organizer.photo}}" alt="{{profile.organizer.name}}"
+                                     ng-hide="profile.photo_loading"/>
+                                <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
+                                <div class="separate-left" ng-model="profile.organizer.photo_url" ng-file-drop=""
+                                     ng-file-select=""
+                                     ng-multiple="false"
+                                     data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                     ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
+                                     data-allow-dir="true" data-accept="image/*">
 
-                                <button class="btn btn-default profile-photo-input__action"
-                                        aria-label="{{::profile.strings.ACTION_UPDATE_PICTURE}}">
-                                    <span ng-bind="::profile.strings.ACTION_UPDATE_PICTURE"></span>
-                                </button>
+                                    <button class="btn btn-default profile-photo-input__action"
+                                            aria-label="{{::profile.strings.ACTION_UPDATE_PICTURE}}">
+                                        <span ng-bind="::profile.strings.ACTION_UPDATE_PICTURE"></span>
+                                    </button>
+                                </div>
+                            </div>
+                            <a class="btn btn-primary"
+                               ui-sref="organizer-profile({organizer_id: profile.organizer.id})">
+                                <div ng-bind="::profile.strings.ACTION_VIEW_PROFILE"></div>
+                            </a>
+                            <div class="form-group" trulii-input-errors-control="photo">
+                                <input type="hidden" ng-model="profile.organizer.photo" name="photo"/>
                             </div>
                         </div>
-                        <a class="btn btn-primary"
-                           ui-sref="organizer-profile({organizer_id: profile.organizer.id})">
-                            <div ng-bind="::profile.strings.ACTION_VIEW_PROFILE"></div>
-                        </a>
-                        <div class="form-group" trulii-input-errors-control="photo">
-                            <input type="hidden" name="photo"/>
-                        </div>
-                    </div>
+                    </fieldset>
                 </form>
             </div>
         </div>
-        <form class="row separate-above" name='profile.profile_form_info' ng-submit="profile.submit_info()">
+        <form class="row separate-above" name='profile.profile_form_info' ng-submit="profile.submitInfo()">
             <fieldset>
                 <div class="col-md-12">
                     <div class="form-group" trulii-input-errors-control="name">
-                        <label class="control-label" ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
+                        <label for="name" class="control-label" ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
                         <input type="text" class="form-control" ng-model='profile.organizer.name'
-                               name="name">
+                               name="name" id="name">
                     </div>
                     <div class="form-group">
                         <label class="control-label" for="headline"
@@ -69,7 +73,7 @@
             <h4 class="dashboard-header" ng-bind="profile.strings.SUB_SECTION_VIDEO"></h4>
             <p ng-bind="::profile.strings.COPY_VIDEO"></p>
         </div>
-        <form name='profile.profile_form_photo' ng-submit="profile.submit_video()">
+        <form name='profile.profile_form_photo' ng-submit="profile.submitVideo()">
             <fieldset>
                 <div class="form-group">
                     <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
@@ -90,7 +94,7 @@
             <h4 class="dashboard-header" ng-bind="profile.strings.SUB_SECTION_LOCATION"></h4>
             <p ng-bind="::profile.strings.COPY_LOCATION"></p>
         </div>
-        <form name='profile.organizer_location_form' ng-submit="profile.submit_location()">
+        <form name='profile.organizer_location_form' ng-submit="profile.submitLocation()">
             <fieldset>
                 <div class="row">
                     <div class="col-md-6">

@@ -71,7 +71,7 @@
 
             if (form.hasOwnProperty(FORM_FIELD_ALL))
                 form[FORM_FIELD_ALL].$setValidity(FORM_FIELD_ALL, true);
-            
+
         }
 
         function addMultipleFormsErrors(forms,responseErrors){
@@ -103,22 +103,20 @@
         }
 
         function addErrors(form, responseErrors) {
-            
-            // form.$valid = false;
+            console.log('form:', form);
+            //form.$valid = false;
             angular.forEach(responseErrors, function (fieldErrors, field) {
-
+                console.log('field:', field);
                 var message = fieldErrors[0];
 
                 // Error is unrelated to form fields
                 if (field === NON_FIELD_ERRORS) return;
 
                 // Process remaining form field errors
-
                 if (field in form){
                     form[field].error_message = message;
                     form[field].$setValidity(field, false);
                 }
-
             });
 
         }
