@@ -1,5 +1,4 @@
 <div class="fade in">
-    <p ng-bind="activities.strings.COPY_INACTIVE"></p>
     <div class="row activity-grid --left">
         <trulii-activity-item
                 ng-repeat="activity in activities.inactive_activities track by activity.id"
@@ -8,14 +7,14 @@
     </div>
     <!--If there are no activities-->
     <div ng-if="activities.inactive_activities.length <= 0" class="row">
-        <div class="col-md-12 text-center">
+        <div class="col-md-8 col-md-offset-2 text-center">
             <img src="css/img/organizer_dashboard_activities_empty.png"
                  alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
-            <h4 class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_INACTIVE"></h4>
-            <div class="separate-below separate-above standout-text"
-                 ng-bind="::activities.strings.COPY_EMPTY_INACTIVE">
-            </div>
-            <a class="btn btn-lg btn-primary"
+            <p class="font-family-sans-alt separate-below" >
+                <span ng-bind="::activities.strings.LABEL_EMPTY_INACTIVE"></span>
+                <span ng-bind="::activities.strings.COPY_EMPTY_INACTIVE"></span>
+            </p>
+            <a class="btn btn-lg btn-success"
                ui-sref="dash.activities-new.general"
                ng-bind="activities.strings.ACTION_CREATE_ACTIVITY"></a>
         </div>

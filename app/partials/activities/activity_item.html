@@ -4,7 +4,7 @@
              ng-bind="::activity.category.name"></div>
         <a class="activity-card__header__cover-container"
            ui-sref="activities-detail({activity_id: {{::activity.id}} })"
-           ng-class="{'activity-card__header__inactive-cover': inactive}"
+           ng-class="{'inactive-cover': inactive}"
            style="background-image: url('{{activity.main_photo}}') ">
 
         </a>

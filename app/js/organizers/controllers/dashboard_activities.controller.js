@@ -27,12 +27,11 @@
                 actions: ['edit', 'manage']
             },
             closedOptions : {
-                actions: ['republish'],
-                disabled: true
+                actions: ['edit', 'republish', 'manage'],
+                isInactive: true
             },
             inactiveOptions : {
-                actions: ['edit'],
-                isInactive: true
+                actions: ['edit', 'manage']
             }
         });
         var active_activities = [];
@@ -44,7 +43,6 @@
         //--------- Internal Functions ---------//
 
         function _assignActivities(){
-            console.log("ACvitii",activities);
             vm.open_activities = [];
             vm.closed_activities = [];
             active_activities = _.filter(activities, {'published': true});
@@ -84,18 +82,13 @@
                 ACTION_CREATE_ACTIVITY: "Crear Nueva Actividad",
                 ACTION_PUBLISH_ACTIVITY: "Publicar Actividad Existente",
                 ACTION_REPUBLISH_ACTIVITY: "Republicar Actividad",
-                COPY_OPEN: "Revisa las actividades que tienes publicadas actualmente.",
-                COPY_CLOSED: "Revisa tus actividades que estuvieron publicadas. Si lo deseas puedes"
-                    + " republicarlas.",
                 COPY_EMPTY_CLOSED: "Por ahora no tienes ninguna actividad cerrada. ¿Te animas a publicar " +
                 "una actividad en este momento? Te prometemos que será fácil.",
-                COPY_INACTIVE: "Revisa las actividades que no has completado o publicado aún",
                 COPY_EMPTY_OPEN: "Por ahora no tienes ninguna actividad abierta. ¿Te animas a publicar una "
                 + "actividad en este momento? Te prometemos que será fácil.",
                 COPY_EMPTY_INACTIVE: "Parece ser el momento perfecto para crear y publicar una nueva actividad",
                 LABEL_EMPTY_OPEN: "No tienes actividades abiertas",
-                LABEL_EMPTY_CLOSED: "No tienes actividades cerradas",
-                LABEL_EMPTY_INACTIVE: "Actualmente no tienes borradores de actividades",
+                LABEL_EMPTY_INACTIVE: "Actualmente no tienes borradores de actividades.",
                 SECTION_ACTIVITIES: "Mis Actividades",
                 TAB_OPEN: "Abiertas",
                 TAB_CLOSED: "Cerradas",
