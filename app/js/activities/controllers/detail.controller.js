@@ -256,6 +256,13 @@
             };
         }
 
+        function _getSelectedCalendar(activity){
+            if (activity.closest_calendar)
+                return moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ? 
+                                    null:activity.closest_calendar;
+            return;
+        }
+
         function _getReviewRatingAvg(reviews){
             if(reviews.length === 0){ return 0; }
             if(reviews.length < 3){
@@ -415,8 +422,7 @@
                 reviewsAvg: reviewsAvg,
                 totalReviews: reviews.length,
                 organizer : activity.organizer,
-                calendar_selected : moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ? 
-                                    null:activity.closest_calendar
+                calendar_selected : _getSelectedCalendar(activity)
 
             });
 

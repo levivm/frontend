@@ -59,7 +59,10 @@
                         ng-model="transactions.salesPaginationOpts.pageNumber"
                         ng-change="transactions.pageChange(transactions.TYPE_SALES)"
                         data-total-items="transactions.salesPaginationOpts.totalItems"
-                        data-items-per-page="transactions.salesPaginationOpts.itemsPerPage"></pagination>    
+                        data-items-per-page="transactions.salesPaginationOpts.itemsPerPage"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                        max-size="transactions.salesPaginationOpts.maxPagesSize"
+                        ></pagination>    
             </div>
         </div>
         <!--If there are no Sales-->

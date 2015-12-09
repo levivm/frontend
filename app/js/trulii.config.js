@@ -23,7 +23,8 @@
 
         /* Facebook initialization */
         FacebookProvider.init(serverConf.FACEBOOK_APP_KEY);
-
+        /* Allow to send cookies */
+        $httpProvider.defaults.withCredentials = true;
 
         $httpProvider.defaults.xsrfCookieName = 'csrftoken';
         $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';

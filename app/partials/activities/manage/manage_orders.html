@@ -82,13 +82,13 @@
                                 </tr>
                                 <tr ng-repeat="order in manage.orders track by order.id | filter:manage.orderQuery">
                                   <td>
-                                    <strong>#<span ng-bind="order.id"></span></strong>
+                                    <strong>#<span ng-bind="::order.id"></span></strong>
                                   </td>
                                   <td>
                                     <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
                                   </td>
                                   <td>
-                                    <span ng-class="{'text-strike': order.is_free}" 
+                                    <span ng-class="::{'text-strike': order.is_free}" 
                                             ng-bind="::(order.amount | currency:$:0)"></span>
                                     <span ng-show="::order.is_free"
                                             ng-bind="::manage.strings.COPY_FREE"></span>

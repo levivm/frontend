@@ -8,7 +8,9 @@
                                 ng-bind="::order.order.id"></span></h5>
                         <!--Activity-->
                         <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_ACTIVITY"></h5>
-                        <h5 class="sinkin-medium separate-below" ng-bind="::order.order.activity_name"></h5>
+                        <a ui-sref="activities-detail({activity_id: {{::order.order.activity.id}} })">
+                            <h5 class="sinkin-medium separate-below" ng-bind="::order.order.activity.name"></h5>
+                        </a>
                         <!--Buyer-->
                         <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_BUYER"></h5>
                         <h5 class="sinkin-medium separate-below" ng-bind="::(order.order.student.user.first_name + ' ' +
@@ -142,9 +144,9 @@
 
                             <div class="col-xs-5 no-padding">
                                 <h4 class="text-right " ng-show="::order.isStudent"
-                                    ng-bind="::(order.order.total | currency:$:0)" ng-class="{'text-strike':order.order.is_free}"></h4>
+                                    ng-bind="::(order.order.total | currency:$:0)" ng-class="::{'text-strike':order.order.is_free}"></h4>
                                 <h4 class="text-right " ng-show="::order.isOrganizer"
-                                    ng-bind="::(order.totalAmount | currency:$:0)" ng-class="{'text-strike':order.order.is_free}"></h4>
+                                    ng-bind="::(order.totalAmount | currency:$:0)" ng-class="::{'text-strike':order.order.is_free}"></h4>
                                 <h4 class="text-right" ng-show="::order.order.is_free" ng-bind="::order.strings.LABEL_FREE"></h4>
                             </div>
 

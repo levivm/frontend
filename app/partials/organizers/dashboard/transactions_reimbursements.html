@@ -63,7 +63,10 @@
                         ng-model="transactions.refundsPaginationOpts.pageNumber"
                         ng-change="transactions.pageChange(transactions.TYPE_REFUNDS)"
                         data-total-items="transactions.refundsPaginationOpts.totalItems"
-                        data-items-per-page="transactions.refundsPaginationOpts.itemsPerPage"></pagination>    
+                        data-items-per-page="transactions.refundsPaginationOpts.itemsPerPage"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                        max-size="transactions.refundsPaginationOpts.maxPagesSize"
+                        ></pagination>    
             </div>
         </div>
         <!--If there are no refunds-->

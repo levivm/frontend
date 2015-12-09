@@ -33,11 +33,13 @@
         salesPaginationOpts: {
             totalItems: 0,
             itemsPerPage: 10,
+            maxPagesSize:10,
             pageNumber: 1
         },
         refundsPaginationOpts: {
             totalItems: 0,
             itemsPerPage: 10,
+            maxPagesSize:10,
             pageNumber: 1
         },
         pageChange:pageChange,
