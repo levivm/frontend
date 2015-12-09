@@ -39,7 +39,7 @@
                                             'previousState':{'state':'organizer-dashboard.transactions.sales'} })" ng-bind="order.id"></a>
                     </td>
                     <td>
-                        <span ng-bind="::(order.activity_name | truncateText:true:35:'...')"></span>
+                        <span ng-bind="::(order.activity.name | truncateText:true:35:'...')"></span>
                         <br/>
                         <strong ng-bind="::transactions.strings.COPY_START_DATE"></strong> <span class="text-capitalize" ng-bind="::order.calendar_initial_date | date:'EEEE d MMM y'"></span>
                     </td>
@@ -60,9 +60,9 @@
                         ng-change="transactions.pageChange(transactions.TYPE_SALES)"
                         data-total-items="transactions.salesPaginationOpts.totalItems"
                         data-items-per-page="transactions.salesPaginationOpts.itemsPerPage"
-                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
                         max-size="transactions.salesPaginationOpts.maxPagesSize"
-                        ></pagination>    
+                        ></pagination>
             </div>
         </div>
         <!--If there are no Sales-->

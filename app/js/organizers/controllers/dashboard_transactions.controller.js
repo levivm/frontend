@@ -12,48 +12,46 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerTransactionsCtrl.$inject = ['$filter','organizer'];
-    function OrganizerTransactionsCtrl($filter,organizer) {
+    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'orders', 'refunds'];
+    function OrganizerTransactionsCtrl($filter, organizer, orders, refunds) {
 
         var vm = this;
 
-        angular.extend(vm,{
-
-        organizer: organizer,
-        password_data: {},
-        isCollapsed: true,
-        isSaving: false,
-        sales: [],
-        refunds: [],
-        reimbursements: [],
-        queries : {
-            saleQuery : null,
-            refundQuery : null,
-        },
-        salesPaginationOpts: {
-            totalItems: 0,
-            itemsPerPage: 10,
-            maxPagesSize:10,
-            pageNumber: 1
-        },
-        refundsPaginationOpts: {
-            totalItems: 0,
-            itemsPerPage: 10,
-            maxPagesSize:10,
-            pageNumber: 1
-        },
-        pageChange:pageChange,
-        updateByQuery:updateByQuery,
-        TYPE_SALES: 'sales',
-        TYPE_REFUNDS: 'refunds',
-
+        angular.extend(vm, {
+            organizer: organizer,
+            password_data: {},
+            isCollapsed: true,
+            isSaving: false,
+            sales: [],
+            refunds: [],
+            reimbursements: [],
+            queries : {
+                saleQuery : null,
+                refundQuery : null
+            },
+            salesPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 10,
+                maxPagesSize:10,
+                pageNumber: 1
+            },
+            refundsPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 10,
+                maxPagesSize:10,
+                pageNumber: 1
+            },
+            pageChange:pageChange,
+            updateByQuery:updateByQuery,
+            TYPE_SALES: 'sales',
+            TYPE_REFUNDS: 'refunds'
         });
 
         _activate();
         var sales = [];
-        var refunds = [];
 
-        /*         EXPOSED FUNCTIONS       */
+        //--------- Exposed Functions ---------//
+
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_SALES:
@@ -95,32 +93,18 @@
             }
         }
 
-        //Private functions
+        //--------- Internal Functions ---------//
 
         function _getOrders(){
-            organizer.getOrders().then(success, error);
-
-            function success(orders){
-                sales = $filter('orderBy')(orders, 'id', true);
-                vm.salesPaginationOpts.totalItems = sales.length;
-                vm.sales = sales.slice(0, vm.salesPaginationOpts.itemsPerPage);
-            }
-            function error(data){
-                console.log("Error getting Organizer's orders");
-            }
+            sales = $filter('orderBy')(orders, 'id', true);
+            vm.salesPaginationOpts.totalItems = sales.length;
+            vm.sales = sales.slice(0, vm.salesPaginationOpts.itemsPerPage);
         }
 
         function _getRefunds(){
-            organizer.getRefunds().then(success,error);
-
-            function success(data){
-                refunds = $filter('orderBy')(data, 'id', true);
-                vm.refundsPaginationOpts.totalItems = refunds.length;
-                vm.refunds = refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-            }
-            function error(data){
-                console.log("Error getting Organizer's orders");
-            }
+            refunds = $filter('orderBy')(refunds, 'id', true);
+            vm.refundsPaginationOpts.totalItems = refunds.length;
+            vm.refunds = refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
         }
 
         function _setStrings() {

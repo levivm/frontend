@@ -112,7 +112,11 @@
             .state('organizer-dashboard.transactions', {
                 url:'transactions/',
                 controller: 'OrganizerTransactionsCtrl as transactions',
-                templateUrl: 'partials/organizers/dashboard/transactions.html'
+                templateUrl: 'partials/organizers/dashboard/transactions.html',
+                resolve: {
+                    orders: getOrders,
+                    refunds: getRefunds
+                }
             })
             .state('organizer-dashboard.transactions.sales', {
                 url:'sales',
@@ -208,6 +212,30 @@
         getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
         function getOrganizerActivities(ActivitiesManager, organizer){
             return ActivitiesManager.loadOrganizerActivities(organizer.id);
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getOrders
+         * @description Retrieves an Organizer's Orders
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getOrders.$inject = ['organizer'];
+        function getOrders(organizer){
+            return organizer.getOrders();
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getRefunds
+         * @description Retrieves an Organizer's Orders
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getRefunds.$inject = ['organizer'];
+        function getRefunds(organizer){
+            return organizer.getRefunds();
         }
 
         /**
