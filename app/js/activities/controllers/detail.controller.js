@@ -44,6 +44,10 @@
                 interval: 0,
                 noWrap: false
             },
+            formData: {
+                emails: '',
+                message: ''
+            },
             changeState : changeState,
             changeSelectedCalendar : changeSelectedCalendar,
             getOrganizerPhoto : getOrganizerPhoto,
@@ -61,6 +65,7 @@
             selectedActivity: 0,
             showEmail: false,
             toggleEmailShow: toggleEmailShow,
+            shareEmailForm: shareEmailForm
         });
 
         _activate();
@@ -141,6 +146,28 @@
 
         function toggleEmailShow(){
           vm.showEmail = !vm.showEmail;
+        }
+
+        function shareEmailForm(){
+            if(!vm.formData.emails){
+                Toast.warning(vm.strings.COPY_EMPTY_EMAIL);
+                return;
+            }
+
+            if(!vm.formData.message){
+                Toast.warning(vm.strings.COPY_EMPTY_MESSAGE);
+                return;
+            }
+
+            activity.share(vm.formData).then(success, error);
+
+            function success(response){
+                Toast.success(vm.strings.COPY_SHARE_SUCCESS);
+            }
+            function error(error){
+                Toast.error(vm.strings.COPY_SHARE_ERROR);
+                console.log('Error sharing activity', error);
+            }
         }
 
         //--------- Internal Functions ---------//
@@ -376,7 +403,11 @@
                 EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
                 EMAIL_MODAL_MESSAGE_LABEL: "Escribe un mensaje:",
                 EMAIL_MODAL_MESSAGE_PLACEHOLDER: "Hey, échale un vistazo a esta actividad en Trulii. ¡Sé que te encantará!",
-                EMAIL_MODAL_SEND: "Enviar invitacion"
+                EMAIL_MODAL_SEND: "Enviar invitacion",
+                COPY_SHARE_SUCCESS: "La Actividad fue compartida exitosamente",
+                COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
+                COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
+                COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje"
 
 
 
@@ -423,7 +454,6 @@
                 totalReviews: reviews.length,
                 organizer : activity.organizer,
                 calendar_selected : _getSelectedCalendar(activity)
-
             });
 
             if(!(vm.activity.published)){

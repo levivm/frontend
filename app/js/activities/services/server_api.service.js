@@ -46,6 +46,18 @@
 
             /**
              * @ngdoc function
+             * @name .#share
+             * @description Renders **`/api/activities/search`** Activitiy Share URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'share' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'share/']);
+            },
+
+            /**
+             * @ngdoc function
              * @name .#activity
              * @description Renders **`/api/activities/:idActivity`** Activity URL
              * @param {number} idActivity Activity Id

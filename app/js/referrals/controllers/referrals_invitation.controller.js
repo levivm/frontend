@@ -17,7 +17,6 @@
 
     function ReferralsInvitationCtrl($state, referrer, generalInfo, student) {
 
-        var categories = [];
         var vm = this;
         angular.extend(vm, {
             showVideo: false,
@@ -103,7 +102,7 @@
 
         function _activate(){
             _setStrings();
-            _setCategories();
+            vm.categories = generalInfo.categories;
             console.log(student);
         }
 

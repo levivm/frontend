@@ -20,8 +20,9 @@
         </div>
         <div class="navbar__right-wrapper">
             <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
-                <img ng-if="user" ng-src="{{user.photo}}" class="user-picture" alt="{{user.user.full_name}}"/>
-                <img src="/css/img/menu.png" alt="Menu" class="menu-icon">
+              <div class="user-picture" ng-if="user" style="background: url('{{user.photo}}'); background-size: cover; background-position: center center;">
+              </div>
+              <img src="/css/img/menu.png" alt="Menu" class="menu-icon">
             </a>
         </div>
     </div>

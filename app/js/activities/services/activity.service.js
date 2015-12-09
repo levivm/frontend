@@ -92,7 +92,7 @@
             /**
              * @ngdoc function
              * @name .#getOrder
-             * @description Get an order from given id 
+             * @description Get an order from given id
              * @param {number} id The ID order to fetch
              * @methodOf trulii.activities.services.Activity
              */
@@ -318,7 +318,16 @@
              * @param {object} review Review of the Activity
              * @methodOf trulii.activities.services.Activity
              */
-            markReviewAsRead: markReviewAsRead
+            markReviewAsRead: markReviewAsRead,
+
+            /**
+             * @ngdoc function
+             * @name .#share
+             * @description Share Activity by Email
+             * @param {object} shareInfo Share infor
+             * @methodOf trulii.activities.services.Activity
+             */
+            share: share
         };
 
         return Activity;
@@ -685,6 +694,19 @@
             }
             function error(response){
                 console.log("Error posting review:", response);
+            }
+        }
+
+        function share(shareInfo){
+            var that = this;
+            return $http.post(api.share(that.id), shareInfo).then(success, error);
+
+            function success(response){
+                console.log("Shared successfully.", response.data);
+                return response.data;
+            }
+            function error(response){
+                console.log("Error sharing activity:", response);
             }
         }
     }
