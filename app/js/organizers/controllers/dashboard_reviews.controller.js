@@ -61,20 +61,12 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                ACTION_SAVE: "Guardar",
                 TAB_REVIEWS_PENDING: "Sin revisar",
                 TAB_REVIEWS_DONE: "Revisados",
                 COPY_SEARCH_REVIEWS: "Revisa los comentarios que han hecho a tus actividades",
-                COPY_PENDING_APPROVAL: "Comentario siendo revisado por trulii",
-                COPY_COMMENT_PLACEHOLDER: "Escribe aqui tu respuesta al comentario",
-                COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por el "
-                    + "equipo de Trulii para ser retirado público. Próximamente la enviaremos un correo con"
-                    + " el resultado de nuestra evaluación",
                 LABEL_SEARCH_ORDERS: "Filtrar por nombre de actividad",
-                LABEL_REPORT_BUTTON: "Reportar",
-                LABEL_REPLY_BUTTON: "Responder",
-                LABEL_CANCEL_BUTTON: "Cancelar",
-                LABEL_CONTINUE_BUTTON: "Continuar"
+                COPY_EMPTY_UNREAD: "No tienes reviews por leer",
+                COPY_EMPTY_READ: "Aún no has respondido ni leído reviews"
             });
         }
 
