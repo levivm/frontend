@@ -48,7 +48,7 @@
         });
 
         _activate();
-        var sales = [];
+        var sales = orders;
 
         //--------- Exposed Functions ---------//
 
