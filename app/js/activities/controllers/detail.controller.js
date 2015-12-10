@@ -284,22 +284,13 @@
         }
 
         function _getSelectedCalendar(activity){
-            if (activity.closest_calendar)
-                return moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ? 
-                                    null:activity.closest_calendar;
-            return;
-        }
+            if (!activity.closest_calendar){ return; }
 
-        function _getReviewRatingAvg(reviews){
-            if(reviews.length === 0){ return 0; }
-            if(reviews.length < 3){
-              vm.hasMoreReviews = false;
+            if(moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days')){
+                return null;
+            } else {
+                return activity.closest_calendar;
             }
-            return reviews.map(getRatings).reduce(reduceRatings);
-
-            function getRatings(review){ return review.rating; }
-
-            function reduceRatings(previous, current){ return previous + current; }
         }
 
         function _setSocialShare(){
@@ -444,13 +435,10 @@
             activity = _mapClosestCalendar(activity);
             activity = _mapInfo(activity);
 
-            var reviewsAvg = _getReviewRatingAvg(reviews);
-            console.log('avg', reviewsAvg);
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
                 reviews : reviews,
-                reviewsAvg: reviewsAvg,
                 totalReviews: reviews.length,
                 organizer : activity.organizer,
                 calendar_selected : _getSelectedCalendar(activity)

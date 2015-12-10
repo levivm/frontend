@@ -73,10 +73,10 @@
         <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0 col-md-push-8">
             <div class="organizer-widget">
                 <div class="card">
-                    <h1 class="text-center text-muted" ng-bind="profile.reviewsAvg"></h1>
+                    <h1 class="text-center text-muted" ng-bind="profile.organizer.rating"></h1>
                     <h1 class="text-center">
                         <span class="text-uppercase text-muted montserrat-regular">
-                            <rating ng-model="profile.reviewsAvg" max="5" state-on="'glyphicon glyphicon-star star'"
+                            <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                                     readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
                         </span>
                     </h1>
@@ -93,7 +93,6 @@
             </h3>
             <!-- Comment container-->
             <div class="review-detail">
-                <!-- Repeat me-->
                 <div class="comment separate-above" ng-repeat="reviewObject in profile.reviewObjects track by id">
                     <trulii-activity-review data-review="reviewObject.review"
                                             data-activity="reviewObject.activity"
@@ -102,10 +101,9 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" ng-show="profile.hasMoreReviews">
                 <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
                     <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase"
-                            ng-class="{'disabled': !profile.hasMoreReviews}"
                             ng-click="profile.showMoreReviews()">
                         <span ng-if="profile.hasMoreReviews" ng-bind="::profile.strings.LABEL_MORE_COMMENTS"></span>
                         <span ng-if="!profile.hasMoreReviews" ng-bind="::profile.strings.LABEL_NO_MORE_COMMENTS"></span>

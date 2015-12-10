@@ -311,9 +311,11 @@
       </i>
     </span>
     <span class="text-uppercase">
-      <rating ng-model="detail.reviewsAvg" max="5" state-on="'glyphicon glyphicon-star star'"
-      readonly="true" state-off="'glyphicon glyphicon-star star-empty'" readonly="true" aria-labelledby="custom-icons-1"></rating>
-      <span ng-bind="detail.reviewsAvg + ' / 5'"></span>
+      <rating ng-model="detail.reviewsAvg" max="5"
+              state-on="'glyphicon glyphicon-star star'"
+              state-off="'glyphicon glyphicon-star star-empty'"
+              readonly="true" aria-labelledby="custom-icons-1"></rating>
+      <span ng-bind="detail.organizer.rating + ' / 5'"></span>
     </span>
   </p>
 
