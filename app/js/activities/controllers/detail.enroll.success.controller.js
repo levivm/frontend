@@ -5,10 +5,10 @@
         .module('trulii.activities.controllers')
         .controller('ActivityEnrollSuccessController', ActivityEnrollSuccessController);
 
-    ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'LocationManager', 'activity', 'calendar', 'organizerActivities',
+    ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'LocationManager', 'Toast', 'activity', 'calendar', 'organizerActivities',
                                                 'serverConf'];
 
-    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, activity, calendar, organizerActivities,serverConf) {
+    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, Toast, activity, calendar, organizerActivities,serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -19,18 +19,44 @@
             orderId: $stateParams.order_id,
             showEmail: false,
             toggleEmailShow: toggleEmailShow,
+            shareEmailForm: shareEmailForm
         });
-        console.log($stateParams);
+
         _activate();
+
+        //--------- Exposed Functions ---------//
+
+        function shareEmailForm(){
+            if(!vm.formData.emails){
+                Toast.warning(vm.strings.COPY_EMPTY_EMAIL);
+                return;
+            }
+
+            if(!vm.formData.message){
+                Toast.warning(vm.strings.COPY_EMPTY_MESSAGE);
+                return;
+            }
+
+            activity.share(vm.formData).then(success, error);
+
+            function success(response){
+                Toast.success(vm.strings.COPY_SHARE_SUCCESS);
+            }
+            function error(error){
+                Toast.error(vm.strings.COPY_SHARE_ERROR);
+                console.log('Error sharing activity', error);
+            }
+        }
 
         function toggleEmailShow(){
           vm.showEmail = !vm.showEmail;
         }
 
+        //--------- Internal Functions ---------//
+
         function _getOrganizerActivities() {
             console.log('organizerActivities:', organizerActivities);
             console.log('organizerActivities:', _.without(organizerActivities, activity));
-            //return _.without(organizerActivities, activity).slice(0, 2);
             return _.without(organizerActivities, activity);
         }
 
@@ -70,18 +96,12 @@
                 TWITTER_SHARE_ACCOUNT:'Trulii_',
                 TWITTER_SHARE_TEXT:'Échale un vistazo a ' + vm.activity.title,
                 TWITTER_SHARE_URL: share_url ,
-                TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(','),
-
-
+                TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(',')
             });
-
         }
 
-
         function _setStrings() {
-            if (!vm.strings) {
-                vm.strings = {};
-            }
+            if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 COPY_HEADER_TITLE: "¡Excelente! Te acabas de inscribir en",
                 COPY_HEADER_DESCRIPTION: "Te hemos enviado un correo electrónico con toda la "
@@ -106,7 +126,11 @@
                 EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
                 EMAIL_MODAL_MESSAGE_LABEL: "Escribe un mensaje:",
                 EMAIL_MODAL_MESSAGE_PLACEHOLDER: "Hey, échale un vistazo a esta actividad en Trulii. ¡Sé que te encantará!",
-                EMAIL_MODAL_SEND: "Enviar invitacion"
+                EMAIL_MODAL_SEND: "Enviar invitacion",
+                COPY_SHARE_SUCCESS: "La Actividad fue compartida exitosamente",
+                COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
+                COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
+                COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje"
             });
         }
 
@@ -118,7 +142,6 @@
             vm.organizerActivities = _getOrganizerActivities();
             console.log('activity:', activity);
             _setSocialShare();
-
         }
     }
 })();

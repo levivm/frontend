@@ -285,7 +285,7 @@
 
         function _getSelectedCalendar(activity){
             if (activity.closest_calendar)
-                return moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ? 
+                return moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ?
                                     null:activity.closest_calendar;
             return;
         }
@@ -408,9 +408,6 @@
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje"
-
-
-
                 });
         }
 

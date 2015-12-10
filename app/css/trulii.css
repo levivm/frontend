@@ -18518,6 +18518,9 @@ blockquote {
   margin-right: 2em;
   margin-left: 2em;
 }
+.share-container a {
+  text-decoration: none;
+}
 .navigation-container img {
   padding: 0.2em 0.5em;
 }
