@@ -20,7 +20,7 @@
 </div>
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1 review-detail separate-above-medium separate-below-less"
-         ng-repeat="reviewObject in reviews.read_reviews track by reviewObject.id  | filter:{$: reviews.searchReadQuery} ">
+         ng-repeat="reviewObject in reviews.read_reviews | filter:{$: reviews.searchReadQuery} ">
         <trulii-activity-review data-review="reviewObject.review" data-activity="reviewObject.activity"
                                 data-on-dashboard="true"></trulii-activity-review>
     </div>

@@ -15,9 +15,9 @@
 
         .directive('truliiActivityReview', truliiActivityReview);
 
-    truliiActivityReview.$inject = ['ActivitiesTemplatesPath', 'Authentication', 'ActivitiesManager', 'defaultPicture'];
+    truliiActivityReview.$inject = ['ActivitiesTemplatesPath', 'Authentication', 'ActivitiesManager', 'Toast', 'defaultPicture'];
 
-    function truliiActivityReview(ActivitiesTemplatesPath, Authentication, ActivitiesManager, defaultPicture){
+    function truliiActivityReview(ActivitiesTemplatesPath, Authentication, ActivitiesManager, Toast, defaultPicture){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_review.html",
@@ -75,6 +75,9 @@
                 }
 
                 function reply(){
+                    if(!review.reply){
+                        Toast.warning(scope.strings.COPY_EMPTY_REPLY);
+                    }
                     activityInstance.replyReview(scope.review).then(success);
 
                     function success(){
@@ -128,6 +131,7 @@
                     angular.extend(scope.strings, {
                         ACTION_DONE: "Listo",
                         ACTION_MARK_AS_READ: "Marcar como Leído",
+                        COPY_EMPTY_REPLY: "Por favor escriba una respuesta",
                         COPY_REPORTED: "Comentario siendo revisado por trulii",
                         COPY_COMMENT_PLACEHOLDER: "Escribe aqui tu respuesta al comentario",
                         COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por "
