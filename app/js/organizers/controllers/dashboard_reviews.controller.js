@@ -65,8 +65,8 @@
                 TAB_REVIEWS_DONE: "Revisados",
                 COPY_SEARCH_REVIEWS: "Revisa los comentarios que han hecho a tus actividades",
                 LABEL_SEARCH_ORDERS: "Filtrar por nombre de actividad",
-                COPY_EMPTY_UNREAD: "No tienes reviews por leer",
-                COPY_EMPTY_READ: "Aún no has respondido ni leído reviews"
+                COPY_EMPTY_UNREAD: "No tienes comentarios por leer",
+                COPY_EMPTY_READ: "Aún no has respondido ni leído ningún comentario"
             });
         }
 
