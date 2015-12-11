@@ -145,7 +145,8 @@
                 HEADER_PRICE: "Precio",
                 HEADER_ORDER: "Orden",
                 HEADER_FIRST_NAME: "Nombre",
-                HEADER_LAST_NAME: "Apellido"
+                HEADER_LAST_NAME: "Apellido",
+                HEADER_ASSISTANT_CODE: "Código"
             });
         }
 

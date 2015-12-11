@@ -141,6 +141,7 @@
                 ACTION_PRINT: "Imprimir",
                 COPY_COUPON_NOT_REFUND_TOOLTIP: "El cupón no es reembolsable",
                 COPY_REFUND_REQUESTED_BY_OTHER: "El reembolso fue solicitado por el organizador",
+                COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y ayuda a identificar a un asistente",
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Ordén",
                 LABEL_FREE: "GRATIS",
@@ -161,6 +162,7 @@
                 HEADER_ORDER: "Orden",
                 HEADER_FIRST_NAME: "Nombre",
                 HEADER_LAST_NAME: "Apellido",
+                HEADER_ASSISTANT_CODE: "Código"
 
             });
         }

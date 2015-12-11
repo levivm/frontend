@@ -201,7 +201,7 @@
                 COPY_EMPTY_ASSISTANTS: "Aún no tienes asistentes registrados en esta actividad¿No atrae lo suficiente"
                 + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
                 + "un vídeo. ¡Ánimo!",
-                COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y te ayuda a identificar a un asistente",
+                COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y ayuda a identificar a un asistente",
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de ventas total restando la comisión de Trulii",
                 COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de las ventas sin contar la comisión de Trulii",
                 COPY_TOTAL_FEE_TOOLTIP: "Este es el monto total de la comisión de Trulii",
