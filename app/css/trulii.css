@@ -13907,6 +13907,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   top: 0;
   font-weight: 500;
   color: #535353;
+  font-size: 1.25em;
 }
 .navbar-secondary + * {
   margin-top: 60px;
