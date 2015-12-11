@@ -76,7 +76,13 @@
                                         <th ng-bind="::manage.strings.HEADER_LAST_NAME"></th>
                                         <th ng-bind="::manage.strings.HEADER_EMAIL"></th>
                                         <th ng-bind="::manage.strings.HEADER_ORDER"></th>
-                                        <th ng-bind="::manage.strings.HEADER_CODE"></th>
+                                        <th>
+                                          <span ng-bind="::manage.strings.HEADER_CODE"></span>
+                                          <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  
+                                          tooltip="{{::manage.strings.COPY_ASSISTANT_CODE_TOOLTIP}}"></i>
+
+                                        </th>
+
                                     </tr>
                                     <tr ng-repeat="assistant in manage.assistants">
                                         <td>
@@ -94,7 +100,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <span ng-bind="assistant.token"></span>
+                                            <span ng-bind="::assistant.token"></span>
                                         </td>
                                     </tr>
                                 </table>
