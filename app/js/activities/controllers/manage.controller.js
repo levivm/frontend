@@ -98,10 +98,8 @@
                     vm.activeCalendar = calendar;
                     assistants = calendar.assistants;
                     vm.assistants = assistants;
-
                     break;
                 case vm.TYPE_ORDER:
-                    
                     vm.orders =  _.filter(orders,orderBelongsToCalendar);
                     vm.total  = _.sum(vm.orders,getTotal);
                     vm.totalWithFee = _.sum(vm.orders,getTotalWithFee);
@@ -221,15 +219,15 @@
                 HEADER_FIRST_NAME: "Nombre",
                 HEADER_LAST_NAME: "Apellido",
                 HEADER_CODE: "Código",
-                HEADER_MADE: "Realizado",
+                HEADER_MADE: "Realizada",
                 HEADER_AMOUNT: "Monto",
                 HEADER_SALE_DATA:"Fecha de Venta",
                 HEADER_UNIT_PRICE:"Precio Unitario",
                 HEADER_TOTAL:"Total",
                 HEADER_STATUS:"Estatus",
-                LABEL_FINAL_TOTAL: "Ventas Netas",
-                LABEL_TOTAL: "Total Ventas",
-                LABEL_FEE: "Comisión Trulii",
+                LABEL_FINAL_TOTAL: "Ventas netas:",
+                LABEL_TOTAL: "Total ventas:",
+                LABEL_FEE: "Comisión Trulii:",
             });
         }
 

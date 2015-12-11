@@ -31,6 +31,7 @@
         //--------- Exposed Functions ---------//
 
         function printOrder(){
+          console.log("asdaf");
             var book = angular.element.find('.tab-pane')[0];
             var link = $window.document.createElement("link");
             link.href = "/css/trulii.css";

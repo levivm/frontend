@@ -1,5 +1,4 @@
 <div class="navbar-secondary">
-
   <ul>
     <li class="navbar-secondary__item active">
       <span ng-bind="::manage.strings.COPY_MANAGE"></span>
@@ -9,7 +8,7 @@
 </div>
 <div class="container-fluid">
   <div ui-view class="lateral-fade">
-      <div class="col-md-11 col-md-offset-1">
+      <div class="col-md-10 col-md-offset-1">
         <p class="text-muted" ng-bind="manage.strings.COPY_ORDERS"></p>
         <div ng-if="manage.calendars.length > 0" class="row">
             <div class="col-md-12">
@@ -88,7 +87,7 @@
                                     <span class="text-capitalize"  ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
                                   </td>
                                   <td>
-                                    <span ng-class="::{'text-strike': order.is_free}" 
+                                    <span ng-class="::{'text-strike': order.is_free}"
                                             ng-bind="::(order.amount | currency:$:0)"></span>
                                     <span ng-show="::order.is_free"
                                             ng-bind="::manage.strings.COPY_FREE"></span>

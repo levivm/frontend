@@ -4,6 +4,7 @@
             <span ng-bind="::manage.strings.LABEL_MANAGE"></span>
         </li>
     </ul>
+    <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
 </div>
 <div class="container-fluid">
     <div class="col-md-11 col-md-offset-1">
@@ -231,7 +232,7 @@
                             ng-change="manage.pageChange(manage.TYPE_CALENDAR)"
                             data-total-items="manage.calendarPaginationOpts.totalItems"
                             data-items-per-page="manage.calendarPaginationOpts.itemsPerPage"
-                            previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                            previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
                             max-size="manage.calendarPaginationOpts.maxPagesSize">
                 </pagination>
             </div>

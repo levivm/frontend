@@ -52,7 +52,7 @@
           for(var i = 0; i < vm.assistants.length; i++){
             vm.pages[ Math.floor(i/7) ].push(vm.assistants[i]);
           }
-          
+
         }
 
         function _mapOrders(){

@@ -16,8 +16,7 @@
     padding-right: 15px;
 
     .btn {
-        margin-top: 0;
-        line-height: @navbar-height / 2;
+        line-height: @navbar-height / 3;
     }
 
     &__link {
@@ -51,13 +50,12 @@
     }
 
     &__logo {
-      background: url('img/logo-trulii.png') no-repeat;
-      height: @navbar-inner-height;
-      width: 9em;
-      display: inline-block;
-      background-size: contain;
-      margin: 0 auto;
-      margin-top: 5px;
+        background: url('img/logo-trulii.png') no-repeat;
+        height: @navbar-inner-height;
+        width: 9em;
+        display: inline-block;
+        background-size: contain;
+        margin: 5px auto 0;
 
         .before-xs({ background: url(@res-trulii-logo-tiny) no-repeat center; width: 30px; background-size: contain; position: relative; });
     }
@@ -70,8 +68,10 @@
         margin: 0.2em 1em;
 
         .buttons{
+            height: 100%;
+            padding: 1em 0;
             .btn{
-                margin-top: 7px;
+
             }
         }
     }
@@ -120,17 +120,16 @@
             text-align: left;
             cursor: pointer;
             .user-picture{
-                margin-top: 5px;
-                border-radius: 100%;
+                .img-responsive;
+                .img-circle;
+                padding: 0.7em;
                 width: 5em;
                 height: 5em;
                 display: inline-block;
             }
             .menu-icon{
-              max-width: 100%;
-              height: auto;
-              padding: 0.95em;
-              margin-top: -55px;
+                .img-responsive;
+                padding: 1.4em;
               width: 4em;
               display: inline-block;
             }
@@ -167,11 +166,12 @@
         display: inline-block;
         font-weight: bolder;
         line-height: 37px;
-        padding: 0 3.7em;
+        padding: 0.25em 1em 0em 1em;
         cursor: pointer;
+        height: 40px;
 
         &--selected, &.active {
-            border-bottom: 3px solid @gray;
+            border-bottom: 3px solid @gray-light;
             font-weight: bold;
         }
 
@@ -194,6 +194,7 @@
         top: 0;
         font-weight:500;
         color:@gray;
+        font-size: 1.25em;
     }
 
     & + * {
