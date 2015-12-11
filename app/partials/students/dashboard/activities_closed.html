@@ -15,7 +15,7 @@
                                   ng-bind="activity.orders[0].calendar_initial_date | date : 'MMM d, y'"></span>
             </strong>
         </h3>
-        <a ui-sref="student-dashboard.history.order({orderId: activity.orders[0].id})"
+        <a ui-sref="student-dashboard.history.orders.order({orderId: activity.orders[0].id})"
            ng-bind="activities.strings.COPY_ORDER_DETAIL"></a>
         <trulii-activity-review data-review="activity.review"
                                 data-activity="activity"
