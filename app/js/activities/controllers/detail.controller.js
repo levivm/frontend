@@ -285,7 +285,7 @@
 
         function _getSelectedCalendar(activity){
             if (activity.closest_calendar)
-                return moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ? 
+                return moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days') ?
                                     null:activity.closest_calendar;
             return;
         }
@@ -418,11 +418,11 @@
             angular.element(document).ready(function () {
                 vm.scroll = window.scrollY;
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY  - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY;
+                vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
                 $window.onscroll = function(){
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY;
+                    vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
                     vm.scroll = window.scrollY;
                     $scope.$apply();
                 };
