@@ -13094,6 +13094,12 @@ h5 a {
 .margin-horizontal-less {
   margin: 0 1rem;
 }
+.margin-vertical {
+  margin: 3rem 0;
+}
+.margin-vertical-less {
+  margin: 1rem 0;
+}
 hr {
   width: 98%;
 }
@@ -13735,8 +13741,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-right: 15px;
 }
 .navbar .btn {
-  margin-top: 0;
-  line-height: 40px;
+  line-height: 26.66666667px;
 }
 .navbar__link {
   line-height: 65px;
@@ -13770,8 +13775,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 9em;
   display: inline-block;
   background-size: contain;
-  margin: 0 auto;
-  margin-top: 5px;
+  margin: 5px auto 0;
 }
 @media screen and (max-width: 480px) {
   .navbar__logo {
@@ -13788,8 +13792,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 65%;
   margin: 0.2em 1em;
 }
-.navbar__left-wrapper .buttons .btn {
-  margin-top: 7px;
+.navbar__left-wrapper .buttons {
+  height: 100%;
+  padding: 1em 0;
 }
 .navbar__right-wrapper {
   display: inline-block;
@@ -13835,17 +13840,20 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-decoration: none;
 }
 .navbar__option--right .user-picture {
-  margin-top: 5px;
-  border-radius: 100%;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 50%;
+  padding: 0.7em;
   width: 5em;
   height: 5em;
   display: inline-block;
 }
 .navbar__option--right .menu-icon {
+  display: block;
   max-width: 100%;
   height: auto;
-  padding: 0.95em;
-  margin-top: -55px;
+  padding: 1.4em;
   width: 4em;
   display: inline-block;
 }
