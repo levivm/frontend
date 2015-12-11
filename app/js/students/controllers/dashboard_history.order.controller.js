@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryOrderCtrl', StudentHistoryOrderCtrl);
 
-    StudentHistoryOrderCtrl.$inject = ['$modal','$stateParams', 'Toast','student', 'order'];
+    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order'];
 
-    function StudentHistoryOrderCtrl($modal,$stateParams, Toast, student, order) {
+    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order) {
 
         var vm = this;
 
@@ -27,6 +27,7 @@
             requestingOrderRefund: false,
             requestAssistantRefund: requestAssistantRefund,
             requestOrderRefund: requestOrderRefund,
+            printOrder: printOrder
         });
 
         _activate();
@@ -34,6 +35,20 @@
 
         /*  EXPOSED FUNCTIONS     */
 
+
+        function printOrder(){
+          console.log("asdaf");
+            var book = angular.element.find('.tab-pane')[0];
+            var link = $window.document.createElement("link");
+            link.href = "/css/trulii.css";
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            book.appendChild(link);
+            var table = book.innerHTML;
+            var myWindow = window.open('', '', 'width=1200, height=600, scrollbars=yes');
+            myWindow.document.write(table);
+            setTimeout(function(){ myWindow.print(); }, 1000);
+        }
 
         function requestOrderRefund(orderId){
 
@@ -123,8 +138,10 @@
                 ACTION_REIMBURSE: "Solicitar Reembolso",
                 ACTION_REIMBURSE_ORDER: "Reembolso de orden",
                 ACTION_GO_BACK: "Regresar",
+                ACTION_PRINT: "Imprimir",
                 COPY_COUPON_NOT_REFUND_TOOLTIP: "El cupón no es reembolsable",
                 COPY_REFUND_REQUESTED_BY_OTHER: "El reembolso fue solicitado por el organizador",
+                COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y ayuda a identificar a un asistente",
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Ordén",
                 LABEL_FREE: "GRATIS",
@@ -145,6 +162,7 @@
                 HEADER_ORDER: "Orden",
                 HEADER_FIRST_NAME: "Nombre",
                 HEADER_LAST_NAME: "Apellido",
+                HEADER_ASSISTANT_CODE: "Código"
 
             });
         }

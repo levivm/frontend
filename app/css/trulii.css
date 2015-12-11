@@ -13883,12 +13883,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   font-weight: bolder;
   line-height: 37px;
-  padding: 0 3.7em;
+  padding: 0.25em 1em 0em 1em;
   cursor: pointer;
+  height: 40px;
 }
 .navbar-secondary__item--selected,
 .navbar-secondary__item.active {
-  border-bottom: 3px solid #535353;
+  border-bottom: 3px solid #999999;
   font-weight: bold;
 }
 .navbar-secondary__item:hover:not(.active) {
@@ -13906,6 +13907,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   top: 0;
   font-weight: 500;
   color: #535353;
+  font-size: 1.25em;
 }
 .navbar-secondary + * {
   margin-top: 60px;
@@ -19093,6 +19095,39 @@ input[type=text].form-control.referral-link:focus {
 .panel-body .order-total strong {
   font-weight: 500;
 }
+.footer--dashboard {
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: 100%;
+  height: 2.4em;
+  position: fixed;
+  bottom: 0;
+  background: #eeeeee;
+  text-align: right;
+  padding-right: 2em;
+}
+.footer--dashboard .footer__item {
+  font-size: .85em;
+  color: #999999;
+  margin: 0 1em;
+  line-height: 2.4em;
+  font-weight: normal;
+}
+.dashboard-footer {
+  padding: 0.75em 1em 0.125em 1em;
+  background-color: #eeeeee;
+  border-bottom: 5px solid #999999;
+}
+.dashboard-footer a {
+  font-size: 0.9em;
+  color: #535353;
+  font-weight: 400;
+}
+.dashboard-footer .btn-default {
+  border: 2px solid #999999;
+  background-color: transparent;
+  color: #535353 !important;
+  font-weight: 300;
+}
 a:hover {
   color: #38dbc8;
 }
@@ -19119,6 +19154,9 @@ p {
 }
 .tab-content {
   padding-bottom: 5em;
+}
+.tab-content label {
+  font-size: 0.85em;
 }
 .pagination-sm {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
