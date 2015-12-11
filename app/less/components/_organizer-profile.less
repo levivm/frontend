@@ -1,5 +1,6 @@
 
 .profile-cover{
+  margin-top: -80px;
   min-height:88vh;
   width: 100%;
   position:relative;
@@ -49,11 +50,13 @@
   }
   &__picture{
     width: 125px;
+    height: 125px;
     margin: 0 auto;
     float: none;
-    img{
-      border: 3px solid white;
-    }
+    background-size: cover;
+    background-position: center center;
+    border-radius: 100%;
+    border: 5px solid white;
   }
   &__verified{
     width: 200px;

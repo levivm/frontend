@@ -291,6 +291,7 @@
       left: 0;
       width: 100%;
       height: 100%;
+      display: none;
     }
   }
   &__background:after {
@@ -365,7 +366,9 @@
       display: none;
     }
   }
-  .trulii-cover__background-video {
-    display: none;
+}
+@media (min-device-width: 768px){
+  .trulii-cover__background-video{
+    display: block;
   }
 }
