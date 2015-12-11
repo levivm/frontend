@@ -15,9 +15,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['$state', 'LocationManager', 'Authentication', 'Elevator', 'Error', 'cities'];
+    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities'];
 
-    function OrganizerLandingCtrl($state, LocationManager, Authentication, Elevator, Error, cities) {
+    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -25,31 +25,50 @@
             cities : cities,
             documentTypes: documentTypes,
             errors : {},
+            selectedCity: LocationManager.getCurrentCity(),
             request : {
-                document_type: documentTypes[0].id
+                document_type: documentTypes[0].id,
+
             },
             sent : false,
-            request_signup : requestSignup,
+            isSigningUp: false,
+            requestSignup : requestSignup,
             goToForm: goToForm
         });
 
         _activate();
 
         function requestSignup() {
+            vm.request.city = vm.selectedCity.id;
+
+            if(!_validateObject(vm.request)){
+                Toast.warning(vm.strings.COPY_EMPTY_FORM);
+                return;
+            }
+
+            vm.isSigningUp = true;
             Error.form.clear(vm.pre_signup_form);
-            vm.request.city = vm.request.city.id;
             Authentication.requestSignup(vm.request).then(success, error);
 
             function success() {
+                vm.isSigningUp = false;
                 vm.sent = true;
             }
 
             function error(response) {
-                console.log("response", response);
+                vm.isSigningUp = false;
                 var responseErrors = response.data;
-                if (responseErrors) {
-                    Error.form.add(vm.pre_signup_form, responseErrors);
-                }
+                if (responseErrors) { Error.form.add(vm.pre_signup_form, responseErrors); }
+            }
+        }
+
+        function _validateObject(data){
+            var properties = ['name', 'email', 'telephone', 'city', 'document_type', 'document'];
+            return properties.every(hasKey);
+
+            function hasKey(key){
+                //console.log(key, data.hasOwnProperty(key));
+                return data.hasOwnProperty(key);
             }
         }
 
@@ -61,6 +80,7 @@
             if (!vm.strings) { vm.strings = {}; }
 
             angular.extend(vm.strings, {
+                ACTION_SIGNUP: 'Únete',
                 HEADER_TITLE_COPY: "Enfócate en enseñar lo que te apasiona",
                 HEADER_TEXT_COPY: "¡Nosotros nos encargamos del resto!",
                 HEADER_ACTION_START_NOW: "Comienza ya",
@@ -104,14 +124,13 @@
                 PLACEHOLDER_CITY: "Ciudad",
                 LABEL_DOCUMENT_TYPE: "Tipo de Documento",
                 LABEL_DOCUMENT: "Documento",
-                REQUEST_SIGNUP_LABEL: 'Únete'
+                LABEL_CITY: "Ciudad",
+                COPY_EMPTY_FORM: "Por favor llene el formulario de registro"
             });
         }
 
         function _activate() {
             setStrings();
-            vm.request.current_city = LocationManager.getCurrentCity().id;
         }
-
     }
 })();
