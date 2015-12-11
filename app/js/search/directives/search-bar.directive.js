@@ -41,14 +41,15 @@
                 //--------- Exposed Functions ---------//
 
                 function search() {
-                    var data = {};
-                    data[KEY_SEARCH_Q] = scope.q;
-                    data[KEY_SEARCH_CITY] = scope.search_city.id;
-
                     if(!scope.search_city){
                         console.log("Error. Can't search without a city. Please specify a city to search on");
                         return;
                     }
+
+                    var data = {};
+                    data[KEY_SEARCH_Q] = scope.q;
+                    data[KEY_SEARCH_CITY] = scope.search_city.id;
+
                     SearchManager.setSearchBarData(data);
                     angular.extend(data, SearchManager.getSearchData());
                     console.log('data', data);

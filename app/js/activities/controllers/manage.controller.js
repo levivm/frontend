@@ -94,14 +94,12 @@
 
             switch(type){
 
-                case vm.TYPE_ASSISTANT:
+                case vm.TYPE_ASSISTANT:  
                     vm.activeCalendar = calendar;
                     assistants = calendar.assistants;
                     vm.assistants = assistants;
-
                     break;
                 case vm.TYPE_ORDER:
-
                     vm.orders =  _.filter(orders,orderBelongsToCalendar);
                     vm.total  = _.sum(vm.orders,getTotal);
                     vm.totalWithFee = _.sum(vm.orders,getTotalWithFee);
@@ -181,7 +179,7 @@
                 ACTION_VIEW_DETAIL: "Ver detalle",
                 ACTION_PRINT: "Imprimir",
                 COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad agrupadas por calendario",
-                COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito esta actividad",
+                COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito a las diferentes fechas de inicio de esta actividad",
                 COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
@@ -203,8 +201,9 @@
                 COPY_EMPTY_ASSISTANTS: "Aún no tienes asistentes registrados en esta actividad¿No atrae lo suficiente"
                 + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
                 + "un vídeo. ¡Ánimo!",
+                COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y ayuda a identificar a un asistente",
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de ventas total restando la comisión de Trulii",
-                COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de la ordenes sin contar la comisión de Trulii",
+                COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de las ventas sin contar la comisión de Trulii",
                 COPY_TOTAL_FEE_TOOLTIP: "Este es el monto total de la comisión de Trulii",
                 COPY_CLOSING_DATE: "Cierre",
                 COPY_VIEW_DETAIL: "Ver detalle",
@@ -237,7 +236,7 @@
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
-            console.log("reloadin");
+            console.log("reloadin",assistants);
 
         }
 

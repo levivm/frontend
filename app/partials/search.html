@@ -26,21 +26,25 @@
                 <div class="row">
                     <label class="control-label col-xs-1" for="date"
                            ng-bind="::search.strings.LABEL_DATE"></label>
-                    <div class="col-xs-12 col-sm-2">
+                    <div class="col-xs-12 col-sm-3">
                         <!--Date DatePicker-->
                         <div class="form-group search-control no-margin">
                             <div class="form-inline">
-                                <input id="date" type="text" class="form-control"
-                                       placeholder="{{::search.strings.PLACEHOLDER_DATE}}"
-                                       name="date" ng-model="search.searchDate"
-                                       ng-change="search.setDate()"
-                                       datepicker-popup="{{search.format}}"
-                                       data-is-open="search.opened"
-                                       data-min-date="search.minStartDate"
-                                       data-datepicker-options="search.dateOptions"
-                                       data-close-text="{{search.strings.ACTION_CLOSE}}"
-                                       ng-click="search.openDatePicker($event)"/>
+                                <div class="input-group">
+                                    <input id="date" type="text" class="form-control"
+                                           placeholder="{{::search.strings.PLACEHOLDER_DATE}}"
+                                           name="date" ng-model="search.searchDate"
+                                           ng-change="search.setDate()"
+                                           datepicker-popup="{{search.format}}"
+                                           data-is-open="search.opened"
+                                           data-min-date="search.minStartDate"
+                                           data-datepicker-options="search.dateOptions"
+                                           data-close-text="{{search.strings.ACTION_CLOSE}}"
+                                           ng-click="search.openDatePicker($event)"/>
+                                </div>
+                                <span class="mdi-action-event"></span>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-xs-11 col-md-7 col-md-offset-1">
@@ -112,16 +116,16 @@
                     <span> </span>
                     <strong ng-bind="search.searchData.subcategory_display"></strong>
                 </span>
-                <select class="pull-right" name="repeatSelect" id="repeatSelect" 
+                <select class="pull-right" name="repeatSelect" id="repeatSelect"
                        ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
                     <option ng-show="!search.orderByPredicate" selected="selected" >Ordernar por</option>
-                    <option  ng-repeat="option in search.orderByOptions track by option.name" 
+                    <option  ng-repeat="option in search.orderByOptions track by option.name"
                             value="{{::option.predicate}}" ng-bind="::option.name"></option>
                 </select>
-<!--                 <select class="pull-right" name="repeatSelect" id="repeatSelect" 
+<!--                 <select class="pull-right" name="repeatSelect" id="repeatSelect"
                         ng-init="search.orderByPredicate = search.orderByOptions[0].predicate"
                         ng-model="search.orderByPredicate">
-                    <option ng-change="search.changeOrderBy()"ng-repeat="option in search.orderByOptions track by option.name" 
+                    <option ng-change="search.changeOrderBy()"ng-repeat="option in search.orderByOptions track by option.name"
                             value="{{::option.predicate}}" ng-bind="::option.name"></option>
                 </select> -->
             </div>
@@ -136,7 +140,7 @@
             <div class="row activity-grid" ng-if="search.activities.length > 0">
                 <!--track by activity.id-->
                 <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
-                                      ng-repeat="activity in search.activities" 
+                                      ng-repeat="activity in search.activities"
                                       data-activity="activity"></trulii-activity-item>
 
             </div>
@@ -147,8 +151,8 @@
                         ng-change="search.pageChange()"
                         data-total-items="search.activitiesPaginationOpts.totalItems"
                         data-items-per-page="search.activitiesPaginationOpts.itemsPerPage"
-                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
-                        max-size="search.activitiesPaginationOpts.maxPagesSize"></pagination>    
+                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
+                        max-size="search.activitiesPaginationOpts.maxPagesSize"></pagination>
             </div>
 
             <!--empty search-->
