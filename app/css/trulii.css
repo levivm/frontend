@@ -13739,6 +13739,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 80px;
   width: 100vw;
   padding-right: 15px;
+  transition: all 0.25s;
 }
 .navbar .btn {
   line-height: 26.66666667px;
@@ -13747,6 +13748,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   line-height: 65px;
   display: inline-block;
   height: 70px;
+  transition: all 0.25s;
   vertical-align: top;
   padding: 5px 1em 5px 0.5em;
 }
@@ -13765,6 +13767,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   float: left;
   text-align: center;
+  transition: all 0.25s;
 }
 .--on-dash .navbar__logo-container {
   width: 18.1em;
@@ -13776,6 +13779,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   background-size: contain;
   margin: 5px auto 0;
+  transition: all 0.25s;
 }
 @media screen and (max-width: 480px) {
   .navbar__logo {
@@ -13795,11 +13799,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__left-wrapper .buttons {
   height: 100%;
   padding: 1em 0;
+  transition: all 0.25s;
 }
 .navbar__right-wrapper {
   display: inline-block;
   vertical-align: top;
   height: 80px;
+  transition: all 0.25s;
   text-align: right;
   float: right;
   font-size: 0.9em;
@@ -13821,6 +13827,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   padding: 5px 1em;
   height: 80px;
+  transition: all 0.25s;
   font-weight: bold;
   text-transform: uppercase;
   line-height: 70px;
@@ -13862,9 +13869,51 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-align: left;
   background-color: white;
 }
+.navbar.navbar-short {
+  height: 60px;
+  min-height: 60px;
+}
+.navbar.navbar-short .btn {
+  line-height: 20px;
+}
+.navbar.navbar-short .navbar__link {
+  padding: 5px 1em 5px 0.5em;
+}
+.navbar.navbar-short .navbar__logo-container {
+  height: 60px;
+}
+.navbar.navbar-short .navbar__logo {
+  height: 50px;
+  margin: 5px auto 0;
+  width: 7em;
+}
+.navbar.navbar-short .navbar__left-wrapper {
+  height: 50px;
+}
+.navbar.navbar-short .navbar__left-wrapper .buttons {
+  padding: 0.75em 0;
+}
+.navbar.navbar-short .navbar__right-wrapper {
+  height: 60px;
+}
+.navbar.navbar-short .navbar__option {
+  padding: 0px 1em;
+  height: 60px;
+  line-height: 50px;
+}
+.navbar.navbar-short .search-bar__navbar {
+  height: 45px;
+  margin-top: 5px;
+}
 .navbar [class*=mdi-navigation]:before {
   position: relative;
   top: 0.2em;
+}
+.sidebar {
+  transition: all 0.25s;
+}
+.sidebar.sidebar-short {
+  top: 60px;
 }
 .navbar-secondary {
   background: #eeeeee;
@@ -13875,6 +13924,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   top: 80px;
   z-index: 200;
   padding: 0 1em;
+  transition: all 0.25s;
+}
+.navbar-secondary.navbar-secondary-short {
+  top: 60px;
 }
 .navbar-secondary__item {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -18692,7 +18745,6 @@ blockquote {
   width: 100vw;
   background-image: url('/css/img/organizer-profile/organizer_profile_bg.png');
   background-size: cover;
-  background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
   z-index: -11;

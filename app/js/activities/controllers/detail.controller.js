@@ -417,12 +417,14 @@
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
                 vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY;
                 vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                $window.onscroll = function(){
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
                     vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY;
                     vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                    vm.scroll = window.scrollY;
+                    vm.scroll = scroll;
                     $scope.$apply();
-                };
+                  }
+                );
             });
         }
 

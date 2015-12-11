@@ -12,14 +12,15 @@
         .module('trulii.students.controllers')
         .controller('StudentDashboardCtrl', StudentDashboardCtrl);
 
-    StudentDashboardCtrl.$inject = ['$state'];
+    StudentDashboardCtrl.$inject = ['$state', '$scope'];
 
-    function StudentDashboardCtrl($state) {
+    function StudentDashboardCtrl($state, $scope) {
 
         var vm = this;
         angular.extend(vm, {
             changeState : _changeState,
-            isActive : isActive
+            isActive : isActive,
+            scroll: 0
         });
 
         _activate();
@@ -48,8 +49,19 @@
             });
         }
 
+        function _initScroll(){
+            $scope.$on('scrolled',
+              function(scrolled, scroll){
+                vm.scroll = scroll;
+                $scope.$apply();
+              }
+            );
+        }
+
+
         function _activate() {
             setStrings();
+            _initScroll();
         }
     }
 

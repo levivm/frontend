@@ -124,13 +124,14 @@
             angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
                 vm.widgetMaxPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().bottom + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 1.85;
-                $window.onscroll = function(){
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
+                    vm.scroll = scroll;
                     vm.widgetMaxPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().bottom + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 1.85;
                     vm.scroll = document.body.scrollTop;
-                    $scope.$apply();
-                    console.log(vm.widgetMaxPosition);
-                    console.log(vm.scroll);
-                };
+                    $scope.apply();
+                  }
+                );
             });
         }
 
