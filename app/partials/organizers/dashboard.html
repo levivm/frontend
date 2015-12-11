@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="sidebar lateral-slide">
+        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80}">
             <a ui-sref=".profile"
                class="sidebar__item"
                ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.profile.*')}">

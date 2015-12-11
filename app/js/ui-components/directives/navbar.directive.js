@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$window', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'Scroll'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture) {
+    function truliiNavbar($rootScope, $timeout, $state, $window, UIComponentsTemplatesPath, Authentication, defaultPicture, Scroll) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -27,7 +27,8 @@
                     state: null,
                     isSearchVisible : true,
                     showBurger : false,
-                    toggleBurger: toggleBurger
+                    toggleBurger: toggleBurger,
+                    scroll: 0
                 });
 
                 _activate();
@@ -132,9 +133,19 @@
                     unsubscribeUserLoggedOut();
                 }
 
+                function _initScroll(){
+                  scope.$on('scrolled',
+                    function(scrolled, scroll){
+                      scope.scroll = scroll;
+                      scope.$apply();
+                    }
+                  );
+                }
+
                 function _activate() {
                     _setStrings();
                     _getUser();
+                    _initScroll();
 
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;

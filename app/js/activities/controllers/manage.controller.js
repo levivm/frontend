@@ -12,9 +12,9 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$window', '$filter','$state', 'activity', 'ActivitiesManager'];
+    ActivitiesManageCtrl.$inject = ['$window', '$scope', '$filter','$state', 'activity', 'ActivitiesManager'];
 
-    function ActivitiesManageCtrl($window, $filter, $state, activity, ActivitiesManager) {
+    function ActivitiesManageCtrl($window, $scope, $filter, $state, activity, ActivitiesManager) {
 
         var vm = this;
         angular.extend(vm, {
@@ -43,7 +43,8 @@
             pageChange: pageChange,
             TYPE_ORDER: 'order',
             TYPE_ASSISTANT: 'assistant',
-            TYPE_CALENDAR: 'calendar'
+            TYPE_CALENDAR: 'calendar',
+            scroll: 0
         });
 
         var orders = [];
@@ -230,9 +231,18 @@
                 LABEL_FEE: "Comisión Trulii:",
             });
         }
+        function _initScroll(){
+            $scope.$on('scrolled',
+              function(scrolled, scroll){
+                vm.scroll = scroll;
+                $scope.$apply();
+              }
+            );
+        }
 
         function _activate() {
             _setStrings();
+            _initScroll();
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
