@@ -22,7 +22,7 @@
     <div class="col-xs-10 col-xs-offset-1 review-detail separate-above-medium separate-below-less"
          ng-repeat="reviewObject in reviews.unread_reviews | filter:{$: reviews.searchUnreadQuery} ">
         <trulii-activity-review data-review="reviewObject.review" data-activity="reviewObject.activity"
-                                data-on-dashboard="true"></trulii-activity-review>
+                                data-on-dashboard="true" change-review-status="reviews.changeReviewStatus(reviewObject)"></trulii-activity-review>
     </div>
 </div>
 <div class="row" ng-if="reviews.unread_reviews.length <= 0">

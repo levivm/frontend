@@ -686,7 +686,7 @@
         }
 
         function markReviewAsRead(review){
-            return $http.post(api.read(review.id), review).then(success, error);
+            return $http.put(api.read(review.id), review).then(success, error);
 
             function success(response){
                 console.log("Review reported successfully.", response.data);

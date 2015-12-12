@@ -24,7 +24,8 @@
             scope: {
                 'review': '=',
                 'activity': '=',
-                'onDashboard': '='
+                'onDashboard': '=',
+                'changeReviewStatus': '&'
             },
             link: function(scope){
 
@@ -75,18 +76,25 @@
                 }
 
                 function reply(){
-                    if(!review.reply){
+                    if(!scope.review.reply){
                         Toast.warning(scope.strings.COPY_EMPTY_REPLY);
+                        return;
                     }
                     activityInstance.replyReview(scope.review).then(success);
 
                     function success(){
                         scope.hasReply = true;
+                        if (scope.onDashboard) scope.changeReviewStatus();
+
                     }
                 }
 
                 function markAsRead(){
-                    activityInstance.markReviewAsRead(scope.review);
+                    activityInstance.markReviewAsRead(scope.review).then(success);
+
+                    function success(){
+                        if (scope.onDashboard) scope.changeReviewStatus();
+                    }
                 }
 
                 //--------- Internal Functions ---------//
@@ -133,7 +141,7 @@
                         ACTION_MARK_AS_READ: "Marcar como Leído",
                         COPY_EMPTY_REPLY: "Por favor escriba una respuesta",
                         COPY_REPORTED: "Comentario siendo revisado por trulii",
-                        COPY_COMMENT_PLACEHOLDER: "Escribe aqui tu respuesta al comentario",
+                        COPY_COMMENT_PLACEHOLDER: "Escribe aquí tu respuesta al comentario",
                         COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por "
                             + "el equipo de Trulii para ser retirado público. Próximamente la enviaremos un correo "
                             + " con el resultado de nuestra evaluación",
@@ -170,6 +178,8 @@
                         _getActivityInstance();
                     }
                 }
+
+                console.log("SCOPE ",scope);
 
                 scope.$watch('activity', function(){
                     //console.log('review directive activity:', scope.activity);
