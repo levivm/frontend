@@ -93,7 +93,7 @@
             <div class="row separate-above-less separate-below-less">
                 <div class="col-xs-12 col-md-3">
                     <button class="btn btn-default btn-block" ng-bind="::strings.LABEL_REPORT_BUTTON"
-                            ng-click="showReportWarning = !showReportWarning">
+                            ng-click="show.reportWarning = !show.reportWarning">
                     </button>
                 </div>
                 <div class="col-xs-12 col-xs-offset-0 col-md-4 col-md-offset-1">
@@ -108,7 +108,7 @@
                 </div>
             </div>
             <!-- Report alert-->
-            <div class="row" ng-show="showReportWarning">
+            <div class="row" ng-show="show.reportWarning">
                 <div class="col-xs-12 report-alert separate-above-less separate-below-less">
                     <p ng-bind="::strings.COPY_REPORT_DISCLAIMER">
                     </p>

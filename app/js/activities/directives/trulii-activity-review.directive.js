@@ -32,6 +32,9 @@
                 angular.extend(scope, {
                     hasReview: false,
                     hasReply: false,
+                    show:{
+                        reportWarning:false
+                    },
                     showReportWarning: false,
                     user: null,
                     isOrganizer: false,
@@ -60,19 +63,22 @@
                     activityInstance.postReview(scope.review).then(success);
 
                     function success(review){
-                        //console.log('review success:', review);
                         scope.review = review;
                         scope.hasReview = true;
                     }
                 }
 
                 function cancelReport(){
-                    scope.showReportWarning = false;
+                    scope.show.reportWarning = false;
                 }
 
                 function confirmReport(){
-                    scope.showReportWarning = false;
-                    activityInstance.reportReview(scope.review);
+                    activityInstance.reportReview(scope.review).then(success);
+
+                    function success(){
+                        scope.show.reportWarning = false;
+                        Toast.info(scope.strings.COPY_REVIEW_REPORTED);
+                    }
                 }
 
                 function reply(){
@@ -125,7 +131,6 @@
                         author.photo = defaultPicture;
                     }
                     scope.user = author;
-                    //console.log('scope.user', scope.user);
                 }
 
                 function _getLoggedUser(){
@@ -140,6 +145,7 @@
                         ACTION_DONE: "Listo",
                         ACTION_MARK_AS_READ: "Marcar como Leído",
                         COPY_EMPTY_REPLY: "Por favor escriba una respuesta",
+                        COPY_REVIEW_REPORTED: "El comentario será revisado por Trulii",
                         COPY_REPORTED: "Comentario siendo revisado por trulii",
                         COPY_COMMENT_PLACEHOLDER: "Escribe aquí tu respuesta al comentario",
                         COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por "
@@ -179,8 +185,6 @@
                     }
                 }
 
-                console.log("SCOPE ",scope);
-
                 scope.$watch('activity', function(){
                     //console.log('review directive activity:', scope.activity);
                     _activate();
@@ -190,7 +194,7 @@
                     _activate();
                 });
             }
-        }
+        };
     }
 
 })();
