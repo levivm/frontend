@@ -62,7 +62,7 @@
                 resolve:{
                     cities:getAvailableCities,
                     organizer : getCurrentOrganizer,
-                    reviews: getUnreadOrganizerReviews,
+                    unreadReviewsCount: getUnreadOrganizerReviewsCount,
                 },
                 data: {
                     requiredAuthentication : true
@@ -138,7 +138,7 @@
                 resolve: {
                     activities: getOrganizerActivities,
                     reviews: getOrganizerReviews,
-                    reviewObjects: getReviewObjects
+                    reviewObjects: getReviewObjects,
                 }
             })
             .state('organizer-dashboard.reviews.done', {
@@ -277,8 +277,8 @@
          * @requires organizer
          * @methodOf trulii.organizers.config
          */
-        getUnreadOrganizerReviews.$inject = ['$q', 'organizer'];
-        function getUnreadOrganizerReviews($q, organizer){
+        getUnreadOrganizerReviewsCount.$inject = ['$q', 'organizer'];
+        function getUnreadOrganizerReviewsCount($q, organizer){
             var deferred = $q.defer();
 
             organizer.getReviews().then(success, error);
@@ -287,16 +287,36 @@
 
             function success(reviews){
                 reviews = reviews.filter(filterUnread);
-                deferred.resolve(reviews);
+                var response = {
+                    'count':reviews.length
+                };
+                deferred.resolve(response);
             }
 
-            function filterUnread(review){ return !review.is_read; }
+            function filterUnread(review){ return !review.read; }
 
             function error(error){
                 console.error('Error retrieving reviews for organizer ', organizer.name, error);
                 deferred.reject(error);
             }
         }
+
+
+        /**
+         * @ngdoc method
+         * @name .#getUnreadReviewsCount
+         * @description Retrieves an Organizer's Unread Reviews from
+         * {@link trulii.organizers.services.Organizer Organizer}
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getUnreadReviewsCount.$inject = ['$q', 'reviews'];
+        function getUnreadReviewsCount($q, reviews){
+            return {
+                'count':reviews.length
+            };
+        }
+
 
         /**
          * @ngdoc method

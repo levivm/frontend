@@ -12,20 +12,33 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerReviewsCtrl', OrganizerReviewsCtrl);
 
-    OrganizerReviewsCtrl.$inject = ['$q', 'reviewObjects'];
-    function OrganizerReviewsCtrl($q, reviewObjects) {
+    OrganizerReviewsCtrl.$inject = ['$q', 'reviewObjects', 'Toast', 'unreadReviewsCount'];
+    function OrganizerReviewsCtrl($q, reviewObjects, Toast, unreadReviewsCount) {
 
         var vm = this;
         angular.extend(vm, {
             unread_reviews: [],
             read_reviews: [],
             searchUnreadQuery: "",
-            searchReadQuery: ""
+            searchReadQuery: "",
+            changeReviewStatus: changeReviewStatus
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+
+        function changeReviewStatus(review){
+            var readReview = _.remove(vm.unread_reviews,removeById);
+            vm.read_reviews.push(review);
+            unreadReviewsCount.count += -1;
+            Toast.success(vm.strings.COPY_REVIEW_READ);
+            
+            function removeById(unreadReview){
+                return unreadReview.id === review.id;
+            }
+        }
+
 
         //--------- Internal Functions ---------//
 
@@ -66,7 +79,8 @@
                 COPY_SEARCH_REVIEWS: "Revisa los comentarios que han hecho a tus actividades",
                 LABEL_SEARCH_ORDERS: "Filtrar por nombre de actividad",
                 COPY_EMPTY_UNREAD: "No tienes comentarios por leer",
-                COPY_EMPTY_READ: "Aún no has respondido ni leído ningún comentario"
+                COPY_EMPTY_READ: "Aún no has respondido ni leído ningún comentario",
+                COPY_REVIEW_READ: "Su comentario fue movido a revisados."
             });
         }
 

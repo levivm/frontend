@@ -289,6 +289,7 @@
         function getReviews(){
             var deferred = $q.defer();
             var reviews = [];
+            var organizer_scope = this;
 
             collectReviews(api.reviews(this.id));
 
@@ -300,6 +301,7 @@
 
                 function success(response) {
                     reviews = reviews.concat(response.data.results);
+                    organizer_scope.unread_reviews_c = 10;
                     if(response.data.next){
                         return collectReviews(response.data.next);
                     } else {
