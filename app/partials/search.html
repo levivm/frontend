@@ -42,7 +42,7 @@
                                            data-close-text="{{search.strings.ACTION_CLOSE}}"
                                            ng-click="search.openDatePicker($event)"/>
                                 </div>
-                                <span class="mdi-action-event"></span>
+                                <span class="mdi-action-event text-muted"></span>
                             </div>
 
                         </div>
@@ -116,12 +116,7 @@
                     <span> </span>
                     <strong ng-bind="search.searchData.subcategory_display"></strong>
                 </span>
-                <select class="pull-right" name="repeatSelect" id="repeatSelect"
-                       ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
-                    <option ng-show="!search.orderByPredicate" selected="selected" >Ordernar por</option>
-                    <option  ng-repeat="option in search.orderByOptions track by option.name"
-                            value="{{::option.predicate}}" ng-bind="::option.name"></option>
-                </select>
+
 <!--                 <select class="pull-right" name="repeatSelect" id="repeatSelect"
                         ng-init="search.orderByPredicate = search.orderByOptions[0].predicate"
                         ng-model="search.orderByPredicate">
@@ -135,6 +130,17 @@
 
         <div class="row separator-light no-margin"></div>
     </div>
+    <div class="row padding-horizontal-less padding-vertical-less">
+      <div class="col-xs-10 col-sm-4 col-md-2 pull-right">
+        <select class=" form-control" name="repeatSelect" id="repeatSelect"
+               ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
+            <option ng-show="!search.orderByPredicate" selected="selected" >Ordenar por</option>
+            <option  ng-repeat="option in search.orderByOptions track by option.name"
+                    value="{{::option.predicate}}" ng-bind="::option.name"></option>
+        </select>
+      </div>
+    </div>
+    <div class="row separator-light no-margin"></div>
     <div class="row separate-above">
         <div class="col-md-10 col-md-offset-1">
             <div class="row activity-grid" ng-if="search.activities.length > 0">
@@ -166,3 +172,4 @@
         </div>
     </div>
 </div>
+<trulii-dashboard-footer></trulii-dashboard-footer>

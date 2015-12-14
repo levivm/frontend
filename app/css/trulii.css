@@ -16641,9 +16641,11 @@ button.toast-close-button {
 }
 .gallery-grid__photo.--selectable {
   cursor: pointer;
+  border: 3px solid #38dbc8;
 }
 .gallery-grid__photo.--unselected {
   opacity: .5;
+  border: none;
 }
 .gallery-grid__photo__caption {
   color: white;
