@@ -14186,6 +14186,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .with-context-menu {
   margin-top: 120px;
 }
+.search-bar {
+  position: relative;
+}
 .search-bar input,
 .search-bar select,
 .search-bar button {
@@ -14208,7 +14211,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-bottom-right-radius: 4px !important;
 }
 .search-bar > *:not(.btn) {
-  padding: 0 2em;
+  padding: 0 2.5em;
 }
 .search-bar .form-control {
   background-image: none;
@@ -14251,6 +14254,19 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-top: 5px solid #732ebb;
   font-size: 1.25em;
 }
+.search-bar::before {
+  background-image: url(/css/img/home/search.png);
+  height: 100%;
+  width: 25px;
+  left: 0px;
+  top: 0px;
+  z-index: 1000000;
+  content: '';
+  display: inline;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+}
 .search-bar__navbar {
   width: 40em;
   height: 50px;
@@ -14259,6 +14275,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: white;
   border-radius: 0;
   display: inline-block;
+  position: relative;
 }
 @media screen and (max-width: 992px) {
   .search-bar__navbar {
@@ -14283,7 +14300,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   float: left;
   height: 100%;
   width: 60%;
-  padding-left: 26px;
+  padding-left: 35px;
   border: 1px solid #e4e4e4;
   border-top: 3px solid #ffd580;
   border-right: none;
@@ -14344,6 +14361,19 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   color: rgba(0, 0, 0, 0.74);
   font-size: 1.1em;
+}
+.search-bar__navbar::before {
+  background-image: url(/css/img/home/search.png);
+  height: 100%;
+  width: 25px;
+  left: 5px;
+  top: 0px;
+  z-index: 1000000;
+  content: '';
+  display: inline;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: 10px center;
 }
 .sidebar {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -17127,7 +17157,7 @@ button.toast-close-button {
 .trulii-cover-medium__background {
   width: 100vw;
   background-size: cover;
-  background-attachment: fixed;
+  background-attachment: initial;
   background-position: center center;
   background-repeat: no-repeat;
   z-index: -11;
@@ -17170,7 +17200,7 @@ button.toast-close-button {
 .trulii-cover-medium__background.background-dots:after {
   background-image: url('/css/img/dots.png');
   background-color: transparent;
-  background-attachment: fixed;
+  background-attachment: initial;
 }
 .trulii-cover-small {
   min-height: 55vh;
