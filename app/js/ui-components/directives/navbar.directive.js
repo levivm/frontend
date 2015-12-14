@@ -42,7 +42,7 @@
                 //--------- Internal Functions ---------//
 
                 function _getUser() {
-                    Authentication.getAuthenticatedAccount().then(success, error);
+                    Authentication.getAuthenticatedAccount(true).then(success, error);
 
                     function success(user) {
                         if (!user) {

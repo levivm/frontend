@@ -31,7 +31,6 @@
             'ngVideo'
         ]);
 
-
     angular
         .module('trulii.config', ['facebook','720kb.socialshare']);
 
