@@ -13106,6 +13106,11 @@ hr {
 hr.complete {
   width: 100%;
 }
+@media print {
+  .print-no-margin {
+    margin: 0;
+  }
+}
 .bg-primary {
   background: #ffd580;
   color: rgba(0, 0, 0, 0.74);
@@ -13741,6 +13746,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .sidebar,
   .dashboard-footer {
     display: none !important;
+  }
+  .with-navbar,
+  .navbar-secondary + *,
+  .lateral-fade {
+    margin: 0 !important;
   }
 }
 .navbar {
@@ -18855,51 +18865,48 @@ blockquote {
   background-color: white;
   padding: 0px 35px 25px 35px;
 }
-.order-detail .print-container {
+.print-container {
   width: 100%;
 }
+.print-visible {
+  display: none;
+}
 @media print {
-  .order-detail .print-container {
+  .print-visible {
+    display: block;
+  }
+  .print-container {
     width: 100%;
     position: fixed;
     left: 0;
-    top: 48px;
+    top: 96px;
     display: block;
   }
-  .order-detail .order-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: block;
-  }
-  .order-detail .order-description {
+  .order-description {
     background-color: #eeeeee;
   }
-  .order-detail .order-description a {
+  .order-description a {
     display: inline-block;
     text-decoration: none;
     color: #535353 !important;
   }
-  .order-detail .order-tooltip,
-  .order-detail .order-tooltip:before,
-  .order-detail .order-tooltip:after {
+  .order-tooltip,
+  .order-tooltip:before,
+  .order-tooltip:after {
     display: none;
   }
-  .order-detail .order-info {
+  .order-info {
     width: auto;
   }
-  .order-detail button,
-  .order-detail .btn,
-  .order-detail a.btn {
+  button,
+  .btn,
+  a.btn {
     display: none !important;
   }
-  .order-detail .glyphicon,
-  .order-detail .column-button {
+  .glyphicon,
+  .column-button {
     display: none;
   }
-}
-@page {
-  margin: 0.5cm;
 }
 .not-found-search-bar {
   background-color: #393b3f;
