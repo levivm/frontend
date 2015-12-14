@@ -62,7 +62,7 @@
         function submitLocation() {
             Error.form.clear(vm.organizer_location_form);
             _setOrganizerPos();
-            vm.organizer.submitLocation(vm.organizer.location).then(_successUpdatedLocation, _updateFail)
+            vm.organizer.update_location(vm.organizer.location).then(_successUpdatedLocation, _updateFail)
         }
 
         //--------- Internal Functions ---------//
