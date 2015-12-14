@@ -339,7 +339,11 @@
 
         function emitUserChanged(){
             console.log('Authentication. emitUserChanged. $emit');
-            $rootScope.$emit(USER_CHANGED_EVENT);
+            getAuthenticatedAccount(true).then(callback, callback);
+
+            function callback(){
+                $rootScope.$emit(USER_CHANGED_EVENT);
+            }
         }
 
     }

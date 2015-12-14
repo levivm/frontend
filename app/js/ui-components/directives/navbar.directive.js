@@ -42,7 +42,7 @@
                 //--------- Internal Functions ---------//
 
                 function _getUser() {
-                    Authentication.getAuthenticatedAccount(true).then(success, error);
+                    Authentication.getAuthenticatedAccount().then(success, error);
 
                     function success(user) {
                         if (!user) {
@@ -58,11 +58,13 @@
                             scope.user.is_student = result;
                         });
                         _mapDisplayName(scope.user);
+                        _setUserChangedWatch();
                     }
 
                     function error() {
                         console.log('navbar response reject');
                         scope.user = null;
+                        _setUserChangedWatch();
                     }
                 }
 
@@ -72,7 +74,7 @@
                     if (company) {
                         user.full_name = company;
                     } else if (user.full_name) {
-                        console.log('Full Name already defined');
+                        //console.log('Full Name already defined');
                     } else if (user.first_name && user.last_name) {
                         user.full_name = user.first_name;
                     } else {
@@ -128,6 +130,15 @@
                     });
                 }
 
+                function _setUserChangedWatch(){
+                    unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
+                        event.preventDefault();
+                        console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
+                        _getUser();
+                        unsubscribeUserChanged();
+                    });
+                }
+
                 function _cleanUp() {
                     unsubscribeUserChanged();
                     unsubscribeUserLoggedOut();
@@ -146,15 +157,11 @@
                     _setStrings();
                     _getUser();
                     _initScroll();
+                    _setUserChangedWatch();
 
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isSearchVisible = !(toState.name == 'home' || toState.name == 'not-found' || $state.includes('dash'));
-                    });
-
-                    unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
-                        console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
-                        _getUser();
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
