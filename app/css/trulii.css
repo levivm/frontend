@@ -13735,6 +13735,14 @@ fieldset[disabled] .navbar-inverse .btn-link:hover,
 fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #444444;
 }
+@media print {
+  .navbar,
+  .navbar-secondary,
+  .sidebar,
+  .dashboard-footer {
+    display: none !important;
+  }
+}
 .navbar {
   height: 80px;
   width: 100vw;
@@ -14516,6 +14524,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 5px;
   bottom: auto;
   padding-bottom: 0;
+}
+.with-sidebar {
+  width: 83.33333333%;
+}
+@media print {
+  .with-sidebar {
+    margin: 0 20px 0 20px;
+  }
 }
 .sidebar-category-container {
   padding: 1.2em 0;
@@ -18807,8 +18823,11 @@ blockquote {
 .popover-content {
   line-height: 1.6em;
 }
+.order-container {
+  width: 83.33333333%;
+  margin-left: 8.33333333%;
+}
 .order-detail {
-  background-color: #eeeeee;
   display: flex;
   margin: 0;
   border: 1px solid #eeeeee;
@@ -18818,6 +18837,7 @@ blockquote {
 }
 .order-detail .order-description,
 .order-detail .order-info {
+  background-color: #eeeeee;
   align-items: stretch;
 }
 .order-detail .order-description {
@@ -18835,9 +18855,30 @@ blockquote {
   background-color: white;
   padding: 0px 35px 25px 35px;
 }
+.order-detail .print-container {
+  width: 100%;
+}
 @media print {
+  .order-detail .print-container {
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 48px;
+    display: block;
+  }
+  .order-detail .order-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+  }
   .order-detail .order-description {
     background-color: #eeeeee;
+  }
+  .order-detail .order-description a {
+    display: inline-block;
+    text-decoration: none;
+    color: #535353 !important;
   }
   .order-detail .order-tooltip,
   .order-detail .order-tooltip:before,
@@ -18847,15 +18888,18 @@ blockquote {
   .order-detail .order-info {
     width: auto;
   }
-  .order-detail a,
   .order-detail button,
-  .order-detail .btn {
-    display: none;
+  .order-detail .btn,
+  .order-detail a.btn {
+    display: none !important;
   }
   .order-detail .glyphicon,
   .order-detail .column-button {
     display: none;
   }
+}
+@page {
+  margin: 0.5cm;
 }
 .not-found-search-bar {
   background-color: #393b3f;

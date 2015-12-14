@@ -1,5 +1,11 @@
+@import url('../_trulii-variables');
+
+.order-container {
+  .col-xs-10;
+  .col-xs-offset-1;
+}
+
 .order-detail{
-  background-color: @gray-lighter;
   display: flex;
   margin: 0;
   border: 1px solid @gray-lighter;
@@ -8,6 +14,7 @@
     font-family: @font-sans-alt;
   }
   .order-description, .order-info{
+    background-color: @gray-lighter;
     align-items: stretch;
   }
   .order-description{
@@ -30,9 +37,32 @@
 
   }
 
+  .print-container {
+    width: 100%;
+  }
+
   @media print {
+    .print-container{
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 48px;
+      display: block;
+    }
+
+    .order-container{
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: block;
+    }
     .order-description {
       background-color: @gray-lighter;
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color: @gray !important;
+      }
     }
     .order-tooltip, .order-tooltip:before, .order-tooltip:after {
       display: none;
@@ -40,12 +70,16 @@
     .order-info{
       width: auto;
     }
-    a, button, .btn {
-      display: none;
+    button, .btn, a.btn {
+      display: none !important;
     }
     .glyphicon, .column-button{
       display: none;
     }
+  }
+
+  @page {
+    margin: 0.5cm;
   }
 
 }
