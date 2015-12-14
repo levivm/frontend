@@ -71,7 +71,7 @@
                 var video_data = {
                     'youtube_video_url' : scope.youtube_video_url
                 };
-                return scope.update(video_data)
+                return scope.update(video_data);
             },
 
             update_profile : function () {
@@ -81,7 +81,7 @@
                     'bio' : scope.bio,
                     'headline' : scope.headline
                 };
-                return scope.update(profile_data)
+                return scope.update(profile_data);
             },
             upload_photo : function (image) {
                 var scope = this;

@@ -50,7 +50,7 @@
         }
 
         function submitVideo() {
-            vm.organizer.submitVideo().then(_updateSuccess, _updateFail);
+            vm.organizer.update_video().then(_updateSuccess, _updateFail);
         }
 
         function submitInfo() {
