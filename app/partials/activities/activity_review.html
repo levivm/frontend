@@ -34,7 +34,8 @@
         <!-- Comment -->
         <div class="col-xs-2">
             <!-- Profile picture -->
-            <img ng-src="{{user.photo}}" class="img-responsive img-circle"/>
+            <div class="review-avatar" style="background-image: url({{user.photo}})">
+            </div>
             <!-- End profile picture-->
             <!-- Name-->
             <h4 class="text-center text-sm text-uppercase text-dark montserrat-regular" ng-bind="user.user.full_name"></h4>
@@ -130,7 +131,8 @@
     <div ng-show="hasReply" class="row separate-above-less separate-below-less">
         <div class="col-xs-2 col-xs-offset-1">
             <!--TODO organizer-->
-            <img ng-src="{{ activity.organizer.photo }}" class="img-responsive img-circle"/>
+            <div class="review-avatar" style="background-image: url({{ activity.organizer.photo }})">
+            </div>
             <h4 class="text-center text-sm text-uppercase montserrat-regular" ng-bind="activity.organizer.name"></h4>
         </div>
         <div class="col-xs-9 paragraph-condensed">

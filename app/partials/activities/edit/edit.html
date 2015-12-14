@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
-            <nav class="sidebar --float lateral-slide">
+            <nav class="sidebar --float lateral-slide" ng-class="{'sidebar-short': pc.scroll > 80}">
                 <li ui-sref-active="active" ng-repeat="step in pc.steps track by step.name">
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected" ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} ">
                         <i class="{{::step.icon}} sidebar__item__icon"></i>
