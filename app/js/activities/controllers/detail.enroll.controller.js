@@ -732,12 +732,14 @@
                       return
                     vm.scroll = window.scrollY;
                     vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
-                    vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY  - 80 - document.getElementsByClassName('billing-widget')[0].offsetHeight;
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - 160 - document.getElementsByClassName('billing-widget')[0].offsetHeight * 4;
+
+                    vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+                    vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+
                     $scope.$on('scrolled',
                       function(scrolled, scroll){
-                        vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('billing-widget')[0].offsetHeight;
-                        vm.widgetAbsolutePosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - 160 - document.getElementsByClassName('billing-widget')[0].offsetHeight * 4;
+                          vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+                          vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
                         vm.scroll = scroll;
                         $scope.$apply();
                       }

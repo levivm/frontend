@@ -123,13 +123,17 @@
         function _initWidget(){
             angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
-                vm.widgetMaxPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().bottom + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 1.85;
+                vm.widgetOriginalPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().top + window.scrollY;
+
+                vm.widgetOriginalPosition = document.getElementsByClassName('navigation-widget')[0].getBoundingClientRect().top + window.scrollY;
+                vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
+                vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
                 $scope.$on('scrolled',
                   function(scrolled, scroll){
                     vm.scroll = scroll;
-                    vm.widgetMaxPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().bottom + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 1.85;
-                    vm.scroll = document.body.scrollTop;
-                    $scope.apply();
+                    vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
+                    vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
+                    $scope.$apply();
                   }
                 );
             });
