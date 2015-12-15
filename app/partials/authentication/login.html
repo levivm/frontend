@@ -1,82 +1,87 @@
+<div class="trulii-cover">
+  <div class="trulii-cover__container">
+    <div class="trulii-cover__content">
+        <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 padding-vertical-regular">
+                <div class="well">
+                    <h2 class="text-center text-muted sub-title">
+                        <strong>Iniciar sesión</strong>
+                    </h2>
+                    <h5 class="text-center separate-above text-muted sinkin-medium">
+                        Conéctate con
+                    </h5>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+                            <button type="button" class="btn btn-block btn-facebook"
+                                    ng-click="vm.facebookLogin()">
+                                <i class="trulii-icon-facebook text-spaced-more"></i>
+                                <strong class="text-uppercase text-spaced" ng-bind="vm.strings.LOGIN_WITH_FACEBOOK_MSG"></strong>
+                            </button>
 
-<div class="white-curtain"></div>
+                            <!--TODO replace with toast-->
+                            <div class="alert alert-danger" ng-show="!!vm.facebook.error">
+                                <span ng-bind="vm.strings.FACEBOOK_ERROR"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                            <hr class="separate-above separate-below-less">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+                            <form class="form-classic" name='vm.login_form' ng-submit="vm.login()">
+                                <fieldset>
+                                    <div>
+                                        <div class="form-group" trulii-input-errors-control="login">
+                                            <input class="form-control" name="login" type="text"
+                                                   ng-model="vm.auth.email"
+                                                   placeholder="{{::vm.strings.EMAIL_LABEL}}"
+                                                   trulii-input-autofocus>
+                                        </div>
+                                        <div class="form-group" trulii-input-errors-control="password">
+                                            <input class="form-control" name="password" type="password" value=""
+                                                   placeholder="{{::vm.strings.PASSWORD_LABEL}}"
+                                                   ng-model="vm.auth.password">
+                                        </div>
+                                        <h5 class="text-center">
+                                            <a ui-sref="password-forgot" class="text-muted">
+                                                <span class="text-underline sinkin-medium">Olvidé mi contraseña</span>
+                                            </a>
+                                        </h5>
 
-<div class="container-fluid">
-    <div class="row center-childs">
-        <div class="size-xs fit-in-xs separate-horizontal-inner">
-                <a ui-sref="home">
-                    <div class="trulii-inverse-med">
-                    </div>    
-                </a>
-                
-                <div class="row">
-                    <button type="button" class="btn btn-grand btn-block btn-facebook"
-                            ng-click="vm.facebookLogin()">
-                        <i class="trulii-icon-facebook  btn-grand__icon"></i>
-                        <span ng-bind="vm.strings.LOGIN_WITH_FACEBOOK_MSG"></span>
-                    </button>
+                                        <div class="form-group" trulii-input-errors-control="__all__">
+                                            <input type="hidden" name="__all__"
+                                                   ng-model="__all__"/>
+                                        </div>
 
-                    <!--TODO replace with toast-->
-                    <div class="alert alert-danger" ng-show="!!vm.facebook.error">
-                        <span ng-bind="vm.strings.FACEBOOK_ERROR"></span>
+                                        <!--TODO replace with toast-->
+                                        <div class="alert alert-error" ng-show="vm.errors.__all__">
+                                            <strong>{{vm.errors.__all__}}</strong>
+                                        </div>
+                                    </div>
+                                    <button type="submit" id="submit" class="btn btn-lg btn-primary btn-block"
+                                               ng-bind="::vm.strings.LOGIN_LABEL"></button>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="separator"></div>
+                        <div class="text-center separate-vertical" id="anchor">
+                            <span class="fit-in-xs">¿No tienes cuenta?</span>
+                             <a ng-click="vm.goSignupState()">
+                                 <strong>Registrate</strong>
+                             </a>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row separator separator-text">
-                    <p class="text-center text-muted" ng-bind="vm.strings.LOGIN_ALTERNATIVES_LABEL"></p>
-                </div>
-
-                <div class="row">
-                    <form name='vm.login_form' ng-submit="vm.login()">
-                        <fieldset>
-                            <div class="separate-vertical">
-                                <div class="form-group" trulii-input-errors-control="login">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                          <i class="mdi-communication-email"></i>
-                                        </span>
-                                        <input class="form-control input--med" name="login" type="text"
-                                               ng-model="vm.auth.email"
-                                               placeholder="{{::vm.strings.EMAIL_LABEL}}"
-                                               trulii-input-autofocus>
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="password">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                          <i class="mdi-action-lock"></i>
-                                        </span>
-                                        <input class="form-control input--med" name="password" type="password" value=""
-                                               placeholder="{{::vm.strings.PASSWORD_LABEL}}"
-                                               ng-model="vm.auth.password">
-                                    </div>
-                                </div>
-                                <a ui-sref="password-forgot">Olvidé mi contraseña</a>
-
-                                <div class="form-group" trulii-input-errors-control="__all__">
-                                    <input type="hidden" name="__all__"
-                                           ng-model="__all__"/>
-                                </div>
-
-                                <!--TODO replace with toast-->
-                                <div class="alert alert-error" ng-show="vm.errors.__all__">
-                                    <strong>{{vm.errors.__all__}}</strong>
-                                </div>
-                            </div>
-                            <button type="submit" id="submit" class="btn btn-grand btn-primary btn-block"
-                                       ng-bind="::vm.strings.LOGIN_LABEL"></button>
-                        </fieldset>
-                    </form>
-                </div>
-            <div class="row">
-                <div class="separator"></div>
-                <div class="text-center separate-vertical" id="anchor">
-                    <span class="fit-in-xs">¿No tienes cuenta?</span>
-                     <a  ng-click="vm.goSignupState()"class="lightbg-strong-anchor separate-horizontal"> Registrate aquí</a>
-                </div>    
             </div>
-        </div>        
+        </div>
     </div>
+    <div class="trulii-cover__background" style="background-image: url(/css/img/cover.png);">
+    </div>
+  </div>
 </div>
-
-
+<trulii-footer></trulii-footer>

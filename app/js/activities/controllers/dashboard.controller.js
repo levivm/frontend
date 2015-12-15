@@ -61,9 +61,7 @@
 
             activity.publish().then(function (response) {
 
-                if(pc.activity.isFirstEdit())
-                    $state.go('activities-detail',{'activity_id':pc.activity.id});
-
+                $state.go('activities-detail',{'activity_id':pc.activity.id});
 
                 Toast.success(pc.strings.ACTIVITY_PUBLISHED);
                 pc.allow_unpublish = true;

@@ -97,7 +97,7 @@
                 PASSWORD_LABEL : "Contraseña",
                 FIRST_NAME_LABEL : "Nombre",
                 LAST_NAME_LABEL : "Apellido",
-                REGISTER_WITH_FACEBOOK_MSG : "Regístrate con Facebook",
+                REGISTER_WITH_FACEBOOK_MSG : "Facebook",
                 FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook"
             });
         }

@@ -12671,6 +12671,9 @@ hr.on-light {
 .text-spaced {
   letter-spacing: 3px;
 }
+.text-spaced-more {
+  letter-spacing: 7px;
+}
 .text-spaced-less {
   letter-spacing: 1px;
 }
@@ -13038,6 +13041,13 @@ h5 a {
   padding-top: 0 !important;
 }
 .no-padding-left {
+  padding-left: 0 !important;
+}
+.no-padding-right {
+  padding-right: 0 !important;
+}
+.no-padding-horizontal {
+  padding-right: 0 !important;
   padding-left: 0 !important;
 }
 .no-margin-top {
@@ -13793,7 +13803,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 70px;
-  width: 72%;
+  width: 68%;
   margin: 0.2em 1em;
 }
 .navbar__left-wrapper .buttons {
@@ -15083,6 +15093,8 @@ tags-input input {
   padding: 2em;
   border-radius: 3px;
   background-image: none;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
 }
 .form-classic input.input-sm,
 .form-classic select.input-sm,
