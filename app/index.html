@@ -40,6 +40,7 @@
     <link rel="stylesheet" href="lib/nouislider/distribute/nouislider.min.css">
     <!-- endinject -->
 
+
     <!-- inject:css -->
     <link rel="stylesheet" href="css/trulii.css">
     <!-- endinject -->
@@ -58,7 +59,7 @@
     <div class="only-fade" ui-view autoscroll="true"></div>
 </div>
 
-<trulii-preloader is-global="true"></trulii-preloader>
+<!-- <trulii-preloader is-global="true"></trulii-preloader> -->
 
 <div ui-view="landing"></div>
 <div id="payu-franchise"></div>
@@ -101,6 +102,8 @@
 
 <!-- TODO Add with gulp -->
 <script src="lib/angular-i18n/angular-locale_es-co.js"></script>
+<script src='lib/angular-loading-bar/build/loading-bar.min.js'></script>
+
 
 <!-- inject:js -->
 <script src="js/trulii.js"></script>
@@ -109,8 +112,8 @@
 <script src="js/trulii.serverConf.js"></script>
 <script src="js/about/about.module.js"></script>
 <script src="js/activities/activities.module.js"></script>
-<script src="js/authentication/authentication.module.js"></script>
 <script src="js/help/help.module.js"></script>
+<script src="js/authentication/authentication.module.js"></script>
 <script src="js/landing/landing.module.js"></script>
 <script src="js/locations/locations.module.js"></script>
 <script src="js/organizers/organizers.module.js"></script>
@@ -196,6 +199,7 @@
 <script src="js/activities/controllers/manage.controller.js"></script>
 <script src="js/activities/controllers/manage.orders.order.controller.js"></script>
 <script src="js/activities/controllers/manage_list.controller.js"></script>
+<<<<<<< a415a46fe2a168bf68696f5c50166b97b93f86b8
 <script src="js/authentication/controllers/email_confirm.controller.js"></script>
 <script src="js/authentication/controllers/forgot_password.controller.js"></script>
 <script src="js/authentication/controllers/login.controller.js"></script>
@@ -203,7 +207,16 @@
 <script src="js/authentication/controllers/register.controller.js"></script>
 <script src="js/authentication/controllers/reset_password.controller.js"></script>
 <script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
+=======
+>>>>>>> TRUL-337 #comment Agregado barra de carga
 <script src="js/help/controllers/help.controller.js"></script>
+<script src="js/authentication/controllers/email_confirm.controller.js"></script>
+<script src="js/authentication/controllers/forgot_password.controller.js"></script>
+<script src="js/authentication/controllers/login.controller.js"></script>
+<script src="js/authentication/controllers/logout.controller.js"></script>
+<script src="js/authentication/controllers/register.controller.js"></script>
+<script src="js/authentication/controllers/reset_password.controller.js"></script>
+<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
 <script src="js/landing/controllers/contact.controller.js"></script>
 <script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/landing/controllers/not_found.controller.js"></script>
@@ -216,10 +229,10 @@
 <script src="js/organizers/controllers/dashboard_transactions.controller.js"></script>
 <script src="js/organizers/controllers/landing.controller.js"></script>
 <script src="js/organizers/controllers/profile.controller.js"></script>
+<script src="js/search/controllers/search.controller.js"></script>
 <script src="js/referrals/controllers/referrals.controller.js"></script>
 <script src="js/referrals/controllers/referrals_anonymous.controller.js"></script>
 <script src="js/referrals/controllers/referrals_invitation.controller.js"></script>
-<script src="js/search/controllers/search.controller.js"></script>
 <script src="js/students/controllers/dashboard.controller.js"></script>
 <script src="js/students/controllers/dashboard_account.controller.js"></script>
 <script src="js/students/controllers/dashboard_activities.controller.js"></script>
