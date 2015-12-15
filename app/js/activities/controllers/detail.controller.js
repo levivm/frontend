@@ -330,7 +330,7 @@
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
                 COPY_SHARE_WIDGET: "¡Compártelo con tus amigos!",
-                COPY_NO_RATINGS: "Sin Reviews",
+                COPY_NO_RATINGS: "Sin Comentarios",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                 COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizará en otra oportunidad ",
                 COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
