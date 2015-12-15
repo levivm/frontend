@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-2">
-            <nav class="sidebar --float lateral-slide" ng-class="{'sidebar-short': pc.scroll > 80}">
+            <nav class="sidebar lateral-slide" ng-class="{'sidebar-short': pc.scroll > 80}">
                 <li ui-sref-active="active" ng-repeat="step in pc.steps track by step.name">
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected" ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} ">
                         <i class="{{::step.icon}} sidebar__item__icon"></i>
@@ -20,7 +20,7 @@
                                     'other': 'Faltan'
                                     }">
                             </ng-pluralize>
-                            <strong class="text-color-secondary">{{pc.activity.steps_left}}
+                            <strong>{{pc.activity.steps_left}}
 
                                 <ng-pluralize count="pc.activity.steps_left"
                                     when="{
@@ -62,12 +62,21 @@
                             Publicando...
                         </div>
                     </div>
-                    <div class="text-center separate-above-less">
-                        <a ui-sref="activities-detail({'activity_id':pc.activity.id})"
+                </div>
+                <div class="sidebar__bottom-action-dark">
+                    <ul class="list-inline list-unstyled text-center text-uppercase">
+                        <li>
+                            <img src="/css/img/eye.png"alt="" />
+                        </li>
+                        <li>
+                            <a ui-sref="activities-detail({'activity_id':pc.activity.id})"
                                 ng-show="!pc.activity.published" ng-bind="pc.strings.COPY_PRE_VIEW_ACTIVITY"></a>
-                        <a ui-sref="activities-detail({'activity_id':pc.activity.id})"
+                        </li>
+                        <li>
+                            <a ui-sref="activities-detail({'activity_id':pc.activity.id})"
                                 ng-show="pc.activity.published" ng-bind="pc.strings.COPY_VIEW_ACTIVITY"></a>
-                    </div>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </div>

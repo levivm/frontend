@@ -14385,7 +14385,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   z-index: 1000;
   overflow-x: visible;
   overflow-y: auto;
-  padding: 20px 0;
+  padding: 20px 0 0 0;
   background-color: #393b3f;
   width: 17em;
   max-height: calc(100vh - 80px);
@@ -14502,15 +14502,18 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar li {
   display: block;
 }
+.sidebar .list-inline li {
+  display: inline-block;
+}
 .sidebar__bottom-action {
-  background: #eeeeee;
+  background: #3a3d3f;
   width: 100%;
   padding: 1em;
   margin-top: 2em;
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: .9em;
-  color: #999999;
+  color: #fafafa;
 }
 .sidebar__bottom-action hr {
   display: block;
@@ -14532,11 +14535,19 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-weight: bold;
   line-height: 1.5em;
 }
+.sidebar__bottom-action-dark {
+  background-color: #222222;
+  padding: 1em 0em 0.25em 0em;
+}
+.sidebar__bottom-action-dark a {
+  color: #999999;
+  text-decoration: none;
+}
 .sidebar .mandatory-mark {
   display: inline-block;
   width: 8px;
   height: 8px;
-  background-color: #38dbc8;
+  background-color: #ffd580;
   border-radius: 50%;
 }
 .sidebar .mandatory-mark.--right {
@@ -14670,7 +14681,7 @@ label {
 }
 select.form-control {
   font-size: 1em;
-  height: 28px;
+  height: 30px;
 }
 select.form-control.input-sm {
   font-size: 1em;

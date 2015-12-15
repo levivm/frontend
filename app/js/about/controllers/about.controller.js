@@ -65,7 +65,7 @@
                 CULTURE_GRAPH_BRANCH_4_TEXT_2: "+ Desempeño",
 
                 CULTURE_COVER_TITLE: "Valores en Trulii",
-                CULTURE_COVER_TEXT: "Los valores que nos mueven como empresa",
+                CULTURE_COVER_TEXT: "Los valores que nos mueven como empresa.",
 
                 CULTURE_SECTION_2_CONTENT_TITLE: "¿Cuáles valores son importantes para nosotros?",
                 CULTURE_SECTION_2_CONTENT_TEXT_1: "Determinamos un conjunto de valores que:",
