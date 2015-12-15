@@ -382,9 +382,9 @@
 
         function saveBankingInfo(data){
             if (data.id)
-                return $http.put(api.bankingInfo(this.id), data).then(success, error);
+                return $http.put(api.bankingInfo(), data).then(success, error);
             else
-                return $http.post(api.bankingInfo(this.id), data).then(success, error);
+                return $http.post(api.bankingInfo(), data).then(success, error);
 
 
             function success(response){
