@@ -128,18 +128,10 @@
         font-size: 1.25em;
     }
 
-    &::before{
-        background-image: url(/css/img/home/search.png);
-        height: 100%;
-        width: 25px;
-        left: 0px;
-        top: 0px;
-        z-index: 1000000;
-        content: '';
-        display: inline;
-        position: absolute;
-        background-repeat: no-repeat;
-        background-position: 10px center;
+    .dropdown-menu{
+        width: 50%;
+        padding: 0;
+        border: none !important;
     }
 
     &__navbar {
@@ -152,6 +144,10 @@
         border-radius: 0;
         display: inline-block;
         position: relative;
+
+        .dropdown-menu{
+            width: 60%;
+        }
 
         @media screen and (max-width: @screen-md ) {
             width: 40%;
@@ -180,12 +176,13 @@
             border-right: none;
         }
 
-        input, select {
+        input, select, button {
             background-color: transparent;
             background-image: none;
             font-family: @font-sans;
             font-size: 0.95em;
             font-weight: 200;
+            float: left;
             &:focus{
 
             }
@@ -239,25 +236,14 @@
             height: 100%;
             display: inline-block;
             border: 0;
-            border-left: 1px solid @color-delimeter-dark;
+            border: 1px solid darken(@gray-lighter, 4%);
+            border-radius: 0;
             background: transparent;
 
             &:extend(.show-after-sm);
         }
 
-        &::before{
-            background-image: url(/css/img/home/search.png);
-            height: 100%;
-            width: 25px;
-            left: 5px;
-            top: 0px;
-            z-index: 1000000;
-            content: '';
-            display: inline;
-            position: absolute;
-            background-repeat: no-repeat;
-            background-position: 10px center;
-        }
+
 
     }
 }

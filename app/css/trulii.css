@@ -13793,7 +13793,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 70px;
-  width: 65%;
+  width: 72%;
   margin: 0.2em 1em;
 }
 .navbar__left-wrapper .buttons {
@@ -14254,18 +14254,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-top: 5px solid #732ebb;
   font-size: 1.25em;
 }
-.search-bar::before {
-  background-image: url(/css/img/home/search.png);
-  height: 100%;
-  width: 25px;
-  left: 0px;
-  top: 0px;
-  z-index: 1000000;
-  content: '';
-  display: inline;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: 10px center;
+.search-bar .dropdown-menu {
+  width: 50%;
+  padding: 0;
+  border: none !important;
 }
 .search-bar__navbar {
   width: 40em;
@@ -14276,6 +14268,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 0;
   display: inline-block;
   position: relative;
+}
+.search-bar__navbar .dropdown-menu {
+  width: 60%;
 }
 @media screen and (max-width: 992px) {
   .search-bar__navbar {
@@ -14306,12 +14301,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-right: none;
 }
 .search-bar__navbar input,
-.search-bar__navbar select {
+.search-bar__navbar select,
+.search-bar__navbar button {
   background-color: transparent;
   background-image: none;
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.95em;
   font-weight: 200;
+  float: left;
 }
 .search-bar__navbar select.form-control {
   display: inline-block;
@@ -14354,26 +14351,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 100%;
   display: inline-block;
   border: 0;
-  border-left: 1px solid #d7d7d7;
+  border: 1px solid #e4e4e4;
+  border-radius: 0;
   background: transparent;
 }
 .search-bar__navbar button:before {
   display: inline-block;
   color: rgba(0, 0, 0, 0.74);
   font-size: 1.1em;
-}
-.search-bar__navbar::before {
-  background-image: url(/css/img/home/search.png);
-  height: 100%;
-  width: 25px;
-  left: 5px;
-  top: 0px;
-  z-index: 1000000;
-  content: '';
-  display: inline;
-  position: absolute;
-  background-repeat: no-repeat;
-  background-position: 10px center;
 }
 .sidebar {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
