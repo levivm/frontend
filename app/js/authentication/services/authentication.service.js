@@ -48,6 +48,7 @@
             unauthenticate: unauthenticate,
             isStudent: isStudent,
             isOrganizer: isOrganizer,
+            emitUserChanged: emitUserChanged,
             USER_CHANGED_EVENT : USER_CHANGED_EVENT,
             USER_LOGOUT_EVENT : USER_LOGOUT_EVENT
         };
@@ -334,6 +335,15 @@
 
         function redirect(){
             $state.go("home");
+        }
+
+        function emitUserChanged(){
+            console.log('Authentication. emitUserChanged. $emit');
+            getAuthenticatedAccount(true).then(callback, callback);
+
+            function callback(){
+                $rootScope.$emit(USER_CHANGED_EVENT);
+            }
         }
 
     }

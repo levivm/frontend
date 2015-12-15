@@ -132,14 +132,13 @@
             /**
              * @ngdoc function
              * @name .#bankingInfo
-             * @description Renders **`/api/organizer/:idOrganizer/bankinfo`**
+             * @description Renders **`/api/organizer/bankinfo`**
              * Organizer Instructor URL
-             * @param {number} idOrganizer Organizer Id
              * @return {string} Rendered URL
              * @methodOf trulii.organizers.services.OrganizerServerApi
              */
-            'bankingInfo': function (idOrganizer){
-                return renderUrl('organizer/', [idOrganizer, 'bankinfo/']);
+            'bankingInfo': function (){
+                return renderUrl('organizers/', [ 'bankinfo/']);
             }
         };
 

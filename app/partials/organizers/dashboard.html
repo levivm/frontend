@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="sidebar lateral-slide">
+        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80}">
             <a ui-sref=".profile"
                class="sidebar__item"
                ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.profile.*')}">
@@ -30,7 +30,7 @@
                ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.reviews.*')}">
                 <i class="sidebar__item__icon mdi-communication-comment"></i>
                 <span ng-bind="::dash.strings.SECTION_REVIEWS"></span>
-                <span class="label label-success" ng-bind="::dash.reviews.length"></span>
+                <span class="label label-success" ng-bind="dash.unreadReviewsCount.count"></span>
             </a>
             <a ui-sref=".transactions.sales"
                class="sidebar__item"

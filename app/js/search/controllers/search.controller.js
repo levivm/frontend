@@ -20,6 +20,7 @@
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var unsuscribeSearchModified = null;
+        var unsuscribeExitSearch = null;
         var activities = [];
         var vm = this;
         var ORDERING_BY_SCORE_KEY = 'score';
@@ -81,7 +82,7 @@
                  {
                     'predicate':ORDERING_BY_ASSISTANT_AMOUNT_KEY,
                     'name':'Asistentes'
-                },               
+                },
 
             ],
             pageChange:pageChange,
@@ -147,7 +148,7 @@
             SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
             var transitionOptions = {location: true, inherit: false,reload:false};
-            
+
             $state.go('search', SearchManager.getSearchData(),transitionOptions);
         }
 
@@ -202,7 +203,7 @@
                 activities = $filter('orderBy')(activities,_orderBySoonestDate);
             else
                 activities = $filter('orderBy')(activities,predicate);
-            
+
             vm.activitiesPaginationOpts.pageNumber = 1;
             pageChange();
         }
@@ -250,7 +251,7 @@
 
             if(vm.searchData.hasOwnProperty(sm.KEY_DATE)){ vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]); }
             if(vm.searchData.hasOwnProperty(sm.KEY_LEVEL)){_setLevel(vm.searchData[sm.KEY_LEVEL]);}
-            
+
             if(vm.searchData.hasOwnProperty(sm.KEY_COST_START)){ vm.searchStartCost = vm.searchData[sm.KEY_COST_START]; }
             if(vm.searchData.hasOwnProperty(sm.KEY_COST_END)){ vm.searchEndCost = vm.searchData[sm.KEY_COST_END]; }
 
@@ -353,6 +354,7 @@
 
         function _cleanUp() {
             unsuscribeSearchModified();
+            //unsuscribeExitSearch();
         }
 
         function _activate(){
@@ -377,6 +379,13 @@
                     });
                 }
             );
+
+            unsuscribeExitSearch = $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState){
+                if(toState.name !== 'search'){
+                    SearchManager.clearData();
+                    unsuscribeExitSearch();
+                }
+            });
             $scope.$on('$destroy', _cleanUp);
 
         }

@@ -15,13 +15,13 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDashboardCtrl', ActivityDashboardCtrl);
 
-    ActivityDashboardCtrl.$inject = ['$state','Toast', 'ActivitySteps', 'activity'];
+    ActivityDashboardCtrl.$inject = ['$state', '$scope', 'Toast', 'ActivitySteps', 'activity'];
 
-    function ActivityDashboardCtrl($state, Toast, ActivitySteps, activity) {
+    function ActivityDashboardCtrl($state, $scope, Toast, ActivitySteps, activity) {
 
         var pc = this;
 
-        angular.extend(pc,{ 
+        angular.extend(pc,{
             steps: angular.copy(ActivitySteps),
             activity: activity,
             sidebar: true,
@@ -33,6 +33,7 @@
             publish_activity: _publish_activity,
             unpublish_activity: _unpublish_activity,
             steps_left: activity.steps_left,
+            scroll: 0
         });
 
 
@@ -48,7 +49,7 @@
 
         function getCheckStyle(section) {
 
-            var sectionIndex = _.indexOf(ActivitySteps, section);     
+            var sectionIndex = _.indexOf(ActivitySteps, section);
             var classes = {};
             classes['bg-primary-' + (sectionIndex)] = pc.isSectionCompleted(section.name);
 
@@ -60,10 +61,8 @@
 
             activity.publish().then(function (response) {
 
-                if(pc.activity.isFirstEdit())
-                    $state.go('activities-detail',{'activity_id':pc.activity.id});
+                $state.go('activities-detail',{'activity_id':pc.activity.id});
 
-                
                 Toast.success(pc.strings.ACTIVITY_PUBLISHED);
                 pc.allow_unpublish = true;
             },function(response){
@@ -75,7 +74,7 @@
         function _unpublish_activity() {
             pc.allow_unpublish = false;
             activity.unpublish().then(function (response) {
-                
+
 
                 Toast.warning(pc.strings.UNPUBLISH_ACTIVITY_WARNING);
                 pc.allow_publish = true;
@@ -98,17 +97,28 @@
             pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad saldrá de los motores de búsqueda";
             pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar";
             pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
-            pc.strings.COPY_VIEW_ACTIVITY = "Visualizar Actividad";
-            pc.strings.COPY_PRE_VIEW_ACTIVITY = "Previsualizar Actividad";
+            pc.strings.COPY_VIEW_ACTIVITY = "Visualizar";
+            pc.strings.COPY_PRE_VIEW_ACTIVITY = "Previsualizar";
 
         }
 
+        function _initScroll(){
+            $scope.$on('scrolled',
+              function(scrolled, scroll){
+                pc.scroll = scroll;
+                $scope.$apply();
+              }
+            );
+        }
+
+
         function activate() {
             _setStrings();
+            _initScroll();
             // pc.sidebar = true;
             activity.updateAllSections();
 
-            match_required_steps(pc.steps, pc.activity.required_steps);            
+            match_required_steps(pc.steps, pc.activity.required_steps);
 
             function match_required_steps(steps, required_steps){
 

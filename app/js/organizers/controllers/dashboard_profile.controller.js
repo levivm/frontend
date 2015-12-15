@@ -18,9 +18,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileCtrl', OrganizerProfileCtrl);
 
-    OrganizerProfileCtrl.$inject = ['$timeout', 'uiGmapIsReady', 'LocationManager', 'Toast', 'Error',
+    OrganizerProfileCtrl.$inject = ['$rootScope', 'uiGmapIsReady', 'Authentication', 'LocationManager', 'Toast', 'Error',
         'organizer', 'cities'];
-    function OrganizerProfileCtrl($timeout, uiGmapIsReady, LocationManager, Toast, Error, organizer, cities) {
+    function OrganizerProfileCtrl($rootScope, uiGmapIsReady, Authentication, LocationManager, Toast, Error, organizer, cities) {
 
         var vm = this;
         angular.extend(vm, {
@@ -50,7 +50,7 @@
         }
 
         function submitVideo() {
-            vm.organizer.submitVideo().then(_updateSuccess, _updateFail);
+            vm.organizer.update_video().then(_updateSuccess, _updateFail);
         }
 
         function submitInfo() {
@@ -62,7 +62,7 @@
         function submitLocation() {
             Error.form.clear(vm.organizer_location_form);
             _setOrganizerPos();
-            vm.organizer.submitLocation(vm.organizer.location).then(_successUpdatedLocation, _updateFail)
+            vm.organizer.update_location(vm.organizer.location).then(_successUpdatedLocation, _updateFail)
         }
 
         //--------- Internal Functions ---------//
@@ -86,6 +86,7 @@
             vm.photo_path = response.data.photo;
             vm.photo_invalid = false;
             vm.photo_loading = false;
+            Authentication.emitUserChanged();
         }
 
         function _successUpdatedLocation(response) {

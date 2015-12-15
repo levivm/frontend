@@ -12,14 +12,16 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = ['$state', 'reviews'];
-    function OrganizerDashboardCtrl($state, reviews) {
+    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount',];
+    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount) {
 
         var vm = this;
         angular.extend(vm, {
             isActive: isActive,
-            reviews: reviews
+            unreadReviewsCount: unreadReviewsCount,
+            scroll: 0,
         });
+
 
         _activate();
 
@@ -41,8 +43,18 @@
             });
         }
 
+        function _initScroll(){
+            $scope.$on('scrolled',
+              function(scrolled, scroll){
+                vm.scroll = scroll;
+                $scope.$apply();
+              }
+            );
+        }
+
         function _activate() {
             _setStrings();
+            _initScroll();
         }
 
     }

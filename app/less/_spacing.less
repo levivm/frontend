@@ -86,6 +86,14 @@
     padding-left: 0 !important;
 }
 
+.no-padding-right{
+    padding-right: 0 !important;
+}
+
+.no-padding-horizontal{
+    .no-padding-right;
+    .no-padding-left;
+}
 .no-margin-top{
     margin-top: 0 !important;
 }
@@ -154,10 +162,23 @@
     }
 }
 
+.margin-vertical {
+    margin: @spacing-standard 0;
+
+    &-less{
+        margin: @spacing-less 0;
+    }
+}
+
 hr{
     width:98%;
     &.complete{
         width:100%;
     }
+}
 
+@media print {
+    .print-no-margin {
+        margin: 0;
+    }
 }

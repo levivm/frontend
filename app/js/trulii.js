@@ -13,6 +13,7 @@
             'LocalStorageModule',
             'angularMoment',
             'ui.utils.masks',
+            'angular-loading-bar',
             'trulii.routes',
             'trulii.config',
             'trulii.authentication',
@@ -30,7 +31,6 @@
             'trulii.help',
             'ngVideo'
         ]);
-
 
     angular
         .module('trulii.config', ['facebook','720kb.socialshare']);

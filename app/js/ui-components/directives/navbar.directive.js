@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$window', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'Scroll'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture) {
+    function truliiNavbar($rootScope, $timeout, $state, $window, UIComponentsTemplatesPath, Authentication, defaultPicture, Scroll) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -27,7 +27,8 @@
                     state: null,
                     isSearchVisible : true,
                     showBurger : false,
-                    toggleBurger: toggleBurger
+                    toggleBurger: toggleBurger,
+                    scroll: 0
                 });
 
                 _activate();
@@ -57,11 +58,13 @@
                             scope.user.is_student = result;
                         });
                         _mapDisplayName(scope.user);
+                        _setUserChangedWatch();
                     }
 
                     function error() {
                         console.log('navbar response reject');
                         scope.user = null;
+                        _setUserChangedWatch();
                     }
                 }
 
@@ -71,7 +74,7 @@
                     if (company) {
                         user.full_name = company;
                     } else if (user.full_name) {
-                        console.log('Full Name already defined');
+                        //console.log('Full Name already defined');
                     } else if (user.first_name && user.last_name) {
                         user.full_name = user.first_name;
                     } else {
@@ -127,23 +130,38 @@
                     });
                 }
 
+                function _setUserChangedWatch(){
+                    unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
+                        event.preventDefault();
+                        console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
+                        _getUser();
+                        unsubscribeUserChanged();
+                    });
+                }
+
                 function _cleanUp() {
                     unsubscribeUserChanged();
                     unsubscribeUserLoggedOut();
                 }
 
+                function _initScroll(){
+                  scope.$on('scrolled',
+                    function(scrolled, scroll){
+                      scope.scroll = scroll;
+                      scope.$apply();
+                    }
+                  );
+                }
+
                 function _activate() {
                     _setStrings();
                     _getUser();
+                    _initScroll();
+                    _setUserChangedWatch();
 
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isSearchVisible = !(toState.name == 'home' || toState.name == 'not-found' || $state.includes('dash'));
-                    });
-
-                    unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
-                        console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
-                        _getUser();
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {

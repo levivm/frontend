@@ -46,7 +46,7 @@
                 return $q.reject(response);
             }
         }
-    
+
         function facebookLogin() {
             return  Authentication.facebookLogin()
                         .then(_loginSuccess ,error);
@@ -80,7 +80,7 @@
                 PASSWORD_LABEL : "Contraseña",
                 FIRST_NAME_LABEL : "Nombre",
                 LAST_NAME_LABEL : "Apellido",
-                LOGIN_WITH_FACEBOOK_MSG : "Iniciar sesión con Facebook",
+                LOGIN_WITH_FACEBOOK_MSG : "Facebook",
                 FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook"
             });
         }

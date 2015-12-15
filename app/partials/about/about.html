@@ -1,31 +1,34 @@
-<div class="navigation-widget" ng-class="{'absolute-widget': about.scroll >= about.widgetMaxPosition && about.widgetMaxPosition > 0}"
-  ng-style="about.scroll >= about.widgetMaxPosition && about.widgetMaxPosition > 0 && {'top': about.widgetMaxPosition}">
-  <ul class="list-unstyled">
-    <li ui-sref-active="active">
-      <a ui-sref="about.mission">
-        <img src="/css/img/about/icon_mission.png" class="img-responsive navigation-widget__icon" alt="" />
-        <img src="/css/img/about/icon_mission_active.png" class="img-responsive navigation-widget__icon-active" alt="" />
-        <h4 class="navigation-widget__title" ng-bind="::about.strings.WIDGET_MISSION_COPY"></h4>
-      </a>
-    </li>
-    <li ui-sref-active="active">
-      <a ui-sref="about.culture">
-        <img src="/css/img/about/icon_culture.png" class="img-responsive navigation-widget__icon" alt="" />
-        <img src="/css/img/about/icon_culture_active.png" class="img-responsive navigation-widget__icon-active" alt="" />
-        <h4 class="navigation-widget__title" ng-bind="::about.strings.WIDGET_CULTURE_COPY"></h4>
-      </a>
-    </li>
-    <li ui-sref-active="active">
-      <a ui-sref="about.team">
-        <img src="/css/img/about/icon_team.png" class="img-responsive navigation-widget__icon" alt="" />
-        <img src="/css/img/about/icon_team_active.png" class="img-responsive navigation-widget__icon-active" alt="" />
-        <h4 class="navigation-widget__title" ng-bind="::about.strings.WIDGET_TEAM_COPY"></h4>
-      </a>
-    </li>
-  </ul>
+<div class="navigation-container">
+    <div class="navigation-widget" ng-class="{'absolute-widget': about.scroll >= about.widgetMaxPosition && about.widgetMaxPosition > 0}"
+      ng-style="about.scroll >= about.widgetMaxPosition && about.widgetMaxPosition > 0 && {'top': about.widgetMaxPosition}">
+      <ul class="list-unstyled">
+        <li ui-sref-active="active">
+          <a ui-sref="about.mission">
+            <img src="/css/img/about/icon_mission.png" class="img-responsive navigation-widget__icon" alt="" />
+            <img src="/css/img/about/icon_mission_active.png" class="img-responsive navigation-widget__icon-active" alt="" />
+            <h4 class="navigation-widget__title" ng-bind="::about.strings.WIDGET_MISSION_COPY"></h4>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="about.culture">
+            <img src="/css/img/about/icon_culture.png" class="img-responsive navigation-widget__icon" alt="" />
+            <img src="/css/img/about/icon_culture_active.png" class="img-responsive navigation-widget__icon-active" alt="" />
+            <h4 class="navigation-widget__title" ng-bind="::about.strings.WIDGET_CULTURE_COPY"></h4>
+          </a>
+        </li>
+        <li ui-sref-active="active">
+          <a ui-sref="about.team">
+            <img src="/css/img/about/icon_team.png" class="img-responsive navigation-widget__icon" alt="" />
+            <img src="/css/img/about/icon_team_active.png" class="img-responsive navigation-widget__icon-active" alt="" />
+            <h4 class="navigation-widget__title" ng-bind="::about.strings.WIDGET_TEAM_COPY"></h4>
+          </a>
+        </li>
+      </ul>
+    </div>
 </div>
 <div class="about-container">
   <div ui-view autoscroll="true">
   </div>
 </div>
+<div class="about-delimiter"></div>
 <trulii-footer></trulii-footer>

@@ -48,8 +48,16 @@
 
         function changePassword() {
             Error.form.clear(vm.account_form_password);
-            vm.student.change_password(vm.password_data)
-                .then(success, fail);
+
+            if(vm.password_data.oldpassword === vm.password_data.password1){
+              vm.isSaving = false;
+              Toast.error(vm.strings.COPY_TOAST_SAME,{timeOut: 10000});
+            }
+
+            else{
+              vm.student.change_password(vm.password_data)
+                  .then(success, fail);
+            }
 
             function success(response) {
                 vm.isSaving = false;
@@ -61,6 +69,7 @@
 
                 Toast.info(vm.strings.COPY_TOAST_CHANGE_PASSWORD_INFO,
                         vm.strings.COPY_TOAST_CHANGE_PASSWORD,{timeOut: 10000});
+
             }
 
             function fail(response){
@@ -72,7 +81,7 @@
         function _changeSuccess(response) {
             Authentication.getAuthenticatedAccount(true);
             vm.isSaving = false;
-            Toast.info(vm.strings.COPY_TOAST_EMAIL_CHANGED_INFO, 
+            Toast.info(vm.strings.COPY_TOAST_EMAIL_CHANGED_INFO,
                     vm.strings.COPY_TOAST_EMAIL_CHANGED,{timeOut: 10000});
         }
 
@@ -82,7 +91,7 @@
             if (responseErrors) {
                 Error.form.add(form, responseErrors);
             }
-        }        
+        }
 
         function _getOrders(){
             student.getOrders().then(success, error);
@@ -101,7 +110,7 @@
             }
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
-                COPY_TAB_EMAIL: "Luego de cambiar tu dirección de correo electrónico te enviaremos un" 
+                COPY_TAB_EMAIL: "Luego de cambiar tu dirección de correo electrónico te enviaremos un"
                        + " correo a tu nueva dirección.",
                 COPY_TAB_PASSWORD: "En caso de modificar tu contraseña te recomendamos crear una segura y fácil de recordar.",
                 LABEL_CURRENT_PASSWORD: "Contraseña actual",
@@ -114,7 +123,8 @@
                 COPY_TOAST_EMAIL_CHANGED: "Correo cambiado",
                 COPY_TOAST_EMAIL_CHANGED_INFO: "Si el correo electrónico llegó a tu nueva dirección, cierra sesión "
                         + "e inicia nuevamente con tu nueva dirección.",
-                COPY_TOAST_CHANGE_PASSWORD: "Contraseña cambiada"
+                COPY_TOAST_CHANGE_PASSWORD: "Contraseña cambiada",
+                COPY_TOAST_SAME: "Su nueva contraseña debe ser distinta a la anterior"
             });
         }
 

@@ -71,7 +71,7 @@
                 var video_data = {
                     'youtube_video_url' : scope.youtube_video_url
                 };
-                return scope.update(video_data)
+                return scope.update(video_data);
             },
 
             update_profile : function () {
@@ -81,7 +81,7 @@
                     'bio' : scope.bio,
                     'headline' : scope.headline
                 };
-                return scope.update(profile_data)
+                return scope.update(profile_data);
             },
             upload_photo : function (image) {
                 var scope = this;
@@ -289,6 +289,7 @@
         function getReviews(){
             var deferred = $q.defer();
             var reviews = [];
+            var organizer_scope = this;
 
             collectReviews(api.reviews(this.id));
 
@@ -300,6 +301,7 @@
 
                 function success(response) {
                     reviews = reviews.concat(response.data.results);
+                    organizer_scope.unread_reviews_c = 10;
                     if(response.data.next){
                         return collectReviews(response.data.next);
                     } else {
@@ -380,9 +382,9 @@
 
         function saveBankingInfo(data){
             if (data.id)
-                return $http.put(api.bankingInfo(this.id), data).then(success, error);
+                return $http.put(api.bankingInfo(), data).then(success, error);
             else
-                return $http.post(api.bankingInfo(this.id), data).then(success, error);
+                return $http.post(api.bankingInfo(), data).then(success, error);
 
 
             function success(response){

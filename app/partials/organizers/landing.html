@@ -208,7 +208,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
                             <form class="form-classic separate-above-medium separate-below-more"
-                                  name='landing.pre_signup_form' id="organizer_signup_form" ng-submit="landing.request_signup()">
+                                  name='landing.pre_signup_form' id="organizer_signup_form" ng-submit="landing.requestSignup()">
                                 <fieldset>
                                     <div class="form-group" trulii-input-errors-control="name">
                                         <input id="name" class="form-control" name="name" type="text"
@@ -218,8 +218,7 @@
                                     <div class="form-group" trulii-input-errors-control="email">
                                         <input id="email" class="form-control" name="email" type="text"
                                                ng-model="landing.request.email"
-                                               placeholder="{{::landing.strings.PLACEHOLDER_EMAIL}}"
-                                        >
+                                               placeholder="{{::landing.strings.PLACEHOLDER_EMAIL}}">
                                     </div>
                                     <div class="form-group" trulii-input-errors-control="telephone">
                                         <input name="telephone" class="form-control" type="tel"
@@ -227,12 +226,13 @@
                                                ng-model="landing.request.telephone" value="">
                                     </div>
                                     <div class="form-group" trulii-input-errors-control="city">
-                                        <select class="form-control" name="city" ng-model="landing.request.city"
-                                          ng-options="city as city.name for city in landing.cities track by city.id">
+                                        <label for="city" class="sr-only" ng-bind="::landing.strings.LABEL_CITY"></label>
+                                        <select class="form-control" id="city" name="city" ng-model="landing.selectedCity"
+                                          ng-options="city.id as city.name for city in landing.cities track by city.id">
                                           <option value="" ng-bind="::landing.strings.PLACEHOLDER_CITY"></option>
                                         </select>
                                     </div>
-                                    <div class="form-group">
+                                    <div class="form-group" trulii-input-errors-control="city">
                                         <div class="row">
                                             <div class="col-xs-4">
                                                 <label class="sr-only" for="document_type" ng-bind="::landing.strings.LABEL_DOCUMENT_TYPE"></label>
@@ -249,21 +249,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group" trulii-input-errors-control="city">
-                                        <trulii-input-alert field="landing.pre_signup_form.city"
-                                                            errors="landing.errors"></trulii-input-alert>
+                                    <div class="form-group" trulii-input-errors-control="__all__">
+                                        <input type="hidden" ng-model="landing.errors.__all__" name="__all__"/>
                                     </div>
-
-                                    <div class="alert alert-error" ng-show="landing.errors.__all__">
-                                        <strong>{{landing.errors.__all__}}</strong>
-                                    </div>
-
                                     <div class="form-group">
                                         <button class="btn btn-block btn-success btn-lg" type="submit" id="submit"
-                                                ng-bind="landing.strings.REQUEST_SIGNUP_LABEL">
+                                                ng-bind="landing.strings.ACTION_SIGNUP">
                                         </button>
                                     </div>
                                 </fieldset>
+                                <trulii-preloader loader-control="landing.isSigningUp"></trulii-preloader>
                             </form>
                         </div>
                     </div>

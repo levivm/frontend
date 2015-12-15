@@ -65,7 +65,7 @@
                 CULTURE_GRAPH_BRANCH_4_TEXT_2: "+ Desempeño",
 
                 CULTURE_COVER_TITLE: "Valores en Trulii",
-                CULTURE_COVER_TEXT: "Los valores que nos mueven como empresa",
+                CULTURE_COVER_TEXT: "Los valores que nos mueven como empresa.",
 
                 CULTURE_SECTION_2_CONTENT_TITLE: "¿Cuáles valores son importantes para nosotros?",
                 CULTURE_SECTION_2_CONTENT_TEXT_1: "Determinamos un conjunto de valores que:",
@@ -123,14 +123,19 @@
         function _initWidget(){
             angular.element(document).ready(function () {
                 vm.scroll = document.body.scrollTop;
-                vm.widgetMaxPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().bottom + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 1.85;
-                $window.onscroll = function(){
-                    vm.widgetMaxPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().bottom + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight * 1.85;
-                    vm.scroll = document.body.scrollTop;
+                vm.widgetOriginalPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().top + window.scrollY;
+
+                vm.widgetOriginalPosition = document.getElementsByClassName('navigation-widget')[0].getBoundingClientRect().top + window.scrollY;
+                vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
+                vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
+                    vm.scroll = scroll;
+                    vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
+                    vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
                     $scope.$apply();
-                    console.log(vm.widgetMaxPosition);
-                    console.log(vm.scroll);
-                };
+                  }
+                );
             });
         }
 

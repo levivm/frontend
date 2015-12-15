@@ -13,9 +13,9 @@
         .controller('StudentProfileCtrl', StudentProfileCtrl);
 
 
-    StudentProfileCtrl.$inject = ['datepickerPopupConfig', 'Error', 'student','cities', 'Toast','LocationManager'];
+    StudentProfileCtrl.$inject = ['$rootScope', 'datepickerPopupConfig', 'Authentication', 'Error', 'Toast','LocationManager','student','cities' ];
 
-    function StudentProfileCtrl(datepickerPopupConfig, Error, student,cities, Toast, LocationManager) {
+    function StudentProfileCtrl($rootScope, datepickerPopupConfig, Authentication, Error, Toast, LocationManager, student, cities) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var vm = this;
@@ -96,6 +96,7 @@
                     vm.photo_invalid = false;
                     vm.photo_loading = false;
                 });
+                Authentication.emitUserChanged();
 
             }
 

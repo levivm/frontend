@@ -5,25 +5,38 @@
 @import "navbar.less";
 
 @navbar-inner-height: @navbar-height - (@navbar-padding-vertical*2);
+@navbar-short-height: @navbar-height - 20;
+@navbar-short-inner-height: @navbar-short-height - (@navbar-padding-vertical*2);
 @logo-width: 120px;
 @search-box-element-height: @navbar-inner-height - @navbar-padding-vertical;
+@transition-navbar: all 0.25s;
 
 @navbar-secondary-height: 40px;
+
+@media print {
+    .navbar, .navbar-secondary, .sidebar, .dashboard-footer {
+        display: none !important;
+    }
+    .with-navbar, .navbar-secondary + *, .lateral-fade {
+        margin: 0 !important;
+    }
+}
 
 .navbar {
     height: @navbar-height;
     width: 100vw;
     padding-right: 15px;
+    transition: @transition-navbar;
 
     .btn {
-        margin-top: 0;
-        line-height: @navbar-height / 2;
+        line-height: @navbar-height / 3;
     }
 
     &__link {
         line-height: @search-box-element-height;
         display: inline-block;
         height: @navbar-inner-height;
+        transition: @transition-navbar;
         vertical-align: top;
         padding: @navbar-padding-vertical 1em @navbar-padding-vertical .5em;
 
@@ -44,6 +57,7 @@
         display: inline-block;
         float: left;
         text-align: center;
+        transition: @transition-navbar;
 
         .--on-dash & {
             width: @sidebar-width + 1.1;
@@ -51,13 +65,13 @@
     }
 
     &__logo {
-      background: url('img/logo-trulii.png') no-repeat;
-      height: @navbar-inner-height;
-      width: 9em;
-      display: inline-block;
-      background-size: contain;
-      margin: 0 auto;
-      margin-top: 5px;
+        background: url('img/logo-trulii.png') no-repeat;
+        height: @navbar-inner-height;
+        width: 9em;
+        display: inline-block;
+        background-size: contain;
+        margin: 5px auto 0;
+        transition: @transition-navbar;
 
         .before-xs({ background: url(@res-trulii-logo-tiny) no-repeat center; width: 30px; background-size: contain; position: relative; });
     }
@@ -66,13 +80,13 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-inner-height;
-        width: 65%;
+        width: 68%;
         margin: 0.2em 1em;
 
         .buttons{
-            .btn{
-                margin-top: 7px;
-            }
+            height: 100%;
+            padding: 1em 0;
+            transition: @transition-navbar;
         }
     }
 
@@ -80,6 +94,7 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-height;
+        transition: @transition-navbar;
         //width: 40%;
         text-align: right;
         float: right;
@@ -102,6 +117,7 @@
         display: inline-block;
         padding: @navbar-padding-vertical 1em;
         height: @navbar-height;
+        transition: @transition-navbar;
         font-weight: bold;
         text-transform: uppercase;
         line-height: @navbar-height - (@navbar-padding-vertical*2);
@@ -120,19 +136,18 @@
             text-align: left;
             cursor: pointer;
             .user-picture{
-                margin-top: 5px;
-                border-radius: 100%;
+                .img-responsive;
+                .img-circle;
+                padding: 0.7em;
                 width: 5em;
                 height: 5em;
                 display: inline-block;
             }
             .menu-icon{
-              max-width: 100%;
-              height: auto;
-              padding: 0.95em;
-              margin-top: -55px;
-              width: 4em;
-              display: inline-block;
+                .img-responsive;
+                padding: 1.4em;
+                width: 4em;
+                display: inline-block;
             }
         }
     }
@@ -143,6 +158,52 @@
         background-color: white;
     }
 
+    &.navbar-short{
+      height: @navbar-short-height;
+      min-height: @navbar-short-height;
+
+      .btn {
+        line-height: @navbar-short-height / 3;
+      }
+      .navbar{
+
+        &__link {
+          padding: @navbar-padding-vertical 1em @navbar-padding-vertical .5em;
+        }
+
+        &__logo-container {
+          height: @navbar-short-height;
+        }
+
+        &__logo {
+          height: @navbar-short-inner-height;
+          margin: 5px auto 0;
+          width: 7em;
+        }
+
+        &__left-wrapper {
+          height: @navbar-short-inner-height;
+          .buttons{
+            padding: 0.75em 0;
+          }
+        }
+
+        &__right-wrapper {
+          height: @navbar-short-height;
+        }
+
+        &__option {
+          padding: 0px 1em;
+          height: @navbar-short-height;
+          line-height: @navbar-short-height - (@navbar-padding-vertical*2);
+        }
+      }
+      .search-bar__navbar{
+        height: @navbar-short-height - 15;
+        margin-top: 5px;
+      }
+
+    }
     [class*=mdi-navigation]:before {
         position: relative;
         top: 0.2em;
@@ -150,6 +211,12 @@
 
 }
 
+.sidebar{
+  transition: @transition-navbar;
+  &.sidebar-short{
+    top: @navbar-short-height;
+  }
+}
 .navbar-secondary {
     background: @gray-lighter;
     height: @navbar-secondary-height;
@@ -159,6 +226,11 @@
     top: @navbar-height;
     z-index: 200;
     padding: 0 1em;
+    transition: @transition-navbar;
+
+    &.navbar-secondary-short{
+      top: @navbar-short-height;
+    }
 
     &__item {
         font-family: @font-sans-alt;
@@ -167,11 +239,12 @@
         display: inline-block;
         font-weight: bolder;
         line-height: 37px;
-        padding: 0 3.7em;
+        padding: 0.25em 1em 0em 1em;
         cursor: pointer;
+        height: 40px;
 
         &--selected, &.active {
-            border-bottom: 3px solid @gray;
+            border-bottom: 3px solid @gray-light;
             font-weight: bold;
         }
 
@@ -194,6 +267,7 @@
         top: 0;
         font-weight:500;
         color:@gray;
+        font-size: 1.25em;
     }
 
     & + * {

@@ -184,8 +184,8 @@
       </div>
     </div>
     <!--Calendar Widget-->
-    <div class="calendar-widget separate-above" id="calendar_widget" ng-class="{'fixed-widget': (detail.scroll + 80 > detail.widgetOriginalPosition - 80) && (detail.scroll + 80 < detail.widgetMaxPosition), 'absolute-widget': detail.scroll + 80 >= detail.widgetMaxPosition}"
-      ng-style="detail.scroll + 80 >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}">
+    <div class="calendar-widget separate-above" id="calendar_widget" ng-class="{'fixed-widget': (detail.scroll  > detail.widgetOriginalPosition - 80) && (detail.scroll  < detail.widgetMaxPosition), 'absolute-widget': detail.scroll  >= detail.widgetMaxPosition}"
+      ng-style="detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}">
       <div class="widget-card" ng-hide="detail.isListVisible">
       <div class="header">
         <div class="next">

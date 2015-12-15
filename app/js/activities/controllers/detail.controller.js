@@ -399,9 +399,6 @@
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje"
-
-
-
                 });
         }
 
@@ -409,14 +406,16 @@
             angular.element(document).ready(function () {
                 vm.scroll = window.scrollY;
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY  - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
-                $window.onscroll = function(){
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - 80 - document.getElementsByClassName('calendar-widget')[0].offsetHeight * 2;
-                    vm.scroll = window.scrollY;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                    vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                    vm.scroll = scroll;
                     $scope.$apply();
-                };
+                  }
+                );
             });
         }
 

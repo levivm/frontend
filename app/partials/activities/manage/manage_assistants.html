@@ -1,9 +1,10 @@
-<div class="navbar-secondary">
+<div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
     <ul>
         <li class="navbar-secondary__item active">
             <span ng-bind="::manage.strings.LABEL_MANAGE"></span>
         </li>
     </ul>
+    <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
 </div>
 <div class="container-fluid">
     <div class="col-md-11 col-md-offset-1">
@@ -76,7 +77,13 @@
                                         <th ng-bind="::manage.strings.HEADER_LAST_NAME"></th>
                                         <th ng-bind="::manage.strings.HEADER_EMAIL"></th>
                                         <th ng-bind="::manage.strings.HEADER_ORDER"></th>
-                                        <th ng-bind="::manage.strings.HEADER_CODE"></th>
+                                        <th>
+                                          <span ng-bind="::manage.strings.HEADER_CODE"></span>
+                                          <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  
+                                          tooltip="{{::manage.strings.COPY_ASSISTANT_CODE_TOOLTIP}}"></i>
+
+                                        </th>
+
                                     </tr>
                                     <tr ng-repeat="assistant in manage.assistants">
                                         <td>
@@ -94,7 +101,7 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <span ng-bind="assistant.token"></span>
+                                            <span ng-bind="::assistant.token"></span>
                                         </td>
                                     </tr>
                                 </table>
@@ -187,7 +194,7 @@
                                                       </span>
                                                   </td>
                                                   <td>
-                                                      <span ng-bind="assistant.token"></span>
+                                                      <span ng-bind="::assistant.token"></span>
                                                   </td>
                                               </tr>
                                           </table>
@@ -225,7 +232,7 @@
                             ng-change="manage.pageChange(manage.TYPE_CALENDAR)"
                             data-total-items="manage.calendarPaginationOpts.totalItems"
                             data-items-per-page="manage.calendarPaginationOpts.itemsPerPage"
-                            previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                            previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
                             max-size="manage.calendarPaginationOpts.maxPagesSize">
                 </pagination>
             </div>
