@@ -415,12 +415,12 @@
             angular.element(document).ready(function () {
                 vm.scroll = window.scrollY;
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
                 $scope.$on('scrolled',
                   function(scrolled, scroll){
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY;
-                    vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight;
+                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                    vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
                     vm.scroll = scroll;
                     $scope.$apply();
                   }

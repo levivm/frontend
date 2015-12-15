@@ -24,7 +24,9 @@
             },
             password_data : {},
             isCollapsed : true,
-            isSaving : false,
+            isSaving:false,
+            isSavingEmail : false,
+            isSavingPassword : false,
             sales : [],
             reimbursements : [],
             changeEmail : changeEmail,
@@ -57,18 +59,18 @@
         }
 
         function changeEmail() {
-            vm.isSaving = true;
+            vm.isSavingEmail = true;
             Error.form.clear(vm.account_form_email);
             vm.organizer.change_email()
                 .then(success, error);
 
             function success() {
-                Authentication.updateAuthenticatedAccount();
-                vm.isSaving = false;
+                Toast.generics.weSaved();
+                vm.isSavingEmail = false;
             }
 
             function error(response) {
-                vm.isSaving = false;
+                vm.isSavingEmail = false;
                 var responseErrors = response.data['form_errors'];
                 if (responseErrors) {
                     Error.form.add(vm.account_form_email, responseErrors);
@@ -77,13 +79,13 @@
         }
 
         function changePassword() {
-            vm.isSaving = true;
+            vm.isSavingPassword = true;
             Error.form.clear(vm.account_form_password);
             vm.organizer.change_password(vm.password_data)
                 .then(success, error);
 
             function success() {
-                vm.isSaving = false;
+                vm.isSavingPassword = false;
                 $state.go('general-message', {
                     'module_name' : 'authentication',
                     'template_name' : 'change_password_success',
@@ -92,7 +94,7 @@
             }
 
             function error(response) {
-                vm.isSaving = false;
+                vm.isSavingPassword = false;
                 var responseErrors = response.data['form_errors'];
                 if (responseErrors) {
                     Error.form.add(vm.account_form_password, responseErrors);
