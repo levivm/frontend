@@ -10,7 +10,7 @@
                 <input class="form-control" id="email" name="email"
                        ng-model="account.organizer.user.email" type="email">
             </div>
-            <trulii-submit-controls is-saving="account.isSaving"
+            <trulii-submit-controls is-saving="account.isSavingEmail"
                                     data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
         </fieldset>
     </form>
@@ -36,7 +36,7 @@
                 <input class="form-control" name="password2" ng-model="account.password_data.password2"type="password">
             </div>
 
-            <trulii-submit-controls is-saving="account.isSaving"
+            <trulii-submit-controls is-saving="account.isSavingPassword"
                                     data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
         </fieldset>
     </form>
