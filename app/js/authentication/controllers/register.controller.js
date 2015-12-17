@@ -102,9 +102,9 @@
                 FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook",
                 ALREADY_HAVE_AN_ACCOUNT_COPY: "¿Ya tienes cuenta en Trulii?",
                 TERMS_AND_CONDITIONS_COPY_1: "Registrandome estoy aceptando los",
-                TERMS_AND_CONDITIONS_COPY_2: "Términos y Condiciones",
+                LABEL_TERMS: "Términos y Condiciones",
                 TERMS_AND_CONDITIONS_COPY_3: "y la",
-                TERMS_AND_CONDITIONS_COPY_4: "Política de Privacidad",
+                LABEL_PRIVACY: "Política de Privacidad",
                 TERMS_AND_CONDITIONS_COPY_5: "de Trulii."
             });
         }
