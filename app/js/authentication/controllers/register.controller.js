@@ -90,15 +90,22 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                SIGNUP_LABEL : "Registrarme",
-                SIGNUP_ALTERNATIVES_LABEL : "O puedes registrarte con",
+                SIGNUP_LABEL : "Registrate",
+                SIGNUP_ALTERNATIVES_LABEL : "Regístrate con",
+                SIGNUP_EMAIL_LABEL: "O regístrate con tu correo electrónico",
                 LOGIN_LABEL : "Iniciar Sesión",
                 EMAIL_LABEL : "Correo electrónico",
                 PASSWORD_LABEL : "Contraseña",
                 FIRST_NAME_LABEL : "Nombre",
                 LAST_NAME_LABEL : "Apellido",
                 REGISTER_WITH_FACEBOOK_MSG : "Facebook",
-                FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook"
+                FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook",
+                ALREADY_HAVE_AN_ACCOUNT_COPY: "¿Ya tienes cuenta en Trulii?",
+                TERMS_AND_CONDITIONS_COPY_1: "Registrandome estoy aceptando los",
+                TERMS_AND_CONDITIONS_COPY_2: "Términos y Condiciones",
+                TERMS_AND_CONDITIONS_COPY_3: "y la",
+                TERMS_AND_CONDITIONS_COPY_4: "Política de Privacidad",
+                TERMS_AND_CONDITIONS_COPY_5: "de Trulii."
             });
         }
 

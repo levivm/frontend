@@ -2,16 +2,15 @@
   <div class="trulii-cover__container">
     <div class="trulii-cover__content">
         <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 padding-vertical-regular">
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 padding-vertical-regular">
                 <div class="well">
-                    <h2 class="text-center text-muted sub-title">
-                        <strong>Iniciar sesión</strong>
+                    <h2 class="text-center text-muted well-header">
+                        <strong ng-bind="vm.strings.LOGIN_LABEL"></strong>
                     </h2>
-                    <h5 class="text-center separate-above text-muted sinkin-medium">
-                        Conéctate con
+                    <h5 class="text-center separate-above text-muted sinkin-medium" ng-bind="vm.strings.LOGIN_ALTERNATIVES_LABEL">
                     </h5>
                     <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
                             <button type="button" class="btn btn-block btn-facebook"
                                     ng-click="vm.facebookLogin()">
                                 <i class="trulii-icon-facebook text-spaced-more"></i>
@@ -25,29 +24,28 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                        <div class="col-xs-10 col-xs-offset-1">
                             <hr class="separate-above separate-below-less">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+                        <div class="col-xs-10 col-xs-offset-1">
                             <form class="form-classic" name='vm.login_form' ng-submit="vm.login()">
                                 <fieldset>
                                     <div>
                                         <div class="form-group" trulii-input-errors-control="login">
-                                            <input class="form-control" name="login" type="text"
+                                            <input class="form-control input-sm" name="login" type="text"
                                                    ng-model="vm.auth.email"
-                                                   placeholder="{{::vm.strings.EMAIL_LABEL}}"
-                                                   trulii-input-autofocus>
+                                                   placeholder="{{::vm.strings.EMAIL_LABEL}}">
                                         </div>
                                         <div class="form-group" trulii-input-errors-control="password">
-                                            <input class="form-control" name="password" type="password" value=""
+                                            <input class="form-control input-sm" name="password" type="password" value=""
                                                    placeholder="{{::vm.strings.PASSWORD_LABEL}}"
                                                    ng-model="vm.auth.password">
                                         </div>
                                         <h5 class="text-center">
                                             <a ui-sref="password-forgot" class="text-muted">
-                                                <span class="text-underline sinkin-medium">Olvidé mi contraseña</span>
+                                                <span class="text-underline sinkin-medium" ng-bind="vm.strings.FORGOT_PASSWORD"></span>
                                             </a>
                                         </h5>
 
@@ -70,9 +68,9 @@
                     <div class="row">
                         <div class="separator"></div>
                         <div class="text-center separate-vertical" id="anchor">
-                            <span class="fit-in-xs">¿No tienes cuenta?</span>
+                            <span class="fit-in-xs" ng-bind="vm.strings.NO_ACCOUNT_COPY"></span>
                              <a ng-click="vm.goSignupState()">
-                                 <strong>Registrate</strong>
+                                 <strong ng-bind="vm.strings.REGISTER_COPY"></strong>
                              </a>
                         </div>
                     </div>

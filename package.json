@@ -3,9 +3,6 @@
   "version": "0.1.2",
   "description": "We are going to use Docker :P ",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "bower install"
-  },
   "dependencies": {
     "angular": "^1.3.14",
     "angular-cookies": "~1.3.14",

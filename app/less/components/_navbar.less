@@ -88,6 +88,10 @@
             padding: 1em 0;
             transition: @transition-navbar;
         }
+
+        &.long{
+            width: 72%;
+        }
     }
 
     &__right-wrapper {
@@ -469,5 +473,26 @@
     &__left-wrapper{
       width: 50%;
     }
+    .search-bar__navbar {
+        width: 95%;
+    }
   }
+}
+
+@media (min-width: 992px) and (max-width: 1280px){
+    .navbar{
+        &__left-wrapper{
+            width: 64%;
+        }
+    }
+    form.search-bar__navbar {
+        width: 36em;
+    }
+}
+@media (max-width: 768px){
+    .navbar{
+        &__left-wrapper{
+            width: 0%;
+        }
+    }
 }
