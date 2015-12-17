@@ -14173,7 +14173,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media (min-width: 992px) and (max-width: 1280px) {
   .navbar__left-wrapper {
-    width: 55%;
+    width: 66%;
   }
 }
 @media (max-width: 768px) {
