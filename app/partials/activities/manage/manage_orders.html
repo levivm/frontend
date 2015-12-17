@@ -1,8 +1,13 @@
 <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
   <ul>
-    <li class="navbar-secondary__item active">
-      <span ng-bind="::manage.strings.COPY_MANAGE"></span>
-    </li>
+    <ul>
+      <li class="navbar-secondary__item" ui-sref="dash.activities-edit.general({activity_id: {{manage.activity.id}}})" ui-sref-active="active">
+        <span>Editar</span>
+      </li>
+      <li class="navbar-secondary__item" ui-sref="dash.activities-manage.orders({activity_id: {{manage.activity.id}}})" ui-sref-active="active">
+          <span>Gestionar</span>
+      </li>
+    </ul>
   </ul>
   <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
 </div>

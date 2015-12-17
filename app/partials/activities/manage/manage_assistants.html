@@ -1,10 +1,15 @@
 <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
+  <ul>
     <ul>
-        <li class="navbar-secondary__item active">
-            <span ng-bind="::manage.strings.LABEL_MANAGE"></span>
-        </li>
+      <li class="navbar-secondary__item" ui-sref="dash.activities-edit.general({activity_id: {{manage.activity.id}}})" ui-sref-active="active">
+        <span>Editar</span>
+      </li>
+      <li class="navbar-secondary__item" ui-sref="dash.activities-manage.assistants({activity_id: {{manage.activity.id}}})" ui-sref-active="active">
+          <span>Gestionar</span>
+      </li>
     </ul>
-    <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
+  </ul>
+  <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
 </div>
 <div class="container-fluid">
     <div class="col-md-11 col-md-offset-1">
@@ -79,7 +84,7 @@
                                         <th ng-bind="::manage.strings.HEADER_ORDER"></th>
                                         <th>
                                           <span ng-bind="::manage.strings.HEADER_CODE"></span>
-                                          <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"  
+                                          <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"
                                           tooltip="{{::manage.strings.COPY_ASSISTANT_CODE_TOOLTIP}}"></i>
 
                                         </th>

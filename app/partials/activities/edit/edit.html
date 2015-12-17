@@ -100,8 +100,11 @@
         <div class="col-xs-10">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': pc.scroll > 80}">
               <ul>
-                <li class="navbar-secondary__item active">
+                <li class="navbar-secondary__item" ui-sref="dash.activities-edit.general({activity_id: {{pc.activity.id}}})" ui-sref-active="active">
                   <span>Editar</span>
+                </li>
+                <li class="navbar-secondary__item" ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})" ui-sref-active="active">
+                    <span>Gestionar</span>
                 </li>
               </ul>
               <h4 class="sub-title" ng-bind="pc.activity.title"></h4>
