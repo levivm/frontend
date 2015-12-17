@@ -35,9 +35,9 @@
                 url: 'terms',
                 templateUrl: '/partials/about/terms.html'
             })
-            .state('about.return-policy', {
-                url:'return-policy',
-                templateUrl: '/partials/about/return.html'
+            .state('about.privacy-policy', {
+                url:'privacy-policy',
+                templateUrl: '/partials/about/privacy.html'
             });
     }
 })();
