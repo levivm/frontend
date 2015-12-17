@@ -2,6 +2,23 @@
     <div class="row">
         <div class="col-sm-2">
             <nav class="sidebar lateral-slide" ng-class="{'sidebar-short': pc.scroll > 80}">
+                <div class="sidebar__activity" style="background: url('{{pc.activity.main_photo}}')">
+                    <span class="sidebar__activity__title" ng-bind="pc.activity.title"></span>
+
+                    <div>
+                        <a class="btn btn-default btn-light" ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
+                            Gestionar
+                        </a>
+                        <a class="btn btn-default btn-light" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})">
+                            Ver
+                        </a>
+                    </div>
+                    <div>
+                        <a class="sidebar__activity__btn-back" ui-sref="organizer-dashboard.activities.open">
+                            Mis actividades
+                        </a>
+                    </div>
+                </div>
                 <li ui-sref-active="active" ng-repeat="step in pc.steps track by step.name">
                     <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected" ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} ">
                         <i class="{{::step.icon}} sidebar__item__icon"></i>
@@ -80,6 +97,17 @@
                 </div>
             </nav>
         </div>
-        <div class="col-md-offset-4 col-md-8 col-lg-offset-3 col-lg-9 separate-below-more " ui-view></div>
+        <div class="col-xs-10">
+            <div class="navbar-secondary" ng-class="{'navbar-secondary-short': pc.scroll > 80}">
+              <ul>
+                <li class="navbar-secondary__item active">
+                  <span>Editar</span>
+                </li>
+              </ul>
+              <h4 class="sub-title" ng-bind="pc.activity.title"></h4>
+            </div>
+        </div>
+        <div class="col-md-offset-4 col-md-8 col-lg-offset-3 col-lg-9 separate-above separate-below-more" ui-view>
+        </div>
     </div>
 </div>

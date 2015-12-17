@@ -75,13 +75,16 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 LOGIN_LABEL : "Iniciar Sesión",
-                LOGIN_ALTERNATIVES_LABEL : "O puedes iniciar sesión con",
+                LOGIN_ALTERNATIVES_LABEL : "Conéctate con",
+                FORGOT_PASSWORD: "Olvidé mi contraseña",
                 EMAIL_LABEL : "Correo electrónico",
                 PASSWORD_LABEL : "Contraseña",
                 FIRST_NAME_LABEL : "Nombre",
                 LAST_NAME_LABEL : "Apellido",
                 LOGIN_WITH_FACEBOOK_MSG : "Facebook",
-                FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook"
+                FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook",
+                NO_ACCOUNT_COPY: "¿No tienes cuenta?",
+                REGISTER_COPY: "Registrate"
             });
         }
 

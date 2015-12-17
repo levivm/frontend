@@ -2,16 +2,15 @@
   <div class="trulii-cover__container">
     <div class="trulii-cover__content">
         <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 padding-vertical-regular">
+            <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 padding-vertical-regular">
                 <div class="well">
-                    <h2 class="text-center text-muted sub-title">
-                        <strong>Regístrate</strong>
+                    <h2 class="text-center text-muted well-header">
+                        <strong ng-bind="vm.strings.SIGNUP_LABEL"></strong>
                     </h2>
-                    <h5 class="text-center separate-above text-muted sinkin-medium">
-                        Regístrate con
+                    <h5 class="text-center separate-above text-muted sinkin-medium" ng-bind="vm.strings.SIGNUP_ALTERNATIVES_LABEL">
                     </h5>
                     <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
                             <button type="button" class="btn btn-block btn-facebook"
                                     ng-click="vm.fbRegister()">
                                 <i class="trulii-icon-facebook text-spaced-more"></i>
@@ -25,39 +24,38 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                        <div class="col-xs-10 col-xs-offset-1">
                             <hr class="separate-above">
                         </div>
                     </div>
                     <div class="row">
-                        <h5 class="text-center text-muted sinkin-medium">
-                            O regístrate con tu correo electrónico
+                        <h5 class="text-center text-muted sinkin-medium" ng-bind="vm.strings.SIGNUP_EMAIL_LABEL">
                         </h5>
-                        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+                        <div class="col-xs-10 col-xs-offset-1">
                             <form class="form-classic" name='vm.signup_form' ng-submit="vm.register()">
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <div class="separate-vertical">
                                             <div class="form-group" trulii-input-errors-control="first_name">
-                                                <input class="form-control" name="first_name" type="text"
+                                                <input class="form-control input-sm" name="first_name" type="text"
                                                        ng-model="vm.auth.first_name"
                                                        placeholder="{{::vm.strings.FIRST_NAME_LABEL}}"
                                                        autofocus>
                                             </div>
                                             <div class="form-group" trulii-input-errors-control="last_name">
-                                                <input class="form-control" name="last_name" type="text"
+                                                <input class="form-control input-sm" name="last_name" type="text"
                                                        ng-model="vm.auth.last_name"
                                                        placeholder="{{::vm.strings.LAST_NAME_LABEL}}"
                                                        autofocus>
                                             </div>
                                             <div class="form-group" trulii-input-errors-control="email">
-                                                <input class="form-control" name="email" type="text"
+                                                <input class="form-control input-sm" name="email" type="text"
                                                        ng-model="vm.auth.email"
                                                        placeholder="{{::vm.strings.EMAIL_LABEL}}"
                                                        autofocus>
                                             </div>
                                             <div class="form-group" trulii-input-errors-control="password1">
-                                                <input class="form-control" name="password1" type="password"
+                                                <input class="form-control input-sm" name="password1" type="password"
                                                        placeholder="{{::vm.strings.PASSWORD_LABEL}}"
                                                        ng-model="vm.auth.password1">
                                             </div>
@@ -72,20 +70,20 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+                        <div class="col-xs-10 col-xs-offset-1">
                             <h5 class="text-muted text-tiny text-center separate-vertical">
-                                Registrandome estoy aceptando los
-                                <strong>Términos y Condiciones</strong>
-                                y la
-                                <strong>Política de Privacidad</strong>
-                                de Trulii.
+                                <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_1"></span>
+                                <strong ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_2"></strong>
+                                <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_3"></span>
+                                <strong ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_4"></strong>
+                                <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_5"></span>
                             </h5>
                         </div>
                     </div>
                     <div class="row">
                         <div class="separator"></div>
                         <div class="text-center separate-vertical" id="anchor">
-                            <span class="fit-in-xs">¿Ya tienes cuenta en Trulii?</span>
+                            <span class="fit-in-xs" ng-bind="vm.strings.ALREADY_HAVE_AN_ACCOUNT_COPY"></span>
                             <a ng-click="vm.toLoginState()">
                                 <strong ng-bind="::vm.strings.LOGIN_LABEL"></strong>
                             </a>
