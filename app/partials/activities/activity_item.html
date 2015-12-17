@@ -31,16 +31,19 @@
     <!--Body-->
     <div class="activity-card__body">
         <a class="activity-card__body__title" ui-sref="activities-detail({activity_id: {{::activity.id}} })"
-           ng-bind="::activity.title">
+           ng-bind="::activity.title | limitTo : titleSize">
         </a>
         <a class="activity-card__body__owner-name" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
            ng-bind="::activity.organizer.name"></a>
         <div class="relative">
-            <span class="activity-card__body__date" ng-bind="activity.date_msg"></span>
-            <div class="activity-card__rating" ng-if="activity.organizer.rating">
-                <i class="mdi-action-grade activity-card__rating__star"></i>
+            <span class="activity-card__rating" ng-if="activity.organizer.rating">
                 <span ng-bind="activity.organizer.rating"></span>
-            </div>
+                <i class="mdi-action-grade activity-card__rating__star"></i>
+            </span>
+            <span class="text-muted">|</span>
+            <span class="activity-card__body__date" ng-bind="activity.closest_calendar.duration | formatDuration : 'seconds'"></span>
+            <span class="text-muted">|</span>
+            <span class="activity-card__body__date" ng-bind="activity.date_msg"></span>
         </div>
         <div class="activity-card__body__description" ng-bind="::activity.short_description">
         </div>

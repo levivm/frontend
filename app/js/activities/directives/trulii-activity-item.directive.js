@@ -16,9 +16,11 @@
 
         .directive('truliiActivityItem', truliiActivityItem);
 
-    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath', 'defaultPicture', 'defaultCover'];
+    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath'
+        , 'defaultPicture', 'defaultCover', 'titleTruncateSize'];
 
-    function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath, defaultPicture, defaultCover){
+    function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath
+        , defaultPicture, defaultCover, titleTruncateSize){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -36,6 +38,7 @@
                     dimmed : false,
                     inactive : false,
                     isMenuVisible : false,
+                    titleSize: titleTruncateSize,
                     getStarStyle : getStarStyle,
                     hasAction : hasAction,
                     showMenu : showMenu,
@@ -178,6 +181,11 @@
                     return activity;
                 }
 
+                function _mapDisplayTitle(activity){
+
+                    return activity;
+                }
+
                 function _setCurrentState(){
                     scope.current_state = {
                         toState: {
@@ -228,6 +236,7 @@
                         }
                     }
                     var organizer = scope.activity.organizer;
+                    organizer.rating = 4.5;
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
