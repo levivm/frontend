@@ -14173,7 +14173,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media (min-width: 992px) and (max-width: 1280px) {
   .navbar__left-wrapper {
-    width: 55%;
+    width: 64%;
+  }
+  form.search-bar__navbar {
+    width: 36em;
   }
 }
 @media (max-width: 768px) {
@@ -19441,6 +19444,21 @@ input[type=text].form-control.referral-link:focus {
   background-color: transparent;
   color: #535353 !important;
   font-weight: 300;
+}
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9d9de;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(243, 243, 243, 0.4);
+}
+body {
+  scrollbar-face-color: #d9d9de;
+  scrollbar-track-color: rgba(243, 243, 243, 0.4);
 }
 a:hover {
   color: #38dbc8;
