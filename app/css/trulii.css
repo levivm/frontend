@@ -14167,6 +14167,19 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .navbar__left-wrapper {
     width: 50%;
   }
+  .navbar .search-bar__navbar {
+    width: 95%;
+  }
+}
+@media (min-width: 992px) and (max-width: 1280px) {
+  .navbar__left-wrapper {
+    width: 55%;
+  }
+}
+@media (max-width: 768px) {
+  .navbar__left-wrapper {
+    width: 0%;
+  }
 }
 .search-filter {
   height: 5.8em;
@@ -14583,6 +14596,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .with-sidebar {
   width: 83.33333333%;
+}
+.with-sidebar > div {
+  min-height: 67.65vh;
 }
 @media print {
   .with-sidebar {
