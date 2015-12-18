@@ -236,7 +236,6 @@
                         }
                     }
                     var organizer = scope.activity.organizer;
-                    organizer.rating = 4.5;
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
