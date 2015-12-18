@@ -94,7 +94,6 @@
                 url:'/email/confirm/:key/',
                 controller: 'EmailConfirmCtrl',
                 controllerAs: 'vm',
-                templateUrl: 'modalContainer'
             });
 
         /**
