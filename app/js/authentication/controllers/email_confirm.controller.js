@@ -23,10 +23,8 @@
       Authentication.confirmEmail(key).then(confirmed_email,invalid_token);
 
 
-
     function confirmed_email(){
 
-      console.log("TODO BIENN");
       var modalInstance = $modal.open({
           templateUrl: 'partials/authentication/email_confirmation_success.html',
           controller: 'ModalInstanceCtrl',
@@ -38,7 +36,7 @@
 
 
         $state.go("home");
-      })
+      });
 
     } 
 
@@ -54,11 +52,11 @@
       modalInstance.result.then(function(){
 
         $state.go("home");
-      })
+      });
 
 
 
     }
-  };
+  }
 
   })();
