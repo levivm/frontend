@@ -43,9 +43,9 @@
                                                    placeholder="{{::vm.strings.PASSWORD_LABEL}}"
                                                    ng-model="vm.auth.password">
                                         </div>
-                                        <h5 class="text-center">
+                                        <h5 class="text-center separate-above">
                                             <a ui-sref="password-forgot" class="text-muted">
-                                                <span class="text-underline sinkin-medium" ng-bind="vm.strings.FORGOT_PASSWORD"></span>
+                                                <span class="text-underline text-sm sinkin-medium" ng-bind="vm.strings.FORGOT_PASSWORD"></span>
                                             </a>
                                         </h5>
 
@@ -67,7 +67,7 @@
                     </div>
                     <div class="row">
                         <div class="separator"></div>
-                        <div class="text-center separate-vertical" id="anchor">
+                        <div class="text-center text-md separate-vertical" id="anchor">
                             <span class="fit-in-xs" ng-bind="vm.strings.NO_ACCOUNT_COPY"></span>
                              <a ng-click="vm.goSignupState()">
                                  <strong ng-bind="vm.strings.REGISTER_COPY"></strong>
