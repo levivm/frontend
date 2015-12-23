@@ -60,6 +60,7 @@ module.exports = {
     ],
     dist : {
         "css": {
+            "files": path.join(DIST_ROOT, '/css/*.css'),
             "root": path.join(DIST_ROOT, '/css'),
             "fonts": path.join(DIST_ROOT, '/css/fonts'),
             "img": path.join(DIST_ROOT, '/css/img')
