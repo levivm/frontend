@@ -10,10 +10,9 @@ var APP_ROOT = path.join(BASE_DIR, 'app');
 var BOWER_COMPONENTS_PATH = path.join(APP_ROOT,  '/lib');
 var DIST_ROOT = 'public';
 
-gutil.log('BASE_DIR:', BASE_DIR);
-gutil.log('APP_ROOT:', APP_ROOT);
-gutil.log('BOWER_COMPONENTS_PATH:', BOWER_COMPONENTS_PATH);
-gutil.log('__dirname:', __dirname);
+//gutil.log('BASE_DIR:', BASE_DIR);
+//gutil.log('APP_ROOT:', APP_ROOT);
+//gutil.log('BOWER_COMPONENTS_PATH:', BOWER_COMPONENTS_PATH);
 
 module.exports = {
     DIST_ROOT : DIST_ROOT,
@@ -39,6 +38,8 @@ module.exports = {
         },
         'css': {
             'files': path.join(APP_ROOT, '/css/**/[^_]*.css'),
+            'fonts': path.join(APP_ROOT, '/css/fonts/**/*'),
+            'img': path.join(APP_ROOT, '/css/img/**/*'),
             'root' : path.join(APP_ROOT, '/css/')
         },
         'html': {
@@ -58,10 +59,14 @@ module.exports = {
         path.join(APP_ROOT, '/js/**/controllers/*.controller.js')
     ],
     dist : {
-        "css": path.join(DIST_ROOT, '/css'),
+        "css": {
+            "root": path.join(DIST_ROOT, '/css'),
+            "fonts": path.join(DIST_ROOT, '/css/fonts'),
+            "img": path.join(DIST_ROOT, '/css/img')
+        },
         'javascript': path.join(DIST_ROOT, '/js'),
         'html': {
-            'index': DIST_ROOT,
+            'index': path.join(DIST_ROOT, '/index.html'),
             'partials': path.join(DIST_ROOT, '/partials')
         },
         'all': DIST_ROOT

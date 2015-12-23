@@ -70,12 +70,12 @@ gulp.task('bower-js-injector', function() {
     //Inject into Body
     var injectParams = { name: 'inject:bower', relative: true};
     var sources = gulp.src(mainBowerFiles([filter, jQueryExcludeFilter]), srcParams);
-    gutil.log('bower-js-injector.sources:', mainBowerFiles([filter, jQueryExcludeFilter]));
+    //gutil.log('bower-js-injector.sources:', mainBowerFiles([filter, jQueryExcludeFilter]));
 
     // Inject into head
     var injectjQueryParams = {name: 'inject:head', relative: true};
     var sourcesJquery = gulp.src(mainBowerFiles(jQueryFilter), srcParams);
-    gutil.log('bower-js-injector.head.sources:', mainBowerFiles(jQueryFilter));
+    //gutil.log('bower-js-injector.head.sources:', mainBowerFiles(jQueryFilter));
 
     return target
         .pipe(inject(sourcesJquery, injectjQueryParams))

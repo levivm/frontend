@@ -5,12 +5,18 @@
 var gulp = require('gulp');
 var del = require('del');
 
-var dist = require('../config').dist;
+var config = require('../config');
 
 /** Clean task to remove everything from public **/
 gulp.task('clean', function(cb) {
-    del([dist.all], cb);
+    // IMPORTANT. Without sync the 'build' task doesn't work
+    del.sync([config.dist.all], cb);
+});
+
+/** Clean task to remove everything from public **/
+gulp.task('copy-index', function() {
+    return gulp.src(config.source.html.index).pipe(gulp.dest(config.dist.all))
 });
 
 /** Task to build resources from APP to DIST **/
-gulp.task('build', ['injector']);
+gulp.task('build', ['clean', 'copy-index', 'injector', 'build-styles']);
