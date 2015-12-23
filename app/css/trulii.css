@@ -19439,13 +19439,10 @@ input[type=text].form-control.referral-link:focus {
   padding: 0.75em 1em 0.125em 1em;
   background-color: #eeeeee;
   border-bottom: 5px solid #999999;
-<<<<<<< HEAD
   position: fixed;
   bottom: 0;
   right: 0;
   width: 100%;
-=======
->>>>>>> 6418d4b2fd7b35fe6d9645337842ac6ca3933104
 }
 .dashboard-footer a {
   font-size: 0.9em;
