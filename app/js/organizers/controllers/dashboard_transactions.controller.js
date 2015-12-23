@@ -48,7 +48,7 @@
         });
 
         _activate();
-        var sales = orders;
+        var sales = $filter('orderBy')(orders, 'id', true);
 
         //--------- Exposed Functions ---------//
 
