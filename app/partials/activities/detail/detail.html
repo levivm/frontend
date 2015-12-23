@@ -79,11 +79,12 @@
             src="css/img/activity-detail/gallery_slider_left.png" alt="Previous Picture"
             ng-click="detail.previousGalleryPicture()"/>
           <div class="gallery-info">
-            <span ng-bind="detail.currentGalleryPicture + 1"></span>
+            <span ng-if="detail.activity.gallery.length  < 1" ng-bind="detail.currentGalleryPicture"></span>
+            <span ng-if="detail.activity.gallery.length  >= 1" ng-bind="detail.currentGalleryPicture + 1"></span>
             <span>|</span>
             <span ng-bind="::detail.activity.gallery.length"></span>
           </div>
-          <img class="gallery111111111111-next"
+          <img class="gallery-next"
           src="css/img/activity-detail/gallery_slider_right.png" alt="Next Picture"
           ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
           ng-click="detail.nextGalleryPicture()"/>
@@ -399,10 +400,10 @@
                 <span ng-bind="calendar.initial_date | date:'d MMM y' "></span>
               </td>
               <td>
-                <span ng-bind="calendar.closing_sale | date:'d MMM y' "></span>
+                <span ng-bind="calendar.available_capacity"></span>
               </td>
               <td>
-                <span ng-bind="calendar.available_capacity"></span>
+                <span ng-bind="calendar.closing_sale | date:'d MMM y' "></span>
               </td>
               <td>
                 <span ng-bind="calendar.number_of_sessions "></span>

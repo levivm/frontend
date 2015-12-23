@@ -12585,7 +12585,9 @@ hr.on-light {
 .navigation-widget.absolute-widget {
   width: auto;
   height: auto;
+  max-height: 87vh;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 @media (max-width: 991px) {
   .navigation-widget {
@@ -14602,6 +14604,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .with-sidebar {
   width: 83.33333333%;
+  padding-bottom: 80px;
 }
 @media print {
   .with-sidebar {
@@ -17752,7 +17755,7 @@ blockquote {
   z-index: 1;
 }
 .activity-grid {
-  text-align: center;
+  text-align: left;
 }
 .activity-detail p {
   word-break: break-all;
@@ -18852,7 +18855,7 @@ blockquote {
     overflow-y: auto;
     overflow-x: hidden;
     top: 8vh;
-    width: calc(25% - 30px);
+    width: calc(25% - 40px);
   }
   .absolute-widget {
     position: absolute;
