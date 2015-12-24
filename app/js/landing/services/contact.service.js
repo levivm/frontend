@@ -32,6 +32,7 @@
             return $http.get(api.contactUs()).then(success, error);
 
             function success(response){
+                console.log("response,data topic",response);
                 return response.data.map(mapTopics);
             }
 
@@ -42,6 +43,8 @@
 
             function mapTopics(topic, index){
                 var key = Object.keys(topic)[0];
+                console.log("TOPPICCC",topic);
+                console.log("TOPPICCC",topic[key]);
                 var topicObj = {
                     'id': index,
                     'title': key,

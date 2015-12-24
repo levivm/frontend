@@ -97,6 +97,8 @@
 
                 case vm.TYPE_ASSISTANT:  
                     vm.activeCalendar = calendar;
+                    console.log('assistants',angular.copy(calendar.assistants));
+
                     assistants = calendar.assistants;
                     vm.assistants = assistants;
                     break;
