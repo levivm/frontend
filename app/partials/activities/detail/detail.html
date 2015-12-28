@@ -321,7 +321,7 @@
   </p>
 
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1" ng-repeat="review in detail.reviews track by id">
+    <div class="col-xs-10 col-xs-offset-1" ng-repeat="review in detail.reviews track by review.id">
       <trulii-activity-review data-review="review"
       data-activity="detail.activity"
       data-on-dashboard="false" ></trulii-activity-review>
@@ -391,7 +391,7 @@
               </th>
             </tr>
             <tr
-              ng-repeat-start="calendar in detail.activity.upcoming_calendars track by calendar.id"
+              ng-repeat-start="calendar in detail.activity.upcoming_calendars track by calendar.id | orderBy: calendar.initial_date"
               ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index">
               <td>
                 <span class="checkbox"></span>
@@ -409,7 +409,9 @@
                 <span ng-bind="calendar.number_of_sessions "></span>
               </td>
               <td>
-                <span ng-bind="calendar.session_price | currency:$:0"></span>
+                <span ng-if="!calendar.is_free" ng-bind="calendar.session_price | currency:$:0"></span>
+                <s ng-if="calendar.is_free" ng-bind="calendar.session_price | currency:$:0"></s>
+                <span ng-if="calendar.is_free" ng-bind="detail.strings.COPY_FREE"></span>
               </td>
             </tr>
             <tr ng-repeat-end class="signup-row" ng-show="detail.selectedActivity === $index">

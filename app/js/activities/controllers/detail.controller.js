@@ -439,6 +439,7 @@
                 calendars : calendars,
                 reviews : reviews,
                 totalReviews: reviews.length,
+                hasMoreReviews: reviews.length > 3 ? true : false,
                 organizer : activity.organizer,
                 calendar_selected : _getSelectedCalendar(activity)
             });
