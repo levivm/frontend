@@ -375,11 +375,12 @@
             return organizer.getReviews().then(success, error);
 
             function success(reviews){
-                return reviews.filter(filterByActivity);
-
-                function filterByActivity(review){
-                    return review.activity === activity.id;
-                }
+                return reviews;
+                //return reviews.filter(filterByActivity);
+                //
+                //function filterByActivity(review){
+                //    return review.activity === activity.id;
+                //}
             }
             function error(response){
                 return [];
