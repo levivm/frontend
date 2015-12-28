@@ -39,12 +39,10 @@
                     inactive : false,
                     isMenuVisible : false,
                     titleSize: titleTruncateSize,
-                    getStarStyle : getStarStyle,
                     hasAction : hasAction,
                     showMenu : showMenu,
                     hideMenu : hideMenu
                 });
-
 
                 _activate();
 
@@ -56,14 +54,6 @@
 
                 function hideMenu(){
                     scope.isMenuVisible = false;
-                }
-
-                function getStarStyle(star){
-                    if(star < 4){
-                        return "mdi-action-grade activity-card__rating__star";
-                    } else {
-                        return "mdi-action-grade activity-card__rating__star --empty";
-                    }
                 }
 
                 function hasAction(actionQuery){
@@ -178,11 +168,6 @@
                     } else {
                         activity.date_msg = $filter('date')(activity.closest_date, 'dd MMM');
                     }
-                    return activity;
-                }
-
-                function _mapDisplayTitle(activity){
-
                     return activity;
                 }
 

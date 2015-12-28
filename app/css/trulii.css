@@ -17659,7 +17659,7 @@ blockquote {
 .activity-card__body {
   padding: 1em;
   display: block;
-  height: 170px;
+  height: 8em;
 }
 .activity-card__body a:hover {
   color: rgba(0, 0, 0, 0.74);
