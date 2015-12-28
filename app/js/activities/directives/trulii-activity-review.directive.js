@@ -77,6 +77,7 @@
 
                     function success(){
                         scope.show.reportWarning = false;
+                        scope.review.reported = true;
                         Toast.info(scope.strings.COPY_REVIEW_REPORTED);
                     }
                 }
