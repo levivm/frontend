@@ -96,6 +96,7 @@
                 }
 
                 function markAsRead(){
+                    scope.review.read = true;
                     activityInstance.markReviewAsRead(scope.review).then(success);
 
                     function success(){
@@ -106,7 +107,7 @@
                 //--------- Internal Functions ---------//
 
                 function _getActivityInstance(){
-                    ActivitiesManager.getActivity(scope.activity.id).then(function(activityInstanceResponse){
+                    ActivitiesManager.getActivity(scope.review.activity).then(function(activityInstanceResponse){
                         activityInstance = activityInstanceResponse;
                     });
                 }
