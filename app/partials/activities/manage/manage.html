@@ -1,9 +1,9 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="sidebar" ng-class="{'sidebar-short': manage.scroll > 80}">
+        <div class="sidebar" ng-class="{'sidebar-short': manage.scroll > 80}" style="padding-bottom: 48px">
 
 
-            <div class="sidebar__activity" style="background: url('{{manage.activity.main_photo}}')">
+            <!-- <div class="sidebar__activity" style="background: url('{{manage.activity.main_photo}}')">
                 <span class="sidebar__activity__title" ng-bind="manage.activity.title"></span>
 
                 <div>
@@ -19,7 +19,7 @@
                         Mis actividades
                     </a>
                 </div>
-            </div>
+            </div> -->
 
             <ul>
 
@@ -34,11 +34,33 @@
                 </a>
 
             </ul>
+            <div class="sidebar__bottom-action-container">
+                <div class="sidebar__bottom-action-dark">
+                    <ul class="list-inline list-unstyled text-center text-uppercase">
+                        <li>
+                            <a ui-sref="dash.activities-edit.general({activity_id:{{manage.activity.id}}})">
+                                    <i class="mdi-editor-mode-edit sidebar__item__icon"></i>
+                                    <span ng-bind="'Editar'"></span>
+                                </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
 
         </div>
 
-        <div ui-view class="col-sm-10 lateral-fade">
+        <div class="col-sm-10">
+            <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
+                <a class="btn btn-default pull-right" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})">
+                    <i class="mdi-image-remove-red-eye sidebar__item__icon"></i>
+                    <span>Ver</span>
+                </a>
+                <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
+            </div>
+            <div ui-view>
 
+            </div>
         </div>
 
         <div class="col-sm-12">

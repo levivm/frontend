@@ -13951,7 +13951,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar-secondary {
   background: #eeeeee;
   height: 40px;
-  width: 100%;
+  width: inherit;
   text-align: left;
   position: fixed;
   top: 80px;
@@ -13961,6 +13961,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar-secondary.navbar-secondary-short {
   top: 60px;
+}
+.navbar-secondary ul,
+.navbar-secondary li {
+  height: 100%;
+}
+.navbar-secondary .sidebar__item__icon {
+  margin-right: 0;
 }
 .navbar-secondary__item {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -13988,26 +13995,29 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: rgba(0, 0, 0, 0.74);
 }
 .navbar-secondary .sub-title {
-  position: absolute;
-  right: 20vw;
-  top: 0;
   font-weight: 500;
   color: #535353;
   font-size: 1.25em;
+  float: right;
+  padding: 0 1em;
 }
 .navbar-secondary + * {
   margin-top: 60px;
 }
-.navbar-secondary [class^="mdi-"] {
-  position: relative;
-  top: 5px;
+.navbar-secondary .btn {
+  border: none;
+  border-radius: 0;
+  height: 100%;
+  background-color: #393b3f;
+  color: white !important;
+  padding: 0 1em;
 }
 .with-navbar {
   margin-top: 80px;
   padding-top: 20px;
 }
 .burger-menu {
-  width: 99vw;
+  width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -14539,8 +14549,17 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar .list-inline li {
   display: inline-block;
 }
+.sidebar__bottom-action-container {
+  position: fixed;
+  bottom: 0px;
+  width: inherit;
+  border-top: 1px solid #999999;
+}
+.sidebar__bottom-action-container .sidebar__bottom-action {
+  margin-top: 0;
+}
 .sidebar__bottom-action {
-  background: #3a3d3f;
+  background: #393b3f;
   width: 100%;
   padding: 1em;
   margin-top: 2em;
@@ -14655,7 +14674,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-decoration: underline;
 }
 .sidebar-category-container .sidebar-category .subcategories__item.active {
-  background-color: #fbfbfb;
+  background-color: #eeeeee;
 }
 input,
 textarea,
@@ -18900,6 +18919,10 @@ blockquote {
   font-size: 1em;
   color: #3a3d3f;
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.review-detail .reported-copy {
+  font-size: 16px;
+  font-weight: 200;
 }
 .star {
   color: #ffd580;
