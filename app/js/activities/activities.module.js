@@ -142,7 +142,8 @@
                 abstract: true,
                 controller: 'ActivitiesManageCtrl as manage',
                 resolve: {
-                    activity: getActivity
+                    activity: getActivity,
+                    organizer : getCurrentOrganizer
                 },
                 templateUrl: 'partials/activities/manage/manage.html'
             })
@@ -161,7 +162,6 @@
                     }
                 },
                 resolve: {
-                    organizer : getCurrentOrganizer,
                     order: getOrder
                 }
             })
@@ -272,8 +272,8 @@
          * @requires trulii.organizers.services.OrganizersManager
          * @methodOf trulii.activities.config
          */
-        getCurrentOrganizer.$inject = ['$timeout', '$state', '$q', 'OrganizersManager'];
-        function getCurrentOrganizer($timeout, $state, $q, OrganizersManager){
+        getCurrentOrganizer.$inject = ['$q', 'OrganizersManager'];
+        function getCurrentOrganizer($q, OrganizersManager){
 
             return OrganizersManager.getCurrentOrganizer().then(success, error);
 
@@ -281,7 +281,6 @@
                 if(organizer){
                     return organizer;
                 } else {
-                    //$timeout(function() { $state.go('home'); });
                     return $q.reject();
                 }
             }
