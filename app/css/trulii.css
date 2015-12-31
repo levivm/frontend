@@ -14655,7 +14655,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-decoration: underline;
 }
 .sidebar-category-container .sidebar-category .subcategories__item.active {
-  background-color: #fbfbfb;
+  background-color: #eeeeee;
 }
 input,
 textarea,
@@ -18900,6 +18900,10 @@ blockquote {
   font-size: 1em;
   color: #3a3d3f;
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+.review-detail .reported-copy {
+  font-size: 16px;
+  font-weight: 200;
 }
 .star {
   color: #ffd580;
