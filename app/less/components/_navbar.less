@@ -224,7 +224,7 @@
 .navbar-secondary {
     background: @gray-lighter;
     height: @navbar-secondary-height;
-    width: 100%;
+    width: inherit;
     text-align: left;
     position: fixed;
     top: @navbar-height;
@@ -235,7 +235,12 @@
     &.navbar-secondary-short{
       top: @navbar-short-height;
     }
-
+    ul, li{
+        height: 100%;
+    }
+    .sidebar__item__icon{
+        margin-right: 0;
+    }
     &__item {
         font-family: @font-sans-alt;
         font-size: .85em;
@@ -266,21 +271,23 @@
     }
 
     .sub-title{
-        position: absolute;
-        right: 20vw;
-        top: 0;
-        font-weight:500;
-        color:@gray;
+        font-weight: 500;
+        color: @gray;
         font-size: 1.25em;
+        float: right;
+        padding: 0 1em;
     }
 
     & + * {
         margin-top: @navbar-secondary-height*1.5;
     }
-
-    [class^="mdi-"] {
-        position: relative;
-        top: 5px;
+    .btn{
+        border: none;
+        border-radius: 0;
+        height: 100%;
+        background-color: @sidebar-color;
+        color: white !important;
+        padding: 0 1em;
     }
 
 }
@@ -292,7 +299,7 @@
 }
 
 .burger-menu{
-  width:99vw;
+  width:100vw;
   height:100vh;
   position:fixed;
   top:0;

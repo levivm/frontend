@@ -153,9 +153,17 @@
 			display: inline-block;
 		}
 	}
-
+	&__bottom-action-container{
+		position: fixed;
+		bottom: 0px;
+		width: inherit;
+		border-top: 1px solid @gray-light;
+		.sidebar__bottom-action{
+			margin-top: 0;
+		}
+	}
 	&__bottom-action {
-		background: @gray-dark;
+		background: @sidebar-color;
 		width: 100%;
 		padding: 1em;
 		margin-top: 2em;
