@@ -32,8 +32,9 @@
             return $http.get(api.contactUs()).then(success, error);
 
             function success(response){
-                console.log("response,data topic",response);
-                return response.data.map(mapTopics);
+                var topics = response.data.map(mapTopics);
+                console.log("topics:", topics);
+                return topics;
             }
 
             function error(response){
@@ -41,25 +42,13 @@
                 $q.reject(response.data);
             }
 
-            function mapTopics(topic, index){
-                var key = Object.keys(topic)[0];
-                console.log("TOPPICCC",topic);
-                console.log("TOPPICCC",topic[key]);
+            function mapTopics(topic){
                 var topicObj = {
-                    'id': index,
-                    'title': key,
-                    'subtopics': topic[key].map(mapSubtopic)
+                    'id': topic.topic_id,
+                    'title': topic.topic_label
                 };
-                console.groupEnd();
 
                 return topicObj;
-            }
-
-            function mapSubtopic(subtopic, index){
-                return {
-                    'id': index,
-                    'title': subtopic
-                };
             }
         }
 
