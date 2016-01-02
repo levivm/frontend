@@ -265,10 +265,6 @@
                     value.minDate = session.date;
                 });
 
-                previous_sessions.map(function (value) {
-                    value.maxDate = session.date;
-                });
-
             },
             changeStartTime : function (session) {
 
