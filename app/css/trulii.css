@@ -13909,12 +13909,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar-secondary {
   background: #eeeeee;
   height: 40px;
-  width: inherit;
+  width: 100%;
   text-align: left;
   position: fixed;
   top: 80px;
   z-index: 200;
   padding: 0 1em;
+  padding-right: 17em;
   transition: all 0.25s;
 }
 .navbar-secondary.navbar-secondary-short {
@@ -14243,12 +14244,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-bar select,
 .search-bar select:focus {
   display: inline-block;
-  float: left;
   width: 35%;
   padding: 0 2em;
   border-top: 5px solid #38dbc8;
   -webkit-appearance: none;
   -moz-appearance: none;
+  float: left;
 }
 .search-bar select {
   background-size: 15px auto;
@@ -14270,6 +14271,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-color: transparent;
   border-top: 5px solid #732ebb;
   font-size: 1.25em;
+  float: left;
 }
 .search-bar .dropdown-menu {
   width: 50%;
@@ -14339,6 +14341,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  float: left;
   -webkit-appearance: none;
   -moz-appearance: none;
   background-size: 15px auto;
@@ -14566,8 +14569,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 1.2em;
 }
 .sidebar + * {
-  padding-left: 0;
-  margin-left: 17em;
+  padding-left: 17em;
+  margin-left: 0;
 }
 .sidebar.--float {
   background-color: white;
@@ -17471,6 +17474,10 @@ button.toast-close-button {
 }
 .container-success * {
   color: white;
+}
+.container-success input,
+.container-success .form-control {
+  color: #535353;
 }
 .container-success-light {
   background-color: #8eebe0;
