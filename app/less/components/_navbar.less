@@ -224,12 +224,13 @@
 .navbar-secondary {
     background: @gray-lighter;
     height: @navbar-secondary-height;
-    width: inherit;
+    width: 100%;
     text-align: left;
     position: fixed;
     top: @navbar-height;
     z-index: 200;
     padding: 0 1em;
+    padding-right: @sidebar-width;
     transition: @transition-navbar;
 
     &.navbar-secondary-short{
