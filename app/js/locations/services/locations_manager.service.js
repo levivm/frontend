@@ -184,6 +184,7 @@
         }
 
         function setSearchCity(city) {
+            console.log('LocationManager. setSearchCity:', city);
             if (city) {
                 localStorageService.set(KEY_SEARCH_CITY, city);
                 searchCity = city;

@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentActivitiesCtrl', StudentActivitiesCtrl);
 
-    StudentActivitiesCtrl.$inject = ['$q', 'activities', 'reviews', 'orders', 'student'];
+    StudentActivitiesCtrl.$inject = ['$q', '$state', 'LocationManager', 'activities', 'reviews', 'orders', 'student'];
 
-    function StudentActivitiesCtrl($q, activities, reviews, orders, student) {
+    function StudentActivitiesCtrl($q, $state, LocationManager, activities, reviews, orders, student) {
 
         var futureOrders = [];
         var pastOrders = [];
@@ -25,7 +25,8 @@
             options : {
                 actions: ["contact"]
             },
-            getReviewByActivityId: getReviewByActivityId
+            getReviewByActivityId: getReviewByActivityId,
+            searchActivities: searchActivities
         });
 
         _activate();
@@ -34,7 +35,7 @@
 
         function getReviewByActivityId(activityId){
             var review = reviews.filter(filterById)[0];
-            console.log('getReviewByActivityId', review);
+            //console.log('getReviewByActivityId', review);
             if(review){
                return review;
             } else {
@@ -42,6 +43,11 @@
             }
 
             function filterById(review){ return review.activity.id === activityId; }
+        }
+
+        function searchActivities(){
+            var searchCity = LocationManager.getSearchCity();
+            $state.go('search', {'city': searchCity.id});
         }
 
         //--------- Internal Functions ---------//
@@ -110,8 +116,8 @@
             });
 
             $q.all(promiseArray).then(function(){
-                console.log('future_activities:', vm.future_activities);
-                console.log('past_activities:', vm.past_activities);
+                //console.log('future_activities:', vm.future_activities);
+                //console.log('past_activities:', vm.past_activities);
                 deferred.resolve();
             });
 
@@ -142,8 +148,8 @@
         }
 
         function _mapReviews(activity, reviews){
-            console.log('reviews', reviews);
-            console.log('activity', activity);
+            //console.log('reviews', reviews);
+            //console.log('activity', activity);
             var review = reviews.filter(function(review){
                 return review.activity == activity.id;
             })[0];
