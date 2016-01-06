@@ -32,7 +32,7 @@
         <div class="separate-below separate-above standout-text"
              ng-bind="::activities.strings.COPY_EMPTY_ACTIVITIES">
         </div>
-        <a class="btn btn-lg btn-success" ui-sref="search"
-           ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES"></a>
+        <button class="btn btn-lg btn-success" ng-click="activities.searchActivities()"
+           ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES"></button>
     </div>
 </div>
