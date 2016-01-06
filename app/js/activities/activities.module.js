@@ -73,7 +73,8 @@
                 resolve: {
                     presaveInfo: getPresaveActivityInfo,
                     activity: getActivity,
-                    organizer : getCurrentOrganizer
+                    organizer : getCurrentOrganizer,
+                    isOwner: isActivityOwner
                 },
                 controllerAs: 'pc',
                 templateUrl: 'partials/activities/edit/edit.html'
@@ -293,6 +294,30 @@
                 }
                 return $q.reject();
             }
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#isActivityOwner
+         * @description Retrieves the current logged Organizer from
+         * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service otherwise returns ``null``
+         * @requires ng.$timeout
+         * @requires ui.router.state.$state
+         * @requires ng.$q
+         * @requires trulii.organizers.services.OrganizersManager
+         * @methodOf trulii.activities.config
+         */
+        isActivityOwner.$inject = ['$q', 'activity', 'organizer'];
+        function isActivityOwner($q, activity, organizer){
+            var deferred = $q.defer();
+
+            if(organizer.id === activity.organizer.id){
+                deferred.resolve(true);
+            } else {
+                deferred.reject("Organizer '" + organizer.name + "' doesn't own activity '" + activity.title + "'");
+            }
+
+            return deferred.promise;
         }
 
         /**
