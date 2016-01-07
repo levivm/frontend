@@ -137,7 +137,7 @@
 
                 function _getLoggedUser(){
                     Authentication.getAuthenticatedAccount().then(function(user){
-                        scope.isOrganizer = user.user_type.toUpperCase() == "O";
+                        scope.isOrganizer = user && user.user_type.toUpperCase() == "O";
                     });
                 }
 

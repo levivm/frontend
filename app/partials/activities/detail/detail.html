@@ -165,11 +165,11 @@
     <div class="organizer-widget">
       <a class="card text-no-decoration" ui-sref="organizer-profile({organizer_id: detail.organizer.id})">
         <div class="content">
-          <img class="picture" ng-src="{{::detail.getOrganizerPhoto()}}"
+          <img class="picture" ng-src="{{::detail.activity.organizer.photo}}"
           alt="{{::detail.organizer.name}}"/>
           <div class="data">
             <div class="name" ng-bind="::detail.organizer.name"></div>
-            <div class="location" ng-bind="::detail.getOrganizerCity()"></div>
+            <div class="location" ng-bind="::detail.organizer.city"></div>
           </div>
         </div>
       </a>
@@ -222,12 +222,9 @@
       <a class="btn btn-primary btn-sign-up"
         ng-disabled="detail.isSelectedCalendarFull()"
         ng-hide="detail.isSelectedCalendarFull()"
-        ng-click="detail.nextState(detail.activity.id,detail.calendar_selected.id)"
+        ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id)"
         ng-bind="::detail.strings.ACTION_SIGN_UP">
-
       </a>
-
-
         <div class="other-calendars"
           ng-click="detail.viewMoreCalendars()"
           ng-class="{'other-calendars-has-more': detail.activity.upcoming_calendars.length > 1}">
@@ -341,11 +338,17 @@
 
 <!--Location-->
 <div class="row location">
-  <div class="map" id="map-canvas"></div>
+  <ui-gmap-google-map class="map" center='detail.map.center' zoom='detail.map.zoom'
+                      bounds="detail.map.bounds" options="detail.map.options"
+                      events="detail.map.events">
+    <ui-gmap-marker coords="detail.marker.coords" options="detail.marker.options"
+                    events="detail.marker.events"
+                    idkey="detail.marker.id"></ui-gmap-marker>
+  </ui-gmap-google-map>
   <div class="address">
-    <!--<span class="mdi-maps-place"></span>-->
     <img src="/css/img/activity-detail/map_location.png" alt=""/>
-    <span ng-bind="detail.activity.location.address"></span>  <span ng-bind="detail.city"></span>
+    <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
+    <span ng-bind="detail.activity.location.name"></span>
   </div>
 </div>
 
@@ -431,7 +434,7 @@
               </td>
               <td colspan=1>
                 <a class="btn btn-primary btn-block" ng-if="calendar.available_capacity > 0"
-                  ng-click="detail.nextState(detail.activity.id, calendar.id)"
+                  ng-click="detail.signUp(detail.activity.id, calendar.id)"
                   ng-bind="::detail.strings.ACTION_SIGN_UP">
                 </a>
               </td>

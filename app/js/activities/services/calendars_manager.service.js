@@ -139,7 +139,7 @@
             return $http.get(api.calendars(activityId)).then(success, error);
 
             function success(response) {
-                console.log('CalendarsManager. Calendars response:', response);
+                //console.log('CalendarsManager. Calendars response:', response);
                 _setCalendars(response.data);
                 return calendars;
             }

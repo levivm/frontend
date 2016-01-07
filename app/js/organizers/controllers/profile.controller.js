@@ -18,7 +18,7 @@
         angular.extend(vm, {
             organizer : organizer,
             city : null,
-            map : LocationManager.getMap(organizer.location),
+            map : LocationManager.getMap(organizer.location, false),
             marker : LocationManager.getMarker(organizer.location),
             options : {
                 actions: ['view']

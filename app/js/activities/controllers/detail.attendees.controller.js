@@ -69,14 +69,14 @@
 
         function _getAssistants() {
             var assistants = [];
-            console.log('calendars',vm.calendars);
+            //console.log('calendars',vm.calendars);
             _.forEach(vm.calendars, function (calendar) {
                 assistants.push(calendar.assistants);
             });
-            console.log('assistants pre flatten',assistants);
+            //console.log('assistants pre flatten',assistants);
 
             assistants = _.flatten(assistants, true);
-            console.log('assistants post flatten',assistants);
+            //console.log('assistants post flatten',assistants);
 
             // TODO for testing purposes
             //assistants = [

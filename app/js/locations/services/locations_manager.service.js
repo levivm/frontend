@@ -184,7 +184,6 @@
         }
 
         function setSearchCity(city) {
-            console.log('LocationManager. setSearchCity:', city);
             if (city) {
                 localStorageService.set(KEY_SEARCH_CITY, city);
                 searchCity = city;
@@ -233,16 +232,15 @@
             return mapBounds;
         }
 
-        function getMap(location) {
-
+        function getMap(location, scroll) {
             var latitude;
             var longitude;
 
-            if (location.point)
+            if (location.point){
                 location = angular.copy(location);
-            else
+            } else {
                 location = angular.copy(location.city);
-
+            }
             latitude = location.point[0];
             longitude = location.point[1];
 
@@ -252,7 +250,7 @@
                 center: {latitude: latitude, longitude: longitude},
                 zoom: 14,
                 options:{
-                    'scrollwheel':true
+                    'scrollwheel': scroll
                 },
                 bounds: scope.getAllowedBounds(),
                 events: {
@@ -268,7 +266,12 @@
                             map.control.valid_center = _map.getCenter();
                             return;
                         }
-                        _map.panTo(map.control.valid_center);
+
+                        try {
+                            _map.panTo(map.control.valid_center);
+                        } catch(exception){
+                            console.error('Angular Google Maps Exception. Selected location outside of allowed bounds');
+                        }
                     }
                 },
                 control: {

@@ -31,7 +31,7 @@
             photo_invalid : false,
             photo_loading : false,
             isSaving : false,
-            map : LocationManager.getMap(organizer.location),
+            map : LocationManager.getMap(organizer.location, true),
             marker : LocationManager.getMarker(organizer.location),
             uploadPicture : uploadPicture,
             submitInfo : submitInfo,

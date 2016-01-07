@@ -14,7 +14,7 @@
         ])
         .constant('ActivitiesTemplatesPath', "partials/activities/")
         .constant('angularMomentConfig', {
-            timezone: 'America/Bogota' // e.g. 'Europe/London',
+            timezone: 'America/Bogota'
         })
         .config(config);
 
@@ -196,10 +196,11 @@
                         return true;
                     },
                     currentUser: getAuthenticatedUser,
-                    cities: getAvailableCities,
                     activity: getActivity,
                     reviews: getReviews,
-                    calendars: getCalendars
+                    calendars: getCalendars,
+                    organizer: getActivityOrganizer,
+                    relatedActivities: getOrganizerActivities
                 }
             })
             .state('activities-enroll', {
@@ -210,6 +211,7 @@
                     activity: getActivity,
                     calendar: fetchCalendar,
                     currentUser: getAuthenticatedUser,
+                    isStudent: isStudent,
                     deviceSessionId:getDeviceSessionId
                 }
             })
@@ -327,9 +329,23 @@
          * @requires activity
          * @methodOf trulii.activities.config
          */
-        getActivityOrganizer.$inject = ['activity'];
-        function getActivityOrganizer(activity){
-            return  activity.organizer;
+        getActivityOrganizer.$inject = ['$q', 'activity', 'LocationManager', 'defaultPicture'];
+        function getActivityOrganizer($q, activity, LocationManager, defaultPicture){
+            var deferred = $q.defer();
+
+            var organizer = activity.organizer;
+            if(!organizer.photo){
+               organizer.photo = defaultPicture;
+            }
+
+            if(!!organizer.locations[0]){
+                var city_id = organizer.locations[0].city;
+                organizer.city = LocationManager.getCityById(city_id).name;
+            }
+
+            deferred.resolve(organizer);
+
+            return deferred.promise;
         }
 
         /**
@@ -421,8 +437,8 @@
          * @requires trulii.activities.services.CalendarsManager
          * @methodOf trulii.activities.config
          */
-        getCalendar.$inject = ['$stateParams','calendars', 'CalendarsManager'];
-        function getCalendar($stateParams, calendars, CalendarsManager){
+        getCalendar.$inject = ['$stateParams','CalendarsManager'];
+        function getCalendar($stateParams, CalendarsManager){
             return CalendarsManager.getCalendar($stateParams.calendar_id);
         }
 
@@ -451,13 +467,11 @@
          * @requires calendar
          * @methodOf trulii.activities.config
          */
-        fetchCalendarArray.$inject = ['$stateParams','calendar'];
-        function fetchCalendarArray($stateParams,calendar, CalendarsManager) {
-
+        fetchCalendarArray.$inject = ['calendar'];
+        function fetchCalendarArray(calendar) {
             var array = [];
             if (calendar){ array.push(calendar); }
             return array;
-
         }
 
         /**
@@ -504,14 +518,28 @@
          * @description Generates deviceSessionId used in Pay U endpoint
          * @methodOf trulii.activities.config
          */
-        getDeviceSessionId.$inject = ['currentUser','localStorageService','md5'];
-        function getDeviceSessionId(currentUser,localStorageService,md5){
-
+        getDeviceSessionId.$inject = ['localStorageService','md5'];
+        function getDeviceSessionId(localStorageService,md5){
             var token = localStorageService.get('token');
             var time_stamp = new Date().getTime();
             var string = token + time_stamp.toString();
             var deviceSessionId = md5.createHash(string);
             return deviceSessionId;
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#isStudent
+         * @description Checks if user is student. If `false` redirects to detail
+         * @methodOf trulii.activities.config
+         */
+        isStudent.$inject = ['$state', 'currentUser', 'activity'];
+        function isStudent($state, currentUser, activity){
+            if(currentUser && currentUser.user_type === 'S'){
+                return true;
+            } else {
+                $state.go('activities-detail', { activity_id: activity.id });
+            }
         }
 
     }
