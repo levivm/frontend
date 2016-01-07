@@ -41,6 +41,7 @@
                 //--------- Internal Functions ---------//
 
                 function _getUser() {
+                    scope.user = true;
                     Authentication.getAuthenticatedAccount().then(success, error);
 
                     function success(user) {
