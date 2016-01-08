@@ -28,14 +28,14 @@
 
         //--------- Exposed Functions ---------//
 
-        function changeReviewStatus(review){
-            var readReview = _.remove(vm.unread_reviews,removeById);
-            vm.read_reviews.push(review);
+        function changeReviewStatus(reviewObject){
+            var readReviewObject = _.remove(vm.unread_reviews, removeById)[0];
+            vm.read_reviews.push(reviewObject);
             unreadReviewsCount.count += -1;
             Toast.success(vm.strings.COPY_REVIEW_READ);
-            
-            function removeById(unreadReview){
-                return unreadReview.id === review.id;
+
+            function removeById(unreadReviewObject){
+                return unreadReviewObject.review.id === reviewObject.review.id;
             }
         }
 
