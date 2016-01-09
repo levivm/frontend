@@ -241,6 +241,7 @@
             var deferred = $q.defer();
             vm.searchData = SearchManager.getSearchData($stateParams);
             vm.searchQuery = vm.searchData[SearchManager.KEY_QUERY];
+            console.log('searchQuery:', vm.searchQuery, vm.searchData);
             var sm = SearchManager;
 
             if($stateParams.city){
@@ -335,7 +336,8 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_CLOSE: "Cerrar",
-                COPY_RESULTS_FOR: "resultados para ",
+                COPY_RESULTS: "resultados ",
+                COPY_FOR: "para ",
                 COPY_IN: "en",
                 OPTION_SELECT_LEVEL: "-- Nivel --",
                 PLACEHOLDER_DATE: "A Partir de",

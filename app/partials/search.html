@@ -94,18 +94,22 @@
         </div>
     </div>
     <div class="row separator-light no-margin-bottom"></div>
-    <div class="row" ng-if="search.searchQuery">
+    <div class="row">
         <div class="col-xs-12">
             <div class="search-info">
                 <strong ng-bind="search.activities.length"></strong>
                 <span> </span>
-                <span ng-bind="::search.strings.COPY_RESULTS_FOR"></span>
+                <span ng-bind="::search.strings.COPY_RESULTS"></span>
                 <span> </span>
-                <strong>
-                    <span>"</span>
-                    <span ng-bind="::search.searchQuery"></span>
-                    <span>"</span>
-                </strong>
+                <span ng-if="search.searchQuery">
+                    <span ng-bind="::search.strings.COPY_FOR"></span>
+                    <span> </span>
+                    <strong>
+                        <span>"</span>
+                        <span ng-bind="::search.searchQuery"></span>
+                        <span>"</span>
+                    </strong>
+                </span>
                 <span ng-if="search.searchCategory">
                     <span ng-bind="::search.strings.COPY_IN"></span>
                     <span> </span>
