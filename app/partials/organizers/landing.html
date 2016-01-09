@@ -228,7 +228,7 @@
                                     <div class="form-group" trulii-input-errors-control="city">
                                         <label for="city" class="sr-only" ng-bind="::landing.strings.LABEL_CITY"></label>
                                         <select class="form-control" id="city" name="city" ng-model="landing.selectedCity"
-                                          ng-options="city.id as city.name for city in landing.cities track by city.id">
+                                          ng-options="city as city.name for city in landing.cities track by city.id">
                                           <option value="" ng-bind="::landing.strings.PLACEHOLDER_CITY"></option>
                                         </select>
                                     </div>

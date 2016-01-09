@@ -27,8 +27,7 @@
             errors : {},
             selectedCity: LocationManager.getCurrentCity(),
             request : {
-                document_type: documentTypes[0].id,
-
+                document_type: documentTypes[0].id
             },
             sent : false,
             isSigningUp: false,
@@ -37,6 +36,8 @@
         });
 
         _activate();
+
+        //--------- Exposed Functions ---------//
 
         function requestSignup() {
             vm.request.city = vm.selectedCity.id;
@@ -60,15 +61,14 @@
                 var responseErrors = response.data;
                 if (responseErrors) { Error.form.add(vm.pre_signup_form, responseErrors); }
             }
-        }
 
-        function _validateObject(data){
-            var properties = ['name', 'email', 'telephone', 'city', 'document_type', 'document'];
-            return properties.every(hasKey);
+            function _validateObject(data){
+                var properties = ['name', 'email', 'telephone', 'city', 'document_type', 'document'];
+                return properties.every(hasKey);
 
-            function hasKey(key){
-                //console.log(key, data.hasOwnProperty(key));
-                return data.hasOwnProperty(key);
+                function hasKey(key){
+                    return data.hasOwnProperty(key);
+                }
             }
         }
 
@@ -76,9 +76,10 @@
             Elevator.toElement('anchor');
         }
 
-        function setStrings() {
-            if (!vm.strings) { vm.strings = {}; }
+        //--------- Internal Functions ---------//
 
+        function _setStrings() {
+            if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_SIGNUP: 'Únete',
                 HEADER_TITLE_COPY: "Enfócate en enseñar lo que te apasiona",
@@ -130,7 +131,7 @@
         }
 
         function _activate() {
-            setStrings();
+            _setStrings();
         }
     }
 })();
