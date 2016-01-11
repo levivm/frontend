@@ -418,10 +418,10 @@
             function success(reviews){
                 return reviews;
                 //return reviews.filter(filterByActivity);
-                //
-                //function filterByActivity(review){
-                //    return review.activity === activity.id;
-                //}
+
+                function filterByActivity(review){
+                    return review.activity === activity.id;
+                }
             }
             function error(response){
                 return [];
