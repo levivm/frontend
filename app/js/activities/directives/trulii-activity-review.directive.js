@@ -77,6 +77,7 @@
 
                     function success(){
                         scope.show.reportWarning = false;
+                        scope.review.reported = true;
                         Toast.info(scope.strings.COPY_REVIEW_REPORTED);
                     }
                 }
@@ -96,6 +97,7 @@
                 }
 
                 function markAsRead(){
+                    scope.review.read = true;
                     activityInstance.markReviewAsRead(scope.review).then(success);
 
                     function success(){
@@ -106,7 +108,7 @@
                 //--------- Internal Functions ---------//
 
                 function _getActivityInstance(){
-                    ActivitiesManager.getActivity(scope.activity.id).then(function(activityInstanceResponse){
+                    ActivitiesManager.getActivity(scope.review.activity).then(function(activityInstanceResponse){
                         activityInstance = activityInstanceResponse;
                     });
                 }
@@ -135,7 +137,7 @@
 
                 function _getLoggedUser(){
                     Authentication.getAuthenticatedAccount().then(function(user){
-                        scope.isOrganizer = user.user_type.toUpperCase() == "O";
+                        scope.isOrganizer = user && user.user_type.toUpperCase() == "O";
                     });
                 }
 

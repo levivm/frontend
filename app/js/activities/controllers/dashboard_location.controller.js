@@ -17,32 +17,27 @@
     function ActivityDBLocationController(activity, cities, organizer, LocationManager, Toast, Elevator, Error) {
 
         var vm = this;
-
-        angular.extend(vm, { 
+        angular.extend(vm, {
             organizer: organizer,
             cities: cities,
             activity: angular.copy(activity),
-            save_activity: updateActivity,
-            // setOverElement: setOverElement,
-            // showTooltip: showTooltip,
             errors: {},
             isCollapsed: true,
             isSaving: false,
-            address_autocomplete: []
+            address_autocomplete: [],
+            save_activity: updateActivity
         });
 
         _activate();
 
-        /******************ACTIONS**************/
+        //--------- Exposed Functions ---------//
 
         function updateActivity() {
             vm.isSaving = true;
 
             Error.form.clear(vm.activity_location_form);
-            
             _setActivityPos();
-            vm.activity.update_location()
-                .then(updateSuccess, error);
+            vm.activity.update_location().then(updateSuccess, error);
 
             function updateSuccess(response) {
                 vm.isCollapsed = false;
@@ -54,24 +49,12 @@
             }
 
             function error(errors) {
-                
                 Error.form.add(vm.activity_location_form, errors);
-
                 vm.isSaving = false;
             }
-
-            
         }
 
-        // function showTooltip(element) {
-        //     return vm.currentOverElement === element;
-        // }
-
-        // function setOverElement(element) {
-        //     vm.currentOverElement = element;
-        // }
-
-        /*****************SETTERS********************/
+        //--------- Internal Functions ---------//
 
         function _setActivityPos() {
             vm.activity.location.point = [];
@@ -80,8 +63,7 @@
         }
 
         function _setLocation(){
-
-            if (!vm.activity.location){ 
+            if (!vm.activity.location){
                 console.log('Activity location',vm.activity.location);
                 if (vm.organizer.location){
                     vm.activity.location = angular.copy(vm.organizer.location);
@@ -92,17 +74,13 @@
                     vm.activity.location.city = LocationManager.getCurrentCity();
                 }
 
-            }
-            else{
+            } else {
                 var city_id = angular.isUndefined(vm.activity.location.city.id)?
                                         vm.activity.location.city:vm.activity.location.city.id;
                 console.log('Activity location',vm.activity.location.city);
                 vm.activity.location.city = LocationManager.getCityById(city_id);
             }
-
-
         }
-
 
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
@@ -115,7 +93,7 @@
                 LABEL_SELECT: "Seleccione...",
                 LABEL_ADDRESS: "Dirección exacta",
                 LABEL_LOCATION: "Ubicación",
-                ACTION_SAVE: "Guardar",
+                ACTION_SAVE: "Guardar"
             });
         }
 
@@ -123,11 +101,9 @@
             if(!vm.activity.location && vm.organizer.location)
                 vm.address_autocomplete = angular.isUndefined(vm.organizer.location.address)?
                                                 []:[vm.organizer.location.address];
-
         }
 
         function _onSectionUpdated() {
-
             activity.updateSection('location');
         }
 
@@ -135,7 +111,7 @@
             _setAddressAutoComplete();
             _setLocation();
             _setStrings();
-            vm.map = LocationManager.getMap(vm.activity.location);
+            vm.map = LocationManager.getMap(vm.activity.location, true);
             vm.marker = LocationManager.getMarker(vm.activity.location);
             Elevator.toTop();
         }

@@ -30,7 +30,9 @@
                ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.reviews.*')}">
                 <i class="sidebar__item__icon mdi-communication-comment"></i>
                 <span ng-bind="::dash.strings.SECTION_REVIEWS"></span>
-                <span class="label label-success" ng-bind="dash.unreadReviewsCount.count"></span>
+                <span class="label label-success"
+                      ng-if="dash.unreadReviewsCount.count"
+                      ng-bind="dash.unreadReviewsCount.count"></span>
             </a>
             <a ui-sref=".transactions.sales"
                class="sidebar__item"
@@ -39,6 +41,6 @@
                 <span ng-bind="::dash.strings.SECTION_TRANSACTIONS"></span>
             </a>
         </div>
-        <div ui-view class="col-sm-10"></div>
+        <div ui-view class="col-xs-12"></div>
     </div>
 </div>

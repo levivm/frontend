@@ -31,17 +31,7 @@
         //--------- Exposed Functions ---------//
 
         function printOrder(){
-          console.log("asdaf");
-            var book = angular.element.find('.tab-pane')[0];
-            var link = $window.document.createElement("link");
-            link.href = "/css/trulii.css";
-            link.type = "text/css";
-            link.rel = "stylesheet";
-            book.appendChild(link);
-            var table = book.innerHTML;
-            var myWindow = window.open('', '', 'width=1200, height=600, scrollbars=yes');
-            myWindow.document.write(table);
-            setTimeout(function(){ myWindow.print(); }, 1000);
+            $window.print();
         }
 
         function requestOrderRefund(orderId){
@@ -67,7 +57,6 @@
 
             function enableOrderRefundLoader(){
                 vm.requestingOrderRefund = true;
-
             }
 
             function disableOrderRefundLoader(){
@@ -163,7 +152,7 @@
             _setStrings();
             _setFeeAmount();
             _setTotalMinusFee();
-            console.log('order',order);
+            //console.log('order',order);
         }
     }
 })();

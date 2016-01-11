@@ -1,4 +1,3 @@
-
 /**
  * @ngdoc controller
  * @name trulii.organizers.controllers.ActivitiesManageCtrl
@@ -12,9 +11,8 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$window', '$scope', '$filter','$state', 'activity', 'ActivitiesManager'];
-
-    function ActivitiesManageCtrl($window, $scope, $filter, $state, activity, ActivitiesManager) {
+    ActivitiesManageCtrl.$inject = ['$scope', '$filter', 'activity', 'ActivitiesManager'];
+    function ActivitiesManageCtrl($scope, $filter, activity, ActivitiesManager) {
 
         var vm = this;
         angular.extend(vm, {
@@ -74,7 +72,7 @@
                     start = (vm.orderPaginationOpts.pageNumber -1) * offset;
                     end = vm.orderPaginationOpts.pageNumber * offset;
                     vm.orders = orders.slice(start, end);
-                    console.log('orders:', vm.orders);
+                    //console.log('orders:', vm.orders);
                     break;
                 case vm.TYPE_CALENDAR:
                     offset = vm.calendarPaginationOpts.itemsPerPage;
@@ -82,7 +80,7 @@
                     end = vm.calendarPaginationOpts.pageNumber * offset;
                     console.log(vm.calendarPaginationOpts.pageNumber, 'slice(' + start + ',' + end + ')');
                     vm.calendars = calendars.slice(start, end);
-                    console.log('calendars:', vm.calendars);
+                    //console.log('calendars:', vm.calendars);
                     break;
             }
         }
@@ -94,9 +92,9 @@
             }
 
             switch(type){
-
-                case vm.TYPE_ASSISTANT:  
+                case vm.TYPE_ASSISTANT:
                     vm.activeCalendar = calendar;
+                    //console.log('assistants',angular.copy(calendar.assistants));
                     assistants = calendar.assistants;
                     vm.assistants = assistants;
                     break;
@@ -107,7 +105,6 @@
                     vm.netTotal = vm.total - vm.totalWithFee;
                     vm.activeCalendar = calendar;
                     break;
-
             }
 
             function orderBelongsToCalendar(order){
@@ -115,14 +112,12 @@
             }
 
             function getTotal(order){
-
                 return order.is_free ? 0 : order.amount;
             }
 
             function getTotalWithFee(order){
                 return order.is_free ? 0 : order.amount * order.fee;
             }
-
         }
 
         function _getOrders(activityId){
@@ -165,19 +160,17 @@
 
         function _mapDateMsg(calendar){
             calendar.fromDate = $filter('date')(calendar.initial_date, 'dd MMM yy');
-
             calendar.toDate = $filter('date')(calendar.closing_sale, 'dd MMM yy');
             return calendar;
         }
 
         function _setStrings() {
-            if (!vm.strings) {
-                vm.strings = {};
-            }
+            if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE_ORDER: "Reembolsar Orden",
                 ACTION_REIMBURSE_ASSISTANT: "Reembolsar Asistente",
                 ACTION_VIEW_DETAIL: "Ver detalle",
+                ACTION_VIEW: "Ver",
                 ACTION_PRINT: "Imprimir",
                 COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad agrupadas por calendario",
                 COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito a las diferentes fechas de inicio de esta actividad",
@@ -246,10 +239,7 @@
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
-            console.log("reloadin",assistants);
-
+            //console.log("reloadin",assistants);
         }
-
     }
-
 })();

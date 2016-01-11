@@ -51,7 +51,7 @@
                     organizer: getOrganizer,
                     activities: getOrganizerActivities,
                     reviews: getOrganizerReviews,
-                    cities: getAvailableCities
+                    reviewObjects: getReviewObjects
                 }
             })
             .state('organizer-dashboard', {
@@ -60,9 +60,9 @@
                 controller: 'OrganizerDashboardCtrl as dash',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
-                    cities:getAvailableCities,
-                    organizer : getCurrentOrganizer,
-                    unreadReviewsCount: getUnreadOrganizerReviewsCount,
+                    cities: getAvailableCities,
+                    organizer: getCurrentOrganizer,
+                    unreadReviewsCount: getUnreadOrganizerReviewsCount
                 },
                 data: {
                     requiredAuthentication : true
@@ -161,8 +161,8 @@
          * @requires trulii.organizers.services.OrganizersManager
          * @methodOf trulii.organizers.config
          */
-        getCurrentOrganizer.$inject = ['$timeout', '$state', '$q', 'OrganizersManager'];
-        function getCurrentOrganizer($timeout, $state, $q, OrganizersManager){
+        getCurrentOrganizer.$inject = ['$q', 'OrganizersManager'];
+        function getCurrentOrganizer($q, OrganizersManager){
 
             return OrganizersManager.getCurrentOrganizer().then(success, error);
 
@@ -170,7 +170,6 @@
                 if(organizer){
                     return organizer;
                 } else {
-                    //$timeout(function() { $state.go('home'); });
                     return $q.reject();
                 }
             }
@@ -251,6 +250,14 @@
             return organizer.getReviews();
         }
 
+        /**
+         * @ngdoc method
+         * @name .#getReviewObjects
+         * @description Creates ReviewObjects, simple objects containing a review and the activity it's tied to
+         * @requires reviews
+         * @requires activities
+         * @methodOf trulii.organizers.config
+         */
         getReviewObjects.$inject = ['reviews', 'activities'];
         function getReviewObjects(reviews, activities){
             return reviews.map(mapActivityToReview);
@@ -271,8 +278,8 @@
 
         /**
          * @ngdoc method
-         * @name .#getUnreadOrganizerReviews
-         * @description Retrieves an Organizer's Unread Reviews from
+         * @name .#getUnreadOrganizerReviewsCount
+         * @description Retrieves an Organizer's Unread Reviews Count from
          * {@link trulii.organizers.services.Organizer Organizer}
          * @requires organizer
          * @methodOf trulii.organizers.config
@@ -280,9 +287,7 @@
         getUnreadOrganizerReviewsCount.$inject = ['$q', 'organizer'];
         function getUnreadOrganizerReviewsCount($q, organizer){
             var deferred = $q.defer();
-
             organizer.getReviews().then(success, error);
-
             return deferred.promise;
 
             function success(reviews){
@@ -301,7 +306,6 @@
             }
         }
 
-
         /**
          * @ngdoc method
          * @name .#getUnreadReviewsCount
@@ -316,7 +320,6 @@
                 'count':reviews.length
             };
         }
-
 
         /**
          * @ngdoc method
@@ -343,7 +346,5 @@
         function getBankingInfo(Payments){
             return Payments.getBankingInfo();
         }
-
     }
-
 })();

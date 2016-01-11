@@ -79,11 +79,10 @@
                     'predicate':ORDERING_BY_SOONEST_DATE_KEY,
                     'name':'Más próxima'
                 },
-                 {
+                {
                     'predicate':ORDERING_BY_ASSISTANT_AMOUNT_KEY,
                     'name':'Asistentes'
-                },
-
+                }
             ],
             pageChange:pageChange,
             getLevelClassStyle: getLevelClassStyle,
@@ -97,9 +96,7 @@
             stopDrag:stopDrag,
             setCertification: setCertification,
             setWeekends: setWeekends,
-            changeOrderBy:changeOrderBy,
-
-
+            changeOrderBy:changeOrderBy
         });
 
         _activate();
@@ -198,12 +195,13 @@
         }
 
         function changeOrderBy(predicate){
-            console.log("pedricado",predicate);
-            if (predicate === ORDERING_BY_SOONEST_DATE_KEY)
-                activities = $filter('orderBy')(activities,_orderBySoonestDate);
-            else
-                activities = $filter('orderBy')(activities,predicate);
-
+            console.log("predicado", predicate);
+            if (predicate === ORDERING_BY_SOONEST_DATE_KEY) {
+                //TODO Apagar el booleano que indica sentido inverso luego de pase de feature a backend
+                activities = $filter('orderBy')(activities, _orderBySoonestDate, true);
+            } else {
+                activities = $filter('orderBy')(activities, predicate);
+            }
             vm.activitiesPaginationOpts.pageNumber = 1;
             pageChange();
         }
@@ -218,6 +216,7 @@
 
         function _orderBySoonestDate(activity){
             var today = Date.now();
+            console.log("activity.closest_calendar.initial_date < today", activity.closest_calendar.initial_date < today, activity.closest_calendar.initial_date);
             if (activity.closest_calendar.initial_date < today){
                 return activity.closest_calendar.initial_date;
             }
@@ -242,6 +241,7 @@
             var deferred = $q.defer();
             vm.searchData = SearchManager.getSearchData($stateParams);
             vm.searchQuery = vm.searchData[SearchManager.KEY_QUERY];
+            console.log('searchQuery:', vm.searchQuery, vm.searchData);
             var sm = SearchManager;
 
             if($stateParams.city){
@@ -336,7 +336,8 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_CLOSE: "Cerrar",
-                COPY_RESULTS_FOR: "resultados para ",
+                COPY_RESULTS: "resultados ",
+                COPY_FOR: "para ",
                 COPY_IN: "en",
                 OPTION_SELECT_LEVEL: "-- Nivel --",
                 PLACEHOLDER_DATE: "A Partir de",

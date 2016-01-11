@@ -107,7 +107,7 @@
                 <div ng-if="success.organizerActivities.length > 0">
                     <h3 class="text-center separate-above-medium separate-below-medium" ng-bind="success.strings.LABEL_SIMILAR"></h3>
                     <div class="row activity-grid separate-above">
-                        <trulii-activity-item class="col-md-4"
+                        <trulii-activity-item
                               ng-repeat="activity in success.organizerActivities track by activity.id"
                               data-activity="activity"></trulii-activity-item>
                     </div>

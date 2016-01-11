@@ -46,7 +46,6 @@
         }
 
         function setCalendar(calendar) {
-            // CalendarsManager.setCalendar(calendar);
             activity.load().then(function (data) {
                 _onSectionUpdated();
             });
@@ -55,7 +54,6 @@
         }
 
         function deleteCalendar(calendar) {
-
             if (calendar.hasAssistants()){
                 Toast.error(vm.strings.DELETE_CALENDAR_ERROR);
                 return;
@@ -69,12 +67,11 @@
             });
 
             modalInstance.result.then(function () {
-                CalendarsManager.deleteCalendar(calendar.id)
-                    .then(success, error);
+                CalendarsManager.deleteCalendar(calendar).then(success, error);
             });
 
-            function success(response) {
-                activity.load().then(function (data) {
+            function success() {
+                activity.load().then(function (activityData){
                     _onSectionUpdated();
                 });
             }

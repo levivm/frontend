@@ -12,11 +12,11 @@
     angular.module('trulii.search.directives')
         .directive('truliiSearchBar', truliiSearchBar);
 
-    truliiSearchBar.$inject = ['$rootScope', '$state','$http', '$stateParams', 'UIComponentsTemplatesPath',
+    truliiSearchBar.$inject = ['$rootScope', '$state', '$stateParams', 'UIComponentsTemplatesPath', 'Toast',
         'SearchManager', 'LocationManager'];
 
-    function truliiSearchBar($rootScope, $state,$http, $stateParams, UIComponentsTemplatesPath,
-                          SearchManager, LocationManager) {
+    function truliiSearchBar($rootScope, $state, $stateParams, UIComponentsTemplatesPath,
+                          Toast, SearchManager, LocationManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "search-bar.html",
@@ -42,6 +42,7 @@
 
                 function search() {
                     if(!scope.search_city){
+                        Toast.warning("Error", "Can't search without a city. Please specify a city to search on");
                         console.log("Error. Can't search without a city. Please specify a city to search on");
                         return;
                     }
@@ -52,7 +53,7 @@
 
                     SearchManager.setSearchBarData(data);
                     angular.extend(data, SearchManager.getSearchData());
-                    console.log('data', data);
+                    //console.log('data', data);
 
                     $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
                     $state.go('search', data);
@@ -92,7 +93,10 @@
                 }
 
                 function _setCurrentCity() {
-                    scope.search_city = LocationManager.getCurrentCity();
+                    scope.search_city = LocationManager.getSearchCity();
+                    if(!scope.search_city){
+                        scope.search_city = LocationManager.getCurrentCity();
+                    }
                 }
 
                 function _setStrings() {
@@ -118,11 +122,9 @@
 
                     if($stateParams.q){ scope.q = $stateParams.q; }
 
-                    unsuscribeCityModified = $rootScope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT
-                        , function (event) {
-                            _setCurrentCity();
-                        }
-                    );
+                    unsuscribeCityModified = $rootScope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT, function(){
+                        _setCurrentCity();
+                    });
 
                     scope.$on('$destroy', _cleanUp);
                 }

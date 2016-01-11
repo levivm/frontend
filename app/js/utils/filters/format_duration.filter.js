@@ -22,7 +22,7 @@
 
         var strings = {};
             angular.extend(strings,{
-                COPY_NULL_VALUE: "No Especificado"
+                COPY_NULL_VALUE: "N/A"
             });
 
         return applyFormat;

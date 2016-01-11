@@ -19,26 +19,25 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$window', 'moment', 'uiGmapGoogleMapApi', 'Elevator', 'Toast', 'currentUser',
-        'cities', 'activity', 'calendars', 'reviews', 'defaultPicture', 'defaultCover', 'ActivitiesManager','LocationManager',
-        'serverConf'];
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
+        'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
+        'uiGmapIsReady', 'LocationManager', 'serverConf'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $window, moment, uiGmapGoogleMapApi, Elevator, Toast, currentUser,
-                                      cities, activity, calendars, reviews, defaultPicture, defaultCover, ActivitiesManager,LocationManager,
-                                      serverConf) {
-        var MAX_DAYS = 30;
+    function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
+                                      Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf) {
         var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
             city : null,
             calendars : [],
             reviews: [],
-            hasMoreReviews: true,
-            relatedActivities: [],
+            relatedActivities: relatedActivities,
             calendar : null,
             activity : null,
-            organizer : null,
+            organizer : organizer,
             calendar_selected : null,
+            selectedActivity: 0,
             currentGalleryPicture: 0,
             galleryOptions: {
                 interval: 0,
@@ -48,27 +47,26 @@
                 emails: '',
                 message: ''
             },
-            changeState : changeState,
-            changeSelectedCalendar : changeSelectedCalendar,
-            getOrganizerPhoto : getOrganizerPhoto,
-            getOrganizerCity : getOrganizerCity,
-            isSelectedCalendarFull : isSelectedCalendarFull,
-            previousGalleryPicture: previousGalleryPicture,
-            nextGalleryPicture: nextGalleryPicture,
-            nextState: nextState,
-            showMoreReviews: showMoreReviews,
-            viewMoreCalendars: viewMoreCalendars,
             scroll: 0,
             widgetOriginalPosition: 0,
             widgetMaxPosition: 0,
             widgetAbsolutePosition: 0,
-            selectedActivity: 0,
             showEmail: false,
+            hasMoreReviews: true,
+            changeSelectedCalendar : changeSelectedCalendar,
+            isSelectedCalendarFull : isSelectedCalendarFull,
+            previousGalleryPicture: previousGalleryPicture,
+            nextGalleryPicture: nextGalleryPicture,
+            signUp: signUp,
+            showMoreReviews: showMoreReviews,
+            viewMoreCalendars: viewMoreCalendars,
             toggleEmailShow: toggleEmailShow,
             shareEmailForm: shareEmailForm
         });
 
         _activate();
+
+        console.log('currentUser:', currentUser);
 
         //--------- Exposed Functions ---------//
 
@@ -88,11 +86,9 @@
             }
         }
 
-        function changeState(state) { $state.go('activities-detail.' + state); }
-
         function changeSelectedCalendar(calendar) { vm.calendar_selected = calendar; }
 
-        function nextState(activity_id, calendar_id){
+        function signUp(activity_id, calendar_id){
             var enrollParams = {
                 activity_id: vm.activity.id,
                 calendar_id: calendar_id
@@ -109,24 +105,16 @@
             };
 
             if(currentUser){
-                $state.go('activities-enroll', enrollParams);
+                switch(currentUser.user_type){
+                    case 'S':
+                        $state.go('activities-enroll', enrollParams);
+                        break;
+                    case 'O':
+                        Toast.error(vm.strings.TITLE_INVALID_USER, vm.strings.MSG_INVALID_USER);
+                        break;
+                }
             } else {
                 $state.go('register', registerParams);
-            }
-        }
-
-        function getOrganizerPhoto(){
-            if(vm.organizer && !!vm.organizer.photo){
-                return vm.organizer.photo;
-            } else {
-                return defaultPicture;
-            }
-        }
-
-        function getOrganizerCity(){
-            if(vm.organizer.locations[0]){
-                var city_id = vm.organizer.locations[0].city;
-                return LocationManager.getCityById(city_id).name;
             }
         }
 
@@ -141,7 +129,6 @@
 
         function viewMoreCalendars(){
             Elevator.toElement('more_calendars_section');
-
         }
 
         function toggleEmailShow(){
@@ -172,22 +159,6 @@
 
         //--------- Internal Functions ---------//
 
-        function _mapClosestCalendar(activity){
-            activity.days_to_closest = null;
-
-            if(activity.closest_calendar){
-                activity.closest_date = activity.closest_calendar.initial_date;
-            }
-
-            if(activity.closest_date){
-                activity.days_to_closest = moment(activity.closest_date).diff(moment(), 'days');
-            } else {
-                activity.days_to_closest = -1;
-            }
-
-            return activity;
-        }
-
         function _mapPictures(activity){
             activity.gallery = [];
             if(activity.hasOwnProperty('pictures') && activity.pictures.length > 0){
@@ -198,9 +169,12 @@
                         activity.gallery.push(picture);
                     }
                 });
-            } else {
+            }
+
+            if(!activity.main_photo){
                 activity.main_photo = defaultCover;
             }
+
             return activity;
         }
 
@@ -209,12 +183,14 @@
             if(activity.calendars){
                 activity.calendars = activity.calendars.map(mapVacancy);
                 var calendars = angular.copy(activity.calendars);
-                activity.upcoming_calendars = _.remove(calendars,removePassedCalendars);
+                activity.upcoming_calendars = _.remove(calendars, removePastCalendars);
             }
 
-            function removePassedCalendars(calendar){
+            return activity;
+
+            function removePastCalendars(calendar){
                 var passed = moment(calendar.initial_date).isBefore(moment().valueOf(), 'day');
-                return !(passed);
+                return !passed;
             }
 
             function mapVacancy(calendar){
@@ -222,8 +198,6 @@
                 calendar.total_price = calendar.session_price;
                 return calendar;
             }
-
-            return activity;
         }
 
         function _mapInfo(activity){
@@ -236,42 +210,21 @@
             return activity;
         }
 
-        function _getOrganizerActivities(organizer){
-            ActivitiesManager.loadOrganizerActivities(organizer.id).then(success);
-
-            function success(activities){
-                console.log("Related Activities",activities);
-                vm.relatedActivities = angular.copy(activities);
-            }
-        }
-
         function _setUpLocation(activity){
             if(activity.location && activity.location.city){
-                vm.city = _.result(_.findWhere(cities, {id: activity.location.city}), 'name');
-            } else {
-                vm.city = null;
+                activity.location.name = LocationManager.getCityById(activity.location.city).name;
             }
 
-            if(activity.location && activity.location.point
-                && activity.location.point[0] && activity.location.point[1]){
+            vm.map = LocationManager.getMap(activity.location, false);
+            vm.marker = LocationManager.getMarker(activity.location);
 
-                uiGmapGoogleMapApi.then(function(maps) {
-                    var position = new maps.LatLng(activity.location.point[0], activity.location.point[1]);
-                    var gmapOptions = {
-                        zoom: 16,
-                        center: position,
-                        scrollwheel: false
-                    };
-
-                    var gmap = new maps.Map(document.getElementById('map-canvas'), gmapOptions);
-
-                    var marker = new maps.Marker({
-                        position: position,
-                        map: gmap
-                    });
-
-                });
-            }
+            //uiGmapIsReady.promise(1).then(function (instances) {
+            //    instances.forEach(function (inst) {
+            //        var map = inst.map;
+            //        google.maps.event.trigger(map, 'resize');
+            //        vm.map.control.refresh(vm.map.center);
+            //    });
+            //});
         }
 
         function _setCurrentState(){
@@ -379,6 +332,8 @@
                 LABEL_EXTRA_INFO: "Adicionales",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
+                TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",
+                MSG_INVALID_USER: "Acción no permitida para tipo de usuario",
                 TAB_CALENDARS: "Calendarios",
                 LABEL_ATTENDEES: "Asistentes",
                 VALUE_WITH_CERTIFICATION: "Con Certificado",
@@ -399,7 +354,7 @@
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje"
-                });
+            });
         }
 
         function _initWidget(){
@@ -425,21 +380,18 @@
 
         function _activate(){
             _setStrings();
-
             _setCurrentState();
-            _setUpLocation(activity);
-            _getOrganizerActivities(activity.organizer);
             activity = _mapCalendars(activity);
             activity = _mapPictures(activity);
-            activity = _mapClosestCalendar(activity);
             activity = _mapInfo(activity);
+            _setUpLocation(activity);
 
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
                 reviews : reviews,
                 totalReviews: reviews.length,
-                organizer : activity.organizer,
+                hasMoreReviews: reviews.length > 3,
                 calendar_selected : _getSelectedCalendar(activity)
             });
 
@@ -452,8 +404,8 @@
             _initWidget();
             _initSignup();
 
-            console.log('detail. activity:', vm.activity);
-            console.log('detail. reviews:', reviews);
+            //console.log('detail. activity:', vm.activity);
+            //console.log('detail. reviews:', reviews);
         }
     }
 })();

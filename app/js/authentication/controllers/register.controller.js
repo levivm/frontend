@@ -91,6 +91,8 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 SIGNUP_LABEL : "Registrate",
+                SIGNUP_CONFIRMATION_LABEL: "Confirmar registro",
+                SIGNUP_SUBMIT: "Enviar",
                 SIGNUP_ALTERNATIVES_LABEL : "Regístrate con",
                 SIGNUP_EMAIL_LABEL: "O regístrate con tu correo electrónico",
                 LOGIN_LABEL : "Iniciar Sesión",

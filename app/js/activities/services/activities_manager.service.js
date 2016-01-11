@@ -187,17 +187,18 @@
 
         function loadOrganizerActivities(organizerId) {
             var deferred = $q.defer();
+            var cachedActivities = _getOrganizerActivitiesById(organizerId);
 
-            if (!_.isEmpty(_activities)) { deferred.resolve(_activities); }
+            if(cachedActivities){ deferred.resolve(cachedActivities); }
 
             $http.get(apiOrg.activities(organizerId))
                 .then(function (response) {
-                    _activities = [];
+                    _activities[organizerId] = [];
                     _.each(response.data, function (activityData) {
                         var activity = _retrieveInstance(activityData.id, activityData);
-                        _activities.push(activity);
+                        _activities[organizerId].push(activity);
                     });
-                    deferred.resolve(_activities);
+                    deferred.resolve(_activities[organizerId]);
                 });
 
             return deferred.promise;
@@ -295,6 +296,10 @@
             }
 
             return deferred.promise
+        }
+
+        function _getOrganizerActivitiesById(organizerId){
+            return _activities[organizerId];
         }
 
     }

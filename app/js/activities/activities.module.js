@@ -14,7 +14,7 @@
         ])
         .constant('ActivitiesTemplatesPath', "partials/activities/")
         .constant('angularMomentConfig', {
-            timezone: 'America/Bogota' // e.g. 'Europe/London',
+            timezone: 'America/Bogota'
         })
         .config(config);
 
@@ -73,7 +73,8 @@
                 resolve: {
                     presaveInfo: getPresaveActivityInfo,
                     activity: getActivity,
-                    organizer : getCurrentOrganizer
+                    organizer : getCurrentOrganizer,
+                    isOwner: isActivityOwner
                 },
                 controllerAs: 'pc',
                 templateUrl: 'partials/activities/edit/edit.html'
@@ -142,7 +143,8 @@
                 abstract: true,
                 controller: 'ActivitiesManageCtrl as manage',
                 resolve: {
-                    activity: getActivity
+                    activity: getActivity,
+                    organizer : getCurrentOrganizer
                 },
                 templateUrl: 'partials/activities/manage/manage.html'
             })
@@ -161,7 +163,6 @@
                     }
                 },
                 resolve: {
-                    organizer : getCurrentOrganizer,
                     order: getOrder
                 }
             })
@@ -195,10 +196,11 @@
                         return true;
                     },
                     currentUser: getAuthenticatedUser,
-                    cities: getAvailableCities,
                     activity: getActivity,
                     reviews: getReviews,
-                    calendars: getCalendars
+                    calendars: getCalendars,
+                    organizer: getActivityOrganizer,
+                    relatedActivities: getOrganizerActivities
                 }
             })
             .state('activities-enroll', {
@@ -209,6 +211,8 @@
                     activity: getActivity,
                     calendar: fetchCalendar,
                     currentUser: getAuthenticatedUser,
+                    isStudent: isStudent,
+                    isActive: isActive,
                     deviceSessionId:getDeviceSessionId
                 }
             })
@@ -272,8 +276,8 @@
          * @requires trulii.organizers.services.OrganizersManager
          * @methodOf trulii.activities.config
          */
-        getCurrentOrganizer.$inject = ['$timeout', '$state', '$q', 'OrganizersManager'];
-        function getCurrentOrganizer($timeout, $state, $q, OrganizersManager){
+        getCurrentOrganizer.$inject = ['$q', 'OrganizersManager'];
+        function getCurrentOrganizer($q, OrganizersManager){
 
             return OrganizersManager.getCurrentOrganizer().then(success, error);
 
@@ -281,7 +285,6 @@
                 if(organizer){
                     return organizer;
                 } else {
-                    //$timeout(function() { $state.go('home'); });
                     return $q.reject();
                 }
             }
@@ -298,14 +301,52 @@
 
         /**
          * @ngdoc method
+         * @name .#isActivityOwner
+         * @description Retrieves the current logged Organizer from
+         * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service otherwise returns ``null``
+         * @requires ng.$timeout
+         * @requires ui.router.state.$state
+         * @requires ng.$q
+         * @requires trulii.organizers.services.OrganizersManager
+         * @methodOf trulii.activities.config
+         */
+        isActivityOwner.$inject = ['$q', 'activity', 'organizer'];
+        function isActivityOwner($q, activity, organizer){
+            var deferred = $q.defer();
+
+            if(organizer.id === activity.organizer.id){
+                deferred.resolve(true);
+            } else {
+                deferred.reject("Organizer '" + organizer.name + "' doesn't own activity '" + activity.title + "'");
+            }
+
+            return deferred.promise;
+        }
+
+        /**
+         * @ngdoc method
          * @name .#getActivityOrganizer
          * @description Retrieves the Organizer Object from the resolved Activity
          * @requires activity
          * @methodOf trulii.activities.config
          */
-        getActivityOrganizer.$inject = ['activity'];
-        function getActivityOrganizer(activity){
-            return  activity.organizer;
+        getActivityOrganizer.$inject = ['$q', 'activity', 'LocationManager', 'defaultPicture'];
+        function getActivityOrganizer($q, activity, LocationManager, defaultPicture){
+            var deferred = $q.defer();
+
+            var organizer = activity.organizer;
+            if(!organizer.photo){
+               organizer.photo = defaultPicture;
+            }
+
+            if(!!organizer.locations[0]){
+                var city_id = organizer.locations[0].city;
+                organizer.city = LocationManager.getCityById(city_id).name;
+            }
+
+            deferred.resolve(organizer);
+
+            return deferred.promise;
         }
 
         /**
@@ -375,7 +416,8 @@
             return organizer.getReviews().then(success, error);
 
             function success(reviews){
-                return reviews.filter(filterByActivity);
+                return reviews;
+                //return reviews.filter(filterByActivity);
 
                 function filterByActivity(review){
                     return review.activity === activity.id;
@@ -396,7 +438,7 @@
          * @requires trulii.activities.services.CalendarsManager
          * @methodOf trulii.activities.config
          */
-        getCalendar.$inject = ['$stateParams', 'CalendarsManager'];
+        getCalendar.$inject = ['$stateParams','CalendarsManager'];
         function getCalendar($stateParams, CalendarsManager){
             return CalendarsManager.getCalendar($stateParams.calendar_id);
         }
@@ -426,13 +468,11 @@
          * @requires calendar
          * @methodOf trulii.activities.config
          */
-        fetchCalendarArray.$inject = ['$stateParams','calendar'];
-        function fetchCalendarArray($stateParams,calendar, CalendarsManager) {
-
+        fetchCalendarArray.$inject = ['calendar'];
+        function fetchCalendarArray(calendar) {
             var array = [];
             if (calendar){ array.push(calendar); }
             return array;
-
         }
 
         /**
@@ -479,14 +519,43 @@
          * @description Generates deviceSessionId used in Pay U endpoint
          * @methodOf trulii.activities.config
          */
-        getDeviceSessionId.$inject = ['currentUser','localStorageService','md5'];
-        function getDeviceSessionId(currentUser,localStorageService,md5){
-
+        getDeviceSessionId.$inject = ['localStorageService','md5'];
+        function getDeviceSessionId(localStorageService,md5){
             var token = localStorageService.get('token');
             var time_stamp = new Date().getTime();
             var string = token + time_stamp.toString();
             var deviceSessionId = md5.createHash(string);
             return deviceSessionId;
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#isStudent
+         * @description Checks if user is student. If `false` redirects to detail
+         * @methodOf trulii.activities.config
+         */
+        isStudent.$inject = ['$state', 'currentUser', 'activity'];
+        function isStudent($state, currentUser, activity){
+            if(currentUser && currentUser.user_type === 'S'){
+                return true;
+            } else {
+                $state.go('activities-detail', { activity_id: activity.id });
+            }
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#isActive
+         * @description Checks if an activity is `active`
+         * @methodOf trulii.activities.config
+         */
+        isActive.$inject = ['$state', 'activity'];
+        function isActive($state, activity){
+            if(activity.published){
+                return true;
+            } else {
+                $state.go('activities-detail', { activity_id: activity.id });
+            }
         }
 
     }

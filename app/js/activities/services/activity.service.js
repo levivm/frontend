@@ -37,23 +37,7 @@
              * @param {object} activityData The activity data to set
              * @methodOf trulii.activities.services.Activity
              */
-            setData : function (activityData) {
-                angular.extend(this, activityData);
-                this.calendars = this.calendars;
-                var that = this;
-                that.resetSections();
-
-
-                angular.forEach(ActivitySteps, function (step) {
-
-                    that.updateSection(step.name);
-                });
-                //console.log("Activity setData ", this);
-
-                that.checkSections();
-                that.mapPictures();
-
-            },
+            setData : setData,
 
             /**
              * @ngdoc function
@@ -335,13 +319,12 @@
         function setData(activityData) {
             angular.extend(this, activityData);
             var that = this;
-            this.calendars = this.calendars;
-            delete this.calendars;
             that.resetSections();
             angular.forEach(ActivitySteps, function (step) {
                 that.updateSection(step.name);
             });
             that.checkSections();
+            that.mapPictures();
         }
 
         function create() {
@@ -359,7 +342,6 @@
         }
 
         function update() {
-            this.calendars = this.calendars;
             var that = this;
             return $http.put(api.activity(this.id), this).then(success, error);
 

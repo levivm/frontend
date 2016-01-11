@@ -1,19 +1,19 @@
 <div class="row">
-    <div class="col-lg-9 col-md-11">
+    <div class="col-xs-12">
 
       <div class="section-title" ng-bind="::detail.strings.TITLE_DETAIL">
       </div>
 
       <form name='detail.activity_detail_form' ng-submit="detail.save_activity()">
-            <fieldset>              
-              
+            <fieldset>
+
               <div class="section-description" ng-bind="::detail.strings.COPY_DETAIL">
               </div>
-                
+
                 <div class="form-group" trulii-input-errors-control="audience">
                     <label class="control-label" for="audience" ng-bind="::detail.strings.LABEL_AUDIENCE"></label>
                         <textarea elastic id="audience" class="form-control" name="audience"
-                                  ng-model='detail.activity.audience' 
+                                  ng-model='detail.activity.audience'
                                   trulii-input-popover="{{::detail.strings.LABEL_AUDIENCE}}"
                                   help-text="::detail.strings.COPY_HELP_TEXT_AUDIENCE"
                                   trulii-input-autofocus
@@ -23,7 +23,7 @@
                 <div class="form-group" trulii-input-errors-control="goals">
                     <label class="control-label" for="goals" ng-bind="::detail.strings.LABEL_GOALS"></label>
                         <textarea elastic id="goals" class="form-control" name="goals"
-                                  ng-model='detail.activity.goals' 
+                                  ng-model='detail.activity.goals'
                                   trulii-input-popover="{{::detail.strings.LABEL_GOALS}}"
                                   help-text="::detail.strings.COPY_HELP_TEXT_GOALS"
                                   >
@@ -32,16 +32,16 @@
                 <div class="form-group" trulii-input-errors-control="content">
                     <label class="control-label" for="content" ng-bind="::detail.strings.LABEL_CONTENT"></label>
                         <textarea elastic id="content" class="form-control" name="content"
-                                  ng-model='detail.activity.content' 
+                                  ng-model='detail.activity.content'
                                   trulii-input-popover="{{::detail.strings.LABEL_CONTENT}}"
                                   help-text="::detail.strings.COPY_HELP_TEXT_CONTENT">
                         </textarea>
-                </div>                    
-                
+                </div>
+
                 <div class="form-group" trulii-input-errors-control="methodology">
                     <label class="control-label" for="methodology" ng-bind="::detail.strings.LABEL_METHODOLOGY"></label>
                         <textarea elastic id="methodology" class="form-control" name="methodology"
-                                  ng-model='detail.activity.methodology'                                      
+                                  ng-model='detail.activity.methodology'
                                   trulii-input-popover="{{::detail.strings.LABEL_METHODOLOGY}}"
                                   help-text="::detail.strings.COPY_HELP_TEXT_METHODOLOGY"
                                   >
@@ -51,7 +51,7 @@
                     <label class="control-label" for="requirements" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></label>
                         <textarea elastic id="requirements" class="form-control" name="requirements"
                                   ng-model='detail.activity.requirements'
-                                  
+
                                   trulii-input-popover="{{::detail.strings.LABEL_REQUIREMENTS}}"
                                   help-text="::detail.strings.COPY_HELP_TEXT_REQUIREMETS"
                                   >
@@ -61,12 +61,12 @@
                     <label class="control-label" for="extra_info" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></label>
                         <textarea elastic id="extra_info" class="form-control" ng-model='detail.activity.extra_info'
                                   name="extra_info"
-                                  trulii-input-popover="{{::detail.strings.LABEL_EXTRA_INFO}}" 
+                                  trulii-input-popover="{{::detail.strings.LABEL_EXTRA_INFO}}"
                                   help-text="::detail.strings.COPY_HELP_TEXT_EXTRA_INFO">
                         </textarea>
                 </div>
                 <trulii-submit-controls is-saving="detail.isSaving" value="{{::detail.strings.ACTION_SAVE}}"></trulii-submit-controls>
-                
+
             </fieldset>
       </form>
     </div>

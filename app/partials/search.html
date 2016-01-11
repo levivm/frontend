@@ -94,18 +94,22 @@
         </div>
     </div>
     <div class="row separator-light no-margin-bottom"></div>
-    <div class="row" ng-if="search.searchQuery">
+    <div class="row">
         <div class="col-xs-12">
             <div class="search-info">
                 <strong ng-bind="search.activities.length"></strong>
                 <span> </span>
-                <span ng-bind="::search.strings.COPY_RESULTS_FOR"></span>
+                <span ng-bind="::search.strings.COPY_RESULTS"></span>
                 <span> </span>
-                <strong>
-                    <span>"</span>
-                    <span ng-bind="::search.searchQuery"></span>
-                    <span>"</span>
-                </strong>
+                <span ng-if="search.searchQuery">
+                    <span ng-bind="::search.strings.COPY_FOR"></span>
+                    <span> </span>
+                    <strong>
+                        <span>"</span>
+                        <span ng-bind="::search.searchQuery"></span>
+                        <span>"</span>
+                    </strong>
+                </span>
                 <span ng-if="search.searchCategory">
                     <span ng-bind="::search.strings.COPY_IN"></span>
                     <span> </span>
@@ -116,7 +120,14 @@
                     <span> </span>
                     <strong ng-bind="search.searchData.subcategory_display"></strong>
                 </span>
-
+                <div class="col-xs-10 col-sm-4 col-md-2 pull-right">
+                  <select class=" form-control" name="repeatSelect" id="repeatSelect"
+                         ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
+                      <option ng-show="!search.orderByPredicate" selected="selected" >Ordenar por</option>
+                      <option  ng-repeat="option in search.orderByOptions track by option.name"
+                              value="{{::option.predicate}}" ng-bind="::option.name"></option>
+                  </select>
+                </div>
 <!--                 <select class="pull-right" name="repeatSelect" id="repeatSelect"
                         ng-init="search.orderByPredicate = search.orderByOptions[0].predicate"
                         ng-model="search.orderByPredicate">
@@ -130,7 +141,7 @@
 
         <div class="row separator-light no-margin"></div>
     </div>
-    <div class="row padding-horizontal-less padding-vertical-less">
+    <div class="row padding-horizontal-less padding-vertical-less" ng-if="!search.searchQuery">
       <div class="col-xs-10 col-sm-4 col-md-2 pull-right">
         <select class=" form-control" name="repeatSelect" id="repeatSelect"
                ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >

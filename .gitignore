@@ -10,6 +10,9 @@ app/lib/
 app/css/*.css
 app/css/*.css.map
 
+# Videos
+app/videos/*
+
 # Generated Docs directory
 docs/
 
@@ -21,3 +24,6 @@ public/
 
 # Mac scumbag files
 **/*/.DS_Store
+
+# VS Code metaata
+.vscode/

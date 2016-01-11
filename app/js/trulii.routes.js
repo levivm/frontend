@@ -45,7 +45,8 @@
                 controller:'HomeController as home',
                 templateUrl: 'partials/landing/landing.html',
                 resolve: {
-                    activities: getActivities,
+                    // activities: getActivities,
+                    activities: function(){return {}},
                     generalInfo: getPresaveActivityInfo
                 }
             })
