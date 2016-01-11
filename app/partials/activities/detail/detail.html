@@ -337,7 +337,7 @@
 </div>
 
 <!--Location-->
-<div class="row location">
+<div class="row location" ng-show="detail.activity.location">
   <ui-gmap-google-map class="map" center='detail.map.center' zoom='detail.map.zoom'
                       bounds="detail.map.bounds" options="detail.map.options"
                       events="detail.map.events">
