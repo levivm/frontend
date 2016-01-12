@@ -6,14 +6,14 @@
         .controller('OrganizerProfileController', OrganizerProfileController);
 
     OrganizerProfileController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'LocationManager', 'organizer', 'activities'
-        , 'reviews', 'cities'];
+        , 'reviewObjects'];
 
     function OrganizerProfileController($state, $stateParams, uiGmapGoogleMapApi, LocationManager, organizer, activities
-        , reviews, cities) {
+        , reviewObjects) {
 
+        var REVIEW_STEP = 5;
+        var visibleReviewListSize = REVIEW_STEP;
         var vm = this;
-        var visibleReviewListSize = 5;
-        var reviewObjects = [];
 
         angular.extend(vm, {
             organizer : organizer,
@@ -47,53 +47,41 @@
         }
 
         function showMoreReviews(){
-            if(visibleReviewListSize < reviews.length){
-                visibleReviewListSize += 5;
+            if(visibleReviewListSize < reviewObjects.length){
+                visibleReviewListSize += REVIEW_STEP;
                 vm.reviewObjects = reviewObjects.slice(0, visibleReviewListSize);
-            } else {
+            }
+
+            if(visibleReviewListSize >= reviewObjects.length){
                 vm.hasMoreReviews = false;
             }
         }
 
-        function _getCity(cities, organizer){
-            if(organizer.locations.length > 0){
-                var cityId = organizer.locations[0].city.id;
-                cities.find(isSameCity);
-            } else {
-                return null;
+        function _setOrganizerCity(){
+            LocationManager.getAvailableCities().then(successCities);
+
+            function successCities(cities){
+                vm.city = _getCity(cities, organizer);
             }
 
-            function isSameCity(city){
-                return city.id === cityId;
+            function _getCity(cities, organizer){
+                if(organizer.locations.length > 0){
+                    var cityId = organizer.locations[0].city.id;
+                    cities.find(isSameCity);
+                } else {
+                    return null;
+                }
+
+                function isSameCity(city){
+                    return city.id === cityId;
+                }
             }
-        }
-
-        function _getReviewRatingAvg(reviews){
-            if(reviews.length == 0){ return 0; }
-            return reviews.map(getRatings).reduce(reduceRatings);
-
-            function getRatings(review){ return review.rating; }
-
-            function reduceRatings(previous, current){ return previous + current; }
         }
 
         function _setReviews(){
-            reviewObjects = reviews.map(mapActivityToReview);
-            vm.reviewObjects = reviewObjects.slice(0, 5);
-            console.log('reviewObjects', vm.reviewObjects);
-
-            function mapActivityToReview(review){
-                var activity = activities.filter(filterById)[0];
-
-                return {
-                    'activity': activity,
-                    'review': review
-                };
-
-                function filterById(activity){
-                    return activity.id === review.activity;
-                }
-            }
+            vm.reviewObjects = reviewObjects.slice(0, visibleReviewListSize);
+            vm.hasMoreReviews= reviewObjects.length > visibleReviewListSize;
+            //console.log('reviewObjects', vm.reviewObjects);
         }
 
         function _setCurrentState(){
@@ -123,22 +111,12 @@
 
         function _activate(){
             _setStrings();
+            _setOrganizerCity();
             _setCurrentState();
             _setReviews();
-            vm.map.options.scrollwheel = false;
-
-            vm.reviewsAvg = _getReviewRatingAvg(reviews);
-
-            console.log(reviews);
-
-            LocationManager.getAvailableCities().then(successCities);
             vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
-
-            function successCities(cities){
-                vm.city = _getCity(cities, organizer);
-            }
-
-            console.log('organizer:', organizer);
+            //console.log('organizer:', organizer);
+            //console.log('reviews:', reviews);
         }
     }
 })();
