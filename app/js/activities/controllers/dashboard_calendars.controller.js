@@ -67,7 +67,7 @@
             });
 
             modalInstance.result.then(function () {
-                CalendarsManager.deleteCalendar(calendar.id).then(success, error);
+                CalendarsManager.deleteCalendar(calendar).then(success, error);
             });
 
             function success() {

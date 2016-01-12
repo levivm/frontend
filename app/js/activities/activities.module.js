@@ -212,6 +212,7 @@
                     calendar: fetchCalendar,
                     currentUser: getAuthenticatedUser,
                     isStudent: isStudent,
+                    isActive: isActive,
                     deviceSessionId:getDeviceSessionId
                 }
             })
@@ -417,10 +418,10 @@
             function success(reviews){
                 return reviews;
                 //return reviews.filter(filterByActivity);
-                //
-                //function filterByActivity(review){
-                //    return review.activity === activity.id;
-                //}
+
+                function filterByActivity(review){
+                    return review.activity === activity.id;
+                }
             }
             function error(response){
                 return [];
@@ -536,6 +537,21 @@
         isStudent.$inject = ['$state', 'currentUser', 'activity'];
         function isStudent($state, currentUser, activity){
             if(currentUser && currentUser.user_type === 'S'){
+                return true;
+            } else {
+                $state.go('activities-detail', { activity_id: activity.id });
+            }
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#isActive
+         * @description Checks if an activity is `active`
+         * @methodOf trulii.activities.config
+         */
+        isActive.$inject = ['$state', 'activity'];
+        function isActive($state, activity){
+            if(activity.published){
                 return true;
             } else {
                 $state.go('activities-detail', { activity_id: activity.id });

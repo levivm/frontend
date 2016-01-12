@@ -80,14 +80,12 @@
       </div>
     </div>
     <div class="row separate-above">
-      <div class="center-block float-none no-padding"
-      ng-class="{'col-xs-3 col-sm-6': home.activities.length === 1, 'col-xs-10 col-sm-5': home.activities.length === 2, 'col-xs-10 col-sm-8': home.activities.length === 3, 'col-xs-10': home.activities.length >= 4  }">
-      <a class="btn btn-primary btn-block btn-lg"
-      ng-show="home.activities.length > 1"
-      ui-sref="search">
+      <div class="col-xs-8 center-block float-none no-padding">
+      <span class="btn btn-primary btn-block btn-padding"
+      ng-show="home.activities.length > 0" ng-click="home.viewMoreActivities()">
       <span ng-bind="::home.strings.ACTIVITIES_BUTTON_COPY"></span>
       <span ng-bind="'(' + home.activitiesCount + ')'"></span>
-    </a>
+    </span>
   </div>
 </div>
 </div>
