@@ -120,7 +120,7 @@
                     <span> </span>
                     <strong ng-bind="search.searchData.subcategory_display"></strong>
                 </span>
-                <div class="col-xs-10 col-sm-4 col-md-2 pull-right">
+                <div class="col-xs-10 col-sm-4 pull-right">
                   <select class=" form-control" name="repeatSelect" id="repeatSelect"
                          ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
                       <option ng-show="!search.orderByPredicate" selected="selected" >Ordenar por</option>
@@ -128,40 +128,30 @@
                               value="{{::option.predicate}}" ng-bind="::option.name"></option>
                   </select>
                 </div>
-<!--                 <select class="pull-right" name="repeatSelect" id="repeatSelect"
-                        ng-init="search.orderByPredicate = search.orderByOptions[0].predicate"
-                        ng-model="search.orderByPredicate">
-                    <option ng-change="search.changeOrderBy()"ng-repeat="option in search.orderByOptions track by option.name"
-                            value="{{::option.predicate}}" ng-bind="::option.name"></option>
-                </select> -->
             </div>
-
         </div>
-
-
         <div class="row separator-light no-margin"></div>
     </div>
-    <div class="row padding-horizontal-less padding-vertical-less" ng-if="!search.searchQuery">
-      <div class="col-xs-10 col-sm-4 col-md-2 pull-right">
-        <select class=" form-control" name="repeatSelect" id="repeatSelect"
-               ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
-            <option ng-show="!search.orderByPredicate" selected="selected" >Ordenar por</option>
-            <option  ng-repeat="option in search.orderByOptions track by option.name"
-                    value="{{::option.predicate}}" ng-bind="::option.name"></option>
-        </select>
-      </div>
-    </div>
+    <!--<div class="row padding-horizontal-less padding-vertical-less" ng-if="!search.searchQuery">-->
+      <!--<div class="col-xs-10 col-sm-4 col-md-2 pull-right">-->
+        <!--<select class=" form-control" name="repeatSelect" id="repeatSelect"-->
+               <!--ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >-->
+            <!--<option ng-show="!search.orderByPredicate" selected="selected" >Ordenar por</option>-->
+            <!--<option  ng-repeat="option in search.orderByOptions track by option.name"-->
+                    <!--value="{{::option.predicate}}" ng-bind="::option.name"></option>-->
+        <!--</select>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="row separator-light no-margin"></div>
-    <div class="row separate-above">
-        <div class="col-md-10 col-md-offset-1">
+    <div class="row padding-horizontal-less padding-vertical-less">
+        <div class="col-xs-10 col-xs-offset-1">
             <div class="row activity-grid" ng-if="search.activities.length > 0">
                 <!--track by activity.id-->
                 <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
                                       ng-repeat="activity in search.activities"
                                       data-activity="activity"></trulii-activity-item>
-
             </div>
-            <!--pagionation-->
+            <!--Pagination-->
             <div class="text-center" ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">
                 <pagination class="pagination-sm"
                         ng-model="search.activitiesPaginationOpts.pageNumber"
@@ -171,8 +161,7 @@
                         previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
                         max-size="search.activitiesPaginationOpts.maxPagesSize"></pagination>
             </div>
-
-            <!--empty search-->
+            <!--Empty Search-->
             <div class="text-center text-muted separate-above-more" ng-if="search.activities.length == 0">
                 <div class="col-xs-6 col-xs-offset-3">
                     <img src="css/img/search_empty.png" alt="{{ search.strings.LABEL_EMPTY_SEARCH }}"/>

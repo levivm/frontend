@@ -14625,7 +14625,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   overflow-y: auto;
 }
 .with-sidebar {
-  width: 83.33333333%;
+  width: 100%;
   padding-bottom: 80px;
 }
 @media print {
