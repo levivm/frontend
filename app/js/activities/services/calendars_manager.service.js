@@ -105,9 +105,8 @@
             return deferred.promise;
         }
 
-        function fetchCalendar(activity_id, calendarId) {
+        function fetchCalendar(activityId, calendarId) {
             var deferred = $q.defer();
-            activityId = activity_id;
 
             $http.get(api.calendar(activityId, calendarId)).then(success, error);
             return deferred.promise;
