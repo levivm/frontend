@@ -1,0 +1,62 @@
+@import url('../_trulii-variables');
+
+// TODO Deprecated?
+.separator{
+    border-bottom: 1px solid @color-delimeter-dark;
+    margin: 1em 0;
+
+    &-text{
+        border-bottom: 0;
+
+        position: relative;
+
+        &::before{
+            content: " ";
+            display: block;
+            position: absolute;
+            bottom: 50%;
+            width: 100%;
+            border-bottom: 1px solid @color-delimeter-dark;
+        }
+
+        p{
+            margin: 0 auto;
+            display: block;
+            width: 14em;
+            background: white;
+            position: relative;
+        }
+    }
+
+    &-vertical{
+        border-left: 1px solid @color-delimeter-dark;
+    }
+}
+
+.separator-light{
+    border-bottom: 1px solid @color-delimeter-light;
+    margin: 1em 0;
+}
+
+@section-padding: 2.5rem;
+
+.section-title{
+    display: block;
+    width: 100%;
+    background-color: #FAFAFA;
+    font-family: @font-sans-alt;
+    padding: 1em @section-padding;
+    font-size: 1.2em;
+
+    & + form, & + div{
+        margin: 0 @section-padding;
+    }
+}
+
+.section-description{
+    font-family: @font-sans-alt;
+    color: @gray;
+    margin: 1.5em 0;
+    font-weight: normal;
+    font-size: 1.1em;
+}

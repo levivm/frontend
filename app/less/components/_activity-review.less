@@ -1,0 +1,60 @@
+.review-detail{
+
+    p{
+      margin-bottom: 0.5em;
+      font-size: 1.125em;
+    }
+    p.text-sm{
+      font-size: .8em;
+    }
+
+    .organizer-name{
+      font-size: 0.9em;
+    }
+    .review-detail-header{
+      margin-bottom: 1em;
+      >span{
+        padding-right: 15px;
+      }
+    }
+    .review-avatar{
+      width: 60px;
+      height: 60px;
+      background-size: cover;
+      background-position: center center;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .report-alert{
+      background-color: @gray-lighter;
+      padding: 30px 20px;
+      font-weight: 200;
+      border-radius: @border-radius-base;
+      .btn-default{
+        background-color: @gray-light;
+        color: white !important;
+      }
+      p{
+        font-size: 1em;
+        color: @gray-dark;
+        font-family: @font-sans;
+      }
+    }
+    .reported-copy{
+        font-size: 16px;
+        font-weight: 200;
+    }
+}
+
+.star{
+  color: @primary;
+
+  &-empty{
+    transition: all 0.25s;
+    color: @gray-lighter;
+  }
+  &-empty:hover{
+    color: @primary;
+  }
+}

@@ -1,0 +1,14 @@
+<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
+    <ul>
+        <li class="navbar-secondary__item active" ui-sref=".settings" ui-sref-active="active">
+            <span ng-bind="::account.strings.TAB_SETTINGS"></span>
+        </li>
+        <li class="navbar-secondary__item" ui-sref=".banking" ui-sref-active="active"
+            ng-click="profile.load_map()">
+            <span ng-bind="::account.strings.TAB_BANKING"></span>
+        </li>
+    </ul>
+</div>
+<div class="row" style="margin-bottom:60px;">
+    <div class="col-md-8 col-md-offset-1" ui-view></div>
+</div>

@@ -1,0 +1,26 @@
+<div class="fade in">
+    <div class="row activity-grid --left">
+        <trulii-activity-item
+                ng-repeat="activity in activities.closed_activities track by activity.id"
+                data-activity="activity"
+                data-options="{{activities.closedOptions}}"></trulii-activity-item>
+    </div>
+    <!--If there are no activities-->
+    <div ng-if="activities.closed_activities.length <= 0" class="row">
+        <div class="col-xs-8 col-xs-offset-2 text-center">
+            <img src="css/img/organizer_dashboard_activities_empty.png"
+                 alt="{{activities.strings.LABEL_EMPTY_CLOSED}}"/>
+            <p class="separate-below separate-above font-family-sans-alt text-muted"
+                 ng-bind="::activities.strings.COPY_EMPTY_CLOSED">
+            </p>
+            <a class="btn btn-lg btn-success margin-horizontal-less"
+               ui-sref="dash.activities-new.general"
+               ng-bind="activities.strings.ACTION_CREATE_ACTIVITY"></a>
+            <a ng-if="activities.inactive_activities"
+               class="btn btn-lg btn-default margin-horizontal-less"
+               ui-sref="^.inactive"
+               ng-bind="activities.strings.ACTION_PUBLISH_ACTIVITY">
+            </a>
+        </div>
+    </div>
+</div>

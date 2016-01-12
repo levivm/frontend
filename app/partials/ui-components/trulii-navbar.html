@@ -1,0 +1,253 @@
+<!--suppress HtmlUnknownTarget -->
+<nav class="navbar navbar-default navbar-fixed-top" ng-class="{'navbar-short': scroll > 80 }">
+    <div class="row">
+        <div class="navbar__logo-container">
+            <a ui-sref="home" class="navbar__logo"></a>
+        </div>
+        <div class="navbar__left-wrapper" ng-class="{'long': !user}">
+            <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true"></trulii-search-bar>
+            <div class="buttons float-right" ng-if="!user">
+                <a ui-sref="login" class="btn btn-default margin-horizontal-less" ng-bind="::strings.ACTION_LOGIN"></a>
+                <a ui-sref="register" class="btn btn-primary" ng-bind="::strings.ACTION_REGISTER"></a>
+            </div>
+            <div class="buttons float-right" ng-if="user.is_organizer">
+                <a ui-sref="dash.activities-new.general" class="btn btn-primary" ng-bind="::strings.ACTION_CREATE"></a>
+            </div>
+        </div>
+        <div class="navbar__right-wrapper">
+            <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
+                <img ng-if="user" ng-src="{{user.photo}}" class="user-picture" alt="{{user.user.full_name}}"/>
+                <img src="/css/img/menu.png" alt="Menu" class="menu-icon">
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="burger-menu" ng-show="showBurger">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-xs-12 visible-xs-block visible-sm-block">
+                <img src="/css/img/logo-trulii.png" alt="" class="img-responsive center-block burger-menu__mobile-logo">
+            </div>
+            <!--<div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons" ng-if="!user">-->
+                <!--<div class="row">-->
+                    <!--<div class="col-xs-12 col-md-5">-->
+                        <!--<a ui-sref="login" ng-click="toggleBurger()">-->
+                            <!--<button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_LOGIN">-->
+                            <!--</button>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                    <!--<div class="col-xs-12 col-md-5">-->
+                        <!--<a ui-sref="register" ng-click="toggleBurger()">-->
+                            <!--<button class="btn btn-block btn-default btn-reg" ng-bind="::strings.ACTION_REGISTER">-->
+                            <!--</button>-->
+                        <!--</a>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__column burger-menu__user-links" ng-if="user">
+                <img ng-src="{{user.photo}}" class="burger-menu__user__picture" alt="{{user.user.full_name}}"/>
+                <span class="burger-menu__user__name" ng-bind="user.user.full_name"></span>
+                <!--Organizer Sidebar-->
+                <ul class="list-unstyled" ng-if="user.is_organizer">
+                    <li>
+                        <a ui-sref="organizer-dashboard.activities.open"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="organizer-dashboard.transactions.sales"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_ORGANIZER_SALES"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="organizer-dashboard.profile"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_ORGANIZER_PROFILE"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="organizer-dashboard.account.settings"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="organizer-dashboard.reviews.pending"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="organizer-dashboard.instructors"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="logout"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.ACTION_EXIT"></a>
+                    </li>
+                </ul>
+                <!--Student Sidebar-->
+                <ul class="list-unstyled" ng-if="user.is_student">
+                    <li>
+                        <a ui-sref="student-dashboard.activities.open"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="referrals.home"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="student-dashboard.profile"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_STUDENT_PROFILE"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="student-dashboard.account.password"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="student-dashboard.history.orders"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
+                    </li>
+                    <li>
+                        <a ui-sref="logout"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.ACTION_EXIT"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-12 col-md-8 col-md-pull-4 burger-menu__column">
+                <div ng-if="!user">
+                    <div class="row">
+                        <div class="col-xs-12 burger-menu__header-links">
+                            <ul class="list-unstyled list-inline">
+                                <li class="hidden-sm hidden-xs">
+                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                </li>
+                                <li>
+                                    <a ui-sref="organizer-landing"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
+                                </li>
+                                <li ng-if="!user">
+                                    <a ui-sref="referrals.home-anon"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.COPY_INVITE_FRIEND"></a>
+                                </li>
+                                <li>
+                                    <a href="https://trulii.com/blog"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.LABEL_BLOG"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="user">
+                    <!--Student Options-->
+                    <div class="row" ng-if="user.is_student">
+                        <div class="col-xs-12 burger-menu__header-links">
+                            <ul class="list-unstyled list-inline">
+                                <li class="hidden-sm hidden-xs">
+                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                </li>
+                                <li>
+                                    <a ui-sref="organizer-landing"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
+                                </li>
+                                <li>
+                                    <a ui-sref="referrals.home"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.COPY_INVITE_FRIEND"></a>
+                                </li>
+                                <li>
+                                    <a href="https://trulii.com/blog"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.LABEL_BLOG"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--Organizer Options-->
+                    <div class="row" ng-if="user && !user.is_student">
+                        <div class="col-xs-12 burger-menu__header-links">
+                            <ul class="list-unstyled list-inline">
+                                <li class="hidden-sm hidden-xs">
+                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                </li>
+                                <li>
+                                    <a href="https://trulii.com/blog"
+                                       ng-click="toggleBurger()"
+                                       ng-bind="::strings.LABEL_BLOG"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--About Trulii-->
+                <div class="row burger-menu__links">
+                    <div class="col-xs-12 col-md-10 col-md-offset-1">
+                        <div class="row row-stretch">
+                            <div class="col-xs-12 col-md-6">
+                                <p ng-bind="::strings.LABEL_ABOUT_US"></p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a ui-sref="about.mission" ng-click="toggleBurger()"
+                                           ng-bind="::strings.LABEL_ABOUT_MISSION"></a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="about.culture" ng-click="toggleBurger()"
+                                           ng-bind="::strings.LABEL_ABOUT_CULTURE"></a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="about.team" ng-click="toggleBurger()"
+                                           ng-bind="::strings.LABEL_ABOUT_TEAM"></a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="contact-us" ng-click="toggleBurger()"
+                                           ng-bind="::strings.LABEL_ABOUT_CONTACT_US"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <p ng-bind="::strings.LABEL_ORGANIZER"></p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="" ng-click="toggleBurger()"
+                                           ng-bind="::strings.LABEL_ORGANIZER_HOW"></a>
+                                    </li>
+                                    <li>
+                                        <a ui-sref="help.organizer" ng-click="toggleBurger()"
+                                           ng-bind="::strings.LABEL_ORGANIZER_HELP"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row row-stretch">
+                            <div class="col-xs-12 col-md-6">
+                                <p ng-bind="::strings.LABEL_STUDENT"></p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="" ng-click="toggleBurger()"
+                                           ng-bind="::strings.LABEL_STUDENT_HOW"></a>
+                                    </li>
+                                    <li>
+                                        <a ui-sef="help.student" ng-click="toggleBurger()"
+                                           ng-bind="::strings.LABEL_STUDENT_HELP"></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="pull-right burger-menu__close" ng-click="toggleBurger()">
+            <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt="{{ strings.ACTION_CLOSE }}"/>
+        </button>
+    </div>
+</div>

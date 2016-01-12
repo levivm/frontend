@@ -1,0 +1,16 @@
+<div id="slider-anchor"></div>
+
+<form class="form-inline">
+    <div class="row">
+        <div class="col-md-6 pull-left">
+            <div class="form-group text-md">
+                <span ng-bind="start | currency : currency : 0"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group text-md pull-right">
+                <span ng-bind="end | currency : currency : 0"></span><span ng-bind="more" ng-show="max===end">+</span>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,78 @@
+
+@import "../_trulii-variables";
+
+.form-group:not(:first-child){
+	margin-top: 3.4em;
+	&.form-group-sm {
+		margin-top: 1em;
+	}
+}
+
+.form-submit-controls{
+	text-align: right;
+	position: relative;
+	height: 4.5em;
+	.btn{
+		display: inline-block;
+		min-width: 12em;
+		font-size: 1em;
+		line-height: 1.5em;
+		margin-left: 1em;
+		font-weight: bold;
+	}
+	.progress{
+		position: absolute;
+		margin-top: 0;
+		top: 50%;
+	}
+}
+
+.material-form{
+	.form-group{
+		.clearfix();
+	}
+	.control-label{
+		font-weight: 200;
+		color: lighten(@lightbg-text, 40%)
+	}
+}
+
+.form-group{
+	.input-error, .input-error p{
+		color: @danger;
+		font-weight: 500;
+	}
+}
+
+.form-classic{
+	input, select, textarea, input:focus, select:focus, textarea:focus{
+		background-color: white;
+		padding: 2em;
+		border-radius: 3px;
+		background-image: none;
+		border: 1px solid @gray-light-medium;
+		border-radius: @border-radius-base;
+		&.input-sm{
+			padding: 5px 15px;
+			height: 35px;
+		}
+	}
+	::-webkit-input-placeholder{
+		font-weight: 400;
+	}
+	select, select:focus{
+		height: 56px;
+		padding: 1.25em;
+	}
+	.form-group:not(:first-child){
+		margin-top: 2em;
+	}
+	.input-group-btn{
+		.btn{
+			border: none;
+			height: 35px;
+			border-top-left-radius: 0px;
+			border-bottom-left-radius: 0px;
+		}
+	}
+}

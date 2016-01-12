@@ -1,0 +1,78 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
+
+            <div class="input-group">
+                <input class="form-control floating-label" type="text"
+                       ng-model="transactions.queries.refundQuery"
+                       ng-change="transactions.updateByQuery(transactions.TYPE_REFUNDS)"
+                       placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}">
+                                        <span class="input-group-addon">
+                                             <i class="mdi-action-search"></i>
+                                        </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive" ng-if="transactions.refunds.length > 0">
+            <table class="table table-hover">
+                <tr class="text-center">
+                    <th ng-bind="::transactions.strings.LABEL_ORDER"></th>
+                    <th ng-bind="::transactions.strings.LABEL_ACTIVITY"></th>
+                    <th ng-bind="::transactions.strings.LABEL_REFUND_DATE"></th>
+                    <th ng-bind="::transactions.strings.LABEL_REFUND_AMOUNT"></th>
+                    <th ng-bind="::transactions.strings.LABEL_ASSISTANT"></th>
+                    <th ng-bind="::transactions.strings.LABEL_REFUND_STATE"></th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="refund in transactions.refunds track by refund.id | filter:transactions.refundQuery">
+                    <td>
+                        <span ng-bind="::refund.order"></span>
+                    </td>
+                    <td>
+                        <span ng-bind="::(refund.activity.title | truncateText:true:35:'...')"></span>
+                    </td>
+                    <td>
+                        <span class="text-capitalize" ng-bind="::refund.created_at | date:'EEEE d MMM y'"></span>
+                    </td>
+                    <td>
+                        <span ng-bind="::(refund.amount | currency:$:0)"></span>
+                    </td>
+                    <td>
+                        <span class="text-capitalize" ng-show="::refund.assistant" ng-bind="::(refund.assistant.full_name)"></span>
+                        <span ng-show="::!refund.assistant" ng-bind="::transactions.strings.LABEL_EVERYBODY"></span>
+                    </td>
+                    <td>
+                        <span ng-bind="::refund.status"></span>
+                    </td>
+                    <td class="column-button">
+                        <a ui-sref="dash.activities-manage.orders.order({'activity_id':refund.activity.id,'orderId': refund.order,
+                                            'previousState':{'state':'organizer-dashboard.transactions.reimbursements'} })">
+                          <button class="btn btn-default" ng-bind="::transactions.strings.ACTION_VIEW_DETAIL">
+                          </button>
+                        </a>
+                    </td>
+
+                </tr>
+            </table>
+            <div class="text-center" ng-if="transactions.refundsPaginationOpts.totalItems > transactions.refundsPaginationOpts.itemsPerPage">
+                <pagination class="pagination-sm"
+                        ng-model="transactions.refundsPaginationOpts.pageNumber"
+                        ng-change="transactions.pageChange(transactions.TYPE_REFUNDS)"
+                        data-total-items="transactions.refundsPaginationOpts.totalItems"
+                        data-items-per-page="transactions.refundsPaginationOpts.itemsPerPage"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  
+                        max-size="transactions.refundsPaginationOpts.maxPagesSize"
+                        ></pagination>    
+            </div>
+        </div>
+        <!--If there are no refunds-->
+        <div ng-if="transactions.refunds.length <= 0">
+            <h4 ng-bind="::transactions.strings.LABEL_NO_REIMBURSEMENTS"></h4>
+            <span ng-show="transactions.refundsPaginationOpts.totalItems > 0" ng-bind="::transactions.strings.COPY_NO_REIMBURSEMENTS"></span>
+        </div>
+    </div>
+</div>

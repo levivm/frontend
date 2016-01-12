@@ -1,0 +1,89 @@
+@import url('../_trulii-variables');
+
+.order-container {
+  .col-xs-10;
+  .col-xs-offset-1;
+}
+
+.order-detail{
+  display: flex;
+  margin: 0;
+  border: 1px solid @gray-lighter;
+
+  h5{
+    font-family: @font-sans-alt;
+  }
+  .order-description, .order-info{
+    background-color: @gray-lighter;
+    align-items: stretch;
+  }
+  .order-description{
+    padding: 25px 35px;
+  }
+  .btn-return{
+
+    font-weight: 300;
+    text-decoration: none;
+    background-color: lighten(@gray-base, 85%);;
+
+    img {
+      width:25%;
+    }
+
+  }
+  .order-info{
+    background-color:white;
+    padding: 0px 35px 25px 35px;
+
+  }
+
+}
+
+.print-container {
+  width: 100%;
+}
+
+.print-visible {
+  display: none;
+}
+
+@media print {
+  .print-visible {
+    display: block;
+  }
+  .print-container{
+    width: 100%;
+    position: fixed;
+    left: 40px;
+    top: 48px;
+    display: block;
+  }
+
+  .order-container{
+    //position: fixed;
+    //top: 0;
+    //left: 0;
+    //display: block;
+  }
+  .order-description {
+    background-color: @gray-lighter;
+    a {
+      display: inline-block;
+      text-decoration: none;
+      color: @gray !important;
+    }
+  }
+  .order-tooltip, .order-tooltip:before, .order-tooltip:after {
+    display: none;
+  }
+  .order-info{
+    width: auto;
+  }
+  button, .btn, a.btn {
+    display: none !important;
+  }
+  .glyphicon, .column-button{
+    display: none;
+  }
+}
+

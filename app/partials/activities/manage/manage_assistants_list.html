@@ -1,0 +1,94 @@
+<div class="container-fluid">
+    <div class="col-md-11 col-md-offset-1">
+      <button class="btn btn-default" ng-click="print.printList()" ng-bind="::print.strings.ACTION_PRINT"></button>
+      <div class="book" style="display:block;">
+          <div class="page" ng-repeat="page in print.pages">
+              <div class="subpage">
+                  <div class="col-xs-3">
+                      <img src="/css/img/trulii-inverse-med.png" alt="Trulii Logo" class="img-responsive">
+                  </div>
+                  <div class="col-xs-7 col-xs-offset-2">
+                      <div class="separate-above-less">
+                          <h3 class="text-right no-margin" ng-bind="::print.activity.organizer.name"></h3>
+                          <h4 class="text-right no-margin montserrat-light" ng-bind="::print.activity.title"></h4>
+                      </div>
+                  </div>
+                  <div class="col-xs-12">
+                      <div class="assistants-list separate-above-medium">
+                          <div class="assistants-list__header">
+                              <span>
+                                <strong ng-bind="::print.strings.LABEL_ASSISTANTS_LIST"></strong>
+                              </span>
+                              <div class="assistants-list__info">
+                                  <div>
+                                      <strong ng-bind="::print.strings.LABEL_INITIAL_DATE"></strong>
+                                      <br>
+                                      <span class="text-capitalize"
+                                            ng-bind="::print.calendar.initial_date | date:'d MMM y'"></span>
+                                  </div>
+                                  <div>
+                                      <strong ng-bind="::print.strings.COPY_CLOSING_DATE"></strong>
+                                      <br>
+                                      <span class="text-capitalize"
+                                            ng-bind="::print.calendar.closing_sale | date:'d MMM y'"></span>
+                                  </div>
+                                  <div>
+                                      <strong>
+                                          <span ng-bind="print.calendar.assistants.length"></span>
+                                          <span> / </span>
+                                          <span ng-bind="print.calendar.capacity"></span>
+                                      </strong>
+                                      <br>
+                                          <span ng-bind="print.strings.COPY_SEATS">
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="assistants-list__body">
+                              <div class="table-responsive">
+                                  <table class="table table-hover">
+                                      <tr class="text-center">
+                                          <th ng-bind="::print.strings.HEADER_FIRST_NAME"></th>
+                                          <th ng-bind="::print.strings.HEADER_LAST_NAME"></th>
+                                          <th ng-bind="::print.strings.HEADER_EMAIL"></th>
+                                          <th ng-bind="::print.strings.HEADER_ORDER"></th>
+                                          <th ng-bind="::print.strings.HEADER_CODE"></th>
+                                      </tr>
+                                      <tr class="assistants"
+                                          ng-repeat="assistant in page track by assistant.id">
+                                          <td>
+                                              <span class="text-capitalize" ng-bind="::assistant.first_name"></span>
+                                          </td>
+                                          <td>
+                                              <span class="text-capitalize" ng-bind="::assistant.last_name"></span>
+                                          </td>
+                                          <td>
+                                              <span ng-bind="::assistant.email"></span>
+                                          </td>
+                                          <td>
+                                              <span ng-bind="::assistant.order">
+                                              </span>
+                                          </td>
+                                          <td>
+                                              <span ng-bind="assistant.token"></span>
+                                          </td>
+                                      </tr>
+                                  </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-xs-12 assistants-list__footer">
+                      <span>
+                        trulii.com
+                      </span>
+                      <span class="pt-serif text-muted">
+                        <em ng-bind="$index + 1"></em>
+                        |
+                        <em ng-bind="print.pages.length"></em>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+</div>

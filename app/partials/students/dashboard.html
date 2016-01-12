@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row test-class">
+        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80}">
+            <a ui-sref=".activities.open"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.activities.*')}">
+                <i class="sidebar__item__icon mdi-social-school"></i>
+                <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
+            </a>
+            <a ui-sref=".account.password" class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account.*')}">
+                <i class="sidebar__item__icon mdi-action-settings"></i>
+                <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
+            </a>
+            <a ui-sref=".profile" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                <i class="sidebar__item__icon mdi-action-account-circle"></i>
+                <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
+            </a>
+            <a ui-sref=".history.orders" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+                <i class="sidebar__item__icon mdi-maps-local-atm"></i>
+                <span ng-bind="::dash.strings.SECTION_HISTORY"></span>
+            </a>
+        </div>
+        <div>
+          <div ui-view>
+          </div>
+          <trulii-dashboard-footer></trulii-dashboard-footer>
+        </div>
+    </div>
+</div>

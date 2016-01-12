@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80}">
+            <a ui-sref=".profile"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.profile.*')}">
+                <i class="sidebar__item__icon mdi-action-account-circle"></i>
+                <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
+            </a>
+            <a ui-sref=".account.settings"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.account.*')}">
+                <i class="sidebar__item__icon mdi-action-settings"></i>
+                <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
+            </a>
+            <a ui-sref=".activities.open"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.activities.*')}">
+                <i class="sidebar__item__icon mdi-social-school"></i>
+                <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
+            </a>
+            <a ui-sref=".instructors"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.instructors')}">
+                <i class="sidebar__item__icon mdi-social-people"></i>
+                <span ng-bind="::dash.strings.SECTION_INSTRUCTORS"></span>
+            </a>
+            <a ui-sref=".reviews.pending"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.reviews.*')}">
+                <i class="sidebar__item__icon mdi-communication-comment"></i>
+                <span ng-bind="::dash.strings.SECTION_REVIEWS"></span>
+                <span class="label label-success"
+                      ng-if="dash.unreadReviewsCount.count"
+                      ng-bind="dash.unreadReviewsCount.count"></span>
+            </a>
+            <a ui-sref=".transactions.sales"
+               class="sidebar__item"
+               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.transactions.*')}">
+                <i class="sidebar__item__icon mdi-editor-attach-money"></i>
+                <span ng-bind="::dash.strings.SECTION_TRANSACTIONS"></span>
+            </a>
+        </div>
+        <div ui-view class="col-xs-12"></div>
+    </div>
+</div>

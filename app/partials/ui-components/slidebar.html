@@ -1,0 +1,16 @@
+<div class="sidebar-popup" ng-show="show">
+    <div class="sidebar-background" ng-click="toggleShow()"></div>
+    <div class="col-xs-10 col-sm-8 col-md-6 sidebar-content">
+        <div class="sidebar-header">
+            <button class="pull-right" ng-click="toggleShow()">
+                <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+            </button>
+            <h1 ng-bind="::title"></h1>
+        </div>
+        <div class="sidebar-body">
+            <h3 class="text-success" ng-bind="::header"></h3>
+            <br/>
+            <p ng-bind="body"></p>
+        </div>
+    </div>
+</div>

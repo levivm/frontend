@@ -1,0 +1,29 @@
+# serverConf
+app/js/trulii.serverConf.js
+
+# Bower and NPM directories
+node_modules/
+bower_components/
+app/lib/
+
+# Compiled Styles
+app/css/*.css
+app/css/*.css.map
+
+# Videos
+app/videos/*
+
+# Generated Docs directory
+docs/
+
+# Distribution directory
+public/
+
+# IntelliJ IDEs
+.idea/
+
+# Mac scumbag files
+**/*/.DS_Store
+
+# VS Code metaata
+.vscode/

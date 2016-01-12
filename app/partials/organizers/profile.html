@@ -1,0 +1,115 @@
+<div class="profile-cover">
+    <div class="profile-cover__container">
+        <div class="profile-cover__content">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="profile-cover__picture" style="background-image: url('{{::profile.organizer.photo}}')">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1 class="text-uppercase text-center" ng-bind="::profile.organizer.name"></h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                        <p class="profile-cover__description" ng-bind="::profile.organizer.headline"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="profile-cover__verified">
+                        <img src="/css/img/verified_organizer.png" class="img-responsive img-circle pull-left"/>
+                        <p class="pull-left">
+                            <strong><span ng-bind="::profile.strings.COPY_VERIFIED_1"></span><br/><span ng-bind="::profile.strings.COPY_VERIFIED_2"></span></strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 profile-biography">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+            <h1 class="text-primary text-center"><strong ng-bind="::profile.strings.LABEL_BIO"></strong></h1>
+            <div class="profile-biography--content">
+                <p ng-bind="::profile.organizer.bio"></p>
+            </div>
+            <div ng-if="profile.organizer.youtube_video_url"  class="youtube-container">
+                <youtube-video video-url="::profile.organizer.youtube_video_url" player-width="'100%'"></youtube-video>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 profile-activities">
+    <h3 class="text-center separate-below">
+        <strong><span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span> <span ng-bind="::profile.organizer.name"></span></strong>
+    </h3>
+    <trulii-activity-item ng-repeat="activity in profile.activities track by activity.id"
+          data-activity="activity" data-options="{{profile.options}}"></trulii-activity-item>
+</div>
+<!--Location-->
+<div class="row profile-location">
+    <div class="col-xs-12">
+        <div class="map" id="map-canvas">
+            <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
+                                bounds="profile.map.bounds" options="profile.map.options"
+                                events="profile.map.events" control="profile.map.control">
+                <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
+                                events="profile.marker.events"
+                                idkey="profile.marker.id"></ui-gmap-marker>
+            </ui-gmap-google-map>
+        </div>
+        <div class="address">
+            <img src="/css/img/activity-detail/map_location.png" alt=""/>
+            <span ng-bind="profile.organizer.location.address"></span><span ng-if="profile.organizer.location.city.name">.</span>
+            <span ng-bind="profile.organizer.location.city.name"></span>
+        </div>
+    </div>
+</div>
+<!-- Comments -->
+<div class="col-xs-12 profile-comments">
+    <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0 col-md-push-8">
+            <div class="organizer-widget">
+                <div class="card">
+                    <h1 class="text-center text-muted" ng-bind="profile.organizer.rating"></h1>
+                    <h1 class="text-center">
+                        <span class="text-uppercase text-muted montserrat-regular">
+                            <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
+                                    readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
+                        </span>
+                    </h1>
+                </div>
+                <div class="ratings">
+                    <img src="/css/img/activity-detail/rating_people.png" alt="Ratings">
+                    <span ng-bind="profile.reviewObjects.length"></span><span ng-bind="::profile.strings.LABEL_TOTAL"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1 col-md-pull-3">
+            <h3 class="separate-below separate-above-medium">
+                <strong ng-bind="::profile.strings.LABEL_COMMENTS"></strong>
+            </h3>
+            <!-- Comment container-->
+            <div class="review-detail">
+                <div class="comment separate-above" ng-repeat="reviewObject in profile.reviewObjects track by reviewObject.review.id">
+                    <trulii-activity-review data-review="reviewObject.review"
+                                            data-activity="reviewObject.activity"
+                                            data-on-dashboard="false" ></trulii-activity-review>
+                    <div class="separator-light"></div>
+                </div>
+            </div>
+
+            <div class="row" ng-show="profile.hasMoreReviews">
+                <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+                    <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase"
+                            ng-click="profile.showMoreReviews()">
+                        <span ng-if="profile.hasMoreReviews" ng-bind="::profile.strings.LABEL_MORE_COMMENTS"></span>
+                        <span ng-if="!profile.hasMoreReviews" ng-bind="::profile.strings.LABEL_NO_MORE_COMMENTS"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

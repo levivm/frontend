@@ -1,0 +1,24 @@
+
+@import '_trulii-variables';
+
+.bg-primary{
+	background: @primary;
+	color: @lightbg-text;
+}
+
+.bg-secondary{
+	background: @secondary !important;
+	color: white;
+}
+
+.generate-backgrounds(@name; @color; @intensity) when (@intensity > -1){
+
+    .bg-@{name}-@{intensity}{
+        background: spin(@color, @intensity*-4) !important;
+    }
+
+    .generate-backgrounds(@name; @color; @intensity - 1);
+}
+
+.generate-backgrounds(primary, @primary, 10);
+.generate-backgrounds(secondary, @secondary, 10);

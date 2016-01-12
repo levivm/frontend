@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Trulii UI Framework</title>
+
+	<link rel="stylesheet" href="/css/trulii.css">
+	<link rel="stylesheet" href="/lib/google-code-prettify/src/prettify.css">
+	<link rel="stylesheet" href="/lib/google-code-prettify/styles/desert.css">
+
+	<script src="/lib/google-code-prettify/src/prettify.js"></script>
+
+	<script src="/lib/jquery/dist/jquery.js"></script>
+	<script src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/lib/angular/angular.js"></script>	
+
+	<script src="lib/angular-animate/angular-animate.js"></script>
+	<script src="/lib/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="/js/ui-components/ui-components.module.js"></script>
+	<script src="/js/ui-components/directives/input-alert.directive.js"></script>
+	<script src="/js/ui-components/directives/input-autofocus.directive.js"></script>
+	<script src="/js/ui-components/directives/preloader.directive.js"></script>
+	<script src="/js/ui-components/directives/submit.directive.js"></script>
+	<script src="/js/ui-components/directives/navbar.directive.js"></script>
+	<script src="/js/ui-components/directives/card-expandable.directive.js"></script>
+	<script src="/js/ui-components/directives/input-popover.directive.js"></script>
+	<script src="/js/ui-components/services/toast.service.js"></script>
+	<script src="styleguide.js"></script>	
+
+
+
+</head>
+<body ng-app="trulii.styleguide">
+	<!-- NAV BAR -->
+	<div ng-include="'partials/ui-components/navbar.html'"></div>
+
+	<div class="with-navbar">
+
+
+		<div class="container-fluid navbar-secondary" >
+			
+			<a ui-sref="css" class="navbar-secondary__item" ui-sref-active="navbar-secondary__item--selected">CSS</a>
+			<a ui-sref="directives" class="navbar-secondary__item" ui-sref-active="navbar-secondary__item--selected">Directivas</a>
+		</div>
+			
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-12 bg-secondary" style="padding: 1em 0; ">
+
+					<div class="title-compound">
+						<div class="title-compound__title">
+							<h1 class="center-childs grand-title" >
+								Trulii UI Framework
+							</h1>
+						</div>	
+						<div class="title-compound__description">
+							<p class="center-childs" style="font-size: 1.4em">
+								Componentes UI de Trulii para la mejor experiencia de usuario. Fundamentado sobre <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="http://fezvrasta.github.io/bootstrap-material-design/bootstrap-elements.html">Material-Bootstrap</a> y <a href="http://materializecss.com/">Materialize.</a> 
+							</p>		
+						</div>
+					</div>
+					
+					
+				</div>
+			</div>	
+
+			<div style="padding: 1.3em">
+				<ui-view>
+
+				</ui-view>	
+			</div>
+			
+
+		</div>
+	</div>
+
+
+
+
+
+
+	
+</body>
+</html>
