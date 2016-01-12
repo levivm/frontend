@@ -13,12 +13,11 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['video', 'activities', 'generalInfo'];
-    function HomeController(video, activities, generalInfo) {
+    HomeController.$inject = ['$state', 'video', 'activities', 'generalInfo', 'LocationManager'];
+    function HomeController($state, video, activities, generalInfo, LocationManager) {
 
         var ACTIVITIES_STEP = 5;
         var activitiesIndex = 0;
-        var categories = [];
         var vm = this;
         angular.extend(vm, {
             activities : [],
@@ -31,7 +30,8 @@
             hasMoreActivities: true,
             toggleVideoShow: toggleVideoShow,
             loadActivities: loadActivities,
-            coverVideo: {},
+            viewMoreActivities: viewMoreActivities,
+            coverVideo: {}
         });
 
         _activate();
@@ -53,6 +53,11 @@
                 vm.hasMoreActivities = false;
                 console.log('End of activities reached');
             }
+        }
+
+        function viewMoreActivities(){
+            var city = LocationManager.getSearchCity();
+            $state.go('search', {'city': city.id});
         }
 
         // --------- Internal Functions ---------//

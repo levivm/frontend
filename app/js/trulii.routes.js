@@ -45,8 +45,7 @@
                 controller:'HomeController as home',
                 templateUrl: 'partials/landing/landing.html',
                 resolve: {
-                    // activities: getActivities,
-                    activities: function(){return {}},
+                     activities: getRecommendedActivities,
                     generalInfo: getPresaveActivityInfo
                 }
             })
@@ -117,17 +116,17 @@
 
     /**
      * @ngdoc method
-     * @name .#getActivities
+     * @name .#getRecommendedActivities
      * @description Retrieves all activities
      * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service
      * @requires trulii.activities.services.ActivitiesManager
      * @methodOf trulii.routes.config
      */
-    getActivities.$inject = ['$q', 'ActivitiesManager'];
-    function getActivities($q, ActivitiesManager){
+    getRecommendedActivities.$inject = ['$q', 'ActivitiesManager'];
+    function getRecommendedActivities($q, ActivitiesManager){
         var deferred = $q.defer();
 
-        ActivitiesManager.getActivities().then(success, error);
+        ActivitiesManager.getRecommendedActivities().then(success, error);
 
         return deferred.promise;
 
@@ -135,7 +134,7 @@
             deferred.resolve(activities);
         }
         function error(response){
-            console.log('getActivities. Error obtaining Activities from ActivitiesManager', response);
+            console.log('getRecommendedActivities. Error obtaining Activities from ActivitiesManager', response);
             deferred.reject(null);
         }
     }
