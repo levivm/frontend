@@ -110,6 +110,10 @@
                         LABEL_CITY_DEFAULT: 'Ciudad..'
                     });
                 }
+                function _explore(){
+                    scope.q="";
+                    search();
+                }
 
                 function _cleanUp() {
                     unsuscribeCityModified();
@@ -127,6 +131,7 @@
                     });
 
                     scope.$on('$destroy', _cleanUp);
+                    scope.$on(SearchManager.EVENT_EXPLORE, _explore);
                 }
             }
         }

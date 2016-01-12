@@ -13,6 +13,9 @@
             <div class="buttons float-right" ng-if="user.is_organizer">
                 <a ui-sref="dash.activities-new.general" class="btn btn-primary" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
+            <div ng-if="isSearchVisible" class="buttons navbar__button-all">
+                <button class="btn btn-default" ng-bind="::strings.ACTION_EXPLORE" ng-click="explore()"></button>
+            </div>
         </div>
         <div class="navbar__right-wrapper">
             <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
