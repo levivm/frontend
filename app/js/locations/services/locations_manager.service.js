@@ -233,6 +233,8 @@
         }
 
         function getMap(location, scroll) {
+            if(!location){ return ;}
+
             var latitude;
             var longitude;
 
@@ -241,6 +243,7 @@
             } else {
                 location = angular.copy(location.city);
             }
+
             latitude = location.point[0];
             longitude = location.point[1];
 
@@ -282,6 +285,7 @@
         }
 
         function getMarker(location) {
+            if(!location){ return ;}
 
             var latitude = location.point ?
                 location.point[0] : location.city.point[0];
