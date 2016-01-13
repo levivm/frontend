@@ -1,5 +1,15 @@
 <div class="sidebar sidebar-category-container">
     <ul>
+        <li class="sidebar-category">
+            <a href="#" id="todas"></a>
+            <div class="header" >
+                <div class="header__name" ng-click="search.setCategory(search.strings.ACTION_ALL_FILTER)">
+                    <img class="header__icon" src="/css/img/icon-all-off.png"
+                         alt="{{::search.strings.ACTION_ALL_FILTER}}"/>
+                    <span ng-bind="::search.strings.ACTION_ALL_FILTER"></span>
+                </div>
+            </div>
+        </li>
         <li class="sidebar-category" ng-repeat="category in search.categories | orderBy:'name'">
             <a href="#" id="{{::category.name}}"></a>
             <div class="header" ng-class="{'active': search.searchCategory === category.id}">
