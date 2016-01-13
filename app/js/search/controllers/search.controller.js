@@ -117,7 +117,7 @@
         function setCategory(category, initializing){
             if(!category){ return; }
 
-            if(vm.searchCategory === category.id){
+            if(vm.searchCategory === category.id || category===vm.strings.ACTION_ALL_FILTER){
                 vm.searchCategory = null;
             } else {
                 vm.searchCategory = category.id;
@@ -336,6 +336,7 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_CLOSE: "Cerrar",
+                ACTION_ALL_FILTER: "Todas",
                 COPY_RESULTS: "resultados ",
                 COPY_FOR: "para ",
                 COPY_IN: "en",
