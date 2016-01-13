@@ -22,7 +22,6 @@
         var api = ActivityServerApi;
         var _pool = {};
         var calendars = [];
-        var activityId = null;
 
         //noinspection UnnecessaryLocalVariableJS
         var CalendarsManager = {
@@ -61,7 +60,6 @@
              * @name .#fetchCalendar
              * @description Retrieves a Calendar from an Activity directly from server
              * @param {number} activityId Id of the Activity to get calendars from
-             * @param {boolean} active flag
              * @methodOf trulii.activities.services.CalendarsManager
              */
             loadCalendars: loadCalendars,
@@ -80,16 +78,17 @@
 
         //--------- Exposed Functions ---------//
 
-        function deleteCalendar(calendarId) {
+        function deleteCalendar(calendar) {
             var deferred = $q.defer();
+            var activityId = calendar.activity;
 
-            $http.delete(api.calendar(activityId, calendarId)).then(success, error);
+            $http.delete(api.calendar(activityId, calendar.id)).then(success, error);
 
             return deferred.promise;
 
             function success() {
-                _deleteInstance(calendarId);
-                deferred.resolve(calendars);
+                _deleteInstance(calendar.id);
+                deferred.resolve(calendars[activityId]);
             }
             function error(response) {
                 deferred.reject(response.data);
@@ -125,32 +124,29 @@
             }
         }
 
-        function loadCalendars(activity_id, active) {
-            var actives = active || false;
-            activityId = activity_id;
-
-            if (calendars.length > 0) {
-                var activity_calendar_id = calendars[0].activity;
-                if (activity_calendar_id == activityId){ return calendars; }
+        function loadCalendars(activityId) {
+            var deferred = $q.defer();
+            if (calendars[activityId] && calendars[activityId].length > 0){
+                deferred.resolve(calendars[activityId]);
             }
 
-            if (actives) { config.actives = true; }
+            $http.get(api.calendars(activityId)).then(success, error);
 
-            return $http.get(api.calendars(activityId)).then(success, error);
+            return deferred.promise;
 
             function success(response) {
                 //console.log('CalendarsManager. Calendars response:', response);
                 _setCalendars(response.data);
-                return calendars;
+                deferred.resolve(calendars[activityId]);
             }
 
             function error(response) {
-                return response.data;
+                deferred.reject(response.data);
             }
         }
 
         function setCalendar(calendarData) {
-            var calendar = _search(calendarData.id);
+            var calendar = _getCalendarById(calendarData.id);
 
             if (calendar){
                 calendar.setData(calendarData);
@@ -165,7 +161,7 @@
         //--------- Internal Functions ---------//
 
         function _retrieveInstance(calendarId, calendarData) {
-            var instance = _search(calendarId);
+            var instance = _getCalendarById(calendarId);
             // if calendar does not exist, create new one using calendarData
             if (!instance){
                 instance = new Calendar(calendarData);
@@ -178,15 +174,15 @@
             return instance;
         }
 
-        function _search(calendarId) {
+        function _getCalendarById(calendarId) {
             return _pool[calendarId];
         }
 
         function _deleteInstance(calendarId) {
-            var instance = _search(calendarId);
+            var instance = _getCalendarById(calendarId);
             if (instance){
-                angular.forEach(calendars, function (calendar, index) {
-                    if (calendar.id == instance.id){ calendars.splice(index, 1); }
+                angular.forEach(calendars[instance.activity], function (calendar, index) {
+                    if (calendar.id == instance.id){ calendars[instance.activity].splice(index, 1); }
                 });
                 delete _pool[calendarId];
             }
@@ -200,7 +196,8 @@
 
         function _addCalendar(calendar) {
             _pool[calendar.id] = calendar;
-            calendars.push(calendar);
+            if(!calendars[calendar.activity]){ calendars[calendar.activity] = []; }
+            calendars[calendar.activity].push(calendar);
         }
     }
 

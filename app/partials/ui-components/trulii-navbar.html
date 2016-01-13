@@ -26,24 +26,36 @@
     <div class="col-xs-12">
         <div class="row">
             <div class="col-xs-12 visible-xs-block visible-sm-block">
-                <img src="/css/img/logo-trulii.png" alt="" class="img-responsive center-block burger-menu__mobile-logo">
+                <a ui-sref="home" ng-click="toggleBurger()">
+                    <img src="/css/img/logo-trulii.png" alt="" class="img-responsive center-block burger-menu__mobile-logo">
+                </a>
             </div>
-            <!--<div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons" ng-if="!user">-->
-                <!--<div class="row">-->
-                    <!--<div class="col-xs-12 col-md-5">-->
-                        <!--<a ui-sref="login" ng-click="toggleBurger()">-->
-                            <!--<button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_LOGIN">-->
-                            <!--</button>-->
-                        <!--</a>-->
-                    <!--</div>-->
-                    <!--<div class="col-xs-12 col-md-5">-->
-                        <!--<a ui-sref="register" ng-click="toggleBurger()">-->
-                            <!--<button class="btn btn-block btn-default btn-reg" ng-bind="::strings.ACTION_REGISTER">-->
-                            <!--</button>-->
-                        <!--</a>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
+            <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons visible-xs-block visible-sm-block" ng-if="!user">
+                <div class="row">
+                    <div class="col-xs-12 col-md-5">
+                        <a ui-sref="login" ng-click="toggleBurger()">
+                            <button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_LOGIN">
+                            </button>
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-md-5">
+                        <a ui-sref="register" ng-click="toggleBurger()">
+                            <button class="btn btn-block btn-default btn-reg" ng-bind="::strings.ACTION_REGISTER">
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons visible-xs-block visible-sm-block" ng-if="user.is_organizer">
+                <div class="row">
+                    <div class="col-xs-12 col-md-5">
+                        <a ui-sref="dash.activities-new.general" ng-click="toggleBurger()">
+                            <button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_CREATE">
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
             <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__column burger-menu__user-links" ng-if="user">
                 <img ng-src="{{user.photo}}" class="burger-menu__user__picture" alt="{{user.user.full_name}}"/>
                 <span class="burger-menu__user__name" ng-bind="user.user.full_name"></span>

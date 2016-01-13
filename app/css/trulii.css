@@ -13758,7 +13758,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   transition: all 0.25s;
 }
 .--on-dash .navbar__logo-container {
-  width: 18.1em;
+  width: 15.9em;
+}
+@media screen and (max-width: 480px) {
+  .navbar__logo-container {
+    width: 12em;
+  }
 }
 .navbar__logo {
   background: url('img/logo-trulii.png') no-repeat;
@@ -13771,11 +13776,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 480px) {
   .navbar__logo {
-    background: url('img/logo-tiny.png') no-repeat center;
-    width: 30px;
+    width: 6em;
     background-size: contain;
     position: relative;
   }
+}
+.navbar__mobile-dashboard-controllers {
+  width: calc(-54%);
 }
 .navbar__left-wrapper {
   display: inline-block;
@@ -13792,6 +13799,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__left-wrapper.long {
   width: 72%;
 }
+@media screen and (max-width: 768px) {
+  .navbar__left-wrapper {
+    display: none;
+  }
+}
 .navbar__right-wrapper {
   display: inline-block;
   vertical-align: top;
@@ -13804,6 +13816,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 480px) {
   .navbar__right-wrapper {
+    max-width: 150px;
     display: inline-block;
   }
 }
@@ -14394,6 +14407,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-color: #393b3f;
   width: 17em;
   max-height: calc(100vh - 80px);
+  transition: transform 0.5s;
 }
 .sidebar-short {
   top: 60px;
@@ -14572,6 +14586,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-left: 17em;
   margin-left: 0;
 }
+@media screen and (max-width: 480px) {
+  .sidebar + * {
+    padding-left: 0;
+  }
+}
 .sidebar.--float {
   background-color: white;
   border: 1px solid #e3e3e3;
@@ -14581,6 +14600,28 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-bottom: 0;
   max-height: calc(100vh - 100px);
   overflow-y: auto;
+}
+.sidebar.ng-hide {
+  transform: translateX(-17em);
+}
+.sidebar-mobile-toggle {
+  color: white;
+  width: calc(100% - 150px);
+  background-color: #ffd580;
+  height: 80px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 5000;
+  transition: all 0.25s;
+  padding: 1em 1em;
+}
+.sidebar-mobile-toggle.short {
+  height: 60px;
+}
+.sidebar-mobile-toggle:focus,
+.sidebar-mobile-toggle:hover {
+  color: white;
 }
 .with-sidebar {
   width: 83.33333333%;

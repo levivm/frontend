@@ -33,12 +33,17 @@
             publish_activity: _publish_activity,
             unpublish_activity: _unpublish_activity,
             steps_left: activity.steps_left,
-            scroll: 0
+            scroll: 0,
+            toggleSidebar: toggleSidebar
         });
 
 
         activate();
-
+        
+        function toggleSidebar(){
+            pc.showSidebar = !pc.showSidebar;
+        }
+        
         function areAllStepsCompleted() {
             return activity.areAllStepsCompleted();
         }
