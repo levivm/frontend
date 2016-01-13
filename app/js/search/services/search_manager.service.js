@@ -132,7 +132,7 @@
 
             setSearchData(data);
 
-            if(!searchData.hasOwnProperty(KEY_CITY)){ deferred.reject(null); }
+            if(!searchData.hasOwnProperty(KEY_CITY)){ deferred.reject("A city is required"); }
 
             requestConfig = { 'params': searchData };
             $http.get(api.search(), requestConfig).then(success, error);
@@ -141,8 +141,10 @@
 
             function success(response){
                 var stateParams = {};
+                console.log('response.data:', response.data);
+                if(response.data.next){  }
                 angular.extend(stateParams, searchData);
-                stateParams.activities = response.data;
+                stateParams.activities = response.data.results;
                 deferred.resolve(stateParams);
             }
             function error(response){ deferred.reject(response); }
