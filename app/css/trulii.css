@@ -12768,6 +12768,12 @@ h2.title {
   font-weight: 600;
   font-size: 3.5em;
 }
+@media screen and (max-width: 768px) {
+  h1.title,
+  h2.title {
+    font-size: 3em;
+  }
+}
 h3.title {
   font-weight: 400;
 }
@@ -16591,6 +16597,7 @@ ul.dropdown-menu:after {
   color: white;
   z-index: 500;
   font-size: 3em;
+  max-width: 100%;
   transition: all 0.125s;
 }
 .category-card__veil {
@@ -17038,7 +17045,7 @@ button.toast-close-button {
 .trulii-cover__content h1,
 .trulii-cover-small__content h1,
 .trulii-cover-medium__content h1 {
-  font-size: 4em;
+  font-size: 3em;
   line-height: 0.9em;
 }
 .trulii-cover__content .well-header,
@@ -17067,9 +17074,16 @@ button.toast-close-button {
 .trulii-cover-medium__content p {
   color: white;
   padding: 0 5em;
-  font-size: 1.75em;
+  font-size: 1.25em;
   margin-top: 1em;
   margin-bottom: 1.5em;
+}
+@media screen and (max-width: 768px) {
+  .trulii-cover__content p,
+  .trulii-cover-small__content p,
+  .trulii-cover-medium__content p {
+    padding: 0;
+  }
 }
 .trulii-cover__content .btn-lg,
 .trulii-cover-small__content .btn-lg,
@@ -19490,6 +19504,10 @@ input[type=text].form-control.referral-link:focus {
   background-color: transparent;
   color: #535353 !important;
   font-weight: 300;
+}
+.home-footer {
+  height: auto;
+  width: 100vw;
 }
 ::-webkit-scrollbar {
   width: 10px;
