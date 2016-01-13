@@ -13732,6 +13732,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar .btn {
   line-height: 26.66666667px;
 }
+.navbar__button-all {
+  display: inline-block;
+  vertical-align: top;
+}
 .navbar__link {
   line-height: 65px;
   display: inline-block;
