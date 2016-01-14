@@ -95,11 +95,11 @@
             }
         }
 
-        function getCalendar(calendarId) {
+        function getCalendar(calendarId,activityId) {
             var deferred = $q.defer();
             var calendar = new Calendar();
 
-            angular.extend(calendar, _retrieveInstance(calendarId));
+            angular.extend(calendar, _retrieveInstance(calendarId,null,activityId));
             deferred.resolve(calendar);
 
             return deferred.promise;
@@ -146,11 +146,12 @@
 
         function setCalendar(calendarData) {
             var calendar = _getCalendarById(calendarData.id);
-
+            console.log("calendarios",_pool);
+            console.log("calendar creado ----",calendarData);
             if (calendar){
                 calendar.setData(calendarData);
             } else {
-                calendar = _retrieveInstance(calendarData.id, calendarData);
+                calendar = _retrieveInstance(calendarData.id, calendarData,calendarData.activity);
                 _addCalendar(calendar);
             }
 
@@ -159,7 +160,7 @@
 
         //--------- Internal Functions ---------//
 
-        function _retrieveInstance(calendarId, calendarData) {
+        function _retrieveInstance(calendarId, calendarData, activityId) {
             var instance = _getCalendarById(calendarId);
             // if calendar does not exist, create new one using calendarData
             if (!instance){
