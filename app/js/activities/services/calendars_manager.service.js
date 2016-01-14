@@ -15,9 +15,9 @@
         .module('trulii.activities.services')
         .factory('CalendarsManager', CalendarsManager);
 
-    CalendarsManager.$inject = ['$http', '$q', 'ActivityServerApi', 'Calendar'];
+    CalendarsManager.$inject = ['$http', '$q','$timeout', 'ActivityServerApi', 'Calendar'];
 
-    function CalendarsManager($http, $q, ActivityServerApi, Calendar) {
+    function CalendarsManager($http, $q, $timeout, ActivityServerApi, Calendar) {
 
         var api = ActivityServerApi;
         var _pool = {};
@@ -125,17 +125,19 @@
 
         function loadCalendars(activityId) {
             var deferred = $q.defer();
-            if (calendars[activityId] && calendars[activityId].length > 0){
+            if (calendars[activityId] && calendars[activityId].length > 0)
                 deferred.resolve(calendars[activityId]);
-            }
-
-            $http.get(api.calendars(activityId)).then(success, error);
+            else
+                $http.get(api.calendars(activityId)).then(success, error);
 
             return deferred.promise;
 
             function success(response) {
-                //console.log('CalendarsManager. Calendars response:', response);
+                //Init calendars[activityId] if does not exists
+                if(!calendars[activityId]) {calendars[activityId] = [];}
+
                 _setCalendars(response.data);
+
                 deferred.resolve(calendars[activityId]);
             }
 
@@ -146,13 +148,12 @@
 
         function setCalendar(calendarData) {
             var calendar = _getCalendarById(calendarData.id);
-            console.log("calendarios",_pool);
-            console.log("calendar creado ----",calendarData);
             if (calendar){
                 calendar.setData(calendarData);
             } else {
                 calendar = _retrieveInstance(calendarData.id, calendarData,calendarData.activity);
                 _addCalendar(calendar);
+
             }
 
             return calendar;
@@ -188,6 +189,7 @@
             }
         }
         function _setCalendars(calendarsData) {
+            // calendars = [];
             angular.forEach(calendarsData, function (calendarData) {
                 var calendar = new Calendar(calendarData);
                 _addCalendar(calendar);
@@ -196,7 +198,6 @@
 
         function _addCalendar(calendar) {
             _pool[calendar.id] = calendar;
-            if(!calendars[calendar.activity]){ calendars[calendar.activity] = []; }
             calendars[calendar.activity].push(calendar);
         }
     }
