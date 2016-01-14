@@ -1,11 +1,15 @@
 @import url('../_trulii-variables');
 
 .search-filter {
-    height: 5.8em;
-
+    display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 18.8em;
+    padding: 10px;
     .search-control {
-        padding-bottom: 1.4em;
-
         select {
             font-size: 1em;
             height: 2em;
@@ -15,14 +19,15 @@
             .btn {
                 .text-sm;
                 text-transform: uppercase;
-                padding: 0.4em 1em;
+                padding: 0.6em 1em;
                 border-color: @gray-light-medium;
             }
         }
     }
 
     label {
-        margin-top: 0.3em;
+        margin-right: 1em;
+        margin-top: 1.2em;
 
         &.margin-more {
             margin-top: 1em;
@@ -32,7 +37,15 @@
     .btn-default {
         color: @lightbg-text;
     }
-
+    &__levels{
+        margin-top: 0 !important
+    }
+    &__levels-buttons{
+        width: 90%;
+    }
+    .search-certificate{
+        margin-left: 0em;
+    }
     .search-slider {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -44,6 +57,85 @@
     }
 }
 
+
+@media (min-width: 1080px){
+    .search-filter {
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+	    flex-wrap: wrap;
+        height: 11.8em;
+        justify-content: flex-start;
+        -webkit-align-self: flex-start;
+	    align-self: flex-start;
+
+        &__date{
+            width: 25%;
+        }
+
+        &__levels{
+            width: 55%;
+            margin-left: 2em;
+        }
+        .search-certificate{
+            margin-left: 0em;
+            margin-top: 0.7em;
+        }
+        .search-filter-slider{
+            width: 55%;
+            margin-left: 2em;
+        }
+    }
+
+}
+@media (min-width: 1280px){
+    .search-filter {
+        -webkit-justify-content: flex-start;
+        justify-content: flex-start;
+        align-items: flex-start;
+
+        &__levels{
+            width: 45%;
+            margin-left: 3em;
+        }
+
+        .search-filter-slider{
+            width: 55%;
+            margin: 0 auto;
+        }
+        .search-certificate{
+            margin-left: 1em;
+            margin-top: 0.7em;
+        }
+    }
+
+
+}
+
+@media (min-width: 1420px){
+    .search-filter {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 11.8em;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+
+        &__date{
+            width: 20%;
+        }
+
+        &__levels{
+            width: 45%;
+            margin-left: 0em;
+        }
+        .search-certificate{
+            margin-left: 6em;
+            margin-top: 0.8em;
+        }
+    }
+
+}
 .search-info {
     .text-muted;
     padding: 0.5em 4em;

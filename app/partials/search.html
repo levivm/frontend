@@ -20,77 +20,61 @@
     </ul>
 </div>
 <div class="with-sidebar">
-    <div class="row clear-spacings">
-        <div class="col-xs-12">
+    <div class="clear-spacings padding-horizontal-less">
             <div class="search-filter">
-                <div class="row">
-                    <label class="control-label col-xs-1" for="date"
-                           ng-bind="::search.strings.LABEL_DATE"></label>
-                    <div class="col-xs-12 col-sm-3">
-                        <!--Date DatePicker-->
-                        <div class="form-group search-control no-margin">
-                            <div class="form-inline">
-                                <div class="input-group">
-                                    <input id="date" type="text" class="form-control"
-                                           placeholder="{{::search.strings.PLACEHOLDER_DATE}}"
-                                           name="date" ng-model="search.searchDate"
-                                           ng-change="search.setDate()"
-                                           datepicker-popup="{{search.format}}"
-                                           data-is-open="search.opened"
-                                           data-min-date="search.minStartDate"
-                                           data-datepicker-options="search.dateOptions"
-                                           data-close-text="{{search.strings.ACTION_CLOSE}}"
-                                           ng-click="search.openDatePicker($event)"/>
-                                </div>
-                                <span class="mdi-action-event text-muted" ng-click="search.openDatePicker($event)"></span>
-                            </div>
+                   <div class="form-group search-control no-margin flex-align-items-center search-filter__date">
+                       <label class="control-label " for="date"
+                              ng-bind="::search.strings.LABEL_DATE"></label>
+                       <div class="flex-container">
+                           <div class="input-group">
+                               <input id="date" type="text" class="form-control"
+                                      placeholder="{{::search.strings.PLACEHOLDER_DATE}}"
+                                      name="date" ng-model="search.searchDate"
+                                      ng-change="search.setDate()"
+                                      datepicker-popup="{{search.format}}"
+                                      data-is-open="search.opened"
+                                      data-min-date="search.minStartDate"
+                                      data-datepicker-options="search.dateOptions"
+                                      data-close-text="{{search.strings.ACTION_CLOSE}}"
+                                      ng-click="search.openDatePicker($event)"/>
+                           </div>
+                           <span class="mdi-action-event text-muted" ng-click="search.openDatePicker($event)"></span>
+                       </div>
+                   </div>
+                   <div class="search-control flex-align-items-center search-filter__levels">
+                       <label class="control-label no-padding" for="level-btn-group" ng-bind="::search.strings.LABEL_LEVEL"></label>
+                       <div id="level-btn-group" class="btn-group btn-group-justified search-filter__levels-buttons" role="group"
+                            aria-label="{{::search.strings.LABEL_LEVEL}}">
+                           <label class="btn btn-sm btn-default btn-beginner-level"
+                                  ng-repeat="level in search.levels track by level.code"
+                                  ng-class="search.getLevelClassStyle(level)">
+                               <input type="radio" name="level" class="hidden" ng-model="search.searchLevel"
+                                      ng-click="search.setLevel()" ng-value="level">{{level.value}}
+                           </label>
+                       </div>
+                   </div>
+                   <div class=" search-certificate">
+                       <!--Certificate Button-->
+                       <button class="btn btn-sm btn-default"
+                               ng-class="{'active': search.withCert}"
+                               ng-bind="search.strings.LABEL_WITH_CERTIFICATE"
+                               ng-click="search.setCertification()"></button>
+                       <!--Weekends Button-->
+                       <button class="btn btn-sm btn-default"
+                               ng-class="{'active': search.onWeekends}"
+                               ng-bind="search.strings.LABEL_WEEKENDS"
+                               ng-click="search.setWeekends()"></button>
+                   </div>
 
-                        </div>
-                    </div>
-                    <div class="col-xs-11 col-md-7 col-md-offset-1">
-                        <div class="form-inline float-right">
-                            <!--Certificate Button-->
-                            <button class="btn btn-sm btn-default"
-                                    ng-class="{'active': search.withCert}"
-                                    ng-bind="search.strings.LABEL_WITH_CERTIFICATE"
-                                    ng-click="search.setCertification()"></button>
-                            <!--Weekends Button-->
-                            <button class="btn btn-sm btn-default"
-                                    ng-class="{'active': search.onWeekends}"
-                                    ng-bind="search.strings.LABEL_WEEKENDS"
-                                    ng-click="search.setWeekends()"></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="row separate-below-less">
-                    <div class="col-xs-12">
-                        <!--Level Select-->
-                        <div class="form-group search-control">
-                            <label class="control-label col-xs-1 no-padding" for="level-btn-group" ng-bind="::search.strings.LABEL_LEVEL"></label>
-                            <div class="col-xs-6 no-padding-left">
-                                <div id="level-btn-group" class="btn-group btn-group-justified" role="group"
-                                     aria-label="{{::search.strings.LABEL_LEVEL}}">
-                                    <label class="btn btn-sm btn-default btn-beginner-level"
-                                           ng-repeat="level in search.levels track by level.code"
-                                           ng-class="search.getLevelClassStyle(level)">
-                                        <input type="radio" name="level" class="hidden" ng-model="search.searchLevel"
-                                               ng-click="search.setLevel()" ng-value="level">{{level.value}}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <label class="control-label margin-more col-xs-1" for="level-btn-group" ng-bind="::search.strings.LABEL_COST"></label>
-                    <div class="col-xs-6">
+                <div class="flex-align-items-center search-filter-slider">
+                    <label class="control-label margin-more " for="level-btn-group" ng-bind="::search.strings.LABEL_COST"></label>
+                    <div class="w-100">
                         <!--Cost Select-->
                         <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
                                        step="search.sliderOptions.step" start="search.searchStartCost"
                                        end="search.searchEndCost" update="search.updateCost(start, end)" stop-drag="search.stopDrag()"></trulii-slider>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     <div class="row separator-light no-margin-bottom"></div>
