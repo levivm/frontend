@@ -17,6 +17,10 @@
 	width: @sidebar-width;
 	max-height: ~"calc(100vh - 80px)";
     transition: transform 0.5s;
+    
+  .before-sm({
+    height: @navbar-short-height;
+  });
 	&-short{
 		top: @navbar-short-height;
 		max-height: ~"calc(100vh - 60px)" !important;
@@ -249,7 +253,7 @@
     color: white;
     width: ~"calc(100% - 150px)";
     background-color: @brand-primary;
-    height: @navbar-height;
+    height: @navbar-short-height;
     position: fixed;
     left: 0;
     top: 0;
