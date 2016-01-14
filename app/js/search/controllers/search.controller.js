@@ -223,8 +223,8 @@
             return -activity.closest_calendar.initial_date;
         }
 
-        function _getActivities(data){
-            return SearchManager.searchActivities(data).then(success, error);
+        function _getActivities(searchData){
+            return SearchManager.searchActivities(searchData).then(success, error);
 
             function success(response){
                 activities = response.activities;
@@ -241,7 +241,7 @@
             var deferred = $q.defer();
             vm.searchData = SearchManager.getSearchData($stateParams);
             vm.searchQuery = vm.searchData[SearchManager.KEY_QUERY];
-            console.log('searchQuery:', vm.searchQuery, vm.searchData);
+            //console.log('searchQuery:', vm.searchQuery, vm.searchData);
             var sm = SearchManager;
 
             if($stateParams.city){
@@ -328,7 +328,7 @@
         function _search(){
             var searchData = SearchManager.getSearchData();
             var transitionOptions = {location: true, inherit: false};
-            $state.go('search', searchData,transitionOptions);
+            $state.go('search', searchData, transitionOptions);
         }
 
 
@@ -362,7 +362,6 @@
             datepickerPopupConfig.showButtonBar = false;
             datepickerConfig.showWeeks = false;
             _setWatches();
-
             _setStrings();
             _setGeneralInfo();
             _getSearchParams();
@@ -371,7 +370,9 @@
                 _scrollToCurrentCategory();
 
             });
+
             vm.orderByPredicate = 'closest_calendar.session_price';
+
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED
                 , function (event) {
                     console.log('searchBar. on' + SearchManager.EVENT_SEARCH_MODIFIED);
