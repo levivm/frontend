@@ -15107,6 +15107,9 @@ tags-input input {
 .btn-rounded {
   border-radius: 30px;
 }
+.btn-padding {
+  padding: 1em;
+}
 @media (max-width: 991px) {
   .btn {
     white-space: normal !important;
@@ -16584,9 +16587,19 @@ ul.dropdown-menu:after {
   -ms-flex-pack: center;
   justify-content: center;
 }
+@media screen and (max-width: 480px) {
+  .category-card {
+    min-height: 250px;
+  }
+}
 .category-card.category-card-lg {
   height: 30vw;
   min-height: 400px;
+}
+@media screen and (max-width: 480px) {
+  .category-card.category-card-lg {
+    min-height: 250px;
+  }
 }
 .category-card__title {
   -webkit-box-flex: 0;
@@ -16597,8 +16610,15 @@ ul.dropdown-menu:after {
   color: white;
   z-index: 500;
   font-size: 3em;
-  max-width: 100%;
   transition: all 0.125s;
+  padding: 0 20px;
+  max-width: 100%;
+  word-break: break-word;
+}
+@media screen and (max-width: 480px) {
+  .category-card__title {
+    font-size: 2em;
+  }
 }
 .category-card__veil {
   background-color: #504530;
@@ -17048,6 +17068,13 @@ button.toast-close-button {
   font-size: 3em;
   line-height: 0.9em;
 }
+@media screen and (max-width: 480px) {
+  .trulii-cover__content h1,
+  .trulii-cover-small__content h1,
+  .trulii-cover-medium__content h1 {
+    font-size: 2em;
+  }
+}
 .trulii-cover__content .well-header,
 .trulii-cover-small__content .well-header,
 .trulii-cover-medium__content .well-header {
@@ -17062,6 +17089,13 @@ button.toast-close-button {
 .trulii-cover-small__content .sub-title-light,
 .trulii-cover-medium__content .sub-title-light {
   font-weight: 200;
+}
+@media screen and (max-width: 480px) {
+  .trulii-cover__content .sub-title,
+  .trulii-cover-small__content .sub-title,
+  .trulii-cover-medium__content .sub-title {
+    font-size: 1.5em;
+  }
 }
 .trulii-cover__content .title,
 .trulii-cover-small__content .title,
@@ -17083,6 +17117,13 @@ button.toast-close-button {
   .trulii-cover-small__content p,
   .trulii-cover-medium__content p {
     padding: 0;
+  }
+}
+@media screen and (max-width: 480px) {
+  .trulii-cover__content p,
+  .trulii-cover-small__content p,
+  .trulii-cover-medium__content p {
+    font-size: 1.125em;
   }
 }
 .trulii-cover__content .btn-lg,
@@ -17610,6 +17651,12 @@ blockquote {
   margin: 0 0.8em 1em;
   text-align: left;
   transition: .2s all ease;
+}
+@media screen and (max-width: 480px) {
+  .activity-card {
+    max-width: 90%;
+    min-width: 10%;
+  }
 }
 .activity-card:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -18306,6 +18353,11 @@ blockquote {
   padding: 3em 9.5em 5em 9.5em;
   background-color: #F7F7F7;
 }
+@media screen and (max-width: 768px) {
+  .instructors-container {
+    padding: 1em 4em 2em 3em;
+  }
+}
 .instructors-container .instructor .name {
   color: rgba(0, 0, 0, 0.74);
   font-size: 1.8em;
@@ -18338,6 +18390,11 @@ blockquote {
 }
 .attendees-container {
   padding: 2em 9.5em 2em 9.5em;
+}
+@media screen and (max-width: 768px) {
+  .attendees-container {
+    padding: 1em 4em 2em 3em;
+  }
 }
 .attendees-container .title {
   margin-bottom: 0.5em;
@@ -18565,6 +18622,11 @@ blockquote {
   padding: 4em 9.5em;
   background-color: #F7F7F7;
   text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .related-activities-container {
+    padding: 0;
+  }
 }
 @media (max-width: 991px) {
   .sign-up-container .calendar-info .price,

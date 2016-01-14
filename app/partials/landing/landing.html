@@ -72,10 +72,12 @@
 <!--Activities section-->
 <div class="col-xs-12 separate-above separate-below-more">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1">
+    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <div class="row">
         <div class="col-xs-12">
-          <h1 class="text-primary title text-center"><strong ng-bind="::home.strings.ACTIVITIES_TITLE_COPY"></strong></h1>
+          <h1 class="text-primary title text-center">
+            <strong ng-bind="::home.strings.ACTIVITIES_TITLE_COPY"></strong>
+          </h1>
         </div>
       </div>
       <div class="row">
@@ -95,14 +97,12 @@
         </div>
       </div>
       <div class="row separate-above">
-        <div class="center-block float-none no-padding"
-          ng-class="{'col-xs-3 col-sm-6': home.activities.length === 1, 'col-xs-10 col-sm-5': home.activities.length === 2, 'col-xs-10 col-sm-8': home.activities.length === 3, 'col-xs-10': home.activities.length >= 4  }">
-          <a class="btn btn-primary btn-block btn-lg"
-            ng-show="home.activities.length > 1"
-            ui-sref="search">
-            <span ng-bind="::home.strings.ACTIVITIES_BUTTON_COPY"></span>
-            <span ng-bind="'(' + home.activitiesCount + ')'"></span>
-          </a>
+        <div class="col-xs-8 center-block float-none no-padding">
+          <span class="btn btn-primary btn-block btn-padding"
+            ng-show="home.activities.length > 0" ng-click="home.viewMoreActivities()">
+          <span ng-bind="::home.strings.ACTIVITIES_BUTTON_COPY"></span>
+          <span ng-bind="'(' + home.activitiesCount + ')'"></span>
+          </span>
         </div>
       </div>
     </div>
@@ -111,23 +111,28 @@
 <!--End of activities section-->
 
 <!--Video section-->
-<div class="trulii-cover">
-  <div class="trulii-cover__container">
-    <div class="trulii-cover__content">
-      <div class="col-xs-12">
-        <div class="row">
-          <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-            <h1 class="text-center"><strong ng-bind="::home.strings.VIDEO_COPY"></strong></h1>
-            <a href="" class="trulii-cover__content-play-controllers" ng-click="truliiVideo.playVideo(); home.toggleVideoShow()">
-              <img src="/css/img/home/play.png" alt="" class="img-responsive center-block separate-above">
-            </a>
+<div class="col-xs-12">
+  <div class="row">
+    <div class="trulii-cover">
+      <div class="trulii-cover__container">
+        <div class="trulii-cover__content">
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+                <h1 class="text-center"><strong ng-bind="::home.strings.VIDEO_COPY"></strong></h1>
+                <a href="" class="trulii-cover__content-play-controllers" ng-click="truliiVideo.playVideo(); home.toggleVideoShow()">
+                  <img src="/css/img/home/play.png" alt="" class="img-responsive center-block separate-above">
+                </a>
+              </div>
+            </div>
           </div>
         </div>
+        <div class="trulii-cover__background background-dots" style="background-image:url(/css/img/home/banners/video.png)"></div>
       </div>
-    </div>
-    <div class="trulii-cover__background background-dots" style="background-image:url(/css/img/home/banners/video.png)"></div>
+    </div>    
   </div>
 </div>
+
 <!--End of video section-->
 
 <!--Video container section-->
@@ -154,22 +159,22 @@
           </h1>
         </div>
       </div>
-    <div class="row separate-below-medium">
-      <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <h3 class="text-center pt-sans text-muted" ng-bind="::home.strings.CATEGORIES_TEXT_COPY"></h3>
-      </div>
-    </div>
-    <div class="category-card-container">
-      <div class="row">
-        <div class="col-xs-12 col-md-6" ng-repeat="category in home.categories track by category.id">
-          <a ui-sref="search({category:category.id})" class="category-card category-card-lg">
-            <div class="category-card__veil"></div>
-            <div class="category-card__background" ng-style="{'background-image': 'url(' + category.cover + ')'}"></div>
-            <h2 class="category-card__title" ng-bind="::category.name"></h2>
-          </a>
+      <div class="row separate-below-medium">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+          <h3 class="text-center pt-sans text-muted" ng-bind="::home.strings.CATEGORIES_TEXT_COPY"></h3>
         </div>
       </div>
-    </div>
+      <div class="category-card-container">
+        <div class="row">
+          <div class="col-xs-12 col-md-6" ng-repeat="category in home.categories track by category.id">
+            <a ui-sref="search({category:category.id})" class="category-card category-card-lg">
+              <div class="category-card__veil"></div>
+              <div class="category-card__background" ng-style="{'background-image': 'url(' + category.cover + ')'}"></div>
+              <h2 class="category-card__title" ng-bind="::category.name"></h2>
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
