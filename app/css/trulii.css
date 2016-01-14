@@ -12823,6 +12823,8 @@ h5 a {
   padding: 5px;
   border: 1px dashed #e5e5e5;
   border-radius: 5px;
+  max-width: 720px;
+  margin: 0 auto;
 }
 .img-actionable {
   position: relative;
@@ -13737,6 +13739,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar .btn {
   line-height: 26.66666667px;
+}
+.navbar__button-all {
+  display: inline-block;
+  vertical-align: top;
 }
 .navbar__link {
   line-height: 65px;
@@ -16882,6 +16888,8 @@ button.toast-close-button {
 }
 .gallery-grid {
   margin-top: 1em;
+  max-width: 720px;
+  margin: 0 auto;
 }
 .gallery-grid [class*=col-] {
   padding-right: 0px;
@@ -16902,8 +16910,8 @@ button.toast-close-button {
   height: 12em;
 }
 .gallery-grid__photo.--small {
-  width: 8em;
-  height: 8em;
+  width: 8.40em;
+  height: 8.40em;
 }
 .gallery-grid__photo.--selectable {
   cursor: pointer;
