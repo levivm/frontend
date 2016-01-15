@@ -16880,6 +16880,11 @@ button.toast-close-button {
   width: 8.20em;
   height: 8.20em;
 }
+.gallery-grid__photo.--small-less {
+  width: 9.5em;
+  height: 8.20em;
+  margin-right: 0.7em;
+}
 .gallery-grid__photo.--selectable {
   cursor: pointer;
   border: 3px solid #38dbc8;
@@ -16954,6 +16959,18 @@ button.toast-close-button {
 }
 .gallery-grid__photo:hover .gallery-grid__photo__caption__title {
   text-decoration: underline;
+}
+@media (max-width: 1350px) {
+  .--small-less {
+    width: 8.20em !important;
+    height: 8.20em !important;
+  }
+}
+@media (max-width: 1220px) {
+  .--small-less {
+    margin-right: 0em !important;
+    margin: 0 4px 6px 0 !important;
+  }
 }
 .timepicker .btn-default {
   padding: 5px 30px;
