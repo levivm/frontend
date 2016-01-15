@@ -488,7 +488,11 @@
 .instructors-container{
     padding: 3em 9.5em 5em 9.5em;
     background-color: @secondary-bg;
-
+    
+    .before-sm({
+      padding: 1em 4em 2em 3em;
+    });
+    
     .title{
         &:extend(.sub-section-title);
     }
@@ -541,6 +545,10 @@
 
 .attendees-container {
     padding: 2em 9.5em 2em 9.5em;
+    
+    .before-sm({
+      padding: 1em 4em 2em 3em;
+    });
 
     .title{
         &:extend(.sub-section-title);
@@ -777,6 +785,10 @@
     padding: 4em 9.5em;
     background-color: @secondary-bg;
     text-align: center;
+    
+    .before-sm({
+      padding: 0;
+    });
 
 }
 

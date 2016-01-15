@@ -15,9 +15,9 @@
         .module('trulii.activities.services')
         .factory('CalendarsManager', CalendarsManager);
 
-    CalendarsManager.$inject = ['$http', '$q', 'ActivityServerApi', 'Calendar'];
+    CalendarsManager.$inject = ['$http', '$q','$timeout', 'ActivityServerApi', 'Calendar'];
 
-    function CalendarsManager($http, $q, ActivityServerApi, Calendar) {
+    function CalendarsManager($http, $q, $timeout, ActivityServerApi, Calendar) {
 
         var api = ActivityServerApi;
         var _pool = {};
@@ -95,19 +95,18 @@
             }
         }
 
-        function getCalendar(calendarId) {
+        function getCalendar(calendarId,activityId) {
             var deferred = $q.defer();
             var calendar = new Calendar();
 
-            angular.extend(calendar, _retrieveInstance(calendarId));
+            angular.extend(calendar, _retrieveInstance(calendarId,null,activityId));
             deferred.resolve(calendar);
 
             return deferred.promise;
         }
 
-        function fetchCalendar(activity_id, calendarId) {
+        function fetchCalendar(activityId, calendarId) {
             var deferred = $q.defer();
-            activityId = activity_id;
 
             $http.get(api.calendar(activityId, calendarId)).then(success, error);
             return deferred.promise;
@@ -126,17 +125,19 @@
 
         function loadCalendars(activityId) {
             var deferred = $q.defer();
-            if (calendars[activityId] && calendars[activityId].length > 0){
+            if (calendars[activityId] && calendars[activityId].length > 0)
                 deferred.resolve(calendars[activityId]);
-            }
-
-            $http.get(api.calendars(activityId)).then(success, error);
+            else
+                $http.get(api.calendars(activityId)).then(success, error);
 
             return deferred.promise;
 
             function success(response) {
-                //console.log('CalendarsManager. Calendars response:', response);
+                //Init calendars[activityId] if does not exists
+                if(!calendars[activityId]) {calendars[activityId] = [];}
+
                 _setCalendars(response.data);
+
                 deferred.resolve(calendars[activityId]);
             }
 
@@ -147,12 +148,12 @@
 
         function setCalendar(calendarData) {
             var calendar = _getCalendarById(calendarData.id);
-
             if (calendar){
                 calendar.setData(calendarData);
             } else {
-                calendar = _retrieveInstance(calendarData.id, calendarData);
+                calendar = _retrieveInstance(calendarData.id, calendarData,calendarData.activity);
                 _addCalendar(calendar);
+
             }
 
             return calendar;
@@ -160,7 +161,7 @@
 
         //--------- Internal Functions ---------//
 
-        function _retrieveInstance(calendarId, calendarData) {
+        function _retrieveInstance(calendarId, calendarData, activityId) {
             var instance = _getCalendarById(calendarId);
             // if calendar does not exist, create new one using calendarData
             if (!instance){
@@ -188,6 +189,7 @@
             }
         }
         function _setCalendars(calendarsData) {
+            // calendars = [];
             angular.forEach(calendarsData, function (calendarData) {
                 var calendar = new Calendar(calendarData);
                 _addCalendar(calendar);
@@ -196,7 +198,6 @@
 
         function _addCalendar(calendar) {
             _pool[calendar.id] = calendar;
-            if(!calendars[calendar.activity]){ calendars[calendar.activity] = []; }
             calendars[calendar.activity].push(calendar);
         }
     }

@@ -20,6 +20,8 @@
             isActive: isActive,
             unreadReviewsCount: unreadReviewsCount,
             scroll: 0,
+            showSidebar: false,
+            toggleSidebar: toggleSidebar
         });
 
 
@@ -27,6 +29,10 @@
 
         function isActive(stateStr){
             return $state.includes(stateStr);
+        }
+        
+        function toggleSidebar(){
+            vm.showSidebar = !vm.showSidebar;
         }
 
         function _setStrings() {

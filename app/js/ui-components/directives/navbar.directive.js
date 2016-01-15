@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$window', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'Scroll'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$window', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'Scroll', 'SearchManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, $window, UIComponentsTemplatesPath, Authentication, defaultPicture, Scroll) {
+    function truliiNavbar($rootScope, $timeout, $state, $window, UIComponentsTemplatesPath, Authentication, defaultPicture, Scroll, SearchManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -28,6 +28,7 @@
                     isSearchVisible : true,
                     showBurger : false,
                     toggleBurger: toggleBurger,
+                    explore: explore,
                     scroll: 0
                 });
 
@@ -37,6 +38,10 @@
 
                 function toggleBurger(){
                   scope.showBurger = !scope.showBurger;
+                }
+
+                function explore(){
+                    $rootScope.$broadcast(SearchManager.EVENT_EXPLORE);
                 }
 
                 //--------- Internal Functions ---------//
@@ -102,6 +107,7 @@
                         ACTION_CREATE: 'Crear Actividad',
                         ACTION_CLOSE: "Cerrar",
                         ACTION_EXIT: "Salir",
+                        ACTION_EXPLORE: "Explorar",
                         COPY_BECOME_ORGANIZER: '¿Quieres ser Organizador?',
                         COPY_INVITE_FRIEND: 'Invita a un amigo',
                         LABEL_BLOG: 'Blog',

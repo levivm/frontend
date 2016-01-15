@@ -26,5 +26,9 @@
           </div>
           <trulii-dashboard-footer></trulii-dashboard-footer>
         </div>
+        <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': dash.scroll > 80}"
+            ng-click="dash.toggleSidebar()">
+            <i class="sidebar__item__icon mdi-action-settings"></i>
+        </a>
     </div>
 </div>

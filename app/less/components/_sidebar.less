@@ -16,6 +16,7 @@
 	background-color: @sidebar-color;
 	width: @sidebar-width;
 	max-height: ~"calc(100vh - 80px)";
+    transition: transform 0.5s;
 	&-short{
 		top: @navbar-short-height;
 		max-height: ~"calc(100vh - 60px)" !important;
@@ -221,6 +222,9 @@
 	& + *{
 		padding-left: @sidebar-width;
 		margin-left: 0;
+        .before-xs({ 
+            padding-left: 0; 
+        });
 	}
 
 	&.@{sidebar-float-class}{
@@ -233,6 +237,31 @@
 		max-height: ~"calc(100vh - 100px)";
 		overflow-y: auto;
 	}
+    
+    &.ng-hide{
+        transform: translateX(-@sidebar-width);
+    }
+    
+}
+
+
+.sidebar-mobile-toggle{
+    color: white;
+    width: ~"calc(100% - 150px)";
+    background-color: @brand-primary;
+    height: @navbar-height;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 5000;
+    transition: @transition-navbar;
+    padding: 1em 1em;
+    &.short{
+       height: @navbar-short-height;
+    }
+    &:focus, &:hover{
+        color: white;
+    }
 }
 .with-sidebar{
     .col-xs-12;
