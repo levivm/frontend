@@ -12817,7 +12817,7 @@ h5 a {
   padding: 5px;
   border: 1px dashed #e5e5e5;
   border-radius: 5px;
-  max-width: 720px;
+  max-width: 710px;
   margin: 0 auto;
 }
 .img-actionable {
@@ -16825,6 +16825,7 @@ button.toast-close-button {
   margin-top: 1em;
   max-width: 720px;
   margin: 0 auto;
+  padding-left: 0.3em;
 }
 .gallery-grid [class*=col-] {
   padding-right: 0px;
@@ -16835,7 +16836,7 @@ button.toast-close-button {
   border-radius: 5px;
   display: inline-block;
   vertical-align: top;
-  margin: 0 2px 6px 0;
+  margin: 0 4px 6px 0;
   padding: 0;
   height: 16em;
   width: 100%;
@@ -16845,8 +16846,8 @@ button.toast-close-button {
   height: 12em;
 }
 .gallery-grid__photo.--small {
-  width: 8.40em;
-  height: 8.40em;
+  width: 8.20em;
+  height: 8.20em;
 }
 .gallery-grid__photo.--selectable {
   cursor: pointer;
