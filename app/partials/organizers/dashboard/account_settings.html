@@ -1,43 +1,44 @@
-<div class="fade in">
-    <div>
+<div class="row fade in">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="row">
+      <div class="col-xs-12">
         <h4 class="dashboard-header" ng-bind="::account.strings.SUB_SECTION_EMAIL"></h4>
         <p ng-bind="::account.strings.COPY_EMAIL"></p>
-    </div>
-    <form name='account.account_form_email' ng-submit="account.changeEmail()">
-        <fieldset>
-            <div class="form-group" trulii-input-errors-control="email">
-                <label for="email" ng-bind="::account.strings.LABEL_EMAIL"></label>
-                <input class="form-control" id="email" name="email"
-                       ng-model="account.organizer.user.email" type="email">
-            </div>
-            <trulii-submit-controls is-saving="account.isSavingEmail"
-                                    data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
-        </fieldset>
-    </form>
-
-    <div class="separate-above-more">
+        <form name='account.account_form_email' ng-submit="account.changeEmail()">
+            <fieldset>
+                <div class="form-group" trulii-input-errors-control="email">
+                    <label for="email" ng-bind="::account.strings.LABEL_EMAIL"></label>
+                    <input class="form-control" id="email" name="email"
+                          ng-model="account.organizer.user.email" type="email">
+                </div>
+                <trulii-submit-controls is-saving="account.isSavingEmail"
+                                        data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
+            </fieldset>
+        </form>          
+      </div>
+      <div class="col-xs-12 separate-above-more">
         <h4 class="dashboard-header" ng-bind="::account.strings.SUB_SECTION_PASSWORD"></h4>
         <p ng-bind="::account.strings.COPY_PASSWORD"></p>
-    </div>
-    <form name='account.account_form_password' ng-submit="account.changePassword()">
-        <fieldset>
+        <form name='account.account_form_password' ng-submit="account.changePassword()">
+          <fieldset>
             <div class="form-group" trulii-input-errors-control="oldpassword">
-                <label ng-bind="::account.strings.LABEL_CURRENT_PASSWORD"></label>
+              <label ng-bind="::account.strings.LABEL_CURRENT_PASSWORD"></label>
                 <input id="id_oldpassword" class="form-control" name="oldpassword"
-                       ng-model="account.password_data.oldpassword"
-                       type="password">
+                  ng-model="account.password_data.oldpassword"
+                  type="password">
             </div>
             <div class="form-group" trulii-input-errors-control="password1">
-                <label ng-bind="::account.strings.LABEL_NEW_PASSWORD"></label>
-                <input class="form-control" name="password1" ng-model="account.password_data.password1" type="password">
+              <label ng-bind="::account.strings.LABEL_NEW_PASSWORD"></label>
+              <input class="form-control" name="password1" ng-model="account.password_data.password1" type="password">
             </div>
             <div class="form-group" trulii-input-errors-control="password2">
-                <label ng-bind="::account.strings.LABEL_REPEAT_PASSWORD"></label>
-                <input class="form-control" name="password2" ng-model="account.password_data.password2"type="password">
+              <label ng-bind="::account.strings.LABEL_REPEAT_PASSWORD"></label>
+              <input class="form-control" name="password2" ng-model="account.password_data.password2"type="password">
             </div>
-
-            <trulii-submit-controls is-saving="account.isSavingPassword"
-                                    data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
-        </fieldset>
-    </form>
+            <trulii-submit-controls is-saving="account.isSavingPassword" data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
