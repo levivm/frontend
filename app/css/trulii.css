@@ -14225,12 +14225,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: .9em;
 }
 .search-filter .search-date-container {
-  background: #DADADA;
+  background: #FFFFFF;
   padding-left: 0.4em;
   cursor: pointer;
   border-radius: 0.3em;
   width: 80%;
   position: relative;
+  border: 1px solid #e3e3e3;
 }
 .search-filter .search-date-container span {
   font-size: 1.4em;
@@ -14239,9 +14240,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-filter .search-date-container input {
   color: #999999;
+  font-weight: 600;
   padding-left: 0.4em;
   cursor: pointer;
   padding-top: 0.1em;
+  background-image: linear-gradient(rgba(255, 213, 128, 0), rgba(255, 255, 255, 0)), linear-gradient(rgba(210, 210, 210, 0), rgba(210, 210, 210, 0)) !important;
+}
+.search-filter .search-date-container:hover {
+  background: #FFFFFF;
 }
 .search-filter .search-date-container i {
   color: #999;
@@ -14251,26 +14257,31 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-filter .search-date-container ::-webkit-input-placeholder {
   /* WebKit, Blink, Edge */
-  color: #636363;
+  color: #999999;
+  font-weight: 600;
   opacity: 1;
 }
 .search-filter .search-date-container :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: #636363;
+  color: #999999;
+  font-weight: 600;
   opacity: 1;
 }
 .search-filter .search-date-container ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: #636363;
+  color: #999999;
+  font-weight: 600;
   opacity: 1;
 }
 .search-filter .search-date-container :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
-  color: #636363;
+  color: #999999;
+  font-weight: 600;
 }
 .search-filter .search-date-container :placeholder-shown {
   /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
-  color: #636363;
+  color: #999999;
+  font-weight: 600;
 }
 @media (min-width: 1080px) {
   .search-filter {
@@ -14288,7 +14299,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
   .search-filter__levels {
     width: 55%;
-    margin-left: 2em;
+    margin-left: 4em;
   }
   .search-filter .search-certificate {
     margin-left: 0em;
@@ -14307,7 +14318,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
   .search-filter__levels {
     width: 45%;
-    margin-left: 0em;
   }
   .search-filter .search-filter-slider {
     width: 55%;
@@ -14335,14 +14345,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
   .search-filter__levels {
     width: 45%;
-    margin-left: 0em;
   }
   .search-filter .search-certificate {
-    margin-left: 6em;
-    margin-top: 0.8em;
+    margin-right: 5em;
   }
   .search-filter .search-date-container {
     width: 70%;
+    margin-left: 5em;
   }
 }
 .search-info {

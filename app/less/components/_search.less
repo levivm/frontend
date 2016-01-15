@@ -57,12 +57,13 @@
         }
     }
     .search-date-container{
-        background: #DADADA;
+        background: #FFFFFF;
         padding-left: 0.4em;
         cursor: pointer;
         border-radius: 0.3em;
         width: 80%;
         position: relative;
+        border: 1px solid #e3e3e3;
         span{
             font-size: 1.4em;
             margin-top: 0.2em;
@@ -71,9 +72,14 @@
 
         input{
             color: #999999;
+            font-weight: 600;
             padding-left: 0.4em;
             cursor: pointer;
             padding-top: 0.1em;
+            background-image: linear-gradient(rgba(255, 213, 128, 0), rgba(255, 255, 255, 0)), linear-gradient(rgba(210, 210, 210, 0), rgba(210, 210, 210, 0)) !important;
+        }
+        &:hover {
+          background: #FFFFFF;
         }
         i{
             color: #999;
@@ -82,22 +88,27 @@
             right: 0.1em;
         }
         ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-            color: #636363;
+            color: #999999;
+            font-weight: 600;
             opacity:  1;
         }
         :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-           color: #636363;
+           color: #999999;
+           font-weight: 600;
            opacity:  1;
         }
         ::-moz-placeholder { /* Mozilla Firefox 19+ */
-           color: #636363;
+           color: #999999;
+           font-weight: 600;
            opacity:  1;
         }
         :-ms-input-placeholder { /* Internet Explorer 10-11 */
-           color: #636363;
+           color: #999999;
+           font-weight: 600;
         }
         :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
-          color: #636363;
+          color: #999999;
+          font-weight: 600;
         }
     }
 }
@@ -120,7 +131,7 @@
 
         &__levels{
             width: 55%;
-            margin-left: 2em;
+            margin-left: 4em;
         }
         .search-certificate{
             margin-left: 0em;
@@ -141,7 +152,6 @@
 
         &__levels{
             width: 45%;
-            margin-left: 0em;
         }
 
         .search-filter-slider{
@@ -175,15 +185,14 @@
 
         &__levels{
             width: 45%;
-            margin-left: 0em;
         }
         .search-certificate{
-            margin-left: 6em;
-            margin-top: 0.8em;
+            margin-right: 5em;
         }
 
         .search-date-container{
             width: 70%;
+            margin-left: 5em;
         }
     }
 
