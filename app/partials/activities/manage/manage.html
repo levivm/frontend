@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="sidebar" ng-class="{'sidebar-short': manage.scroll > 80}" style="padding-bottom: 48px">
+        <div class="sidebar" ng-class="{'sidebar-short': manage.scroll > 80, 'hidden-xs': !manage.showSidebar, 'hidden-sm': !manage.showSidebar}" style="padding-bottom: 48px">
             <ul>
                 <li>
                     <a ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
@@ -42,6 +42,10 @@
             <div ui-view>
             </div>
         </div>
+        <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': manage.scroll > 80}"
+            ng-click="manage.toggleSidebar()">
+            <i class="sidebar__item__icon mdi-action-settings"></i>
+        </a>
         <div class="col-sm-12">
             <trulii-dashboard-footer></trulii-dashboard-footer>
         </div>

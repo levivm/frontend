@@ -42,7 +42,9 @@
             TYPE_ORDER: 'order',
             TYPE_ASSISTANT: 'assistant',
             TYPE_CALENDAR: 'calendar',
-            scroll: 0
+            scroll: 0,
+            toggleSidebar: toggleSidebar,
+            sidebar: false
         });
 
         var orders = [];
@@ -60,6 +62,10 @@
                     vm.assistants = $filter('filter')(assistants, vm.queries.assistantQuery);
                     break;
             }
+        }
+        
+        function toggleSidebar(){
+            vm.showSidebar = !vm.showSidebar;
         }
 
         function pageChange(type){

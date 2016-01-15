@@ -71,8 +71,11 @@
     width: 100%;
     color: white;
     h1{
-      font-size: 4em;
+      font-size: 3em;
       line-height: 0.9em;
+      .before-xs({
+        font-size: 2em;
+      })
     }
     .well-header{
         font-size: 2.5em;
@@ -82,6 +85,9 @@
       &-light{
         font-weight: 200;
       }
+      .before-xs({
+        font-size: 1.5em;
+      });
     }
     .title{
       font-size: 4em;
@@ -90,9 +96,18 @@
     p{
       color:white;
       padding:0 5em;
-      font-size: 1.75em;
+      font-size: 1.25em;
       margin-top: 1em;
       margin-bottom: 1.5em;
+      
+      .before-sm({
+        padding: 0;
+      });
+      
+      .before-xs({
+        font-size: 1.125em;
+      });
+      
     }
     .btn-lg{
       font-size: 1em;
