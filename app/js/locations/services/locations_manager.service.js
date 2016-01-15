@@ -193,10 +193,10 @@
         function getSearchCity() {
             if (!searchCity) {
                 searchCity = localStorageService.get(KEY_SEARCH_CITY);
-                if(searchCity){
-                    searchCity = availableCities.filter(byId)[0];
-                    setSearchCity(searchCity);
-                }
+                //if(searchCity){
+                //    searchCity = availableCities.filter(byId)[0];
+                //    setSearchCity(searchCity);
+                //}
             }
 
             if (searchCity) {
@@ -205,9 +205,9 @@
                 getAvailableCities().then(success, error);
             }
 
-            function byId(city) {
-                return city.id === searchCity.id;
-            }
+            //function byId(city) {
+            //    return city.id === searchCity.id;
+            //}
 
             function success(){
                 setSearchCity(availableCities[0]);

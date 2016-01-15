@@ -63,8 +63,11 @@
         transition: @transition-navbar;
 
         .--on-dash & {
-            width: @sidebar-width + 1.1;
+            width: @sidebar-width - 1.1;
         }
+        .before-xs({ 
+            width: @sidebar-width - 5;
+        });
     }
 
     &__logo {
@@ -76,7 +79,15 @@
         margin: 5px auto 0;
         transition: @transition-navbar;
 
-        .before-xs({ background: url(@res-trulii-logo-tiny) no-repeat center; width: 30px; background-size: contain; position: relative; });
+        .before-xs({ 
+            width: 6em;
+            background-size: contain;
+            position: relative; 
+        });
+    }
+    
+    &__mobile-dashboard-controllers{
+        width: calc(100% - 154px);
     }
 
     &__left-wrapper {
@@ -95,6 +106,10 @@
         &.long{
             width: 72%;
         }
+        
+        .before-sm({ 
+            display: none;
+        });
     }
 
     &__right-wrapper {
@@ -108,7 +123,10 @@
         font-size: 0.9em;
         margin-right: 10px;
 
-        .before-xs({ display: inline-block; });
+        .before-xs({ 
+            max-width: 150px;
+            display: inline-block;
+        });
 
         .btn {
             margin: (@navbar-padding-vertical+2) 1em;

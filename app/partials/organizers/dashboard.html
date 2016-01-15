@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80}">
+        <div class="sidebar" ng-class="{'sidebar-short': dash.scroll > 80, 'hidden-xs': !dash.showSidebar, 'hidden-sm': !dash.showSidebar}">
             <a ui-sref=".profile"
                class="sidebar__item"
                ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.profile.*')}">
@@ -42,5 +42,9 @@
             </a>
         </div>
         <div ui-view class="col-xs-12"></div>
+        <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': dash.scroll > 80}"
+            ng-click="dash.toggleSidebar()">
+            <i class="sidebar__item__icon mdi-action-settings"></i>
+        </a>
     </div>
 </div>
