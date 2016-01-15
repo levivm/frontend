@@ -28,8 +28,11 @@
     padding-right: 15px;
     transition: @transition-navbar;
     
-    
-      &:extend(.navbar-short all);
+    .before-sm({
+      height: @navbar-short-height;
+      min-height: @navbar-short-height;
+      max-height: @navbar-short-height;
+    });
     
     
     .btn {
@@ -83,13 +86,13 @@
         background-size: contain;
         margin: 5px auto 0;
         transition: @transition-navbar;
-
         .before-sm({ 
-            width: 6em;
+            width: 7em;
             background-size: contain;
             position: relative;
             background-image: url('img/logo-yellow.png');
             margin: 7px auto 0 !important;
+            height: @navbar-short-inner-height;
         });
     }
     
@@ -134,6 +137,7 @@
             max-width: 150px;
             display: inline-block;
             margin-right: 0;
+            height: @navbar-short-height;
         });
 
         .btn {
@@ -155,6 +159,12 @@
         text-transform: uppercase;
         line-height: @navbar-height - (@navbar-padding-vertical*2);
 
+        .before-sm({
+          padding: 0;
+          height: @navbar-short-height;
+          line-height: @navbar-short-height - (@navbar-padding-vertical*2);
+        });
+        
         &:active, &.open {
             color: white;
             background-color: @success !important;
@@ -162,12 +172,13 @@
 
         &--right {
             text-decoration: none;
-            &:hover{
-                text-decoration: none;
-            }
             border-left: 1px solid @color-delimeter-dark;
             text-align: left;
             cursor: pointer;
+            
+            &:hover{
+                text-decoration: none;
+            }
             
             .user-picture{
                 .img-responsive;
