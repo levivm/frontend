@@ -23,12 +23,11 @@
     <div class="clear-spacings padding-horizontal-less">
             <div class="search-filter">
                    <div class="form-group search-control no-margin flex-align-items-center search-filter__date">
-                       <label class="control-label " for="date"
-                              ng-bind="::search.strings.LABEL_DATE"></label>
                        <div class="flex-container">
-                           <div class="input-group">
-                               <input id="date" type="text" class="form-control"
-                                      placeholder="{{::search.strings.PLACEHOLDER_DATE}}"
+                           <div class="input-group flex-container search-date-container">
+                               <span class="mdi-action-event text-muted" ng-click="search.openDatePicker($event)"></span>
+                               <input id="date" type="text" class="form-control "
+                                      placeholder="{{::search.strings.LABEL_DATE}}"
                                       name="date" ng-model="search.searchDate"
                                       ng-change="search.setDate()"
                                       datepicker-popup="{{search.format}}"
@@ -36,9 +35,11 @@
                                       data-min-date="search.minStartDate"
                                       data-datepicker-options="search.dateOptions"
                                       data-close-text="{{search.strings.ACTION_CLOSE}}"
-                                      ng-click="search.openDatePicker($event)"/>
+                                      ng-click="search.openDatePicker($event)"
+                                      readonly="readonly" />
+                                <i class=" expand mdi-hardware-keyboard-arrow-down"></i>
                            </div>
-                           <span class="mdi-action-event text-muted" ng-click="search.openDatePicker($event)"></span>
+
                        </div>
                    </div>
                    <div class="search-control flex-align-items-center search-filter__levels">

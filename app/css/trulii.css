@@ -11964,7 +11964,7 @@ hr.on-light {
   transform: none;
 }
 .noUi-connect {
-  background: #e3e3e3;
+  background: #38dbc8;
   box-shadow: inset 0 0 3px rgba(51, 51, 51, 0.45);
   -webkit-transition: background 450ms;
   transition: background 450ms;
@@ -14224,6 +14224,54 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #999999;
   font-size: .9em;
 }
+.search-filter .search-date-container {
+  background: #DADADA;
+  padding-left: 0.4em;
+  cursor: pointer;
+  border-radius: 0.3em;
+  width: 80%;
+  position: relative;
+}
+.search-filter .search-date-container span {
+  font-size: 1.4em;
+  margin-top: 0.2em;
+  cursor: pointer;
+}
+.search-filter .search-date-container input {
+  color: #999999;
+  padding-left: 0.4em;
+  cursor: pointer;
+  padding-top: 0.1em;
+}
+.search-filter .search-date-container i {
+  color: #999;
+  margin-top: 0.1em;
+  position: absolute;
+  right: 0.1em;
+}
+.search-filter .search-date-container ::-webkit-input-placeholder {
+  /* WebKit, Blink, Edge */
+  color: #636363;
+  opacity: 1;
+}
+.search-filter .search-date-container :-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #636363;
+  opacity: 1;
+}
+.search-filter .search-date-container ::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #636363;
+  opacity: 1;
+}
+.search-filter .search-date-container :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #636363;
+}
+.search-filter .search-date-container :placeholder-shown {
+  /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+  color: #636363;
+}
 @media (min-width: 1080px) {
   .search-filter {
     -webkit-flex-direction: row;
@@ -14236,7 +14284,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     align-self: flex-start;
   }
   .search-filter__date {
-    width: 25%;
+    width: 20%;
   }
   .search-filter__levels {
     width: 55%;
@@ -14254,12 +14302,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 @media (min-width: 1280px) {
   .search-filter {
     -webkit-justify-content: flex-start;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
   }
   .search-filter__levels {
     width: 45%;
-    margin-left: 3em;
+    margin-left: 0em;
   }
   .search-filter .search-filter-slider {
     width: 55%;
@@ -14268,6 +14316,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .search-filter .search-certificate {
     margin-left: 1em;
     margin-top: 0.7em;
+  }
+  .search-filter__date {
+    margin-top: 0.8em !important;
   }
 }
 @media (min-width: 1420px) {
@@ -14289,6 +14340,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .search-filter .search-certificate {
     margin-left: 6em;
     margin-top: 0.8em;
+  }
+  .search-filter .search-date-container {
+    width: 70%;
   }
 }
 .search-info {
