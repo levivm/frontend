@@ -142,6 +142,10 @@
 
 .profile-photo-input {
   line-height: @photo-input-size;
+  
+  .before-sm({
+    line-height: 5em;
+  });
 
   & > * {
     display: inline-block;
@@ -154,6 +158,11 @@
     border-radius: 50%;
     &:extend(.img-size-cover);
     &:extend(.img-position-center);
+    
+    .before-sm({
+      width: 5em;
+      height: 5em;
+    });
   }
 
   &__action {

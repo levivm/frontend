@@ -282,6 +282,7 @@
     
     .before-sm({
       top: @navbar-short-height;
+      padding-right: 0;
     });
     &.navbar-secondary-short{
       top: @navbar-short-height;
@@ -331,6 +332,10 @@
 
     & + * {
         margin-top: @navbar-secondary-height*1.5;
+        
+        .before-sm({
+          margin-top: @navbar-secondary-height;
+        });
     }
     .btn{
         border: none;

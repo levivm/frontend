@@ -12910,6 +12910,11 @@ h5 a {
 .profile-photo-input {
   line-height: 8em;
 }
+@media screen and (max-width: 768px) {
+  .profile-photo-input {
+    line-height: 5em;
+  }
+}
 .profile-photo-input > * {
   display: inline-block;
   vertical-align: top;
@@ -12918,6 +12923,12 @@ h5 a {
   width: 8em;
   height: 8em;
   border-radius: 50%;
+}
+@media screen and (max-width: 768px) {
+  .profile-photo-input__photo {
+    width: 5em;
+    height: 5em;
+  }
 }
 .profile-photo-input .preloader-container {
   margin: 0;
@@ -13973,6 +13984,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 @media screen and (max-width: 768px) {
   .navbar-secondary {
     top: 60px;
+    padding-right: 0;
   }
 }
 .navbar-secondary.navbar-secondary-short {
@@ -14019,6 +14031,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar-secondary + * {
   margin-top: 60px;
+}
+@media screen and (max-width: 768px) {
+  .navbar-secondary + * {
+    margin-top: 40px;
+  }
 }
 .navbar-secondary .btn {
   border: none;
@@ -14504,7 +14521,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 768px) {
   .sidebar {
-    height: 60px;
+    top: 60px;
+    max-height: calc(100vh - 60px);
   }
 }
 .sidebar-short {
@@ -14719,7 +14737,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar-mobile-toggle:focus,
 .sidebar-mobile-toggle:hover {
-  color: white;
+  color: #535353;
 }
 .with-sidebar {
   width: 83.33333333%;
@@ -14844,6 +14862,11 @@ label {
 select.form-control {
   font-size: 1.2em;
   height: 30px;
+}
+@media screen and (max-width: 768px) {
+  select.form-control {
+    font-size: 1em;
+  }
 }
 select.form-control.input-sm {
   font-size: 1em;
@@ -17518,7 +17541,8 @@ button.toast-close-button {
 .trulii-cover__background,
 .trulii-cover-small__background,
 .trulii-cover-medium__background {
-  width: 100vw;
+  width: 100%;
+  min-width: 100vw;
   background-size: cover;
   background-attachment: initial;
   background-position: center center;

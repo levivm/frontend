@@ -16,12 +16,14 @@
 	background-color: @sidebar-color;
 	width: @sidebar-width;
 	max-height: ~"calc(100vh - 80px)";
-    transition: transform 0.5s;
-    
+  transition: transform 0.5s;
+	
   .before-sm({
-    height: @navbar-short-height;
+    top: @navbar-short-height;
+    max-height: ~"calc(100vh - 60px)";
   });
-	&-short{
+  
+  &-short{
 		top: @navbar-short-height;
 		max-height: ~"calc(100vh - 60px)" !important;
 		&.@{sidebar-float-class}{
@@ -264,7 +266,7 @@
        height: @navbar-short-height;
     }
     &:focus, &:hover{
-        color: white;
+        color: @gray;
     }
 }
 .with-sidebar{
