@@ -13762,16 +13762,17 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 80px;
   width: 18.1em;
   display: inline-block;
-  float: left;
   text-align: center;
   transition: all 0.25s;
 }
 .--on-dash .navbar__logo-container {
   width: 15.9em;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   .navbar__logo-container {
-    width: 12em;
+    height: 59px !important;
+    width: 125px;
+    background-color: white;
   }
 }
 .navbar__logo {
@@ -13783,11 +13784,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 5px auto 0;
   transition: all 0.25s;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   .navbar__logo {
     width: 6em;
     background-size: contain;
     position: relative;
+    background-image: url('img/logo-yellow.png');
+    margin: 7px auto 0 !important;
   }
 }
 .navbar__mobile-dashboard-controllers {
@@ -14695,10 +14698,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   transform: translateX(-17em);
 }
 .sidebar-mobile-toggle {
-  color: white;
+  color: #535353;
   width: calc(100% - 150px);
-  background-color: #ffd580;
-  height: 60px;
+  background-color: white;
+  height: 59px;
   position: fixed;
   left: 0;
   top: 0;

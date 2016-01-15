@@ -62,15 +62,16 @@
         height: @navbar-height;
         width: @sidebar-width + 1.1;
         display: inline-block;
-        float: left;
         text-align: center;
         transition: @transition-navbar;
 
         .--on-dash & {
             width: @sidebar-width - 1.1;
         }
-        .before-xs({ 
-            width: @sidebar-width - 5;
+        .before-sm({ 
+            height: @navbar-short-height - 1 !important;
+            width: 125px;
+            background-color:white;
         });
     }
 
@@ -83,10 +84,12 @@
         margin: 5px auto 0;
         transition: @transition-navbar;
 
-        .before-xs({ 
+        .before-sm({ 
             width: 6em;
             background-size: contain;
-            position: relative; 
+            position: relative;
+            background-image: url('img/logo-yellow.png');
+            margin: 7px auto 0 !important;
         });
     }
     
