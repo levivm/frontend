@@ -1,0 +1,196 @@
+<div class="sidebar sidebar-category-container">
+    <ul>
+        <li class="sidebar-category">
+            <a href="#" id="todas"></a>
+            <div class="header" >
+                <div class="header__name" ng-click="search.setCategory(search.strings.ACTION_ALL_FILTER)">
+                    <img class="header__icon" src="/css/img/icon-all-off.png"
+                         alt="{{::search.strings.ACTION_ALL_FILTER}}"/>
+                    <span ng-bind="::search.strings.ACTION_ALL_FILTER"></span>
+                </div>
+            </div>
+        </li>
+        <li class="sidebar-category" ng-repeat="category in search.categories | orderBy:'name'">
+            <a href="#" id="{{::category.name}}"></a>
+            <div class="header" ng-class="{'active': search.searchCategory === category.id}">
+                <div class="header__name" ng-click="search.setCategory(category)">
+                    <img class="header__icon" ng-src="{{ search.searchCategory === category.id? category.icon_active : category.icon_default }}"
+                         alt="{{ ::category.name }}"/>
+                    <span ng-bind="::category.name"></span>
+                </div>
+            </div>
+            <ul class="subcategories" data-toggle="category.id == search.expandedCategory" trulii-expandable-content>
+                <li  class="subcategories__item" ng-repeat="subcategory in category.subcategories"
+                        ng-class="{'active': search.searchSubCategory === subcategory.id}"
+                        ng-click="search.setSubCategory(subcategory)">
+                    <span ng-bind="::subcategory.name" ></span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<div class="with-sidebar">
+    <div class="row clear-spacings">
+        <div class="col-xs-12">
+            <div class="search-filter">
+                <div class="row">
+                    <label class="control-label col-xs-1" for="date"
+                           ng-bind="::search.strings.LABEL_DATE"></label>
+                    <div class="col-xs-12 col-sm-3">
+                        <!--Date DatePicker-->
+                        <div class="form-group search-control no-margin">
+                            <div class="form-inline">
+                                <div class="input-group">
+                                    <input id="date" type="text" class="form-control"
+                                           placeholder="{{::search.strings.PLACEHOLDER_DATE}}"
+                                           name="date" ng-model="search.searchDate"
+                                           ng-change="search.setDate()"
+                                           datepicker-popup="{{search.format}}"
+                                           data-is-open="search.opened"
+                                           data-min-date="search.minStartDate"
+                                           data-datepicker-options="search.dateOptions"
+                                           data-close-text="{{search.strings.ACTION_CLOSE}}"
+                                           ng-click="search.openDatePicker($event)"/>
+                                </div>
+                                <span class="mdi-action-event text-muted" ng-click="search.openDatePicker($event)"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-11 col-md-7 col-md-offset-1">
+                        <div class="form-inline float-right">
+                            <!--Certificate Button-->
+                            <button class="btn btn-sm btn-default"
+                                    ng-class="{'active': search.withCert}"
+                                    ng-bind="search.strings.LABEL_WITH_CERTIFICATE"
+                                    ng-click="search.setCertification()"></button>
+                            <!--Weekends Button-->
+                            <button class="btn btn-sm btn-default"
+                                    ng-class="{'active': search.onWeekends}"
+                                    ng-bind="search.strings.LABEL_WEEKENDS"
+                                    ng-click="search.setWeekends()"></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row separate-below-less">
+                    <div class="col-xs-12">
+                        <!--Level Select-->
+                        <div class="form-group search-control">
+                            <label class="control-label col-xs-1 no-padding" for="level-btn-group" ng-bind="::search.strings.LABEL_LEVEL"></label>
+                            <div class="col-xs-6 no-padding-left">
+                                <div id="level-btn-group" class="btn-group btn-group-justified" role="group"
+                                     aria-label="{{::search.strings.LABEL_LEVEL}}">
+                                    <label class="btn btn-sm btn-default btn-beginner-level"
+                                           ng-repeat="level in search.levels track by level.code"
+                                           ng-class="search.getLevelClassStyle(level)">
+                                        <input type="radio" name="level" class="hidden" ng-model="search.searchLevel"
+                                               ng-click="search.setLevel()" ng-value="level">{{level.value}}
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="control-label margin-more col-xs-1" for="level-btn-group" ng-bind="::search.strings.LABEL_COST"></label>
+                    <div class="col-xs-6">
+                        <!--Cost Select-->
+                        <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
+                                       step="search.sliderOptions.step" start="search.searchStartCost"
+                                       end="search.searchEndCost" update="search.updateCost(start, end)" stop-drag="search.stopDrag()"></trulii-slider>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row separator-light no-margin-bottom"></div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="search-info">
+                <strong ng-bind="search.activities.length"></strong>
+                <span> </span>
+                <span ng-bind="::search.strings.COPY_RESULTS"></span>
+                <span> </span>
+                <span ng-if="search.searchQuery">
+                    <span ng-bind="::search.strings.COPY_FOR"></span>
+                    <span> </span>
+                    <strong>
+                        <span>"</span>
+                        <span ng-bind="::search.searchQuery"></span>
+                        <span>"</span>
+                    </strong>
+                </span>
+                <span ng-if="search.searchCategory">
+                    <span ng-bind="::search.strings.COPY_IN"></span>
+                    <span> </span>
+                    <strong ng-bind="search.searchData.category_display"></strong>
+                </span>
+                <span ng-if="search.searchSubCategory">
+                    <i class="mdi-navigation-chevron-right"></i>
+                    <span> </span>
+                    <strong ng-bind="search.searchData.subcategory_display"></strong>
+                </span>
+                <div class="col-xs-10 col-sm-4 col-md-2 pull-right">
+                  <select class=" form-control" name="repeatSelect" id="repeatSelect"
+                         ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
+                      <option ng-show="!search.orderByPredicate" selected="selected" >Ordenar por</option>
+                      <option  ng-repeat="option in search.orderByOptions track by option.name"
+                              value="{{::option.predicate}}" ng-bind="::option.name"></option>
+                  </select>
+                </div>
+<!--                 <select class="pull-right" name="repeatSelect" id="repeatSelect"
+                        ng-init="search.orderByPredicate = search.orderByOptions[0].predicate"
+                        ng-model="search.orderByPredicate">
+                    <option ng-change="search.changeOrderBy()"ng-repeat="option in search.orderByOptions track by option.name"
+                            value="{{::option.predicate}}" ng-bind="::option.name"></option>
+                </select> -->
+            </div>
+
+        </div>
+
+
+        <div class="row separator-light no-margin"></div>
+    </div>
+    <div class="row padding-horizontal-less padding-vertical-less" ng-if="!search.searchQuery">
+      <div class="col-xs-10 col-sm-4 col-md-2 pull-right">
+        <select class=" form-control" name="repeatSelect" id="repeatSelect"
+               ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
+            <option ng-show="!search.orderByPredicate" selected="selected" >Ordenar por</option>
+            <option  ng-repeat="option in search.orderByOptions track by option.name"
+                    value="{{::option.predicate}}" ng-bind="::option.name"></option>
+        </select>
+      </div>
+    </div>
+    <div class="row separator-light no-margin"></div>
+    <div class="row separate-above">
+        <div class="col-md-10 col-md-offset-1">
+            <div class="row activity-grid" ng-if="search.activities.length > 0">
+                <!--track by activity.id-->
+                <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
+                                      ng-repeat="activity in search.activities"
+                                      data-activity="activity"></trulii-activity-item>
+
+            </div>
+            <!--pagionation-->
+            <div class="text-center" ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">
+                <pagination class="pagination-sm"
+                        ng-model="search.activitiesPaginationOpts.pageNumber"
+                        ng-change="search.pageChange()"
+                        data-total-items="search.activitiesPaginationOpts.totalItems"
+                        data-items-per-page="search.activitiesPaginationOpts.itemsPerPage"
+                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
+                        max-size="search.activitiesPaginationOpts.maxPagesSize"></pagination>
+            </div>
+
+            <!--empty search-->
+            <div class="text-center text-muted separate-above-more" ng-if="search.activities.length == 0">
+                <div class="col-xs-6 col-xs-offset-3">
+                    <img src="css/img/search_empty.png" alt="{{ search.strings.LABEL_EMPTY_SEARCH }}"/>
+                    <h4 ng-bind="search.strings.LABEL_EMPTY_SEARCH"></h4>
+                    <h4 ng-bind="search.strings.COPY_EMPTY_SEARCH"></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<trulii-dashboard-footer></trulii-dashboard-footer>

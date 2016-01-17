@@ -1,0 +1,212 @@
+<div class="trulii-cover">
+    <div class="trulii-cover__container">
+        <div class="trulii-cover__content">
+            <div class="col-xs-12">
+                <div class="row separate-above-less">
+                    <div class="col-xs-3 col-sm-1 center-block float-none">
+                        <img ng-src="{{ ::referrals.referrer.photo }}" alt="" class="img-circle img-responsive">
+                    </div>
+                </div>
+                <div ng-if="referrals.student">
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <h1 class="text-center"><strong ng-bind="::referrals.strings.HEADER_IS_STUDENT"></strong></h1>
+                        </div>
+                    </div>
+                    <div class="row separate-above-less">
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
+                            <h3 class="text-center sinkin-regular">
+                                <span ng-bind="::referrals.strings.COPY_IS_STUDENT_HI"></span>
+                                <span ng-bind="::referrals.student.user.first_name"></span>
+                                <span ng-bind="::referrals.strings.COPY_IS_STUDENT_COPY"></span>
+                            </h3>
+                        </div>
+                    </div>
+                    <div class="row separate-above separate-below">
+                        <h4 class="text-center" ng-bind="::referrals.strings.COPY_IS_STUDENT_DISCOVER"></h4>
+                    </div>
+                    <div class="row separate-above separate-below">
+                        <div class="col-xs-4 col-xs-offset-4 text-center">
+                            <a class="center-block btn btn-success btn-lg" ui-sref="search"
+                               ng-bind="::referrals.strings.ACTION_SEARCH_ACTIVITIES"></a>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if="!referrals.student">
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <h1 class="text-center">
+                                <strong>
+                                    <span ng-bind="::referrals.referrer.user.first_name"></span>
+                                    <span ng-bind="::referrals.strings.HEADER_TITLE_COPY_1"></span>
+                                    <span>20.000</span>
+                                    <span ng-bind="::referrals.strings.HEADER_TITLE_COPY_2"></span>
+                                </strong>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="row separate-above-less">
+                        <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+                            <h3 class="text-center sinkin-regular" ng-bind="::referrals.strings.HEADER_TEXT_COPY"></h3>
+                        </div>
+                    </div>
+                    <div class="row separate-above separate-below">
+                        <h4 class="text-center" ng-bind="::referrals.strings.COPY_TO_CLAIM_COUPON"></h4>
+                    </div>
+                    <div class="row separate-above separate-below">
+                        <button class="center-block btn btn-success btn-lg"
+                                ng-click="referrals.register()"
+                                ng-bind="::referrals.strings.ACTION_REDEEM"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="trulii-cover__background" style="background-image:url(/css/img/referrals/anonymous.png)">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="reasons-container separate-below gray-container">
+            <div class="reason">
+                <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png"
+                     alt="{{ ::referrals.strings.REASON_NO_COMMISSIONS }}"/>
+
+                <div class="reason-text">
+                    <div class="reason-title text-uppercase" ng-bind="::referrals.strings.REASON_NO_COMMISSIONS"></div>
+                    <div class="reason-copy" ng-bind="::referrals.strings.REASON_COPY_NO_COMMISSIONS"></div>
+                </div>
+            </div>
+            <div class="reason">
+                <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png"
+                     alt="{{ ::referrals.strings.REASON_REFUND }}"/>
+
+                <div class="reason-text">
+                    <div class="reason-title text-uppercase" ng-bind="::referrals.strings.REASON_REFUND"></div>
+                    <div class="reason-copy" ng-bind="::referrals.strings.REASON_COPY_REFUND"></div>
+                </div>
+            </div>
+            <div class="reason">
+                <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png"
+                     alt="{{ ::referrals.strings.REASON_SECURE }}"/>
+
+                <div class="reason-text">
+                    <div class="reason-title text-uppercase" ng-bind="::referrals.strings.REASON_SECURE"></div>
+                    <div class="reason-copy" ng-bind="::referrals.strings.REASON_COPY_SECURE"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row separate-above-less separate-below-more">
+    <div class="col-xs-10 col-xs-offset-1">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="text-primary text-center"><strong
+                        ng-bind="::referrals.strings.CATEGORIES_TITLE_COPY"></strong></h1>
+            </div>
+        </div>
+        <div class="row separate-below-medium">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2">
+                <h3 class="text-center pt-sans text-muted" ng-bind="::referrals.strings.CATEGORIES_TEXT_COPY"></h3>
+            </div>
+        </div>
+        <div class="category-card-container">
+            <div class="row">
+                <div class="col-xs-12 col-md-6" ng-repeat="category in referrals.categories track by category.id">
+                    <a ui-sref="search({category:category.id})" class="category-card category-card-lg">
+                        <div class="category-card__veil"></div>
+                        <div class="category-card__background"
+                             ng-style="{'background-image': 'url(' + category.cover + ')'}"></div>
+                        <h2 class="category-card__title" ng-bind="::category.name"></h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="trulii-cover">
+    <div class="trulii-cover__container">
+        <div class="trulii-cover__content">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
+                        <h1 class="text-center"><strong ng-bind="::referrals.strings.VIDEO_COPY"></strong></h1>
+                        <a href="" class="trulii-cover__content-play-controllers" ng-click="truliiVideo.playVideo(); referrals.toggleVideoShow()">
+                            <img src="/css/img/home/play.png" alt="" class="img-responsive center-block separate-above">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="trulii-cover__background background-dots"
+             style="background-image:url(/css/img/home/banners/video.png)"></div>
+    </div>
+</div>
+<div class="absolute-container" ng-show="referrals.showVideo">
+    <button class="pull-right absolute-container__close" ng-click="truliiVideo.stopVideo(); referrals.toggleVideoShow()">
+        <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+    </button>
+    <div class="col-xs-12 col-md-8">
+        <div class="youtube-container separate-above separate-below">
+            <youtube-video player="truliiVideo" video-url="'https://www.youtube.com/watch?v=fCED7SMj3Kg&feature=youtu.be'"></youtube-video>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-10 col-xs-offset-1 separate-above-more separate-below-more">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1 class="text-primary text-center"><strong ng-bind="::referrals.strings.HOW_TITLE_COPY"></strong></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3">
+                <h3 class="text-center pt-serif text-muted" ng-bind="::referrals.strings.HOW_TEXT_COPY"></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-md-4">
+                <div class="container-fluid separate-above-medium">
+                    <img src="/css/img/home/find.png" style="width: 8em;"
+                         alt="{{ ::referrals.strings.HOW_FIND_TEXT }}" class="img-responsive center-block separate-above">
+
+                    <p class="text-uppercase text-center text-color-secondary font-family-sans separate-above-less separate-below-less"
+                       ng-bind="::referrals.strings.HOW_FIND_COPY"></p>
+
+                    <p class="text-center" ng-bind="::referrals.strings.HOW_FIND_TEXT"></p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="container-fluid separate-above-medium">
+                    <img src="/css/img/home/signup.png" style="width: 8em;"
+                         alt="{{ ::referrals.strings.HOW_SIGN_UP_TEXT }}" class="img-responsive center-block separate-above">
+
+                    <p class="text-uppercase text-center text-success font-family-sans separate-above-less separate-below-less"
+                       ng-bind="::referrals.strings.HOW_SIGN_UP_COPY"></p>
+
+                    <p class="text-center" ng-bind="::referrals.strings.HOW_SIGN_UP_TEXT"></p>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <div class="container-fluid separate-above-medium">
+                    <img src="/css/img/home/learn.png" style="width: 8em;"
+                         alt="{{ ::referrals.strings.HOW_LEARN_TEXT }}" class="img-responsive center-block separate-above">
+
+                    <p class="text-uppercase text-center text-warning font-family-sans separate-above-less separate-below-less"
+                       ng-bind="::referrals.strings.HOW_LEARN_COPY"></p>
+
+                    <p class="text-center" ng-bind="::referrals.strings.HOW_LEARN_TEXT"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row container-muted">
+    <div class="col-xs-12">
+        <h4 class="text-center text-underline">
+            <a ui-sref="about.terms" ng-bind="::referrals.strings.LEARN_MORE"></a>
+        </h4>
+    </div>
+</div>
+<trulii-footer></trulii-footer>

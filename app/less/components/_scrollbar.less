@@ -1,0 +1,23 @@
+@thumb-color: #d9d9de;
+@track-color: fade(#f3f3f3, 40%);
+
+::-webkit-scrollbar {
+      width:  10px;
+      height: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: @thumb-color;
+      border-radius: 6px;
+
+  }
+
+  ::-webkit-scrollbar-track {
+      background: @track-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: @thumb-color;
+    scrollbar-track-color: @track-color;
+  }

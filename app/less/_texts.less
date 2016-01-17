@@ -1,0 +1,278 @@
+@import '_trulii-variables';
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.text-lowercase {
+    text-transform: lowercase;
+}
+
+.text-strike {
+    text-decoration: line-through;
+}
+
+.text-no-decoration {
+    text-decoration: none;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.text-underline {
+    text-decoration: underline;
+}
+
+// Text Colors
+
+.text-color-primary {
+    color: @primary;
+}
+
+.text-color-secondary {
+    color: @secondary;
+}
+
+.text-gray {
+    color: @gray;
+}
+
+.text-gray-alt {
+    color: @gray-alt !important;
+}
+
+.text-dark {
+    color: @gray-dark;
+}
+
+.text-ssm {
+    font-size: 0.5em;
+}
+
+.text-sm {
+    font-size: .8em;
+}
+
+.text-md {
+    font-size: .9em;
+}
+
+.text-lg {
+    font-size: 1.2em;
+}
+
+.text-xlg {
+    font-size: 1.5em;
+}
+
+.text-xxlg {
+    font-size: 4em;
+}
+
+.text-spaced {
+    letter-spacing: 3px;
+}
+.text-spaced-more{
+    letter-spacing: 7px;
+}
+
+.text-spaced-less {
+    letter-spacing: 1px;
+}
+
+.text-line-more {
+    line-height: 1.5em;
+}
+
+// Text Weights
+
+.font-normal {
+    font-weight: normal !important;
+}
+
+.font-black {
+    font-weight: 800;
+    line-height: 1.2em;
+}
+
+.font-xblack {
+    font-weight: 900;
+    line-height: 1.2em;
+}
+
+.font-title {
+    font-family: @font-sans;
+}
+
+.strong-text-muted {
+    font-weight: bold !important;
+    text-transform: uppercase;
+    color: black;
+    opacity: .4;
+}
+
+.standout-text {
+    font-family: @font-sans-alt;
+    font-weight: 200;
+    font-size: 1.1em;
+    color: @gray-light;
+    margin: 1em 0;
+}
+
+.text-header {
+    margin-bottom: 1.5em;
+    font-size: 3.5em;
+}
+
+.dashboard-header {
+    background-color: @gray-lightest;
+    padding: 1em;
+    margin: 1em -1em 2em -1em;
+    letter-spacing: 0px;
+    color: @gray;
+}
+
+//Font Families
+
+.font-family-sans {
+    font-family: @font-sans;
+}
+
+.font-family-sans-alt {
+    font-family: @font-sans-alt;
+}
+
+.font-family-serif {
+    font-family: @font-serif;
+}
+
+.montserrat-ultralight {
+    font-weight: 100;
+    font-family: @font-sans;
+}
+
+.montserrat-light {
+    font-weight: 200;
+    font-family: @font-sans;
+}
+
+.montserrat-regular {
+    font-family: @font-sans;
+    font-weight: 300;
+}
+
+.montserrat-semibold {
+    font-family: @font-sans;
+    font-weight: 400;
+}
+
+.montserrat-bold {
+    font-family: @font-sans;
+    font-weight: 700;
+}
+
+.montserrat-extrabold {
+    font-family: @font-sans;
+    font-weight: 800;
+}
+
+.montserrat-black {
+    font-family: @font-sans;
+    font-weight: 900;
+}
+
+.sinkin-thin {
+    font-family: @font-sans-alt;
+    font-weight: 100;
+}
+
+.sinkin-ultralight {
+    font-family: @font-sans-alt;
+    font-weight: 200;
+}
+
+.sinkin-light {
+    font-family: @font-sans-alt;
+    font-weight: 300;
+}
+
+.sinkin-regular {
+    font-family: @font-sans-alt;
+    font-weight: 400;
+}
+
+.sinkin-medium {
+    font-family: @font-sans-alt;
+    font-weight: 500;
+}
+
+.sinkin-semibold {
+    font-family: @font-sans-alt;
+    font-weight: 600;
+}
+
+.sinkin-bold {
+    font-family: @font-sans-alt;
+    font-weight: 700;
+}
+
+.sinkin-black {
+    font-family: @font-sans-alt;
+    font-weight: 800;
+}
+
+.sinkin-extrablack {
+    font-family: @font-sans-alt;
+    font-weight: 900;
+}
+
+.pt-serif {
+    font-family: @font-serif;
+}
+
+h1, h2, h3, h4 {
+    line-height: 1.25em;
+    letter-spacing: -1px;
+}
+
+.title {
+    h1&, h2& {
+        font-weight: 600;
+        font-size: 3.5em;
+        .before-sm({
+          font-size: 3em;
+        });
+    }
+    
+    h3& {
+        font-weight: 400;
+    }
+}
+
+.sub-title {
+    font-size: 2em;
+    color: @subtitle-color;
+}
+
+h5 {
+    font-weight: 100;
+    a {
+        font-weight: 400;
+    }
+}

@@ -1,0 +1,39 @@
+
+@import url('../_trulii-variables');
+
+.list {
+    margin: 8px 0;
+    width: 100%;
+    background-color: @list-group-bg;
+
+    &.list-translucent{
+        background-color: transparent;
+    }
+
+    .list-item {
+        width: 100%;
+        padding: 16px;
+        border-top: 2px solid @color-delimeter-dark;
+
+        .title {
+            font-size: 24px;
+            font-weight: 400;
+            color: @lightbg-text;
+            width: 20%;
+            display: inline-block;
+        }
+
+        .content {
+            font-size: 20px;
+            color: @gray-light;
+            width: 79%;
+            display: inline-block;
+        }
+    }
+}
+
+.list-spaced{
+  > *:not(:last-child){
+    padding-bottom: 0.5em;
+  }
+}

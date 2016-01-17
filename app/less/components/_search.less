@@ -1,0 +1,287 @@
+@import url('../_trulii-variables');
+
+.search-filter {
+    height: 5.8em;
+
+    .search-control {
+        padding-bottom: 1.4em;
+
+        select {
+            font-size: 1em;
+            height: 2em;
+        }
+
+        .btn-group {
+            .btn {
+                .text-sm;
+                text-transform: uppercase;
+                padding: 0.4em 1em;
+                border-color: @gray-light-medium;
+            }
+        }
+    }
+
+    label {
+        margin-top: 0.3em;
+
+        &.margin-more {
+            margin-top: 1em;
+        }
+    }
+
+    .btn-default {
+        color: @lightbg-text;
+    }
+
+    .search-slider {
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        span {
+            .text-muted;
+            .text-md;
+        }
+    }
+}
+
+.search-info {
+    .text-muted;
+    padding: 0.5em 4em;
+    height: 40px;
+    width: 100%;
+    * {
+        font-size: 1em;
+    }
+    line-height: 2;
+}
+
+.with-context-menu {
+    margin-top: 120px;
+}
+
+.search-bar {
+    position: relative;
+    input, select, button {
+        border-radius: 0;
+    }
+    > * {
+        background-color: white;
+        height: 75px !important;
+        .before-sm({
+          height: 55px !important;
+        })
+    }
+    > *:nth-child(1) {
+        border-top-left-radius: @border-radius-base !important;
+        border-bottom-left-radius: @border-radius-base !important;
+        border-right: 1px solid @gray-lighter;
+        .before-sm({
+          float: left;
+          width: 80%;
+          margin-top: 70px;
+          border-color: transparent;
+          border-right: none;
+        });
+    }
+    > *:not(:nth-child(1)):not(:last-child) {
+        border-right: 1px solid @gray-lighter;
+        .before-sm({
+          width: 100%;
+          position: absolute;
+          left: 0;
+          border-color: transparent;
+          background-color: @brand-success;
+          color: white;
+          border-radius: @border-radius-base;
+          background-image: url(/css/img/about/arrow-white.png) !important;
+        });
+    }
+    > *:last-child {
+        border-top-right-radius: @border-radius-base !important;
+        border-bottom-right-radius: @border-radius-base !important;
+    }
+    > *:not(.btn) {
+        padding: 0 2.5em;
+    }
+    .form-control {
+        background-image: none;
+        .before-sm({
+          font-size: 0.8em;
+        });
+    }
+
+    input, input:focus {
+        display: inline-block;
+        width: 50%;
+        float: left;
+        border-top: 5px solid @brand-primary;
+    }
+
+    select, select:focus {
+        display: inline-block;
+        float: left;
+        width: 35%;
+        padding: 0 2em;
+        border-top: 5px solid @brand-success;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        float: left;
+    }
+
+    select{
+      background-size: 15px auto;
+      background-position: 93% 50%;
+      background-repeat: no-repeat;
+      background-image: url(/css/img/about/arrow.png) !important;
+    }
+
+    select:focus{
+      animation: input-highlight 0.5s forwards;
+      box-shadow: none;
+      background-size: 0 2px, 100% 1px;
+      background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
+      background-position: 0 bottom;
+    }
+
+    .btn.btn-default {
+        width: 15%;
+        color: @gray !important;
+        border-radius: 0;
+        border-color: transparent;
+        border-top: 5px solid @brand-secondary;
+        font-size: 1.25em;
+        float: left;
+        .before-sm({
+          width: 20%;
+          float: right;
+          background-color: @brand-primary;
+          border: none;
+          margin-top: 70px;
+          color: white !important;
+          
+          .glyphicon{
+              padding-top: 5px;
+          }
+        });
+    }
+
+    .dropdown-menu{
+        width: 50%;
+        padding: 0;
+        border: none !important;
+    }
+
+    &__navbar {
+
+        width: 40em;
+        height: 50px;
+        margin-top: 10px;
+        margin-left: 20px;
+        background: white;
+        border-radius: 0;
+        display: inline-block;
+        position: relative;
+
+        .dropdown-menu{
+            width: 60%;
+        }
+
+        @media screen and (max-width: @screen-md ) {
+            width: 40%;
+        }
+
+        @media screen and (max-width: @screen-sm ) {
+            display: none !important;
+        }
+
+        ::-webkit-input-placeholder,
+        ::-moz-placeholder,
+        :-ms-input-placeholder,
+        input:-moz-placeholder {
+            font-weight: 400;
+        }
+
+        input, input:focus {
+            display: block;
+            position: relative;
+            float: left;
+            height: 100%;
+            width: 60%;
+            padding-left: 35px;
+            border: 1px solid darken(@gray-lighter, 4%);
+            border-top: 3px solid @brand-primary;
+            border-right: none;
+        }
+
+        input, select, button {
+            background-color: transparent;
+            background-image: none;
+            font-family: @font-sans;
+            font-size: 0.95em;
+            font-weight: 200;
+            float: left;
+            &:focus{
+
+            }
+        }
+
+        select.form-control {
+            display: inline-block;
+            vertical-align: top;
+            height: 100%;
+            width: 28%;
+            padding: 0 0.5em;
+            color: @gray;
+            background: transparent;
+            border: 1px solid darken(@gray-lighter, 4%);
+            .text-overflow();
+            float: left;
+
+            // Arrow
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-size: 15px auto;
+            background-position: 93% 50%;
+            background-repeat: no-repeat;
+            background-image: url(/css/img/about/arrow.png) !important;
+
+            //noinspection CssInvalidPseudoSelector
+            &::-ms-expand {
+                display: none;
+            }
+
+            .before-sm({ width: 25%; });
+
+            &:focus {
+              animation: input-highlight 0.5s forwards;
+              box-shadow: none;
+              background-size: 0 2px, 100% 1px;
+              background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
+              background-position: 0 bottom;
+            }
+        }
+
+        button {
+            &:before {
+                display: inline-block;
+                color: @lightbg-text;
+                font-size: 1.1em;
+            }
+
+            font-size: 18px;
+            width: 10%;
+            text-align: center;
+            height: 100%;
+            display: inline-block;
+            border: 0;
+            border: 1px solid darken(@gray-lighter, 4%);
+            border-radius: 0;
+            background: transparent;
+
+            &:extend(.show-after-sm);
+        }
+
+
+
+    }
+}

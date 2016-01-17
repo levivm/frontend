@@ -1,0 +1,131 @@
+
+.profile-cover{
+  margin-top: -80px;
+  min-height:88vh;
+  width: 100%;
+  position:relative;
+
+  .row{
+    min-width:100vw;
+
+  }
+  &__container{
+    min-height: 88vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  &__content{
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    width: 100%;
+  }
+  h1, h2, h3, h4, p {
+    color: white;
+    font-family: @font-sans;
+  }
+  h1{
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin: 1em 0em;
+  }
+  p{
+    font-size:0.9em;
+    font-weight: 200;
+  }
+  &__description{
+    padding: 0px 20px;
+  }
+  &__picture{
+    width: 125px;
+    height: 125px;
+    margin: 0 auto;
+    float: none;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 100%;
+    border: 5px solid white;
+  }
+  &__verified{
+    width: 200px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20px 0px;
+    p{
+      padding: 3px 10px;
+      font-size: 0.95em;
+    }
+  }
+}
+
+.profile-cover:after {
+  width: 100vw;
+  background-image: url('/css/img/organizer-profile/organizer_profile_bg.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  z-index: -11;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  height: 100%;
+}
+.profile-biography{
+  background-color: white;
+  padding: @spacing-medium 0 10rem 0;
+  .profile-biography--content{
+    padding: @spacing-medium 0;
+  }
+}
+
+.profile-activities{
+  background-color: @secondary-bg;
+  text-align:center;
+  padding: @spacing-medium;
+}
+
+.profile-location {
+    width: 100%;
+    margin: 0;
+    .map{
+        width: 100%;
+        height: 28em;
+    }
+    .address{
+        padding: 1.2em;
+        background-color: @secondary-bg;
+        text-align: center;
+        font-size: 1.5em;
+        font-weight: 400;
+        color: @lightbg-text;
+
+    }
+}
+
+.profile-comments{
+  background-color: white;
+  padding: @spacing-medium;
+  .comment{
+    padding: @spacing-less;
+  }
+  .card{
+    h1{
+      margin: 0.25em 0;
+      font-family: @font-sans-alt;
+    }
+  }
+}

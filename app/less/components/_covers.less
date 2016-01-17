@@ -1,0 +1,393 @@
+
+@import url('../_trulii-variables');
+@import url('../mixins/_image_processing');
+@trulii-cover-height: 92vh;
+@trulii-cover-height-medium: 60vh;
+@trulii-cover-height-small: 55vh;
+.cover{
+  margin-top: -20px; // Mientras se arregla la barra de navegacion
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: fixed center center;
+  background-size: cover;
+}
+.cover:after{
+  width: 100%;
+  background-color:rgba(60, 61, 65, 0.4);
+}
+
+.detail-cover{
+
+    &:extend(.container-fluid);
+    &:extend(.cover);
+
+    &:after{
+      &:extend(.cover:after);
+      height: 420px;
+    }
+    .text-container {
+        position: absolute;
+        text-align: center;
+        vertical-align: middle;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding-top: 5em;
+
+        * {
+            color: @white;
+        }
+    }
+}
+
+.full-screen-cover{
+  &:extend(.cover);
+  &:after{
+    &:extend(.cover:after);
+  }
+}
+
+.trulii-cover, .trulii-cover-small, .trulii-cover-medium{
+
+  margin-top: -20px; // Mientras se arregla la barra de navegacion
+  min-height: @trulii-cover-height;
+  width: 100%;
+  position:relative;
+  .row{
+    min-width:100%;
+
+  }
+  &__container{
+    &:extend(.flex-center-container);
+    min-height: inherit;
+    z-index: 10;
+    width: 100%;
+    position: relative;
+  }
+  &__content{
+    &:extend(.flex-center-item);
+    width: 100%;
+    color: white;
+    h1{
+      font-size: 3em;
+      line-height: 0.9em;
+      .before-xs({
+        font-size: 2em;
+      })
+    }
+    .well-header{
+        font-size: 2.5em;
+    }
+    .sub-title{
+      font-size: 3.5em;
+      &-light{
+        font-weight: 200;
+      }
+      .before-xs({
+        font-size: 1.5em;
+      });
+    }
+    .title{
+      font-size: 4em;
+      margin-top: 0.25em !important;
+    }
+    p{
+      color:white;
+      padding:0 5em;
+      font-size: 1.25em;
+      margin-top: 1em;
+      margin-bottom: 1.5em;
+      
+      .before-sm({
+        padding: 0;
+      });
+      
+      .before-xs({
+        font-size: 1.125em;
+      });
+      
+    }
+    .btn-lg{
+      font-size: 1em;
+    }
+    &__search.form-classic{
+      input, select, button{
+        border-radius: 0;
+      }
+      > *{
+        background-color: white;
+        height: 75px !important;
+      }
+      > *:nth-child(1){
+        border-top-left-radius: @border-radius-base !important;
+        border-bottom-left-radius: @border-radius-base !important;
+        border-right: 1px solid @gray-lighter;
+      }
+      > *:not(:nth-child(1)):not(:last-child){
+        border-right: 1px solid @gray-lighter;
+      }
+      > *:last-child{
+        border-top-right-radius: @border-radius-base !important;
+        border-bottom-right-radius: @border-radius-base !important;
+      }
+      > *:not(.btn){
+        padding: 0 2em;
+      }
+      .form-control{
+        background-image: none;
+      }
+      input, input:focus{
+        width: 50%;
+        display: inline-block;
+        float: left;
+        border-top: 5px solid @brand-primary;
+      }
+      select, select:focus{
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-size: 15px auto;
+        background-position: 90% 50%;
+        background-repeat: no-repeat;
+        background-image: url(/css/img/about/arrow.png) !important;
+        padding: 0 2em;
+        display: inline-block;
+        float: left;
+        width: 35%;
+        border-top: 5px solid @brand-success;
+      }
+      select:focus{
+        background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
+        background-position: 0 bottom;
+      }
+      .btn.btn-default{
+        width:15%;
+        border-radius: 0;
+        border-color: transparent;
+        color: @gray !important;
+        border-top: 5px solid @brand-secondary;
+        font-size: 1.25em;
+      }
+
+    }
+    .well-container{
+      float: none;
+      margin: 0 auto;
+
+      .well{
+        font-size: 13px;
+        padding: 5em 7em;
+
+        p{
+          color: @gray !important;
+          padding: 0;
+        }
+
+        h3{
+          font-size: 1.65em;
+        }
+
+        h4{
+          font-size: 1.25em;
+          font-weight: 200;
+          line-height: 1.5em;
+        }
+
+      }
+    }
+
+    &-presentation-controllers{
+      position: absolute;
+      right: 0px;
+      bottom: 0px;
+      width: 350px;
+      padding: 2em 2em;
+
+      a, a:hover, a:focus{
+        color: white;
+      }
+
+      img{
+        width: 50px;
+        margin-top: 11px;
+        margin-right: 5px;
+      }
+    }
+    &-play-controllers{
+      img{
+        transition: all 0.25s;
+        background-color: transparent;
+        border-radius: 100%;
+      }
+      img:hover{
+        background-color: rgba(255, 255, 255, 0.4);
+      }
+    }
+    &-contact-controllers{
+      background-color: fade(@gray, 40%);
+      li{
+        padding: 0 2.5%;
+        .item, .item-long{
+          position:relative;
+          height: 120px;
+          width: 110px;
+          transition: all 0.5s;
+          a, a:hover, a:focus{
+            color: white;
+          }
+          img{
+            padding-top: 20px;
+            padding-bottom: 20px;
+            transition: all 0.25s;
+            position: absolute;
+            bottom: 0px;
+            left: 0px;
+            margin-left: 50%;
+            transform: translateX(-50%);
+          }
+          .item-description{
+            position: absolute;
+            width: 200%;
+            bottom: 0px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.25s;
+            margin-left: 50%;
+            transform: translateX(-50%);
+          }
+          .item-img{
+            opacity: 1;
+          }
+          .item-img-active{
+            opacity: 0;
+          }
+        }
+        .item:hover, .item-long:hover{
+
+          .item-img{
+            opacity: 0;
+          }
+          .item-img-active{
+            opacity: 1;
+          }
+          .item-description{
+            max-height: 100%;
+          }
+        }
+        .item:hover{
+          height: 135px;
+          img{
+            padding-bottom: 40px;
+          }
+        }
+        .item-long:hover{
+          height: 150px;
+          img{
+            padding-bottom: 55px;
+          }
+        }
+      }
+    }
+  }
+  &__background{
+    width: 100%;
+    min-width: 100vw;
+    background-size: cover;
+    background-attachment: initial; // Performance :(
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -11;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    height: 100%;
+    overflow: hidden;
+    &-video{
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+    }
+  }
+  &__background:after {
+    width: 100%;
+    height: 100%;
+    content: "";
+    background-color:rgba(60, 61, 65, 0.6);
+    z-index: 100000;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  &__background.background-warning:after{
+    background-color: fade(@brand-warning, 40%);
+  }
+  &__background.background-dots:after{
+    background-image: url('/css/img/dots.png');
+    background-color: transparent;
+    background-attachment: initial;
+  }
+}
+
+.trulii-cover-small{
+  min-height: @trulii-cover-height-small;
+}
+.trulii-cover-medium{
+  min-height: @trulii-cover-height-medium;
+}
+
+.detail-organizer {
+    position: absolute;
+    z-index: 4;
+    left: 25%;
+    text-align: center;
+
+    .detail-organizer-picture {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        margin-bottom: 4px;
+    }
+
+    div {
+        color: @primary;
+        font-weight: 400;
+    }
+}
+
+.detail-organizer-name {
+    margin-right: 20px;
+}
+
+
+@media (min-aspect-ratio: 16/9) {
+  .trulii-cover__background-video {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .trulii-cover__background-video {
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+
+  .trulii-cover__background{
+    video{
+      display: none;
+    }
+  }
+}
+@media (min-device-width: 768px){
+  .trulii-cover__background-video{
+    display: block;
+  }
+}

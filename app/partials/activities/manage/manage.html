@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="sidebar" ng-class="{'sidebar-short': manage.scroll > 80, 'hidden-xs': !manage.showSidebar, 'hidden-sm': !manage.showSidebar}" style="padding-bottom: 48px">
+            <ul>
+                <li>
+                    <a ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
+                       ui-sref-active="sidebar__item--selected">
+                        <i class="sidebar__item__icon mdi-social-people"></i>
+                        <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
+                    </a>
+                </li>
+                <li>
+                    <a ui-sref=".orders" ui-sref-opts="{reload: true}" class="sidebar__item"
+                       ui-sref-active="sidebar__item--selected">
+                        <i class="sidebar__item__icon mdi-maps-local-atm"></i>
+                        <span ng-bind="::manage.strings.TAB_ORDERS"></span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar__bottom-action-container">
+                <div class="sidebar__bottom-action-dark">
+                    <ul class="list-inline list-unstyled text-center text-uppercase">
+                        <li>
+                            <a ui-sref="dash.activities-edit.general({activity_id:{{manage.activity.id}}})">
+                                <i class="mdi-editor-mode-edit sidebar__item__icon"></i>
+                                <span ng-bind="'Editar'"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
+                <a class="btn btn-default pull-right"
+                   ui-sref="activities-detail({activity_id: {{manage.activity.id}}})">
+                    <i class="mdi-image-remove-red-eye sidebar__item__icon"></i>
+                    <span ng-bind="manage.strings.ACTION_VIEW"></span>
+                </a>
+                <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
+            </div>
+            <div ui-view>
+            </div>
+        </div>
+        <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': manage.scroll > 80}"
+            ng-click="manage.toggleSidebar()">
+            <i class="sidebar__item__icon mdi-action-settings"></i>
+        </a>
+        <div class="col-sm-12">
+            <trulii-dashboard-footer></trulii-dashboard-footer>
+        </div>
+    </div>
+</div>

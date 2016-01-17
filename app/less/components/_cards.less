@@ -1,0 +1,358 @@
+
+
+@import url('../_trulii-variables');
+
+@card-add-icon-height: 8em;
+
+.card{
+	margin: 1.5em 0;
+	padding: 0;
+	display: block;
+	width: 100%;
+	border: 1px solid @gray-light-medium;
+	border-radius: @border-radius-standard;
+
+	.card-header{
+		-webkit-border-top-left-radius: @material-border-radius;
+		-webkit-border-top-right-radius: @material-border-radius;
+		-moz-border-radius-topleft: @material-border-radius;
+		-moz-border-radius-topright: @material-border-radius;
+		border-top-left-radius: @material-border-radius;
+		border-top-right-radius: @material-border-radius;
+
+		padding: @card-padding;
+		color: @lightbg-text;
+
+		&--primary{
+			background: @primary;
+			color: darken(@primary-dark, 15%);
+		}
+
+		&--secondary{
+			background: @secondary;
+			color: white;
+		}
+
+		.editable-title{
+			position: relative;
+			// TODO: This must be extend from .input--main
+
+			.form-control{
+				display: inline-block;
+				text-align: left;
+				padding-left: 1.5em;
+			}
+
+			.card-icon{
+				position: absolute;
+				width: 18%;
+				display: inline-block;
+			}
+
+		}
+	}
+
+	.card-icon{
+		display: inline-block;
+		margin-right: .5em;
+		position: relative;
+		top: 0.2em;
+
+		&:before{
+			font-size: 1.5em;
+			color: @secondary;
+		}
+	}
+
+	.card-body{
+		padding: @card-padding;
+		background-color: white;
+
+		&--shrink{
+			padding-left: @card-padding*2;
+			padding-right: @card-padding*2;
+		}
+	}
+
+	.card-footer{
+		display: block;
+        width: 100%;
+        height: 3.5em;
+        line-height: 3.5em;
+        background: @gray-lighter;
+        color: @gray-light;
+        text-align: center;
+        font-weight: bold;
+        font-family: @font-sans-alt;
+	}
+
+	&-list-item{
+		padding: 3em 2em;
+		position: relative;
+		background-color: white !important;
+		//margin-bottom: 2em;
+		font-family: @font-sans-alt;
+
+		h1{
+			font-size: 1.2em;
+			font-weight: 700;
+		}
+
+		h2{
+			font-size: 1.1em;
+			font-weight: 700;
+		}
+
+		h5{
+			font-weight: normal;
+			color: @gray-light;
+		}
+
+		h3{
+			color: @gray-light;
+			font-weight: 300;
+			font-size: 1em;
+		}
+
+		&__actions{
+			position: absolute;
+			top: 1em;
+			right: 1em;
+
+			i{
+				color: @gray-light-medium;
+				cursor: pointer;
+				font-size: 1.2em;
+				display: inline-block;
+				padding:  0 .5em;
+
+				&:hover{
+					color: @success;
+				}
+			}
+		}
+
+		label, input{
+			font-size: .9em;
+		}
+
+		&--empty{
+		  	border: 1px dashed;
+		  	display: table;
+			font-weight: normal;
+			color: @gray-light;
+			cursor: pointer;
+			padding: 0;
+
+			& > *{
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+			}
+
+			&:hover{
+				border-color: @success;
+			}
+		}
+
+		&__add-icon{
+			background-color: @gray-light-medium;
+			border-radius: 50%;
+			width: @card-add-icon-height;
+			height: @card-add-icon-height;
+			display: inline-block;
+			margin-bottom: 1em;
+			font-weight: 200;
+
+			&:before{
+				content: '+';
+				font-size: 4em;
+				display: inline-block;
+				width: 100%;
+				color: @gray-light;
+				line-height: (@card-add-icon-height - 4) / 2;
+		    padding-top: 0.1em;
+
+			}
+
+			.card-list-item:hover &{
+				background-color: #d0d0d0;
+
+				&:before{
+					color: white;
+				}
+			}
+		}
+	}
+
+	&--shrink{
+		padding-left: 3em;
+		padding-right: 3em;
+	}
+
+	&--narrow{
+		padding: 1.5em;
+	}
+
+	&__lateral-menu{
+		//border-right: 1px solid @color-delimeter-dark;
+		position: absolute;
+		top: 0px;
+		bottom: 0px;
+		padding: 0px;
+		background-color: @secondary;
+		padding-top: 1.3em;
+
+		&__item{
+			display: block;
+			width: 100%;
+			padding: 1.5em 1em;
+			color: white;
+			background-color: darken(@secondary, 5%);
+			border-bottom: 1px solid @secondary;
+			transition: .3s background-color ease;
+			cursor: pointer;
+			font-size: 1.1em;
+
+			&.active{
+				color: @secondary;
+				background-color: white;
+				font-weight: bold;
+
+				*{
+					color: @secondary;
+				}
+
+			}
+
+			* {
+				color: white;
+
+				&:hover{
+					color: white;
+				}
+			}
+		}
+
+		&__title{
+			&:extend(.strong-text-muted);
+			display: block;
+			width: 100%;
+			text-align: center;
+			padding-bottom: 1.5em;
+			font-size: 1.2em;
+
+
+		}
+	}
+
+	[class^="mdi-"]{
+		position: relative;
+		top: 4px;
+	}
+}
+
+// TODO: Put in a best place D:
+.contrast-box{
+    background-color: @gray-lighter;
+    padding: 1em;
+    margin-left: 2px;
+    margin-bottom: 2px;
+    display: inline-block;
+}
+
+.category-card{
+  text-decoration: none !important;
+  height: 22vw;
+  min-height: 300px;
+  width: 100%;
+  background-color: gray;
+  border-radius: @border-radius-base;
+  text-align:center;
+  position: relative;
+  overflow: hidden;
+  margin-top: 3rem;
+  // FLEX
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  
+  
+  .before-xs({
+      min-height: 250px;
+  });
+  
+  &.category-card-lg{
+    height: 30vw;
+    min-height: 400px;
+    
+    .before-xs({
+      min-height: 250px;
+    });
+  
+  }
+  &__title{
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    font-weight: bold;
+    color: white;
+    z-index: 500;
+    font-size: 3em;
+    max-width: 100%;
+    transition: all 0.125s;
+    
+    padding: 0 20px;
+    max-width: 100%;
+    word-break: break-word;
+    
+    .before-xs({
+      font-size: 2em;
+    });
+  }
+  &__veil{
+    background-color: desaturate(darken(@brand-primary, 50%), 75%);
+    opacity: 0.4;
+    height: 100%;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    width: 100%;
+    border-radius: @border-radius-base;
+    transition: all 0.125s;
+    z-index: 101;
+  }
+  &__background{
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    transition: all 0.25s;
+  }
+  &:hover{
+    .category-card__veil{
+      opacity: 0.6;
+    }
+    .category-card__title{
+      font-size: 2.5em;
+    }
+    .category-card__background{
+      // -moz-transform: scale(1.5,1.5);
+      // -webkit-transform: scale(1.5,1.5);
+      // transform: scale(1.5,1.5);
+    }
+  }
+}

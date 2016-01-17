@@ -1,0 +1,101 @@
+
+@import url('../_trulii-variables');
+
+.well-plain {
+    width: 100%;
+    background-color: @well-bg;
+    color: @lightbg-text;
+    padding: 19px;
+}
+
+.remarks-container {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+.container-muted{
+  background-color: @gray-lightest;
+}
+.container-gray-light{
+  background-color: @gray-lighter;
+}
+.container-success{
+  background-color: @brand-success;
+  *{
+     color:white;
+  }
+  input, .form-control{
+      color: @gray;
+  }
+  &-light{
+    background-color: lighten(@brand-success, 20%);
+    *{
+      color:white;
+    }
+  }
+  &-dark{
+    background-color: darken(@brand-success, 10%);
+    *{
+      color:white;
+    }
+  }
+}
+
+.absolute-container{
+  max-width: 100vw;
+  width: 100vw;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  min-height:100vh;
+  background-color: fade(black, 80%);
+  z-index: 2000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  //FLEX
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  transition: opacity 0.25s;
+  opacity: 1;
+
+  &__close{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-color: transparent;
+    border: none;
+    img{
+      border-radius: 100%;
+      transition: all 0.25s;
+      &:hover{
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+  &__content{
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+  }
+}
+.absolute-container.ng-hide{
+  z-index: 0;
+  opacity: 0;
+}
+
+blockquote{
+  padding: 0 20px;
+}

@@ -1,0 +1,135 @@
+<div class="row">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <span ng-bind="::gallery.strings.LABEL_COVER"></span>
+                    <span class="text-muted" ng-bind="::gallery.strings.LABEL_REQUIRED"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="section-description">
+                    <span ng-bind="::gallery.strings.COPY_COVER"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <!--Cover Preview-->
+                <div class="img-dashed-frame">
+                    <div class="img-cover-preview img-actionable"
+                         ng-style="{'background-image': gallery.getSelectedCoverUrl()}">
+                        <div class="img-actionable__actions">
+                            <span ng-hide="gallery.isCurrentCoverPreview"
+                                  class="img-actionable__actions__action" role="button"
+                                  ng-click="gallery.setActivityCover()"
+                                  ng-bind="::gallery.strings.ACTION_SET_AS_COVER">
+                            </span>
+                            <span ng-show="gallery.isCurrentCoverPreview"
+                                  class="img-actionable__actions__message"
+                                  ng-bind="::gallery.strings.COPY_COVER_ALREADY_SET">
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Stock de covers -->
+                <div class="gallery-grid gallery-grid--fixed">
+                    <div ng-repeat="cover in gallery.covers track by cover.id"
+                         class="gallery-grid__photo --small --selectable"
+                         ng-class="{'--unselected': cover !== gallery.selectedCover, '--small-less': !gallery.activityCover}"
+                         ng-style="{'background-image': 'url({{cover.photo}})'}"
+                         ng-click="gallery.setCoverPreview(cover)">
+                    </div>
+                </div>
+
+                <trulii-preloader loader-control="gallery.isLoadingCover"></trulii-preloader>
+
+                <div class="drop-box" ng-show="!gallery.isLoadingCover"
+                     ng-model="gallery.coverToUpload" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                     drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                     ng-file-change="gallery.uploadActivityCover(gallery.coverToUpload)"
+                     allow-dir="true" accept="image/*">
+                    <div class="separate-vertical text-center">
+                        <button class="btn btn-default" ng-bind="::gallery.strings.ACTION_UPLOAD_COVER"></button>
+                        <span class="text-muted" ng-bind="::gallery.strings.COPY_UPLOAD_COVER"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- GALLERY SECTION -->
+        <div class="row separate-above">
+            <div class="col-md-12">
+                <div class="section-title" ng-bind="::gallery.strings.LABEL_GALLERY_TITLE"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="section-description" ng-bind="::gallery.strings.COPY_GALLERY"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div class="gallery-grid--fixed">
+                    <div class="gallery-grid__photo img-actionable img-actionable--small"
+                         ng-repeat="picture in gallery.pictures track by picture.id"
+                         style="background-image: url('{{picture.photo}}')">
+                        <div class="img-actionable__actions">
+                            <button type="button" class="img-actionable__actions__action" aria-label="Eliminar"
+                                    ng-click="gallery.deletePicture(picture)" alt="Eliminar">
+                                <span class="mdi-action-delete" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Loader para una foto de la galería -->
+                    <div class="gallery-grid__photo" ng-show="gallery.isLoadingGalleryPicture">
+                        <trulii-preloader class="center-align"
+                                          loader-control="true" center-loader="true"></trulii-preloader>
+                    </div>
+                    <div class="gallery-grid__photo">
+                        <div class="no-margin card card-list-item card-list-item--empty drop-box no-padding"
+                             style="height: 12em"
+                             ng-show="gallery.pictures.length < 5"
+                             ng-model="gallery.picture" ng-file-drop="" ng-file-select="" ng-multiple="false"
+                             drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                             ng-file-change="gallery.addGalleryPicture(gallery.picture)"
+                             allow-dir="true" accept="image/*">
+                            <div>
+                                <div class="card-list-item__add-icon"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-center separate-above" ng-bind="::gallery.strings.COPY_MAX_IMAGE_ERROR"
+                   ng-show="gallery.pictures.length == 5">
+                </p>
+            </div>
+        </div>
+        <!-- VIDEO SECTION -->
+        <div class="row separate-above">
+            <div class="col-md-12">
+                <div class="section-title" ng-bind="::gallery.strings.LABEL_VIDEO_TITLE"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <form name='vm.activity_gallery_form' ng-submit="gallery.updateActivity()">
+                    <div class="section-description" ng-bind="::gallery.strings.COPY_VIDEO"></div>
+                    <div class="form-group" trulii-input-errors-control="youtube_video_url">
+                        <label for="youtube_video_url" class="control-label"
+                               ng-bind="::gallery.strings.LABEL_YOUTUBE_LINK"></label>
+                        <input id="youtube_video_url" class="form-control" name="youtube_video_url"
+                               placeholder="{{::gallery.strings.PLACEHOLDER_YOUTUBE_LINK}}"
+                               ng-model='gallery.activity.youtube_video_url'/>
+                    </div>
+                    <youtube-video ng-if="gallery.activity.youtube_video_url"
+                                   video-url="gallery.activity.youtube_video_url"
+                                   player-width="'100%'"></youtube-video>
+                    <trulii-submit-controls class="separate-above" is-saving="gallery.isSaving"
+                                            value="{{::gallery.strings.ACTION_SAVE_ACTIVITY}}"></trulii-submit-controls>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
