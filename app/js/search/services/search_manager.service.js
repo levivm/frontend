@@ -27,6 +27,7 @@
         var KEY_CERTIFICATION = 'certification';
         var KEY_WEEKENDS = 'weekends';
         var EVENT_SEARCH_MODIFIED = "truliiSearchModified";
+        var EVENT_EXPLORE = "explore";
 
         var api = ActivityServerApi;
         var searchData = {};

@@ -168,6 +168,8 @@
 
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
+                        scope.isExplore= !(toState.name == 'home');
+                        console.log(scope.isExplore);
                         scope.isSearchVisible = !(toState.name == 'home' || toState.name == 'not-found' || $state.includes('dash'));
                     });
 
