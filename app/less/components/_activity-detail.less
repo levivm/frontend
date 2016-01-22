@@ -476,6 +476,11 @@
         right: 14em;
         z-index: 6;
         color: @darkbg-text;
+        
+        .before-sm({
+          left: 0em;
+          right: 0em;
+        });
 
         * {
             color: @darkbg-text;
@@ -547,7 +552,7 @@
     padding: 2em 9.5em 2em 9.5em;
     
     .before-sm({
-      padding: 1em 4em 2em 3em;
+      padding: 1em 0 2em 0;
     });
 
     .title{
@@ -640,6 +645,11 @@
           th, td{
             vertical-align: middle;
             border-top: none;
+            text-align: center;
+            .before-sm({
+              font-size: 0.65em;
+              padding: 1.5em 0px;
+            });
           }
 
           th{
@@ -653,6 +663,12 @@
             cursor:pointer;
             font-weight: 600;
             padding: 15px 1.5em;
+          }
+          
+          td:first-child, th:first-child{
+            .before-sm({
+              display: none;
+            });
           }
 
         }
@@ -672,6 +688,8 @@
           td:first-child{
             background-color: transparent;
           }
+          
+          
 
           td:not(:first-child){
             background-color: @selected-accent;
@@ -695,6 +713,11 @@
             padding-top: 10px;
             padding-bottom: 10px;
             color: @selected-accent-darker;
+            
+            .before-sm({
+              padding-right: 10px;
+            });
+            
             .btn{
               text-transform: uppercase;
               font-size: 0.9em;
@@ -725,6 +748,25 @@
       border: 1px solid darken(@brand-success, 10%);
       padding: 2em 2.5em;
       background-color: darken(@brand-success, 12.5%);
+      .before-sm({
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10000;
+        display: none;
+        opacity: 0;
+        transition: all 0.25s;
+        &.sessions-sm{
+          display: inline-block;
+          opacity: 1;
+        }
+        
+        .btn{
+          text-transform: uppercase;
+        }
+      });
     }
   }
 
@@ -816,7 +858,7 @@
         thead, tbody, tfoot{
           tr{
             td, th{
-                  padding: 1.5em 5px;
+              padding: 1.5em 0px;
             }
           }
         }

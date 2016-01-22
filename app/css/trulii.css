@@ -12771,7 +12771,7 @@ h2.title {
 @media screen and (max-width: 768px) {
   h1.title,
   h2.title {
-    font-size: 3em;
+    font-size: 2.5em;
   }
 }
 h3.title {
@@ -12780,6 +12780,11 @@ h3.title {
 .sub-title {
   font-size: 2em;
   color: #607171;
+}
+@media screen and (max-width: 768px) {
+  h2 {
+    font-size: 1.75em;
+  }
 }
 h5 {
   font-weight: 100;
@@ -13073,6 +13078,11 @@ h5 a {
 }
 .padding-more {
   padding: 8rem;
+}
+@media screen and (max-width: 768px) {
+  .padding-more {
+    padding: 3rem;
+  }
 }
 .margin-horizontal {
   margin: 0 3rem;
@@ -14195,6 +14205,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
   .burger-menu__user-links {
     max-height: none;
+    padding: 5vh 1em 0 1em;
+    min-height: auto;
   }
   .burger-menu__links {
     padding-top: 0;
@@ -17177,6 +17189,8 @@ button.toast-close-button {
   min-height: 92vh;
   width: 100%;
   position: relative;
+  display: block;
+  clear: both;
 }
 .trulii-cover .row,
 .trulii-cover-small .row,
@@ -18480,6 +18494,12 @@ blockquote {
   z-index: 6;
   color: rgba(255, 255, 255, 0.84);
 }
+@media screen and (max-width: 768px) {
+  .gallery .gallery-info {
+    left: 0em;
+    right: 0em;
+  }
+}
 .gallery .gallery-info * {
   color: rgba(255, 255, 255, 0.84);
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
@@ -18529,7 +18549,7 @@ blockquote {
 }
 @media screen and (max-width: 768px) {
   .attendees-container {
-    padding: 1em 4em 2em 3em;
+    padding: 1em 0 2em 0;
   }
 }
 .attendees-container .title {
@@ -18623,6 +18643,18 @@ blockquote {
 .sign-up-container .calendars-container .table tfoot tr td {
   vertical-align: middle;
   border-top: none;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .sign-up-container .calendars-container .table thead tr th,
+  .sign-up-container .calendars-container .table tbody tr th,
+  .sign-up-container .calendars-container .table tfoot tr th,
+  .sign-up-container .calendars-container .table thead tr td,
+  .sign-up-container .calendars-container .table tbody tr td,
+  .sign-up-container .calendars-container .table tfoot tr td {
+    font-size: 0.65em;
+    padding: 1.5em 0px;
+  }
 }
 .sign-up-container .calendars-container .table thead tr th,
 .sign-up-container .calendars-container .table tbody tr th,
@@ -18638,6 +18670,16 @@ blockquote {
   cursor: pointer;
   font-weight: 600;
   padding: 15px 1.5em;
+}
+@media screen and (max-width: 768px) {
+  .sign-up-container .calendars-container .table thead tr td:first-child,
+  .sign-up-container .calendars-container .table tbody tr td:first-child,
+  .sign-up-container .calendars-container .table tfoot tr td:first-child,
+  .sign-up-container .calendars-container .table thead tr th:first-child,
+  .sign-up-container .calendars-container .table tbody tr th:first-child,
+  .sign-up-container .calendars-container .table tfoot tr th:first-child {
+    display: none;
+  }
 }
 .sign-up-container .calendars-container .table thead tr.active td,
 .sign-up-container .calendars-container .table tbody tr.active td,
@@ -18687,6 +18729,13 @@ blockquote {
   padding-bottom: 10px;
   color: #1f8e81;
 }
+@media screen and (max-width: 768px) {
+  .sign-up-container .calendars-container .table thead tr.signup-row td,
+  .sign-up-container .calendars-container .table tbody tr.signup-row td,
+  .sign-up-container .calendars-container .table tfoot tr.signup-row td {
+    padding-right: 10px;
+  }
+}
 .sign-up-container .calendars-container .table thead tr.signup-row td .btn,
 .sign-up-container .calendars-container .table tbody tr.signup-row td .btn,
 .sign-up-container .calendars-container .table tfoot tr.signup-row td .btn {
@@ -18713,6 +18762,26 @@ blockquote {
   border: 1px solid #22beac;
   padding: 2em 2.5em;
   background-color: #20b3a2;
+}
+@media screen and (max-width: 768px) {
+  .sign-up-container .sessions-container .sessions {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    display: none;
+    opacity: 0;
+    transition: all 0.25s;
+  }
+  .sign-up-container .sessions-container .sessions.sessions-sm {
+    display: inline-block;
+    opacity: 1;
+  }
+  .sign-up-container .sessions-container .sessions .btn {
+    text-transform: uppercase;
+  }
 }
 .reasons-container {
   text-align: center;
@@ -18783,7 +18852,7 @@ blockquote {
   .sign-up-container .calendars-container .table thead tr th,
   .sign-up-container .calendars-container .table tbody tr th,
   .sign-up-container .calendars-container .table tfoot tr th {
-    padding: 1.5em 5px;
+    padding: 1.5em 0px;
   }
   .sign-up-container .sessions-container {
     padding: 0;
@@ -18902,6 +18971,11 @@ blockquote {
   border-top: none;
   border-bottom-right: 4px;
   border-bottom-left: 4px;
+}
+@media screen and (max-width: 768px) {
+  .payments-panel .panel-footer {
+    padding: 3em;
+  }
 }
 .payments-panel .panel-footer .btn {
   padding: 1em;
@@ -19051,6 +19125,11 @@ blockquote {
   background: url('/css/img/activity-enroll/background_success_share.png') 50% 50%;
   background-size: cover;
 }
+@media screen and (max-width: 768px) {
+  .share-container {
+    padding: 0em;
+  }
+}
 .share-container p {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #FFFFFF;
@@ -19061,6 +19140,13 @@ blockquote {
   height: auto;
   margin-right: 2em;
   margin-left: 2em;
+}
+@media screen and (max-width: 768px) {
+  .share-container img {
+    width: 5em;
+    margin-right: 1em;
+    margin-left: 1em;
+  }
 }
 .share-container a {
   text-decoration: none;
@@ -19187,6 +19273,7 @@ blockquote {
   -ms-flex: none;
   flex: none;
   width: 100%;
+  padding-top: 80px;
 }
 .profile-cover h1,
 .profile-cover h2,
@@ -19273,6 +19360,11 @@ blockquote {
 .profile-comments {
   background-color: white;
   padding: 5rem;
+}
+@media screen and (max-width: 768px) {
+  .profile-comments {
+    padding: 3rem;
+  }
 }
 .profile-comments .comment {
   padding: 1rem;
@@ -19380,6 +19472,12 @@ blockquote {
   color: #e3e3e3;
   background-color: #393B3F;
   padding: 2em 0em;
+}
+@media screen and (max-width: 768px) {
+  .home-footer__links {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 .home-footer__links .link-column {
   padding: 0em 2em;
