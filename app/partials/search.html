@@ -147,7 +147,8 @@
                                       data-activity="activity"></trulii-activity-item>
             </div>
             <!--Pagination-->
-            <div class="text-center" ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">
+            <div class="text-center"
+                 ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">
                 <pagination class="pagination-sm"
                         ng-model="search.activitiesPaginationOpts.pageNumber"
                         ng-change="search.pageChange()"

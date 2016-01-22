@@ -26,7 +26,29 @@
         var KEY_COST_END = 'cost_end';
         var KEY_CERTIFICATION = 'certification';
         var KEY_WEEKENDS = 'weekends';
+        var KEY_ORDER = 'o';
+        var KEY_PAGE = 'page';
+        var KEY_PAGE_SIZE = 'page_size';
         var EVENT_SEARCH_MODIFIED = "truliiSearchModified";
+
+        var orderingOptions = [
+            {
+                'predicate' : 'min_price',
+                'name' : 'Menor precio'
+            },
+            {
+                'predicate' : 'max_price',
+                'name' : 'Mayor precio'
+            },
+            {
+                'predicate' : 'score',
+                'name' : 'Relevancia'
+            },
+            {
+                'predicate' : 'calendar_soonest',
+                'name' : 'Más próxima'
+            }
+        ];
 
         var api = ActivityServerApi;
         var searchData = {};
@@ -97,7 +119,10 @@
             setCosts: setCosts,
             setCertification: setCertification,
             setWeekends: setWeekends,
+            setPage: setPage,
+            setPageSize: setPageSize,
 
+            orderingOptions: orderingOptions,
             KEY_QUERY : KEY_QUERY,
             KEY_CITY : KEY_CITY,
             KEY_CATEGORY : KEY_CATEGORY,
@@ -108,6 +133,9 @@
             KEY_COST_END : KEY_COST_END,
             KEY_CERTIFICATION : KEY_CERTIFICATION,
             KEY_WEEKENDS : KEY_WEEKENDS,
+            KEY_ORDER: KEY_ORDER,
+            KEY_PAGE: KEY_PAGE,
+            KEY_PAGE_SIZE: KEY_PAGE_SIZE,
             EVENT_SEARCH_MODIFIED: EVENT_SEARCH_MODIFIED
         };
 
@@ -122,7 +150,7 @@
         }
 
         function getSuggestions(keyword){
-            console.log('keyword keyword',keyword);
+            console.log('keyword:',keyword);
             return $http.get(api.autocomplete(),{params:{q: keyword}});
         }
 
@@ -140,12 +168,17 @@
             return deferred.promise;
 
             function success(response){
-                var stateParams = {};
-                console.log('response.data:', response.data);
-                if(response.data.next){  }
-                angular.extend(stateParams, searchData);
-                stateParams.activities = response.data.results;
-                deferred.resolve(stateParams);
+                var activitiesData = {};
+                //var stateParams = {};
+                //console.log('response.data:', response.data);
+                //if(response.data.next){  }
+                //angular.extend(stateParams, searchData);
+                //stateParams.activities = response.data.results;
+                //deferred.resolve(stateParams);
+                activitiesData.count = response.data.count;
+                activitiesData.activities = response.data.results;
+                console.log('activitiesData:', activitiesData);
+                deferred.resolve(activitiesData);
             }
             function error(response){ deferred.reject(response); }
         }
@@ -156,7 +189,6 @@
         }
 
         function setSearchBarData(data){
-
             if(data.hasOwnProperty(KEY_CITY) && data[KEY_CITY]){ searchData[KEY_CITY] = parseInt(data[KEY_CITY]); }
 
             if(data.hasOwnProperty(KEY_QUERY) && data[KEY_QUERY]){
@@ -165,11 +197,12 @@
                 delete searchData[KEY_QUERY];
             }
 
+            delete searchData[KEY_PAGE];
+
             return searchData;
         }
 
         function setSearchData(data){
-
             setSearchBarData(data);
 
             if(data.hasOwnProperty(KEY_CATEGORY) && data[KEY_CATEGORY]){
@@ -220,6 +253,19 @@
                 delete searchData[KEY_WEEKENDS];
             }
 
+            if(data.hasOwnProperty(KEY_ORDER) && data[KEY_ORDER]){
+                searchData[KEY_ORDER] = data[KEY_ORDER];
+            } else {
+                delete searchData[KEY_ORDER];
+            }
+
+            if(data.hasOwnProperty(KEY_PAGE) && data[KEY_PAGE]){
+                searchData[KEY_PAGE] = data[KEY_PAGE];
+            } else {
+                //delete searchData[KEY_PAGE];
+                searchData[KEY_PAGE] = 1;
+            }
+
             return searchData;
         }
 
@@ -259,6 +305,13 @@
         function setWeekends(withWeekends){
             searchData[KEY_WEEKENDS] = withWeekends;
         }
-    }
 
+        function setPage(page){
+            searchData[KEY_PAGE] = page;
+        }
+
+        function setPageSize(size){
+            searchData[KEY_PAGE_SIZE] = size;
+        }
+    }
 })();
