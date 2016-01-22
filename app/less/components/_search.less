@@ -220,14 +220,34 @@
     > * {
         background-color: white;
         height: 75px !important;
+        .before-sm({
+          height: 55px !important;
+        })
     }
     > *:nth-child(1) {
         border-top-left-radius: @border-radius-base !important;
         border-bottom-left-radius: @border-radius-base !important;
         border-right: 1px solid @gray-lighter;
+        .before-sm({
+          float: left;
+          width: 80%;
+          margin-top: 70px;
+          border-color: transparent;
+          border-right: none;
+        });
     }
     > *:not(:nth-child(1)):not(:last-child) {
         border-right: 1px solid @gray-lighter;
+        .before-sm({
+          width: 100%;
+          position: absolute;
+          left: 0;
+          border-color: transparent;
+          background-color: @brand-success;
+          color: white;
+          border-radius: @border-radius-base;
+          background-image: url(/css/img/about/arrow-white.png) !important;
+        });
     }
     > *:last-child {
         border-top-right-radius: @border-radius-base !important;
@@ -238,6 +258,9 @@
     }
     .form-control {
         background-image: none;
+        .before-sm({
+          font-size: 0.8em;
+        });
     }
 
     input, input:focus {
@@ -281,6 +304,18 @@
         border-top: 5px solid @brand-secondary;
         font-size: 1.25em;
         float: left;
+        .before-sm({
+          width: 20%;
+          float: right;
+          background-color: @brand-primary;
+          border: none;
+          margin-top: 70px;
+          color: white !important;
+          
+          .glyphicon{
+              padding-top: 5px;
+          }
+        });
     }
 
     .dropdown-menu{

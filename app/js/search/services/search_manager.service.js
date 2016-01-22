@@ -30,6 +30,7 @@
         var KEY_PAGE = 'page';
         var KEY_PAGE_SIZE = 'page_size';
         var EVENT_SEARCH_MODIFIED = "truliiSearchModified";
+        var EVENT_EXPLORE = "explore";
 
         var orderingOptions = [
             {

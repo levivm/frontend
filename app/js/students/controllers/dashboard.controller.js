@@ -21,6 +21,7 @@
             changeState : _changeState,
             isActive : isActive,
             scroll: 0,
+            showSidebar: false,
             toggleSidebar: toggleSidebar
         });
 
@@ -39,6 +40,8 @@
         }
         
         function toggleSidebar(){
+            console.log("???");
+            console.log(vm.showSidebar);
             vm.showSidebar = !vm.showSidebar;
         }
         
