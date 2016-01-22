@@ -27,11 +27,11 @@
   </div>
   <div class="row container-muted padding-vertical-regular">
       <div class="col-xs-12 col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
-          <ul class="list-inline list-unstyled text-center">
+          <ul class="list-inline list-unstyled text-center referral-share">
               <li>
                   <strong class="text-muted" ng-bind="::referrals.strings.SHARE_URL_COPY"></strong>
               </li>
-              <li>
+              <li class="referral-link">
                   <label for="referral-link" class="sr-only" ng-bind="::referrals.strings.SHARE_URL_COPY"></label>
                   <input type="text" id="referral-link" class="form-control referral-link"
                         ng-model="::referrals.referrerUrl">

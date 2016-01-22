@@ -14749,7 +14749,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-left: 17em;
   margin-left: 0;
 }
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 768px) {
   .sidebar + * {
     padding-left: 0;
   }
@@ -19610,6 +19610,13 @@ blockquote {
   width: 30%;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
+  font-size: 0.75em;
+}
+@media screen and (max-width: 768px) {
+  .referral-share li.referral-link {
+    display: block;
+    margin: 10px;
+  }
 }
 input[type=text].form-control.referral-link {
   border: 1px solid #999999;
@@ -19620,6 +19627,11 @@ input[type=text].form-control.referral-link {
   padding: 0 2em;
   text-decoration: underline;
   width: 450px;
+}
+@media screen and (max-width: 768px) {
+  input[type=text].form-control.referral-link {
+    width: 100%;
+  }
 }
 input[type=text].form-control.referral-link:focus {
   border: 1px solid #ffd580;
