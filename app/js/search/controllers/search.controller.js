@@ -12,11 +12,11 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope', '$filter', '$q', '$location', '$anchorScroll', '$state'
+    SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
             , '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
             , 'datepickerConfig', 'datepickerPopupConfig'];
 
-    function SearchController($rootScope, $scope, $filter, $q, $location, $anchorScroll, $state, $stateParams
+    function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state, $stateParams
             , generalInfo, ActivitiesManager, LocationManager, SearchManager
             , datepickerConfig, datepickerPopupConfig) {
 
@@ -24,12 +24,12 @@
         var transitionOptions = {location : true, inherit : false, reload : false};
         var unsuscribeSearchModified = null;
         var unsuscribeExitSearch = null;
-        var activities = [];
         var vm = this;
         angular.extend(vm, {
             activities : [],
             levels : [],
             costs : [],
+            orderByPredicate: null,
             expandedCategory : null,
             searchData : {},
             searchQuery : null,
@@ -153,15 +153,11 @@
         }
 
         function changeOrderBy(predicate) {
-            //TODO agregar valor o a querystrings
-            if (predicate === ORDERING_BY_SOONEST_DATE_KEY) {
-                //TODO Apagar el booleano que indica sentido inverso luego de pase de feature a backend
-                activities = $filter('orderBy')(activities, _orderBySoonestDate, true);
-            } else {
-                activities = $filter('orderBy')(activities, predicate);
-            }
             vm.activitiesPaginationOpts.pageNumber = 1;
-            pageChange();
+            vm.searchData[SearchManager.KEY_ORDER] = predicate;
+            SearchManager.setOrder(predicate);
+            _setPage(1);
+            _search();
         }
 
         function getLevelClassStyle(level) {
@@ -172,13 +168,6 @@
 
         function _expandCategory(category) {
             vm.expandedCategory = vm.expandedCategory == category.id ? null : category.id;
-        }
-
-        function _orderBySoonestDate(activity) {
-            var today = Date.now();
-
-            if (activity.closest_calendar.initial_date < today) { return activity.closest_calendar.initial_date; }
-            return -activity.closest_calendar.initial_date;
         }
 
         function _setPage(page){
@@ -194,7 +183,7 @@
             function success(response) {
                 vm.activities = response.activities;
                 vm.activitiesPaginationOpts.totalItems = response.count;
-                console.log('_getActivities:', vm.activities);
+                //console.log('_getActivities:', vm.activities);
             }
 
             function error() {
@@ -313,6 +302,7 @@
                 OPTION_SELECT_LEVEL : "-- Nivel --",
                 PLACEHOLDER_DATE : "A Partir de",
                 COPY_INTERESTS : "¿Qué tema te interesa?",
+                LABEL_SORT_BY: "Ordenar por",
                 LABEL_LEVEL : "Nivel",
                 LABEL_COST : "Precio",
                 LABEL_DATE : "Fecha",
@@ -340,8 +330,6 @@
             _getActivities($stateParams).then(function () {
                 _scrollToCurrentCategory();
             });
-
-            vm.orderByPredicate = 'closest_calendar.session_price';
 
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
                     console.log('searchBar. on' + SearchManager.EVENT_SEARCH_MODIFIED);

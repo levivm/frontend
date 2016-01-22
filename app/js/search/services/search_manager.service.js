@@ -121,6 +121,7 @@
             setWeekends: setWeekends,
             setPage: setPage,
             setPageSize: setPageSize,
+            setOrder: setOrder,
 
             orderingOptions: orderingOptions,
             KEY_QUERY : KEY_QUERY,
@@ -169,15 +170,9 @@
 
             function success(response){
                 var activitiesData = {};
-                //var stateParams = {};
-                //console.log('response.data:', response.data);
-                //if(response.data.next){  }
-                //angular.extend(stateParams, searchData);
-                //stateParams.activities = response.data.results;
-                //deferred.resolve(stateParams);
                 activitiesData.count = response.data.count;
                 activitiesData.activities = response.data.results;
-                console.log('activitiesData:', activitiesData);
+                //console.log('activitiesData:', activitiesData);
                 deferred.resolve(activitiesData);
             }
             function error(response){ deferred.reject(response); }
@@ -198,6 +193,7 @@
             }
 
             delete searchData[KEY_PAGE];
+            delete searchData[KEY_ORDER];
 
             return searchData;
         }
@@ -312,6 +308,10 @@
 
         function setPageSize(size){
             searchData[KEY_PAGE_SIZE] = size;
+        }
+
+        function setOrder(predicate){
+            searchData[KEY_ORDER] = predicate;
         }
     }
 })();

@@ -116,11 +116,12 @@
                     <strong ng-bind="search.searchData.subcategory_display"></strong>
                 </span>
                 <div class="col-xs-10 col-sm-4 pull-right">
-                  <select class=" form-control" name="repeatSelect" id="repeatSelect"
-                         ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)" >
-                      <option ng-show="!search.orderByPredicate" selected="selected" >Ordenar por</option>
-                      <option  ng-repeat="option in search.orderByOptions track by option.name"
-                              value="{{::option.predicate}}" ng-bind="::option.name"></option>
+                    <label for="sortSelect" class="sr-only"></label>
+                  <select class=" form-control" name="sortSelect" id="sortSelect"
+                          ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)"
+                          ng-options="option.predicate as option.name for option in search.orderByOptions">
+                      <option ng-hide="search.orderByPredicate" selected
+                              ng-bind="search.strings.LABEL_SORT_BY"></option>
                   </select>
                 </div>
             </div>
