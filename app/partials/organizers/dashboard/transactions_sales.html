@@ -57,7 +57,7 @@
 
                     </td>
                     <td class="column-button">
-                        <a  ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity_id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">
+                        <a  ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity.id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">
                           <button class="btn btn-default" ng-bind="::transactions.strings.ACTION_VIEW_DETAIL">
                           </button>
                         </a>
