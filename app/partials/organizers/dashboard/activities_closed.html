@@ -14,11 +14,11 @@
             <p class="separate-below separate-above font-family-sans-alt text-muted"
                  ng-bind="::activities.strings.COPY_EMPTY_CLOSED">
             </p>
-            <a class="btn btn-lg btn-success margin-horizontal-less"
+            <a class="btn btn-lg btn-success margin-horizontal-less separate-below-less"
                ui-sref="dash.activities-new.general"
                ng-bind="activities.strings.ACTION_CREATE_ACTIVITY"></a>
             <a ng-if="activities.inactive_activities"
-               class="btn btn-lg btn-default margin-horizontal-less"
+               class="btn btn-lg btn-default margin-horizontal-less separate-below-less"
                ui-sref="^.inactive"
                ng-bind="activities.strings.ACTION_PUBLISH_ACTIVITY">
             </a>

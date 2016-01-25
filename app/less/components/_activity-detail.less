@@ -476,7 +476,7 @@
         right: 14em;
         z-index: 6;
         color: @darkbg-text;
-        
+
         .before-sm({
           left: 0em;
           right: 0em;
@@ -493,11 +493,11 @@
 .instructors-container{
     padding: 3em 9.5em 5em 9.5em;
     background-color: @secondary-bg;
-    
+
     .before-sm({
       padding: 1em 4em 2em 3em;
     });
-    
+
     .title{
         &:extend(.sub-section-title);
     }
@@ -550,7 +550,7 @@
 
 .attendees-container {
     padding: 2em 9.5em 2em 9.5em;
-    
+
     .before-sm({
       padding: 1em 0 2em 0;
     });
@@ -664,7 +664,7 @@
             font-weight: 600;
             padding: 15px 1.5em;
           }
-          
+
           td:first-child, th:first-child{
             .before-sm({
               display: none;
@@ -688,8 +688,8 @@
           td:first-child{
             background-color: transparent;
           }
-          
-          
+
+
 
           td:not(:first-child){
             background-color: @selected-accent;
@@ -713,11 +713,11 @@
             padding-top: 10px;
             padding-bottom: 10px;
             color: @selected-accent-darker;
-            
+
             .before-sm({
               padding-right: 10px;
             });
-            
+
             .btn{
               text-transform: uppercase;
               font-size: 0.9em;
@@ -762,7 +762,7 @@
           display: inline-block;
           opacity: 1;
         }
-        
+
         .btn{
           text-transform: uppercase;
         }
@@ -827,7 +827,7 @@
     padding: 4em 9.5em;
     background-color: @secondary-bg;
     text-align: center;
-    
+
     .before-sm({
       padding: 0;
     });
@@ -906,4 +906,13 @@
       border: 1px solid @gray-light-medium;
     }
   }
+}
+
+@media (max-width: 768px){
+
+    .width-form-80{
+        width: 80%;
+    }
+
+
 }
