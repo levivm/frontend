@@ -23,7 +23,6 @@
 				options['trigger'] = 'focus';
 				options['container'] = 'body';
 
-
 				var title = attrs.truliiInputPopover;
 
 				options['title'] = attrs.truliiInputPopover && attrs.truliiInputPopover != "" ? attrs.truliiInputPopover : undefined;

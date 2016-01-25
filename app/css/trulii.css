@@ -13812,7 +13812,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-right: 15px;
   transition: all 0.25s;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar {
     height: 60px;
     min-height: 60px;
@@ -13853,7 +13853,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .--on-dash .navbar__logo-container {
   width: 15.9em;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar__logo-container {
     height: 59px !important;
     width: 125px;
@@ -13869,7 +13869,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 5px auto 0;
   transition: all 0.25s;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar__logo {
     width: 7em;
     background-size: contain;
@@ -13897,7 +13897,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__left-wrapper.long {
   width: 72%;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar__left-wrapper {
     display: none;
   }
@@ -13912,7 +13912,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 0.9em;
   margin-right: 10px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar__right-wrapper {
     max-width: 150px;
     display: inline-block;
@@ -13936,7 +13936,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-transform: uppercase;
   line-height: 70px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar__option {
     padding: 0;
     height: 60px;
@@ -13967,7 +13967,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 5em;
   display: inline-block;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar__option--right .user-picture {
     margin-right: -15px;
   }
@@ -14017,7 +14017,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 60px;
   line-height: 50px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar.navbar-short .navbar__option {
     padding: 0;
   }
@@ -14048,7 +14048,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-right: 17em;
   transition: all 0.25s;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar-secondary {
     top: 60px;
     padding-right: 0;
@@ -14099,7 +14099,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar-secondary + * {
   margin-top: 60px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .navbar-secondary + * {
     margin-top: 40px;
   }
@@ -14116,7 +14116,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-top: 80px;
   padding-top: 20px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .with-navbar {
     margin-top: 60px;
   }
@@ -14915,7 +14915,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-left: 17em;
   margin-left: 0;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .sidebar + * {
     padding-left: 0;
   }
