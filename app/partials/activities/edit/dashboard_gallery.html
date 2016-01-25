@@ -38,7 +38,7 @@
                 <div class="gallery-grid gallery-grid--fixed">
                     <div ng-repeat="cover in gallery.covers track by cover.id"
                          class="gallery-grid__photo --small --selectable"
-                         ng-class="{'--unselected': cover !== gallery.selectedCover}"
+                         ng-class="{'--unselected': cover !== gallery.selectedCover, '--small-less': !gallery.activityCover}"
                          ng-style="{'background-image': 'url({{cover.photo}})'}"
                          ng-click="gallery.setCoverPreview(cover)">
                     </div>

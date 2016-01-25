@@ -226,7 +226,7 @@
                     }
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
-                    console.log('directive activity:', scope.activity);
+                    //console.log('directive activity:', scope.activity);
                 }
             }
         }

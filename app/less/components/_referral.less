@@ -24,9 +24,17 @@
         width: 30%;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
+        font-size: 0.75em;
     }
 }
-
+.referral-share{
+  .before-sm({
+    li.referral-link{
+      display: block;
+      margin: 10px;
+    }
+  });
+}
 input[type=text].form-control.referral-link {
     border: 1px solid @gray-light;
     color: @gray-light;
@@ -36,6 +44,9 @@ input[type=text].form-control.referral-link {
     padding: 0 2em;
     text-decoration: underline;
     width: 450px;
+    .before-sm({
+      width: 100%;
+    });
     &:focus {
         border: 1px solid @brand-primary;
         height: 55px;

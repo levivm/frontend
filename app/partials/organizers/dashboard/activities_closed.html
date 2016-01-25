@@ -7,9 +7,10 @@
     </div>
     <!--If there are no activities-->
     <div ng-if="activities.closed_activities.length <= 0" class="row">
-        <div class="col-xs-8 col-xs-offset-2 text-center">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">
             <img src="css/img/organizer_dashboard_activities_empty.png"
-                 alt="{{activities.strings.LABEL_EMPTY_CLOSED}}"/>
+                 alt="{{activities.strings.LABEL_EMPTY_CLOSED}}"
+                 class="img-responsive"/>
             <p class="separate-below separate-above font-family-sans-alt text-muted"
                  ng-bind="::activities.strings.COPY_EMPTY_CLOSED">
             </p>

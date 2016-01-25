@@ -16,8 +16,14 @@
 	background-color: @sidebar-color;
 	width: @sidebar-width;
 	max-height: ~"calc(100vh - 80px)";
-    transition: transform 0.5s;
-	&-short{
+  transition: transform 0.5s;
+	
+  .before-sm({
+    top: @navbar-short-height;
+    max-height: ~"calc(100vh - 60px)";
+  });
+  
+  &-short{
 		top: @navbar-short-height;
 		max-height: ~"calc(100vh - 60px)" !important;
 		&.@{sidebar-float-class}{
@@ -222,7 +228,7 @@
 	& + *{
 		padding-left: @sidebar-width;
 		margin-left: 0;
-        .before-xs({ 
+        .before-sm({ 
             padding-left: 0; 
         });
 	}
@@ -246,10 +252,10 @@
 
 
 .sidebar-mobile-toggle{
-    color: white;
+    color: @gray;
     width: ~"calc(100% - 150px)";
-    background-color: @brand-primary;
-    height: @navbar-height;
+    background-color: white;
+    height: @navbar-short-height - 1;
     position: fixed;
     left: 0;
     top: 0;
@@ -260,11 +266,11 @@
        height: @navbar-short-height;
     }
     &:focus, &:hover{
-        color: white;
+        color: @gray;
     }
 }
 .with-sidebar{
-    .col-xs-10;
+    .col-xs-12;
     padding-bottom: 80px;
 }
 @media print {

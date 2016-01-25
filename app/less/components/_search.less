@@ -1,11 +1,15 @@
 @import url('../_trulii-variables');
 
 .search-filter {
-    height: 5.8em;
-
+    display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    height: 18.8em;
+    padding: 10px;
     .search-control {
-        padding-bottom: 1.4em;
-
         select {
             font-size: 1em;
             height: 2em;
@@ -15,24 +19,34 @@
             .btn {
                 .text-sm;
                 text-transform: uppercase;
-                padding: 0.4em 1em;
+                padding: 0.6em 1em;
                 border-color: @gray-light-medium;
             }
         }
     }
 
     label {
-        margin-top: 0.3em;
+        margin-right: 1em;
+        margin-top: 1.2em;
 
         &.margin-more {
             margin-top: 1em;
         }
     }
 
+
     .btn-default {
         color: @lightbg-text;
     }
-
+    &__levels{
+        margin-top: 0 !important
+    }
+    &__levels-buttons{
+        width: 90%;
+    }
+    .search-certificate{
+        margin-left: 0em;
+    }
     .search-slider {
         padding-top: 10px;
         padding-bottom: 10px;
@@ -42,8 +56,147 @@
             .text-md;
         }
     }
+    .search-date-container{
+        background: #FFFFFF;
+        padding-left: 0.4em;
+        cursor: pointer;
+        border-radius: 0.3em;
+        width: 80%;
+        position: relative;
+        border: 1px solid #e3e3e3;
+        span{
+            font-size: 1.4em;
+            margin-top: 0.2em;
+            cursor: pointer;
+        }
+
+        input{
+            color: #999999;
+            font-weight: 600;
+            padding-left: 0.4em;
+            cursor: pointer;
+            padding-top: 0.1em;
+            background-image: linear-gradient(rgba(255, 213, 128, 0), rgba(255, 255, 255, 0)), linear-gradient(rgba(210, 210, 210, 0), rgba(210, 210, 210, 0)) !important;
+        }
+        &:hover {
+          background: #FFFFFF;
+        }
+        i{
+            color: #999;
+            margin-top: 0.1em;
+            position: absolute;
+            right: 0.1em;
+        }
+        ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color: #999999;
+            font-weight: 600;
+            opacity:  1;
+        }
+        :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+           color: #999999;
+           font-weight: 600;
+           opacity:  1;
+        }
+        ::-moz-placeholder { /* Mozilla Firefox 19+ */
+           color: #999999;
+           font-weight: 600;
+           opacity:  1;
+        }
+        :-ms-input-placeholder { /* Internet Explorer 10-11 */
+           color: #999999;
+           font-weight: 600;
+        }
+        :placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+          color: #999999;
+          font-weight: 600;
+        }
+    }
 }
 
+
+@media (min-width: 1080px){
+    .search-filter {
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -webkit-flex-wrap: wrap;
+	    flex-wrap: wrap;
+        height: 11.8em;
+        justify-content: flex-start;
+        -webkit-align-self: flex-start;
+	    align-self: flex-start;
+
+        &__date{
+            width: 20%;
+        }
+
+        &__levels{
+            width: 55%;
+            margin-left: 4em;
+        }
+        .search-certificate{
+            margin-left: 0em;
+            margin-top: 0.7em;
+        }
+        .search-filter-slider{
+            width: 55%;
+            margin-left: 2em;
+        }
+    }
+
+}
+@media (min-width: 1280px){
+    .search-filter {
+        -webkit-justify-content: flex-start;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        &__levels{
+            width: 45%;
+        }
+
+        .search-filter-slider{
+            width: 55%;
+            margin: 0 auto;
+        }
+        .search-certificate{
+            margin-left: 1em;
+            margin-top: 0.7em;
+        }
+        &__date{
+            margin-top: 0.8em !important;
+        }
+    }
+
+
+}
+
+@media (min-width: 1420px){
+    .search-filter {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        height: 11.8em;
+        -webkit-justify-content: space-between;
+        justify-content: space-between;
+
+        &__date{
+            width: 20%;
+        }
+
+        &__levels{
+            width: 45%;
+        }
+        .search-certificate{
+            margin-right: 5em;
+        }
+
+        .search-date-container{
+            width: 70%;
+            margin-left: 5em;
+        }
+    }
+
+}
 .search-info {
     .text-muted;
     padding: 0.5em 4em;
@@ -67,14 +220,34 @@
     > * {
         background-color: white;
         height: 75px !important;
+        .before-sm({
+          height: 55px !important;
+        })
     }
     > *:nth-child(1) {
         border-top-left-radius: @border-radius-base !important;
         border-bottom-left-radius: @border-radius-base !important;
         border-right: 1px solid @gray-lighter;
+        .before-sm({
+          float: left;
+          width: 80%;
+          margin-top: 70px;
+          border-color: transparent;
+          border-right: none;
+        });
     }
     > *:not(:nth-child(1)):not(:last-child) {
         border-right: 1px solid @gray-lighter;
+        .before-sm({
+          width: 100%;
+          position: absolute;
+          left: 0;
+          border-color: transparent;
+          background-color: @brand-success;
+          color: white;
+          border-radius: @border-radius-base;
+          background-image: url(/css/img/about/arrow-white.png) !important;
+        });
     }
     > *:last-child {
         border-top-right-radius: @border-radius-base !important;
@@ -85,6 +258,9 @@
     }
     .form-control {
         background-image: none;
+        .before-sm({
+          font-size: 0.8em;
+        });
     }
 
     input, input:focus {
@@ -128,6 +304,18 @@
         border-top: 5px solid @brand-secondary;
         font-size: 1.25em;
         float: left;
+        .before-sm({
+          width: 20%;
+          float: right;
+          background-color: @brand-primary;
+          border: none;
+          margin-top: 70px;
+          color: white !important;
+          
+          .glyphicon{
+              padding-top: 5px;
+          }
+        });
     }
 
     .dropdown-menu{

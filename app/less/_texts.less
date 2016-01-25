@@ -83,6 +83,9 @@
 
 .text-xxlg {
     font-size: 4em;
+    .before-sm({
+      font-size: 3em;
+    });
 }
 
 .text-spaced {
@@ -256,7 +259,7 @@ h1, h2, h3, h4 {
         font-weight: 600;
         font-size: 3.5em;
         .before-sm({
-          font-size: 3em;
+          font-size: 2.5em;
         });
     }
     
@@ -270,6 +273,11 @@ h1, h2, h3, h4 {
     color: @subtitle-color;
 }
 
+h2{
+  .before-sm({
+    font-size: 1.75em;
+  });
+}
 h5 {
     font-weight: 100;
     a {

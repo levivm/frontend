@@ -64,7 +64,11 @@
         border-top: none;
         border-bottom-right: @border-radius-base;
         border-bottom-left: @border-radius-base;
-
+        
+        .before-sm({
+          padding: 3em;
+        });
+        
          .btn {
              padding: 1em;
          }
@@ -221,6 +225,10 @@
     //noinspection CssUnknownTarget
     background: url('/css/img/activity-enroll/background_success_share.png') 50% 50%;
     background-size: cover;
+    
+    .before-sm({
+      padding: 0em;
+    });
 
     p {
         font-family: @font-sans-alt;
@@ -233,6 +241,11 @@
         height: auto;
         margin-right: 2em;
         margin-left: 2em;
+        .before-sm({
+          width: 5em;
+          margin-right: 1em;
+          margin-left: 1em;
+        });
     }
 
     a {
