@@ -13150,6 +13150,9 @@ h5 a {
 .w-100 {
   width: 100%;
 }
+.m-l-5 {
+  margin-left: 5%;
+}
 hr {
   width: 98%;
 }
@@ -19095,6 +19098,11 @@ blockquote {
 .modal-email .modal-body textarea {
   border: 1px solid #e3e3e3;
 }
+@media (max-width: 768px) {
+  .width-form-80 {
+    width: 80%;
+  }
+}
 .Panel {
   box-shadow: none;
   border: 1px solid #e3e3e3;
@@ -20006,6 +20014,7 @@ input[type=text].form-control.referral-link:focus {
   bottom: 0;
   right: 0;
   width: 100%;
+  z-index: 10;
 }
 .dashboard-footer a {
   font-size: 0.9em;
