@@ -23,37 +23,39 @@
             <tr class="text-center">
               <th ng-bind="::transactions.strings.LABEL_ORDER"></th>
               <th ng-bind="::transactions.strings.LABEL_ACTIVITY"></th>
-              <th ng-bind="::transactions.strings.LABEL_DATE"></th>
-              <th>
+              <th class="hidden-xs" ng-bind="::transactions.strings.LABEL_DATE"></th>
+              <th class="hidden-xs hidden-sm" >
                 <span ng-bind="::transactions.strings.LABEL_TOTAL"></span>
                 <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="left"  tooltip="{{::transactions.strings.COPY_TOTAL_SALES_TOOLTIP}}"></i>
               </th>
-              <th>
+              <th class="hidden-xs hidden-sm" >
                 <span ng-bind="::transactions.strings.LABEL_FINAL_TOTAL"></span>
                 <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="left" tooltip="{{::transactions.strings.COPY_FINAL_TOTAL_SALES_TOOLTIP}}"></i>
               </th>
-              <th></th>
+              <th class="hidden-xs" ></th>
             </tr>
             <tr ng-repeat="order in transactions.sales track by order.id | filter:transactions.queries.saleQuery">
               <td>
-                <strong><span>#</span><span ng-bind="::order.id"></span></strong>
+                <a  ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity_id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">
+                  <strong><span>#</span><span ng-bind="::order.id"></span></strong>
+                </a>
               </td>
               <td>
                 <span ng-bind="::(order.activity.name | truncateText:true:35:'...')"></span>
                 <br/>
-                <strong ng-bind="::transactions.strings.COPY_START_DATE"></strong> <span class="text-capitalize" ng-bind="::order.calendar_initial_date | date:'EEEE d MMM y'"></span>
+                <strong class="hidden-xs hidden-sm" ng-bind="::transactions.strings.COPY_START_DATE"></strong> <span class="text-capitalize" ng-bind="::order.calendar_initial_date | date:'EEEE d MMM y'"></span>
               </td>
-              <td>
+              <td class="hidden-xs">
                 <span class="text-capitalize" ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
               </td>
-              <td>
+              <td class="hidden-xs hidden-sm">
                 <span ng-bind="::(order.amount | currency:$:0)"></span>
               </td>
-              <td>
+              <td class="hidden-xs hidden-sm">
                 <span ng-bind="::(order.amount - order.amount*order.fee | currency:$:0)"></span>
               </td>
-              <td class="column-button">
-                <a  ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity.id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">
+              <td class="column-button hidden-xs">
+                <a  ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity_id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">
                   <button class="btn btn-default" ng-bind="::transactions.strings.ACTION_VIEW_DETAIL">
                   </button>
                 </a>
