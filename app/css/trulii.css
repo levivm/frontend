@@ -15901,7 +15901,7 @@ td {
 @media screen and (max-width: 768px) {
   .panel-default table tr th,
   .panel-default table tr td {
-    padding: 1.5em 5px;
+    padding: 1.5em 5px !important;
     font-size: 0.75em;
   }
 }
