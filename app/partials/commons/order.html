@@ -80,7 +80,7 @@
                                             tooltip-placement="right"
                                             tooltip="{{::order.strings.COPY_ASSISTANT_CODE_TOOLTIP}}"></i>
                                         </th>
-                                        <th>
+                                        <th class="hidden-xs">
                                         </th>
                                     </tr>
                                     <tr ng-repeat="assistant in order.order.assistants track by assistant.id">
@@ -110,7 +110,7 @@
                                                aria-hidden="true" tooltip-placement="right"
                                                tooltip="{{::order.strings.COPY_REFUND_REQUESTED_BY_OTHER}}"></i>
                                         </td>
-                                        <td class="column-button" ng-show="!assistant.lastest_refund">
+                                        <td class="column-button hidden-xs" ng-show="!assistant.lastest_refund">
                                             <trulii-preloader
                                                     loader-control="order.requestingRefund[assistant.id]"></trulii-preloader>
                                             <button class="btn btn-default"

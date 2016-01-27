@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <nav class="sidebar" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
+        <nav class="sidebar lateral-slide" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
             <li ui-sref-active="active" ng-repeat="step in pc.steps track by step.name">
                 <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected" ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} "
                 ng-click="dash.toggleSidebar()">
