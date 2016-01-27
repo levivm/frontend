@@ -1,14 +1,13 @@
 @import url('../_trulii-variables');
 
-.order-container {
-  .col-xs-10;
-  .col-xs-offset-1;
-}
-
 .order-detail{
   display: flex;
   margin: 0;
   border: 1px solid @gray-lighter;
+  
+  .before-md({
+    display: block;
+  });
 
   h5{
     font-family: @font-sans-alt;
@@ -34,14 +33,38 @@
   .order-info{
     background-color:white;
     padding: 0px 35px 25px 35px;
+    
+    
+    .before-md({
+      .table-responsive{
+        .table{
+          tbody, thead, tfoot{
+            tr{
+              th, td{
+                padding: 20px .5em;
+                font-size: 0.75em;
+              }
+            }
+          }
+        }
+      }
+    });
 
   }
 
 }
 
-.print-container {
-  width: 100%;
+.order-container{
+  .before-md({
+    &.tab-content{
+      padding: 0;
+    }
+  });
 }
+
+// .print-container {
+//   width: 100%;
+// }
 
 .print-visible {
   display: none;

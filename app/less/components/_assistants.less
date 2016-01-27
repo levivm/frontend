@@ -62,10 +62,30 @@
     font-family: @font-sans-alt;
     font-weight: 300;
     line-height: 0;
+    
+    .before-md({
+      margin: 0;
+      position: relative;
+      height: auto;
+      display: inline-block;
+    });
+    
     ul{
       font-size: 0.9em;
+      .before-md({
+        font-size: 0.9em;
+        text-align: right;
+      });
       li{
         width: 30%;
+        
+        .before-md({
+          display: block;
+          text-align: right;
+          width: 100%;
+          padding: 12px 0px;
+        });
+        
       }
     }
     strong{

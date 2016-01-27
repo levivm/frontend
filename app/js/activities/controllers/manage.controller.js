@@ -218,6 +218,7 @@
                 HEADER_ORDER: "Orden",
                 HEADER_FIRST_NAME: "Nombre",
                 HEADER_LAST_NAME: "Apellido",
+                HEADER_FULL_NAME: "Nombre",
                 HEADER_CODE: "Código",
                 HEADER_MADE: "Realizada",
                 HEADER_AMOUNT: "Monto",

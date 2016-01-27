@@ -1,5 +1,5 @@
 <div class="row print-container">
-    <div class="order-container tab-content">
+    <div class="col-xs-offset-1 col-xs-10 order-container tab-content">
         <div class="card-body tab-content">
             <div class="tab-pane active fade in">
                 <div>
@@ -9,19 +9,26 @@
                         </div>
                     </div>
                     <div class="row order-detail">
-                        <div class="col-xs-3 order-description">
-                            <h5 class="sinkin-medium separate-below"><span ng-bind="::order.strings.LABEL_ORDER"></span>&nbsp;<span
-                                    ng-bind="::order.order.id"></span></h5>
+                        <div class="col-xs-12 col-md-3 order-description">
+                            <h5 class="sinkin-medium separate-below">
+                                    <span ng-bind="::order.strings.LABEL_ORDER"></span>
+                                    <span>&nbsp; #</span>
+                                    <span ng-bind="::order.order.id"></span></h5>
                             <!--Activity-->
-                            <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_ACTIVITY"></h5>
-                            <a ui-sref="activities-detail({activity_id: {{::order.order.activity.id}} })">
-                                <h5 class="sinkin-medium separate-below" ng-bind="::order.order.activity.name"></h5>
-                            </a>
+                            <div class="hidden-xs hidden-sm">
+                              <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_ACTIVITY"></h5>
+                              <a ui-sref="activities-detail({activity_id: {{::order.order.activity.id}} })">
+                                  <h5 class="sinkin-medium separate-below" ng-bind="::order.order.activity.name"></h5>
+                              </a>
+                            </div>
                             <!--Buyer-->
-                            <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_BUYER"></h5>
-                            <h5 class="sinkin-medium separate-below"
+                            <div class="hidden-xs hidden-sm">
+                              <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_BUYER"></h5>
+                              <h5 class="sinkin-medium separate-below"
                                 ng-bind="::(order.order.student.user.first_name + ' ' +
-                                                order.order.student.user.last_name)"></h5>
+                                order.order.student.user.last_name)">
+                              </h5>
+                            </div>
                             <!--Payment-Type-->
                             <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_PAYMENT_TYPE"></h5>
                             <h5 class="sinkin-medium separate-below" ng-show="::order.order.is_free"
@@ -39,12 +46,12 @@
                             <h5 class="sinkin-medium"><span class="text-capitalize"
                                                             ng-bind="::order.order.created_at | date:'EEEE d MMM y'"></span>
                             </h5>
-                            <div class="separate-above-more">
+                            <div class="separate-above-more hidden-xs hidden-sm">
                                 <button class="btn btn-default btn-block"
                                         ng-click="order.printOrder()"
                                         ng-bind="::order.strings.ACTION_PRINT"></button>
                             </div>
-                            <div class="separate-above-less">
+                            <div class="separate-above-less hidden-xs hidden-sm">
                                 <a class="btn btn-default btn-return btn-block"
                                    ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
                                     <img src="css/img/activity-enroll/navigation_back.png"
@@ -54,26 +61,37 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-9 order-info no-padding">
+                        <div class="col-xs-12 col-md-9 order-info no-padding">
                             <div class="table-responsive table-fixed table-condensed">
                                 <table class="table table-hover border-bottom" valign="middle">
                                     <tr class="text-center">
-                                        <th><strong ng-bind="::order.strings.HEADER_ASSISTANT"></strong></th>
-                                        <th><strong ng-bind="::order.strings.HEADER_EMAIL"></strong></th>
-                                        <th><strong ng-bind="::order.strings.HEADER_PRICE"></strong></th>
-                                        <th ng-show="::order.isStudent"><strong
-                                                ng-bind="::order.strings.HEADER_ASSISTANT_CODE"></strong>
-                                            <i class="glyphicon glyphicon-question-sign" aria-hidden="true"
-                                               tooltip-placement="right"
-                                               tooltip="{{::order.strings.COPY_ASSISTANT_CODE_TOOLTIP}}"></i>
+                                        <th>
+                                          <strong ng-bind="::order.strings.HEADER_ASSISTANT"></strong>
                                         </th>
-                                        <th><strong></strong></th>
+                                        <th class="hidden-xs hidden-sm">
+                                          <strong ng-bind="::order.strings.HEADER_EMAIL"></strong>
+                                        </th>
+                                        <th>
+                                          <strong ng-bind="::order.strings.HEADER_PRICE"></strong>
+                                        </th>
+                                        <th ng-show="::order.isStudent">
+                                          <strong ng-bind="::order.strings.HEADER_ASSISTANT_CODE"></strong>
+                                          <i class="glyphicon glyphicon-question-sign" aria-hidden="true"
+                                            tooltip-placement="right"
+                                            tooltip="{{::order.strings.COPY_ASSISTANT_CODE_TOOLTIP}}"></i>
+                                        </th>
+                                        <th>
+                                        </th>
                                     </tr>
                                     <tr ng-repeat="assistant in order.order.assistants track by assistant.id">
                                         <td>
                                             <span ng-bind="::(assistant.first_name +' '+ assistant.last_name)"></span>
+                                            <div class="hidden-md hidden-lg">
+                                              <br>
+                                              <span  ng-bind="::assistant.email"></span>
+                                            </div>
                                         </td>
-                                        <td>
+                                        <td class="hidden-xs hidden-sm">
                                             <span ng-bind="::assistant.email"></span>
                                         </td>
                                         <td>
@@ -104,8 +122,8 @@
                                 </table>
                             </div>
                             <!--Sub-Total-->
-                            <div class="row no-margin">
-                                <div class="col-xs-3">
+                            <div class="row no-margin hidden-xs hidden-sm">
+                                <div class="col-xs-6 col-md-3">
                                     <h4 class="text-lg montserrat-light" ng-bind="::order.strings.LABEL_SUB_TOTAL"></h4>
                                 </div>
                                 <div class="col-xs-5">
@@ -114,8 +132,8 @@
                                 </div>
                             </div>
                             <!--Coupons-->
-                            <div class="row no-margin" ng-show="::(order.order.coupon.amount > 0 && order.isStudent)">
-                                <div class="col-xs-3">
+                            <div class="row no-margin hidden-xs hidden-sm" ng-show="::(order.order.coupon.amount > 0 && order.isStudent)">
+                                <div class="col-xs-6 col-md-3">
                                     <h4 class="text-lg montserrat-light"
                                         ng-bind="::(order.strings.LABEL_COUPON +' '+ order.order.coupon.code)"></h4>
                                 </div>
@@ -129,8 +147,8 @@
                                    tooltip="{{::order.strings.COPY_COUPON_NOT_REFUND_TOOLTIP}}"></i>
                             </div>
                             <!--Reimbursements-->
-                            <div class="row no-margin" ng-show="order.order.total_refunds_amount > 0">
-                                <div class="col-xs-3">
+                            <div class="row no-margin " ng-show="order.order.total_refunds_amount > 0">
+                                <div class="col-xs-6 col-md-3">
                                     <h4 class="text-lg montserrat-light"
                                         ng-bind="order.strings.LABEL_REIMBURSEMENTS"></h4>
 
@@ -141,8 +159,8 @@
                                 </div>
                             </div>
                             <!--Fee-->
-                            <div class="row no-margin" ng-show="::order.isOrganizer">
-                                <div class="col-xs-3">
+                            <div class="row no-margin hidden-xs hidden-sm" ng-show="::order.isOrganizer">
+                                <div class="col-xs-6 col-md-3">
                                     <h4 class="text-lg montserrat-light"
                                         ng-bind="order.strings.LABEL_TRULII_FEE + ' ' + (order.order.fee * 100) + '%'"></h4>
                                 </div>
@@ -152,14 +170,14 @@
                                 </div>
                             </div>
                             <!--Separator-->
-                            <div class="row no-margin" ng-show="::(order.order.total !== order.order.amount)">
+                            <div class="row no-margin hidden-xs hidden-sm" ng-show="::(order.order.total !== order.order.amount)">
                                 <div class="col-xs-12 no-padding">
                                     <hr class="complete no-margin"/>
                                 </div>
                             </div>
                             <!--Amount-->
                             <div class="row no-margin">
-                                <div class="col-xs-3">
+                                <div class="col-xs-6 col-md-3">
                                     <h4 class="separate-above-less" ng-bind="::order.strings.LABEL_TOTAL"></h4>
                                 </div>
 
@@ -178,7 +196,7 @@
                             </div>
                             <!--Refund Button-->
                             <div class="row no-margin">
-                                <div class="col-xs-4 col-xs-push-8">
+                                <div class="col-xs-12 col-md-4 col-md-offset-8">
                                     <div ng-show="order.order.lastest_refund">
                                         <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span>
                                         <span class="sinkin-medium" ng-bind="order.order.lastest_refund.status"></span>
