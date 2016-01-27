@@ -41,6 +41,7 @@
                          ng-class="{'--unselected': cover !== gallery.selectedCover, '--small-less': !gallery.activityCover}"
                          ng-style="{'background-image': 'url({{cover.photo}})'}"
                          ng-click="gallery.setCoverPreview(cover)">
+                         <span ng-if="$first" class="glyphicon glyphicon-ok check-photo" aria-hidden="true"></span>
                     </div>
                 </div>
 
