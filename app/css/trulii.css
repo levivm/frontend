@@ -14371,6 +14371,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   cursor: pointer;
   padding-top: 0.1em;
   background-image: linear-gradient(rgba(255, 213, 128, 0), rgba(255, 255, 255, 0)), linear-gradient(rgba(210, 210, 210, 0), rgba(210, 210, 210, 0)) !important;
+  font-size: 0.8em;
 }
 .search-filter .search-date-container:hover {
   background: #FFFFFF;
