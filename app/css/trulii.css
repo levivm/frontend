@@ -15074,7 +15074,7 @@ label {
   font-weight: 500;
 }
 select.form-control {
-  font-size: 1.2em;
+  font-size: 1em;
   height: 30px;
 }
 @media screen and (max-width: 768px) {
@@ -17502,7 +17502,7 @@ button.toast-close-button {
 .trulii-cover__content .title,
 .trulii-cover-small__content .title,
 .trulii-cover-medium__content .title {
-  font-size: 4em;
+  font-size: 4.4em;
   margin-top: 0.25em !important;
 }
 .trulii-cover__content p,
@@ -17510,9 +17510,10 @@ button.toast-close-button {
 .trulii-cover-medium__content p {
   color: white;
   padding: 0 5em;
-  font-size: 1.25em;
+  font-size: 1.8em;
   margin-top: 1em;
   margin-bottom: 1.5em;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 @media screen and (max-width: 768px) {
   .trulii-cover__content p,
@@ -19058,8 +19059,8 @@ blockquote {
 }
 .reasons-container .reason .reason-text .reason-copy {
   color: #999999;
-  font-size: 1em;
-  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+  font-size: 0.8em;
+  font-weight: 500;
 }
 .youtube-video-container {
   margin-bottom: 2.5em;
