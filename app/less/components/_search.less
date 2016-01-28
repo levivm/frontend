@@ -77,6 +77,9 @@
             cursor: pointer;
             padding-top: 0.1em;
             background-image: linear-gradient(rgba(255, 213, 128, 0), rgba(255, 255, 255, 0)), linear-gradient(rgba(210, 210, 210, 0), rgba(210, 210, 210, 0)) !important;
+            .before-md({
+              width: 90vw;
+            });
         }
         &:hover {
           background: #FFFFFF;
@@ -113,6 +116,22 @@
     }
 }
 
+select.form-control.sort-select{
+  .before-sm({
+    width: 50px;
+    height: 50px;
+    color: transparent;
+    border: 1px solid @gray-light-medium;
+    border-radius: 3px;
+    -webkit-appearance: none;
+    background-image: url(img/search/order.png);
+    background-size: 90% auto;
+    background-position: center center;
+    &:focus{
+      animation: none;
+    }
+  });
+}
 
 @media (min-width: 1080px){
     .search-filter {
@@ -206,11 +225,151 @@
         font-size: 1em;
     }
     line-height: 2;
+    .before-sm({
+      padding: 0.5em 1em;
+      .input-group{
+        .form-control{
+          height: 50px;
+          border: 1px solid @gray-light-medium;
+          border-top-left-radius: @border-radius-base;
+          border-bottom-left-radius: @border-radius-base;
+          background-image: none;
+          border-right: none;
+        }
+        .btn{
+          border-top-left-radius: 0;
+          border-bottom-left-radius: 0;
+        }
+      }
+      .btn{
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        .mdi{
+          color: white;
+          font-size: 1.5em;
+        }
+      }
+    });
 }
 
 .with-context-menu {
     margin-top: 120px;
 }
+.search-filter{
+  .search-date-container{
+    input{
+      background-size: 15px auto;
+      background-position: 94.75% 50%;
+      background-repeat: no-repeat;
+      background-image: url(/css/img/about/arrow.png) !important;
+      font-weight: 500;
+      text-transform: uppercase;
+      color: @gray-light;
+    }
+  }
+}
+
+.filters-container{
+  .before-sm({
+    padding: 2em 2.5em;
+    padding-top: 175px;
+    background-color: white;
+    display: none;
+    opacity: 0;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    transition: all 0.25s;
+    .flex-align-items-center{
+      display: block;
+    }
+    &.filters-container-sm{
+      display: inline-block;
+      opacity: 1;
+    }
+    .search-filter-slider{
+      position: absolute;
+      top: 75px;
+      width: ~"calc(100vw - 5em)";
+      label{
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+    .search-certificate{
+      .btn{
+        width: 49%;
+        height: 40px;
+        border: 1px solid @gray-light-medium;
+        font-weight: 500;
+        text-transform: none;
+        border-radius: 3px;
+        margin-bottom: 20px;
+        color: @gray-light;
+      }
+      .btn:first-child{
+        float:left;
+      }
+      .btn:last-child{
+        float: right;
+      }
+    }
+    
+    .search-date-container{
+      width: 100%;
+      height: 40px;
+      border: 1px solid @gray-light-medium;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-radius: 3px;
+      margin-bottom: 20px;
+      padding-top: 5px;
+      input{
+        font-size: 0.75em;
+      }
+      input::-webkit-input-placeholder{
+        font-weight: 500;
+        color: @gray-light;
+      }
+      input::-moz-placeholder{
+        font-weight: 500;
+        color: @gray-light;
+      }
+    }
+    
+    .search-level-select{
+      color: @gray-light;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      height: 40px;
+      border: 1px solid @gray-light-medium;
+      font-weight: 500;
+      text-transform: uppercase;
+      border-radius: 3px;
+      margin-bottom: 20px;
+      background-size: 15px auto;
+      background-position: 95% 50%;
+      background-repeat: no-repeat;
+      padding-left: 10px;
+      background-image: url(/css/img/about/arrow.png) !important;
+      font-size: 0.75em;
+      &:focus{
+        animation: none;
+      }
+    }
+    
+    .btn{
+      text-transform: uppercase;
+    }
+  });
+}
+  
 
 .search-bar {
     position: relative;

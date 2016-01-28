@@ -75,7 +75,9 @@
             pageChange : pageChange,
             changeOrderBy : changeOrderBy,
             toggleSidebar: toggleSidebar,
-            showSidebar: false
+            showSidebar: false,
+            toggleFilters: toggleFilters,
+            showFilters: false
         });
 
         _activate();
@@ -84,6 +86,10 @@
         
         function toggleSidebar(){
           vm.showSidebar = !vm.showSidebar; 
+        }
+        
+        function toggleFilters(){
+          vm.showFilters = !vm.showFilters;
         }
         
         function openDatePicker($event) {
