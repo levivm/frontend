@@ -73,13 +73,19 @@
             setCertification : setCertification,
             setWeekends : setWeekends,
             pageChange : pageChange,
-            changeOrderBy : changeOrderBy
+            changeOrderBy : changeOrderBy,
+            toggleSidebar: toggleSidebar,
+            showSidebar: false
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        
+        function toggleSidebar(){
+          vm.showSidebar = !vm.showSidebar; 
+        }
+        
         function openDatePicker($event) {
             $event.preventDefault();
             $event.stopPropagation();
