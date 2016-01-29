@@ -14415,14 +14415,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 768px) {
   select.form-control.sort-select {
-    width: 50px;
+    width: 47.5%;
     height: 50px;
+    float: left;
     color: transparent;
     border: 1px solid #e3e3e3;
     border-radius: 3px;
     -webkit-appearance: none;
     background-image: url(img/search/order.png);
-    background-size: 90% auto;
+    background-size: auto 85%;
     background-position: center center;
   }
   select.form-control.sort-select:focus {
@@ -14500,6 +14501,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     margin-left: 5em;
   }
 }
+@media screen and (max-width: 992px) {
+  .results-info > span {
+    font-size: 0.85em !important;
+  }
+}
 .search-info {
   color: #999999;
   padding: 0.5em 4em;
@@ -14514,6 +14520,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .search-info {
     padding: 0.5em 1em;
   }
+  .search-info .input-group {
+    width: 100%;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
   .search-info .input-group .form-control {
     height: 50px;
     border: 1px solid #e3e3e3;
@@ -14521,19 +14533,24 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     border-bottom-left-radius: 4px;
     background-image: none;
     border-right: none;
+    padding: 1em;
   }
   .search-info .input-group .btn {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-  }
-  .search-info .btn {
-    width: 50px;
     height: 50px;
-    padding: 0;
+    width: 50px;
   }
-  .search-info .btn .mdi {
+  .search-info .input-group .btn .mdi {
     color: white;
     font-size: 1.5em;
+  }
+  .search-info .btn {
+    width: 47.5%;
+    height: 50px;
+    padding: 0;
+    float: left;
+    margin-right: 5%;
   }
 }
 .with-context-menu {

@@ -77,7 +77,9 @@
             toggleSidebar: toggleSidebar,
             showSidebar: false,
             toggleFilters: toggleFilters,
-            showFilters: false
+            showFilters: false,
+            newSearchQuery: '',
+            search: search
         });
 
         _activate();
@@ -175,6 +177,10 @@
         function getLevelClassStyle(level) {
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
+        
+        function search(){
+          _search();
+        }
 
         //--------- Internal Functions ---------//
 
@@ -209,6 +215,7 @@
             sm.setPageSize(vm.activitiesPaginationOpts.itemsPerPage);
             vm.searchData = sm.getSearchData($stateParams);
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
+            vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
 
             if ($stateParams.city) {
@@ -299,6 +306,7 @@
         }
 
         function _search() {
+            SearchManager.setQuery(vm.newSearchQuery);
             var searchData = SearchManager.getSearchData();
             $state.go('search', searchData, transitionOptions);
         }
@@ -322,7 +330,8 @@
                 LABEL_WEEKENDS : "Fines de Semana",
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
-                + " Por si acaso, te recomendamos intentarlo de nuevo."
+                + " Por si acaso, te recomendamos intentarlo de nuevo.",
+                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?'
             });
         }
 
