@@ -13895,7 +13895,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__left-wrapper .buttons-login > a {
   color: #535353;
   text-decoration: none;
-  font-weight: 300;
 }
 .navbar__left-wrapper.long {
   width: 72%;
