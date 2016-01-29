@@ -1,96 +1,91 @@
-
-<div class="row">
-
-    <div class="col-md-10 col-md-offset-1 tab-content">
-
-        <div class="card-body tab-content">
-            <div class="tab-pane active fade in" id="history-orders-tab">
-                <!-- If there are orders-->
-                <div ng-if="history.orders.length > 0">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group search-input">
-                                <div class="row">
-                                    <div class="col-xs-10 col-xs-offset-1">
-                                        <p class="control-label sr-only text-center pt-serif"
-                                           ng-bind="::history.strings.LABEL_SEARCH"></p>
-                                    </div>
-                                </div>
-                                <div class="input-group">
-                                    <input class="form-control floating-label" type="text"
-                                           ng-model="history.queries.refundQuery"
-                                           ng-change="history.updateByQuery(history.TYPE_REFUNDS)"
-                                           placeholder="{{history.strings.COPY_SEARCH}}">
-                                    <span class="input-group-addon">
-                                        <i class="mdi-action-search"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--If there are orders-->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="table-responsive table-fixed table-condensed">
-                                <table class="table table-hover">
-                                    <tr class="text-center">
-                                        <th><strong ng-bind="::history.strings.HEADER_ORDER"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_REFUND_DATE"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_REFUND_TOTAL"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_ASSISTANT"></strong></th>
-                                        <th><strong ng-bind="::history.strings.HEADER_REFUND_STATUS"></strong></th>
-                                    </tr>
-                                    <tr ng-repeat="refund in history.refunds track by refund.id | filter:history.refundQuery">
-                                        <td>
-                                            <a ui-sref="student-dashboard.history.orders.order({'orderId': refund.order,
-                                            'previousState':{'state':'student-dashboard.history.refunds'}}) " ng-bind="refund.order"></a>
-                                        </td>
-                                        <td>
-                                            <span ng-bind="::(refund.activity.title | truncateText:true:35:'...')"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-capitalize" ng-bind="::refund.created_at | date:'EEEE d MMM y'"></span>
-                                        </td>
-                                        <td>
-                                            <span ng-bind="::(refund.amount | currency:$:0)"></span>
-                                        </td>
-                                        <td>
-                                            <span class="text-capitalize" ng-show="::refund.assistant" ng-bind="::(refund.assistant.full_name)"></span>
-                                            <span ng-show="::!refund.assistant" ng-bind="::history.strings.LABEL_EVERYBODY"></span>
-                                        </td>
-                                        <td>
-                                            <span class="sinkin-medium" ng-bind="::refund.status"></span>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <div class="text-center" ng-if="history.refundsPaginationOpts.totalItems > history.refundsPaginationOpts.itemsPerPage">
-                                    <pagination class="pagination-sm"
-                                            ng-model="history.refundsPaginationOpts.pageNumber"
-                                            ng-change="history.pageChange(history.TYPE_REFUNDS)"
-                                            data-total-items="history.refundsPaginationOpts.totalItems"
-                                            data-items-per-page="history.refundsPaginationOpts.itemsPerPage"></pagination>    
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--If there are no refunds-->
-                <div ng-if="history.refunds.length <= 0" class="row">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
-                            <img src="css/img/student_dashboard_activities_empty.png"
-                                 alt="{{history.strings.LABEL_EMPTY_REIMBURSEMENT}}"/>
-                            <h3 class="separate-below separate-above montserrat-ultralight text-muted" ng-bind="::history.strings.LABEL_EMPTY_REFUND">
-                            </h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
+<div class="col-xs-12">
+  <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 tab-content">
+          <div class="card-body tab-content">
+              <div class="tab-pane active fade in" id="history-orders-tab">
+                  <!-- If there are orders-->
+                  <div ng-if="history.orders.length > 0">
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <div class="form-group search-input">
+                                  <div class="row">
+                                      <div class="col-xs-12">
+                                          <p class="control-label sr-only text-center pt-serif"
+                                            ng-bind="::history.strings.LABEL_SEARCH"></p>
+                                      </div>
+                                  </div>
+                                  <div class="input-group">
+                                      <input class="form-control floating-label" type="text"
+                                            ng-model="history.queries.refundQuery"
+                                            ng-change="history.updateByQuery(history.TYPE_REFUNDS)"
+                                            placeholder="{{history.strings.COPY_SEARCH}}">
+                                      <span class="input-group-addon">
+                                          <i class="mdi-action-search"></i>
+                                      </span>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--If there are orders-->
+                      <div class="row">
+                          <div class="col-xs-12">
+                              <div class="table-responsive table-fixed table-condensed">
+                                  <table class="table table-hover">
+                                      <tr class="text-center">
+                                          <th><strong ng-bind="::history.strings.HEADER_ORDER"></strong></th>
+                                          <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
+                                          <th><strong ng-bind="::history.strings.HEADER_REFUND_DATE"></strong></th>
+                                          <th><strong ng-bind="::history.strings.HEADER_REFUND_TOTAL"></strong></th>
+                                          <th><strong ng-bind="::history.strings.HEADER_ASSISTANT"></strong></th>
+                                          <th><strong ng-bind="::history.strings.HEADER_REFUND_STATUS"></strong></th>
+                                      </tr>
+                                      <tr ng-repeat="refund in history.refunds track by refund.id | filter:history.refundQuery">
+                                          <td>
+                                              <a ui-sref="student-dashboard.history.orders.order({'orderId': refund.order,
+                                              'previousState':{'state':'student-dashboard.history.refunds'}}) " ng-bind="refund.order"></a>
+                                          </td>
+                                          <td>
+                                              <span ng-bind="::(refund.activity.title | truncateText:true:35:'...')"></span>
+                                          </td>
+                                          <td>
+                                              <span class="text-capitalize" ng-bind="::refund.created_at | date:'EEEE d MMM y'"></span>
+                                          </td>
+                                          <td>
+                                              <span ng-bind="::(refund.amount | currency:$:0)"></span>
+                                          </td>
+                                          <td>
+                                              <span class="text-capitalize" ng-show="::refund.assistant" ng-bind="::(refund.assistant.full_name)"></span>
+                                              <span ng-show="::!refund.assistant" ng-bind="::history.strings.LABEL_EVERYBODY"></span>
+                                          </td>
+                                          <td>
+                                              <span class="sinkin-medium" ng-bind="::refund.status"></span>
+                                          </td>
+                                      </tr>
+                                  </table>
+                                  <div class="text-center" ng-if="history.refundsPaginationOpts.totalItems > history.refundsPaginationOpts.itemsPerPage">
+                                      <pagination class="pagination-sm"
+                                        ng-model="history.refundsPaginationOpts.pageNumber"
+                                        ng-change="history.pageChange(history.TYPE_REFUNDS)"
+                                        data-total-items="history.refundsPaginationOpts.totalItems"
+                                        data-items-per-page="history.refundsPaginationOpts.itemsPerPage"></pagination>    
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <!--If there are no refunds-->
+                  <div ng-if="history.refunds.length <= 0" class="row">
+                      <div class="row">
+                          <div class="col-xs-12 col-sm-10 col-sm-offset-1 text-center">
+                              <img src="css/img/student_dashboard_activities_empty.png"
+                                  alt="{{history.strings.LABEL_EMPTY_REIMBURSEMENT}}"/>
+                              <h3 class="separate-below separate-above montserrat-ultralight text-muted" ng-bind="::history.strings.LABEL_EMPTY_REFUND">
+                              </h3>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>

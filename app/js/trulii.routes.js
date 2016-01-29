@@ -30,14 +30,15 @@
 
         $stateProvider
             .state('search', {
-                url: '/search?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends',
+                url: '/search?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends&page&o',
                 controller:'SearchController as search',
                 templateUrl: 'partials/search.html',
                 resolve:{
                     'generalInfo':getPresaveActivityInfo
                 },
                 params: {
-                    'activities': []
+                    'activities': [],
+                    'page': '1'
                 }
             })
             .state('home',{

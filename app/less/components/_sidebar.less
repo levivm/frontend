@@ -228,8 +228,11 @@
 	& + *{
 		padding-left: @sidebar-width;
 		margin-left: 0;
-        .before-xs({ 
-            padding-left: 0; 
+        .before-md({ 
+          padding-left: 15px;
+          position: relative;
+          display: inline-block;
+          width: 100%;
         });
 	}
 
@@ -270,7 +273,7 @@
     }
 }
 .with-sidebar{
-    .col-xs-10;
+    .col-xs-12;
     padding-bottom: 80px;
 }
 @media print {

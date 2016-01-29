@@ -12,130 +12,106 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope','$filter', '$q', '$location','$anchorScroll', '$timeout', '$state', '$stateParams', 'generalInfo','ActivitiesManager', 'LocationManager', 'SearchManager',
-        'datepickerConfig', 'datepickerPopupConfig' ];
+    SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
+            , '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
+            , 'datepickerConfig', 'datepickerPopupConfig'];
 
-    function SearchController($rootScope, $scope, $filter, $q, $location,$anchorScroll, $timeout, $state, $stateParams, generalInfo, ActivitiesManager, LocationManager, SearchManager,
-          datepickerConfig, datepickerPopupConfig ) {
+    function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state, $stateParams
+            , generalInfo, ActivitiesManager, LocationManager, SearchManager
+            , datepickerConfig, datepickerPopupConfig) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        var transitionOptions = {location : true, inherit : false, reload : false};
         var unsuscribeSearchModified = null;
         var unsuscribeExitSearch = null;
-        var activities = [];
         var vm = this;
-        var ORDERING_BY_SCORE_KEY = 'score';
-        var ORDERING_BY_SOONEST_DATE_KEY  = 'calendar_soonest';
-        var ORDERING_BY_LOWEST_PRICE_KEY  = 'closest_calendar.session_price';
-        var ORDERING_BY_HIGHEST_PRICE_KEY = '-closest_calendar.session_price';
-        var ORDERING_BY_ASSISTANT_AMOUNT_KEY  = '-closest_calendar.assistants.length';
         angular.extend(vm, {
             activities : [],
-            levels: [],
+            levels : [],
             costs : [],
-            expandedCategory: null,
+            orderByPredicate: null,
+            expandedCategory : null,
             searchData : {},
-            searchQuery: null,
-            searchCategory: null,
-            searchSubCategory: null,
-            searchLevel: null,
-            searchDate: null,
-            searchStartCost: 50000,
-            searchEndCost: 250000,
-            withCert: false,
-            onWeekends: false,
-            categories: [],
+            searchQuery : null,
+            searchCategory : null,
+            searchSubCategory : null,
+            searchLevel : null,
+            searchDate : null,
+            searchStartCost : 50000,
+            searchEndCost : 250000,
+            withCert : false,
+            onWeekends : false,
+            categories : [],
             format : FORMATS[0],
             minStartDate : new Date(),
             dateOptions : {
-                formatYear: 'yyyy',
-                startingDay: 1
+                formatYear : 'yyyy',
+                startingDay : 1
             },
-            activitiesPaginationOpts: {
-                totalItems: 0,
-                itemsPerPage: 12,
-                pageNumber: 1,
-                maxPagesSize:10,
+            activitiesPaginationOpts : {
+                totalItems : 0,
+                itemsPerPage : 12,
+                pageNumber : 1,
+                maxPagesSize : 10
             },
-            opened: false,
-            sliderOptions: {
-                min: 30000,
-                max: 1000000,
-                step: 50000
+            opened : false,
+            sliderOptions : {
+                min : 30000,
+                max : 1000000,
+                step : 50000
             },
-            orderByOptions:[
-                {
-                    'predicate':ORDERING_BY_LOWEST_PRICE_KEY,
-                    'name':'Menor precio'
-                },
-                {
-                    'predicate':ORDERING_BY_HIGHEST_PRICE_KEY,
-                    'name':'Mayor precio'
-                },
-                {
-                    'predicate':ORDERING_BY_SCORE_KEY,
-                    'name':'Relevancia'
-                },
-                {
-                    'predicate':ORDERING_BY_SOONEST_DATE_KEY,
-                    'name':'Más próxima'
-                },
-                {
-                    'predicate':ORDERING_BY_ASSISTANT_AMOUNT_KEY,
-                    'name':'Asistentes'
-                }
-            ],
-            pageChange:pageChange,
-            getLevelClassStyle: getLevelClassStyle,
-            openDatePicker: openDatePicker,
-            expandCategory: expandCategory,
-            setCategory: setCategory,
-            setSubCategory: setSubCategory,
-            setLevel: setLevel,
-            setDate: setDate,
-            updateCost: updateCost,
-            stopDrag:stopDrag,
-            setCertification: setCertification,
-            setWeekends: setWeekends,
-            changeOrderBy:changeOrderBy
+            orderByOptions : SearchManager.orderingOptions,
+            getLevelClassStyle : getLevelClassStyle,
+            openDatePicker : openDatePicker,
+            expandCategory : _expandCategory,
+            setCategory : setCategory,
+            setSubCategory : setSubCategory,
+            setLevel : setLevel,
+            setDate : setDate,
+            updateCost : updateCost,
+            stopDrag : stopDrag,
+            setCertification : setCertification,
+            setWeekends : setWeekends,
+            pageChange : pageChange,
+            changeOrderBy : changeOrderBy,
+            toggleSidebar: toggleSidebar,
+            showSidebar: false
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
-        function openDatePicker($event){
+        
+        function toggleSidebar(){
+          vm.showSidebar = !vm.showSidebar; 
+        }
+        
+        function openDatePicker($event) {
             $event.preventDefault();
             $event.stopPropagation();
-
             vm.opened = true;
         }
 
-        function expandCategory(category){
-            vm.expandedCategory = vm.expandedCategory == category.id? null : category.id;
-        }
+        function setCategory(category, initializing) {
+            if (!category) { return; }
 
-        function setCategory(category, initializing){
-            if(!category){ return; }
-
-            if(vm.searchCategory === category.id || category===vm.strings.ACTION_ALL_FILTER){
+            if (vm.searchCategory === category.id || category === vm.strings.ACTION_ALL_FILTER) {
                 vm.searchCategory = null;
             } else {
                 vm.searchCategory = category.id;
             }
-            expandCategory(category);
+            _expandCategory(category);
             SearchManager.setCategory(vm.searchCategory);
 
-            if(!initializing){
+            if (!initializing){
                 vm.searchSubCategory = null;
                 SearchManager.setSubCategory(vm.searchSubCategory);
-                var data = SearchManager.getSearchData();
-                var transitionOptions = {location: true, inherit: false};
-                    $state.go('search', data, transitionOptions);
+                _search();
             }
         }
 
-        function setSubCategory(subcategory){
-            if(vm.searchSubCategory == subcategory.id){
+        function setSubCategory(subcategory) {
+            if (vm.searchSubCategory == subcategory.id) {
                 vm.searchSubCategory = null;
             } else {
                 vm.searchSubCategory = subcategory.id;
@@ -144,213 +120,203 @@
 
             SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
-            var transitionOptions = {location: true, inherit: false,reload:false};
-
-            $state.go('search', SearchManager.getSearchData(),transitionOptions);
+            _search();
         }
 
-        function setLevel(){
-            console.log('setLevel:', vm.searchLevel);
+        function setLevel() {
             SearchManager.setLevel(vm.searchLevel.code);
             _search();
         }
 
-        function setDate(){
-            console.log('setDate:', vm.searchDate.getTime());
+        function setDate() {
             SearchManager.setDate(vm.searchDate.getTime());
             _search();
         }
 
-        function updateCost(costStart, costEnd){
+        function updateCost(costStart, costEnd) {
             SearchManager.setCosts(costStart, costEnd);
         }
 
-        function stopDrag(){
+        function stopDrag() {
             _search();
         }
 
-        function setCertification(){
+        function setCertification() {
             vm.withCert = !vm.withCert;
-            console.log('setCert:', vm.withCert);
             SearchManager.setCertification(vm.withCert);
             _search();
         }
 
-        function setWeekends(){
+        function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
-            console.log('setWeekends:', vm.onWeekends);
             SearchManager.setWeekends(vm.onWeekends);
             _search();
         }
 
-        function pageChange(){
-            var offset = null;
-            var start = null;
-            var end = null;
-            offset = vm.activitiesPaginationOpts.itemsPerPage;
-            start = (vm.activitiesPaginationOpts.pageNumber -1) * offset;
-            end = vm.activitiesPaginationOpts.pageNumber * offset;
-            vm.activities = activities.slice(start, end);
-            console.log('activities:', vm.activities);
+        function pageChange() {
+            _setPage();
+            _search();
         }
 
-        function changeOrderBy(predicate){
-            console.log("predicado", predicate);
-            if (predicate === ORDERING_BY_SOONEST_DATE_KEY) {
-                //TODO Apagar el booleano que indica sentido inverso luego de pase de feature a backend
-                activities = $filter('orderBy')(activities, _orderBySoonestDate, true);
-            } else {
-                activities = $filter('orderBy')(activities, predicate);
-            }
+        function changeOrderBy(predicate) {
             vm.activitiesPaginationOpts.pageNumber = 1;
-            pageChange();
+            vm.searchData[SearchManager.KEY_ORDER] = predicate;
+            SearchManager.setOrder(predicate);
+            _setPage(1);
+            _search();
         }
 
         function getLevelClassStyle(level) {
-            return {
-                'btn-active' : vm.searchLevel? vm.searchLevel.code === level.code : false
-            };
+            return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
 
         //--------- Internal Functions ---------//
 
-        function _orderBySoonestDate(activity){
-            var today = Date.now();
-            console.log("activity.closest_calendar.initial_date < today", activity.closest_calendar.initial_date < today, activity.closest_calendar.initial_date);
-            if (activity.closest_calendar.initial_date < today){
-                return activity.closest_calendar.initial_date;
-            }
-            return -activity.closest_calendar.initial_date;
+        function _expandCategory(category) {
+            vm.expandedCategory = vm.expandedCategory == category.id ? null : category.id;
         }
 
-        function _getActivities(data){
-            return SearchManager.searchActivities(data).then(success, error);
+        function _setPage(page){
+            if(!page){ page = vm.activitiesPaginationOpts.pageNumber; }
 
-            function success(response){
-                activities = response.activities;
-                vm.activitiesPaginationOpts.totalItems = activities.length;
-                vm.activities = activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
-                console.log('activities from ActivitiesManager:', vm.activities);
+            SearchManager.setPage(page);
+            vm.searchData[SearchManager.KEY_PAGE] = page;
+        }
+
+        function _getActivities(searchData) {
+            return SearchManager.searchActivities(searchData).then(success, error);
+
+            function success(response) {
+                vm.activities = response.activities;
+                vm.activitiesPaginationOpts.totalItems = response.count;
+                //console.log('_getActivities:', vm.activities);
             }
-            function error(response){
-                console.log('getActivities. Error obtaining Activities from ActivitiesManager');
+
+            function error() {
+                console.log('_getActivities. Error obtaining Activities from ActivitiesManager');
             }
         }
 
-        function _getSearchParams(){
-            var deferred = $q.defer();
-            vm.searchData = SearchManager.getSearchData($stateParams);
-            vm.searchQuery = vm.searchData[SearchManager.KEY_QUERY];
-            console.log('searchQuery:', vm.searchQuery, vm.searchData);
+        function _getSearchParams() {
             var sm = SearchManager;
+            var deferred = $q.defer();
+            sm.setPageSize(vm.activitiesPaginationOpts.itemsPerPage);
+            vm.searchData = sm.getSearchData($stateParams);
+            vm.searchQuery = vm.searchData[sm.KEY_QUERY];
+            vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
 
-            if($stateParams.city){
+            if ($stateParams.city) {
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
                 LocationManager.setSearchCity(city);
             }
 
-            if(vm.searchData.hasOwnProperty(sm.KEY_DATE)){ vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]); }
-            if(vm.searchData.hasOwnProperty(sm.KEY_LEVEL)){_setLevel(vm.searchData[sm.KEY_LEVEL]);}
+            if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
+                vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]);
+            }
+            if (vm.searchData.hasOwnProperty(sm.KEY_LEVEL)) {
+                _setLevel(vm.searchData[sm.KEY_LEVEL]);
+            }
 
-            if(vm.searchData.hasOwnProperty(sm.KEY_COST_START)){ vm.searchStartCost = vm.searchData[sm.KEY_COST_START]; }
-            if(vm.searchData.hasOwnProperty(sm.KEY_COST_END)){ vm.searchEndCost = vm.searchData[sm.KEY_COST_END]; }
+            if (vm.searchData.hasOwnProperty(sm.KEY_COST_START)) {
+                vm.searchStartCost = vm.searchData[sm.KEY_COST_START];
+            }
+            if (vm.searchData.hasOwnProperty(sm.KEY_COST_END)) {
+                vm.searchEndCost = vm.searchData[sm.KEY_COST_END];
+            }
 
-            if(vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION]){
+            if (vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION]) {
                 vm.withCert = vm.searchData[sm.KEY_CERTIFICATION];
             }
-            if(vm.searchData.hasOwnProperty(sm.KEY_WEEKENDS) && vm.searchData[sm.KEY_WEEKENDS]){
+
+            if (vm.searchData.hasOwnProperty(sm.KEY_WEEKENDS) && vm.searchData[sm.KEY_WEEKENDS]) {
                 vm.onWeekends = vm.searchData[sm.KEY_WEEKENDS];
             }
 
-            if(vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)){
+            if (vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)) {
                 var category = vm.categories.filter(categoryFilter)[0];
-
-                if(category){
+                if (category) {
                     setCategory(category, true);
-                    if(category){
+                    if (category) {
                         vm.searchData["category_display"] = category.name;
-                        if(vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)){
+                        if (vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)) {
                             var subcategory = category.subcategories.filter(subCategoryFilter)[0];
-
                             vm.searchSubCategory = vm.searchData[sm.KEY_SUBCATEGORY];
                             SearchManager.setSubCategory(vm.searchSubCategory);
-                            if(subcategory){ vm.searchData["subcategory_display"] = subcategory.name; }
+                            if (subcategory) {
+                                vm.searchData["subcategory_display"] = subcategory.name;
+                            }
                         }
                     }
                 }
             }
 
             deferred.resolve();
-
             return deferred.promise;
 
+            function _setLevel(level) {
+                vm.searchLevel = {'code' : level};
+            }
 
-            function _setLevel(level){ vm.searchLevel = {'code':level};}
-            function categoryFilter(category){ return category.id === vm.searchData[sm.KEY_CATEGORY]; }
-            function subCategoryFilter(subcategory){ return subcategory.id === vm.searchData[sm.KEY_SUBCATEGORY]; }
+            function categoryFilter(category) {
+                return category.id === vm.searchData[sm.KEY_CATEGORY];
+            }
+
+            function subCategoryFilter(subcategory) {
+                return subcategory.id === vm.searchData[sm.KEY_SUBCATEGORY];
+            }
         }
 
-        function _setGeneralInfo(){
-
+        function _setGeneralInfo() {
             vm.levels = generalInfo.levels;
             vm.categories = generalInfo.categories;
-            angular.extend(vm.sliderOptions,generalInfo.price_range);
-            vm.searchEndCost= vm.sliderOptions.max;
-
-
+            angular.extend(vm.sliderOptions, generalInfo.price_range);
+            vm.searchEndCost = vm.sliderOptions.max;
         }
 
-        function _setWatches(){
-            $rootScope.$watch(watchStartCost , function(newValue){
+        function _setWatches() {
+            $rootScope.$watch(watchStartCost, function (newValue) {
                 SearchManager.setCosts(newValue, vm.searchEndCost);
             });
 
-            $rootScope.$watch(watchEndCost, function(newValue){
+            $rootScope.$watch(watchEndCost, function (newValue) {
                 SearchManager.setCosts(vm.searchStartCost, newValue);
             });
 
-            function watchStartCost(){
-                return vm.searchStartCost;
-            }
+            function watchStartCost() { return vm.searchStartCost; }
 
-            function watchEndCost(){
-                return vm.searchEndCost;
-            }
+            function watchEndCost() { return vm.searchEndCost; }
         }
 
-        function _scrollToCurrentCategory(){
-
+        function _scrollToCurrentCategory() {
             $location.hash(vm.searchData["category_display"]);
             $anchorScroll();
-
         }
 
-        function _search(){
+        function _search() {
             var searchData = SearchManager.getSearchData();
-            var transitionOptions = {location: true, inherit: false};
-            $state.go('search', searchData,transitionOptions);
+            $state.go('search', searchData, transitionOptions);
         }
 
-
-        function _setStrings(){
-            if(!vm.strings){ vm.strings = {}; }
+        function _setStrings() {
+            if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
-                ACTION_CLOSE: "Cerrar",
-                ACTION_ALL_FILTER: "Todas",
-                COPY_RESULTS: "resultados ",
-                COPY_FOR: "para ",
-                COPY_IN: "en",
-                OPTION_SELECT_LEVEL: "-- Nivel --",
-                PLACEHOLDER_DATE: "A Partir de",
-                COPY_INTERESTS: "¿Qué tema te interesa?",
-                LABEL_LEVEL: "Nivel",
-                LABEL_COST: "Precio",
-                LABEL_DATE: "Fecha",
-                LABEL_WITH_CERTIFICATE: "Con Certificado",
-                LABEL_WEEKENDS: "Fines de Semana",
-                LABEL_EMPTY_SEARCH:"Houston, tenemos un problema.",
-                COPY_EMPTY_SEARCH: "Puede que no tengamos lo que estés buscando."
-                    + " Por si acaso, te recomendamos intentarlo de nuevo."
+                ACTION_CLOSE : "Cerrar",
+                ACTION_ALL_FILTER : "Todas",
+                COPY_RESULTS : "resultados ",
+                COPY_FOR : "para ",
+                COPY_IN : "en",
+                OPTION_SELECT_LEVEL : "-- Nivel --",
+                PLACEHOLDER_DATE : "A Partir de",
+                COPY_INTERESTS : "¿Qué tema te interesa?",
+                LABEL_SORT_BY: "Ordenar por",
+                LABEL_LEVEL : "Nivel",
+                LABEL_COST : "Precio",
+                LABEL_DATE : "Fecha",
+                LABEL_WITH_CERTIFICATE : "Con Certificado",
+                LABEL_WEEKENDS : "Fines de Semana",
+                LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
+                COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
+                + " Por si acaso, te recomendamos intentarlo de nuevo."
             });
         }
 
@@ -359,37 +325,33 @@
             //unsuscribeExitSearch();
         }
 
-        function _activate(){
+        function _activate() {
             datepickerPopupConfig.showButtonBar = false;
             datepickerConfig.showWeeks = false;
             _setWatches();
-
             _setStrings();
             _setGeneralInfo();
             _getSearchParams();
 
-            _getActivities($stateParams).then(function(){
+            _getActivities($stateParams).then(function () {
                 _scrollToCurrentCategory();
-
             });
-            vm.orderByPredicate = 'closest_calendar.session_price';
-            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED
-                , function (event) {
+
+            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
                     console.log('searchBar. on' + SearchManager.EVENT_SEARCH_MODIFIED);
-                    _getSearchParams().then(function(){
+                    _getSearchParams().then(function () {
                         _getActivities($stateParams);
                     });
                 }
             );
 
-            unsuscribeExitSearch = $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState){
-                if(toState.name !== 'search'){
+            unsuscribeExitSearch = $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState) {
+                if (toState.name !== 'search') {
                     SearchManager.clearData();
                     unsuscribeExitSearch();
                 }
             });
             $scope.$on('$destroy', _cleanUp);
-
         }
     }
 })();

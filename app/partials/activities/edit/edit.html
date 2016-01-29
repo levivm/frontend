@@ -1,8 +1,9 @@
 <div class="container-fluid">
     <div class="row">
-        <nav class="sidebar" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
+        <nav class="sidebar lateral-slide" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
             <li ui-sref-active="active" ng-repeat="step in pc.steps track by step.name">
-                <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected" ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} ">
+                <a ui-sref="{{step.sref}}" class="sidebar__item" ui-sref-active="sidebar__item--selected" ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} "
+                ng-click="dash.toggleSidebar()">
                     <i class="{{::step.icon}} sidebar__item__icon"></i>
                     <span ng-bind="::step.title"></span>
                     <i class="mandatory-mark --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
@@ -85,7 +86,7 @@
               <h4 class="sub-title" ng-bind="pc.activity.title"></h4>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-xs-offset-1" ui-view></div>
+                <div class="col-xs-12 col-xs-offset-0 col-sm-offset-1" ui-view></div>
             </div>
         </div>
         <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': pc.scroll > 80}"

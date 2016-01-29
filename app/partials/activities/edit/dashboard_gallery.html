@@ -9,14 +9,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-10 col-xs-offset-1">
                 <div class="section-description">
                     <span ng-bind="::gallery.strings.COPY_COVER"></span>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-10 col-xs-offset-1">
                 <!--Cover Preview-->
                 <div class="img-dashed-frame">
                     <div class="img-cover-preview img-actionable"
@@ -41,6 +41,7 @@
                          ng-class="{'--unselected': cover !== gallery.selectedCover, '--small-less': !gallery.activityCover}"
                          ng-style="{'background-image': 'url({{cover.photo}})'}"
                          ng-click="gallery.setCoverPreview(cover)">
+                         <span ng-if="$first" class="glyphicon glyphicon-ok check-photo" aria-hidden="true"></span>
                     </div>
                 </div>
 
@@ -65,12 +66,12 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-10 col-xs-offset-1">
                 <div class="section-description" ng-bind="::gallery.strings.COPY_GALLERY"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-10 col-xs-offset-1">
                 <div class="gallery-grid--fixed">
                     <div class="gallery-grid__photo img-actionable img-actionable--small"
                          ng-repeat="picture in gallery.pictures track by picture.id"
@@ -113,7 +114,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-10 col-xs-offset-1">
                 <form name='vm.activity_gallery_form' ng-submit="gallery.updateActivity()">
                     <div class="section-description" ng-bind="::gallery.strings.COPY_VIDEO"></div>
                     <div class="form-group" trulii-input-errors-control="youtube_video_url">

@@ -52,6 +52,7 @@
             widgetMaxPosition: 0,
             widgetAbsolutePosition: 0,
             showEmail: false,
+            showSessions: false,
             hasMoreReviews: true,
             changeSelectedCalendar : changeSelectedCalendar,
             isSelectedCalendarFull : isSelectedCalendarFull,
@@ -61,6 +62,7 @@
             showMoreReviews: showMoreReviews,
             viewMoreCalendars: viewMoreCalendars,
             toggleEmailShow: toggleEmailShow,
+            toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm
         });
 
@@ -133,6 +135,10 @@
 
         function toggleEmailShow(){
           vm.showEmail = !vm.showEmail;
+        }
+        
+        function toggleSessions(){
+          vm.showSessions = !vm.showSessions;
         }
 
         function shareEmailForm(){
@@ -325,6 +331,7 @@
                 LABEL_GET_TO_KNOW_US: "Conócenos",
                 LABEL_CONTENT: "Contenido",
                 LABEL_AUDIENCE: "Dirigido a",
+                LABEL_ADDRESS: "Dirección",
                 LABEL_GOALS: "Objetivo",
                 LABEL_INSTRUCTORS: "Instructores",
                 LABEL_REQUIREMENTS: "Requisitos",

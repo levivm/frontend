@@ -37,7 +37,7 @@
     <div class="trulii-cover__content">
       <div class="col-xs-12">
         <div class="row">
-          <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2">
+          <div class="col-xs-12 col-md-8 col-md-offset-2">
             <h1 class="text-center  sub-title-light" ng-bind="enroll.strings.COPY_COVER"></h1>
             <h1 class="text-center title">
               <strong ng-bind="enroll.activity.title"></strong>
@@ -51,10 +51,11 @@
   </div>
 </div>
 
-<div class="row separate-above-medium">
-    <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1">
+<div class="col-xs-12">
+  <div class="row separate-above-medium">
+    <div class="col-xs-12 col-md-7 col-md-offset-1">
         <!--Info-->
-        <div class="row text-center separate-above-less">
+        <div class="row text-center separate-above-less separate-below">
             <div class="col-xs-12 text-uppercase">
                 <h4 class="text-spaced no-margin sinkin-medium">
                   <strong ng-bind="enroll.strings.COPY_STARTING_ON"></strong>
@@ -74,7 +75,7 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0 widget-container">
+    <div class="col-xs-12 col-md-3 col-md-offset-0 widget-container">
         <!--Organizer-->
         <div class="organizer-widget">
             <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
@@ -90,35 +91,38 @@
         </div>
     </div>
 </div>
-<div class="row separate-above-less">
-    <div class="col-xs-10 col-xs-offset-1 col-md-push-8 col-md-3 col-md-offset-0 widget-container">
+</div>
+
+<div class="col-xs-12">
+  <div class="row separate-above-less">
+    <div class="col-xs-12 col-md-push-8 col-md-3 col-md-offset-0 widget-container">
         <!--Billing-->
         <div ng-show="::enroll.showWidget" class="billing-widget separate-above" ng-class="{'fixed-widget': (enroll.scroll > enroll.widgetOriginalPosition) && (enroll.scroll < enroll.widgetMaxPosition), 'absolute-widget': enroll.scroll >= enroll.widgetMaxPosition}"
           ng-style="enroll.scroll >= enroll.widgetMaxPosition && {'top': enroll.widgetAbsolutePosition}">
             <div class="invoice">
                 <h4 class="text-uppercase" ng-bind="::enroll.strings.LABEL_INVOICE"></h4>
                 <div class="row seats separate-above separate-below-less">
-                    <div class="col-md-6 item">
+                    <div class="col-xs-12 col-md-6 item">
                         <span ng-bind="enroll.strings.LABEL_SEATS_X"></span><span ng-bind="enroll.assistants.length"></span>
                     </div>
-                    <div class="col-md-6 value">
+                    <div class="col-xs-12 col-md-6 value">
                         <span ng-bind="enroll.amount | currency"></span>
                     </div>
                 </div>
                 <div class="row separate-below-less" ng-repeat="assistant in enroll.assistants" ng-if="assistant.first_name">
-                    <div class="col-md-6 sub-item">
+                    <div class="col-xs-12 col-md-6 sub-item">
                         <span ng-bind="assistant.first_name"></span> <span ng-bind="assistant.last_name"></span>
                     </div>
-                    <div class="col-md-6 sub-value">
+                    <div class="col-xs-12 col-md-6 sub-value">
                         <span ng-bind="enroll.calendar.session_price | currency"></span>
                     </div>
                 </div>
                 <!--if Free-->
                 <div class="row separate-above" ng-if="enroll.calendar.is_free">
-                    <div class="col-md-6 item">
+                    <div class="col-xs-12 col-md-6 item">
                         <span ng-bind="::enroll.strings.LABEL_FREE_CALENDAR"></span>
                     </div>
-                    <div class="col-md-6 value">
+                    <div class="col-xs-12 col-md-6 value">
                         <span ng-bind="- enroll.calendar.session_price | currency"></span>
                     </div>
                 </div>
@@ -128,7 +132,7 @@
                     <div class="col-xs-12">
                         <div class="form-group form-classic">
                             <label for="inputCoupon" class="sr-only" ng-bind="::enroll.strings.LABEL_APPLY_COUPON"></label>
-                            <div class="col-md-12 no-padding">
+                            <div class="col-xs-12 no-padding">
                               <div class="input-group">
                                 <input type="text" class="form-control input-sm" id="inputCoupon"
                                        ng-model="enroll.coupon.code" placeholder="{{::enroll.strings.LABEL_APPLY_COUPON}}">
@@ -172,10 +176,10 @@
             </div>
         </div>
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-pull-3 col-md-7 col-md-offset-1">
+    <div class="col-xs-12 col-md-pull-3 col-md-7 col-md-offset-1">
         <!--Sessions-->
         <div class="row separate-above">
-            <div class="col-md-12">
+            <div class="col-xs-12">
                 <div class="panel sessions-panel">
                     <div class="panel-heading">
                         <h4>
@@ -187,7 +191,7 @@
                     </div>
                     <div class="panel-body">
                         <div class="row">
-                            <div class="col-md-4" ng-repeat="session in enroll.calendar.sessions">
+                            <div class="col-xs-12 col-md-4" ng-repeat="session in enroll.calendar.sessions">
                                 <div class="session">
                                     <div class="text-capitalize">
                                         <strong ng-bind="session.date | date:'EEEE'"></strong>
@@ -212,7 +216,7 @@
         <form class="form-horizontal" name="enroll.enrollForm" novalidate
               ng-show="!enroll.success">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-xs-12">
                     <div class="panel attendees-panel">
                         <div class="panel-heading">
                             <h4>
@@ -227,7 +231,7 @@
                             <h5 class="standout-text" ng-bind="enroll.strings.COPY_ASSISTANTS"></h5>
                             <fieldset>
                                 <div class="row">
-                                    <div class="col-md-6"  ng-repeat="assistant in enroll.assistants" ng-form="enroll.assistantForm{{$index}}">
+                                    <div class="col-xs-12 col-md-6"  ng-repeat="assistant in enroll.assistants" ng-form="enroll.assistantForm{{$index}}">
                                         <div class="card"  ng-init="enroll.setForm(enroll['assistantForm'+$index]);" id="assistant_card_{{$index}}">
                                             <div class="row separate-above">
                                                 <div class="col-xs-10 col-xs-offset-1">
@@ -258,7 +262,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6" >
+                                    <div class=" col-xs-12 col-md-6">
                                         <!--TODO set height in a better way-->
                                         <div class="card card-list-item card-list-item--empty card-list-item--instructor" style="height: 29em;">
                                             <div>
@@ -306,7 +310,7 @@
                                     <div class="row">
                                         <div class="col-xs-8 col-xs-offset-2">
                                             <div class="row">
-                                                <div class="col-md-12 text-center separate-above separate-below">
+                                                <div class="col-xs-12 text-center separate-above separate-below">
                                                     <img src="css/img/activity-enroll/card_mastercard.png" alt="Mastercard"/>
                                                     <img src="css/img/activity-enroll/card_visa.png" alt="Visa"/>
                                                     <img src="css/img/activity-enroll/card_amex.png" alt="American Express"/>
@@ -315,7 +319,7 @@
                                                 </div>
                                             </div>
                                             <div class="row separate-above">
-                                                <div class="col-md-12">
+                                                <div class="col-xs-12">
                                                     <div class="form-group" trulii-input-errors-control="cardHolder">
                                                         <label for="cardHolder" ng-bind="::enroll.strings.LABEL_CARD_HOLDER"></label>
                                                         <input type="text" name="cardHolder"class="form-control" id="cardHolder"
@@ -324,7 +328,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-9 separate-above-medium">
+                                                <div class="col-xs-12 col-md-9 separate-above-medium">
                                                     <div class="form-group" trulii-input-errors-control="cardNumber">
                                                         <label for="cardNumber" ng-bind="::enroll.strings.LABEL_CARD_NUMBER"></label>
                                                         <input type="text" class="form-control" name="cardNumber" id="cardNumber"
@@ -336,7 +340,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 separate-above-medium text-center">
+                                                <div class="col-xs-12 col-md-3 separate-above-medium text-center">
                                                     <div class="form-group" trulii-input-errors-control="cardMethod">
                                                         <span class="form-control-static"
                                                               ng-show="enroll.cardData.method"
@@ -349,14 +353,14 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-xs-12">
                                                     <div class="form-group">
                                                         <label ng-bind="::enroll.strings.LABEL_EXPIRY_DATE"></label>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-3">
+                                                <div class="col-xs-12 col-md-3">
                                                     <div class="form-group" trulii-input-errors-control="cardMonth">
                                                         <label for="cardMonth" ng-bind="::enroll.strings.LABEL_MONTH"></label>
                                                         <input type="number" name="cardMonth" min=1 max=12 class="form-control" id="cardMonth"
@@ -365,7 +369,7 @@
                                                                placeholder="{{::enroll.strings.PLACEHOLDER_MONTH}}">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3 col-md-offset-1">
+                                                <div class="col-xs-12 col-md-3 col-md-offset-1">
                                                     <div class="form-group" trulii-input-errors-control="cardYear">
                                                         <label for="cardYear" ng-bind="::enroll.strings.LABEL_YEAR"></label>
                                                         <input type="number" name="cardYear" class="form-control" id="cardYear"
@@ -374,7 +378,7 @@
                                                                placeholder="{{::enroll.strings.PLACEHOLDER_YEAR}}">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-3  col-md-offset-1">
+                                                <div class="col-xs-12 col-md-3  col-md-offset-1">
                                                     <div class="form-group">
                                                         <label for="cardCvv" ng-bind="::enroll.strings.LABEL_CVV"></label>
                                                         <input type="text" class="form-control" id="cardCvv"
@@ -383,7 +387,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-12">
+                                                <div class="col-xs-12">
                                                     <div class="form-group" trulii-input-errors-control="invalidExpiry">
                                                         <input type="hidden" ng-model="enroll.cardData.invalidExpiry" class="form-control" name="invalidExpiry"/>
                                                     </div>
@@ -398,7 +402,7 @@
                                         <trulii-preloader loader-control="enroll.loading_banks_list"></trulii-preloader>
                                         <div class="col-xs-8 col-xs-offset-2 separate-above" ng-show="!enroll.loading_banks_list" >
                                             <div class="row">
-                                                <div class="col-md-5">
+                                                <div class="col-xs-12 col-md-5">
                                                     <div class="form-group" trulii-input-errors-control="bank">
                                                         <label for="bank" ng-bind="::enroll.strings.LABEL_BANK"></label>
                                                         <select  class="form-control input-md" name="bank" id="bank"
@@ -411,7 +415,7 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4 col-md-offset-2">
+                                                <div class="col-xs-12 col-md-4 col-md-offset-2">
                                                     <div class="form-group" trulii-input-errors-control="userType">
                                                         <label for="userType" ng-bind="::enroll.strings.LABEL_USER_TYPE"></label>
                                                         <select  class="form-control input-md" name="userType" id="userType"
@@ -425,14 +429,14 @@
                                                 </div>
                                             </div>
                                             <div class="row separate-above">
-                                                <div class="col-md-6">
+                                                <div class="col-xs-12 col-md-6">
                                                     <div class="form-group" trulii-input-errors-control="idNumber">
                                                         <label for="idNumber" ng-bind="::enroll.strings.LABEL_ID_NUMBER"></label>
                                                         <input type="text" name="idNumber" id="idNumber" class="form-control"
                                                                ng-model="enroll.pseData.idNumber">
                                                     </div>
                                                 </div>
-                                                <div class="col-md-5 col-md-offset-1">
+                                                <div class="col-xs-12 col-md-5 col-md-offset-1">
                                                     <div class="form-group" trulii-input-errors-control="contactPhone">
                                                         <label for="contactPhone" ng-bind="::enroll.strings.LABEL_PHONE_NUMBER"></label>
                                                         <input type="text" name="contactPhone" id="contactPhone" class="form-control"
@@ -441,7 +445,7 @@
                                                 </div>
                                             </div>
                                             <div class="row separate-above">
-                                                <div class="col-md-12">
+                                                <div class="col-xs-12">
                                                     <div class="form-group" trulii-input-errors-control="name">
                                                         <label for="name" ng-bind="::enroll.strings.LABEL_CARD_HOLDER"></label>
                                                         <input type="text" name="name" id="name" class="form-control"
@@ -459,14 +463,14 @@
                         </div>
                         <div class="panel-footer">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-xs-12">
                                     <div class="form-group" trulii-input-errors-control="generalError">
                                         <input type="hidden" ng-model="enroll.pseData.generalError" name="generalError"/>
                                     </div>
                                 </div>
                             </div>
                             <div class="row" ng-show="enroll.calendar.is_free">
-                                <div class="col-md-12 separate-below">
+                                <div class="col-xs-12 separate-below">
                                     <h2 class="text-muted sinkin-bold" ng-bind="::enroll.strings.COPY_FREE_CALENDAR_1"></h3>
                                     <h4 class="text-muted montserrat-light" ng-bind="::enroll.strings.COPY_FREE_CALENDAR_2"></h4>
                                 </div>
@@ -511,14 +515,17 @@
     </div>
 
 </div>
-<div class="row navigation-container img-carpet">
-    <div class="col-md-6">
+</div>
+<div class="col-xs-12">
+  <div class="row navigation-container img-carpet">
+    <div class="col-xs-12 col-md-6">
         <a class="btn btn-link" ui-sref="activities-detail({activity_id: enroll.activity.id})">
             <img src="css/img/activity-enroll/navigation_back.png" alt="{{ ::enroll.strings.ACTION_GO_BACK }}"
                  class="img-responsive inline-block"/>
             <span ng-bind="::enroll.strings.ACTION_GO_BACK"></span>
         </a>
     </div>
+  </div>
 </div>
 <trulii-footer>
 </trulii-footer>

@@ -1,30 +1,33 @@
 <div class="container-fluid">
     <div class="row test-class">
-        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80}">
+        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80, 'hidden-xs': !dash.showSidebar, 'hidden-sm': !dash.showSidebar}" >
             <a ui-sref=".activities.open"
                class="sidebar__item"
-               ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.activities.*')}">
+               ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.activities.*')}"
+               ng-click="dash.toggleSidebar()">
                 <i class="sidebar__item__icon mdi-social-school"></i>
                 <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
             </a>
             <a ui-sref=".account.password" class="sidebar__item"
-               ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account.*')}">
+               ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account.*')}"
+               ng-click="dash.toggleSidebar()">
                 <i class="sidebar__item__icon mdi-action-settings"></i>
                 <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
             </a>
-            <a ui-sref=".profile" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+            <a ui-sref=".profile" class="sidebar__item" ui-sref-active="sidebar__item--selected"
+              ng-click="dash.toggleSidebar()">
                 <i class="sidebar__item__icon mdi-action-account-circle"></i>
                 <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
             </a>
-            <a ui-sref=".history.orders" class="sidebar__item" ui-sref-active="sidebar__item--selected">
+            <a ui-sref=".history.orders" class="sidebar__item" ui-sref-active="sidebar__item--selected"
+              ng-click="dash.toggleSidebar()">
                 <i class="sidebar__item__icon mdi-maps-local-atm"></i>
                 <span ng-bind="::dash.strings.SECTION_HISTORY"></span>
             </a>
         </div>
-        <div>
+        <div class="col-xs-12 col-md-11">
           <div ui-view>
           </div>
-          <trulii-dashboard-footer></trulii-dashboard-footer>
         </div>
         <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': dash.scroll > 80}"
             ng-click="dash.toggleSidebar()">

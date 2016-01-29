@@ -126,7 +126,6 @@
             match_required_steps(pc.steps, pc.activity.required_steps);
 
             function match_required_steps(steps, required_steps){
-
                 _.each(steps, function(step){
 
                     if ( required_steps[step.name] !== undefined ){
