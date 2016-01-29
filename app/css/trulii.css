@@ -17008,9 +17008,6 @@ ul.dropdown-menu:after {
 .category-card:hover .category-card__veil {
   opacity: 0.6;
 }
-.category-card:hover .category-card__title {
-  font-size: 2.5em;
-}
 .toast-title {
   font-weight: bold;
 }
