@@ -166,8 +166,8 @@
       </div>
       <div class="category-card-container">
         <div class="row">
-          <div class="col-xs-12 " ng-class="home.organizerCategories($index)" ng-repeat="category in home.categories track by category.id">
-            <a ui-sref="search({category:category.id})" class="category-card " ng-class="{'category-card-lg':  home.organizerCategories($index) === 'col-md-6','category-card-lg.before-xs': home.organizerCategories($index) === 'col-md-4' }">
+          <div class="col-xs-12 " ng-class="::home.organizerCategories($index)" ng-repeat="category in home.categories track by category.id">
+            <a ui-sref="search({category:category.id})" class="category-card " ng-class="::{'category-card-lg':  home.organizerCategories($index) === 'col-md-6','category-card-lg.before-xs': home.organizerCategories($index) === 'col-md-4' }">
               <div class="category-card__veil"></div>
               <div class="category-card__background" ng-style="{'background-image': 'url(' + category.cover + ')'}"></div>
               <h2 class="category-card__title" ng-bind="::category.name"></h2>

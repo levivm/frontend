@@ -62,30 +62,7 @@
         }
 
         function organizerCategories(index){
-            switch (index) {
-                case 0:
-                case 1:
-                    return 'col-md-6';
-                    break;
-                case 2:
-                case 3:
-                case 4:
-                case 6:
-                case 7:
-                case 8:
-                case 9:
-                    return 'col-md-4';
-                    break;
-                case 5:
-                    return 'col-md-8';
-                    break;
-
-                default:
-                    return 'col-md-6';
-
-
-            }
-
+            return index < 2 ? 'col-md-6' :  index === 5 ?  'col-md-8': 'col-md-4';
         }
         // --------- Internal Functions ---------//
 

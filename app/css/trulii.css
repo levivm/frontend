@@ -17519,6 +17519,7 @@ button.toast-close-button {
   margin-top: 1em;
   margin-bottom: 1.5em;
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 200;
 }
 @media screen and (max-width: 768px) {
   .trulii-cover__content p,
