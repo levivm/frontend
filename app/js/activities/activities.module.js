@@ -180,7 +180,7 @@
                 }
             })
             .state('activities-detail', {
-                url:'/activities/{activity_id:int}/',
+                url:'/activities/{activity_id:int}',
                 views:{
                     '@': {
                         controller: 'ActivityDetailController as detail',

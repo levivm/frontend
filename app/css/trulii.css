@@ -13889,6 +13889,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 1em 0;
   transition: all 0.25s;
 }
+.navbar__left-wrapper .buttons-login {
+  line-height: 3.6em;
+}
+.navbar__left-wrapper .buttons-login > a {
+  color: #535353;
+  text-decoration: none;
+}
 .navbar__left-wrapper.long {
   width: 72%;
 }

@@ -27,14 +27,14 @@
     width: 100vw;
     padding-right: 15px;
     transition: @transition-navbar;
-    
+
     .before-md({
-      height: @navbar-short-height;  
+      height: @navbar-short-height;
       min-height: @navbar-short-height;
       max-height: @navbar-short-height;
     });
-    
-    
+
+
     .btn {
         line-height: @navbar-height / 3;
     }
@@ -71,7 +71,7 @@
         .--on-dash & {
             width: @sidebar-width - 1.1;
         }
-        .before-md({ 
+        .before-md({
             height: @navbar-short-height - 1 !important;
             width: 125px;
             background-color:white;
@@ -86,7 +86,7 @@
         background-size: contain;
         margin: 5px auto 0;
         transition: @transition-navbar;
-        .before-md({ 
+        .before-md({
             width: 7em;
             background-size: contain;
             position: relative;
@@ -95,7 +95,7 @@
             height: @navbar-short-inner-height;
         });
     }
-    
+
     &__mobile-dashboard-controllers{
         width: calc(100% - 154px);
     }
@@ -112,12 +112,19 @@
             padding: 1em 0;
             transition: @transition-navbar;
         }
+        .buttons-login{
+            line-height: 3.6em;
+            > a{
+                color: @gray;
+                text-decoration: none;
+            }
+        }
 
         &.long{
             width: 72%;
         }
-        
-        .before-md({ 
+
+        .before-md({
             display: none;
         });
     }
@@ -133,7 +140,7 @@
         font-size: 0.9em;
         margin-right: 10px;
 
-        .before-md({ 
+        .before-md({
             max-width: 150px;
             display: inline-block;
             margin-right: 0;
@@ -164,7 +171,7 @@
           height: @navbar-short-height;
           line-height: @navbar-short-height - (@navbar-padding-vertical*2);
         });
-        
+
         &:active, &.open {
             color: white;
             background-color: @success !important;
@@ -175,11 +182,11 @@
             border-left: 1px solid @color-delimeter-dark;
             text-align: left;
             cursor: pointer;
-            
+
             &:hover{
                 text-decoration: none;
             }
-            
+
             .user-picture{
                 .img-responsive;
                 .img-circle;
@@ -279,7 +286,7 @@
     padding: 0 1em;
     padding-right: @sidebar-width;
     transition: @transition-navbar;
-    
+
     .before-md({
       top: @navbar-short-height;
       padding-right: 0;
@@ -333,7 +340,7 @@
 
     & + * {
         margin-top: @navbar-secondary-height*1.5;
-        
+
         .before-md({
           margin-top: @navbar-secondary-height;
           min-height: ~"calc(100vh - 121px)";
