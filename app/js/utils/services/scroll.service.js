@@ -8,16 +8,13 @@
     Scroll.$inject = ['$window', '$rootScope'];
 
     function Scroll($window, $rootScope) {
-
         var scroll = 0;
 
-        angular.element(document).ready(function () {
-            scroll = window.scrollY;
-            $window.onscroll = function(){
-                scroll = window.scrollY;
-                $rootScope.$broadcast('scrolled', scroll);
-            };
+        angular.element($window).bind('scroll ', function () {
+          scroll = window.scrollY;
+          $rootScope.$broadcast('scrolled', scroll);
         });
+        
 
         return scroll;
 

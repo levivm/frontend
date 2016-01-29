@@ -192,7 +192,7 @@
                     _activate();
                 });
                 scope.$watch('review', function(){
-                    console.log('review directive review:', scope.review);
+                    // console.log('review directive review:', scope.review);
                     _activate();
                 });
             }
