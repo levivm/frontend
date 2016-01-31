@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$window', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'Scroll'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, $window, UIComponentsTemplatesPath, Authentication, defaultPicture, Scroll) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -28,6 +28,7 @@
                     isSearchVisible : true,
                     showBurger : false,
                     toggleBurger: toggleBurger,
+                    explore: explore,
                     scroll: 0
                 });
 
@@ -37,6 +38,10 @@
 
                 function toggleBurger(){
                   scope.showBurger = !scope.showBurger;
+                }
+
+                function explore(){
+                    $rootScope.$broadcast(SearchManager.EVENT_EXPLORE);
                 }
 
                 //--------- Internal Functions ---------//
@@ -63,7 +68,7 @@
                     }
 
                     function error() {
-                        console.log('navbar response reject');
+                        console.error("navbar.getUser. Couldn't get user");
                         scope.user = null;
                         _setUserChangedWatch();
                     }
@@ -92,9 +97,7 @@
                 }
 
                 function _setStrings() {
-                    if (!scope.strings) {
-                        scope.strings = {};
-                    }
+                    if (!scope.strings) { scope.strings = {}; }
 
                     angular.extend(scope.strings, {
                         ACTION_LOGIN: 'Iniciar Sesión',
@@ -102,6 +105,7 @@
                         ACTION_CREATE: 'Crear Actividad',
                         ACTION_CLOSE: "Cerrar",
                         ACTION_EXIT: "Salir",
+                        ACTION_EXPLORE: "Explorar",
                         COPY_BECOME_ORGANIZER: '¿Quieres ser Organizador?',
                         COPY_INVITE_FRIEND: 'Invita a un amigo',
                         LABEL_BLOG: 'Blog',
@@ -162,6 +166,8 @@
 
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
+                        scope.isExplore= !(toState.name == 'home');
+                        console.log(scope.isExplore);
                         scope.isSearchVisible = !(toState.name == 'home' || toState.name == 'not-found' || $state.includes('dash'));
                     });
 
@@ -170,12 +176,9 @@
                         _getUser();
                     });
 
-
                     scope.$on('$destroy', _cleanUp);
-
                 }
             }
         }
     }
-
 })();

@@ -1,3 +1,6 @@
+# Gulp build temp folder
+/temp
+
 # serverConf
 app/js/trulii.serverConf.js
 

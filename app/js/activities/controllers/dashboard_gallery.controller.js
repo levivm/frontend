@@ -186,6 +186,7 @@
             _getSubcategoryCoverPool().then(success);
 
             function success(){
+                console.log(vm.activityCover);
                 if(vm.activityCover){
                     vm.covers.unshift(vm.activityCover);
                     vm.selectedCover = vm.activityCover;
@@ -250,7 +251,6 @@
             vm.isLoadingGalleryPicture = false;
             vm.isLoadingCover = false;
             vm.isSaving = false;
-
             Elevator.toTop();
         }
     }

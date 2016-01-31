@@ -1,74 +1,82 @@
-
 <div class="row">
-    <div class="col-md-12">
+  <div class="col-xs-10 col-xs-offset-1">
+    <div class="row">
+      <div class="col-xs-12">
         <div class="form-group">
-            <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
-
-            <div class="input-group">
-                <input class="form-control floating-label" type="text"
-                       ng-model="transactions.queries.saleQuery"
-                       ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
-                       placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}">
-                                        <span class="input-group-addon">
-                                             <i class="mdi-action-search"></i>
-                                        </span>
-            </div>
+          <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
+          <div class="input-group">
+            <input class="form-control floating-label" type="text"
+              ng-model="transactions.queries.saleQuery"
+              ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
+              placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}">
+              <span class="input-group-addon">
+                <i class="mdi-action-search"></i>
+              </span>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-md-12">
+    <div class="row">
+      <div class="col-xs-12">
         <div ng-if="transactions.sales.length > 0" class="table-responsive">
-            <table class="table table-hover">
-                <tr class="text-center">
-                    <th ng-bind="::transactions.strings.LABEL_ORDER"></th>
-                    <th ng-bind="::transactions.strings.LABEL_ACTIVITY"></th>
-                    <th ng-bind="::transactions.strings.LABEL_DATE"></th>
-                    <th>
-                        <span ng-bind="::transactions.strings.LABEL_TOTAL"></span>
-                        <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="left"  tooltip="{{::transactions.strings.COPY_TOTAL_SALES_TOOLTIP}}"></i>
-                    </th>
-                    <th>
-                        <span ng-bind="::transactions.strings.LABEL_FINAL_TOTAL"></span>
-                        <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="left" tooltip="{{::transactions.strings.COPY_FINAL_TOTAL_SALES_TOOLTIP}}"></i>
-                    </th>
-                </tr>
-                <tr ng-repeat="order in transactions.sales track by order.id | filter:transactions.queries.saleQuery">
-                    <td>
-                        <a ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity_id,'orderId': order.id,
-                                            'previousState':{'state':'organizer-dashboard.transactions.sales'} })" ng-bind="order.id"></a>
-                    </td>
-                    <td>
-                        <span ng-bind="::(order.activity.name | truncateText:true:35:'...')"></span>
-                        <br/>
-                        <strong ng-bind="::transactions.strings.COPY_START_DATE"></strong> <span class="text-capitalize" ng-bind="::order.calendar_initial_date | date:'EEEE d MMM y'"></span>
-                    </td>
-                    <td>
-                        <span class="text-capitalize" ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
-                    </td>
-                    <td>
-                        <span ng-bind="::(order.amount | currency:$:0)"></span>
-                    </td>
-                    <td>
-                        <span ng-bind="::(order.amount - order.amount*order.fee | currency:$:0)"></span>
-                    </td>
-                </tr>
-            </table>
-            <div class="text-center" ng-if="transactions.salesPaginationOpts.totalItems > transactions.salesPaginationOpts.itemsPerPage">
-                <pagination class="pagination-sm"
-                        ng-model="transactions.salesPaginationOpts.pageNumber"
-                        ng-change="transactions.pageChange(transactions.TYPE_SALES)"
-                        data-total-items="transactions.salesPaginationOpts.totalItems"
-                        data-items-per-page="transactions.salesPaginationOpts.itemsPerPage"
-                        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
-                        max-size="transactions.salesPaginationOpts.maxPagesSize"
-                        ></pagination>
-            </div>
+          <table class="table table-hover">
+            <tr class="text-center">
+              <th ng-bind="::transactions.strings.LABEL_ORDER"></th>
+              <th ng-bind="::transactions.strings.LABEL_ACTIVITY"></th>
+              <th ng-bind="::transactions.strings.LABEL_DATE"></th>
+              <th>
+                <span ng-bind="::transactions.strings.LABEL_TOTAL"></span>
+                <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="left"  tooltip="{{::transactions.strings.COPY_TOTAL_SALES_TOOLTIP}}"></i>
+              </th>
+              <th>
+                <span ng-bind="::transactions.strings.LABEL_FINAL_TOTAL"></span>
+                <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="left" tooltip="{{::transactions.strings.COPY_FINAL_TOTAL_SALES_TOOLTIP}}"></i>
+              </th>
+              <th></th>
+            </tr>
+            <tr ng-repeat="order in transactions.sales track by order.id | filter:transactions.queries.saleQuery">
+              <td>
+                <strong><span>#</span><span ng-bind="::order.id"></span></strong>
+              </td>
+              <td>
+                <span ng-bind="::(order.activity.name | truncateText:true:35:'...')"></span>
+                <br/>
+                <strong ng-bind="::transactions.strings.COPY_START_DATE"></strong> <span class="text-capitalize" ng-bind="::order.calendar_initial_date | date:'EEEE d MMM y'"></span>
+              </td>
+              <td>
+                <span class="text-capitalize" ng-bind="::order.created_at | date:'EEEE d MMM y'"></span>
+              </td>
+              <td>
+                <span ng-bind="::(order.amount | currency:$:0)"></span>
+              </td>
+              <td>
+                <span ng-bind="::(order.amount - order.amount*order.fee | currency:$:0)"></span>
+              </td>
+              <td class="column-button">
+                <a  ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity_id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">
+                  <button class="btn btn-default" ng-bind="::transactions.strings.ACTION_VIEW_DETAIL">
+                  </button>
+                </a>
+              </td>
+            </tr>
+          </table>
+          <div class="text-center" ng-if="transactions.salesPaginationOpts.totalItems > transactions.salesPaginationOpts.itemsPerPage">
+            <pagination class="pagination-sm"
+              ng-model="transactions.salesPaginationOpts.pageNumber"
+              ng-change="transactions.pageChange(transactions.TYPE_SALES)"
+              data-total-items="transactions.salesPaginationOpts.totalItems"
+              data-items-per-page="transactions.salesPaginationOpts.itemsPerPage"
+              previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
+              max-size="transactions.salesPaginationOpts.maxPagesSize"
+              ></pagination>
+          </div>
         </div>
         <!--If there are no Sales-->
         <div ng-if="transactions.sales.length <= 0">
-            <h4 ng-bind="::transactions.strings.LABEL_NO_ORDERS"></h4>
-            <span ng-show="transactions.salesPaginationOpts.totalItems > 0" ng-bind="::transactions.strings.COPY_NO_ORDERS"></span>
+          <h4 ng-bind="::transactions.strings.LABEL_NO_ORDERS"></h4>
+          <span ng-show="transactions.salesPaginationOpts.totalItems > 0" ng-bind="::transactions.strings.COPY_NO_ORDERS"></span>
         </div>
+      </div>
     </div>
+  </div>
 </div>

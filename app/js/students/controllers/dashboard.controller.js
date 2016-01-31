@@ -20,7 +20,9 @@
         angular.extend(vm, {
             changeState : _changeState,
             isActive : isActive,
-            scroll: 0
+            scroll: 0,
+            showSidebar: false,
+            toggleSidebar: toggleSidebar
         });
 
         _activate();
@@ -36,7 +38,13 @@
         function _changeState(newState) {
             $state.go(newState);
         }
-
+        
+        function toggleSidebar(){
+            console.log("???");
+            console.log(vm.showSidebar);
+            vm.showSidebar = !vm.showSidebar;
+        }
+        
         function setStrings() {
             if (!vm.strings) {
                 vm.strings = {};

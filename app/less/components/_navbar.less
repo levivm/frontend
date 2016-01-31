@@ -27,11 +27,21 @@
     width: 100vw;
     padding-right: 15px;
     transition: @transition-navbar;
-
+    
+    .before-sm({
+      height: @navbar-short-height;
+      min-height: @navbar-short-height;
+      max-height: @navbar-short-height;
+    });
+    
+    
     .btn {
         line-height: @navbar-height / 3;
     }
-
+    &__button-all{
+        display: inline-block;
+        vertical-align: top;
+    }
     &__link {
         line-height: @search-box-element-height;
         display: inline-block;
@@ -55,13 +65,17 @@
         height: @navbar-height;
         width: @sidebar-width + 1.1;
         display: inline-block;
-        float: left;
         text-align: center;
         transition: @transition-navbar;
 
         .--on-dash & {
-            width: @sidebar-width + 1.1;
+            width: @sidebar-width - 1.1;
         }
+        .before-sm({ 
+            height: @navbar-short-height - 1 !important;
+            width: 125px;
+            background-color:white;
+        });
     }
 
     &__logo {
@@ -72,8 +86,18 @@
         background-size: contain;
         margin: 5px auto 0;
         transition: @transition-navbar;
-
-        .before-xs({ background: url(@res-trulii-logo-tiny) no-repeat center; width: 30px; background-size: contain; position: relative; });
+        .before-sm({ 
+            width: 7em;
+            background-size: contain;
+            position: relative;
+            background-image: url('img/logo-yellow.png');
+            margin: 7px auto 0 !important;
+            height: @navbar-short-inner-height;
+        });
+    }
+    
+    &__mobile-dashboard-controllers{
+        width: calc(100% - 154px);
     }
 
     &__left-wrapper {
@@ -92,6 +116,10 @@
         &.long{
             width: 72%;
         }
+        
+        .before-sm({ 
+            display: none;
+        });
     }
 
     &__right-wrapper {
@@ -105,7 +133,12 @@
         font-size: 0.9em;
         margin-right: 10px;
 
-        .before-xs({ display: inline-block; });
+        .before-sm({ 
+            max-width: 150px;
+            display: inline-block;
+            margin-right: 0;
+            height: @navbar-short-height;
+        });
 
         .btn {
             margin: (@navbar-padding-vertical+2) 1em;
@@ -126,6 +159,12 @@
         text-transform: uppercase;
         line-height: @navbar-height - (@navbar-padding-vertical*2);
 
+        .before-sm({
+          padding: 0;
+          height: @navbar-short-height;
+          line-height: @navbar-short-height - (@navbar-padding-vertical*2);
+        });
+        
         &:active, &.open {
             color: white;
             background-color: @success !important;
@@ -133,12 +172,14 @@
 
         &--right {
             text-decoration: none;
-            &:hover{
-                text-decoration: none;
-            }
             border-left: 1px solid @color-delimeter-dark;
             text-align: left;
             cursor: pointer;
+            
+            &:hover{
+                text-decoration: none;
+            }
+            
             .user-picture{
                 .img-responsive;
                 .img-circle;
@@ -146,6 +187,9 @@
                 width: 5em;
                 height: 5em;
                 display: inline-block;
+                .before-sm({
+                  margin-right: -15px;
+                });
             }
             .menu-icon{
                 .img-responsive;
@@ -200,6 +244,9 @@
           padding: 0px 1em;
           height: @navbar-short-height;
           line-height: @navbar-short-height - (@navbar-padding-vertical*2);
+          .before-sm({
+            padding: 0;
+          });
         }
       }
       .search-bar__navbar{
@@ -232,7 +279,11 @@
     padding: 0 1em;
     padding-right: @sidebar-width;
     transition: @transition-navbar;
-
+    
+    .before-sm({
+      top: @navbar-short-height;
+      padding-right: 0;
+    });
     &.navbar-secondary-short{
       top: @navbar-short-height;
     }
@@ -281,6 +332,10 @@
 
     & + * {
         margin-top: @navbar-secondary-height*1.5;
+        
+        .before-sm({
+          margin-top: @navbar-secondary-height;
+        });
     }
     .btn{
         border: none;
@@ -297,6 +352,9 @@
 .with-navbar {
     margin-top: @navbar-height;
     padding-top: @navbar-margin-bottom;
+    .before-sm({
+      margin-top: @navbar-short-height;
+    });
 }
 
 .burger-menu{
@@ -446,6 +504,8 @@
     }
     &__user-links{
       max-height: none;
+      padding: 5vh 1em 0 1em;
+      min-height: auto;
     }
     &__links{
       padding-top: 0;

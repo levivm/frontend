@@ -29,6 +29,9 @@
   padding: 5px;
   border: 1px dashed lighten(@gray-light, 30%);;
   border-radius: @border-radius-standard;
+  max-width: 710px;
+  margin: 0 auto;
+
 }
 
 @img-actionable-selector: img-actionable;
@@ -139,6 +142,10 @@
 
 .profile-photo-input {
   line-height: @photo-input-size;
+  
+  .before-sm({
+    line-height: 5em;
+  });
 
   & > * {
     display: inline-block;
@@ -151,6 +158,11 @@
     border-radius: 50%;
     &:extend(.img-size-cover);
     &:extend(.img-position-center);
+    
+    .before-sm({
+      width: 5em;
+      height: 5em;
+    });
   }
 
   &__action {
@@ -172,10 +184,4 @@
   bottom: 0;
   left: 0;
   right: 0;
-}
-
-// Pictures
-
-.pic-creating {
-  background: url('/css/img/creating.jpg');
 }

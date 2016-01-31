@@ -16,7 +16,14 @@
 	background-color: @sidebar-color;
 	width: @sidebar-width;
 	max-height: ~"calc(100vh - 80px)";
-	&-short{
+  transition: transform 0.5s;
+	
+  .before-sm({
+    top: @navbar-short-height;
+    max-height: ~"calc(100vh - 60px)";
+  });
+  
+  &-short{
 		top: @navbar-short-height;
 		max-height: ~"calc(100vh - 60px)" !important;
 		&.@{sidebar-float-class}{
@@ -221,6 +228,9 @@
 	& + *{
 		padding-left: @sidebar-width;
 		margin-left: 0;
+        .before-xs({ 
+            padding-left: 0; 
+        });
 	}
 
 	&.@{sidebar-float-class}{
@@ -233,9 +243,34 @@
 		max-height: ~"calc(100vh - 100px)";
 		overflow-y: auto;
 	}
+    
+    &.ng-hide{
+        transform: translateX(-@sidebar-width);
+    }
+    
+}
+
+
+.sidebar-mobile-toggle{
+    color: @gray;
+    width: ~"calc(100% - 150px)";
+    background-color: white;
+    height: @navbar-short-height - 1;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 5000;
+    transition: @transition-navbar;
+    padding: 1em 1em;
+    &.short{
+       height: @navbar-short-height;
+    }
+    &:focus, &:hover{
+        color: @gray;
+    }
 }
 .with-sidebar{
-    .col-xs-10;
+    .col-xs-12;
     padding-bottom: 80px;
 }
 @media print {

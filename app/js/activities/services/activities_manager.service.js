@@ -17,10 +17,11 @@
         .factory('ActivitiesManager', ActivitiesManager);
 
     ActivitiesManager.$inject = ['$http', '$q', 'ActivityServerApi', 'OrganizerServerApi', 'StudentServerApi',
-        'Activity'];
+        'Activity', 'LocationManager'];
 
-    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity) {
+    function ActivitiesManager($http, $q, ActivityServerApi, OrganizerServerApi, StudentServerApi, Activity, LocationManager) {
 
+        var RECOMMENDED_QTY = 8;
         var api = ActivityServerApi;
         var apiOrg = OrganizerServerApi;
         var apiStudent = StudentServerApi;
@@ -34,7 +35,7 @@
 
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#getActivities
+             * @name .#getActivities
              * @description Gets all existing activities
              * @return {promise} Activity Promise
              * @methodOf trulii.activities.services.ActivitiesManager
@@ -43,7 +44,16 @@
 
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#getActivity
+             * @name .#getRecommendedActivities
+             * @description Gets recommended activities
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getRecommendedActivities : getRecommendedActivities,
+
+            /**
+             * @ngdoc method
+             * @name .#getActivity
              * @description Gets or creates a new Activity
              * @param {number} activityId Id of activity to retrieve
              * @return {promise} Activity Promise
@@ -53,7 +63,7 @@
 
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#getOrders
+             * @name .#getOrders
              * @description Gets Orders related to an Activity
              * @param {number} activityId Id of activity to retrieve orders for
              * @return {promise} Activity Promise
@@ -63,7 +73,7 @@
 
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#getStudentActivities
+             * @name .#getStudentActivities
              * @description Gets all of a student's activities
              * @return {promise} Activity Promise
              * @methodOf trulii.activities.services.ActivitiesManager
@@ -72,7 +82,7 @@
 
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#loadOrganizerActivities
+             * @name .#loadOrganizerActivities
              * @description Gets all of the activities related to an Organizer
              * @param {number} organizerId - Id of organizer for which to retrieve activities
              * @return {array} Organizer Activities
@@ -82,7 +92,7 @@
 
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#loadGeneralInfo
+             * @name .#loadGeneralInfo
              * @description Returns general activities related info
              * like `categories`, `levels`, `sub-categories` and `tags`
              * @return {object} Presave Info
@@ -92,7 +102,7 @@
 
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#getCategories
+             * @name .#getCategories
              * @description Returns activities categories with subcategories
              * @return {array} Categories array
              * @methodOf trulii.activities.services.ActivitiesManager
@@ -109,7 +119,7 @@
             getSubcategoryCovers: getSubcategoryCovers,
             /**
              * @ngdoc method
-             * @name trulii.activities.services.ActivitiesManager#enroll
+             * @name .#enroll
              * @description Enrolls a student on the specified activity
              * @param {number} activityId - Id of activity to enroll on
              * @param {boolean} data.is_free - Indicates if the enrollment is free
@@ -132,6 +142,25 @@
 
         function getActivities(){
             return $http.get(api.activities()).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                $q.reject(response.data);
+            }
+        }
+
+        function getRecommendedActivities(){
+            var config = {
+                'params': {
+                    'o': 'score',
+                    'city': LocationManager.getSearchCity().id,
+                    'page_size': RECOMMENDED_QTY
+                }
+            };
+
+            return $http.get(api.search(), config).then(success, error);
 
             function success(response){
                 return response.data;

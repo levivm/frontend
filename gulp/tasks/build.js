@@ -4,13 +4,12 @@
 
 var gulp = require('gulp');
 var del = require('del');
-var gutil = require('gulp-util');
 
 var config = require('../config');
 
 /** Clean task to remove everything from public **/
 gulp.task('clean', function() {
-   return del.sync([config.dist.all]);
+   return del.sync([config.dist.all, config.temp.all]);
 });
 
 /** Clean task to remove everything from public **/

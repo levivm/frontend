@@ -9,6 +9,7 @@ var BASE_DIR = path.resolve(__dirname, '..');
 var APP_ROOT = path.join(BASE_DIR, 'app');
 var BOWER_COMPONENTS_PATH = path.join(APP_ROOT,  '/lib');
 var DIST_ROOT = 'public';
+var TEMP_ROOT = 'temp';
 
 //gutil.log('BASE_DIR:', BASE_DIR);
 //gutil.log('APP_ROOT:', APP_ROOT);
@@ -72,6 +73,22 @@ module.exports = {
         },
         'all': DIST_ROOT
     },
+    temp : {
+        "css": {
+            "files": path.join(TEMP_ROOT, '/css/*.css'),
+            "root": path.join(TEMP_ROOT, '/css'),
+            "fonts": path.join(TEMP_ROOT, '/css/fonts'),
+            "img": path.join(TEMP_ROOT, '/css/img')
+        },
+        'javascript': {
+            'root': path.join(TEMP_ROOT, '/js'),
+            'partials': path.join(TEMP_ROOT, '/js/partials')
+        },
+        'html': {
+            'index': path.join(TEMP_ROOT, '/index.html')
+        },
+        'all': TEMP_ROOT
+    },
     lessConfig : {
         paths: [
             path.join(BOWER_COMPONENTS_PATH, '/bootstrap/less'),
@@ -79,17 +96,13 @@ module.exports = {
             path.join(BOWER_COMPONENTS_PATH, '/toastr')
         ]
     },
-    minifyHtml : {
-        empty: true,
-        quotes: true,
-        cdata: true,
-        conditionals: true,
-        spare:true,
-        loose: true
+    htmlMin : {
+        collapseWhitespace: true,
+        removeComments: true
     },
     htmlify : {
-        customPrefixes: ['ui-', 'trul', 'trulii'],
-        verbose: true
+        customPrefixes: ['ui-', 'trul-', 'trulii-'],
+        verbose: false
     },
     ngDocs: {
         root : path.join(BASE_DIR, '/docs/'),

@@ -60,9 +60,7 @@
                 }
 
                 function getSuggestions(keyword){
-
-                    return SearchManager.getSuggestions(keyword)
-                                .then(success,error);
+                    return SearchManager.getSuggestions(keyword).then(success,error);
 
                     function success(response){
                         return response.data;
@@ -71,7 +69,6 @@
                     function error(response){
                         return [];
                     }
-
                 }
 
                 function updateSearchCity() {
@@ -100,15 +97,16 @@
                 }
 
                 function _setStrings() {
-                    if (!scope.strings) {
-                        scope.strings = {};
-                    }
-
+                    if (!scope.strings) { scope.strings = {}; }
                     angular.extend(scope.strings, {
                         PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
                         LABEL_CITY: 'Ciudad',
                         LABEL_CITY_DEFAULT: 'Ciudad..'
                     });
+                }
+                function _explore(){
+                    scope.q="";
+                    search();
                 }
 
                 function _cleanUp() {
@@ -127,9 +125,9 @@
                     });
 
                     scope.$on('$destroy', _cleanUp);
+                    scope.$on(SearchManager.EVENT_EXPLORE, _explore);
                 }
             }
         }
     }
-
 })();
