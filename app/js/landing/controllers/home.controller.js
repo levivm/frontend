@@ -16,7 +16,7 @@
     HomeController.$inject = ['$state', 'video', 'activities', 'generalInfo', 'LocationManager'];
     function HomeController($state, video, activities, generalInfo, LocationManager) {
 
-        var ACTIVITIES_STEP = 5;
+        var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
         var vm = this;
         angular.extend(vm, {
@@ -26,7 +26,7 @@
                 actions: ['view', 'edit', 'contact', 'manage', 'republish']
             },
             showVideo: false,
-            activitiesCount: activities.length,
+            activitiesCount: activities.count,
             hasMoreActivities: true,
             toggleVideoShow: toggleVideoShow,
             loadActivities: loadActivities,
@@ -44,11 +44,11 @@
         }
 
         function loadActivities(){
-            if(activities.length > activitiesIndex){
+            if(activities.results.length > activitiesIndex){
                 var begin = activitiesIndex;
                 var end = activitiesIndex + ACTIVITIES_STEP;
-                if(activities.length < end) { end = activities.length; }
-                vm.activities = activities.slice(begin, end);
+                if(activities.results.length < end) { end = activities.results.length; }
+                vm.activities = activities.results.slice(begin, end);
                 activitiesIndex = end;
             } else {
                 vm.hasMoreActivities = false;

@@ -47,7 +47,7 @@
                 templateUrl: 'partials/landing/landing.html',
                 resolve: {
                      activities: getRecommendedActivities,
-                    generalInfo: getPresaveActivityInfo
+                     generalInfo: getPresaveActivityInfo
                 }
             })
             .state('contact-us', {

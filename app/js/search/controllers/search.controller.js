@@ -81,11 +81,11 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-        
+
         function toggleSidebar(){
-          vm.showSidebar = !vm.showSidebar; 
+          vm.showSidebar = !vm.showSidebar;
         }
-        
+
         function openDatePicker($event) {
             $event.preventDefault();
             $event.stopPropagation();

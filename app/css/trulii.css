@@ -12666,7 +12666,7 @@ hr.on-light {
   font-size: .9em;
 }
 .text-lg {
-  font-size: 1.2em;
+  font-size: 1.2em !important;
 }
 .text-xlg {
   font-size: 1.5em;
@@ -14225,7 +14225,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .burger-menu__user-links {
   min-height: 100vh;
-  background-color: #26d3bf;
+  background-color: #22c7b5;
   padding: 10vh 5em 0 5em;
   max-height: 100vh;
   overflow-y: auto;
@@ -15445,6 +15445,12 @@ tags-input input {
 }
 .btn-padding {
   padding: 1em;
+}
+.btn-success-dark {
+  background: #1eaf9f;
+}
+.btn-success-dark:hover {
+  color: white;
 }
 @media (max-width: 991px) {
   .btn {
@@ -17975,7 +17981,7 @@ button.toast-close-button {
   background-color: #eeeeee;
 }
 .container-success {
-  background-color: #38dbc8;
+  background-color: #22c7b5;
 }
 .container-success * {
   color: white;
@@ -18852,7 +18858,7 @@ blockquote {
 }
 .sign-up-container {
   text-align: center;
-  background-color: #38dbc8;
+  background-color: #22c7b5;
 }
 .sign-up-container h1,
 .sign-up-container h2,
