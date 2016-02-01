@@ -1,19 +1,13 @@
 /**
- * Created by fernando on 7/23/15.
+ * Config Section - Tasks configuration values
  */
 
 var path = require('path');
-var gutil = require('gulp-util');
 
 var BASE_DIR = path.resolve(__dirname, '..');
 var APP_ROOT = path.join(BASE_DIR, 'app');
 var BOWER_COMPONENTS_PATH = path.join(APP_ROOT,  '/lib');
 var DIST_ROOT = 'public';
-var TEMP_ROOT = 'temp';
-
-//gutil.log('BASE_DIR:', BASE_DIR);
-//gutil.log('APP_ROOT:', APP_ROOT);
-//gutil.log('BOWER_COMPONENTS_PATH:', BOWER_COMPONENTS_PATH);
 
 module.exports = {
     DIST_ROOT : DIST_ROOT,
@@ -46,8 +40,7 @@ module.exports = {
         'html': {
             'index': path.join(APP_ROOT, '/index.html'),
             'partials': path.join(APP_ROOT, '/partials/**/*.html')
-        },
-        'vendorjs': path.join(DIST_ROOT, '/assets/javascript/vendor/**/*.js')
+        }
     },
     localDependencies : [
         path.join(APP_ROOT, '/js/trulii.js'),
@@ -73,22 +66,6 @@ module.exports = {
         },
         'all': DIST_ROOT
     },
-    temp : {
-        "css": {
-            "files": path.join(TEMP_ROOT, '/css/*.css'),
-            "root": path.join(TEMP_ROOT, '/css'),
-            "fonts": path.join(TEMP_ROOT, '/css/fonts'),
-            "img": path.join(TEMP_ROOT, '/css/img')
-        },
-        'javascript': {
-            'root': path.join(TEMP_ROOT, '/js'),
-            'partials': path.join(TEMP_ROOT, '/js/partials')
-        },
-        'html': {
-            'index': path.join(TEMP_ROOT, '/index.html')
-        },
-        'all': TEMP_ROOT
-    },
     lessConfig : {
         paths: [
             path.join(BOWER_COMPONENTS_PATH, '/bootstrap/less'),
@@ -103,6 +80,11 @@ module.exports = {
     htmlify : {
         customPrefixes: ['ui-', 'trul-', 'trulii-'],
         verbose: false
+    },
+    gzip: {
+        src: DIST_ROOT + '/**/*.{html,xml,json,css,js}',
+        dest: DIST_ROOT,
+        options: {}
     },
     ngDocs: {
         root : path.join(BASE_DIR, '/docs/'),

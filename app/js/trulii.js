@@ -29,7 +29,8 @@
             'trulii.referrals',
             'trulii.about',
             'trulii.help',
-            'ngVideo'
+            'ngVideo',
+            'templates'
         ]);
 
     angular

@@ -2,20 +2,21 @@
  * Javascript Section - Javascript related modules, values and tasks
  * */
 
-var gulp  = require('gulp');
-var gutil = require('gulp-util');
-var gulpif = require('gulp-if');
-var del = require('del');
-var inject = require('gulp-inject');
-var mainBowerFiles = require('main-bower-files');
-var sourcemaps = require('gulp-sourcemaps');
-var ngConfig = require('gulp-ng-config');
-var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
 var connect = require('gulp-connect');
+var debug = require('gulp-debug');
+var del = require('del');
+var gulp  = require('gulp');
+var gutil = require('gulp-util');
+var inject = require('gulp-inject');
+var jshint = require('gulp-jshint');
+var mainBowerFiles = require('main-bower-files');
+var ngConfig = require('gulp-ng-config');
+var sourcemaps = require('gulp-sourcemaps');
+var uglify = require('gulp-uglify');
+var useref = require('gulp-useref');
 
 var source = require('../config').source;
-var dist = require('../config').dist;
 var localDependencies = require('../config').localDependencies;
 var APP_ROOT = require('../config').APP_ROOT;
 var BOWER_COMPONENTS_PATH = require('../config').BOWER_COMPONENTS_PATH;
@@ -27,38 +28,8 @@ gulp.task('jshint', function() {
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
-//TODO needs work
-/* NICE TO HAVE: https://github.com/hparra/gulp-rename */
-/** concat javascript files, minify if --type production **/
-gulp.task('build-js', ['clean'], function() {
-    return gulp.src(source.javascript.files)
-        .pipe(sourcemaps.init())
-        .pipe(concat('bundle.js'))
-        //only uglify if gulp is ran with '--release'
-        .pipe(gulpif(gutil.env.release, uglify()))
-        .pipe(sourcemaps.write())
-        .pipe(del(dist.javascript))
-        .pipe(gulp.dest(dist.javascript))
-        .pipe(size());
-});
-
-/* TODO REWORK. Should concatenate and minify all bower .js files that are not .min.
- * an then inject it on index.html. */
-gulp.task('build-vendor-js', function() {
-    return gulp.src('vendor/*.js')
-        .pipe(concat('vendor.js'))
-        .pipe(gulp.dest('build'))
-        .pipe(uglify())
-        .pipe(rename('vendor.min.js'))
-        .pipe(del('build'))
-        .pipe(gulp.dest('build'))
-        .on('error', gutil.log)
-        .pipe(size());
-});
-
 /** Injects .js files from Bower dependencies inside '<!-- inject:bower:js -->' tag **/
 gulp.task('bower-js-injector', function() {
-
     var target = gulp.src(source.html.index);
     var srcParams = { base: BOWER_COMPONENTS_PATH, relative: true };
 
@@ -81,11 +52,10 @@ gulp.task('bower-js-injector', function() {
         .pipe(inject(sourcesJquery, injectjQueryParams))
         .pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT));
-
 });
 
 /** Injects .js sources inside '<!-- inject:js -->' tag **/
-gulp.task('source-js-injector', function () {
+gulp.task('source-js-injector', ['minify-html-partials'], function () {
     var injectParams = {relative: true};
     var target = gulp.src(source.html.index);
     var sources = gulp.src(localDependencies, {read: false, relative: true});
@@ -96,8 +66,7 @@ gulp.task('source-js-injector', function () {
 });
 
 /** Meta Task for .js files injection (Bower and sources) **/
-gulp.task('js-injector', ['bower-js-injector', 'source-js-injector'], function () {
-});
+gulp.task('js-injector', ['bower-js-injector', 'source-js-injector'], function () {});
 
 /* Gulp Environment Specific Tasks*/
 
