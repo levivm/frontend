@@ -39,6 +39,11 @@
     text-decoration: underline;
 }
 
+.text-center-mobile{
+  .before-sm({
+    text-align: center;
+  });
+}
 // Text Colors
 
 .text-color-primary {
@@ -57,6 +62,9 @@
     color: @gray-alt !important;
 }
 
+.text-gray-light{
+  color: @gray-light;
+}
 .text-dark {
     color: @gray-dark;
 }
@@ -260,6 +268,7 @@ h1, h2, h3, h4 {
         font-size: 3.5em;
         .before-sm({
           font-size: 2.5em;
+          line-height: 1em;
         });
     }
     
@@ -271,6 +280,11 @@ h1, h2, h3, h4 {
 .sub-title {
     font-size: 2em;
     color: @subtitle-color;
+    .before-sm({
+      font-size: 1.35em;
+      line-height: 1.35em;
+      margin: 2em 0em;
+    });
 }
 
 h2{

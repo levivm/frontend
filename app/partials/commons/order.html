@@ -9,20 +9,21 @@
                         </div>
                     </div>
                     <div class="row order-detail">
-                        <div class="col-xs-12 col-md-3 order-description">
-                            <h5 class="sinkin-medium separate-below">
-                                    <span ng-bind="::order.strings.LABEL_ORDER"></span>
-                                    <span>&nbsp; #</span>
-                                    <span ng-bind="::order.order.id"></span></h5>
+                        <div class="col-xs-12 order-description">
+                            <h3 class="sinkin-medium separate-below">
+                              <span ng-bind="::order.strings.LABEL_ORDER"></span>
+                              <span>&nbsp; #</span>
+                              <span ng-bind="::order.order.id"></span>
+                            </h3>
                             <!--Activity-->
-                            <div class="hidden-xs hidden-sm">
+                            <div class="hidden-xs hidden-sm pull-left">
                               <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_ACTIVITY"></h5>
                               <a ui-sref="activities-detail({activity_id: {{::order.order.activity.id}} })">
                                   <h5 class="sinkin-medium separate-below" ng-bind="::order.order.activity.name"></h5>
                               </a>
                             </div>
                             <!--Buyer-->
-                            <div class="hidden-xs hidden-sm">
+                            <div class="hidden-xs hidden-sm pull-left">
                               <h5 class="sinkin-ultralight " ng-bind="::order.strings.LABEL_BUYER"></h5>
                               <h5 class="sinkin-medium separate-below"
                                 ng-bind="::(order.order.student.user.first_name + ' ' +
@@ -30,38 +31,55 @@
                               </h5>
                             </div>
                             <!--Payment-Type-->
-                            <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_PAYMENT_TYPE"></h5>
-                            <h5 class="sinkin-medium separate-below" ng-show="::order.order.is_free"
-                                ng-bind="::order.strings.LABEL_FREE"></h5>
-                            <h5 class="sinkin-medium separate-below">
-                                <span ng-bind="::order.order.payment.payment_type"></span>
-                                <span ng-show="::order.order.payment.last_four_digits">*****</span><span
-                                    ng-bind="::order.order.payment.last_four_digits"></span>
-                            </h5>
+                            <div class="pull-left">
+                              <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_PAYMENT_TYPE"></h5>
+                              <h5 class="sinkin-medium separate-below" ng-show="::order.order.is_free"
+                                  ng-bind="::order.strings.LABEL_FREE"></h5>
+                              <h5 class="sinkin-medium separate-below">
+                                  <span ng-bind="::order.order.payment.payment_type"></span>
+                                  <span ng-show="::order.order.payment.last_four_digits">*****</span><span
+                                      ng-bind="::order.order.payment.last_four_digits"></span>
+                              </h5>
+                            </div>
+                            
                             <!--Status-->
-                            <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_STATUS"></h5>
-                            <h5 class="sinkin-medium separate-below" ng-bind="::order.order.status"></h5>
+                            <div class="pull-left">
+                              <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_STATUS"></h5>
+                              <h5 class="sinkin-medium separate-below" ng-bind="::order.order.status"></h5>
+                            </div>  
                             <!--Date-->
-                            <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_CREATE_AT"></h5>
-                            <h5 class="sinkin-medium"><span class="text-capitalize"
-                                                            ng-bind="::order.order.created_at | date:'EEEE d MMM y'"></span>
-                            </h5>
-                            <div class="separate-above-more hidden-xs hidden-sm">
-                                <button class="btn btn-default btn-block"
-                                        ng-click="order.printOrder()"
-                                        ng-bind="::order.strings.ACTION_PRINT"></button>
+                            <div class="pull-left clear-left">
+                              <h5 class="sinkin-ultralight" ng-bind="::order.strings.LABEL_ORDER_CREATE_AT"></h5>
+                              <h5 class="sinkin-medium">
+                                <span class="text-capitalize"
+                                  ng-bind="::order.order.created_at | date:'EEEE d MMM y'">
+                                </span>
+                              </h5>
                             </div>
-                            <div class="separate-above-less hidden-xs hidden-sm">
-                                <a class="btn btn-default btn-return btn-block"
-                                   ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
-                                    <img src="css/img/activity-enroll/navigation_back.png"
-                                         alt="{{ ::order.strings.ACTION_GO_BACK }}"
-                                         class="img-responsive inline-block"/>
-                                    <span ng-bind="::order.strings.ACTION_GO_BACK"></span>
-                                </a>
+                            
+                            <div class="row clear-both separate-above-less separate-below-less">
+                              <div class="col-xs-12 col-md-3 col-md-offset-6">
+                                <div class="hidden-xs hidden-sm">
+                                    <a class="btn btn-default btn-return btn-block btn-sm"
+                                      ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
+                                        <img src="css/img/activity-enroll/navigation_back.png"
+                                            alt="{{ ::order.strings.ACTION_GO_BACK }}"
+                                            class="img-responsive inline-block"/>
+                                        <span ng-bind="::order.strings.ACTION_GO_BACK"></span>
+                                    </a>
+                                </div>
+                              </div>
+                              <div class="col-xs-12 col-md-3">
+                                <div class="hidden-xs hidden-sm">
+                                    <button class="btn btn-default btn-block btn-sm"
+                                            ng-click="order.printOrder()"
+                                            ng-bind="::order.strings.ACTION_PRINT"></button>
+                                </div>
+                              </div>
                             </div>
+                            
                         </div>
-                        <div class="col-xs-12 col-md-9 order-info no-padding">
+                        <div class="col-xs-12 order-info no-padding">
                             <div class="table-responsive table-fixed table-condensed">
                                 <table class="table table-hover border-bottom" valign="middle">
                                     <tr class="text-center">
@@ -191,13 +209,10 @@
                                     <h4 class="text-right" ng-show="::order.order.is_free"
                                         ng-bind="::order.strings.LABEL_FREE"></h4>
                                 </div>
-
-
-                            </div>
-                            <!--Refund Button-->
-                            <div class="row no-margin">
-                                <div class="col-xs-12 col-md-4 col-md-offset-8">
-                                    <div ng-show="order.order.lastest_refund">
+                                
+                                <!--Refund Button-->
+                                <div class="col-xs-12 col-md-4 separate-below-less">
+                                  <div ng-show="order.order.lastest_refund">
                                         <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span>
                                         <span class="sinkin-medium" ng-bind="order.order.lastest_refund.status"></span>
                                         <i ng-show="!order.order.lastest_refund.requested_by_me"
@@ -212,6 +227,7 @@
                                             ng-click="order.requestOrderRefund(order.order.id)"
                                             ng-bind="::order.strings.ACTION_REIMBURSE_ORDER"></button>
                                 </div>
+
                             </div>
                         </div>
                     </div>

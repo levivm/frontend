@@ -45,6 +45,40 @@
         font-size: 16px;
         font-weight: 200;
     }
+    
+    .review-content{
+      margin-left: -35px;
+      
+      a{
+        text-decoration: underline;
+        color: @gray-light;
+        &:hover{
+          color: @gray;
+        }
+      }
+      .pull-right{
+        .before-sm({
+          float: none !important;
+        })
+      }
+      
+    }
+    .review-response{
+        
+      .review-avatar{
+        width: 45px;
+        height: 45px;
+      }
+      
+      .review-content{
+        margin-left: -25px;
+        
+        .before-sm({
+          margin-left: 0px;
+        });
+      }
+      
+    }
 }
 
 .star{
