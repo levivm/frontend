@@ -53,7 +53,7 @@
 
                     SearchManager.setSearchBarData(data);
                     angular.extend(data, SearchManager.getSearchData());
-                    //console.log('data', data);
+                    console.log('data', data);
 
                     $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
                     $state.go('search', data);

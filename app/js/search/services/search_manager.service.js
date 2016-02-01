@@ -164,8 +164,8 @@
             setSearchData(data);
 
             if(!searchData.hasOwnProperty(KEY_CITY)){ deferred.reject("A city is required"); }
-
             requestConfig = { 'params': searchData };
+            console.log(requestConfig);
             $http.get(api.search(), requestConfig).then(success, error);
 
             return deferred.promise;

@@ -85,15 +85,15 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-        
+
         function toggleSidebar(){
-          vm.showSidebar = !vm.showSidebar; 
+          vm.showSidebar = !vm.showSidebar;
         }
         
         function toggleFilters(){
           vm.showFilters = !vm.showFilters;
         }
-        
+
         function openDatePicker($event) {
             $event.preventDefault();
             $event.stopPropagation();
@@ -177,7 +177,7 @@
         function getLevelClassStyle(level) {
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
-        
+
         function search(){
           _search();
         }
