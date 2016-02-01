@@ -1,5 +1,5 @@
-<div class="container-fluid">
-    <div class="col-md-11 col-md-offset-1">
+<div class="">
+    <div class="col-xs-12 col-md-10 col-md-offset-1">
         <p class="text-muted" ng-bind="manage.strings.COPY_ASSISTANTS"></p>
         <div ng-if="manage.calendars.length > 0" class="row">
             <div class="col-md-12">
@@ -41,7 +41,7 @@
                         <!-- Assistants -->
                         <div ng-if="calendar.assistants.length > 0">
                             <div class="row">
-                                <div class="col-xs-8">
+                                <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-0">
                                     <div class="form-group">
                                         <label class="control-label sr-only"
                                                ng-bind="::manage.strings.LABEL_SEARCH"></label>
@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-4">
+                                <div class="col-xs-4 hidden-xs hidden-sm">
                                     <a ui-sref="^.assistants-list({'calendar_id': calendar.id})" class="btn btn-default pull-right text-align-vertical"
                                        ng-bind="::manage.strings.ACTION_PRINT"></a>
                                 </div>
@@ -65,9 +65,8 @@
                             <div class="table-responsive">
                                 <table class="table table-hover">
                                     <tr class="text-center">
-                                        <th ng-bind="::manage.strings.HEADER_FIRST_NAME"></th>
-                                        <th ng-bind="::manage.strings.HEADER_LAST_NAME"></th>
-                                        <th ng-bind="::manage.strings.HEADER_EMAIL"></th>
+                                        <th ng-bind="::manage.strings.HEADER_FULL_NAME"></th>
+                                        <th ng-bind="::manage.strings.HEADER_EMAIL" class="hidden-xs hidden-sm"></th>
                                         <th ng-bind="::manage.strings.HEADER_ORDER"></th>
                                         <th>
                                           <span ng-bind="::manage.strings.HEADER_CODE"></span>
@@ -80,11 +79,13 @@
                                     <tr ng-repeat="assistant in manage.assistants">
                                         <td>
                                             <span class="text-capitalize" ng-bind="::assistant.first_name"></span>
-                                        </td>
-                                        <td>
                                             <span class="text-capitalize" ng-bind="::assistant.last_name"></span>
+                                            <div class="hidden-md hidden-lg">
+                                              <br>
+                                              <span ng-bind="::assistant.email"></span>
+                                            </div>
                                         </td>
-                                        <td>
+                                        <td class="hidden-xs hidden-sm">
                                             <span ng-bind="::assistant.email"></span>
                                         </td>
                                         <td>
@@ -212,7 +213,7 @@
                         <!--If there are no assistants-->
                         <div ng-if="calendar.assistants.length <= 0" class="row">
                             <br/>
-                            <div class="col-md-12">
+                            <div class="col-xs-10 col-xs-offset-1">
                                 <h4 ng-bind="::manage.strings.LABEL_EMPTY_ASSISTANTS"></h4>
                                 <p ng-bind="::manage.strings.COPY_EMPTY_ASSISTANTS"></p>
                             </div>

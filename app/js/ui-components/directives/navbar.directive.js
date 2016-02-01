@@ -100,7 +100,7 @@
                     if (!scope.strings) { scope.strings = {}; }
 
                     angular.extend(scope.strings, {
-                        ACTION_LOGIN: 'Iniciar Sesión',
+                        ACTION_LOGIN: 'Iniciar sesión',
                         ACTION_REGISTER: 'Registrarme',
                         ACTION_CREATE: 'Crear Actividad',
                         ACTION_CLOSE: "Cerrar",

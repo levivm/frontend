@@ -17,12 +17,20 @@
     }
     .panel-body{
         padding:3em;
+        .before-md({
+          padding: 20px 0;
+        });
     }
     .panel-date{
         font-family: @font-sans-alt;
         width: 11em;
         float: left;
         padding: 0 3%;
+        
+        .before-md({
+          width: 8em;  
+        });
+        
         &:nth-child(1){
             border-right: 1px solid @gray-light-medium;
         }
@@ -36,6 +44,11 @@
         padding: 0.85em 0;
         font-size: 0.85em;
         text-transform: uppercase;
+        
+        .before-md({
+          display: none;
+        });
+        
         .numbers{
             font-family: @font-sans-alt;
         }
@@ -57,11 +70,27 @@
     }
     table{
         tr{
-            td{
-                padding: 2em 1em;
-                font-size: 1em;
-                color: @gray;
-            }
+          th{
+            .before-md({
+              background-color: white;
+            });
+          }
+          td{
+              padding: 2em 1em;
+              font-size: 1em;
+              color: @gray;
+          }
+          th, td{
+             .before-sm({
+                padding: 1.5em 5px !important;
+                font-size: 0.75em;
+              });
+              
+              .before-md({
+                padding: 1.5em 2em;
+                font-size: 0.75em;
+              });
+          }
         }
     }
 }

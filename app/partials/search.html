@@ -1,4 +1,4 @@
-<div class="sidebar sidebar-category-container">
+<div class="sidebar sidebar-category-container lateral-slide" ng-class="{'hidden-xs': !search.showSidebar, 'hidden-sm': !search.showSidebar}">
     <ul>
         <li class="sidebar-category">
             <a href="#" id="todas"></a>
@@ -29,9 +29,12 @@
         </li>
     </ul>
 </div>
-<div class="with-sidebar">
+<div class="with-sidebar col-xs-12">
     <div class="clear-spacings padding-horizontal-less">
-            <div class="search-filter">
+            <div class="search-filter filters-container" ng-class="{'filters-container-sm': search.showFilters}">
+              <button class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="search.toggleFilters()">
+                <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
+              </button>
                    <div class="form-group search-control no-margin flex-align-items-center search-filter__date">
                        <div class="flex-container">
                            <div class="input-group flex-container search-date-container">
@@ -47,12 +50,10 @@
                                       data-close-text="{{search.strings.ACTION_CLOSE}}"
                                       ng-click="search.openDatePicker($event)"
                                       readonly="readonly" />
-                                <i class=" expand mdi-hardware-keyboard-arrow-down"></i>
                            </div>
-
                        </div>
                    </div>
-                   <div class="search-control flex-align-items-center search-filter__levels">
+                   <div class="search-control flex-align-items-center search-filter__levels hidden-xs">
                        <label class="control-label no-padding" for="level-btn-group" ng-bind="::search.strings.LABEL_LEVEL"></label>
                        <div id="level-btn-group" class="btn-group btn-group-justified search-filter__levels-buttons" role="group"
                             aria-label="{{::search.strings.LABEL_LEVEL}}">
@@ -64,6 +65,12 @@
                            </label>
                        </div>
                    </div>
+                   <select class=" form-control hidden-sm hidden-md hidden-lg search-level-select" name="levelSelect" id="levelSelect"
+                          ng-model="search.searchLevel" ng-change="search.setLevel()"
+                          ng-options="level.value for level in search.levels track by level.code">
+                      <option ng-hide="search.searchLevel" selected
+                              ng-bind="search.strings.LABEL_LEVEL"></option>
+                  </select>
                    <div class=" search-certificate">
                        <!--Certificate Button-->
                        <button class="btn btn-sm btn-default"
@@ -79,7 +86,7 @@
 
                 <div class="flex-align-items-center search-filter-slider">
                     <label class="control-label margin-more " for="level-btn-group" ng-bind="::search.strings.LABEL_COST"></label>
-                    <div class="w-100">
+                    <div class="col-xs-12 no-padding">
                         <!--Cost Select-->
                         <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
                                        step="search.sliderOptions.step" start="search.searchStartCost"
@@ -88,45 +95,73 @@
                 </div>
         </div>
     </div>
-    <div class="row separator-light no-margin-bottom"></div>
+    <div class="row separator-light no-margin-bottom hidden-xs hidden-sm"></div>
     <div class="row">
         <div class="col-xs-12">
             <div class="search-info">
-                <strong ng-bind="search.activities.length"></strong>
-                <span> </span>
-                <span ng-bind="::search.strings.COPY_RESULTS"></span>
-                <span> </span>
-                <span ng-if="search.searchQuery">
-                    <span ng-bind="::search.strings.COPY_FOR"></span>
-                    <span> </span>
-                    <strong>
-                        <span>"</span>
-                        <span ng-bind="::search.searchQuery"></span>
-                        <span>"</span>
-                    </strong>
-                </span>
-                <span ng-if="search.searchCategory">
-                    <span ng-bind="::search.strings.COPY_IN"></span>
-                    <span> </span>
-                    <strong ng-bind="search.searchData.category_display"></strong>
-                </span>
-                <span ng-if="search.searchSubCategory">
-                    <i class="mdi-navigation-chevron-right"></i>
-                    <span> </span>
-                    <strong ng-bind="search.searchData.subcategory_display"></strong>
-                </span>
-                <div class="col-xs-10 col-sm-4 pull-right">
-                    <label for="sortSelect" class="sr-only"></label>
-                  <select class=" form-control" name="sortSelect" id="sortSelect"
-                          ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)"
-                          ng-options="option.predicate as option.name for option in search.orderByOptions">
+                <div class="row hidden-md hidden-lg separate-below">
+                  <div class="col-xs-12 no-padding">
+                    <div class="input-group">
+                      <input type="text" class="form-control" ng-model="search.newSearchQuery" placeholder="{{search.strings.PLACEHOLDER_WANT_TO_LEARN}}">
+                      <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" ng-click="search.search()">
+                          <i class="mdi mdi-action-search"></i>
+                        </button>
+                      </span>
+                    </div>
+                    <button class="btn btn-default" ng-click="search.toggleFilters()">
+                      <img src="css/img/search/filters.png" alt="" class="img-responsive center-block">
+                    </button>
+                  
+                    <select class=" form-control sort-select hidden-md hidden-lg" name="sortSelect" id="sortSelect"
+                      ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)"
+                      ng-options="option.predicate as option.name for option in search.orderByOptions">
                       <option ng-hide="search.orderByPredicate" selected
-                              ng-bind="search.strings.LABEL_SORT_BY"></option>
-                  </select>
+                        ng-bind="search.strings.LABEL_SORT_BY"></option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row separator-light hidden-md hidden-lg separate-below-less"></div>
+                <div class="row">
+                  <div class="col-xs-12 results-info">
+                    <strong ng-bind="search.activities.length"></strong>
+                    <span> </span>
+                    <span ng-bind="::search.strings.COPY_RESULTS"></span>
+                    <span> </span>
+                    <span ng-if="search.searchQuery">
+                        <span ng-bind="::search.strings.COPY_FOR"></span>
+                        <span> </span>
+                        <strong>
+                            <span>"</span>
+                            <span ng-bind="::search.searchQuery"></span>
+                            <span>"</span>
+                        </strong>
+                    </span>
+                    <span ng-if="search.searchCategory">
+                        <span ng-bind="::search.strings.COPY_IN"></span>
+                        <span> </span>
+                        <strong ng-bind="search.searchData.category_display"></strong>
+                    </span>
+                    <span ng-if="search.searchSubCategory">
+                        <i class="mdi-navigation-chevron-right"></i>
+                        <span> </span>
+                        <strong ng-bind="search.searchData.subcategory_display"></strong>
+                    </span>
+                    <div class="col-xs-10 col-sm-4 pull-right">
+                      <label for="sortSelect" class="sr-only"></label>
+                      <select class=" form-control hidden-xs" name="sortSelect" id="sortSelect"
+                              ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)"
+                              ng-options="option.predicate as option.name for option in search.orderByOptions">
+                          <option ng-hide="search.orderByPredicate" selected
+                                  ng-bind="search.strings.LABEL_SORT_BY"></option>
+                      </select>
+                    </div>
+                    
+                  </div>
                 </div>
             </div>
         </div>
-        <div class="row separator-light no-margin"></div>
+        <div class="row separator-light no-margin hidden-xs hidden-sm"></div>
     </div>
     <!--<div class="row padding-horizontal-less padding-vertical-less" ng-if="!search.searchQuery">-->
       <!--<div class="col-xs-10 col-sm-4 col-md-2 pull-right">-->
@@ -139,8 +174,8 @@
       <!--</div>-->
     <!--</div>-->
     <div class="row separator-light no-margin"></div>
-    <div class="row padding-horizontal-less padding-vertical-less">
-        <div class="col-xs-10 col-xs-offset-1">
+    <div class="row padding-horizontal-less separate-above padding-vertical-less">
+        <div class="col-xs-12 col-md-10 col-md-offset-1">
             <div class="row activity-grid" ng-if="search.activities.length > 0">
                 <!--track by activity.id-->
                 <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
@@ -160,13 +195,17 @@
             </div>
             <!--Empty Search-->
             <div class="text-center text-muted separate-above-more" ng-if="search.activities.length == 0">
-                <div class="col-xs-6 col-xs-offset-3">
-                    <img src="css/img/search_empty.png" alt="{{ search.strings.LABEL_EMPTY_SEARCH }}"/>
+                <div class="col-xs-12 col-md-6 col-md-offset-3">
+                    <img src="css/img/search_empty.png" class="img-responsive center-block" alt="{{ search.strings.LABEL_EMPTY_SEARCH }}"/>
                     <h4 ng-bind="search.strings.LABEL_EMPTY_SEARCH"></h4>
                     <h4 ng-bind="search.strings.COPY_EMPTY_SEARCH"></h4>
                 </div>
             </div>
         </div>
     </div>
+    <trulii-dashboard-footer></trulii-dashboard-footer>
 </div>
-<trulii-dashboard-footer></trulii-dashboard-footer>
+<a class="sidebar-mobile-toggle visible-xs-block visible-sm-block"
+    ng-click="search.toggleSidebar()">
+    <i class="sidebar__item__icon mdi-action-settings"></i>
+</a>

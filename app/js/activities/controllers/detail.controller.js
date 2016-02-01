@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll) {
         var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
@@ -68,7 +68,7 @@
 
         _activate();
 
-        console.log('currentUser:', currentUser);
+        // console.log('currentUser:', currentUser);
 
         //--------- Exposed Functions ---------//
 

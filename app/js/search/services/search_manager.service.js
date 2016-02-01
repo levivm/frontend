@@ -123,6 +123,7 @@
             setPage: setPage,
             setPageSize: setPageSize,
             setOrder: setOrder,
+            setQuery: setQuery,
 
             orderingOptions: orderingOptions,
             KEY_QUERY : KEY_QUERY,
@@ -313,6 +314,10 @@
 
         function setOrder(predicate){
             searchData[KEY_ORDER] = predicate;
+        }
+        
+        function setQuery(predicate){
+          searchData[KEY_QUERY] = predicate;
         }
     }
 })();

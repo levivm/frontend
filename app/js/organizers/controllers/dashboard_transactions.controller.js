@@ -98,7 +98,7 @@
         function _getOrders(){
             sales = $filter('orderBy')(orders, 'id', true);
             vm.salesPaginationOpts.totalItems = sales.length;
-            vm.sales = sales.slice(0, vm.salesPaginationOpts.itemsPerPage);
+            vm.sales = sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
         }
 
         function _getRefunds(){

@@ -31,6 +31,7 @@
             toggleVideoShow: toggleVideoShow,
             loadActivities: loadActivities,
             viewMoreActivities: viewMoreActivities,
+            organizerCategories: organizerCategories,
             coverVideo: {}
         });
 
@@ -60,6 +61,9 @@
             $state.go('search', {'city': city.id});
         }
 
+        function organizerCategories(index){
+            return index < 2 ? 'col-md-6' :  index === 5 ?  'col-md-8': 'col-md-4';
+        }
         // --------- Internal Functions ---------//
 
         function _setCategories(){
@@ -120,6 +124,8 @@
                 true);
             });
         }
+
+
 
         function _activate(){
             _setStrings();

@@ -297,7 +297,7 @@
 <!--Reviews-->
 <div class="col-xs-12">
   <div class="row">
-    <div class="col-xs-7 col-xs-offset-1 reviews-container padding-vertical-more">
+    <div class="col-xs-12 col-md-7 col-md-offset-1 reviews-container padding-vertical-more">
       <h2>
         <strong ng-bind="::detail.strings.COPY_HEADER_REVIEWS"></strong>
         <br>
@@ -327,7 +327,7 @@
       </p>
 
       <div class="row">
-        <div class="col-xs-10 col-xs-offset-1" ng-repeat="review in detail.reviews track by review.id">
+        <div class="col-xs-12 col-md-10 col-md-offset-1" ng-repeat="review in detail.reviews track by review.id">
           <trulii-activity-review data-review="review"
           data-activity="detail.activity"
           data-on-dashboard="false" ></trulii-activity-review>
@@ -408,7 +408,7 @@
               </th>
               <th ng-bind="::detail.strings.LABEL_COST">
               </th>
-              <th ng-class="hidden-md hidden-lg"></th>
+              <th class="hidden-md hidden-lg"></th>
             </tr>
             <tr
               ng-repeat-start="calendar in detail.activity.upcoming_calendars track by calendar.id | orderBy: calendar.initial_date"

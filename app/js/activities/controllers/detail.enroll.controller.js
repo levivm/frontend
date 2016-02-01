@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll'];
 
     function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, LocationManager, Referrals) {
+                                            Elevator, LocationManager, Referrals, Scroll) {
 
         var vm = this;
         var isValidDate = false;
@@ -109,7 +109,7 @@
             pseData: {}
         });
 
-        console.log("sessionID", deviceSessionId);
+        // console.log("sessionID", deviceSessionId);
 
         _activate();
 
@@ -202,7 +202,7 @@
                             return (!(_.isEmpty(error_dict)));
                         });
                         var base_selector = 'assistant_card_';
-                        console.log('selector',base_selector.concat(error_index));
+                        // console.log('selector',base_selector.concat(error_index));
                         Elevator.toElement(base_selector.concat(error_index));
                         Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                     }
@@ -322,7 +322,7 @@
                         return (!(_.isEmpty(error_dict)));
                     });
                     var base_selector = 'assistant_card_';
-                    console.log('selector',base_selector.concat(error_index));
+                    // console.log('selector',base_selector.concat(error_index));
                     Elevator.toElement(base_selector.concat(error_index));
                     Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                 }
@@ -438,7 +438,7 @@
                             return (!(_.isEmpty(error_dict)));
                         });
                         var base_selector = 'assistant_card_';
-                        console.log('selector',base_selector.concat(error_index));
+                        // console.log('selector',base_selector.concat(error_index));
                         Elevator.toElement(base_selector.concat(error_index));
                         Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                     }
@@ -593,7 +593,6 @@
         }
 
         function _showWidget(){
-
             var currentState = $state.current.name;
             if (currentState === 'activities-enroll.pse-response')
                 vm.showWidget = false;
@@ -728,22 +727,23 @@
 
             if (vm.showWidget){
                 angular.element(document).ready(function () {
-                  if (!(document.getElementsByClassName('billing-widget')[0]))
-                      return
-                    vm.scroll = window.scrollY;
-                    vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
+                  if (!(document.getElementsByClassName('billing-widget')[0])){
+                    return;
+                  }
+                  vm.scroll = window.scrollY;
+                  vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
 
-                    vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
-                    vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+                  vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+                  vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
 
-                    $scope.$on('scrolled',
-                      function(scrolled, scroll){
-                          vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
-                          vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
-                        vm.scroll = scroll;
-                        $scope.$apply();
-                      }
-                    );
+                  $scope.$on('scrolled',
+                    function(scrolled, scroll){
+                        vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+                        vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+                      vm.scroll = scroll;
+                      $scope.$apply();
+                    }
+                  );
                 });
             }
 
