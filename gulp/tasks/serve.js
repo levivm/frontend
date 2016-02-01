@@ -40,7 +40,7 @@ gulp.task('connect', function() {
 gulp.task('watch', function() {
     gutil.log('Starting watch on ' + source.javascript.root + ' and ' + source.less.root);
     gulp.watch([source.html.index, source.html.partials], ['on-html-livereload']);
-    gulp.watch(source.javascript.files, ['source-js-injector', 'compile-ngdocs']);
+    gulp.watch([source.javascript.files, source.javascript.templates], ['source-js-injector', 'compile-ngdocs']);
     gulp.watch(source.less.all, ['source-css-injector']);
 });
 

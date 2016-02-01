@@ -29,6 +29,7 @@ module.exports = {
         },
         'javascript': {
             'files': path.join(APP_ROOT, '/js/**/*.js'),
+            'templates': '!' + path.join(APP_ROOT, '/js/trulii.templates.js'),
             'root': path.join(APP_ROOT, '/js/')
         },
         'css': {
