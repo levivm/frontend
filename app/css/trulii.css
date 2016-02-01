@@ -12349,6 +12349,12 @@ hr.on-light {
     align-items: stretch;
   }
 }
+.clear-left {
+  clear: left;
+}
+.clear-both {
+  clear: both;
+}
 .flex-center-container,
 .circular-image-container,
 .trulii-cover__container,
@@ -12640,6 +12646,11 @@ hr.on-light {
 .text-underline {
   text-decoration: underline;
 }
+@media screen and (max-width: 768px) {
+  .text-center-mobile {
+    text-align: center;
+  }
+}
 .text-color-primary {
   color: #ffd580;
 }
@@ -12651,6 +12662,9 @@ hr.on-light {
 }
 .text-gray-alt {
   color: #7a7a7a !important;
+}
+.text-gray-light {
+  color: #999999;
 }
 .text-dark {
   color: #3a3d3f;
@@ -12823,6 +12837,7 @@ h2.title {
   h1.title,
   h2.title {
     font-size: 2.5em;
+    line-height: 1em;
   }
 }
 h3.title {
@@ -12831,6 +12846,13 @@ h3.title {
 .sub-title {
   font-size: 2em;
   color: #607171;
+}
+@media screen and (max-width: 768px) {
+  .sub-title {
+    font-size: 1.35em;
+    line-height: 1.35em;
+    margin: 2em 0em;
+  }
 }
 @media screen and (max-width: 768px) {
   h2 {
@@ -13069,6 +13091,11 @@ h5 a {
 }
 .separate-horizontal-inner {
   padding: 0 3rem;
+}
+@media screen and (max-width: 768px) {
+  .separate-below-mobile {
+    margin-bottom: 3rem;
+  }
 }
 .no-padding-top {
   padding-top: 0 !important;
@@ -15638,11 +15665,12 @@ tags-input input {
 }
 .form-submit-controls .btn {
   display: inline-block;
-  min-width: 12em;
+  min-width: 9em;
   font-size: 1em;
   line-height: 1.5em;
   margin-left: 1em;
   font-weight: bold;
+  margin-top: 25px;
 }
 .form-submit-controls .progress {
   position: absolute;
@@ -15812,6 +15840,16 @@ tags-input input {
   height: 26px;
   vertical-align: bottom;
   padding-top: 1px;
+}
+@media screen and (max-width: 768px) {
+  .btn-share,
+  .btn-share-fb,
+  .btn-share-twitter,
+  .btn-share-email {
+    width: 35px;
+    height: 35px;
+    padding: 5px;
+  }
 }
 .btn-share-fb {
   background-color: #48649F;
@@ -18441,6 +18479,13 @@ blockquote {
 .widget-container .star-empty:hover {
   color: #eeeeee;
 }
+.activities-container a {
+  color: #999999 !important;
+}
+.activities-container a:hover,
+.activities-container a:focus {
+  color: #535353 !important;
+}
 .organizer-widget .card {
   border-top: 1px solid #DEDEDE;
   border-right: 1px solid #DEDEDE;
@@ -19395,7 +19440,7 @@ blockquote {
 .payments-panel .panel-body {
   padding: 0;
   border: 1px solid #e3e3e3;
-  margin-top: 5rem;
+  margin-top: 3rem;
   border-top-right: 4px;
   border-top-left: 4px;
 }
@@ -19671,6 +19716,33 @@ blockquote {
   font-size: 16px;
   font-weight: 200;
 }
+.review-detail .review-content {
+  margin-left: -35px;
+}
+.review-detail .review-content a {
+  text-decoration: underline;
+  color: #999999;
+}
+.review-detail .review-content a:hover {
+  color: #535353;
+}
+@media screen and (max-width: 768px) {
+  .review-detail .review-content .pull-right {
+    float: none !important;
+  }
+}
+.review-detail .review-response .review-avatar {
+  width: 45px;
+  height: 45px;
+}
+.review-detail .review-response .review-content {
+  margin-left: -25px;
+}
+@media screen and (max-width: 768px) {
+  .review-detail .review-response .review-content {
+    margin-left: 0px;
+  }
+}
 .star {
   color: #ffd580;
 }
@@ -19825,14 +19897,35 @@ blockquote {
 .popover-content {
   line-height: 1.6em;
 }
+.btn-return {
+  font-weight: 300;
+  text-decoration: none;
+  background-color: #d9d9d9;
+}
+.btn-return img {
+  height: 20px;
+  width: auto;
+}
 .order-detail {
-  display: flex;
   margin: 0;
   border: 1px solid #eeeeee;
+}
+.order-detail .pull-left {
+  margin-right: 20px;
+}
+.order-detail a {
+  color: #535353;
+  text-decoration: underline;
+}
+.order-detail a.btn {
+  text-decoration: none;
 }
 @media screen and (max-width: 992px) {
   .order-detail {
     display: block;
+  }
+  .order-detail .pull-left {
+    float: none;
   }
 }
 .order-detail h5 {
@@ -19845,14 +19938,6 @@ blockquote {
 }
 .order-detail .order-description {
   padding: 25px 35px;
-}
-.order-detail .btn-return {
-  font-weight: 300;
-  text-decoration: none;
-  background-color: #d9d9d9;
-}
-.order-detail .btn-return img {
-  width: 25%;
 }
 .order-detail .order-info {
   background-color: white;

@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryCtrl', StudentHistoryCtrl);
 
-    StudentHistoryCtrl.$inject = ['$filter','student'];
+    StudentHistoryCtrl.$inject = ['$filter','student', 'titleTruncateSize'];
 
-    function StudentHistoryCtrl($filter,student) {
+    function StudentHistoryCtrl($filter, student, titleTruncateSize) {
 
         var vm = this;
         angular.extend(vm,{
@@ -38,8 +38,7 @@
             },
             TYPE_ORDER: 'order',
             TYPE_REFUNDS: 'refunds',
-
-
+            titleSize: titleTruncateSize
         });
 
         activate();
