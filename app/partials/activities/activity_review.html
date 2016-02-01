@@ -37,33 +37,35 @@
             <div class="review-avatar" style="background-image: url({{user.photo}})">
             </div>
             <!-- End profile picture-->
-            <!-- Name-->
-            <h4 class="text-center text-sm text-uppercase text-dark montserrat-regular" ng-bind="user.user.full_name"></h4>
-            <!-- End name -->
         </div>
-        <div class="col-xs-9 col-md-10 paragraph-condensed">
-            <div class="col-xs-12 text-muted">
+        <div class="col-xs-9 col-md-10 paragraph-condensed review-content">
+            <div class="col-xs-12">
+                <!-- Name-->
+                <span class="text-center text-sm text-uppercase text-dark montserrat-semibold" ng-bind="user.user.full_name"></span>
+                <!-- End name -->
+                <span class="hidden-xs hidden-sm">|</span>
+                <br class="hidden-md hidden-lg">
                 <!-- Score -->
                 <span class="text-uppercase montserrat-regular">
                     <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                            readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
-                    <span ng-bind="review.rating + ' / 5'"></span>
+                      readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1">
+                    </rating>
                 </span>
                 <!-- End score-->
-                <span>|</span>
+                <span class="hidden-xs hidden-sm">|</span>
+                <br class="hidden-md hidden-lg">
+                <!-- Date -->
+                <span class="text-sm" ng-if="review.created_at">
+                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                    <em class="text-capitalize" ng-bind="review.created_at | date : 'MMM d, y'"></em>
+                </span>
+                <!-- End date-->
                 <!-- Activity link-->
-                <span class="text-sm">
+                <br class="hidden-md hidden-lg">
+                <span class="text-sm pull-right">
                     <a ui-sref="activities-detail({'activity_id': activity.id})" ng-bind="activity.title"></a>
                 </span>
                 <!-- End activity link-->
-                <div class="float-right" ng-if="review.created_at">
-                    <!-- Date -->
-                    <span class="text-sm">
-                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                        <em class="text-capitalize" ng-bind="review.created_at | date : 'MMM d, y'"></em>
-                    </span>
-                    <!-- End date-->
-                </div>
             </div>
             <div class="col-xs-12 separate-above-less">
                 <p ng-bind="review.comment"></p>
@@ -128,16 +130,17 @@
         </div>
     </div>
     <!-- Response -->
-    <div ng-show="hasReply" class="row separate-above-less separate-below-less">
+    <div ng-show="hasReply" class="row separate-above-less separate-below-less review-response">
         <div class="col-xs-2 col-xs-offset-1">
             <!--TODO organizer-->
             <div class="review-avatar" style="background-image: url({{ activity.organizer.photo }})">
             </div>
-            <h4 class="text-center text-sm text-uppercase montserrat-regular" ng-bind="activity.organizer.name"></h4>
         </div>
-        <div class="col-xs-7 col-xs-offset-1 col-md-9 col-md-offset-0 paragraph-condensed">
-            <span class="montserrat-semibold organizer-name" ng-bind="activity.organizer.name"></span>
-            <span class="text-sm text-muted pull-right" ng-if="review.replied_at">
+        <div class="col-xs-7 col-xs-offset-1 col-md-9 col-md-offset-0 paragraph-condensed review-content">
+            <span class="text-center text-sm montserrat-semibold" ng-bind="activity.organizer.name"></span>
+            <span class="hidden-xs hidden-sm">|</span>
+            <br class="hidden-md hidden-lg">
+            <span class="text-sm" ng-if="review.replied_at">
                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
                 <em class="text-capitalize" ng-bind="review.replied_at | date : 'MMM d, y'"></em>
             </span>

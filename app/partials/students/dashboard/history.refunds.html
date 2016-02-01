@@ -1,6 +1,6 @@
 <div class="col-xs-12">
   <div class="row">
-      <div class="col-xs-10 col-xs-offset-1 tab-content">
+      <div class="col-xs-12 col-md-10 col-md-offset-1 tab-content">
           <div class="card-body tab-content">
               <div class="tab-pane active fade in" id="history-orders-tab">
                   <!-- If there are orders-->
@@ -34,10 +34,10 @@
                                       <tr class="text-center">
                                           <th><strong ng-bind="::history.strings.HEADER_ORDER"></strong></th>
                                           <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
-                                          <th><strong ng-bind="::history.strings.HEADER_REFUND_DATE"></strong></th>
-                                          <th><strong ng-bind="::history.strings.HEADER_REFUND_TOTAL"></strong></th>
-                                          <th><strong ng-bind="::history.strings.HEADER_ASSISTANT"></strong></th>
-                                          <th><strong ng-bind="::history.strings.HEADER_REFUND_STATUS"></strong></th>
+                                          <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_REFUND_DATE"></strong></th>
+                                          <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_REFUND_TOTAL"></strong></th>
+                                          <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_ASSISTANT"></strong></th>
+                                          <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_REFUND_STATUS"></strong></th>
                                       </tr>
                                       <tr ng-repeat="refund in history.refunds track by refund.id | filter:history.refundQuery">
                                           <td>
@@ -47,17 +47,17 @@
                                           <td>
                                               <span ng-bind="::(refund.activity.title | truncateText:true:35:'...')"></span>
                                           </td>
-                                          <td>
+                                          <td class="hidden-xs hidden-sm">
                                               <span class="text-capitalize" ng-bind="::refund.created_at | date:'EEEE d MMM y'"></span>
                                           </td>
-                                          <td>
+                                          <td class="hidden-xs hidden-sm">
                                               <span ng-bind="::(refund.amount | currency:$:0)"></span>
                                           </td>
-                                          <td>
+                                          <td class="hidden-xs hidden-sm">
                                               <span class="text-capitalize" ng-show="::refund.assistant" ng-bind="::(refund.assistant.full_name)"></span>
                                               <span ng-show="::!refund.assistant" ng-bind="::history.strings.LABEL_EVERYBODY"></span>
                                           </td>
-                                          <td>
+                                          <td class="hidden-xs hidden-sm">
                                               <span class="sinkin-medium" ng-bind="::refund.status"></span>
                                           </td>
                                       </tr>

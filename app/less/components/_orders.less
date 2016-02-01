@@ -1,12 +1,38 @@
 @import url('../_trulii-variables');
 
+.btn-return{
+
+  font-weight: 300;
+  text-decoration: none;
+  background-color: lighten(@gray-base, 85%);;
+  img{
+    height: 20px;
+    width: auto;
+  }
+
+}
+
 .order-detail{
-  display: flex;
   margin: 0;
   border: 1px solid @gray-lighter;
   
+  .pull-left{
+    margin-right: 20px;
+  }
+  
+  a{
+    color: @gray;
+    text-decoration: underline;
+    &.btn{
+      text-decoration: none;
+    }
+  }
+  
   .before-md({
     display: block;
+    .pull-left{
+      float: none;
+    }
   });
 
   h5{
@@ -19,17 +45,7 @@
   .order-description{
     padding: 25px 35px;
   }
-  .btn-return{
-
-    font-weight: 300;
-    text-decoration: none;
-    background-color: lighten(@gray-base, 85%);;
-
-    img {
-      width:25%;
-    }
-
-  }
+  
   .order-info{
     background-color:white;
     padding: 0px 35px 25px 35px;
