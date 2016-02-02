@@ -31,7 +31,6 @@
             activity: angular.copy(activity),
             MAX_LENGTH_SHORT_DESC: MAX_LENGTH_SHORT_DESC,
             selectCategory: selectCategory,
-            getLevelClassStyle: getLevelClassStyle,
             checkValidTitle: checkValidTitle,
             getSubmitButtonText: getSubmitButtonText,
             loadAutocompleteTags: loadAutocompleteTags,
@@ -76,14 +75,6 @@
             }
         }
 
-        function getLevelClassStyle(level) {
-            return {
-                'btn-active' : vm.selected_level.code === level.code,
-                'btn-intermediate-level' : level.code === 'I',
-                'btn-advanced-level' : level.code === 'A',
-                'btn-beginner-level' : level.code === 'P'
-            };
-        }
 
         function selectCategory(category) {
             vm.activity_sub_categories = category.subcategories;
