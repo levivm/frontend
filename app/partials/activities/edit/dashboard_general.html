@@ -23,7 +23,7 @@
   </div>
 </div>
 
-<div class="col-xs-12 col-lg-9 col-lg-offset-2 only-fade separate-below-more" ng-show="vm.weHaveTitle" ng-class="{ 'col-lg-offset-2': vm.creating }"> <!-- col-lg-offset-2 col-md-offset-1 -->
+<div class="col-xs-12 only-fade separate-below-more" ng-show="vm.weHaveTitle" ng-class="{ 'col-lg-9': vm.creating, 'col-lg-offset-2': vm.creating}"> <!-- col-lg-offset-2 col-md-offset-1 -->
     <div class="section-title" ng-hide="vm.creating">
       General
     </div>
@@ -31,25 +31,25 @@
           ng-submit="vm.save_activity()">
         <fieldset>
           <div></div>
-          <div class="form-group" trulii-input-errors-control="title" >
+          <div class="form-group col-xs-12 separate-above" trulii-input-errors-control="title" >
             <label for="editable_activity_title">Título</label>
             <input type="text" id="editable_activity_title" class="form-control input-lg" name="title"
                     placeholder="¿Cómo titulas a tu actividad?"
                     ng-model='vm.activity.title'>
           </div>
-          <div class="form-group" trulii-input-errors-control field="vm.activity_create_form.level">
+          <div class="form-group col-xs-12 separate-above-less" ng-class="{ 'col-md-8': vm.creating}" trulii-input-errors-control field="vm.activity_create_form.level">
               <label class="control-label " ng-bind="::vm.strings.LABEL_LEVEL"></label>
               <br/>
               <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
                   <label class="btn btn-default"
                           ng-repeat="level in vm.activity_levels"
-                          ng-class="vm.getLevelClassStyle(level)">
+                          ng-class="{'btn-active': vm.selected_level.code === level.code, 'btn-beginner-level': vm.selected_level.code === level.code}">
                       <input type="radio" name="level" class="hidden" ng-model="vm.selected_level"
                               ng-value="level">{{level.value}}
                   </label>
               </div>
           </div>
-          <div class="form-group" trulii-input-errors-control="certification">
+          <div class="form-group col-md-8 separate-above-less" trulii-input-errors-control="certification">
               <label class="control-label" ng-bind="::vm.strings.COPY_CERTIFICATION"></label>
               <br/>
               <div class="btn-group" role="group" aria-label="Nivel">
@@ -65,7 +65,7 @@
                   </label>
               </div>
           </div>
-          <div class="row form-group">
+          <div class="row form-group col-xs-12 clear-spacings separate-above-less">
               <div class="col-md-6">
                   <label class="control-label" ng-bind="::vm.strings.LABEL_CATEGORY"></label>
                   <div trulii-input-errors-control="category">
@@ -92,7 +92,7 @@
                   </div>
               </div>
           </div>
-          <div class="form-group" trulii-input-errors-control="short_description">
+          <div class="form-group col-xs-12 separate-above" trulii-input-errors-control="short_description">
               <label for="short_description" class="control-label" ng-bind="::vm.strings.LABEL_SHOT_DESCRIPTION"></label>
               <textarea id="short_description" class="form-control"
                         ng-model="vm.activity.short_description" name="short_description"
@@ -102,14 +102,14 @@
                         ></textarea>
                         <span class="text-muted pull-right" ng-bind="vm.MAX_LENGTH_SHORT_DESC - vm.activity.short_description.length"></span>
           </div>
-          <div class="form-group">
+          <div class="form-group col-xs-12 separate-above-less">
               <label class="control-label" ng-bind="::vm.strings.LABEL_TAGS"></label>
               <tags-input placeholder="Agrega un tag" display-property="name"
                           ng-model="vm.activity_tags">
                   <auto-complete source="vm.loadAutocompleteTags()"></auto-complete>
               </tags-input>
           </div>
-          <trulii-submit-controls is-saving="vm.isSaving" data-value="{{vm.getSubmitButtonText()}}"></trulii-submit-controls>
+          <trulii-submit-controls class="col-xs-12 separate-above-less" is-saving="vm.isSaving" data-value="{{vm.getSubmitButtonText()}}"></trulii-submit-controls>
         </fieldset>
     </form>
 </div>
