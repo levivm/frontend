@@ -7,8 +7,8 @@
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
             <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true"></trulii-search-bar>
             <div class="buttons buttons-login float-right" ng-if="!user">
-                <a ui-sref="login" class=" montserrat-light margin-horizontal" ng-bind="::strings.ACTION_LOGIN"></a>
-                <a ui-sref="register" class="montserrat-light" ng-bind="::strings.ACTION_REGISTER"></a>
+                <a ui-sref="login" class=" montserrat-regular  margin-horizontal" ng-bind="::strings.ACTION_LOGIN"></a>
+                <a ui-sref="register" class="montserrat-regular " ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
             <div class="buttons float-right" ng-if="user.is_organizer">
                 <a ui-sref="dash.activities-new.general" class="btn btn-primary montserrat-regular" ng-bind="::strings.ACTION_CREATE"></a>
