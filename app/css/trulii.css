@@ -13275,6 +13275,7 @@ a.no-text-decoration {
 .map-help {
   text-align: center;
   background: #eeeeee;
+  font-size: 0.85em;
 }
 .label,
 .activity-card__category {
@@ -18371,7 +18372,7 @@ blockquote {
 .activity-card__body {
   padding: 1em;
   display: block;
-  height: 8em;
+  height: 7.5em;
 }
 .activity-card__body a:hover {
   color: rgba(0, 0, 0, 0.74);
@@ -18402,7 +18403,7 @@ blockquote {
   width: 100%;
   display: block;
   padding-bottom: .7em;
-  color: #535353;
+  color: #767676;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -18410,7 +18411,7 @@ blockquote {
 .activity-card__body__description {
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
   padding-top: 1em;
-  color: #999999;
+  color: #535353;
   text-transform: capitalize;
   overflow: hidden;
   word-break: break-all;
@@ -18419,7 +18420,7 @@ blockquote {
 }
 .activity-card__body__date {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #767676;
+  color: #999999;
   font-weight: bold;
   font-size: 0.8em;
   display: inline-block;

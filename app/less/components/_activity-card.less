@@ -16,12 +16,12 @@
     margin: 0 0.8em 1em;
     text-align: left;
     transition: .2s all ease;
-    
+
     .before-md({
       max-width: 90%;
       min-width: 10%;
     });
-    
+
     &:hover{
         box-shadow: 0 2px 4px rgba(0,0,0,0.4);
     }
@@ -133,7 +133,7 @@
     &__body{
         padding: 1em;
         display: block;
-        height: 8em;
+        height: 7.5em;
 
         a {
             &:hover {
@@ -171,14 +171,14 @@
             width: 100%;
             display: block;
             padding-bottom: .7em;
-            color: @gray;
+            color: @activity-card-date-color;
             .text-overflow();
         }
 
         &__description{
             font-family: @font-serif;
             padding-top: 1em;
-            color: @gray-light;
+            color: @gray;
             text-transform: capitalize;
             overflow: hidden;
             word-break: break-all;
@@ -188,7 +188,7 @@
 
         &__date{
             font-family: @font-sans-alt;
-            color: @activity-card-date-color;
+            color:@gray-light;
             font-weight: bold;
             font-size: 0.8em;
             display: inline-block;
