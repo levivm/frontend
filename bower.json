@@ -36,7 +36,7 @@
     "google-code-prettify": "~1.0.4",
     "jquery": "~2.1.3",
     "lodash": "~3.6.0",
-    "moment-timezone": "~0.4.1",
+    "moment-timezone": "git://github.com/Trulii-SAS/moment-timezone.git",
     "ng-file-upload": "~3.0.7",
     "ng-tags-input": "2.1.1",
     "ngvideo": "~0.4.13",
