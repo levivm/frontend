@@ -17009,6 +17009,7 @@ ul.dropdown-menu:after {
   padding: 3em 2em;
   position: relative;
   background-color: white !important;
+  overflow-y: auto;
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .card-list-item h1 {
@@ -17080,12 +17081,6 @@ ul.dropdown-menu:after {
   color: #999999;
   line-height: 2em;
   padding-top: 0.1em;
-}
-.card-list-item:hover .card-list-item__add-icon {
-  background-color: #d0d0d0;
-}
-.card-list-item:hover .card-list-item__add-icon:before {
-  color: white;
 }
 .card--shrink {
   padding-left: 3em;
