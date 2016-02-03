@@ -1,18 +1,18 @@
 <div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
 </div>
 <div class="row" style="margin-bottom:60px;">
-    <div class="col-xs-12 col-md-offset-1 col-lg-9 col-md-offset-1">
+    <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-9 col-md-offset-1">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-xs-12 ">
                 <div>
                     <h4 class="dashboard-header" ng-bind="::instructors.strings.SECTION_INSTRUCTORS"></h4>
                     <p ng-bind="::instructors.strings.COPY_INSTRUCTORS"></p>
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row col-xs-12">
             <form name='instructors.organizer_instructors_forms'>
-                <div class="col-xs-12 col-md-10 horizontal-fade" ng-repeat="instructor in instructors.instructors">
+                <div class="col-xs-12 col-md-6 horizontal-fade" ng-repeat="instructor in instructors.instructors">
                     <trulii-instructor-card instructor="instructor"
                                             organizer="instructors.organizer"  on-dashboard="true" available-instructors="{}"
                                             on-change="instructors.onChange()" ></trulii-instructor-card>

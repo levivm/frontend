@@ -44,7 +44,7 @@
                     selectedInstructor: null,
                     instructorEditable:null,
                     emptyInstructor: true,
-                    cardHeight: '20em'
+                    cardHeight: '31em'
                 });
 
                 var EMPTY_INSTRUCTOR = {
@@ -96,7 +96,7 @@
                             // Create Instructor
                             resource.createInstructor(instructor).then(successCreate, errorCreate);
                         }
-                        
+
                     } else {
                         Toast.setPosition("toast-top-center");
                         Toast.error(scope.strings.MSG_MISSING_REQUIRED_FIELDS);
@@ -175,8 +175,8 @@
                     if(scope.onDashboard)
                         return;
 
-                    scope.availableInstructors = _.filter(scope.availableInstructors, 
-                                function(instructor){ return !_.findWhere(resource.instructors, 
+                    scope.availableInstructors = _.filter(scope.availableInstructors,
+                                function(instructor){ return !_.findWhere(resource.instructors,
                                     instructor); });
                 }
 
