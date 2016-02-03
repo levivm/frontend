@@ -57,6 +57,9 @@
 			padding: 5px 15px;
 			height: 35px;
 		}
+        .before-md({
+          padding: 1.5em;
+        });
 	}
 	::-webkit-input-placeholder{
 		font-weight: 400;
@@ -64,9 +67,16 @@
 	select, select:focus{
 		height: 56px;
 		padding: 1.25em;
+        .before-md({
+          height: 44px;
+          padding: 0.25em;
+        });
 	}
 	.form-group:not(:first-child){
 		margin-top: 2em;
+		.before-md({
+			margin-top: 1em;
+		});
 	}
 	.input-group-btn{
 		.btn{

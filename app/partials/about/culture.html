@@ -3,11 +3,11 @@
     <div class="trulii-cover__content">
       <div class="col-xs-12">
         <div class="row">
-          <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-4">
-            <h1>
+          <div class="col-xs-12 col-md-8 col-md-offset-4">
+            <h1 class="title text-center-mobile title-mobile-no-margin">
               <strong ng-bind="::about.strings.CULTURE_TITLE"></strong>
             </h1>
-            <h3 class="pt-serif no-margin-top" ng-bind="::about.strings.CULTURE_TITLE_TEXT"></h3>
+            <h3 class="pt-serif no-margin-top text-center-mobile" ng-bind="::about.strings.CULTURE_TITLE_TEXT"></h3>
           </div>
         </div>
       </div>
@@ -18,55 +18,98 @@
 </div>
 <div class="col-xs-12">
   <div class="row padding-more">
-    <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-4">
+    <div class="col-xs-12 col-md-7 col-md-offset-4">
       <h3 class="text-muted separate-below">
         <strong ng-bind="::about.strings.CULTURE_SECTION_1_CONTENT_TITLE">
         </strong>
       </h3>
       <p ng-bind="::about.strings.CULTURE_SECTION_1_CONTENT_TEXT_1"></p>
       <p ng-bind="::about.strings.CULTURE_SECTION_1_CONTENT_TEXT_2"></p>
-      <img src="/css/img/about/growth_2.png" alt="" class="img-responsive center-block separate-above-medium separate-below-medium">
-      <img src="/css/img/about/bul.png" alt="" class="img-responsive center-block separate-below">
-      <div class="row">
-        <div class="col-xs-3">
-          <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_HEADER"></h4>
-          <img src="/css/img/about/priorities.png" alt="" class="img-responsive center-block separate-above separate-below">
-          <h5 class="text-md text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_TEXT_1"></h5>
+      <div class="hidden-md hidden-lg">
+        <div class="row">
+          <div class="col-xs-6">
+            <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_HEADER"></h4>
+            <h5 class="text-md text-center montserrat-light text-muted" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_TEXT_1"></h5>
+          </div>
+          <div class="col-xs-6">
+            <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_HEADER"></h4>
+            <h4 class="text-md text-center montserrat-light text-muted">
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_1"></span>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_2"></span>
+            </h4>
+          </div>
         </div>
-        <div class="col-xs-3">
-          <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_HEADER"></h4>
-          <img src="/css/img/about/strategy.png" alt="" class="img-responsive center-block separate-above separate-below">
-          <h4 class="text-md text-center montserrat-light">
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_1"></span>
-            <br>
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_2"></span>
-            <br>
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_3"></span>
-            <br>
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_4"></span>
-          </h4>
+        <div class="row">
+          <div class="col-xs-6">
+            <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_HEADER"></h4>
+            <h4 class="text-md text-center montserrat-light text-muted">
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_1"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_2"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_3"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_4"></span>
+            </h4>
+          </div>
+          <div class="col-xs-6">
+            <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_HEADER"></h4>
+            <h4 class="text-md text-center montserrat-light text-muted">
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_1"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_2"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_3"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_4"></span>
+            </h4>
+          </div>
         </div>
-        <div class="col-xs-3">
-          <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_HEADER"></h4>
-          <img src="/css/img/about/transparency.png" alt="" class="img-responsive center-block separate-above separate-below">
-          <h4 class="text-md text-center montserrat-light">
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_1"></span>
-            <br>
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_2"></span>
-            <br>
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_3"></span>
-            <br>
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_4"></span>
-          </h4>
-        </div>
-        <div class="col-xs-3">
-          <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_HEADER"></h4>
-          <img src="/css/img/about/balance.png" alt="" class="img-responsive center-block separate-above separate-below">
-          <h4 class="text-md text-center montserrat-light">
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_1"></span>
-            <img src="/css/img/about/arrow.png" alt="" class="img-responsive center-block separate-above-less separate-below-less">
-            <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_2"></span>
-          </h4>
+      </div>
+      <div class="hidden-xs hidden-sm">
+        <img src="/css/img/about/growth_2.png" alt="" class="img-responsive center-block separate-above-medium separate-below-medium">
+        <img src="/css/img/about/bul.png" alt="" class="img-responsive center-block separate-below">
+        <div class="row">
+          <div class="col-xs-3">
+            <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_HEADER"></h4>
+            <img src="/css/img/about/priorities.png" alt="" class="img-responsive center-block separate-above separate-below">
+            <h5 class="text-md text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_TEXT_1"></h5>
+          </div>
+          <div class="col-xs-3">
+            <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_HEADER"></h4>
+            <img src="/css/img/about/strategy.png" alt="" class="img-responsive center-block separate-above separate-below">
+            <h4 class="text-md text-center montserrat-light">
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_1"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_2"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_3"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_4"></span>
+            </h4>
+          </div>
+          <div class="col-xs-3">
+            <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_HEADER"></h4>
+            <img src="/css/img/about/transparency.png" alt="" class="img-responsive center-block separate-above separate-below">
+            <h4 class="text-md text-center montserrat-light">
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_1"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_2"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_3"></span>
+              <br>
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_4"></span>
+            </h4>
+          </div>
+          <div class="col-xs-3">
+            <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_HEADER"></h4>
+            <img src="/css/img/about/balance.png" alt="" class="img-responsive center-block separate-above separate-below">
+            <h4 class="text-md text-center montserrat-light">
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_1"></span>
+              <img src="/css/img/about/arrow.png" alt="" class="img-responsive center-block separate-above-less separate-below-less">
+              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_2"></span>
+            </h4>
+          </div>
         </div>
       </div>
     </div>
@@ -77,11 +120,11 @@
     <div class="trulii-cover__content">
       <div class="col-xs-12">
         <div class="row">
-          <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-4">
-            <h1>
+          <div class="col-xs-12 col-md-8 col-md-offset-4">
+            <h1 class="title text-center-mobile title-mobile-no-margin">
               <strong ng-bind="::about.strings.CULTURE_COVER_TITLE"></strong>
             </h1>
-            <h3 class="pt-serif no-margin-top" ng-bind="::about.strings.CULTURE_COVER_TEXT"></h3>
+            <h3 class="pt-serif no-margin-top text-center-mobile" ng-bind="::about.strings.CULTURE_COVER_TEXT"></h3>
           </div>
         </div>
       </div>
@@ -92,7 +135,7 @@
 </div>
 <div class="col-xs-12">
   <div class="row padding-more">
-    <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-4">
+    <div class="col-xs-12 col-md-7 col-md-offset-4">
       <h3 class="text-muted separate-below">
         <strong ng-bind="::about.strings.CULTURE_SECTION_2_CONTENT_TITLE"></strong>
       </h3>
