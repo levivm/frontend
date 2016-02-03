@@ -13,8 +13,8 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$state', 'video', 'activities', 'generalInfo', 'LocationManager'];
-    function HomeController($state, video, activities, generalInfo, LocationManager) {
+    HomeController.$inject = ['$state', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf'];
+    function HomeController($state, video, activities, generalInfo, LocationManager, serverConf) {
 
         var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
@@ -115,9 +115,9 @@
                     setTimeout(
                       function(){
                         // document.getElementsByClassName('trulii-cover__background-video')[0].play();
-                        video.addSource('webm', '/videos/home1.webm');
-                        video.addSource('webm', '/videos/home2.webm');
-                        video.addSource('webm', '/videos/home3.webm');
+                        video.addSource('webm', serverConf.s3URL + '/static/videos/home1.webm');
+                        video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
+                        video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');
                       }, 1000
                     );
                   },
@@ -131,9 +131,9 @@
             _setStrings();
             _setCategories();
             loadActivities();
-            video.addSource('webm', '/videos/home1.webm');
-            video.addSource('webm', '/videos/home2.webm');
-            video.addSource('webm', '/videos/home3.webm');
+            video.addSource('webm', serverConf.s3URL + '/static/videos/home1.webm');
+            video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
+            video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');
             _replayVideos();
 
         }
