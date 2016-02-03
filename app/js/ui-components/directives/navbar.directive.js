@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -23,13 +23,15 @@
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
                 var unsubscribeStateChange = null;
+                var transitionOptions = {location : true, inherit : false, reload : false};
                 angular.extend(scope, {
                     state: null,
                     isSearchVisible : true,
                     showBurger : false,
                     toggleBurger: toggleBurger,
                     explore: explore,
-                    scroll: 0
+                    scroll: 0,
+                    searchActivities: searchActivities
                 });
 
                 _activate();
@@ -42,6 +44,13 @@
 
                 function explore(){
                     $rootScope.$broadcast(SearchManager.EVENT_EXPLORE);
+                }
+
+                function searchActivities(){
+                    SearchManager.setQuery(scope.newSearchQuery);
+                    var searchData = SearchManager.getSearchData();
+                    toggleBurger();
+                    $state.go('search', searchData, transitionOptions);
                 }
 
                 //--------- Internal Functions ---------//

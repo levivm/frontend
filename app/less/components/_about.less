@@ -1,83 +1,122 @@
 .values-container{
   position: relative;
   padding: 2em;
+
+  .before-md({
+    width: 80%;
+    margin: 0 auto;
+  });
+
   p{
     position: absolute;
     color: @black;
     font-family: @font-sans;
     font-weight: 200;
+
+    .before-md({
+      font-size: 0.75em;
+    });
+
   }
   &__humility{
     top: 14%;
     left: 44%;
+    .before-md({
+      top: 27%;
+      left: 39%;
+    });
   }
   &__clarity{
     top: 34%;
     left: 75%;
+    .before-md({
+      top: 43%;
+      left: 85%;
+    });
   }
   &__empathy{
     top: 78%;
     left: 75%;
+
+    .before-md({
+      top: 76%;
+      left: 83%;
+    });
+
   }
   &__eficiency{
     left: 44%;
     bottom: -7%;
+
+    .before-md({
+      left: 36%;
+      bottom: 0%;
+    });
   }
   &__curiosity{
     top: 78%;
     right: 76%;
+    .before-md({
+      top: 75%;
+      right: 84%;
+    });
   }
   &__passion{
     top: 34%;
     right: 76%;
+
+    .before-md({
+      top: 42%;
+      right: 85%;
+    });
   }
 }
 
-@media (max-width: 710px){
-  .values-container{
-    &__humility{
-      top: 15%;
-      left: 37%;
-    }
-    &__clarity{
-      left: 90%;
-    }
-    &__empathy{
-      top: 77%;
-      left: 90%;
-    }
-    &__curiosity{
-      right: 90%;
-    }
-    &__passion{
-      right: 90%;
-    }
-    &__eficiency{
-      left: 37%;
-    }
-  }
-}
-@media (min-width: 711px) and (max-width: 991px){
-  .values-container{
-    &__humility{
-      left: 42%;
-    }
-    &__clarity{
-      top: 31%;
-      left: 82%;
-    }
-    &__empathy{
-      left: 80%;
-    }
-    &__curiosity{
-      right: 80%;
-    }
-    &__passion{
-      top: 31%;
-      right: 82%;
-    }
-    &__eficiency{
-      left: 42%;
-    }
-  }
-}
+//@media (max-width: 710px){
+//  .values-container{
+//    &__humility{
+//      top: 15%;
+//      left: 37%;
+//    }
+//    &__clarity{
+//      left: 90%;
+//    }
+//    &__empathy{
+//      top: 77%;
+//      left: 90%;
+//    }
+//    &__curiosity{
+//      right: 90%;
+//    }
+//    &__passion{
+//      right: 90%;
+//    }
+//    &__eficiency{
+//      left: 37%;
+//    }
+//  }
+//}
+//@media (min-width: 711px) and (max-width: 991px){
+//  .values-container{
+//    &__humility{
+//      left: 42%;
+//    }
+//    &__clarity{
+//      top: 31%;
+//      left: 82%;
+//    }
+//    &__empathy{
+//      left: 80%;
+//    }
+//    &__curiosity{
+//      right: 80%;
+//    }
+//    &__passion{
+//      top: 31%;
+//      right: 82%;
+//    }
+//    &__eficiency{
+//      left: 42%;
+//    }
+//  }
+//}

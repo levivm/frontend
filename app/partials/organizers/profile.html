@@ -72,10 +72,10 @@
 <!-- Comments -->
 <div class="col-xs-12 profile-comments">
     <div class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-md-3 col-md-offset-0 col-md-push-8">
+        <div class="col-xs-12 col-md-3 col-md-offset-0 col-md-push-8">
             <div class="organizer-widget">
                 <div class="card">
-                    <h1 class="text-center text-muted" ng-bind="profile.organizer.rating"></h1>
+                    <h1 class="text-center text-muted" ng-bind="::profile.organizer.rating | number: 1"></h1>
                     <h1 class="text-center">
                         <span class="text-uppercase text-muted montserrat-regular">
                             <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
@@ -89,7 +89,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1 col-md-pull-3">
+        <div class="col-xs-12 col-md-7 col-md-offset-1 col-md-pull-3">
             <h3 class="separate-below separate-above-medium">
                 <strong ng-bind="::profile.strings.LABEL_COMMENTS"></strong>
             </h3>
@@ -104,7 +104,7 @@
             </div>
 
             <div class="row" ng-show="profile.hasMoreReviews">
-                <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+                <div class="col-xs-12 col-md-4 col-md-offset-4">
                     <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase"
                             ng-click="profile.showMoreReviews()">
                         <span ng-if="profile.hasMoreReviews" ng-bind="::profile.strings.LABEL_MORE_COMMENTS"></span>

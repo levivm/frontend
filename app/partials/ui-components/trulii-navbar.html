@@ -20,7 +20,6 @@
                     </span>
                 </button>
             </div>
-
         </div>
         <div class="navbar__right-wrapper">
             <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
@@ -61,6 +60,18 @@
                             <button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_CREATE">
                             </button>
                         </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 hidden-md hidden-lg separate-vertical">
+                <div class="form-classic">
+                    <div class="input-group">
+                        <input type="text" class="form-control" ng-model="newSearchQuery" placeholder="{{::strings.PLACEHOLDER_WANT_TO_LEARN}}">
+                      <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" ng-click="searchActivities()">
+                            <i class="mdi mdi-action-search"></i>
+                        </button>
+                      </span>
                     </div>
                 </div>
             </div>
