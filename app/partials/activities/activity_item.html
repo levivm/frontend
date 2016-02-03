@@ -37,7 +37,7 @@
            ng-bind="::activity.organizer.name"></a>
         <div class="relative">
             <span class="activity-card__rating" ng-if="activity.organizer.rating">
-                <span ng-bind="activity.organizer.rating"></span>
+                <span ng-bind="::activity.organizer.rating | number: 1"></span>
                 <i class="mdi-action-grade activity-card__rating__star"></i>
             </span>
             <span class="text-muted" ng-if="activity.organizer.rating">|</span>

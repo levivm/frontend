@@ -74,7 +74,7 @@
       <div class="row gallery-container">
         <div class="col-xs-12">
           <div class="gallery">
-            <div class="gallery-slide" ng-repeat="picture in detail.activity.gallery track by picture.id">
+            <div class="gallery-slide" ng-repeat="picture in detail.activity.gallery track by picture.id" ng-class="{'active': detail.currentGalleryPicture === $index}">
               <img class=""
               src="{{ picture.photo }}" alt=""
               ng-show="detail.currentGalleryPicture === $index"/>
@@ -95,11 +95,16 @@
           </div>
         </div>
       </div>
+
       <!--Audience-->
       <div class="row separate-above-medium" ng-show="detail.activity.audience">
         <div class="col-xs-12 section">
-          <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_AUDIENCE"></strong></h2>
-          <p class="content" ng-bind="::detail.activity.audience"></p>
+          <h2 class="text-success" ng-click="detail.showAudience = !detail.showAudience;">
+            <strong ng-bind="::detail.strings.LABEL_AUDIENCE"></strong>
+            <img src="/css/img/plus.png" class="pull-right" alt="" ng-show="!detail.showAudience">
+            <img src="/css/img/minus.png" class="pull-right" alt="" ng-show="detail.showAudience">
+          </h2>
+          <p class="content" ng-bind="::detail.activity.audience" ng-class="{'hidden-xs': !detail.showAudience, 'hidden-sm': !detail.showAudience}"></p>
         </div>
       </div>
 
@@ -108,8 +113,12 @@
       <div class="row separate-above-less" ng-show="detail.activity.content">
         <div class="col-xs-12 section">
           <div class="separator separate-vertical"></div>
-          <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_CONTENT"></strong></h2>
-          <p class="content" ng-bind="::detail.activity.content"></p>
+          <h2 class="text-success" ng-click="detail.showContent = !detail.showContent;">
+            <strong ng-bind="::detail.strings.LABEL_CONTENT"></strong>
+            <img src="/css/img/plus.png" class="pull-right" alt="" ng-show="!detail.showContent">
+            <img src="/css/img/minus.png" class="pull-right" alt="" ng-show="detail.showContent">
+          </h2>
+          <p class="content" ng-bind="::detail.activity.content" ng-class="{'hidden-xs': !detail.showContent, 'hidden-sm': !detail.showContent}"></p>
         </div>
       </div>
 
@@ -118,8 +127,12 @@
       <div class="row separate-above-less" ng-show="detail.activity.goals">
         <div class="col-xs-12 section">
           <div class="separator separate-vertical"></div>
-          <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_GOALS"></strong></h2>
-          <p class="content" ng-bind="::detail.activity.goals"></p>
+          <h2 class="text-success" ng-click="detail.showGoals = !detail.showGoals;">
+            <strong ng-bind="::detail.strings.LABEL_GOALS"></strong>
+            <img src="/css/img/plus.png" class="pull-right" alt="" ng-show="!detail.showGoals">
+            <img src="/css/img/minus.png" class="pull-right" alt="" ng-show="detail.showGoals">
+          </h2>
+          <p class="content" ng-bind="::detail.activity.goals" ng-class="{'hidden-xs': !detail.showGoals, 'hidden-sm': !detail.showGoals}"></p>
         </div>
       </div>
 
@@ -138,8 +151,12 @@
       <div class="row separate-above-less" ng-show="detail.activity.methodology">
         <div class="col-xs-12 section">
           <div class="separator separate-vertical" ng-if="!detail.activity.youtube_video_url"></div>
-          <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong></h2>
-          <p class="content" ng-bind="::detail.activity.methodology"></p>
+          <h2 class="text-success" ng-click="detail.showMethodology = !detail.showMethodology;">
+            <strong ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong>
+            <img src="/css/img/plus.png" class="pull-right" alt="" ng-show="!detail.showMethodology">
+            <img src="/css/img/minus.png" class="pull-right" alt="" ng-show="detail.showMethodology">
+          </h2>
+          <p class="content" ng-bind="::detail.activity.methodology" ng-class="{'hidden-xs': !detail.showMethodology, 'hidden-sm': !detail.showMethodology}"></p>
         </div>
       </div>
 
@@ -148,8 +165,12 @@
       <div class="row separate-above-less" ng-show="detail.activity.requirements">
         <div class="col-xs-12 section">
           <div class="separator separate-vertical"></div>
-          <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong></h2>
-          <p class="content" ng-bind="::detail.activity.requirements"></p>
+          <h2 class="text-success" ng-click="detail.showRequirements = !detail.showRequirements;">
+            <strong ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong>
+            <img src="/css/img/plus.png" class="pull-right" alt="" ng-show="!detail.showRequirements">
+            <img src="/css/img/minus.png" class="pull-right" alt="" ng-show="detail.showRequirements">
+          </h2>
+          <p class="content" ng-bind="::detail.activity.requirements" ng-class="{'hidden-xs': !detail.showRequirements, 'hidden-sm': !detail.showRequirements}"></p>
         </div>
       </div>
 
@@ -159,12 +180,17 @@
 
         <div class="col-xs-12 section separate-below-more">
           <div class="separator separate-vertical"></div>
-          <h2 class="text-success"><strong ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong></h2>
-          <p class="content" ng-bind="::detail.activity.extra_info"></p>
+          <h2 class="text-success" ng-click="detail.showExtra = !detail.showExtra;">
+            <strong ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong>
+            <img src="/css/img/plus.png" class="pull-right" alt="" ng-show="!detail.showExtra">
+            <img src="/css/img/minus.png" class="pull-right" alt="" ng-show="detail.showExtra">
+          </h2>
+          <p class="content" ng-bind="::detail.activity.extra_info" ng-class="{'hidden-xs': !detail.showExtra, 'hidden-sm': !detail.showExtra}"></p>
         </div>
       </div>
       <div class="separate-above-more" ng-show="!detail.activity.extra_info"></div>
     </div>
+
     <div class="col-xs-12 col-md-3 widget-container">
       <div class="organizer-widget">
         <a class="card text-no-decoration" ui-sref="organizer-profile({organizer_id: detail.organizer.id})">
@@ -181,8 +207,8 @@
           <div ng-if="detail.organizer.rating">
             <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                     readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="organizer-rating"></rating>
-            <span ng-bind="detail.organizer.rating + ' / 5'"></span>
-            <span ng-bind="detail.totalReviews"></span>
+            <span ng-bind="::(detail.organizer.rating | number: 1) + ' / 5'"></span>
+            <span ng-bind="::detail.totalReviews"></span>
             <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
           </div>
           <div ng-if="!detail.organizer.rating" ng-bind="detail.strings.COPY_NO_RATINGS"></div>
@@ -297,7 +323,7 @@
 <!--Reviews-->
 <div class="col-xs-12">
   <div class="row">
-    <div class="col-xs-12 col-md-7 col-md-offset-1 reviews-container padding-vertical-more">
+    <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1 reviews-container padding-vertical-more">
       <h2>
         <strong ng-bind="::detail.strings.COPY_HEADER_REVIEWS"></strong>
         <br>
@@ -322,7 +348,7 @@
                   state-on="'glyphicon glyphicon-star star'"
                   state-off="'glyphicon glyphicon-star star-empty'"
                   readonly="true" aria-labelledby="custom-icons-1"></rating>
-          <span ng-bind="detail.organizer.rating + ' / 5'"></span>
+          <span ng-bind="::(detail.organizer.rating | number: 1)+ ' / 5'"></span>
         </span>
       </p>
 

@@ -189,6 +189,9 @@
                 display: inline-block;
                 .before-md({
                   margin-right: -15px;
+                  width: 4em;
+                  height: 4em;
+                  margin-top: 5px;
                 });
             }
             .menu-icon{
@@ -196,6 +199,9 @@
                 padding: 1.4em;
                 width: 4em;
                 display: inline-block;
+                .before-md({
+                  margin-left: -5px;
+                })
             }
         }
     }
@@ -329,6 +335,9 @@
         font-size: 1.25em;
         float: right;
         padding: 0 1em;
+        .before-md({
+          margin: 0.5em;
+        });
     }
 
     & + * {
@@ -345,7 +354,7 @@
         height: 100%;
         background-color: @sidebar-color;
         color: white !important;
-        padding: 0 1em;
+        padding: 0 1.2em;
     }
 
 }
@@ -365,7 +374,7 @@
   position:fixed;
   top:0;
   left:0;
-  background-color: @brand-success;
+  background-color: #22c7b5;
   color: white;
   z-index: 10000;
   overflow-y: auto;
@@ -373,6 +382,20 @@
   transition: all 0.25s;
   &.ng-hide{
     opacity: 0;
+  }
+  .btn-success, .input-group-btn{
+    background-color: #1eaf9f;
+    color: white;
+  }
+  .form-classic{
+    .input-group-btn{
+      .btn{
+        padding-top: 2px;
+        .mdi {
+          color: white;
+        }
+      }
+    }
   }
   p{
     margin: 0.5em 0;
@@ -462,7 +485,7 @@
   &__user{
     &-links{
       min-height:100vh;
-      background-color: darken(@brand-success, 5%);
+      background-color: #249588;
       padding: 10vh 5em 0 5em;
       max-height: 100vh;
       overflow-y: auto;
@@ -492,6 +515,10 @@
         width: 80px;
         height: 80px;
         margin: 0 1em;
+        .before-md({
+          width: 50px;
+          height: 50px;
+        });
     }
   }
 }

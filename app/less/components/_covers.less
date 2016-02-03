@@ -100,6 +100,19 @@
     .title{
       font-size: 4em;
       margin-top: 0.25em !important;
+
+      .before-md({
+        font-size: 3em;
+        line-height: 0.85em;
+        margin-bottom: 1em;
+
+        &-mobile-no-margin{
+          margin-bottom: 0.2em;
+        }
+      });
+
+
+
     }
     p{
       color:white;
@@ -234,6 +247,11 @@
     }
     &-contact-controllers{
       background-color: fade(@gray, 40%);
+      ul{
+        .before-md({
+          padding-top: 3em;
+        });
+      }
       li{
         padding: 0 2.5%;
         .item, .item-long{
@@ -241,6 +259,12 @@
           height: 120px;
           width: 110px;
           transition: all 0.5s;
+
+          .before-md({
+            height: 50px;
+            width: 50px;
+          });
+
           a, a:hover, a:focus{
             color: white;
           }
@@ -343,6 +367,10 @@
 
 .trulii-cover-small{
   min-height: @trulii-cover-height-small;
+  .before-md({
+    min-height: 45vh;
+    padding-top: 5vh;
+  });
 }
 .trulii-cover-medium{
   min-height: @trulii-cover-height-medium;

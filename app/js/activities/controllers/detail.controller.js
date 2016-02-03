@@ -63,7 +63,14 @@
             viewMoreCalendars: viewMoreCalendars,
             toggleEmailShow: toggleEmailShow,
             toggleSessions: toggleSessions,
-            shareEmailForm: shareEmailForm
+            shareEmailForm: shareEmailForm,
+            showAudience: false,
+            showContent: false,
+            showGoals: false,
+            showVideo: false,
+            showMethodology: false,
+            showRequirements: false,
+            showExtra: false
         });
 
         _activate();

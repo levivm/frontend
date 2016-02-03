@@ -39,37 +39,39 @@
             <!-- End profile picture-->
         </div>
         <div class="col-xs-9 col-md-10 paragraph-condensed review-content">
-            <div class="col-xs-12">
-                <!-- Name-->
-                <span class="text-center text-sm text-uppercase text-dark montserrat-semibold" ng-bind="user.user.full_name"></span>
-                <!-- End name -->
-                <span class="hidden-xs hidden-sm">|</span>
-                <br class="hidden-md hidden-lg">
-                <!-- Score -->
-                <span class="text-uppercase montserrat-regular">
-                    <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                      readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1">
-                    </rating>
-                </span>
-                <!-- End score-->
-                <span class="hidden-xs hidden-sm">|</span>
-                <br class="hidden-md hidden-lg">
-                <!-- Date -->
-                <span class="text-sm" ng-if="review.created_at">
-                    <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                    <em class="text-capitalize" ng-bind="review.created_at | date : 'MMM d, y'"></em>
-                </span>
-                <!-- End date-->
-                <!-- Activity link-->
-                <br class="hidden-md hidden-lg">
-                <span class="text-sm pull-right">
-                    <a ui-sref="activities-detail({'activity_id': activity.id})" ng-bind="activity.title"></a>
-                </span>
-                <!-- End activity link-->
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- Name-->
+                    <span class="text-center text-sm text-uppercase text-dark montserrat-semibold" ng-bind="user.user.full_name"></span>
+                    <!-- End name -->
+                    <span class="hidden-xs hidden-sm">|</span>
+                    <br class="hidden-md hidden-lg">
+                    <!-- Score -->
+                    <span class="text-uppercase montserrat-regular">
+                        <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
+                                readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1">
+                        </rating>
+                    </span>
+                    <!-- End score-->
+                    <span class="hidden-xs hidden-sm">|</span>
+                    <br class="hidden-md hidden-lg">
+                    <!-- Date -->
+                    <span class="text-sm" ng-if="review.created_at">
+                        <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
+                        <em class="text-capitalize" ng-bind="review.created_at | date : 'MMM d, y'"></em>
+                    </span>
+                    <!-- End date-->
+                    <!-- Activity link-->
+                    <br class="hidden-md hidden-lg">
+                    <span class="text-sm pull-right">
+                        <a ui-sref="activities-detail({'activity_id': activity.id})" ng-bind="activity.title"></a>
+                    </span>
+                    <!-- End activity link-->
+                </div>
             </div>
-            <div class="col-xs-12 separate-above-less">
-                <p ng-bind="review.comment"></p>
-            </div>
+        </div>
+        <div class="col-xs-12 separate-above-less">
+            <p ng-bind="review.comment"></p>
         </div>
     </div>
     <!-- Review Reported -->
@@ -144,6 +146,8 @@
                 <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
                 <em class="text-capitalize" ng-bind="review.replied_at | date : 'MMM d, y'"></em>
             </span>
+        </div>
+        <div class="col-xs-12 separate-above-less">
             <p><em ng-bind="review.reply"></em></p>
         </div>
     </div>

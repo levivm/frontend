@@ -33,14 +33,14 @@
           <div></div>
           <div class="form-group" trulii-input-errors-control="title" >
             <label for="editable_activity_title">Título</label>
-            <input type="text" id="editable_activity_title" class="form-control input-lg" name="title"
+            <input type="text" id="editable_activity_title" class="form-control" name="title"
                     placeholder="¿Cómo titulas a tu actividad?"
                     ng-model='vm.activity.title'>
           </div>
           <div class="form-group" trulii-input-errors-control field="vm.activity_create_form.level">
               <label class="control-label " ng-bind="::vm.strings.LABEL_LEVEL"></label>
               <br/>
-              <div class="btn-group btn-group-justified" role="group" aria-label="Nivel">
+              <div class="btn-group btn-group-justified hidden-xs hiddem-md" role="group" aria-label="Nivel">
                   <label class="btn btn-default"
                           ng-repeat="level in vm.activity_levels"
                           ng-class="vm.getLevelClassStyle(level)">
@@ -48,6 +48,10 @@
                               ng-value="level">{{level.value}}
                   </label>
               </div>
+              <select class=" form-control hidden-sm hidden-md hidden-lg search-level-select" name="levelSelect" id="levelSelect"
+                      ng-model="vm.selected_level"
+                      ng-options="level.value for level in vm.activity_levels track by level.code">
+              </select>
           </div>
           <div class="form-group" trulii-input-errors-control="certification">
               <label class="control-label" ng-bind="::vm.strings.COPY_CERTIFICATION"></label>
