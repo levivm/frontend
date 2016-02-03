@@ -18560,6 +18560,13 @@ blockquote {
 .activity-detail p {
   word-break: break-all;
 }
+.collapse-icon {
+  width: 20px;
+  height: 20px;
+  margin-top: 5px;
+  float: right;
+  opacity: 0.5;
+}
 .widget-container {
   padding-left: 25px;
   padding-right: 25px;
