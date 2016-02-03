@@ -25,6 +25,9 @@
       border-radius: 50%;
       margin: 0 auto;
     }
+    button{
+        width: 8em;
+    }
 
     .report-alert{
       background-color: @gray-lighter;
@@ -45,16 +48,15 @@
         font-size: 16px;
         font-weight: 200;
     }
-    
+
     .review-content{
       margin-left: -5px;
-
-      
       a{
         text-decoration: underline;
-        color: @gray-light;
+        color: @brand-success;
+        font-weight: 500;
         &:hover{
-          color: @gray;
+          color: @brand-success-dark;
         }
       }
       .pull-right{
@@ -62,23 +64,22 @@
           float: none !important;
         })
       }
-      
+
     }
     .review-response{
-        
+
       .review-avatar{
         width: 45px;
         height: 45px;
       }
-      
+
       .review-content{
         margin-left: -10px;
-        
         .before-sm({
           margin-left: 0px;
         });
       }
-      
+
     }
 }
 
