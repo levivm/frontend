@@ -15816,7 +15816,7 @@ tags-input input {
 .form-classic select,
 .form-classic select:focus {
   height: 56px;
-  padding: 1.25em;
+  padding: 1.25em 1.75em;
 }
 @media screen and (max-width: 992px) {
   .form-classic select,
