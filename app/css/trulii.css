@@ -12355,6 +12355,12 @@ hr.on-light {
 .clear-both {
   clear: both;
 }
+.flex-container {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
 .flex-center-container,
 .circular-image-container,
 .trulii-cover__container,
@@ -12393,11 +12399,11 @@ hr.on-light {
   -ms-flex-pack: flex-end;
   justify-content: flex-end;
 }
-.flex-container {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+.flex-around-container {
+  -webkit-box-pack: space-around;
+  -webkit-justify-content: space-around;
+  -ms-flex-pack: space-around;
+  justify-content: space-around;
 }
 .flex-align-items-center {
   display: -webkit-box;
@@ -18431,6 +18437,7 @@ blockquote {
   left: 0;
   width: 100%;
   height: 100%;
+  border-radius: 5px;
 }
 .activity-card__header__cover-container.inactive-cover:before {
   content: '';
@@ -18440,6 +18447,18 @@ blockquote {
   background-color: rgba(255, 255, 255, 0.5);
   top: 0;
   left: 0;
+}
+.activity-card__header__cover-gradient {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 6em;
+  border-radius: 5px;
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.75) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
 }
 .activity-card__header__btn-more {
   color: white;
@@ -18459,15 +18478,11 @@ blockquote {
 }
 .activity-card__header__menu {
   position: relative;
-  background: white;
   float: right;
-  width: 10em;
-  display: block;
+  width: 7em;
   border-radius: 2.5px;
-  padding-top: 1.5em;
-  padding-bottom: .8em;
   z-index: 10;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: right;
 }
 .activity-card__header__menu__btn-close {
   position: absolute;
@@ -18476,21 +18491,16 @@ blockquote {
   cursor: pointer;
 }
 .activity-card__header__menu__item {
-  color: #535353;
-  display: block;
-  font-size: .8em;
+  color: #FFFFFF;
+  font-size: 1.5em;
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
-  padding: .7em .8em;
   cursor: pointer;
+  margin-left: 0.3em;
+  text-align: center;
 }
 .activity-card__header__menu__item__icon {
-  font-size: 1.3em;
-  margin-right: .5em;
-}
-.activity-card__header__menu__item:hover {
-  background: #eeeeee;
-  color: #535353;
+  font-size: 1em;
 }
 .activity-card__header__menu__item:active {
   background: #38dbc8;
@@ -18575,6 +18585,10 @@ blockquote {
 .activity-card__bottom:hover {
   color: rgba(0, 0, 0, 0.74);
   text-decoration: none;
+}
+.activity-card__bottom img {
+  margin-right: 0.25em;
+  vertical-align: text-bottom;
 }
 .activity-card__rating {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;

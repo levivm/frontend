@@ -2,29 +2,27 @@
     <div class="activity-card__header ">
         <div class="activity-card__category" style="background-color: {{activity.category.color}}"
              ng-bind="::activity.category.name"></div>
+
         <a class="activity-card__header__cover-container"
            ui-sref="activities-detail({activity_id: {{::activity.id}} })"
            ng-class="{'inactive-cover': inactive}"
            style="background-image: url('{{activity.main_photo}}') ">
 
         </a>
-        <a class="activity-card__owner-picture" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
+        <a ng-show="actions.length>0" class="activity-card__header__cover-gradient"
+           ui-sref="activities-detail({activity_id: {{::activity.id}} })">
+
+        </a>
+        <a  class="activity-card__owner-picture" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
              style="background-image: url('{{::activity.organizer.photo}}') "></a>
-        <span ng-if="actions.length > 0" class="activity-card__header__btn-more mdi-navigation-more-vert"
-              ng-click="showMenu()">
-        </span>
         <!--Actions Menu-->
-        <span class="activity-card__header__menu horizontal-fade" ng-show="isMenuVisible">
-            <div class="activity-card__header__menu__btn-close  mdi-navigation-close"
-                 ng-click="hideMenu()">
-            </div>
+        <span class="activity-card__header__menu horizontal-fade">
             <!--Actions-->
             <a ng-repeat="action in actions track by $index"
                class="activity-card__header__menu__item"
                ui-sref="{{::action.state}}"
                data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
-                <i class=" activity-card__header__menu__item__icon" ng-class="action.icon"></i>
-                <span ng-bind="::action.name"></span>
+              <span class=" activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
             </a>
         </span>
     </div>
@@ -36,26 +34,32 @@
         <a class="activity-card__body__owner-name" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
            ng-bind="::activity.organizer.name"></a>
         <div class="relative">
+            <span class="activity-card__body__date" ng-bind="activity.date_msg"></span>
+            <span class="text-muted" ng-if="activity.organizer.rating">|</span>
             <span class="activity-card__rating" ng-if="activity.organizer.rating">
                 <span ng-bind="::activity.organizer.rating | number: 1"></span>
+                <span>/ 5</span>
                 <i class="mdi-action-grade activity-card__rating__star"></i>
             </span>
-            <span class="text-muted" ng-if="activity.organizer.rating">|</span>
-            <span class="activity-card__body__date" ng-bind="activity.closest_calendar.duration | formatDuration : 'seconds'"></span>
-            <span class="text-muted">|</span>
-            <span class="activity-card__body__date" ng-bind="activity.date_msg"></span>
+
         </div>
         <!--<div class="activity-card__body__description" ng-bind="::activity.short_description">-->
         <!--</div>-->
     </div>
     <!--Cost-->
     <a class="activity-card__bottom" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
-        <div ng-if="activity.closest_calendar">
-            <span>$</span>
-            <span ng-class="::{'text-strike':activity.closest_calendar.is_free}"
-                  ng-bind="::activity.closest_calendar.session_price | number"></span>
-            <strong ng-show="activity.closest_calendar.is_free"
-                    ng-bind="::strings.COPY_FREE"></strong>
+        <div ng-if="activity.closest_calendar" class="flex-container flex-around-container">
+            <div>
+                <img  src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Clock.png" alt="">
+                <span class="" ng-bind="activity.closest_calendar.duration | formatDuration : 'seconds'"></span>
+            </div>
+            <div>
+                <img src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Precio.png" alt="">
+                <span ng-class="::{'text-strike':activity.closest_calendar.is_free}"
+                      ng-bind="::activity.closest_calendar.session_price | number"></span>
+                <strong ng-show="activity.closest_calendar.is_free"
+                        ng-bind="::strings.COPY_FREE"></strong>
+            </div>
         </div>
         <span ng-if="!activity.closest_calendar"
               ng-bind="::strings.COPY_NA"></span>
