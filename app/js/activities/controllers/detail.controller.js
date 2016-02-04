@@ -143,7 +143,7 @@
         function toggleEmailShow(){
           vm.showEmail = !vm.showEmail;
         }
-        
+
         function toggleSessions(){
           vm.showSessions = !vm.showSessions;
         }
@@ -399,7 +399,6 @@
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
             _setUpLocation(activity);
-
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
@@ -418,8 +417,7 @@
             _initWidget();
             _initSignup();
 
-            //console.log('detail. activity:', vm.activity);
-            //console.log('detail. reviews:', reviews);
+            console.log('organizer:', vm.organizer);
         }
     }
 })();
