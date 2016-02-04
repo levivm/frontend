@@ -198,7 +198,7 @@
                         COPY_TODAY: "Hoy",
                         COPY_DAY: "día ",
                         COPY_DAYS: "días ",
-                        COPY_IN: "En "
+                        COPY_IN: "Inicia en "
                     });
                 }
 
