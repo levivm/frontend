@@ -355,7 +355,7 @@
       <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1" ng-repeat="review in detail.reviews track by review.id">
           <trulii-activity-review data-review="review"
-          data-activity="detail.activity"
+          data-activity="review.activity.data"
           data-on-dashboard="false" ></trulii-activity-review>
         </div>
       </div>
