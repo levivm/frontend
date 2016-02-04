@@ -145,7 +145,7 @@
                 vm.previousState = {
                     'state':'dash.activities-manage.orders',
                     'params':{
-                        'activity_id':order.activity_id
+                        'activity_id':order.activity.id
                     }
                 };
             }
