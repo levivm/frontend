@@ -48,9 +48,24 @@
             </a>
         </div>
         <div ui-view class="col-xs-12"></div>
-        <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': dash.scroll > 80}"
+        <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': dash.scroll > 80}"
             ng-click="dash.toggleSidebar()">
             <i class="sidebar__item__icon mdi-action-settings"></i>
-        </a>
+            <span ng-bind="::dash.strings.SECTION_PROFILE"
+                  ng-class="{'hidden-xs hidden-sm': !dash.isActive('organizer-dashboard.profile.*')}"></span>
+            <span ng-bind="::dash.strings.SECTION_ACCOUNT"
+                  ng-class="{'hidden-xs hidden-sm': !dash.isActive('organizer-dashboard.account.*')}"></span>
+            <span ng-bind="::dash.strings.SECTION_ACTIVITIES"
+                  ng-class="{'hidden-xs hidden-sm': !dash.isActive('organizer-dashboard.activities.*')}"></span>
+            <span ng-bind="::dash.strings.SECTION_INSTRUCTORS"
+                  ng-class="{'hidden-xs hidden-sm': !dash.isActive('organizer-dashboard.instructors')}"></span>
+            <span ng-bind="::dash.strings.SECTION_REVIEWS"
+                  ng-class="{'hidden-xs hidden-sm': !dash.isActive('organizer-dashboard.reviews.*')}"></span>
+            <span ng-bind="::dash.strings.SECTION_TRANSACTIONS"
+                  ng-class="{'hidden-xs hidden-sm': !dash.isActive('organizer-dashboard.transactions.*')}"></span>
+            <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
+                <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
+            </a>
+        </div>
     </div>
 </div>

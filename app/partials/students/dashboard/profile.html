@@ -86,7 +86,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label" for="birth_date" ng-bind="::profile.strings.LABEL_BIRTH_DATE"></label>
-                            <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
+                            <i class="glyphicon glyphicon-question-sign separate-horizontal-less" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
                             <input id="birth_date" type="text" class="form-control"
                                name="birth_date"
                                ng-model="profile.student.birth_date"
@@ -105,7 +105,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <label class="control-label" for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
-                            <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
+                            <i class="glyphicon glyphicon-question-sign separate-horizontal-less" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
                             <select id="city" class="form-control" name="city"
                                     ng-model="profile.selected_city"
                                     ng-options="city as city.name for city in profile.cities track by city.id"
@@ -119,7 +119,7 @@
                     <div class="col-md-6">
                        <div class="form-group">
                             <label class="control-label" for="telephone" ng-bind="::profile.strings.LABEL_TELEPHONE"></label>
-                            <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
+                            <i class="glyphicon glyphicon-question-sign separate-horizontal-less" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
                             <input id="telephone" class="form-control" ng-model='profile.student.telephone' name="telephone"/>
                         </div>
                     </div>

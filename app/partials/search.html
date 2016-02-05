@@ -205,7 +205,10 @@
     </div>
     <trulii-dashboard-footer></trulii-dashboard-footer>
 </div>
-<a class="sidebar-mobile-toggle visible-xs-block visible-sm-block"
+<div class="sidebar-mobile-toggle visible-xs-block visible-sm-block"
     ng-click="search.toggleSidebar()">
     <i class="sidebar__item__icon mdi-action-settings"></i>
-</a>
+    <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
+        <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
+    </a>
+</div>

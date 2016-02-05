@@ -207,7 +207,9 @@
                 width: 4em;
                 display: inline-block;
                 .before-md({
-                  margin-left: -5px;
+                  &.menu-icon-user{
+                    margin-left: -5px;
+                  }
                 })
             }
         }
@@ -318,6 +320,10 @@
         cursor: pointer;
         height: 40px;
 
+      .before-md({
+          font-size: .75em;
+        });
+
         &--selected, &.active {
             border-bottom: 3px solid @gray-light;
             font-weight: bold;
@@ -344,6 +350,8 @@
         padding: 0 1em;
         .before-md({
           margin: 0.5em;
+          font-size: 1em;
+          line-height: 2em;
         });
     }
 
@@ -515,6 +523,7 @@
         line-height: @navbar-height - (@navbar-padding-vertical*2);
         vertical-align: middle;
         letter-spacing: 1px;
+        display: inline-block;
     }
     &__picture:extend(.img-size-cover):extend(.img-position-center) {
         .square(@navbar-inner-height - 8);
@@ -535,7 +544,7 @@
     &__buttons{
       padding-top: 1.5em;
       [class*="col-"] {
-        padding: 0 30%;
+        padding: 0 20%;
       }
     }
     &__user-links{
