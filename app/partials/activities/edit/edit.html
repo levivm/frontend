@@ -1,18 +1,18 @@
 <div class="container-fluid">
     <div class="row">
-        <nav class="sidebar lateral-slide" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
+        <nav class="sidebar lateral-slide sidebar-edit-activity" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
                 <a  ng-repeat="step in pc.steps track by step.name"
                 ui-sref="{{step.sref}}"
-                class="sidebar__item"
-                ui-sref-active="sidebar__item--selected"
+                class="sidebar__item sidebar__item-edit-activity"
+                ui-sref-active="sidebar__item--selected-edit-activity"
                 ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} "
                 ng-click="dash.toggleSidebar()">
                     <i class="{{::step.icon}} sidebar__item__icon"></i>
                     <span ng-bind="::step.title"></span>
-                    <i class="mandatory-mark --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
+                    <i class="mandatory-mark mandatory-mark-edit-activity --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
                 </a>
-            <div class="sidebar__bottom-action-container">
-                <div class="sidebar__bottom-action text-center" >
+            <div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
+                <div class="sidebar__bottom-action sidebar__bottom-action-edit-activity text-center" >
 
                     <div ng-show="!pc.areAllStepsCompleted()">
                         <div>
@@ -38,7 +38,7 @@
                         <span>Para publicar tu actividad</span><br/>
                         <hr>
                         <div class="text-uppercase">
-                            <span class="mandatory-mark"></span> Obligatorios
+                            <span class="mandatory-mark mandatory-mark-edit-activity"></span> Obligatorios
                         </div>
                     </div>
                     <div ng-show="pc.activity.published">
@@ -66,6 +66,16 @@
                         </div>
                     </div>
                 </div>
+                <div class="sidebar__bottom-action-dark-edit-acitivity">
+                   <ul class="list-inline list-unstyled text-center text-uppercase">
+                       <li>
+                           <a class="text-center text-uppercase" ui-sref="organizer-dashboard.activities.open">
+                               <i class="glyphicon glyphicon-arrow-left icon-edit-activity"></i>
+                               <span ng-bind="'Ver mis actividades'"></span>
+                           </a>
+                       </li>
+                   </ul>
+               </div>
 
             </div>
         </nav>
