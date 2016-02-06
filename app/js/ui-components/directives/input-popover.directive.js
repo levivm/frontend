@@ -30,6 +30,7 @@
 				options['placement'] = attrs.popoverPlacement && attrs.popoverPlacement != "" ?  attrs.popoverPlacement : _calcPosition();
 
 				function _calcPosition(){
+					console.log(w.width());
 					if(w.width()<768){
 						return 'top';
 					}else{

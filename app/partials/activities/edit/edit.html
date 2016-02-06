@@ -1,18 +1,18 @@
 <div class="container-fluid">
     <div class="row">
-        <nav class="sidebar lateral-slide" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
+        <nav class="sidebar lateral-slide sidebar-edit-activity" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
                 <a  ng-repeat="step in pc.steps track by step.name"
                 ui-sref="{{step.sref}}"
-                class="sidebar__item"
-                ui-sref-active="sidebar__item--selected"
+                class="sidebar__item sidebar__item-edit-activity"
+                ui-sref-active="sidebar__item--selected-edit-activity"
                 ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} "
                 ng-click="dash.toggleSidebar()">
                     <i class="{{::step.icon}} sidebar__item__icon"></i>
                     <span ng-bind="::step.title"></span>
-                    <i class="mandatory-mark --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
+                    <i class="mandatory-mark mandatory-mark-edit-activity --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
                 </a>
-            <div class="sidebar__bottom-action-container">
-                <div class="sidebar__bottom-action text-center" >
+            <div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
+                <div class="sidebar__bottom-action sidebar__bottom-action-edit-activity text-center" >
 
                     <div ng-show="!pc.areAllStepsCompleted()">
                         <div>
@@ -38,7 +38,7 @@
                         <span>Para publicar tu actividad</span><br/>
                         <hr>
                         <div class="text-uppercase">
-                            <span class="mandatory-mark"></span> Obligatorios
+                            <span class="mandatory-mark mandatory-mark-edit-activity"></span> Obligatorios
                         </div>
                     </div>
                     <div ng-show="pc.activity.published">
@@ -66,29 +66,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="sidebar__bottom-action-dark">
-                    <ul class="list-inline list-unstyled text-center text-uppercase">
-                        <li>
-                            <a class="text-center text-uppercase" ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
-                                <i class="mdi-action-settings sidebar__item__icon"></i>
-                                <span ng-bind="'Gestionar'"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <div class="sidebar__bottom-action-dark-edit-acitivity">
+                   <ul class="list-inline list-unstyled text-center text-uppercase">
+                       <li>
+                           <a class="text-center text-uppercase" ui-sref="organizer-dashboard.activities.open">
+                               <i class="glyphicon glyphicon-arrow-left icon-edit-activity"></i>
+                               <span ng-bind="'Ver mis actividades'"></span>
+                           </a>
+                       </li>
+                   </ul>
+               </div>
 
             </div>
         </nav>
         <div class="col-sm-10 separate-above separate-below-more">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': pc.scroll > 80}">
               <a class="btn btn-default pull-right" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})">
-                  <i class="mdi-image-remove-red-eye sidebar__item__icon"></i>
+                 <!-- <i class="mdi-image-remove-red-eye sidebar__item__icon"></i>-->
                   <span>Ver</span>
+              </a>
+              <a class="btn btn-default pull-right"  ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
+                  <!--<i class="mdi-action-settings sidebar__item__icon"></i>-->
+                  <span ng-bind="'Gestionar actividad'"></span>
               </a>
               <h4 class="sub-title" ng-bind="pc.activity.title"></h4>
             </div>
             <div class="row">
-                <div class="col-xs-12 col-xs-offset-0 col-md-offset-1" ui-view></div>
+                <div class="col-xs-12 col-md-10 col-xs-offset-0 col-md-offset-2" ui-view></div>
             </div>
         </div>
         <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': pc.scroll > 80}"

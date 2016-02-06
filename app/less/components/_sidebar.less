@@ -18,6 +18,10 @@
 	max-height: ~"calc(100vh - 80px)";
   transition: transform 0.5s;
 
+  &-edit-activity{
+	  background-color: @sidebar-acitvity-color;
+	  border-right: 0.1em solid @gray-light;
+  }
   .before-sm({
     top: @navbar-short-height;
     max-height: ~"calc(100vh - 60px)";
@@ -96,11 +100,14 @@
 		font-size: .9em;
 		border-left: 5px solid transparent;
 
+		&-edit-activity{
+			color: @gray;
+
+		}
 		&--selected{
 			background: lighten(@dark-element, 10%);
 			//border-top: 1px solid @color-delimeter-light;
 			//border-right: 1px solid $color-delimeter-light
-			border-left: 5px solid @primary;
 			transition: ease all 0.1s;
 			color: @primary;
 
@@ -113,7 +120,28 @@
 			&:focus{
 				color:@primary;
 			}
+
+
 		}
+		&--selected-edit-activity{
+			background: @gray-lighter;
+			transition: ease all 0.1s;
+			color: @gray;
+
+			.@{sidebar-float-class} &{
+				background: lighten(@gray-light, 50%);
+				font-weight: bold !important;
+				color: @success !important;
+				border-width: 0;
+			}
+			&:focus{
+				color:@gray;
+			}
+
+
+		}
+
+
 
 		&:hover, &:focus{
 			text-decoration: none;
@@ -168,6 +196,11 @@
 		.sidebar__bottom-action{
 			margin-top: 0;
 		}
+
+		&-edit-activity{
+			border-top: none;
+			border-right: 0.1em solid @gray-light;
+		}
 	}
 	&__bottom-action {
 		background: @sidebar-color;
@@ -179,6 +212,10 @@
 		font-size: .9em;
 		color: @gray-lightest;
 
+		&-edit-activity{
+			background: @gray-lighter;
+			color: gray;
+		}
 		hr{
 			display: block;
 			width: 100%;
@@ -198,8 +235,8 @@
 			font-size: 1.3em;
 			margin-top: 1em;
 			width: 100%;
-			font-weight: bold;
-			line-height: 1.5em;
+			font-weight: 300;
+			line-height: 0.5em;
 		}
 		&-dark{
 			background-color: @gray-darker;
@@ -209,6 +246,32 @@
 				text-decoration: none;
 			}
 		}
+		&-dark-edit-acitivity{
+			background-color: gray;
+		    padding: 1em 0em 0.25em 0em;
+			a{
+				color: @white;
+				text-decoration: none;
+			}
+
+			.icon-edit-activity{
+				font-size: 1em;
+			    border: 1px solid @white;
+			    border-radius: 50%;
+			    padding: 0.5em;
+			    top: 0.2em;
+			    margin-right: 0.3em;
+			}
+			.icon-edit-activity:hover{
+				border: 1px solid @primary;
+			}
+			a:hover{
+				.icon-edit-activity{
+					border: 1px solid @primary;
+				}
+			}
+		}
+
 
 	}
 
@@ -219,10 +282,17 @@
 		background-color: @brand-primary;
 		border-radius: 50%;
 
+		&-edit-activity{
+			background-color: @gray;
+		}
 		&.--right{
 			float: right;
 			margin: 1.2em;
+
+
 		}
+
+
 	}
 
 	& + *{
@@ -252,7 +322,10 @@
     }
 
 }
-
+.sidebar__item-edit-activity:hover {
+    color: @gray !important;
+	background: @gray-lighter;
+}
 
 .sidebar-mobile-toggle{
     color: @gray;
