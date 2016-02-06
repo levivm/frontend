@@ -17,25 +17,17 @@
                     </a>
                 </li>
             </ul>
-            <div class="sidebar__bottom-action-container">
-                <div class="sidebar__bottom-action-dark">
-                    <ul class="list-inline list-unstyled text-center text-uppercase">
-                        <li>
-                            <a ui-sref="dash.activities-edit.general({activity_id:{{manage.activity.id}}})">
-                                <i class="mdi-editor-mode-edit sidebar__item__icon"></i>
-                                <span ng-bind="'Editar'"></span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
         </div>
         <div class="col-xs-12">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
                 <a class="btn btn-default pull-right"
                    ui-sref="activities-detail({activity_id: {{manage.activity.id}}})">
-                    <i class="mdi-image-remove-red-eye sidebar__item__icon"></i>
+                    <!--<i class="mdi-image-remove-red-eye sidebar__item__icon"></i>-->
                     <span ng-bind="manage.strings.ACTION_VIEW"></span>
+                </a>
+                <a class="btn btn-default pull-right"   ui-sref="dash.activities-edit.general({activity_id:{{manage.activity.id}}})">
+                    <!--<i class="mdi-editor-mode-edit sidebar__item__icon"></i>-->
+                    <span ng-bind="'Editar'"></span>
                 </a>
                 <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
             </div>

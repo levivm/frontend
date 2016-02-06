@@ -12950,7 +12950,6 @@ h5 a {
   overflow: hidden;
 }
 .img-actionable__actions {
-  display: none;
   position: absolute;
   left: 0;
   padding: .5em;
@@ -12960,7 +12959,7 @@ h5 a {
   line-height: 100%;
   width: 100%;
   text-align: center;
-  transition: .3s all ease;
+  bottom: 0;
 }
 .img-actionable__actions__action {
   transition: .2s all ease;
@@ -13003,16 +13002,10 @@ h5 a {
   opacity: .4;
   position: absolute;
   height: 4em;
-  top: -4em;
+  bottom: 0;
   right: 0;
   left: 0;
   z-index: 10;
-}
-.img-actionable:hover:after {
-  top: 0;
-}
-.img-actionable:hover .img-actionable__actions {
-  display: inline-block;
 }
 .img-actionable--small:after {
   height: 2.5em;
@@ -14198,9 +14191,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border: none;
   border-radius: 0;
   height: 100%;
-  background-color: #393b3f;
+  background-color: #999999;
   color: white !important;
-  padding: 0 1.2em;
+  padding: 0 1em;
+  font-weight: 300;
+  border-right: 0.1em solid gray;
+  line-height: 2.5em;
+  font-size: 1.1em;
 }
 .with-navbar {
   margin-top: 80px;
@@ -15745,7 +15742,7 @@ tags-input input {
   font-size: 1em;
   line-height: 1.5em;
   margin-left: 1em;
-  font-weight: bold;
+  font-weight: 300;
   margin-top: 25px;
 }
 .form-submit-controls .progress {
@@ -17672,10 +17669,16 @@ button.toast-close-button {
   border-radius: 50%;
   padding: 0.3em 0.37em 0.3em 0.3em;
 }
-@media (max-width: 1350px) {
+@media (max-width: 1640px) {
+  .--small-less {
+    margin-right: 0.6em !important;
+  }
+}
+@media (max-width: 1370px) {
   .--small-less {
     width: 8.20em !important;
     height: 8.20em !important;
+    margin-right: 0.6em;
   }
 }
 @media (max-width: 1220px) {
@@ -20041,16 +20044,43 @@ blockquote {
 }
 .popover {
   box-shadow: none;
-  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
+  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #f3f3f3 !important;
   color: #535353;
+  border: 1px solid #f3f3f3;
+}
+.popover > .arrow {
+  border-top-color: transparent;
+  border-right-color: #f3f3f3 !important;
 }
 .popover-title {
   background-color: transparent;
   border-bottom: 0px;
   font-weight: bolder;
+  font-size: 13px;
 }
 .popover-content {
   line-height: 1.6em;
+  font-weight: 300;
+  font-size: 13px;
+}
+.popover.right > .arrow:after {
+  content: " ";
+  left: 1px;
+  bottom: -10px;
+  border-left-width: 0;
+  border-right-color: #f3f3f3 !important;
+  border-top-color: transparent !important;
+}
+@media (max-width: 760px) {
+  .popover.top > .arrow {
+    border-top-color: #f3f3f3 !important;
+    border-right-color: transparent !important;
+  }
+  .popover.top > .arrow:after {
+    border-top-color: #f3f3f3 !important;
+    border-right-color: transparent !important;
+  }
 }
 .btn-return {
   font-weight: 300;
@@ -20494,7 +20524,7 @@ input[type=text].form-control.referral-link:focus {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   height: 2.4em;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   background: #eeeeee;
   text-align: right;

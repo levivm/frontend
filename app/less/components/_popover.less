@@ -2,16 +2,43 @@
 
 .popover{
 	box-shadow: none;
-	font-family: @font-serif;
+	font-family: @font-sans;
+	background-color: rgba(243,243,243,1) !important;
 	color: @gray;
+	border: 1px solid rgba(243,243,243,1);
 }
-
+.popover > .arrow {
+	border-top-color: transparent;
+    border-right-color: rgba(243,243,243,1) !important;
+}
 .popover-title{
 	background-color: transparent;
 	border-bottom: 0px;
 	font-weight: bolder;
+	font-size: 13px;
 }
 
 .popover-content{
-	line-height: 1.6em;	
+	line-height: 1.6em;
+	font-weight: 300;
+	font-size: 13px;
+}
+.popover.right > .arrow:after {
+    content: " ";
+    left: 1px;
+    bottom: -10px;
+    border-left-width: 0;
+    border-right-color: rgba(243,243,243,1) !important;
+	border-top-color: transparent !important;
+}
+@media (max-width: 760px){
+
+	.popover.top > .arrow {
+	    border-top-color: rgba(243,243,243,1) !important;
+	    border-right-color: transparent !important;
+	}
+	.popover.top > .arrow:after {
+		border-top-color: rgba(243,243,243,1) !important;
+	    border-right-color: transparent !important;
+	}
 }

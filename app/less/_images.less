@@ -42,17 +42,16 @@
   overflow: hidden;
 
   &__actions {
-    display: none;
-    position: absolute;
-    left: 0;
-    padding: .5em;
-    z-index: 25;
-    color: white;
-    font-weight: bold;
-    line-height: 100%;
-    width: 100%;
-    text-align: center;
-    transition: .3s all ease;
+      position: absolute;
+      left: 0;
+      padding: .5em;
+      z-index: 25;
+      color: white;
+      font-weight: bold;
+      line-height: 100%;
+      width: 100%;
+      text-align: center;
+      bottom: 0;
 
     &__action {
       transition: .2s all ease;
@@ -100,24 +99,13 @@
     opacity: .4;
     position: absolute;
     height: 4em;
-    top: -4em;
+    bottom: 0;
     right: 0;
     left: 0;
     z-index: 10;
   }
 
-  &:hover {
 
-    &:after {
-      top: 0;
-
-    }
-
-    & .@{img-actionable-selector}__actions {
-      display: inline-block;
-
-    }
-  }
 
   &--small {
 
