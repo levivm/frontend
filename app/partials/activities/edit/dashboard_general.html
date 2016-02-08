@@ -39,11 +39,11 @@
                             placeholder="¿Cómo titulas a tu actividad?"
                             ng-model='vm.activity.title'>
                   </div>
-                  <div class="form-group col-xs-12 separate-above-less" ng-class="{ 'col-md-8': vm.creating}" trulii-input-errors-control field="vm.activity_create_form.level">
+                  <div class="form-group col-xs-12 col-md-10 separate-above-less" ng-class="{ 'col-md-8': vm.creating}" trulii-input-errors-control field="vm.activity_create_form.level">
                       <label class="control-label " ng-bind="::vm.strings.LABEL_LEVEL"></label>
                       <br/>
                       <div class="btn-group btn-group-justified hidden-xs hiddem-md" role="group" aria-label="Nivel">
-                          <label class="btn btn-default"
+                          <label class="btn btn-default text-sm"
                                   ng-repeat="level in vm.activity_levels"
                                   ng-class="{'btn-active': vm.selected_level.code === level.code, 'btn-beginner-level': vm.selected_level.code === level.code}">
                               <input type="radio" name="level" class="hidden" ng-model="vm.selected_level"
@@ -59,12 +59,12 @@
                       <label class="control-label" ng-bind="::vm.strings.COPY_CERTIFICATION"></label>
                       <br/>
                       <div class="btn-group" role="group" aria-label="Nivel">
-                          <label class="btn"
+                          <label class="btn text-sm"
                                   ng-class="{'btn-success': vm.activity.certification == false, 'btn-default': vm.activity.certification === true }">
                               <input type="radio" name="certification" class="hidden"
                                       ng-model="vm.activity.certification" ng-value="false">{{::vm.strings.OPTION_WITHOUT_CERTIFICATION}}
                           </label>
-                          <label class="btn"
+                          <label class="btn text-sm"
                                   ng-class="{'btn-success': vm.activity.certification === true, 'btn-default': vm.activity.certification == false }">
                               <input type="radio" name="certification" class="hidden"
                                       ng-model="vm.activity.certification" ng-value="true">{{::vm.strings.OPTION_WITH_CERTIFICATION}}

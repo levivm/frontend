@@ -107,16 +107,17 @@
                 </div>
             </div>
             <!--Buttons-->
-            <div class="separate-above-less separate-below-less review-buttons flex-betweent-container" ng-hide="hasReply || review.read">
+            <div class="separate-above-less separate-below-less  flex-betweent-container review-buttons" ng-hide="hasReply || review.read">
                     <button class="btn btn-default  montserrat-light" ng-bind="::strings.LABEL_REPORT_BUTTON"
                             ng-click="show.reportWarning = !show.reportWarning">
                     </button>
-                    <div class="flex-container separate-left-less">
-                        <button class="btn btn-primary  montserrat-light" ng-bind="::strings.LABEL_REPLY_BUTTON"
+                    <div class="flex-container separate-left-less ">
+                        <button class="btn btn-primary  montserrat-light"
                                 ng-click="reply()">
+                                <span ng-bind="::strings.LABEL_REPLY_BUTTON"></span>
                         </button>
-                        <button class="btn btn-success  separate-left-less" ng-click="markAsRead()">
-                            <span class="glyphicon glyphicon-ok"></span>
+                        <button class="btn btn-success  separate-left-less montserrat-light" ng-click="markAsRead()" >
+                            <span class="text-md"  ng-bind="::strings.ACTION_MARK_AS_READ"></span>
                         </button>
                     </div>
             </div>

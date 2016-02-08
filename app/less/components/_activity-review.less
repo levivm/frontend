@@ -26,7 +26,7 @@
       margin: 0 auto;
     }
     button{
-        width: 8em;
+        width:11em;
     }
 
     .report-alert{
@@ -93,4 +93,22 @@
   &-empty:hover{
     color: @primary;
   }
+}
+
+@media (max-width: 768px){
+
+    .review-buttons{
+        display: block;
+        > div{
+            display: block;
+            margin-left: 0em;
+        }
+
+        button{
+            width: 100%;
+            margin-left: 0em;
+            margin-bottom: 1em;
+        }
+    }
+
 }
