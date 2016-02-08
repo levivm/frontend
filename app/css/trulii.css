@@ -20612,7 +20612,7 @@ input[type=text].form-control.referral-link:focus {
   padding: 0.75em 1em 0.125em 1em;
   background-color: #eeeeee;
   border-bottom: 5px solid #999999;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   width: 100%;
