@@ -27,8 +27,8 @@
 </div>
 <!--If there are no activities-->
 <div ng-if="activities.past_activities.length <= 0" class="row">
-    <div class="col-md-8 col-md-offset-2 text-center">
-        <img src="css/img/student_dashboard_activities_empty.png"
+    <div class="col-md-6 col-md-offset-3 text-center">
+        <img class="separate-below-less" src="css/img/student_dashboard_activities_empty.png"
              alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
         <h4 ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES"></h4>
         <div class="separate-below separate-above standout-text"
