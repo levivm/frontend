@@ -34,12 +34,11 @@
         <a class="activity-card__body__owner-name" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
            ng-bind="::activity.organizer.name"></a>
         <div class="relative">
-            <span class="activity-card__body__date" ng-bind="activity.date_msg"></span>
+            <span class="activity-card__body__date sinkin-regular" ng-bind="activity.date_msg"></span>
             <span class="text-muted" ng-if="activity.organizer.rating">|</span>
             <span class="activity-card__rating" ng-if="activity.organizer.rating">
-                <span ng-bind="::activity.organizer.rating | number: 1"></span>
-                <span>/ 5</span>
-                <i class="mdi-action-grade activity-card__rating__star"></i>
+                <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
+                        readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="organizer-rating"></rating>
             </span>
 
         </div>
@@ -51,13 +50,13 @@
         <div ng-if="activity.closest_calendar" class="flex-container flex-around-container">
             <div>
                 <img  src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Clock.png" alt="">
-                <span class="" ng-bind="activity.closest_calendar.duration | formatDuration : 'seconds'"></span>
+                <span class="text-md" ng-bind="activity.closest_calendar.duration | formatDuration : 'seconds'"></span>
             </div>
             <div>
                 <img src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Precio.png" alt="">
-                <span ng-class="::{'text-strike':activity.closest_calendar.is_free}"
+                <span class="text-md" ng-class="::{'text-strike':activity.closest_calendar.is_free}"
                       ng-bind="::activity.closest_calendar.session_price | number"></span>
-                <strong ng-show="activity.closest_calendar.is_free"
+                <strong class="text-md" ng-show="activity.closest_calendar.is_free"
                         ng-bind="::strings.COPY_FREE"></strong>
             </div>
         </div>

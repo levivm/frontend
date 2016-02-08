@@ -18616,9 +18616,7 @@ blockquote {
   font-size: .9em;
 }
 .activity-card__body__date {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #999999;
-  font-weight: bold;
   font-size: 0.8em;
   display: inline-block;
 }
@@ -18641,6 +18639,7 @@ blockquote {
   font-weight: bold;
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
+  border-radius: 0px 0px 5px 5px;
 }
 .activity-card__bottom:hover {
   color: rgba(0, 0, 0, 0.74);
@@ -18655,7 +18654,7 @@ blockquote {
   font-weight: 700;
   display: inline-block;
   color: #767676;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 .activity-card__rating__star {
   color: #ffd580;
@@ -19909,7 +19908,7 @@ blockquote {
   margin: 0 auto;
 }
 .review-detail button {
-  width: 8em;
+  width: 11em;
 }
 .review-detail .report-alert {
   background-color: #eeeeee;
@@ -19967,6 +19966,20 @@ blockquote {
 }
 .star-empty:hover {
   color: #ffd580;
+}
+@media (max-width: 768px) {
+  .review-buttons {
+    display: block;
+  }
+  .review-buttons > div {
+    display: block;
+    margin-left: 0em;
+  }
+  .review-buttons button {
+    width: 100%;
+    margin-left: 0em;
+    margin-bottom: 1em;
+  }
 }
 .profile-cover {
   margin-top: -80px;
@@ -20599,7 +20612,7 @@ input[type=text].form-control.referral-link:focus {
   padding: 0.75em 1em 0.125em 1em;
   background-color: #eeeeee;
   border-bottom: 5px solid #999999;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
