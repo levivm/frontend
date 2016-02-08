@@ -95,7 +95,7 @@
                 </div>
         </div>
     </div>
-    <div class="row separator-light no-margin-bottom hidden-xs hidden-sm"></div>
+    <div class="row separator-light no-margin-bottom hidden-xs hidden-sm no-margin"></div>
     <div class="row">
         <div class="col-xs-12">
             <div class="search-info">
@@ -112,7 +112,7 @@
                     <button class="btn btn-default" ng-click="search.toggleFilters()">
                       <img src="css/img/search/filters.png" alt="" class="img-responsive center-block">
                     </button>
-                  
+
                     <select class=" form-control sort-select hidden-md hidden-lg" name="sortSelect" id="sortSelect"
                       ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)"
                       ng-options="option.predicate as option.name for option in search.orderByOptions">
@@ -156,7 +156,7 @@
                                   ng-bind="search.strings.LABEL_SORT_BY"></option>
                       </select>
                     </div>
-                    
+
                   </div>
                 </div>
             </div>
@@ -176,10 +176,9 @@
     <div class="row separator-light no-margin"></div>
     <div class="row padding-horizontal-less separate-above padding-vertical-less">
         <div class="col-xs-12 col-md-10 col-md-offset-1">
-            <div class="row activity-grid" ng-if="search.activities.length > 0">
+            <div class="text-center" ng-if="search.activities.length > 0">
                 <!--track by activity.id-->
-                <trulii-activity-item class="col-md-4 col-sm-6 col-xs-12"
-                                      ng-repeat="activity in search.activities"
+                <trulii-activity-item ng-repeat="activity in search.activities"
                                       data-activity="activity"></trulii-activity-item>
             </div>
             <!--Pagination-->

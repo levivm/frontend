@@ -11970,10 +11970,14 @@ hr.on-light {
   transition: background 450ms;
 }
 .noUi-horizontal .noUi-handle {
-  width: 24px;
-  height: 24px;
-  left: -12px;
-  top: -12px;
+  width: 20px;
+  height: 20px;
+  left: -10px;
+  top: -10px;
+}
+.noUi-horizontal {
+  height: 2px;
+  margin: 10px 0;
 }
 .noUi-handle {
   border: 1px solid #D9D9D9;
@@ -12804,12 +12808,12 @@ hr.on-light {
   font-weight: 200;
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.montserrat-regular {
+.montserrat-regular,
+.sidebar-category-container .sidebar-category {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
-.montserrat-semibold,
-.sidebar-category-container .sidebar-category {
+.montserrat-semibold {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
@@ -13060,7 +13064,7 @@ h5 a {
 }
 .clear-spacings {
   padding: 0;
-  margin: 0;
+  margin: 0 !important;
 }
 .separate-above,
 .separate-vertical,
@@ -14438,7 +14442,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-top: 1.2em;
 }
 .search-filter label.margin-more {
-  margin-top: 1em;
+  margin-top: 0em;
 }
 .search-filter .btn-default {
   color: rgba(0, 0, 0, 0.74);
@@ -14481,7 +14485,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   cursor: pointer;
   padding-top: 0.1em;
   background-image: linear-gradient(rgba(255, 213, 128, 0), rgba(255, 255, 255, 0)), linear-gradient(rgba(210, 210, 210, 0), rgba(210, 210, 210, 0)) !important;
-  font-size: 0.8em;
+  font-size: 0.7em;
 }
 @media screen and (max-width: 992px) {
   .search-filter .search-date-container input {
@@ -14611,6 +14615,18 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .search-filter .search-date-container {
     width: 70%;
     margin-left: 5em;
+  }
+}
+@media (min-width: 1602px) {
+  .search-filter {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 11.8em;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    width: 85%;
+    margin: 0 auto;
   }
 }
 @media screen and (max-width: 992px) {
@@ -15331,7 +15347,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   padding: 0.6em 0.6em 0.6em 6em;
-  color: #535353;
+  color: #999999;
   background-color: #fbfbfb;
   width: 100%;
   white-space: normal;
@@ -15341,6 +15357,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar-category-container .sidebar-category .subcategories__item.active {
   background-color: #eeeeee;
+}
+.sidebar-category-container::-webkit-scrollbar {
+  width: 5px;
+  height: 10px;
+}
+.sidebar-category-container::-webkit-scrollbar-thumb {
+  background: #eeeeee;
+  border-radius: 6px;
 }
 input,
 textarea,
@@ -18470,6 +18494,7 @@ blockquote {
   margin: 0 0.8em 1em;
   text-align: left;
   transition: .2s all ease;
+  margin-bottom: 3rem;
 }
 @media screen and (max-width: 992px) {
   .activity-card {
