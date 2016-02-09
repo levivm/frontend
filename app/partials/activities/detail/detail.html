@@ -83,12 +83,6 @@
             <img class="gallery-previous" ng-hide="detail.currentGalleryPicture < 1"
               src="css/img/activity-detail/gallery_slider_left.png" alt="Previous Picture"
               ng-click="detail.previousGalleryPicture()"/>
-            <div class="gallery-info">
-              <span ng-if="detail.activity.gallery.length  < 1" ng-bind="detail.currentGalleryPicture"></span>
-              <span ng-if="detail.activity.gallery.length  >= 1" ng-bind="detail.currentGalleryPicture + 1"></span>
-              <span>|</span>
-              <span ng-bind="::detail.activity.gallery.length"></span>
-            </div>
             <img class="gallery-next"
             src="css/img/activity-detail/gallery_slider_right.png" alt="Next Picture"
             ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
