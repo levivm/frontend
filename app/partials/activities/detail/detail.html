@@ -74,6 +74,7 @@
       <div class="row gallery-container">
         <div class="col-xs-12">
           <div class="gallery">
+            <div class="gallery-gradient"></div>
             <div class="gallery-slide" ng-repeat="picture in detail.activity.gallery track by picture.id" ng-class="{'active': detail.currentGalleryPicture === $index}">
               <img class=""
               src="{{ picture.photo }}" alt=""

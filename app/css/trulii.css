@@ -18307,7 +18307,7 @@ button.toast-close-button {
   background-attachment: initial;
 }
 .trulii-cover-small {
-  min-height: 55vh;
+  min-height: 50vh;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover-small {
@@ -18316,7 +18316,7 @@ button.toast-close-button {
   }
 }
 .trulii-cover-medium {
-  min-height: 60vh;
+  min-height: 55vh;
 }
 .detail-organizer {
   position: absolute;
@@ -19147,6 +19147,18 @@ blockquote {
   background-color: black;
   border-radius: 0.4em;
 }
+.gallery .gallery-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 6;
+  background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 39%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0) 61%, rgba(0, 0, 0, 0) 81%, rgba(0, 0, 0, 0.65) 100%);
+  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 39%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0) 61%, rgba(0, 0, 0, 0) 81%, rgba(0, 0, 0, 0.65) 100%);
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 39%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0) 44%, rgba(0, 0, 0, 0) 61%, rgba(0, 0, 0, 0) 81%, rgba(0, 0, 0, 0.65) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#a6000000', GradientType=0);
+}
 .gallery .GalleryButton {
   position: absolute;
   bottom: 1em;
@@ -19186,6 +19198,7 @@ blockquote {
   border: 1px solid white;
   left: 1em;
   z-index: 7;
+  cursor: pointer;
 }
 .gallery .gallery-previous:hover {
   background-color: rgba(255, 255, 255, 0.4);
@@ -19199,6 +19212,7 @@ blockquote {
   border: 1px solid white;
   right: 1em;
   z-index: 7;
+  cursor: pointer;
 }
 .gallery .gallery-next:hover {
   background-color: rgba(255, 255, 255, 0.4);
