@@ -12976,10 +12976,11 @@ h5 a {
   font-weight: bold;
   border: 2px solid white;
   display: inline-block;
-  padding: 0.7em;
-  font-size: .9em;
+  padding: 0.6em;
+  font-size: .7em;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 0.6em;
 }
 .img-actionable__actions__action:hover {
   background: rgba(255, 255, 255, 0.3);
@@ -12994,8 +12995,9 @@ h5 a {
   font-weight: bold;
   display: inline-block;
   padding: 0.7em;
-  font-size: .9em;
+  font-size: .8em;
   cursor: default;
+  margin-bottom: 0.5em;
 }
 .img-actionable__actions__message:hover {
   background: rgba(255, 255, 255, 0.3);
@@ -15099,7 +15101,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: block;
   width: 100%;
   padding: 10px;
-  padding-left: 2em;
+  padding-left: 1em;
   text-decoration: none;
   line-height: 3em;
   cursor: pointer;
@@ -15217,11 +15219,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   vertical-align: top;
 }
 .sidebar__bottom-action .btn {
-  font-size: 1.3em;
+  font-size: 1em;
   margin-top: 1em;
-  width: 100%;
+  width: 80%;
   font-weight: 300;
-  line-height: 0.5em;
+  line-height: 0.3em;
 }
 .sidebar__bottom-action-dark {
   background-color: #222222;
