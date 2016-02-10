@@ -1,4 +1,4 @@
-<div class="col-xs-12">  
+<div class="col-xs-12">
   <div class="row">
     <div class="col-xs-12">
       <div class="row padding-vertical-medium">
@@ -56,8 +56,8 @@
           <div class="separator"></div>
         </div>
         <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less">
-          <h4 class="text-gray-alt text-uppercase sinkin-semibold" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
-          <p class="text-gray-alt separate-above separate-below-more" ng-bind="success.activity.requirements"></p>
+          <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
+          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below-more" ng-bind="success.activity.requirements"></p>
         </div>
       </div>
       <!--Attendees-->
@@ -104,9 +104,9 @@
       </div>
 
       <div class="row separate-below">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
+        <h3 class="text-center font-black separate-above-medium separate-below-medium" ng-bind="success.strings.LABEL_SIMILAR"></h3>
+        <div class="col-xs-12 col-md-9 col-md-offset-2">
           <div ng-if="success.organizerActivities.length > 0">
-            <h3 class="text-center separate-above-medium separate-below-medium" ng-bind="success.strings.LABEL_SIMILAR"></h3>
             <div class="row activity-grid separate-above">
               <trulii-activity-item
                 ng-repeat="activity in success.organizerActivities track by activity.id"
