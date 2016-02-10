@@ -14363,6 +14363,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   letter-spacing: 1px;
   display: inline-block;
 }
+@media screen and (max-width: 992px) {
+  .burger-menu__user__name {
+    max-width: 70%;
+  }
+}
 .burger-menu__user__picture {
   width: 62px;
   height: 62px;
@@ -16094,6 +16099,27 @@ td {
 .table tfoot tr td.column-button .btn {
   font-size: 1em;
   font-weight: 300;
+}
+@media screen and (max-width: 992px) {
+  .table thead tr th.column-button .btn,
+  .table tbody tr th.column-button .btn,
+  .table tfoot tr th.column-button .btn,
+  .table thead tr td.column-button .btn,
+  .table tbody tr td.column-button .btn,
+  .table tfoot tr td.column-button .btn {
+    padding: 5px;
+    font-weight: 300;
+    margin-top: -5px;
+  }
+  .table thead tr th.column-button .btn img.img-responsive,
+  .table tbody tr th.column-button .btn img.img-responsive,
+  .table tfoot tr th.column-button .btn img.img-responsive,
+  .table thead tr td.column-button .btn img.img-responsive,
+  .table tbody tr td.column-button .btn img.img-responsive,
+  .table tfoot tr td.column-button .btn img.img-responsive {
+    max-width: 40%;
+    margin: 0 auto;
+  }
 }
 @media screen and (max-width: 992px) {
   .table thead tr th,

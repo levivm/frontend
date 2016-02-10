@@ -93,7 +93,7 @@
         </div>
         <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': pc.scroll > 80}"
             ng-click="pc.toggleSidebar()">
-            <i class="sidebar__item__icon mdi-action-settings"></i>
+            <i class="sidebar__item__icon mdi-navigation-menu"></i>
             <span  ng-repeat="step in pc.steps track by step.name"
                 ng-class="{'hidden-xs hidden-sm': !pc.isActive('dash.activities-edit.{{step.name}}')}"
                 ng-bind="::step.title"></span>

@@ -28,7 +28,7 @@
                         </li>
                     </ul>
                 </div>
-            </div>
+            </div>ser
         </div>
         <div class="col-xs-12">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
@@ -44,11 +44,11 @@
         </div>
         <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': manage.scroll > 80}"
             ng-click="manage.toggleSidebar()">
-            <i class="sidebar__item__icon mdi-action-settings"></i>
+            <i class="sidebar__item__icon mdi-navigation-menu"></i>
             <span ng-bind="::manage.strings.TAB_ASSISTANTS"
-                ng-class="{'hidden-xs hidden-sm': !pc.isActive('dash.activities-manage.assistants')}"></span>
+                ng-class="{'hidden-xs hidden-sm': !manage.isActive('dash.activities-manage.assistants')}"></span>
             <span ng-bind="::manage.strings.TAB_ORDERS"
-                ng-class="{'hidden-xs hidden-sm': !pc.isActive('dash.activities-manage.orders')}"></span>
+                ng-class="{'hidden-xs hidden-sm': !manage.isActive('dash.activities-manage.orders')}"></span>
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
                 <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
             </a>
