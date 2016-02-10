@@ -12712,6 +12712,9 @@ hr.on-light {
 .text-dark {
   color: #3a3d3f;
 }
+.text-gray-green {
+  color: #587272;
+}
 .text-ssm {
   font-size: 0.5em;
 }
