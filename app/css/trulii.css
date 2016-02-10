@@ -12269,7 +12269,7 @@ hr.on-light {
   overflow-y: scroll;
 }
 .remove-shadow {
-  box-shadow: none;
+  box-shadow: none !important;
 }
 .sidebar-popup.ng-hide-remove .sidebar-content {
   transform: translate(50%, 0);
@@ -15945,9 +15945,6 @@ tags-input input {
   .form-classic textarea:focus {
     padding: 1.5em;
   }
-}
-.form-classic ::-webkit-input-placeholder {
-  font-weight: 400;
 }
 .form-classic select,
 .form-classic select:focus {
@@ -22168,6 +22165,9 @@ input[type=text].form-control.referral-link:focus {
 body {
   scrollbar-face-color: #d9d9de;
   scrollbar-track-color: rgba(243, 243, 243, 0.4);
+}
+a {
+  cursor: pointer;
 }
 a:hover {
   color: #38dbc8;
