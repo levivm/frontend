@@ -293,116 +293,6 @@
   </div>
 </div>
 
-<!--Instructors-->
-<div class="col-xs-12">
-  <div class="row" ng-show="detail.activity.instructors.length">
-    <div class="col-xs-12 instructors-container">
-      <h1 class="title text-primary">
-        <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
-      </h1>
-      <div class="separate-above-medium">
-        <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
-          <div class="col-xs-12 col-md-8">
-            <div class="name" ng-bind="::instructor.full_name"></div>
-            <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
-            ng-bind="::instructor.website"></a>
-            <p class="bio" ng-bind="::instructor.bio"></p>
-            <hr ng-if="!$last"/>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Reviews-->
-<div class="col-xs-12">
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1 reviews-container padding-vertical-more">
-      <h2>
-        <strong ng-bind="::detail.strings.COPY_HEADER_REVIEWS"></strong>
-        <br>
-        <span ng-bind="::detail.organizer.name"></span>
-      </h2>
-
-      <p class="reviews-container--ratings" ng-if="detail.reviews.length>0" >
-        <span>
-          <i ng-bind="detail.totalReviews"></i>
-          <i>
-            <ng-pluralize count="detail.totalReviews"
-              when="{
-                '1': detail.strings.COPY_ONE_REVIEW,
-                'other': detail.strings.COPY_OTHER_REVIEWS
-              }">
-            </ng-pluralize>
-          </i>
-        </span>
-        <br class="hidden-md hidden-lg">
-        <span class="text-uppercase">
-          <rating ng-model="detail.organizer.rating" max="5"
-                  state-on="'glyphicon glyphicon-star star'"
-                  state-off="'glyphicon glyphicon-star star-empty'"
-                  readonly="true" aria-labelledby="custom-icons-1"></rating>
-          <span ng-bind="::(detail.organizer.rating | number: 1)+ ' / 5'"></span>
-        </span>
-      </p>
-      <p class="reviews-container--reviews-empty" ng-if="detail.reviews.length==0" >
-        <span ng-bind="::detail.strings.COPY_EMPTY_REVIEWS">
-        </span>
-      </p>
-
-      <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1" ng-repeat="review in detail.reviews track by review.id">
-          <trulii-activity-review data-review="review"
-          data-activity="review.activity.data"
-          data-on-dashboard="false" ></trulii-activity-review>
-        </div>
-      </div>
-
-      <div class="row" ng-show="detail.hasMoreReviews">
-        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
-          <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase"
-            ng-bind="::detail.strings.LABEL_MORE_COMMENTS"
-            ng-click="detail.showMoreReviews()">
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!--Location-->
-<div class="col-xs-12">
-  <div class="row location" ng-show="detail.activity.location">
-    <ui-gmap-google-map class="map" center='detail.map.center' zoom='detail.map.zoom'
-      bounds="detail.map.bounds" options="detail.map.options"
-      events="detail.map.events">
-      <ui-gmap-marker coords="detail.marker.coords" options="detail.marker.options"
-        events="detail.marker.events"
-        idkey="detail.marker.id"></ui-gmap-marker>
-    </ui-gmap-google-map>
-    <div class="address">
-      <img src="/css/img/activity-detail/map_location.png" alt=""/>
-      <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
-      <span ng-bind="detail.activity.location.name"></span>
-    </div>
-  </div>
-</div>
-
-<!--Attendees-->
-<div class="col-xs-12">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="attendees-container">
-        <h1 class="text-primary text-center title">
-          <strong ng-bind="::detail.strings.LABEL_ATTENDEES"></strong>
-        </h1>
-        <div ui-view="attendees"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
 <!--Calendars-->
 <div class="col-xs-12 sign-up-container padding-vertical-more" id="more_calendars_section">
   <div class="row">
@@ -519,6 +409,122 @@
     </div>
   </div>
 </div>
+
+<!--Reviews-->
+<div class="col-xs-12">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 col-md-7 col-md-offset-1 reviews-container padding-vertical-more">
+      <h2>
+        <strong ng-bind="::detail.strings.COPY_HEADER_REVIEWS"></strong>
+        <br>
+        <span ng-bind="::detail.organizer.name"></span>
+      </h2>
+
+      <p class="reviews-container--ratings" ng-if="detail.reviews.length>0" >
+        <span>
+          <i ng-bind="detail.totalReviews"></i>
+          <i>
+            <ng-pluralize count="detail.totalReviews"
+              when="{
+                '1': detail.strings.COPY_ONE_REVIEW,
+                'other': detail.strings.COPY_OTHER_REVIEWS
+              }">
+            </ng-pluralize>
+          </i>
+        </span>
+        <br class="hidden-md hidden-lg">
+        <span class="text-uppercase">
+          <rating ng-model="detail.organizer.rating" max="5"
+                  state-on="'glyphicon glyphicon-star star'"
+                  state-off="'glyphicon glyphicon-star star-empty'"
+                  readonly="true" aria-labelledby="custom-icons-1"></rating>
+          <span ng-bind="::(detail.organizer.rating | number: 1)+ ' / 5'"></span>
+        </span>
+      </p>
+      <p class="reviews-container--reviews-empty" ng-if="detail.reviews.length==0" >
+        <span ng-bind="::detail.strings.COPY_EMPTY_REVIEWS">
+        </span>
+      </p>
+
+      <div class="row">
+        <div class="col-xs-12 col-md-10 col-md-offset-1" ng-repeat="review in detail.reviews track by review.id">
+          <trulii-activity-review data-review="review"
+          data-activity="review.activity.data"
+          data-on-dashboard="false" ></trulii-activity-review>
+        </div>
+      </div>
+
+      <div class="row" ng-show="detail.hasMoreReviews">
+        <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
+          <button class="btn btn-block btn-rounded btn-sm btn-success text-uppercase"
+            ng-bind="::detail.strings.LABEL_MORE_COMMENTS"
+            ng-click="detail.showMoreReviews()">
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Location-->
+<div class="col-xs-12">
+  <div class="row location" ng-show="detail.activity.location">
+    <ui-gmap-google-map class="map" center='detail.map.center' zoom='detail.map.zoom'
+      bounds="detail.map.bounds" options="detail.map.options"
+      events="detail.map.events">
+      <ui-gmap-marker coords="detail.marker.coords" options="detail.marker.options"
+        events="detail.marker.events"
+        idkey="detail.marker.id"></ui-gmap-marker>
+    </ui-gmap-google-map>
+    <div class="address">
+      <img src="/css/img/activity-detail/map_location.png" alt=""/>
+      <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
+      <span ng-bind="detail.activity.location.name"></span>
+    </div>
+  </div>
+</div>
+
+
+<!--Instructors-->
+<div class="col-xs-12">
+  <div class="row" ng-show="detail.activity.instructors.length">
+    <div class="col-xs-12 instructors-container">
+      <h1 class="title text-primary">
+        <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
+      </h1>
+      <div class="separate-above-medium">
+        <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
+          <div class="col-xs-12 col-md-8">
+            <div class="name" ng-bind="::instructor.full_name"></div>
+            <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
+            ng-bind="::instructor.website"></a>
+            <p class="bio" ng-bind="::instructor.bio"></p>
+            <hr ng-if="!$last"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!--Attendees-->
+<div class="col-xs-12">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="attendees-container">
+        <h1 class="text-primary text-center title">
+          <strong ng-bind="::detail.strings.LABEL_ATTENDEES"></strong>
+        </h1>
+        <div ui-view="attendees"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!--Why Use Trulii-->
 <div class="col-xs-12 separate-above-medium">
