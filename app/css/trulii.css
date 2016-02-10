@@ -12712,6 +12712,9 @@ hr.on-light {
 .text-dark {
   color: #3a3d3f;
 }
+.text-gray-green {
+  color: #587272;
+}
 .text-ssm {
   font-size: 0.5em;
 }
@@ -12976,10 +12979,11 @@ h5 a {
   font-weight: bold;
   border: 2px solid white;
   display: inline-block;
-  padding: 0.7em;
-  font-size: .9em;
+  padding: 0.6em;
+  font-size: .7em;
   border-radius: 5px;
   cursor: pointer;
+  margin-bottom: 0.6em;
 }
 .img-actionable__actions__action:hover {
   background: rgba(255, 255, 255, 0.3);
@@ -12994,8 +12998,9 @@ h5 a {
   font-weight: bold;
   display: inline-block;
   padding: 0.7em;
-  font-size: .9em;
+  font-size: .8em;
   cursor: default;
+  margin-bottom: 0.5em;
 }
 .img-actionable__actions__message:hover {
   background: rgba(255, 255, 255, 0.3);
@@ -13108,11 +13113,17 @@ h5 a {
 .separate-left-less {
   margin-left: 1rem;
 }
+.separate-left-more {
+  margin-left: 8rem !important;
+}
 .separate-right {
   margin-right: 3rem;
 }
 .separate-right-less {
   margin-right: 1rem;
+}
+.separate-right-more {
+  margin-right: 8rem !important;
 }
 .separate-horizontal {
   margin-left: 3rem;
@@ -13121,8 +13132,14 @@ h5 a {
 .separate-horizontal-less {
   margin-left: 1rem;
 }
+.separate-horizontal-more {
+  margin-left: 8rem !important;
+}
 .separate-horizontal-less {
   margin-right: 1rem;
+}
+.separate-horizontal-more {
+  margin-right: 8rem !important;
 }
 .separate {
   margin-left: 3rem;
@@ -13131,8 +13148,14 @@ h5 a {
 .separate-less {
   margin-left: 1rem;
 }
+.separate-more {
+  margin-left: 8rem !important;
+}
 .separate-less {
   margin-right: 1rem;
+}
+.separate-more {
+  margin-right: 8rem !important;
 }
 .separate-horizontal-inner {
   padding: 0 3rem;
@@ -14424,7 +14447,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: flex;
   -webkit-flex-direction: column;
   flex-direction: column;
-  height: 18.8em;
+  height: 14.8em;
   padding: 10px;
 }
 .search-filter .search-control select {
@@ -14599,7 +14622,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 11.8em;
+    height: 9.8em;
     -webkit-justify-content: space-between;
     justify-content: space-between;
   }
@@ -14619,12 +14642,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media (min-width: 1602px) {
   .search-filter {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    height: 11.8em;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
     width: 85%;
     margin: 0 auto;
   }
@@ -15087,7 +15104,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: block;
   width: 100%;
   padding: 10px;
-  padding-left: 2em;
+  padding-left: 1em;
   text-decoration: none;
   line-height: 3em;
   cursor: pointer;
@@ -15205,11 +15222,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   vertical-align: top;
 }
 .sidebar__bottom-action .btn {
-  font-size: 1.3em;
+  font-size: 1em;
   margin-top: 1em;
-  width: 100%;
+  width: 80%;
   font-weight: 300;
-  line-height: 0.5em;
+  line-height: 0.3em;
 }
 .sidebar__bottom-action-dark {
   background-color: #222222;
@@ -18542,11 +18559,18 @@ blockquote {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 6em;
+  height: 100%;
   border-radius: 5px;
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.75) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
+}
+.activity-card__header__cover-gradient:after {
+  width: 100%;
+  height: 100%;
+  content: "";
+  background-color: rgba(60, 61, 65, 0.4);
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .activity-card__header__btn-more {
   color: white;
@@ -18589,6 +18613,9 @@ blockquote {
 }
 .activity-card__header__menu__item__icon {
   font-size: 1em;
+}
+.activity-card__header__menu__item span {
+  color: #FFFFFF;
 }
 .activity-card__header__menu__item:active {
   background: #38dbc8;
@@ -19236,6 +19263,10 @@ blockquote {
 }
 .reviews-container--ratings span {
   padding: 1em 0.5em;
+}
+.reviews-container--reviews-empty span {
+  color: #3a3d3f;
+  font-weight: 200;
 }
 .location .map {
   width: 100%;

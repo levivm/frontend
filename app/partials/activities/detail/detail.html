@@ -325,7 +325,7 @@
         <span ng-bind="::detail.organizer.name"></span>
       </h2>
 
-      <p class="reviews-container--ratings">
+      <p class="reviews-container--ratings" ng-if="detail.reviews.length>0" >
         <span>
           <i ng-bind="detail.totalReviews"></i>
           <i>
@@ -344,6 +344,10 @@
                   state-off="'glyphicon glyphicon-star star-empty'"
                   readonly="true" aria-labelledby="custom-icons-1"></rating>
           <span ng-bind="::(detail.organizer.rating | number: 1)+ ' / 5'"></span>
+        </span>
+      </p>
+      <p class="reviews-container--reviews-empty" ng-if="detail.reviews.length==0" >
+        <span ng-bind="::detail.strings.COPY_EMPTY_REVIEWS">
         </span>
       </p>
 
@@ -432,7 +436,7 @@
               <th class="hidden-md hidden-lg"></th>
             </tr>
             <tr
-              ng-repeat-start="calendar in detail.activity.upcoming_calendars track by calendar.id | orderBy: calendar.initial_date"
+              ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id "
               ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
               <td>
                 <span class="checkbox"></span>
@@ -463,10 +467,10 @@
 
               </td>
               <td colspan=4>
-                <div ng-if="calendar.available_capacity == 0">
+                <div class="text-left" ng-if="calendar.available_capacity == 0">
                   <span ng-bind="::detail.strings.COPY_NO_VACANCY"></span>
                 </div>
-                <div ng-if="calendar.available_capacity > 0">
+                <div class="text-left" ng-if="calendar.available_capacity > 0">
                   <span ng-bind="::detail.strings.COPY_VACANCY"></span>
                   <span ng-bind="calendar.available_capacity"></span>
                   <span ng-bind="::detail.strings.COPY_OF"></span>
