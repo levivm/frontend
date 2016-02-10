@@ -102,7 +102,7 @@
             var join_us_string = $state.current.name !== 'activities-enroll-success' ? '¡Faltas tú¡': '';
 
             angular.extend(vm.strings, {
-                COPY_SO_FAR: "Hasta ahora",
+                COPY_SO_FAR: "Hasta ahora ",
                 COPY_ALMOST_THERE: "¡Falta poco para conocerlos!",
                 COPY_ZERO_ATTENDEES: "esta actividad no tiene asistentes ¡Sé tú el primero!",
                 COPY_ONE_ATTENDEE: "va 1 asistente ".concat(join_us_string),

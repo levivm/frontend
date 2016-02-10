@@ -104,10 +104,6 @@
                                     <tr ng-repeat="assistant in order.order.assistants track by assistant.id">
                                         <td>
                                             <span ng-bind="::(assistant.first_name +' '+ assistant.last_name)"></span>
-                                            <div class="hidden-md hidden-lg">
-                                              <br>
-                                              <span  ng-bind="::assistant.email"></span>
-                                            </div>
                                         </td>
                                         <td class="hidden-xs hidden-sm">
                                             <span ng-bind="::assistant.email"></span>
@@ -222,7 +218,7 @@
                                     </div>
                                     <trulii-preloader loader-control="order.requestingOrderRefund"></trulii-preloader>
 
-                                    <button class="btn btn-block btn-primary"
+                                    <button class="btn btn-block btn-primary hidden-xs"
                                             ng-show="!order.order.lastest_refund && !(order.order.total_refunds_amount > 0) && !order.requestingOrderRefund"
                                             ng-click="order.requestOrderRefund(order.order.id)"
                                             ng-bind="::order.strings.ACTION_REIMBURSE_ORDER"></button>

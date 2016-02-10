@@ -72,29 +72,39 @@
                                           <span ng-bind="::manage.strings.HEADER_CODE"></span>
                                           <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="right"
                                           tooltip="{{::manage.strings.COPY_ASSISTANT_CODE_TOOLTIP}}"></i>
-
+                                        </th>
+                                        <th class="hidden-md hidden-lg">
                                         </th>
 
                                     </tr>
                                     <tr ng-repeat="assistant in manage.assistants">
                                         <td>
                                             <span class="text-capitalize" ng-bind="::assistant.first_name"></span>
+                                            <br class="hidden-md hidden-lg">
                                             <span class="text-capitalize" ng-bind="::assistant.last_name"></span>
-                                            <div class="hidden-md hidden-lg">
+                                            <!--<div class="hidden-md hidden-lg">
                                               <br>
                                               <span ng-bind="::assistant.email"></span>
-                                            </div>
+                                            </div>-->
                                         </td>
                                         <td class="hidden-xs hidden-sm">
                                             <span ng-bind="::assistant.email"></span>
                                         </td>
-                                        <td>
-                                            <a ng-bind="::assistant.order" ui-sref="dash.activities-manage.orders.order({'orderId': assistant.order,
-                                                    'previousState':{'state':'dash.activities-manage.assistants'}})">
+                                        <td class="text-center-mobile">
+                                          
+                                            <a ng-bind="::assistant.order" 
+                                              ui-sref="dash.activities-manage.orders.order({'orderId': assistant.order, 'previousState':{'state':'dash.activities-manage.assistants'}})">
                                             </a>
                                         </td>
                                         <td>
                                             <span ng-bind="::assistant.token"></span>
+                                        </td>
+                                        <td class="hidden-md hidden-lg column-button">
+                                            <a ui-sref="dash.activities-manage.orders.order({'orderId': order.id})">
+                                                <button class="btn btn-default">
+                                                  <img class="img-responsive hidden-md hidden-lg" src="css/img/about/arrow.png">
+                                                </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 </table>

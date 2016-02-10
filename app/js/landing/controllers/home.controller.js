@@ -32,12 +32,18 @@
             loadActivities: loadActivities,
             viewMoreActivities: viewMoreActivities,
             organizerCategories: organizerCategories,
-            coverVideo: {}
+            coverVideo: {},
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+
 
         function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;

@@ -49,6 +49,11 @@
     .panel;
     border: none;
 
+    .credit-cards-container{
+        img{
+            padding: 5px;
+        }
+    }
     .panel-body {
         padding: 0;
         border: 1px solid @gray-light-medium;
@@ -177,6 +182,17 @@
     .panel;
 }
 
+.success-title{
+    .before-md({
+        font-size: 1.125em;
+    });
+}
+.success-info{
+    .before-md({
+        font-size: 1em;
+    });
+}
+
 .remember-container {
     .separator {
         width: 30%;
@@ -200,12 +216,23 @@
             .item-img {
                 width: 30%;
                 height: auto;
+                .before-md({
+                    display: block;
+                    margin: 0 auto;
+                    margin-bottom: 10px;
+                });
             }
 
             .item-text {
                 display: inline-block;
                 vertical-align: middle;
                 width: 60%;
+
+                .before-md({
+                    width: 100%;
+                    margin: 0 auto;
+                    text-align: center;
+                });
 
                 .item-title {
                     font-size: 1em;
@@ -216,6 +243,7 @@
                     color: @text-muted;
                     font-size: 0.9em;
                 }
+
             }
         }
     }
