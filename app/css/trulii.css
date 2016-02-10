@@ -18554,11 +18554,18 @@ blockquote {
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 6em;
+  height: 100%;
   border-radius: 5px;
-  background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.75) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75) 10%, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
+}
+.activity-card__header__cover-gradient:after {
+  width: 100%;
+  height: 100%;
+  content: "";
+  background-color: rgba(60, 61, 65, 0.4);
+  z-index: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 .activity-card__header__btn-more {
   color: white;
@@ -18601,6 +18608,9 @@ blockquote {
 }
 .activity-card__header__menu__item__icon {
   font-size: 1em;
+}
+.activity-card__header__menu__item span {
+  color: #FFFFFF;
 }
 .activity-card__header__menu__item:active {
   background: #38dbc8;

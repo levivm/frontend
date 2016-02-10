@@ -31,7 +31,7 @@
             link: function(scope, element, attrs){
 
                 var options;
-                var MAX_DAYS = 30;
+                var MAX_DAYS = 5;
 
                 angular.extend(scope, {
                     actions : [],
@@ -166,7 +166,10 @@
                         activity.date_msg = scope.strings.COPY_IN + " "
                             + activity.days_to_closest + " " + scope.strings.COPY_DAYS;
                     } else {
-                        activity.date_msg = $filter('date')(activity.closest_date, 'dd MMM');
+                        var dateClose = new Date(activity.closest_calendar.initial_date);
+                        var day = dateClose.getDay();
+                        var month = parseInt(dateClose.getMonth()+1);
+                        activity.date_msg = scope.strings.COPY_THE + " "+day+" / "+month.toString();
                     }
                     return activity;
                 }
@@ -198,7 +201,8 @@
                         COPY_TODAY: "Hoy",
                         COPY_DAY: "día ",
                         COPY_DAYS: "días ",
-                        COPY_IN: "Inicia en "
+                        COPY_IN: "Inicia en ",
+                        COPY_THE: "Inicia el "
                     });
                 }
 
