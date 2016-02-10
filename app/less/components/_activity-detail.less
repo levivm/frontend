@@ -19,6 +19,10 @@
     margin-top: 5px;
     float: right;
     opacity: 0.5;
+    display: none;
+    .before-md({
+        display: block;
+    });
 }
 .widget-container{
   padding-left: 25px;
@@ -525,6 +529,9 @@
             color: @lightbg-text;
             font-size: 1.8em;
             font-weight: 400;
+            .before-md({
+                font-size: 1em;
+            });
         }
 
         .website{
@@ -769,6 +776,7 @@
       .before-sm({
         width: 100vw;
         height: 100vh;
+        max-height: 100vh;
         position: fixed;
         top: 0;
         left: 0;
@@ -776,6 +784,7 @@
         display: none;
         opacity: 0;
         transition: all 0.25s;
+        overflow-y: scroll;
         &.sessions-sm{
           display: inline-block;
           opacity: 1;
@@ -913,9 +922,17 @@
     background-color: @brand-success;
     border-top-left-radius: @border-radius-base;
     border-top-right-radius: @border-radius-base;
+    .before-md({
+      .well-title {
+        padding: 0 2em;
+      }
+    });
   }
   .modal-body{
     padding: 10px 60px;
+      .before-md({
+        padding: 10px 15px;
+      });
     label{
       font-weight: 500;
       color: @gray-dark !important;

@@ -11,8 +11,8 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$scope', '$filter', 'activity', 'ActivitiesManager'];
-    function ActivitiesManageCtrl($scope, $filter, activity, ActivitiesManager) {
+    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager'];
+    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager) {
 
         var vm = this;
         angular.extend(vm, {
@@ -44,7 +44,8 @@
             TYPE_CALENDAR: 'calendar',
             scroll: 0,
             toggleSidebar: toggleSidebar,
-            sidebar: false
+            sidebar: false,
+            isActive: isActive
         });
 
         var orders = [];
@@ -52,6 +53,12 @@
         var assistants = [];
 
         _activate();
+
+
+        function isActive(stateStr){
+            console.log($state.includes(stateStr));
+            return $state.includes(stateStr);
+        }
 
         function updateByQuery(type){
             switch(type){

@@ -6,7 +6,7 @@
                 class="sidebar__item sidebar__item-edit-activity"
                 ui-sref-active="sidebar__item--selected-edit-activity"
                 ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} "
-                ng-click="dash.toggleSidebar()">
+                ng-click="pc.toggleSidebar()">
                     <i class="{{::step.icon}} sidebar__item__icon"></i>
                     <span ng-bind="::step.title"></span>
                     <i class="mandatory-mark mandatory-mark-edit-activity --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
@@ -95,10 +95,16 @@
                 <div class="col-xs-12 col-md-10 col-xs-offset-0 col-md-offset-2" ui-view></div>
             </div>
         </div>
-        <a class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': pc.scroll > 80}"
+        <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': pc.scroll > 80}"
             ng-click="pc.toggleSidebar()">
-            <i class="sidebar__item__icon mdi-action-settings"></i>
-        </a>
+            <i class="sidebar__item__icon mdi-navigation-menu"></i>
+            <span  ng-repeat="step in pc.steps track by step.name"
+                ng-class="{'hidden-xs hidden-sm': !pc.isActive('dash.activities-edit.{{step.name}}')}"
+                ng-bind="::step.title"></span>
+            <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
+                <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
+            </a>
+        </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
