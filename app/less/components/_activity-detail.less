@@ -269,13 +269,7 @@
         .other-calendars {
             padding: 1em;
             border-bottom: @border-widget;
-            &-has-more {
-                cursor: pointer;
-            }
-
-            &:hover{
-                background-color: @secondary-bg;
-            }
+            text-align: center;
 
             &:active{
                 background-color: darken(@secondary-bg, 20%);
@@ -292,18 +286,15 @@
             &-count {
                 .HeaderText();
                 padding: 0;
-                font-size: 0.85em;
+                font-size: 1.3em;
                 font-weight: 400;
                 color: @gray;
+                margin-top: 1.5rem;
             }
 
             &-more {
-                .HeaderText();
-                text-transform: none;
-                padding: 1em 4.5em 0em;
-                font-size: 1em;
-                font-weight: 600;
                 color: @gray;
+                margin-top: 1.5rem;
             }
         }
 

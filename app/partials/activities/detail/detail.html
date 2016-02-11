@@ -251,7 +251,6 @@
           ng-bind="::detail.strings.ACTION_SIGN_UP">
         </a>
           <div class="other-calendars"
-            ng-click="detail.viewMoreCalendars()"
             ng-class="{'other-calendars-has-more': detail.activity.upcoming_calendars.length > 1}">
             <div ng-if="detail.activity.upcoming_calendars.length == 2">
               <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_ONE_CALENDAR_AVAILABLE"></div>
@@ -266,7 +265,7 @@
             <div ng-if="detail.activity.upcoming_calendars.length < 2">
               <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_NO_CALENDARS_AVAILABLE"></div>
             </div>
-            <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
+            <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more btn btn-default" ng-click="detail.viewMoreCalendars()">
               <span ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></span>
             </div>
           </div>
