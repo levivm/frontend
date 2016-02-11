@@ -18597,7 +18597,7 @@ blockquote {
   display: inline-block;
   border-radius: 5px;
   background-color: white;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  border: 1px solid #eeeeee;
   margin: 0 0.8em 1em;
   text-align: left;
   transition: .2s all ease;
@@ -18610,7 +18610,7 @@ blockquote {
   }
 }
 .activity-card:hover {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 .activity-card__header {
   height: 13em;
@@ -18632,7 +18632,8 @@ blockquote {
   left: 0;
   width: 100%;
   height: 100%;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 .activity-card__header__cover-container.inactive-cover:before {
   content: '';
