@@ -71,7 +71,8 @@
                                           <th><strong ng-bind="::manage.strings.HEADER_MADE"></strong></th>
                                           <th><strong ng-bind="::manage.strings.HEADER_AMOUNT"></strong></th>
                                           <th class="hidden-xs"><strong ng-bind="::manage.strings.HEADER_STATUS"></strong></th>
-                                          <th class="hidden-xs"></th>
+                                          <th></th>
+                                          </th>
                                       </tr>
                                       <tr ng-repeat="order in manage.orders track by order.id | filter:manage.orderQuery">
                                           <td>
@@ -93,14 +94,16 @@
                                           <td class="hidden-xs">
                                               <span ng-bind="::order.status"></span>
                                           </td>
-                                          <td class="column-button hidden-xs">
+                                          <td class="column-button">
                                               <a ui-sref="dash.activities-manage.orders.order({'orderId': order.id})">
-                                                  <button class="btn btn-default"
-                                                          ng-bind="::manage.strings.ACTION_VIEW_DETAIL">
+                                                  <button class="btn btn-default">
+                                                    <span class="hidden-xs hidden-sm" ng-bind="::manage.strings.ACTION_VIEW_DETAIL"></span>
+                                                    <img class="img-responsive hidden-md hidden-lg" src="css/img/about/arrow.png">
                                                   </button>
                                               </a>
                                           </td>
                                       </tr>
+                                      
                                   </table>
                               </div>
                               <div class="order-total" ng-if="manage.orders.length > 0">

@@ -34,7 +34,8 @@
             unpublish_activity: _unpublish_activity,
             steps_left: activity.steps_left,
             scroll: 0,
-            toggleSidebar: toggleSidebar
+            toggleSidebar: toggleSidebar,
+            isActive: isActive
         });
 
 
@@ -42,6 +43,11 @@
         
         function toggleSidebar(){
             pc.showSidebar = !pc.showSidebar;
+            console.log('???0');
+        }
+
+        function isActive(stateStr){
+            return $state.includes(stateStr);
         }
         
         function areAllStepsCompleted() {

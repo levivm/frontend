@@ -15,9 +15,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities'];
+    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', ' serverConf'];
 
-    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities) {
+    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities,  serverConf) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -32,12 +32,17 @@
             sent : false,
             isSigningUp: false,
             requestSignup : requestSignup,
-            goToForm: goToForm
+            goToForm: goToForm,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + file;
+        }
 
         function requestSignup() {
             vm.request.city = vm.selectedCity.id;

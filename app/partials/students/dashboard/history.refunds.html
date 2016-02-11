@@ -38,6 +38,7 @@
                                           <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_REFUND_TOTAL"></strong></th>
                                           <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_ASSISTANT"></strong></th>
                                           <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_REFUND_STATUS"></strong></th>
+                                          <th class="hidden-md hidden-lg"></th>
                                       </tr>
                                       <tr ng-repeat="refund in history.refunds track by refund.id | filter:history.refundQuery">
                                           <td>
@@ -59,6 +60,13 @@
                                           </td>
                                           <td class="hidden-xs hidden-sm">
                                               <span class="sinkin-medium" ng-bind="::refund.status"></span>
+                                          </td>
+                                          <td class="column-button hidden-md hidden-lg">
+                                            <a ui-sref="student-dashboard.history.orders.order({'orderId': order.id})">
+                                              <button class="btn btn-default">
+                                                <img class="img-responsive hidden-md hidden-lg" src="css/img/about/arrow.png">
+                                              </button>
+                                            </a>
                                           </td>
                                       </tr>
                                   </table>

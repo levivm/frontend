@@ -73,6 +73,17 @@
     &:extend(.flex-center-item);
     width: 100%;
     color: white;
+    &-landing{
+      .before-md({
+        padding-bottom: 10vh;
+      });
+    }
+
+    &-detail{
+      .before-md({
+        min-height: 20vh;
+      });
+    }
     h1{
       font-size: 3em;
       line-height: 0.9em;
@@ -102,7 +113,7 @@
       margin-top: 0.25em !important;
 
       .before-md({
-        font-size: 3em;
+        font-size: 2.5em;
         line-height: 0.85em;
         margin-bottom: 1em;
 
@@ -134,6 +145,9 @@
     }
     .btn-lg{
       font-size: 1em;
+      .before-md({
+        font-size: 0.75em;
+      });
     }
     &__search.form-classic{
       input, select, button{
@@ -371,11 +385,14 @@
   min-height: @trulii-cover-height-small;
   .before-md({
     min-height: 45vh;
-    padding-top: 5vh;
+    //padding-top: 5vh;
   });
 }
 .trulii-cover-medium{
   min-height: @trulii-cover-height-medium;
+  &.trulii-cover-detail{
+    min-height: @trulii-cover-height-medium/2;
+  }
 }
 
 .detail-organizer {

@@ -11,10 +11,13 @@
           }">
         </ng-pluralize>
       </p>
+      <p class="copy">
+        <span ng-bind="attendees.strings.COPY_ALMOST_THERE"></span>
+      </p>
     </div>
   </div>
   <div ng-if="attendees.totalItems > 0">
-    <div class="row">
+    <div class="row hidden-xs hidden-sm">
       <div class="col-xs-12">
         <div class="paged-container">
           <span class="pager-btn mdi-navigation-chevron-left" ng-show="attendees.hasPrevious"

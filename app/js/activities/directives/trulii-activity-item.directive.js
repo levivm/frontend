@@ -166,9 +166,9 @@
                         activity.date_msg = scope.strings.COPY_IN + " "
                             + activity.days_to_closest + " " + scope.strings.COPY_DAYS;
                     } else {
-                        var dateClose = new Date(activity.closest_calendar.initial_date);
-                        var day = dateClose.getDay();
-                        var month = parseInt(dateClose.getMonth()+1);
+                        var dateCloset = new Date(activity.closest_calendar.initial_date);
+                        var day = dateCloset.getDate();
+                        var month = parseInt(dateCloset.getMonth()+1);
                         activity.date_msg = scope.strings.COPY_THE + " "+day+" / "+month.toString();
                     }
                     return activity;

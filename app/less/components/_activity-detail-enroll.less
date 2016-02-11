@@ -1,11 +1,11 @@
 @import url('../_trulii-variables');
 
-.Panel{
+.panel{
     box-shadow: none;
     border: 1px solid @gray-light-medium;
 
     .panel-heading {
-        padding: 1.5em 1em;
+        padding: 0.5em 1em;
 
         h4 {
             margin: 0;
@@ -16,7 +16,7 @@
 }
 
 .sessions-panel {
-    .Panel;
+    .panel;
 
     .panel-body {
         max-height: 24em;
@@ -36,15 +36,24 @@
 }
 
 .attendees-panel {
-    .Panel;
+    .panel;
     border: none;
     box-shadow: none;
+
+    .form-group:not(:first-child) {
+        margin-top: 2em;
+    }
 }
 
 .payments-panel{
-    .Panel;
+    .panel;
     border: none;
 
+    .credit-cards-container{
+        img{
+            padding: 5px;
+        }
+    }
     .panel-body {
         padding: 0;
         border: 1px solid @gray-light-medium;
@@ -64,11 +73,11 @@
         border-top: none;
         border-bottom-right: @border-radius-base;
         border-bottom-left: @border-radius-base;
-        
+
         .before-sm({
           padding: 3em;
         });
-        
+
          .btn {
              padding: 1em;
          }
@@ -118,8 +127,9 @@
     }
 
     .invoice {
-        padding: 1em;
+        padding: 1em 1.4em;;
         background-color: @gray-lighter;
+        font-size: 1.2em;
 
         h4{
             font-weight: 300;
@@ -153,7 +163,7 @@
 }
 
 .pse-panel {
-    .Panel;
+    .panel;
 
     .panel-body {
         padding: 0;
@@ -169,7 +179,18 @@
 }
 
 .success-panel {
-    .Panel;
+    .panel;
+}
+
+.success-title{
+    .before-md({
+        font-size: 1.125em;
+    });
+}
+.success-info{
+    .before-md({
+        font-size: 1em;
+    });
 }
 
 .remember-container {
@@ -195,12 +216,23 @@
             .item-img {
                 width: 30%;
                 height: auto;
+                .before-md({
+                    display: block;
+                    margin: 0 auto;
+                    margin-bottom: 10px;
+                });
             }
 
             .item-text {
                 display: inline-block;
                 vertical-align: middle;
                 width: 60%;
+
+                .before-md({
+                    width: 100%;
+                    margin: 0 auto;
+                    text-align: center;
+                });
 
                 .item-title {
                     font-size: 1em;
@@ -211,6 +243,7 @@
                     color: @text-muted;
                     font-size: 0.9em;
                 }
+
             }
         }
     }
@@ -225,7 +258,7 @@
     //noinspection CssUnknownTarget
     background: url('/css/img/activity-enroll/background_success_share.png') 50% 50%;
     background-size: cover;
-    
+
     .before-sm({
       padding: 0em;
     });
