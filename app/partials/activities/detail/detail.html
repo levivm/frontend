@@ -74,6 +74,7 @@
       <div class="row gallery-container">
         <div class="col-xs-12">
           <div class="gallery">
+            <div class="gallery-gradient"></div>
             <div class="gallery-slide" ng-repeat="picture in detail.activity.gallery track by picture.id" ng-class="{'active': detail.currentGalleryPicture === $index}">
               <img class=""
               src="{{ picture.photo }}" alt=""
@@ -82,12 +83,6 @@
             <img class="gallery-previous" ng-hide="detail.currentGalleryPicture < 1"
               src="css/img/activity-detail/gallery_slider_left.png" alt="Previous Picture"
               ng-click="detail.previousGalleryPicture()"/>
-            <div class="gallery-info">
-              <span ng-if="detail.activity.gallery.length  < 1" ng-bind="detail.currentGalleryPicture"></span>
-              <span ng-if="detail.activity.gallery.length  >= 1" ng-bind="detail.currentGalleryPicture + 1"></span>
-              <span>|</span>
-              <span ng-bind="::detail.activity.gallery.length"></span>
-            </div>
             <img class="gallery-next"
             src="css/img/activity-detail/gallery_slider_right.png" alt="Next Picture"
             ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
@@ -256,7 +251,6 @@
           ng-bind="::detail.strings.ACTION_SIGN_UP">
         </a>
           <div class="other-calendars"
-            ng-click="detail.viewMoreCalendars()"
             ng-class="{'other-calendars-has-more': detail.activity.upcoming_calendars.length > 1}">
             <div ng-if="detail.activity.upcoming_calendars.length == 2">
               <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_ONE_CALENDAR_AVAILABLE"></div>
@@ -271,7 +265,8 @@
             <div ng-if="detail.activity.upcoming_calendars.length < 2">
               <div class="other-calendars-copy" ng-bind="::detail.strings.COPY_NO_CALENDARS_AVAILABLE"></div>
             </div>
-            <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more">
+            <div ng-if="detail.activity.upcoming_calendars.length > 1" class="other-calendars-more btn btn-default" ng-click="detail.viewMoreCalendars()">
+                <i class="glyphicon glyphicon-calendar"></i>
               <span ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></span>
             </div>
           </div>
@@ -298,24 +293,27 @@
   </div>
 </div>
 
+
 <!--Instructors-->
 <div class="col-xs-12">
   <div class="row" ng-show="detail.activity.instructors.length">
     <div class="col-xs-12 instructors-container">
-      <h1 class="title text-primary">
-        <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
-      </h1>
-      <div class="separate-above-medium">
-        <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
-          <div class="col-xs-12 col-md-8">
-            <div class="name" ng-bind="::instructor.full_name"></div>
-            <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
-            ng-bind="::instructor.website"></a>
-            <p class="bio" ng-bind="::instructor.bio"></p>
-            <hr ng-if="!$last"/>
-          </div>
-        </div>
-      </div>
+     <div class="col-md-7 separate-left">
+         <h1 class="title text-primary">
+           <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
+         </h1>
+         <div class="separate-above-medium">
+           <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
+             <div class="col-xs-12 col-md-10">
+               <div class="name" ng-bind="::instructor.full_name"></div>
+               <a class="website" ng-if="instructor.website" ng-href="{{instructor.website}}"
+               ng-bind="::instructor.website"></a>
+               <p class="bio" ng-bind="::instructor.bio"></p>
+               <hr ng-if="!$last"/>
+             </div>
+           </div>
+         </div>
+     </div>
     </div>
   </div>
 </div>
@@ -330,7 +328,7 @@
         <span ng-bind="::detail.organizer.name"></span>
       </h2>
 
-      <p class="reviews-container--ratings">
+      <p class="reviews-container--ratings" ng-if="detail.reviews.length>0" >
         <span>
           <i ng-bind="detail.totalReviews"></i>
           <i>
@@ -349,6 +347,10 @@
                   state-off="'glyphicon glyphicon-star star-empty'"
                   readonly="true" aria-labelledby="custom-icons-1"></rating>
           <span ng-bind="::(detail.organizer.rating | number: 1)+ ' / 5'"></span>
+        </span>
+      </p>
+      <p class="reviews-container--reviews-empty" ng-if="detail.reviews.length==0" >
+        <span ng-bind="::detail.strings.COPY_EMPTY_REVIEWS">
         </span>
       </p>
 
@@ -372,40 +374,9 @@
   </div>
 </div>
 
-<!--Location-->
-<div class="col-xs-12">
-  <div class="row location" ng-show="detail.activity.location">
-    <ui-gmap-google-map class="map" center='detail.map.center' zoom='detail.map.zoom'
-      bounds="detail.map.bounds" options="detail.map.options"
-      events="detail.map.events">
-      <ui-gmap-marker coords="detail.marker.coords" options="detail.marker.options"
-        events="detail.marker.events"
-        idkey="detail.marker.id"></ui-gmap-marker>
-    </ui-gmap-google-map>
-    <div class="address">
-      <img src="/css/img/activity-detail/map_location.png" alt=""/>
-      <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
-      <span ng-bind="detail.activity.location.name"></span>
-    </div>
-  </div>
-</div>
-
-<!--Attendees-->
-<div class="col-xs-12">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="attendees-container">
-        <h1 class="text-primary text-center title">
-          <strong ng-bind="::detail.strings.LABEL_ATTENDEES"></strong>
-        </h1>
-        <div ui-view="attendees"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!--Calendars-->
-<div class="col-xs-12 sign-up-container padding-vertical-more" id="more_calendars_section">
+<div class="col-xs-12 sign-up-container padding-vertical-more more-calendars" id="more_calendars_section">
   <div class="row">
     <div class="col-xs-12">
       <h1 class="title" ng-bind="::detail.strings.COPY_HEADER_SIGN_UP"></h1>
@@ -437,7 +408,7 @@
               <th class="hidden-md hidden-lg"></th>
             </tr>
             <tr
-              ng-repeat-start="calendar in detail.activity.upcoming_calendars track by calendar.id | orderBy: calendar.initial_date"
+              ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id "
               ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
               <td>
                 <span class="checkbox"></span>
@@ -468,10 +439,10 @@
 
               </td>
               <td colspan=4>
-                <div ng-if="calendar.available_capacity == 0">
+                <div class="text-left" ng-if="calendar.available_capacity == 0">
                   <span ng-bind="::detail.strings.COPY_NO_VACANCY"></span>
                 </div>
-                <div ng-if="calendar.available_capacity > 0">
+                <div class="text-left" ng-if="calendar.available_capacity > 0">
                   <span ng-bind="::detail.strings.COPY_VACANCY"></span>
                   <span ng-bind="calendar.available_capacity"></span>
                   <span ng-bind="::detail.strings.COPY_OF"></span>
@@ -520,6 +491,42 @@
     </div>
   </div>
 </div>
+
+
+<!--Location-->
+<div class="location col-xs-12">
+    <div class="address">
+      <img src="/css/img/activity-detail/map_location.png" alt=""/>
+      <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
+      <span ng-bind="detail.activity.location.name"></span>
+    </div>
+  <div class="row " ng-show="detail.activity.location">
+    <ui-gmap-google-map class="map" center='detail.map.center' zoom='detail.map.zoom'
+      bounds="detail.map.bounds" options="detail.map.options"
+      events="detail.map.events">
+      <ui-gmap-marker coords="detail.marker.coords" options="detail.marker.options"
+        events="detail.marker.events"
+        idkey="detail.marker.id"></ui-gmap-marker>
+    </ui-gmap-google-map>
+  </div>
+</div>
+
+
+
+<!--Attendees-->
+<div class="col-xs-12">
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="attendees-container">
+        <h1 class="text-primary text-center title">
+          <strong ng-bind="::detail.strings.LABEL_ATTENDEES"></strong>
+        </h1>
+        <div ui-view="attendees"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!--Why Use Trulii-->
 <div class="col-xs-12 separate-above-medium">

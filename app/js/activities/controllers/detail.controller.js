@@ -322,7 +322,7 @@
                 COPY_ONE_REVIEW: " Evaluación",
                 COPY_OTHER_REVIEWS: " Evaluaciones",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
-                COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más seguro que la tabla del 1 ¡En serio!",
+                COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días. Porque tú te lo mereces ",
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
@@ -367,7 +367,8 @@
                 COPY_SHARE_SUCCESS: "La Actividad fue compartida exitosamente",
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
-                COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje"
+                COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
+                COPY_EMPTY_REVIEWS: "Aun no hay evaluaciones para esta actividad"
             });
         }
 
@@ -375,12 +376,12 @@
             angular.element(document).ready(function () {
                 vm.scroll = window.scrollY;
                 vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-                vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                vm.widgetAbsolutePosition = (document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
                 $scope.$on('scrolled',
                   function(scrolled, scroll){
-                    vm.widgetMaxPosition = document.getElementsByClassName('map')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-                    vm.widgetAbsolutePosition = (document.getElementsByClassName('map')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                    vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+                    vm.widgetAbsolutePosition = (document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
                     vm.scroll = scroll;
                     $scope.$apply();
                   }
@@ -407,7 +408,7 @@
                 hasMoreReviews: reviews.length > 3,
                 calendar_selected : _getSelectedCalendar(activity)
             });
-
+            console.log(vm.calendars);
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);

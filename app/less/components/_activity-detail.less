@@ -273,13 +273,7 @@
         .other-calendars {
             padding: 1em;
             border-bottom: @border-widget;
-            &-has-more {
-                cursor: pointer;
-            }
-
-            &:hover{
-                background-color: @secondary-bg;
-            }
+            text-align: center;
 
             &:active{
                 background-color: darken(@secondary-bg, 20%);
@@ -296,18 +290,20 @@
             &-count {
                 .HeaderText();
                 padding: 0;
-                font-size: 0.85em;
+                font-size: 1.3em;
                 font-weight: 400;
                 color: @gray;
+                margin-top: 1.5rem;
             }
 
             &-more {
-                .HeaderText();
-                text-transform: none;
-                padding: 1em 4.5em 0em;
-                font-size: 1em;
-                font-weight: 600;
-                color: @gray;
+                color: @gray !important;
+                margin-top: 1.5rem;
+                padding: 0.7em 2em;
+                >i{
+                    margin-top: 0.1em;
+                    margin-right: 0.2em;
+                }
             }
         }
 
@@ -448,13 +444,8 @@
         position: absolute;
         bottom: 1em;
         z-index: 6;
-        padding: 1em;
         border-radius: 50%;
-        border: 1px solid white;
-
-        &:hover {
-            background-color: fadeout(@white, 60%);
-        }
+        cursor: pointer;
     }
 
     .gallery-slide {
@@ -553,6 +544,12 @@
       padding: 1em 0.5em;
     }
   }
+  &--reviews-empty{
+    span{
+      color: @gray-dark;
+      font-weight: 200;
+    }
+  }
 
 }
 
@@ -566,7 +563,7 @@
         padding: 1.2em;
         background-color: @secondary-bg;
         text-align: center;
-        font-size: 1.5em;
+        font-size: 1.4em;
         font-weight: 400;
         color: @lightbg-text;
 

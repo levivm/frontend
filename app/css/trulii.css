@@ -16607,7 +16607,7 @@ ul.dropdown-menu:after {
     right: -8%;
   }
 }
-/*!
+/*! 
  * angular-loading-bar v0.8.0
  * https://chieffancypants.github.io/angular-loading-bar
  * Copyright (c) 2015 Wes Cruver
@@ -18411,7 +18411,7 @@ button.toast-close-button {
   background-attachment: initial;
 }
 .trulii-cover-small {
-  min-height: 55vh;
+  min-height: 50vh;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover-small {
@@ -18419,10 +18419,10 @@ button.toast-close-button {
   }
 }
 .trulii-cover-medium {
-  min-height: 60vh;
+  min-height: 55vh;
 }
 .trulii-cover-medium.trulii-cover-detail {
-  min-height: 30vh;
+  min-height: 27.5vh;
 }
 .detail-organizer {
   position: absolute;
@@ -19081,12 +19081,7 @@ blockquote {
 .calendar-widget .widget-card .other-calendars {
   padding: 1em;
   border-bottom: 1px solid #DEDEDE;
-}
-.calendar-widget .widget-card .other-calendars-has-more {
-  cursor: pointer;
-}
-.calendar-widget .widget-card .other-calendars:hover {
-  background-color: #F7F7F7;
+  text-align: center;
 }
 .calendar-widget .widget-card .other-calendars:active {
   background-color: #c4c4c4;
@@ -19114,24 +19109,19 @@ blockquote {
   text-align: center;
   text-transform: uppercase;
   padding: 0;
-  font-size: 0.85em;
+  font-size: 1.3em;
   font-weight: 400;
   color: #535353;
+  margin-top: 1.5rem;
 }
 .calendar-widget .widget-card .other-calendars-more {
-  width: 100%;
-  height: auto;
-  padding: 1em 1em 0;
-  font-size: 1.2em;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.74);
-  text-align: center;
-  text-transform: uppercase;
-  text-transform: none;
-  padding: 1em 4.5em 0em;
-  font-size: 1em;
-  font-weight: 600;
-  color: #535353;
+  color: #535353 !important;
+  margin-top: 1.5rem;
+  padding: 0.7em 2em;
+}
+.calendar-widget .widget-card .other-calendars-more > i {
+  margin-top: 0.1em;
+  margin-right: 0.2em;
 }
 .calendar-widget .widget-card .share {
   padding: 1.6em 0;
@@ -19274,12 +19264,8 @@ blockquote {
   position: absolute;
   bottom: 1em;
   z-index: 6;
-  padding: 1em;
   border-radius: 50%;
-  border: 1px solid white;
-}
-.gallery .GalleryButton:hover {
-  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
 }
 .gallery .gallery-slide {
   position: absolute;
@@ -19304,27 +19290,19 @@ blockquote {
   position: absolute;
   bottom: 1em;
   z-index: 6;
-  padding: 1em;
   border-radius: 50%;
-  border: 1px solid white;
+  cursor: pointer;
   left: 1em;
   z-index: 7;
-}
-.gallery .gallery-previous:hover {
-  background-color: rgba(255, 255, 255, 0.4);
 }
 .gallery .gallery-next {
   position: absolute;
   bottom: 1em;
   z-index: 6;
-  padding: 1em;
   border-radius: 50%;
-  border: 1px solid white;
+  cursor: pointer;
   right: 1em;
   z-index: 7;
-}
-.gallery .gallery-next:hover {
-  background-color: rgba(255, 255, 255, 0.4);
 }
 .gallery .gallery-info {
   position: absolute;
@@ -19377,6 +19355,10 @@ blockquote {
 .reviews-container--ratings span {
   padding: 1em 0.5em;
 }
+.reviews-container--reviews-empty span {
+  color: #3a3d3f;
+  font-weight: 200;
+}
 .location .map {
   width: 100%;
   height: 24em;
@@ -19385,7 +19367,7 @@ blockquote {
   padding: 1.2em;
   background-color: #F7F7F7;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
 }
@@ -20093,17 +20075,6 @@ blockquote {
 .attendees-panel > .table-responsive > .table,
 .attendees-panel > .panel-collapse > .table {
   margin-bottom: 0;
-
-}
-.payments-panel .credit-cards-container img {
-  padding: 5px;
-}
-.payments-panel .panel-body {
-  padding: 0;
-  border: 1px solid #e3e3e3;
-  margin-top: 3rem;
-  border-top-right: 4px;
-  border-top-left: 4px;
 }
 .attendees-panel > .table caption,
 .attendees-panel > .table-responsive > .table caption,
@@ -20609,6 +20580,9 @@ blockquote {
   margin: 0;
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
+}
+.payments-panel .credit-cards-container img {
+  padding: 5px;
 }
 .payments-panel .panel-body {
   padding: 0;
