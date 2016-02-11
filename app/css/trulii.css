@@ -16607,7 +16607,7 @@ ul.dropdown-menu:after {
     right: -8%;
   }
 }
-/*!
+/*! 
  * angular-loading-bar v0.8.0
  * https://chieffancypants.github.io/angular-loading-bar
  * Copyright (c) 2015 Wes Cruver
@@ -18422,7 +18422,7 @@ button.toast-close-button {
   min-height: 55vh;
 }
 .trulii-cover-medium.trulii-cover-detail {
-  min-height: 30vh;
+  min-height: 27.5vh;
 }
 .detail-organizer {
   position: absolute;
@@ -19115,8 +19115,13 @@ blockquote {
   margin-top: 1.5rem;
 }
 .calendar-widget .widget-card .other-calendars-more {
-  color: #535353;
+  color: #535353 !important;
   margin-top: 1.5rem;
+  padding: 0.7em 2em;
+}
+.calendar-widget .widget-card .other-calendars-more > i {
+  margin-top: 0.1em;
+  margin-right: 0.2em;
 }
 .calendar-widget .widget-card .share {
   padding: 1.6em 0;
@@ -19362,7 +19367,7 @@ blockquote {
   padding: 1.2em;
   background-color: #F7F7F7;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.4em;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.74);
 }
@@ -20070,17 +20075,6 @@ blockquote {
 .attendees-panel > .table-responsive > .table,
 .attendees-panel > .panel-collapse > .table {
   margin-bottom: 0;
-
-}
-.payments-panel .credit-cards-container img {
-  padding: 5px;
-}
-.payments-panel .panel-body {
-  padding: 0;
-  border: 1px solid #e3e3e3;
-  margin-top: 3rem;
-  border-top-right: 4px;
-  border-top-left: 4px;
 }
 .attendees-panel > .table caption,
 .attendees-panel > .table-responsive > .table caption,
@@ -20586,6 +20580,9 @@ blockquote {
   margin: 0;
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
+}
+.payments-panel .credit-cards-container img {
+  padding: 5px;
 }
 .payments-panel .panel-body {
   padding: 0;
