@@ -104,16 +104,17 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-inner-height;
-        width: 65%;
+        width: ~"calc(100% - 450px)";
         margin: 0.2em 1em;
 
         .buttons{
             height: 100%;
             padding: 1em 0;
+            margin-top: 4px;
             transition: @transition-navbar;
         }
         .buttons-login{
-            line-height: 3.6em;
+            line-height: 2.5em;
             > a{
                 color: @gray;
                 text-decoration: none;
@@ -121,7 +122,7 @@
         }
 
         &.long{
-            width: 72%;
+           width: ~"calc(100% - 400px)";
         }
 
         .before-md({
@@ -248,11 +249,20 @@
           height: @navbar-short-inner-height;
           .buttons{
             padding: 0.75em 0;
+            margin-top: 0;
           }
         }
 
         &__right-wrapper {
           height: @navbar-short-height;
+          .navbar__option--right{
+            .menu-icon{
+              margin-top: 5px;
+            }
+            .menu-icon-user{
+              margin-top: 0;
+            }
+          }
         }
 
         &__option {
@@ -590,29 +600,29 @@
     }
   }
   .navbar{
-    &__left-wrapper{
-      width: 50%;
-    }
+    // &__left-wrapper{
+    //   width: ~"calc(100% - 400px)";
+    // }
     .search-bar__navbar {
         width: 95%;
     }
   }
 }
 
-@media (min-width: 992px) and (max-width: 1280px){
-    .navbar{
-        &__left-wrapper{
-            width: 64%;
-        }
-    }
-    form.search-bar__navbar {
-        width: 36em;
-    }
-}
-@media (max-width: 768px){
-    .navbar{
-        &__left-wrapper{
-            width: 0%;
-        }
-    }
-}
+// @media (min-width: 992px) and (max-width: 1280px){
+//     .navbar{
+//         &__left-wrapper{
+//             width: 64%;
+//         }
+//     }
+//     form.search-bar__navbar {
+//         width: 36em;
+//     }
+// }
+// @media (max-width: 768px){
+//     .navbar{
+//         &__left-wrapper{
+//             width: 0%;
+//         }
+//     }
+// }

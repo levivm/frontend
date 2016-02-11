@@ -13992,23 +13992,24 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 70px;
-  width: 65%;
+  width: calc(100% - 450px);
   margin: 0.2em 1em;
 }
 .navbar__left-wrapper .buttons {
   height: 100%;
   padding: 1em 0;
+  margin-top: 4px;
   transition: all 0.25s;
 }
 .navbar__left-wrapper .buttons-login {
-  line-height: 3.6em;
+  line-height: 2.5em;
 }
 .navbar__left-wrapper .buttons-login > a {
   color: #535353;
   text-decoration: none;
 }
 .navbar__left-wrapper.long {
-  width: 72%;
+  width: calc(100% - 400px);
 }
 @media screen and (max-width: 992px) {
   .navbar__left-wrapper {
@@ -14129,9 +14130,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar.navbar-short .navbar__left-wrapper .buttons {
   padding: 0.75em 0;
+  margin-top: 0;
 }
 .navbar.navbar-short .navbar__right-wrapper {
   height: 60px;
+}
+.navbar.navbar-short .navbar__right-wrapper .navbar__option--right .menu-icon {
+  margin-top: 5px;
+}
+.navbar.navbar-short .navbar__right-wrapper .navbar__option--right .menu-icon-user {
+  margin-top: 0;
 }
 .navbar.navbar-short .navbar__option {
   padding: 0px 1em;
@@ -14448,24 +14456,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .burger-menu__mobile-logo {
     padding: 0.5em 0.5em 0.75em 0.5em;
   }
-  .navbar__left-wrapper {
-    width: 50%;
-  }
   .navbar .search-bar__navbar {
     width: 95%;
-  }
-}
-@media (min-width: 992px) and (max-width: 1280px) {
-  .navbar__left-wrapper {
-    width: 64%;
-  }
-  form.search-bar__navbar {
-    width: 36em;
-  }
-}
-@media (max-width: 768px) {
-  .navbar__left-wrapper {
-    width: 0%;
   }
 }
 .search-filter {
@@ -16323,7 +16315,7 @@ td {
 }
 .panel-default .panel-date {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 11em;
+  width: 13em;
   float: left;
   padding: 0 3%;
 }
