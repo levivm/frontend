@@ -201,7 +201,7 @@
         <div class="ratings">
           <div ng-if="detail.organizer.rating">
             <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                    readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="organizer-rating"></rating>
+                    readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
             <span ng-bind="::(detail.organizer.rating | number: 1) + ' / 5'"></span>
             <span ng-bind="::detail.totalReviews"></span>
             <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
@@ -344,7 +344,7 @@
         <span class="text-uppercase">
           <rating ng-model="detail.organizer.rating" max="5"
                   state-on="'glyphicon glyphicon-star star'"
-                  state-off="'glyphicon glyphicon-star star-empty'"
+                  state-off="'glyphicon glyphicon-star star-empty-off'"
                   readonly="true" aria-labelledby="custom-icons-1"></rating>
           <span ng-bind="::(detail.organizer.rating | number: 1)+ ' / 5'"></span>
         </span>
