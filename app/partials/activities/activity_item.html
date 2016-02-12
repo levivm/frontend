@@ -38,7 +38,8 @@
             <span class="text-muted" ng-if="activity.organizer.rating">|</span>
             <span class="activity-card__rating" ng-if="activity.organizer.rating">
                 <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                        readonly="true" state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="organizer-rating"></rating>
+                        readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
+                        <!-- add star-empty-off if you want the inactive starts-->
             </span>
 
         </div>

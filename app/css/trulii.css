@@ -12223,6 +12223,9 @@ hr.on-light {
 .center-childs > * {
   display: inline-block;
 }
+.star-empty-off {
+  color: #eeeeee !important;
+}
 .center-align {
   display: table;
   width: 100%;
