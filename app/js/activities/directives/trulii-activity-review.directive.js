@@ -166,6 +166,7 @@
                 function _activate(){
                     _getUser();
                     scope.hasReply = !!scope.review.reply;
+                    console.log(scope.activity);
                     if(scope.review.id){
                         scope.hasReview = true;
                     } else {
@@ -179,9 +180,9 @@
 
                     // TODO Might be redundant
                     if(scope.activity){
-                        organizer = scope.activity.organizer;
-                        if(!organizer.photo){
-                            organizer.photo = defaultPicture;
+                        scope.organizer = scope.activity.organizer;
+                        if(!scope.organizer.photo){
+                            scope.organizer.photo = defaultPicture;
                         }
                         _getActivityInstance();
                     }

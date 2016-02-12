@@ -400,6 +400,7 @@
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
             _setUpLocation(activity);
+
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
@@ -408,7 +409,7 @@
                 hasMoreReviews: reviews.length > 3,
                 calendar_selected : _getSelectedCalendar(activity)
             });
-            console.log(vm.calendars);
+            console.log(vm.reviews);
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);
