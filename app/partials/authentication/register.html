@@ -2,11 +2,11 @@
 <div class="col-xs-12">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 separate-below-more">
-        <div class="well remove-shadow separate-below-more">
-            <h1 class="text-center text-muted well-header">
+        <div class="well no-padding remove-shadow separate-below-more">
+            <h1 class="text-center separate-above-less text-muted well-header">
                 <strong ng-bind="vm.strings.SIGNUP_LABEL"></strong>
             </h1>
-            <h5 class="text-center separate-above text-muted sinkin-medium" ng-bind="vm.strings.SIGNUP_ALTERNATIVES_LABEL">
+            <h5 class="text-center separate-above-less text-muted sinkin-medium" ng-bind="vm.strings.SIGNUP_ALTERNATIVES_LABEL">
             </h5>
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
@@ -35,27 +35,27 @@
                     <form class="form-classic" name='vm.signup_form' ng-submit="vm.register()">
                         <div class="row">
                             <div class="col-sm-12">
-                                <div class="separate-vertical">
+                                <div class="separate-above-less">
                                     <div class="form-group" trulii-input-errors-control="first_name">
-                                        <input class="form-control " name="first_name" type="text"
+                                        <input class="form-control input-sm " name="first_name" type="text"
                                                ng-model="vm.auth.first_name"
                                                placeholder="{{::vm.strings.FIRST_NAME_LABEL}}"
                                                autofocus>
                                     </div>
                                     <div class="form-group" trulii-input-errors-control="last_name">
-                                        <input class="form-control " name="last_name" type="text"
+                                        <input class="form-control input-sm " name="last_name" type="text"
                                                ng-model="vm.auth.last_name"
                                                placeholder="{{::vm.strings.LAST_NAME_LABEL}}"
                                                autofocus>
                                     </div>
                                     <div class="form-group" trulii-input-errors-control="email">
-                                        <input class="form-control " name="email" type="text"
+                                        <input class="form-control input-sm " name="email" type="text"
                                                ng-model="vm.auth.email"
                                                placeholder="{{::vm.strings.EMAIL_LABEL}}"
                                                autofocus>
                                     </div>
                                     <div class="form-group" trulii-input-errors-control="password1">
-                                        <input class="form-control " name="password1" type="password"
+                                        <input class="form-control input-sm " name="password1" type="password"
                                                placeholder="{{::vm.strings.PASSWORD_LABEL}}"
                                                ng-model="vm.auth.password1">
                                     </div>
