@@ -73,7 +73,7 @@
                     <!-- Activity link-->
                     <br class="hidden-md hidden-lg">
                     <span class="text-sm pull-right">
-                        <a ui-sref="activities-detail({'activity_id': activity.id})" ng-bind="::activity.title"></a>
+                        <a ui-sref="activities-detail({'activity_id': review.activity_data.id})" ng-bind="::review.activity_data.title"></a>
                     </span>
                     <!-- End activity link-->
                     <div class="separate-above-less hidden-xs hidden-sm">
@@ -141,11 +141,11 @@
     <div ng-show="hasReply" class="row separate-above-less separate-below-less review-response">
         <div class="col-xs-2 col-xs-offset-1">
             <!--TODO organizer-->
-            <div class="review-avatar" style="background-image: url({{ activity.organizer.photo }})">
+            <div class="review-avatar" style="background-image: url({{ organizer.photo }})">
             </div>
         </div>
         <div class="col-xs-7 col-xs-offset-1 col-md-9 col-md-offset-0 paragraph-condensed review-content">
-            <span class="text-center text-sm montserrat-semibold" ng-bind="::activity.organizer.name"></span>
+            <span class="text-center text-sm montserrat-semibold" ng-bind="::organizer.name"></span>
             <span class="hidden-xs hidden-sm">|</span>
             <br class="hidden-md hidden-lg">
             <span class="text-sm" ng-if="review.replied_at">

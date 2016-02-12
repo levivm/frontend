@@ -19105,7 +19105,7 @@ blockquote {
   text-align: center;
   text-transform: uppercase;
   padding: 0;
-  font-size: 1.3em;
+  font-size: 1.1em;
   font-weight: 400;
   color: #535353;
   margin-top: 1.5rem;
@@ -19320,7 +19320,7 @@ blockquote {
   font-style: italic;
 }
 .instructors-container {
-  padding: 3em 9.5em 5em 9.5em;
+  padding: 3em 7.5em 5em 7.5em;
   background-color: #F7F7F7;
 }
 @media screen and (max-width: 768px) {
@@ -21428,15 +21428,19 @@ blockquote {
     float: none !important;
   }
 }
-.review-detail .review-response .review-avatar {
+.review-response .review-avatar {
   width: 45px;
   height: 45px;
+  background-size: cover;
+  background-position: center center;
+  border-radius: 50%;
+  margin: 0 auto;
 }
-.review-detail .review-response .review-content {
+.review-response .review-content {
   margin-left: -10px;
 }
 @media screen and (max-width: 768px) {
-  .review-detail .review-response .review-content {
+  .review-response .review-content {
     margin-left: 0px;
   }
 }
