@@ -15300,6 +15300,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar + * {
   padding-left: 17em;
   margin-left: 0;
+  min-height: calc(100vh - 100px);
 }
 @media screen and (max-width: 992px) {
   .sidebar + * {
@@ -20813,7 +20814,7 @@ input[type=text].form-control.referral-link:focus {
   padding: 0.75em 1em 0.125em 1em;
   background-color: #eeeeee;
   border-bottom: 5px solid #999999;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
