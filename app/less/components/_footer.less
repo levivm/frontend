@@ -23,7 +23,9 @@
 	}
 }
 
-
+.with-footer{
+  padding-bottom: 70px !important;
+}
 .dashboard-footer{
   padding: 0.75em 1em 0.125em 1em;
 	background-color: @gray-lighter;
@@ -34,6 +36,12 @@
 	width: 100%;
 	z-index: 10;
 
+  .before-md({
+    position: absolute;
+    .link{
+      font-size: 0.75em;
+    }
+  });
 
 	a{
 		font-size: 0.9em;

@@ -13,7 +13,7 @@
         .controller('SearchController', SearchController);
 
     SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
-            , '$stateParams', '$window', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
+            , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
             , 'datepickerConfig', 'datepickerPopupConfig'];
 
     function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state, $stateParams
@@ -114,7 +114,7 @@
             if (!initializing){
                 vm.searchSubCategory = null;
                 SearchManager.setSubCategory(vm.searchSubCategory);
-                if(!_checkIfMobile()){
+                if(!_isMobile()){
                   _search();
                 }
             }
@@ -130,21 +130,21 @@
 
             SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
-            if(!_checkIfMobile()){
+            if(!_isMobile()){
               _search();
             }
         }
 
         function setLevel() {
             SearchManager.setLevel(vm.searchLevel.code);
-            if(!_checkIfMobile()){
+            if(!_isMobile()){
               _search();
             }
         }
 
         function setDate() {
             SearchManager.setDate(vm.searchDate.getTime());
-            if(!_checkIfMobile()){
+            if(!_isMobile()){
               _search();
             }
         }
@@ -154,7 +154,7 @@
         }
 
         function stopDrag() {
-            if(!_checkIfMobile()){
+            if(!_isMobile()){
               _search();
             }
         }
@@ -162,7 +162,7 @@
         function setCertification() {
             vm.withCert = !vm.withCert;
             SearchManager.setCertification(vm.withCert);
-            if(!_checkIfMobile()){
+            if(!_isMobile()){
               _search();
             }
         }
@@ -170,14 +170,14 @@
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
             SearchManager.setWeekends(vm.onWeekends);
-            if(!_checkIfMobile()){
+            if(!_isMobile()){
               _search();
             }
         }
 
         function pageChange() {
             _setPage();
-            if(!_checkIfMobile()){
+            if(!_isMobile()){
               _search();
             }
         }
@@ -187,7 +187,7 @@
             vm.searchData[SearchManager.KEY_ORDER] = predicate;
             SearchManager.setOrder(predicate);
             _setPage(1);
-            if(!_checkIfMobile()){
+            if(!_isMobile()){
               _search();
             }
         }
@@ -202,10 +202,10 @@
 
         //--------- Internal Functions ---------//
         
-        function _checkIfMobile(){
+        function _isMobile(){
+          console.log($window.innerWidth < 992);
           return $window.innerWidth < 992;
         }
-
         function _expandCategory(category) {
             vm.expandedCategory = vm.expandedCategory == category.id ? null : category.id;
         }
@@ -226,7 +226,8 @@
                 //console.log('_getActivities:', vm.activities);
             }
 
-            function error() {
+            function error(error) {
+              console.log(error);
                 console.log('_getActivities. Error obtaining Activities from ActivitiesManager');
             }
         }
