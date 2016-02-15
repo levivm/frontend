@@ -1,7 +1,7 @@
 <div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
 </div>
-<div class="row separate-left separate-right">
-    <div class="col-xs-12 col-md-9 col-xs-offset-0 col-md-offset-1 separate-below-more">
+<div class="row">
+    <div class="col-xs-12 col-md-9 col-xs-offset-0 col-md-offset-1 with-footer">
         <div class="row">
             <div class="col-xs-12 col-md-11 col-md-offset-1">
                 <!--Profile-->
@@ -13,7 +13,7 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <form name="profile.profile_picture_form" class="col-md-10">
+                        <form class="col-xs-12 col-md-10" name="profile.profile_picture_form">
                             <fieldset>
                                 <div class="form-group inline-childs">
                                     <div class="profile-photo-input">
@@ -46,7 +46,7 @@
                         </form>
                     </div>
                 </div>
-                <form class="separate-above col-md-10" name='profile.profile_form_info' ng-submit="profile.submitInfo()">
+                <form class="separate-above col-xs-12 col-md-10" name='profile.profile_form_info' ng-submit="profile.submitInfo()">
                     <fieldset>
                         <div class="form-group" trulii-input-errors-control="name">
                             <label for="name" class="control-label" ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
@@ -73,7 +73,7 @@
                     <h4 class="dashboard-header" ng-bind="profile.strings.SUB_SECTION_VIDEO"></h4>
                     <p ng-bind="::profile.strings.COPY_VIDEO"></p>
                 </div>
-                <form name='profile.profile_form_photo' class="col-md-10" ng-submit="profile.submitVideo()">
+                <form name='profile.profile_form_photo' class="col-xs-12 col-md-10" ng-submit="profile.submitVideo()">
                     <fieldset>
                         <div class="form-group separate-below ">
                             <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
@@ -94,10 +94,10 @@
                     <h4 class="dashboard-header" ng-bind="profile.strings.SUB_SECTION_LOCATION"></h4>
                     <p ng-bind="::profile.strings.COPY_LOCATION"></p>
                 </div>
-                <form name='profile.organizer_location_form' class="col-md-10" ng-submit="profile.submitLocation()">
+                <form name='profile.organizer_location_form' class="col-xs-12 col-md-10" ng-submit="profile.submitLocation()">
                     <fieldset>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-xs-12 col-md-6">
                                 <div class="form-group" trulii-input-errors-control="city">
                                     <label for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
                                     <select id="city" name="city" class="form-control"
@@ -111,17 +111,17 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-xs-12">
                                 <div class="form-group" trulii-input-errors-control="address">
                                     <label for="address" ng-bind="::profile.strings.LABEL_ADDRESS"></label>
                                         <textarea id="address" class="form-control"
-                                                  ng-model='profile.organizer.location.address'
-                                                  name="address"></textarea>
+                                          ng-model='profile.organizer.location.address'
+                                          name="address"></textarea>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12">
+                            <div class="col-xs-12">
                                 <div class="map-help separate-above">
                                     <span><strong>Arrastre </strong> el indicador (</span>
                                     <span class="mdi-action-room" style="color: #F86161"></span>
@@ -134,13 +134,10 @@
                                                     events="profile.marker.events"
                                                     idkey="profile.marker.id"></ui-gmap-marker>
                                 </ui-gmap-google-map>
-
                                 <div class="separate-above">
                                     <trulii-submit-controls is-saving="profile.isSaving"
-                                                            data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                                      data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
                                 </div>
-
-
                             </div>
                         </div>
                     </fieldset>

@@ -14772,6 +14772,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     border-radius: 3px;
     margin-bottom: 20px;
     color: #999999;
+    font-size: 0.75em;
   }
   .filters-container .search-certificate .btn:first-child {
     float: left;
@@ -14819,6 +14820,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
   .filters-container .search-level-select:focus {
     animation: none;
+    height: 40px;
   }
   .filters-container .btn {
     text-transform: uppercase;
@@ -20804,6 +20806,9 @@ input[type=text].form-control.referral-link:focus {
   line-height: 2.4em;
   font-weight: normal;
 }
+.with-footer {
+  padding-bottom: 70px !important;
+}
 .dashboard-footer {
   padding: 0.75em 1em 0.125em 1em;
   background-color: #eeeeee;
@@ -20817,6 +20822,9 @@ input[type=text].form-control.referral-link:focus {
 @media screen and (max-width: 992px) {
   .dashboard-footer {
     position: absolute;
+  }
+  .dashboard-footer .link {
+    font-size: 0.75em;
   }
 }
 .dashboard-footer a {
@@ -20872,9 +20880,6 @@ p {
   color: #999999;
   font-size: 1.2em;
   margin-bottom: 1.5em;
-}
-.tab-content {
-  padding-bottom: 5em;
 }
 .tab-content label {
   font-size: 0.85em;

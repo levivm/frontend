@@ -1,7 +1,7 @@
 <div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
 </div>
-<div class="row separate-left separate-right" style="margin-bottom:60px;">
-    <div class="col-xs-12 col-md-9 col-xs-offset-0 col-md-offset-1 separate-below-more">
+<div class="row with-footer">
+    <div class="col-xs-12 col-md-9 col-xs-offset-0 col-md-offset-1">
         <div class="row">
             <div class="col-xs-12 col-md-11 col-md-offset-1">
                 <div class="row">
@@ -12,18 +12,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="row col-xs-12 ">
+                <div class="row">
+                  <div class="col-xs-12">
                     <form name='instructors.organizer_instructors_forms'>
                         <div class="col-xs-12 col-sm-12 col-md-6 horizontal-fade" ng-repeat="instructor in instructors.instructors">
                             <trulii-instructor-card instructor="instructor"
-                                                    organizer="instructors.organizer"  on-dashboard="true" available-instructors="{}"
-                                                    on-change="instructors.onChange()" ></trulii-instructor-card>
+                              organizer="instructors.organizer"  on-dashboard="true" available-instructors="{}"
+                              on-change="instructors.onChange()" ></trulii-instructor-card>
                         </div>
                     </form>
+                  </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 <trulii-dashboard-footer></trulii-dashboard-footer>

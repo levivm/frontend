@@ -13,11 +13,11 @@
         .controller('SearchController', SearchController);
 
     SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
-            , '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
+            , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
             , 'datepickerConfig', 'datepickerPopupConfig'];
 
     function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state, $stateParams
-            , generalInfo, ActivitiesManager, LocationManager, SearchManager
+            , $window, generalInfo, ActivitiesManager, LocationManager, SearchManager
             , datepickerConfig, datepickerPopupConfig) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -114,7 +114,9 @@
             if (!initializing){
                 vm.searchSubCategory = null;
                 SearchManager.setSubCategory(vm.searchSubCategory);
-                _search();
+                if(!_isMobile){
+                  _search();
+                }
             }
         }
 
@@ -128,17 +130,23 @@
 
             SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
-            _search();
+            if(!_isMobile){
+              _search();
+            }
         }
 
         function setLevel() {
             SearchManager.setLevel(vm.searchLevel.code);
-            _search();
+            if(!_isMobile){
+              _search();
+            }
         }
 
         function setDate() {
             SearchManager.setDate(vm.searchDate.getTime());
-            _search();
+            if(!_isMobile){
+              _search();
+            }  
         }
 
         function updateCost(costStart, costEnd) {
@@ -146,19 +154,25 @@
         }
 
         function stopDrag() {
-            _search();
+            if(!_isMobile){
+              _search();
+            }
         }
 
         function setCertification() {
             vm.withCert = !vm.withCert;
             SearchManager.setCertification(vm.withCert);
-            _search();
+            if(!_isMobile){
+              _search();
+            }
         }
 
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
             SearchManager.setWeekends(vm.onWeekends);
-            _search();
+            if(!_isMobile){
+              _search();
+            }
         }
 
         function pageChange() {
@@ -171,7 +185,9 @@
             vm.searchData[SearchManager.KEY_ORDER] = predicate;
             SearchManager.setOrder(predicate);
             _setPage(1);
-            _search();
+            if(!_isMobile){
+              _search();
+            }
         }
 
         function getLevelClassStyle(level) {
@@ -184,6 +200,9 @@
 
         //--------- Internal Functions ---------//
 
+        function _isMobile(){
+          return ($window.innerWidth <= 991);
+        }
         function _expandCategory(category) {
             vm.expandedCategory = vm.expandedCategory == category.id ? null : category.id;
         }
@@ -204,7 +223,8 @@
                 //console.log('_getActivities:', vm.activities);
             }
 
-            function error() {
+            function error(error) {
+              console.log(error);
                 console.log('_getActivities. Error obtaining Activities from ActivitiesManager');
             }
         }
@@ -315,6 +335,7 @@
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_CLOSE : "Cerrar",
+                ACTION_SEARCH: "Buscar",
                 ACTION_ALL_FILTER : "Todas",
                 COPY_RESULTS : "resultados ",
                 COPY_FOR : "para ",
