@@ -14243,6 +14243,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar-secondary + * {
   margin-top: 60px;
+  min-height: calc(100vh - 160px);
 }
 @media screen and (max-width: 992px) {
   .navbar-secondary + * {
@@ -14771,6 +14772,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     height: 40px;
     border: 1px solid #e3e3e3;
     font-weight: 500;
+    font-size: 0.75em;
     text-transform: none;
     border-radius: 3px;
     margin-bottom: 20px;
@@ -15301,6 +15303,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar + * {
   padding-left: 17em;
   margin-left: 0;
+  position: relative;
+  width: 100%;
 }
 @media screen and (max-width: 992px) {
   .sidebar + * {
@@ -22099,16 +22103,11 @@ input[type=text].form-control.referral-link:focus {
   padding: 0.75em 1em 0.125em 1em;
   background-color: #eeeeee;
   border-bottom: 5px solid #999999;
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
   width: 100%;
   z-index: 10;
-}
-@media screen and (max-width: 992px) {
-  .dashboard-footer {
-    position: absolute;
-  }
 }
 .dashboard-footer a {
   font-size: 0.9em;
@@ -22120,6 +22119,11 @@ input[type=text].form-control.referral-link:focus {
   background-color: transparent;
   color: #535353 !important;
   font-weight: 300;
+}
+@media screen and (max-width: 992px) {
+  .dashboard-footer .link {
+    font-size: 0.75em;
+  }
 }
 .home-footer {
   height: auto;

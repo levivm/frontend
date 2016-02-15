@@ -13,11 +13,11 @@
         .controller('SearchController', SearchController);
 
     SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
-            , '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
+            , '$stateParams', '$window', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
             , 'datepickerConfig', 'datepickerPopupConfig'];
 
     function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state, $stateParams
-            , generalInfo, ActivitiesManager, LocationManager, SearchManager
+            , $window, generalInfo, ActivitiesManager, LocationManager, SearchManager
             , datepickerConfig, datepickerPopupConfig) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -99,7 +99,7 @@
             $event.stopPropagation();
             vm.opened = true;
         }
-
+        
         function setCategory(category, initializing) {
             if (!category) { return; }
 
@@ -114,7 +114,9 @@
             if (!initializing){
                 vm.searchSubCategory = null;
                 SearchManager.setSubCategory(vm.searchSubCategory);
-                _search();
+                if(!_checkIfMobile()){
+                  _search();
+                }
             }
         }
 
@@ -128,17 +130,23 @@
 
             SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
-            _search();
+            if(!_checkIfMobile()){
+              _search();
+            }
         }
 
         function setLevel() {
             SearchManager.setLevel(vm.searchLevel.code);
-            _search();
+            if(!_checkIfMobile()){
+              _search();
+            }
         }
 
         function setDate() {
             SearchManager.setDate(vm.searchDate.getTime());
-            _search();
+            if(!_checkIfMobile()){
+              _search();
+            }
         }
 
         function updateCost(costStart, costEnd) {
@@ -146,24 +154,32 @@
         }
 
         function stopDrag() {
-            _search();
+            if(!_checkIfMobile()){
+              _search();
+            }
         }
 
         function setCertification() {
             vm.withCert = !vm.withCert;
             SearchManager.setCertification(vm.withCert);
-            _search();
+            if(!_checkIfMobile()){
+              _search();
+            }
         }
 
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
             SearchManager.setWeekends(vm.onWeekends);
-            _search();
+            if(!_checkIfMobile()){
+              _search();
+            }
         }
 
         function pageChange() {
             _setPage();
-            _search();
+            if(!_checkIfMobile()){
+              _search();
+            }
         }
 
         function changeOrderBy(predicate) {
@@ -171,7 +187,9 @@
             vm.searchData[SearchManager.KEY_ORDER] = predicate;
             SearchManager.setOrder(predicate);
             _setPage(1);
-            _search();
+            if(!_checkIfMobile()){
+              _search();
+            }
         }
 
         function getLevelClassStyle(level) {
@@ -183,6 +201,10 @@
         }
 
         //--------- Internal Functions ---------//
+        
+        function _checkIfMobile(){
+          return $window.innerWidth < 992;
+        }
 
         function _expandCategory(category) {
             vm.expandedCategory = vm.expandedCategory == category.id ? null : category.id;
@@ -315,6 +337,7 @@
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_CLOSE : "Cerrar",
+                ACTION_SEARCH: "Buscar",
                 ACTION_ALL_FILTER : "Todas",
                 COPY_RESULTS : "resultados ",
                 COPY_FOR : "para ",

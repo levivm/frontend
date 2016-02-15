@@ -28,15 +28,12 @@
   padding: 0.75em 1em 0.125em 1em;
 	background-color: @gray-lighter;
 	border-bottom: 5px solid @gray-light;
-	position: fixed;
+	position: absolute;
 	bottom: 0;
 	right: 0;
 	width: 100%;
 	z-index: 10;
 
-  .before-md({
-    position: absolute;
-  });
 
 	a{
 		font-size: 0.9em;
@@ -49,6 +46,12 @@
 		color: @gray !important;
 		font-weight: 300;
 	}
+  
+  .before-md({
+    .link{
+      font-size: 0.75em;
+    }
+  });
 }
 
 .home-footer{

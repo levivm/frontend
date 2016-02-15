@@ -35,64 +35,70 @@
               <button class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="search.toggleFilters()">
                 <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
               </button>
-                   <div class="form-group search-control no-margin flex-align-items-center search-filter__date">
-                       <div class="flex-container">
-                           <div class="input-group flex-container search-date-container">
-                               <span class="mdi-action-event text-muted" ng-click="search.openDatePicker($event)"></span>
-                               <input id="date" type="text" class="form-control "
-                                      placeholder="{{::search.strings.LABEL_DATE}}"
-                                      name="date" ng-model="search.searchDate"
-                                      ng-change="search.setDate()"
-                                      datepicker-popup="{{search.format}}"
-                                      data-is-open="search.opened"
-                                      data-min-date="search.minStartDate"
-                                      data-datepicker-options="search.dateOptions"
-                                      data-close-text="{{search.strings.ACTION_CLOSE}}"
-                                      ng-click="search.openDatePicker($event)"
-                                      readonly="readonly" />
-                           </div>
-                       </div>
-                   </div>
-                   <div class="search-control flex-align-items-center search-filter__levels hidden-xs">
-                       <label class="control-label no-padding" for="level-btn-group" ng-bind="::search.strings.LABEL_LEVEL"></label>
-                       <div id="level-btn-group" class="btn-group btn-group-justified search-filter__levels-buttons" role="group"
-                            aria-label="{{::search.strings.LABEL_LEVEL}}">
-                           <label class="btn btn-sm btn-default btn-beginner-level"
-                                  ng-repeat="level in search.levels track by level.code"
-                                  ng-class="search.getLevelClassStyle(level)">
-                               <input type="radio" name="level" class="hidden" ng-model="search.searchLevel"
-                                      ng-click="search.setLevel()" ng-value="level">{{level.value}}
-                           </label>
-                       </div>
-                   </div>
-                   <select class=" form-control hidden-sm hidden-md hidden-lg search-level-select" name="levelSelect" id="levelSelect"
-                          ng-model="search.searchLevel" ng-change="search.setLevel()"
-                          ng-options="level.value for level in search.levels track by level.code">
-                      <option ng-hide="search.searchLevel" selected
-                              ng-bind="search.strings.LABEL_LEVEL"></option>
-                  </select>
-                   <div class=" search-certificate">
-                       <!--Certificate Button-->
-                       <button class="btn btn-sm btn-default"
-                               ng-class="{'active': search.withCert}"
-                               ng-bind="search.strings.LABEL_WITH_CERTIFICATE"
-                               ng-click="search.setCertification()"></button>
-                       <!--Weekends Button-->
-                       <button class="btn btn-sm btn-default"
-                               ng-class="{'active': search.onWeekends}"
-                               ng-bind="search.strings.LABEL_WEEKENDS"
-                               ng-click="search.setWeekends()"></button>
-                   </div>
-
-                <div class="flex-align-items-center search-filter-slider">
-                    <label class="control-label margin-more " for="level-btn-group" ng-bind="::search.strings.LABEL_COST"></label>
-                    <div class="col-xs-12 no-padding">
-                        <!--Cost Select-->
-                        <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
-                                       step="search.sliderOptions.step" start="search.searchStartCost"
-                                       end="search.searchEndCost" update="search.updateCost(start, end)" stop-drag="search.stopDrag()"></trulii-slider>
-                    </div>
+              <div class="form-group search-control no-margin flex-align-items-center search-filter__date">
+                  <div class="flex-container">
+                      <div class="input-group flex-container search-date-container">
+                          <span class="mdi-action-event text-muted" ng-click="search.openDatePicker($event)"></span>
+                          <input id="date" type="text" class="form-control "
+                                placeholder="{{::search.strings.LABEL_DATE}}"
+                                name="date" ng-model="search.searchDate"
+                                ng-change="search.setDate()"
+                                datepicker-popup="{{search.format}}"
+                                data-is-open="search.opened"
+                                data-min-date="search.minStartDate"
+                                data-datepicker-options="search.dateOptions"
+                                data-close-text="{{search.strings.ACTION_CLOSE}}"
+                                ng-click="search.openDatePicker($event)"
+                                readonly="readonly" />
+                      </div>
+                  </div>
+              </div>
+              <div class="search-control flex-align-items-center search-filter__levels hidden-xs">
+                  <label class="control-label no-padding" for="level-btn-group" ng-bind="::search.strings.LABEL_LEVEL"></label>
+                  <div id="level-btn-group" class="btn-group btn-group-justified search-filter__levels-buttons" role="group"
+                      aria-label="{{::search.strings.LABEL_LEVEL}}">
+                      <label class="btn btn-sm btn-default btn-beginner-level"
+                            ng-repeat="level in search.levels track by level.code"
+                            ng-class="search.getLevelClassStyle(level)">
+                          <input type="radio" name="level" class="hidden" ng-model="search.searchLevel"
+                                ng-click="search.setLevel()" ng-value="level">{{level.value}}
+                      </label>
+                  </div>
+              </div>
+              <select class=" form-control hidden-sm hidden-md hidden-lg search-level-select" name="levelSelect" id="levelSelect"
+                    ng-model="search.searchLevel" ng-change="search.setLevel()"
+                    ng-options="level.value for level in search.levels track by level.code">
+                <option ng-hide="search.searchLevel" selected
+                        ng-bind="search.strings.LABEL_LEVEL"></option>
+              </select>
+              <div class=" search-certificate">
+                  <!--Certificate Button-->
+                  <button class="btn btn-sm btn-default"
+                          ng-class="{'active': search.withCert}"
+                          ng-bind="search.strings.LABEL_WITH_CERTIFICATE"
+                          ng-click="search.setCertification()"></button>
+                  <!--Weekends Button-->
+                  <button class="btn btn-sm btn-default"
+                          ng-class="{'active': search.onWeekends}"
+                          ng-bind="search.strings.LABEL_WEEKENDS"
+                          ng-click="search.setWeekends()"></button>
+              </div>
+              <div class="row hidden-md hidden-lg">
+                <div class="col-xs-12">
+                  <button class="btn btn-primary btn-block" ng-click="search.search()" ng-bind="::search.strings.ACTION_SEARCH">
+                  </button>
                 </div>
+              </div>
+
+              <div class="flex-align-items-center search-filter-slider">
+                  <label class="control-label margin-more " for="level-btn-group" ng-bind="::search.strings.LABEL_COST"></label>
+                  <div class="col-xs-12 no-padding">
+                      <!--Cost Select-->
+                      <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
+                                      step="search.sliderOptions.step" start="search.searchStartCost"
+                                      end="search.searchEndCost" update="search.updateCost(start, end)" stop-drag="search.stopDrag()"></trulii-slider>
+                  </div>
+              </div>
         </div>
     </div>
     <div class="row separator-light no-margin-bottom hidden-xs hidden-sm no-margin"></div>
