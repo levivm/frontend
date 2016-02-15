@@ -297,15 +297,13 @@
 
 	& + *{
 		padding-left: @sidebar-width;
-		margin-left: 0;
     position: relative;
+    min-height: ~"calc(100vh - 100px)";
+    display: inline-block;
     width: 100%;
-    .before-md({
-      padding-left: 15px;
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    });
+      .before-md({
+        padding-left: 15px;
+      });
 	}
 
 	&.@{sidebar-float-class}{

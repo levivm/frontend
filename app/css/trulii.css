@@ -14243,7 +14243,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar-secondary + * {
   margin-top: 60px;
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 230px);
 }
 @media screen and (max-width: 992px) {
   .navbar-secondary + * {
@@ -15303,16 +15303,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar + * {
   padding-left: 17em;
-  margin-left: 0;
   position: relative;
+  min-height: calc(100vh - 100px);
+  display: inline-block;
   width: 100%;
 }
 @media screen and (max-width: 992px) {
   .sidebar + * {
     padding-left: 15px;
-    position: relative;
-    display: inline-block;
-    width: 100%;
   }
 }
 .sidebar.--float {
