@@ -16,8 +16,8 @@
             , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
             , 'datepickerConfig', 'datepickerPopupConfig'];
 
-    function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state, $stateParams
-            , $window, generalInfo, ActivitiesManager, LocationManager, SearchManager
+    function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state
+            , $window, $stateParams , generalInfo, ActivitiesManager, LocationManager, SearchManager
             , datepickerConfig, datepickerPopupConfig) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -203,7 +203,6 @@
         //--------- Internal Functions ---------//
         
         function _isMobile(){
-          console.log($window.innerWidth < 992);
           return $window.innerWidth < 992;
         }
         function _expandCategory(category) {
