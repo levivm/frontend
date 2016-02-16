@@ -44,7 +44,10 @@
                 }
             })
             .state('organizer-profile', {
-                url: '/organizers/{organizer_id:int}/profile',
+                url: '/organizers/{organizer_id:int}/:organizer_name',
+                params: {
+                  organizer_name: {value: null, squash: true}
+                },
                 controller: 'OrganizerProfileController as profile',
                 templateUrl: 'partials/organizers/profile.html',
                 resolve: {

@@ -180,7 +180,10 @@
                 }
             })
             .state('activities-detail', {
-                url:'/activities/{activity_id:int}',
+                url:'/activities/{activity_id:int}/:activity_title',
+                params: {
+                  activity_title: {value: null, squash: true}
+                },
                 views:{
                     '@': {
                         controller: 'ActivityDetailController as detail',
