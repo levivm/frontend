@@ -108,8 +108,28 @@
                 COPY_VERIFIED_2: "verficado por Trulii"
             });
         }
+        
+        function _updateUrl(){
+            // Title sanitation
+            var name = organizer.name;
+            name = name.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+            
+            // Replacing whitespaces with hyphen
+            name = name.split(' ').join('-').toLowerCase();
+            
+            // Replacing most common special characters
+            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c"}
+            name = name.replace(/[^\w ]/g, function(char) {
+              return dict[char] || char;
+            });
+
+            // Updating the URL
+            $state.go($state.current, {organizer_id: organizer.id, organizer_name: name}, {notify: false, reload: $state.current});
+        }
 
         function _activate(){
+            console.log(organizer.name);
+            _updateUrl();
             _setStrings();
             _setOrganizerCity();
             _setCurrentState();
