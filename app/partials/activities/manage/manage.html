@@ -18,16 +18,16 @@
                 </li>
             </ul>
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-12 with-footer">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
                 <a class="btn btn-default pull-right"
                    ui-sref="activities-detail({activity_id: {{manage.activity.id}}})">
-                    <!--<i class="mdi-image-remove-red-eye sidebar__item__icon"></i>-->
-                    <span ng-bind="manage.strings.ACTION_VIEW"></span>
+                    <span class="hidden-xs hidden-sm" ng-bind="manage.strings.ACTION_VIEW"></span>
+                    <i class="mdi-image-remove-red-eye hidden-md hidden-lg sidebar__item__icon text-center"></i>
                 </a>
                 <a class="btn btn-default pull-right"   ui-sref="dash.activities-edit.general({activity_id:{{manage.activity.id}}})">
-                    <!--<i class="mdi-editor-mode-edit sidebar__item__icon"></i>-->
-                    <span ng-bind="'Editar actividad'"></span>
+                    <span class="hidden-xs hidden-sm" ng-bind="'Editar actividad'"></span>
+                    <i class="mdi-content-create hidden-md hidden-lg sidebar__item__icon text-center"></i>
                 </a>
                 <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
             </div>
