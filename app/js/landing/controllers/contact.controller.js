@@ -14,9 +14,9 @@
         .module('trulii.landing.controllers')
         .controller('ContactController', ContactController);
 
-    ContactController.$inject = ['$state', '$stateParams', 'cities', 'Contact', 'Toast'];
+    ContactController.$inject = ['$state', '$stateParams', 'cities', 'Contact', 'Toast', 'Analytics'];
 
-    function ContactController($state, $stateParams, cities, Contact, Toast) {
+    function ContactController($state, $stateParams, cities, Contact, Toast, Analytics) {
         var vm = this;
 
         angular.extend(vm, {
@@ -42,6 +42,7 @@
         //--------- Functions Implementation ---------//
 
         function sendContactForm(){
+
             if(isFormComplete()){
                 var data = {
                     'topic': vm.selectedTopic.id,
@@ -61,6 +62,7 @@
                 console.log('Success Sending Contact Form');
                 vm.sent = true;
                 Toast.success(vm.strings.COPY_SUCCESS_SENDING_FORM);
+                Analytics.generalEvents.contactUs();
                 $state.go(toState.state, toState.params);
             }
             function error(response){

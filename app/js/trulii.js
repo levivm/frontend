@@ -49,11 +49,12 @@
      * @description Update xsrf $http headers to align with Django's defaults
      * @requires ng.$http
      */
-    run.$inject = ['$http', 'LocationManager'];
-    function run($http, LocationManager) {
+    run.$inject = ['$http', 'LocationManager', 'Analytics'];
+    function run($http, LocationManager, Analytics) {
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
         $http.defaults.xsrfCookieName = 'csrftoken';
         LocationManager.init();
+        Analytics.init();
     }
 
 })();
