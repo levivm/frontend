@@ -71,7 +71,7 @@
                        <li>
                            <a class="text-center text-uppercase" ui-sref="organizer-dashboard.activities.open">
                                <i class="glyphicon glyphicon-arrow-left icon-edit-activity"></i>
-                               <span ng-bind="'Ver mis actividades'"></span>
+                               <span ng-bind="::pc.strings.COPY_VIEW_MY_ACTIVITIES"></span>
                            </a>
                        </li>
                    </ul>
@@ -79,15 +79,15 @@
 
             </div>
         </nav>
-        <div class="col-sm-10 separate-above separate-below-more">
+        <div class="col-sm-10 separate-above with-footer">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': pc.scroll > 80}">
               <a class="btn btn-default pull-right" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})">
-                 <!-- <i class="mdi-image-remove-red-eye sidebar__item__icon"></i>-->
-                  <span>Ver</span>
+                  <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_VIEW_ACTIVITY"></span>
+                  <i class="mdi-image-remove-red-eye hidden-md hidden-lg sidebar__item__icon text-center"></i>
               </a>
               <a class="btn btn-default pull-right"  ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
-                  <!--<i class="mdi-action-settings sidebar__item__icon"></i>-->
-                  <span ng-bind="'Gestionar actividad'"></span>
+                  <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_MANAGE_ACTIVITY"></span>
+                  <i class="mdi-action-settings hidden-md hidden-lg sidebar__item__icon text-center"></i>
               </a>
               <h4 class="sub-title" ng-bind="pc.activity.title"></h4>
             </div>
