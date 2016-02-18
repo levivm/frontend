@@ -17,10 +17,10 @@
         .directive('truliiActivityItem', truliiActivityItem);
 
     truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath'
-        , 'defaultPicture', 'defaultCover', 'titleTruncateSize'];
+        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics'];
 
     function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath
-        , defaultPicture, defaultCover, titleTruncateSize){
+        , defaultPicture, defaultCover, titleTruncateSize, Analytics){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -41,7 +41,8 @@
                     titleSize: titleTruncateSize,
                     hasAction : hasAction,
                     showMenu : showMenu,
-                    hideMenu : hideMenu
+                    hideMenu : hideMenu,
+                    viewActivity:viewActivity
                 });
 
                 _activate();
@@ -66,6 +67,10 @@
                     function hasCurrentAction(currentAction, index, actions){
                         return currentAction === actionQuery;
                     }
+                }
+
+                function viewActivity(title){
+                    Analytics.generalEvents.viewActivityDetail(title);
                 }
 
                 //--------- Internal Functions ---------//

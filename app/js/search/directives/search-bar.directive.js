@@ -54,7 +54,7 @@
                     SearchManager.setSearchBarData(data);
                     angular.extend(data, SearchManager.getSearchData());
                     console.log('data', data);
-                    Analytics.generalEvents.search(data[KEY_SEARCH_Q], Analytics.generalEvents.EACTION_SEARCH_QUERY);
+                    Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
 
                     $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
                     $state.go('search', data);

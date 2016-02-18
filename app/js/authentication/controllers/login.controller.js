@@ -14,9 +14,9 @@
         .module('trulii.authentication.controllers')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state', '$stateParams', '$q', 'Authentication', 'Error'];
+    LoginController.$inject = ['$state', '$stateParams', '$q', 'Authentication', 'Error', 'Analytics'];
 
-    function LoginController($state, $stateParams, $q, Authentication, Error) {
+    function LoginController($state, $stateParams, $q, Authentication, Error, Analytics) {
 
         var vm = this;
         angular.extend(vm, {
@@ -29,12 +29,14 @@
         });
 
         var toState = null;
-
+        var loginEmail = false;
+        var loginFacebook = false;
         _activate();
 
         //--------- Functions Implementation ---------//
 
         function login() {
+            loginEmail = true;
             Error.form.clear(vm.login_form);
             console.log("vm auth:",vm.auth);
             return  Authentication.login(vm.auth.email, vm.auth.password)
@@ -48,6 +50,7 @@
         }
 
         function facebookLogin() {
+            loginFacebook=true;
             return  Authentication.facebookLogin()
                         .then(_loginSuccess ,error);
 
@@ -68,6 +71,10 @@
         }
 
         function _loginSuccess(redirect_state) {
+
+            //Send Analytics data
+            Analytics.generalEvents.loginType(loginEmail, redirect_state.data.user.user_type);
+            //End Send Analytics data
             $state.go(toState.state, toState.params);
         }
 

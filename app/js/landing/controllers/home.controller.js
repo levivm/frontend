@@ -73,7 +73,7 @@
         }
 
         function searchCategory(category){
-            Analytics.generalEvents.search(category.name, Analytics.generalEvents.EACTION_SEARCH_LANDING_CATEGORY);
+            Analytics.generalEvents.searchCategoryLanding(category.name)
         }
         // --------- Internal Functions ---------//
 

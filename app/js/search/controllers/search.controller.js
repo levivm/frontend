@@ -119,7 +119,7 @@
                   _search();
                 }
             }
-            Analytics.generalEvents.search(category.name, Analytics.generalEvents.EACTION_SEARCH_CATEGORY);
+            Analytics.generalEvents.searchCategory(category.name);
         }
 
         function setSubCategory(subcategory) {
@@ -136,7 +136,7 @@
               _search();
             }
 
-            Analytics.generalEvents.search(category.name, Analytics.generalEvents.EACTION_SEARCH_SUBCATEGORY);
+            Analytics.generalEvents.searchSubCategory(category.name);
         }
 
         function setLevel() {
@@ -145,7 +145,7 @@
               _search();
             }
 
-            Analytics.generalEvents.search(vm.searchLevel.value, Analytics.generalEvents.EACTION_SEARCH_LEVEL);
+            Analytics.generalEvents.searchLevel(vm.searchLevel.value);
 
         }
 
@@ -154,7 +154,7 @@
             if(!_isMobile()){
               _search();
             }
-            Analytics.generalEvents.search(vm.searchDate, Analytics.generalEvents.EACTION_SEARCH_DATE);
+            Analytics.generalEvents.searchDate(vm.searchDate);
         }
 
         function updateCost(costStart, costEnd) {
@@ -163,7 +163,7 @@
 
         function stopDrag() {
             if(!_isMobile()){
-                Analytics.generalEvents.search(vm.searchData.cost_start+'-'+vm.searchData.cost_end, Analytics.generalEvents.EACTION_SEARCH_RANGE);
+                Analytics.generalEvents.searchRange(vm.searchData.cost_start+'-'+vm.searchData.cost_end);
               _search();
             }
         }
@@ -171,7 +171,7 @@
         function setCertification() {
             vm.withCert = !vm.withCert;
             SearchManager.setCertification(vm.withCert);
-            Analytics.generalEvents.search(vm.withCert, Analytics.generalEvents.EACTION_SEARCH_CERTIFICATE);
+            Analytics.generalEvents.searchCertificate(vm.withCert);
             if(!_isMobile()){
               _search();
             }
@@ -180,7 +180,7 @@
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
             SearchManager.setWeekends(vm.onWeekends);
-            Analytics.generalEvents.search(vm.onWeekends, Analytics.generalEvents.EACTION_SEARCH_WEEKENDS);
+            Analytics.generalEvents.searchWeekends(vm.onWeekends);
             if(!_isMobile()){
               _search();
             }

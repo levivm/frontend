@@ -62,7 +62,7 @@
                 console.log('Success Sending Contact Form');
                 vm.sent = true;
                 Toast.success(vm.strings.COPY_SUCCESS_SENDING_FORM);
-                Analytics.generalEvents.contactUs();
+                Analytics.generalEvents.contactUs('sent contact form')
                 $state.go(toState.state, toState.params);
             }
             function error(response){
