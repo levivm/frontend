@@ -13,9 +13,9 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsHomeCtrl', ReferralsHomeCtrl);
 
-    ReferralsHomeCtrl.$inject = ['referrerUrl', 'Referrals', 'Toast', 'serverConf', 'student'];
+    ReferralsHomeCtrl.$inject = ['referrerUrl', 'Referrals', 'Toast', 'serverConf', 'student', 'Analytics'];
 
-    function ReferralsHomeCtrl(referrerUrl, Referrals, Toast, serverConf, student) {
+    function ReferralsHomeCtrl(referrerUrl, Referrals, Toast, serverConf, student, Analytics) {
 
         var vm = this;
         angular.extend(vm, {
@@ -40,6 +40,7 @@
 
             function success(response){
                 console.log('success invite:', response);
+                Analytics.studentEvents.sendReferral();
                 Toast.success("Invitaciones enviadas exitosamente");
             }
 

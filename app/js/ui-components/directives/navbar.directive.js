@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -31,7 +31,10 @@
                     toggleBurger: toggleBurger,
                     explore: explore,
                     scroll: 0,
-                    searchActivities: searchActivities
+                    searchActivities: searchActivities,
+                    clickItemSidebar:clickItemSidebar,
+                    createActivity:createActivity,
+                    clickLogo:clickLogo
                 });
 
                 _activate();
@@ -52,6 +55,22 @@
                     toggleBurger();
                     $state.go('search', searchData, transitionOptions);
                 }
+
+                //---Exposed functions for send data to Google Analytics----//
+
+                function clickItemSidebar(item){
+                    Analytics.generalEvents.burguerMenuItemsClicks(item);
+                }
+
+                function createActivity(){
+                    Analytics.organizerEvents.clickButtonCreateAcitvity();
+                }
+
+                function clickLogo(){
+                    Analytics.generalEvents.logoNavbar();
+                }
+
+                //---End functions for send data to Google Analytics----//
 
                 //--------- Internal Functions ---------//
 
@@ -177,6 +196,7 @@
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');
                         console.log(scope.isExplore);
+                        Analytics.sendPageView();
                         scope.isSearchVisible = !(toState.name == 'home' || toState.name == 'not-found' || $state.includes('dash'));
                     });
 

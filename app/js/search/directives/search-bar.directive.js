@@ -13,10 +13,10 @@
         .directive('truliiSearchBar', truliiSearchBar);
 
     truliiSearchBar.$inject = ['$rootScope', '$state', '$stateParams', 'UIComponentsTemplatesPath', 'Toast',
-        'SearchManager', 'LocationManager'];
+        'SearchManager', 'LocationManager', 'Analytics'];
 
     function truliiSearchBar($rootScope, $state, $stateParams, UIComponentsTemplatesPath,
-                          Toast, SearchManager, LocationManager) {
+                          Toast, SearchManager, LocationManager, Analytics) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "search-bar.html",
@@ -54,6 +54,7 @@
                     SearchManager.setSearchBarData(data);
                     angular.extend(data, SearchManager.getSearchData());
                     console.log('data', data);
+                    Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
 
                     $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
                     $state.go('search', data);

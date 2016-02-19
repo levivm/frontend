@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount',];
-    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount) {
+    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics'];
+    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics) {
 
         var vm = this;
         angular.extend(vm, {
@@ -21,7 +21,8 @@
             unreadReviewsCount: unreadReviewsCount,
             scroll: 0,
             showSidebar: false,
-            toggleSidebar: toggleSidebar
+            toggleSidebar: toggleSidebar,
+            clicItemDash:clicItemDash
         });
 
 
@@ -30,9 +31,15 @@
         function isActive(stateStr){
             return $state.includes(stateStr);
         }
-        
+
         function toggleSidebar(){
             vm.showSidebar = !vm.showSidebar;
+        }
+
+        //Function send data analytics
+
+        function clicItemDash(item){
+            Analytics.organizerEvents.dashboardOrgItems(item);
         }
 
         function _setStrings() {

@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics'];
 
     function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, LocationManager, Referrals, Scroll) {
+                                            Elevator, LocationManager, Referrals, Scroll, Analytics) {
 
         var vm = this;
         var isValidDate = false;
@@ -185,6 +185,7 @@
                             .finally(_finishProccesingPayment);
 
                 function _enrollSuccess(data) {
+                    Analytics.studentEvents.enrollPayPse();
                     vm.success = true;
                     var bank_url = response.bank_url;
                     $window.location.href = bank_url;
@@ -305,6 +306,8 @@
 
 
             function _enrollSuccess(order) {
+                console.log('enrollSuccessFree');
+                Analytics.studentEvents.enrollSuccessFree();
                 calendar.addAssistants(order.assistants);
                 vm.success = true;
                 $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':calendar.id,
@@ -421,6 +424,7 @@
 
 
                 function _enrollSuccess(order) {
+                    Analytics.studentEvents.enrollPayTdc();
                     calendar.addAssistants(order.assistants);
                     vm.success = true;
                     $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':calendar.id,

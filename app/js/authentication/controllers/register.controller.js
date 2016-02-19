@@ -15,12 +15,13 @@
         .module('trulii.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator', 'Error', 'Referrals'];
+    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator', 'Error', 'Referrals', 'Analytics'];
 
-    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator, Error, Referrals) {
+    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator, Error, Referrals, Analytics) {
 
         var selectedMethod = null;
         var toState = null;
+        var emailRegister = false;
 
         var vm = this;
         angular.extend(vm, {
@@ -62,9 +63,11 @@
         }
 
         function register() {
+            emailRegister = true;
             vm.signup_form.$setPristine();
             Error.form.clear(vm.signup_form);
             vm.auth.user_type = vm.user_type;
+            console.log(vm.auth.user_type);
 
             return Authentication.register(vm.auth).then(_registerSuccess, error);
 
@@ -83,6 +86,7 @@
         //--------- Internal Functions ---------//
 
         function _registerSuccess(){
+            Analytics.generalEvents.registerType(emailRegister, vm.auth.user_type);
             Referrals.deleteRefHash();
             $state.go(toState.state, toState.params);
         }

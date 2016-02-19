@@ -28,6 +28,16 @@
     <!--Esto debe eliminarse luego, es solamente para ver probar el googlebot-->
     <meta name="google-site-verification" content="L0GSZBNmTtlvemy4mwKVxjVakV-vndq7si8bDy0h6pE" />
 
+    <!-- Google Analytics -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    </script>
+    <!-- End Google Analytics -->
+
     <!--Needed for HTML5 Mode-->
     <base href="/">
 
@@ -91,7 +101,7 @@
 <script src="lib/bootstrap-material-design/dist/js/material.js"></script>
 <script src="lib/bootstrap-material-design/dist/js/ripples.js"></script>
 <script src="lib/google-code-prettify/bin/prettify.min.js"></script>
-<script src="lib/moment-timezone/builds/moment-timezone-with-data-2010-2020.min.js"></script>
+<script src="lib/moment-timezone/builds/moment-timezone-with-data-2010-2020.js"></script>
 <script src="lib/ng-file-upload/angular-file-upload.js"></script>
 <script src="lib/ng-tags-input/ng-tags-input.min.js"></script>
 <script src="lib/angular-mocks/angular-mocks.js"></script>
@@ -154,6 +164,7 @@
 <script src="js/students/services/student.service.js"></script>
 <script src="js/students/services/student_manager.service.js"></script>
 <script src="js/ui-components/services/toast.service.js"></script>
+<script src="js/utils/services/analytics.service.js"></script>
 <script src="js/utils/services/default_cover.service.js"></script>
 <script src="js/utils/services/default_picture.service.js"></script>
 <script src="js/utils/services/elevator.service.js"></script>
@@ -204,9 +215,6 @@
 <script src="js/activities/controllers/manage.controller.js"></script>
 <script src="js/activities/controllers/manage.orders.order.controller.js"></script>
 <script src="js/activities/controllers/manage_list.controller.js"></script>
-<script src="js/landing/controllers/contact.controller.js"></script>
-<script src="js/landing/controllers/home.controller.js"></script>
-<script src="js/landing/controllers/not_found.controller.js"></script>
 <script src="js/authentication/controllers/email_confirm.controller.js"></script>
 <script src="js/authentication/controllers/forgot_password.controller.js"></script>
 <script src="js/authentication/controllers/login.controller.js"></script>
@@ -215,6 +223,9 @@
 <script src="js/authentication/controllers/reset_password.controller.js"></script>
 <script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
 <script src="js/help/controllers/help.controller.js"></script>
+<script src="js/landing/controllers/contact.controller.js"></script>
+<script src="js/landing/controllers/home.controller.js"></script>
+<script src="js/landing/controllers/not_found.controller.js"></script>
 <script src="js/organizers/controllers/dashboard.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_account.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_activities.controller.js"></script>

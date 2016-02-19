@@ -13,8 +13,8 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$state', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf'];
-    function HomeController($state, video, activities, generalInfo, LocationManager, serverConf) {
+    HomeController.$inject = ['$state', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics'];
+    function HomeController($state, video, activities, generalInfo, LocationManager, serverConf, Analytics) {
 
         var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
@@ -32,6 +32,7 @@
             loadActivities: loadActivities,
             viewMoreActivities: viewMoreActivities,
             organizerCategories: organizerCategories,
+            searchCategory:searchCategory,
             coverVideo: {},
             getAmazonUrl: getAmazonUrl
         });
@@ -70,10 +71,15 @@
         function organizerCategories(index){
             return index < 2 ? 'col-md-6' :  index === 5 ?  'col-md-8': 'col-md-4';
         }
+
+        function searchCategory(category){
+            Analytics.generalEvents.searchCategoryLanding(category.name)
+        }
         // --------- Internal Functions ---------//
 
         function _setCategories(){
             vm.categories = angular.copy(generalInfo.categories);
+
         }
 
         function _setStrings() {
@@ -141,6 +147,8 @@
             video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
             video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');
             _replayVideos();
+
+            //Analytics.generalEvents.landing();
 
         }
 
