@@ -36,7 +36,8 @@
             scroll: 0,
             toggleSidebar: toggleSidebar,
             isActive: isActive,
-            clickItemDashboard:clickItemDashboard
+            clickItemDashboard:clickItemDashboard,
+            actionNavbarSecondary:actionNavbarSecondary
         });
 
 
@@ -73,6 +74,9 @@
 
         function clickItemDashboard(item){
             Analytics.organizerEvents.dashboardActivitiesItems(item);
+        }
+        function actionNavbarSecondary(item){
+            Analytics.organizerEvents.navbarActionSecondary(item);
         }
 
         //End Function Analytics data

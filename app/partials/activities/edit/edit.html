@@ -81,11 +81,11 @@
         </nav>
         <div class="col-sm-10 separate-above separate-below-more">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': pc.scroll > 80}">
-              <a class="btn btn-default pull-right" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})">
+              <a class="btn btn-default pull-right" ng-click="pc.actionNavbarSecondary('ver')" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})">
                  <!-- <i class="mdi-image-remove-red-eye sidebar__item__icon"></i>-->
                   <span>Ver</span>
               </a>
-              <a class="btn btn-default pull-right"  ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
+              <a class="btn btn-default pull-right" ng-click="pc.actionNavbarSecondary('manage')" ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
                   <!--<i class="mdi-action-settings sidebar__item__icon"></i>-->
                   <span ng-bind="'Gestionar actividad'"></span>
               </a>

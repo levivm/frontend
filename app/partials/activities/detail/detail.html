@@ -30,6 +30,7 @@
           <br class="hidden-md hidden-lg">
 
           <a href="#"
+            ng-click="detail.shareSocialAnalytic(detail.social.FACEBOOK_SOCIAL_PROVIDER, detail.social.FACEBOOK_SHARE_URL)"
             class="text-no-decoration btn-share-fb"
             socialshare
             socialshare-provider="{{::detail.social.FACEBOOK_SOCIAL_PROVIDER}}"
@@ -45,6 +46,7 @@
             alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
           </a>
           <a href="#"
+            ng-click="detail.shareSocialAnalytic(detail.social.TWITTER_SOCIAL_PROVIDER, detail.social.TWITTER_SHARE_URL)"
             class="text-no-decoration btn-share-twitter"
             socialshare
             socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"

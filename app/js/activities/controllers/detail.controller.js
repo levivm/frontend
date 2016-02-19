@@ -72,7 +72,8 @@
             showVideo: false,
             showMethodology: false,
             showRequirements: false,
-            showExtra: false
+            showExtra: false,
+            shareSocialAnalytic:shareSocialAnalytic
         });
 
         _activate();
@@ -136,6 +137,9 @@
         function widgetSignup(){
             Analytics.studentEvents.enrollWidget();
         }
+        function shareSocialAnalytic(social, target){
+            Analytics.generalEvents.shareActivity(social, target);
+        }
         // End Functions for analytics states
 
 
@@ -174,6 +178,7 @@
             activity.share(vm.formData).then(success, error);
 
             function success(response){
+                shareSocialAnalytic(vm.strings.EMAIL_MODAL_HEADER, vm.activity.title);
                 Toast.success(vm.strings.COPY_SHARE_SUCCESS);
             }
             function error(error){

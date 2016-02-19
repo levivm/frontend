@@ -42,7 +42,8 @@
                     hasAction : hasAction,
                     showMenu : showMenu,
                     hideMenu : hideMenu,
-                    viewActivity:viewActivity
+                    viewActivity:viewActivity,
+                    clickAction: clickAction
                 });
 
                 _activate();
@@ -69,8 +70,13 @@
                     }
                 }
 
+                //Functions Analytics data
                 function viewActivity(title){
                     Analytics.generalEvents.viewActivityDetail(title);
+                }
+
+                function clickAction(action){
+                    Analytics.generalEvents.actionCard(action);
                 }
 
                 //--------- Internal Functions ---------//

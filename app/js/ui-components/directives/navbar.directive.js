@@ -33,7 +33,8 @@
                     scroll: 0,
                     searchActivities: searchActivities,
                     clickItemSidebar:clickItemSidebar,
-                    createActivity:createActivity
+                    createActivity:createActivity,
+                    clickLogo:clickLogo
                 });
 
                 _activate();
@@ -63,6 +64,10 @@
 
                 function createActivity(){
                     Analytics.organizerEvents.clickButtonCreateAcitvity();
+                }
+
+                function clickLogo(){
+                    Analytics.generalEvents.logoNavbar();
                 }
 
                 //---End functions for send data to Google Analytics----//
