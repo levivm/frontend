@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDashboardCtrl', ActivityDashboardCtrl);
 
-    ActivityDashboardCtrl.$inject = ['$state', '$scope', 'Toast', 'ActivitySteps', 'activity'];
+    ActivityDashboardCtrl.$inject = ['$state', '$scope', 'Toast', 'ActivitySteps', 'activity', 'Analytics'];
 
-    function ActivityDashboardCtrl($state, $scope, Toast, ActivitySteps, activity) {
+    function ActivityDashboardCtrl($state, $scope, Toast, ActivitySteps, activity, Analytics) {
 
         var pc = this;
 
@@ -35,12 +35,13 @@
             steps_left: activity.steps_left,
             scroll: 0,
             toggleSidebar: toggleSidebar,
-            isActive: isActive
+            isActive: isActive,
+            clickItemDashboard:clickItemDashboard
         });
 
 
         activate();
-        
+
         function toggleSidebar(){
             pc.showSidebar = !pc.showSidebar;
             console.log('???0');
@@ -49,7 +50,7 @@
         function isActive(stateStr){
             return $state.includes(stateStr);
         }
-        
+
         function areAllStepsCompleted() {
             return activity.areAllStepsCompleted();
         }
@@ -67,13 +68,23 @@
             return classes;
         }
 
+
+        //Function Analytics data
+
+        function clickItemDashboard(item){
+            Analytics.organizerEvents.dashboardActivitiesItems(item);
+        }
+
+        //End Function Analytics data
+
+
         function _publish_activity() {
             pc.allow_publish = false;
 
             activity.publish().then(function (response) {
 
                 $state.go('activities-detail',{'activity_id':pc.activity.id});
-
+                Analytics.organizerEvents.publicActity(pc.activity.id);
                 Toast.success(pc.strings.ACTIVITY_PUBLISHED);
                 pc.allow_unpublish = true;
             },function(response){
@@ -86,7 +97,7 @@
             pc.allow_unpublish = false;
             activity.unpublish().then(function (response) {
 
-
+                Analytics.organizerEvents.unPublishActity(pc.activity.id);
                 Toast.warning(pc.strings.UNPUBLISH_ACTIVITY_WARNING);
                 pc.allow_publish = true;
 

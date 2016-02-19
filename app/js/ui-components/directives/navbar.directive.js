@@ -31,7 +31,9 @@
                     toggleBurger: toggleBurger,
                     explore: explore,
                     scroll: 0,
-                    searchActivities: searchActivities
+                    searchActivities: searchActivities,
+                    clickItemSidebar:clickItemSidebar,
+                    createActivity:createActivity
                 });
 
                 _activate();
@@ -52,6 +54,18 @@
                     toggleBurger();
                     $state.go('search', searchData, transitionOptions);
                 }
+
+                //---Exposed functions for send data to Google Analytics----//
+
+                function clickItemSidebar(item){
+                    Analytics.generalEvents.burguerMenuItemsClicks(item);
+                }
+
+                function createActivity(){
+                    Analytics.organizerEvents.clickButtonCreateAcitvity();
+                }
+
+                //---End functions for send data to Google Analytics----//
 
                 //--------- Internal Functions ---------//
 

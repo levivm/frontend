@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics) {
         var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
@@ -59,6 +59,8 @@
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
             signUp: signUp,
+            calendarSignUp:calendarSignUp,
+            widgetSignup:widgetSignup,
             showMoreReviews: showMoreReviews,
             viewMoreCalendars: viewMoreCalendars,
             toggleEmailShow: toggleEmailShow,
@@ -126,6 +128,16 @@
                 $state.go('register', registerParams);
             }
         }
+
+        //Functions for analytics states
+        function calendarSignUp(){
+            Analytics.studentEvents.enrollCalendar();
+        }
+        function widgetSignup(){
+            Analytics.studentEvents.enrollWidget();
+        }
+        // End Functions for analytics states
+
 
         function showMoreReviews(){
             if(visibleReviewListSize < reviews.length){

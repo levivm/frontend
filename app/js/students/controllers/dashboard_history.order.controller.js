@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryOrderCtrl', StudentHistoryOrderCtrl);
 
-    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order'];
+    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order', 'Analytics'];
 
-    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order) {
+    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order, Analytics) {
 
         var vm = this;
         angular.extend(vm,{
@@ -83,6 +83,7 @@
             });
 
             function success(response){
+                Analytics.studentEvents.seekRefund(orderId);
                 assistant.lastest_refund = response;
             }
 

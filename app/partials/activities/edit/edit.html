@@ -6,7 +6,7 @@
                 class="sidebar__item sidebar__item-edit-activity"
                 ui-sref-active="sidebar__item--selected-edit-activity"
                 ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} "
-                ng-click="pc.toggleSidebar()">
+                ng-click="pc.toggleSidebar(); pc.clickItemDashboard(step.title)">
                     <i class="{{::step.icon}} sidebar__item__icon"></i>
                     <span ng-bind="::step.title"></span>
                     <i class="mandatory-mark mandatory-mark-edit-activity --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>

@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentDashboardCtrl', StudentDashboardCtrl);
 
-    StudentDashboardCtrl.$inject = ['$state', '$scope'];
+    StudentDashboardCtrl.$inject = ['$state', '$scope', 'Analytics'];
 
-    function StudentDashboardCtrl($state, $scope) {
+    function StudentDashboardCtrl($state, $scope, Analytics) {
 
         var vm = this;
         angular.extend(vm, {
@@ -22,7 +22,8 @@
             isActive : isActive,
             scroll: 0,
             showSidebar: false,
-            toggleSidebar: toggleSidebar
+            toggleSidebar: toggleSidebar,
+            clickItem:clickItem
         });
 
         _activate();
@@ -38,13 +39,17 @@
         function _changeState(newState) {
             $state.go(newState);
         }
-        
+
         function toggleSidebar(){
             console.log("???");
             console.log(vm.showSidebar);
             vm.showSidebar = !vm.showSidebar;
         }
-        
+
+        function clickItem(item){
+            Analytics.studentEvents.dashboardItemClicks(item);
+        }
+
         function setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
