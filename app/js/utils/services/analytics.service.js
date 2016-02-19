@@ -147,13 +147,16 @@
         //Init Tracker Events
         function init(){
 
-            var user = Authentication.isAuthenticated() ? localStorageService.get(USER_KEY).user.email : 'none';
+            var userId = Authentication.isAuthenticated() ? true:false;
             window.ga('create', {
-                trackingId: 'UA-50130727-5',
-                cookieDomain: 'none',
+                trackingId: 'UA-67305468-1',
+                cookieDomain: 'auto',
                 name: 'myTracker',
-                userId: user
             });
+            if(userId){
+                _setUserId();
+            }
+            // Establezca el ID de usuario mediante el user_id con el que haya iniciado sesión.
         }
 
 
@@ -196,11 +199,13 @@
 
         function loginType(loginEmail, data){
             var eventAction = loginEmail ? EACTION_LOGIN_EMAIL:EACTION_LOGIN_FACEBOOK;
+            _setUserId();
             _reportEvent(CATEGORY_GENERAL, eventAction, 'Login-'+data);
         }
 
         function registerType(registerEmail, data){
             var eventAction = registerEmail ? EACTION_SIGNUP_EMAIL:EACTION_SIGNUP_FACEBOOK;
+            _setUserId();
             _reportEvent(CATEGORY_GENERAL, eventAction, 'Signup-'+data);
         }
 
@@ -330,6 +335,10 @@
               socialAction: action,
               socialTarget: target
             });
+        }
+
+        function _setUserId(){
+            window.ga('myTracker.set', 'userId', localStorageService.get(USER_KEY).id );
         }
 
     }
