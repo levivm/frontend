@@ -409,10 +409,30 @@
         function _initSignup(){
           vm.selectedActivity = 0;
         }
+        
+        function _updateUrl(){
+            // Title sanitation
+            var title = activity.title;
+            title = title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+            
+            // Replacing whitespaces with hyphen
+            title = title.split(' ').join('-').toLowerCase();
+            
+            // Replacing most common special characters
+            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c"}
+            title = title.replace(/[^\w ]/g, function(char) {
+              return dict[char] || char;
+            });
+                        
+            // Updating the URL
+            $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: $state.current});
+        }
+        
 
         function _activate(){
             _setStrings();
             _setCurrentState();
+            _updateUrl();
             activity = _mapCalendars(activity);
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
@@ -426,7 +446,9 @@
                 hasMoreReviews: reviews.length > 3,
                 calendar_selected : _getSelectedCalendar(activity)
             });
+            
             console.log(vm.reviews);
+            
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);

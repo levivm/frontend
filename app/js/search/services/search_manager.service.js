@@ -46,7 +46,7 @@
                 'name' : 'Relevancia'
             },
             {
-                'predicate' : 'calendar_soonest',
+                'predicate' : 'closest',
                 'name' : 'Más próxima'
             }
         ];

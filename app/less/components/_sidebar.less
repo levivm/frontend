@@ -297,15 +297,13 @@
 
 	& + *{
 		padding-left: @sidebar-width;
-		margin-left: 0;
     position: relative;
+    min-height: ~"calc(100vh - 100px)";
+    display: inline-block;
     width: 100%;
-    .before-md({
-      padding-left: 15px;
-      position: relative;
-      display: inline-block;
-      width: 100%;
-    });
+      .before-md({
+        padding-left: 15px;
+      });
 	}
 
 	&.@{sidebar-float-class}{
@@ -359,6 +357,7 @@
 .with-sidebar{
     .col-xs-12;
     padding-bottom: 80px;
+    min-height: ~"calc(100vh - 100px)";
 }
 @media print {
     .with-sidebar{
