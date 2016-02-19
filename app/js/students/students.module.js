@@ -109,6 +109,12 @@
             .state('student-dashboard.history.refunds', {
                 url:'/refunds',
                 templateUrl: 'partials/students/dashboard/history.refunds.html'
+            })
+            
+            .state('student-dashboard.wishlist', {
+                url:'wishlist',
+                controller: 'StudentWishlistCtrl as wishlist',
+                templateUrl: 'partials/students/dashboard/wishlist.html',
             });
 
         /**
@@ -220,18 +226,6 @@
                 console.log('Error retrieving Student Reviews', response);
                 return [];
             }
-        }
-
-        /**
-         * @ngdoc method
-         * @name .#getOrders
-         * @description Retrieves all of a Student's Orders
-         * {@link trulii.students.services.Student Student} Service
-         * @methodOf trulii.students.config
-         */
-        getOrders.$inject = ['student'];
-        function getOrders(student){
-            return student.getOrders();
         }
 
         /**

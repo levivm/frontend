@@ -12,11 +12,12 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryCtrl', StudentHistoryCtrl);
 
-    StudentHistoryCtrl.$inject = ['$filter','student', 'titleTruncateSize'];
+    StudentHistoryCtrl.$inject = ['$filter', '$http', 'student', 'titleTruncateSize', 'StudentServerApi'];
 
-    function StudentHistoryCtrl($filter, student, titleTruncateSize) {
+    function StudentHistoryCtrl($filter, $http, student, titleTruncateSize, StudentServerApi) {
 
         var vm = this;
+        var api = StudentServerApi;
         angular.extend(vm,{
             activities: null,
             options: {actions: ['view']},
@@ -28,7 +29,7 @@
             },
             orderPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 15,
+                itemsPerPage: 10,
                 pageNumber: 1
             },
             refundsPaginationOpts: {
@@ -75,16 +76,28 @@
             var end = null;
             switch(type){
                 case vm.TYPE_ORDER:
-                    offset = vm.orderPaginationOpts.itemsPerPage;
-                    start = (vm.orderPaginationOpts.pageNumber -1) * offset;
-                    end = vm.orderPaginationOpts.pageNumber * offset;
-                    vm.orders = orders.slice(start, end);
+                    $http.get(api.orders(student.id),
+                      {params: {
+                        page: vm.orderPaginationOpts.pageNumber,
+                        page_size: vm.orderPaginationOpts.itemsPerPage
+                      }}).then(function(response){
+                      vm.orders = response.data;
+                      vm.orders.results = $filter('orderBy')(vm.orders.results, 'id', true);
+                      vm.orderPaginationOpts.totalItems = vm.orders.count;
+                      vm.orders = vm.orders.results.slice(0, vm.orderPaginationOpts.itemsPerPage);
+                    });
                     break;
                 case vm.TYPE_REFUNDS:
-                    offset = vm.refundsPaginationOpts.itemsPerPage;
-                    start = (vm.refundsPaginationOpts.pageNumber -1) * offset;
-                    end = vm.refundsPaginationOpts.pageNumber * offset;
-                    vm.refunds = refunds.slice(start, end);
+                  $http.get(api.refunds(student.id),
+                      {params: {
+                        page: vm.orderPaginationOpts.pageNumber,
+                        page_size: vm.orderPaginationOpts.itemsPerPage
+                      }}).then(function(response){
+                      vm.refunds = response.data;
+                      vm.refunds.results = $filter('orderBy')(vm.refunds.results, 'id', true);
+                      vm.refundsPaginationOpts.totalItems = vm.refunds.count;
+                      vm.refunds = vm.refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+                    });
                     break;
             }
         }
@@ -92,12 +105,14 @@
         /*       Internal Functions      */
 
         function _getOrders(){
+          
             student.getOrders().then(success, error);
 
             function success(ordersResponse){
-                orders = $filter('orderBy')(ordersResponse, 'id', true);
-                vm.orderPaginationOpts.totalItems = orders.length;
-                vm.orders = orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
+              orders = ordersResponse;
+              orders.results = $filter('orderBy')(orders.results, 'id', true);
+              vm.orderPaginationOpts.totalItems = orders.count;
+              vm.orders = orders.results.slice(0, vm.orderPaginationOpts.itemsPerPage);
 
             }
             function error(orders){
@@ -110,11 +125,10 @@
             student.getRefunds().then(success,error);
 
             function success(data){
-
-                refunds = $filter('orderBy')(data, 'order', true);
-                console.log('refunds',refunds);
-                vm.refundsPaginationOpts.totalItems = refunds.length;
-                vm.refunds = refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+              refunds = data;
+              refunds.results = $filter('orderBy')(refunds.results, 'id', true);
+              vm.refundsPaginationOpts.totalItems = refunds.count;
+              vm.refunds = refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
             }
             function error(data){
                 console.log("Error getting Organizer's orders");

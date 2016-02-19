@@ -53,7 +53,8 @@
                 SECTION_ACTIVITIES: "Actividades",
                 SECTION_ACCOUNT: "Cuenta",
                 SECTION_PROFILE: "Perfil",
-                SECTION_HISTORY: "Transacciones"
+                SECTION_HISTORY: "Transacciones",
+                SECTION_WISHLIST: "Favoritos"
             });
         }
 

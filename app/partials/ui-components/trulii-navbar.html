@@ -144,6 +144,11 @@
                            ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
                     </li>
                     <li>
+                        <a ui-sref="student-dashboard.wishlist"
+                           ng-click="toggleBurger()"
+                           ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
+                    </li>
+                    <li>
                         <a ui-sref="logout"
                            ng-click="toggleBurger()"
                            ng-bind="::strings.ACTION_EXIT"></a>

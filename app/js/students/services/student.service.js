@@ -20,6 +20,8 @@
     function Student($http, $q, UploadFile, StudentServerApi, Authentication, defaultPicture) {
 
         var api = StudentServerApi;
+        var defaultPage = 1;
+        var defaultPageSize = 10;
 
         function Student(studentData) {
             if (studentData) {
@@ -117,11 +119,21 @@
                 return Authentication.change_password(password_data);
             },
 
-            getOrders : function () {
-                return $http.get(api.orders(this.id))
-                    .then(function (response) {
-                        return response.data;
-                    });
+            getOrders : function (page, pageSize) {
+              if(!page){
+                page = defaultPage;
+              }
+              if(!pageSize){
+                pageSize = defaultPageSize
+              }
+              return $http.get(api.orders(this.id),
+                  {params: {
+                    page: page,
+                    page_size: pageSize
+                  }})
+                  .then(function (response) {
+                      return response.data;
+                  });
             },
 
             getOrder : function (orderId) {
@@ -178,33 +190,46 @@
 
         }
 
-        function getRefunds(){
+        function getRefunds(page, pageSize){
+          if(!page){
+            page = defaultPage;
+          }
+          if(!pageSize){
+            pageSize = defaultPageSize
+          }
+          return $http.get(api.refunds(this.id),
+            {params: {
+              page: page,
+              page_size: pageSize
+            }})
+            .then(function (response) {
+                return response.data;
+            });
+            // var deferred = $q.defer();
+            // var refunds = [];
 
-            var deferred = $q.defer();
-            var refunds = [];
+            // collectRefunds(api.refunds());
 
-            collectRefunds(api.refunds());
+            // return deferred.promise;
 
-            return deferred.promise;
+            // function collectRefunds(nextUrl){
+            //     return $http.get(nextUrl)
+            //         .then(success, error);
 
-            function collectRefunds(nextUrl){
-                return $http.get(nextUrl)
-                    .then(success, error);
+            //     function success(response) {
+            //         refunds = refunds.concat(response.data.results);
+            //         if(response.data.next){
+            //             return collectRefunds(response.data.next);
+            //         } else {
+            //             deferred.resolve(refunds);
+            //         }
+            //     }
 
-                function success(response) {
-                    refunds = refunds.concat(response.data.results);
-                    if(response.data.next){
-                        return collectRefunds(response.data.next);
-                    } else {
-                        deferred.resolve(refunds);
-                    }
-                }
-
-                function error(response) {
-                    console.log("Error getting organizer refunds: ", response.data);
-                    deferred.reject(refunds);
-                }
-            }
+            //     function error(response) {
+            //         console.log("Error getting organizer refunds: ", response.data);
+            //         deferred.reject(refunds);
+            //     }
+            // }
 
         }
 

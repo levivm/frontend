@@ -270,6 +270,16 @@
               <span ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></span>
             </div>
           </div>
+          <div class="wishlist">
+            <div class="text-center">
+              <h4>
+                <!--<i class="mdi-action-favorite-outline"></i>
+                <span class="text-muted" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></span>-->
+                <i class="mdi-action-favorite"></i>
+                <span class="text-muted" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST">=</span>
+              </h4>
+            </div>
+          </div>
           <div class="info">
             <div class="level">
               <img src="/css/img/activity-detail/widget_level.png" alt=""/>
@@ -384,107 +394,120 @@
   </div>
   <div class="row">
     <div class="sign-up-container-info col-md-6 col-md-offset-3">
-      <h4 class="" ng-bind="::detail.strings.COPY_SIGN_UP"></h4>
+      <h4 class="" ng-bind="::detail.strings.COPY_SIGN_UP" ng-if="detail.activity.upcoming_calendars.length > 0"></h4>
+      <h4 ng-bind="::detail.strings.COPY_SIGN_UP_NO_DATES" ng-if="detail.activity.upcoming_calendars.length === 0"></h4>
     </div>
   </div>
   <div class="row">
     <div class="col-xs-12 col-md-10 col-md-offset-1">
       <div class="row">
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-9 col-md-offset-0 calendars-container separate-above-medium">
-          <table class="table table-responsive table-justified">
-            <tr>
-              <th>
-              </th>
-              <th ng-bind="::detail.strings.LABEL_START">
-              </th>
-              <th ng-bind="::detail.strings.LABEL_VACANCY" class="hidden-xs hidden-sm">
-              </th>
-              <th ng-bind="::detail.strings.LABEL_CLOSING_DATE" class="hidden-xs hidden-sm">
-              </th>
-              <th ng-bind="::detail.strings.LABEL_SESSIONS_NUMBER">
-              </th>
-              <th ng-bind="::detail.strings.LABEL_COST">
-              </th>
-              <th class="hidden-md hidden-lg"></th>
-            </tr>
-            <tr
-              ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id "
-              ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
-              <td>
-                <span class="checkbox"></span>
-              </td>
-              <td>
-                <span ng-bind="calendar.initial_date | date:'d MMM y' "></span>
-              </td>
-              <td class="hidden-xs hidden-sm">
-                <span ng-bind="calendar.available_capacity"></span>
-              </td>
-              <td class="hidden-xs hidden-sm">
-                <span ng-bind="calendar.closing_sale | date:'d MMM y' "></span>
-              </td>
-              <td>
-                <span ng-bind="calendar.number_of_sessions "></span>
-              </td>
-              <td>
-                <span ng-if="!calendar.is_free" ng-bind="calendar.session_price | currency:$:0"></span>
-                <s ng-if="calendar.is_free" ng-bind="calendar.session_price | currency:$:0"></s>
-                <span ng-if="calendar.is_free" ng-bind="detail.strings.COPY_FREE"></span>
-              </td>
-              <td class="hidden-md hidden-lg">
-                >
-              </td>
-            </tr>
-            <tr ng-repeat-end class="signup-row hidden-xs hidden-sm" ng-show="detail.selectedActivity === $index">
-              <td colspan=1>
-
-              </td>
-              <td colspan=4>
-                <div class="text-left" ng-if="calendar.available_capacity == 0">
-                  <span ng-bind="::detail.strings.COPY_NO_VACANCY"></span>
-                </div>
-                <div class="text-left" ng-if="calendar.available_capacity > 0">
-                  <span ng-bind="::detail.strings.COPY_VACANCY"></span>
-                  <span ng-bind="calendar.available_capacity"></span>
-                  <span ng-bind="::detail.strings.COPY_OF"></span>
-                  <span ng-bind="calendar.capacity"></span>
-                </div>
-              </td>
-              <td colspan=1>
-                <a class="btn btn-primary btn-block" ng-if="calendar.available_capacity > 0"
-                  ng-click="detail.signUp(detail.activity.id, calendar.id)"
-                  ng-bind="::detail.strings.ACTION_SIGN_UP">
-                </a>
-              </td>
-            </tr>
-          </table>
-        </div>
-        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-3 col-md-offset-0 sessions-container separate-above-medium">
-          <div class="sessions" ng-class="{'sessions-sm': detail.showSessions}">
-            <button class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="detail.toggleSessions()">
-              <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4 separate-above" ng-if="detail.activity.upcoming_calendars.length === 0">
+            <button class="btn btn-block btn-success-dark">
+              <h4>
+                <!--<i class="mdi-action-favorite-outline text-danger"></i>
+                <span ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></span>-->
+                <i class="mdi-action-favorite text-danger"></i>
+                <span ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST"></span>
+              </h4>
             </button>
-            <h3 class="hidden-md hidden-lg" ng-bind="::detail.activity.title"></h3>
-            <br class="hidden-md hidden-lg">
-            <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.LABEL_ADDRESS"></h4>
-            <h5 class="hidden-md hidden-lg">
-              <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
-              <span ng-bind="detail.activity.location.name"></span>
-            </h5>
-            <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.COPY_VACANCY"></h4>
-            <h5 class="hidden-md hidden-lg" ng-bind="detail.activity.upcoming_calendars[detail.selectedActivity].available_capacity"></h5>
-            <h4 class="text-uppercase" ng-bind="::detail.strings.COPY_OTHER_SESSIONS"></h4>
-            <h5 ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
-              <strong ng-bind="session.date | date: 'EEE d MMM y' "></strong>
-              <br>
-              <span ng-bind="session.start_time | amDateFormat: 'h:mm a' "></span>
-              <span ng-bind="detail.COPY_TO"></span>
-              <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
-            </h5>
-            <br class="hidden-md hidden-lg">
-            <a class="btn btn-primary btn-block hidden-md hidden-lg" ng-if="detail.activity.upcoming_calendars[detail.selectedActivity].available_capacity > 0"
-              ng-click="detail.signUp(detail.selectedActivity.id, detail.activity.upcoming_calendars[detail.selectedActivity].id)"
-              ng-bind="::detail.strings.ACTION_SIGN_UP">
-            </a>
+        </div>
+        <div ng-if="detail.activity.upcoming_calendars.length > 0">
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-9 col-md-offset-0 calendars-container separate-above-medium">
+            <table class="table table-responsive table-justified">
+              <tr>
+                <th>
+                </th>
+                <th ng-bind="::detail.strings.LABEL_START">
+                </th>
+                <th ng-bind="::detail.strings.LABEL_VACANCY" class="hidden-xs hidden-sm">
+                </th>
+                <th ng-bind="::detail.strings.LABEL_CLOSING_DATE" class="hidden-xs hidden-sm">
+                </th>
+                <th ng-bind="::detail.strings.LABEL_SESSIONS_NUMBER">
+                </th>
+                <th ng-bind="::detail.strings.LABEL_COST">
+                </th>
+                <th class="hidden-md hidden-lg"></th>
+              </tr>
+              <tr
+                ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id "
+                ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
+                <td>
+                  <span class="checkbox"></span>
+                </td>
+                <td>
+                  <span ng-bind="calendar.initial_date | date:'d MMM y' "></span>
+                </td>
+                <td class="hidden-xs hidden-sm">
+                  <span ng-bind="calendar.available_capacity"></span>
+                </td>
+                <td class="hidden-xs hidden-sm">
+                  <span ng-bind="calendar.closing_sale | date:'d MMM y' "></span>
+                </td>
+                <td>
+                  <span ng-bind="calendar.number_of_sessions "></span>
+                </td>
+                <td>
+                  <span ng-if="!calendar.is_free" ng-bind="calendar.session_price | currency:$:0"></span>
+                  <s ng-if="calendar.is_free" ng-bind="calendar.session_price | currency:$:0"></s>
+                  <span ng-if="calendar.is_free" ng-bind="detail.strings.COPY_FREE"></span>
+                </td>
+                <td class="hidden-md hidden-lg">
+                  >
+                </td>
+              </tr>
+              <tr ng-repeat-end class="signup-row hidden-xs hidden-sm" ng-show="detail.selectedActivity === $index">
+                <td colspan=1>
+
+                </td>
+                <td colspan=4>
+                  <div class="text-left" ng-if="calendar.available_capacity == 0">
+                    <span ng-bind="::detail.strings.COPY_NO_VACANCY"></span>
+                  </div>
+                  <div class="text-left" ng-if="calendar.available_capacity > 0">
+                    <span ng-bind="::detail.strings.COPY_VACANCY"></span>
+                    <span ng-bind="calendar.available_capacity"></span>
+                    <span ng-bind="::detail.strings.COPY_OF"></span>
+                    <span ng-bind="calendar.capacity"></span>
+                  </div>
+                </td>
+                <td colspan=1>
+                  <a class="btn btn-primary btn-block" ng-if="calendar.available_capacity > 0"
+                    ng-click="detail.signUp(detail.activity.id, calendar.id)"
+                    ng-bind="::detail.strings.ACTION_SIGN_UP">
+                  </a>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-3 col-md-offset-0 sessions-container separate-above-medium">
+            <div class="sessions" ng-class="{'sessions-sm': detail.showSessions}">
+              <button class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="detail.toggleSessions()">
+                <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+              </button>
+              <h3 class="hidden-md hidden-lg" ng-bind="::detail.activity.title"></h3>
+              <br class="hidden-md hidden-lg">
+              <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.LABEL_ADDRESS"></h4>
+              <h5 class="hidden-md hidden-lg">
+                <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
+                <span ng-bind="detail.activity.location.name"></span>
+              </h5>
+              <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.COPY_VACANCY"></h4>
+              <h5 class="hidden-md hidden-lg" ng-bind="detail.activity.upcoming_calendars[detail.selectedActivity].available_capacity"></h5>
+              <h4 class="text-uppercase" ng-bind="::detail.strings.COPY_OTHER_SESSIONS"></h4>
+              <h5 ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
+                <strong ng-bind="session.date | date: 'EEE d MMM y' "></strong>
+                <br>
+                <span ng-bind="session.start_time | amDateFormat: 'h:mm a' "></span>
+                <span ng-bind="detail.COPY_TO"></span>
+                <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
+              </h5>
+              <br class="hidden-md hidden-lg">
+              <a class="btn btn-primary btn-block hidden-md hidden-lg" ng-if="detail.activity.upcoming_calendars[detail.selectedActivity].available_capacity > 0"
+                ng-click="detail.signUp(detail.selectedActivity.id, detail.activity.upcoming_calendars[detail.selectedActivity].id)"
+                ng-bind="::detail.strings.ACTION_SIGN_UP">
+              </a>
+            </div>
           </div>
         </div>
       </div>

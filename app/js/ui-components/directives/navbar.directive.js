@@ -129,6 +129,7 @@
                         LABEL_STUDENT: 'Asistentes',
                         LABEL_STUDENT_HOW: '¿Cómo funciona?',
                         LABEL_STUDENT_HELP: 'Ayuda',
+                        LABEL_STUDENT_WISHLIST: 'Mis Favoritos',
                         LABEL_ORGANIZER_ACTIVITIES: 'Mis Actividades',
                         LABEL_ORGANIZER_SALES: 'Mis Ventas',
                         LABEL_ORGANIZER_PROFILE: 'Perfil',

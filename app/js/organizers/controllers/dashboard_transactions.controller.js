@@ -12,10 +12,11 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'orders', 'refunds'];
-    function OrganizerTransactionsCtrl($filter, organizer, orders, refunds) {
+    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'OrganizerServerApi', 'orders', 'refunds', '$http'];
+    function OrganizerTransactionsCtrl($filter, organizer, OrganizerServerApi, orders, refunds, $http) {
 
         var vm = this;
+        var api = OrganizerServerApi;
 
         angular.extend(vm, {
             organizer: organizer,
@@ -78,17 +79,28 @@
             var end = null;
             switch(type){
                 case vm.TYPE_SALES:
-                    offset = vm.salesPaginationOpts.itemsPerPage;
-                    start = (vm.salesPaginationOpts.pageNumber -1) * offset;
-                    end = vm.salesPaginationOpts.pageNumber * offset;
-                    vm.sales = sales.slice(start, end);
-                    console.log('sales:', vm.sales);
+                    $http.get(api.orders(organizer.id),
+                      {params: {
+                        page: vm.salesPaginationOpts.pageNumber,
+                        page_size: vm.salesPaginationOpts.itemsPerPage
+                      }}).then(function(response){
+                      vm.sales = response.data;
+                      vm.sales.results = $filter('orderBy')(vm.sales.results, 'id', true);
+                      vm.salesPaginationOpts.totalItems = vm.sales.count;
+                      vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
+                    });
                     break;
                 case vm.TYPE_REFUNDS:
-                    offset = vm.refundsPaginationOpts.itemsPerPage;
-                    start = (vm.refundsPaginationOpts.pageNumber -1) * offset;
-                    end = vm.refundsPaginationOpts.pageNumber * offset;
-                    vm.refunds = refunds.slice(start, end);
+                    $http.get(api.refunds(organizer.id),
+                      {params: {
+                        page: vm.refundsPaginationOpts.pageNumber,
+                        page_size: vm.refundsPaginationOpts.itemsPerPage
+                      }}).then(function(response){
+                      vm.refunds = response.data;
+                      vm.refunds.results = $filter('orderBy')(vm.refunds.results, 'id', true);
+                      vm.refundsPaginationOpts.totalItems = vm.refunds.count;
+                      vm.refunds = vm.sales.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+                    });
                     break;
             }
         }
@@ -96,15 +108,19 @@
         //--------- Internal Functions ---------//
 
         function _getOrders(){
-            sales = $filter('orderBy')(orders, 'id', true);
-            vm.salesPaginationOpts.totalItems = sales.length;
-            vm.sales = sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
+          sales = orders;
+          sales.results = $filter('orderBy')(orders.results, 'id', true);
+          vm.salesPaginationOpts.totalItems = sales.count;
+          vm.sales = sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
         }
 
         function _getRefunds(){
-            refunds = $filter('orderBy')(refunds, 'id', true);
-            vm.refundsPaginationOpts.totalItems = refunds.length;
-            vm.refunds = refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+          refunds.results = $filter('orderBy')(refunds.results, 'id', true);
+          vm.refundsPaginationOpts.totalItems = refunds.count;
+          vm.refunds = refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+            // refunds = $filter('orderBy')(refunds, 'id', true);
+            // vm.refundsPaginationOpts.totalItems = refunds.length;
+            // vm.refunds = refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
         }
 
         function _setStrings() {

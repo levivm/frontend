@@ -24,6 +24,11 @@
                 <i class="sidebar__item__icon mdi-maps-local-atm"></i>
                 <span ng-bind="::dash.strings.SECTION_HISTORY"></span>
             </a>
+            <a ui-sref=".wishlist" class="sidebar__item" ui-sref-active="sidebar__item--selected"
+              ng-click="dash.toggleSidebar()">
+                <i class="sidebar__item__icon mdi-action-favorite-outline"></i>
+                <span ng-bind="::dash.strings.SECTION_WISHLIST"></span>
+            </a>
         </div>
         <div class="col-xs-12 with-footer">
           <div ui-view>
@@ -40,6 +45,8 @@
                 ng-class="{'hidden-xs hidden-sm': !dash.isActive('student-dashboard.profile.*')}"></span>
             <span ng-bind="::dash.strings.SECTION_HISTORY"
                   ng-class="{'hidden-xs hidden-sm': !dash.isActive('student-dashboard.history.*')}"></span>
+                  <span ng-bind="::dash.strings.SECTION_WISHLIST"
+                  ng-class="{'hidden-xs hidden-sm': !dash.isActive('student-dashboard.wishlist.*')}"></span>
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
                 <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
             </a>
