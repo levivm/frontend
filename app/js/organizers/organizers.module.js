@@ -52,7 +52,7 @@
                 templateUrl: 'partials/organizers/profile.html',
                 resolve: {
                     organizer: getOrganizer,
-                    activities: getOrganizerActivities,
+                    activities: getOrganizerOpenActivities,
                     reviews: getOrganizerReviews,
                     reviewObjects: getReviewObjects
                 }
@@ -92,7 +92,9 @@
                 controller: 'OrganizerActivitiesCtrl as activities',
                 templateUrl: 'partials/organizers/dashboard/activities.html',
                 resolve: {
-                    activities: getOrganizerActivities
+                    openActivities: getOrganizerOpenActivities,
+                    closedActivities: getOrganizerClosedActivities,
+                    inactiveActivities: getOrganizerInactiveActivities
                 }
             })
             .state('organizer-dashboard.activities.open', {
@@ -139,7 +141,7 @@
                 controller: 'OrganizerReviewsCtrl as reviews',
                 templateUrl: 'partials/organizers/dashboard/reviews.html',
                 resolve: {
-                    activities: getOrganizerActivities,
+                    activities: getOrganizerOpenActivities,
                     reviews: getOrganizerReviews,
                     reviewObjects: getReviewObjects,
                 }
@@ -204,16 +206,44 @@
 
         /**
          * @ngdoc method
-         * @name .#getOrganizerActivities
-         * @description Retrieves an Organizer's Activities from
-         * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID
+         * @name .#getOrganizerOpenActivities
+         * @description Retrieves an Organizer's Open Activities from
+         * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
          * @requires trulii.activities.services.ActivitiesManager
          * @requires organizer
          * @methodOf trulii.organizers.config
          */
-        getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
-        function getOrganizerActivities(ActivitiesManager, organizer){
-            return ActivitiesManager.loadOrganizerActivities(organizer.id);
+        getOrganizerOpenActivities.$inject = ['ActivitiesManager','organizer'];
+        function getOrganizerOpenActivities(ActivitiesManager, organizer){
+            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'open');
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getOrganizerActivities
+         * @description Retrieves an Organizer's Closed Activities from
+         * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
+         * @requires trulii.activities.services.ActivitiesManager
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getOrganizerClosedActivities.$inject = ['ActivitiesManager','organizer'];
+        function getOrganizerClosedActivities(ActivitiesManager, organizer){
+            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'closed');
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getOrganizerActivities
+         * @description Retrieves an Organizer's Inactive Activities from
+         * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
+         * @requires trulii.activities.services.ActivitiesManager
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getOrganizerInactiveActivities.$inject = ['ActivitiesManager','organizer'];
+        function getOrganizerInactiveActivities(ActivitiesManager, organizer){
+            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'unpublished');
         }
 
         /**

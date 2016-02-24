@@ -214,23 +214,31 @@
             }
         }
 
-        function loadOrganizerActivities(organizerId) {
-            var deferred = $q.defer();
-            var cachedActivities = _getOrganizerActivitiesById(organizerId);
+        function loadOrganizerActivities(organizerId, status, page, pageSize) {
+          console.log(status);
+            if(!page){
+              page = 1;
+            }
+            if(!pageSize){
+              pageSize = 12;
+            }
+            if(!status){
+              status = 'open';
+            }
+            // var deferred = $q.defer();
+            // var cachedActivities = _getOrganizerActivitiesById(organizerId);
 
-            if(cachedActivities){ deferred.resolve(cachedActivities); }
+            // if(cachedActivities){ deferred.resolve(cachedActivities); }
 
-            $http.get(apiOrg.activities(organizerId))
+            return $http.get(apiOrg.activities(organizerId),
+                {params: {
+                  page: page,
+                  page_size: pageSize,
+                  status: status
+                }})
                 .then(function (response) {
-                    _activities[organizerId] = [];
-                    _.each(response.data, function (activityData) {
-                        var activity = _retrieveInstance(activityData.id, activityData);
-                        _activities[organizerId].push(activity);
-                    });
-                    deferred.resolve(_activities[organizerId]);
+                  return response.data;
                 });
-
-            return deferred.promise;
         }
 
         function loadGeneralInfo() {

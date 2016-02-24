@@ -71,9 +71,6 @@
         }
 
         function pageChange(type){
-            var offset = null;
-            var start = null;
-            var end = null;
             switch(type){
                 case vm.TYPE_ORDER:
                     $http.get(api.orders(student.id),

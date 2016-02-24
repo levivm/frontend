@@ -6,6 +6,13 @@
                     data-activity="activity"
                     data-options="{{activities.openOptions}}"></trulii-activity-item>
         </div>
+        <div class="text-center col-xs-10">
+          <pagination class="pagination-sm"
+              ng-model="activities.openPaginationOpts.pageNumber"
+              ng-change="activities.pageChange(activities.TYPE_OPEN)"
+              data-total-items="activities.openPaginationOpts.totalItems"
+              data-items-per-page="activities.openPaginationOpts.itemsPerPage"></pagination>
+        </div>
     </div>
     <!--If there are no activities-->
 

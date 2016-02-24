@@ -13,18 +13,37 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerActivitiesCtrl', OrganizerActivitiesCtrl);
 
-    OrganizerActivitiesCtrl.$inject = ['organizer', 'activities'];
-    function OrganizerActivitiesCtrl(organizer, activities) {
+    OrganizerActivitiesCtrl.$inject = ['$http', 'organizer', 'OrganizerServerApi', 'openActivities', 'closedActivities', 'inactiveActivities'];
+    function OrganizerActivitiesCtrl($http, organizer, OrganizerServerApi, openActivities, closedActivities, inactiveActivities) {
 
         var vm = this;
+        var api = OrganizerServerApi;
         angular.extend(vm, {
             organizer : organizer,
             isCollapsed : true,
             open_activities : [],
             closed_activities : [],
             inactive_activities : [],
+            TYPE_OPEN: "open",
+            TYPE_CLOSED: "closed",
+            TYPE_INACTIVE: "unpublished",
             openOptions : {
                 actions: ['edit', 'manage']
+            },
+            openPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 12,
+                pageNumber: 1
+            },
+            closedPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 12,
+                pageNumber: 1
+            },
+            inactivePaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 12,
+                pageNumber: 1
             },
             closedOptions : {
                 actions: ['edit', 'republish', 'manage'],
@@ -32,32 +51,72 @@
             },
             inactiveOptions : {
                 actions: ['edit', 'manage']
-            }
+            },
+            pageChange: pageChange
         });
         var active_activities = [];
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function pageChange(type){
+          console.log(type);
+            switch(type){
+                case vm.TYPE_OPEN:
+                  $http.get(api.activities(organizer.id),
+                  {params: {
+                    page: vm.openPaginationOpts.pageNumber,
+                    page_size: vm.openPaginationOpts.itemsPerPage,
+                    status: vm.TYPE_OPEN
+                  }})
+                  .then(function (response) {
+                    vm.open_activities = response.data.results;
+                    vm.openPaginationOpts.totalItems = response.data.count;
+                    vm.open_activities = vm.open_activities.slice(0, vm.openPaginationOpts.itemsPerPage); 
+                  });
+                  break;
+                case vm.TYPE_CLOSED:
+                  $http.get(api.activities(organizer.id),
+                  {params: {
+                    page: vm.closedPaginationOpts.pageNumber,
+                    page_size: vm.closedPaginationOpts.itemsPerPage,
+                    status: vm.TYPE_CLOSED
+                  }})
+                  .then(function (response) {
+                    vm.closed_activities = response.data.results;
+                    vm.closedPaginationOpts.totalItems = response.data.count;
+                    vm.closed_activities = vm.closed_activities.slice(0, vm.closedPaginationOpts.itemsPerPage);
+                  });
+                  break;
+                case vm.TYPE_INACTIVE:
+                  $http.get(api.activities(organizer.id),
+                  {params: {
+                    page: vm.closedPaginationOpts.pageNumber,
+                    page_size: vm.closedPaginationOpts.itemsPerPage,
+                    status: vm.TYPE_INACTIVE
+                  }})
+                  .then(function (response) {
+                    vm.inactive_activities = response.data.results;
+                    vm.inactivePaginationOpts.totalItems = response.data.count;
+                    vm.inactive_activities = vm.inactive_activities.slice(0, vm.inactivePaginationOpts.itemsPerPage);
+                  });
+                  break;
+            }
+        }
 
         //--------- Internal Functions ---------//
-
+        
         function _assignActivities(){
-            vm.open_activities = [];
-            vm.closed_activities = [];
-            active_activities = _.filter(activities, {'published': true});
-            vm.inactive_activities = _.filter(activities, {'published': false});
-
-            angular.forEach(active_activities, filterActivity);
-
-
-            function filterActivity(activity){
-                if(activity.last_date < Date.now()){
-                    vm.closed_activities.push(activity);
-                } else {
-                    vm.open_activities.push(activity);
-                }
-            }
+            
+            vm.open_activities = openActivities.results;
+            vm.openPaginationOpts.totalItems = openActivities.count;
+            
+            vm.closed_activities = closedActivities.results;
+            vm.closedPaginationOpts.totalItems = closedActivities.count;
+            
+            vm.inactive_activities = inactiveActivities.results;
+            vm.inactivePaginationOpts.totalItems = inactiveActivities.count;
         }
 
         function _mapMainPicture(activity){
@@ -98,7 +157,9 @@
 
         function _activate() {
             _setStrings();
-            activities.map(_mapMainPicture);
+            vm.open_activities.map(_mapMainPicture);
+            vm.closed_activities.map(_mapMainPicture);
+            vm.inactive_activities.map(_mapMainPicture);
             _assignActivities();
         }
 
