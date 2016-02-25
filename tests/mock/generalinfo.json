@@ -1,0 +1,1170 @@
+{
+  "tags": [],
+  "price_range": {
+    "step": 50000,
+    "max": 1000000,
+    "min": 30000
+  },
+  "subcategories": [
+    {
+      "name": "Acordeón",
+      "id": 1,
+      "category": 1
+    },
+    {
+      "name": "Armónica",
+      "id": 2,
+      "category": 1
+    },
+    {
+      "name": "Audio y Producción",
+      "id": 3,
+      "category": 1
+    },
+    {
+      "name": "Bajo",
+      "id": 4,
+      "category": 1
+    },
+    {
+      "name": "Batería",
+      "id": 5,
+      "category": 1
+    },
+    {
+      "name": "Canto",
+      "id": 6,
+      "category": 1
+    },
+    {
+      "name": "DJ",
+      "id": 7,
+      "category": 1
+    },
+    {
+      "name": "Guitarra",
+      "id": 8,
+      "category": 1
+    },
+    {
+      "name": "Piano",
+      "id": 9,
+      "category": 1
+    },
+    {
+      "name": "Saxofón",
+      "id": 10,
+      "category": 1
+    },
+    {
+      "name": "Teclado",
+      "id": 11,
+      "category": 1
+    },
+    {
+      "name": "Teoría",
+      "id": 12,
+      "category": 1
+    },
+    {
+      "name": "Trompeta",
+      "id": 13,
+      "category": 1
+    },
+    {
+      "name": "Violín",
+      "id": 14,
+      "category": 1
+    },
+    {
+      "name": "Violonchelo",
+      "id": 15,
+      "category": 1
+    },
+    {
+      "name": "Otros",
+      "id": 16,
+      "category": 1
+    },
+    {
+      "name": "Amor y Sexo",
+      "id": 17,
+      "category": 2
+    },
+    {
+      "name": "Belleza",
+      "id": 18,
+      "category": 2
+    },
+    {
+      "name": "Paternidad",
+      "id": 19,
+      "category": 2
+    },
+    {
+      "name": "Espiritual",
+      "id": 20,
+      "category": 2
+    },
+    {
+      "name": "Habilidades",
+      "id": 21,
+      "category": 2
+    },
+    {
+      "name": "Manejo",
+      "id": 22,
+      "category": 2
+    },
+    {
+      "name": "Mascotas",
+      "id": 23,
+      "category": 2
+    },
+    {
+      "name": "Relaciones Sociales",
+      "id": 24,
+      "category": 2
+    },
+    {
+      "name": "Yoga",
+      "id": 25,
+      "category": 2
+    },
+    {
+      "name": "Otros",
+      "id": 26,
+      "category": 2
+    },
+    {
+      "name": "Boxeo",
+      "id": 27,
+      "category": 3
+    },
+    {
+      "name": "Fitness",
+      "id": 28,
+      "category": 3
+    },
+    {
+      "name": "Gimnasia",
+      "id": 29,
+      "category": 3
+    },
+    {
+      "name": "Golf",
+      "id": 30,
+      "category": 3
+    },
+    {
+      "name": "Natación",
+      "id": 31,
+      "category": 3
+    },
+    {
+      "name": "Tennis",
+      "id": 32,
+      "category": 3
+    },
+    {
+      "name": "Otros",
+      "id": 33,
+      "category": 3
+    },
+    {
+      "name": "Bailes de Salón",
+      "id": 34,
+      "category": 4
+    },
+    {
+      "name": "Ballet",
+      "id": 35,
+      "category": 4
+    },
+    {
+      "name": "Contemporáneo",
+      "id": 36,
+      "category": 4
+    },
+    {
+      "name": "Exótico",
+      "id": 37,
+      "category": 4
+    },
+    {
+      "name": "Folklórico",
+      "id": 38,
+      "category": 4
+    },
+    {
+      "name": "Latinas",
+      "id": 39,
+      "category": 4
+    },
+    {
+      "name": "Oriental",
+      "id": 40,
+      "category": 4
+    },
+    {
+      "name": "Step",
+      "id": 41,
+      "category": 4
+    },
+    {
+      "name": "Urbano",
+      "id": 42,
+      "category": 4
+    },
+    {
+      "name": "Otros",
+      "id": 43,
+      "category": 4
+    },
+    {
+      "name": "Alemán",
+      "id": 44,
+      "category": 5
+    },
+    {
+      "name": "Chino",
+      "id": 45,
+      "category": 5
+    },
+    {
+      "name": "Español",
+      "id": 46,
+      "category": 5
+    },
+    {
+      "name": "Francés",
+      "id": 47,
+      "category": 5
+    },
+    {
+      "name": "Inglés",
+      "id": 48,
+      "category": 5
+    },
+    {
+      "name": "Italiano",
+      "id": 49,
+      "category": 5
+    },
+    {
+      "name": "Japonés",
+      "id": 50,
+      "category": 5
+    },
+    {
+      "name": "Lengua de señas",
+      "id": 51,
+      "category": 5
+    },
+    {
+      "name": "Portugués",
+      "id": 52,
+      "category": 5
+    },
+    {
+      "name": "Otros",
+      "id": 53,
+      "category": 5
+    },
+    {
+      "name": "Académico",
+      "id": 54,
+      "category": 6
+    },
+    {
+      "name": "Actuación",
+      "id": 55,
+      "category": 6
+    },
+    {
+      "name": "Arte",
+      "id": 56,
+      "category": 6
+    },
+    {
+      "name": "Bailes",
+      "id": 57,
+      "category": 6
+    },
+    {
+      "name": "Campamentos",
+      "id": 58,
+      "category": 6
+    },
+    {
+      "name": "Cocina",
+      "id": 59,
+      "category": 6
+    },
+    {
+      "name": "Deportes",
+      "id": 60,
+      "category": 6
+    },
+    {
+      "name": "Habilidades",
+      "id": 61,
+      "category": 6
+    },
+    {
+      "name": "Idiomas",
+      "id": 62,
+      "category": 6
+    },
+    {
+      "name": "Tecnología",
+      "id": 63,
+      "category": 6
+    },
+    {
+      "name": "Otros",
+      "id": 64,
+      "category": 6
+    },
+    {
+      "name": "Académico",
+      "id": 65,
+      "category": 7
+    },
+    {
+      "name": "Arquitectura",
+      "id": 66,
+      "category": 7
+    },
+    {
+      "name": "Comunicación",
+      "id": 67,
+      "category": 7
+    },
+    {
+      "name": "Derecho",
+      "id": 68,
+      "category": 7
+    },
+    {
+      "name": "Docencia",
+      "id": 69,
+      "category": 7
+    },
+    {
+      "name": "Entrenamiento",
+      "id": 70,
+      "category": 7
+    },
+    {
+      "name": "Finanzas",
+      "id": 71,
+      "category": 7
+    },
+    {
+      "name": "Ingeniería",
+      "id": 72,
+      "category": 7
+    },
+    {
+      "name": "Liderazgo",
+      "id": 73,
+      "category": 7
+    },
+    {
+      "name": "Management",
+      "id": 74,
+      "category": 7
+    },
+    {
+      "name": "Marketing",
+      "id": 75,
+      "category": 7
+    },
+    {
+      "name": "Recursos Humanos",
+      "id": 76,
+      "category": 7
+    },
+    {
+      "name": "Medicina",
+      "id": 77,
+      "category": 7
+    },
+    {
+      "name": "Startups",
+      "id": 78,
+      "category": 7
+    },
+    {
+      "name": "Otros",
+      "id": 79,
+      "category": 7
+    },
+    {
+      "name": "Animación",
+      "id": 80,
+      "category": 8
+    },
+    {
+      "name": "Desarrollo Web y Móvil",
+      "id": 81,
+      "category": 8
+    },
+    {
+      "name": "Diseño Web y Móvil",
+      "id": 82,
+      "category": 8
+    },
+    {
+      "name": "Juegos",
+      "id": 83,
+      "category": 8
+    },
+    {
+      "name": "Microsoft",
+      "id": 84,
+      "category": 8
+    },
+    {
+      "name": "Modelado",
+      "id": 85,
+      "category": 8
+    },
+    {
+      "name": "Programación",
+      "id": 86,
+      "category": 8
+    },
+    {
+      "name": "Otros",
+      "id": 87,
+      "category": 8
+    },
+    {
+      "name": "Actuación",
+      "id": 88,
+      "category": 9
+    },
+    {
+      "name": "Cinematografía",
+      "id": 89,
+      "category": 9
+    },
+    {
+      "name": "Costura",
+      "id": 90,
+      "category": 9
+    },
+    {
+      "name": "Dibujo y Pintura",
+      "id": 91,
+      "category": 9
+    },
+    {
+      "name": "Diseño",
+      "id": 92,
+      "category": 9
+    },
+    {
+      "name": "Fotografía",
+      "id": 93,
+      "category": 9
+    },
+    {
+      "name": "Manualidades",
+      "id": 94,
+      "category": 9
+    },
+    {
+      "name": "Moda",
+      "id": 95,
+      "category": 9
+    },
+    {
+      "name": "Otros",
+      "id": 96,
+      "category": 9
+    },
+    {
+      "name": "Bebidas",
+      "id": 97,
+      "category": 10
+    },
+    {
+      "name": "Criolla",
+      "id": 98,
+      "category": 10
+    },
+    {
+      "name": "Internacional",
+      "id": 99,
+      "category": 10
+    },
+    {
+      "name": "Degustación",
+      "id": 100,
+      "category": 10
+    },
+    {
+      "name": "En pareja",
+      "id": 101,
+      "category": 10
+    },
+    {
+      "name": "Panadería",
+      "id": 102,
+      "category": 10
+    },
+    {
+      "name": "Repostería",
+      "id": 103,
+      "category": 10
+    },
+    {
+      "name": "Otros",
+      "id": 104,
+      "category": 10
+    }
+  ],
+  "levels": [
+    {
+      "value": "Principiante",
+      "code": "P"
+    },
+    {
+      "value": "Intermedio",
+      "code": "I"
+    },
+    {
+      "value": "Avanzado",
+      "code": "A"
+    },
+    {
+      "value": "No Aplica",
+      "code": "N"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Música",
+      "id": 1,
+      "subcategories": [
+        {
+          "name": "Acordeón",
+          "id": 1,
+          "category": 1
+        },
+        {
+          "name": "Armónica",
+          "id": 2,
+          "category": 1
+        },
+        {
+          "name": "Audio y Producción",
+          "id": 3,
+          "category": 1
+        },
+        {
+          "name": "Bajo",
+          "id": 4,
+          "category": 1
+        },
+        {
+          "name": "Batería",
+          "id": 5,
+          "category": 1
+        },
+        {
+          "name": "Canto",
+          "id": 6,
+          "category": 1
+        },
+        {
+          "name": "DJ",
+          "id": 7,
+          "category": 1
+        },
+        {
+          "name": "Guitarra",
+          "id": 8,
+          "category": 1
+        },
+        {
+          "name": "Piano",
+          "id": 9,
+          "category": 1
+        },
+        {
+          "name": "Saxofón",
+          "id": 10,
+          "category": 1
+        },
+        {
+          "name": "Teclado",
+          "id": 11,
+          "category": 1
+        },
+        {
+          "name": "Teoría",
+          "id": 12,
+          "category": 1
+        },
+        {
+          "name": "Trompeta",
+          "id": 13,
+          "category": 1
+        },
+        {
+          "name": "Violín",
+          "id": 14,
+          "category": 1
+        },
+        {
+          "name": "Violonchelo",
+          "id": 15,
+          "category": 1
+        },
+        {
+          "name": "Otros",
+          "id": 16,
+          "category": 1
+        }
+      ],
+      "color": "#FF7E60",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+    },
+    {
+      "name": "Estilo de vida",
+      "id": 2,
+      "subcategories": [
+        {
+          "name": "Amor y Sexo",
+          "id": 17,
+          "category": 2
+        },
+        {
+          "name": "Belleza",
+          "id": 18,
+          "category": 2
+        },
+        {
+          "name": "Paternidad",
+          "id": 19,
+          "category": 2
+        },
+        {
+          "name": "Espiritual",
+          "id": 20,
+          "category": 2
+        },
+        {
+          "name": "Habilidades",
+          "id": 21,
+          "category": 2
+        },
+        {
+          "name": "Manejo",
+          "id": 22,
+          "category": 2
+        },
+        {
+          "name": "Mascotas",
+          "id": 23,
+          "category": 2
+        },
+        {
+          "name": "Relaciones Sociales",
+          "id": 24,
+          "category": 2
+        },
+        {
+          "name": "Yoga",
+          "id": 25,
+          "category": 2
+        },
+        {
+          "name": "Otros",
+          "id": 26,
+          "category": 2
+        }
+      ],
+      "color": "#00AAD1",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_estilo de vida_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_estilo de vida_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/estilo%20de%20vida.jpg"
+    },
+    {
+      "name": "Deportes",
+      "id": 3,
+      "subcategories": [
+        {
+          "name": "Boxeo",
+          "id": 27,
+          "category": 3
+        },
+        {
+          "name": "Fitness",
+          "id": 28,
+          "category": 3
+        },
+        {
+          "name": "Gimnasia",
+          "id": 29,
+          "category": 3
+        },
+        {
+          "name": "Golf",
+          "id": 30,
+          "category": 3
+        },
+        {
+          "name": "Natación",
+          "id": 31,
+          "category": 3
+        },
+        {
+          "name": "Tennis",
+          "id": 32,
+          "category": 3
+        },
+        {
+          "name": "Otros",
+          "id": 33,
+          "category": 3
+        }
+      ],
+      "color": "#C177EF",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_deportes_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_deportes_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/deportes.jpg"
+    },
+    {
+      "name": "Danza",
+      "id": 4,
+      "subcategories": [
+        {
+          "name": "Bailes de Salón",
+          "id": 34,
+          "category": 4
+        },
+        {
+          "name": "Ballet",
+          "id": 35,
+          "category": 4
+        },
+        {
+          "name": "Contemporáneo",
+          "id": 36,
+          "category": 4
+        },
+        {
+          "name": "Exótico",
+          "id": 37,
+          "category": 4
+        },
+        {
+          "name": "Folklórico",
+          "id": 38,
+          "category": 4
+        },
+        {
+          "name": "Latinas",
+          "id": 39,
+          "category": 4
+        },
+        {
+          "name": "Oriental",
+          "id": 40,
+          "category": 4
+        },
+        {
+          "name": "Step",
+          "id": 41,
+          "category": 4
+        },
+        {
+          "name": "Urbano",
+          "id": 42,
+          "category": 4
+        },
+        {
+          "name": "Otros",
+          "id": 43,
+          "category": 4
+        }
+      ],
+      "color": "#38DBC7",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_danza_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_danza_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/danza.jpg"
+    },
+    {
+      "name": "Idiomas",
+      "id": 5,
+      "subcategories": [
+        {
+          "name": "Alemán",
+          "id": 44,
+          "category": 5
+        },
+        {
+          "name": "Chino",
+          "id": 45,
+          "category": 5
+        },
+        {
+          "name": "Español",
+          "id": 46,
+          "category": 5
+        },
+        {
+          "name": "Francés",
+          "id": 47,
+          "category": 5
+        },
+        {
+          "name": "Inglés",
+          "id": 48,
+          "category": 5
+        },
+        {
+          "name": "Italiano",
+          "id": 49,
+          "category": 5
+        },
+        {
+          "name": "Japonés",
+          "id": 50,
+          "category": 5
+        },
+        {
+          "name": "Lengua de señas",
+          "id": 51,
+          "category": 5
+        },
+        {
+          "name": "Portugués",
+          "id": 52,
+          "category": 5
+        },
+        {
+          "name": "Otros",
+          "id": 53,
+          "category": 5
+        }
+      ],
+      "color": "#00AA79",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_idiomas_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_idiomas_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/idiomas.jpg"
+    },
+    {
+      "name": "Niños",
+      "id": 6,
+      "subcategories": [
+        {
+          "name": "Académico",
+          "id": 54,
+          "category": 6
+        },
+        {
+          "name": "Actuación",
+          "id": 55,
+          "category": 6
+        },
+        {
+          "name": "Arte",
+          "id": 56,
+          "category": 6
+        },
+        {
+          "name": "Bailes",
+          "id": 57,
+          "category": 6
+        },
+        {
+          "name": "Campamentos",
+          "id": 58,
+          "category": 6
+        },
+        {
+          "name": "Cocina",
+          "id": 59,
+          "category": 6
+        },
+        {
+          "name": "Deportes",
+          "id": 60,
+          "category": 6
+        },
+        {
+          "name": "Habilidades",
+          "id": 61,
+          "category": 6
+        },
+        {
+          "name": "Idiomas",
+          "id": 62,
+          "category": 6
+        },
+        {
+          "name": "Tecnología",
+          "id": 63,
+          "category": 6
+        },
+        {
+          "name": "Otros",
+          "id": 64,
+          "category": 6
+        }
+      ],
+      "color": "#0084B4 ",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_niños_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_niños_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/ni%C3%B1os.jpg"
+    },
+    {
+      "name": "Profesional",
+      "id": 7,
+      "subcategories": [
+        {
+          "name": "Académico",
+          "id": 65,
+          "category": 7
+        },
+        {
+          "name": "Arquitectura",
+          "id": 66,
+          "category": 7
+        },
+        {
+          "name": "Comunicación",
+          "id": 67,
+          "category": 7
+        },
+        {
+          "name": "Derecho",
+          "id": 68,
+          "category": 7
+        },
+        {
+          "name": "Docencia",
+          "id": 69,
+          "category": 7
+        },
+        {
+          "name": "Entrenamiento",
+          "id": 70,
+          "category": 7
+        },
+        {
+          "name": "Finanzas",
+          "id": 71,
+          "category": 7
+        },
+        {
+          "name": "Ingeniería",
+          "id": 72,
+          "category": 7
+        },
+        {
+          "name": "Liderazgo",
+          "id": 73,
+          "category": 7
+        },
+        {
+          "name": "Management",
+          "id": 74,
+          "category": 7
+        },
+        {
+          "name": "Marketing",
+          "id": 75,
+          "category": 7
+        },
+        {
+          "name": "Recursos Humanos",
+          "id": 76,
+          "category": 7
+        },
+        {
+          "name": "Medicina",
+          "id": 77,
+          "category": 7
+        },
+        {
+          "name": "Startups",
+          "id": 78,
+          "category": 7
+        },
+        {
+          "name": "Otros",
+          "id": 79,
+          "category": 7
+        }
+      ],
+      "color": "#FFC971",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+    },
+    {
+      "name": "Tecnología",
+      "id": 8,
+      "subcategories": [
+        {
+          "name": "Animación",
+          "id": 80,
+          "category": 8
+        },
+        {
+          "name": "Desarrollo Web y Móvil",
+          "id": 81,
+          "category": 8
+        },
+        {
+          "name": "Diseño Web y Móvil",
+          "id": 82,
+          "category": 8
+        },
+        {
+          "name": "Juegos",
+          "id": 83,
+          "category": 8
+        },
+        {
+          "name": "Microsoft",
+          "id": 84,
+          "category": 8
+        },
+        {
+          "name": "Modelado",
+          "id": 85,
+          "category": 8
+        },
+        {
+          "name": "Programación",
+          "id": 86,
+          "category": 8
+        },
+        {
+          "name": "Otros",
+          "id": 87,
+          "category": 8
+        }
+      ],
+      "color": "#EB9F61",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_tecnología_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_tecnología_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/tecnolog%C3%ADa.jpg"
+    },
+    {
+      "name": "Arte",
+      "id": 9,
+      "subcategories": [
+        {
+          "name": "Actuación",
+          "id": 88,
+          "category": 9
+        },
+        {
+          "name": "Cinematografía",
+          "id": 89,
+          "category": 9
+        },
+        {
+          "name": "Costura",
+          "id": 90,
+          "category": 9
+        },
+        {
+          "name": "Dibujo y Pintura",
+          "id": 91,
+          "category": 9
+        },
+        {
+          "name": "Diseño",
+          "id": 92,
+          "category": 9
+        },
+        {
+          "name": "Fotografía",
+          "id": 93,
+          "category": 9
+        },
+        {
+          "name": "Manualidades",
+          "id": 94,
+          "category": 9
+        },
+        {
+          "name": "Moda",
+          "id": 95,
+          "category": 9
+        },
+        {
+          "name": "Otros",
+          "id": 96,
+          "category": 9
+        }
+      ],
+      "color": "#46416D",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_arte_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_arte_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/arte.jpg"
+    },
+    {
+      "name": "Gastronomía",
+      "id": 10,
+      "subcategories": [
+        {
+          "name": "Bebidas",
+          "id": 97,
+          "category": 10
+        },
+        {
+          "name": "Criolla",
+          "id": 98,
+          "category": 10
+        },
+        {
+          "name": "Internacional",
+          "id": 99,
+          "category": 10
+        },
+        {
+          "name": "Degustación",
+          "id": 100,
+          "category": 10
+        },
+        {
+          "name": "En pareja",
+          "id": 101,
+          "category": 10
+        },
+        {
+          "name": "Panadería",
+          "id": 102,
+          "category": 10
+        },
+        {
+          "name": "Repostería",
+          "id": 103,
+          "category": 10
+        },
+        {
+          "name": "Otros",
+          "id": 104,
+          "category": 10
+        }
+      ],
+      "color": "#EB5369",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_gastronomía_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_gastronomía_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/gastronom%C3%ADa.jpg"
+    }
+  ]
+}

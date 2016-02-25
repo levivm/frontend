@@ -1,0 +1,18 @@
+[
+  {
+    "topic_label": "Sugerencia",
+    "topic_id": "suggestion"
+  },
+  {
+    "topic_label": "Problema",
+    "topic_id": "problem"
+  },
+  {
+    "topic_label": "Elogio",
+    "topic_id": "compliment"
+  },
+  {
+    "topic_label": "Otro",
+    "topic_id": "other"
+  }
+]

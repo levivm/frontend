@@ -33,7 +33,6 @@
 
             function success(response){
                 var topics = response.data.map(mapTopics);
-                console.log("topics:", topics);
                 return topics;
             }
 
