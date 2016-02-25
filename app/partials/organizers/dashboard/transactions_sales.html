@@ -4,14 +4,72 @@
       <div class="col-xs-12">
         <div class="form-group">
           <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
-          <div class="input-group">
-            <input class="form-control floating-label" type="text"
-              ng-model="transactions.queries.saleQuery"
-              ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
-              placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}">
-              <span class="input-group-addon">
+          <div class="row dashboard-filters separate-below">
+            <div class="col-xs-6 col-md-2">
+              <div class="input-group filter-group">
+                <span class="input-group-addon" id="from_date_icon" ng-click="transactions.openDatePicker($event, 'from_date')">
+                  <i class="mdi-action-today"></i>
+                </span>
+                <input id="from_date" type="text" class="form-control date-picker"
+                  aria-describedby="from_date_icon"
+                  name="from_date"
+                  placeholder="Desde"
+                  ng-model="transactions.from_date"
+                  datepicker-popup="{{::transactions.format}}"
+                  data-is-open="transactions.from_date_opened"
+                  data-max-date="transactions.maxStartDate"
+                  data-datepicker-options="transactions.dateOptions"
+                  data-close-text="{{transactions.strings.ACTION_CLOSE}}"
+                  ng-click="transactions.openDatePicker($event, 'from_date')"/>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-2">
+              <div class="input-group filter-group">
+                <span class="input-group-addon" id="until_date_icon" ng-click="transactions.openDatePicker($event, 'until_date')">
+                  <i class="mdi-action-today"></i>
+                </span>
+                <input id="until_date" type="text" class="form-control date-picker"
+                  aria-describedby="until_date_icon"
+                  name="until_date"
+                  placeholder="Hasta"
+                  ng-model="transactions.until_date"
+                  datepicker-popup="{{::transactions.format}}"
+                  data-is-open="transactions.until_date_opened"
+                  data-max-date="transactions.maxStartDate"
+                  data-datepicker-options="transactions.dateOptions"
+                  data-close-text="{{transactions.strings.ACTION_CLOSE}}"
+                  ng-click="transactions.openDatePicker($event, 'until_date')"/>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-2">
+              <div class="input-group filter-group">
+                <span class="input-group-addon" id="activity_icon">
+                  <i class="mdi mdi-action-dashboard"></i>
+                </span>
+                <select name="activity" id="" class="form-control" ng-model="transactions.activity" aria-describedby="activity_icon">
+                  <option value="">Actividad</option>
+                  <option value="1">Clases de placeholder</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-2">
+              <div class="input-group filter-group">
+                <select name="status" id="" class="form-control" ng-model="transactions.status">
+                  <option value="">Estatus</option>
+                  <option value="1">Abiertas</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+              <input class="form-control floating-label" type="text"
+                ng-model="transactions.queries.saleQuery"
+                placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}"/>
+            </div>
+            <div class="col-xs-6 col-md-1">
+              <button class="btn btn-default btn-block">
                 <i class="mdi-action-search"></i>
-              </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

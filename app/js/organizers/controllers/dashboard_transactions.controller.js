@@ -12,20 +12,29 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'OrganizerServerApi', 'orders', 'refunds', '$http'];
-    function OrganizerTransactionsCtrl($filter, organizer, OrganizerServerApi, orders, refunds, $http) {
+    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', 'refunds', '$http'];
+    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, refunds, $http) {
 
         var vm = this;
         var api = OrganizerServerApi;
+        var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 
         angular.extend(vm, {
             organizer: organizer,
+            format : FORMATS[0],
+            maxStartDate : new Date(),
             password_data: {},
             isCollapsed: true,
             isSaving: false,
+            from_date_opened: false,
             sales: [],
             refunds: [],
             reimbursements: [],
+            dateOptions : {
+                formatYear: 'yyyy',
+                startingDay: 1,
+                showWeeks:false,
+            },
             queries : {
                 saleQuery : null,
                 refundQuery : null
@@ -44,6 +53,7 @@
             },
             pageChange:pageChange,
             updateByQuery:updateByQuery,
+            openDatePicker: openDatePicker,
             TYPE_SALES: 'sales',
             TYPE_REFUNDS: 'refunds'
         });
@@ -52,7 +62,22 @@
         var sales = $filter('orderBy')(orders, 'id', true);
 
         //--------- Exposed Functions ---------//
+        
+        function openDatePicker($event, date){
+          console.log('openDatePicker');
+          $event.preventDefault();
+          $event.stopPropagation();
 
+          if(date === 'from_date'){
+            vm.from_date_opened = true;
+            vm.until_date_opened = false;
+          }
+          if(date === 'until_date'){
+            vm.until_date_opened = true;
+            vm.from_date_opened = false;
+          }
+        }
+        
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_SALES:
@@ -135,7 +160,7 @@
                 COPY_NOT_AVAILABLE : "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE : "Fecha de inicio:",
-                COPY_SEARCH_ORDERS_HELPER : "Buscar por número de orden, pago, asistente, etc.",
+                COPY_SEARCH_ORDERS_HELPER : "Número de orden",
                 COPY_NO_ORDERS: "Aún no tienes ordenes en tu historial de Ventas",
                 COPY_NO_REIMBURSEMENTS: "Aún no tienes reembolsos en tu historial de Ventas",
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de venta restando la comisión de Trulii, consulte el detalle "+
@@ -162,6 +187,7 @@
         }
 
         function _activate() {
+            datepickerPopupConfig.showButtonBar = false;
             _setStrings();
             _getOrders();
             _getRefunds();
