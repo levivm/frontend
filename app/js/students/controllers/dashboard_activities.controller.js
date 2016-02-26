@@ -112,7 +112,7 @@
             var promiseArray = [];
 
             activities.results.forEach(function(activity){
-                promiseArray.push(classifyActivity(activity));
+              promiseArray.push(classifyActivity(activity));
             });
 
             $q.all(promiseArray).then(function(){
@@ -128,6 +128,7 @@
                 var orders;
                 // Filter pastOrders
                 orders = pastOrders.filter(filterOrdersByActivity);
+                // console.log(pastOrders);
                 if(orders.length > 0){
                     var pastActivity = angular.copy(activity);
                     pastActivity.orders = orders;
@@ -169,6 +170,7 @@
             var promiseArray = [];
 
             orders.forEach(function(order){
+              console.log(order.activity);
                 promiseArray.push(processOrder(order));
             });
 
@@ -180,7 +182,9 @@
 
             function processOrder(order){
                 order = setOrderActivity(order, activities);
+                // console.log(order);
                 if(order.calendar_initial_date < COMPARISON_DATE){
+                  // console.log(order);
                     pastOrders.push(order);
                 } else {
                     futureOrders.push(order);
@@ -194,6 +198,9 @@
 
                 return order;
             }
+            
+            // console.log(vm.past_activities);
+            // console.log(vm.future_activities);
         }
 
         function _setStrings() {
@@ -216,12 +223,20 @@
         }
 
         function _activate() {
+          // console.log(activities);
             _setStrings();
-            _mapOrders(orders.results, activities.results, reviews).then(function(){
+            console.log('??');
+            console.log(orders);
+            _mapOrders(orders.results, activities.results, reviews)
+            .then(function(){
                 _classifyActivities(activities, pastOrders, futureOrders);
-            }).then(function(){
+            })
+            .then(function(){
+                console.log(vm.past_activities);
+                console.log(vm.future_activities);
                 _mapReviews(vm.past_activities, reviews);
             });
+            
         }
 
     }

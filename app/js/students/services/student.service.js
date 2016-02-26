@@ -132,6 +132,7 @@
                     page_size: pageSize
                   }})
                   .then(function (response) {
+                      console.log(response.data.results[0].activity);
                       return response.data;
                   });
             },
