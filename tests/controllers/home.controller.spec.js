@@ -1,4 +1,4 @@
-describe('Controller: HomeController', function(){
+xdescribe('Controller: HomeController', function(){
     var HomeController,
         generalInfo,
         ActivitiesManager,

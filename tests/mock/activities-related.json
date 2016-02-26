@@ -1,0 +1,4865 @@
+[
+  {
+    "id": 8,
+    "title": "Sesiones de Acordeón",
+    "short_description": "Est qui asperiores fuga blanditiis quod dignissimos.",
+    "sub_category": 1,
+    "sub_category_display": "Acordeón",
+    "level": "I",
+    "level_display": "Intermedio",
+    "tags": [
+      "acordeón",
+      "música"
+    ],
+    "category": {
+      "name": "Música",
+      "id": 1,
+      "color": "#FF7E60",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+    },
+    "content": "Assumenda sit voluptas eius ea. Exercitationem sed ut omnis aperiam. Unde eaque cum et facere. Ipsum aut in voluptas et eos assumenda perspiciatis.",
+    "requirements": "Qui dolores deserunt consequuntur voluptas officia non eum. Sed sapiente rerum numquam sed nihil ea. Quisquam officia sit modi maiores voluptatem.",
+    "return_policy": "Iste molestias eum impedit quis nesciunt saepe. Aliquam officia qui ad architecto illum dolore maiores eius. Laboriosam est eligendi ad voluptas aut accusantium. Sed tenetur quibusdam exercitationem reprehenderit cumque consequatur ipsum sit.",
+    "extra_info": "Cum ratione eos quo sed ea. Vel minus ipsa harum minima eum fugiat. Velit odit consequatur assumenda.",
+    "audience": "Est voluptatem tempora ea unde laudantium. Repudiandae aut ut qui doloribus maxime modi. Vel rerum vel accusamus ut exercitationem placeat. Sed dolorum qui quo in quam.",
+    "goals": "Et placeat amet sint quod. Ut et sunt vel quisquam nam nobis. Quo ratione porro occaecati non inventore dolorum itaque. Eligendi magnam accusantium sed. Aut eveniet rerum aut perspiciatis.",
+    "methodology": "Soluta praesentium perspiciatis vel sit qui. Magnam est tempora ut repellat recusandae enim. Quod ea et quo optio beatae culpa.",
+    "location": {
+      "id": 1,
+      "city": 1,
+      "point": [
+        -162.792534,
+        -87.8370655
+      ],
+      "address": "57088 Callie Harbors\nSouth Tempie, SC 03079-4911",
+      "organizer": null
+    },
+    "pictures": [
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 28
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 29
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 30
+      }
+    ],
+    "youtube_video_url": "http://www.davis.net/",
+    "published": true,
+    "certification": false,
+    "last_date": 1485742269000,
+    "calendars": [
+      {
+        "id": 28,
+        "activity": 8,
+        "initial_date": 1454721181000,
+        "closing_sale": 1456017181000,
+        "number_of_sessions": 0,
+        "session_price": 541837,
+        "capacity": 1,
+        "sessions": [
+          {
+            "id": 110,
+            "date": 1485742269000,
+            "start_time": 1456503560000,
+            "end_time": 1456503560000
+          },
+          {
+            "id": 111,
+            "date": 1462113830000,
+            "start_time": 1456526729000,
+            "end_time": 1456526729000
+          },
+          {
+            "id": 112,
+            "date": 1470779686000,
+            "start_time": 1456538998000,
+            "end_time": 1456538998000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 1
+      },
+      {
+        "id": 29,
+        "activity": 8,
+        "initial_date": 1456242828000,
+        "closing_sale": 1457538828000,
+        "number_of_sessions": 6,
+        "session_price": 210033,
+        "capacity": 19,
+        "sessions": [
+          {
+            "id": 113,
+            "date": 1466254178000,
+            "start_time": 1456466753000,
+            "end_time": 1456466753000
+          },
+          {
+            "id": 114,
+            "date": 1469012195000,
+            "start_time": 1456473163000,
+            "end_time": 1456473163000
+          },
+          {
+            "id": 115,
+            "date": 1460609886000,
+            "start_time": 1456537799000,
+            "end_time": 1456537799000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 203,
+            "first_name": "Carrie",
+            "last_name": "Torphy",
+            "full_name": "Carrie Torphy",
+            "email": "witting.alize@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 94,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 202,
+            "first_name": "Stuart",
+            "last_name": "Huels",
+            "full_name": "Stuart Huels",
+            "email": "clarisa99@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 94,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 201,
+            "first_name": "Donato",
+            "last_name": "Jacobson",
+            "full_name": "Donato Jacobson",
+            "email": "shalonda00@schuster.biz",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 94,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 200,
+            "first_name": "Nigel",
+            "last_name": "Kunze",
+            "full_name": "Nigel Kunze",
+            "email": "rahsaan66@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 93,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 199,
+            "first_name": "Sabrina",
+            "last_name": "Hahn",
+            "full_name": "Sabrina Hahn",
+            "email": "memphis.ortiz@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 93,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 14
+      },
+      {
+        "id": 30,
+        "activity": 8,
+        "initial_date": 1456206603000,
+        "closing_sale": 1457502603000,
+        "number_of_sessions": 2,
+        "session_price": 838523,
+        "capacity": 15,
+        "sessions": [
+          {
+            "id": 116,
+            "date": 1483081677000,
+            "start_time": 1456490767000,
+            "end_time": 1456490767000
+          },
+          {
+            "id": 117,
+            "date": 1459959715000,
+            "start_time": 1456464500000,
+            "end_time": 1456464500000
+          },
+          {
+            "id": 118,
+            "date": 1476701433000,
+            "start_time": 1456530607000,
+            "end_time": 1456530607000
+          },
+          {
+            "id": 119,
+            "date": 1463472648000,
+            "start_time": 1456463465000,
+            "end_time": 1456463465000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 215,
+            "first_name": "Lorena",
+            "last_name": "Hahn",
+            "full_name": "Lorena Hahn",
+            "email": "stroman.valentina@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 98,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 214,
+            "first_name": "Agnes",
+            "last_name": "Hessel",
+            "full_name": "Agnes Hessel",
+            "email": "reilly.nolie@bartellmorar.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 98,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 213,
+            "first_name": "Hermann",
+            "last_name": "Schiller",
+            "full_name": "Hermann Schiller",
+            "email": "anjanette02@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 98,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 212,
+            "first_name": "Zion",
+            "last_name": "Simonis",
+            "full_name": "Zion Simonis",
+            "email": "runolfsson.jameel@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 98,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 211,
+            "first_name": "Nevin",
+            "last_name": "Boyle",
+            "full_name": "Nevin Boyle",
+            "email": "kacie41@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 97,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 210,
+            "first_name": "Camden",
+            "last_name": "Gusikowski",
+            "full_name": "Camden Gusikowski",
+            "email": "hegmann.metro@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 97,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 209,
+            "first_name": "Queen",
+            "last_name": "Ruecker",
+            "full_name": "Queen Ruecker",
+            "email": "glind@ruecker.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 97,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 208,
+            "first_name": "Winfred",
+            "last_name": "Fadel",
+            "full_name": "Winfred Fadel",
+            "email": "robin.walsh@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 97,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 207,
+            "first_name": "Alpheus",
+            "last_name": "Grimes",
+            "full_name": "Alpheus Grimes",
+            "email": "gdicki@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 97,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 206,
+            "first_name": "Ida",
+            "last_name": "Hahn",
+            "full_name": "Ida Hahn",
+            "email": "vince.brakus@larkin.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 96,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 5
+      },
+      {
+        "id": 31,
+        "activity": 8,
+        "initial_date": 1456173986000,
+        "closing_sale": 1457469986000,
+        "number_of_sessions": 1,
+        "session_price": 125053,
+        "capacity": 7,
+        "sessions": [
+          {
+            "id": 120,
+            "date": 1470932839000,
+            "start_time": 1456543013000,
+            "end_time": 1456543013000
+          },
+          {
+            "id": 121,
+            "date": 1477787963000,
+            "start_time": 1456509144000,
+            "end_time": 1456509144000
+          },
+          {
+            "id": 122,
+            "date": 1462943942000,
+            "start_time": 1456470241000,
+            "end_time": 1456470241000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 217,
+            "first_name": "Trula",
+            "last_name": "Bartoletti",
+            "full_name": "Trula Bartoletti",
+            "email": "orvin10@mueller.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 100,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 216,
+            "first_name": "Marquise",
+            "last_name": "Hagenes",
+            "full_name": "Marquise Hagenes",
+            "email": "hettinger.sophronia@beatty.info",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 99,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 5
+      },
+      {
+        "id": 32,
+        "activity": 8,
+        "initial_date": 1454440976000,
+        "closing_sale": 1455736976000,
+        "number_of_sessions": 7,
+        "session_price": 274348,
+        "capacity": 10,
+        "sessions": [
+          {
+            "id": 123,
+            "date": 1478099601000,
+            "start_time": 1456481334000,
+            "end_time": 1456481334000
+          },
+          {
+            "id": 124,
+            "date": 1468040174000,
+            "start_time": 1456517287000,
+            "end_time": 1456517287000
+          },
+          {
+            "id": 125,
+            "date": 1466240379000,
+            "start_time": 1456547392000,
+            "end_time": 1456547392000
+          },
+          {
+            "id": 126,
+            "date": 1478937919000,
+            "start_time": 1456489150000,
+            "end_time": 1456489150000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 10
+      }
+    ],
+    "closest_calendar": {
+      "id": 29,
+      "activity": 8,
+      "initial_date": 1456242828000,
+      "closing_sale": 1457538828000,
+      "number_of_sessions": 6,
+      "session_price": 210033,
+      "capacity": 19,
+      "sessions": [
+        {
+          "id": 113,
+          "date": 1466254178000,
+          "start_time": 1456466753000,
+          "end_time": 1456466753000
+        },
+        {
+          "id": 114,
+          "date": 1469012195000,
+          "start_time": 1456473163000,
+          "end_time": 1456473163000
+        },
+        {
+          "id": 115,
+          "date": 1460609886000,
+          "start_time": 1456537799000,
+          "end_time": 1456537799000
+        }
+      ],
+      "assistants": [
+        {
+          "id": 203,
+          "first_name": "Carrie",
+          "last_name": "Torphy",
+          "full_name": "Carrie Torphy",
+          "email": "witting.alize@gmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 94,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 202,
+          "first_name": "Stuart",
+          "last_name": "Huels",
+          "full_name": "Stuart Huels",
+          "email": "clarisa99@hotmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 94,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 201,
+          "first_name": "Donato",
+          "last_name": "Jacobson",
+          "full_name": "Donato Jacobson",
+          "email": "shalonda00@schuster.biz",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 94,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 200,
+          "first_name": "Nigel",
+          "last_name": "Kunze",
+          "full_name": "Nigel Kunze",
+          "email": "rahsaan66@gmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 93,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 199,
+          "first_name": "Sabrina",
+          "last_name": "Hahn",
+          "full_name": "Sabrina Hahn",
+          "email": "memphis.ortiz@hotmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 93,
+          "lastest_refund": null,
+          "token": null
+        }
+      ],
+      "is_weekend": false,
+      "duration": 0,
+      "is_free": false,
+      "available_capacity": 14
+    },
+    "required_steps": {
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ]
+    },
+    "steps": {
+      "instructors": [
+        "instructors"
+      ],
+      "detail": [
+        "content",
+        "audience",
+        "goals",
+        "methodology",
+        "requirements",
+        "extra_info"
+      ],
+      "gallery": [
+        "pictures"
+      ],
+      "return_policy": [
+        "return_policy"
+      ],
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ],
+      "calendars": [
+        "calendars"
+      ]
+    },
+    "organizer": {
+      "id": 2,
+      "user": {
+        "first_name": "Arielle",
+        "last_name": "Rempel",
+        "email": "cheri45@thiel.biz"
+      },
+      "name": "Nienow-Keebler",
+      "bio": "optimize efficient content",
+      "headline": "Advanced 24hour encoding",
+      "website": "http://kochbuckridge.com/",
+      "youtube_video_url": "665.951.0703x5667",
+      "telephone": "409.283.6295",
+      "photo": null,
+      "user_type": "O",
+      "created_at": 1454352455000,
+      "instructors": [
+        {
+          "full_name": "Britany Kuvalis PhD",
+          "id": 8,
+          "bio": "Omnis officia dolorem amet rem eaque. Aut aut perspiciatis non consectetur. Dolor architecto veniam quia. Incidunt vel architecto aut ut molestiae perferendis. Quod reiciendis omnis et recusandae nam fugiat.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://hickle.com/"
+        },
+        {
+          "full_name": "Christin Hettinger DDS",
+          "id": 7,
+          "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.rowe.com/"
+        },
+        {
+          "full_name": "Waymon Keeling",
+          "id": 6,
+          "bio": "Molestiae mollitia a eum rem corporis repellendus voluptatem. Dolor perspiciatis est omnis atque sunt. Quod excepturi voluptate placeat velit ex eius vero ullam.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://kochosinski.com/"
+        },
+        {
+          "full_name": "Krystina Sawayn DDS",
+          "id": 5,
+          "bio": "Dolorum id vel nisi qui ipsa omnis. Repellendus earum quisquam rerum maiores quia. Enim vitae eum sit. Voluptatum et quaerat vel ea dolores.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.wiegandbarrows.net/"
+        }
+      ],
+      "locations": [],
+      "rating": 0
+    },
+    "instructors": [
+      {
+        "full_name": "Christin Hettinger DDS",
+        "id": 7,
+        "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+        "organizer": 2,
+        "photo": null,
+        "website": "http://www.rowe.com/"
+      }
+    ],
+    "score": 70,
+    "rating": 0
+  },
+  {
+    "id": 9,
+    "title": "Clase de Armónica",
+    "short_description": "Beatae velit doloribus ipsum ad quo.",
+    "sub_category": 2,
+    "sub_category_display": "Armónica",
+    "level": "A",
+    "level_display": "Avanzado",
+    "tags": [
+      "armónica",
+      "música"
+    ],
+    "category": {
+      "name": "Música",
+      "id": 1,
+      "color": "#FF7E60",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+    },
+    "content": "Non in voluptatem iste. Vel magni sapiente minima nesciunt aut et. Excepturi illum neque sit.",
+    "requirements": "Id molestiae dolor et est. Quidem doloribus eum accusantium eum eos sequi.",
+    "return_policy": "Natus hic fuga optio ducimus et eveniet. Rem distinctio dicta et occaecati sint et et nihil. Quasi blanditiis aut illo minus expedita.",
+    "extra_info": "Optio et consequuntur dolor harum labore. Aliquam tempore architecto fugit ipsa quo quis. Veritatis est incidunt et dolor rerum consequatur. Et odit qui et dolorum.",
+    "audience": "Voluptatem exercitationem dolor sit rem quia blanditiis molestiae. Tenetur quidem vel dignissimos.",
+    "goals": "Aut ratione hic suscipit. Sed iste unde omnis ducimus commodi. Quisquam quia iure perspiciatis. Quis et incidunt voluptatibus dolorem impedit eum nemo. Nam nam molestiae at et ipsa.",
+    "methodology": "Eum temporibus quibusdam distinctio aliquid eligendi harum veritatis sapiente. Quidem laudantium perspiciatis non repellat quo. Dolorem consequatur facere unde veniam odio et repudiandae. Et ratione tempora debitis quam.",
+    "location": {
+      "id": 2,
+      "city": 1,
+      "point": [
+        -47.544337,
+        61.0403845
+      ],
+      "address": "7740 Baumbach Summit Apt. 221\nStoltenbergport, MI 90602-2818",
+      "organizer": null
+    },
+    "pictures": [
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 31
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 32
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 33
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 34
+      }
+    ],
+    "youtube_video_url": "http://torp.info/",
+    "published": true,
+    "certification": false,
+    "last_date": 1484062764000,
+    "calendars": [
+      {
+        "id": 33,
+        "activity": 9,
+        "initial_date": 1454627570000,
+        "closing_sale": 1455923570000,
+        "number_of_sessions": 5,
+        "session_price": 622270,
+        "capacity": 3,
+        "sessions": [
+          {
+            "id": 127,
+            "date": 1459912304000,
+            "start_time": 1456524103000,
+            "end_time": 1456524103000
+          },
+          {
+            "id": 128,
+            "date": 1477036799000,
+            "start_time": 1456537406000,
+            "end_time": 1456537406000
+          },
+          {
+            "id": 129,
+            "date": 1474161766000,
+            "start_time": 1456523363000,
+            "end_time": 1456523363000
+          },
+          {
+            "id": 130,
+            "date": 1481892865000,
+            "start_time": 1456492712000,
+            "end_time": 1456492712000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 230,
+            "first_name": "Devin",
+            "last_name": "Cummerata",
+            "full_name": "Devin Cummerata",
+            "email": "webb90@cummingskerluke.biz",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 110,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 229,
+            "first_name": "Maida",
+            "last_name": "Fisher",
+            "full_name": "Maida Fisher",
+            "email": "fschmidt@feil.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 109,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": true,
+        "available_capacity": 1
+      },
+      {
+        "id": 34,
+        "activity": 9,
+        "initial_date": 1454777350000,
+        "closing_sale": 1456073350000,
+        "number_of_sessions": 7,
+        "session_price": 225859,
+        "capacity": 11,
+        "sessions": [
+          {
+            "id": 131,
+            "date": 1473863111000,
+            "start_time": 1456466538000,
+            "end_time": 1456466538000
+          },
+          {
+            "id": 132,
+            "date": 1460377744000,
+            "start_time": 1456469185000,
+            "end_time": 1456469185000
+          },
+          {
+            "id": 133,
+            "date": 1457591970000,
+            "start_time": 1456484350000,
+            "end_time": 1456484350000
+          },
+          {
+            "id": 134,
+            "date": 1468832435000,
+            "start_time": 1456505841000,
+            "end_time": 1456505841000
+          },
+          {
+            "id": 135,
+            "date": 1459564107000,
+            "start_time": 1456493104000,
+            "end_time": 1456493104000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 239,
+            "first_name": "Daisy",
+            "last_name": "Nitzsche",
+            "full_name": "Daisy Nitzsche",
+            "email": "hmoore@leffler.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 115,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 238,
+            "first_name": "Duwayne",
+            "last_name": "Gerhold",
+            "full_name": "Duwayne Gerhold",
+            "email": "caltenwerth@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 115,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 237,
+            "first_name": "Pleasant",
+            "last_name": "Heathcote",
+            "full_name": "Pleasant Heathcote",
+            "email": "ancil50@roobsimonis.biz",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 114,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 236,
+            "first_name": "Carrol",
+            "last_name": "Goyette",
+            "full_name": "Carrol Goyette",
+            "email": "ybrown@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 114,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 7
+      },
+      {
+        "id": 35,
+        "activity": 9,
+        "initial_date": 1456581270000,
+        "closing_sale": 1457877270000,
+        "number_of_sessions": 2,
+        "session_price": 285460,
+        "capacity": 2,
+        "sessions": [
+          {
+            "id": 136,
+            "date": 1463872569000,
+            "start_time": 1456520064000,
+            "end_time": 1456520064000
+          },
+          {
+            "id": 137,
+            "date": 1457017705000,
+            "start_time": 1456498359000,
+            "end_time": 1456498359000
+          },
+          {
+            "id": 138,
+            "date": 1484062764000,
+            "start_time": 1456511085000,
+            "end_time": 1456511085000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": true,
+        "available_capacity": 2
+      }
+    ],
+    "closest_calendar": {
+      "id": 35,
+      "activity": 9,
+      "initial_date": 1456581270000,
+      "closing_sale": 1457877270000,
+      "number_of_sessions": 2,
+      "session_price": 285460,
+      "capacity": 2,
+      "sessions": [
+        {
+          "id": 136,
+          "date": 1463872569000,
+          "start_time": 1456520064000,
+          "end_time": 1456520064000
+        },
+        {
+          "id": 137,
+          "date": 1457017705000,
+          "start_time": 1456498359000,
+          "end_time": 1456498359000
+        },
+        {
+          "id": 138,
+          "date": 1484062764000,
+          "start_time": 1456511085000,
+          "end_time": 1456511085000
+        }
+      ],
+      "assistants": [],
+      "is_weekend": true,
+      "duration": 0,
+      "is_free": true,
+      "available_capacity": 2
+    },
+    "required_steps": {
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ]
+    },
+    "steps": {
+      "instructors": [
+        "instructors"
+      ],
+      "detail": [
+        "content",
+        "audience",
+        "goals",
+        "methodology",
+        "requirements",
+        "extra_info"
+      ],
+      "gallery": [
+        "pictures"
+      ],
+      "return_policy": [
+        "return_policy"
+      ],
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ],
+      "calendars": [
+        "calendars"
+      ]
+    },
+    "organizer": {
+      "id": 2,
+      "user": {
+        "first_name": "Arielle",
+        "last_name": "Rempel",
+        "email": "cheri45@thiel.biz"
+      },
+      "name": "Nienow-Keebler",
+      "bio": "optimize efficient content",
+      "headline": "Advanced 24hour encoding",
+      "website": "http://kochbuckridge.com/",
+      "youtube_video_url": "665.951.0703x5667",
+      "telephone": "409.283.6295",
+      "photo": null,
+      "user_type": "O",
+      "created_at": 1454352455000,
+      "instructors": [
+        {
+          "full_name": "Britany Kuvalis PhD",
+          "id": 8,
+          "bio": "Omnis officia dolorem amet rem eaque. Aut aut perspiciatis non consectetur. Dolor architecto veniam quia. Incidunt vel architecto aut ut molestiae perferendis. Quod reiciendis omnis et recusandae nam fugiat.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://hickle.com/"
+        },
+        {
+          "full_name": "Christin Hettinger DDS",
+          "id": 7,
+          "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.rowe.com/"
+        },
+        {
+          "full_name": "Waymon Keeling",
+          "id": 6,
+          "bio": "Molestiae mollitia a eum rem corporis repellendus voluptatem. Dolor perspiciatis est omnis atque sunt. Quod excepturi voluptate placeat velit ex eius vero ullam.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://kochosinski.com/"
+        },
+        {
+          "full_name": "Krystina Sawayn DDS",
+          "id": 5,
+          "bio": "Dolorum id vel nisi qui ipsa omnis. Repellendus earum quisquam rerum maiores quia. Enim vitae eum sit. Voluptatum et quaerat vel ea dolores.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.wiegandbarrows.net/"
+        }
+      ],
+      "locations": [],
+      "rating": 0
+    },
+    "instructors": [
+      {
+        "full_name": "Christin Hettinger DDS",
+        "id": 7,
+        "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+        "organizer": 2,
+        "photo": null,
+        "website": "http://www.rowe.com/"
+      }
+    ],
+    "score": 84,
+    "rating": 0
+  },
+  {
+    "id": 10,
+    "title": "Sesiones de Audio y Producción",
+    "short_description": "Sed est sed molestias quam culpa animi qui.",
+    "sub_category": 3,
+    "sub_category_display": "Audio y Producción",
+    "level": "A",
+    "level_display": "Avanzado",
+    "tags": [
+      "audio y producción",
+      "música"
+    ],
+    "category": {
+      "name": "Música",
+      "id": 1,
+      "color": "#FF7E60",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+    },
+    "content": "Nesciunt ipsum veniam et optio fugit commodi iure. Nemo sunt nulla labore autem deserunt quia fuga. Voluptatem deleniti adipisci aut quas voluptatum.",
+    "requirements": "Enim nostrum nihil est maiores est laborum. Eaque libero quas ut eligendi quaerat nobis. Aliquam cumque accusantium quis dolor debitis provident.",
+    "return_policy": "Impedit id minus reiciendis delectus dolor. Nesciunt voluptas sunt inventore maiores facere suscipit eveniet. Fugit tempora vero eligendi possimus dolorem. Nam quia non eos.",
+    "extra_info": "Illo quis ut dolorem officiis est iusto qui. Fugit et alias officia est. Autem ut facilis dolor sunt reiciendis. Iste earum unde est accusamus eius.",
+    "audience": "Autem expedita quia dolore iusto ab. Nihil deleniti eligendi sunt quae earum. Possimus sapiente ut quis illum facilis ea aut consectetur. Quam accusamus et est placeat incidunt.",
+    "goals": "Autem consequatur veritatis iusto sed quae illo facere. Ab dolorem ullam possimus omnis velit et. Et eligendi voluptatem ullam omnis et minima.",
+    "methodology": "Accusamus dolorem est iste et est. Et sit quae illum qui voluptatum est deleniti.",
+    "location": {
+      "id": 3,
+      "city": 1,
+      "point": [
+        143.300946,
+        -40.7280335
+      ],
+      "address": "70841 Denesik Place Apt. 565\nBartonton, NC 27522",
+      "organizer": null
+    },
+    "pictures": [
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 35
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 36
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 37
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 38
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 39
+      }
+    ],
+    "youtube_video_url": "http://www.runolfsdottir.com/",
+    "published": true,
+    "certification": false,
+    "last_date": 1485034171000,
+    "calendars": [
+      {
+        "id": 36,
+        "activity": 10,
+        "initial_date": 1456283144000,
+        "closing_sale": 1457579144000,
+        "number_of_sessions": 2,
+        "session_price": 784147,
+        "capacity": 16,
+        "sessions": [
+          {
+            "id": 139,
+            "date": 1471695337000,
+            "start_time": 1456464694000,
+            "end_time": 1456464694000
+          },
+          {
+            "id": 140,
+            "date": 1483922077000,
+            "start_time": 1456466214000,
+            "end_time": 1456466214000
+          },
+          {
+            "id": 141,
+            "date": 1475577890000,
+            "start_time": 1456518986000,
+            "end_time": 1456518986000
+          },
+          {
+            "id": 142,
+            "date": 1476912491000,
+            "start_time": 1456510855000,
+            "end_time": 1456510855000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 247,
+            "first_name": "Draven",
+            "last_name": "Rempel",
+            "full_name": "Draven Rempel",
+            "email": "landyn.kohler@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 117,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 246,
+            "first_name": "Vivian",
+            "last_name": "Champlin",
+            "full_name": "Vivian Champlin",
+            "email": "wbeer@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 117,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 245,
+            "first_name": "Deann",
+            "last_name": "Ryan",
+            "full_name": "Deann Ryan",
+            "email": "hlemke@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 117,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 244,
+            "first_name": "Orren",
+            "last_name": "Dickens",
+            "full_name": "Orren Dickens",
+            "email": "daphne05@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 117,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 243,
+            "first_name": "Joey",
+            "last_name": "Greenfelder",
+            "full_name": "Joey Greenfelder",
+            "email": "bmurray@jaskolskireynolds.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 117,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 11
+      },
+      {
+        "id": 37,
+        "activity": 10,
+        "initial_date": 1454596427000,
+        "closing_sale": 1455892427000,
+        "number_of_sessions": 4,
+        "session_price": 198486,
+        "capacity": 8,
+        "sessions": [
+          {
+            "id": 143,
+            "date": 1467489670000,
+            "start_time": 1456498300000,
+            "end_time": 1456498300000
+          },
+          {
+            "id": 144,
+            "date": 1481332030000,
+            "start_time": 1456487021000,
+            "end_time": 1456487021000
+          },
+          {
+            "id": 145,
+            "date": 1461404335000,
+            "start_time": 1456533549000,
+            "end_time": 1456533549000
+          },
+          {
+            "id": 146,
+            "date": 1461688144000,
+            "start_time": 1456527300000,
+            "end_time": 1456527300000
+          },
+          {
+            "id": 147,
+            "date": 1483457886000,
+            "start_time": 1456529712000,
+            "end_time": 1456529712000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": true,
+        "available_capacity": 8
+      },
+      {
+        "id": 38,
+        "activity": 10,
+        "initial_date": 1454624697000,
+        "closing_sale": 1455920697000,
+        "number_of_sessions": 9,
+        "session_price": 416108,
+        "capacity": 2,
+        "sessions": [
+          {
+            "id": 148,
+            "date": 1466653905000,
+            "start_time": 1456520972000,
+            "end_time": 1456520972000
+          },
+          {
+            "id": 149,
+            "date": 1459169292000,
+            "start_time": 1456496322000,
+            "end_time": 1456496322000
+          },
+          {
+            "id": 150,
+            "date": 1475002649000,
+            "start_time": 1456543721000,
+            "end_time": 1456543721000
+          },
+          {
+            "id": 151,
+            "date": 1465655532000,
+            "start_time": 1456545626000,
+            "end_time": 1456545626000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": true,
+        "available_capacity": 2
+      },
+      {
+        "id": 39,
+        "activity": 10,
+        "initial_date": 1455906571000,
+        "closing_sale": 1457202571000,
+        "number_of_sessions": 8,
+        "session_price": 824706,
+        "capacity": 0,
+        "sessions": [
+          {
+            "id": 152,
+            "date": 1470954582000,
+            "start_time": 1456506037000,
+            "end_time": 1456506037000
+          },
+          {
+            "id": 153,
+            "date": 1469510944000,
+            "start_time": 1456486095000,
+            "end_time": 1456486095000
+          },
+          {
+            "id": 154,
+            "date": 1460378582000,
+            "start_time": 1456522364000,
+            "end_time": 1456522364000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 0
+      },
+      {
+        "id": 40,
+        "activity": 10,
+        "initial_date": 1456006190000,
+        "closing_sale": 1457302190000,
+        "number_of_sessions": 3,
+        "session_price": 897528,
+        "capacity": 23,
+        "sessions": [
+          {
+            "id": 155,
+            "date": 1467466696000,
+            "start_time": 1456464859000,
+            "end_time": 1456464859000
+          },
+          {
+            "id": 156,
+            "date": 1485034171000,
+            "start_time": 1456479025000,
+            "end_time": 1456479025000
+          },
+          {
+            "id": 157,
+            "date": 1464120937000,
+            "start_time": 1456505116000,
+            "end_time": 1456505116000
+          },
+          {
+            "id": 158,
+            "date": 1470053288000,
+            "start_time": 1456491811000,
+            "end_time": 1456491811000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 265,
+            "first_name": "Casimir",
+            "last_name": "Hilll",
+            "full_name": "Casimir Hilll",
+            "email": "gmueller@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 126,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 264,
+            "first_name": "Sue",
+            "last_name": "Heller",
+            "full_name": "Sue Heller",
+            "email": "domenic03@doyle.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 126,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 262,
+            "first_name": "Nery",
+            "last_name": "Ernser",
+            "full_name": "Nery Ernser",
+            "email": "robin39@zboncak.net",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 124,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 261,
+            "first_name": "Cielo",
+            "last_name": "Nader",
+            "full_name": "Cielo Nader",
+            "email": "maggie.buckridge@feeney.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 124,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 19
+      }
+    ],
+    "closest_calendar": {
+      "id": 36,
+      "activity": 10,
+      "initial_date": 1456283144000,
+      "closing_sale": 1457579144000,
+      "number_of_sessions": 2,
+      "session_price": 784147,
+      "capacity": 16,
+      "sessions": [
+        {
+          "id": 139,
+          "date": 1471695337000,
+          "start_time": 1456464694000,
+          "end_time": 1456464694000
+        },
+        {
+          "id": 140,
+          "date": 1483922077000,
+          "start_time": 1456466214000,
+          "end_time": 1456466214000
+        },
+        {
+          "id": 141,
+          "date": 1475577890000,
+          "start_time": 1456518986000,
+          "end_time": 1456518986000
+        },
+        {
+          "id": 142,
+          "date": 1476912491000,
+          "start_time": 1456510855000,
+          "end_time": 1456510855000
+        }
+      ],
+      "assistants": [
+        {
+          "id": 247,
+          "first_name": "Draven",
+          "last_name": "Rempel",
+          "full_name": "Draven Rempel",
+          "email": "landyn.kohler@yahoo.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 117,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 246,
+          "first_name": "Vivian",
+          "last_name": "Champlin",
+          "full_name": "Vivian Champlin",
+          "email": "wbeer@yahoo.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 117,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 245,
+          "first_name": "Deann",
+          "last_name": "Ryan",
+          "full_name": "Deann Ryan",
+          "email": "hlemke@hotmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 117,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 244,
+          "first_name": "Orren",
+          "last_name": "Dickens",
+          "full_name": "Orren Dickens",
+          "email": "daphne05@yahoo.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 117,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 243,
+          "first_name": "Joey",
+          "last_name": "Greenfelder",
+          "full_name": "Joey Greenfelder",
+          "email": "bmurray@jaskolskireynolds.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 117,
+          "lastest_refund": null,
+          "token": null
+        }
+      ],
+      "is_weekend": true,
+      "duration": 0,
+      "is_free": false,
+      "available_capacity": 11
+    },
+    "required_steps": {
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ]
+    },
+    "steps": {
+      "instructors": [
+        "instructors"
+      ],
+      "detail": [
+        "content",
+        "audience",
+        "goals",
+        "methodology",
+        "requirements",
+        "extra_info"
+      ],
+      "gallery": [
+        "pictures"
+      ],
+      "return_policy": [
+        "return_policy"
+      ],
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ],
+      "calendars": [
+        "calendars"
+      ]
+    },
+    "organizer": {
+      "id": 2,
+      "user": {
+        "first_name": "Arielle",
+        "last_name": "Rempel",
+        "email": "cheri45@thiel.biz"
+      },
+      "name": "Nienow-Keebler",
+      "bio": "optimize efficient content",
+      "headline": "Advanced 24hour encoding",
+      "website": "http://kochbuckridge.com/",
+      "youtube_video_url": "665.951.0703x5667",
+      "telephone": "409.283.6295",
+      "photo": null,
+      "user_type": "O",
+      "created_at": 1454352455000,
+      "instructors": [
+        {
+          "full_name": "Britany Kuvalis PhD",
+          "id": 8,
+          "bio": "Omnis officia dolorem amet rem eaque. Aut aut perspiciatis non consectetur. Dolor architecto veniam quia. Incidunt vel architecto aut ut molestiae perferendis. Quod reiciendis omnis et recusandae nam fugiat.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://hickle.com/"
+        },
+        {
+          "full_name": "Christin Hettinger DDS",
+          "id": 7,
+          "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.rowe.com/"
+        },
+        {
+          "full_name": "Waymon Keeling",
+          "id": 6,
+          "bio": "Molestiae mollitia a eum rem corporis repellendus voluptatem. Dolor perspiciatis est omnis atque sunt. Quod excepturi voluptate placeat velit ex eius vero ullam.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://kochosinski.com/"
+        },
+        {
+          "full_name": "Krystina Sawayn DDS",
+          "id": 5,
+          "bio": "Dolorum id vel nisi qui ipsa omnis. Repellendus earum quisquam rerum maiores quia. Enim vitae eum sit. Voluptatum et quaerat vel ea dolores.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.wiegandbarrows.net/"
+        }
+      ],
+      "locations": [],
+      "rating": 0
+    },
+    "instructors": [
+      {
+        "full_name": "Christin Hettinger DDS",
+        "id": 7,
+        "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+        "organizer": 2,
+        "photo": null,
+        "website": "http://www.rowe.com/"
+      }
+    ],
+    "score": 83,
+    "rating": 0
+  },
+  {
+    "id": 11,
+    "title": "Taller de Bajo",
+    "short_description": "Laboriosam est asperiores id eos rerum maiores consequatur excepturi.",
+    "sub_category": 4,
+    "sub_category_display": "Bajo",
+    "level": "A",
+    "level_display": "Avanzado",
+    "tags": [
+      "bajo",
+      "música"
+    ],
+    "category": {
+      "name": "Música",
+      "id": 1,
+      "color": "#FF7E60",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+    },
+    "content": "Sit culpa deserunt aut repellendus nemo magnam magnam. Vero harum occaecati similique itaque ea repellat alias ut. Fuga unde possimus sit quia id saepe. Illo ut sunt sint.",
+    "requirements": "Impedit deserunt temporibus alias omnis ad. Recusandae voluptatem qui modi maxime ducimus officiis eveniet. Laudantium commodi aut doloribus quo.",
+    "return_policy": "Excepturi molestiae rem asperiores cum minus ut ut. Quas omnis quam quis fugit sed ad omnis laudantium. Aut fugiat quidem veniam numquam quasi. Fugit in quibusdam sit ut omnis placeat.",
+    "extra_info": "Nisi et voluptatibus asperiores. Cum harum pariatur molestias totam quod fugiat totam autem. Exercitationem possimus fuga vitae. Ex quia impedit reprehenderit voluptas. Dolorem ut praesentium id consequatur voluptas eaque.",
+    "audience": "Ipsam velit nam a dolore. Nobis qui deleniti laudantium aut. Id aliquid ut porro tenetur in.",
+    "goals": "Qui quis omnis voluptatum ab. Optio et dolores dicta laborum iure harum voluptatibus. Quaerat molestiae provident et ducimus optio.",
+    "methodology": "Sit repellat placeat enim iure consectetur dolor molestiae. Aliquam nihil et tempore porro est. Magni veritatis ut recusandae culpa qui.",
+    "location": {
+      "id": 4,
+      "city": 1,
+      "point": [
+        61.290982,
+        43.3817735
+      ],
+      "address": "Unit 0191 Box 2489\nDPO AE 47102-3743",
+      "organizer": null
+    },
+    "pictures": [
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 40
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 41
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 42
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 43
+      }
+    ],
+    "youtube_video_url": "http://donnelly.com/",
+    "published": true,
+    "certification": true,
+    "last_date": 1484644966000,
+    "calendars": [
+      {
+        "id": 41,
+        "activity": 11,
+        "initial_date": 1455754339000,
+        "closing_sale": 1457050339000,
+        "number_of_sessions": 8,
+        "session_price": 419558,
+        "capacity": 9,
+        "sessions": [
+          {
+            "id": 159,
+            "date": 1476728938000,
+            "start_time": 1456537955000,
+            "end_time": 1456537955000
+          },
+          {
+            "id": 160,
+            "date": 1468576941000,
+            "start_time": 1456532607000,
+            "end_time": 1456532607000
+          },
+          {
+            "id": 161,
+            "date": 1484644966000,
+            "start_time": 1456483116000,
+            "end_time": 1456483116000
+          },
+          {
+            "id": 162,
+            "date": 1466260561000,
+            "start_time": 1456528965000,
+            "end_time": 1456528965000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 270,
+            "first_name": "Saige",
+            "last_name": "Koch",
+            "full_name": "Saige Koch",
+            "email": "eskiles@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 129,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 267,
+            "first_name": "Gilmore",
+            "last_name": "Fisher",
+            "full_name": "Gilmore Fisher",
+            "email": "maxim.windler@larkin.org",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 127,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 266,
+            "first_name": "Yasmeen",
+            "last_name": "Mosciski",
+            "full_name": "Yasmeen Mosciski",
+            "email": "darryn.schaden@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 127,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 6
+      },
+      {
+        "id": 42,
+        "activity": 11,
+        "initial_date": 1456651427000,
+        "closing_sale": 1457947427000,
+        "number_of_sessions": 7,
+        "session_price": 896830,
+        "capacity": 10,
+        "sessions": [
+          {
+            "id": 163,
+            "date": 1463467156000,
+            "start_time": 1456518015000,
+            "end_time": 1456518015000
+          },
+          {
+            "id": 164,
+            "date": 1478969352000,
+            "start_time": 1456540216000,
+            "end_time": 1456540216000
+          },
+          {
+            "id": 165,
+            "date": 1464640487000,
+            "start_time": 1456475996000,
+            "end_time": 1456475996000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 10
+      },
+      {
+        "id": 43,
+        "activity": 11,
+        "initial_date": 1454604095000,
+        "closing_sale": 1455900095000,
+        "number_of_sessions": 8,
+        "session_price": 598447,
+        "capacity": 4,
+        "sessions": [
+          {
+            "id": 166,
+            "date": 1471513509000,
+            "start_time": 1456524312000,
+            "end_time": 1456524312000
+          },
+          {
+            "id": 167,
+            "date": 1468453384000,
+            "start_time": 1456473359000,
+            "end_time": 1456473359000
+          },
+          {
+            "id": 168,
+            "date": 1477392349000,
+            "start_time": 1456463547000,
+            "end_time": 1456463547000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 282,
+            "first_name": "Coretta",
+            "last_name": "Braun",
+            "full_name": "Coretta Braun",
+            "email": "slade07@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 138,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 281,
+            "first_name": "Chace",
+            "last_name": "Kling",
+            "full_name": "Chace Kling",
+            "email": "olittel@mcdermott.info",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 137,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 280,
+            "first_name": "Tiffanie",
+            "last_name": "Blanda",
+            "full_name": "Tiffanie Blanda",
+            "email": "toy.lila@hintzondricka.net",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 136,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 279,
+            "first_name": "Olena",
+            "last_name": "Kunde",
+            "full_name": "Olena Kunde",
+            "email": "srippin@upton.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 135,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 0
+      }
+    ],
+    "closest_calendar": {
+      "id": 42,
+      "activity": 11,
+      "initial_date": 1456651427000,
+      "closing_sale": 1457947427000,
+      "number_of_sessions": 7,
+      "session_price": 896830,
+      "capacity": 10,
+      "sessions": [
+        {
+          "id": 163,
+          "date": 1463467156000,
+          "start_time": 1456518015000,
+          "end_time": 1456518015000
+        },
+        {
+          "id": 164,
+          "date": 1478969352000,
+          "start_time": 1456540216000,
+          "end_time": 1456540216000
+        },
+        {
+          "id": 165,
+          "date": 1464640487000,
+          "start_time": 1456475996000,
+          "end_time": 1456475996000
+        }
+      ],
+      "assistants": [],
+      "is_weekend": true,
+      "duration": 0,
+      "is_free": false,
+      "available_capacity": 10
+    },
+    "required_steps": {
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ]
+    },
+    "steps": {
+      "instructors": [
+        "instructors"
+      ],
+      "detail": [
+        "content",
+        "audience",
+        "goals",
+        "methodology",
+        "requirements",
+        "extra_info"
+      ],
+      "gallery": [
+        "pictures"
+      ],
+      "return_policy": [
+        "return_policy"
+      ],
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ],
+      "calendars": [
+        "calendars"
+      ]
+    },
+    "organizer": {
+      "id": 2,
+      "user": {
+        "first_name": "Arielle",
+        "last_name": "Rempel",
+        "email": "cheri45@thiel.biz"
+      },
+      "name": "Nienow-Keebler",
+      "bio": "optimize efficient content",
+      "headline": "Advanced 24hour encoding",
+      "website": "http://kochbuckridge.com/",
+      "youtube_video_url": "665.951.0703x5667",
+      "telephone": "409.283.6295",
+      "photo": null,
+      "user_type": "O",
+      "created_at": 1454352455000,
+      "instructors": [
+        {
+          "full_name": "Britany Kuvalis PhD",
+          "id": 8,
+          "bio": "Omnis officia dolorem amet rem eaque. Aut aut perspiciatis non consectetur. Dolor architecto veniam quia. Incidunt vel architecto aut ut molestiae perferendis. Quod reiciendis omnis et recusandae nam fugiat.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://hickle.com/"
+        },
+        {
+          "full_name": "Christin Hettinger DDS",
+          "id": 7,
+          "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.rowe.com/"
+        },
+        {
+          "full_name": "Waymon Keeling",
+          "id": 6,
+          "bio": "Molestiae mollitia a eum rem corporis repellendus voluptatem. Dolor perspiciatis est omnis atque sunt. Quod excepturi voluptate placeat velit ex eius vero ullam.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://kochosinski.com/"
+        },
+        {
+          "full_name": "Krystina Sawayn DDS",
+          "id": 5,
+          "bio": "Dolorum id vel nisi qui ipsa omnis. Repellendus earum quisquam rerum maiores quia. Enim vitae eum sit. Voluptatum et quaerat vel ea dolores.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.wiegandbarrows.net/"
+        }
+      ],
+      "locations": [],
+      "rating": 0
+    },
+    "instructors": [
+      {
+        "full_name": "Christin Hettinger DDS",
+        "id": 7,
+        "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+        "organizer": 2,
+        "photo": null,
+        "website": "http://www.rowe.com/"
+      }
+    ],
+    "score": 38,
+    "rating": 0
+  },
+  {
+    "id": 12,
+    "title": "Clase de Batería",
+    "short_description": "Id dolor odit fugit ipsum esse et laudantium eos.",
+    "sub_category": 5,
+    "sub_category_display": "Batería",
+    "level": "A",
+    "level_display": "Avanzado",
+    "tags": [
+      "batería",
+      "música"
+    ],
+    "category": {
+      "name": "Música",
+      "id": 1,
+      "color": "#FF7E60",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+    },
+    "content": "Perspiciatis adipisci voluptatibus consequuntur eos quibusdam itaque. Voluptatem corrupti non perspiciatis perspiciatis.",
+    "requirements": "Qui quidem quam rerum laboriosam voluptate ducimus. At recusandae voluptates numquam quasi officiis error dolores. Quasi unde doloremque qui est saepe ipsa. Doloremque quia dolorum qui voluptatem rerum sunt quisquam.",
+    "return_policy": "Non et eveniet sit praesentium. Non molestias eius iusto maiores vero. Quod labore quia et quia possimus cupiditate ea.",
+    "extra_info": "Ex autem fugiat recusandae blanditiis cumque. Iste dolores labore voluptates eum quia occaecati. Inventore quia voluptates iure voluptatem.",
+    "audience": "Et assumenda ipsam et architecto nihil eius nulla. Modi velit distinctio quod.",
+    "goals": "Veniam cumque omnis eaque placeat. Eius rerum placeat iure officiis maiores repellendus. Excepturi sint ea qui hic eos commodi illo.",
+    "methodology": "Maiores velit quis ratione omnis eos. Numquam consectetur commodi reprehenderit. Voluptas autem porro aut repudiandae illum est.",
+    "location": {
+      "id": 1,
+      "city": 1,
+      "point": [
+        -162.792534,
+        -87.8370655
+      ],
+      "address": "57088 Callie Harbors\nSouth Tempie, SC 03079-4911",
+      "organizer": null
+    },
+    "pictures": [
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 44
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 45
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 46
+      }
+    ],
+    "youtube_video_url": "http://www.schmidt.org/",
+    "published": true,
+    "certification": false,
+    "last_date": 1484397996000,
+    "calendars": [
+      {
+        "id": 44,
+        "activity": 12,
+        "initial_date": 1455028097000,
+        "closing_sale": 1456324097000,
+        "number_of_sessions": 6,
+        "session_price": 213385,
+        "capacity": 4,
+        "sessions": [
+          {
+            "id": 169,
+            "date": 1477596035000,
+            "start_time": 1456527766000,
+            "end_time": 1456527766000
+          },
+          {
+            "id": 170,
+            "date": 1477269687000,
+            "start_time": 1456540379000,
+            "end_time": 1456540379000
+          },
+          {
+            "id": 171,
+            "date": 1463584842000,
+            "start_time": 1456545007000,
+            "end_time": 1456545007000
+          },
+          {
+            "id": 172,
+            "date": 1463202606000,
+            "start_time": 1456543670000,
+            "end_time": 1456543670000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 285,
+            "first_name": "Alvaro",
+            "last_name": "Rippin",
+            "full_name": "Alvaro Rippin",
+            "email": "jamey.dietrich@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 141,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 3
+      },
+      {
+        "id": 45,
+        "activity": 12,
+        "initial_date": 1456322711000,
+        "closing_sale": 1457618711000,
+        "number_of_sessions": 1,
+        "session_price": 489039,
+        "capacity": 10,
+        "sessions": [
+          {
+            "id": 173,
+            "date": 1471568953000,
+            "start_time": 1456522063000,
+            "end_time": 1456522063000
+          },
+          {
+            "id": 174,
+            "date": 1465584353000,
+            "start_time": 1456509764000,
+            "end_time": 1456509764000
+          },
+          {
+            "id": 175,
+            "date": 1468749879000,
+            "start_time": 1456514422000,
+            "end_time": 1456514422000
+          },
+          {
+            "id": 176,
+            "date": 1462791434000,
+            "start_time": 1456470009000,
+            "end_time": 1456470009000
+          },
+          {
+            "id": 177,
+            "date": 1481976689000,
+            "start_time": 1456538975000,
+            "end_time": 1456538975000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 287,
+            "first_name": "Evert",
+            "last_name": "Morar",
+            "full_name": "Evert Morar",
+            "email": "delfina31@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 143,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 286,
+            "first_name": "Nery",
+            "last_name": "Kuhn",
+            "full_name": "Nery Kuhn",
+            "email": "kstokes@bartellpfeffer.net",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 142,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 8
+      },
+      {
+        "id": 46,
+        "activity": 12,
+        "initial_date": 1455643215000,
+        "closing_sale": 1456939215000,
+        "number_of_sessions": 9,
+        "session_price": 846065,
+        "capacity": 22,
+        "sessions": [
+          {
+            "id": 178,
+            "date": 1479493976000,
+            "start_time": 1456543814000,
+            "end_time": 1456543814000
+          },
+          {
+            "id": 179,
+            "date": 1465849502000,
+            "start_time": 1456507783000,
+            "end_time": 1456507783000
+          },
+          {
+            "id": 180,
+            "date": 1459248441000,
+            "start_time": 1456505483000,
+            "end_time": 1456505483000
+          },
+          {
+            "id": 181,
+            "date": 1484397996000,
+            "start_time": 1456472408000,
+            "end_time": 1456472408000
+          },
+          {
+            "id": 182,
+            "date": 1481983377000,
+            "start_time": 1456496963000,
+            "end_time": 1456496963000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 299,
+            "first_name": "Lauryn",
+            "last_name": "Krajcik",
+            "full_name": "Lauryn Krajcik",
+            "email": "lcasper@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 148,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 21
+      }
+    ],
+    "closest_calendar": {
+      "id": 45,
+      "activity": 12,
+      "initial_date": 1456322711000,
+      "closing_sale": 1457618711000,
+      "number_of_sessions": 1,
+      "session_price": 489039,
+      "capacity": 10,
+      "sessions": [
+        {
+          "id": 173,
+          "date": 1471568953000,
+          "start_time": 1456522063000,
+          "end_time": 1456522063000
+        },
+        {
+          "id": 174,
+          "date": 1465584353000,
+          "start_time": 1456509764000,
+          "end_time": 1456509764000
+        },
+        {
+          "id": 175,
+          "date": 1468749879000,
+          "start_time": 1456514422000,
+          "end_time": 1456514422000
+        },
+        {
+          "id": 176,
+          "date": 1462791434000,
+          "start_time": 1456470009000,
+          "end_time": 1456470009000
+        },
+        {
+          "id": 177,
+          "date": 1481976689000,
+          "start_time": 1456538975000,
+          "end_time": 1456538975000
+        }
+      ],
+      "assistants": [
+        {
+          "id": 287,
+          "first_name": "Evert",
+          "last_name": "Morar",
+          "full_name": "Evert Morar",
+          "email": "delfina31@hotmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 143,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 286,
+          "first_name": "Nery",
+          "last_name": "Kuhn",
+          "full_name": "Nery Kuhn",
+          "email": "kstokes@bartellpfeffer.net",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 142,
+          "lastest_refund": null,
+          "token": null
+        }
+      ],
+      "is_weekend": false,
+      "duration": 0,
+      "is_free": false,
+      "available_capacity": 8
+    },
+    "required_steps": {
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ]
+    },
+    "steps": {
+      "instructors": [
+        "instructors"
+      ],
+      "detail": [
+        "content",
+        "audience",
+        "goals",
+        "methodology",
+        "requirements",
+        "extra_info"
+      ],
+      "gallery": [
+        "pictures"
+      ],
+      "return_policy": [
+        "return_policy"
+      ],
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ],
+      "calendars": [
+        "calendars"
+      ]
+    },
+    "organizer": {
+      "id": 2,
+      "user": {
+        "first_name": "Arielle",
+        "last_name": "Rempel",
+        "email": "cheri45@thiel.biz"
+      },
+      "name": "Nienow-Keebler",
+      "bio": "optimize efficient content",
+      "headline": "Advanced 24hour encoding",
+      "website": "http://kochbuckridge.com/",
+      "youtube_video_url": "665.951.0703x5667",
+      "telephone": "409.283.6295",
+      "photo": null,
+      "user_type": "O",
+      "created_at": 1454352455000,
+      "instructors": [
+        {
+          "full_name": "Britany Kuvalis PhD",
+          "id": 8,
+          "bio": "Omnis officia dolorem amet rem eaque. Aut aut perspiciatis non consectetur. Dolor architecto veniam quia. Incidunt vel architecto aut ut molestiae perferendis. Quod reiciendis omnis et recusandae nam fugiat.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://hickle.com/"
+        },
+        {
+          "full_name": "Christin Hettinger DDS",
+          "id": 7,
+          "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.rowe.com/"
+        },
+        {
+          "full_name": "Waymon Keeling",
+          "id": 6,
+          "bio": "Molestiae mollitia a eum rem corporis repellendus voluptatem. Dolor perspiciatis est omnis atque sunt. Quod excepturi voluptate placeat velit ex eius vero ullam.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://kochosinski.com/"
+        },
+        {
+          "full_name": "Krystina Sawayn DDS",
+          "id": 5,
+          "bio": "Dolorum id vel nisi qui ipsa omnis. Repellendus earum quisquam rerum maiores quia. Enim vitae eum sit. Voluptatum et quaerat vel ea dolores.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.wiegandbarrows.net/"
+        }
+      ],
+      "locations": [],
+      "rating": 0
+    },
+    "instructors": [
+      {
+        "full_name": "Christin Hettinger DDS",
+        "id": 7,
+        "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+        "organizer": 2,
+        "photo": null,
+        "website": "http://www.rowe.com/"
+      }
+    ],
+    "score": 74,
+    "rating": 0
+  },
+  {
+    "id": 13,
+    "title": "Curso de Canto",
+    "short_description": "Qui iusto explicabo quas pariatur dolor quo.",
+    "sub_category": 6,
+    "sub_category_display": "Canto",
+    "level": "I",
+    "level_display": "Intermedio",
+    "tags": [
+      "canto",
+      "música"
+    ],
+    "category": {
+      "name": "Música",
+      "id": 1,
+      "color": "#FF7E60",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+    },
+    "content": "Laborum eos soluta necessitatibus nostrum nobis quidem voluptatem perspiciatis. Molestiae cupiditate itaque voluptas illo cum. Libero quis eaque velit voluptates dicta magni eos.",
+    "requirements": "Modi corporis aut aut neque minima autem. Hic repellendus fugit non omnis. Velit delectus nesciunt pariatur non atque laudantium. Debitis est facilis qui at dolores rerum dolores.",
+    "return_policy": "Sint architecto beatae et. Eius repellat amet deleniti odit autem aut reprehenderit voluptas.",
+    "extra_info": "Dolores enim rerum dolores sit suscipit sunt ex. Iste non quisquam quo assumenda doloribus veniam.",
+    "audience": "Sequi nobis ea nulla laboriosam quod. Blanditiis commodi voluptates voluptatum possimus accusantium animi tenetur. Qui est sapiente cumque molestiae corrupti quae qui.",
+    "goals": "Quibusdam aut et dignissimos et. Veritatis animi explicabo cum recusandae asperiores. Sit earum ea maiores sunt nam. Quasi cupiditate ratione corrupti eaque recusandae.",
+    "methodology": "Autem corrupti commodi neque magnam perspiciatis. Et aliquam aut in quod nulla est. Tempore assumenda id voluptatem aut qui soluta. Rerum optio voluptas blanditiis ut.",
+    "location": {
+      "id": 2,
+      "city": 1,
+      "point": [
+        -47.544337,
+        61.0403845
+      ],
+      "address": "7740 Baumbach Summit Apt. 221\nStoltenbergport, MI 90602-2818",
+      "organizer": null
+    },
+    "pictures": [
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 47
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 48
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 49
+      }
+    ],
+    "youtube_video_url": "http://jerde.info/",
+    "published": true,
+    "certification": true,
+    "last_date": 1484529531000,
+    "calendars": [
+      {
+        "id": 47,
+        "activity": 13,
+        "initial_date": 1456241267000,
+        "closing_sale": 1457537267000,
+        "number_of_sessions": 0,
+        "session_price": 675577,
+        "capacity": 2,
+        "sessions": [
+          {
+            "id": 183,
+            "date": 1461853458000,
+            "start_time": 1456517712000,
+            "end_time": 1456517712000
+          },
+          {
+            "id": 184,
+            "date": 1484419298000,
+            "start_time": 1456499379000,
+            "end_time": 1456499379000
+          },
+          {
+            "id": 185,
+            "date": 1459003593000,
+            "start_time": 1456547620000,
+            "end_time": 1456547620000
+          },
+          {
+            "id": 186,
+            "date": 1468220460000,
+            "start_time": 1456490792000,
+            "end_time": 1456490792000
+          },
+          {
+            "id": 187,
+            "date": 1472556335000,
+            "start_time": 1456464919000,
+            "end_time": 1456464919000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 2
+      },
+      {
+        "id": 48,
+        "activity": 13,
+        "initial_date": 1455157394000,
+        "closing_sale": 1456453394000,
+        "number_of_sessions": 9,
+        "session_price": 852952,
+        "capacity": 16,
+        "sessions": [
+          {
+            "id": 188,
+            "date": 1467466226000,
+            "start_time": 1456497393000,
+            "end_time": 1456497393000
+          },
+          {
+            "id": 189,
+            "date": 1474043599000,
+            "start_time": 1456534902000,
+            "end_time": 1456534902000
+          },
+          {
+            "id": 190,
+            "date": 1483516700000,
+            "start_time": 1456492501000,
+            "end_time": 1456492501000
+          },
+          {
+            "id": 191,
+            "date": 1473864669000,
+            "start_time": 1456494713000,
+            "end_time": 1456494713000
+          },
+          {
+            "id": 192,
+            "date": 1458776873000,
+            "start_time": 1456500481000,
+            "end_time": 1456500481000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 318,
+            "first_name": "Elliot",
+            "last_name": "Wintheiser",
+            "full_name": "Elliot Wintheiser",
+            "email": "justina.jerde@kub.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 154,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 317,
+            "first_name": "Tillman",
+            "last_name": "Buckridge",
+            "full_name": "Tillman Buckridge",
+            "email": "wmills@mckenzie.biz",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 154,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 316,
+            "first_name": "Christal",
+            "last_name": "Gleichner",
+            "full_name": "Christal Gleichner",
+            "email": "jacobi.boris@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 154,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 311,
+            "first_name": "Arlyne",
+            "last_name": "Stiedemann",
+            "full_name": "Arlyne Stiedemann",
+            "email": "johnson.nevin@hettingerrobel.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 151,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 310,
+            "first_name": "Sheyla",
+            "last_name": "Ritchie",
+            "full_name": "Sheyla Ritchie",
+            "email": "nryan@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 151,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 11
+      },
+      {
+        "id": 49,
+        "activity": 13,
+        "initial_date": 1455748148000,
+        "closing_sale": 1457044148000,
+        "number_of_sessions": 0,
+        "session_price": 887476,
+        "capacity": 12,
+        "sessions": [
+          {
+            "id": 193,
+            "date": 1472337485000,
+            "start_time": 1456547917000,
+            "end_time": 1456547917000
+          },
+          {
+            "id": 194,
+            "date": 1464340460000,
+            "start_time": 1456493220000,
+            "end_time": 1456493220000
+          },
+          {
+            "id": 195,
+            "date": 1470926939000,
+            "start_time": 1456481240000,
+            "end_time": 1456481240000
+          },
+          {
+            "id": 196,
+            "date": 1484529531000,
+            "start_time": 1456525707000,
+            "end_time": 1456525707000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 329,
+            "first_name": "Merlene",
+            "last_name": "Brakus",
+            "full_name": "Merlene Brakus",
+            "email": "ohoppe@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 160,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 328,
+            "first_name": "Theresa",
+            "last_name": "Homenick",
+            "full_name": "Theresa Homenick",
+            "email": "bmonahan@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 160,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 325,
+            "first_name": "Nelly",
+            "last_name": "Brakus",
+            "full_name": "Nelly Brakus",
+            "email": "kellee02@cassinbeer.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 158,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 324,
+            "first_name": "Lynne",
+            "last_name": "Schiller",
+            "full_name": "Lynne Schiller",
+            "email": "shermann@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 158,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 323,
+            "first_name": "Cathern",
+            "last_name": "Senger",
+            "full_name": "Cathern Senger",
+            "email": "ondricka.leatrice@abbottkuphal.org",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 157,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 322,
+            "first_name": "Brandi",
+            "last_name": "Homenick",
+            "full_name": "Brandi Homenick",
+            "email": "maude50@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 156,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 6
+      },
+      {
+        "id": 50,
+        "activity": 13,
+        "initial_date": 1455214139000,
+        "closing_sale": 1456510139000,
+        "number_of_sessions": 0,
+        "session_price": 496681,
+        "capacity": 13,
+        "sessions": [
+          {
+            "id": 197,
+            "date": 1463705127000,
+            "start_time": 1456521614000,
+            "end_time": 1456521614000
+          },
+          {
+            "id": 198,
+            "date": 1461940128000,
+            "start_time": 1456483750000,
+            "end_time": 1456483750000
+          },
+          {
+            "id": 199,
+            "date": 1477040527000,
+            "start_time": 1456472182000,
+            "end_time": 1456472182000
+          },
+          {
+            "id": 200,
+            "date": 1464946497000,
+            "start_time": 1456544568000,
+            "end_time": 1456544568000
+          },
+          {
+            "id": 201,
+            "date": 1466900907000,
+            "start_time": 1456472085000,
+            "end_time": 1456472085000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 337,
+            "first_name": "Moesha",
+            "last_name": "Klein",
+            "full_name": "Moesha Klein",
+            "email": "ortiz.howell@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 162,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 336,
+            "first_name": "Garvin",
+            "last_name": "West",
+            "full_name": "Garvin West",
+            "email": "mbins@corwinkshlerin.info",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 162,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 335,
+            "first_name": "Monroe",
+            "last_name": "Koch",
+            "full_name": "Monroe Koch",
+            "email": "lovina.hayes@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 162,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 334,
+            "first_name": "Joshua",
+            "last_name": "Langworth",
+            "full_name": "Joshua Langworth",
+            "email": "cortney.parisian@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 162,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 333,
+            "first_name": "Edw",
+            "last_name": "Cronin",
+            "full_name": "Edw Cronin",
+            "email": "ysatterfield@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 161,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 332,
+            "first_name": "Coley",
+            "last_name": "Hammes",
+            "full_name": "Coley Hammes",
+            "email": "zheidenreich@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 161,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 331,
+            "first_name": "Robin",
+            "last_name": "Stamm",
+            "full_name": "Robin Stamm",
+            "email": "teddy.mraz@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 161,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 330,
+            "first_name": "Olan",
+            "last_name": "Botsford",
+            "full_name": "Olan Botsford",
+            "email": "jorden85@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 161,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 5
+      },
+      {
+        "id": 51,
+        "activity": 13,
+        "initial_date": 1455471926000,
+        "closing_sale": 1456767926000,
+        "number_of_sessions": 5,
+        "session_price": 347084,
+        "capacity": 24,
+        "sessions": [
+          {
+            "id": 202,
+            "date": 1465111242000,
+            "start_time": 1456496706000,
+            "end_time": 1456496706000
+          },
+          {
+            "id": 203,
+            "date": 1458867762000,
+            "start_time": 1456489666000,
+            "end_time": 1456489666000
+          },
+          {
+            "id": 204,
+            "date": 1465770323000,
+            "start_time": 1456508197000,
+            "end_time": 1456508197000
+          },
+          {
+            "id": 205,
+            "date": 1480005228000,
+            "start_time": 1456538582000,
+            "end_time": 1456538582000
+          },
+          {
+            "id": 206,
+            "date": 1477243483000,
+            "start_time": 1456522975000,
+            "end_time": 1456522975000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 341,
+            "first_name": "Zettie",
+            "last_name": "Rogahn",
+            "full_name": "Zettie Rogahn",
+            "email": "amoen@turner.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 165,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 340,
+            "first_name": "Darrick",
+            "last_name": "Pagac",
+            "full_name": "Darrick Pagac",
+            "email": "mayer.viva@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 164,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 339,
+            "first_name": "Orie",
+            "last_name": "Morissette",
+            "full_name": "Orie Morissette",
+            "email": "dawna.weissnat@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 164,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 21
+      }
+    ],
+    "closest_calendar": {
+      "id": 47,
+      "activity": 13,
+      "initial_date": 1456241267000,
+      "closing_sale": 1457537267000,
+      "number_of_sessions": 0,
+      "session_price": 675577,
+      "capacity": 2,
+      "sessions": [
+        {
+          "id": 183,
+          "date": 1461853458000,
+          "start_time": 1456517712000,
+          "end_time": 1456517712000
+        },
+        {
+          "id": 184,
+          "date": 1484419298000,
+          "start_time": 1456499379000,
+          "end_time": 1456499379000
+        },
+        {
+          "id": 185,
+          "date": 1459003593000,
+          "start_time": 1456547620000,
+          "end_time": 1456547620000
+        },
+        {
+          "id": 186,
+          "date": 1468220460000,
+          "start_time": 1456490792000,
+          "end_time": 1456490792000
+        },
+        {
+          "id": 187,
+          "date": 1472556335000,
+          "start_time": 1456464919000,
+          "end_time": 1456464919000
+        }
+      ],
+      "assistants": [],
+      "is_weekend": false,
+      "duration": 0,
+      "is_free": false,
+      "available_capacity": 2
+    },
+    "required_steps": {
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ]
+    },
+    "steps": {
+      "instructors": [
+        "instructors"
+      ],
+      "detail": [
+        "content",
+        "audience",
+        "goals",
+        "methodology",
+        "requirements",
+        "extra_info"
+      ],
+      "gallery": [
+        "pictures"
+      ],
+      "return_policy": [
+        "return_policy"
+      ],
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ],
+      "calendars": [
+        "calendars"
+      ]
+    },
+    "organizer": {
+      "id": 2,
+      "user": {
+        "first_name": "Arielle",
+        "last_name": "Rempel",
+        "email": "cheri45@thiel.biz"
+      },
+      "name": "Nienow-Keebler",
+      "bio": "optimize efficient content",
+      "headline": "Advanced 24hour encoding",
+      "website": "http://kochbuckridge.com/",
+      "youtube_video_url": "665.951.0703x5667",
+      "telephone": "409.283.6295",
+      "photo": null,
+      "user_type": "O",
+      "created_at": 1454352455000,
+      "instructors": [
+        {
+          "full_name": "Britany Kuvalis PhD",
+          "id": 8,
+          "bio": "Omnis officia dolorem amet rem eaque. Aut aut perspiciatis non consectetur. Dolor architecto veniam quia. Incidunt vel architecto aut ut molestiae perferendis. Quod reiciendis omnis et recusandae nam fugiat.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://hickle.com/"
+        },
+        {
+          "full_name": "Christin Hettinger DDS",
+          "id": 7,
+          "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.rowe.com/"
+        },
+        {
+          "full_name": "Waymon Keeling",
+          "id": 6,
+          "bio": "Molestiae mollitia a eum rem corporis repellendus voluptatem. Dolor perspiciatis est omnis atque sunt. Quod excepturi voluptate placeat velit ex eius vero ullam.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://kochosinski.com/"
+        },
+        {
+          "full_name": "Krystina Sawayn DDS",
+          "id": 5,
+          "bio": "Dolorum id vel nisi qui ipsa omnis. Repellendus earum quisquam rerum maiores quia. Enim vitae eum sit. Voluptatum et quaerat vel ea dolores.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.wiegandbarrows.net/"
+        }
+      ],
+      "locations": [],
+      "rating": 0
+    },
+    "instructors": [
+      {
+        "full_name": "Christin Hettinger DDS",
+        "id": 7,
+        "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+        "organizer": 2,
+        "photo": null,
+        "website": "http://www.rowe.com/"
+      }
+    ],
+    "score": 75,
+    "rating": 0
+  },
+  {
+    "id": 14,
+    "title": "Clase de DJ",
+    "short_description": "Sit est perferendis inventore culpa itaque iure.",
+    "sub_category": 7,
+    "sub_category_display": "DJ",
+    "level": "N",
+    "level_display": "No Aplica",
+    "tags": [
+      "dj",
+      "música"
+    ],
+    "category": {
+      "name": "Música",
+      "id": 1,
+      "color": "#FF7E60",
+      "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
+      "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
+      "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+    },
+    "content": "Perferendis rem vero voluptatibus iusto delectus ut hic. Voluptas harum aut libero aperiam facere qui perspiciatis voluptate. Est aut vel qui ut.",
+    "requirements": "Qui velit minima ratione labore ex sapiente. Et in voluptates consequatur alias dolorem dolor. Praesentium maiores sed veniam eius quo unde omnis.",
+    "return_policy": "Quam nisi sit voluptatem neque sit maiores. Natus minus qui consequatur non excepturi aut quaerat. Qui sit debitis excepturi nemo placeat illo sed. At libero similique qui voluptas sapiente molestias. Atque iste totam repellat commodi.",
+    "extra_info": "Sit qui tempora aut ad totam. Ratione quos perspiciatis voluptas voluptatem sed. Totam et voluptatem voluptate.",
+    "audience": "Consequuntur nam sed repellendus omnis sunt. Ut doloremque at earum accusantium laborum aut dignissimos. At quos aut et explicabo consequuntur delectus. Unde et adipisci dolor unde unde itaque quis quisquam.",
+    "goals": "Enim architecto voluptas dolore. Ut enim ut sequi distinctio asperiores consequuntur. Praesentium veritatis nostrum aut quia provident.",
+    "methodology": "Rerum qui voluptates dolorem aperiam explicabo fuga. Quas distinctio dolores excepturi quo quia dolor. Reprehenderit asperiores eum nisi assumenda eos reprehenderit reprehenderit.",
+    "location": {
+      "id": 3,
+      "city": 1,
+      "point": [
+        143.300946,
+        -40.7280335
+      ],
+      "address": "70841 Denesik Place Apt. 565\nBartonton, NC 27522",
+      "organizer": null
+    },
+    "pictures": [
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 50
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 51
+      },
+      {
+        "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+        "main_photo": false,
+        "id": 52
+      }
+    ],
+    "youtube_video_url": "http://turcotte.net/",
+    "published": true,
+    "certification": false,
+    "last_date": 1485194101000,
+    "calendars": [
+      {
+        "id": 52,
+        "activity": 14,
+        "initial_date": 1454604458000,
+        "closing_sale": 1455900458000,
+        "number_of_sessions": 0,
+        "session_price": 686147,
+        "capacity": 0,
+        "sessions": [
+          {
+            "id": 207,
+            "date": 1477832136000,
+            "start_time": 1456478042000,
+            "end_time": 1456478042000
+          },
+          {
+            "id": 208,
+            "date": 1470715315000,
+            "start_time": 1456500710000,
+            "end_time": 1456500710000
+          },
+          {
+            "id": 209,
+            "date": 1476864968000,
+            "start_time": 1456482259000,
+            "end_time": 1456482259000
+          },
+          {
+            "id": 210,
+            "date": 1482201318000,
+            "start_time": 1456514249000,
+            "end_time": 1456514249000
+          },
+          {
+            "id": 211,
+            "date": 1466616678000,
+            "start_time": 1456519037000,
+            "end_time": 1456519037000
+          }
+        ],
+        "assistants": [],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 0
+      },
+      {
+        "id": 53,
+        "activity": 14,
+        "initial_date": 1454584945000,
+        "closing_sale": 1455880945000,
+        "number_of_sessions": 9,
+        "session_price": 887946,
+        "capacity": 10,
+        "sessions": [
+          {
+            "id": 212,
+            "date": 1463136563000,
+            "start_time": 1456516199000,
+            "end_time": 1456516199000
+          },
+          {
+            "id": 213,
+            "date": 1481525653000,
+            "start_time": 1456525533000,
+            "end_time": 1456525533000
+          },
+          {
+            "id": 214,
+            "date": 1472248591000,
+            "start_time": 1456544543000,
+            "end_time": 1456544543000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 350,
+            "first_name": "Renae",
+            "last_name": "Batz",
+            "full_name": "Renae Batz",
+            "email": "stokes.janette@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 170,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 349,
+            "first_name": "Landon",
+            "last_name": "Funk",
+            "full_name": "Landon Funk",
+            "email": "tanja49@hyattherzog.org",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 170,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 348,
+            "first_name": "Erle",
+            "last_name": "Witting",
+            "full_name": "Erle Witting",
+            "email": "ewing.funk@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 169,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 7
+      },
+      {
+        "id": 54,
+        "activity": 14,
+        "initial_date": 1455147678000,
+        "closing_sale": 1456443678000,
+        "number_of_sessions": 5,
+        "session_price": 822788,
+        "capacity": 14,
+        "sessions": [
+          {
+            "id": 215,
+            "date": 1479383178000,
+            "start_time": 1456514608000,
+            "end_time": 1456514608000
+          },
+          {
+            "id": 216,
+            "date": 1458893935000,
+            "start_time": 1456512501000,
+            "end_time": 1456512501000
+          },
+          {
+            "id": 217,
+            "date": 1459155411000,
+            "start_time": 1456526497000,
+            "end_time": 1456526497000
+          },
+          {
+            "id": 218,
+            "date": 1485194101000,
+            "start_time": 1456486452000,
+            "end_time": 1456486452000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 356,
+            "first_name": "Mina",
+            "last_name": "McLaughlin",
+            "full_name": "Mina McLaughlin",
+            "email": "psauer@bailey.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 173,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 355,
+            "first_name": "Abbigail",
+            "last_name": "Rempel",
+            "full_name": "Abbigail Rempel",
+            "email": "fgislason@stroman.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 173,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 354,
+            "first_name": "Caylee",
+            "last_name": "Jast",
+            "full_name": "Caylee Jast",
+            "email": "telly85@armstrong.biz",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 173,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 11
+      },
+      {
+        "id": 55,
+        "activity": 14,
+        "initial_date": 1454750220000,
+        "closing_sale": 1456046220000,
+        "number_of_sessions": 0,
+        "session_price": 287836,
+        "capacity": 22,
+        "sessions": [
+          {
+            "id": 219,
+            "date": 1473653661000,
+            "start_time": 1456543175000,
+            "end_time": 1456543175000
+          },
+          {
+            "id": 220,
+            "date": 1460786687000,
+            "start_time": 1456526219000,
+            "end_time": 1456526219000
+          },
+          {
+            "id": 221,
+            "date": 1484475222000,
+            "start_time": 1456467092000,
+            "end_time": 1456467092000
+          },
+          {
+            "id": 222,
+            "date": 1464917679000,
+            "start_time": 1456492991000,
+            "end_time": 1456492991000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 373,
+            "first_name": "Alto",
+            "last_name": "Kerluke",
+            "full_name": "Alto Kerluke",
+            "email": "rolanda33@gmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 179,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 372,
+            "first_name": "Cara",
+            "last_name": "Carroll",
+            "full_name": "Cara Carroll",
+            "email": "mjones@feil.info",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 179,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 371,
+            "first_name": "Monika",
+            "last_name": "Rodriguez",
+            "full_name": "Monika Rodriguez",
+            "email": "yvette.hagenes@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 179,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 370,
+            "first_name": "Leisha",
+            "last_name": "McCullough",
+            "full_name": "Leisha McCullough",
+            "email": "veichmann@grant.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 179,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 369,
+            "first_name": "Gabriel",
+            "last_name": "Kozey",
+            "full_name": "Gabriel Kozey",
+            "email": "bette94@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 178,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 368,
+            "first_name": "Vada",
+            "last_name": "Parisian",
+            "full_name": "Vada Parisian",
+            "email": "vella.walker@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 177,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 367,
+            "first_name": "Janey",
+            "last_name": "Miller",
+            "full_name": "Janey Miller",
+            "email": "asia.shanahan@reichert.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 177,
+            "lastest_refund": {
+              "requested_by_me": false,
+              "status": "Rechazado"
+            },
+            "token": null
+          },
+          {
+            "id": 366,
+            "first_name": "Anahi",
+            "last_name": "Wisozk",
+            "full_name": "Anahi Wisozk",
+            "email": "brittnay.fay@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 177,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 365,
+            "first_name": "Trina",
+            "last_name": "Larkin",
+            "full_name": "Trina Larkin",
+            "email": "cummings.webster@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 177,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": false,
+        "duration": 0,
+        "is_free": false,
+        "available_capacity": 13
+      },
+      {
+        "id": 56,
+        "activity": 14,
+        "initial_date": 1456045049000,
+        "closing_sale": 1457341049000,
+        "number_of_sessions": 2,
+        "session_price": 605473,
+        "capacity": 16,
+        "sessions": [
+          {
+            "id": 223,
+            "date": 1465881299000,
+            "start_time": 1456535759000,
+            "end_time": 1456535759000
+          },
+          {
+            "id": 224,
+            "date": 1458965114000,
+            "start_time": 1456542805000,
+            "end_time": 1456542805000
+          },
+          {
+            "id": 225,
+            "date": 1483363907000,
+            "start_time": 1456523699000,
+            "end_time": 1456523699000
+          },
+          {
+            "id": 226,
+            "date": 1484116840000,
+            "start_time": 1456479481000,
+            "end_time": 1456479481000
+          }
+        ],
+        "assistants": [
+          {
+            "id": 386,
+            "first_name": "Flint",
+            "last_name": "Fay",
+            "full_name": "Flint Fay",
+            "email": "tammie88@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 184,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 385,
+            "first_name": "Festus",
+            "last_name": "Block",
+            "full_name": "Festus Block",
+            "email": "hoeger.clora@yahoo.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 184,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 384,
+            "first_name": "Lulah",
+            "last_name": "Murphy",
+            "full_name": "Lulah Murphy",
+            "email": "dicki.dangelo@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 184,
+            "lastest_refund": null,
+            "token": null
+          },
+          {
+            "id": 383,
+            "first_name": "Donat",
+            "last_name": "Von",
+            "full_name": "Donat Von",
+            "email": "morissette.kendal@hotmail.com",
+            "student": {
+              "photo": null,
+              "user": {
+                "first_name": "",
+                "last_name": "",
+                "email": ""
+              },
+              "gender": null,
+              "birth_date": null,
+              "telephone": "",
+              "city": null
+            },
+            "order": 184,
+            "lastest_refund": null,
+            "token": null
+          }
+        ],
+        "is_weekend": true,
+        "duration": 0,
+        "is_free": true,
+        "available_capacity": 12
+      }
+    ],
+    "closest_calendar": {
+      "id": 56,
+      "activity": 14,
+      "initial_date": 1456045049000,
+      "closing_sale": 1457341049000,
+      "number_of_sessions": 2,
+      "session_price": 605473,
+      "capacity": 16,
+      "sessions": [
+        {
+          "id": 223,
+          "date": 1465881299000,
+          "start_time": 1456535759000,
+          "end_time": 1456535759000
+        },
+        {
+          "id": 224,
+          "date": 1458965114000,
+          "start_time": 1456542805000,
+          "end_time": 1456542805000
+        },
+        {
+          "id": 225,
+          "date": 1483363907000,
+          "start_time": 1456523699000,
+          "end_time": 1456523699000
+        },
+        {
+          "id": 226,
+          "date": 1484116840000,
+          "start_time": 1456479481000,
+          "end_time": 1456479481000
+        }
+      ],
+      "assistants": [
+        {
+          "id": 386,
+          "first_name": "Flint",
+          "last_name": "Fay",
+          "full_name": "Flint Fay",
+          "email": "tammie88@hotmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 184,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 385,
+          "first_name": "Festus",
+          "last_name": "Block",
+          "full_name": "Festus Block",
+          "email": "hoeger.clora@yahoo.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 184,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 384,
+          "first_name": "Lulah",
+          "last_name": "Murphy",
+          "full_name": "Lulah Murphy",
+          "email": "dicki.dangelo@hotmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 184,
+          "lastest_refund": null,
+          "token": null
+        },
+        {
+          "id": 383,
+          "first_name": "Donat",
+          "last_name": "Von",
+          "full_name": "Donat Von",
+          "email": "morissette.kendal@hotmail.com",
+          "student": {
+            "photo": null,
+            "user": {
+              "first_name": "",
+              "last_name": "",
+              "email": ""
+            },
+            "gender": null,
+            "birth_date": null,
+            "telephone": "",
+            "city": null
+          },
+          "order": 184,
+          "lastest_refund": null,
+          "token": null
+        }
+      ],
+      "is_weekend": true,
+      "duration": 0,
+      "is_free": true,
+      "available_capacity": 12
+    },
+    "required_steps": {
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ]
+    },
+    "steps": {
+      "instructors": [
+        "instructors"
+      ],
+      "detail": [
+        "content",
+        "audience",
+        "goals",
+        "methodology",
+        "requirements",
+        "extra_info"
+      ],
+      "gallery": [
+        "pictures"
+      ],
+      "return_policy": [
+        "return_policy"
+      ],
+      "location": [
+        "location"
+      ],
+      "general": [
+        "title",
+        "short_description",
+        "sub_category",
+        "level"
+      ],
+      "calendars": [
+        "calendars"
+      ]
+    },
+    "organizer": {
+      "id": 2,
+      "user": {
+        "first_name": "Arielle",
+        "last_name": "Rempel",
+        "email": "cheri45@thiel.biz"
+      },
+      "name": "Nienow-Keebler",
+      "bio": "optimize efficient content",
+      "headline": "Advanced 24hour encoding",
+      "website": "http://kochbuckridge.com/",
+      "youtube_video_url": "665.951.0703x5667",
+      "telephone": "409.283.6295",
+      "photo": null,
+      "user_type": "O",
+      "created_at": 1454352455000,
+      "instructors": [
+        {
+          "full_name": "Britany Kuvalis PhD",
+          "id": 8,
+          "bio": "Omnis officia dolorem amet rem eaque. Aut aut perspiciatis non consectetur. Dolor architecto veniam quia. Incidunt vel architecto aut ut molestiae perferendis. Quod reiciendis omnis et recusandae nam fugiat.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://hickle.com/"
+        },
+        {
+          "full_name": "Christin Hettinger DDS",
+          "id": 7,
+          "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.rowe.com/"
+        },
+        {
+          "full_name": "Waymon Keeling",
+          "id": 6,
+          "bio": "Molestiae mollitia a eum rem corporis repellendus voluptatem. Dolor perspiciatis est omnis atque sunt. Quod excepturi voluptate placeat velit ex eius vero ullam.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://kochosinski.com/"
+        },
+        {
+          "full_name": "Krystina Sawayn DDS",
+          "id": 5,
+          "bio": "Dolorum id vel nisi qui ipsa omnis. Repellendus earum quisquam rerum maiores quia. Enim vitae eum sit. Voluptatum et quaerat vel ea dolores.",
+          "organizer": 2,
+          "photo": null,
+          "website": "http://www.wiegandbarrows.net/"
+        }
+      ],
+      "locations": [],
+      "rating": 0
+    },
+    "instructors": [
+      {
+        "full_name": "Christin Hettinger DDS",
+        "id": 7,
+        "bio": "Quae reiciendis minima molestiae fugiat placeat facilis. Dolore nihil et in voluptas voluptates. Consequatur repellat aut numquam provident quisquam sed et.",
+        "organizer": 2,
+        "photo": null,
+        "website": "http://www.rowe.com/"
+      }
+    ],
+    "score": 22,
+    "rating": 0
+  }
+]

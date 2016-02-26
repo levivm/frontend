@@ -184,7 +184,7 @@
         function getActivity(activityId) {
             var deferred = $q.defer();
             var activity = _search(activityId);
-
+            console.log('get activity', activity);
             if (activity) {
                 deferred.resolve(activity);
             } else {
