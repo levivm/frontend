@@ -212,7 +212,7 @@
             return student.getReviews().then(success, error);
 
             function success(reviews){
-                angular.forEach(activities, checkReview);
+                angular.forEach(activities.results, checkReview);
                 return reviews;
 
                 function checkReview(activity){

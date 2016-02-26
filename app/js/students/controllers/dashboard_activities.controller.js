@@ -111,7 +111,7 @@
             var deferred = $q.defer();
             var promiseArray = [];
 
-            activities.forEach(function(activity){
+            activities.results.forEach(function(activity){
                 promiseArray.push(classifyActivity(activity));
             });
 
@@ -217,7 +217,7 @@
 
         function _activate() {
             _setStrings();
-            _mapOrders(orders, activities, reviews).then(function(){
+            _mapOrders(orders.results, activities.results, reviews).then(function(){
                 _classifyActivities(activities, pastOrders, futureOrders);
             }).then(function(){
                 _mapReviews(vm.past_activities, reviews);

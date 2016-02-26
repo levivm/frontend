@@ -26,7 +26,6 @@
             password_data: {},
             isCollapsed: true,
             isSaving: false,
-            from_date_opened: false,
             sales: [],
             refunds: [],
             reimbursements: [],
@@ -51,7 +50,24 @@
                 maxPagesSize:10,
                 pageNumber: 1
             },
-            pageChange:pageChange,
+            salesFilter: {
+              from_date: null,
+              until_date: null,
+              from_date_opened: false,
+              until_date_opened: false,
+              status: null,
+              query: null,
+              activity: null
+            },
+            refundsFilter: {
+              from_date: null,
+              until_date: null,
+              from_date_opened: false,
+              until_date_opened: false,
+              status: null,
+              query: null,
+              activity: null
+            },
             updateByQuery:updateByQuery,
             openDatePicker: openDatePicker,
             TYPE_SALES: 'sales',
@@ -68,65 +84,89 @@
           $event.preventDefault();
           $event.stopPropagation();
 
-          if(date === 'from_date'){
-            vm.from_date_opened = true;
-            vm.until_date_opened = false;
+          if(date === 'sales_from_date'){
+            vm.salesFilter.from_date_opened = true;
+            vm.salesFilter.until_date_opened = false;
           }
-          if(date === 'until_date'){
-            vm.until_date_opened = true;
-            vm.from_date_opened = false;
+          if(date === 'sales_until_date'){
+            vm.salesFilter.until_date_opened = true;
+            vm.salesFilter.from_date_opened = false;
+          }
+           if(date === 'refunds_from_date'){
+            vm.refundsFilter.from_date_opened = true;
+            vm.refundsFilter.until_date_opened = false;
+          }
+          if(date === 'refunds_until_date'){
+            vm.refundsFilter.until_date_opened = true;
+            vm.refundsFilter.from_date_opened = false;
           }
         }
         
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_SALES:
-                console.log('updating',vm.queries.saleQuery);
-                    vm.sales = $filter('filter')(sales, vm.queries.saleQuery);
-                    vm.salesPaginationOpts.totalItems = vm.sales.length;
-                    vm.salesPaginationOpts.pageNumber = 1;
-                    vm.sales = vm.sales.slice(0, vm.salesPaginationOpts.itemsPerPage);
-                    break;
-                case vm.TYPE_REFUNDS:
-                console.log('updating',vm.queries.refundQuery);
-                    vm.refunds = $filter('filter')(refunds, vm.queries.refundQuery);
-                    vm.refundsPaginationOpts.totalItems = vm.refunds.length;
-                    vm.refundsPaginationOpts.pageNumber = 1;
-                    vm.refunds = vm.refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-                    break;
-
-            }
-        }
-
-        function pageChange(type){
-            var offset = null;
-            var start = null;
-            var end = null;
-            switch(type){
-                case vm.TYPE_SALES:
-                    $http.get(api.orders(organizer.id),
-                      {params: {
-                        page: vm.salesPaginationOpts.pageNumber,
-                        page_size: vm.salesPaginationOpts.itemsPerPage
-                      }}).then(function(response){
+                
+                  var params = {
+                    page: vm.salesPaginationOpts.pageNumber,
+                    page_size: vm.salesPaginationOpts.itemsPerPage
+                  };
+                  
+                  if(vm.salesFilter.activity)
+                    params.activity = vm.salesFilter.activity;
+                    
+                  if(vm.salesFilter.from_date)
+                    params.from_date = new Date(vm.salesFilter.from_date).getTime();
+                    
+                  if(vm.salesFilter.until_date)
+                    params.until_date = new Date(vm.salesFilter.until_date).getTime();
+                    
+                  if(vm.salesFilter.status)
+                    params.status = vm.salesFilter.status;
+                    
+                  if(vm.salesFilter.query)
+                    params.id = vm.salesFilter.query;
+                    
+                  $http.get(api.orders(organizer.id),
+                      {params: params})
+                      .then(function(response){
                       vm.sales = response.data;
                       vm.sales.results = $filter('orderBy')(vm.sales.results, 'id', true);
                       vm.salesPaginationOpts.totalItems = vm.sales.count;
                       vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
                     });
-                    break;
+                  break;
+                    
                 case vm.TYPE_REFUNDS:
-                    $http.get(api.refunds(organizer.id),
-                      {params: {
-                        page: vm.refundsPaginationOpts.pageNumber,
-                        page_size: vm.refundsPaginationOpts.itemsPerPage
-                      }}).then(function(response){
+                  var params = {
+                    page: vm.refundsPaginationOpts.pageNumber,
+                    page_size: vm.refundsPaginationOpts.itemsPerPage
+                  };
+                  
+                  if(vm.refundsFilter.activity)
+                    params.activity = vm.refundsFilter.activity;
+                    
+                  if(vm.refundsFilter.from_date)
+                    params.from_date = new Date(vm.refundsFilter.from_date).getTime();
+                    
+                  if(vm.refundsFilter.until_date)
+                    params.until_date = new Date(vm.refundsFilter.until_date).getTime();
+                    
+                  if(vm.refundsFilter.status)
+                    params.status = vm.refundsFilter.status;
+                    
+                  if(vm.refundsFilter.query)
+                    params.id = vm.refundsFilter.query;
+                    
+                  $http.get(api.refunds(organizer.id),
+                      {params: params})
+                      .then(function(response){
                       vm.refunds = response.data;
                       vm.refunds.results = $filter('orderBy')(vm.refunds.results, 'id', true);
                       vm.refundsPaginationOpts.totalItems = vm.refunds.count;
-                      vm.refunds = vm.sales.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+                      vm.refunds = vm.refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
                     });
                     break;
+
             }
         }
 
