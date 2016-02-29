@@ -28,30 +28,8 @@ describe('Controller: ActivityDetailController', function(){
     });
     beforeEach(inject(function($controller, $rootScope, $http, $httpBackend) {
 
-        /*Calls to resolve route / 'Home'
-            currentUser: getAuthenticatedUser,
-            activity: getActivity,
-            reviews: getReviews,
-            calendars: getCalendars,
-            organizer: getActivityOrganizer,
-            relatedActivities: getOrganizerActivities
-            Organizer
-
-            http://localhost:8000/api/activities/9
-            ActivitiesManager.getActivity($stateParams.activity_id);
-
-            Authentication.getAuthenticatedAccount();
-
-
-            http://localhost:8000/api/organizers/2/reviews
-
-            organizer = acitvity.organizer
-
-            ActivitiesManager.loadOrganizerActivities(organizer.id);
-
-             CalendarsManager.loadCalendars(activity.id);
-
-             http://localhost:8000/api/activities/9/calendars
+        /*
+            Resolves for detail.controller
         */
         $httpBackend
              .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
@@ -112,6 +90,9 @@ describe('Controller: ActivityDetailController', function(){
             }, function(response){
                 console.log(response);
             });
+
+        currentUser = readJSON('tests/mock/currentUser.json');
+        console.log(currentUser);
         //End calls
         $httpBackend.flush();
 
@@ -135,6 +116,56 @@ describe('Controller: ActivityDetailController', function(){
             expect(ActivityDetailController.strings).toBeDefined();
          });
     });
+
+    describe("Calendars", function(){
+        it('should selectedActivity equal 0', function() {
+            expect(ActivityDetailController.selectedActivity).toEqual(0);
+         });
+         it('Should showSessions Truthy', function() {
+             ActivityDetailController.toggleSessions();
+             expect(ActivityDetailController.showSessions).toBeTruthy();
+
+          });
+    });
+    describe("Reviews", function(){
+         it('Should dont hasMoreReviews reviews length < 3', function() {
+            expect(ActivityDetailController.hasMoreReviews).toBe(false);
+          });
+    });
+    xdescribe("Enroll", function(){
+         it('signUp function dont currentUser go to register', function() {
+             ActivityDetailController.signUp(9, 119);
+             expect(currentUser).toBe(undefined);
+          });
+    });
+
+    describe("Enroll", function(){
+         it('signUp function currentUser is student', inject(function($state) {
+             $httpBackend
+                 .when('GET', 'http://localhost:8000/api/activities/9/calendars/119')
+                 .respond(200, {});
+             ActivityDetailController.signUp(9, 119);
+             var enrollParams = {
+                 activity_id: 9,
+                 calendar_id: 119
+             };
+             switch(currentUser.user_type){
+                 case 'S':
+                    spyOn($state, 'go');
+                     $state.go('activities-enroll', enrollParams);
+                     rootScope.$apply();
+
+                     break;
+                 case 'O':
+                     //Toast.error(vm.strings.TITLE_INVALID_USER, vm.strings.MSG_INVALID_USER);
+                     break;
+             }
+
+             expect($state.go).toHaveBeenCalled();
+             expect($state.go).toHaveBeenCalledWith('activities-enroll', enrollParams);
+         }));
+    });
+
 
 
 })

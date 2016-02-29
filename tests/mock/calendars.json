@@ -1,90 +1,5 @@
 [
   {
-    "id": 33,
-    "activity": 9,
-    "initial_date": 1454627570000,
-    "closing_sale": 1455923570000,
-    "number_of_sessions": 5,
-    "session_price": 622270,
-    "capacity": 3,
-    "sessions": [
-      {
-        "id": 130,
-        "date": 1481892865000,
-        "start_time": 1456492712000,
-        "end_time": 1456492712000
-      },
-      {
-        "id": 129,
-        "date": 1474161766000,
-        "start_time": 1456523363000,
-        "end_time": 1456523363000
-      },
-      {
-        "id": 128,
-        "date": 1477036799000,
-        "start_time": 1456537406000,
-        "end_time": 1456537406000
-      },
-      {
-        "id": 127,
-        "date": 1459912304000,
-        "start_time": 1456524103000,
-        "end_time": 1456524103000
-      }
-    ],
-    "assistants": [
-      {
-        "id": 230,
-        "first_name": "Devin",
-        "last_name": "Cummerata",
-        "full_name": "Devin Cummerata",
-        "email": "webb90@cummingskerluke.biz",
-        "student": {
-          "photo": null,
-          "user": {
-            "first_name": "",
-            "last_name": "",
-            "email": ""
-          },
-          "gender": null,
-          "birth_date": null,
-          "telephone": "",
-          "city": null
-        },
-        "order": 110,
-        "lastest_refund": null,
-        "token": null
-      },
-      {
-        "id": 229,
-        "first_name": "Maida",
-        "last_name": "Fisher",
-        "full_name": "Maida Fisher",
-        "email": "fschmidt@feil.com",
-        "student": {
-          "photo": null,
-          "user": {
-            "first_name": "",
-            "last_name": "",
-            "email": ""
-          },
-          "gender": null,
-          "birth_date": null,
-          "telephone": "",
-          "city": null
-        },
-        "order": 109,
-        "lastest_refund": null,
-        "token": null
-      }
-    ],
-    "is_weekend": true,
-    "duration": 0,
-    "is_free": true,
-    "available_capacity": 1
-  },
-  {
     "id": 34,
     "activity": 9,
     "initial_date": 1454777350000,
@@ -96,32 +11,32 @@
       {
         "id": 135,
         "date": 1459564107000,
-        "start_time": 1456493104000,
-        "end_time": 1456493104000
+        "start_time": 1456752304000,
+        "end_time": 1456752304000
       },
       {
         "id": 134,
         "date": 1468832435000,
-        "start_time": 1456505841000,
-        "end_time": 1456505841000
+        "start_time": 1456765041000,
+        "end_time": 1456765041000
       },
       {
         "id": 133,
         "date": 1457591970000,
-        "start_time": 1456484350000,
-        "end_time": 1456484350000
+        "start_time": 1456743550000,
+        "end_time": 1456743550000
       },
       {
         "id": 132,
         "date": 1460377744000,
-        "start_time": 1456469185000,
-        "end_time": 1456469185000
+        "start_time": 1456728385000,
+        "end_time": 1456728385000
       },
       {
         "id": 131,
         "date": 1473863111000,
-        "start_time": 1456466538000,
-        "end_time": 1456466538000
+        "start_time": 1456725738000,
+        "end_time": 1456725738000
       }
     ],
     "assistants": [
@@ -231,20 +146,20 @@
       {
         "id": 138,
         "date": 1484062764000,
-        "start_time": 1456511085000,
-        "end_time": 1456511085000
+        "start_time": 1456770285000,
+        "end_time": 1456770285000
       },
       {
         "id": 137,
         "date": 1457017705000,
-        "start_time": 1456498359000,
-        "end_time": 1456498359000
+        "start_time": 1456757559000,
+        "end_time": 1456757559000
       },
       {
         "id": 136,
         "date": 1463872569000,
-        "start_time": 1456520064000,
-        "end_time": 1456520064000
+        "start_time": 1456779264000,
+        "end_time": 1456779264000
       }
     ],
     "assistants": [],
@@ -252,5 +167,112 @@
     "duration": 0,
     "is_free": true,
     "available_capacity": 2
+  },
+  {
+    "id": 119,
+    "activity": 9,
+    "initial_date": 1459103280000,
+    "closing_sale": 1458412080000,
+    "number_of_sessions": 1,
+    "session_price": 30000,
+    "capacity": 1,
+    "sessions": [
+      {
+        "id": 477,
+        "date": 1459103280000,
+        "start_time": 1456758000000,
+        "end_time": 1456768800000
+      }
+    ],
+    "assistants": [],
+    "is_weekend": true,
+    "duration": 10800,
+    "is_free": false,
+    "available_capacity": 1
+  },
+  {
+    "id": 33,
+    "activity": 9,
+    "initial_date": 1459930260000,
+    "closing_sale": 1458965520000,
+    "number_of_sessions": 5,
+    "session_price": 622270,
+    "capacity": 3,
+    "sessions": [
+      {
+        "id": 476,
+        "date": 1481910840000,
+        "start_time": 1456737480000,
+        "end_time": 1456751880000
+      },
+      {
+        "id": 475,
+        "date": 1477054740000,
+        "start_time": 1456785780000,
+        "end_time": 1456796580000
+      },
+      {
+        "id": 474,
+        "date": 1474179720000,
+        "start_time": 1456778940000,
+        "end_time": 1456782540000
+      },
+      {
+        "id": 473,
+        "date": 1459930260000,
+        "start_time": 1456797660000,
+        "end_time": 1456804800000
+      }
+    ],
+    "assistants": [
+      {
+        "id": 230,
+        "first_name": "Devin",
+        "last_name": "Cummerata",
+        "full_name": "Devin Cummerata",
+        "email": "webb90@cummingskerluke.biz",
+        "student": {
+          "photo": null,
+          "user": {
+            "first_name": "",
+            "last_name": "",
+            "email": ""
+          },
+          "gender": null,
+          "birth_date": null,
+          "telephone": "",
+          "city": null
+        },
+        "order": 110,
+        "lastest_refund": null,
+        "token": null
+      },
+      {
+        "id": 229,
+        "first_name": "Maida",
+        "last_name": "Fisher",
+        "full_name": "Maida Fisher",
+        "email": "fschmidt@feil.com",
+        "student": {
+          "photo": null,
+          "user": {
+            "first_name": "",
+            "last_name": "",
+            "email": ""
+          },
+          "gender": null,
+          "birth_date": null,
+          "telephone": "",
+          "city": null
+        },
+        "order": 109,
+        "lastest_refund": null,
+        "token": null
+      }
+    ],
+    "is_weekend": false,
+    "duration": 35940,
+    "is_free": true,
+    "available_capacity": 1
   }
 ]

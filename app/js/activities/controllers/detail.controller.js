@@ -98,7 +98,7 @@
             }
         }
 
-        function changeSelectedCalendar(calendar) { vm.calendar_selected = calendar; }
+        function changeSelectedCalendar(calendar) {console.log(calendar); vm.calendar_selected = calendar; }
 
         function signUp(activity_id, calendar_id){
             var enrollParams = {
@@ -147,8 +147,10 @@
             if(visibleReviewListSize < reviews.length){
                 visibleReviewListSize += 3;
                 vm.reviews = reviews.slice(0, visibleReviewListSize);
+                console.log(vm.reviews);
             } else {
                 vm.hasMoreReviews = false;
+                console.log(vm.reviews);
             }
         }
 
@@ -447,7 +449,6 @@
                 calendar_selected : _getSelectedCalendar(activity)
             });
 
-            console.log(vm.activity);
 
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
@@ -458,7 +459,6 @@
             _initWidget();
             _initSignup();
 
-            console.log('organizer:', vm.organizer);
         }
     }
 })();
