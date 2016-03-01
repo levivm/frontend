@@ -28,13 +28,16 @@
                     state: null,
                     isSearchVisible : true,
                     showBurger : false,
+                    showCities: false,
                     toggleBurger: toggleBurger,
+                    toogleCities:toogleCities,
                     explore: explore,
                     scroll: 0,
                     searchActivities: searchActivities,
                     clickItemSidebar:clickItemSidebar,
                     createActivity:createActivity,
-                    clickLogo:clickLogo
+                    clickLogo:clickLogo,
+                    updateSearchCity:updateSearchCity
                 });
 
                 _activate();
@@ -42,8 +45,13 @@
                 // --------- Exposed Functions ----------//
 
                 function toggleBurger(){
+                  if(scope.showCities) scope.showCities=false;
                   scope.showBurger = !scope.showBurger;
                 }
+                function toogleCities(){
+                  scope.showCities = !scope.showCities;
+                }
+
 
                 function explore(){
                     $rootScope.$broadcast(SearchManager.EVENT_EXPLORE);
@@ -73,6 +81,31 @@
                 //---End functions for send data to Google Analytics----//
 
                 //--------- Internal Functions ---------//
+
+                function _getCities() {
+                    LocationManager.getAvailableCities().then(success, error);
+
+                    function success(cities) {
+                        scope.cities = cities;
+                        console.log(scope.cities);
+                    }
+
+                    function error() {
+                        console.log("truliiSearchBar. Couldn't get cities");
+                    }
+                }
+                function _setCurrentCity() {
+                    scope.search_city = LocationManager.getSearchCity();
+                    if(!scope.search_city){
+                        scope.search_city = LocationManager.getCurrentCity();
+                    }
+                }
+
+                function updateSearchCity(city) {
+                    LocationManager.setSearchCity(city);
+                    _setCurrentCity();
+                    scope.showCities=false;
+                }
 
                 function _getUser() {
                     scope.user = true;
@@ -159,7 +192,8 @@
                         LABEL_STUDENT_PROFILE: 'Perfil',
                         LABEL_STUDENT_ACCOUNT: 'Cuenta',
                         LABEL_STUDENT_PURCHASES: 'Mis Compras',
-                        PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?'
+                        PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
+                        LABEL_CITY_MENU:'Elige tu ciudad'
                     });
                 }
 
@@ -191,6 +225,9 @@
                     _getUser();
                     _initScroll();
                     _setUserChangedWatch();
+                    _setCurrentCity();
+                    _getCities();
+
 
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;

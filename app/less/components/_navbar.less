@@ -67,13 +67,14 @@
         display: inline-block;
         text-align: center;
         transition: @transition-navbar;
+        position: relative;
 
         .--on-dash & {
             width: @sidebar-width - 1.1;
         }
         .before-md({
             height: @navbar-short-height - 1 !important;
-            width: 125px;
+            width: 70%;
             background-color:white;
         });
     }
@@ -84,18 +85,36 @@
         width: 9em;
         display: inline-block;
         background-size: contain;
-        margin: 5px auto 0;
+        margin: 0px auto 0;
         transition: @transition-navbar;
+        float: none;
         .before-md({
             width: 7em;
             background-size: contain;
             position: relative;
             background-image: url('img/logo-yellow.png');
-            margin: 7px auto 0 !important;
+            margin: 7px 0px 0px 10px !important;
             height: @navbar-short-inner-height;
+            float: left;
         });
     }
-
+    &__city{
+        color: white;
+        font-size: 12px;
+        position: absolute;
+        right:  73px;
+        bottom: 1px;
+        cursor: pointer;
+        float: none;
+        width: 72%;
+        padding-right: 0;
+        text-align: right;
+        i{
+            float: right;
+            margin-left: 5px;
+            margin-top: 2px;
+        }
+    }
     &__mobile-dashboard-controllers{
         width: calc(100% - 154px);
     }
@@ -556,6 +575,38 @@
   }
 }
 
+.cities-menu{
+    background-color: rgba(0, 0, 0, 0.73);
+    top: 80px;
+    padding: 4em 8em;
+
+    &__close{
+        position: absolute;
+        right: 2em;
+        top: 1em;
+        font-size: 2em;
+        cursor: pointer;
+    }
+    &__list{
+        ul{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            overflow: hidden;
+            height: 50vh;
+            list-style: none;
+            text-align: left;
+            margin-top: 3em;
+        }
+
+        li{
+            list-style: none;
+            margin-bottom: 0.6em;
+            cursor: pointer;
+        }
+    }
+}
+
 @media (max-width: 991px){
   .burger-menu{
     &__buttons{
@@ -603,9 +654,54 @@
     // &__left-wrapper{
     //   width: ~"calc(100% - 400px)";
     // }
+    &__city{
+        color: #757575;
+        font-size: 14px;
+        position: static;
+        text-align: left;
+        height: 59px;
+        line-height: 60px;
+        padding-left: 0px !important;
+        display: flex;
+        align-items: center;
+        margin-top: 5px;
+        float: left;
+        i{
+            float: none;
+            margin-left: 5px;
+            margin-top: 0px;
+
+        }
+    }
     .search-bar__navbar {
         width: 95%;
     }
+  }
+
+  .cities-menu{
+      top: 61px;
+     padding: 0.5em 2em;
+     margin-bottom: 3em;
+      &__title{
+          text-align: center;
+      }
+      &__list{
+          ul{
+              height: 100%;
+              margin-bottom: 4em;
+              margin-top: 2em;
+              text-align: center;
+          }
+          li{
+              font-size: 1.2em !important;
+              margin-bottom: 0.6em;
+          }
+
+      }
+      &__close{
+         right: 0.5em;
+      }
+
   }
 }
 
