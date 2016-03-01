@@ -126,14 +126,14 @@
               if(!pageSize){
                 pageSize = defaultPageSize
               }
+              
               return $http.get(api.orders(this.id),
                   {params: {
                     page: page,
                     page_size: pageSize
                   }})
                   .then(function (response) {
-                      console.log(response.data.results[0].activity);
-                      return response.data;
+                      return angular.copy(response.data);
                   });
             },
 

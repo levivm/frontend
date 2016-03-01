@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row test-class">
         <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80, 'hidden-xs': !dash.showSidebar, 'hidden-sm': !dash.showSidebar}" >
-            <a ui-sref=".activities.open"
+            <a ui-sref=".activities.current"
                class="sidebar__item"
                ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.activities.*')}"
                ng-click="dash.toggleSidebar()">

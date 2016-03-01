@@ -1,10 +1,20 @@
 <!--If there are activities-->
-<div class="row activity-grid">
+<div ng-if="activities.future_activities.length > 0">
+  <div class="row activity-grid">
     <trulii-activity-item
             ng-repeat="activity in activities.future_activities track by activity.id"
             data-activity="activity" data-options="{{activities.options}}">
     </trulii-activity-item>
+  </div>
+  <div class="text-center" ng-if="activities.nextPaginationOpts.totalItems > activities.nextPaginationOpts.itemsPerPage">
+    <pagination class="pagination-sm"
+      ng-model="activities.nextPaginationOpts.pageNumber"
+      ng-change="activities.updateByQuery(activities.TYPE_NEXT)"
+      data-total-items="activities.nextPaginationOpts.totalItems"
+      data-items-per-page="activities.nextPaginationOpts.itemsPerPage"></pagination>
+  </div>
 </div>
+
 <!--If there are no activities-->
 <div ng-if="activities.future_activities.length <= 0" class="row">
     <div class="col-md-6 col-md-offset-3 text-center">

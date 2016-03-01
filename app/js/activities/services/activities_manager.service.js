@@ -29,6 +29,8 @@
         var _activities = [];
         var presave_info = null;
         var categories = null;
+        var defaultPageSize = 12;
+        var defaultPage = 1;
 
         //noinspection UnnecessaryLocalVariableJS
         var ActivitiesManager = {
@@ -170,8 +172,24 @@
             }
         }
 
-        function getStudentActivities(studentId){
-            return $http.get(apiStudent.activities(studentId)).then(success, error);
+        function getStudentActivities(studentId, status, page, page_size){
+          var params = {};
+          if(!page){
+            params.page = defaultPage;
+          }
+          else{
+            params.page = page;
+          }
+          if(!page_size){
+            params.page_size = defaultPageSize;
+          }
+          else{
+            params.page_size = page_size;
+          }
+          if(status){
+            params.status = status;
+          }
+            return $http.get(apiStudent.activities(studentId), {params: params}).then(success, error);
 
             function success(response){
                 return response.data;
