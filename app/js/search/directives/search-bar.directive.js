@@ -95,6 +95,7 @@
 
                 function _setCurrentCity() {
                     var search_city = LocationManager.getSearchCity();
+                    console.log(search_city);
 
                     if(!search_city){
                         search_city = LocationManager.getCurrentCity();
@@ -126,7 +127,7 @@
                     if($stateParams.q){ scope.q = $stateParams.q; }
 
                     unsuscribeCityModified = $rootScope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT, function(){
-                        _setCurrentCity();
+                        //_setCurrentCity();
                     });
 
                     scope.$on('$destroy', _cleanUp);

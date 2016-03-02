@@ -28,6 +28,8 @@
         var KEY_CURRENT_CITY = "current_city";
         var KEY_AVAILABLE_CITIES = "availableCities";
         var CURRENT_CITY_MODIFIED_EVENT = "currentCityModified";
+        var IP_INFO_DEV ='http://ipinfo.io/186.116.176.170?callback=JSON_CALLBACK';
+        var IP_INFO = 'http://ipinfo.io/?callback=JSON_CALLBACK'
 
         //noinspection UnnecessaryLocalVariableJS
         var LocationManager = {
@@ -121,6 +123,7 @@
         function _setAvailableCities(cities) {
             availableCities = cities;
             localStorageService.set(KEY_AVAILABLE_CITIES, availableCities);
+
         }
 
         function getAvailableCities() {
@@ -157,8 +160,8 @@
                 currentCity = localStorageService.get(KEY_CURRENT_CITY);
                 if(currentCity){
                     _requestAvailableCities().then(function(availableCities){
-                        currentCity = availableCities.filter(byId)[0];
-                        setCurrentCity(currentCity);
+                        _setCurrentCityFromIp();
+
                     });
                 }
             }
@@ -170,7 +173,8 @@
             }
 
             function success() {
-                setCurrentCity(availableCities[0]);
+                _setCurrentCityFromIp();
+
                 return currentCity;
             }
 
@@ -210,7 +214,11 @@
             //}
 
             function success(){
-                setSearchCity(availableCities[0]);
+
+                searchCity = localStorageService.get(KEY_CURRENT_CITY);
+                if(searchCity){
+                    setSearchCity(searchCity);
+                }
                 return searchCity;
             }
             function error(){
@@ -314,6 +322,41 @@
             return marker;
         }
 
+
+        function _setCurrentCityFromIp(){
+             //CAMBIAR A IP_INFO CUANDO PRODUCCION
+             $http.jsonp(IP_INFO_DEV).then(success, error);
+
+            function success(response){
+                var i = parseFloat(response.data.loc.split('-')[0]).toFixed(2);
+                _mapCities(i);
+            }
+            function error(response){
+                console.log(response);
+            }
+        }
+        function _mapCities(i){
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+            var selectCity = {};
+            var minor = 999999,
+                calc = 0;
+
+            promise.then(function () {
+                angular.forEach( availableCities, function (city, index){
+                    calc =  Math.abs(i - parseFloat(city.point[0]).toFixed(2));
+                    if(calc < minor){
+                        selectCity = city;
+                        minor = calc;
+                    }
+                });
+            }).then(function () {
+                setCurrentCity(selectCity);
+                getSearchCity();
+            });
+            deferred.resolve();
+
+        }
         function _requestAvailableCities(){
             return $http.get(api.cities()).then(success, error);
 
@@ -330,7 +373,7 @@
             _requestAvailableCities().then(function(availableCities){
                 _setAvailableCities(availableCities);
                 getCurrentCity();
-                getSearchCity();
+
             });
         }
 
