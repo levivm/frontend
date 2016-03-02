@@ -4,7 +4,7 @@
         <div class="navbar__logo-container">
             <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo  col-xs-3"></a>
             <div class="navbar__city col-xs-6" ng-click="toogleCities()">
-                <span class="montserrat-semibold" ng-bind="search_city.name"></span>
+                <span class="montserrat-regular" ng-bind="search_city.name"></span>
                 <i class="glyphicon glyphicon-triangle-bottom"></i>
             </div>
         </div>
@@ -286,7 +286,7 @@
         </button>
     </div>
 </div>
-<div class="burger-menu cities-menu" ng-show="showCities">
+<div class="burger-menu cities-menu" ng-show="showCities" ng-class="{'cities-menu-short': scroll > 80 }">
     <div class="cities-menu__title">
         <h2 ng-bind="::strings.LABEL_CITY_MENU" ></h2>
     </div>

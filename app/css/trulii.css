@@ -14145,8 +14145,17 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar.navbar-short .navbar__logo {
   height: 50px;
-  margin: 5px auto 0;
+  margin: 0px auto 0;
   width: 7em;
+}
+.navbar.navbar-short .navbar__city {
+  font-size: 11px;
+  position: absolute;
+  right: 89px;
+  bottom: 0px;
+}
+.navbar.navbar-short .navbar__city i {
+  margin-left: 2px;
 }
 .navbar.navbar-short .navbar__left-wrapper {
   height: 50px;
@@ -14473,6 +14482,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   list-style: none;
   margin-bottom: 0.6em;
   cursor: pointer;
+}
+.cities-menu-short {
+  top: 60px;
 }
 @media (max-width: 991px) {
   .burger-menu__buttons {
