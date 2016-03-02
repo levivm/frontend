@@ -2,7 +2,11 @@
 <nav class="navbar navbar-default navbar-fixed-top" ng-class="{'navbar-short': scroll > 80 }">
     <div class="row">
         <div class="navbar__logo-container">
-            <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo"></a>
+            <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo  col-xs-3"></a>
+            <div class="navbar__city col-xs-6" ng-click="toogleCities()">
+                <span class="montserrat-semibold" ng-bind="search_city.name"></span>
+                <i class="glyphicon glyphicon-triangle-bottom"></i>
+            </div>
         </div>
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
             <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true"></trulii-search-bar>
@@ -280,5 +284,20 @@
         <button class="pull-right burger-menu__close" ng-click="toggleBurger()">
             <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt="{{ strings.ACTION_CLOSE }}"/>
         </button>
+    </div>
+</div>
+<div class="burger-menu cities-menu" ng-show="showCities">
+    <div class="cities-menu__title">
+        <h2 ng-bind="::strings.LABEL_CITY_MENU" ></h2>
+    </div>
+    <div class="cities-menu__close"  ng-click="toogleCities()">
+        <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt="{{ strings.ACTION_CLOSE }}"/>
+    </div>
+
+    <div class="cities-menu__list">
+        <ul>
+            <li ng-repeat="city in cities" ng-click="updateSearchCity(city)" ng-bind="city.name"></li>
+
+        </ul>
     </div>
 </div>

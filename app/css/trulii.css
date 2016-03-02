@@ -13958,6 +13958,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   text-align: center;
   transition: all 0.25s;
+  position: relative;
 }
 .--on-dash .navbar__logo-container {
   width: 15.9em;
@@ -13965,7 +13966,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 @media screen and (max-width: 992px) {
   .navbar__logo-container {
     height: 59px !important;
-    width: 125px;
+    width: 70%;
     background-color: white;
   }
 }
@@ -13975,8 +13976,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 9em;
   display: inline-block;
   background-size: contain;
-  margin: 5px auto 0;
+  margin: 0px auto 0;
   transition: all 0.25s;
+  float: none;
 }
 @media screen and (max-width: 992px) {
   .navbar__logo {
@@ -13984,9 +13986,27 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     background-size: contain;
     position: relative;
     background-image: url('img/logo-yellow.png');
-    margin: 7px auto 0 !important;
+    margin: 7px 0px 0px 10px !important;
     height: 50px;
+    float: left;
   }
+}
+.navbar__city {
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  right: 73px;
+  bottom: 1px;
+  cursor: pointer;
+  float: none;
+  width: 72%;
+  padding-right: 0;
+  text-align: right;
+}
+.navbar__city i {
+  float: right;
+  margin-left: 5px;
+  margin-top: 2px;
 }
 .navbar__mobile-dashboard-controllers {
   width: calc(-54%);
@@ -14427,6 +14447,33 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     height: 50px;
   }
 }
+.cities-menu {
+  background-color: rgba(0, 0, 0, 0.73);
+  top: 80px;
+  padding: 4em 8em;
+}
+.cities-menu__close {
+  position: absolute;
+  right: 2em;
+  top: 1em;
+  font-size: 2em;
+  cursor: pointer;
+}
+.cities-menu__list ul {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow: hidden;
+  height: 50vh;
+  list-style: none;
+  text-align: left;
+  margin-top: 3em;
+}
+.cities-menu__list li {
+  list-style: none;
+  margin-bottom: 0.6em;
+  cursor: pointer;
+}
 @media (max-width: 991px) {
   .burger-menu__buttons {
     padding-top: 1.5em;
@@ -14460,8 +14507,47 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .burger-menu__mobile-logo {
     padding: 0.5em 0.5em 0.75em 0.5em;
   }
+  .navbar__city {
+    color: #757575;
+    font-size: 14px;
+    position: static;
+    text-align: left;
+    height: 59px;
+    line-height: 60px;
+    padding-left: 0px !important;
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    float: left;
+  }
+  .navbar__city i {
+    float: none;
+    margin-left: 5px;
+    margin-top: 0px;
+  }
   .navbar .search-bar__navbar {
     width: 95%;
+  }
+  .cities-menu {
+    top: 61px;
+    padding: 0.5em 2em;
+    margin-bottom: 3em;
+  }
+  .cities-menu__title {
+    text-align: center;
+  }
+  .cities-menu__list ul {
+    height: 100%;
+    margin-bottom: 4em;
+    margin-top: 2em;
+    text-align: center;
+  }
+  .cities-menu__list li {
+    font-size: 1.2em !important;
+    margin-bottom: 0.6em;
+  }
+  .cities-menu__close {
+    right: 0.5em;
   }
 }
 .search-filter {
@@ -14897,7 +14983,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-bar input,
 .search-bar input:focus {
   display: inline-block;
-  width: 50%;
+  width: 85%;
   float: left;
   border-top: 5px solid #ffd580;
 }
