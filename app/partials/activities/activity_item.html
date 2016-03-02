@@ -4,13 +4,13 @@
              ng-bind="::activity.category.name"></div>
 
         <a class="activity-card__header__cover-container"
-           ui-sref="activities-detail({activity_id: {{::activity.id}} })"
+           ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })"
            ng-class="{'inactive-cover': inactive}"
            style="background-image: url('{{activity.main_photo}}') ">
 
         </a>
         <a ng-show="actions.length>0" class="activity-card__header__cover-gradient"
-           ui-sref="activities-detail({activity_id: {{::activity.id}} })">
+           ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
 
         </a>
         <a  class="activity-card__owner-picture" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
@@ -21,6 +21,7 @@
             <a ng-repeat="action in actions track by $index"
                class="activity-card__header__menu__item"
                ui-sref="{{::action.state}}"
+               ng-click="clickAction(action.name)"
                data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
               <span class=" activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
             </a>
@@ -28,7 +29,7 @@
     </div>
     <!--Body-->
     <div class="activity-card__body">
-        <a class="activity-card__body__title" ui-sref="activities-detail({activity_id: {{::activity.id}} })"
+        <a class="activity-card__body__title" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })"
            ng-bind="::activity.title | limitTo : titleSize">
         </a>
         <a class="activity-card__body__owner-name" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
@@ -47,7 +48,7 @@
         <!--</div>-->
     </div>
     <!--Cost-->
-    <a class="activity-card__bottom" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
+    <a class="activity-card__bottom" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
         <div ng-if="activity.closest_calendar" class="flex-container flex-around-container">
             <div>
                 <img  src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Clock.png" alt="">

@@ -15,9 +15,9 @@
 
         .directive('truliiActivityReview', truliiActivityReview);
 
-    truliiActivityReview.$inject = ['ActivitiesTemplatesPath', 'Authentication', 'ActivitiesManager', 'Toast', 'defaultPicture'];
+    truliiActivityReview.$inject = ['ActivitiesTemplatesPath', 'Authentication', 'ActivitiesManager', 'Toast', 'defaultPicture', 'Analytics'];
 
-    function truliiActivityReview(ActivitiesTemplatesPath, Authentication, ActivitiesManager, Toast, defaultPicture){
+    function truliiActivityReview(ActivitiesTemplatesPath, Authentication, ActivitiesManager, Toast, defaultPicture, Analytics){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_review.html",
@@ -64,6 +64,7 @@
 
                     function success(review){
                         scope.review = review;
+                        Analytics.studentEvents.doReview(scope.review.rating)
                         scope.hasReview = true;
                     }
                 }

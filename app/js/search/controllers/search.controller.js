@@ -14,11 +14,11 @@
 
     SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
             , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
-            , 'datepickerConfig', 'datepickerPopupConfig'];
+            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics'];
 
     function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state
             , $window, $stateParams , generalInfo, ActivitiesManager, LocationManager, SearchManager
-            , datepickerConfig, datepickerPopupConfig) {
+            , datepickerConfig, datepickerPopupConfig, Analytics) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var transitionOptions = {location : true, inherit : false, reload : false};
@@ -89,7 +89,7 @@
         function toggleSidebar(){
           vm.showSidebar = !vm.showSidebar;
         }
-        
+
         function toggleFilters(){
           vm.showFilters = !vm.showFilters;
         }
@@ -99,7 +99,7 @@
             $event.stopPropagation();
             vm.opened = true;
         }
-        
+
         function setCategory(category, initializing) {
             if (!category) { return; }
 
@@ -107,6 +107,7 @@
                 vm.searchCategory = null;
             } else {
                 vm.searchCategory = category.id;
+
             }
             _expandCategory(category);
             SearchManager.setCategory(vm.searchCategory);
@@ -118,6 +119,7 @@
                   _search();
                 }
             }
+            Analytics.generalEvents.searchCategory(category.name);
         }
 
         function setSubCategory(subcategory) {
@@ -133,6 +135,8 @@
             if(!_isMobile()){
               _search();
             }
+
+            Analytics.generalEvents.searchSubCategory(category.name);
         }
 
         function setLevel() {
@@ -140,6 +144,9 @@
             if(!_isMobile()){
               _search();
             }
+
+            Analytics.generalEvents.searchLevel(vm.searchLevel.value);
+
         }
 
         function setDate() {
@@ -147,6 +154,7 @@
             if(!_isMobile()){
               _search();
             }
+            Analytics.generalEvents.searchDate(vm.searchDate);
         }
 
         function updateCost(costStart, costEnd) {
@@ -155,6 +163,7 @@
 
         function stopDrag() {
             if(!_isMobile()){
+                Analytics.generalEvents.searchRange(vm.searchData.cost_start+'-'+vm.searchData.cost_end);
               _search();
             }
         }
@@ -162,6 +171,7 @@
         function setCertification() {
             vm.withCert = !vm.withCert;
             SearchManager.setCertification(vm.withCert);
+            Analytics.generalEvents.searchCertificate(vm.withCert);
             if(!_isMobile()){
               _search();
             }
@@ -170,6 +180,7 @@
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
             SearchManager.setWeekends(vm.onWeekends);
+            Analytics.generalEvents.searchWeekends(vm.onWeekends);
             if(!_isMobile()){
               _search();
             }
@@ -201,7 +212,7 @@
         }
 
         //--------- Internal Functions ---------//
-        
+
         function _isMobile(){
           return $window.innerWidth < 992;
         }

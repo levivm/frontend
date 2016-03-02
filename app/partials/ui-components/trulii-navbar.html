@@ -2,7 +2,11 @@
 <nav class="navbar navbar-default navbar-fixed-top" ng-class="{'navbar-short': scroll > 80 }">
     <div class="row">
         <div class="navbar__logo-container">
-            <a ui-sref="home" class="navbar__logo"></a>
+            <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo  col-xs-3"></a>
+            <div class="navbar__city col-xs-6" ng-click="toogleCities()">
+                <span class="montserrat-semibold" ng-bind="search_city.name"></span>
+                <i class="glyphicon glyphicon-triangle-bottom"></i>
+            </div>
         </div>
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
             <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true"></trulii-search-bar>
@@ -11,7 +15,7 @@
                 <a ui-sref="register" class="montserrat-regular " ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
             <div class="buttons float-right" ng-if="user.is_organizer">
-                <a ui-sref="dash.activities-new.general" class="btn btn-primary montserrat-regular" ng-bind="::strings.ACTION_CREATE"></a>
+                <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary montserrat-regular" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
             <!--<div ng-if="isExplore" class="buttons float-right">
                 <button class="btn btn-default"  ng-click="explore()">
@@ -82,37 +86,37 @@
                 <ul class="list-unstyled" ng-if="user.is_organizer">
                     <li>
                         <a ui-sref="organizer-dashboard.activities.open"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
                            ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
                     </li>
                     <li>
                         <a ui-sref="organizer-dashboard.transactions.sales"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
                            ng-bind="::strings.LABEL_ORGANIZER_SALES"></a>
                     </li>
                     <li>
                         <a ui-sref="organizer-dashboard.profile"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_PROFILE)"
                            ng-bind="::strings.LABEL_ORGANIZER_PROFILE"></a>
                     </li>
                     <li>
                         <a ui-sref="organizer-dashboard.account.settings"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)"
                            ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
                     </li>
                     <li>
                         <a ui-sref="organizer-dashboard.reviews.pending"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
                            ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
                     </li>
                     <li>
                         <a ui-sref="organizer-dashboard.instructors"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
                            ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
                     </li>
                     <li>
                         <a ui-sref="logout"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.ACTION_EXIT)"
                            ng-bind="::strings.ACTION_EXIT"></a>
                     </li>
                 </ul>
@@ -120,32 +124,32 @@
                 <ul class="list-unstyled" ng-if="user.is_student">
                     <li>
                         <a ui-sref="student-dashboard.activities.open"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
                            ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
                     </li>
                     <li>
                         <a ui-sref="referrals.home"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
                            ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
                     </li>
                     <li>
                         <a ui-sref="student-dashboard.profile"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
                            ng-bind="::strings.LABEL_STUDENT_PROFILE"></a>
                     </li>
                     <li>
                         <a ui-sref="student-dashboard.account.password"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
                            ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
                     </li>
                     <li>
                         <a ui-sref="student-dashboard.history.orders"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
                            ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
                     </li>
                     <li>
                         <a ui-sref="logout"
-                           ng-click="toggleBurger()"
+                           ng-click="toggleBurger(); clickItemSidebar(strings.ACTION_EXIT)"
                            ng-bind="::strings.ACTION_EXIT"></a>
                     </li>
                 </ul>
@@ -280,5 +284,20 @@
         <button class="pull-right burger-menu__close" ng-click="toggleBurger()">
             <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt="{{ strings.ACTION_CLOSE }}"/>
         </button>
+    </div>
+</div>
+<div class="burger-menu cities-menu" ng-show="showCities">
+    <div class="cities-menu__title">
+        <h2 ng-bind="::strings.LABEL_CITY_MENU" ></h2>
+    </div>
+    <div class="cities-menu__close"  ng-click="toogleCities()">
+        <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt="{{ strings.ACTION_CLOSE }}"/>
+    </div>
+
+    <div class="cities-menu__list">
+        <ul>
+            <li ng-repeat="city in cities" ng-click="updateSearchCity(city)" ng-bind="city.name"></li>
+
+        </ul>
     </div>
 </div>

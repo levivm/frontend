@@ -30,6 +30,7 @@
           <br class="hidden-md hidden-lg">
 
           <a href="#"
+            ng-click="detail.shareSocialAnalytic(detail.social.FACEBOOK_SOCIAL_PROVIDER, detail.social.FACEBOOK_SHARE_URL)"
             class="text-no-decoration btn-share-fb"
             socialshare
             socialshare-provider="{{::detail.social.FACEBOOK_SOCIAL_PROVIDER}}"
@@ -45,6 +46,7 @@
             alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
           </a>
           <a href="#"
+            ng-click="detail.shareSocialAnalytic(detail.social.TWITTER_SOCIAL_PROVIDER, detail.social.TWITTER_SHARE_URL)"
             class="text-no-decoration btn-share-twitter"
             socialshare
             socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
@@ -247,7 +249,7 @@
         <a class="btn btn-primary btn-sign-up"
           ng-disabled="detail.isSelectedCalendarFull()"
           ng-hide="detail.isSelectedCalendarFull()"
-          ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id)"
+          ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id); detail.widgetSignup()"
           ng-bind="::detail.strings.ACTION_SIGN_UP">
         </a>
           <div class="other-calendars"
@@ -451,7 +453,7 @@
               </td>
               <td colspan=1>
                 <a class="btn btn-primary btn-block" ng-if="calendar.available_capacity > 0"
-                  ng-click="detail.signUp(detail.activity.id, calendar.id)"
+                  ng-click="detail.signUp(detail.activity.id, calendar.id); detail.calendarSignUp()"
                   ng-bind="::detail.strings.ACTION_SIGN_UP">
                 </a>
               </td>
@@ -482,7 +484,7 @@
             </h5>
             <br class="hidden-md hidden-lg">
             <a class="btn btn-primary btn-block hidden-md hidden-lg" ng-if="detail.activity.upcoming_calendars[detail.selectedActivity].available_capacity > 0"
-              ng-click="detail.signUp(detail.selectedActivity.id, detail.activity.upcoming_calendars[detail.selectedActivity].id)"
+              ng-click="detail.signUp(detail.selectedActivity.id, detail.activity.upcoming_calendars[detail.selectedActivity].id); detail.calendarSignUp()"
               ng-bind="::detail.strings.ACTION_SIGN_UP">
             </a>
           </div>

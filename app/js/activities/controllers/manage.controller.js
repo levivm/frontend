@@ -11,8 +11,8 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager'];
-    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager) {
+    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager', 'Analytics'];
+    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager, Analytics) {
 
         var vm = this;
         angular.extend(vm, {
@@ -45,7 +45,9 @@
             scroll: 0,
             toggleSidebar: toggleSidebar,
             sidebar: false,
-            isActive: isActive
+            isActive: isActive,
+            dashboardItem:dashboardItem,
+            actionNavbarSecondary:actionNavbarSecondary
         });
 
         var orders = [];
@@ -70,7 +72,7 @@
                     break;
             }
         }
-        
+
         function toggleSidebar(){
             vm.showSidebar = !vm.showSidebar;
         }
@@ -132,6 +134,16 @@
                 return order.is_free ? 0 : order.amount * order.fee;
             }
         }
+
+        //Functions Analytics data
+
+        function dashboardItem(item){
+            Analytics.organizerEvents.dashboardManageItem(item);
+        }
+        function actionNavbarSecondary(item){
+            Analytics.organizerEvents.navbarActionSecondary(item);
+        }
+        //End Functions Analytics data
 
         function _getOrders(activityId){
             ActivitiesManager.getOrders(activityId).then(success, error);

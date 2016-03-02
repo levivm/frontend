@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics) {
         var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
@@ -59,6 +59,8 @@
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
             signUp: signUp,
+            calendarSignUp:calendarSignUp,
+            widgetSignup:widgetSignup,
             showMoreReviews: showMoreReviews,
             viewMoreCalendars: viewMoreCalendars,
             toggleEmailShow: toggleEmailShow,
@@ -70,7 +72,8 @@
             showVideo: false,
             showMethodology: false,
             showRequirements: false,
-            showExtra: false
+            showExtra: false,
+            shareSocialAnalytic:shareSocialAnalytic
         });
 
         _activate();
@@ -127,6 +130,19 @@
             }
         }
 
+        //Functions for analytics states
+        function calendarSignUp(){
+            Analytics.studentEvents.enrollCalendar();
+        }
+        function widgetSignup(){
+            Analytics.studentEvents.enrollWidget();
+        }
+        function shareSocialAnalytic(social, target){
+            Analytics.generalEvents.shareActivity(social, target);
+        }
+        // End Functions for analytics states
+
+
         function showMoreReviews(){
             if(visibleReviewListSize < reviews.length){
                 visibleReviewListSize += 3;
@@ -162,6 +178,7 @@
             activity.share(vm.formData).then(success, error);
 
             function success(response){
+                shareSocialAnalytic(vm.strings.EMAIL_MODAL_HEADER, vm.activity.title);
                 Toast.success(vm.strings.COPY_SHARE_SUCCESS);
             }
             function error(error){

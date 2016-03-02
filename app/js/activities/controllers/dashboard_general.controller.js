@@ -13,10 +13,10 @@
         .controller('ActivityGeneralController', ActivityGeneralController);
 
     ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Elevator', 'Toast', 'Error',
-            'activity', 'presaveInfo'];
+            'activity', 'presaveInfo', 'Analytics'];
 
     function ActivityGeneralController($state, $q, filterFilter, Elevator, Toast, Error,
-            activity, presaveInfo) {
+            activity, presaveInfo, Analytics) {
 
         var vm = this;
         var MAX_LENGTH_SHORT_DESC = 300;
@@ -99,6 +99,7 @@
             if(vm.activity_title){
                 vm.activity.title = vm.activity_title;
                 vm.weHaveTitle = true;
+                Analytics.organizerEvents.newAcitvity(vm.activity.title);
             }
             else{
                 vm.weHaveTitle = false;

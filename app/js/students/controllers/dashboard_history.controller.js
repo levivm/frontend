@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryCtrl', StudentHistoryCtrl);
 
-    StudentHistoryCtrl.$inject = ['$filter','student', 'titleTruncateSize'];
+    StudentHistoryCtrl.$inject = ['$filter','student', 'titleTruncateSize', 'Analytics'];
 
-    function StudentHistoryCtrl($filter, student, titleTruncateSize) {
+    function StudentHistoryCtrl($filter, student, titleTruncateSize, Analytics) {
 
         var vm = this;
         angular.extend(vm,{
@@ -22,6 +22,7 @@
             options: {actions: ['view']},
             updateByQuery:updateByQuery,
             pageChange: pageChange,
+            seeOrder:seeOrder,
             queries : {
                 orderQuery : null,
                 assistantQuery : null
@@ -47,7 +48,7 @@
         var refunds = [];
 
 
-        /*      Exposed Functions      */ 
+        /*      Exposed Functions      */
 
         function updateByQuery(type){
             switch(type){
@@ -87,6 +88,10 @@
                     vm.refunds = refunds.slice(start, end);
                     break;
             }
+        }
+
+        function seeOrder(orderId){
+            Analytics.studentEvents.seeOrder(orderId);
         }
 
         /*       Internal Functions      */

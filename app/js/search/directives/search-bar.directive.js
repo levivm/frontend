@@ -13,10 +13,10 @@
         .directive('truliiSearchBar', truliiSearchBar);
 
     truliiSearchBar.$inject = ['$rootScope', '$state', '$stateParams', 'UIComponentsTemplatesPath', 'Toast',
-        'SearchManager', 'LocationManager'];
+        'SearchManager', 'LocationManager', 'Analytics'];
 
     function truliiSearchBar($rootScope, $state, $stateParams, UIComponentsTemplatesPath,
-                          Toast, SearchManager, LocationManager) {
+                          Toast, SearchManager, LocationManager, Analytics) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "search-bar.html",
@@ -41,19 +41,23 @@
                 //--------- Exposed Functions ---------//
 
                 function search() {
-                    if(!scope.search_city){
+                    /*if(!scope.search_city){
                         Toast.warning("Error", "Can't search without a city. Please specify a city to search on");
                         console.log("Error. Can't search without a city. Please specify a city to search on");
                         return;
-                    }
+                    }*/
+
+                    console.log(_setCurrentCity());
 
                     var data = {};
+                    console.log( );
                     data[KEY_SEARCH_Q] = scope.q;
-                    data[KEY_SEARCH_CITY] = scope.search_city.id;
+                    data[KEY_SEARCH_CITY] =_setCurrentCity();
 
                     SearchManager.setSearchBarData(data);
                     angular.extend(data, SearchManager.getSearchData());
                     console.log('data', data);
+                    Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
 
                     $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
                     $state.go('search', data);
@@ -90,10 +94,13 @@
                 }
 
                 function _setCurrentCity() {
-                    scope.search_city = LocationManager.getSearchCity();
-                    if(!scope.search_city){
-                        scope.search_city = LocationManager.getCurrentCity();
+                    var search_city = LocationManager.getSearchCity();
+                    console.log(search_city);
+
+                    if(!search_city){
+                        search_city = LocationManager.getCurrentCity();
                     }
+                    return search_city.id;
                 }
 
                 function _setStrings() {
@@ -115,13 +122,12 @@
 
                 function _activate() {
                     _setStrings();
-                    _setCurrentCity();
                     _getCities();
 
                     if($stateParams.q){ scope.q = $stateParams.q; }
 
                     unsuscribeCityModified = $rootScope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT, function(){
-                        _setCurrentCity();
+                        //_setCurrentCity();
                     });
 
                     scope.$on('$destroy', _cleanUp);
