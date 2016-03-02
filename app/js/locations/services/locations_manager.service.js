@@ -324,8 +324,8 @@
 
 
         function _setCurrentCityFromIp(){
-             //CAMBIAR A IP_INFO CUANDO PRODUCCION
-             $http.jsonp(IP_INFO_DEV).then(success, error);
+             //CAMBIAR A IP_INFO CUANDO PRODUCCION Y IP_INFO_DEV PARA PROBAR IPS
+             $http.jsonp(IP_INFO).then(success, error);
 
             function success(response){
                 var i = parseFloat(response.data.loc.split('-')[0]).toFixed(2);
