@@ -328,14 +328,14 @@
              $http.jsonp(IP_INFO).then(success, error);
 
             function success(response){
-                var i = parseFloat(response.data.loc.split('-')[0]).toFixed(2);
-                _mapCities(i);
+                var latitude = parseFloat(response.data.loc.split(',')[0]).toFixed(2);
+                _mapCities(latitude);
             }
             function error(response){
                 console.log(response);
             }
         }
-        function _mapCities(i){
+        function _mapCities(latitude){
             var deferred = $q.defer();
             var promise = deferred.promise;
             var selectCity = {};
@@ -344,7 +344,7 @@
 
             promise.then(function () {
                 angular.forEach( availableCities, function (city, index){
-                    calc =  Math.abs(i - parseFloat(city.point[0]).toFixed(2));
+                    calc =  Math.abs(latitude - parseFloat(city.point[0]).toFixed(2));
                     if(calc < minor){
                         selectCity = city;
                         minor = calc;

@@ -89,27 +89,7 @@
 
                 //--------- Internal Functions ---------//
 
-                function _getCities() {
-                    LocationManager.getAvailableCities().then(success, error);
-
-                    function success(cities) {
-                        scope.cities = cities;
-                    }
-
-                    function error() {
-                        console.log("truliiSearchBar. Couldn't get cities");
-                    }
-                }
-                function _setCurrentCity() {
-                    scope.search_city = LocationManager.getSearchCity();
-                    if(!scope.search_city){
-                        scope.search_city = LocationManager.getCurrentCity();
-                        console.log(scope.search_city);
-
-                    }
-                }
-
-
+            
                 function _getUser() {
                     scope.user = true;
                     Authentication.getAuthenticatedAccount().then(success, error);
@@ -228,9 +208,6 @@
                     _getUser();
                     _initScroll();
                     _setUserChangedWatch();
-                    _setCurrentCity();
-                    _getCities();
-
 
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
@@ -244,9 +221,7 @@
                         _getUser();
                     });
 
-                    scope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT, function(event){
-                        _setCurrentCity();
-                    });
+
                     scope.$on('$destroy', _cleanUp);
                 }
             }
