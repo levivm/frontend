@@ -52,7 +52,7 @@
                     var data = {};
                     console.log( );
                     data[KEY_SEARCH_Q] = scope.q;
-                    data[KEY_SEARCH_CITY] =_setCurrentCity();
+                    data[KEY_SEARCH_CITY] = scope.search_city.id;
 
                     SearchManager.setSearchBarData(data);
                     angular.extend(data, SearchManager.getSearchData());
@@ -94,13 +94,10 @@
                 }
 
                 function _setCurrentCity() {
-                    var search_city = LocationManager.getSearchCity();
-                    console.log(search_city);
-
-                    if(!search_city){
-                        search_city = LocationManager.getCurrentCity();
+                    scope.search_city = LocationManager.getSearchCity();
+                    if(!scope.search_city){
+                        scope.search_city = LocationManager.getCurrentCity();
                     }
-                    return search_city.id;
                 }
 
                 function _setStrings() {
@@ -122,12 +119,13 @@
 
                 function _activate() {
                     _setStrings();
+                    _setCurrentCity();
                     _getCities();
 
                     if($stateParams.q){ scope.q = $stateParams.q; }
 
                     unsuscribeCityModified = $rootScope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT, function(){
-                        //_setCurrentCity();
+                        _setCurrentCity();
                     });
 
                     scope.$on('$destroy', _cleanUp);
