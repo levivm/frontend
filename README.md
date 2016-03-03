@@ -9,7 +9,7 @@ Inicia un servidor con liveReload escuchando sobre los archivos de la carpeta `a
 
 - `serve-docs`
 Inicia servidores para visualizar la documentación:
-	- ng-docs en el url `<app-url>/docs/:9000` 
+	- ng-docs en el url `<app-url>/docs/:9000`
 	- ui-framework (outdated) en `<app-url>/ui-framework/:9001`
 
 - `serve-ngdocs`
@@ -68,7 +68,7 @@ Dependiendo de tus preferencias puede que quieras instalar gulp de manera global
 ```
 $ sudo npm install -g gulp
 ```
- 
+
 ####Estructura de archivos de Gulp
 
 Los tasks de gulp se encuentran separados en varios archivos dependiendo del dominio de los tasks que contienen. Así como tambien existe un archivo `config.js`en la raíz, que contiene todos los objetos de configuración utilizados (rutas de archivos  y objetos de opciones de plugins utilizados)
@@ -91,3 +91,57 @@ Los tasks de gulp se encuentran separados en varios archivos dependiendo del dom
 
 - moment-timezone
 El archivo main de la librería **moment-timezone** especificado en su archivo bower.json da problemas al ser pasado por uglify ya que contenien varias IIFE anidadas, por lo que es necesario agregar el prefijo `.min` antes de la extensión .js en el key `main` del archivo bower.json de la misma para poder hacer un build exitoso.
+
+
+***
+
+##Angular Unit Testing with Karma and Jasmine
+
+### Npm Dependecies
+
+* Karma
+* Karma-jasmine
+* Karma-chrome-launcher
+* Karma-ng-html2js-preprocessor
+
+###### Run
+
+``` bash
+$ npm install
+```
+
+### Bower Dependencies
+
+* Angular-mocks(Same version of Angular project)
+* Karma-read-json
+###### Run
+``` bash
+$ bower install
+```
+
+
+### Estructura de archivos de los tests
+Los tests están separados por controllers, directives y services.
+En la carpeta mock se encuentran los json con data fake para hacer las pruebas y no tener que estar declarando dentro de los specs.
+```
+tests
+├── controllers
+│   └── home.controller.spec.js
+├── directives
+│   └── navbar.directive.spec.js
+├── mock
+│   ├── activities.json
+│   ├── cities.json
+│   ├── generalinfo.json
+│   └── topics.json
+└── services
+    └── contact.service.spec.js
+
+
+```
+
+
+##### Run tests with
+``` bash
+karma start karma.conf.js
+```

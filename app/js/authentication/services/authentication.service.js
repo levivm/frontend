@@ -269,12 +269,12 @@
         }
 
         function isAuthenticated() {
+            console.log(localStorageService.get(USER_KEY));
             return !!localStorageService.get(USER_KEY);
         }
 
         function getAuthenticatedAccount(force_fetch) {
             var deferred = $q.defer();
-
             if(force_fetch){
                  $http.get(api.current()).then(success, error);
             } else {

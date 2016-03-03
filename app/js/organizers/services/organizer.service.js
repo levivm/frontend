@@ -198,7 +198,7 @@
             /**
              * @ngdoc function
              * @name .#requestRefund
-             * @description Request a refund over an assistant if assistantId is not NULL, otherwhise 
+             * @description Request a refund over an assistant if assistantId is not NULL, otherwhise
              * a refund is requested over an order, given by orderId
              * @methodOf trulii.organizers.services.Organizer
              */
@@ -235,7 +235,7 @@
 
         function requestRefund(orderId,assistantId){
 
-            //if assistantId is null, the refund is requested 
+            //if assistantId is null, the refund is requested
             //over whole order instead of an assitant
             return $http.post(api.refund(),{order:orderId,assistant:assistantId})
                 .then(success,error);
@@ -292,7 +292,6 @@
             var organizer_scope = this;
 
             collectReviews(api.reviews(this.id));
-
             return deferred.promise;
 
             function collectReviews(nextUrl){

@@ -184,7 +184,7 @@
         function getActivity(activityId) {
             var deferred = $q.defer();
             var activity = _search(activityId);
-
+            console.log('get activity', activity);
             if (activity) {
                 deferred.resolve(activity);
             } else {
@@ -223,7 +223,7 @@
             $http.get(apiOrg.activities(organizerId))
                 .then(function (response) {
                     _activities[organizerId] = [];
-                    _.each(response.data, function (activityData) {
+                    _.each(response.data.results, function (activityData) {
                         var activity = _retrieveInstance(activityData.id, activityData);
                         _activities[organizerId].push(activity);
                     });

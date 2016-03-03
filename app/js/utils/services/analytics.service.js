@@ -148,7 +148,7 @@
         function init(){
 
             var userId = Authentication.isAuthenticated() ? true:false;
-            window.ga('create', {
+            $window.ga('create', {
                 trackingId: 'UA-67305468-1',
                 cookieDomain: 'auto',
                 name: 'myTracker',
@@ -156,6 +156,7 @@
             if(userId){
                 _setUserId();
             }
+            //Test trulii UA-67305468-1
             // Establezca el ID de usuario mediante el user_id con el que haya iniciado sesión.
         }
 
@@ -320,7 +321,7 @@
             return Authentication.isAuthenticated() ? label+localStorageService.get(USER_KEY).user_type : label+'none';
         }
         function _reportEvent(category, eventAction, data){
-            window.ga(TRACKER_SEND, {
+            $window.ga(TRACKER_SEND, {
                 hitType: HITTYPE_EVENT,
                 eventCategory: category,
                 eventAction: eventAction,
@@ -329,7 +330,7 @@
         }
 
         function _reportSocialEvent(social, action, target){
-            window.ga(TRACKER_SEND, {
+            $window.ga(TRACKER_SEND, {
               hitType: 'social',
               socialNetwork: social,
               socialAction: action,
@@ -338,7 +339,7 @@
         }
 
         function _setUserId(){
-            window.ga('myTracker.set', 'userId', localStorageService.get(USER_KEY).id );
+            $window.ga('myTracker.set', 'userId', localStorageService.get(USER_KEY).id );
         }
 
     }
