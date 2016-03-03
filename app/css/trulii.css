@@ -14128,6 +14128,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 5px auto 0;
   width: 7em;
 }
+.navbar.navbar-short .navbar__city {
+  font-size: 11px;
+  position: absolute;
+  right: 89px;
+  bottom: 0px;
+}
+.navbar.navbar-short .navbar__city i {
+  margin-left: 2px;
+}
 .navbar.navbar-short .navbar__left-wrapper {
   height: 50px;
 }

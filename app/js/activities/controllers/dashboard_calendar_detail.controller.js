@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator','datepickerPopupConfig', 'Error', 'calendar'];
+    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast', 'calendar'];
 
-    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, datepickerPopupConfig, Error, calendar) {
+    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar) {
 
         var vm = this;
         vm.calendar = angular.copy(calendar);
@@ -67,8 +67,12 @@
         function _errored(responseErrors) {
 
             if (responseErrors) {
-                Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
-                delete responseErrors['sessions'];
+                if (responseErrors['sessions']){
+                    Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
+                    Toast.error(vm.strings.TOAST_SESSIONS_ERROR);
+                    delete responseErrors['sessions'];
+                }
+
                 console.log('responseErrors',responseErrors);
 
                 if (!_.isEmpty(responseErrors)){
@@ -114,6 +118,7 @@
                 LABEL_SESSION_DAY: "Día de la sesión",
                 LABEL_SESSION_START_TIME: "Hora de inicio:",
                 LABEL_SESSION_END_TIME: "Hora de fin:",
+                TOAST_SESSIONS_ERROR: "Existe un error en las sesiones"
 
             });
         }

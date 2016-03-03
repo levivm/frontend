@@ -41,13 +41,16 @@
                 //--------- Exposed Functions ---------//
 
                 function search() {
-                    if(!scope.search_city){
+                    /*if(!scope.search_city){
                         Toast.warning("Error", "Can't search without a city. Please specify a city to search on");
                         console.log("Error. Can't search without a city. Please specify a city to search on");
                         return;
-                    }
+                    }*/
+
+                    console.log(_setCurrentCity());
 
                     var data = {};
+                    console.log( );
                     data[KEY_SEARCH_Q] = scope.q;
                     data[KEY_SEARCH_CITY] = scope.search_city.id;
 

@@ -244,7 +244,15 @@
           margin: 5px auto 0;
           width: 7em;
         }
-
+        &__city{
+            font-size: 11px;
+            position: absolute;
+            right: 89px;
+            bottom: 0px;
+            i{
+                margin-left: 2px;
+            }
+        }
         &__left-wrapper {
           height: @navbar-short-inner-height;
           .buttons{
@@ -556,6 +564,8 @@
   }
 }
 
+
+
 @media (max-width: 991px){
   .burger-menu{
     &__buttons{
@@ -603,10 +613,13 @@
     // &__left-wrapper{
     //   width: ~"calc(100% - 400px)";
     // }
+
     .search-bar__navbar {
         width: 95%;
     }
   }
+
+
 }
 
 // @media (min-width: 992px) and (max-width: 1280px){
