@@ -158,9 +158,12 @@
         function getCurrentCity() {
             if(!currentCity){
                 currentCity = localStorageService.get(KEY_CURRENT_CITY);
-                if(currentCity){
+                if(!currentCity){
                     _requestAvailableCities().then(function(availableCities){
-                        _setCurrentCityFromIp();
+                        _setCurrentCityFromIp().then(function(selectCity){
+                            setCurrentCity(selectCity);
+                            getSearchCity();
+                        });
 
                     });
                 }
@@ -168,19 +171,8 @@
 
             if (currentCity) {
                 return currentCity;
-            } else {
-                getAvailableCities().then(success, error);
             }
 
-            function success() {
-                _setCurrentCityFromIp();
-
-                return currentCity;
-            }
-
-            function error(response) {
-                console.log('Error getting cities.', response.data);
-            }
 
             function byId(city) {
                 return city.id === currentCity.id;
@@ -325,38 +317,31 @@
 
         function _setCurrentCityFromIp(){
              //CAMBIAR A IP_INFO CUANDO PRODUCCION Y IP_INFO_DEV PARA PROBAR IPS
-             $http.jsonp(IP_INFO).then(success, error);
-
-            function success(response){
-                var latitude = parseFloat(response.data.loc.split(',')[0]).toFixed(2);
-                _mapCities(latitude);
-            }
-            function error(response){
-                console.log(response);
-            }
-        }
-        function _mapCities(latitude){
             var deferred = $q.defer();
-            var promise = deferred.promise;
             var selectCity = {};
             var minor = 999999,
                 calc = 0;
 
-            promise.then(function () {
+            $http.jsonp(IP_INFO).then(success, error);
+
+            function success(response){
+                var latitude = parseFloat(response.data.loc.split(',')[0]).toFixed(2);
                 angular.forEach( availableCities, function (city, index){
                     calc =  Math.abs(latitude - parseFloat(city.point[0]).toFixed(2));
                     if(calc < minor){
                         selectCity = city;
                         minor = calc;
                     }
+                    if((index + 1) === availableCities.length) deferred.resolve(selectCity);
                 });
-            }).then(function () {
-                setCurrentCity(selectCity);
-                getSearchCity();
-            });
-            deferred.resolve();
 
+            }
+            function error(response){
+                console.log(response);
+            }
+            return deferred.promise;
         }
+
         function _requestAvailableCities(){
             return $http.get(api.cities()).then(success, error);
 
@@ -368,13 +353,32 @@
                 return $q.reject(response.data);
             }
         }
+        function _initGetCurrentCity(){
+            var deferred = $q.defer();
+            var city = getCurrentCity();
+            if (getCurrentCity()){
+                deferred.resolve(getCurrentCity());
+            }
 
+            return deferred.promise;
+
+        }
         function init(){
-            _requestAvailableCities().then(function(availableCities){
-                _setAvailableCities(availableCities);
-                getCurrentCity();
+            var deferred = $q.defer();
+            getAvailableCities().then(function(cities){
+                if(getCurrentCity()){
+                    deferred.resolve(getCurrentCity());
+                }else{
+                    _setCurrentCityFromIp().then(function (selectCity){
+                        setCurrentCity(selectCity);
+                        deferred.resolve(selectCity);
+                        getSearchCity();
+                    });
+                }
 
             });
+            return deferred.promise;
+
         }
 
         return LocationManager;

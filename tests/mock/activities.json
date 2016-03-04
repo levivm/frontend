@@ -1,236 +1,236 @@
 {
-  "count": 29,
+  "count": 50,
   "next": "http://localhost:8000/api/activities/search/?city=1&o=score&page=2&page_size=8",
   "previous": null,
   "results": [
     {
-      "id": 28,
-      "title": "Sesiones de DJ",
+      "id": 23,
+      "title": "Curso de Comunicación",
       "category": {
-        "name": "Música",
+        "name": "Profesional",
         "id": 1,
-        "color": "#FF7E60",
-        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
-        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
-        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
-      },
-      "sub_category": 7,
-      "pictures": [],
-      "organizer": {
-        "id": 4,
-        "name": "Simonis-Moore",
-        "photo": null,
-        "rating": 0
-      },
-      "published": true,
-      "closest_calendar": {
-        "id": 116,
-        "initial_date": 1456388687000,
-        "closing_sale": 1457684687000,
-        "session_price": 974069,
-        "duration": 0,
-        "is_free": false
-      }
-    },
-    {
-      "id": 9,
-      "title": "Clase de Armónica",
-      "category": {
-        "name": "Música",
-        "id": 1,
-        "color": "#FF7E60",
-        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
-        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
-        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
-      },
-      "sub_category": 2,
-      "pictures": [],
-      "organizer": {
-        "id": 2,
-        "name": "Nienow-Keebler",
-        "photo": null,
-        "rating": 0
-      },
-      "published": true,
-      "closest_calendar": {
-        "id": 35,
-        "initial_date": 1456581270000,
-        "closing_sale": 1457877270000,
-        "session_price": 285460,
-        "duration": 0,
-        "is_free": true
-      }
-    },
-    {
-      "id": 10,
-      "title": "Sesiones de Audio y Producción",
-      "category": {
-        "name": "Música",
-        "id": 1,
-        "color": "#FF7E60",
-        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
-        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
-        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
       },
       "sub_category": 3,
       "pictures": [],
       "organizer": {
-        "id": 2,
-        "name": "Nienow-Keebler",
+        "id": 3,
+        "name": "Tillman Inc",
         "photo": null,
-        "rating": 0
+        "rating": 0.4
       },
       "published": true,
       "closest_calendar": {
-        "id": 36,
-        "initial_date": 1456283144000,
-        "closing_sale": 1457579144000,
-        "session_price": 784147,
+        "id": 90,
+        "initial_date": 1457552630000,
+        "closing_sale": 1458848630000,
+        "session_price": 493959,
         "duration": 0,
         "is_free": false
       }
     },
     {
-      "id": 23,
-      "title": "Taller de Armónica",
+      "id": 4,
+      "title": "Sesiones de Derecho",
       "category": {
-        "name": "Música",
+        "name": "Profesional",
         "id": 1,
-        "color": "#FF7E60",
-        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
-        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
-        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
-      },
-      "sub_category": 2,
-      "pictures": [],
-      "organizer": {
-        "id": 4,
-        "name": "Simonis-Moore",
-        "photo": null,
-        "rating": 0
-      },
-      "published": true,
-      "closest_calendar": {
-        "id": 92,
-        "initial_date": 1455757343000,
-        "closing_sale": 1457053343000,
-        "session_price": 824692,
-        "duration": 0,
-        "is_free": false
-      }
-    },
-    {
-      "id": 25,
-      "title": "Sesiones de Bajo",
-      "category": {
-        "name": "Música",
-        "id": 1,
-        "color": "#FF7E60",
-        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
-        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
-        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
       },
       "sub_category": 4,
       "pictures": [],
       "organizer": {
-        "id": 4,
-        "name": "Simonis-Moore",
+        "id": 1,
+        "name": "Lehner Ltd",
         "photo": null,
         "rating": 0
       },
       "published": true,
       "closest_calendar": {
-        "id": 102,
-        "initial_date": 1456627304000,
-        "closing_sale": 1457923304000,
-        "session_price": 484532,
+        "id": 13,
+        "initial_date": 1457525917000,
+        "closing_sale": 1458821917000,
+        "session_price": 576389,
         "duration": 0,
         "is_free": false
       }
     },
     {
-      "id": 7,
-      "title": "Clase de DJ",
+      "id": 43,
+      "title": "Sesiones de Comunicación",
       "category": {
-        "name": "Música",
+        "name": "Profesional",
         "id": 1,
-        "color": "#FF7E60",
-        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
-        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
-        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
       },
-      "sub_category": 7,
+      "sub_category": 3,
       "pictures": [],
       "organizer": {
-        "id": 1,
-        "name": "Koch PLC",
-        "photo": null,
-        "rating": 1.14285714285714
-      },
-      "published": true,
-      "closest_calendar": {
-        "id": 27,
-        "initial_date": 1455976282000,
-        "closing_sale": 1457272282000,
-        "session_price": 467617,
-        "duration": 0,
-        "is_free": false
-      }
-    },
-    {
-      "id": 27,
-      "title": "Curso de Canto",
-      "category": {
-        "name": "Música",
-        "id": 1,
-        "color": "#FF7E60",
-        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
-        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
-        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
-      },
-      "sub_category": 6,
-      "pictures": [],
-      "organizer": {
-        "id": 4,
-        "name": "Simonis-Moore",
+        "id": 5,
+        "name": "Smitham-Will",
         "photo": null,
         "rating": 0
       },
       "published": true,
       "closest_calendar": {
-        "id": 109,
-        "initial_date": 1456661762000,
-        "closing_sale": 1457957762000,
-        "session_price": 257002,
+        "id": 168,
+        "initial_date": 1458498090000,
+        "closing_sale": 1459794090000,
+        "session_price": 743766,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 45,
+      "title": "Clase de Docencia",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 5,
+      "pictures": [],
+      "organizer": {
+        "id": 5,
+        "name": "Smitham-Will",
+        "photo": null,
+        "rating": 0
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 174,
+        "initial_date": 1457395781000,
+        "closing_sale": 1458691781000,
+        "session_price": 849033,
         "duration": 0,
         "is_free": false
       }
     },
     {
       "id": 13,
-      "title": "Curso de Canto",
+      "title": "Sesiones de Comunicación",
       "category": {
-        "name": "Música",
+        "name": "Profesional",
         "id": 1,
-        "color": "#FF7E60",
-        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_default.png",
-        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_música_active.png",
-        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/m%C3%BAsica.jpg"
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
       },
-      "sub_category": 6,
+      "sub_category": 3,
       "pictures": [],
       "organizer": {
         "id": 2,
-        "name": "Nienow-Keebler",
+        "name": "O'Reilly, Rowe and Hartmann",
+        "photo": null,
+        "rating": 0.1
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 48,
+        "initial_date": 1458361224000,
+        "closing_sale": 1459657224000,
+        "session_price": 499605,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 40,
+      "title": "Curso de Management",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 10,
+      "pictures": [],
+      "organizer": {
+        "id": 4,
+        "name": "Lemke LLC",
+        "photo": null,
+        "rating": 0.65
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 157,
+        "initial_date": 1457472383000,
+        "closing_sale": 1458768383000,
+        "session_price": 784944,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 48,
+      "title": "Curso de Ingeniería",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 8,
+      "pictures": [],
+      "organizer": {
+        "id": 5,
+        "name": "Smitham-Will",
         "photo": null,
         "rating": 0
       },
       "published": true,
       "closest_calendar": {
-        "id": 47,
-        "initial_date": 1456241267000,
-        "closing_sale": 1457537267000,
-        "session_price": 675577,
+        "id": 185,
+        "initial_date": 1457482044000,
+        "closing_sale": 1458778044000,
+        "session_price": 282647,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 20,
+      "title": "Clase de Management",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 10,
+      "pictures": [],
+      "organizer": {
+        "id": 2,
+        "name": "O'Reilly, Rowe and Hartmann",
+        "photo": null,
+        "rating": 0.1
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 75,
+        "initial_date": 1457416747000,
+        "closing_sale": 1458712747000,
+        "session_price": 362408,
         "duration": 0,
         "is_free": false
       }

@@ -1,278 +1,253 @@
 [
   {
-    "id": 34,
-    "activity": 9,
-    "initial_date": 1454777350000,
-    "closing_sale": 1456073350000,
-    "number_of_sessions": 7,
-    "session_price": 225859,
-    "capacity": 11,
+    "id": 13,
+    "activity": 4,
+    "initial_date": 1457525917000,
+    "closing_sale": 1458821917000,
+    "number_of_sessions": 4,
+    "session_price": 576389,
+    "capacity": 19,
     "sessions": [
       {
-        "id": 135,
-        "date": 1459564107000,
-        "start_time": 1456752304000,
-        "end_time": 1456752304000
+        "id": 51,
+        "date": 1462456966000,
+        "start_time": 1457109311000,
+        "end_time": 1457109311000
       },
       {
-        "id": 134,
-        "date": 1468832435000,
-        "start_time": 1456765041000,
-        "end_time": 1456765041000
+        "id": 50,
+        "date": 1479931270000,
+        "start_time": 1457149623000,
+        "end_time": 1457149623000
       },
       {
-        "id": 133,
-        "date": 1457591970000,
-        "start_time": 1456743550000,
-        "end_time": 1456743550000
+        "id": 49,
+        "date": 1477509473000,
+        "start_time": 1457152663000,
+        "end_time": 1457152663000
       },
       {
-        "id": 132,
-        "date": 1460377744000,
-        "start_time": 1456728385000,
-        "end_time": 1456728385000
-      },
-      {
-        "id": 131,
-        "date": 1473863111000,
-        "start_time": 1456725738000,
-        "end_time": 1456725738000
+        "id": 48,
+        "date": 1466664933000,
+        "start_time": 1457090573000,
+        "end_time": 1457090573000
       }
     ],
     "assistants": [
       {
-        "id": 239,
-        "first_name": "Daisy",
-        "last_name": "Nitzsche",
-        "full_name": "Daisy Nitzsche",
-        "email": "hmoore@leffler.com",
-        "student": {
-          "photo": null,
-          "user": {
-            "first_name": "",
-            "last_name": "",
-            "email": ""
-          },
-          "gender": null,
-          "birth_date": null,
-          "telephone": "",
-          "city": null
-        },
-        "order": 115,
-        "lastest_refund": null,
+        "id": 92,
+        "first_name": "Zelma",
+        "last_name": "Schiller",
+        "full_name": "Zelma Schiller",
+        "email": "bert24@gmail.com",
+        "order": 46,
         "token": null
       },
       {
-        "id": 238,
-        "first_name": "Duwayne",
-        "last_name": "Gerhold",
-        "full_name": "Duwayne Gerhold",
-        "email": "caltenwerth@hotmail.com",
-        "student": {
-          "photo": null,
-          "user": {
-            "first_name": "",
-            "last_name": "",
-            "email": ""
-          },
-          "gender": null,
-          "birth_date": null,
-          "telephone": "",
-          "city": null
-        },
-        "order": 115,
-        "lastest_refund": null,
+        "id": 91,
+        "first_name": "Garrison",
+        "last_name": "Ziemann",
+        "full_name": "Garrison Ziemann",
+        "email": "lum.walker@yahoo.com",
+        "order": 45,
         "token": null
       },
       {
-        "id": 237,
-        "first_name": "Pleasant",
-        "last_name": "Heathcote",
-        "full_name": "Pleasant Heathcote",
-        "email": "ancil50@roobsimonis.biz",
-        "student": {
-          "photo": null,
-          "user": {
-            "first_name": "",
-            "last_name": "",
-            "email": ""
-          },
-          "gender": null,
-          "birth_date": null,
-          "telephone": "",
-          "city": null
-        },
-        "order": 114,
-        "lastest_refund": null,
-        "token": null
-      },
-      {
-        "id": 236,
-        "first_name": "Carrol",
-        "last_name": "Goyette",
-        "full_name": "Carrol Goyette",
-        "email": "ybrown@yahoo.com",
-        "student": {
-          "photo": null,
-          "user": {
-            "first_name": "",
-            "last_name": "",
-            "email": ""
-          },
-          "gender": null,
-          "birth_date": null,
-          "telephone": "",
-          "city": null
-        },
-        "order": 114,
-        "lastest_refund": null,
+        "id": 90,
+        "first_name": "Berdie",
+        "last_name": "Lemke",
+        "full_name": "Berdie Lemke",
+        "email": "jabari.towne@gmail.com",
+        "order": 45,
         "token": null
       }
     ],
     "is_weekend": true,
     "duration": 0,
     "is_free": false,
-    "available_capacity": 7
+    "available_capacity": 16
   },
   {
-    "id": 35,
-    "activity": 9,
-    "initial_date": 1456581270000,
-    "closing_sale": 1457877270000,
-    "number_of_sessions": 2,
-    "session_price": 285460,
-    "capacity": 2,
+    "id": 14,
+    "activity": 4,
+    "initial_date": 1457770279000,
+    "closing_sale": 1459066279000,
+    "number_of_sessions": 4,
+    "session_price": 730568,
+    "capacity": 13,
     "sessions": [
       {
-        "id": 138,
-        "date": 1484062764000,
-        "start_time": 1456770285000,
-        "end_time": 1456770285000
+        "id": 56,
+        "date": 1485526220000,
+        "start_time": 1457125874000,
+        "end_time": 1457125874000
       },
       {
-        "id": 137,
-        "date": 1457017705000,
-        "start_time": 1456757559000,
-        "end_time": 1456757559000
+        "id": 55,
+        "date": 1471451117000,
+        "start_time": 1457153276000,
+        "end_time": 1457153276000
       },
       {
-        "id": 136,
-        "date": 1463872569000,
-        "start_time": 1456779264000,
-        "end_time": 1456779264000
+        "id": 54,
+        "date": 1485650577000,
+        "start_time": 1457076590000,
+        "end_time": 1457076590000
+      },
+      {
+        "id": 53,
+        "date": 1476399347000,
+        "start_time": 1457100560000,
+        "end_time": 1457100560000
+      },
+      {
+        "id": 52,
+        "date": 1464337054000,
+        "start_time": 1457110718000,
+        "end_time": 1457110718000
       }
     ],
-    "assistants": [],
+    "assistants": [
+      {
+        "id": 94,
+        "first_name": "Eryn",
+        "last_name": "Bergnaum",
+        "full_name": "Eryn Bergnaum",
+        "email": "burleigh12@hotmail.com",
+        "order": 48,
+        "token": null
+      }
+    ],
+    "is_weekend": true,
+    "duration": 0,
+    "is_free": false,
+    "available_capacity": 12
+  },
+  {
+    "id": 12,
+    "activity": 4,
+    "initial_date": 1457814763000,
+    "closing_sale": 1459110763000,
+    "number_of_sessions": 9,
+    "session_price": 211450,
+    "capacity": 14,
+    "sessions": [
+      {
+        "id": 47,
+        "date": 1487646389000,
+        "start_time": 1457097430000,
+        "end_time": 1457097430000
+      },
+      {
+        "id": 46,
+        "date": 1469245940000,
+        "start_time": 1457096216000,
+        "end_time": 1457096216000
+      },
+      {
+        "id": 45,
+        "date": 1461422287000,
+        "start_time": 1457085816000,
+        "end_time": 1457085816000
+      }
+    ],
+    "assistants": [
+      {
+        "id": 85,
+        "first_name": "Flonnie",
+        "last_name": "Nitzsche",
+        "full_name": "Flonnie Nitzsche",
+        "email": "plowe@yahoo.com",
+        "order": 43,
+        "token": null
+      },
+      {
+        "id": 81,
+        "first_name": "Lilianna",
+        "last_name": "Glover",
+        "full_name": "Lilianna Glover",
+        "email": "hbartoletti@yahoo.com",
+        "order": 40,
+        "token": null
+      }
+    ],
     "is_weekend": true,
     "duration": 0,
     "is_free": true,
-    "available_capacity": 2
+    "available_capacity": 12
   },
   {
-    "id": 119,
-    "activity": 9,
-    "initial_date": 1459103280000,
-    "closing_sale": 1458412080000,
-    "number_of_sessions": 1,
-    "session_price": 30000,
-    "capacity": 1,
+    "id": 15,
+    "activity": 4,
+    "initial_date": 1458511233000,
+    "closing_sale": 1459807233000,
+    "number_of_sessions": 9,
+    "session_price": 729655,
+    "capacity": 4,
     "sessions": [
       {
-        "id": 477,
-        "date": 1459103280000,
-        "start_time": 1456758000000,
-        "end_time": 1456768800000
-      }
-    ],
-    "assistants": [],
-    "is_weekend": true,
-    "duration": 10800,
-    "is_free": false,
-    "available_capacity": 1
-  },
-  {
-    "id": 33,
-    "activity": 9,
-    "initial_date": 1459930260000,
-    "closing_sale": 1458965520000,
-    "number_of_sessions": 5,
-    "session_price": 622270,
-    "capacity": 3,
-    "sessions": [
-      {
-        "id": 476,
-        "date": 1481910840000,
-        "start_time": 1456737480000,
-        "end_time": 1456751880000
+        "id": 61,
+        "date": 1473267449000,
+        "start_time": 1457081316000,
+        "end_time": 1457081316000
       },
       {
-        "id": 475,
-        "date": 1477054740000,
-        "start_time": 1456785780000,
-        "end_time": 1456796580000
+        "id": 60,
+        "date": 1480971293000,
+        "start_time": 1457079255000,
+        "end_time": 1457079255000
       },
       {
-        "id": 474,
-        "date": 1474179720000,
-        "start_time": 1456778940000,
-        "end_time": 1456782540000
+        "id": 59,
+        "date": 1481212489000,
+        "start_time": 1457117033000,
+        "end_time": 1457117033000
       },
       {
-        "id": 473,
-        "date": 1459930260000,
-        "start_time": 1456797660000,
-        "end_time": 1456804800000
+        "id": 58,
+        "date": 1461360595000,
+        "start_time": 1457138143000,
+        "end_time": 1457138143000
+      },
+      {
+        "id": 57,
+        "date": 1485546118000,
+        "start_time": 1457074788000,
+        "end_time": 1457074788000
       }
     ],
     "assistants": [
       {
-        "id": 230,
-        "first_name": "Devin",
-        "last_name": "Cummerata",
-        "full_name": "Devin Cummerata",
-        "email": "webb90@cummingskerluke.biz",
-        "student": {
-          "photo": null,
-          "user": {
-            "first_name": "",
-            "last_name": "",
-            "email": ""
-          },
-          "gender": null,
-          "birth_date": null,
-          "telephone": "",
-          "city": null
-        },
-        "order": 110,
-        "lastest_refund": null,
+        "id": 105,
+        "first_name": "Deloris",
+        "last_name": "Schuppe",
+        "full_name": "Deloris Schuppe",
+        "email": "hjones@yahoo.com",
+        "order": 56,
         "token": null
       },
       {
-        "id": 229,
-        "first_name": "Maida",
-        "last_name": "Fisher",
-        "full_name": "Maida Fisher",
-        "email": "fschmidt@feil.com",
-        "student": {
-          "photo": null,
-          "user": {
-            "first_name": "",
-            "last_name": "",
-            "email": ""
-          },
-          "gender": null,
-          "birth_date": null,
-          "telephone": "",
-          "city": null
-        },
-        "order": 109,
-        "lastest_refund": null,
+        "id": 104,
+        "first_name": "Niki",
+        "last_name": "Gorczany",
+        "full_name": "Niki Gorczany",
+        "email": "winnie88@pouros.com",
+        "order": 55,
+        "token": null
+      },
+      {
+        "id": 102,
+        "first_name": "Hermine",
+        "last_name": "Ledner",
+        "full_name": "Hermine Ledner",
+        "email": "lconn@hotmail.com",
+        "order": 53,
         "token": null
       }
     ],
     "is_weekend": false,
-    "duration": 35940,
-    "is_free": true,
+    "duration": 0,
+    "is_free": false,
     "available_capacity": 1
   }
 ]
