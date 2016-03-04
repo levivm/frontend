@@ -65,6 +65,8 @@
                 resolve:{
                     cities: getAvailableCities,
                     organizer: getCurrentOrganizer,
+                    unreadReviews: getOrganizerUnreadReviews,
+                    unreadReviewObjects: getUnreadReviewObjects,
                     unreadReviewsCount: getUnreadOrganizerReviewsCount
                 },
                 data: {
@@ -120,7 +122,8 @@
                 templateUrl: 'partials/organizers/dashboard/transactions.html',
                 resolve: {
                     orders: getOrders,
-                    refunds: getRefunds
+                    refunds: getRefunds,
+                    activities: getOrganizerActivityList
                 }
             })
             .state('organizer-dashboard.transactions.sales', {
@@ -142,8 +145,10 @@
                 templateUrl: 'partials/organizers/dashboard/reviews.html',
                 resolve: {
                     activities: getOrganizerOpenActivities,
-                    reviews: getOrganizerReviews,
-                    reviewObjects: getReviewObjects,
+                    unreadReviews: getOrganizerUnreadReviews,
+                    readReviews: getOrganizerReadReviews,
+                    unreadReviewObjects: getUnreadReviewObjects,
+                    readReviewObjects: getReadReviewObjects 
                 }
             })
             .state('organizer-dashboard.reviews.done', {
@@ -272,16 +277,43 @@
 
         /**
          * @ngdoc method
-         * @name .#getOrganizerReviews
-         * @description Retrieves an Organizer's Reviews from
+         * @name .#getOrganizerR  eadReviews
+         * @description Retrieves an Organizer's Unread Reviews from
          * {@link trulii.organizers.services.Organizer Organizer}
          * @requires organizer
          * @methodOf trulii.organizers.config
          */
         getOrganizerReviews.$inject = ['organizer'];
         function getOrganizerReviews(organizer){
-            return organizer.getReviews();
+            return organizer.getReviews(1, 10);
         }
+        
+        /**
+         * @ngdoc method
+         * @name .#getOrganizerUnreadReviews
+         * @description Retrieves an Organizer's Unread Reviews from
+         * {@link trulii.organizers.services.Organizer Organizer}
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getOrganizerUnreadReviews.$inject = ['organizer'];
+        function getOrganizerUnreadReviews(organizer){
+            return organizer.getReviews(1, 6, 'unread');
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getOrganizerReadReviews
+         * @description Retrieves an Organizer's Read Reviews from
+         * {@link trulii.organizers.services.Organizer Organizer}
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getOrganizerReadReviews.$inject = ['organizer'];
+        function getOrganizerReadReviews(organizer){
+            return organizer.getReviews(1, 6, 'read');
+        }
+        
 
         /**
          * @ngdoc method
@@ -291,23 +323,80 @@
          * @requires activities
          * @methodOf trulii.organizers.config
          */
-        getReviewObjects.$inject = ['reviews', 'activities'];
-        function getReviewObjects(reviews, activities){
-            return reviews.map(mapActivityToReview);
-
+        getReviewObjects.$inject = ['reviews', 'ActivitiesManager'];
+        function getReviewObjects(reviews, ActivitiesManager){
+            
+            return reviews.results.map(mapActivityToReview);
+            
             function mapActivityToReview(review){
-                var activity = activities.filter(filterById)[0];
-
-                return {
-                    'activity': activity,
-                    'review': review
-                };
-
-                function filterById(activity){
-                    return activity.id === review.activity;
+              
+              ActivitiesManager.getActivity(review.activity)
+              .then(
+                function(response){
+                  review.activity = response;
                 }
+              );
+              
+              return review;
+
             }
         }
+        /**
+         * @ngdoc method
+         * @name .#getReviewObjects
+         * @description Creates ReviewObjects, simple objects containing a review and the activity it's tied to
+         * @requires reviews
+         * @requires activities
+         * @methodOf trulii.organizers.config
+         */
+        getUnreadReviewObjects.$inject = ['unreadReviews', 'ActivitiesManager'];
+        function getUnreadReviewObjects(unreadReviews, ActivitiesManager){
+            
+            return unreadReviews.results.map(mapActivityToReview);
+            
+            function mapActivityToReview(review){
+              
+              ActivitiesManager.getActivity(review.activity)
+              .then(
+                function(response){
+                  review.activity = response;
+                }
+              );
+              
+              return review;
+
+            }
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getReviewObjects
+         * @description Creates ReviewObjects, simple objects containing a review and the activity it's tied to
+         * @requires reviews
+         * @requires activities
+         * @methodOf trulii.organizers.config
+         */
+        getReadReviewObjects.$inject = ['readReviews', 'ActivitiesManager', '$http'];
+        function getReadReviewObjects(readReviews, ActivitiesManager, $http){
+            
+            return readReviews.results.map(mapActivityToReview);
+            
+            function mapActivityToReview(review){
+              
+              ActivitiesManager.getActivity(review.activity)
+              .then(
+                function(response){
+                  review.activity = response;
+                }
+              );
+              
+              return review;
+
+            }
+        }
+        
+        
+        
 
         /**
          * @ngdoc method
@@ -317,26 +406,10 @@
          * @requires organizer
          * @methodOf trulii.organizers.config
          */
-        getUnreadOrganizerReviewsCount.$inject = ['$q', 'organizer'];
-        function getUnreadOrganizerReviewsCount($q, organizer){
-            var deferred = $q.defer();
-            organizer.getReviews().then(success, error);
-            return deferred.promise;
-
-            function success(reviews){
-                reviews = reviews.filter(filterUnread);
-                var response = {
-                    'count':reviews.length
-                };
-                deferred.resolve(response);
-            }
-
-            function filterUnread(review){ return !review.read; }
-
-            function error(error){
-                console.error('Error retrieving reviews for organizer ', organizer.name, error);
-                deferred.reject(error);
-            }
+        getUnreadOrganizerReviewsCount.$inject = ['unreadReviews'];
+        function getUnreadOrganizerReviewsCount(unreadReviews){
+            console.log(unreadReviews.count);
+            return unreadReviews.count;
         }
 
         /**
@@ -349,8 +422,9 @@
          */
         getUnreadReviewsCount.$inject = ['$q', 'reviews'];
         function getUnreadReviewsCount($q, reviews){
+          console.log(reviews.count.length);
             return {
-                'count':reviews.length
+                'count':reviews.count.length
             };
         }
 
@@ -378,6 +452,19 @@
         getBankingInfo.$inject = ['Payments'];
         function getBankingInfo(Payments){
             return Payments.getBankingInfo();
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getOrganizerActivityList
+         * @description Retrieves Activity List from
+         * {@link trulii.payments.services.Payments Payments} Service
+         * @requires trulii.payments.services.Payments
+         * @methodOf trulii.organizers.config
+         */
+        getOrganizerActivityList.$inject = ['organizer'];
+        function getOrganizerActivityList(organizer){
+          return organizer.getActivityList();
         }
     }
 })();

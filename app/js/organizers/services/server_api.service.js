@@ -34,6 +34,18 @@
             'activities': function(idOrganizer){
                 return renderUrl('organizers/', [idOrganizer, 'activities']);
             },
+            
+            /**
+             * @ngdoc function
+             * @name .#autocomplete
+             * @description Renders **`/api/organizers/:idOrganizer/activities/autocomplete`** Activity List URL
+             * @param {number} idOrganizer Organizer Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'autocomplete': function(idOrganizer){
+              return renderUrl('organizers/', [idOrganizer, 'activities/autocomplete/']);
+            },
 
             /**
              * @ngdoc function

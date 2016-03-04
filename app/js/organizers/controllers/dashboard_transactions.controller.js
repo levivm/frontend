@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', 'refunds', '$http'];
-    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, refunds, $http) {
+    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', 'refunds', '$http', 'activities'];
+    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, refunds, $http, activities) {
 
         var vm = this;
         var api = OrganizerServerApi;
@@ -227,6 +227,7 @@
         }
 
         function _activate() {
+          console.log(activities);
             datepickerPopupConfig.showButtonBar = false;
             _setStrings();
             _getOrders();

@@ -10,17 +10,10 @@
         </trulii-activity-item>
     </div>
     <div class="col-xs-12 col-md-7">
-        <h3>
-            <strong>
-                <span ng-bind="activities.strings.COPY_BEGINNING_ON"></span>
-                            <span class="text-capitalize"
-                                  ng-bind="activity.orders[0].calendar_initial_date | date : 'MMM d, y'"></span>
-            </strong>
-        </h3>
         <a ui-sref="student-dashboard.history.orders.order({orderId: activity.orders[0].id})"
            ng-bind="activities.strings.COPY_ORDER_DETAIL"
            class="text-underline text-gray-light"></a>
-        <trulii-activity-review data-review="activity.review"
+        <trulii-activity-review data-review="activity.reviews[0]"
                                 data-activity="activity"
                                 data-on-dashboard="true"
                                 class="separate-above" ></trulii-activity-review>

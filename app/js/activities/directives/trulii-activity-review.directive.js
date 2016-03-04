@@ -108,12 +108,13 @@
                 //--------- Internal Functions ---------//
 
                 function _getActivityInstance(){
-                    ActivitiesManager.getActivity(scope.review.activity).then(function(activityInstanceResponse){
+                    ActivitiesManager.getActivity(scope.activity.id).then(function(activityInstanceResponse){
                         activityInstance = activityInstanceResponse;
                     });
                 }
 
                 function _getUser(){
+                  if(scope.review){
                     if(!scope.review.author){
                         return;
                     }
@@ -132,7 +133,8 @@
                     if(!author.photo){
                         author.photo = defaultPicture;
                     }
-                    scope.user = author;
+                    scope.user = author;  
+                  }
                 }
 
                 function _getLoggedUser(){
@@ -165,17 +167,21 @@
 
                 function _activate(){
                     _getUser();
-                    scope.hasReply = !!scope.review.reply;
-                    console.log(scope.activity);
-                    if(scope.review.id){
-                        scope.hasReview = true;
-                    } else {
-                        scope.hasReview = false;
-                        angular.extend(scope.review, EMPTY_REVIEW);
-                        if(scope.activity){
-                            //noinspection JSPrimitiveTypeWrapperUsage
-                            scope.review.activity = scope.activity.id;
-                        }
+                    if(scope.review){
+                      scope.hasReply = !!scope.review.reply;
+                      if(scope.review.id){
+                          scope.hasReview = true;
+                      } else {
+                          scope.hasReview = false;
+                          if(scope.activity){
+                              scope.review.activity = scope.activity.id;
+                          }
+                      }                      
+                    }
+                    if(!scope.review){
+                      scope.review = {};
+                      scope.hasReview = false;
+                      angular.extend(scope.review, EMPTY_REVIEW);
                     }
 
                     // TODO Might be redundant
@@ -184,8 +190,8 @@
                         if(!scope.organizer.photo){
                             scope.organizer.photo = defaultPicture;
                         }
-                        _getActivityInstance();
                     }
+                    _getActivityInstance();
                 }
 
                 scope.$watch('activity', function(){
@@ -193,7 +199,7 @@
                     _activate();
                 });
                 scope.$watch('review', function(){
-                    console.log('review directive review:', scope.review);
+                    // console.log('review directive review:', scope.review);
                     _activate();
                 });
             }
