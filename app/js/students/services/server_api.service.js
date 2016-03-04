@@ -57,6 +57,18 @@
             'activities': function(idStudent){
                 return renderUrl('students/', [idStudent, 'activities/']);
             },
+            
+            /**
+             * @ngdoc function
+             * @name trulii.students.services.StudentServerApi#autocomplete
+             * @description Renders **`/api/students/:idStudent/activities/autocomplete`** Signed up Activity List URL
+             * @param {number} idStudent Student Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.students.services.StudentServerApi
+             */
+            'autocomplete': function(idStudent){
+              return renderUrl('students/', [idStudent, 'activities/autocomplete/']);
+            },
 
             /**
              * @ngdoc function

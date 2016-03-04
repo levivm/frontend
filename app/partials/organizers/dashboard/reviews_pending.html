@@ -17,10 +17,18 @@
                     </div>
                 </div>
             </div>
+            
             <div class="col-xs-12 col-md-10 col-md-offset-1 review-detail separate-above-medium separate-below-less"
                  ng-repeat="reviewObject in reviews.unread_reviews | filter:{$: reviews.searchUnreadQuery} ">
-                <trulii-activity-review data-review="reviewObject.review" data-activity="reviewObject.activity"
-                                        data-on-dashboard="true" change-review-status="reviews.changeReviewStatus(reviewObject)"></trulii-activity-review>
+                <trulii-activity-review data-review="reviewObject" data-activity="reviewObject.activity"
+                                        data-on-dashboard="true" change-review-status="reviews.changeReviewStatus()"></trulii-activity-review>
+            </div>
+            <div class="text-center" ng-if="reviews.unreadPaginationOpts.totalItems > reviews.unreadPaginationOpts.itemsPerPage">
+              <pagination class="pagination-sm"
+                  ng-model="reviews.unreadPaginationOpts.pageNumber"
+                  ng-change="reviews.changeReviewStatus()"
+                  data-total-items="reviews.unreadPaginationOpts.totalItems"
+                  data-items-per-page="reviews.unreadPaginationOpts.itemsPerPage"></pagination>
             </div>
             <div class="col-xs-8 col-xs-offset-2 text-center"  ng-if="reviews.unread_reviews.length <= 0">
                 <img src="css/img/organizer_dashboard_activities_empty.png"

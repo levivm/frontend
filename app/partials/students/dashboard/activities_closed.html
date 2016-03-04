@@ -1,6 +1,8 @@
 <!--If there are activities-->
-
-<div class="row separate-above-medium separate-below-medium"
+<div ng-if="activities.past_activities.length > 0">
+  
+  
+  <div class="row separate-above-medium separate-below-medium"
      ng-repeat="activity in activities.past_activities track by activity.id">
     <div class="col-xs-12 col-md-4">
         <trulii-activity-item
@@ -8,23 +10,26 @@
         </trulii-activity-item>
     </div>
     <div class="col-xs-12 col-md-7">
-        <h3>
-            <strong>
-                <span ng-bind="activities.strings.COPY_BEGINNING_ON"></span>
-                            <span class="text-capitalize"
-                                  ng-bind="activity.orders[0].calendar_initial_date | date : 'MMM d, y'"></span>
-            </strong>
-        </h3>
         <a ui-sref="student-dashboard.history.orders.order({orderId: activity.orders[0].id})"
            ng-bind="activities.strings.COPY_ORDER_DETAIL"
            class="text-underline text-gray-light"></a>
-        <trulii-activity-review data-review="activity.review"
+        <trulii-activity-review data-review="activity.reviews[0]"
                                 data-activity="activity"
                                 data-on-dashboard="true"
                                 class="separate-above" ></trulii-activity-review>
     </div>
     <hr/>
+  </div>
+
+  <div class="text-center" ng-if="activities.pastPaginationOpts.totalItems > activities.pastPaginationOpts.itemsPerPage">
+    <pagination class="pagination-sm"
+      ng-model="activities.pastPaginationOpts.pageNumber"
+      ng-change="activities.updateByQuery(activities.TYPE_PAST)"
+      data-total-items="activities.pastPaginationOpts.totalItems"
+      data-items-per-page="activities.pastPaginationOpts.itemsPerPage"></pagination>
+  </div>
 </div>
+
 <!--If there are no activities-->
 <div ng-if="activities.past_activities.length <= 0" class="row">
     <div class="col-md-6 col-md-offset-3 text-center">

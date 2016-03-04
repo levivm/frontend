@@ -29,6 +29,8 @@
         var _activities = [];
         var presave_info = null;
         var categories = null;
+        var defaultPageSize = 12;
+        var defaultPage = 1;
 
         //noinspection UnnecessaryLocalVariableJS
         var ActivitiesManager = {
@@ -170,8 +172,24 @@
             }
         }
 
-        function getStudentActivities(studentId){
-            return $http.get(apiStudent.activities(studentId)).then(success, error);
+        function getStudentActivities(studentId, status, page, page_size){
+          var params = {};
+          if(!page){
+            params.page = defaultPage;
+          }
+          else{
+            params.page = page;
+          }
+          if(!page_size){
+            params.page_size = defaultPageSize;
+          }
+          else{
+            params.page_size = page_size;
+          }
+          if(status){
+            params.status = status;
+          }
+            return $http.get(apiStudent.activities(studentId), {params: params}).then(success, error);
 
             function success(response){
                 return response.data;
@@ -214,23 +232,36 @@
             }
         }
 
-        function loadOrganizerActivities(organizerId) {
-            var deferred = $q.defer();
-            var cachedActivities = _getOrganizerActivitiesById(organizerId);
+        function loadOrganizerActivities(organizerId, status, page, pageSize) {
+            if(!page){
+              page = 1;
+            }
+            if(!pageSize){
+              pageSize = 12;
+            }
+            if(!status){
+              status = 'open';
+            }
+            // var deferred = $q.defer();
+            // var cachedActivities = _getOrganizerActivitiesById(organizerId);
 
-            if(cachedActivities){ deferred.resolve(cachedActivities); }
+            // if(cachedActivities){ deferred.resolve(cachedActivities); }
 
-            $http.get(apiOrg.activities(organizerId))
+            return $http.get(apiOrg.activities(organizerId),
+                {params: {
+                  page: page,
+                  page_size: pageSize,
+                  status: status
+                }})
                 .then(function (response) {
-                    _activities[organizerId] = [];
-                    _.each(response.data.results, function (activityData) {
-                        var activity = _retrieveInstance(activityData.id, activityData);
-                        _activities[organizerId].push(activity);
-                    });
-                    deferred.resolve(_activities[organizerId]);
+                    // _activities[organizerId] = [];
+                    // _.each(response.data.results, function (activityData) {
+                    //     var activity = _retrieveInstance(activityData.id, activityData);
+                    //     _activities[organizerId].push(activity);
+                    // });
+                    // deferred.resolve(_activities[organizerId]);
+                  return response.data;
                 });
-
-            return deferred.promise;
         }
 
         function loadGeneralInfo() {

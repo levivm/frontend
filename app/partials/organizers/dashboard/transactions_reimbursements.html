@@ -4,14 +4,80 @@
       <div class="col-xs-12">
         <div class="form-group">
           <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
-          <div class="input-group">
-            <input class="form-control floating-label" type="text"
-              ng-model="transactions.queries.refundQuery"
-              ng-change="transactions.updateByQuery(transactions.TYPE_REFUNDS)"
-              placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}">
-            <span class="input-group-addon">
+          <div class="row dashboard-filters separate-below hidden-xs hidden-sm hidden-md hidden-lg">
+            <div class="col-xs-6 col-md-2">
+              <div class="input-group filter-group">
+                <span class="input-group-addon" id="from_date_icon" ng-click="transactions.openDatePicker($event, 'refunds_from_date')">
+                  <i class="mdi-action-today"></i>
+                </span>
+                <input id="from_date" type="text" class="form-control date-picker"
+                  aria-describedby="from_date_icon"
+                  name="from_date"
+                  placeholder="Desde"
+                  ng-model="transactions.refundsFilter.from_date"
+                  datepicker-popup="{{::transactions.format}}"
+                  data-is-open="transactions.refundsFilter.from_date_opened"
+                  data-max-date="transactions.maxStartDate"
+                  data-datepicker-options="transactions.dateOptions"
+                  data-close-text="{{transactions.strings.ACTION_CLOSE}}"
+                  ng-click="transactions.openDatePicker($event, 'refunds_from_date')"/>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-2">
+              <div class="input-group filter-group">
+                <span class="input-group-addon" id="until_date_icon" ng-click="transactions.openDatePicker($event, 'refunds_until_date')">
+                  <i class="mdi-action-today"></i>
+                </span>
+                <input id="until_date" type="text" class="form-control date-picker"
+                  aria-describedby="until_date_icon"
+                  name="until_date"
+                  placeholder="Hasta"
+                  ng-model="transactions.refundsFilter.until_date"
+                  datepicker-popup="{{::transactions.format}}"
+                  data-is-open="transactions.refundsFilter.until_date_opened"
+                  data-max-date="transactions.maxStartDate"
+                  data-datepicker-options="transactions.dateOptions"
+                  data-close-text="{{transactions.strings.ACTION_CLOSE}}"
+                  ng-click="transactions.openDatePicker($event, 'refunds_until_date')"/>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-3">
+              <div class="input-group filter-group">
+                <span class="input-group-addon" id="activity_icon">
+                  <i class="mdi mdi-action-dashboard"></i>
+                </span>
+                <select name="activity"
+                  id="" class="form-control"
+                  ng-model="transactions.refundsFilter.activity"
+                  aria-describedby="activity_icon"
+                  ng-options="activity.id as activity.title for activity in transactions.activities">
+                  <option value="">Actividad</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-2">
+              <div class="input-group filter-group">
+                <select name="status" 
+                  id="" class="form-control"
+                  ng-model="transactions.refundsFilter.status">
+                  <option value="">Estatus</option>
+                  <option value="approved">Aprobadas</option>
+                  <option value="pending">Pendientes</option>
+                  <option value="cancelled">Canceladas</option>
+                  <option value="declined">Rechazadas</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-xs-6 col-md-2">
+              <input class="form-control floating-label" type="text"
+                ng-model="transactions.refundsFilter.query"
+                placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}"/>
+            </div>
+            <div class="col-xs-6 col-md-1">
+              <button class="btn btn-default btn-block" ng-click="transactions.updateByQuery(transactions.TYPE_REFUNDS)">
                 <i class="mdi-action-search"></i>
-            </span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -67,7 +133,7 @@
           <div class="text-center" ng-if="transactions.refundsPaginationOpts.totalItems > transactions.refundsPaginationOpts.itemsPerPage">
             <pagination class="pagination-sm"
               ng-model="transactions.refundsPaginationOpts.pageNumber"
-              ng-change="transactions.pageChange(transactions.TYPE_REFUNDS)"
+              ng-change="transactions.updateByQuery(transactions.TYPE_REFUNDS)"
               data-total-items="transactions.refundsPaginationOpts.totalItems"
               data-items-per-page="transactions.refundsPaginationOpts.itemsPerPage"
               previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"  

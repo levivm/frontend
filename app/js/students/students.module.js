@@ -66,10 +66,12 @@
                 controller: 'StudentActivitiesCtrl as activities',
                 templateUrl: 'partials/students/dashboard/activities.html',
                 resolve:{
-                    activities: getStudentActivities,
+                    currentActivities: getStudentCurrentActivities,
+                    nextActivities: getStudentNextActivities,
+                    pastActivities: getStudentPastActivities,
                     orders: getOrders,
                     reviews: getReviewsForActivities
-                }
+                  }
             })
             .state('student-dashboard.activities.open', {
                 url:'open',
@@ -79,13 +81,18 @@
                 url:'closed',
                 templateUrl: 'partials/students/dashboard/activities_closed.html'
             })
+            .state('student-dashboard.activities.current', {
+                url:'current',
+                templateUrl: 'partials/students/dashboard/activities_current.html'
+            })
             .state('student-dashboard.history', {
                 abstract:true,
                 url:'history',
                 controller: 'StudentHistoryCtrl as history',
                 templateUrl: 'partials/students/dashboard/history.html',
                 resolve: {
-                    orders: getOrders
+                    orders: getOrders,
+                    activityList: getStudentActivityList
                 }
             })
             .state('student-dashboard.history.orders', {
@@ -109,6 +116,12 @@
             .state('student-dashboard.history.refunds', {
                 url:'/refunds',
                 templateUrl: 'partials/students/dashboard/history.refunds.html'
+            })
+            
+            .state('student-dashboard.wishlist', {
+                url:'wishlist',
+                controller: 'StudentWishlistCtrl as wishlist',
+                templateUrl: 'partials/students/dashboard/wishlist.html',
             });
 
         /**
@@ -156,12 +169,58 @@
          * @requires trulii.students.services.StudentsManager
          * @methodOf trulii.students.config
          */
-        getStudentActivities.$inject = ['$q', 'ActivitiesManager', 'StudentsManager'];
-        function getStudentActivities($q, ActivitiesManager, StudentsManager){
+        getStudentNextActivities.$inject = ['$q', 'ActivitiesManager', 'StudentsManager'];
+        function getStudentNextActivities($q, ActivitiesManager, StudentsManager){
             return StudentsManager.getCurrentStudent().then(success, error);
 
             function success(student){
-                return ActivitiesManager.getStudentActivities(student.id);
+                return ActivitiesManager.getStudentActivities(student.id, 'next');
+            }
+
+            function error(){
+                $q.reject();
+            }
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getStudentActivities
+         * @description Retrieves all Activities from
+         * {@link trulii.students.services.StudentsManager StudentsManager} Service
+         * for the specified Student ID
+         * @requires trulii.activities.services.ActivitiesManager
+         * @requires trulii.students.services.StudentsManager
+         * @methodOf trulii.students.config
+         */
+        getStudentPastActivities.$inject = ['$q', 'ActivitiesManager', 'StudentsManager'];
+        function getStudentPastActivities($q, ActivitiesManager, StudentsManager){
+            return StudentsManager.getCurrentStudent().then(success, error);
+
+            function success(student){
+                return ActivitiesManager.getStudentActivities(student.id, 'past');
+            }
+
+            function error(){
+                $q.reject();
+            }
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getStudentActivities
+         * @description Retrieves all Activities from
+         * {@link trulii.students.services.StudentsManager StudentsManager} Service
+         * for the specified Student ID
+         * @requires trulii.activities.services.ActivitiesManager
+         * @requires trulii.students.services.StudentsManager
+         * @methodOf trulii.students.config
+         */
+        getStudentCurrentActivities.$inject = ['$q', 'ActivitiesManager', 'StudentsManager'];
+        function getStudentCurrentActivities($q, ActivitiesManager, StudentsManager){
+            return StudentsManager.getCurrentStudent().then(success, error);
+
+            function success(student){
+                return ActivitiesManager.getStudentActivities(student.id, 'current');
             }
 
             function error(){
@@ -201,12 +260,12 @@
          * {@link trulii.students.services.Student Student} Service
          * @methodOf trulii.students.config
          */
-        getReviewsForActivities.$inject = ['activities', 'student'];
-        function getReviewsForActivities(activities, student){
+        getReviewsForActivities.$inject = ['pastActivities', 'student'];
+        function getReviewsForActivities(pastActivities, student){
             return student.getReviews().then(success, error);
 
             function success(reviews){
-                angular.forEach(activities, checkReview);
+                angular.forEach(pastActivities.results, checkReview);
                 return reviews;
 
                 function checkReview(activity){
@@ -224,18 +283,6 @@
 
         /**
          * @ngdoc method
-         * @name .#getOrders
-         * @description Retrieves all of a Student's Orders
-         * {@link trulii.students.services.Student Student} Service
-         * @methodOf trulii.students.config
-         */
-        getOrders.$inject = ['student'];
-        function getOrders(student){
-            return student.getOrders();
-        }
-
-        /**
-         * @ngdoc method
          * @name .#getOrder
          * @description Retrieves an Order by its ID from
          * {@link trulii.students.services.Student Student} Service
@@ -244,6 +291,19 @@
         getOrder.$inject = ['$stateParams','student'];
         function getOrder($stateParams, student){
             return student.getOrder($stateParams.orderId);
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getStudentActivityList
+         * @description Retrieves Activity List from
+         * {@link trulii.payments.services.Payments Payments} Service
+         * @requires trulii.payments.services.Payments
+         * @methodOf trulii.students.config
+         */
+        getStudentActivityList.$inject = ['student'];
+        function getStudentActivityList(student){
+          return student.getActivityList();
         }
     }
 

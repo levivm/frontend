@@ -12,62 +12,89 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerReviewsCtrl', OrganizerReviewsCtrl);
 
-    OrganizerReviewsCtrl.$inject = ['$q', 'reviewObjects', 'Toast', 'unreadReviewsCount'];
-    function OrganizerReviewsCtrl($q, reviewObjects, Toast, unreadReviewsCount) {
+    OrganizerReviewsCtrl.$inject = ['$q', 'unreadReviewObjects', 'readReviewObjects', 'Toast', 'unreadReviewsCount', 'organizer', 'ActivitiesManager'];
+    function OrganizerReviewsCtrl($q, unreadReviewObjects, readReviewObjects, Toast, unreadReviewsCount, organizer, ActivitiesManager) {
 
         var vm = this;
         angular.extend(vm, {
-            unread_reviews: [],
-            read_reviews: [],
+            unread_reviews: unreadReviewObjects,
+            read_reviews: readReviewObjects,
             searchUnreadQuery: "",
             searchReadQuery: "",
-            changeReviewStatus: changeReviewStatus
+            changeReviewStatus: changeReviewStatus,
+            readPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 6,
+                pageNumber: 1
+            },
+            unreadPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 6,
+                pageNumber: 1
+            },
+            changePage: changePage,
+            TYPE_READ: 'read',
+            TYPE_UNREAD: 'unread'
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function mapActivityToReview(review){
+                
+            ActivitiesManager.getActivity(review.activity)
+            .then(
+              function(response){
+                review.activity = response;
+              }
+            );
+            
+            return review;
 
-        function changeReviewStatus(reviewObject){
-            var readReviewObject = _.remove(vm.unread_reviews, removeById)[0];
-            vm.read_reviews.push(reviewObject);
-            unreadReviewsCount.count += -1;
-            Toast.success(vm.strings.COPY_REVIEW_READ);
-
-            function removeById(unreadReviewObject){
-                return unreadReviewObject.review.id === reviewObject.review.id;
-            }
+          }
+              
+        function changePage(type){
+          switch(type){
+            case vm.TYPE_READ:
+              organizer.getReviews(vm.readPaginationOpts.pageNumber, vm.readPaginationOpts.itemsPerPage, vm.TYPE_READ)
+              .then(function(response){
+                 vm.read_reviews = response.results.map(mapActivityToReview);
+                 vm.readPaginationOpts.totalItems = response.count;
+              });
+              
+            break;
+            case vm.TYPE_UNREAD:
+              organizer.getReviews(vm.unreadPaginationOpts.pageNumber, vm.unreadPaginationOpts.itemsPerPage, vm.TYPE_UNREAD)
+              .then(function(response){
+                 vm.unread_reviews = response.results.map(mapActivityToReview);
+                 vm.unreadPaginationOpts.totalItems = response.count;
+              });
+            break;
+          }
+        }
+        
+        function changeReviewStatus(){
+          
+          organizer.getReviews(vm.readPaginationOpts.pageNumber, vm.readPaginationOpts.itemsPerPage, vm.TYPE_READ)
+          .then(function(response){
+              vm.read_reviews = response.results.map(mapActivityToReview);
+              vm.readPaginationOpts.totalItems = response.count;
+          });
+          
+          organizer.getReviews(vm.unreadPaginationOpts.pageNumber, vm.unreadPaginationOpts.itemsPerPage, vm.TYPE_UNREAD)
+          .then(function(response){
+              vm.unread_reviews = response.results.map(mapActivityToReview);
+              vm.unreadPaginationOpts.totalItems = response.count;
+              unreadReviewsCount.count = response.count;
+          });
+            
+          Toast.success(vm.strings.COPY_REVIEW_READ);
+          
         }
 
 
         //--------- Internal Functions ---------//
-
-        function _classifyReviews(reviewObjects){
-            vm.unread_reviews = [];
-            vm.read_reviews = [];
-            var deferred = $q.defer();
-            var promiseArray = [];
-            angular.forEach(reviewObjects, function(reviewObject){
-                promiseArray.push(filterReview(reviewObject));
-            });
-
-            $q.all(promiseArray).then(function(){
-                deferred.resolve();
-                console.log('unread_reviews:', vm.unread_reviews);
-                console.log('read_reviews:', vm.read_reviews);
-            });
-
-            return deferred.promise;
-
-            function filterReview(reviewObject){
-                if(reviewObject.review.read){
-                    vm.read_reviews.push(reviewObject);
-                } else {
-                    vm.unread_reviews.push(reviewObject);
-                }
-                return true;
-            }
-        }
 
         function _setStrings() {
             if (!vm.strings) {
@@ -85,8 +112,7 @@
         }
 
         function _activate() {
-            _setStrings();
-            _classifyReviews(reviewObjects);
+          _setStrings();
         }
 
     }

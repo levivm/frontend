@@ -308,6 +308,8 @@
                 ACTION_SIGN_UP: "Inscribirme",
                 ACTION_SELECT_CALENDAR: "Ver Detalle",
                 ACTION_VIEW_OTHER_DATES: "Ver más fechas de inicio",
+                ACTION_ADD_TO_WISHLIST: "Agregar a mis favoritos",
+                ACTION_REMOVE_FROM_WISHLIST: "Quitar de mis favoritos",
                 ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
                 ACTIVITY_SOLD_OUT: "Agotado",
                 COPY_SOCIAL_BUTTONS: "¿Te gustó? Compártelo con tus amigos",
@@ -342,6 +344,7 @@
                 COPY_OTHER_REVIEWS: " Evaluaciones",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
+                COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase, agrégala a favoritos y te avisaremos cuando hayan más fechas disponibles.",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días. Porque tú te lo mereces ",
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
@@ -421,7 +424,7 @@
             title = title.split(' ').join('-').toLowerCase();
 
             // Replacing most common special characters
-            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c"}
+            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c", "ñ":"n"}
             title = title.replace(/[^\w ]/g, function(char) {
               return dict[char] || char;
             });

@@ -118,7 +118,7 @@
             name = name.split(' ').join('-').toLowerCase();
             
             // Replacing most common special characters
-            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c"}
+            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c", "ñ":"n"}
             name = name.replace(/[^\w ]/g, function(char) {
               return dict[char] || char;
             });

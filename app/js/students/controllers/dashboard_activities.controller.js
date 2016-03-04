@@ -12,11 +12,12 @@
         .module('trulii.students.controllers')
         .controller('StudentActivitiesCtrl', StudentActivitiesCtrl);
 
-    StudentActivitiesCtrl.$inject = ['$q', '$state', 'LocationManager', 'activities', 'reviews', 'orders', 'student'];
+    StudentActivitiesCtrl.$inject = ['$q', '$state', 'LocationManager', 'ActivitiesManager', 'currentActivities', 'pastActivities', 'nextActivities', 'reviews', 'orders', 'student'];
 
-    function StudentActivitiesCtrl($q, $state, LocationManager, activities, reviews, orders, student) {
+    function StudentActivitiesCtrl($q, $state, LocationManager, ActivitiesManager, currentActivities, pastActivities, nextActivities, reviews, orders, student) {
 
         var futureOrders = [];
+        
         var pastOrders = [];
         var vm = this;
         angular.extend(vm, {
@@ -26,13 +27,59 @@
                 actions: ["contact"]
             },
             getReviewByActivityId: getReviewByActivityId,
-            searchActivities: searchActivities
+            searchActivities: searchActivities,
+            nextPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 12,
+                maxPagesSize:12,
+                pageNumber: 1
+            },
+            pastPaginationOpts: {
+              totalItems: 0,
+              itemsPerPage: 12,
+              maxPagesSize:12,
+              pageNumber: 1
+            },
+            currentPaginationOpts: {
+              totalItems: 0,
+              itemsPerPage: 12,
+              maxPagesSize:12,
+              pageNumber: 1
+            },
+            updateByQuery:updateByQuery,
+            TYPE_NEXT: 'next'
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        
+        function updateByQuery(type){
+            switch(type){
+                case vm.TYPE_NEXT:
+                  ActivitiesManager.getStudentActivities(student.id, vm.TYPE_NEXT, vm.nextPaginationOpts.pageNumber, vm.nextPaginationOpts.itemsPerPage)
+                  .then(function(response){
+                    vm.future_activities = response.results;
+                    vm.nextPaginationOpts.totalItems = response.count;
+                  });
+                  break;
+                case vm.TYPE_PAST:
+                  ActivitiesManager.getStudentActivities(student.id, vm.TYPE_PAST, vm.pastPaginationOpts.pageNumber, vm.pastPaginationOpts.itemsPerPage)
+                  .then(function(response){
+                    vm.past_activities = response.results;
+                    vm.pastPaginationOpts.totalItems = response.count;
+                  });
+                  break;
+                case vm.TYPE_CURRENT:
+                  ActivitiesManager.getStudentActivities(student.id, vm.TYPE_CURRENT, vm.currentPaginationOpts.pageNumber, vm.currentPaginationOpts.itemsPerPage)
+                  .then(function(response){
+                    vm.current_activities = response.results;
+                    vm.currentPaginationOpts.totalItems = response.count;
+                  });
+                  break;
+            }
+        }
+        
         function getReviewByActivityId(activityId){
             var review = reviews.filter(filterById)[0];
             //console.log('getReviewByActivityId', review);
@@ -107,49 +154,7 @@
         //    }
         //}
 
-        function _classifyActivities(activities, pastOrders, futureOrders){
-            var deferred = $q.defer();
-            var promiseArray = [];
-
-            activities.forEach(function(activity){
-                promiseArray.push(classifyActivity(activity));
-            });
-
-            $q.all(promiseArray).then(function(){
-                //console.log('future_activities:', vm.future_activities);
-                //console.log('past_activities:', vm.past_activities);
-                deferred.resolve();
-            });
-
-            return deferred.promise;
-
-            function classifyActivity(activity){
-                activity = _mapReviews(activity, reviews);
-                var orders;
-                // Filter pastOrders
-                orders = pastOrders.filter(filterOrdersByActivity);
-                if(orders.length > 0){
-                    var pastActivity = angular.copy(activity);
-                    pastActivity.orders = orders;
-                    vm.past_activities.push(pastActivity);
-                }
-                // Filter futureOrders
-                orders = futureOrders.filter(filterOrdersByActivity);
-                if(orders.length > 0){
-                    var futureActivity = angular.copy(activity);
-                    futureActivity.orders = orders;
-                    vm.future_activities.push(futureActivity);
-                }
-
-                function filterOrdersByActivity(order){
-                    return activity.id === order.activity_id;
-                }
-            }
-        }
-
         function _mapReviews(activity, reviews){
-            //console.log('reviews', reviews);
-            //console.log('activity', activity);
             var review = reviews.filter(function(review){
                 return review.activity == activity.id;
             })[0];
@@ -164,32 +169,26 @@
         }
 
         function _mapOrders(orders, activities, reviews){
-            var COMPARISON_DATE = Date.now();
             var deferred = $q.defer();
             var promiseArray = [];
 
             orders.forEach(function(order){
-                promiseArray.push(processOrder(order));
+              promiseArray.push(processOrder(order));
             });
 
             $q.all(promiseArray).then(function(){
-                deferred.resolve(orders);
+              deferred.resolve(orders);
             });
 
             return deferred.promise;
 
             function processOrder(order){
-                order = setOrderActivity(order, activities);
-                if(order.calendar_initial_date < COMPARISON_DATE){
-                    pastOrders.push(order);
-                } else {
-                    futureOrders.push(order);
-                }
+                order = setOrderActivity(order, activities);               
             }
 
             function setOrderActivity(order, activities){
                 order.activity = activities.filter(function(activity){
-                    return activity.id == order.activity_id;
+                  return activity.id == order.activity.id;
                 })[0];
 
                 return order;
@@ -205,23 +204,43 @@
                 COPY_CURRENT: "Revisa las actividades que estás cursando actualmente o que inician próximamente.",
                 COPY_HISTORY: "Revisa las actividades en las que te has inscrito anteriormente.",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                LABEL_EMPTY_ACTIVITIES: "Hasta ahora no se ha inscrito en alguna actividad",
+                LABEL_EMPTY_ACTIVITIES: "Hasta ahora no ha terminado ninguna actividad",
+                LABEL_EMPTY_CURRENT_ACTIVITIES: "Por los momentos no tiene ninguna actividad en curso",
                 COPY_EMPTY_ACTIVITIES: "Parece ser el momento perfecto para que descubra una nueva pasión,"
                     + " aprenda un nuevo pasatiempo o mejore su currículo",
                 TAB_OPEN: "Próximas",
                 TAB_CLOSED: "Anteriores",
+                TAB_CURRENT: "Actuales",
                 COPY_ORDER_DETAIL: "Detalle de la compra",
                 COPY_BEGINNING_ON: "Iniciado el "
             });
         }
+        
+        function _setOrders(){
+           var activities = nextActivities.results.concat(pastActivities.results).concat(currentActivities.results);
+            _mapOrders(orders.results, activities, reviews)
+            .then(function(){
+                _mapReviews(vm.past_activities, reviews);
+            });
+        }
+        
+        function _setActivities(){
+          
+            vm.nextPaginationOpts.totalItems = nextActivities.count;
+            vm.future_activities = nextActivities.results;
+            
+            vm.pastPaginationOpts.totalItems = pastActivities.count;
+            vm.past_activities = pastActivities.results;
+            
+            vm.currentPaginationOpts.totalItems = currentActivities.count;
+            vm.current_activities = currentActivities.results;
+            
+        }
 
         function _activate() {
             _setStrings();
-            _mapOrders(orders, activities, reviews).then(function(){
-                _classifyActivities(activities, pastOrders, futureOrders);
-            }).then(function(){
-                _mapReviews(vm.past_activities, reviews);
-            });
+            _setActivities();
+            _setOrders();
         }
 
     }
