@@ -1,4 +1,4 @@
-xdescribe('Controller: HomeController', function(){
+describe('Controller: HomeController', function(){
     var HomeController,
         generalInfo,
         ActivitiesManager,
@@ -22,21 +22,36 @@ xdescribe('Controller: HomeController', function(){
         /*Calls to resolve route / 'Home'
             activities: getRecommendedActivities,
             generalInfo: getPresaveActivityInfo
-        */
+
+
+
+
         httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
-             .respond(readJSON('tests/mock/activities.json'));
-        activities = readJSON('tests/mock/activities.json');
+             .when('GET', 'http://localhost:8000/api/locations/cities/')
+             .respond(readJSON('tests/mock/cities.json'));*/
 
         httpBackend
              .when('GET', 'http://localhost:8000/api/activities/info')
              .respond(readJSON('tests/mock/generalinfo.json'));
 
-        httpBackend
-             .when('GET', 'http://localhost:8000/api/locations/cities/')
-             .respond(readJSON('tests/mock/cities.json'));
+         httpBackend
+              .when('GET', 'http://localhost:8000/api/locations/cities/')
+              .respond(readJSON('tests/mock/cities.json'));
+
+          httpBackend
+             .when('GET', 'http://localhost:8000/api/activities/search/?o=score&page_size=8')
+             .respond(readJSON('tests/mock/activities.json'));
+
+         httpBackend
+            .when('JSONP', 'http://ipinfo.io/?callback=JSON_CALLBACK')
+            .respond(200, {});
+
+
+
+
 
         ActivitiesManager.loadGeneralInfo().then(function(data){
+            console.log(data);
             generalInfo = data;
         }, function(response){
             console.log(response);

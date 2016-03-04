@@ -1,0 +1,68 @@
+{
+  "id": 13,
+  "activity": 4,
+  "initial_date": 1457525917000,
+  "closing_sale": 1458821917000,
+  "number_of_sessions": 4,
+  "session_price": 576389,
+  "capacity": 19,
+  "sessions": [
+    {
+      "id": 51,
+      "date": 1462456966000,
+      "start_time": 1457109311000,
+      "end_time": 1457109311000
+    },
+    {
+      "id": 50,
+      "date": 1479931270000,
+      "start_time": 1457149623000,
+      "end_time": 1457149623000
+    },
+    {
+      "id": 49,
+      "date": 1477509473000,
+      "start_time": 1457152663000,
+      "end_time": 1457152663000
+    },
+    {
+      "id": 48,
+      "date": 1466664933000,
+      "start_time": 1457090573000,
+      "end_time": 1457090573000
+    }
+  ],
+  "assistants": [
+    {
+      "id": 92,
+      "first_name": "Zelma",
+      "last_name": "Schiller",
+      "full_name": "Zelma Schiller",
+      "email": "bert24@gmail.com",
+      "order": 46,
+      "token": null
+    },
+    {
+      "id": 91,
+      "first_name": "Garrison",
+      "last_name": "Ziemann",
+      "full_name": "Garrison Ziemann",
+      "email": "lum.walker@yahoo.com",
+      "order": 45,
+      "token": null
+    },
+    {
+      "id": 90,
+      "first_name": "Berdie",
+      "last_name": "Lemke",
+      "full_name": "Berdie Lemke",
+      "email": "jabari.towne@gmail.com",
+      "order": 45,
+      "token": null
+    }
+  ],
+  "is_weekend": true,
+  "duration": 0,
+  "is_free": false,
+  "available_capacity": 16
+}

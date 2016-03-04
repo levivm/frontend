@@ -123,12 +123,13 @@
      * @requires trulii.activities.services.ActivitiesManager
      * @methodOf trulii.routes.config
      */
-    getRecommendedActivities.$inject = ['$q', 'ActivitiesManager'];
-    function getRecommendedActivities($q, ActivitiesManager){
+    getRecommendedActivities.$inject = ['$q', 'ActivitiesManager', 'LocationManager'];
+    function getRecommendedActivities($q, ActivitiesManager, LocationManager){
         var deferred = $q.defer();
-
-        ActivitiesManager.getRecommendedActivities().then(success, error);
-
+        LocationManager.init().then(function(currentCity){
+            console.log(currentCity);
+            ActivitiesManager.getRecommendedActivities().then(success, error);
+        });
         return deferred.promise;
 
         function success(activities){

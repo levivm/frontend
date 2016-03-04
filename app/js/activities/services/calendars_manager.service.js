@@ -114,6 +114,9 @@
             function success(response) {
                 var result = response.data;
                 var calendar = _retrieveInstance(result.id, result);
+                console.log(api.calendar(activityId, calendarId));
+                console.log(result);
+                console.log(calendar);
                 deferred.resolve(calendar);
             }
 

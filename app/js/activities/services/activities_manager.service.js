@@ -157,7 +157,7 @@
             var config = {
                 'params': {
                     'o': 'score',
-                    'city': LocationManager.getCurrentCity.id,
+                    'city': LocationManager.getCurrentCity().id,
                     'page_size': RECOMMENDED_QTY
                 }
             };
