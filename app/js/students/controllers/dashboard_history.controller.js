@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryCtrl', StudentHistoryCtrl);
 
-    StudentHistoryCtrl.$inject = ['$filter', '$http', 'student', 'titleTruncateSize', 'StudentServerApi', 'datepickerPopupConfig'];
+    StudentHistoryCtrl.$inject = ['$filter', '$http', 'student', 'titleTruncateSize', 'StudentServerApi', 'datepickerPopupConfig', 'activityList'];
 
-    function StudentHistoryCtrl($filter, $http, student, titleTruncateSize, StudentServerApi, datepickerPopupConfig) {
+    function StudentHistoryCtrl($filter, $http, student, titleTruncateSize, StudentServerApi, datepickerPopupConfig, activityList) {
 
         var vm = this;
         var api = StudentServerApi;
@@ -22,6 +22,7 @@
          
         angular.extend(vm,{
             activities: null,
+            activityList: activityList,
             options: {actions: ['view']},
             updateByQuery:updateByQuery,
             format : FORMATS[0],

@@ -49,9 +49,9 @@
                 <select name="activity"
                   id="" class="form-control"
                   ng-model="transactions.salesFilter.activity"
-                  aria-describedby="activity_icon">
+                  aria-describedby="activity_icon"
+                  ng-options="activity.id as activity.title for activity in transactions.activities">
                   <option value="">Actividad</option>
-                  <option value="1">Clases de placeholder</option>
                 </select>
               </div>
             </div>

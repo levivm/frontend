@@ -23,6 +23,7 @@
             organizer: organizer,
             format : FORMATS[0],
             maxStartDate : new Date(),
+            activities: activities,
             password_data: {},
             isCollapsed: true,
             isSaving: false,

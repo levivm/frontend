@@ -143,8 +143,6 @@
         function _activate(){
             _setStrings();
             _initWidget();
-            console.log(vm.widgetMaxPosition);
-            console.log(vm.scroll);
         };
 
     }

@@ -91,7 +91,8 @@
                 controller: 'StudentHistoryCtrl as history',
                 templateUrl: 'partials/students/dashboard/history.html',
                 resolve: {
-                    orders: getOrders
+                    orders: getOrders,
+                    activityList: getStudentActivityList
                 }
             })
             .state('student-dashboard.history.orders', {
@@ -290,6 +291,19 @@
         getOrder.$inject = ['$stateParams','student'];
         function getOrder($stateParams, student){
             return student.getOrder($stateParams.orderId);
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getStudentActivityList
+         * @description Retrieves Activity List from
+         * {@link trulii.payments.services.Payments Payments} Service
+         * @requires trulii.payments.services.Payments
+         * @methodOf trulii.students.config
+         */
+        getStudentActivityList.$inject = ['student'];
+        function getStudentActivityList(student){
+          return student.getActivityList();
         }
     }
 

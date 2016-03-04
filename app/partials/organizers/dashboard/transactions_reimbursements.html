@@ -4,7 +4,7 @@
       <div class="col-xs-12">
         <div class="form-group">
           <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
-          <div class="row dashboard-filters separate-below">
+          <div class="row dashboard-filters separate-below hidden-xs hidden-sm hidden-md hidden-lg">
             <div class="col-xs-6 col-md-2">
               <div class="input-group filter-group">
                 <span class="input-group-addon" id="from_date_icon" ng-click="transactions.openDatePicker($event, 'refunds_from_date')">
@@ -49,9 +49,9 @@
                 <select name="activity"
                   id="" class="form-control"
                   ng-model="transactions.refundsFilter.activity"
-                  aria-describedby="activity_icon">
+                  aria-describedby="activity_icon"
+                  ng-options="activity.id as activity.title for activity in transactions.activities">
                   <option value="">Actividad</option>
-                  <option value="1">Clases de placeholder</option>
                 </select>
               </div>
             </div>

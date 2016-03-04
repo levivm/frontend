@@ -40,8 +40,6 @@
         }
         
         function toggleSidebar(){
-            console.log("???");
-            console.log(vm.showSidebar);
             vm.showSidebar = !vm.showSidebar;
         }
         

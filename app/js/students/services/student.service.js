@@ -118,6 +118,19 @@
             change_password : function (password_data) {
                 return Authentication.change_password(password_data);
             },
+            
+             /**
+             * @ngdoc function
+             * @name .#getActivityList
+             * @description Retrieves the list of activities a student has signed up for
+             * @methodOf trulii.students.services.Student
+             */
+            getActivityList: function() {
+              return $http.get(api.autocomplete(this.id))
+                    .then(function (response) {
+                        return response.data;
+                    });
+            },
 
             getOrders : function (page, pageSize) {
               if(!page){
