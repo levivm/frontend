@@ -5,6 +5,13 @@
                 data-activity="activity"
                 data-options="{{activities.closedOptions}}"></trulii-activity-item>
     </div>
+    <div class="text-center col-xs-10" ng-if="activities.closed_activities.length > 0">
+        <pagination class="pagination-sm"
+            ng-model="activities.closedPaginationOpts.pageNumber"
+            ng-change="activities.pageChange(activities.TYPE_CLOSED)"
+            data-total-items="activities.closedPaginationOpts.totalItems"
+            data-items-per-page="activities.closedPaginationOpts.itemsPerPage"></pagination>
+      </div>
     <!--If there are no activities-->
     <div ng-if="activities.closed_activities.length <= 0" class="row">
         <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">

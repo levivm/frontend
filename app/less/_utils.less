@@ -529,3 +529,52 @@
 	}
 
 }
+
+
+.dashboard-filters{
+  .date-picker, .date-picker:focus{
+    animation: none;
+    background-size: 15px auto !important;
+    background-position: 94.75% 50%;
+    background-repeat: no-repeat;
+    background-image: url(/css/img/about/arrow.png) !important;
+  }
+  .input-group{
+    width: 100%;
+    .input-group-addon{
+      padding: 6px 8px 6px 0;
+    }
+    input{
+      margin-top: 5px;
+    }
+  }
+  select, .form-group .form-control select:focus, .form-control select:focus{
+    margin-top: 5px;
+    animation: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-size: 15px auto !important;
+    background-position: 93% 50%;
+    background-repeat: no-repeat;
+    background-image: url(/css/img/about/arrow.png) !important;
+    height: 30px !important;
+  }
+  .filter-group{
+    border-radius: @border-radius-base;
+    border: 1px solid @gray-light;
+    padding: 0 10px;
+  }
+  input.form-control.floating-label{
+    height: 35px;
+  }
+  .btn-default{
+    background-color: @gray-light-medium;
+    color: @gray-light;
+    
+    padding: 3px;
+  }
+  input.form-control, select.form-control{
+    font-size: 0.75em;
+    vertical-align: middle;
+  }
+}

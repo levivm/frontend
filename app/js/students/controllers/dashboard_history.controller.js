@@ -11,25 +11,28 @@
     angular
         .module('trulii.students.controllers')
         .controller('StudentHistoryCtrl', StudentHistoryCtrl);
+    StudentHistoryCtrl.$inject = ['$filter', '$http', 'student', 'titleTruncateSize', 'Analytics', 'StudentServerApi', 'datepickerPopupConfig', 'activityList'];
 
-    StudentHistoryCtrl.$inject = ['$filter','student', 'titleTruncateSize', 'Analytics'];
-
-    function StudentHistoryCtrl($filter, student, titleTruncateSize, Analytics) {
-
+    function StudentHistoryCtrl($filter, $http, student, titleTruncateSize, Analytics, StudentServerApi, datepickerPopupConfig, activityList) {
         var vm = this;
+        var api = StudentServerApi;
+        var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+         
         angular.extend(vm,{
             activities: null,
+            activityList: activityList,
             options: {actions: ['view']},
             updateByQuery:updateByQuery,
-            pageChange: pageChange,
             seeOrder:seeOrder,
+            format : FORMATS[0],
+            maxStartDate : new Date(),
             queries : {
                 orderQuery : null,
                 assistantQuery : null
             },
-            orderPaginationOpts: {
+            ordersPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 15,
+                itemsPerPage: 10,
                 pageNumber: 1
             },
             refundsPaginationOpts: {
@@ -39,54 +42,121 @@
             },
             TYPE_ORDER: 'order',
             TYPE_REFUNDS: 'refunds',
-            titleSize: titleTruncateSize
+            titleSize: titleTruncateSize,
+            ordersFilter: {
+              from_date: null,
+              until_date: null,
+              from_date_opened: false,
+              until_date_opened: false,
+              status: null,
+              query: null,
+              activity: null
+            },
+            refundsFilter: {
+              from_date: null,
+              until_date: null,
+              from_date_opened: false,
+              until_date_opened: false,
+              status: null,
+              query: null,
+              activity: null
+            },
+            openDatePicker: openDatePicker,
         });
 
         activate();
 
         var orders = [];
         var refunds = [];
+        
+        /*      Exposed Functions      */ 
+        
+        function openDatePicker($event, date){
+          console.log('openDatePicker');
+          $event.preventDefault();
+          $event.stopPropagation();
 
-
-        /*      Exposed Functions      */
+          if(date === 'orders_from_date'){
+            vm.ordersFilter.from_date_opened = true;
+            vm.ordersFilter.until_date_opened = false;
+          }
+          if(date === 'orders_until_date'){
+            vm.ordersFilter.until_date_opened = true;
+            vm.ordersFilter.from_date_opened = false;
+          }
+           if(date === 'refunds_from_date'){
+            vm.refundsFilter.from_date_opened = true;
+            vm.refundsFilter.until_date_opened = false;
+          }
+          if(date === 'refunds_until_date'){
+            vm.refundsFilter.until_date_opened = true;
+            vm.refundsFilter.from_date_opened = false;
+          }
+        }
 
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_ORDER:
-                    vm.orders = $filter('filter')(orders, vm.queries.orderQuery);
-                    vm.orderPaginationOpts.totalItems = vm.orders.length;
-                    vm.orderPaginationOpts.pageNumber = 1;
-                    vm.orders = vm.orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
-                    console.log('Orders query order ',vm.orders);
-                    break;
+                  var params = {
+                    page: vm.ordersPaginationOpts.pageNumber,
+                    page_size: vm.ordersPaginationOpts.itemsPerPage
+                  };
+                  
+                  if(vm.ordersFilter.activity)
+                    params.activity = vm.ordersFilter.activity;
+                    
+                  if(vm.ordersFilter.from_date)
+                    params.from_date = new Date(vm.ordersFilter.from_date).getTime();
+                    
+                  if(vm.ordersFilter.until_date)
+                    params.until_date = new Date(vm.ordersFilter.until_date).getTime();
+                    
+                  if(vm.ordersFilter.status)
+                    params.status = vm.ordersFilter.status;
+                    
+                  if(vm.ordersFilter.query)
+                    params.id = vm.ordersFilter.query;
+                    
+                  $http.get(api.orders(student.id),
+                    {params: params})
+                    .then(function(response){
+                    vm.orders = response.data;
+                    vm.orders.results = $filter('orderBy')(vm.orders.results, 'id', true);
+                    vm.ordersPaginationOpts.totalItems = vm.orders.count;
+                    vm.orders = vm.orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
+                  });
+                  break;
                 case vm.TYPE_REFUNDS:
-                    console.log('updating',vm.queries.refundQuery);
-                    vm.refunds = $filter('filter')(refunds, vm.queries.refundQuery);
-                    vm.refundsPaginationOpts.totalItems = vm.refunds.length;
-                    vm.refundsPaginationOpts.pageNumber = 1;
-                    vm.refunds = vm.refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-                    break;
+                  var params = {
+                    page: vm.refundsPaginationOpts.pageNumber,
+                    page_size: vm.refundsPaginationOpts.itemsPerPage
+                  };
+                  
+                  if(vm.refundsFilter.activity)
+                    params.activity = vm.refundsFilter.activity;
+                    
+                  if(vm.refundsFilter.from_date)
+                    params.from_date = new Date(vm.refundsFilter.from_date).getTime();
+                    
+                  if(vm.refundsFilter.until_date)
+                    params.until_date = new Date(vm.refundsFilter.until_date).getTime();
+                    
+                  if(vm.refundsFilter.status)
+                    params.status = vm.refundsFilter.status;
+                    
+                  if(vm.refundsFilter.query)
+                    params.id = vm.refundsFilter.query;
+                    
+                  $http.get(api.refunds(student.id),
+                      {params: params})
+                      .then(function(response){
+                      vm.refunds = response.data;
+                      vm.refunds.results = $filter('orderBy')(vm.refunds.results, 'id', true);
+                      vm.refundsPaginationOpts.totalItems = vm.refunds.count;
+                      vm.refunds = vm.refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+                  });
+                  break;
 
-            }
-        }
-
-        function pageChange(type){
-            var offset = null;
-            var start = null;
-            var end = null;
-            switch(type){
-                case vm.TYPE_ORDER:
-                    offset = vm.orderPaginationOpts.itemsPerPage;
-                    start = (vm.orderPaginationOpts.pageNumber -1) * offset;
-                    end = vm.orderPaginationOpts.pageNumber * offset;
-                    vm.orders = orders.slice(start, end);
-                    break;
-                case vm.TYPE_REFUNDS:
-                    offset = vm.refundsPaginationOpts.itemsPerPage;
-                    start = (vm.refundsPaginationOpts.pageNumber -1) * offset;
-                    end = vm.refundsPaginationOpts.pageNumber * offset;
-                    vm.refunds = refunds.slice(start, end);
-                    break;
             }
         }
 
@@ -97,12 +167,14 @@
         /*       Internal Functions      */
 
         function _getOrders(){
+          
             student.getOrders().then(success, error);
 
             function success(ordersResponse){
-                orders = $filter('orderBy')(ordersResponse, 'id', true);
-                vm.orderPaginationOpts.totalItems = orders.length;
-                vm.orders = orders.slice(0, vm.orderPaginationOpts.itemsPerPage);
+              orders = ordersResponse;
+              orders.results = $filter('orderBy')(orders.results, 'id', true);
+              vm.ordersPaginationOpts.totalItems = orders.count;
+              vm.orders = orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
 
             }
             function error(orders){
@@ -115,11 +187,10 @@
             student.getRefunds().then(success,error);
 
             function success(data){
-
-                refunds = $filter('orderBy')(data, 'order', true);
-                console.log('refunds',refunds);
-                vm.refundsPaginationOpts.totalItems = refunds.length;
-                vm.refunds = refunds.slice(0, vm.refundsPaginationOpts.itemsPerPage);
+              refunds = data;
+              refunds.results = $filter('orderBy')(refunds.results, 'id', true);
+              vm.refundsPaginationOpts.totalItems = refunds.count;
+              vm.refunds = refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
             }
             function error(data){
                 console.log("Error getting Organizer's orders");

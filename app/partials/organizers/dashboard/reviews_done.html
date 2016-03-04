@@ -19,8 +19,15 @@
             </div>
             <div class="col-xs-12 col-md-10 col-md-offset-1 review-detail separate-above-medium separate-below-less"
                  ng-repeat="reviewObject in reviews.read_reviews | filter:{$: reviews.searchReadQuery} ">
-                <trulii-activity-review data-review="reviewObject.review" data-activity="reviewObject.activity"
+                <trulii-activity-review data-review="reviewObject" data-activity="reviewObject.activity"
                                         data-on-dashboard="true"></trulii-activity-review>
+            </div>
+            <div class="text-center" ng-if="reviews.readPaginationOpts.totalItems > reviews.readPaginationOpts.itemsPerPage">
+              <pagination class="pagination-sm"
+                  ng-model="reviews.readPaginationOpts.pageNumber"
+                  ng-change="reviews.changeReviewStatus()"
+                  data-total-items="reviews.readPaginationOpts.totalItems"
+                  data-items-per-page="reviews.readPaginationOpts.itemsPerPage"></pagination>
             </div>
             <div class="col-xs-8 col-xs-offset-2 text-center" ng-if="reviews.read_reviews.length <= 0">
                 <img src="css/img/organizer_dashboard_activities_empty.png"

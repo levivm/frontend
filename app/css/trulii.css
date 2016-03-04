@@ -10977,7 +10977,7 @@ legend {
   color: #ffd580;
 }
 .text-danger {
-  color: #BD362F;
+  color: #d9534f;
 }
 .text-success {
   color: #38dbc8;
@@ -12661,6 +12661,54 @@ hr.on-light {
   .navigation-widget ul li .navigation-widget__icon {
     display: none !important;
   }
+}
+.dashboard-filters .date-picker,
+.dashboard-filters .date-picker:focus {
+  animation: none;
+  background-size: 15px auto !important;
+  background-position: 94.75% 50%;
+  background-repeat: no-repeat;
+  background-image: url(/css/img/about/arrow.png) !important;
+}
+.dashboard-filters .input-group {
+  width: 100%;
+}
+.dashboard-filters .input-group .input-group-addon {
+  padding: 6px 8px 6px 0;
+}
+.dashboard-filters .input-group input {
+  margin-top: 5px;
+}
+.dashboard-filters select,
+.dashboard-filters .form-group .form-control select:focus,
+.dashboard-filters .form-control select:focus {
+  margin-top: 5px;
+  animation: none !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-size: 15px auto !important;
+  background-position: 93% 50%;
+  background-repeat: no-repeat;
+  background-image: url(/css/img/about/arrow.png) !important;
+  height: 30px !important;
+}
+.dashboard-filters .filter-group {
+  border-radius: 4px;
+  border: 1px solid #999999;
+  padding: 0 10px;
+}
+.dashboard-filters input.form-control.floating-label {
+  height: 35px;
+}
+.dashboard-filters .btn-default {
+  background-color: #e3e3e3;
+  color: #999999;
+  padding: 3px;
+}
+.dashboard-filters input.form-control,
+.dashboard-filters select.form-control {
+  font-size: 0.75em;
+  vertical-align: middle;
 }
 .text-left {
   text-align: left;
@@ -19030,6 +19078,20 @@ blockquote {
   line-height: 1em;
   margin-top: 0.75em !important;
 }
+.calendar-widget .widget-card .wishlist {
+  border-bottom: 1px solid #DEDEDE;
+  padding: 1em 0em;
+}
+.calendar-widget .widget-card .wishlist [class^="mdi-"],
+.calendar-widget .widget-card .wishlist [class*="mdi-"] {
+  vertical-align: middle;
+  font-size: 2em;
+  color: #d9534f;
+  margin-right: .25em;
+}
+.calendar-widget .widget-card .wishlist span {
+  vertical-align: middle;
+}
 .calendar-widget .widget-card .sessions .sessions-title {
   padding: 1em;
   text-align: center;
@@ -19432,6 +19494,20 @@ blockquote {
 .sign-up-container {
   text-align: center;
   background-color: #22c7b5;
+}
+.sign-up-container .btn {
+  border: 1px solid white;
+  background-color: transparent;
+}
+.sign-up-container .btn [class^="mdi-"],
+.sign-up-container .btn [class*="mdi-"] {
+  vertical-align: middle;
+  font-size: 2em;
+  margin-right: .25em;
+}
+.sign-up-container .btn span {
+  vertical-align: middle;
+  font-size: 1.25em;
 }
 .sign-up-container h1,
 .sign-up-container h2,

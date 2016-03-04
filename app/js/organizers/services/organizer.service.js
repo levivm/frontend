@@ -23,6 +23,9 @@
                        LocationManager, UploadFile, defaultPicture) {
 
         var api = OrganizerServerApi;
+        var defaultPageSize = 25;
+        var reviewsDefaultPageSize = 5;
+        var defaultPage = 1;
 
         function Organizer(organizerData) {
             if (organizerData) {
@@ -147,12 +150,30 @@
                         return response.data;
                     });
             },
-
-            getOrders : function () {
-                return $http.get(api.orders(this.id))
+            
+            getActivityList: function() {
+              return $http.get(api.autocomplete(this.id))
                     .then(function (response) {
                         return response.data;
                     });
+            },
+
+            getOrders : function (page, pageSize) {
+              
+              if(!page)
+                page = defaultPage;
+              if(!pageSize)
+                pageSize: defaultPageSize;
+                
+              return $http.get(api.orders(this.id),
+                  {params: {
+                    page: page,
+                    page_size: pageSize
+                  }})
+                  .then(function (response) {
+                      return response.data;
+                  });
+                  
             },
 
             /**
@@ -254,65 +275,48 @@
 
         }
 
-        function getRefunds(){
-
-            var deferred = $q.defer();
-            var refunds = [];
-
-            collectRefunds(api.refunds());
-
-            return deferred.promise;
-
-            function collectRefunds(nextUrl){
-                return $http.get(nextUrl)
-                    .then(success, error);
-
-                function success(response) {
-                    refunds = refunds.concat(response.data.results);
-                    if(response.data.next){
-                        return collectRefunds(response.data.next);
-                    } else {
-                        deferred.resolve(refunds);
-                    }
-                }
-
-                function error(response) {
-                    console.log("Error getting organizer refunds: ", response.data);
-                    deferred.reject(refunds);
-                }
-            }
-
+        function getRefunds(page, pageSize){
+            if(!page)
+              page = defaultPage;
+            if(!pageSize)
+              pageSize: defaultPageSize;
+              
+            return $http.get(api.refunds(this.id),
+                {params: {
+                  page: page,
+                  page_size: pageSize
+                }})
+                .then(function (response) {
+                    return response.data;
+                });
 
         }
 
-
-        function getReviews(){
-            var deferred = $q.defer();
-            var reviews = [];
-            var organizer_scope = this;
-
-            collectReviews(api.reviews(this.id));
-            return deferred.promise;
-
-            function collectReviews(nextUrl){
-                return $http.get(nextUrl)
-                    .then(success, error);
-
+        function getReviews(page, pageSize, status){
+          
+          if(!page)
+            page = defaultPage;
+          if(!pageSize)
+            pageSize = reviewsDefaultPageSize;
+          if(!status){
+            status = '';
+          }
+          
+          return $http.get(api.reviews(this.id),
+                {params: {
+                  page: page,
+                  page_size: pageSize,
+                  status: status
+                }})
+                .then(success, error);
+                
                 function success(response) {
-                    reviews = reviews.concat(response.data.results);
-                    organizer_scope.unread_reviews_c = 10;
-                    if(response.data.next){
-                        return collectReviews(response.data.next);
-                    } else {
-                        deferred.resolve(reviews);
-                    }
+                    return response.data;
+                };
+                
+                function error(response){
+                  console.log("Error getting organizer reviews: ", response.data);
                 }
-
-                function error(response) {
-                    console.log("Error getting organizer reviews: ", response.data);
-                    deferred.reject(reviews);
-                }
-            }
         }
 
         function getInstructors(){

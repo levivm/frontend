@@ -46,8 +46,6 @@
             if(isFormComplete()){
                 var data = {
                     'topic': vm.selectedTopic.id,
-                    'subtopic': vm.selectedSubtopic.id,
-                    'city': vm.selectedCity.name
                 };
                 angular.extend(data, vm.formData);
 
@@ -75,8 +73,6 @@
 
                 function areValidSelects(){
                     return vm.selectedTopic && vm.selectedTopic.hasOwnProperty('id')
-                        && vm.selectedSubtopic && vm.selectedSubtopic.hasOwnProperty('id')
-                        && vm.selectedCity && vm.selectedCity.hasOwnProperty('name');
                 }
                 function areValidFields(){
                     return vm.formData.name && vm.formData.email && vm.formData.phone_number && vm.formData.description;

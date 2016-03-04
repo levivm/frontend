@@ -1,0 +1,31 @@
+<!--If there are activities-->
+<div ng-if="activities.current_activities.length > 0">
+  <div>
+    <div class="row activity-grid">
+      <trulii-activity-item
+        ng-repeat="activity in activities.current_activities track by activity.id"
+        data-activity="activity" data-options="{{activities.options}}">
+      </trulii-activity-item>
+    </div>
+    <div class="text-center" ng-if="activities.currentPaginationOpts.totalItems > activities.currentPaginationOpts.itemsPerPage">
+      <pagination class="pagination-sm"
+        ng-model="activities.currentPaginationOpts.pageNumber"
+        ng-change="activities.updateByQuery(activities.TYPE_PAST)"
+        data-total-items="activities.currentPaginationOpts.totalItems"
+        data-items-per-page="activities.currentPaginationOpts.itemsPerPage"></pagination>
+    </div>
+  </div>
+</div>
+<!--If there are no activities-->
+<div ng-if="activities.current_activities.length <= 0" class="row">
+  <div class="col-md-6 col-md-offset-3 text-center">
+    <img class="separate-below-less" src="css/img/student_dashboard_activities_empty.png"
+      alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
+    <h4 ng-bind="::activities.strings.LABEL_EMPTY_CURRENT_ACTIVITIES"></h4>
+    <div class="separate-below separate-above standout-text"
+      ng-bind="::activities.strings.COPY_EMPTY_ACTIVITIES">
+    </div>
+    <button class="btn btn-lg btn-success" ng-click="activities.searchActivities()"
+      ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES"></button>
+  </div>
+</div>

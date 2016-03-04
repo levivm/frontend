@@ -45,7 +45,6 @@
 
         function toggleSidebar(){
             pc.showSidebar = !pc.showSidebar;
-            console.log('???0');
         }
 
         function isActive(stateStr){
