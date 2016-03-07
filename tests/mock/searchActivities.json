@@ -1,0 +1,297 @@
+{
+  "count": 11,
+  "next": "http://localhost:8000/api/activities/search/?city=1&page=2&q=sesiones+de+derecho",
+  "previous": null,
+  "results": [
+    {
+      "id": 4,
+      "title": "Sesiones de Derecho",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 4,
+      "pictures": [],
+      "organizer": {
+        "id": 1,
+        "name": "Lehner Ltd",
+        "photo": null,
+        "rating": 0
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 13,
+        "initial_date": 1457525917000,
+        "closing_sale": 1458821917000,
+        "session_price": 576389,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 43,
+      "title": "Sesiones de Comunicación",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 3,
+      "pictures": [],
+      "organizer": {
+        "id": 5,
+        "name": "Smitham-Will",
+        "photo": null,
+        "rating": 0
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 168,
+        "initial_date": 1458498090000,
+        "closing_sale": 1459794090000,
+        "session_price": 743766,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 13,
+      "title": "Sesiones de Comunicación",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 3,
+      "pictures": [],
+      "organizer": {
+        "id": 2,
+        "name": "O'Reilly, Rowe and Hartmann",
+        "photo": null,
+        "rating": 0.1
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 48,
+        "initial_date": 1458361224000,
+        "closing_sale": 1459657224000,
+        "session_price": 499605,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 44,
+      "title": "Sesiones de Derecho",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 4,
+      "pictures": [],
+      "organizer": {
+        "id": 5,
+        "name": "Smitham-Will",
+        "photo": null,
+        "rating": 0
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 170,
+        "initial_date": 1458702904000,
+        "closing_sale": 1459998904000,
+        "session_price": 364486,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 22,
+      "title": "Sesiones de Arquitectura",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 2,
+      "pictures": [],
+      "organizer": {
+        "id": 3,
+        "name": "Tillman Inc",
+        "photo": null,
+        "rating": 0.4
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 87,
+        "initial_date": 1457641152000,
+        "closing_sale": 1458937152000,
+        "session_price": 129508,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 24,
+      "title": "Curso de Derecho",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 4,
+      "pictures": [],
+      "organizer": {
+        "id": 3,
+        "name": "Tillman Inc",
+        "photo": null,
+        "rating": 0.4
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 95,
+        "initial_date": 1457961651000,
+        "closing_sale": 1459257651000,
+        "session_price": 691226,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 28,
+      "title": "Sesiones de Ingeniería",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 8,
+      "pictures": [],
+      "organizer": {
+        "id": 3,
+        "name": "Tillman Inc",
+        "photo": null,
+        "rating": 0.4
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 109,
+        "initial_date": 1457531523000,
+        "closing_sale": 1458827523000,
+        "session_price": 517543,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 14,
+      "title": "Curso de Derecho",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 4,
+      "pictures": [],
+      "organizer": {
+        "id": 2,
+        "name": "O'Reilly, Rowe and Hartmann",
+        "photo": null,
+        "rating": 0.1
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 55,
+        "initial_date": 1457961278000,
+        "closing_sale": 1459257278000,
+        "session_price": 156567,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 27,
+      "title": "Sesiones de Finanzas",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 7,
+      "pictures": [],
+      "organizer": {
+        "id": 3,
+        "name": "Tillman Inc",
+        "photo": null,
+        "rating": 0.4
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 107,
+        "initial_date": 1457343172000,
+        "closing_sale": 1458639172000,
+        "session_price": 495515,
+        "duration": 0,
+        "is_free": false
+      }
+    },
+    {
+      "id": 15,
+      "title": "Sesiones de Docencia",
+      "category": {
+        "name": "Profesional",
+        "id": 1,
+        "color": "#FFC971",
+        "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
+        "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
+        "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
+      },
+      "sub_category": 5,
+      "pictures": [],
+      "organizer": {
+        "id": 2,
+        "name": "O'Reilly, Rowe and Hartmann",
+        "photo": null,
+        "rating": 0.1
+      },
+      "published": true,
+      "closest_calendar": {
+        "id": 58,
+        "initial_date": 1457865682000,
+        "closing_sale": 1459161682000,
+        "session_price": 859716,
+        "duration": 0,
+        "is_free": false
+      }
+    }
+  ]
+}

@@ -233,7 +233,7 @@
             function success(response) {
                 vm.activities = response.activities;
                 vm.activitiesPaginationOpts.totalItems = response.count;
-                //console.log('_getActivities:', vm.activities);
+                console.log('_getActivities:', vm.activities);
             }
 
             function error(error) {
@@ -380,6 +380,7 @@
             _setWatches();
             _setStrings();
             _setGeneralInfo();
+            console.log($stateParams);
             _getSearchParams();
 
             _getActivities($stateParams).then(function () {

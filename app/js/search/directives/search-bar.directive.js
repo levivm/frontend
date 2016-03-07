@@ -47,8 +47,6 @@
                         return;
                     }*/
 
-                    console.log(_setCurrentCity());
-
                     var data = {};
                     console.log( );
                     data[KEY_SEARCH_Q] = scope.q;
