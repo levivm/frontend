@@ -325,6 +325,7 @@
             $http.jsonp(IP_INFO).then(success, error);
 
             function success(response){
+                console.log(response);
                 var latitude = parseFloat(response.data.loc.split(',')[0]).toFixed(2);
                 angular.forEach( availableCities, function (city, index){
                     calc =  Math.abs(latitude - parseFloat(city.point[0]).toFixed(2));

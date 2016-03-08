@@ -528,8 +528,6 @@
             var time_stamp = new Date().getTime();
             var string = token + time_stamp.toString();
             var deviceSessionId = md5.createHash(string);
-            console.log(token);
-            console.log(deviceSessionId);
             return deviceSessionId;
         }
 
