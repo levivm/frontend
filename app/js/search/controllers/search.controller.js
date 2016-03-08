@@ -101,6 +101,8 @@
         }
 
         function setCategory(category, initializing) {
+            console.log(category);
+            console.log(initializing);
             if (!category) { return; }
 
             if (vm.searchCategory === category.id || category === vm.strings.ACTION_ALL_FILTER) {
@@ -109,6 +111,8 @@
                 vm.searchCategory = category.id;
 
             }
+
+            console.log(vm.searchCategory);
             _expandCategory(category);
             SearchManager.setCategory(vm.searchCategory);
 
@@ -136,7 +140,7 @@
               _search();
             }
 
-            Analytics.generalEvents.searchSubCategory(category.name);
+            Analytics.generalEvents.searchSubCategory(subcategory.name);
         }
 
         function setLevel() {

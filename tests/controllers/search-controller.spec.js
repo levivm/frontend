@@ -104,6 +104,22 @@ describe('Controller: SearchController', function(){
 
          });
     });
+    describe("Search Filter", function(){
+        it('should filter succesfully by Category', function() {
+            var category = {
+                color: "#FFC971",
+                cover: "cover.jpg",
+                icon_active: "icon.png",
+                icon_default: "icon.png",
+                id: 1,
+                name: "Profesional"
+            }
+            SearchController.setCategory(category, true);
+            expect(SearchController.searchCategory).toEqual(1);
+
+            //SearchController.activities = searchActivities.activities;
+         });
+    });
 
 
 })
