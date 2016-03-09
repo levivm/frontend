@@ -49,7 +49,7 @@
         function changePassword() {
             Error.form.clear(vm.account_form_password);
 
-            if(vm.password_data.oldpassword === vm.password_data.password1){
+            if(vm.password_data.password === vm.password_data.password1){
               vm.isSaving = false;
               Toast.error(vm.strings.COPY_TOAST_SAME,{timeOut: 10000});
             }
@@ -62,7 +62,7 @@
             function success(response) {
                 vm.isSaving = false;
                 angular.extend(vm.password_data,{
-                    'oldpassword':null,
+                    'password':null,
                     'password1':null,
                     'password2':null,
                 });

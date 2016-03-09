@@ -33,6 +33,7 @@
             },
             fbRegister: fbRegister,
             register: register,
+            registerOrganizer: registerOrganizer,
             isSelectedMethod: isSelectedMethod,
             setSelectedMethod: setSelectedMethod,
             focusForm: focusForm,
@@ -70,6 +71,24 @@
             console.log(vm.auth.user_type);
 
             return Authentication.register(vm.auth).then(_registerSuccess, error);
+
+            function error(response) {
+                var responseErrors = response.data['form_errors'];
+                if (responseErrors){ Error.form.add(vm.signup_form, responseErrors); }
+
+                return $q.reject(response);
+            }
+        }
+        
+        function registerOrganizer(){
+          console.log('??');
+            emailRegister = true;
+            vm.signup_form.$setPristine();
+            Error.form.clear(vm.signup_form);
+            vm.auth.user_type = vm.user_type;
+            console.log(vm.auth.user_type);
+
+            return Authentication.registerOrganizer(vm.auth, $stateParams.token).then(_registerSuccess, error);
 
             function error(response) {
                 var responseErrors = response.data['form_errors'];

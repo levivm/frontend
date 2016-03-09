@@ -21,10 +21,10 @@
         <p ng-bind="::account.strings.COPY_PASSWORD"></p>
         <form class="col-md-10" name='account.account_form_password' ng-submit="account.changePassword()">
           <fieldset>
-            <div class="form-group" trulii-input-errors-control="oldpassword">
+            <div class="form-group" trulii-input-errors-control="password">
               <label ng-bind="::account.strings.LABEL_CURRENT_PASSWORD"></label>
-                <input id="id_oldpassword" class="form-control" name="oldpassword"
-                  ng-model="account.password_data.oldpassword"
+                <input id="id_password" class="form-control" name="password"
+                  ng-model="account.password_data.password"
                   type="password">
             </div>
             <div class="form-group" trulii-input-errors-control="password1">
