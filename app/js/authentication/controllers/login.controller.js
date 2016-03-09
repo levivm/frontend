@@ -43,8 +43,8 @@
                 .then(_loginSuccess,error);
 
             function error(response) {
-                var responseErrors = response.data['form_errors'];
-                if (responseErrors) { Error.form.add(vm.login_form, responseErrors); }
+                if (response.data) { Error.form.add(vm.login_form, response.data); }
+                vm.errors.__all__ = response.data['non_field_errors'];
                 return $q.reject(response);
             }
         }
@@ -52,7 +52,7 @@
         function facebookLogin() {
             loginFacebook=true;
             return  Authentication.facebookLogin()
-                        .then(_loginSuccess ,error);
+                        .then(_loginSuccess, error);
 
             function error(response){
                 $state.go('general-message', {

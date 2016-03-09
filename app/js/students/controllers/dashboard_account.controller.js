@@ -86,8 +86,7 @@
         }
 
         function _changeFail(response, form) {
-            var responseErrors = response.data['form_errors'];
-            console.log('responseErrors:', responseErrors);
+            var responseErrors = response.data;
             if (responseErrors) {
                 Error.form.add(form, responseErrors);
             }
