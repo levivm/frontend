@@ -150,7 +150,7 @@
                         return response.data;
                     });
             },
-            
+
             getActivityList: function() {
               return $http.get(api.autocomplete(this.id))
                     .then(function (response) {
@@ -159,12 +159,12 @@
             },
 
             getOrders : function (page, pageSize) {
-              
+
               if(!page)
                 page = defaultPage;
               if(!pageSize)
                 pageSize: defaultPageSize;
-                
+
               return $http.get(api.orders(this.id),
                   {params: {
                     page: page,
@@ -173,7 +173,7 @@
                   .then(function (response) {
                       return response.data;
                   });
-                  
+
             },
 
             /**
@@ -249,11 +249,22 @@
              */
             getRefunds: getRefunds,
 
+            /**
+             * @ngdoc function
+             * @name .#getMessages
+             * @description Retrieves all messages requested by the Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getMessages: getMessages,
+
+
         };
 
         return Organizer;
 
-
+        function getMessages(){
+            return ;
+        }
         function requestRefund(orderId,assistantId){
 
             //if assistantId is null, the refund is requested
@@ -280,7 +291,7 @@
               page = defaultPage;
             if(!pageSize)
               pageSize: defaultPageSize;
-              
+
             return $http.get(api.refunds(this.id),
                 {params: {
                   page: page,
@@ -293,7 +304,7 @@
         }
 
         function getReviews(page, pageSize, status){
-          
+
           if(!page)
             page = defaultPage;
           if(!pageSize)
@@ -301,7 +312,7 @@
           if(!status){
             status = '';
           }
-          
+
           return $http.get(api.reviews(this.id),
                 {params: {
                   page: page,
@@ -309,11 +320,11 @@
                   status: status
                 }})
                 .then(success, error);
-                
+
                 function success(response) {
                     return response.data;
                 };
-                
+
                 function error(response){
                   console.log("Error getting organizer reviews: ", response.data);
                 }

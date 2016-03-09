@@ -148,8 +148,23 @@
                     unreadReviews: getOrganizerUnreadReviews,
                     readReviews: getOrganizerReadReviews,
                     unreadReviewObjects: getUnreadReviewObjects,
-                    readReviewObjects: getReadReviewObjects 
+                    readReviewObjects: getReadReviewObjects
                 }
+            })
+            .state('organizer-dashboard.messages', {
+                url:'messages/',
+                controller: 'OrganizerMessagesCtrl as messages',
+                templateUrl: 'partials/organizers/dashboard/messages.html',
+                resolve: {
+                    activities: getOrganizerOpenActivities
+                }
+
+            })
+            .state('organizer-dashboard.messages-detail', {
+                url:'messages/:messageId',
+                controller: 'OrganizerMessageDetailCtrl as detail',
+                templateUrl: 'partials/organizers/dashboard/message_detail.html',
+
             })
             .state('organizer-dashboard.reviews.done', {
                 url:'done',
@@ -222,7 +237,7 @@
         function getOrganizerOpenActivities(ActivitiesManager, organizer){
             return ActivitiesManager.loadOrganizerActivities(organizer.id, 'open');
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getOrganizerActivities
@@ -236,7 +251,7 @@
         function getOrganizerClosedActivities(ActivitiesManager, organizer){
             return ActivitiesManager.loadOrganizerActivities(organizer.id, 'closed');
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getOrganizerActivities
@@ -287,7 +302,7 @@
         function getOrganizerReviews(organizer){
             return organizer.getReviews(1, 10);
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getOrganizerUnreadReviews
@@ -300,7 +315,7 @@
         function getOrganizerUnreadReviews(organizer){
             return organizer.getReviews(1, 6, 'unread');
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getOrganizerReadReviews
@@ -313,7 +328,7 @@
         function getOrganizerReadReviews(organizer){
             return organizer.getReviews(1, 6, 'read');
         }
-        
+
 
         /**
          * @ngdoc method
@@ -325,18 +340,18 @@
          */
         getReviewObjects.$inject = ['reviews', 'ActivitiesManager'];
         function getReviewObjects(reviews, ActivitiesManager){
-            
+
             return reviews.results.map(mapActivityToReview);
-            
+
             function mapActivityToReview(review){
-              
+
               ActivitiesManager.getActivity(review.activity)
               .then(
                 function(response){
                   review.activity = response;
                 }
               );
-              
+
               return review;
 
             }
@@ -351,23 +366,23 @@
          */
         getUnreadReviewObjects.$inject = ['unreadReviews', 'ActivitiesManager'];
         function getUnreadReviewObjects(unreadReviews, ActivitiesManager){
-            
+
             return unreadReviews.results.map(mapActivityToReview);
-            
+
             function mapActivityToReview(review){
-              
+
               ActivitiesManager.getActivity(review.activity)
               .then(
                 function(response){
                   review.activity = response;
                 }
               );
-              
+
               return review;
 
             }
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getReviewObjects
@@ -378,25 +393,25 @@
          */
         getReadReviewObjects.$inject = ['readReviews', 'ActivitiesManager', '$http'];
         function getReadReviewObjects(readReviews, ActivitiesManager, $http){
-            
+
             return readReviews.results.map(mapActivityToReview);
-            
+
             function mapActivityToReview(review){
-              
+
               ActivitiesManager.getActivity(review.activity)
               .then(
                 function(response){
                   review.activity = response;
                 }
               );
-              
+
               return review;
 
             }
         }
-        
-        
-        
+
+
+
 
         /**
          * @ngdoc method
@@ -453,7 +468,7 @@
         function getBankingInfo(Payments){
             return Payments.getBankingInfo();
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getOrganizerActivityList
