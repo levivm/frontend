@@ -32,7 +32,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'signup': function(){
-                return renderUrl('users/', ['signup/'], false);
+                return renderUrl('auth/', ['signup'], true);
             },
             /**
              * @ngdoc function
@@ -43,6 +43,10 @@
              */
             'requestSignup': function(){
                 return renderUrl('users/', ['request','signup/'], true);
+            },
+            
+            'organizerSignup': function(token){
+               return renderUrl('auth/', ['signup',token + '/'], true);
             },
             /**
              * @ngdoc function
@@ -63,7 +67,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'login': function(){
-                return renderUrl('users/', ['login/'], false);
+                return renderUrl('auth/', ['login/'], false);
             },
 
             /**
@@ -74,7 +78,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'token': function(){
-                return renderUrl('users/', ['token/'], true);
+                return renderUrl('auth/', ['login/'], true);
             },
 
             /**
@@ -86,15 +90,18 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'passwordReset': function(key){
-                var arr = null;
-                console.log("KEY",key);
-                if(key){
-                    arr = ['password', 'reset','key', key + '/'];
-                } else {
-                    arr = ['password', 'reset/'];
-                }
-
-                return renderUrl('users/', arr, false);
+                return renderUrl('auth/', ['password', 'reset'], true);
+            },
+            
+            /**
+             * @ngdoc function
+             * @name trulii.authentication.services.AuthenticationServerApi#passwordForgot
+             * @description Renders **`/users/password/forgot/`** User Password Forgot URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.authentication.services.AuthenticationServerApi
+             */
+            'passwordForgot': function(){
+                return renderUrl('auth/', ['password', 'forgot'], true);
             },
 
             /**
@@ -105,7 +112,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'passwordChange': function(){
-                return renderUrl('users/', ['password', 'change/'], false);
+                return renderUrl('auth/', ['password', 'change/'], true);
             },
 
             /**
@@ -116,7 +123,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'email': function(){
-                return renderUrl('users/', ['email/'], false);
+                return renderUrl('auth/', ['email', 'change/'], true);
             },
             /**
              * @ngdoc function
@@ -126,7 +133,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'confirmEmail': function(key){
-                return renderUrl('users/', ['confirm-email',key+'/'], false);
+                return renderUrl('auth/', ['email', 'confirm/'], true);
             },
 
             /* API - Endpoints that require /api/ */
@@ -150,7 +157,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'facebook': function(){
-                return renderUrl('users/', ['facebook', 'signup/'], false);
+                return renderUrl('auth/', ['login', 'facebook'] , true);
             },
 
             /**

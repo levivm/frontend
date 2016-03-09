@@ -9,13 +9,13 @@
     .module('trulii.authentication.controllers')
     .controller('ResetPasswordCtrl', ResetPasswordCtrl);
 
-  ResetPasswordCtrl.$inject = ['$location', '$scope','$modal',
-                               '$stateParams','$state','Authentication','Error'];
+  ResetPasswordCtrl.$inject = ['$location', '$scope', '$modal',
+                               '$stateParams', '$state', 'Authentication', 'Error'];
 
   /**
   * @namespace ResetPasswordCtrl
   */
-  function ResetPasswordCtrl($location, $scope,$modal,$stateParams,$state,Authentication,Error) {
+  function ResetPasswordCtrl($location, $scope, $modal, $stateParams, $state, Authentication, Error) {
     var vm = this;
 
     vm.resetPassword = _resetPassword;
@@ -36,60 +36,20 @@
         }
 
         function error(response){
-
-          var responseErrors = response.data['form_errors'];
-          if (responseErrors) {
-              Error.form.add(vm.reset_password_form, responseErrors);
+          console.log(response);
+          
+          var responseErrors = response.data[0];
+          if (responseErrors === 'The passwords do not match.') {
+            console.log('error');
+            Error.form.add(vm.reset_password_form, 'Las contraseñas no coinciden');
+          }
+          else if(responseErrors === "This token is not valid."){
+              Error.form.add(vm.reset_password_form, 'Token invalido');
           }
 
         }
 
     }
-
-
-
-    // function _passwordResetSuccess(response){
-
-      
-    //   $state.go('general-message',{'module_name':'authentication',
-    //                                'template_name':'change_password_success',
-    //                                'redirect_state':'home'});
-    // }
-
-
-    // function _passwordResetError(response) {
-    //   _errored(response.data);
-    // }
-
-
-    // function _errored(response) {
-
-
-    //   if (response['form_errors']) {
-
-    //     angular.forEach(response['form_errors'], function(errors, field) {
-
-    //       _addError(field, errors[0]);
-
-    //     });
-
-    //   }
-    // }
-
-    // function _clearErrors(){
-    //   vm.errors = {};
-    // }
-
-
-
-    // function _addError(field, message) {
-
-    //   vm.errors[field] = message;
-    //   vm.reset_password_form[field].$setValidity(message, false);
-
-
-    // };
-
 
   }
 })();
