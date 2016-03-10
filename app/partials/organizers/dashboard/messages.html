@@ -165,7 +165,7 @@
       <div class="modal-body">
         <form name='detail.email_form' ng-submit="detail.shareEmailForm()" class="separate-above separate-below-less form-classic">
           <fieldset>
-              <div class="form-group" trulii-input-errors-control="activities">
+              <div  trulii-input-errors-control="activities">
                   <label for="activities-select" class="sr-only"
                          ng-bind="::messages.strings.LABEL_ACTIVITIE"></label>
                   <select id="activities-select" name="activities"
@@ -176,7 +176,7 @@
                          </option>
                   </select>
               </div>
-              <div class="form-group" trulii-input-errors-control="calendar">
+              <div class="separate-above" trulii-input-errors-control="calendar">
                   <label for="calendar-select" class="sr-only"
                          ng-bind="::messages.strings.LABEL_CALENDAR"></label>
                   <select id="calendar-select" name="calendar"
@@ -187,14 +187,14 @@
                          </option>
                   </select>
               </div>
-              <div class="form-group" trulii-input-errors-control="subject">
+              <div class="separate-above-less" trulii-input-errors-control="subject">
                   <label for="subject-input" ng-bind="::message.strings.SUBJECT_MESSAGE_PLACEHOLDER">
                   </label>
                   <input id="subject-input" class="form-control" name="subject" type="text"
                     ng-model="message.formData.subject"
                     placeholder="{{messages.strings.SUBJECT_MESSAGE_PLACEHOLDER}}" >
               </div>
-            <div class="form-group" trulii-input-errors-control="message">
+            <div  trulii-input-errors-control="message">
               <label for="message" ng-bind="detail.strings.EMAIL_MODAL_MESSAGE_LABEL"></label>
               <textarea name="message" id="message" class="form-control"
                         ng-model="detail.formData.message"
