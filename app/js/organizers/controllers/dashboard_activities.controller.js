@@ -13,8 +13,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerActivitiesCtrl', OrganizerActivitiesCtrl);
 
-    OrganizerActivitiesCtrl.$inject = ['$http', 'organizer', 'OrganizerServerApi', 'openActivities', 'closedActivities', 'inactiveActivities'];
-    function OrganizerActivitiesCtrl($http, organizer, OrganizerServerApi, openActivities, closedActivities, inactiveActivities) {
+    OrganizerActivitiesCtrl.$inject = ['organizer', 'ActivitiesManager', 'openActivities', 'closedActivities', 'inactiveActivities'];
+    function OrganizerActivitiesCtrl(organizer, ActivitiesManager, openActivities, closedActivities, inactiveActivities) {
 
         var vm = this;
         var api = OrganizerServerApi;
@@ -64,12 +64,7 @@
           console.log(type);
             switch(type){
                 case vm.TYPE_OPEN:
-                  $http.get(api.activities(organizer.id),
-                  {params: {
-                    page: vm.openPaginationOpts.pageNumber,
-                    page_size: vm.openPaginationOpts.itemsPerPage,
-                    status: vm.TYPE_OPEN
-                  }})
+                  ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_OPEN, vm.openPaginationOpts.pageNumber,  vm.openPaginationOpts.itemsPerPage)
                   .then(function (response) {
                     vm.open_activities = response.data.results;
                     vm.openPaginationOpts.totalItems = response.data.count;
@@ -77,12 +72,7 @@
                   });
                   break;
                 case vm.TYPE_CLOSED:
-                  $http.get(api.activities(organizer.id),
-                  {params: {
-                    page: vm.closedPaginationOpts.pageNumber,
-                    page_size: vm.closedPaginationOpts.itemsPerPage,
-                    status: vm.TYPE_CLOSED
-                  }})
+                   ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_CLOSED, vm.closedPaginationOpts.pageNumber,  vm.closedPaginationOpts.itemsPerPage)
                   .then(function (response) {
                     vm.closed_activities = response.data.results;
                     vm.closedPaginationOpts.totalItems = response.data.count;
@@ -90,12 +80,7 @@
                   });
                   break;
                 case vm.TYPE_INACTIVE:
-                  $http.get(api.activities(organizer.id),
-                  {params: {
-                    page: vm.closedPaginationOpts.pageNumber,
-                    page_size: vm.closedPaginationOpts.itemsPerPage,
-                    status: vm.TYPE_INACTIVE
-                  }})
+                   ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_INACTIVE, vm.inactivePaginationOpts.pageNumber,  vm.inactivePaginationOpts.itemsPerPage)
                   .then(function (response) {
                     vm.inactive_activities = response.data.results;
                     vm.inactivePaginationOpts.totalItems = response.data.count;

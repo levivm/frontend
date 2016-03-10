@@ -71,7 +71,7 @@
 
             function error(response) {
                 vm.isSavingEmail = false;
-                var responseErrors = response.data['form_errors'];
+                var responseErrors = response.data;
                 if (responseErrors) {
                     Error.form.add(vm.account_form_email, responseErrors);
                 }
@@ -95,7 +95,7 @@
 
             function error(response) {
                 vm.isSavingPassword = false;
-                var responseErrors = response.data['form_errors'];
+                var responseErrors = response.data;
                 if (responseErrors) {
                     Error.form.add(vm.account_form_password, responseErrors);
                 }
