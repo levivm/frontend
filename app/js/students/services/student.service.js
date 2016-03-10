@@ -118,7 +118,7 @@
             change_password : function (password_data) {
                 return Authentication.change_password(password_data);
             },
-            
+
              /**
              * @ngdoc function
              * @name .#getActivityList
@@ -139,7 +139,7 @@
               if(!pageSize){
                 pageSize = defaultPageSize
               }
-              
+
               return $http.get(api.orders(this.id),
                   {params: {
                     page: page,
@@ -157,12 +157,13 @@
                     });
             },
 
+
             getReviews: getReviews,
 
             /**
              * @ngdoc function
              * @name .#requestRefund
-             * @description Request a refund over an assistant if assistantId is not NULL, otherwhise 
+             * @description Request a refund over an assistant if assistantId is not NULL, otherwhise
              * a refund is requested over an order, given by orderId
              * @methodOf trulii.students.services.Student
              */
@@ -177,6 +178,17 @@
             getRefunds: getRefunds,
 
 
+
+            /**
+             * @ngdoc function
+             * @name .#getRefunds
+             * @description Retrieves all Wishlist requested by the Student
+             * @methodOf trulii.students.services.Student
+             */
+            getWishList: getWishList,
+        
+
+
         };
 
         return Student;
@@ -184,7 +196,7 @@
 
         function requestRefund(orderId,assistantId){
 
-            //if assistantId is null, the refund is requested 
+            //if assistantId is null, the refund is requested
             //over whole order instead of an assitant
             return $http.post(api.refund(),{order:orderId,assistant:assistantId})
                 .then(success,error);
@@ -276,6 +288,26 @@
                 }
             }
         }
+
+
+        function getWishList(page, pageSize){
+            if(!page){
+              page = 1;
+            }
+            if(!pageSize){
+              pageSize = 12;
+            }
+
+            return $http.get(api.whishList(this.id),
+                {params: {
+                    page: page,
+                    page_size: pageSize
+                }})
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+
     }
 
 })();

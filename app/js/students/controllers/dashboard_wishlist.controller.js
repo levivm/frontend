@@ -19,7 +19,8 @@
 
         var vm = this;
         angular.extend(vm, {
-            student : student
+            student : student,
+            activities:null
         });
 
         activate();
@@ -35,8 +36,16 @@
             });
         }
 
+        function _setActivities(){
+            student.getWishList().then(function(data){
+                vm.activities=data.results;
+                console.log(vm.activities);
+            })
+        }
+
         function activate() {
             _setStrings();
+            _setActivities();
         }
 
     }

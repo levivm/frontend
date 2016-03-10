@@ -135,7 +135,9 @@
              * @return {promise} Enroll result promise
              * @methodOf trulii.activities.services.ActivitiesManager
              */
-            enroll : enroll
+            enroll : enroll,
+
+            postWishList: postWishList,
         };
 
         return ActivitiesManager;
@@ -317,6 +319,15 @@
             function error(response){
                 return $q.reject(response);
             }
+        }
+
+        function postWishList(activityId){
+
+            return $http.post(api.whishList(),{ activity_id: activityId })
+                    .then(function (response) {
+                        console.log(response);
+                        return true;
+                    });
         }
 
         function _retrieveInstance(activityID, activityData) {

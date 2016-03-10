@@ -42,6 +42,8 @@
                         readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
                         <!-- add star-empty-off if you want the inactive starts-->
             </span>
+            <i ng-if="isStudent" class="activity-card__like mdi-action-favorite-outline" ng-click="like(activity.id)"></i>
+
 
         </div>
         <!--<div class="activity-card__body__description" ng-bind="::activity.short_description">-->

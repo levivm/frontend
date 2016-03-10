@@ -17,10 +17,10 @@
         .directive('truliiActivityItem', truliiActivityItem);
 
     truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath'
-        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics'];
+        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 'ActivitiesManager'];
 
     function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath
-        , defaultPicture, defaultCover, titleTruncateSize, Analytics){
+        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, ActivitiesManager){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -43,7 +43,9 @@
                     showMenu : showMenu,
                     hideMenu : hideMenu,
                     viewActivity:viewActivity,
-                    clickAction: clickAction
+                    clickAction: clickAction,
+                    isStudent: false,
+                    like:like
                 });
 
                 _activate();
@@ -68,6 +70,12 @@
                     function hasCurrentAction(currentAction, index, actions){
                         return currentAction === actionQuery;
                     }
+                }
+
+                function like(activityId){
+                    ActivitiesManager.postWishList(activityId).then(function(data){
+                        console.log(data);
+                    })
                 }
 
                 //Functions Analytics data
@@ -214,9 +222,20 @@
                     });
                 }
 
+                function _isStudent(){
+                    Authentication.isStudent().then(function(data){
+                        scope.isStudent = data;
+                    }, function(err){
+                        console.log(err);
+                    })
+
+                }
+
                 function _activate(){
                     _setStrings();
                     _setCurrentState();
+                    _isStudent();
+
 
                     if(attrs.options){
                         options = JSON.parse(attrs.options);
@@ -238,7 +257,7 @@
                     }
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
-                    //console.log('directive activity:', scope.activity);
+                    console.log('directive activity:', scope.activity);
                 }
             }
         }
