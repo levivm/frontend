@@ -595,7 +595,7 @@
 	overflow-y: auto;
 	>a{
 		border-bottom: 1px solid @gray-lighter;
-		padding: 2em 3em 1em 3em;
+		padding: 2em 1em 1em 3em;
 		cursor: pointer;
 		display: block;
 	}
@@ -609,6 +609,25 @@
 	    overflow: hidden;
 	    width: 70%;
 	}
+	.text-right{
+		.before-md({
+			text-align: left;
+		});
+	}
+	.text-line-more-xl {
+		.before-md({
+			line-height: 1.5em;
+		});
+	}
+	.student{
+		padding: 2em 1em 1em 1em;
+		.user-picture{
+			border-radius: 50%;
+			width: 3em;
+			height: 3em;
+		}
+	}
+
 
 }
 
@@ -643,6 +662,22 @@
 			word-wrap: normal;
 			white-space: normal;
 			padding-left: 8.5%;
+			.before-md({
+				padding-left: 0em;
+			});
 		}
+		.before-md({
+			padding: 2em;
+		});
+	}
+	.text-right{
+		.before-md({
+			text-align: left;
+		});
+	}
+	.text-line-more-xl {
+		.before-md({
+			line-height: 1.5em;
+		});
 	}
 }

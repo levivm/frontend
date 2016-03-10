@@ -12722,7 +12722,7 @@ hr.on-light {
 }
 .dashboard-messages-container > a {
   border-bottom: 1px solid #eeeeee;
-  padding: 2em 3em 1em 3em;
+  padding: 2em 1em 1em 3em;
   cursor: pointer;
   display: block;
 }
@@ -12735,6 +12735,24 @@ hr.on-light {
   white-space: nowrap;
   overflow: hidden;
   width: 70%;
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-container .text-right {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-container .text-line-more-xl {
+    line-height: 1.5em;
+  }
+}
+.dashboard-messages-container .student {
+  padding: 2em 1em 1em 1em;
+}
+.dashboard-messages-container .student .user-picture {
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
 }
 .dashboard-messages-detail {
   border: 1px solid #eeeeee;
@@ -12768,6 +12786,26 @@ hr.on-light {
   word-wrap: normal;
   white-space: normal;
   padding-left: 8.5%;
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .content-message p {
+    padding-left: 0em;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .content-message {
+    padding: 2em;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .text-right {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .text-line-more-xl {
+    line-height: 1.5em;
+  }
 }
 .text-left {
   text-align: left;

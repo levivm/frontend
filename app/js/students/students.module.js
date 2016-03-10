@@ -117,11 +117,23 @@
                 url:'/refunds',
                 templateUrl: 'partials/students/dashboard/history.refunds.html'
             })
-            
+
             .state('student-dashboard.wishlist', {
                 url:'wishlist',
                 controller: 'StudentWishlistCtrl as wishlist',
                 templateUrl: 'partials/students/dashboard/wishlist.html',
+            })
+            .state('student-dashboard.messages', {
+                url:'messages/',
+                controller: 'StudentMessagesCtrl as messages',
+                templateUrl: 'partials/students/dashboard/messages.html'
+
+            })
+            .state('student-dashboard.messages-detail', {
+                url:'messages/:messageId',
+                controller: 'StudentMessageDetailCtrl as detail',
+                templateUrl: 'partials/students/dashboard/message_detail.html',
+
             });
 
         /**
@@ -181,7 +193,7 @@
                 $q.reject();
             }
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getStudentActivities
@@ -204,7 +216,7 @@
                 $q.reject();
             }
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getStudentActivities
@@ -292,7 +304,7 @@
         function getOrder($stateParams, student){
             return student.getOrder($stateParams.orderId);
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getStudentActivityList
