@@ -137,7 +137,6 @@
              */
             enroll : enroll,
 
-            postWishList: postWishList,
         };
 
         return ActivitiesManager;
@@ -258,7 +257,7 @@
                 .then(function (response) {
                     // _activities[organizerId] = [];
                     // _.each(response.data.results, function (activityData) {
-                    //     var activity = _retrieveInstance(activityData.id, activityData);
+                    //     var activity = _retrieveInstdadedaddadadsaasddsadassadrgdadasdasdasdjkbkhkhkjgjhg,jkjgjhjgjhgjhgjhgjhgance(activityData.id, activityData);
                     //     _activities[organizerId].push(activity);
                     // });
                     // deferred.resolve(_activities[organizerId]);
@@ -321,14 +320,6 @@
             }
         }
 
-        function postWishList(activityId){
-
-            return $http.post(api.whishList(),{ activity_id: activityId })
-                    .then(function (response) {
-                        console.log(response);
-                        return true;
-                    });
-        }
 
         function _retrieveInstance(activityID, activityData) {
             var instance = _pool[activityID];

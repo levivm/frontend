@@ -296,16 +296,6 @@
                 return renderUrl('activities/', [idActivity, 'instructors', idInstructor]);
             },
 
-            /**
-             * @ngdoc function
-             * @name .#wichlist
-             * @description Renders **`/api/students/wish_list/`** Refund URL
-             * @return {string} Rendered URL
-             * @methodOf trulii.activities.services.ActivityServerApi
-             */
-            'whishList': function(){
-                return renderUrl('students/', ['wish_list/']);
-            },
 
             /**
              * @ngdoc function

@@ -22,6 +22,7 @@
         var api = StudentServerApi;
         var defaultPage = 1;
         var defaultPageSize = 10;
+        var defaultPageWlSize = 12;
 
         function Student(studentData) {
             if (studentData) {
@@ -186,7 +187,7 @@
              * @methodOf trulii.students.services.Student
              */
             getWishList: getWishList,
-        
+
 
 
         };
@@ -290,23 +291,34 @@
         }
 
 
-        function getWishList(page, pageSize){
+        function getWishList(status, page, page_size){
+            var params = {};
             if(!page){
-              page = 1;
+              params.page = defaultPage;
             }
-            if(!pageSize){
-              pageSize = 12;
+            else{
+              params.page = page;
+            }
+            if(!page_size){
+              params.page_size = defaultPageWlSize;
+            }
+            else{
+              params.page_size = page_size;
+            }
+            if(status){
+              params.status = status;
             }
 
-            return $http.get(api.whishList(this.id),
-                {params: {
-                    page: page,
-                    page_size: pageSize
-                }})
-                .then(function (response) {
-                    return response.data;
-                });
+            return $http.get(api.wishList(this.id), {params: params}).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                $q.reject(response.data);
+            }
         }
+
 
     }
 

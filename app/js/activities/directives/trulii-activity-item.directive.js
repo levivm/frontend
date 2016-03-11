@@ -17,10 +17,10 @@
         .directive('truliiActivityItem', truliiActivityItem);
 
     truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath'
-        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 'ActivitiesManager'];
+        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 'StudentsManager'];
 
     function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath
-        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, ActivitiesManager){
+        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -73,7 +73,7 @@
                 }
 
                 function like(activityId){
-                    ActivitiesManager.postWishList(activityId).then(function(data){
+                    StudentsManager.postWishList(activityId).then(function(data){
                         console.log(data);
                     })
                 }
@@ -257,7 +257,6 @@
                     }
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
-                    console.log('directive activity:', scope.activity);
                 }
             }
         }

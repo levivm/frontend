@@ -136,7 +136,7 @@
              * @return {string} Rendered URL
              * @methodOf trulii.students.services.StudentServerApi
              */
-            'whishList': function(){
+            'wishList': function(){
                 return renderUrl('students/', ['wish_list/']);
             },
 
