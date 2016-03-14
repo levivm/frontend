@@ -32,6 +32,7 @@
         //noinspection UnnecessaryLocalVariableJS
         var Authentication = {
             register: register,
+            registerOrganizer: registerOrganizer,
             requestSignup: request_signup,
             requestSignupToken: token_signup_validation,
             getAuthenticatedAccount: getAuthenticatedAccount,
@@ -91,7 +92,30 @@
 
             return $http({
                 method: 'post',
-                url: api.token(),
+                url: api.signup(),
+                data:_parseParam(register_data),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            })
+            .then(success,error);
+
+
+            function success(response){
+
+                _updateData(response.data.user,response.data.token);
+                return response;
+            }
+
+            function error(response){
+                console.log("response BAD login",response);
+                return $q.reject(response);
+            }
+        }
+        
+         function registerOrganizer(register_data, token) {
+
+            return $http({
+                method: 'post',
+                url: api.organizerSignup(token),
                 data:_parseParam(register_data),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             })
@@ -113,10 +137,10 @@
         function login(email, password) {
             return $http({
                 method: 'post',
-                url: api.token(),
+                url: api.login(),
                 data:
                 _parseParam({
-                    login: email,
+                    email: email,
                     password: password
                 }),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
@@ -142,7 +166,7 @@
                         // Logged into your app and Facebook.
                         var access_token = response.authResponse.accessToken;
                         return $http.post(api.facebook(),
-                                            { 'auth_token': access_token })
+                                            { 'access_token': access_token })
                                 .then(success);
 
                     } else if (response.status === 'not_authorized') {
@@ -168,13 +192,8 @@
         }
 
         function logout() {
-            return $http.post(api.logout())
-                .then(unauthenticate, error);
-
-            function error(){
-                $rootScope.$emit(USER_LOGOUT_EVENT);
-                redirect();
-            }
+            unauthenticate();
+            redirect();
         }
 
         function request_signup(data){
@@ -182,7 +201,12 @@
         }
 
         function confirm_email(key){
-            return $http.post(api.confirmEmail(key));
+            return $http({
+              method: 'post',
+              url: api.confirmEmail(key),
+              data:_parseParam({'token': key}),
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            });
         }
 
         function token_signup_validation(token){
@@ -194,18 +218,17 @@
 
         function forgot_password(email) {
             return $http({
-                url: api.passwordReset(),
+                url: api.passwordForgot(),
                 method: 'post',
                 data:_parseParam({'email':email}),
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             });
         }
 
-        function reset_password(key, password1, password2) {
-            console.log("key111",key);
+        function reset_password(token, password1, password2) {
             return $http({
-                url: api.passwordReset(key),
-                data:_parseParam({'password1':password1,'password2':password2}),
+                url: api.passwordReset(),
+                data:_parseParam({'password1':password1,'password2':password2, 'token': token}),
                 method: 'post',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
             });

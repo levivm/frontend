@@ -91,7 +91,7 @@
                 templateUrl: 'partials/authentication/reset_password.html'
             })
             .state('email-confirm', {
-                url:'/email/confirm/:key/',
+                url:'/email/confirm/:key',
                 controller: 'EmailConfirmCtrl',
                 controllerAs: 'vm',
             });

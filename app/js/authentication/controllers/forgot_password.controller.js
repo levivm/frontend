@@ -44,7 +44,7 @@
 
       function error(response){
             
-        var responseErrors = response.data['form_errors'];
+        var responseErrors = response.data;
         if (responseErrors) {
             Error.form.add(vm.forgot_password_form, responseErrors);
         }

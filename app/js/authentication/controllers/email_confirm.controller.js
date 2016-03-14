@@ -16,11 +16,12 @@
   */
   function EmailConfirmCtrl($scope,$modal,$state,$stateParams,Authentication) {
 
+    console.log('???');
     var error = false;
     var key = $stateParams.key;
 
     if (key)
-      Authentication.confirmEmail(key).then(confirmed_email,invalid_token);
+      Authentication.confirmEmail(key).then(confirmed_email, invalid_token);
 
 
     function confirmed_email(){
