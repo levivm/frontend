@@ -110,7 +110,7 @@
                 return $q.reject(response);
             }
         }
-        
+
          function registerOrganizer(register_data, token) {
 
             return $http({
@@ -292,7 +292,6 @@
         }
 
         function isAuthenticated() {
-            console.log(localStorageService.get(USER_KEY));
             return !!localStorageService.get(USER_KEY);
         }
 
