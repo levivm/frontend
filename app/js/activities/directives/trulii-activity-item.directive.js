@@ -74,7 +74,7 @@
 
                 function like(activityId){
                     StudentsManager.postWishList(activityId).then(function(data){
-                        console.log(data);
+                        scope.activity.wish_list=!scope.activity.wish_list;
                     })
                 }
 
@@ -235,7 +235,6 @@
                     _setStrings();
                     _setCurrentState();
                     _isStudent();
-
 
                     if(attrs.options){
                         options = JSON.parse(attrs.options);

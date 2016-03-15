@@ -96,7 +96,7 @@
 
 
         function postWishList(activityId){
-            return $http.post(api.whishList(),{ activity_id: activityId })
+            return $http.post(api.wishList(),{ activity_id: activityId })
                     .then(function (response) {
                         return true;
                     });
