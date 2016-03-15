@@ -110,7 +110,7 @@
                 return $q.reject(response);
             }
         }
-        
+
          function registerOrganizer(register_data, token) {
 
             return $http({

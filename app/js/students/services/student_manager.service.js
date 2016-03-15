@@ -46,7 +46,9 @@
              * @return {promise} Student Instance Promise
              * @methodOf trulii.students.services.StudentsManager
              */
-            getCurrentStudent: getCurrentStudent
+            getCurrentStudent: getCurrentStudent,
+
+            postWishList:postWishList
         };
 
         return service;
@@ -91,6 +93,15 @@
 
             }
         }
+
+
+        function postWishList(activityId){
+            return $http.post(api.wishList(),{ activity_id: activityId })
+                    .then(function (response) {
+                        return true;
+                    });
+        }
+
 
         function _retrieveInstance(studentId, studentData) {
             var instance = _pool[studentId];

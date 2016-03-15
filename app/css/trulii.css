@@ -18865,6 +18865,13 @@ blockquote {
 .activity-card__rating__star.--empty {
   color: #eeeeee;
 }
+.activity-card__like {
+  float: right;
+  line-height: 10px;
+  font-size: 2em;
+  color: #ec5469;
+  cursor: pointer;
+}
 .activity-card__category {
   position: absolute;
   z-index: 1;

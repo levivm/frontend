@@ -1,1 +1,39 @@
-asdf
+<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
+</div>
+<div class="col-xs-12">
+  <div class="row">
+      <div class="col-xs-12 col-md-11 col-md-offset-1 separate-below-more activities-container" >
+
+          <!--If there are activities-->
+          <div ng-if="wishlist.future_activities.length > 0">
+            <div class="row activity-grid">
+              <trulii-activity-item
+                      ng-repeat="activity in wishlist.future_activities track by activity.id"
+                      data-activity="activity" >
+              </trulii-activity-item>
+            </div>
+            <div class="text-center" ng-if="wishlist.nextPaginationOpts.totalItems > wishlist.nextPaginationOpts.itemsPerPage">
+              <pagination class="pagination-sm"
+                ng-model="wishlist.nextPaginationOpts.pageNumber"
+                ng-change="wishlist.updateByQuery(wishlist.TYPE_NEXT)"
+                data-total-items="wishlist.nextPaginationOpts.totalItems"
+                data-items-per-page="wishlist.nextPaginationOpts.itemsPerPage"></pagination>
+            </div>
+          </div>
+
+          <!--If there are no activities-->
+          <div ng-if="wishlist.future_activities.length <= 0" class="row">
+              <div class="col-md-6 col-md-offset-3 text-center">
+                  <img class="separate-below-less" src="css/img/student_dashboard_activities_empty.png"
+                       alt="{{wishlist.strings.LABEL_EMPTY_ACTIVITIES}}"/>
+                  <h4 ng-bind="::wishlist.strings.LABEL_EMPTY_ACTIVITIES"></h4>
+                  <div class="separate-below separate-above standout-text"
+                       ng-bind="::wishlist.strings.COPY_EMPTY_ACTIVITIES">
+                  </div>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>
+<trulii-dashboard-footer></trulii-dashboard-footer>
