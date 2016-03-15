@@ -100,7 +100,6 @@
 
 
             function success(response){
-
                 _updateData(response.data.user,response.data.token);
                 return response;
             }
