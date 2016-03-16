@@ -1,0 +1,10 @@
+{
+	"id": 1,
+	"email": "raymond@raymond.com",
+	"name": "Raymond",
+	"telephone": "12345678",
+	"document_type": "nit",
+	"document": "1234",
+	"approved": false,
+	"city": 1
+}

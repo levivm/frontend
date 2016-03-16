@@ -100,7 +100,6 @@
 
 
             function success(response){
-
                 _updateData(response.data.user,response.data.token);
                 return response;
             }
@@ -137,7 +136,7 @@
         function login(email, password) {
             return $http({
                 method: 'post',
-                url: api.token(),
+                url: api.login(),
                 data:
                 _parseParam({
                     email: email,
@@ -160,6 +159,8 @@
 
         function facebookLogin(){
             var deferred = $q.defer();
+            console.log(Facebook);
+            console.log(api.facebook());
             return deferred.promise
                 .then(Facebook.login(function(response) {
                     if (response.status === 'connected') {
@@ -292,7 +293,6 @@
         }
 
         function isAuthenticated() {
-            console.log(localStorageService.get(USER_KEY));
             return !!localStorageService.get(USER_KEY);
         }
 

@@ -300,7 +300,7 @@
         /**
          * @ngdoc method
          * @name .#getOrder
-         * @description Retrieves an Order by its ID from
+         * @description Retrieves Wishlist
          * {@link trulii.students.services.Student Student} Service
          * @methodOf trulii.students.config
          */
@@ -308,7 +308,6 @@
         function getWishList($stateParams, student){
             return student.getWishList();
         }
-
 
 
         /**

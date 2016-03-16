@@ -61,6 +61,7 @@
 
             function success(response) {
                 vm.isSaving = false;
+                console.log(response);
                 angular.extend(vm.password_data,{
                     'password':null,
                     'password1':null,
@@ -79,6 +80,7 @@
         }
 
         function _changeSuccess(response) {
+            console.log(response);
             Authentication.getAuthenticatedAccount(true);
             vm.isSaving = false;
             Toast.info(vm.strings.COPY_TOAST_EMAIL_CHANGED_INFO,

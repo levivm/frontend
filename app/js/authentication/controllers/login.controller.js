@@ -25,6 +25,7 @@
             is_new : true,
             login : login,
             facebookLogin : facebookLogin,
+            userData: {},
             goSignupState:goSignupState
         });
 
@@ -38,7 +39,6 @@
         function login() {
             loginEmail = true;
             Error.form.clear(vm.login_form);
-            console.log("vm auth:",vm.auth);
             return  Authentication.login(vm.auth.email, vm.auth.password)
                 .then(_loginSuccess,error);
 
@@ -71,8 +71,8 @@
         }
 
         function _loginSuccess(redirect_state) {
-
             //Send Analytics data
+            vm.userData=redirect_state;
             Analytics.generalEvents.loginType(loginEmail, redirect_state.data.user.user_type);
             //End Send Analytics data
             $state.go(toState.state, toState.params);

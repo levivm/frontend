@@ -68,7 +68,6 @@
             vm.signup_form.$setPristine();
             Error.form.clear(vm.signup_form);
             vm.auth.user_type = vm.user_type;
-            console.log(vm.auth.user_type);
 
             return Authentication.register(vm.auth).then(_registerSuccess, error);
 
@@ -80,13 +79,12 @@
                 return $q.reject(response);
             }
         }
-        
+
         function registerOrganizer(){
             emailRegister = true;
             vm.signup_form.$setPristine();
             Error.form.clear(vm.signup_form);
             vm.auth.user_type = vm.user_type;
-            console.log(vm.auth.user_type);
 
             return Authentication.registerOrganizer(vm.auth, $stateParams.token).then(_registerSuccess, error);
 
