@@ -291,7 +291,7 @@
         }
 
 
-        function getWishList(status, page, page_size){
+        function getWishList(page, page_size){
             var params = {};
             if(!page){
               params.page = defaultPage;
@@ -304,9 +304,6 @@
             }
             else{
               params.page_size = page_size;
-            }
-            if(status){
-              params.status = status;
             }
 
             return $http.get(api.wishList(this.id), {params: params}).then(success, error);
