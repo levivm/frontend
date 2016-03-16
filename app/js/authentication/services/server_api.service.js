@@ -42,7 +42,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'requestSignup': function(){
-                return renderUrl('users/', ['request','signup/'], true);
+                return renderUrl('auth/', ['request','signup/'], true);
             },
             
             'organizerSignup': function(token){
@@ -56,7 +56,7 @@
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'requestSignupToken': function(token){
-                return renderUrl('users/', ['request','signup','token',token + '/'], true);
+                return renderUrl('auth/', ['request','signup','token',token + '/'], true);
             },
 
             /**
