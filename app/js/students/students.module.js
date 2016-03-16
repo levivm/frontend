@@ -122,6 +122,9 @@
                 url:'wishlist',
                 controller: 'StudentWishlistCtrl as wishlist',
                 templateUrl: 'partials/students/dashboard/wishlist.html',
+                resolve: {
+                    currentActivities: getCurrentWishList
+                }
             });
 
         /**
@@ -292,6 +295,41 @@
         function getOrder($stateParams, student){
             return student.getOrder($stateParams.orderId);
         }
+        /**
+         * @ngdoc method
+         * @name .#getOrder
+         * @description Retrieves an Order by its ID from
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getNextWishList.$inject = ['$stateParams','student'];
+        function getNextWishList($stateParams, student){
+            return student.getWishList('next');
+        }
+        /**
+         * @ngdoc method
+         * @name .#getOrder
+         * @description Retrieves an Order by its ID from
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getPastWishList.$inject = ['$stateParams','student'];
+        function getPastWishList($stateParams, student){
+            return student.getWishList('past');
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getOrder
+         * @description Retrieves an Order by its ID from
+         * {@link trulii.students.services.Student Student} Service
+         * @methodOf trulii.students.config
+         */
+        getCurrentWishList.$inject = ['$stateParams','student'];
+        function getCurrentWishList($stateParams, student){
+            return student.getWishList('current');
+        }
+
 
         /**
          * @ngdoc method

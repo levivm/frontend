@@ -1,4 +1,4 @@
-xdescribe('Controller: RegisterController', function(){
+describe('Controller: RegisterController', function(){
     var RegisterController,
         $scope = {};
 
@@ -87,7 +87,7 @@ xdescribe('Controller: RegisterController', function(){
             var token = 'hwwoeltvjxliuw5nk7pk3lqjstjfwiae5gudrhvxgzzargy3ailaklakqqa6ye18';
             $scope =  _$rootScope_;
             $httpBackend
-                .when('GET', 'http://localhost:8000/api/users/request/signup/token/'+token+'/')
+                .when('GET', 'http://localhost:8000/api/auth/request/signup/token/'+token+'/')
                 .respond(readJSON('tests/mock/requestOrg.json'));
             Authentication.requestSignupToken(token).then(function(data){
                 validatedData = data;
