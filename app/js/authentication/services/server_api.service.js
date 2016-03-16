@@ -23,11 +23,24 @@
 
         //noinspection UnnecessaryLocalVariableJS
         var api = {
-
+          
+            /* API - Endpoints that require /api/ */
+            
+            /**
+             * @ngdoc function
+             * @name trulii.authentication.services.AuthenticationServerApi#login
+             * @description Renders **`/api/auth/login/`** User Login URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.authentication.services.AuthenticationServerApi
+             */
+            'login': function(){
+                return renderUrl('auth/', ['login/'], true);
+            },
+            
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#signup
-             * @description Renders **`/users/signup`** User SignUp URL
+             * @description Renders **`/api/auth/signup`** User SignUp URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
@@ -37,16 +50,12 @@
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#requestSignup
-             * @description Renders **`/users/request/signup`** User RequestSignup URL
+             * @description Renders **`/api/users/request/signup`** User RequestSignup URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'requestSignup': function(){
                 return renderUrl('auth/', ['request','signup/'], true);
-            },
-            
-            'organizerSignup': function(token){
-               return renderUrl('auth/', ['signup',token + '/'], true);
             },
             /**
              * @ngdoc function
@@ -58,33 +67,20 @@
             'requestSignupToken': function(token){
                 return renderUrl('auth/', ['request','signup','token',token + '/'], true);
             },
-
             /**
              * @ngdoc function
-             * @name trulii.authentication.services.AuthenticationServerApi#login
-             * @description Renders **`/users/login/`** User Login URL
+             * @name trulii.authentication.services.AuthenticationServerApi#organizerSignup
+             * @description Renders **`/api/auth/signup`** User organizerSignup URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
-            'login': function(){
-                return renderUrl('auth/', ['login/'], false);
+            'organizerSignup': function(token){
+               return renderUrl('auth/', ['signup',token + '/'], true);
             },
-
-            /**
-             * @ngdoc function
-             * @name trulii.authentication.services.AuthenticationServerApi#token
-             * @description Renders **`/api/users/token/`** User Token URL
-             * @return {string} Rendered URL
-             * @methodOf trulii.authentication.services.AuthenticationServerApi
-             */
-            'token': function(){
-                return renderUrl('auth/', ['login/'], true);
-            },
-
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#passwordReset
-             * @description Renders **`/users/password/reset/`** User Password Reset URL
+             * @description Renders **`/auth/password/reset/`** User Password Reset URL
              * @param {string=} key (Optional) Password Reset Key
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
@@ -96,7 +92,7 @@
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#passwordForgot
-             * @description Renders **`/users/password/forgot/`** User Password Forgot URL
+             * @description Renders **`/api/auth/password/forgot/`** User Password Forgot URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
@@ -107,7 +103,7 @@
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#passwordChange
-             * @description Renders **`/users/password/change/`** User Password Change URL
+             * @description Renders **`/api/auth/password/change/`** User Password Change URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
@@ -118,7 +114,7 @@
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#email
-             * @description Renders **`/users/email/`** User Email URL
+             * @description Renders **`/api/auth/email/`** User Email URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
@@ -128,15 +124,13 @@
             /**
              * @ngdoc function
              * @name trulii.authentication.services.AuthenticationServerApi#confirmEmail
-             * @description Renders **`/users/confirm-email/:token/`** User Email URL
+             * @description Renders **`/api/auth/confirm-email/:token/`** User Email URL
              * @return {string} Rendered URL
              * @methodOf trulii.authentication.services.AuthenticationServerApi
              */
             'confirmEmail': function(key){
                 return renderUrl('auth/', ['email', 'confirm/'], true);
             },
-
-            /* API - Endpoints that require /api/ */
 
             /**
              * @ngdoc function
@@ -158,17 +152,6 @@
              */
             'facebook': function(){
                 return renderUrl('auth/', ['login', 'facebook'] , true);
-            },
-
-            /**
-             * @ngdoc function
-             * @name trulii.authentication.services.AuthenticationServerApi#logout
-             * @description Renders **`/api/users/logout/`** User API Logout URL
-             * @return {string} Rendered URL
-             * @methodOf trulii.authentication.services.AuthenticationServerApi
-             */
-            'logout': function(){
-                return renderUrl('users/', ['logout/'], true);
             }
 
         };

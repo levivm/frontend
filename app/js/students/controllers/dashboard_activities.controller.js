@@ -17,7 +17,7 @@
     function StudentActivitiesCtrl($q, $state, LocationManager, ActivitiesManager, currentActivities, pastActivities, nextActivities, reviews, orders, student) {
 
         var futureOrders = [];
-        
+
         var pastOrders = [];
         var vm = this;
         angular.extend(vm, {
@@ -53,7 +53,7 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-        
+
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_NEXT:
@@ -79,7 +79,7 @@
                   break;
             }
         }
-        
+
         function getReviewByActivityId(activityId){
             var review = reviews.filter(filterById)[0];
             //console.log('getReviewByActivityId', review);
@@ -183,7 +183,7 @@
             return deferred.promise;
 
             function processOrder(order){
-                order = setOrderActivity(order, activities);               
+                order = setOrderActivity(order, activities);
             }
 
             function setOrderActivity(order, activities){
@@ -215,7 +215,7 @@
                 COPY_BEGINNING_ON: "Iniciado el "
             });
         }
-        
+
         function _setOrders(){
            var activities = nextActivities.results.concat(pastActivities.results).concat(currentActivities.results);
             _mapOrders(orders.results, activities, reviews)
@@ -223,18 +223,18 @@
                 _mapReviews(vm.past_activities, reviews);
             });
         }
-        
+
         function _setActivities(){
-          
+
             vm.nextPaginationOpts.totalItems = nextActivities.count;
             vm.future_activities = nextActivities.results;
-            
+
             vm.pastPaginationOpts.totalItems = pastActivities.count;
             vm.past_activities = pastActivities.results;
-            
+
             vm.currentPaginationOpts.totalItems = currentActivities.count;
             vm.current_activities = currentActivities.results;
-            
+
         }
 
         function _activate() {

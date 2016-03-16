@@ -86,6 +86,7 @@
         return service;
 
         function getCoupon(couponCode){
+            console.log(api.coupon(couponCode));
             return $http.get(api.coupon(couponCode)).then(success, error);
 
             function success(response){

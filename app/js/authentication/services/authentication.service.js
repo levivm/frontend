@@ -110,7 +110,7 @@
                 return $q.reject(response);
             }
         }
-        
+
          function registerOrganizer(register_data, token) {
 
             return $http({
@@ -137,7 +137,7 @@
         function login(email, password) {
             return $http({
                 method: 'post',
-                url: api.token(),
+                url: api.login(),
                 data:
                 _parseParam({
                     email: email,

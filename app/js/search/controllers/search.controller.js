@@ -101,6 +101,8 @@
         }
 
         function setCategory(category, initializing) {
+            console.log(category);
+            console.log(initializing);
             if (!category) { return; }
 
             if (vm.searchCategory === category.id || category === vm.strings.ACTION_ALL_FILTER) {
@@ -109,6 +111,8 @@
                 vm.searchCategory = category.id;
 
             }
+
+            console.log(vm.searchCategory);
             _expandCategory(category);
             SearchManager.setCategory(vm.searchCategory);
 
@@ -136,7 +140,7 @@
               _search();
             }
 
-            Analytics.generalEvents.searchSubCategory(category.name);
+            Analytics.generalEvents.searchSubCategory(subcategory.name);
         }
 
         function setLevel() {
@@ -233,7 +237,7 @@
             function success(response) {
                 vm.activities = response.activities;
                 vm.activitiesPaginationOpts.totalItems = response.count;
-                //console.log('_getActivities:', vm.activities);
+                console.log('_getActivities:', vm.activities);
             }
 
             function error(error) {
@@ -380,6 +384,7 @@
             _setWatches();
             _setStrings();
             _setGeneralInfo();
+            console.log($stateParams);
             _getSearchParams();
 
             _getActivities($stateParams).then(function () {

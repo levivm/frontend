@@ -47,7 +47,7 @@ xdescribe('Controller: ActivityDetailController', function(){
              .respond(readJSON('tests/mock/activity.json'));
 
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/organizers/1/reviews')
+            .when('GET', 'http://localhost:8000/api/organizers/1/reviews?page=1&page_size=5&status=')
             .respond(readJSON('tests/mock/reviews.json'));
 
         $httpBackend
@@ -55,7 +55,7 @@ xdescribe('Controller: ActivityDetailController', function(){
             .respond(readJSON('tests/mock/calendars.json'));
 
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/organizers/1/activities')
+            .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
 
         ActivitiesManager.getActivity(4)
@@ -92,7 +92,6 @@ xdescribe('Controller: ActivityDetailController', function(){
             });
 
         currentUser = readJSON('tests/mock/currentUser.json');
-        console.log(currentUser);
         //End calls
         $httpBackend.flush();
 

@@ -295,6 +295,8 @@
             'instructor' : function (idActivity, idInstructor) {
                 return renderUrl('activities/', [idActivity, 'instructors', idInstructor]);
             },
+
+
             /**
              * @ngdoc function
              * @name .#autocomplete

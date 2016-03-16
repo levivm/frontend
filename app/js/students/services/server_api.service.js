@@ -57,7 +57,7 @@
             'activities': function(idStudent){
                 return renderUrl('students/', [idStudent, 'activities/']);
             },
-            
+
             /**
              * @ngdoc function
              * @name trulii.students.services.StudentServerApi#autocomplete
@@ -117,7 +117,7 @@
             'refund': function(){
                 return renderUrl('refunds/', []);
             },
-            
+
             /**
              * @ngdoc function
              * @name .#refunds
@@ -127,6 +127,17 @@
              */
             'refunds': function(){
                 return renderUrl('refunds/', []);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#refunds
+             * @description Renders **`/api/students/wish_list/`** Refund URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.students.services.StudentServerApi
+             */
+            'wishList': function(){
+                return renderUrl('students/', ['wish_list/']);
             },
 
 

@@ -174,7 +174,6 @@
                 var activitiesData = {};
                 activitiesData.count = response.data.count;
                 activitiesData.activities = response.data.results;
-                //console.log('activitiesData:', activitiesData);
                 deferred.resolve(activitiesData);
             }
             function error(response){ deferred.reject(response); }
@@ -315,7 +314,7 @@
         function setOrder(predicate){
             searchData[KEY_ORDER] = predicate;
         }
-        
+
         function setQuery(predicate){
           searchData[KEY_QUERY] = predicate;
         }
