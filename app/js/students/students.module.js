@@ -295,7 +295,6 @@
         function getOrder($stateParams, student){
             return student.getOrder($stateParams.orderId);
         }
-
         /**
          * @ngdoc method
          * @name .#getOrder
@@ -330,7 +329,6 @@
         function getCurrentWishList($stateParams, student){
             return student.getWishList('current');
         }
-
 
 
         /**

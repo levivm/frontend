@@ -1,0 +1,19 @@
+{
+    "token": "507186fad9dbd951b95c956d5158c83e7f50182e",
+    "user": {
+            	"id": 4,
+            	"photo": null,
+            	"user": {
+            		"first_name": "Henry",
+            		"last_name": "Bravo Casanova",
+            		"email": "henry.bravo89@gmail.com"
+            	},
+            	"gender": 2,
+            	"user_type": "S",
+            	"birth_date": null,
+            	"telephone": "",
+            	"city": null,
+            	"referrer_code": "henryb1"
+            }
+
+}

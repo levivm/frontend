@@ -46,7 +46,6 @@
 
         function requestSignup() {
             vm.request.city = vm.selectedCity.id;
-
             if(!_validateObject(vm.request)){
                 Toast.warning(vm.strings.COPY_EMPTY_FORM);
                 return;
