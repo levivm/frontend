@@ -22,10 +22,6 @@
             order: order,
             isStudent:true,
             previousState:null,
-            requestingRefund: {},
-            requestingOrderRefund: false,
-            requestAssistantRefund: requestAssistantRefund,
-            requestOrderRefund: requestOrderRefund,
             printOrder: printOrder,
             salesPaginationOpts: {
                 totalItems: 0,
@@ -40,31 +36,31 @@
 
         //--------- Exposed Functions ---------//
 
-        
+
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_NEXT:
-                
+
                   var params = {
                     page: vm.salesPaginationOpts.pageNumber,
                     page_size: vm.salesPaginationOpts.itemsPerPage
                   };
-                  
+
                   if(vm.salesFilter.activity)
                     params.activity = vm.salesFilter.activity;
-                    
+
                   if(vm.salesFilter.from_date)
                     params.from_date = new Date(vm.salesFilter.from_date).getTime();
-                    
+
                   if(vm.salesFilter.until_date)
                     params.until_date = new Date(vm.salesFilter.until_date).getTime();
-                    
+
                   if(vm.salesFilter.status)
                     params.status = vm.salesFilter.status;
-                    
+
                   if(vm.salesFilter.query)
                     params.id = vm.salesFilter.query;
-                    
+
                   $http.get(api.orders(organizer.id),
                       {params: params})
                       .then(function(response){
@@ -74,28 +70,28 @@
                       vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
                     });
                   break;
-                    
+
                 case vm.TYPE_REFUNDS:
                   var params = {
                     page: vm.refundsPaginationOpts.pageNumber,
                     page_size: vm.refundsPaginationOpts.itemsPerPage
                   };
-                  
+
                   if(vm.refundsFilter.activity)
                     params.activity = vm.refundsFilter.activity;
-                    
+
                   if(vm.refundsFilter.from_date)
                     params.from_date = new Date(vm.refundsFilter.from_date).getTime();
-                    
+
                   if(vm.refundsFilter.until_date)
                     params.until_date = new Date(vm.refundsFilter.until_date).getTime();
-                    
+
                   if(vm.refundsFilter.status)
                     params.status = vm.refundsFilter.status;
-                    
+
                   if(vm.refundsFilter.query)
                     params.id = vm.refundsFilter.query;
-                    
+
                   $http.get(api.refunds(organizer.id),
                       {params: params})
                       .then(function(response){
@@ -108,82 +104,19 @@
 
             }
         }
-        
+
         function printOrder(){
             $window.print();
         }
 
-        function requestOrderRefund(orderId){
-            var modalInstance = $modal.open({
-                templateUrl : 'partials/commons/messages/confirm_request_refund.html',
-                controller : 'ModalInstanceCtrl',
-                controllerAs:'modal',
-                size : 'lg'
-            });
 
-            modalInstance.result.then(function () {
-                enableOrderRefundLoader();
-                student.requestRefund(orderId,null).then(success,error)
-                        .finally(disableOrderRefundLoader);
-            });
 
-            function success(response){
-                vm.order.lastest_refund = response;
-            }
-
-            function error(response){
-                Toast.error(response.non_field_errors.pop());
-            }
-
-            function enableOrderRefundLoader(assistantId){
-                vm.requestingOrderRefund = true;
-            }
-
-            function disableOrderRefundLoader(){
-                vm.requestingOrderRefund = false;
-            }
-        }
-
-        function requestAssistantRefund(orderId,assistant){
-            var modalInstance = $modal.open({
-                templateUrl : 'partials/commons/messages/confirm_request_refund.html',
-                controller : 'ModalInstanceCtrl',
-                controllerAs:'modal',
-                size : 'lg'
-            });
-
-            modalInstance.result.then(function () {
-                enableRefundLoader(assistant.id);
-                student.requestRefund(orderId,assistant.id).then(success,error).
-                                finally(disableRefundLoader);
-            });
-
-            function success(response){
-                Analytics.studentEvents.seekRefund(orderId);
-                assistant.lastest_refund = response;
-            }
-
-            function error(response){
-                Toast.error(response.non_field_errors.pop());
-            }
-
-            function enableRefundLoader(assistantId){
-                vm.requestingRefund[assistantId] = true;
-                vm.currentAssistantLoader = assistantId;
-            }
-
-            function disableRefundLoader(){
-                vm.requestingRefund[vm.currentAssistantLoader] = false;
-            }
-        }
 
         //--------- Internal Functions ---------//
 
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
-                ACTION_REIMBURSE: "Solicitar Reembolso",
-                ACTION_REIMBURSE_ORDER: "Reembolso de orden",
                 ACTION_GO_BACK: "Regresar",
                 ACTION_PRINT: "Imprimir",
                 COPY_COUPON_NOT_REFUND_TOOLTIP: "El cupón no es reembolsable",
@@ -198,7 +131,6 @@
                 LABEL_ORDER_CREATE_AT: "Realizado el día:",
                 LABEL_TOTAL: "Total",
                 LABEL_SUB_TOTAL: "Sub-Total",
-                LABEL_REIMBURSEMENTS: "Reembolsos",
                 LABEL_COUPON: "Cupón",
                 LABEL_ORDER_STATUS: "Estatus: ",
                 LABEL_REIMBURSEMENTS_STATUS: "Estatus reembolso:",
