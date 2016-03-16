@@ -71,7 +71,6 @@
         }
 
         function _loginSuccess(redirect_state) {
-
             //Send Analytics data
             vm.userData=redirect_state;
             Analytics.generalEvents.loginType(loginEmail, redirect_state.data.user.user_type);

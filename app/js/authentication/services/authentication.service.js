@@ -159,6 +159,8 @@
 
         function facebookLogin(){
             var deferred = $q.defer();
+            console.log(Facebook);
+            console.log(api.facebook());
             return deferred.promise
                 .then(Facebook.login(function(response) {
                     if (response.status === 'connected') {

@@ -1,4 +1,4 @@
-xdescribe('Controller: LoginController', function(){
+describe('Controller: LoginController', function(){
     var LoginController,
         $scope = {};
 
@@ -62,6 +62,8 @@ xdescribe('Controller: LoginController', function(){
                 .respond(readJSON('tests/mock/userResponse.json'));
 
             $httpBackend.flush();
+
+            expect(LoginController.userData.data.user.user.email).toEqual(LoginController.auth.email);
             expect(LoginController.userData.data.token).toEqual("507186fad9dbd951b95c956d5158c83e7f50182e");
 
          });
