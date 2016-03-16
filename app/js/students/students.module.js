@@ -117,7 +117,7 @@
                 url:'/refunds',
                 templateUrl: 'partials/students/dashboard/history.refunds.html'
             })
-            
+
             .state('student-dashboard.wishlist', {
                 url:'wishlist',
                 controller: 'StudentWishlistCtrl as wishlist',
@@ -181,7 +181,7 @@
                 $q.reject();
             }
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getStudentActivities
@@ -204,7 +204,7 @@
                 $q.reject();
             }
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getStudentActivities
@@ -292,7 +292,7 @@
         function getOrder($stateParams, student){
             return student.getOrder($stateParams.orderId);
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getStudentActivityList

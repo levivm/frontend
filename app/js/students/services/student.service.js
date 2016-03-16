@@ -118,7 +118,7 @@
             change_password : function (password_data) {
                 return Authentication.change_password(password_data);
             },
-            
+
              /**
              * @ngdoc function
              * @name .#getActivityList
@@ -139,7 +139,7 @@
               if(!pageSize){
                 pageSize = defaultPageSize
               }
-              
+
               return $http.get(api.orders(this.id),
                   {params: {
                     page: page,
@@ -162,7 +162,7 @@
             /**
              * @ngdoc function
              * @name .#requestRefund
-             * @description Request a refund over an assistant if assistantId is not NULL, otherwhise 
+             * @description Request a refund over an assistant if assistantId is not NULL, otherwhise
              * a refund is requested over an order, given by orderId
              * @methodOf trulii.students.services.Student
              */
@@ -184,7 +184,7 @@
 
         function requestRefund(orderId,assistantId){
 
-            //if assistantId is null, the refund is requested 
+            //if assistantId is null, the refund is requested
             //over whole order instead of an assitant
             return $http.post(api.refund(),{order:orderId,assistant:assistantId})
                 .then(success,error);
