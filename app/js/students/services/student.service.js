@@ -175,7 +175,22 @@
              * @methodOf trulii.students.services.Student
              */
             getRefunds: getRefunds,
-
+            
+            /**
+             * @ngdoc function
+             * @name .#getMessages
+             * @description Retrieves all messages directed to the Student
+             * @methodOf trulii.students.services.Student
+             */
+            getMessages: getMessages,
+            
+            /**
+             * @ngdoc function
+             * @name .#getMessage
+             * @description Retrieves a specific messages directed to the Student
+             * @methodOf trulii.students.services.Student
+             */
+            getMessage: getMessage
 
         };
 
@@ -219,32 +234,6 @@
             .then(function (response) {
                 return response.data;
             });
-            // var deferred = $q.defer();
-            // var refunds = [];
-
-            // collectRefunds(api.refunds());
-
-            // return deferred.promise;
-
-            // function collectRefunds(nextUrl){
-            //     return $http.get(nextUrl)
-            //         .then(success, error);
-
-            //     function success(response) {
-            //         refunds = refunds.concat(response.data.results);
-            //         if(response.data.next){
-            //             return collectRefunds(response.data.next);
-            //         } else {
-            //             deferred.resolve(refunds);
-            //         }
-            //     }
-
-            //     function error(response) {
-            //         console.log("Error getting organizer refunds: ", response.data);
-            //         deferred.reject(refunds);
-            //     }
-            // }
-
         }
 
 
@@ -275,6 +264,29 @@
                     deferred.reject(reviews);
                 }
             }
+        }
+        
+        function getMessages(page, pageSize){
+            if(!page)
+              page = defaultPage;
+            if(!pageSize)
+              pageSize: defaultPageSize;
+
+            return $http.get(api.messages(this.id),
+                {params: {
+                  page: page,
+                  page_size: pageSize
+                }})
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function getMessage(messageId){
+            return $http.get(api.message(messageId))
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 

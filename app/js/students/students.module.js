@@ -123,16 +123,22 @@
                 controller: 'StudentWishlistCtrl as wishlist',
                 templateUrl: 'partials/students/dashboard/wishlist.html',
             })
-            .state('student-dashboard.messages', {
-                url:'messages/',
+            .state('student-dashboard.notifications', {
+                url:'notifications/',
                 controller: 'StudentMessagesCtrl as messages',
-                templateUrl: 'partials/students/dashboard/messages.html'
+                templateUrl: 'partials/students/dashboard/messages.html',
+                resolve: {
+                    messages: getMessages
+                }
 
             })
             .state('student-dashboard.messages-detail', {
-                url:'messages/:messageId',
+                url:'notifications/:messageId',
                 controller: 'StudentMessageDetailCtrl as detail',
                 templateUrl: 'partials/students/dashboard/message_detail.html',
+                resolve: {
+                  message: getMessage
+                }
 
             });
 
@@ -316,6 +322,30 @@
         getStudentActivityList.$inject = ['student'];
         function getStudentActivityList(student){
           return student.getActivityList();
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getMessages
+         * @description Retrieves a Student's Messages
+         * @requires student
+         * @methodOf trulii.students.config
+         */
+        getMessages.$inject = ['student'];
+        function getMessages(student){
+            return student.getMessages();
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getMessage
+         * @description Retrieves a specific message for the Student
+         * @requires student
+         * @methodOf trulii.students.config
+         */
+        getMessage.$inject = ['student', '$stateParams'];
+        function getMessage(student, $stateParams){
+            return student.getMessage($stateParams.messageId);
         }
     }
 

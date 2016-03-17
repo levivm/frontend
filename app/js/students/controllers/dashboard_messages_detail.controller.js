@@ -10,21 +10,17 @@
     angular
         .module('trulii.students.controllers')
         .controller('StudentMessageDetailCtrl', StudentMessageDetailCtrl);
-    StudentMessageDetailCtrl.$inject = ['student', 'titleTruncateSize', 'Analytics', 'StudentServerApi'];
+    StudentMessageDetailCtrl.$inject = ['student', 'message', 'titleTruncateSize', 'Analytics'];
 
-    function StudentMessageDetailCtrl(student, titleTruncateSize, Analytics, StudentServerApi) {
+    function StudentMessageDetailCtrl(student, message, titleTruncateSize, Analytics) {
         var vm = this;
-        var api = StudentServerApi;
 
 
         angular.extend(vm,{
-            activities: null,icker,
+          message: message
         });
 
         activate();
-
-        var orders = [];
-        var refunds = [];
 
         /*      Exposed Functions      */
 

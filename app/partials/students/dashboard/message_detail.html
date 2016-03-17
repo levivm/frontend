@@ -5,26 +5,26 @@
       <div class="separate-above dashboard-messages-detail col-xs-12 col-md-9 col-md-offset-1">
         <i class="delete-message glyphicon glyphicon-trash"></i>
         <div class="title-message">
-            <h1 class="montserrat-light">Clases de yoga en el virrey</h1>
+            <h1 class="montserrat-light" ng-bind="::detail.message.activity"></h1>
         </div>
         <div class="content-message">
             <div class="row">
                 <div class="col-md-1">
-                    <img class="user-picture" src="css/img/default_profile_pic.jpg" alt="">
+                    <img class="user-picture" ng-if="detail.message.organizer.photo === null" src="css/img/default_profile_pic.jpg" alt="">
+                    <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">         
                 </div>
                 <div class="col-md-8 text-line-more-xl">
-                    <span class="montserrat-regular text-lg">Universidad de los Andes</span>
+                    <span class="montserrat-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
                 </div>
                 <div class="col-md-3 text-line-more-xl text-right">
-                    <span class="text-gray-light montserrat-light">14, Ene. 2016</span>
+                    <span class="text-gray-light montserrat-light" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
                 </div>
             </div>
 
             <div class="separate-above-less ">
-                <p class="text-dark montserrat-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora beatae illo aut doloremque quo possimus labore nisi, dicta obcaecati minima a et, eveniet at, voluptates quidem iure libero repellat quam. </p>
+                <p class="text-dark montserrat-light" ng-bind="::detail.message.message"></p>
             </div>
         </div>
       </div>
   </div>
 </div>
-<trulii-dashboard-footer></trulii-dashboard-footer>

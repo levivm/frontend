@@ -10,24 +10,34 @@
     angular
         .module('trulii.students.controllers')
         .controller('StudentMessagesCtrl', StudentMessagesCtrl);
-    StudentMessagesCtrl.$inject = ['student', 'titleTruncateSize', 'Analytics', 'StudentServerApi'];
+    StudentMessagesCtrl.$inject = ['student', 'messages', 'titleTruncateSize', 'Analytics'];
 
-    function StudentMessagesCtrl(student, titleTruncateSize, Analytics, StudentServerApi) {
+    function StudentMessagesCtrl(student, messages, titleTruncateSize, Analytics) {
         var vm = this;
-        var api = StudentServerApi;
 
 
         angular.extend(vm,{
-            activities: null
+            messages: messages.results,
+            paginationOpts: {
+                totalItems: messages.count,
+                itemsPerPage: 10,
+                pageNumber: 1
+            },
+            pageChange: pageChange
         });
 
         activate();
 
-        var orders = [];
-        var refunds = [];
-
         /*      Exposed Functions      */
-
+        
+        function pageChange(){
+          student.getMessages(vm.paginationOpts.pageNumber, vm.paginationOpts.itemsPerPage)
+          .then(function (response) {
+            vm.messages = response.data.results;
+            vm.paginationOpts.totalItems = response.data.count;
+            vm.messages = vm.messages.slice(0, vm.paginationOpts.itemsPerPage); 
+          });
+        }
 
         /*       Internal Functions      */
 
@@ -44,6 +54,7 @@
 
         function activate() {
             _setStrings();
+            console.log(vm.messages);
         }
 
     }

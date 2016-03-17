@@ -156,7 +156,8 @@
                 controller: 'OrganizerMessagesCtrl as messages',
                 templateUrl: 'partials/organizers/dashboard/messages.html',
                 resolve: {
-                    activities: getOrganizerOpenActivities
+                    messages: getMessages,
+                    activities: getOrganizerActivityList
                 }
 
             })
@@ -164,6 +165,9 @@
                 url:'messages/:messageId',
                 controller: 'OrganizerMessageDetailCtrl as detail',
                 templateUrl: 'partials/organizers/dashboard/message_detail.html',
+                resolve: {
+                  message: getMessage
+                }
 
             })
             .state('organizer-dashboard.reviews.done', {
@@ -235,12 +239,12 @@
          */
         getOrganizerOpenActivities.$inject = ['ActivitiesManager','organizer'];
         function getOrganizerOpenActivities(ActivitiesManager, organizer){
-            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'open');
+            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened');
         }
 
         /**
          * @ngdoc method
-         * @name .#getOrganizerActivities
+         * @name .#getOrganizerClosedActivities
          * @description Retrieves an Organizer's Closed Activities from
          * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
          * @requires trulii.activities.services.ActivitiesManager
@@ -254,7 +258,7 @@
 
         /**
          * @ngdoc method
-         * @name .#getOrganizerActivities
+         * @name .#getOrganizerInactiveActivities
          * @description Retrieves an Organizer's Inactive Activities from
          * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
          * @requires trulii.activities.services.ActivitiesManager
@@ -276,6 +280,30 @@
         getOrders.$inject = ['organizer'];
         function getOrders(organizer){
             return organizer.getOrders();
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getMessages
+         * @description Retrieves an Organizer's Messages
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getMessages.$inject = ['organizer'];
+        function getMessages(organizer){
+            return organizer.getMessages();
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getMessage
+         * @description Retrieves a specific message from the Organizer
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getMessage.$inject = ['organizer', '$stateParams'];
+        function getMessage(organizer, $stateParams){
+            return organizer.getMessage($stateParams.messageId);
         }
 
         /**

@@ -13,13 +13,13 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerMessageDetailCtrl', OrganizerMessageDetailCtrl);
 
-    OrganizerMessageDetailCtrl.$inject = ['$http', 'organizer', 'OrganizerServerApi'];
-    function OrganizerMessageDetailCtrl($http, organizer, OrganizerServerApi) {
+    OrganizerMessageDetailCtrl.$inject = ['organizer', 'message'];
+    function OrganizerMessageDetailCtrl(organizer, message) {
 
         var vm = this;
-        var api = OrganizerServerApi;
         angular.extend(vm, {
-            organizer : organizer
+            organizer : organizer,
+            message: message
 
         });
 

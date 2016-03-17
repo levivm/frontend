@@ -17,14 +17,13 @@
     function OrganizerActivitiesCtrl(organizer, ActivitiesManager, openActivities, closedActivities, inactiveActivities) {
 
         var vm = this;
-        var api = OrganizerServerApi;
         angular.extend(vm, {
             organizer : organizer,
             isCollapsed : true,
             open_activities : [],
             closed_activities : [],
             inactive_activities : [],
-            TYPE_OPEN: "open",
+            TYPE_OPEN: "opened",
             TYPE_CLOSED: "closed",
             TYPE_INACTIVE: "unpublished",
             openOptions : {
