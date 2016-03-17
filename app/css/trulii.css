@@ -12954,6 +12954,18 @@ h2.title {
 h3.title {
   font-weight: 400;
 }
+h1.title-sm {
+  width: 10em;
+  margin: 0 auto;
+  font-weight: 600;
+  font-size: 3.5em;
+}
+@media screen and (max-width: 768px) {
+  h1.title-sm {
+    font-size: 2.5em;
+    line-height: 1em;
+  }
+}
 .sub-title {
   font-size: 2em;
   color: #607171;
@@ -14934,6 +14946,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     color: white;
     border-radius: 4px;
     background-image: url(/css/img/about/arrow-white.png) !important;
+    padding: 0;
   }
 }
 .search-bar > *:last-child {
@@ -14958,21 +14971,28 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   float: left;
   border-top: 5px solid #ffd580;
 }
-.search-bar select,
-.search-bar select:focus {
-  display: inline-block;
+.search-bar .select-city {
   width: 35%;
-  padding: 0 2em;
+  height: 100%;
+  display: inline-block;
+  position: relative;
+  padding: 0;
   border-top: 5px solid #38dbc8;
-  -webkit-appearance: none;
-  -moz-appearance: none;
   float: left;
-}
-.search-bar select {
   background-size: 15px auto;
   background-position: 93% 50%;
   background-repeat: no-repeat;
   background-image: url(/css/img/about/arrow.png) !important;
+}
+.search-bar .select-city select,
+.search-bar .select-city select:focus {
+  display: inline-block;
+  width: 100%;
+  padding: 0 1em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 100% !important;
+  cursor: pointer;
 }
 .search-bar select:focus {
   animation: input-highlight 0.5s forwards;
@@ -15059,40 +15079,46 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-weight: 200;
   float: left;
 }
-.search-bar__navbar select.form-control {
+.search-bar__navbar .select-city {
+  width: 28%;
+  height: 100%;
   display: inline-block;
   vertical-align: top;
-  height: 100%;
-  width: 28%;
-  padding: 0 0.5em;
-  color: #535353;
-  background: transparent;
+  position: relative;
+  padding: 0;
   border: 1px solid #e4e4e4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   float: left;
-  -webkit-appearance: none;
-  -moz-appearance: none;
+  color: #535353;
   background-size: 15px auto;
   background-position: 93% 50%;
   background-repeat: no-repeat;
   background-image: url(/css/img/about/arrow.png) !important;
 }
-.search-bar__navbar select.form-control::-ms-expand {
-  display: none;
+.search-bar__navbar .select-city select,
+.search-bar__navbar .select-city select:focus {
+  display: inline-block;
+  width: 100%;
+  padding: 0 0.5em;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 100% !important;
+  cursor: pointer;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-@media screen and (max-width: 768px) {
-  .search-bar__navbar select.form-control {
-    width: 25%;
-  }
-}
-.search-bar__navbar select.form-control:focus {
+.search-bar__navbar .select-city select:focus,
+.search-bar__navbar .select-city select:focus:focus {
   animation: input-highlight 0.5s forwards;
   box-shadow: none;
   background-size: 0 2px, 100% 1px;
   background-image: linear-gradient(#ffd580, #ffd580), linear-gradient(#e3e3e3, #e3e3e3) !important;
   background-position: 0 bottom;
+}
+@media screen and (max-width: 768px) {
+  .search-bar__navbar .select-city {
+    width: 25%;
+  }
 }
 .search-bar__navbar button {
   font-size: 18px;

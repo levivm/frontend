@@ -113,10 +113,10 @@
                 PUBLISH_COPY: "¿Quieres publicar una actividad?",
                 PUBLISH_TEXT_1: "Trulii es el mejor espacio para dar a conocer " +
                 "tu actividad. Bien sea un curso de cocina, una classe de crossfit, un foro de negocios o un diplomado universitario, nosotros " +
-                "te abrimos la puerta a nuevos clientes y hacemos el trabjao sucio por ti.",
+                "te abrimos la puerta a nuevos clientes y hacemos el trabajo sucio por ti.",
                 PUBLISH_TEXT_2: "Regístrate sin costo alguno y disfruta de nuestra prueba gratuita en tus primeras tres actividades.",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
-                PUBLISH_BUTTON_COPY: "Ser organizador"
+                PUBLISH_BUTTON_COPY: "Quiero ser organizador"
             });
         }
 
