@@ -13,13 +13,14 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerMessageDetailCtrl', OrganizerMessageDetailCtrl);
 
-    OrganizerMessageDetailCtrl.$inject = ['organizer', 'message'];
-    function OrganizerMessageDetailCtrl(organizer, message) {
+    OrganizerMessageDetailCtrl.$inject = ['organizer', 'message', '$state', 'Toast'];
+    function OrganizerMessageDetailCtrl(organizer, message, $state, Toast) {
 
         var vm = this;
         angular.extend(vm, {
             organizer : organizer,
-            message: message
+            message: message,
+            deleteMessage: deleteMessage
 
         });
 
@@ -27,7 +28,15 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        
+        function deleteMessage(){
+          organizer.deleteMessage(message.id)
+            .then(function(){
+              Toast.success("Mensaje borrado");
+              $state.go('organizer-dashboard.messages');
+            });
+        }
+        
         //--------- Internal Functions ---------//
 
 

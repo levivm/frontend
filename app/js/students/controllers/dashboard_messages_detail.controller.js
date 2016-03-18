@@ -10,20 +10,28 @@
     angular
         .module('trulii.students.controllers')
         .controller('StudentMessageDetailCtrl', StudentMessageDetailCtrl);
-    StudentMessageDetailCtrl.$inject = ['student', 'message', 'titleTruncateSize', 'Analytics'];
+    StudentMessageDetailCtrl.$inject = ['student', 'message', '$state', 'titleTruncateSize', 'Analytics', 'Toast'];
 
-    function StudentMessageDetailCtrl(student, message, titleTruncateSize, Analytics) {
+    function StudentMessageDetailCtrl(student, message, $state, titleTruncateSize, Analytics, Toast) {
         var vm = this;
 
 
         angular.extend(vm,{
-          message: message
+          message: message,
+          deleteMessage: deleteMessage
         });
 
         activate();
 
         /*      Exposed Functions      */
-
+        
+        function deleteMessage(){
+          student.deleteMessage(message.id)
+            .then(function(){
+              Toast.success("Mensaje borrado");
+              $state.go('student-dashboard.messages');
+            });
+        }
 
         /*       Internal Functions      */
 

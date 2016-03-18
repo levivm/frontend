@@ -13,8 +13,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerMessagesCtrl', OrganizerMessagesCtrl);
 
-    OrganizerMessagesCtrl.$inject = ['ActivitiesManager', 'organizer', 'messages', 'activities', '$q', 'Error'];
-    function OrganizerMessagesCtrl(ActivitiesManager, organizer, messages, activities, $q, Error) {
+    OrganizerMessagesCtrl.$inject = ['ActivitiesManager', 'organizer', 'messages', 'activities', '$q', 'Error', 'Toast'];
+    function OrganizerMessagesCtrl(ActivitiesManager, organizer, messages, activities, $q, Error, Toast) {
 
         var vm = this;
         angular.extend(vm, {
@@ -44,8 +44,8 @@
         function pageChange(){
           organizer.getMessages(vm.paginationOpts.pageNumber, vm.paginationOpts.itemsPerPage)
           .then(function (response) {
-            vm.messages = response.data.results;
-            vm.paginationOpts.totalItems = response.data.count;
+            vm.messages = response.results;
+            vm.paginationOpts.totalItems = response.count;
             vm.messages = vm.messages.slice(0, vm.paginationOpts.itemsPerPage); 
           });
         }
@@ -68,7 +68,7 @@
         function submitMessage(){
           organizer.sendMessage(vm.message).then(success, error)
         }
-
+        
 
         //--------- Internal Functions ---------//
 
@@ -81,6 +81,9 @@
         
         function success(response){
           vm.toggleMessageShow();
+          Toast.success("Su mensaje ha sido enviado");
+          vm.pageChange();
+          vm.message = {};
         }
             
         function _setStrings() {

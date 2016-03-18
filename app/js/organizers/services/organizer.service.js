@@ -272,7 +272,15 @@
              * @description Submits a message to the assistants of an activity
              * @methodOf trulii.organizers.services.Organizer
              */
-            sendMessage: sendMessage
+            sendMessage: sendMessage,
+            
+            /**
+             * @ngdoc function
+             * @name .#deleteMessage
+             * @description Deletes a message
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            deleteMessage: deleteMessage
 
 
         };
@@ -442,6 +450,13 @@
         
         function getMessage(messageId){
             return $http.get(api.message(messageId))
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function deleteMessage(messageId){
+            return $http.delete(api.message(messageId))
                 .then(function (response) {
                     return response.data;
                 });

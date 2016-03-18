@@ -190,7 +190,17 @@
              * @description Retrieves a specific messages directed to the Student
              * @methodOf trulii.students.services.Student
              */
-            getMessage: getMessage
+            getMessage: getMessage,
+            
+            /**
+             * @ngdoc function
+             * @name .#deleteMessage
+             * @description Deletes a message
+             * @methodOf trulii.students.services.Student
+             */
+            deleteMessage: deleteMessage
+            
+            
 
         };
 
@@ -284,6 +294,13 @@
         
         function getMessage(messageId){
             return $http.get(api.message(messageId))
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function deleteMessage(messageId){
+            return $http.delete(api.message(messageId))
                 .then(function (response) {
                     return response.data;
                 });

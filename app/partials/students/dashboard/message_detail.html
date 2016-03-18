@@ -3,7 +3,9 @@
 <div class="row fade in">
   <div class="col-xs-12 col-md-11 col-md-offset-1">
       <div class="separate-above dashboard-messages-detail col-xs-12 col-md-9 col-md-offset-1">
-        <i class="delete-message glyphicon glyphicon-trash"></i>
+        <a href="" ng-click="detail.deleteMessage()">
+          <i class="delete-message glyphicon glyphicon-trash"></i>
+        </a>
         <div class="title-message">
             <h1 class="montserrat-light" ng-bind="::detail.message.activity"></h1>
         </div>

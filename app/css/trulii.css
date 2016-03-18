@@ -14776,7 +14776,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
   .search-filter__levels {
     width: 55%;
-    margin-left: 4em;
   }
   .search-filter .search-certificate {
     margin-left: 0em;
@@ -15944,6 +15943,14 @@ tags-input input {
   border-radius: 6px;
   font-weight: bold;
 }
+.btn-xlg {
+  text-transform: uppercase;
+  padding: 0.75em 2em;
+  font-size: 1em;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  font-weight: bold;
+}
 .btn-default {
   background-color: white;
   border: 1px solid #e5e5e5;
@@ -16125,7 +16132,7 @@ tags-input input {
   }
 }
 .form-classic .form-group:not(:first-child) {
-  margin-top: 2em;
+  margin-top: 1.25em;
 }
 @media screen and (max-width: 992px) {
   .form-classic .form-group:not(:first-child) {
@@ -17475,7 +17482,8 @@ ul.dropdown-menu:after {
   color: #38dbc8;
 }
 .card-list-item label,
-.card-list-item input {
+.card-list-item input,
+.card-list-item textarea {
   font-size: .9em;
 }
 .card-list-item--empty {
@@ -21853,7 +21861,7 @@ blockquote {
   border: 1px solid #eeeeee;
 }
 .order-detail .pull-left {
-  margin-right: 20px;
+  margin-right: 40px;
 }
 .order-detail a {
   color: #535353;

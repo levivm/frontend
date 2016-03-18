@@ -144,12 +144,20 @@
         }
 
         function setLevel() {
-            SearchManager.setLevel(vm.searchLevel.code);
-            if(!_isMobile()){
-              _search();
-            }
-
+          var sm = SearchManager;
+          vm.searchData = SearchManager.getSearchData($stateParams);
+          if(vm.searchData[sm.KEY_LEVEL] === vm.searchLevel.code){
+            SearchManager.setLevel();
+            Analytics.generalEvents.searchLevel('');
+          }
+          else{
+            SearchManager.setLevel(vm.searchLevel.code);            
             Analytics.generalEvents.searchLevel(vm.searchLevel.value);
+          }
+          
+          if(!_isMobile()){
+            _search();
+          }
 
         }
 
@@ -254,7 +262,8 @@
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
-
+              
+              console.log(vm.searchData);
             if ($stateParams.city) {
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
                 LocationManager.setSearchCity(city);
@@ -263,6 +272,11 @@
             if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
                 vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]);
             }
+            
+            if (vm.searchData.hasOwnProperty(sm.KEY_ORDER)) {
+                vm.orderByPredicate = vm.searchData[sm.KEY_ORDER];
+            }
+            
             if (vm.searchData.hasOwnProperty(sm.KEY_LEVEL)) {
                 _setLevel(vm.searchData[sm.KEY_LEVEL]);
             }
