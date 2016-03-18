@@ -13,8 +13,8 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$state', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics'];
-    function HomeController($state, video, activities, generalInfo, LocationManager, serverConf, Analytics) {
+    HomeController.$inject = ['$state', '$scope', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics'];
+    function HomeController($state, $scope, video, activities, generalInfo, LocationManager, serverConf, Analytics) {
 
         var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
@@ -138,11 +138,20 @@
         }
 
 
+        function _initScroll(){
+            $scope.$on('scrolled',
+              function(scrolled, scroll){
+                vm.scroll = scroll;
+                $scope.$apply();
+              }
+            );
+        }
 
         function _activate(){
             _setStrings();
             _setCategories();
             loadActivities();
+            _initScroll();
             video.addSource('webm', serverConf.s3URL + '/static/videos/home1.webm');
             video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
             video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');

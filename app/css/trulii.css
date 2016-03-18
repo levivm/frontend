@@ -14237,6 +14237,25 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar.sidebar-short {
   top: 60px;
 }
+.navbar-landing {
+  background: transparent !important;
+  border: none;
+  color: #FFFFFF !important;
+}
+.navbar-landing .navbar__logo-container {
+  background: transparent !important;
+}
+.navbar-landing .navbar__option--right {
+  border-left: none;
+}
+.navbar-landing .btn-primary {
+  background: transparent !important;
+  border: 1px solid white;
+  border-radius: 0;
+}
+.navbar-landing .buttons-login > a {
+  color: #ffffff;
+}
 .navbar-secondary {
   background: #eeeeee;
   height: 40px;
@@ -17994,7 +18013,7 @@ button.toast-close-button {
 .trulii-cover,
 .trulii-cover-small,
 .trulii-cover-medium {
-  margin-top: -20px;
+  margin-top: -100px;
   min-height: 92vh;
   width: 100%;
   position: relative;

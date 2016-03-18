@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -38,7 +38,8 @@
                     clickItemSidebar:clickItemSidebar,
                     createActivity:createActivity,
                     clickLogo:clickLogo,
-                    updateSearchCity:updateSearchCity
+                    updateSearchCity:updateSearchCity,
+                    isLandingState:isLandingState
                 });
 
                 _activate();
@@ -69,7 +70,9 @@
                     _setCurrentCity();
                     scope.showCities=false;
                 }
-
+                function isLandingState(){
+                  return ($state.current.name==='home' && scope.scroll<640) ;
+                }
 
                 //---Exposed functions for send data to Google Analytics----//
 
@@ -89,7 +92,7 @@
 
                 //--------- Internal Functions ---------//
 
-            
+
                 function _getUser() {
                     scope.user = true;
                     Authentication.getAuthenticatedAccount().then(success, error);
@@ -199,6 +202,7 @@
                   scope.$on('scrolled',
                     function(scrolled, scroll){
                       scope.scroll = scroll;
+                      console.log(scope.scroll);
                       scope.$apply();
                     }
                   );
