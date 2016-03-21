@@ -148,8 +148,27 @@
                     unreadReviews: getOrganizerUnreadReviews,
                     readReviews: getOrganizerReadReviews,
                     unreadReviewObjects: getUnreadReviewObjects,
-                    readReviewObjects: getReadReviewObjects 
+                    readReviewObjects: getReadReviewObjects
                 }
+            })
+            .state('organizer-dashboard.messages', {
+                url:'messages/',
+                controller: 'OrganizerMessagesCtrl as messages',
+                templateUrl: 'partials/organizers/dashboard/messages.html',
+                resolve: {
+                    messages: getMessages,
+                    activities: getOrganizerActivityList
+                }
+
+            })
+            .state('organizer-dashboard.messages-detail', {
+                url:'messages/:messageId',
+                controller: 'OrganizerMessageDetailCtrl as detail',
+                templateUrl: 'partials/organizers/dashboard/message_detail.html',
+                resolve: {
+                  message: getMessage
+                }
+
             })
             .state('organizer-dashboard.reviews.done', {
                 url:'done',
@@ -220,12 +239,12 @@
          */
         getOrganizerOpenActivities.$inject = ['ActivitiesManager','organizer'];
         function getOrganizerOpenActivities(ActivitiesManager, organizer){
-            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'open');
+            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened');
         }
-        
+
         /**
          * @ngdoc method
-         * @name .#getOrganizerActivities
+         * @name .#getOrganizerClosedActivities
          * @description Retrieves an Organizer's Closed Activities from
          * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
          * @requires trulii.activities.services.ActivitiesManager
@@ -236,10 +255,10 @@
         function getOrganizerClosedActivities(ActivitiesManager, organizer){
             return ActivitiesManager.loadOrganizerActivities(organizer.id, 'closed');
         }
-        
+
         /**
          * @ngdoc method
-         * @name .#getOrganizerActivities
+         * @name .#getOrganizerInactiveActivities
          * @description Retrieves an Organizer's Inactive Activities from
          * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
          * @requires trulii.activities.services.ActivitiesManager
@@ -261,6 +280,30 @@
         getOrders.$inject = ['organizer'];
         function getOrders(organizer){
             return organizer.getOrders();
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getMessages
+         * @description Retrieves an Organizer's Messages
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getMessages.$inject = ['organizer'];
+        function getMessages(organizer){
+            return organizer.getMessages();
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getMessage
+         * @description Retrieves a specific message from the Organizer
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getMessage.$inject = ['organizer', '$stateParams'];
+        function getMessage(organizer, $stateParams){
+            return organizer.getMessage($stateParams.messageId);
         }
 
         /**
@@ -287,7 +330,7 @@
         function getOrganizerReviews(organizer){
             return organizer.getReviews(1, 10);
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getOrganizerUnreadReviews
@@ -300,7 +343,7 @@
         function getOrganizerUnreadReviews(organizer){
             return organizer.getReviews(1, 6, 'unread');
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getOrganizerReadReviews
@@ -313,7 +356,7 @@
         function getOrganizerReadReviews(organizer){
             return organizer.getReviews(1, 6, 'read');
         }
-        
+
 
         /**
          * @ngdoc method
@@ -325,18 +368,18 @@
          */
         getReviewObjects.$inject = ['reviews', 'ActivitiesManager'];
         function getReviewObjects(reviews, ActivitiesManager){
-            
+
             return reviews.results.map(mapActivityToReview);
-            
+
             function mapActivityToReview(review){
-              
+
               ActivitiesManager.getActivity(review.activity)
               .then(
                 function(response){
                   review.activity = response;
                 }
               );
-              
+
               return review;
 
             }
@@ -351,23 +394,23 @@
          */
         getUnreadReviewObjects.$inject = ['unreadReviews', 'ActivitiesManager'];
         function getUnreadReviewObjects(unreadReviews, ActivitiesManager){
-            
+
             return unreadReviews.results.map(mapActivityToReview);
-            
+
             function mapActivityToReview(review){
-              
+
               ActivitiesManager.getActivity(review.activity)
               .then(
                 function(response){
                   review.activity = response;
                 }
               );
-              
+
               return review;
 
             }
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getReviewObjects
@@ -378,25 +421,25 @@
          */
         getReadReviewObjects.$inject = ['readReviews', 'ActivitiesManager', '$http'];
         function getReadReviewObjects(readReviews, ActivitiesManager, $http){
-            
+
             return readReviews.results.map(mapActivityToReview);
-            
+
             function mapActivityToReview(review){
-              
+
               ActivitiesManager.getActivity(review.activity)
               .then(
                 function(response){
                   review.activity = response;
                 }
               );
-              
+
               return review;
 
             }
         }
-        
-        
-        
+
+
+
 
         /**
          * @ngdoc method
@@ -453,7 +496,7 @@
         function getBankingInfo(Payments){
             return Payments.getBankingInfo();
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getOrganizerActivityList

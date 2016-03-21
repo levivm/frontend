@@ -418,7 +418,7 @@
         function _updateUrl(){
             // Title sanitation
             var title = activity.title;
-            title = title.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+            title = title.replace(/[`~!¡¿@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
 
             // Replacing whitespaces with hyphen
             title = title.split(' ').join('-').toLowerCase();

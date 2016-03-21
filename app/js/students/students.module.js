@@ -125,6 +125,22 @@
                 resolve: {
                     wishListActivities: getWishList
                 }
+            })
+            .state('student-dashboard.notifications', {
+                url:'notifications/',
+                controller: 'StudentMessagesCtrl as messages',
+                templateUrl: 'partials/students/dashboard/messages.html',
+                resolve: {
+                    messages: getMessages
+                }
+            })
+            .state('student-dashboard.messages-detail', {
+                url:'notifications/:messageId',
+                controller: 'StudentMessageDetailCtrl as detail',
+                templateUrl: 'partials/students/dashboard/message_detail.html',
+                resolve: {
+                  message: getMessage
+                }
             });
 
         /**
@@ -296,10 +312,9 @@
             return student.getOrder($stateParams.orderId);
         }
 
-
         /**
          * @ngdoc method
-         * @name .#getOrder
+         * @name .#getWishList
          * @description Retrieves Wishlist
          * {@link trulii.students.services.Student Student} Service
          * @methodOf trulii.students.config
@@ -308,8 +323,6 @@
         function getWishList($stateParams, student){
             return student.getWishList();
         }
-
-
         /**
          * @ngdoc method
          * @name .#getStudentActivityList
@@ -321,6 +334,30 @@
         getStudentActivityList.$inject = ['student'];
         function getStudentActivityList(student){
           return student.getActivityList();
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getMessages
+         * @description Retrieves a Student's Messages
+         * @requires student
+         * @methodOf trulii.students.config
+         */
+        getMessages.$inject = ['student'];
+        function getMessages(student){
+            return student.getMessages();
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getMessage
+         * @description Retrieves a specific message for the Student
+         * @requires student
+         * @methodOf trulii.students.config
+         */
+        getMessage.$inject = ['student', '$stateParams'];
+        function getMessage(student, $stateParams){
+            return student.getMessage($stateParams.messageId);
         }
     }
 

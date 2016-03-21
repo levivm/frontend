@@ -12710,6 +12710,103 @@ hr.on-light {
   font-size: 0.75em;
   vertical-align: middle;
 }
+.dashboard-messages form i {
+  float: right;
+  margin-top: -1.5em;
+}
+.dashboard-messages-container {
+  border: 1px solid #eeeeee;
+  min-height: 16vh;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.dashboard-messages-container > a {
+  border-bottom: 1px solid #eeeeee;
+  padding: 2em 1em 1em 3em;
+  cursor: pointer;
+  display: block;
+}
+.dashboard-messages-container p {
+  height: 2em;
+  text-align: justify;
+  text-overflow: ellipsis;
+  line-height: 2em;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 70%;
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-container .text-right {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-container .text-line-more-xl {
+    line-height: 1.5em;
+  }
+}
+.dashboard-messages-container .student {
+  padding: 2em 1em 1em 1em;
+}
+.dashboard-messages-container .student .user-picture {
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+}
+.dashboard-messages-detail {
+  border: 1px solid #eeeeee;
+}
+.dashboard-messages-detail .delete-message {
+  float: right;
+  margin: 2em;
+  font-size: 1.3em;
+  color: #999999;
+}
+.dashboard-messages-detail .title-message {
+  padding: 3em 0em 1em 0em;
+  width: 90%;
+  border-bottom: 1px solid #eeeeee;
+  margin: 0 auto;
+}
+.dashboard-messages-detail .content-message {
+  padding: 3em;
+}
+.dashboard-messages-detail .content-message .user-picture {
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+}
+.dashboard-messages-detail .content-message p {
+  height: auto;
+  width: 100%;
+  text-align: inherit;
+  text-overflow: inherit;
+  line-height: 1.5em;
+  word-wrap: normal;
+  white-space: normal;
+  padding-left: 8.5%;
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .content-message p {
+    padding-left: 0em;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .content-message {
+    padding: 2em;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .text-right {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .text-line-more-xl {
+    line-height: 1.5em;
+  }
+}
 .text-left {
   text-align: left;
 }
@@ -12815,6 +12912,9 @@ hr.on-light {
 }
 .text-line-more {
   line-height: 1.5em;
+}
+.text-line-more-xl {
+  line-height: 2.5em;
 }
 .font-normal {
   font-weight: normal !important;
@@ -14320,6 +14420,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   line-height: 2.5em;
   font-size: 1.1em;
 }
+.navbar-secondary .new-message {
+  line-height: 3em;
+  cursor: pointer;
+}
+.navbar-secondary .new-message span {
+  margin-right: 0.5em;
+}
+.navbar-secondary .new-message span img {
+  margin-bottom: 0.1em;
+}
 .with-navbar {
   margin-top: 80px;
   padding-top: 20px;
@@ -14666,7 +14776,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
   .search-filter__levels {
     width: 55%;
-    margin-left: 4em;
   }
   .search-filter .search-certificate {
     margin-left: 0em;
@@ -15834,6 +15943,14 @@ tags-input input {
   border-radius: 6px;
   font-weight: bold;
 }
+.btn-xlg {
+  text-transform: uppercase;
+  padding: 0.75em 2em;
+  font-size: 1em;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  font-weight: bold;
+}
 .btn-default {
   background-color: white;
   border: 1px solid #e5e5e5;
@@ -16015,7 +16132,7 @@ tags-input input {
   }
 }
 .form-classic .form-group:not(:first-child) {
-  margin-top: 2em;
+  margin-top: 1.25em;
 }
 @media screen and (max-width: 992px) {
   .form-classic .form-group:not(:first-child) {
@@ -17365,7 +17482,8 @@ ul.dropdown-menu:after {
   color: #38dbc8;
 }
 .card-list-item label,
-.card-list-item input {
+.card-list-item input,
+.card-list-item textarea {
   font-size: .9em;
 }
 .card-list-item--empty {
@@ -21750,7 +21868,7 @@ blockquote {
   border: 1px solid #eeeeee;
 }
 .order-detail .pull-left {
-  margin-right: 20px;
+  margin-right: 40px;
 }
 .order-detail a {
   color: #535353;

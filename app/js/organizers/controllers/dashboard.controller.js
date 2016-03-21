@@ -52,7 +52,8 @@
                 SECTION_ACTIVITIES: "Actividades",
                 SECTION_INSTRUCTORS: "Instructores",
                 SECTION_REVIEWS: "Comentarios",
-                SECTION_TRANSACTIONS: "Transacciones"
+                SECTION_TRANSACTIONS: "Transacciones",
+                SECTION_MESSAGES: "Mensajes"
             });
         }
 

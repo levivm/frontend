@@ -82,7 +82,7 @@
                 TITLE_DETAIL: "Detalles",
                 COPY_DETAIL: "Completa estos campos si deseas ser más preciso.",
                 LABEL_AUDIENCE: "Audiencia",
-                LABEL_GOALS: "Objectivos",
+                LABEL_GOALS: "Objetivos",
                 LABEL_CONTENT: "Contenido",
                 LABEL_METHODOLOGY: "Metodología",
                 LABEL_REQUIREMENTS: "Requerimientos",
