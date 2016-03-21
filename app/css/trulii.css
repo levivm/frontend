@@ -18792,7 +18792,7 @@ blockquote {
   word-break: normal;
   max-height: 3em;
   color: #3a3d3f;
-  width: 95%;
+  width: 90%;
 }
 .activity-card__body__owner-name {
   height: 2em;
@@ -18824,10 +18824,10 @@ blockquote {
 }
 .activity-card__owner-picture {
   border-radius: 50%;
-  width: 2.6em;
-  height: 2.6em;
+  width: 2.8em;
+  height: 2.8em;
   position: absolute;
-  bottom: -1.3em;
+  bottom: -1.4em;
   right: 1rem;
 }
 .activity-card__bottom {
