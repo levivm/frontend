@@ -152,7 +152,7 @@
              */
             'message': function(idMessage){
               return renderUrl('messages/', [idMessage]);
-            }
+            },
 
             /**
              * @ngdoc function
