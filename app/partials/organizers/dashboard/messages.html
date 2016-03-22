@@ -1,6 +1,7 @@
 <div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
+
     <div class="new-message pull-right" ng-click="messages.toggleMessageShow()">
-        <span>{{::messages.strings.TITLE_NEW_MESSAGE}}</span>
+        <span>{{::messages.strings.ACTION_NEW_MESSAGE}}</span>
         <span><img src="css/img/msj_nuevo.png" alt=""></span>
     </div>
 </div>
@@ -42,6 +43,8 @@
             ng-model="messages.paginationOpts.pageNumber"
             ng-change="messages.pageChange()"
             data-total-items="messages.paginationOpts.totalItems"
+            previous-text="{{::messages.strings.PREVIOUS_TEXT}}"
+            next-text="{{::messages.strings.NEXT_TEXT}}"
             data-items-per-page="messages.paginationOpts.itemsPerPage"></pagination>
     </div>
     <div ng-if="messages.messages.length === 0">
@@ -52,6 +55,9 @@
           <p class="separate-below separate-above font-family-sans-alt text-muted"
                 ng-bind="::messages.strings.COPY_NO_MESSAGES">
           </p>
+          <a class="btn btn-lg btn-success margin-horizontal-less"
+             ng-click="messages.toggleMessageShow()"
+             ng-bind="::messages.strings.ACTION_NEW_MESSAGE"></a>
       </div>
     </div>
   </div>
