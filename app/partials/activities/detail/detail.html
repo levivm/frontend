@@ -1,4 +1,4 @@
-<div class="trulii-cover-medium trulii-cover-detail">
+<div class="trulii-cover-regular trulii-cover-detail">
   <div class="trulii-cover__container">
     <div class="trulii-cover__content">
     </div>
@@ -205,8 +205,7 @@
             <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                     readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
             <span ng-bind="::(detail.organizer.rating | number: 1) + ' / 5'"></span>
-            <span ng-bind="::detail.totalReviews"></span>
-            <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
+            <img src="/css/img/activity-detail/rating_people.png" alt="Ratings" tooltip-placement="bottom" tooltip="{{::detail.totalReviews}} reviews"/>
           </div>
           <div ng-if="!detail.organizer.rating" ng-bind="detail.strings.COPY_NO_RATINGS"></div>
         </div>
@@ -635,7 +634,8 @@
 
 
 <!--Attendees-->
-<div class="col-xs-12">
+
+<div class="col-xs-12" ng-if="detail.assistants.length > 0">
   <div class="row">
     <div class="col-xs-12">
       <div class="attendees-container">
@@ -693,23 +693,13 @@
     </div>
   </div>
 </div>
-<div class="col-xs-12">
+<div class="col-xs-12" ng-if="detail.relatedActivities.length > 0">
   <div class="row related-activities-container">
     <div class="col-xs-12">
-      <h3 class="title separate-above" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
-      <div class="separate-above-more">
-        <trulii-activity-item
-        ng-if="detail.relatedActivities.length >= 1"
-        data-activity="detail.relatedActivities[0]"></trulii-activity-item>
-        <trulii-activity-item
-        ng-if="detail.relatedActivities.length >= 2"
-        data-activity="detail.relatedActivities[1]"></trulii-activity-item>
-        <trulii-activity-item
-        ng-if="detail.relatedActivities.length >= 3"
-        data-activity="detail.relatedActivities[2]"></trulii-activity-item>
-        <trulii-activity-item
-        ng-if="detail.relatedActivities.length >= 4"
-        data-activity="detail.relatedActivities[3]"></trulii-activity-item>
+      <h3 class="title separate-above-less separate-below" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
+      <div>
+        <trulii-activity-item ng-repeat="activity in detail.relatedActivities track by activity.id "
+        data-activity="activity"></trulii-activity-item>
       </div>
     </div>
   </div>

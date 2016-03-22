@@ -134,7 +134,8 @@
             _setOrganizerCity();
             _setCurrentState();
             _setReviews();
-            vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
+            if(vm.activities.length > 0)
+              vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
             //console.log('organizer:', organizer);
             //console.log('reviews:', reviews);
         }

@@ -248,6 +248,7 @@
                 LABEL_FINAL_TOTAL: "Ventas netas:",
                 LABEL_TOTAL: "Total ventas:",
                 LABEL_FEE: "Comisión Trulii:",
+                COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades"
             });
         }
         function _initScroll(){

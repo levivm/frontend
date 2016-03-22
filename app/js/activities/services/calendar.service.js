@@ -192,7 +192,6 @@
                 session.openDate = true;
             },
             changeSessionsN : function () {
-
                 if (this.number_of_sessions < 0)
                     return;
 
