@@ -32,7 +32,7 @@
             city : null,
             calendars : [],
             reviews: [],
-            relatedActivities: relatedActivities,
+            relatedActivities: relatedActivities.results.slice(0, 3),
             calendar : null,
             activity : null,
             organizer : organizer,
@@ -463,6 +463,24 @@
             $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: $state.current});
         }
 
+        function _getAssistants() {
+            var assistants = [];
+
+            _.forEach(calendars, function (calendar) {
+                assistants.push(calendar.assistants);
+            });
+
+            assistants = _.flatten(assistants, true);
+
+            _.forEach(assistants, function(assistant){
+                if(assistant.hasOwnProperty('student') && assistant.student.photo){
+                    assistant.photo = assistant.student.photo;
+                } else {
+                    assistant.photo = 'css/img/default_profile_pic.jpg';
+                }
+            });
+            return assistants;
+        }
 
         function _activate(){
             _setStrings();
@@ -471,8 +489,9 @@
             activity = _mapCalendars(activity);
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
+            vm.assistants = _getAssistants();
             _setUpLocation(activity);
-
+            console.log(vm.relatedActivities);
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,

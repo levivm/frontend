@@ -14,11 +14,6 @@
   
   function LogOutController($location, $scope,$state,Authentication) {
     
-    Authentication.logout().then(_successLogout);
-
-    function _successLogout(){
-
-      $state.go("home");
-    }
+    Authentication.logout();
   }
 })();

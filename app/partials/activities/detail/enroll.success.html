@@ -23,7 +23,9 @@
                 <div class="item-title text-spaced text-uppercase"
                   ng-bind="::success.strings.LABEL_START_DATE"></div>
                 <div class="item-copy text-capitalize"
-                  ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')"></div>
+                  ng-bind="::(success.calendar.initial_date | date : 'EEEE')"></div>
+                <div class="item-copy text-capitalize"
+                  ng-bind="::(success.calendar.initial_date | date : 'd MMM y')"></div>
                 <div class="item-copy "
                   ng-bind="::('A las ' + (success.calendar.sessions[0].start_time | date: 'h:mm a'))"></div>
               </div>
@@ -55,7 +57,7 @@
           </div>
           <div class="separator"></div>
         </div>
-        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less" ng-if="success.activity.requirements">
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
           <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below-more" ng-bind="success.activity.requirements"></p>
         </div>
@@ -104,7 +106,7 @@
       </div>
 
       <div class="row separate-below">
-        <h2 class="text-center font-normal separate-above-medium separate-below-medium" ng-bind="success.strings.LABEL_SIMILAR"></h2>
+        <h2 class="text-center font-normal separate-above-medium separate-below-less" ng-bind="success.strings.LABEL_SIMILAR"></h2>
         <div class="col-xs-12 col-md-9 col-md-offset-2">
           <div ng-if="success.organizerActivities.length > 0">
             <div class="row activity-grid separate-above">
