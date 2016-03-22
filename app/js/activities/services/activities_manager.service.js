@@ -136,6 +136,14 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             enroll : enroll,
+            /**
+             * @ngdoc method
+             * @name .#enroll
+             * @description Update date after like activity
+             * @param {object} activityData - Data Activity
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            like : like,
 
         };
 
@@ -318,6 +326,14 @@
             function error(response){
                 return $q.reject(response);
             }
+        }
+
+        function like(activityID, likeValue){
+            var instance = _pool[activityID];
+
+            if(instance)
+               instance.wish_list = likeValue;
+
         }
 
 

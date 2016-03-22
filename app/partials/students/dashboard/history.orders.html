@@ -69,7 +69,7 @@
                                         </div>
                                         <div class="col-xs-6 col-md-2">
                                           <div class="input-group filter-group">
-                                            <select name="status" 
+                                            <select name="status"
                                               id="" class="form-control"
                                               ng-model="history.ordersFilter.status">
                                               <option value="">Estatus</option>
@@ -123,17 +123,19 @@
                                                   <span ng-bind="order.amount | currency:$:0"></span>
                                               </td>
                                               <td class="hidden-xs hidden-sm">
-                                                  <span class="text-capitalize"  ng-bind="::order.status"></span>
+                                                  <span class="text-uppercase"  ng-bind="::order.status"></span>
                                               </td>
-                                              <td class="column-button hidden-md hidden-lg">
-                                                <a ui-sref="student-dashboard.history.orders.order({'orderId': order.id})">
+                                              <td class="column-button">
+                                                <a  ui-sref="student-dashboard.history.orders.order({'orderId': order.id})">
                                                   <button class="btn btn-default">
+                                                    <span class="hidden-xs hidden-sm" ng-bind="::history.strings.ACTION_VIEW_DETAIL"></span>
                                                     <span class="hidden-md hidden-lg">
-                                                      >
+                                                     >
                                                     </span>
                                                   </button>
                                                 </a>
                                               </td>
+
                                           </tr>
                                       </table>
                                   </div>
@@ -144,7 +146,9 @@
                               ng-model="history.ordersPaginationOpts.pageNumber"
                               ng-change="history.updateByQuery(history.TYPE_ORDER)"
                               data-total-items="history.ordersPaginationOpts.totalItems"
-                              data-items-per-page="history.ordersPaginationOpts.itemsPerPage"></pagination>
+                              data-items-per-page="history.ordersPaginationOpts.itemsPerPage"
+                              max-size="history.ordersPaginationOpts.maxPagesSize"
+                              boundary-link-numbers="true"></pagination>
                           </div>
                       </div>
                       <!--If there are no orders-->

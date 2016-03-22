@@ -86,7 +86,7 @@
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
-                ACTION_SIGNUP: 'Únete',
+                ACTION_SIGNUP: 'Listo para unirme',
                 HEADER_TITLE_COPY: "Enfócate en enseñar lo que te apasiona",
                 HEADER_TEXT_COPY: "¡Nosotros nos encargamos del resto!",
                 HEADER_ACTION_START_NOW: "Comienza ya",
@@ -117,7 +117,7 @@
                 MORE_INFO_FAQ_TEXT_4: "Soporte",
                 MORE_INFO_FAQ_TEXT_5: "puedes encontrar las respuestas. Para más información, ",
                 MORE_INFO_FAQ_TEXT_6: "contáctanos.",
-                SIGN_UP_TITLE: "Listo para unirme",
+                SIGN_UP_TITLE: "¿Listo para ser organizador?",
                 SIGN_UP_TEXT: "Llena el formulario y te contactaremos muy pronto.",
                 SIGN_UP_SUCCESS_TITLE: "¡Cool!",
                 SIGN_UP_SUCCESS_TEXT_1: "Dentro de poco te contactaremos.",

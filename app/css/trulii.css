@@ -14422,6 +14422,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   line-height: 2.5em;
   font-size: 1.1em;
 }
+.navbar-secondary .arrow-back-messages {
+  border: 2px solid;
+  border-radius: 50%;
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: 600;
+  margin-top: 0.5em;
+}
 .navbar-secondary .new-message {
   line-height: 3em;
   cursor: pointer;
@@ -19300,6 +19308,7 @@ blockquote {
 .calendar-widget .widget-card .wishlist {
   border-bottom: 1px solid #DEDEDE;
   padding: 1em 0em;
+  cursor: pointer;
 }
 .calendar-widget .widget-card .wishlist [class^="mdi-"],
 .calendar-widget .widget-card .wishlist [class*="mdi-"] {

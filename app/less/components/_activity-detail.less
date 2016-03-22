@@ -224,11 +224,13 @@
         .wishlist{
           border-bottom: @border-widget;
           padding: 1em 0em;
+          cursor: pointer;
           [class^="mdi-"], [class*="mdi-"]{
             vertical-align: middle;
             font-size: 2em;
             color: @brand-danger;
             margin-right: .25em;
+
           }
           span{
             vertical-align: middle;
@@ -640,7 +642,7 @@
 .sign-up-container {
   text-align: center;
   background-color: @brand-success-dark;
-  
+
   .btn{
     border: 1px solid white;
     background-color: transparent;
@@ -654,7 +656,7 @@
       font-size: 1.25em;
     }
   }
-  
+
   h1, h2, h3, h4, h5, p, td, th {
       color: @white;
   }
@@ -667,7 +669,7 @@
     border-radius: @border-radius-base;
     border: 1px solid darken(@brand-success, 10%);
     background-color: darken(@brand-success, 7.5%);
-    
+
     .table{
 
       thead, tbody, tfoot{

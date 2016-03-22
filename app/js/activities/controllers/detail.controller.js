@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager) {
         var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
@@ -73,7 +73,8 @@
             showMethodology: false,
             showRequirements: false,
             showExtra: false,
-            shareSocialAnalytic:shareSocialAnalytic
+            shareSocialAnalytic:shareSocialAnalytic,
+            wishList:wishList
         });
 
         _activate();
@@ -130,6 +131,34 @@
             }
         }
 
+
+        function wishList(){
+          var registerParams = {
+              toState: {
+                  state: 'activities-detail',
+                  params: {
+                      activity_id: vm.activity.id,
+                      activity_title: vm.activity.title
+                  }
+              }
+          };
+          
+          if(currentUser){
+              switch(currentUser.user_type){
+                  case 'S':
+                      StudentsManager.postWishList(vm.activity.id).then(function(data){
+                          vm.activity.wish_list=!vm.activity.wish_list;
+                      });
+                      break;
+                  case 'O':
+                      Toast.error(vm.strings.TITLE_INVALID_LIKE_USER, vm.strings.MSG_INVALID_USER);
+                      break;
+              }
+          } else {
+              $state.go('register', registerParams);
+          }
+
+        }
         //Functions for analytics states
         function calendarSignUp(){
             Analytics.studentEvents.enrollCalendar();
@@ -369,6 +398,7 @@
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
                 TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",
+                TITLE_INVALID_LIKE_USER: "Sólo estudiantes pueden agregar una actividad a mis favoritos",
                 MSG_INVALID_USER: "Acción no permitida para tipo de usuario",
                 TAB_CALENDARS: "Calendarios",
                 LABEL_ATTENDEES: "Asistentes",
@@ -470,7 +500,6 @@
                 hasMoreReviews: reviews.count > 3,
                 calendar_selected : _getSelectedCalendar(activity)
             });
-
 
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
