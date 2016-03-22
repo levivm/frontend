@@ -272,13 +272,14 @@
               <span ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></span>
             </div>
           </div>
-          <div class="wishlist">
+          <div class="wishlist" ng-click="detail.wishList()">
             <div class="text-center">
               <h4>
-                <!--<i class="mdi-action-favorite-outline"></i>
-                <span class="text-muted" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></span>-->
-                <i class="mdi-action-favorite"></i>
-                <span class="text-muted" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST">=</span>
+                <i class="mdi-action-favorite-outline"
+                    ng-class="{'mdi-action-favorite': detail.activity.wish_list}"
+                    ></i>
+                <span class="text-muted" ng-if="detail.activity.wish_list" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST"></span>
+                <span class="text-muted" ng-if="!detail.activity.wish_list" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></span>
               </h4>
             </div>
           </div>
