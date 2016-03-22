@@ -19206,6 +19206,7 @@ blockquote {
 .calendar-widget .widget-card .wishlist {
   border-bottom: 1px solid #DEDEDE;
   padding: 1em 0em;
+  cursor: pointer;
 }
 .calendar-widget .widget-card .wishlist [class^="mdi-"],
 .calendar-widget .widget-card .wishlist [class*="mdi-"] {
