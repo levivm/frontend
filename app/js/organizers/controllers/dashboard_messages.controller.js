@@ -40,22 +40,22 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-        
+
         function pageChange(){
           organizer.getMessages(vm.paginationOpts.pageNumber, vm.paginationOpts.itemsPerPage)
           .then(function (response) {
             vm.messages = response.results;
             vm.paginationOpts.totalItems = response.count;
-            vm.messages = vm.messages.slice(0, vm.paginationOpts.itemsPerPage); 
+            vm.messages = vm.messages.slice(0, vm.paginationOpts.itemsPerPage);
           });
         }
-        
-        
+
+
         function toggleMessageShow(){
             console.log(vm.showMessage);
             vm.showMessage = !vm.showMessage;
         }
-        
+
         function updateCalendars(){
           ActivitiesManager.getActivity(vm.message.activity.id)
             .then(
@@ -64,34 +64,34 @@
               }
             );
         }
-        
+
         function submitMessage(){
           organizer.sendMessage(vm.message).then(success, error)
         }
-        
+
 
         //--------- Internal Functions ---------//
 
-        
+
         function error(response) {
             if (response.data) { Error.form.add(vm.login_form, response.data); }
             vm.errors.__all__ = response.data['non_field_errors'];
             return $q.reject(response);
         }
-        
+
         function success(response){
           vm.toggleMessageShow();
           Toast.success("Su mensaje ha sido enviado");
           vm.pageChange();
           vm.message = {};
         }
-            
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                TITLE_NEW_MESSAGE: "Nuevo Mensaje",
+                ACTION_NEW_MESSAGE: "Nuevo Mensaje",
                 SEARCH_PLACEHOLDER: "Buscar",
                 OPTION_ACTIVITY_DEFAULT: "Seleccione una actividad",
                 OPTION_CALENDAR_DEFAULT: "Seleccione una fecha de inicio",
@@ -99,7 +99,9 @@
                 LABEL_SEND_MESSAGE: "Enviar",
                 SUBJECT_MESSAGE_PLACEHOLDER:"Asunto",
                 MODAL_MESSAGE_PLACEHOLDER:"Este mensaje llegará a todos los usuarios inscritos en esta actividad",
-                COPY_NO_MESSAGES: "Aún no ha enviado ningún mensaje a sus asistentes"
+                COPY_NO_MESSAGES: "Aún no ha enviado ningún mensaje a sus asistentes",
+                PREVIOUS_TEXT:"Previo",
+                NEXT_TEXT:"Siguiente"
             });
         }
 

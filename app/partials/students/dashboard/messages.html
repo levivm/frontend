@@ -20,7 +20,7 @@
                 <div class="col-md-1">
                   <img class="user-picture" ng-if="message.organizer.photo === null" src="css/img/default_profile_pic.jpg" alt="">
                   <img class="user-picture" ng-if="message.organizer.photo !== null" ng-src="{{message.organizer.photo}}" alt="">
-                </div> 
+                </div>
                 <div class="col-md-7 text-line-more-xl">
                     <span class=" text-dark montserrat-semibold" ng-bind="::message.organizer.name"></span>
                 </div>
@@ -43,6 +43,8 @@
             ng-model="messages.paginationOpts.pageNumber"
             ng-change="messages.pageChange()"
             data-total-items="messages.paginationOpts.totalItems"
+            previous-text="{{::messages.strings.PREVIOUS_TEXT}}"
+            next-text="{{::messages.strings.NEXT_TEXT}}"  
             data-items-per-page="messages.paginationOpts.itemsPerPage"></pagination>
     </div>
     <div ng-if="messages.messages.length === 0">

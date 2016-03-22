@@ -29,13 +29,13 @@
         activate();
 
         /*      Exposed Functions      */
-        
+
         function pageChange(){
           student.getMessages(vm.paginationOpts.pageNumber, vm.paginationOpts.itemsPerPage)
           .then(function (response) {
             vm.messages = response.data.results;
             vm.paginationOpts.totalItems = response.data.count;
-            vm.messages = vm.messages.slice(0, vm.paginationOpts.itemsPerPage); 
+            vm.messages = vm.messages.slice(0, vm.paginationOpts.itemsPerPage);
           });
         }
 
@@ -48,7 +48,9 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                SEARCH_PLACEHOLDER: "Buscar"
+                SEARCH_PLACEHOLDER: "Buscar",
+                PREVIOUS_TEXT:"Previo",
+                NEXT_TEXT:"Siguiente"
             });
         }
 

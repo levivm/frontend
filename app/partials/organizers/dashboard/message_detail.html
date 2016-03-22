@@ -1,8 +1,11 @@
 <div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
-    <div class="new-message pull-right" ng-click="messages.toggleEmailShow()">
-        <span>{{::detail.strings.TITLE_NEW_MESSAGE}}</span>
+    <a ui-sref="organizer-dashboard.messages">
+      <i class="mdi mdi-navigation-arrow-back arrow-back-messages"></i>
+    </a>
+    <!--<div class="new-message pull-right" ng-click="messages.toggleEmailShow()">
+        <span>{{::detail.strings.ACTION_NEW_MESSAGE}}</span>
         <span><img src="css/img/msj_nuevo.png" alt=""></span>
-    </div>
+    </div>-->
 </div>
 <div class="row fade in">
   <div class="col-xs-12 col-md-11 col-md-offset-1">
@@ -17,7 +20,7 @@
             <div class="row">
                 <div class="col-md-1">
                     <img class="user-picture" ng-if="detail.message.organizer.photo === null" src="css/img/default_profile_pic.jpg" alt="">
-                    <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">         
+                    <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">
                 </div>
                 <div class="col-md-8 text-line-more-xl">
                     <span class="montserrat-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
