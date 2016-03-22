@@ -17,6 +17,18 @@
                     </a>
                 </li>
             </ul>
+            <div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
+              <div class="sidebar__bottom-action-dark-edit-acitivity">
+                  <ul class="list-inline list-unstyled text-center text-uppercase">
+                      <li>
+                          <a class="text-center text-uppercase" ui-sref="organizer-dashboard.activities.open">
+                              <i class="glyphicon glyphicon-arrow-left icon-edit-activity"></i>
+                              <span ng-bind="::manage.strings.COPY_VIEW_MY_ACTIVITIES"></span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+            </div>
         </div>
         <div class="col-xs-12 with-footer">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
@@ -37,7 +49,7 @@
             <div ui-view>
             </div>
         </div>
-        <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': manage.scroll > 80}"
+        <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block print-hidden" ng-class="{'short': manage.scroll > 80}"
             ng-click="manage.toggleSidebar()">
             <i class="sidebar__item__icon mdi-navigation-menu"></i>
             <span ng-bind="::manage.strings.TAB_ASSISTANTS"

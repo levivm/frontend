@@ -31,7 +31,7 @@
 </div>
 <div class="with-sidebar col-xs-12">
     <div class="clear-spacings padding-horizontal-less">
-            <div class="search-filter filters-container" ng-class="{'filters-container-sm': search.showFilters}">
+        <div class="search-filter filters-container" ng-class="{'filters-container-sm': search.showFilters, 'collapsed': search.collapsedFilters}">
               <button class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="search.toggleFilters()">
                 <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
               </button>
@@ -168,6 +168,16 @@
             </div>
         </div>
         <div class="row separator-light no-margin hidden-xs hidden-sm"></div>
+    </div>
+    <div class="row hidden-xs hidden-sm filters-toggle" ng-click="search.collapseFilters()">
+      <div class="col-xs-12">
+        <h5 class="text-center">
+          <a class="text-muted" href="">
+            <span ng-bind="::search.strings.SHOW_FILTERS" ng-if="search.collapsedFilters"></span>
+            <span ng-bind="::search.strings.COLLAPSE_FILTERS" ng-if="!search.collapsedFilters"></span>
+          </a>
+        </h5>
+      </div>
     </div>
     <!--<div class="row padding-horizontal-less padding-vertical-less" ng-if="!search.searchQuery">-->
       <!--<div class="col-xs-10 col-sm-4 col-md-2 pull-right">-->
