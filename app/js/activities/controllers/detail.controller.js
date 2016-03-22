@@ -142,7 +142,7 @@
                   }
               }
           };
-          
+
           if(currentUser){
               switch(currentUser.user_type){
                   case 'S':
@@ -476,9 +476,9 @@
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
-                reviews : reviews,
-                totalReviews: reviews.length,
-                hasMoreReviews: reviews.length > 3,
+                reviews : reviews.results,
+                totalReviews: reviews.results.length,
+                hasMoreReviews: reviews.results.length > 3,
                 calendar_selected : _getSelectedCalendar(activity)
             });
 
@@ -486,7 +486,7 @@
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);
             }
-
+            console.log(vm.reviews);
             _setSocialShare();
             _initWidget();
             _initSignup();

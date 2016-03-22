@@ -52,7 +52,7 @@
                 templateUrl: 'partials/organizers/profile.html',
                 resolve: {
                     organizer: getOrganizer,
-                    activities: getOrganizerOpenActivities,
+                    activities: getOrganizerProfileActivities,
                     reviews: getOrganizerReviews,
                     reviewObjects: getReviewObjects
                 }
@@ -244,6 +244,21 @@
 
         /**
          * @ngdoc method
+         * @name .#getOrganizerOpenActivities
+         * @description Retrieves an Organizer's Open Activities from
+         * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
+         * @requires trulii.activities.services.ActivitiesManager
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getOrganizerProfileActivities.$inject = ['ActivitiesManager','organizer'];
+        function getOrganizerProfileActivities(ActivitiesManager, organizer){
+            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', 1, 4);
+        }
+
+
+        /**
+         * @ngdoc method
          * @name .#getOrganizerClosedActivities
          * @description Retrieves an Organizer's Closed Activities from
          * {@link trulii.activities.services.ActivitiesManager ActivitiesManager} Service with its ID and status
@@ -281,7 +296,7 @@
         function getOrders(organizer){
             return organizer.getOrders();
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getMessages
