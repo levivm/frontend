@@ -142,7 +142,7 @@
                   }
               }
           };
-          
+
           if(currentUser){
               switch(currentUser.user_type){
                   case 'S':
@@ -465,7 +465,7 @@
 
         function _getAssistants() {
             var assistants = [];
-            
+
             _.forEach(calendars, function (calendar) {
                 assistants.push(calendar.assistants);
             });
@@ -496,8 +496,8 @@
                 activity : activity,
                 calendars : calendars,
                 reviews : reviews.results,
-                totalReviews: reviews.count,
-                hasMoreReviews: reviews.count > 3,
+                totalReviews: reviews.results.length,
+                hasMoreReviews: reviews.results.length > 3,
                 calendar_selected : _getSelectedCalendar(activity)
             });
 
@@ -505,7 +505,7 @@
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);
             }
-
+            console.log(vm.reviews);
             _setSocialShare();
             _initWidget();
             _initSignup();

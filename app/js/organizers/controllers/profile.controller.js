@@ -6,12 +6,12 @@
         .controller('OrganizerProfileController', OrganizerProfileController);
 
     OrganizerProfileController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'LocationManager', 'organizer', 'activities'
-        , 'reviewObjects'];
+        , 'ActivitiesManager', 'reviews'];
 
     function OrganizerProfileController($state, $stateParams, uiGmapGoogleMapApi, LocationManager, organizer, activities
-        , reviewObjects) {
+        , ActivitiesManager, reviews) {
 
-        var REVIEW_STEP = 5;
+        var REVIEW_STEP = 3;
         var visibleReviewListSize = REVIEW_STEP;
         var vm = this;
 
@@ -24,37 +24,49 @@
                 actions: ['view']
             },
             paginationOpts : {
-                'totalItems': activities.length,
-                'itemsPerPage': 3
+                totalItems: 0,
+                itemsPerPage: 6,
+                maxPagesSize:6,
+                pageNumber: 1
             },
             pageNumber : 1,
             activities : [],
-            reviewObjects: [],
+            reviews : [],
+            totalReviews: 0,
             hasMoreReviews: true,
-            activityPageChange : activityPageChange,
-            showMoreReviews: showMoreReviews
+            showMoreReviews: showMoreReviews,
+            pageChange:pageChange
         });
 
         _activate();
 
         //--------- Functions Implementation ---------//
 
-        function activityPageChange(){
-            var offset = vm.paginationOpts['itemsPerPage'];
-            var start = (vm.pageNumber - 1) * offset;
-            var end = vm.pageNumber * offset;
-            vm.activities = activities.slice(start, end);
+        function pageChange(){
+          ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', vm.paginationOpts.pageNumber,  vm.paginationOpts.itemsPerPage)
+          .then(function (response) {
+            console.log(response);
+            vm.activities = response.results;
+            vm.paginationOpts.totalItems = response.count;
+            vm.activities = vm.activities.slice(0, vm.paginationOpts.itemsPerPage);
+          });
         }
 
+
         function showMoreReviews(){
-            if(visibleReviewListSize < reviewObjects.length){
+            if(visibleReviewListSize < vm.reviews.length){
                 visibleReviewListSize += REVIEW_STEP;
-                vm.reviewObjects = reviewObjects.slice(0, visibleReviewListSize);
+                vm.reviews = vm.reviews.slice(0, visibleReviewListSize);
             }
 
-            if(visibleReviewListSize >= reviewObjects.length){
+            if(visibleReviewListSize >= vm.reviews.length){
                 vm.hasMoreReviews = false;
             }
+        }
+
+        function _setActivities(){
+            vm.paginationOpts.totalItems = activities.count;
+            vm.activities = activities.results;
         }
 
         function _setOrganizerCity(){
@@ -79,9 +91,11 @@
         }
 
         function _setReviews(){
-            vm.reviewObjects = reviewObjects.slice(0, visibleReviewListSize);
-            vm.hasMoreReviews= reviewObjects.length > visibleReviewListSize;
-            //console.log('reviewObjects', vm.reviewObjects);
+
+            vm.reviews = reviews.results;
+            vm.totalReviews = reviews.results.length;
+            vm.hasMoreReviews= vm.reviews.length > visibleReviewListSize;
+          console.log('reviews', vm.reviews);
         }
 
         function _setCurrentState(){
@@ -97,6 +111,7 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 LABEL_PUBLISHED_ACTIVITIES: "Actividades de ",
+                LABEL_UNPUBLISHED_ACTIVITIES: "no tiene actividades",
                 LABEL_BIO: "Biografía",
                 LABEL_CONTACT: "Contactar",
                 LABEL_COMMENTS: "Comentarios",
@@ -108,15 +123,15 @@
                 COPY_VERIFIED_2: "verficado por Trulii"
             });
         }
-        
+
         function _updateUrl(){
             // Title sanitation
             var name = organizer.name;
             name = name.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
-            
+
             // Replacing whitespaces with hyphen
             name = name.split(' ').join('-').toLowerCase();
-            
+
             // Replacing most common special characters
             var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c", "ñ":"n"}
             name = name.replace(/[^\w ]/g, function(char) {
@@ -133,9 +148,13 @@
             _setStrings();
             _setOrganizerCity();
             _setCurrentState();
+            _setActivities();
             _setReviews();
-            if(vm.activities.length > 0)
-              vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
+            //console.log('organizer:', organizer);
+
+            //vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
+            //if(vm.activities.length > 0)
+            //  vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
             //console.log('organizer:', organizer);
             //console.log('reviews:', reviews);
         }
