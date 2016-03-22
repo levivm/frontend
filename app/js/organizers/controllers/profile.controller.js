@@ -91,10 +91,11 @@
         }
 
         function _setReviews(){
+
             vm.reviews = reviews.results;
             vm.totalReviews = reviews.results.length;
             vm.hasMoreReviews= vm.reviews.length > visibleReviewListSize;
-            //console.log('reviewObjects', vm.reviewObjects);
+          console.log('reviews', vm.reviews);
         }
 
         function _setCurrentState(){
