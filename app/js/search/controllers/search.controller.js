@@ -79,13 +79,18 @@
             toggleFilters: toggleFilters,
             showFilters: false,
             newSearchQuery: '',
-            search: search
+            search: search,
+            collapsedFilters: false,
+            collapseFilters: collapseFilters
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        
+        function collapseFilters(){
+          vm.collapsedFilters = !vm.collapsedFilters;
+        }
         function toggleSidebar(){
           vm.showSidebar = !vm.showSidebar;
         }
@@ -383,7 +388,9 @@
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
-                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?'
+                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
+                SHOW_FILTERS: "Mostrar filtros",
+                COLLAPSE_FILTERS: "Ocultar filtros"
             });
         }
 

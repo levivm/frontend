@@ -14910,6 +14910,18 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-transform: uppercase;
   color: #999999;
 }
+.filters-toggle a:focus,
+.filters-toggle a:hover {
+  color: #999999;
+  text-decoration: none;
+}
+.filters-container {
+  transition: height 0.25s;
+}
+.filters-container.collapsed {
+  height: 0;
+  overflow: hidden;
+}
 @media screen and (max-width: 768px) {
   .filters-container {
     padding: 2em 2.5em;
