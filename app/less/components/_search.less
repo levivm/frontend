@@ -152,7 +152,6 @@ select.form-control.sort-select{
 
         &__levels{
             width: 55%;
-            margin-left: 4em;
         }
         .search-certificate{
             margin-left: 0em;
@@ -295,7 +294,18 @@ select.form-control.sort-select{
   }
 }
 
+.filters-toggle{
+  a:focus, a:hover{
+    color: @gray-light;
+    text-decoration: none;
+  }
+}
 .filters-container{
+  transition: height 0.25s;
+  &.collapsed{
+    height: 0;
+    overflow: hidden;
+  }
   .before-sm({
     padding: 2em 2.5em;
     padding-top: 175px;

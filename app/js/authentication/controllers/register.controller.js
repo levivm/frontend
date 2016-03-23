@@ -112,7 +112,7 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                SIGNUP_LABEL : "Registrate",
+                SIGNUP_LABEL : "Registrarme",
                 SIGNUP_CONFIRMATION_LABEL: "Confirmar registro",
                 SIGNUP_SUBMIT: "Enviar",
                 SIGNUP_ALTERNATIVES_LABEL : "Regístrate con",
@@ -125,7 +125,7 @@
                 REGISTER_WITH_FACEBOOK_MSG : "Facebook",
                 FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook",
                 ALREADY_HAVE_AN_ACCOUNT_COPY: "¿Ya tienes cuenta en Trulii?",
-                TERMS_AND_CONDITIONS_COPY_1: "Registrandome estoy aceptando los",
+                TERMS_AND_CONDITIONS_COPY_1: "Registrándome estoy aceptando los",
                 LABEL_TERMS: "Términos y Condiciones",
                 TERMS_AND_CONDITIONS_COPY_3: "y la",
                 LABEL_PRIVACY: "Política de Privacidad",

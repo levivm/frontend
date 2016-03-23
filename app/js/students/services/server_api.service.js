@@ -128,6 +128,31 @@
             'refunds': function(){
                 return renderUrl('refunds/', []);
             },
+            
+            /**
+             * @ngdoc function
+             * @name .#messages
+             * @description Renders **`/api/messages`**
+             * Student Messages URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.students.services.StudentServerApi
+             */
+            'messages': function (){
+                return renderUrl('messages/');
+            },
+            
+            /**
+             * @ngdoc function
+             * @name .#message
+             * @description Renders **`/api/messages/:idMessage`**
+             * Organizer Message URL
+             * @param {number} idMessage Message Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.students.services.StudentServerApi
+             */
+            'message': function(idMessage){
+              return renderUrl('messages/', [idMessage]);
+            },
 
             /**
              * @ngdoc function

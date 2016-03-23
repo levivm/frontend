@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast', 'calendar'];
+    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast', 'calendar', '$document', '$timeout'];
 
-    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar) {
+    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar, $document, $timeout) {
 
         var vm = this;
         vm.calendar = angular.copy(calendar);
@@ -151,6 +151,20 @@
                 vm.save_calendar = _updateCalendar;
             else
                 vm.save_calendar = _createCalendar;
+                
+            $scope.$watch(
+              function(scope){
+                return scope.calendar.calendar.number_of_sessions; 
+              },
+              function(newValue, oldValue){
+                if(newValue === 1){
+                  $timeout(function(){
+                    var scrollElement = angular.element(document.getElementById('calendar-0'));
+                    $document.scrollToElementAnimated(scrollElement);
+                  });
+                }
+              }
+            );
         }
     }
 })();

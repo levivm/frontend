@@ -29,6 +29,11 @@
                 <i class="sidebar__item__icon mdi-action-favorite-outline"></i>
                 <span ng-bind="::dash.strings.SECTION_WISHLIST"></span>
             </a>
+            <a ui-sref=".notifications" class="sidebar__item" ui-sref-active="sidebar__item--selected"
+              ng-click="dash.toggleSidebar()">
+                <i class="sidebar__item__icon mdi-social-notifications-none"></i>
+                <span ng-bind="::dash.strings.SECTION_NOTIFICATIONS"></span>
+            </a>
         </div>
         <div class="col-xs-12 with-footer">
           <div ui-view>

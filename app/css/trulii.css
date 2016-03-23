@@ -12372,7 +12372,8 @@ hr.on-light {
 .circular-image-container,
 .trulii-cover__container,
 .trulii-cover-small__container,
-.trulii-cover-medium__container {
+.trulii-cover-medium__container,
+.trulii-cover-regular__container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12425,7 +12426,8 @@ hr.on-light {
 .flex-center-item,
 .trulii-cover__content,
 .trulii-cover-small__content,
-.trulii-cover-medium__content {
+.trulii-cover-medium__content,
+.trulii-cover-regular__content {
   -webkit-box-flex: 0;
   -webkit-flex: none;
   -ms-flex: none;
@@ -12710,6 +12712,103 @@ hr.on-light {
   font-size: 0.75em;
   vertical-align: middle;
 }
+.dashboard-messages form i {
+  float: right;
+  margin-top: -1.5em;
+}
+.dashboard-messages-container {
+  border: 1px solid #eeeeee;
+  min-height: 16vh;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.dashboard-messages-container > a {
+  border-bottom: 1px solid #eeeeee;
+  padding: 2em 1em 1em 3em;
+  cursor: pointer;
+  display: block;
+}
+.dashboard-messages-container p {
+  height: 2em;
+  text-align: justify;
+  text-overflow: ellipsis;
+  line-height: 2em;
+  word-wrap: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 70%;
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-container .text-right {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-container .text-line-more-xl {
+    line-height: 1.5em;
+  }
+}
+.dashboard-messages-container .student {
+  padding: 2em 1em 1em 1em;
+}
+.dashboard-messages-container .student .user-picture {
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+}
+.dashboard-messages-detail {
+  border: 1px solid #eeeeee;
+}
+.dashboard-messages-detail .delete-message {
+  float: right;
+  margin: 2em;
+  font-size: 1.3em;
+  color: #999999;
+}
+.dashboard-messages-detail .title-message {
+  padding: 3em 0em 1em 0em;
+  width: 90%;
+  border-bottom: 1px solid #eeeeee;
+  margin: 0 auto;
+}
+.dashboard-messages-detail .content-message {
+  padding: 3em;
+}
+.dashboard-messages-detail .content-message .user-picture {
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+}
+.dashboard-messages-detail .content-message p {
+  height: auto;
+  width: 100%;
+  text-align: inherit;
+  text-overflow: inherit;
+  line-height: 1.5em;
+  word-wrap: normal;
+  white-space: normal;
+  padding-left: 8.5%;
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .content-message p {
+    padding-left: 0em;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .content-message {
+    padding: 2em;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .text-right {
+    text-align: left;
+  }
+}
+@media screen and (max-width: 992px) {
+  .dashboard-messages-detail .text-line-more-xl {
+    line-height: 1.5em;
+  }
+}
 .text-left {
   text-align: left;
 }
@@ -12815,6 +12914,9 @@ hr.on-light {
 }
 .text-line-more {
   line-height: 1.5em;
+}
+.text-line-more-xl {
+  line-height: 2.5em;
 }
 .font-normal {
   font-weight: normal !important;
@@ -14351,6 +14453,24 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   line-height: 2.5em;
   font-size: 1.1em;
 }
+.navbar-secondary .arrow-back-messages {
+  border: 2px solid;
+  border-radius: 50%;
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: 600;
+  margin-top: 0.5em;
+}
+.navbar-secondary .new-message {
+  line-height: 3em;
+  cursor: pointer;
+}
+.navbar-secondary .new-message span {
+  margin-right: 0.5em;
+}
+.navbar-secondary .new-message span img {
+  margin-bottom: 0.1em;
+}
 .with-navbar {
   margin-top: 80px;
   padding-top: 20px;
@@ -14697,7 +14817,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
   .search-filter__levels {
     width: 55%;
-    margin-left: 4em;
   }
   .search-filter .search-certificate {
     margin-left: 0em;
@@ -14821,6 +14940,18 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-weight: 500;
   text-transform: uppercase;
   color: #999999;
+}
+.filters-toggle a:focus,
+.filters-toggle a:hover {
+  color: #999999;
+  text-decoration: none;
+}
+.filters-container {
+  transition: height 0.25s;
+}
+.filters-container.collapsed {
+  height: 0;
+  overflow: hidden;
 }
 @media screen and (max-width: 768px) {
   .filters-container {
@@ -15879,6 +16010,14 @@ tags-input input {
   border-radius: 6px;
   font-weight: bold;
 }
+.btn-xlg {
+  text-transform: uppercase;
+  padding: 0.75em 2em;
+  font-size: 1em;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  font-weight: bold;
+}
 .btn-default {
   background-color: white;
   border: 1px solid #e5e5e5;
@@ -16060,7 +16199,7 @@ tags-input input {
   }
 }
 .form-classic .form-group:not(:first-child) {
-  margin-top: 2em;
+  margin-top: 1.25em;
 }
 @media screen and (max-width: 992px) {
   .form-classic .form-group:not(:first-child) {
@@ -16164,14 +16303,14 @@ tags-input input {
 .btn-share-email {
   display: inline-block;
   cursor: pointer;
-  padding: -1.75em;
-  margin: 0 0.2em;
+  margin: 0 0.5em;
   border-radius: 100%;
   border: 4px solid;
-  width: 26px;
-  height: 26px;
+  width: 35px;
+  height: 35px;
   vertical-align: bottom;
-  padding-top: 1px;
+  padding-top: 4px;
+  padding-left: 3px;
 }
 @media screen and (max-width: 768px) {
   .btn-share,
@@ -16708,7 +16847,7 @@ ul.dropdown-menu:after {
     right: -8%;
   }
 }
-/*! 
+/*!
  * angular-loading-bar v0.8.0
  * https://chieffancypants.github.io/angular-loading-bar
  * Copyright (c) 2015 Wes Cruver
@@ -17410,7 +17549,8 @@ ul.dropdown-menu:after {
   color: #38dbc8;
 }
 .card-list-item label,
-.card-list-item input {
+.card-list-item input,
+.card-list-item textarea {
   font-size: .9em;
 }
 .card-list-item--empty {
@@ -18022,12 +18162,14 @@ button.toast-close-button {
 }
 .trulii-cover .row,
 .trulii-cover-small .row,
-.trulii-cover-medium .row {
+.trulii-cover-medium .row,
+.trulii-cover-regular .row {
   min-width: 100%;
 }
 .trulii-cover__container,
 .trulii-cover-small__container,
-.trulii-cover-medium__container {
+.trulii-cover-medium__container,
+.trulii-cover-regular__container {
   min-height: inherit;
   z-index: 10;
   width: 100%;
@@ -18035,89 +18177,103 @@ button.toast-close-button {
 }
 .trulii-cover__content,
 .trulii-cover-small__content,
-.trulii-cover-medium__content {
+.trulii-cover-medium__content,
+.trulii-cover-regular__content {
   width: 100%;
   color: white;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content-landing,
   .trulii-cover-small__content-landing,
-  .trulii-cover-medium__content-landing {
+  .trulii-cover-medium__content-landing,
+  .trulii-cover-regular__content-landing {
     padding-bottom: 10vh;
   }
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content-detail,
   .trulii-cover-small__content-detail,
-  .trulii-cover-medium__content-detail {
+  .trulii-cover-medium__content-detail,
+  .trulii-cover-regular__content-detail {
     min-height: 20vh;
   }
 }
 .trulii-cover__content h1,
 .trulii-cover-small__content h1,
-.trulii-cover-medium__content h1 {
+.trulii-cover-medium__content h1,
+.trulii-cover-regular__content h1 {
   font-size: 3em;
   line-height: 0.9em;
 }
 @media screen and (max-width: 768px) {
   .trulii-cover__content h1,
   .trulii-cover-small__content h1,
-  .trulii-cover-medium__content h1 {
+  .trulii-cover-medium__content h1,
+  .trulii-cover-regular__content h1 {
     font-size: 2em;
   }
 }
 @media screen and (max-width: 768px) {
   .trulii-cover__content h3,
   .trulii-cover-small__content h3,
-  .trulii-cover-medium__content h3 {
+  .trulii-cover-medium__content h3,
+  .trulii-cover-regular__content h3 {
     font-size: 1.25em;
   }
 }
 .trulii-cover__content .well-header,
 .trulii-cover-small__content .well-header,
-.trulii-cover-medium__content .well-header {
+.trulii-cover-medium__content .well-header,
+.trulii-cover-regular__content .well-header {
   font-size: 2.5em;
 }
 .trulii-cover__content .sub-title,
 .trulii-cover-small__content .sub-title,
-.trulii-cover-medium__content .sub-title {
+.trulii-cover-medium__content .sub-title,
+.trulii-cover-regular__content .sub-title {
   font-size: 3.5em;
 }
 @media screen and (max-width: 768px) {
   .trulii-cover__content .sub-title,
   .trulii-cover-small__content .sub-title,
-  .trulii-cover-medium__content .sub-title {
+  .trulii-cover-medium__content .sub-title,
+  .trulii-cover-regular__content .sub-title {
     font-size: 1.5em;
   }
 }
 .trulii-cover__content .sub-title-light,
 .trulii-cover-small__content .sub-title-light,
-.trulii-cover-medium__content .sub-title-light {
+.trulii-cover-medium__content .sub-title-light,
+.trulii-cover-regular__content .sub-title-light {
   font-weight: 200;
 }
 .trulii-cover__content .title,
 .trulii-cover-small__content .title,
-.trulii-cover-medium__content .title {
+.trulii-cover-medium__content .title,
+.trulii-cover-regular__content .title {
   font-size: 4.4em;
   margin-top: 0.25em !important;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content .title,
   .trulii-cover-small__content .title,
-  .trulii-cover-medium__content .title {
+  .trulii-cover-medium__content .title,
+  .trulii-cover-regular__content .title {
     font-size: 2.5em;
     line-height: 0.85em;
     margin-bottom: 1em;
   }
   .trulii-cover__content .title-mobile-no-margin,
   .trulii-cover-small__content .title-mobile-no-margin,
-  .trulii-cover-medium__content .title-mobile-no-margin {
+  .trulii-cover-medium__content .title-mobile-no-margin,
+  .trulii-cover-regular__content .title-mobile-no-margin {
     margin-bottom: 0.2em;
   }
 }
 .trulii-cover__content p,
 .trulii-cover-small__content p,
-.trulii-cover-medium__content p {
+.trulii-cover-medium__content p,
+.trulii-cover-regular__content p {
   color: white;
   padding: 0 5em;
   font-size: 1.8em;
@@ -18129,80 +18285,95 @@ button.toast-close-button {
 @media screen and (max-width: 768px) {
   .trulii-cover__content p,
   .trulii-cover-small__content p,
-  .trulii-cover-medium__content p {
+  .trulii-cover-medium__content p,
+  .trulii-cover-regular__content p {
     padding: 0;
   }
 }
 @media screen and (max-width: 480px) {
   .trulii-cover__content p,
   .trulii-cover-small__content p,
-  .trulii-cover-medium__content p {
+  .trulii-cover-medium__content p,
+  .trulii-cover-regular__content p {
     font-size: 1.125em;
   }
 }
 .trulii-cover__content .btn-lg,
 .trulii-cover-small__content .btn-lg,
-.trulii-cover-medium__content .btn-lg {
+.trulii-cover-medium__content .btn-lg,
+.trulii-cover-regular__content .btn-lg {
   font-size: 1em;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content .btn-lg,
   .trulii-cover-small__content .btn-lg,
-  .trulii-cover-medium__content .btn-lg {
+  .trulii-cover-medium__content .btn-lg,
+  .trulii-cover-regular__content .btn-lg {
     font-size: 0.75em;
   }
 }
 .trulii-cover__content__search.form-classic input,
 .trulii-cover-small__content__search.form-classic input,
 .trulii-cover-medium__content__search.form-classic input,
+.trulii-cover-regular__content__search.form-classic input,
 .trulii-cover__content__search.form-classic select,
 .trulii-cover-small__content__search.form-classic select,
 .trulii-cover-medium__content__search.form-classic select,
+.trulii-cover-regular__content__search.form-classic select,
 .trulii-cover__content__search.form-classic button,
 .trulii-cover-small__content__search.form-classic button,
-.trulii-cover-medium__content__search.form-classic button {
+.trulii-cover-medium__content__search.form-classic button,
+.trulii-cover-regular__content__search.form-classic button {
   border-radius: 0;
 }
 .trulii-cover__content__search.form-classic > *,
 .trulii-cover-small__content__search.form-classic > *,
-.trulii-cover-medium__content__search.form-classic > * {
+.trulii-cover-medium__content__search.form-classic > *,
+.trulii-cover-regular__content__search.form-classic > * {
   background-color: white;
   height: 75px !important;
 }
 .trulii-cover__content__search.form-classic > *:nth-child(1),
 .trulii-cover-small__content__search.form-classic > *:nth-child(1),
-.trulii-cover-medium__content__search.form-classic > *:nth-child(1) {
+.trulii-cover-medium__content__search.form-classic > *:nth-child(1),
+.trulii-cover-regular__content__search.form-classic > *:nth-child(1) {
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
   border-right: 1px solid #eeeeee;
 }
 .trulii-cover__content__search.form-classic > *:not(:nth-child(1)):not(:last-child),
 .trulii-cover-small__content__search.form-classic > *:not(:nth-child(1)):not(:last-child),
-.trulii-cover-medium__content__search.form-classic > *:not(:nth-child(1)):not(:last-child) {
+.trulii-cover-medium__content__search.form-classic > *:not(:nth-child(1)):not(:last-child),
+.trulii-cover-regular__content__search.form-classic > *:not(:nth-child(1)):not(:last-child) {
   border-right: 1px solid #eeeeee;
 }
 .trulii-cover__content__search.form-classic > *:last-child,
 .trulii-cover-small__content__search.form-classic > *:last-child,
-.trulii-cover-medium__content__search.form-classic > *:last-child {
+.trulii-cover-medium__content__search.form-classic > *:last-child,
+.trulii-cover-regular__content__search.form-classic > *:last-child {
   border-top-right-radius: 4px !important;
   border-bottom-right-radius: 4px !important;
 }
 .trulii-cover__content__search.form-classic > *:not(.btn),
 .trulii-cover-small__content__search.form-classic > *:not(.btn),
-.trulii-cover-medium__content__search.form-classic > *:not(.btn) {
+.trulii-cover-medium__content__search.form-classic > *:not(.btn),
+.trulii-cover-regular__content__search.form-classic > *:not(.btn) {
   padding: 0 2em;
 }
 .trulii-cover__content__search.form-classic .form-control,
 .trulii-cover-small__content__search.form-classic .form-control,
-.trulii-cover-medium__content__search.form-classic .form-control {
+.trulii-cover-medium__content__search.form-classic .form-control,
+.trulii-cover-regular__content__search.form-classic .form-control {
   background-image: none;
 }
 .trulii-cover__content__search.form-classic input,
 .trulii-cover-small__content__search.form-classic input,
 .trulii-cover-medium__content__search.form-classic input,
+.trulii-cover-regular__content__search.form-classic input,
 .trulii-cover__content__search.form-classic input:focus,
 .trulii-cover-small__content__search.form-classic input:focus,
-.trulii-cover-medium__content__search.form-classic input:focus {
+.trulii-cover-medium__content__search.form-classic input:focus,
+.trulii-cover-regular__content__search.form-classic input:focus {
   width: 50%;
   display: inline-block;
   float: left;
@@ -18211,9 +18382,11 @@ button.toast-close-button {
 .trulii-cover__content__search.form-classic select,
 .trulii-cover-small__content__search.form-classic select,
 .trulii-cover-medium__content__search.form-classic select,
+.trulii-cover-regular__content__search.form-classic select,
 .trulii-cover__content__search.form-classic select:focus,
 .trulii-cover-small__content__search.form-classic select:focus,
-.trulii-cover-medium__content__search.form-classic select:focus {
+.trulii-cover-medium__content__search.form-classic select:focus,
+.trulii-cover-regular__content__search.form-classic select:focus {
   -webkit-appearance: none;
   -moz-appearance: none;
   background-size: 15px auto;
@@ -18228,13 +18401,15 @@ button.toast-close-button {
 }
 .trulii-cover__content__search.form-classic select:focus,
 .trulii-cover-small__content__search.form-classic select:focus,
-.trulii-cover-medium__content__search.form-classic select:focus {
+.trulii-cover-medium__content__search.form-classic select:focus,
+.trulii-cover-regular__content__search.form-classic select:focus {
   background-image: linear-gradient(#ffd580, #ffd580), linear-gradient(#e3e3e3, #e3e3e3) !important;
   background-position: 0 bottom;
 }
 .trulii-cover__content__search.form-classic .btn.btn-default,
 .trulii-cover-small__content__search.form-classic .btn.btn-default,
-.trulii-cover-medium__content__search.form-classic .btn.btn-default {
+.trulii-cover-medium__content__search.form-classic .btn.btn-default,
+.trulii-cover-regular__content__search.form-classic .btn.btn-default {
   width: 15%;
   border-radius: 0;
   border-color: transparent;
@@ -18244,37 +18419,43 @@ button.toast-close-button {
 }
 .trulii-cover__content .well-container,
 .trulii-cover-small__content .well-container,
-.trulii-cover-medium__content .well-container {
+.trulii-cover-medium__content .well-container,
+.trulii-cover-regular__content .well-container {
   float: none;
   margin: 0 auto;
 }
 .trulii-cover__content .well-container .well,
 .trulii-cover-small__content .well-container .well,
-.trulii-cover-medium__content .well-container .well {
+.trulii-cover-medium__content .well-container .well,
+.trulii-cover-regular__content .well-container .well {
   font-size: 13px;
   padding: 5em 7em;
 }
 .trulii-cover__content .well-container .well p,
 .trulii-cover-small__content .well-container .well p,
-.trulii-cover-medium__content .well-container .well p {
+.trulii-cover-medium__content .well-container .well p,
+.trulii-cover-regular__content .well-container .well p {
   color: #535353 !important;
   padding: 0;
 }
 .trulii-cover__content .well-container .well h3,
 .trulii-cover-small__content .well-container .well h3,
-.trulii-cover-medium__content .well-container .well h3 {
+.trulii-cover-medium__content .well-container .well h3,
+.trulii-cover-regular__content .well-container .well h3 {
   font-size: 1.65em;
 }
 .trulii-cover__content .well-container .well h4,
 .trulii-cover-small__content .well-container .well h4,
-.trulii-cover-medium__content .well-container .well h4 {
+.trulii-cover-medium__content .well-container .well h4,
+.trulii-cover-regular__content .well-container .well h4 {
   font-size: 1.25em;
   font-weight: 200;
   line-height: 1.5em;
 }
 .trulii-cover__content-presentation-controllers,
 .trulii-cover-small__content-presentation-controllers,
-.trulii-cover-medium__content-presentation-controllers {
+.trulii-cover-medium__content-presentation-controllers,
+.trulii-cover-regular__content-presentation-controllers {
   position: absolute;
   right: 0px;
   bottom: 0px;
@@ -18284,56 +18465,67 @@ button.toast-close-button {
 .trulii-cover__content-presentation-controllers a,
 .trulii-cover-small__content-presentation-controllers a,
 .trulii-cover-medium__content-presentation-controllers a,
+.trulii-cover-regular__content-presentation-controllers a,
 .trulii-cover__content-presentation-controllers a:hover,
 .trulii-cover-small__content-presentation-controllers a:hover,
 .trulii-cover-medium__content-presentation-controllers a:hover,
+.trulii-cover-regular__content-presentation-controllers a:hover,
 .trulii-cover__content-presentation-controllers a:focus,
 .trulii-cover-small__content-presentation-controllers a:focus,
-.trulii-cover-medium__content-presentation-controllers a:focus {
+.trulii-cover-medium__content-presentation-controllers a:focus,
+.trulii-cover-regular__content-presentation-controllers a:focus {
   color: white;
 }
 .trulii-cover__content-presentation-controllers img,
 .trulii-cover-small__content-presentation-controllers img,
-.trulii-cover-medium__content-presentation-controllers img {
+.trulii-cover-medium__content-presentation-controllers img,
+.trulii-cover-regular__content-presentation-controllers img {
   width: 50px;
   margin-top: 11px;
   margin-right: 5px;
 }
 .trulii-cover__content-play-controllers img,
 .trulii-cover-small__content-play-controllers img,
-.trulii-cover-medium__content-play-controllers img {
+.trulii-cover-medium__content-play-controllers img,
+.trulii-cover-regular__content-play-controllers img {
   transition: all 0.25s;
   background-color: transparent;
   border-radius: 100%;
 }
 .trulii-cover__content-play-controllers img:hover,
 .trulii-cover-small__content-play-controllers img:hover,
-.trulii-cover-medium__content-play-controllers img:hover {
+.trulii-cover-medium__content-play-controllers img:hover,
+.trulii-cover-regular__content-play-controllers img:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 .trulii-cover__content-contact-controllers,
 .trulii-cover-small__content-contact-controllers,
-.trulii-cover-medium__content-contact-controllers {
+.trulii-cover-medium__content-contact-controllers,
+.trulii-cover-regular__content-contact-controllers {
   background-color: rgba(83, 83, 83, 0.4);
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content-contact-controllers ul,
   .trulii-cover-small__content-contact-controllers ul,
-  .trulii-cover-medium__content-contact-controllers ul {
+  .trulii-cover-medium__content-contact-controllers ul,
+  .trulii-cover-regular__content-contact-controllers ul {
     padding-top: 3em;
   }
 }
 .trulii-cover__content-contact-controllers li,
 .trulii-cover-small__content-contact-controllers li,
-.trulii-cover-medium__content-contact-controllers li {
+.trulii-cover-medium__content-contact-controllers li,
+.trulii-cover-regular__content-contact-controllers li {
   padding: 0 2.5%;
 }
 .trulii-cover__content-contact-controllers li .item,
 .trulii-cover-small__content-contact-controllers li .item,
 .trulii-cover-medium__content-contact-controllers li .item,
+.trulii-cover-regular__content-contact-controllers li .item,
 .trulii-cover__content-contact-controllers li .item-long,
 .trulii-cover-small__content-contact-controllers li .item-long,
-.trulii-cover-medium__content-contact-controllers li .item-long {
+.trulii-cover-medium__content-contact-controllers li .item-long,
+.trulii-cover-regular__content-contact-controllers li .item-long {
   position: relative;
   height: 120px;
   width: 110px;
@@ -18343,9 +18535,11 @@ button.toast-close-button {
   .trulii-cover__content-contact-controllers li .item,
   .trulii-cover-small__content-contact-controllers li .item,
   .trulii-cover-medium__content-contact-controllers li .item,
+  .trulii-cover-regular__content-contact-controllers li .item,
   .trulii-cover__content-contact-controllers li .item-long,
   .trulii-cover-small__content-contact-controllers li .item-long,
-  .trulii-cover-medium__content-contact-controllers li .item-long {
+  .trulii-cover-medium__content-contact-controllers li .item-long,
+  .trulii-cover-regular__content-contact-controllers li .item-long {
     height: 50px;
     width: 50px;
   }
@@ -18353,29 +18547,37 @@ button.toast-close-button {
 .trulii-cover__content-contact-controllers li .item a,
 .trulii-cover-small__content-contact-controllers li .item a,
 .trulii-cover-medium__content-contact-controllers li .item a,
+.trulii-cover-regular__content-contact-controllers li .item a,
 .trulii-cover__content-contact-controllers li .item-long a,
 .trulii-cover-small__content-contact-controllers li .item-long a,
 .trulii-cover-medium__content-contact-controllers li .item-long a,
+.trulii-cover-regular__content-contact-controllers li .item-long a,
 .trulii-cover__content-contact-controllers li .item a:hover,
 .trulii-cover-small__content-contact-controllers li .item a:hover,
 .trulii-cover-medium__content-contact-controllers li .item a:hover,
+.trulii-cover-regular__content-contact-controllers li .item a:hover,
 .trulii-cover__content-contact-controllers li .item-long a:hover,
 .trulii-cover-small__content-contact-controllers li .item-long a:hover,
 .trulii-cover-medium__content-contact-controllers li .item-long a:hover,
+.trulii-cover-regular__content-contact-controllers li .item-long a:hover,
 .trulii-cover__content-contact-controllers li .item a:focus,
 .trulii-cover-small__content-contact-controllers li .item a:focus,
 .trulii-cover-medium__content-contact-controllers li .item a:focus,
+.trulii-cover-regular__content-contact-controllers li .item a:focus,
 .trulii-cover__content-contact-controllers li .item-long a:focus,
 .trulii-cover-small__content-contact-controllers li .item-long a:focus,
-.trulii-cover-medium__content-contact-controllers li .item-long a:focus {
+.trulii-cover-medium__content-contact-controllers li .item-long a:focus,
+.trulii-cover-regular__content-contact-controllers li .item-long a:focus {
   color: white;
 }
 .trulii-cover__content-contact-controllers li .item img,
 .trulii-cover-small__content-contact-controllers li .item img,
 .trulii-cover-medium__content-contact-controllers li .item img,
+.trulii-cover-regular__content-contact-controllers li .item img,
 .trulii-cover__content-contact-controllers li .item-long img,
 .trulii-cover-small__content-contact-controllers li .item-long img,
-.trulii-cover-medium__content-contact-controllers li .item-long img {
+.trulii-cover-medium__content-contact-controllers li .item-long img,
+.trulii-cover-regular__content-contact-controllers li .item-long img {
   padding-top: 20px;
   padding-bottom: 20px;
   transition: all 0.25s;
@@ -18388,9 +18590,11 @@ button.toast-close-button {
 .trulii-cover__content-contact-controllers li .item .item-description,
 .trulii-cover-small__content-contact-controllers li .item .item-description,
 .trulii-cover-medium__content-contact-controllers li .item .item-description,
+.trulii-cover-regular__content-contact-controllers li .item .item-description,
 .trulii-cover__content-contact-controllers li .item-long .item-description,
 .trulii-cover-small__content-contact-controllers li .item-long .item-description,
-.trulii-cover-medium__content-contact-controllers li .item-long .item-description {
+.trulii-cover-medium__content-contact-controllers li .item-long .item-description,
+.trulii-cover-regular__content-contact-controllers li .item-long .item-description {
   position: absolute;
   width: 200%;
   bottom: 0px;
@@ -18403,66 +18607,81 @@ button.toast-close-button {
 .trulii-cover__content-contact-controllers li .item .item-img,
 .trulii-cover-small__content-contact-controllers li .item .item-img,
 .trulii-cover-medium__content-contact-controllers li .item .item-img,
+.trulii-cover-regular__content-contact-controllers li .item .item-img,
 .trulii-cover__content-contact-controllers li .item-long .item-img,
 .trulii-cover-small__content-contact-controllers li .item-long .item-img,
-.trulii-cover-medium__content-contact-controllers li .item-long .item-img {
+.trulii-cover-medium__content-contact-controllers li .item-long .item-img,
+.trulii-cover-regular__content-contact-controllers li .item-long .item-img {
   opacity: 1;
 }
 .trulii-cover__content-contact-controllers li .item .item-img-active,
 .trulii-cover-small__content-contact-controllers li .item .item-img-active,
 .trulii-cover-medium__content-contact-controllers li .item .item-img-active,
+.trulii-cover-regular__content-contact-controllers li .item .item-img-active,
 .trulii-cover__content-contact-controllers li .item-long .item-img-active,
 .trulii-cover-small__content-contact-controllers li .item-long .item-img-active,
-.trulii-cover-medium__content-contact-controllers li .item-long .item-img-active {
+.trulii-cover-medium__content-contact-controllers li .item-long .item-img-active,
+.trulii-cover-regular__content-contact-controllers li .item-long .item-img-active {
   opacity: 0;
 }
 .trulii-cover__content-contact-controllers li .item:hover .item-img,
 .trulii-cover-small__content-contact-controllers li .item:hover .item-img,
 .trulii-cover-medium__content-contact-controllers li .item:hover .item-img,
+.trulii-cover-regular__content-contact-controllers li .item:hover .item-img,
 .trulii-cover__content-contact-controllers li .item-long:hover .item-img,
 .trulii-cover-small__content-contact-controllers li .item-long:hover .item-img,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-img {
+.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-img,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover .item-img {
   opacity: 0;
 }
 .trulii-cover__content-contact-controllers li .item:hover .item-img-active,
 .trulii-cover-small__content-contact-controllers li .item:hover .item-img-active,
 .trulii-cover-medium__content-contact-controllers li .item:hover .item-img-active,
+.trulii-cover-regular__content-contact-controllers li .item:hover .item-img-active,
 .trulii-cover__content-contact-controllers li .item-long:hover .item-img-active,
 .trulii-cover-small__content-contact-controllers li .item-long:hover .item-img-active,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-img-active {
+.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-img-active,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover .item-img-active {
   opacity: 1;
 }
 .trulii-cover__content-contact-controllers li .item:hover .item-description,
 .trulii-cover-small__content-contact-controllers li .item:hover .item-description,
 .trulii-cover-medium__content-contact-controllers li .item:hover .item-description,
+.trulii-cover-regular__content-contact-controllers li .item:hover .item-description,
 .trulii-cover__content-contact-controllers li .item-long:hover .item-description,
 .trulii-cover-small__content-contact-controllers li .item-long:hover .item-description,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-description {
+.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-description,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover .item-description {
   max-height: 100%;
 }
 .trulii-cover__content-contact-controllers li .item:hover,
 .trulii-cover-small__content-contact-controllers li .item:hover,
-.trulii-cover-medium__content-contact-controllers li .item:hover {
+.trulii-cover-medium__content-contact-controllers li .item:hover,
+.trulii-cover-regular__content-contact-controllers li .item:hover {
   height: 135px;
 }
 .trulii-cover__content-contact-controllers li .item:hover img,
 .trulii-cover-small__content-contact-controllers li .item:hover img,
-.trulii-cover-medium__content-contact-controllers li .item:hover img {
+.trulii-cover-medium__content-contact-controllers li .item:hover img,
+.trulii-cover-regular__content-contact-controllers li .item:hover img {
   padding-bottom: 40px;
 }
 .trulii-cover__content-contact-controllers li .item-long:hover,
 .trulii-cover-small__content-contact-controllers li .item-long:hover,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover {
+.trulii-cover-medium__content-contact-controllers li .item-long:hover,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover {
   height: 150px;
 }
 .trulii-cover__content-contact-controllers li .item-long:hover img,
 .trulii-cover-small__content-contact-controllers li .item-long:hover img,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover img {
+.trulii-cover-medium__content-contact-controllers li .item-long:hover img,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover img {
   padding-bottom: 55px;
 }
 .trulii-cover__background,
 .trulii-cover-small__background,
-.trulii-cover-medium__background {
+.trulii-cover-medium__background,
+.trulii-cover-regular__background {
   width: 100%;
   min-width: 100vw;
   background-size: cover;
@@ -18480,7 +18699,8 @@ button.toast-close-button {
 }
 .trulii-cover__background-video,
 .trulii-cover-small__background-video,
-.trulii-cover-medium__background-video {
+.trulii-cover-medium__background-video,
+.trulii-cover-regular__background-video {
   top: 0;
   left: 0;
   width: 100%;
@@ -18489,7 +18709,8 @@ button.toast-close-button {
 }
 .trulii-cover__background:after,
 .trulii-cover-small__background:after,
-.trulii-cover-medium__background:after {
+.trulii-cover-medium__background:after,
+.trulii-cover-regular__background:after {
   width: 100%;
   height: 100%;
   content: "";
@@ -18501,15 +18722,25 @@ button.toast-close-button {
 }
 .trulii-cover__background.background-warning:after,
 .trulii-cover-small__background.background-warning:after,
-.trulii-cover-medium__background.background-warning:after {
+.trulii-cover-medium__background.background-warning:after,
+.trulii-cover-regular__background.background-warning:after {
   background-color: rgba(252, 171, 84, 0.4);
 }
 .trulii-cover__background.background-dots:after,
 .trulii-cover-small__background.background-dots:after,
-.trulii-cover-medium__background.background-dots:after {
+.trulii-cover-medium__background.background-dots:after,
+.trulii-cover-regular__background.background-dots:after {
   background-image: url('/css/img/dots.png');
   background-color: transparent;
   background-attachment: initial;
+}
+.trulii-cover-regular {
+  min-height: 60vh;
+}
+@media screen and (max-width: 992px) {
+  .trulii-cover-regular {
+    min-height: 30vh;
+  }
 }
 .trulii-cover-small {
   min-height: 50vh;
@@ -18837,7 +19068,7 @@ blockquote {
   word-break: normal;
   max-height: 3em;
   color: #3a3d3f;
-  width: 95%;
+  width: 90%;
 }
 .activity-card__body__owner-name {
   height: 2em;
@@ -18869,10 +19100,10 @@ blockquote {
 }
 .activity-card__owner-picture {
   border-radius: 50%;
-  width: 2.6em;
-  height: 2.6em;
+  width: 2.8em;
+  height: 2.8em;
   position: absolute;
-  bottom: -1.3em;
+  bottom: -1.4em;
   right: 1rem;
 }
 .activity-card__bottom {
@@ -19133,6 +19364,7 @@ blockquote {
 .calendar-widget .widget-card .wishlist {
   border-bottom: 1px solid #DEDEDE;
   padding: 1em 0em;
+  cursor: pointer;
 }
 .calendar-widget .widget-card .wishlist [class^="mdi-"],
 .calendar-widget .widget-card .wishlist [class*="mdi-"] {
@@ -20733,7 +20965,7 @@ blockquote {
   border: 1px solid #e3e3e3;
 }
 .payments-panel .panel-footer {
-  padding: 3em 6em;
+  padding: 3em 4em;
   text-align: center;
   background-color: #fafafa;
   border: 1px solid #e3e3e3;
@@ -20741,7 +20973,7 @@ blockquote {
   border-bottom-right: 4px;
   border-bottom-left: 4px;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 992px) {
   .payments-panel .panel-footer {
     padding: 3em;
   }
@@ -21795,7 +22027,7 @@ blockquote {
   border: 1px solid #eeeeee;
 }
 .order-detail .pull-left {
-  margin-right: 20px;
+  margin-right: 40px;
 }
 .order-detail a {
   color: #535353;
@@ -21871,7 +22103,7 @@ blockquote {
     display: none;
   }
   .order-info {
-    width: auto;
+    width: 100%;
   }
   button,
   .btn,
@@ -22099,6 +22331,9 @@ input[type=text].form-control.referral-link:focus {
   margin: 0;
 }
 @media print {
+  .print-hidden {
+    display: none !important;
+  }
   html,
   body {
     width: 216mm;

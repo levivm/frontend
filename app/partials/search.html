@@ -31,7 +31,7 @@
 </div>
 <div class="with-sidebar col-xs-12">
     <div class="clear-spacings padding-horizontal-less">
-            <div class="search-filter filters-container" ng-class="{'filters-container-sm': search.showFilters}">
+        <div class="search-filter filters-container" ng-class="{'filters-container-sm': search.showFilters, 'collapsed': search.collapsedFilters}">
               <button class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="search.toggleFilters()">
                 <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
               </button>
@@ -130,7 +130,7 @@
                 <div class="row separator-light hidden-md hidden-lg separate-below-less"></div>
                 <div class="row">
                   <div class="col-xs-12 results-info">
-                    <strong ng-bind="search.activities.length"></strong>
+                    <strong ng-bind="search.activitiesPaginationOpts.totalItems"></strong>
                     <span> </span>
                     <span ng-bind="::search.strings.COPY_RESULTS"></span>
                     <span> </span>
@@ -169,6 +169,16 @@
         </div>
         <div class="row separator-light no-margin hidden-xs hidden-sm"></div>
     </div>
+    <div class="row hidden-xs hidden-sm filters-toggle" ng-click="search.collapseFilters()">
+      <div class="col-xs-12">
+        <h5 class="text-center">
+          <a class="text-muted" href="">
+            <span ng-bind="::search.strings.SHOW_FILTERS" ng-if="search.collapsedFilters"></span>
+            <span ng-bind="::search.strings.COLLAPSE_FILTERS" ng-if="!search.collapsedFilters"></span>
+          </a>
+        </h5>
+      </div>
+    </div>
     <!--<div class="row padding-horizontal-less padding-vertical-less" ng-if="!search.searchQuery">-->
       <!--<div class="col-xs-10 col-sm-4 col-md-2 pull-right">-->
         <!--<select class=" form-control" name="repeatSelect" id="repeatSelect"-->
@@ -181,7 +191,7 @@
     <!--</div>-->
     <div class="row separator-light no-margin"></div>
     <div class="row padding-horizontal-less separate-above padding-vertical-less">
-        <div class="col-xs-12 col-md-10 col-md-offset-1">
+        <div class="col-xs-12">
             <div class="text-left separate-left" ng-if="search.activities.length > 0">
                 <!--track by activity.id-->
                 <trulii-activity-item ng-repeat="activity in search.activities"
@@ -199,7 +209,7 @@
                         max-size="search.activitiesPaginationOpts.maxPagesSize"></pagination>
             </div>
             <!--Empty Search-->
-            <div class="text-center text-muted separate-above-more" ng-if="search.activities.length == 0">
+            <div class="text-center text-muted separate-above" ng-if="search.activities.length == 0">
                 <div class="col-xs-12 col-md-6 col-md-offset-3">
                     <img src="css/img/search_empty.png" class="img-responsive center-block" alt="{{ search.strings.LABEL_EMPTY_SEARCH }}"/>
                     <h4 ng-bind="search.strings.LABEL_EMPTY_SEARCH"></h4>

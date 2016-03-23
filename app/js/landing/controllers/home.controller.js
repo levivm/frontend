@@ -130,7 +130,7 @@
                         video.addSource('webm', serverConf.s3URL + '/static/videos/home1.webm');
                         video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
                         video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');
-                      }, 1000
+                      }, 0
                     );
                   },
                 true);

@@ -145,12 +145,37 @@
              * @ngdoc function
              * @name .#bankingInfo
              * @description Renders **`/api/organizer/bankinfo`**
-             * Organizer Instructor URL
+             * Organizer Banking Info URL
              * @return {string} Rendered URL
              * @methodOf trulii.organizers.services.OrganizerServerApi
              */
             'bankingInfo': function (){
                 return renderUrl('organizers/', [ 'bankinfo/']);
+            },
+            
+            /**
+             * @ngdoc function
+             * @name .#messages
+             * @description Renders **`/api/messages`**
+             * Organizer Messages URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'messages': function (){
+                return renderUrl('messages/');
+            },
+            
+            /**
+             * @ngdoc function
+             * @name .#message
+             * @description Renders **`/api/messages/:idMessage`**
+             * Organizer Message URL
+             * @param {number} idMessage Message Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'message': function(idMessage){
+              return renderUrl('messages/', [idMessage]);
             }
         };
 

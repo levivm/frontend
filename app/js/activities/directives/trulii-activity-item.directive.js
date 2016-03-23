@@ -17,10 +17,10 @@
         .directive('truliiActivityItem', truliiActivityItem);
 
     truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath'
-        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 'StudentsManager'];
+        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 'StudentsManager', 'ActivitiesManager'];
 
     function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath
-        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager){
+        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager, ActivitiesManager){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -75,6 +75,7 @@
                 function like(activityId){
                     StudentsManager.postWishList(activityId).then(function(data){
                         scope.activity.wish_list=!scope.activity.wish_list;
+                        ActivitiesManager.like(scope.activity.id, scope.activity.wish_list);
                     })
                 }
 

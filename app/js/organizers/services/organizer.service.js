@@ -150,7 +150,7 @@
                         return response.data;
                     });
             },
-            
+
             getActivityList: function() {
               return $http.get(api.autocomplete(this.id))
                     .then(function (response) {
@@ -159,12 +159,12 @@
             },
 
             getOrders : function (page, pageSize) {
-              
+
               if(!page)
                 page = defaultPage;
               if(!pageSize)
                 pageSize: defaultPageSize;
-                
+
               return $http.get(api.orders(this.id),
                   {params: {
                     page: page,
@@ -173,7 +173,7 @@
                   .then(function (response) {
                       return response.data;
                   });
-                  
+
             },
 
             /**
@@ -249,11 +249,44 @@
              */
             getRefunds: getRefunds,
 
+            /**
+             * @ngdoc function
+             * @name .#getMessages
+             * @description Retrieves all messages sent by the Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getMessages: getMessages,
+            
+            /**
+             * @ngdoc function
+             * @name .#getMessage
+             * @params int Message Id
+             * @description Retrieves a specific message sent by the Organizer
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            getMessage: getMessage,
+            
+            /**
+             * @ngdoc function
+             * @name .#sendMessage
+             * @description Submits a message to the assistants of an activity
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            sendMessage: sendMessage,
+            
+            /**
+             * @ngdoc function
+             * @name .#deleteMessage
+             * @description Deletes a message
+             * @methodOf trulii.organizers.services.Organizer
+             */
+            deleteMessage: deleteMessage
+
+
         };
 
         return Organizer;
-
-
+        
         function requestRefund(orderId,assistantId){
 
             //if assistantId is null, the refund is requested
@@ -280,7 +313,7 @@
               page = defaultPage;
             if(!pageSize)
               pageSize: defaultPageSize;
-              
+
             return $http.get(api.refunds(this.id),
                 {params: {
                   page: page,
@@ -293,7 +326,7 @@
         }
 
         function getReviews(page, pageSize, status){
-          
+
           if(!page)
             page = defaultPage;
           if(!pageSize)
@@ -301,7 +334,7 @@
           if(!status){
             status = '';
           }
-          
+
           return $http.get(api.reviews(this.id),
                 {params: {
                   page: page,
@@ -309,11 +342,11 @@
                   status: status
                 }})
                 .then(success, error);
-                
+
                 function success(response) {
                     return response.data;
                 };
-                
+
                 function error(response){
                   console.log("Error getting organizer reviews: ", response.data);
                 }
@@ -397,6 +430,48 @@
                 console.log("Error updating Organizer's Banking Info:", response.data);
                 return $q.reject(response.data);
             }
+        }
+        
+        function getMessages(page, pageSize){
+            if(!page)
+              page = defaultPage;
+            if(!pageSize)
+              pageSize: defaultPageSize;
+
+            return $http.get(api.messages(this.id),
+                {params: {
+                  page: page,
+                  page_size: pageSize
+                }})
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function getMessage(messageId){
+            return $http.get(api.message(messageId))
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function deleteMessage(messageId){
+            return $http.delete(api.message(messageId))
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function sendMessage(message){
+            var msg = {};
+            msg.calendar = message.calendar.id;
+            msg.activity = message.activity.id;
+            msg.message = message.detail;
+            msg.subject = message.subject;
+            return $http.post(api.messages(), msg)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 

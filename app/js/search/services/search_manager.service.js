@@ -287,7 +287,12 @@
         }
 
         function setLevel(level){
-            searchData[KEY_LEVEL] = level;
+            if(!level){
+              delete searchData[KEY_LEVEL]
+            }
+            else{
+              searchData[KEY_LEVEL] = level;
+            }
         }
 
         function setCosts(start, end){

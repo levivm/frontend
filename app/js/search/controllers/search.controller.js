@@ -79,13 +79,18 @@
             toggleFilters: toggleFilters,
             showFilters: false,
             newSearchQuery: '',
-            search: search
+            search: search,
+            collapsedFilters: false,
+            collapseFilters: collapseFilters
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        
+        function collapseFilters(){
+          vm.collapsedFilters = !vm.collapsedFilters;
+        }
         function toggleSidebar(){
           vm.showSidebar = !vm.showSidebar;
         }
@@ -144,12 +149,20 @@
         }
 
         function setLevel() {
-            SearchManager.setLevel(vm.searchLevel.code);
-            if(!_isMobile()){
-              _search();
-            }
-
+          var sm = SearchManager;
+          vm.searchData = SearchManager.getSearchData($stateParams);
+          if(vm.searchData[sm.KEY_LEVEL] === vm.searchLevel.code){
+            SearchManager.setLevel();
+            Analytics.generalEvents.searchLevel('');
+          }
+          else{
+            SearchManager.setLevel(vm.searchLevel.code);            
             Analytics.generalEvents.searchLevel(vm.searchLevel.value);
+          }
+          
+          if(!_isMobile()){
+            _search();
+          }
 
         }
 
@@ -254,7 +267,8 @@
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
-
+              
+              console.log(vm.searchData);
             if ($stateParams.city) {
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
                 LocationManager.setSearchCity(city);
@@ -263,6 +277,11 @@
             if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
                 vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]);
             }
+            
+            if (vm.searchData.hasOwnProperty(sm.KEY_ORDER)) {
+                vm.orderByPredicate = vm.searchData[sm.KEY_ORDER];
+            }
+            
             if (vm.searchData.hasOwnProperty(sm.KEY_LEVEL)) {
                 _setLevel(vm.searchData[sm.KEY_LEVEL]);
             }
@@ -369,7 +388,9 @@
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
-                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?'
+                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
+                SHOW_FILTERS: "Mostrar filtros",
+                COLLAPSE_FILTERS: "Ocultar filtros"
             });
         }
 

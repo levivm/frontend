@@ -1,0 +1,39 @@
+<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
+    <a ui-sref="organizer-dashboard.messages">
+      <i class="mdi mdi-navigation-arrow-back arrow-back-messages"></i>
+    </a>
+    <!--<div class="new-message pull-right" ng-click="messages.toggleEmailShow()">
+        <span>{{::detail.strings.ACTION_NEW_MESSAGE}}</span>
+        <span><img src="css/img/msj_nuevo.png" alt=""></span>
+    </div>-->
+</div>
+<div class="row fade in">
+  <div class="col-xs-12 col-md-11 col-md-offset-1">
+      <div class="separate-above dashboard-messages-detail col-xs-12 col-md-9 col-md-offset-1">
+        <a href="" ng-click="detail.deleteMessage()">
+          <i class="delete-message glyphicon glyphicon-trash"></i>
+        </a>
+        <div class="title-message">
+            <h1 class="montserrat-light" ng-bind="::detail.message.activity"></h1>
+        </div>
+        <div class="content-message">
+            <div class="row">
+                <div class="col-md-1">
+                    <img class="user-picture" ng-if="detail.message.organizer.photo === null" src="css/img/default_profile_pic.jpg" alt="">
+                    <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">
+                </div>
+                <div class="col-md-8 text-line-more-xl">
+                    <span class="montserrat-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
+                </div>
+                <div class="col-md-3 text-line-more-xl text-right">
+                    <span class="text-gray-light montserrat-light" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
+                </div>
+            </div>
+
+            <div class="separate-above-less ">
+                <p class="text-dark montserrat-light" ng-bind="::detail.message.message"></p>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>

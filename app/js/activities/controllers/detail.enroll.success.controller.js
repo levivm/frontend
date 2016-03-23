@@ -57,7 +57,7 @@
         function _getOrganizerActivities() {
             console.log('organizerActivities:', organizerActivities);
             console.log('organizerActivities:', _.without(organizerActivities, activity));
-            return _.without(organizerActivities, activity);
+            return _.without(organizerActivities.results, activity);
         }
 
         function _setCurrentState(){
@@ -140,6 +140,7 @@
             activity = _setCity(activity);
             vm.activity = activity;
             vm.organizerActivities = _getOrganizerActivities();
+            vm.organizerActivities = vm.organizerActivities.slice(0, 3);
             console.log('activity:', activity);
             _setSocialShare();
         }

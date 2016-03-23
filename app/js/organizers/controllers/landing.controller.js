@@ -86,13 +86,12 @@
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
-                ACTION_SIGNUP: 'Únete',
+                ACTION_SIGNUP: 'Listo para unirme',
                 HEADER_TITLE_COPY: "Enfócate en enseñar lo que te apasiona",
                 HEADER_TEXT_COPY: "¡Nosotros nos encargamos del resto!",
                 HEADER_ACTION_START_NOW: "Comienza ya",
                 PUBLISH_TITLE_COPY: "¿Por qué publicar tu actividad en Trulii?",
                 PUBLISH_TEXT_COPY_1: "No hacemos dinero por suscripción ni por publicidad. Solo hacemos dinero si tú tambien lo haces. por lo que estamos juntos en esto. ",
-                PUBLISH_TEXT_COPY_2: "¡Crece con nosotros!",
                 PUBLISH_DIRT_WORK_TITLE: "Hacemos el trabajo sucio",
                 PUBLISH_DIRTY_WORK_TEXT: "Incrementamos las inscripciones, manejamos la atención al cliente y nos aseguramos de que recibas tu dinero.",
                 PUBLISH_VISIBILITY_TITLE: "Incrementamos tu visibilidad",
@@ -119,7 +118,7 @@
                 MORE_INFO_FAQ_TEXT_5: "puedes encontrar las respuestas. Para más información, ",
                 MORE_INFO_FAQ_TEXT_6: "contáctanos.",
                 SIGN_UP_TITLE: "¿Listo para ser organizador?",
-                SIGN_UP_TEXT: "Llena el formulario y te contactaremos muy pronto",
+                SIGN_UP_TEXT: "Llena el formulario y te contactaremos muy pronto.",
                 SIGN_UP_SUCCESS_TITLE: "¡Cool!",
                 SIGN_UP_SUCCESS_TEXT_1: "Dentro de poco te contactaremos.",
                 SIGN_UP_SUCCESS_TEXT_2: "¡Eres lo máximo!",

@@ -20,9 +20,10 @@
                   <input id="session_price" class="form-control " ng-class="{'text-strike':calendar.calendar.is_free}" type="text" ui-number-mask="0" name="session_price"
                          placeholder="{{::calendar.strings.PLACEHOLDER_SESSION_PRICE}}"
                          ng-model="calendar.calendar.session_price" min="0" ng-disabled="calendar.calendar.is_free"/>
-                  
-                  <input class="" type="checkbox" id="is_free" ng-model="calendar.calendar.is_free" ng-check />
-                  <label class="control-label" for="is_free" ng-bind="::calendar.strings.LABEL_IS_FREE"></label>
+                  <div class="separate-above-less separate-below-less">
+                    <input class="" type="checkbox" id="is_free" ng-model="calendar.calendar.is_free" ng-check />
+                    <label class="separate-left-less control-label" for="is_free" ng-bind="::calendar.strings.LABEL_IS_FREE"></label>
+                  </div>
               </div>  
 
           </div>
@@ -66,7 +67,7 @@
         <div class="col-md-8">
           <label for="" ng-bind="::calendar.strings.LABEL_SESSIONS_AMOUNT"></label>
         </div>
-
+        {{calendar.calendar.number_of_sessions}}
         <div class="col-md-4 text-right">
           <div trulii-counter class="counter-input counter-input-lg" form="calendar.activity_calendar_form"
                value="calendar.calendar.number_of_sessions" model="calendar.calendar" change="calendar.calendar.changeSessionsN()" min="0"></div>
@@ -77,7 +78,7 @@
 
       <div class="row">
 
-        <div class="col-md-12" ng-repeat="session in calendar.calendar.sessions track by $index">
+        <div class="col-md-12" ng-repeat="session in calendar.calendar.sessions track by $index" id="calendar-{{$index}}">
             <div class="card card-list-item card--narrow no-margin-bottom">
 
             <h2>Sesión {{$index + 1}}</h2>
