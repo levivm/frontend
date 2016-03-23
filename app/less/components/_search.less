@@ -447,6 +447,7 @@ select.form-control.sort-select{
           color: white;
           border-radius: @border-radius-base;
           background-image: url(/css/img/about/arrow-white.png) !important;
+          padding: 0;
         });
     }
     > *:last-child {
@@ -470,23 +471,34 @@ select.form-control.sort-select{
         border-top: 5px solid @brand-primary;
     }
 
-    select, select:focus {
-        display: inline-block;
-        float: left;
-        width: 35%;
-        padding: 0 2em;
-        border-top: 5px solid @brand-success;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        float: left;
-    }
 
-    select{
+    .select-city{
+      width: 35%;
+      height: 100%;
+      display: inline-block;
+      position: relative;
+      padding: 0;
+      border-top: 5px solid #38dbc8;
+      float: left;
       background-size: 15px auto;
       background-position: 93% 50%;
       background-repeat: no-repeat;
       background-image: url(/css/img/about/arrow.png) !important;
+
+
+      select, select:focus {
+        display: inline-block;
+        width: 100%;
+        padding: 0 1em;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        height: 100% !important;
+        cursor: pointer;
+
+      }
+
     }
+
 
     select:focus{
       animation: input-highlight 0.5s forwards;
@@ -578,32 +590,31 @@ select.form-control.sort-select{
             }
         }
 
-        select.form-control {
-            display: inline-block;
-            vertical-align: top;
-            height: 100%;
-            width: 28%;
-            padding: 0 0.5em;
-            color: @gray;
-            background: transparent;
-            border: 1px solid darken(@gray-lighter, 4%);
-            .text-overflow();
-            float: left;
+        .select-city{
+          width: 28%;
+          height: 100%;
+          display: inline-block;
+          vertical-align: top;
+          position: relative;
+          padding: 0;
+          border: 1px solid darken(@gray-lighter, 4%);
+          float: left;
+          color: @gray;
+          background-size: 15px auto;
+          background-position: 93% 50%;
+          background-repeat: no-repeat;
+          background-image: url(/css/img/about/arrow.png) !important;
 
-            // Arrow
+
+          select, select:focus {
+            display: inline-block;
+            width: 100%;
+            padding: 0 0.5em;
             -webkit-appearance: none;
             -moz-appearance: none;
-            background-size: 15px auto;
-            background-position: 93% 50%;
-            background-repeat: no-repeat;
-            background-image: url(/css/img/about/arrow.png) !important;
-
-            //noinspection CssInvalidPseudoSelector
-            &::-ms-expand {
-                display: none;
-            }
-
-            .before-sm({ width: 25%; });
+            height: 100% !important;
+            cursor: pointer;
+            .text-overflow();
 
             &:focus {
               animation: input-highlight 0.5s forwards;
@@ -612,6 +623,9 @@ select.form-control.sort-select{
               background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
               background-position: 0 bottom;
             }
+
+          }
+          .before-sm({ width: 25%; });
         }
 
         button {
