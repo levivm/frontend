@@ -94,5 +94,8 @@ module.exports = {
     uiFramework: {
         root : path.join(BASE_DIR, '/ui-framework/'),
         port : 9001
+    },
+    karma: {
+        root : path.join(BASE_DIR, '/karma.conf.js'),
     }
 };
