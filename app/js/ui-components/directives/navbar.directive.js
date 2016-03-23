@@ -202,7 +202,6 @@
                   scope.$on('scrolled',
                     function(scrolled, scroll){
                       scope.scroll = scroll;
-                      console.log(scope.scroll);
                       scope.$apply();
                     }
                   );
