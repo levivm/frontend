@@ -83,6 +83,7 @@ Los tasks de gulp se encuentran separados en varios archivos dependiendo del dom
 		|--  ngdocs.js
 		|--  serve.js
 		|--  styles.js
+		|--  test.js
 		|--  ui_framework.js
 	|--  config.js
 ```
@@ -141,7 +142,12 @@ tests
 ```
 
 
-##### Run tests with
+##### Run tests with karma
 ``` bash
 karma start karma.conf.js
+```
+
+##### Run tests with gulp
+``` bash
+gulp test
 ```
