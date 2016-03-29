@@ -23,7 +23,6 @@
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var transitionOptions = {location : true, inherit : false, reload : false};
         var unsuscribeSearchModified = null;
-        var unsuscribeExitSearch = null;
         var vm = this;
         angular.extend(vm, {
             activities : [],
@@ -391,7 +390,7 @@
                 LABEL_SORT_BY: "Ordenar por",
                 LABEL_LEVEL : "Nivel",
                 LABEL_COST : "Precio",
-                LABEL_DATE : "Fecha",
+                LABEL_DATE : "Desde",
                 LABEL_WITH_CERTIFICATE : "Con Certificado",
                 LABEL_WEEKENDS : "Fines de Semana",
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
@@ -415,24 +414,19 @@
             _setStrings();
             _setGeneralInfo();
             _getSearchParams();
-
+            console.log($stateParams);
             _getActivities($stateParams).then(function () {
                 _scrollToCurrentCategory();
             });
 
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event, data) {
-                    console.log('searchBar. on' + SearchManager.EVENT_SEARCH_MODIFIED);
+                    angular.extend(data, SearchManager.getSearchData());
                     vm.searchData = data;
                     _search();
                 }
             );
 
-            unsuscribeExitSearch = $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState) {
-                if (toState.name !== 'search') {
-                    SearchManager.clearData();
-                    unsuscribeExitSearch();
-                }
-            });
+
             $scope.$on('$destroy', _cleanUp);
         }
     }

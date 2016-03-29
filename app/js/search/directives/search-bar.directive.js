@@ -52,12 +52,13 @@
                     data[KEY_SEARCH_CITY] = scope.search_city.id;
 
                     SearchManager.setSearchBarData(data);
-                    angular.extend(data, SearchManager.getSearchData());
                     Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
+
                     if ($state.current.name==='search')
                       $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED, data);
                     else
                       $state.go('search', data);
+
                 }
 
                 function getSuggestions(keyword){
