@@ -29,7 +29,7 @@
           student.deleteMessage(message.id)
             .then(function(){
               Toast.success("Mensaje borrado");
-              $state.go('student-dashboard.messages');
+              $state.go('student-dashboard.notifications');
             });
         }
 

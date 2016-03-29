@@ -17,8 +17,7 @@
 
         var vm = this;
         angular.extend(vm, {
-            message: message,
-            deleteMessage: deleteMessage
+            message: message
 
         });
 
@@ -27,13 +26,6 @@
 
         //--------- Exposed Functions ---------//
         
-        function deleteMessage(){
-          activity.deleteMessage(message.id)
-            .then(function(){
-              Toast.success("Mensaje borrado");
-              $state.go('dash.activities-manage.messages', {activity_id: activity.id});
-            });
-        }
         
         //--------- Internal Functions ---------//
 
