@@ -81,13 +81,14 @@
             newSearchQuery: '',
             search: search,
             collapsedFilters: false,
-            collapseFilters: collapseFilters
+            collapseFilters: collapseFilters,
+            loadingActivities: true
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-        
+
         function collapseFilters(){
           vm.collapsedFilters = !vm.collapsedFilters;
         }
@@ -106,23 +107,20 @@
         }
 
         function setCategory(category, initializing) {
-            console.log(category);
-            console.log(initializing);
             if (!category) { return; }
 
             if (vm.searchCategory === category.id || category === vm.strings.ACTION_ALL_FILTER) {
-                vm.searchCategory = null;
+                vm.searchCategory = undefined;
             } else {
                 vm.searchCategory = category.id;
 
             }
 
-            console.log(vm.searchCategory);
             _expandCategory(category);
             SearchManager.setCategory(vm.searchCategory);
 
             if (!initializing){
-                vm.searchSubCategory = null;
+                vm.searchSubCategory = undefined;
                 SearchManager.setSubCategory(vm.searchSubCategory);
                 if(!_isMobile()){
                   _search();
@@ -133,7 +131,7 @@
 
         function setSubCategory(subcategory) {
             if (vm.searchSubCategory == subcategory.id) {
-                vm.searchSubCategory = null;
+                vm.searchSubCategory = undefined;
             } else {
                 vm.searchSubCategory = subcategory.id;
                 vm.searchCategory = subcategory.category;
@@ -148,18 +146,20 @@
             Analytics.generalEvents.searchSubCategory(subcategory.name);
         }
 
-        function setLevel() {
+        function setLevel(level) {
           var sm = SearchManager;
-          vm.searchData = SearchManager.getSearchData($stateParams);
+          vm.searchData = SearchManager.getSearchData();
+
           if(vm.searchData[sm.KEY_LEVEL] === vm.searchLevel.code){
-            SearchManager.setLevel();
+            vm.searchLevel=undefined;
+            SearchManager.setLevel(undefined);
             Analytics.generalEvents.searchLevel('');
           }
           else{
-            SearchManager.setLevel(vm.searchLevel.code);            
+            SearchManager.setLevel(vm.searchLevel.code);
             Analytics.generalEvents.searchLevel(vm.searchLevel.value);
           }
-          
+
           if(!_isMobile()){
             _search();
           }
@@ -196,6 +196,7 @@
 
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
+            console.log(vm.onWeekends);
             SearchManager.setWeekends(vm.onWeekends);
             Analytics.generalEvents.searchWeekends(vm.onWeekends);
             if(!_isMobile()){
@@ -221,6 +222,8 @@
         }
 
         function getLevelClassStyle(level) {
+            //console.log(level);
+            //console.log(vm.searchLevel);
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
 
@@ -239,9 +242,10 @@
 
         function _setPage(page){
             if(!page){ page = vm.activitiesPaginationOpts.pageNumber; }
-
+            page = page.toString();
             SearchManager.setPage(page);
             vm.searchData[SearchManager.KEY_PAGE] = page;
+
         }
 
         function _getActivities(searchData) {
@@ -250,12 +254,13 @@
             function success(response) {
                 vm.activities = response.activities;
                 vm.activitiesPaginationOpts.totalItems = response.count;
-                console.log('_getActivities:', vm.activities);
+                vm.loadingActivities = false;
             }
 
             function error(error) {
               console.log(error);
                 console.log('_getActivities. Error obtaining Activities from ActivitiesManager');
+
             }
         }
 
@@ -267,8 +272,7 @@
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
-              
-              console.log(vm.searchData);
+
             if ($stateParams.city) {
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
                 LocationManager.setSearchCity(city);
@@ -277,11 +281,11 @@
             if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
                 vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]);
             }
-            
+
             if (vm.searchData.hasOwnProperty(sm.KEY_ORDER)) {
                 vm.orderByPredicate = vm.searchData[sm.KEY_ORDER];
             }
-            
+
             if (vm.searchData.hasOwnProperty(sm.KEY_LEVEL)) {
                 _setLevel(vm.searchData[sm.KEY_LEVEL]);
             }
@@ -362,9 +366,14 @@
         }
 
         function _search() {
+            vm.loadingActivities = true;
             SearchManager.setQuery(vm.newSearchQuery);
             var searchData = SearchManager.getSearchData();
-            $state.go('search', searchData, transitionOptions);
+            $state.go('search', vm.searchData,  {notify: false});
+            _getActivities(vm.searchData).then(function () {
+                //_scrollToCurrentCategory();
+            });
+
         }
 
         function _setStrings() {
@@ -405,18 +414,16 @@
             _setWatches();
             _setStrings();
             _setGeneralInfo();
-            console.log($stateParams);
             _getSearchParams();
 
             _getActivities($stateParams).then(function () {
                 _scrollToCurrentCategory();
             });
 
-            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
+            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event, data) {
                     console.log('searchBar. on' + SearchManager.EVENT_SEARCH_MODIFIED);
-                    _getSearchParams().then(function () {
-                        _getActivities($stateParams);
-                    });
+                    vm.searchData = data;
+                    _search();
                 }
             );
 
