@@ -306,7 +306,34 @@
              */
             'autocomplete' : function () {
                 return renderUrl('activities/', ['autocomplete']);
-            }        };
+            },
+            
+            /**
+             * @ngdoc function
+             * @name .#messages
+             * @description Renders **`/api/messages/:idActivity`**
+             * Activity Messages URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'messages': function (){
+                return renderUrl('messages/');
+            },
+            
+            /**
+             * @ngdoc function
+             * @name .#message
+             * @description Renders **`/api/messages/:idMessage`**
+             * Activity Message URL
+             * @param {number} idMessage Message Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'message': function(idMessage){
+              return renderUrl('messages/', [idMessage]);
+            }
+        };
 
         /**
          * @ngdoc function

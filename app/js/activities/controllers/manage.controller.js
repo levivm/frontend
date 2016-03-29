@@ -58,7 +58,6 @@
 
 
         function isActive(stateStr){
-            console.log($state.includes(stateStr));
             return $state.includes(stateStr);
         }
 
@@ -229,6 +228,7 @@
                 SECTION_MANAGE: "Gestionar",
                 TAB_ORDERS: "Ordenes de Compra",
                 TAB_ASSISTANTS: "Lista de Asistentes",
+                TAB_MESSAGES: "Mensajes",
                 PLURALIZE_ASSISTANT: "{} asistente",
                 PLURALIZE_ASSISTANTS: "{} asistentes",
                 HEADER_ASSISTANT: "Asistente",

@@ -1,9 +1,8 @@
 /**
  * @ngdoc controller
- * @name trulii.organizers.controllers.OrganizerMessageDetailCtrl
- * @description Handles Organizer Activities Dashboard
- * @requires organizer
- * @requires activities
+ * @name trulii.organizers.controllers.ActivityMessageDetailCtrl
+ * @description Handles Activities Message Detail Dashboard
+ * @requires actifity
  */
 
 (function () {
@@ -11,14 +10,13 @@
 
     angular
         .module('trulii.organizers.controllers')
-        .controller('OrganizerMessageDetailCtrl', OrganizerMessageDetailCtrl);
+        .controller('ActivityMessageDetailCtrl', ActivityMessageDetailCtrl);
 
-    OrganizerMessageDetailCtrl.$inject = ['organizer', 'message', '$state', 'Toast'];
-    function OrganizerMessageDetailCtrl(organizer, message, $state, Toast) {
+    ActivityMessageDetailCtrl.$inject = ['activity', 'message', '$state', 'Toast'];
+    function ActivityMessageDetailCtrl(activity, message, $state, Toast) {
 
         var vm = this;
         angular.extend(vm, {
-            organizer : organizer,
             message: message,
             deleteMessage: deleteMessage
 
@@ -30,10 +28,10 @@
         //--------- Exposed Functions ---------//
         
         function deleteMessage(){
-          organizer.deleteMessage(message.id)
+          activity.deleteMessage(message.id)
             .then(function(){
               Toast.success("Mensaje borrado");
-              $state.go('organizer-dashboard.messages');
+              $state.go('dash.activities-manage.messages', {activity_id: activity.id});
             });
         }
         

@@ -151,25 +151,6 @@
                     readReviewObjects: getReadReviewObjects
                 }
             })
-            .state('organizer-dashboard.messages', {
-                url:'messages/',
-                controller: 'OrganizerMessagesCtrl as messages',
-                templateUrl: 'partials/organizers/dashboard/messages.html',
-                resolve: {
-                    messages: getMessages,
-                    activities: getOrganizerActivityList
-                }
-
-            })
-            .state('organizer-dashboard.messages-detail', {
-                url:'messages/:messageId',
-                controller: 'OrganizerMessageDetailCtrl as detail',
-                templateUrl: 'partials/organizers/dashboard/message_detail.html',
-                resolve: {
-                  message: getMessage
-                }
-
-            })
             .state('organizer-dashboard.reviews.done', {
                 url:'done',
                 templateUrl: 'partials/organizers/dashboard/reviews_done.html'
@@ -295,30 +276,6 @@
         getOrders.$inject = ['organizer'];
         function getOrders(organizer){
             return organizer.getOrders();
-        }
-
-        /**
-         * @ngdoc method
-         * @name .#getMessages
-         * @description Retrieves an Organizer's Messages
-         * @requires organizer
-         * @methodOf trulii.organizers.config
-         */
-        getMessages.$inject = ['organizer'];
-        function getMessages(organizer){
-            return organizer.getMessages();
-        }
-
-        /**
-         * @ngdoc method
-         * @name .#getMessage
-         * @description Retrieves a specific message from the Organizer
-         * @requires organizer
-         * @methodOf trulii.organizers.config
-         */
-        getMessage.$inject = ['organizer', '$stateParams'];
-        function getMessage(organizer, $stateParams){
-            return organizer.getMessage($stateParams.messageId);
         }
 
         /**

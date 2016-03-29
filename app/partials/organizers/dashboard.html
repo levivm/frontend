@@ -46,13 +46,6 @@
                 <i class="sidebar__item__icon mdi-editor-attach-money"></i>
                 <span ng-bind="::dash.strings.SECTION_TRANSACTIONS"></span>
             </a>
-            <a ui-sref=".messages"
-               class="sidebar__item"
-               ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.messages.*')}"
-               ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_MESSAGES)">
-                <i class="sidebar__item__icon mdi-communication-email"></i>
-                <span ng-bind="::dash.strings.SECTION_MESSAGES"></span>
-            </a>
         </div>
         <div ui-view class="col-xs-12 with-footer"></div>
         <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': dash.scroll > 80}"
