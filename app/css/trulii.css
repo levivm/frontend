@@ -19794,6 +19794,9 @@ blockquote {
   vertical-align: middle;
   font-size: 1.25em;
 }
+.sign-up-container .btn:hover {
+  background-color: #22c7b5;
+}
 .sign-up-container h1,
 .sign-up-container h2,
 .sign-up-container h3,
