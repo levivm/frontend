@@ -179,11 +179,10 @@
                     orders: getOrders
                 }
             })
-            
             .state('dash.activities-manage.messages', {
               url: 'messages',
               controller: 'ActivityMessagesCtrl as messages',
-              templateUrl: 'partials/activities/manage/messages.html',
+              templateUrl: 'partials/activities/manage/manage_messages.html',
                resolve: {
                     messages: getMessages
                 }
@@ -191,11 +190,15 @@
             .state('dash.activities-manage.messages-detail', {
                 url:'messages/:messageId',
                 controller: 'ActivityMessageDetailCtrl as detail',
-                templateUrl: 'partials/activities/manage/message_detail.html',
+                templateUrl: 'partials/activities/manage/manage_message_detail.html',
                 resolve: {
                   message: getMessage
                 }
-
+            })
+            .state('dash.activities-manage.summary', {
+              url: 'summary',
+              controller: 'ActivitySummaryCtrl as summary',
+              templateUrl: 'partials/activities/manage/manage_summary.html'
             })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/:activity_title',

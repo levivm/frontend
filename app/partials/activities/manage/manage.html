@@ -18,11 +18,19 @@
                     </a>
                 </li>
                 <li>
-                    <a  ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ORDERS)"
+                    <a  ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_MESSAGES)"
                       ui-sref=".messages" ui-sref-opts="{reload: true}" class="sidebar__item"
                       ui-sref-active="sidebar__item--selected">
                         <i class="sidebar__item__icon mdi-communication-email"></i>
                         <span ng-bind="::manage.strings.TAB_MESSAGES"></span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_SUMMARY)"
+                      ui-sref=".summary" ui-sref-opts="{reload: true}" class="sidebar__item"
+                      ui-sref-active="sidebar__item--selected">
+                        <i class="sidebar__item__icon mdi-action-trending-up"></i>
+                        <span ng-bind="::manage.strings.TAB_SUMMARY"></span>
                     </a>
                 </li>
             </ul>

@@ -229,6 +229,7 @@
                 TAB_ORDERS: "Ordenes de Compra",
                 TAB_ASSISTANTS: "Lista de Asistentes",
                 TAB_MESSAGES: "Mensajes",
+                TAB_SUMMARY: "Resumen",
                 PLURALIZE_ASSISTANT: "{} asistente",
                 PLURALIZE_ASSISTANTS: "{} asistentes",
                 HEADER_ASSISTANT: "Asistente",

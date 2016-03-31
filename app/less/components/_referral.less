@@ -4,7 +4,7 @@
     border-radius: 12px;
     input, input:focus {
         border: 1px solid @gray-lighter;
-        border-bottom: 3px solid @brand-primary;
+        border-bottom: 3px solid @brand-success;
         border-top-left-radius: @border-radius-base;
         border-bottom-left-radius: @border-radius-base;
     }
@@ -28,6 +28,14 @@
     }
 }
 .referral-share{
+  li.referral-link{
+    input{
+      background-color: white;
+    }
+  }
+  li:nth-child(n+3){
+    vertical-align: -6px;
+  }
   .before-sm({
     li.referral-link{
       display: block;
@@ -48,8 +56,8 @@ input[type=text].form-control.referral-link {
       width: 100%;
     });
     &:focus {
-        border: 1px solid @brand-primary;
-        height: 55px;
+        border: 1px solid @brand-success;
+        height: 48px;
     }
 }
 

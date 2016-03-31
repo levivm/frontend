@@ -30,7 +30,8 @@
             'trulii.about',
             'trulii.help',
             'ngVideo',
-            'templates'
+            'templates',
+            'nvd3'
         ]);
 
     angular
