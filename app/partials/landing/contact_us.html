@@ -1,8 +1,8 @@
 <div class="trulii-cover-small">
   <div class="trulii-cover__container">
-    <div class="trulii-cover__content ">
+    <div class="trulii-cover__content padding-vertical-more">
       <div class="col-xs-12">
-         <div class="row padding-vertical-regular" ng-hide="contact.sent">
+        <div class="row padding-vertical-regular" ng-hide="contact.sent">
           <div class="col-xs-12 col-md-10 col-md-offset-1">
             <h1 class="text-center">
               <strong>
@@ -18,15 +18,15 @@
               <fieldset>
                 <div class="form-group" trulii-input-errors-control="name">
                     <label for="name" class="sr-only"
-                           ng-bind="::contact.strings.LABEL_NAME"></label>
+                          ng-bind="::contact.strings.LABEL_NAME"></label>
                     <input id="name" class="form-control" name="name" type="text"
                                   ng-model="contact.formData.name"
                                   placeholder="{{::contact.strings.LABEL_NAME}}" >
                 </div>
                 <div class="form-group" trulii-input-errors-control="email">
                     <label for="email" class="sr-only"
-                           ng-bind="::contact.strings.LABEL_EMAIL"></label>
-                     <input id="email" class="form-control" name="email" type="text"
+                          ng-bind="::contact.strings.LABEL_EMAIL"></label>
+                    <input id="email" class="form-control" name="email" type="text"
                             ng-model="contact.formData.email"
                             placeholder="{{::contact.strings.LABEL_EMAIL}}">
                 </div>
@@ -39,13 +39,13 @@
                 </div>
                 <div class="form-group" trulii-input-errors-control="topic">
                     <label for="topic-select" class="sr-only"
-                           ng-bind="::contact.strings.LABEL_TOPIC"></label>
+                          ng-bind="::contact.strings.LABEL_TOPIC"></label>
                     <select id="topic-select" name="topic"
-                           class="form-control" ng-model="contact.selectedTopic"
-                           ng-options="topic as topic.title for topic in contact.topics track by topic.id">
-                       <option value="" ng-hide="contact.selectedTopic"
-                               ng-bind="::contact.strings.OPTION_TOPIC_DEFAULT" selected>
-                       </option>
+                          class="form-control" ng-model="contact.selectedTopic"
+                          ng-options="topic as topic.title for topic in contact.topics track by topic.id">
+                      <option value="" ng-hide="contact.selectedTopic"
+                              ng-bind="::contact.strings.OPTION_TOPIC_DEFAULT" selected>
+                      </option>
                     </select>
                 </div>
 
@@ -174,131 +174,3 @@
 </div>
 <trulii-footer>
 </trulii-footer>
-
-<!-- <div class="row">
-    <div class="col-sm-6 col-md-8 col-md-offset-2">
-        <div class="card">
-            <div class="card-header text-center">
-                <div class="trulii-inverse-med"></div>
-                <h4><strong ng-bind="::contact.strings.LABEL_CONTACT_US"></strong></h4>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-10 col-md-offset-1">
-                        <form name='contact.contact_form' ng-submit="contact.sendContactForm()">
-                            <fieldset>
-                                <div class="form-group" trulii-input-errors-control="topic">
-                                    <label for="topic-select" class="sr-only"
-                                           ng-bind="::contact.strings.LABEL_TOPIC"></label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="mdi-navigation-chevron-right"></i>
-                                        </span>
-                                        <select id="topic-select" name="topic"
-                                                class="form-control" ng-model="contact.selectedTopic"
-                                                ng-options="topic as topic.title for topic in contact.topics track by topic.id">
-                                            <option value="" ng-hide="contact.selectedTopic"
-                                                    ng-bind="::contact.strings.OPTION_TOPIC_DEFAULT" selected>
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="subtopic">
-                                    <label for="subtopic-select" class="sr-only"
-                                           ng-bind="::contact.strings.LABEL_SUB_TOPIC"></label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="mdi-action-list"></i>
-                                        </span>
-                                        <select id="subtopic-select" name="subtopic"
-                                                class="form-control" ng-model="contact.selectedSubtopic"
-                                                ng-options="subtopic as subtopic.title for subtopic in contact.selectedTopic.subtopics track by subtopic.id">
-                                            <option value="" ng-show="!contact.selectedSubtopic"
-                                                    ng-bind="::contact.strings.OPTION_SUBTOPIC_DEFAULT" selected>
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="description">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                          <i class="mdi-content-create"></i>
-                                        </span>
-                                        <textarea name="description" class="form-control"
-                                                  ng-model="contact.formData.description"
-                                                  placeholder="{{::contact.strings.PLACEHOLDER_DESCRIPTION}}">
-                                        </textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="name">
-                                    <label for="name" class="sr-only"
-                                           ng-bind="::contact.strings.LABEL_NAME"></label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                          <i class="mdi-social-person"></i>
-                                        </span>
-                                        <input id="name" class="form-control" name="name" type="text"
-                                               ng-model="contact.formData.name"
-                                               placeholder="{{::contact.strings.LABEL_NAME}}" >
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="email">
-                                    <label for="email" class="sr-only"
-                                           ng-bind="::contact.strings.LABEL_EMAIL"></label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                          <i class="mdi-communication-email"></i>
-                                        </span>
-                                        <input id="email" class="form-control" name="email" type="text"
-                                               ng-model="contact.formData.email"
-                                               placeholder="{{::contact.strings.LABEL_EMAIL}}"
-                                               trulii-input-autofocus>
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="phone_number">
-                                    <label for="phone" class="sr-only"
-                                           ng-bind="::contact.strings.LABEL_PHONE"></label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                          <i class="mdi-communication-call-end"></i>
-                                        </span>
-                                        <input id="phone" name="phone_number" class="form-control" type="tel"
-                                               placeholder="{{::contact.strings.LABEL_PHONE}}"
-                                               ng-model="contact.formData.phone_number" value="">
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="city">
-                                    <label for="city-select" class="sr-only"
-                                           ng-bind="::contact.strings.LABEL_CITY"></label>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                          <i class="mdi-maps-place"></i>
-                                        </span>
-                                        <select id="city-select" name="city"
-                                                class="form-control" ng-model="contact.selectedCity"
-                                                ng-options="city as city.name for city in contact.cities track by city.id">
-                                            <option value="" ng-hide="contact.selectedCity"
-                                                    ng-bind="::contact.strings.OPTION_CITY_DEFAULT" selected>
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group" trulii-input-errors-control="__all__">
-                                    <input type="hidden" name="__all__" ng-model="__all__"/>
-                                </div>
-
-                                <div class="form-group">
-                                    <button type="submit" id="submit"
-                                            class="btn btn-lg btn-primary btn-block"
-                                            ng-bind="::contact.strings.ACTION_SEND">
-                                    </button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div> -->

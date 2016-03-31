@@ -22218,7 +22218,7 @@ blockquote {
 .referral-input input,
 .referral-input input:focus {
   border: 1px solid #eeeeee;
-  border-bottom: 3px solid #ffd580;
+  border-bottom: 3px solid #38dbc8;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
@@ -22242,6 +22242,12 @@ blockquote {
   border-bottom-left-radius: 0;
   font-size: 0.75em;
 }
+.referral-share li.referral-link input {
+  background-color: white;
+}
+.referral-share li:nth-child(n+3) {
+  vertical-align: -6px;
+}
 @media screen and (max-width: 768px) {
   .referral-share li.referral-link {
     display: block;
@@ -22264,8 +22270,8 @@ input[type=text].form-control.referral-link {
   }
 }
 input[type=text].form-control.referral-link:focus {
-  border: 1px solid #ffd580;
-  height: 55px;
+  border: 1px solid #38dbc8;
+  height: 48px;
 }
 .referral-item {
   padding: 2em 0em;
