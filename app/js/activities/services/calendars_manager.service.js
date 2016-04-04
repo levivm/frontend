@@ -15,9 +15,9 @@
         .module('trulii.activities.services')
         .factory('CalendarsManager', CalendarsManager);
 
-    CalendarsManager.$inject = ['$http', '$q','$timeout', 'ActivityServerApi', 'Calendar'];
+    CalendarsManager.$inject = ['$http', '$q','$timeout', 'ActivityServerApi', 'Calendar', '$filter'];
 
-    function CalendarsManager($http, $q, $timeout, ActivityServerApi, Calendar) {
+    function CalendarsManager($http, $q, $timeout, ActivityServerApi, Calendar, $filter) {
 
         var api = ActivityServerApi;
         var _pool = {};
@@ -152,6 +152,8 @@
             } else {
                 calendar = _retrieveInstance(calendarData.id, calendarData,calendarData.activity);
                 _addCalendar(calendar);
+                _orderCalendars(calendar.activity);
+
 
             }
 
@@ -198,6 +200,10 @@
         function _addCalendar(calendar) {
             _pool[calendar.id] = calendar;
             calendars[calendar.activity].push(calendar);
+        }
+
+        function _orderCalendars(activityId){
+            calendars[activityId] = $filter('orderBy')(calendars[activityId], 'initial_date');
         }
     }
 

@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager', '$filter'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter) {
         var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
@@ -486,12 +486,14 @@
             _setStrings();
             _setCurrentState();
             _updateUrl();
+            //activity.calendars= $filter('orderBy')(activity.calendars, 'initial_date');
+            activity.calendars = angular.copy(calendars);
             activity = _mapCalendars(activity);
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
             vm.assistants = _getAssistants();
             _setUpLocation(activity);
-            console.log(vm.relatedActivities);
+
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
@@ -501,11 +503,12 @@
                 calendar_selected : _getSelectedCalendar(activity)
             });
 
+
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);
             }
-            console.log(vm.reviews);
+
             _setSocialShare();
             _initWidget();
             _initSignup();
