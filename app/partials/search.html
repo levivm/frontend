@@ -59,9 +59,9 @@
                       aria-label="{{::search.strings.LABEL_LEVEL}}">
                       <label class="btn btn-sm btn-default btn-beginner-level"
                             ng-repeat="level in search.levels track by level.code"
-                            ng-class="search.getLevelClassStyle(level)">
+                            ng-class="{'btn-active': level.code == search.searchLevel.code }">
                           <input type="radio" name="level" class="hidden" ng-model="search.searchLevel"
-                                ng-click="search.setLevel()" ng-value="level">{{level.value}}
+                                ng-click="search.setLevel(level)" ng-value="level">{{level.value}}
                       </label>
                   </div>
               </div>
@@ -191,8 +191,9 @@
     <!--</div>-->
     <div class="row separator-light no-margin"></div>
     <div class="row padding-horizontal-less separate-above padding-vertical-less">
-        <div class="col-xs-12">
-            <div class="text-left separate-left" ng-if="search.activities.length > 0">
+        <trulii-preloader loader-control="search.loadingActivities"></trulii-preloader>
+        <div class="col-xs-12" ng-show="!search.loadingActivities">
+            <div class="text-left separate-left"  ng-if="search.activities.length > 0">
                 <!--track by activity.id-->
                 <trulii-activity-item ng-repeat="activity in search.activities"
                                       data-activity="activity"></trulii-activity-item>

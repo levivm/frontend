@@ -48,17 +48,17 @@
                     }*/
 
                     var data = {};
-                    console.log( );
                     data[KEY_SEARCH_Q] = scope.q;
                     data[KEY_SEARCH_CITY] = scope.search_city.id;
 
                     SearchManager.setSearchBarData(data);
-                    angular.extend(data, SearchManager.getSearchData());
-                    console.log('data', data);
                     Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
 
-                    $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
-                    $state.go('search', data);
+                    if ($state.current.name==='search')
+                      $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED, data);
+                    else
+                      $state.go('search', data);
+
                 }
 
                 function getSuggestions(keyword){
