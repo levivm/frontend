@@ -416,21 +416,20 @@ select.form-control.sort-select{
     }
     > * {
         background-color: white;
-        height: 75px !important;
-        .before-sm({
-          height: 55px !important;
-        })
+
     }
     > *:nth-child(1) {
         border-top-left-radius: @border-radius-base !important;
         border-bottom-left-radius: @border-radius-base !important;
         border-right: 1px solid @gray-lighter;
+        height: 75px !important;
         .before-sm({
           float: left;
           width: 80%;
           margin-top: 70px;
           border-color: transparent;
           border-right: none;
+          height: 55px !important;
           &:focus{
             width: 80% !important;
           }
@@ -484,7 +483,11 @@ select.form-control.sort-select{
       background-position: 93% 50%;
       background-repeat: no-repeat;
       background-image: url(/css/img/about/arrow.png) !important;
+      height: 75px !important;
 
+      .before-sm({
+        height: 55px !important
+      });
 
       select, select:focus {
         display: inline-block;
@@ -516,6 +519,7 @@ select.form-control.sort-select{
         border-top: 5px solid @brand-secondary;
         font-size: 1.25em;
         float: left;
+        height: 75px !important;
         .before-sm({
           width: 20%;
           float: right;
@@ -523,7 +527,7 @@ select.form-control.sort-select{
           border: none;
           margin-top: 70px;
           color: white !important;
-
+          height: 55px !important;
           .glyphicon{
               padding-top: 5px;
           }

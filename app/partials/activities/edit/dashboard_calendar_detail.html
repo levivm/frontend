@@ -24,14 +24,14 @@
                     <input class="" type="checkbox" id="is_free" ng-model="calendar.calendar.is_free" ng-check />
                     <label class="separate-left-less control-label" for="is_free" ng-bind="::calendar.strings.LABEL_IS_FREE"></label>
                   </div>
-              </div>  
+              </div>
 
           </div>
           <div class="col-md-2">
               <div class="form-group " trulii-input-errors-control="capacity">
                   <label class="control-label" for="capacity" ng-bind="::calendar.strings.LABEL_CALENDAR_SEATS"></label>
                   <input id="capacity" class="form-control " type="number" name="capacity"
-                         placeholder="0.00" min="1" 
+                         placeholder="0.00" min="1"
                          ng-model="calendar.calendar.capacity" />
               </div>
           </div>
@@ -126,7 +126,7 @@
       </div>
 
 
-      <div class="separate-above" ng-show="calendar.calendar.sessions.length > 0 ">
+      <div class="separate-above" >
           <trulii-submit-controls is-saving="calendar.isSaving" cancel-active="true" value="Guardar"></trulii-submit-controls>
 
       </div>

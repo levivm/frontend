@@ -3,17 +3,34 @@
         <div class="sidebar lateral-slide" ng-class="{'sidebar-short': manage.scroll > 80, 'hidden-xs': !manage.showSidebar, 'hidden-sm': !manage.showSidebar}" style="padding-bottom: 48px">
             <ul>
                 <li>
-                    <a ng-click="manage.dashboardItem(manage.strings.TAB_ASSISTANTS)" ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
+                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ASSISTANTS)" 
+                       ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
                        ui-sref-active="sidebar__item--selected">
                         <i class="sidebar__item__icon mdi-social-people"></i>
                         <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
                     </a>
                 </li>
                 <li>
-                    <a ng-click="manage.dashboardItem(manage.strings.TAB_ORDERS)" ui-sref=".orders" ui-sref-opts="{reload: true}" class="sidebar__item"
+                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ORDERS)" ui-sref=".orders" ui-sref-opts="{reload: true}" class="sidebar__item"
                        ui-sref-active="sidebar__item--selected">
                         <i class="sidebar__item__icon mdi-maps-local-atm"></i>
                         <span ng-bind="::manage.strings.TAB_ORDERS"></span>
+                    </a>
+                </li>
+                <li>
+                    <a  ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_MESSAGES)"
+                      ui-sref=".messages" ui-sref-opts="{reload: true}" class="sidebar__item"
+                      ui-sref-active="sidebar__item--selected">
+                        <i class="sidebar__item__icon mdi-communication-email"></i>
+                        <span ng-bind="::manage.strings.TAB_MESSAGES"></span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_SUMMARY)"
+                      ui-sref=".summary" ui-sref-opts="{reload: true}" class="sidebar__item"
+                      ui-sref-active="sidebar__item--selected">
+                        <i class="sidebar__item__icon mdi-action-trending-up"></i>
+                        <span ng-bind="::manage.strings.TAB_SUMMARY"></span>
                     </a>
                 </li>
             </ul>

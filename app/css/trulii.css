@@ -15059,17 +15059,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-bar > * {
   background-color: white;
-  height: 75px !important;
-}
-@media screen and (max-width: 768px) {
-  .search-bar > * {
-    height: 55px !important;
-  }
 }
 .search-bar > *:nth-child(1) {
   border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
   border-right: 1px solid #eeeeee;
+  height: 75px !important;
 }
 @media screen and (max-width: 768px) {
   .search-bar > *:nth-child(1) {
@@ -15078,6 +15073,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     margin-top: 70px;
     border-color: transparent;
     border-right: none;
+    height: 55px !important;
   }
   .search-bar > *:nth-child(1):focus {
     width: 80% !important;
@@ -15133,6 +15129,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-position: 93% 50%;
   background-repeat: no-repeat;
   background-image: url(/css/img/about/arrow.png) !important;
+  height: 75px !important;
+}
+@media screen and (max-width: 768px) {
+  .search-bar .select-city {
+    height: 55px !important;
+  }
 }
 .search-bar .select-city select,
 .search-bar .select-city select:focus {
@@ -15159,6 +15161,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-top: 5px solid #732ebb;
   font-size: 1.25em;
   float: left;
+  height: 75px !important;
 }
 @media screen and (max-width: 768px) {
   .search-bar .btn.btn-default {
@@ -15168,6 +15171,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     border: none;
     margin-top: 70px;
     color: white !important;
+    height: 55px !important;
   }
   .search-bar .btn.btn-default .glyphicon {
     padding-top: 5px;
@@ -19794,6 +19798,9 @@ blockquote {
   vertical-align: middle;
   font-size: 1.25em;
 }
+.sign-up-container .btn:hover {
+  background-color: #22c7b5;
+}
 .sign-up-container h1,
 .sign-up-container h2,
 .sign-up-container h3,
@@ -22218,7 +22225,7 @@ blockquote {
 .referral-input input,
 .referral-input input:focus {
   border: 1px solid #eeeeee;
-  border-bottom: 3px solid #ffd580;
+  border-bottom: 3px solid #38dbc8;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
 }
@@ -22242,6 +22249,12 @@ blockquote {
   border-bottom-left-radius: 0;
   font-size: 0.75em;
 }
+.referral-share li.referral-link input {
+  background-color: white;
+}
+.referral-share li:nth-child(n+3) {
+  vertical-align: -6px;
+}
 @media screen and (max-width: 768px) {
   .referral-share li.referral-link {
     display: block;
@@ -22264,8 +22277,8 @@ input[type=text].form-control.referral-link {
   }
 }
 input[type=text].form-control.referral-link:focus {
-  border: 1px solid #ffd580;
-  height: 55px;
+  border: 1px solid #38dbc8;
+  height: 48px;
 }
 .referral-item {
   padding: 2em 0em;

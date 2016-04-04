@@ -1,29 +1,25 @@
 /**
  * @ngdoc controller
- * @name trulii.organizers.controllers.OrganizerMessagesCtrl
- * @description Handles Organizer Activities Dashboard
- * @requires organizer
- * @requires activities
+ * @name trulii.activities.controllers.ActivityMessagesCtrl
+ * @description Handles Activities Messages Dashboard
+ * @requires activity
  */
 
 (function () {
     'use strict';
 
     angular
-        .module('trulii.organizers.controllers')
-        .controller('OrganizerMessagesCtrl', OrganizerMessagesCtrl);
+        .module('trulii.activities.controllers')
+        .controller('ActivityMessagesCtrl', ActivityMessagesCtrl);
 
-    OrganizerMessagesCtrl.$inject = ['ActivitiesManager', 'organizer', 'messages', 'activities', '$q', 'Error', 'Toast'];
-    function OrganizerMessagesCtrl(ActivitiesManager, organizer, messages, activities, $q, Error, Toast) {
+    ActivityMessagesCtrl.$inject = ['ActivitiesManager', 'activity', 'messages', '$q', 'Error', 'Toast'];
+    function ActivityMessagesCtrl(ActivitiesManager, activity, messages, $q, Error, Toast) {
 
         var vm = this;
         angular.extend(vm, {
-            organizer : organizer,
             showMessage: false,
             toggleMessageShow:toggleMessageShow,
             messages: messages.results,
-            activities: activities,
-            updateCalendars: updateCalendars,
             calendars: {},
             message: {},
             submitMessage: submitMessage,
@@ -42,7 +38,7 @@
         //--------- Exposed Functions ---------//
 
         function pageChange(){
-          organizer.getMessages(vm.paginationOpts.pageNumber, vm.paginationOpts.itemsPerPage)
+          activity.getMessages(vm.paginationOpts.pageNumber, vm.paginationOpts.itemsPerPage)
           .then(function (response) {
             vm.messages = response.results;
             vm.paginationOpts.totalItems = response.count;
@@ -56,30 +52,31 @@
             vm.showMessage = !vm.showMessage;
         }
 
-        function updateCalendars(){
-          ActivitiesManager.getActivity(vm.message.activity.id)
-            .then(
-              function(response){
-                vm.calendars = response.calendars;
-              }
-            );
-        }
 
         function submitMessage(){
-          organizer.sendMessage(vm.message).then(success, error)
+          activity.sendMessage(vm.message).then(_success, _error)
         }
 
 
         //--------- Internal Functions ---------//
 
 
-        function error(response) {
+        function _loadCalendars(){
+          ActivitiesManager.getActivity(activity.id)
+            .then(
+              function(response){
+                vm.calendars = response.calendars;
+              }
+            );
+        }
+        
+        function _error(response) {
             if (response.data) { Error.form.add(vm.login_form, response.data); }
             vm.errors.__all__ = response.data['non_field_errors'];
             return $q.reject(response);
         }
 
-        function success(response){
+        function _success(response){
           vm.toggleMessageShow();
           Toast.success("Su mensaje ha sido enviado");
           vm.pageChange();
@@ -107,8 +104,8 @@
 
         function _activate() {
             _setStrings();
+            _loadCalendars();
             console.log(vm.messages);
-            console.log(vm.organizer);
         }
 
     }

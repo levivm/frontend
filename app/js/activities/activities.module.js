@@ -179,6 +179,27 @@
                     orders: getOrders
                 }
             })
+            .state('dash.activities-manage.messages', {
+              url: 'messages',
+              controller: 'ActivityMessagesCtrl as messages',
+              templateUrl: 'partials/activities/manage/manage_messages.html',
+               resolve: {
+                    messages: getMessages
+                }
+            })
+            .state('dash.activities-manage.messages-detail', {
+                url:'messages/:messageId',
+                controller: 'ActivityMessageDetailCtrl as detail',
+                templateUrl: 'partials/activities/manage/manage_message_detail.html',
+                resolve: {
+                  message: getMessage
+                }
+            })
+            .state('dash.activities-manage.summary', {
+              url: 'summary',
+              controller: 'ActivitySummaryCtrl as summary',
+              templateUrl: 'partials/activities/manage/manage_summary.html'
+            })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/:activity_title',
                 params: {
@@ -530,7 +551,31 @@
             var deviceSessionId = md5.createHash(string);
             return deviceSessionId;
         }
+        
+        /**
+         * @ngdoc method
+         * @name .#getMessages
+         * @description Retrieves an Activity's Messages
+         * @requires organizer
+         * @methodOf trulii.activities.config
+         */
+        getMessages.$inject = ['activity'];
+        function getMessages(activity){
+            return activity.getMessages();
+        }
 
+        /**
+         * @ngdoc method
+         * @name .#getMessage
+         * @description Retrieves a specific message from the activity
+         * @requires organizer
+         * @methodOf trulii.activities.config
+         */
+        getMessage.$inject = ['activity', '$stateParams'];
+        function getMessage(activity, $stateParams){
+            return activity.getMessage($stateParams.messageId);
+        }
+        
         /**
          * @ngdoc method
          * @name .#isStudent

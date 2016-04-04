@@ -19,6 +19,8 @@
     function Activity($http, $q, ActivityServerApi, UploadFile, ActivitySteps,defaultCover) {
 
         var api = ActivityServerApi;
+        var defaultPageSize = 25;
+        var defaultPage = 1;
 
         function Activity(activityData) {
             var that = this;
@@ -303,7 +305,40 @@
              * @methodOf trulii.activities.services.Activity
              */
             markReviewAsRead: markReviewAsRead,
+            
+            /**
+             * @ngdoc function
+             * @name .#getMessages
+             * @description Retrieves all messages associated with an activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            getMessages: getMessages,
 
+            /**
+             * @ngdoc function
+             * @name .#getMessage
+             * @params int Message Id
+             * @description Retrieves a specific message from an Activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            getMessage: getMessage,
+            
+            /**
+             * @ngdoc function
+             * @name .#sendMessage
+             * @description Submits a message to the assistants of an activity
+             * @methodOf trulii.activities.services.Activity
+             */
+            sendMessage: sendMessage,
+            
+            /**
+             * @ngdoc function
+             * @name .#deleteMessage
+             * @description Deletes a message
+             * @methodOf trulii.activities.services.Activity
+             */
+            deleteMessage: deleteMessage,
+            
             /**
              * @ngdoc function
              * @name .#share
@@ -690,6 +725,49 @@
             function error(response){
                 console.log("Error sharing activity:", response);
             }
+        }
+        
+        function getMessages(page, pageSize){
+            if(!page)
+              page = defaultPage;
+            if(!pageSize)
+              pageSize: defaultPageSize;
+
+            return $http.get(api.messages(),
+                {params: {
+                  page: page,
+                  page_size: pageSize,
+                  activity_id: this.id
+                }})
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function getMessage(messageId){
+            return $http.get(api.message(messageId))
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function deleteMessage(messageId){
+            return $http.delete(api.message(messageId))
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function sendMessage(message){
+            var msg = {};
+            msg.calendar = message.calendar.id;
+            msg.activity = this.id;
+            msg.message = message.detail;
+            msg.subject = message.subject;
+            return $http.post(api.messages(), msg)
+                .then(function (response) {
+                    return response.data;
+                });
         }
     }
 })();

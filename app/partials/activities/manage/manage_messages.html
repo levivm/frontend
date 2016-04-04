@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="separate-above dashboard-messages-container col-xs-12 col-md-9 col-md-offset-1" ng-if="messages.messages.length > 0">
-        <a ng-repeat="message in messages.messages track by message.id" ui-sref="organizer-dashboard.messages-detail({'messageId': message.id})"  class="row">
+        <a ng-repeat="message in messages.messages track by message.id" ui-sref="dash.activities-manage.messages-detail({'messageId': message.id})"  class="row">
             <div class="col-xs-12 row separate-below-less">
                 <div class="col-md-8">
                     <span class=" text-dark montserrat-semibold" ng-bind="::message.activity"></span>
@@ -78,18 +78,6 @@
       <div class="modal-body">
         <form name='detail.email_form' ng-submit="messages.submitMessage()" class="separate-above separate-below-less form-classic">
           <fieldset>
-              <div  trulii-input-errors-control="activities">
-                  <label for="activities-select" class="sr-only"
-                         ng-bind="::messages.strings.LABEL_ACTIVITIE"></label>
-                  <select id="activities-select" name="activities"
-                         class="form-control" ng-model="messages.message.activity"
-                         ng-options="activity as activity.title for activity in messages.activities track by activity.id"
-                         ng-change="messages.updateCalendars()">
-                         <option value="" ng-hide="messages.message.activity"
-                                 ng-bind="::messages.strings.OPTION_ACTIVITY_DEFAULT" selected>
-                         </option>
-                  </select>
-              </div>
               <div class="separate-above" trulii-input-errors-control="calendar">
                   <label for="calendar-select" class="sr-only"
                          ng-bind="::messages.strings.LABEL_CALENDAR"></label>
