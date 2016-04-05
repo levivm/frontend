@@ -14,9 +14,9 @@
         .module('trulii.landing.controllers')
         .controller('ContactController', ContactController);
 
-    ContactController.$inject = ['$state', '$stateParams', 'cities', 'Contact', 'Toast', 'Analytics'];
+    ContactController.$inject = ['$state', '$stateParams', 'cities', 'Contact', 'Toast', 'Analytics', 'serverConf'];
 
-    function ContactController($state, $stateParams, cities, Contact, Toast, Analytics) {
+    function ContactController($state, $stateParams, cities, Contact, Toast, Analytics, serverConf) {
         var vm = this;
 
         angular.extend(vm, {
@@ -32,7 +32,8 @@
                 'phone_number': null,
                 'description': null
             },
-            sent: false
+            sent: false,
+            getAmazonUrl: getAmazonUrl
         });
 
         var toState = {};
@@ -40,6 +41,10 @@
         _activate();
 
         //--------- Functions Implementation ---------//
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
         function sendContactForm(){
 

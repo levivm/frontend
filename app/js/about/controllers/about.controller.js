@@ -12,21 +12,27 @@
         .module('trulii.about.controllers')
         .controller('AboutController', AboutController);
 
-    AboutController.$inject = ['$scope', '$window'];
+    AboutController.$inject = ['$scope', '$window', 'serverConf'];
 
-    function AboutController($scope, $window) {
+    function AboutController($scope, $window, serverConf) {
         var vm = this;
 
         angular.extend(vm,{
           scroll: 0,
           widgetOriginalPosition: 0,
           widgetMaxPosition: 0,
-          widgetAbsolutePosition: 0
+          widgetAbsolutePosition: 0,
+          getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Functions Implementation ---------//
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
 
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }

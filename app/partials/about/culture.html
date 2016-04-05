@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <div class="trulii-cover__background" style="background-image:url(/css/img/about/culture.png)">
+    <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/culture.png')}})'}">
     </div>
   </div>
 </div>
@@ -67,17 +67,17 @@
         </div>
       </div>
       <div class="hidden-xs hidden-sm">
-        <img src="/css/img/about/growth_2.png" alt="" class="img-responsive center-block separate-above-medium separate-below-medium">
-        <img src="/css/img/about/bul.png" alt="" class="img-responsive center-block separate-below">
+        <img ng-src="{{about.getAmazonUrl('static/img/about/growth_2.png')}}" alt="" class="img-responsive center-block separate-above-medium separate-below-medium">
+        <img ng-src="{{about.getAmazonUrl('static/img/about/bul.png')}}" alt="" class="img-responsive center-block separate-below">
         <div class="row">
           <div class="col-xs-3">
             <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_HEADER"></h4>
-            <img src="/css/img/about/priorities.png" alt="" class="img-responsive center-block separate-above separate-below">
+            <img ng-src="{{about.getAmazonUrl('static/img/about/priorities.png')}}" alt="" class="img-responsive center-block separate-above separate-below">
             <h5 class="text-md text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_TEXT_1"></h5>
           </div>
           <div class="col-xs-3">
             <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_HEADER"></h4>
-            <img src="/css/img/about/strategy.png" alt="" class="img-responsive center-block separate-above separate-below">
+            <img ng-src="{{about.getAmazonUrl('static/img/about/strategy.png')}}" alt="" class="img-responsive center-block separate-above separate-below">
             <h4 class="text-md text-center montserrat-light">
               <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_1"></span>
               <br>
@@ -90,7 +90,7 @@
           </div>
           <div class="col-xs-3">
             <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_HEADER"></h4>
-            <img src="/css/img/about/transparency.png" alt="" class="img-responsive center-block separate-above separate-below">
+            <img ng-src="{{about.getAmazonUrl('static/img/about/transparency.png')}}" alt="" class="img-responsive center-block separate-above separate-below">
             <h4 class="text-md text-center montserrat-light">
               <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_1"></span>
               <br>
@@ -103,10 +103,10 @@
           </div>
           <div class="col-xs-3">
             <h4 class="text-center montserrat-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_HEADER"></h4>
-            <img src="/css/img/about/balance.png" alt="" class="img-responsive center-block separate-above separate-below">
+            <img ng-src="{{about.getAmazonUrl('static/img/about/balance.png')}}" alt="" class="img-responsive center-block separate-above separate-below">
             <h4 class="text-md text-center montserrat-light">
               <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_1"></span>
-              <img src="/css/img/about/arrow.png" alt="" class="img-responsive center-block separate-above-less separate-below-less">
+              <img ng-src="{{about.getAmazonUrl('static/img/about/arrow.png')}}" alt="" class="img-responsive center-block separate-above-less separate-below-less">
               <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_2"></span>
             </h4>
           </div>
@@ -129,7 +129,7 @@
         </div>
       </div>
     </div>
-    <div class="trulii-cover__background" style="background-image:url(/css/img/about/values.jpg)">
+    <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/values.jpg')}})'}">
     </div>
   </div>
 </div>
@@ -163,7 +163,7 @@
         </ul>
       </blockquote>
       <div class="values-container">
-        <img src="/css/img/about/values.png" alt="" class="img-responsive center-block separate-above-more separate-below-less">
+        <img ng-src="{{about.getAmazonUrl('static/img/about/values.png')}}" alt="" class="img-responsive center-block separate-above-more separate-below-less">
         <p class="text-uppercase values-container__humility" ng-bind="::about.strings.CULTURE_VALUE_1">
         </p>
         <p class="text-uppercase values-container__clarity" ng-bind="::about.strings.CULTURE_VALUE_2">

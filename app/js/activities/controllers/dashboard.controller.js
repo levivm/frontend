@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDashboardCtrl', ActivityDashboardCtrl);
 
-    ActivityDashboardCtrl.$inject = ['$state', '$scope', 'Toast', 'ActivitySteps', 'activity', 'Analytics'];
+    ActivityDashboardCtrl.$inject = ['$state', '$scope', 'Toast', 'ActivitySteps', 'activity', 'Analytics', 'serverConf'];
 
-    function ActivityDashboardCtrl($state, $scope, Toast, ActivitySteps, activity, Analytics) {
+    function ActivityDashboardCtrl($state, $scope, Toast, ActivitySteps, activity, Analytics, serverConf) {
 
         var pc = this;
 
@@ -37,12 +37,17 @@
             toggleSidebar: toggleSidebar,
             isActive: isActive,
             clickItemDashboard:clickItemDashboard,
-            actionNavbarSecondary:actionNavbarSecondary
+            actionNavbarSecondary:actionNavbarSecondary,
+            getAmazonUrl: getAmazonUrl
         });
 
 
         activate();
-
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function toggleSidebar(){
             pc.showSidebar = !pc.showSidebar;
         }

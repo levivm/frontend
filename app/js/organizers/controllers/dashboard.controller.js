@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics'];
-    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics) {
+    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics', 'serverConf'];
+    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -22,12 +22,17 @@
             scroll: 0,
             showSidebar: false,
             toggleSidebar: toggleSidebar,
-            clicItemDash:clicItemDash
+            clicItemDash:clicItemDash,
+            getAmazonUrl: getAmazonUrl
         });
 
 
         _activate();
 
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function isActive(stateStr){
             return $state.includes(stateStr);
         }

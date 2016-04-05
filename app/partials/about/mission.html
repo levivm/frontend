@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="trulii-cover__background" style="background-image:url(/css/img/about/mission.jpg)">
+        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/mission.jpg')}})' }">
         </div>
     </div>
 </div>
@@ -29,7 +29,7 @@
           <p ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_2"></p>
 
           <p class="montserrat-bold" ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_3"></p>
-          <img src="/css/img/about/mission_2.jpg" alt=""
+          <img ng-src="{{about.getAmazonUrl('static/img/about/mission_2.jpg')}}" alt=""
               class="img-responsive separate-above-medium separate-below-medium">
 
           <p ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_4"></p>

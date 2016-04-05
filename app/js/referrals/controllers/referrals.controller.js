@@ -22,10 +22,15 @@
             showVideo: false,
             referrerUrl: referrerUrl,
             toggleVideoShow: toggleVideoShow,
-            postInvite: postInvite
+            postInvite: postInvite,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
         function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;

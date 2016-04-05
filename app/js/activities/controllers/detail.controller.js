@@ -74,7 +74,8 @@
             showRequirements: false,
             showExtra: false,
             shareSocialAnalytic:shareSocialAnalytic,
-            wishList:wishList
+            wishList:wishList,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
@@ -82,6 +83,10 @@
         // console.log('currentUser:', currentUser);
 
         //--------- Exposed Functions ---------//
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
         function previousGalleryPicture(){
             if(vm.currentGalleryPicture > 0){ vm.currentGalleryPicture--; }

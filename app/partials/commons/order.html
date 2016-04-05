@@ -5,7 +5,7 @@
                 <div>
                     <div class="row print-visible">
                         <div class="col-xs-5 separate-below">
-                            <img class="img-responsive" src="../../css/img/logo-yellow.png" alt="">
+                            <img class="img-responsive" ng-src="{{order.getAmazonUrl('static/img/logo-yellow.png')}}" alt="">
                         </div>
                     </div>
                     <div class="row order-detail">
@@ -62,7 +62,7 @@
                                 <div class="hidden-xs hidden-sm">
                                     <a class="btn btn-default btn-return btn-block btn-sm"
                                       ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
-                                        <img src="css/img/activity-enroll/navigation_back.png"
+                                        <img ng-src="{{order.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}"
                                             alt="{{ ::order.strings.ACTION_GO_BACK }}"
                                             class="img-responsive inline-block"/>
                                         <span ng-bind="::order.strings.ACTION_GO_BACK"></span>

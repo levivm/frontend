@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf'];
 
     function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, LocationManager, Referrals, Scroll, Analytics) {
+                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf) {
 
         var vm = this;
         var isValidDate = false;
@@ -78,6 +78,7 @@
             setForm: setForm,
             applyCoupon: applyCoupon,
             removeCoupon: removeCoupon,
+            getAmazonUrl: getAmazonUrl,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -114,6 +115,12 @@
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+
+
 
         /** PSE Payments Methods **/
 
