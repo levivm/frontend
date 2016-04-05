@@ -8,7 +8,7 @@
     ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'LocationManager', 'Toast', 'activity', 'calendar', 'organizerActivities',
                                                 'serverConf'];
 
-    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, Toast, activity, calendar, organizerActivities,serverConf) {
+    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, Toast, activity, calendar, organizerActivities, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -19,12 +19,17 @@
             orderId: $stateParams.order_id,
             showEmail: false,
             toggleEmailShow: toggleEmailShow,
-            shareEmailForm: shareEmailForm
+            shareEmailForm: shareEmailForm,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
         function shareEmailForm(){
             if(!vm.formData.emails){

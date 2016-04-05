@@ -100,10 +100,6 @@
                 COPY_HELP_TEXT_AUDIENCE: "¿A que tipo de personas va dirigido su actividad? "+  
                                          "¿Profesionales o público en general?",
 
-                
-
-
-
             });
         }
 
