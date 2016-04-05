@@ -1,6 +1,6 @@
 <div class="trulii-cover">
   <div class="trulii-cover__container">
-    <div class="trulii-cover__content">
+    <div class="trulii-cover__content separate-above-more">
       <div class="col-xs-12">
         <div class="row">
           <div class="col-xs-12 col-md-6 col-md-offset-3"><h1 class="text-center title">
@@ -24,6 +24,10 @@
     </div>
     <div class="trulii-cover__background"
       style="background-image:url(/css/img/organizer-landing/banners/banner.jpg)">
+
+      <section class="video" >
+        <video class="trulii-cover__background-video" src="videos/organizer1.webm" loop autoplay vi-screen></video>
+      </section>
     </div>
   </div>
 </div>
@@ -116,15 +120,15 @@
       <div class="row">
         <div class="col-xs-12 col-md-4 separate-below-mobile">
           <img src="/css/img/organizer-landing/how_it_works_3.png" alt="" class="img-responsive center-block">
-          <h4 class="text-center text-uppercase" ng-bind="::landing.strings.HOW_TEXT_1"></h4>
+          <h4 class="text-center " ng-bind="::landing.strings.HOW_TEXT_1"></h4>
         </div>
         <div class="col-xs-12 col-md-4 separate-below-mobile">
           <img src="/css/img/organizer-landing/how_it_works_2.png" alt="" class="img-responsive center-block">
-          <h4 class="text-center text-uppercase" ng-bind="::landing.strings.HOW_TEXT_2"></h4>
+          <h4 class="text-center " ng-bind="::landing.strings.HOW_TEXT_2"></h4>
         </div>
         <div class="col-xs-12 col-md-4 separate-below-mobile">
           <img src="/css/img/organizer-landing/how_it_works_1.png" alt="" class="img-responsive center-block">
-          <h4 class="text-center text-uppercase" ng-bind="::landing.strings.HOW_TEXT_3"></h4>
+          <h4 class="text-center " ng-bind="::landing.strings.HOW_TEXT_3"></h4>
         </div>
       </div>
     </div>
@@ -196,8 +200,10 @@
 
               <h3 class="text-center" ng-bind="::landing.strings.SIGN_UP_SUCCESS_TEXT_2"></h3>
             </div>
+            <div id="anchor"></div>
           </div>
           <div class="padding-more" ng-hide="landing.sent">
+
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <h1 class="text-center title">
                     <strong ng-bind="::landing.strings.SIGN_UP_TITLE"></strong>
@@ -270,5 +276,5 @@
         style="background-image:url(/css/img/organizer-landing/banners/form-banner.png)">
   </div>
 </div>
-<div id="anchor"></div>
+
 <trulii-footer></trulii-footer>
