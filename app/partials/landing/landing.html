@@ -26,8 +26,8 @@
     </div>
     <!--First section background-->
     <div class="trulii-cover__background" style="background-image:url({{::home.getAmazonUrl('static/img/banner_landing.jpg');}})">
-      <section class="video" ng-video>
-        <video class="trulii-cover__background-video" ng-model="home.coverVideo" autoplay vi-screen></video>
+      <section class="video" >
+        <video class="trulii-cover__background-video" src="videos/Banner_Home.webm" autoplay vi-screen loop></video>
       </section>
     </div>
   </div>
@@ -102,7 +102,7 @@
           <span class="btn btn-success btn-block btn-padding"
             ng-show="home.activities.length > 0" ng-click="home.viewMoreActivities()">
             <span >
-                <img src="/css/img/boton_explorar_blanco.png" alt="Explorar" class="separate-right-less">
+                <img src="/css/img/boton_explorar_blanco.png" width="24" height="24" alt="Explorar" class="separate-right-less">
             </span>
               <span ng-bind="::home.strings.ACTIVITIES_BUTTON_COPY"></span>
               <span ng-bind="'(' + home.activitiesCount + ')'"></span>

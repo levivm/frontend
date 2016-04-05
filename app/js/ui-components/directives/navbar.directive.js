@@ -71,7 +71,7 @@
                     scope.showCities=false;
                 }
                 function isLandingState(){
-                  return ($state.current.name==='home' && scope.scroll<640) ;
+                  return ($state.current.name==='home' && scope.scroll<100) ;
                 }
 
                 //---Exposed functions for send data to Google Analytics----//
