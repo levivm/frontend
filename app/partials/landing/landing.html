@@ -26,8 +26,8 @@
     </div>
     <!--First section background-->
     <div class="trulii-cover__background" style="background-image:url({{::home.getAmazonUrl('static/img/banner_landing.jpg');}})">
-      <section class="video" ng-video>
-        <video class="trulii-cover__background-video"  autoplay vi-screen loop>
+      <section class="video">
+        <video class="trulii-cover__background-video" ng-src="{{home.getAmazonVideoUrl('static/videos/home_banner.mp4')}}" autoplay vi-screen loop>
         </video>
       </section>
     </div>
@@ -143,7 +143,7 @@
 <!--Video container section-->
 <div class="absolute-container" ng-show="home.showVideo">
   <button class="pull-right absolute-container__close" ng-click="truliiVideo.stopVideo(); home.toggleVideoShow()">
-    <img class="img-responsive" ng-src="{{home.getAmazonUrl(static/img/activity-enroll/close.png)}}" alt=""/>
+    <img class="img-responsive" ng-src="{{home.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
   </button>
   <div class="col-xs-12 col-md-8">
     <div class="youtube-container separate-above separate-below">

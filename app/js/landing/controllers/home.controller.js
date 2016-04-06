@@ -13,8 +13,8 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$state', '$scope', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics'];
-    function HomeController($state, $scope, video, activities, generalInfo, LocationManager, serverConf, Analytics) {
+    HomeController.$inject = ['$state', '$scope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce'];
+    function HomeController($state, $scope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce) {
 
         var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
@@ -34,7 +34,8 @@
             organizerCategories: organizerCategories,
             searchCategory:searchCategory,
             coverVideo: {},
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            getAmazonVideoUrl:getAmazonVideoUrl
         });
 
         _activate();
@@ -44,7 +45,9 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-
+        function getAmazonVideoUrl(file){
+            return  $sce.trustAsResourceUrl( serverConf.s3URL + '/' +  file);
+        }
 
         function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
@@ -136,7 +139,6 @@
             _setCategories();
             loadActivities();
             _initScroll();
-            video.addSource('mp4', serverConf.s3URL + '/static/videos/home_banner.mp4');
             //Analytics.generalEvents.landing();
 
         }
