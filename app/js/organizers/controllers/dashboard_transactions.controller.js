@@ -79,7 +79,7 @@
         var sales = $filter('orderBy')(orders, 'id', true);
 
         //--------- Exposed Functions ---------//
-        
+
         function openDatePicker($event, date){
           console.log('openDatePicker');
           $event.preventDefault();
@@ -102,31 +102,31 @@
             vm.refundsFilter.from_date_opened = false;
           }
         }
-        
+
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_SALES:
-                
+
                   var params = {
                     page: vm.salesPaginationOpts.pageNumber,
                     page_size: vm.salesPaginationOpts.itemsPerPage
                   };
-                  
+
                   if(vm.salesFilter.activity)
                     params.activity = vm.salesFilter.activity;
-                    
+
                   if(vm.salesFilter.from_date)
                     params.from_date = new Date(vm.salesFilter.from_date).getTime();
-                    
+
                   if(vm.salesFilter.until_date)
                     params.until_date = new Date(vm.salesFilter.until_date).getTime();
-                    
+
                   if(vm.salesFilter.status)
                     params.status = vm.salesFilter.status;
-                    
+
                   if(vm.salesFilter.query)
                     params.id = vm.salesFilter.query;
-                    
+
                   $http.get(api.orders(organizer.id),
                       {params: params})
                       .then(function(response){
@@ -136,28 +136,28 @@
                       vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
                     });
                   break;
-                    
+
                 case vm.TYPE_REFUNDS:
                   var params = {
                     page: vm.refundsPaginationOpts.pageNumber,
                     page_size: vm.refundsPaginationOpts.itemsPerPage
                   };
-                  
+
                   if(vm.refundsFilter.activity)
                     params.activity = vm.refundsFilter.activity;
-                    
+
                   if(vm.refundsFilter.from_date)
                     params.from_date = new Date(vm.refundsFilter.from_date).getTime();
-                    
+
                   if(vm.refundsFilter.until_date)
                     params.until_date = new Date(vm.refundsFilter.until_date).getTime();
-                    
+
                   if(vm.refundsFilter.status)
                     params.status = vm.refundsFilter.status;
-                    
+
                   if(vm.refundsFilter.query)
                     params.id = vm.refundsFilter.query;
-                    
+
                   $http.get(api.refunds(organizer.id),
                       {params: params})
                       .then(function(response){
@@ -201,7 +201,7 @@
                 COPY_NOT_AVAILABLE : "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE : "Fecha de inicio:",
-                COPY_SEARCH_ORDERS_HELPER : "Número de orden",
+                COPY_SEARCH_ORDERS_HELPER : "Nro. orden",
                 COPY_NO_ORDERS: "Aún no tienes ordenes en tu historial de Ventas",
                 COPY_NO_REIMBURSEMENTS: "Aún no tienes reembolsos en tu historial de Ventas",
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de venta restando la comisión de Trulii, consulte el detalle "+

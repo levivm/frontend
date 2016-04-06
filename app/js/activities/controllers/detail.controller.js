@@ -83,7 +83,7 @@
         // console.log('currentUser:', currentUser);
 
         //--------- Exposed Functions ---------//
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
