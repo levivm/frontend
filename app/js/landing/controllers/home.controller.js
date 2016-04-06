@@ -13,8 +13,9 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$state', '$scope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce'];
-    function HomeController($state, $scope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce) {
+    HomeController.$inject = ['Elevator', '$state', '$scope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce', '$stateParams'];
+    function HomeController(Elevator, $state, $scope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce, $stateParams) {
+
 
         var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
@@ -133,12 +134,22 @@
               }
             );
         }
+        function _fromBurgerMenu(){
+          angular.element(document).ready(function () {
+              if ($stateParams.from_burger){
+                  setTimeout(function(){ Elevator.toElement('anchor-how'); }, 1000);
+                  $stateParams.from_burger=null;
+              }
+           });
+
+        }
 
         function _activate(){
             _setStrings();
             _setCategories();
             loadActivities();
             _initScroll();
+            _fromBurgerMenu();
             //Analytics.generalEvents.landing();
 
         }

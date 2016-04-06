@@ -15,9 +15,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$sce'];
 
-    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $sce) {
+    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$sce', '$stateParams'];
+    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $sce, $stateParams) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -137,9 +137,17 @@
                 COPY_EMPTY_FORM: "Por favor llene el formulario de registro"
             });
         }
+        function _fromBurgerMenu(){
 
+          if ($stateParams.from_burger){
+              setTimeout(function(){ Elevator.toElement('anchor-how'); }, 1000);
+              $stateParams.from_burger=null;
+          }
+
+        }
         function _activate() {
             _setStrings();
+            _fromBurgerMenu();
         }
     }
 })();

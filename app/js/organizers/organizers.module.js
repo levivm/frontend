@@ -39,6 +39,9 @@
                 url:'/organizers/landing/',
                 controller: 'OrganizerLandingCtrl as landing',
                 templateUrl: 'partials/organizers/landing.html',
+                params: {
+                  from_burger: null
+                },
                 resolve:{
                     cities: getAvailableCities
                 }
