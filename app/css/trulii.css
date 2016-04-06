@@ -12307,7 +12307,7 @@ hr.on-light {
 }
 .sidebar-popup .sidebar-content .sidebar-header {
   height: 250px;
-  background-image: url('/css/img/activity-enroll/banner.png');
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/activity-enroll/banner.png');
   position: relative;
   background-size: cover;
   color: white;
@@ -12670,7 +12670,7 @@ hr.on-light {
   background-size: 15px auto !important;
   background-position: 94.75% 50%;
   background-repeat: no-repeat;
-  background-image: url(/css/img/about/arrow.png) !important;
+  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
 }
 .dashboard-filters .input-group {
   width: 100%;
@@ -12691,7 +12691,7 @@ hr.on-light {
   background-size: 15px auto !important;
   background-position: 93% 50%;
   background-repeat: no-repeat;
-  background-image: url(/css/img/about/arrow.png) !important;
+  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
   height: 30px !important;
 }
 .dashboard-filters .filter-group {
@@ -14132,7 +14132,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .navbar__logo {
-  background: url('img/logo-trulii.png') no-repeat;
+  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-trulii.png') no-repeat;
   height: 70px;
   width: 9em;
   display: inline-block;
@@ -14145,7 +14145,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     width: 7em;
     background-size: contain;
     position: relative;
-    background-image: url('img/logo-yellow.png');
+    background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-yellow.png');
     margin: 7px auto 0 !important;
     height: 50px;
   }
@@ -14793,7 +14793,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     border: 1px solid #e3e3e3;
     border-radius: 3px;
     -webkit-appearance: none;
-    background-image: url(img/search/order.png);
+    background-image: url(@{s3url}/static/img/search/order.png);
     background-size: auto 85%;
     background-position: center center;
   }
@@ -14936,7 +14936,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-size: 15px auto;
   background-position: 94.75% 50%;
   background-repeat: no-repeat;
-  background-image: url(/css/img/about/arrow.png) !important;
+  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
   font-weight: 500;
   text-transform: uppercase;
   color: #999999;
@@ -15038,7 +15038,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     background-position: 95% 50%;
     background-repeat: no-repeat;
     padding-left: 10px;
-    background-image: url(/css/img/about/arrow.png) !important;
+    background-image: url(@{s3url}/static/img/about/arrow.png) !important;
     font-size: 0.75em;
   }
   .filters-container .search-level-select:focus {
@@ -15091,7 +15091,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     background-color: #38dbc8;
     color: white;
     border-radius: 4px;
-    background-image: url(/css/img/about/arrow-white.png) !important;
+    background-image: url(@{s3url}/static/img/about/arrow-white.png) !important;
     padding: 0;
   }
 }
@@ -15128,7 +15128,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-size: 15px auto;
   background-position: 93% 50%;
   background-repeat: no-repeat;
-  background-image: url(/css/img/about/arrow.png) !important;
+  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
   height: 75px !important;
 }
 @media screen and (max-width: 768px) {
@@ -15246,7 +15246,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-size: 15px auto;
   background-position: 93% 50%;
   background-repeat: no-repeat;
-  background-image: url(/css/img/about/arrow.png) !important;
+  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
 }
 .search-bar__navbar .select-city select,
 .search-bar__navbar .select-city select:focus {
@@ -16247,7 +16247,7 @@ tags-input input {
   border-bottom: 10px solid #FCAB54;
 }
 .trulii-inverse-med {
-  background: url('img/trulii-inverse-med.png') no-repeat center;
+  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/trulii-inverse-med.png') no-repeat center;
   height: 10em;
   width: 100%;
   margin: 2em 0;
@@ -16307,7 +16307,7 @@ tags-input input {
 .btn-share-email {
   display: inline-block;
   cursor: pointer;
-  margin: 0 0.5em;
+  margin: 0 0.2em;
   border-radius: 100%;
   border: 4px solid;
   width: 35px;
@@ -18397,7 +18397,7 @@ button.toast-close-button {
   background-size: 15px auto;
   background-position: 90% 50%;
   background-repeat: no-repeat;
-  background-image: url(/css/img/about/arrow.png) !important;
+  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
   padding: 0 2em;
   display: inline-block;
   float: left;
@@ -18735,7 +18735,7 @@ button.toast-close-button {
 .trulii-cover-small__background.background-dots:after,
 .trulii-cover-medium__background.background-dots:after,
 .trulii-cover-regular__background.background-dots:after {
-  background-image: url('/css/img/dots.png');
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/dots.png');
   background-color: transparent;
   background-attachment: initial;
 }
@@ -19073,7 +19073,7 @@ blockquote {
   word-break: normal;
   max-height: 3em;
   color: #3a3d3f;
-  width: 90%;
+  width: 85%;
 }
 .activity-card__body__owner-name {
   height: 2em;
@@ -19105,10 +19105,10 @@ blockquote {
 }
 .activity-card__owner-picture {
   border-radius: 50%;
-  width: 2.8em;
-  height: 2.8em;
+  width: 3em;
+  height: 3em;
   position: absolute;
-  bottom: -1.4em;
+  bottom: -1.5em;
   right: 1rem;
 }
 .activity-card__bottom {
@@ -19591,6 +19591,7 @@ blockquote {
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
   font-size: 1.1em;
   color: #999999;
+  margin: 0 0.3em;
 }
 .section .content {
   margin-top: 0.6em;
@@ -21676,7 +21677,7 @@ blockquote {
   height: 32em;
   padding: 6em;
   z-index: 5;
-  background: url('/css/img/activity-enroll/background_success_share.png') 50% 50%;
+  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/activity-enroll/background_success_share.png') 50% 50%;
   background-size: cover;
 }
 @media screen and (max-width: 768px) {
@@ -21925,7 +21926,7 @@ blockquote {
 }
 .profile-cover:after {
   width: 100vw;
-  background-image: url('/css/img/organizer-profile/organizer_profile_bg.png');
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/organizer-profile/organizer_profile_bg.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;

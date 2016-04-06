@@ -15,7 +15,7 @@
         <div class="content-message">
             <div class="row">
                 <div class="col-md-1">
-                    <img class="user-picture" ng-if="detail.message.organizer.photo === null" src="css/img/default_profile_pic.jpg" alt="">
+                    <img class="user-picture" ng-if="detail.message.organizer.photo === null" ng-src="{{dash.getAmazonUrl('static/img/default_profile_pic.jpg')}}" alt="">
                     <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">
                 </div>
                 <div class="col-md-8 text-line-more-xl">

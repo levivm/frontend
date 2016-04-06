@@ -15,9 +15,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics'];
+    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$sce'];
 
-    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics) {
+    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $sce) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -33,7 +33,8 @@
             isSigningUp: false,
             requestSignup : requestSignup,
             goToForm: goToForm,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            getAmazonVideoUrl: getAmazonVideoUrl
         });
 
         _activate();
@@ -41,7 +42,10 @@
         //--------- Exposed Functions ---------//
 
         function getAmazonUrl(file){
-            return  serverConf.s3URL + file;
+            return  serverConf.s3URL + '/' +  file;
+        }
+        function getAmazonVideoUrl(file){
+            return  $sce.trustAsResourceUrl( serverConf.s3URL + '/' +  file);
         }
 
         function requestSignup() {

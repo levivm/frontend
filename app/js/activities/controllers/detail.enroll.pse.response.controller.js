@@ -17,9 +17,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityEnrollPSEResponseController', ActivityEnrollPSEResponseController);
 
-    ActivityEnrollPSEResponseController.$inject = ['$state', '$stateParams', 'activity', 'calendar', 'Payments'];
+    ActivityEnrollPSEResponseController.$inject = ['$state', '$stateParams', 'activity', 'calendar', 'Payments', 'serverConf'];
 
-    function ActivityEnrollPSEResponseController($state, $stateParams, activity, calendar, Payments) {
+    function ActivityEnrollPSEResponseController($state, $stateParams, activity, calendar, Payments, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -28,13 +28,18 @@
             organizer : activity.organizer,
             organizerActivities : [],
             retryPayment : retryPayment,
-            finishPayment : finishPayment
+            finishPayment : finishPayment,
+            getAmazonUrl: getAmazonUrl
         });
 
         console.log("Parent params",$state.params.pseResponseData);
         console.log("Parent params",$state);
         _activate();
-
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function retryPayment(){
             $state.go('^',{ activity_id: vm.activity.id, calendar_id: calendar.id },{ reload: true});
         }

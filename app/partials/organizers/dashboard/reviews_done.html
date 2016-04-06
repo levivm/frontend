@@ -2,7 +2,7 @@
     <div class="col-xs-12 col-md-11 col-md-offset-1">
         <div class="row">
             <div class="col-xs-12">
-                <p class="text-center separate-vertical" ng-bind="::reviews.strings.COPY_SEARCH_REVIEWS"></p>
+                <p class="text-center separate-above-less" ng-bind="::reviews.strings.COPY_SEARCH_REVIEWS"></p>
             </div>
             <div class="col-xs-12" ng-if="reviews.read_reviews.length > 0">
                 <div class="form-group">
@@ -30,7 +30,7 @@
                   data-items-per-page="reviews.readPaginationOpts.itemsPerPage"></pagination>
             </div>
             <div class="col-xs-8 col-xs-offset-2 text-center" ng-if="reviews.read_reviews.length <= 0">
-                <img src="css/img/organizer_dashboard_activities_empty.png"
+                <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
                      alt="{{reviews.strings.COPY_EMPTY_READ}}"
                      class="img-responsive center-block"/>
                 <p class="separate-below separate-above font-family-sans-alt text-muted"

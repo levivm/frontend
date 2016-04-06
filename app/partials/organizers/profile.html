@@ -18,7 +18,7 @@
                 </div>
                 <div class="row">
                     <div class="profile-cover__verified">
-                        <img src="/css/img/verified_organizer.png" class="img-responsive img-circle pull-left"/>
+                        <img ng-src="{{profile.getAmazonUrl('static/img/verified_organizer.png')}}" class="img-responsive img-circle pull-left"/>
                         <p class="pull-left">
                             <strong><span ng-bind="::profile.strings.COPY_VERIFIED_1"></span><br/><span ng-bind="::profile.strings.COPY_VERIFIED_2"></span></strong>
                         </p>
@@ -74,7 +74,7 @@
             </ui-gmap-google-map>
         </div>
         <div class="address">
-            <img src="/css/img/activity-detail/map_location.png" alt=""/>
+            <img ng-src="{{profile.getAmazonUrl('static/img/activity-detail/map_location.png')}}" alt=""/>
             <span ng-bind="profile.organizer.location.address"></span><span ng-if="profile.organizer.location.city.name">.</span>
             <span ng-bind="profile.organizer.location.city.name"></span>
         </div>
@@ -95,7 +95,7 @@
                     </h1>
                 </div>
                 <div class="ratings">
-                    <img src="/css/img/activity-detail/rating_people.png" alt="Ratings">
+                    <img ng-src="{{profile.getAmazonUrl('static/img/activity-detail/rating_people.png')}}" alt="Ratings">
                     <span ng-bind="profile.reviewObjects.length"></span><span ng-bind="::profile.strings.LABEL_TOTAL"></span>
                 </div>
             </div>
