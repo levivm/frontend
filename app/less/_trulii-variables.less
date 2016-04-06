@@ -2,6 +2,12 @@
 // Variables
 // --------------------------------------------------
 
+
+// == URL
+
+@s3url: "https://s3-us-west-2.amazonaws.com/trulii-dev";
+
+
 //== Colors
 //
 //## Gray and brand colors for use across Bootstrap.
@@ -1002,9 +1008,9 @@
 
 // ***** Trulii Variables ******
 
-@res-trulii-logo: 'img/logo-trulii.png';
-@res-trulii-logo-tiny: 'img/logo-tiny.png';
-@res-trulii-logo-inverse-med: 'img/trulii-inverse-med.png';
+@res-trulii-logo: '@{s3url}/static/img/logo-trulii.png';
+@res-trulii-logo-tiny: '@{s3url}/static/img/logo-tiny.png';
+@res-trulii-logo-inverse-med: '@{s3url}/static/img/trulii-inverse-med.png';
 
 @color-delimeter-light: #f0f0f0;
 @color-delimeter-dark: darken(@color-delimeter-light, 10%);

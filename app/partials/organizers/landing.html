@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="trulii-cover__background"
-      style="background-image:url(/css/img/organizer-landing/banners/banner.jpg)">
+      ng-style="{ 'background-image' : 'url({{landing.getAmazonUrl('static/img/organizer-landing/banners/banner.jpg')}}' }">
     </div>
   </div>
 </div>
@@ -46,7 +46,7 @@
         <div class="col-xs-12 col-md-6 separate-below-mobile">
           <div class="row">
             <div class="col-xs-12 col-md-3 col-md-offset-2">
-              <img src="/css/img/organizer-landing/heavy_lifting.png" class="img-responsive center-block"
+              <img ng-src="{{landing.getAmazonUrl('static/img/organizer-landing/heavy_lifting.png')}}" class="img-responsive center-block"
                 alt=""/>
             </div>
             <div class="col-xs-12 col-md-7">
@@ -60,7 +60,7 @@
         <div class="col-xs-12 col-md-6 separate-below-mobile">
           <div class="row">
             <div class="col-xs-12 col-md-3">
-              <img src="/css/img/organizer-landing/visibility.png" class="img-responsive center-block"
+              <img ng-src="{{landing.getAmazonUrl('static/img/organizer-landing/visibility.png')}}" class="img-responsive center-block"
                 alt=""/>
             </div>
             <div class="col-xs-12 col-md-7">
@@ -76,7 +76,7 @@
         <div class="col-xs-12 col-md-6 separate-below-mobile">
           <div class="row">
             <div class="col-xs-12 col-md-3 col-md-offset-2">
-              <img src="/css/img/organizer-landing/easy.png" class="img-responsive center-block" alt=""/>
+              <img ng-src="{{landing.getAmazonUrl('static/img/organizer-landing/easy.png')}}" class="img-responsive center-block" alt=""/>
             </div>
             <div class="col-xs-12 col-md-7">
               <h4 class="text-gray-green text-uppercase text-center-mobile">
@@ -89,7 +89,7 @@
         <div class="col-xs-12 col-md-6 separate-below-mobile">
           <div class="row">
             <div class="col-xs-12 col-md-3">
-              <img src="/css/img/organizer-landing/trust.png" class="img-responsive center-block" alt=""/>
+              <img ng-src="{{landing.getAmazonUrl('static/img/organizer-landing/trust.png')}}" class="img-responsive center-block" alt=""/>
             </div>
             <div class="col-xs-12 col-md-7">
               <h4 class="text-gray-green text-uppercase text-center-mobile">
@@ -115,15 +115,15 @@
     <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 separate-below-more">
       <div class="row">
         <div class="col-xs-12 col-md-4 separate-below-mobile">
-          <img src="/css/img/organizer-landing/how_it_works_3.png" alt="" class="img-responsive center-block">
+          <img ng-src="{{landing.getAmazonUrl('static/img/organizer-landing/how_it_works_3.png')}}" alt="" class="img-responsive center-block">
           <h4 class="text-center text-uppercase" ng-bind="::landing.strings.HOW_TEXT_1"></h4>
         </div>
         <div class="col-xs-12 col-md-4 separate-below-mobile">
-          <img src="/css/img/organizer-landing/how_it_works_2.png" alt="" class="img-responsive center-block">
+          <img ng-src="{{landing.getAmazonUrl('static/img/organizer-landing/how_it_works_2.png')}}" alt="" class="img-responsive center-block">
           <h4 class="text-center text-uppercase" ng-bind="::landing.strings.HOW_TEXT_2"></h4>
         </div>
         <div class="col-xs-12 col-md-4 separate-below-mobile">
-          <img src="/css/img/organizer-landing/how_it_works_1.png" alt="" class="img-responsive center-block">
+          <img ng-src="{{landing.getAmazonUrl('static/img/organizer-landing/how_it_works_1.png')}}" alt="" class="img-responsive center-block">
           <h4 class="text-center text-uppercase" ng-bind="::landing.strings.HOW_TEXT_3"></h4>
         </div>
       </div>
@@ -142,7 +142,7 @@
       <div class="circular-image-container">
         <div class="circular-image-container__veil"></div>
         <div class="circular-image-container__background"
-          style="background-image:url(/css/img/organizer-landing/monetization.jpg)"></div>
+          ng-style="{ 'background-image' : 'url({{landing.getAmazonUrl('static/img/organizer-landing/monetization.jpg')}})' }"></div>
         <h2 class="circular-image-container__title" ng-bind="::landing.strings.MORE_INFO_MONETIZATION_TITLE"></h2>
       </div>
       <p class="montserrat-light text-center separate-above text-lg-2" ng-bind="::landing.strings.MORE_INFO_MONETIZATION_TEXT"></p>
@@ -151,7 +151,7 @@
       <div class="circular-image-container">
         <div class="circular-image-container__veil"></div>
         <div class="circular-image-container__background"
-          style="background-image:url(/css/img/organizer-landing/tips.jpg)"></div>
+          ng-style="{ 'background-image' : 'url({{landing.getAmazonUrl('static/img/organizer-landing/tips.jpg')}})' }"></div>
         <h2 class="circular-image-container__title" ng-bind="::landing.strings.MORE_INFO_TIPS_TITLE"></h2>
       </div>
       <p class="montserrat-light text-center separate-above text-lg-2">
@@ -163,7 +163,7 @@
       <div class="circular-image-container">
         <div class="circular-image-container__veil"></div>
         <div class="circular-image-container__background"
-          style="background-image:url(/css/img/organizer-landing/faq.jpg)"></div>
+          ng-style="{ 'background-image' : 'url({{landing.getAmazonUrl('static/img/organizer-landing/faq.jpg')}})' }"></div>
         <h2 class="circular-image-container__title" ng-bind="::landing.strings.MORE_INFO_FAQ_TITLE"></h2>
       </div>
       <p class="montserrat-light text-center separate-above text-lg-2">
@@ -185,7 +185,7 @@
         <div class="row">
           <div class="col-xs-12 col-sm-10 col-sm-offset-1">
             <div class="padding-more fade-hide" ng-hide="!landing.sent">
-              <img src="/css/img/organizer-landing/cool.png" alt=""
+              <img ng-src="{{landing.getAmazonUrl('static/img/organizer-landing/cool.png')}}" alt=""
                 class="img-responsive center-block separate-above-more">
 
               <h1 class="text-center separate-above">
@@ -197,7 +197,7 @@
               <h3 class="text-center" ng-bind="::landing.strings.SIGN_UP_SUCCESS_TEXT_2"></h3>
             </div>
           </div>
-          <div class="padding-more" ng-hide="landing.sent">
+          <div class="padding-more" ng-hide="landing.sent" id="anchor">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
                 <h1 class="text-center title">
                     <strong ng-bind="::landing.strings.SIGN_UP_TITLE"></strong>
@@ -267,8 +267,7 @@
     </div>
   </div>
   <div class="trulii-cover__background"
-        style="background-image:url(/css/img/organizer-landing/banners/form-banner.png)">
+        ng-style="{ 'background-image' : 'url({{landing.getAmazonUrl('static/img/organizer-landing/banners/form-banner.png')}})' }">
   </div>
 </div>
-<div id="anchor"></div>
 <trulii-footer></trulii-footer>

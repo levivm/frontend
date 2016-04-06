@@ -11,9 +11,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityOrderCtrl', ActivityOrderCtrl);
 
-    ActivityOrderCtrl.$inject = ['$modal', '$window', '$stateParams','Toast', 'organizer', 'order'];
+    ActivityOrderCtrl.$inject = ['$modal', '$window', '$stateParams','Toast', 'organizer', 'order', 'serverConf'];
 
-    function ActivityOrderCtrl($modal, $window, $stateParams, Toast, organizer, order) {
+    function ActivityOrderCtrl($modal, $window, $stateParams, Toast, organizer, order, serverConf) {
         var vm = this;
         angular.extend(vm,{
             order: order,
@@ -23,12 +23,17 @@
             requestingOrderRefund: false,
             requestAssistantRefund: requestAssistantRefund,
             requestOrderRefund: requestOrderRefund,
-            printOrder: printOrder
+            printOrder: printOrder,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
         function printOrder(){
             $window.print();

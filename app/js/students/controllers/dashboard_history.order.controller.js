@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryOrderCtrl', StudentHistoryOrderCtrl);
 
-    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order', 'Analytics'];
+    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order', 'Analytics', 'serverConf'];
 
-    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order, Analytics) {
+    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm,{
@@ -33,13 +33,17 @@
                 maxPagesSize:10,
                 pageNumber: 1
             },
-            updateByQuery:updateByQuery
+            updateByQuery:updateByQuery,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
         
         function updateByQuery(type){
             switch(type){

@@ -17,7 +17,7 @@
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REMEMBER"></h4>
           <div class="items-container">
             <div class="item">
-              <img class="item-img" src="css/img/activity-enroll/remember_start.png"
+              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_start.png')}}"
                 alt="{{::success.strings.LABEL_START_DATE}}"/>
               <div class="item-text">
                 <div class="item-title text-spaced text-uppercase"
@@ -31,7 +31,7 @@
               </div>
             </div>
             <div class="item">
-              <img class="item-img" src="css/img/activity-enroll/remember_location.png"
+              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_location.png')}}"
                 alt="{{::success.strings.LABEL_LOCATION}}"/>
               <div class="item-text">
                 <div class="item-title text-spaced text-uppercase" ng-bind="::success.strings.LABEL_LOCATION"></div>
@@ -43,7 +43,7 @@
               </div>
             </div>
             <div class="item">
-              <img class="item-img" src="css/img/activity-enroll/remember_doubts.png" alt="Doubts"/>
+              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_doubts.png')}}" alt="Doubts"/>
               <div class="item-text">
                 <div class="item-title text-spaced text-uppercase" ng-bind="success.strings.LABEL_QUESTIONS"></div>
                 <div class="item-copy" ng-bind="success.strings.LABEL_ANY_DOUBT"></div>
@@ -86,7 +86,8 @@
             socialshare-caption="{{::success.social.FACEBOOK_SHARE_CAPTION}}"
             socialshare-description="{{::success.social.FACEBOOK_SHARE_DESCRIPTION}}"
             socialshare-url="{{::success.social.FACEBOOK_SHARE_URL}}">
-            <img src="css/img/activity-enroll/share_facebook.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_facebook.png')}}"
+              alt="{{::success.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
           </a>
 
           <a href="#"
@@ -96,11 +97,13 @@
             socialshare-text="{{::success.social.TWITTER_SHARE_TEXT}}"
             socialshare-hashtags="{{::success.social.TWITTER_SHARE_HASHTAGS}}"
             socialshare-url="{{::success.social.TWITTER_SHARE_URL}}">
-            <img src="css/img/activity-enroll/share_twitter.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_twitter.png')}}"
+              alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
           </a>
           <a href="#"
             ng-click="success.toggleEmailShow()">
-            <img src="css/img/activity-enroll/share_email.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_email.png')}}"
+              alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
           </a>
         </div>
       </div>
@@ -124,7 +127,8 @@
       <div class="row navigation-container container-gray-light">
         <div class="col-xs-12 col-md-6">
           <a class="btn btn-link" ui-sref="activities-detail({activity_id: success.activity.id})">
-            <img src="css/img/activity-enroll/navigation_back.png" alt="{{ ::success.strings.ACTION_GO_BACK }}"
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}"
+              alt="{{ ::success.strings.ACTION_GO_BACK }}"
               class="img-responsive inline-block"/>
             <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_BACK"></span>
           </a>
@@ -132,7 +136,8 @@
         <div class="col-xs-12 col-md-6">
           <a class="btn btn-link pull-right" ui-sref="student-dashboard.activities">
             <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_TO_ACTIVITIES"></span>
-            <img src="css/img/activity-enroll/navigation_go.png" alt="{{ ::success.strings.ACTION_GO_TO_ACTIVITIES }}"
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/navigation_go.png')}}"
+              alt="{{ ::success.strings.ACTION_GO_TO_ACTIVITIES }}"
               class="img-responsive inline-block"/>
           </a>
         </div>
@@ -145,7 +150,7 @@
 
 <div class="absolute-container" ng-show="success.showEmail">
   <button class="pull-right absolute-container__close" ng-click="success.toggleEmailShow()">
-    <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+    <img class="img-responsive" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
   </button>
   <div class="col-xs-12 col-md-7">
     <div class="modal-content modal-email">

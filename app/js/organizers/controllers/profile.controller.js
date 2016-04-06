@@ -6,10 +6,10 @@
         .controller('OrganizerProfileController', OrganizerProfileController);
 
     OrganizerProfileController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'LocationManager', 'organizer', 'activities'
-        , 'ActivitiesManager', 'reviews'];
+        , 'ActivitiesManager', 'reviews', 'serverConf'];
 
     function OrganizerProfileController($state, $stateParams, uiGmapGoogleMapApi, LocationManager, organizer, activities
-        , ActivitiesManager, reviews) {
+        , ActivitiesManager, reviews, serverConf) {
 
         var REVIEW_STEP = 3;
         var visibleReviewListSize = REVIEW_STEP;
@@ -35,13 +35,18 @@
             totalReviews: 0,
             hasMoreReviews: true,
             showMoreReviews: showMoreReviews,
-            pageChange:pageChange
+            pageChange:pageChange,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Functions Implementation ---------//
-
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function pageChange(){
           ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', vm.paginationOpts.pageNumber,  vm.paginationOpts.itemsPerPage)
           .then(function (response) {

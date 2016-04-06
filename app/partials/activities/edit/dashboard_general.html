@@ -10,7 +10,7 @@
             </div>
             <input id="activity_title" class="form-control input-lg text-center text-capi" name="title"
               placeholder="Ej. Curso de Repostería"
-              ng-model='vm.activity_title' trulii-input-autofocus="{{!vm.creating}}"/>
+              ng-model='vm.activity_title'/>
             <button type="button" class="separate-above-medium btn btn-success btn-lg btn-block"
                   ng-click="vm.checkValidTitle()" ng-bind="::vm.strings.ACTION_CONTINUE"></button>
           </div>
@@ -18,7 +18,7 @@
       </div>
     </div>
     <!--First section background-->
-    <div class="trulii-cover__background" style="background-image:url(/css/img/creating.jpg)">
+    <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{pc.getAmazonUrl('static/img/creating.jpg')}})' }">
     </div>
   </div>
 </div>

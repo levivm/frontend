@@ -31,7 +31,7 @@
                   data-items-per-page="reviews.unreadPaginationOpts.itemsPerPage"></pagination>
             </div>
             <div class="col-xs-8 col-xs-offset-2 text-center"  ng-if="reviews.unread_reviews.length <= 0">
-                <img src="css/img/organizer_dashboard_activities_empty.png"
+                <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
                      alt="{{reviews.strings.COPY_EMPTY_UNREAD}}"
                      class="img-responsive center-block"/>
                 <p class="separate-below separate-above font-family-sans-alt text-muted"
