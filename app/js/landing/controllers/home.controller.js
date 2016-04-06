@@ -13,8 +13,8 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$state', '$scope', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics'];
-    function HomeController($state, $scope, video, activities, generalInfo, LocationManager, serverConf, Analytics) {
+    HomeController.$inject = ['$state', '$scope', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', 'Elevator', '$stateParams'];
+    function HomeController($state, $scope, video, activities, generalInfo, LocationManager, serverConf, Analytics, Elevator, $stateParams) {
 
         var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
@@ -130,12 +130,21 @@
               }
             );
         }
+        function _fromBurgerMenu(){
+
+          if ($stateParams.from_burger){
+              setTimeout(function(){ Elevator.toElement('anchor-how'); }, 500);
+              $stateParams.from_burger=null;
+          }
+
+        }
 
         function _activate(){
             _setStrings();
             _setCategories();
             loadActivities();
             _initScroll();
+            _fromBurgerMenu();
             video.addSource('mp4', serverConf.s3URL + '/static/videos/home_banner.mp4');
             //Analytics.generalEvents.landing();
 

@@ -45,6 +45,9 @@
                 url:'/',
                 controller:'HomeController as home',
                 templateUrl: 'partials/landing/landing.html',
+                params: {
+                  from_burger: null
+                },
                 resolve: {
                      activities: getRecommendedActivities,
                      generalInfo: getPresaveActivityInfo

@@ -247,7 +247,7 @@
                                 <p ng-bind="::strings.LABEL_ORGANIZER"></p>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ui-sref="organizer-landing({from_burger:true})" ng-click="toggleBurger()"
                                            ng-bind="::strings.LABEL_ORGANIZER_HOW"></a>
                                     </li>
                                     <li>
@@ -262,7 +262,7 @@
                                 <p ng-bind="::strings.LABEL_STUDENT"></p>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ui-sref="home({from_burger:true})"ng-click="toggleBurger()"
                                            ng-bind="::strings.LABEL_STUDENT_HOW"></a>
                                     </li>
                                     <li>
