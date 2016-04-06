@@ -140,7 +140,7 @@
         function _fromBurgerMenu(){
 
           if ($stateParams.from_burger){
-              setTimeout(function(){ Elevator.toElement('anchor-how'); }, 500);
+              setTimeout(function(){ Elevator.toElement('anchor-how'); }, 1000);
               $stateParams.from_burger=null;
           }
 
