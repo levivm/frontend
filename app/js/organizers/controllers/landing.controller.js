@@ -15,9 +15,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$stateParams'];
 
-    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $stateParams) {
+    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$sce', '$stateParams'];
+    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $sce, $stateParams) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -33,7 +33,8 @@
             isSigningUp: false,
             requestSignup : requestSignup,
             goToForm: goToForm,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            getAmazonVideoUrl: getAmazonVideoUrl
         });
 
         _activate();
@@ -42,6 +43,9 @@
 
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
+        }
+        function getAmazonVideoUrl(file){
+            return  $sce.trustAsResourceUrl( serverConf.s3URL + '/' +  file);
         }
 
         function requestSignup() {
@@ -134,7 +138,7 @@
             });
         }
         function _fromBurgerMenu(){
-          
+
           if ($stateParams.from_burger){
               setTimeout(function(){ Elevator.toElement('anchor-how'); }, 500);
               $stateParams.from_burger=null;

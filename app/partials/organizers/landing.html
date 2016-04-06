@@ -1,6 +1,6 @@
 <div class="trulii-cover">
   <div class="trulii-cover__container">
-    <div class="trulii-cover__content">
+    <div class="trulii-cover__content separate-above-more">
       <div class="col-xs-12">
         <div class="row">
           <div class="col-xs-12 col-md-6 col-md-offset-3"><h1 class="text-center title">
@@ -23,7 +23,12 @@
       </div>
     </div>
     <div class="trulii-cover__background"
-      ng-style="{ 'background-image' : 'url({{landing.getAmazonUrl('static/img/organizer-landing/banners/banner.jpg')}}' }">
+        ng-style="{ 'background-image' : 'url({{landing.getAmazonUrl('static/img/organizer-landing/banners/banner.jpg')}}' }">
+
+      <section class="video">
+        <video class="trulii-cover__background-video"  ng-src="{{landing.getAmazonVideoUrl('static/videos/organizador_banner.mp4')}}" autoplay vi-screen loop>
+        </video>
+      </section>
     </div>
   </div>
 </div>
@@ -196,6 +201,7 @@
 
               <h3 class="text-center" ng-bind="::landing.strings.SIGN_UP_SUCCESS_TEXT_2"></h3>
             </div>
+            <div id="anchor"></div>
           </div>
           <div class="padding-more" ng-hide="landing.sent" id="anchor">
             <div class="col-xs-12 col-sm-10 col-sm-offset-1">
