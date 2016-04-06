@@ -14,11 +14,11 @@
 
     SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
             , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
-            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics'];
+            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf'];
 
     function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state
             , $window, $stateParams , generalInfo, ActivitiesManager, LocationManager, SearchManager
-            , datepickerConfig, datepickerPopupConfig, Analytics) {
+            , datepickerConfig, datepickerPopupConfig, Analytics, serverConf) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var transitionOptions = {location : true, inherit : false, reload : false};
@@ -81,13 +81,17 @@
             search: search,
             collapsedFilters: false,
             collapseFilters: collapseFilters,
-            loadingActivities: true
+            loadingActivities: true,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function collapseFilters(){
           vm.collapsedFilters = !vm.collapsedFilters;
         }

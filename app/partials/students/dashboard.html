@@ -53,7 +53,7 @@
                   <span ng-bind="::dash.strings.SECTION_WISHLIST"
                   ng-class="{'hidden-xs hidden-sm': !dash.isActive('student-dashboard.wishlist.*')}"></span>
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
-                <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
+                <img class="img-responsive" ng-src="{{dash.getAmazonUrl('static/img/close_dark.png')}}" alt=""/>
             </a>
         </div>
     </div>

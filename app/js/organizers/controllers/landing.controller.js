@@ -41,7 +41,7 @@
         //--------- Exposed Functions ---------//
 
         function getAmazonUrl(file){
-            return  serverConf.s3URL + file;
+            return  serverConf.s3URL + '/' +  file;
         }
 
         function requestSignup() {

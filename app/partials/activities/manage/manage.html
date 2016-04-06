@@ -74,7 +74,7 @@
             <span ng-bind="::manage.strings.TAB_ORDERS"
                 ng-class="{'hidden-xs hidden-sm': !manage.isActive('dash.activities-manage.orders')}"></span>
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
-                <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
+                <img class="img-responsive" ng-src="{{manage.getAmazonUrl('static/img/close_dark.png')}}" alt=""/>
             </a>
         </div>
         <div class="col-xs-12">

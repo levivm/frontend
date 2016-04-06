@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -39,12 +39,17 @@
                     createActivity:createActivity,
                     clickLogo:clickLogo,
                     updateSearchCity:updateSearchCity,
-                    isLandingState:isLandingState
+                    isLandingState:isLandingState,
+                    getAmazonUrl: getAmazonUrl
                 });
 
                 _activate();
 
                 // --------- Exposed Functions ----------//
+                
+                function getAmazonUrl(file){
+                    return  serverConf.s3URL + '/' +  file;
+                }
 
                 function toggleBurger(){
                   if(scope.showCities) scope.showCities=false;

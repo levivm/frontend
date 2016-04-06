@@ -13,9 +13,9 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsInvitationCtrl', ReferralsInvitationCtrl);
 
-    ReferralsInvitationCtrl.$inject = ['$state', 'referrer', 'generalInfo', 'student'];
+    ReferralsInvitationCtrl.$inject = ['$state', 'referrer', 'generalInfo', 'student', 'serverConf'];
 
-    function ReferralsInvitationCtrl($state, referrer, generalInfo, student) {
+    function ReferralsInvitationCtrl($state, referrer, generalInfo, student, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -31,13 +31,18 @@
             toggleVideoShow: toggleVideoShow,
             claimCoupon: claimCoupon,
             register: register,
-            login: login
+            login: login,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
 
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
         }

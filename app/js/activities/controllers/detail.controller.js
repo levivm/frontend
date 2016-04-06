@@ -74,7 +74,8 @@
             showRequirements: false,
             showExtra: false,
             shareSocialAnalytic:shareSocialAnalytic,
-            wishList:wishList
+            wishList:wishList,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
@@ -82,6 +83,10 @@
         // console.log('currentUser:', currentUser);
 
         //--------- Exposed Functions ---------//
+
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
         function previousGalleryPicture(){
             if(vm.currentGalleryPicture > 0){ vm.currentGalleryPicture--; }
@@ -394,7 +399,7 @@
                 LABEL_INSTRUCTORS: "Instructores",
                 LABEL_REQUIREMENTS: "Requisitos",
                 LABEL_METHODOLOGY: "Metodología",
-                LABEL_EXTRA_INFO: "Adicionales",
+                LABEL_EXTRA_INFO: "Info Extra",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
                 TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",

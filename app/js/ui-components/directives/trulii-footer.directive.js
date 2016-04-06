@@ -10,9 +10,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiFooter', truliiFooter);
 
-    truliiFooter.$inject = ['UIComponentsTemplatesPath'];
+    truliiFooter.$inject = ['UIComponentsTemplatesPath', 'serverConf'];
 
-    function truliiFooter(UIComponentsTemplatesPath) {
+    function truliiFooter(UIComponentsTemplatesPath, serverConf) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-footer.html",
@@ -48,6 +48,10 @@
                         FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
                         FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"
                     });
+                    
+                    scope.getAmazonUrl = function(file){
+                        return  serverConf.s3URL + '/' +  file;
+                    };
                 }
 
                 function _activate() {

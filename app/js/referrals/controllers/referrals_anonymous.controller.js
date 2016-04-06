@@ -13,9 +13,9 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsAnonCtrl', ReferralsAnonCtrl);
 
-    ReferralsAnonCtrl.$inject = ['$state'];
+    ReferralsAnonCtrl.$inject = ['$state', 'serverConf'];
 
-    function ReferralsAnonCtrl($state) {
+    function ReferralsAnonCtrl($state, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -26,12 +26,17 @@
                 }
             },
             toggleVideoShow: toggleVideoShow,
-            goToLogin: goToLogin
+            goToLogin: goToLogin,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
         function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;

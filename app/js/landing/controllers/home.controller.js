@@ -136,7 +136,7 @@
             _setCategories();
             loadActivities();
             _initScroll();
-
+            video.addSource('mp4', serverConf.s3URL + '/static/videos/home_banner.mp4');
             //Analytics.generalEvents.landing();
 
         }
