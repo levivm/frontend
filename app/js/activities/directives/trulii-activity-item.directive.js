@@ -16,10 +16,11 @@
 
         .directive('truliiActivityItem', truliiActivityItem);
 
-    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'ActivitiesTemplatesPath'
-        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 'StudentsManager', 'ActivitiesManager'];
+    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'moment', 'ActivitiesTemplatesPath'
+        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 
+        'StudentsManager', 'ActivitiesManager'];
 
-    function truliiActivityItem($state, $stateParams, $filter, ActivitiesTemplatesPath
+    function truliiActivityItem($state, $stateParams, $filter, moment, ActivitiesTemplatesPath
         , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager, ActivitiesManager){
         return {
             restrict: 'E',
@@ -168,9 +169,13 @@
                 }
 
                 function _mapDateMsg(activity){
-                    var today = Date.now();
+                    var today = new Date();
+                    
                     if(!!activity.closest_calendar){
-                        activity.days_to_closest = Math.floor((activity.closest_calendar.initial_date - today)/(1000*60*60*24));
+                        var now = moment(today);
+                        var end = moment(activity.closest_calendar.initial_date);
+                        var duration = moment.duration(end.diff(now));
+                        activity.days_to_closest = Math.ceil(duration.asDays());
                     } else {
                         activity.days_to_closest = -1;
                     }
