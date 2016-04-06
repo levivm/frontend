@@ -120,22 +120,6 @@
             });
         }
 
-        function _replayVideos(){
-            angular.element(document).ready(function () {
-                document.getElementsByClassName('trulii-cover__background-video')[0].addEventListener("ended",
-                  function(){
-                    setTimeout(
-                      function(){
-                        // document.getElementsByClassName('trulii-cover__background-video')[0].play();
-                        video.addSource('webm', serverConf.s3URL + '/static/videos/home1.webm');
-                        video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
-                        video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');
-                      }, 0
-                    );
-                  },
-                true);
-            });
-        }
 
 
         function _initScroll(){
@@ -152,11 +136,7 @@
             _setCategories();
             loadActivities();
             _initScroll();
-            video.addSource('webm', serverConf.s3URL + '/static/videos/home1.webm');
-            video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
-            video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');
-            _replayVideos();
-
+            video.addSource('mp4', serverConf.s3URL + '/static/videos/home_banner.mp4');
             //Analytics.generalEvents.landing();
 
         }

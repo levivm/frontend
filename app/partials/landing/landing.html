@@ -25,9 +25,10 @@
       </div>
     </div>
     <!--First section background-->
-    <div class="trulii-cover__background" ng-style="{'background-image': 'url({{home.getAmazonUrl('static/img/banner_landing.jpg')}})'}">
+    <div class="trulii-cover__background" style="background-image:url({{::home.getAmazonUrl('static/img/banner_landing.jpg');}})">
       <section class="video" ng-video>
-        <video class="trulii-cover__background-video" ng-model="home.coverVideo" autoplay vi-screen></video>
+        <video class="trulii-cover__background-video"  autoplay vi-screen loop>
+        </video>
       </section>
     </div>
   </div>
