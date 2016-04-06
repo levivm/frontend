@@ -399,7 +399,7 @@
                 LABEL_INSTRUCTORS: "Instructores",
                 LABEL_REQUIREMENTS: "Requisitos",
                 LABEL_METHODOLOGY: "Metodología",
-                LABEL_EXTRA_INFO: "Adicionales",
+                LABEL_EXTRA_INFO: "Info Extra",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
                 TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",
