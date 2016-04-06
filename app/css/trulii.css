@@ -16008,7 +16008,7 @@ tags-input input {
 }
 .btn-lg {
   text-transform: uppercase;
-  padding: 1.25em 2em;
+  padding: 1em 1em;
   font-size: 0.8em;
   line-height: 1.3333333;
   border-radius: 6px;
@@ -18307,7 +18307,7 @@ button.toast-close-button {
 .trulii-cover-small__content .btn-lg,
 .trulii-cover-medium__content .btn-lg,
 .trulii-cover-regular__content .btn-lg {
-  font-size: 1em;
+  font-size: 1.2em;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content .btn-lg,
