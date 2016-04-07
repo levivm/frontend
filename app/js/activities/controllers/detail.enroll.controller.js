@@ -115,7 +115,7 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
@@ -672,7 +672,7 @@
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
-                LABEL_ACTIVITY_SESSIONS: "Sesiones",
+                LABEL_ACTIVITY_SESSIONS: "Horarios",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",
