@@ -14,8 +14,8 @@
         .module('trulii.students.controllers')
         .controller('StudentWishlistCtrl', StudentWishlistCtrl);
 
-    StudentWishlistCtrl.$inject = ['$timeout', 'student', 'Authentication', 'Error', 'Toast', 'wishListActivities'];
-    function StudentWishlistCtrl($timeout, student, Authentication, Error, Toast, wishListActivities) {
+    StudentWishlistCtrl.$inject = ['$timeout', 'student', 'Authentication', 'Error', 'Toast', 'wishListActivities', 'LocationManager', '$state'];
+    function StudentWishlistCtrl($timeout, student, Authentication, Error, Toast, wishListActivities, LocationManager, $state) {
 
         var vm = this;
         angular.extend(vm, {
@@ -41,12 +41,18 @@
               pageNumber: 1
             },
             updateByQuery:updateByQuery,
+            searchActivities: searchActivities
         });
 
         activate();
 
         //--------- Functions Implementation ---------//
-
+        
+        
+        function searchActivities(){
+            var searchCity = LocationManager.getSearchCity();
+            $state.go('search', {'city': searchCity.id});
+        }
 
         function updateByQuery(){
             student.getWishList(vm.nextPaginationOpts.pageNumber, vm.nextPaginationOpts.itemsPerPage)
@@ -62,6 +68,8 @@
             }
             angular.extend(vm.strings, {
                 COPY_WISHLIST: "Favoritos",
+                COPY_EMPTY_ACTIVITIES: "No tienes favoritos, comienza a buscar actividades ya",
+                ACTION_SEARCH_ACTIVITY: "Buscar Actividad"
             });
         }
 
