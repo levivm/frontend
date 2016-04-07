@@ -87,7 +87,7 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-
+        
         function previousGalleryPicture(){
             if(vm.currentGalleryPicture > 0){ vm.currentGalleryPicture--; }
         }

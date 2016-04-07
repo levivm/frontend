@@ -58,7 +58,7 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-        
+
         function pageChange(type){
           console.log(type);
             switch(type){
@@ -67,7 +67,7 @@
                   .then(function (response) {
                     vm.open_activities = response.data.results;
                     vm.openPaginationOpts.totalItems = response.data.count;
-                    vm.open_activities = vm.open_activities.slice(0, vm.openPaginationOpts.itemsPerPage); 
+                    vm.open_activities = vm.open_activities.slice(0, vm.openPaginationOpts.itemsPerPage);
                   });
                   break;
                 case vm.TYPE_CLOSED:
@@ -90,15 +90,15 @@
         }
 
         //--------- Internal Functions ---------//
-        
+
         function _assignActivities(){
-            
+
             vm.open_activities = openActivities.results;
             vm.openPaginationOpts.totalItems = openActivities.count;
-            
+
             vm.closed_activities = closedActivities.results;
             vm.closedPaginationOpts.totalItems = closedActivities.count;
-            
+
             vm.inactive_activities = inactiveActivities.results;
             vm.inactivePaginationOpts.totalItems = inactiveActivities.count;
         }

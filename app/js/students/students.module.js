@@ -113,10 +113,6 @@
                     order: getOrder
                 }
             })
-            .state('student-dashboard.history.refunds', {
-                url:'/refunds',
-                templateUrl: 'partials/students/dashboard/history.refunds.html'
-            })
 
             .state('student-dashboard.wishlist', {
                 url:'wishlist',

@@ -12,10 +12,29 @@
         .module('trulii.activities.controllers')
         .controller('ActivitySummaryCtrl', ActivitySummaryCtrl);
 
-    ActivitySummaryCtrl.$inject = ['ActivitiesManager', 'activity', '$q', 'Error', 'Toast', 'stats'];
-    function ActivitySummaryCtrl(ActivitiesManager, activity, $q, Error, Toast, stats) {
+    ActivitySummaryCtrl.$inject = ['ActivitiesManager', 'activity', '$q', 'Error', 'Toast', 'stats', 'moment'];
+    function ActivitySummaryCtrl(ActivitiesManager, activity, $q, Error, Toast, stats, moment) {
 
         var vm = this;
+        var days = [];
+        var gross = [], net = [], fee = [];
+        var data;
+        var d3Col = d3.locale ({
+          "decimal": ".",
+          "thousands": ",",
+          "grouping": [3],
+          "currency": ["", " COP"],
+          "dateTime": "%a %b %e %X %Y",
+          "date": "%m/%d/%Y",
+          "time": "%H:%M:%S",
+          "periods": ["AM", "PM"],
+          "days": ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"],
+          "shortDays": ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+          "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+          "shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+        })
+        parseData();
+        
         angular.extend(vm, {
           stats: stats,
           nextDateOptions: {
@@ -41,7 +60,7 @@
                     bottom: 40,
                     left: 55
                 },
-                x: function(d){ return d.x; },
+                x: function(d){ return d3.round(d.x, 4); },
                 y: function(d){ return d.y; },
                 useInteractiveGuideline: true,
                 dispatch: {
@@ -51,12 +70,17 @@
                     tooltipHide: function(e){ console.log("tooltipHide"); }
                 },
                 xAxis: {
-                    axisLabel: 'Time (ms)'
+                    axisLabel: 'MESES',
+                    tickFormat: function(d) {
+                        return d3Col.timeFormat('%b')(new Date(d))
+                    },
+                    showMaxMin: true,
+                    staggerLabels: true
                 },
                 yAxis: {
-                    axisLabel: 'Voltage (v)',
+                    axisLabel: 'GANANCIAS',
                     tickFormat: function(d){
-                        return d3.format('.02f')(d);
+                        return d3Col.numberFormat("$, .2f")(d);
                     },
                     axisLabelDistance: -10
                 },
@@ -66,7 +90,7 @@
             }
         },
 
-        data: sinAndCos()
+        data: data
 
         });
 
@@ -80,36 +104,42 @@
 
         //--------- Internal Functions ---------//
 
-        function sinAndCos() {
-            var sin = [],sin2 = [],
-                cos = [];
-
+        function parseData() {
+            
+             
             //Data is represented as an array of {x,y} pairs.
-            for (var i = 0; i < 100; i++) {
-                sin.push({x: i, y: Math.sin(i/10)});
-                sin2.push({x: i, y: i % 10 == 5 ? null : Math.sin(i/10) *0.25 + 0.5});
-                cos.push({x: i, y: .5 * Math.cos(i/10+ 2) + Math.random() / 10});
+            for (var i = 0; i < stats.points.length; i++) {
+              
+                var key = Object.keys(stats.points[i])[0];
+                var date = moment(Object.keys(stats.points[i])[0]).format('YYYY-MM-DD');
+                date = moment(date).valueOf();
+                days.push(d3.time.format('%y-%m-%d')(new Date(moment(date).format('YYYY-MM-DD'))));
+                console.log(moment(date).format('YYYY-MM-DD'));
+                
+                if(stats.points[i][key].gross !== 0 && stats.points[i][key].net !== 0 && stats.points[i][key].fee !== 0){
+                  gross.push({x: date, y: d3.round(stats.points[i][key].gross, 4)});
+                  net.push({x: date, y: d3.round(stats.points[i][key].net, 4)});
+                  fee.push({x:date, y: d3.round(stats.points[i][key].fee, 4)});
+                }
+                
             }
-
+            console.log(days);
             //Line chart data should be sent as an array of series objects.
-            return [
+            data = [
                 {
-                    values: sin,      //values - represents the array of {x,y} data points
-                    key: 'Sine Wave', //key  - the name of the series.
-                    color: '#ff7f0e',  //color - optional: choose your own line color.
-                    strokeWidth: 2,
-                    classed: 'dashed'
+                    values: gross,      //values - represents the array of {x,y} data points
+                    key: 'Ventas Brutas', //key  - the name of the series.
+                    color: '#03a9f4'  //color - optional: choose your own line color.
                 },
                 {
-                    values: cos,
-                    key: 'Cosine Wave',
-                    color: '#2ca02c'
+                    values: net,
+                    key: 'Ventas Netas',
+                    color: '#FCAB54'
                 },
                 {
-                    values: sin2,
-                    key: 'Another sine wave',
-                    color: '#7777ff',
-                    area: true      //area - set to true if you want this line to turn into a filled area chart.
+                    values: fee,
+                    key: 'Fee de Trulii',
+                    color: '#38DBC8'
                 }
             ];
         };
