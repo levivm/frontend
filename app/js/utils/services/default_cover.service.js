@@ -9,6 +9,11 @@
 
     angular
         .module('trulii.utils.services')
-        .value("defaultCover", "css/img/nocover.jpg");
+        .value("defaultCover", noCover);
+        
+        noCover.$inject = ['serverConf'];
+        function noCover(serverConf){
+          return serverConf.s3URL + '/static/img/nocover.jpg';
+        }
 
 })();

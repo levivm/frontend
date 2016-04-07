@@ -198,7 +198,10 @@
             .state('dash.activities-manage.summary', {
               url: 'summary',
               controller: 'ActivitySummaryCtrl as summary',
-              templateUrl: 'partials/activities/manage/manage_summary.html'
+              templateUrl: 'partials/activities/manage/manage_summary.html',
+              resolve: {
+                stats: getStats
+              }
             })
             .state('activities-detail', {
                 url:'/activities/{activity_id:int}/:activity_title',
@@ -562,6 +565,18 @@
         getMessages.$inject = ['activity'];
         function getMessages(activity){
             return activity.getMessages();
+        }
+        
+        /**
+         * @ngdoc method
+         * @name .#getStats
+         * @description Retrieves an Activity's Stats
+         * @requires organizer
+         * @methodOf trulii.activities.config
+         */
+        getStats.$inject = ['activity', 'moment'];
+        function getStats(activity, moment){
+            return activity.getStats(moment().year());
         }
 
         /**

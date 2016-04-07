@@ -325,6 +325,15 @@
             
             /**
              * @ngdoc function
+             * @name .#getStats
+             * @params int Activity Id
+             * @description Retrieves an Activity's stats
+             * @methodOf trulii.activities.services.Activity
+             */
+            getStats: getStats,
+            
+            /**
+             * @ngdoc function
              * @name .#sendMessage
              * @description Submits a message to the assistants of an activity
              * @methodOf trulii.activities.services.Activity
@@ -746,6 +755,21 @@
         
         function getMessage(messageId){
             return $http.get(api.message(messageId))
+                .then(function (response) {
+                    return response.data;
+                });
+        }
+        
+        function getStats(year, month){
+            var params = {};
+            if(year){
+              params.year = year;
+            }
+            if(month){
+              params.month = month;
+            }
+            return $http.get(api.stats(this.id),
+                {params: params})
                 .then(function (response) {
                     return response.data;
                 });

@@ -332,7 +332,21 @@
              */
             'message': function(idMessage){
               return renderUrl('messages/', [idMessage]);
+            },
+            
+            /**
+             * @ngdoc function
+             * @name .#stats
+             * @description Renders **`/api/activities/:idActivity/stats`** Activity Instructor URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'stats' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'stats']);
             }
+            
+            
         };
 
         /**

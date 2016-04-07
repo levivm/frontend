@@ -13,10 +13,10 @@
         .controller('ActivityGeneralController', ActivityGeneralController);
 
     ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Elevator', 'Toast', 'Error',
-            'activity', 'presaveInfo', 'Analytics'];
+            'activity', 'presaveInfo', 'Analytics', 'serverConf'];
 
     function ActivityGeneralController($state, $q, filterFilter, Elevator, Toast, Error,
-            activity, presaveInfo, Analytics) {
+            activity, presaveInfo, Analytics, serverConf) {
 
         var vm = this;
         var MAX_LENGTH_SHORT_DESC = 300;
@@ -34,13 +34,18 @@
             checkValidTitle: checkValidTitle,
             getSubmitButtonText: getSubmitButtonText,
             loadAutocompleteTags: loadAutocompleteTags,
+            getAmazonUrl: getAmazonUrl
         });
 
 
         _activate();
 
         /******************ACTIONS**************/
-
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function createActivity() {
             Error.form.clear(vm.activity_create_form);
             _updateTags();
