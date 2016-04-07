@@ -7,7 +7,7 @@
           <h1 class="text-primary title separate-above-less">
               <strong ng-bind="::success.activity.title"></strong>
           </h1>
-          <h3 class="text-gray text-spaced-less montserrat-regular separate-above success-info" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h3>
+          <h3 class="text-gray text-spaced-less montserrat-light separate-above success-info" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h3>
           <a ng-show="::success.orderId" target="_blank" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId,
             })" ng-bind="success.strings.COPY_VIEW_YOUR_ORDER"></a>
         </div>
@@ -59,7 +59,7 @@
         </div>
         <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less" ng-if="success.activity.requirements">
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
-          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below-more" ng-bind="success.activity.requirements"></p>
+          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below" ng-bind="success.activity.requirements"></p>
         </div>
       </div>
       <!--Attendees-->
