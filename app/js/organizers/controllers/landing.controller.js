@@ -15,9 +15,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
-    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics'];
 
-    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics) {
+    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$sce', '$stateParams'];
+    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $sce, $stateParams) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -33,7 +33,8 @@
             isSigningUp: false,
             requestSignup : requestSignup,
             goToForm: goToForm,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            getAmazonVideoUrl: getAmazonVideoUrl
         });
 
         _activate();
@@ -41,7 +42,10 @@
         //--------- Exposed Functions ---------//
 
         function getAmazonUrl(file){
-            return  serverConf.s3URL + file;
+            return  serverConf.s3URL + '/' +  file;
+        }
+        function getAmazonVideoUrl(file){
+            return  $sce.trustAsResourceUrl( serverConf.s3URL + '/' +  file);
         }
 
         function requestSignup() {
@@ -86,13 +90,12 @@
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
-                ACTION_SIGNUP: 'Únete',
+                ACTION_SIGNUP: 'Listo para unirme',
                 HEADER_TITLE_COPY: "Enfócate en enseñar lo que te apasiona",
                 HEADER_TEXT_COPY: "¡Nosotros nos encargamos del resto!",
                 HEADER_ACTION_START_NOW: "Comienza ya",
                 PUBLISH_TITLE_COPY: "¿Por qué publicar tu actividad en Trulii?",
                 PUBLISH_TEXT_COPY_1: "No hacemos dinero por suscripción ni por publicidad. Solo hacemos dinero si tú tambien lo haces. por lo que estamos juntos en esto. ",
-                PUBLISH_TEXT_COPY_2: "¡Crece con nosotros!",
                 PUBLISH_DIRT_WORK_TITLE: "Hacemos el trabajo sucio",
                 PUBLISH_DIRTY_WORK_TEXT: "Incrementamos las inscripciones, manejamos la atención al cliente y nos aseguramos de que recibas tu dinero.",
                 PUBLISH_VISIBILITY_TITLE: "Incrementamos tu visibilidad",
@@ -119,7 +122,7 @@
                 MORE_INFO_FAQ_TEXT_5: "puedes encontrar las respuestas. Para más información, ",
                 MORE_INFO_FAQ_TEXT_6: "contáctanos.",
                 SIGN_UP_TITLE: "¿Listo para ser organizador?",
-                SIGN_UP_TEXT: "Llena el formulario y te contactaremos muy pronto",
+                SIGN_UP_TEXT: "Llena el formulario y te contactaremos muy pronto.",
                 SIGN_UP_SUCCESS_TITLE: "¡Cool!",
                 SIGN_UP_SUCCESS_TEXT_1: "Dentro de poco te contactaremos.",
                 SIGN_UP_SUCCESS_TEXT_2: "¡Eres lo máximo!",
@@ -134,9 +137,17 @@
                 COPY_EMPTY_FORM: "Por favor llene el formulario de registro"
             });
         }
+        function _fromBurgerMenu(){
 
+          if ($stateParams.from_burger){
+              setTimeout(function(){ Elevator.toElement('anchor-how'); }, 2000);
+              $stateParams.from_burger=null;
+          }
+
+        }
         function _activate() {
             _setStrings();
+            _fromBurgerMenu();
         }
     }
 })();

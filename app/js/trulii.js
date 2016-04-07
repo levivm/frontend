@@ -30,7 +30,8 @@
             'trulii.about',
             'trulii.help',
             'ngVideo',
-            'templates'
+            'templates',
+            'nvd3'
         ]);
 
     angular
@@ -50,11 +51,12 @@
      * @requires ng.$http
      */
     run.$inject = ['$http', 'LocationManager', 'Analytics'];
-    function run($http, LocationManager, Analytics) {
+    function run($http, LocationManager, Analytics, $rootScope, $location) {
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
         $http.defaults.xsrfCookieName = 'csrftoken';
         LocationManager.init();
         Analytics.init();
+
     }
 
 })();

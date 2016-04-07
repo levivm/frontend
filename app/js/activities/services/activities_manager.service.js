@@ -136,6 +136,14 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             enroll : enroll,
+            /**
+             * @ngdoc method
+             * @name .#enroll
+             * @description Update date after like activity
+             * @param {object} activityData - Data Activity
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            like : like,
 
         };
 
@@ -203,7 +211,7 @@
         function getActivity(activityId) {
             var deferred = $q.defer();
             var activity = _search(activityId);
-            console.log('get activity', activity);
+            //console.log('get activity', activity);
             if (activity) {
                 deferred.resolve(activity);
             } else {
@@ -318,6 +326,14 @@
             function error(response){
                 return $q.reject(response);
             }
+        }
+
+        function like(activityID, likeValue){
+            var instance = _pool[activityID];
+
+            if(instance)
+               instance.wish_list = likeValue;
+
         }
 
 

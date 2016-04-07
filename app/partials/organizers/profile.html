@@ -13,12 +13,12 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-                        <p class="profile-cover__description" ng-bind="::profile.organizer.headline"></p>
+                        <p class="profile-cover__description text-center" ng-bind="::profile.organizer.headline"></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="profile-cover__verified">
-                        <img src="/css/img/verified_organizer.png" class="img-responsive img-circle pull-left"/>
+                        <img ng-src="{{profile.getAmazonUrl('static/img/verified_organizer.png')}}" class="img-responsive img-circle pull-left"/>
                         <p class="pull-left">
                             <strong><span ng-bind="::profile.strings.COPY_VERIFIED_1"></span><br/><span ng-bind="::profile.strings.COPY_VERIFIED_2"></span></strong>
                         </p>
@@ -28,7 +28,7 @@
         </div>
     </div>
 </div>
-<div class="col-xs-12">
+<div class="col-xs-12 separate-below-more">
   <div class="row">
     <div class="profile-biography">
       <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
@@ -43,12 +43,23 @@
     </div>
   </div>
 </div>
-<div class="col-xs-12 profile-activities">
+<div class="col-xs-12 profile-activities" ng-if="profile.activities.length > 0">
     <h3 class="text-center separate-below">
-        <strong><span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span> <span ng-bind="::profile.organizer.name"></span></strong>
+        <strong ng-if="profile.activities.length>0"><span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span> <span ng-bind="::profile.organizer.name"></span></strong>
+        <strong ng-if="profile.activities.length==0"><span ng-bind="::profile.organizer.name"></span> <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span></strong>
     </h3>
-    <trulii-activity-item ng-repeat="activity in profile.activities track by activity.id"
-          data-activity="activity" data-options="{{profile.options}}"></trulii-activity-item>
+    <trulii-activity-item
+          ng-repeat="activity in profile.activities track by activity.id"
+          data-activity="activity" >
+          </trulii-activity-item>
+    <!--<div class="text-center" ng-if="profile.paginationOpts.totalItems > profile.paginationOpts.itemsPerPage">
+      <pagination class="pagination-sm"
+        ng-model="profile.paginationOpts.pageNumber"
+        ng-change="profile.pageChange()"
+        data-total-items="profile.paginationOpts.totalItems"
+        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
+        data-items-per-page="profile.paginationOpts.itemsPerPage"></pagination>
+    </div>-->
 </div>
 <!--Location-->
 <div class="row profile-location">
@@ -63,14 +74,14 @@
             </ui-gmap-google-map>
         </div>
         <div class="address">
-            <img src="/css/img/activity-detail/map_location.png" alt=""/>
+            <img ng-src="{{profile.getAmazonUrl('static/img/activity-detail/map_location.png')}}" alt=""/>
             <span ng-bind="profile.organizer.location.address"></span><span ng-if="profile.organizer.location.city.name">.</span>
             <span ng-bind="profile.organizer.location.city.name"></span>
         </div>
     </div>
 </div>
 <!-- Comments -->
-<div class="col-xs-12 profile-comments">
+<div class="col-xs-12 profile-comments" ng-if="profile.reviews.length > 0">
     <div class="row">
         <div class="col-xs-12 col-md-3 col-md-offset-0 col-md-push-8">
             <div class="organizer-widget">
@@ -84,7 +95,7 @@
                     </h1>
                 </div>
                 <div class="ratings">
-                    <img src="/css/img/activity-detail/rating_people.png" alt="Ratings">
+                    <img ng-src="{{profile.getAmazonUrl('static/img/activity-detail/rating_people.png')}}" alt="Ratings">
                     <span ng-bind="profile.reviewObjects.length"></span><span ng-bind="::profile.strings.LABEL_TOTAL"></span>
                 </div>
             </div>
@@ -95,11 +106,10 @@
             </h3>
             <!-- Comment container-->
             <div class="review-detail">
-                <div class="comment separate-above" ng-repeat="reviewObject in profile.reviewObjects track by reviewObject.review.id">
-                    <trulii-activity-review data-review="reviewObject.review"
-                                            data-activity="reviewObject.activity"
+                <div class="comment separate-above" ng-repeat="review in profile.reviews track by review.id">
+                    <trulii-activity-review data-review="review"
+                                            data-activity="review.activity"
                                             data-on-dashboard="false" ></trulii-activity-review>
-                    <div class="separator-light"></div>
                 </div>
             </div>
 

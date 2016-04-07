@@ -11,8 +11,8 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager', 'Analytics'];
-    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager, Analytics) {
+    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager', 'Analytics', 'serverConf'];
+    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -47,7 +47,8 @@
             sidebar: false,
             isActive: isActive,
             dashboardItem:dashboardItem,
-            actionNavbarSecondary:actionNavbarSecondary
+            actionNavbarSecondary:actionNavbarSecondary,
+            getAmazonUrl: getAmazonUrl
         });
 
         var orders = [];
@@ -56,9 +57,13 @@
 
         _activate();
 
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+
 
         function isActive(stateStr){
-            console.log($state.includes(stateStr));
             return $state.includes(stateStr);
         }
 
@@ -229,6 +234,8 @@
                 SECTION_MANAGE: "Gestionar",
                 TAB_ORDERS: "Ordenes de Compra",
                 TAB_ASSISTANTS: "Lista de Asistentes",
+                TAB_MESSAGES: "Mensajes",
+                TAB_SUMMARY: "Resumen",
                 PLURALIZE_ASSISTANT: "{} asistente",
                 PLURALIZE_ASSISTANTS: "{} asistentes",
                 HEADER_ASSISTANT: "Asistente",
@@ -248,6 +255,7 @@
                 LABEL_FINAL_TOTAL: "Ventas netas:",
                 LABEL_TOTAL: "Total ventas:",
                 LABEL_FEE: "Comisión Trulii:",
+                COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades"
             });
         }
         function _initScroll(){

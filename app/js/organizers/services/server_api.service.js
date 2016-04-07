@@ -145,13 +145,14 @@
              * @ngdoc function
              * @name .#bankingInfo
              * @description Renders **`/api/organizer/bankinfo`**
-             * Organizer Instructor URL
+             * Organizer Banking Info URL
              * @return {string} Rendered URL
              * @methodOf trulii.organizers.services.OrganizerServerApi
              */
             'bankingInfo': function (){
                 return renderUrl('organizers/', [ 'bankinfo/']);
             }
+            
         };
 
         /**

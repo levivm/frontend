@@ -14,16 +14,15 @@
 
     SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
             , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
-            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics'];
+            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf'];
 
     function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state
             , $window, $stateParams , generalInfo, ActivitiesManager, LocationManager, SearchManager
-            , datepickerConfig, datepickerPopupConfig, Analytics) {
+            , datepickerConfig, datepickerPopupConfig, Analytics, serverConf) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var transitionOptions = {location : true, inherit : false, reload : false};
         var unsuscribeSearchModified = null;
-        var unsuscribeExitSearch = null;
         var vm = this;
         angular.extend(vm, {
             activities : [],
@@ -79,13 +78,23 @@
             toggleFilters: toggleFilters,
             showFilters: false,
             newSearchQuery: '',
-            search: search
+            search: search,
+            collapsedFilters: false,
+            collapseFilters: collapseFilters,
+            loadingActivities: true,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
+        function collapseFilters(){
+          vm.collapsedFilters = !vm.collapsedFilters;
+        }
         function toggleSidebar(){
           vm.showSidebar = !vm.showSidebar;
         }
@@ -101,23 +110,20 @@
         }
 
         function setCategory(category, initializing) {
-            console.log(category);
-            console.log(initializing);
             if (!category) { return; }
 
             if (vm.searchCategory === category.id || category === vm.strings.ACTION_ALL_FILTER) {
-                vm.searchCategory = null;
+                vm.searchCategory = undefined;
             } else {
                 vm.searchCategory = category.id;
 
             }
 
-            console.log(vm.searchCategory);
             _expandCategory(category);
             SearchManager.setCategory(vm.searchCategory);
 
             if (!initializing){
-                vm.searchSubCategory = null;
+                vm.searchSubCategory = undefined;
                 SearchManager.setSubCategory(vm.searchSubCategory);
                 if(!_isMobile()){
                   _search();
@@ -128,7 +134,7 @@
 
         function setSubCategory(subcategory) {
             if (vm.searchSubCategory == subcategory.id) {
-                vm.searchSubCategory = null;
+                vm.searchSubCategory = undefined;
             } else {
                 vm.searchSubCategory = subcategory.id;
                 vm.searchCategory = subcategory.category;
@@ -143,13 +149,23 @@
             Analytics.generalEvents.searchSubCategory(subcategory.name);
         }
 
-        function setLevel() {
-            SearchManager.setLevel(vm.searchLevel.code);
-            if(!_isMobile()){
-              _search();
-            }
+        function setLevel(level) {
+          var sm = SearchManager;
+          vm.searchData = SearchManager.getSearchData();
 
+          if(vm.searchData[sm.KEY_LEVEL] === vm.searchLevel.code){
+            vm.searchLevel=undefined;
+            SearchManager.setLevel(undefined);
+            Analytics.generalEvents.searchLevel('');
+          }
+          else{
+            SearchManager.setLevel(vm.searchLevel.code);
             Analytics.generalEvents.searchLevel(vm.searchLevel.value);
+          }
+
+          if(!_isMobile()){
+            _search();
+          }
 
         }
 
@@ -183,6 +199,7 @@
 
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
+            console.log(vm.onWeekends);
             SearchManager.setWeekends(vm.onWeekends);
             Analytics.generalEvents.searchWeekends(vm.onWeekends);
             if(!_isMobile()){
@@ -208,6 +225,8 @@
         }
 
         function getLevelClassStyle(level) {
+            //console.log(level);
+            //console.log(vm.searchLevel);
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
 
@@ -226,9 +245,10 @@
 
         function _setPage(page){
             if(!page){ page = vm.activitiesPaginationOpts.pageNumber; }
-
+            page = page.toString();
             SearchManager.setPage(page);
             vm.searchData[SearchManager.KEY_PAGE] = page;
+
         }
 
         function _getActivities(searchData) {
@@ -237,12 +257,13 @@
             function success(response) {
                 vm.activities = response.activities;
                 vm.activitiesPaginationOpts.totalItems = response.count;
-                console.log('_getActivities:', vm.activities);
+                vm.loadingActivities = false;
             }
 
             function error(error) {
               console.log(error);
                 console.log('_getActivities. Error obtaining Activities from ActivitiesManager');
+
             }
         }
 
@@ -263,6 +284,11 @@
             if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
                 vm.searchDate = new Date(vm.searchData[sm.KEY_DATE]);
             }
+
+            if (vm.searchData.hasOwnProperty(sm.KEY_ORDER)) {
+                vm.orderByPredicate = vm.searchData[sm.KEY_ORDER];
+            }
+
             if (vm.searchData.hasOwnProperty(sm.KEY_LEVEL)) {
                 _setLevel(vm.searchData[sm.KEY_LEVEL]);
             }
@@ -343,9 +369,14 @@
         }
 
         function _search() {
+            vm.loadingActivities = true;
             SearchManager.setQuery(vm.newSearchQuery);
             var searchData = SearchManager.getSearchData();
-            $state.go('search', searchData, transitionOptions);
+            $state.go('search', vm.searchData,  {notify: false});
+            _getActivities(vm.searchData).then(function () {
+                //_scrollToCurrentCategory();
+            });
+
         }
 
         function _setStrings() {
@@ -363,13 +394,15 @@
                 LABEL_SORT_BY: "Ordenar por",
                 LABEL_LEVEL : "Nivel",
                 LABEL_COST : "Precio",
-                LABEL_DATE : "Fecha",
+                LABEL_DATE : "Desde",
                 LABEL_WITH_CERTIFICATE : "Con Certificado",
                 LABEL_WEEKENDS : "Fines de Semana",
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
-                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?'
+                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
+                SHOW_FILTERS: "Mostrar filtros",
+                COLLAPSE_FILTERS: "Ocultar filtros"
             });
         }
 
@@ -384,27 +417,20 @@
             _setWatches();
             _setStrings();
             _setGeneralInfo();
-            console.log($stateParams);
             _getSearchParams();
-
+            console.log($stateParams);
             _getActivities($stateParams).then(function () {
                 _scrollToCurrentCategory();
             });
 
-            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
-                    console.log('searchBar. on' + SearchManager.EVENT_SEARCH_MODIFIED);
-                    _getSearchParams().then(function () {
-                        _getActivities($stateParams);
-                    });
+            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event, data) {
+                    angular.extend(data, SearchManager.getSearchData());
+                    vm.searchData = data;
+                    _search();
                 }
             );
 
-            unsuscribeExitSearch = $rootScope.$on('$stateChangeStart', function (e, toState, toParams, fromState) {
-                if (toState.name !== 'search') {
-                    SearchManager.clearData();
-                    unsuscribeExitSearch();
-                }
-            });
+
             $scope.$on('$destroy', _cleanUp);
         }
     }

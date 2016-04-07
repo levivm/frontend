@@ -12,15 +12,24 @@
         .module('trulii.landing.controllers')
         .controller('NotFoundController', NotFoundController);
 
-    NotFoundController.$inject = [];
+    NotFoundController.$inject = ['serverConf'];
 
-    function NotFoundController() {
+    function NotFoundController(serverConf) {
         var vm = this;
 
+        
+         angular.extend(vm,{
+            getAmazonUrl: getAmazonUrl
+        });
+        
         _activate();
 
         //--------- Functions Implementation ---------//
-
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {

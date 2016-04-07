@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf'];
 
     function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, LocationManager, Referrals, Scroll, Analytics) {
+                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf) {
 
         var vm = this;
         var isValidDate = false;
@@ -78,6 +78,7 @@
             setForm: setForm,
             applyCoupon: applyCoupon,
             removeCoupon: removeCoupon,
+            getAmazonUrl: getAmazonUrl,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -114,6 +115,12 @@
         _activate();
 
         //--------- Exposed Functions ---------//
+
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+
+
 
         /** PSE Payments Methods **/
 
@@ -665,7 +672,7 @@
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
-                LABEL_ACTIVITY_SESSIONS: "Sesiones",
+                LABEL_ACTIVITY_SESSIONS: "Horarios",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",

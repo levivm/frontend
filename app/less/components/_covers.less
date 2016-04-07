@@ -2,6 +2,7 @@
 @import url('../_trulii-variables');
 @import url('../mixins/_image_processing');
 @trulii-cover-height: 92vh;
+@trulii-cover-height-regular: 60vh;
 @trulii-cover-height-medium: 55vh;
 @trulii-cover-height-small: 50vh;
 .cover{
@@ -49,9 +50,9 @@
   }
 }
 
-.trulii-cover, .trulii-cover-small, .trulii-cover-medium{
+.trulii-cover, .trulii-cover-small, .trulii-cover-medium, .trulii-cover-regular{
 
-  margin-top: -20px; // Mientras se arregla la barra de navegacion
+  margin-top: -100px; // Mientras se arregla la barra de navegacion
   min-height: @trulii-cover-height;
   width: 100%;
   position:relative;
@@ -144,7 +145,8 @@
 
     }
     .btn-lg{
-      font-size: 1em;
+      font-size: 1.35em;
+      padding: 0.8em;
       .before-md({
         font-size: 0.75em;
       });
@@ -187,7 +189,7 @@
         background-size: 15px auto;
         background-position: 90% 50%;
         background-repeat: no-repeat;
-        background-image: url(/css/img/about/arrow.png) !important;
+        background-image: url(@{s3url}/static/img/about/arrow.png) !important;
         padding: 0 2em;
         display: inline-block;
         float: left;
@@ -375,10 +377,18 @@
     background-color: fade(@brand-warning, 40%);
   }
   &__background.background-dots:after{
-    background-image: url('/css/img/dots.png');
+    background-image: url('@{s3url}/static/img/dots.png');
     background-color: transparent;
     background-attachment: initial;
   }
+}
+
+.trulii-cover-regular{
+  min-height: @trulii-cover-height-regular;
+  .before-md({
+    min-height: @trulii-cover-height-regular/2;
+    //padding-top: 5vh;
+  });
 }
 
 .trulii-cover-small{

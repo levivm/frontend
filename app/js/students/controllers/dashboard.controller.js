@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentDashboardCtrl', StudentDashboardCtrl);
 
-    StudentDashboardCtrl.$inject = ['$state', '$scope', 'Analytics'];
+    StudentDashboardCtrl.$inject = ['$state', '$scope', 'Analytics', 'serverConf'];
 
-    function StudentDashboardCtrl($state, $scope, Analytics) {
+    function StudentDashboardCtrl($state, $scope, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -23,7 +23,8 @@
             scroll: 0,
             showSidebar: false,
             toggleSidebar: toggleSidebar,
-            clickItem:clickItem
+            clickItem:clickItem,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
@@ -32,6 +33,10 @@
 
         function isActive(stateStr){
             return $state.includes(stateStr);
+        }
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
         }
 
         //--------- Internal Functions ---------//
@@ -57,7 +62,8 @@
                 SECTION_ACCOUNT: "Cuenta",
                 SECTION_PROFILE: "Perfil",
                 SECTION_HISTORY: "Transacciones",
-                SECTION_WISHLIST: "Favoritos"
+                SECTION_WISHLIST: "Favoritos",
+                SECTION_NOTIFICATIONS: "Notificaciones"
             });
         }
 

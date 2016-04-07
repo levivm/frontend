@@ -17,7 +17,7 @@
         var vm = this;
         var api = StudentServerApi;
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
-         
+
         angular.extend(vm,{
             activities: null,
             activityList: activityList,
@@ -33,7 +33,8 @@
             ordersPaginationOpts: {
                 totalItems: 0,
                 itemsPerPage: 10,
-                pageNumber: 1
+                pageNumber: 1,
+                maxPagesSize : 10
             },
             refundsPaginationOpts: {
                 totalItems: 0,
@@ -68,9 +69,9 @@
 
         var orders = [];
         var refunds = [];
-        
-        /*      Exposed Functions      */ 
-        
+
+        /*      Exposed Functions      */
+
         function openDatePicker($event, date){
           console.log('openDatePicker');
           $event.preventDefault();
@@ -101,22 +102,22 @@
                     page: vm.ordersPaginationOpts.pageNumber,
                     page_size: vm.ordersPaginationOpts.itemsPerPage
                   };
-                  
+
                   if(vm.ordersFilter.activity)
                     params.activity = vm.ordersFilter.activity;
-                    
+
                   if(vm.ordersFilter.from_date)
                     params.from_date = new Date(vm.ordersFilter.from_date).getTime();
-                    
+
                   if(vm.ordersFilter.until_date)
                     params.until_date = new Date(vm.ordersFilter.until_date).getTime();
-                    
+
                   if(vm.ordersFilter.status)
                     params.status = vm.ordersFilter.status;
-                    
+
                   if(vm.ordersFilter.query)
                     params.id = vm.ordersFilter.query;
-                    
+
                   $http.get(api.orders(student.id),
                     {params: params})
                     .then(function(response){
@@ -131,22 +132,22 @@
                     page: vm.refundsPaginationOpts.pageNumber,
                     page_size: vm.refundsPaginationOpts.itemsPerPage
                   };
-                  
+
                   if(vm.refundsFilter.activity)
                     params.activity = vm.refundsFilter.activity;
-                    
+
                   if(vm.refundsFilter.from_date)
                     params.from_date = new Date(vm.refundsFilter.from_date).getTime();
-                    
+
                   if(vm.refundsFilter.until_date)
                     params.until_date = new Date(vm.refundsFilter.until_date).getTime();
-                    
+
                   if(vm.refundsFilter.status)
                     params.status = vm.refundsFilter.status;
-                    
+
                   if(vm.refundsFilter.query)
                     params.id = vm.refundsFilter.query;
-                    
+
                   $http.get(api.refunds(student.id),
                       {params: params})
                       .then(function(response){
@@ -167,7 +168,7 @@
         /*       Internal Functions      */
 
         function _getOrders(){
-          
+
             student.getOrders().then(success, error);
 
             function success(ordersResponse){
@@ -205,7 +206,8 @@
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Solicitar Reembolso",
                 ACTION_FIND_ACTIVITY: "Buscar Actividad",
-                COPY_SEARCH: "Buscar por número de orden, pago, asistente, etc.",
+                ACTION_VIEW_DETAIL: "Ver detalle",
+                COPY_SEARCH_ORDERS_HELPER: "Nro de orden",
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE: "Fecha inicio: ",

@@ -3,20 +3,49 @@
         <div class="sidebar lateral-slide" ng-class="{'sidebar-short': manage.scroll > 80, 'hidden-xs': !manage.showSidebar, 'hidden-sm': !manage.showSidebar}" style="padding-bottom: 48px">
             <ul>
                 <li>
-                    <a ng-click="manage.dashboardItem(manage.strings.TAB_ASSISTANTS)" ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
+                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ASSISTANTS)" 
+                       ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
                        ui-sref-active="sidebar__item--selected">
                         <i class="sidebar__item__icon mdi-social-people"></i>
                         <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
                     </a>
                 </li>
                 <li>
-                    <a ng-click="manage.dashboardItem(manage.strings.TAB_ORDERS)" ui-sref=".orders" ui-sref-opts="{reload: true}" class="sidebar__item"
+                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ORDERS)" ui-sref=".orders" ui-sref-opts="{reload: true}" class="sidebar__item"
                        ui-sref-active="sidebar__item--selected">
                         <i class="sidebar__item__icon mdi-maps-local-atm"></i>
                         <span ng-bind="::manage.strings.TAB_ORDERS"></span>
                     </a>
                 </li>
+                <li>
+                    <a  ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_MESSAGES)"
+                      ui-sref=".messages" ui-sref-opts="{reload: true}" class="sidebar__item"
+                      ui-sref-active="sidebar__item--selected">
+                        <i class="sidebar__item__icon mdi-communication-email"></i>
+                        <span ng-bind="::manage.strings.TAB_MESSAGES"></span>
+                    </a>
+                </li>
+                <li>
+                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_SUMMARY)"
+                      ui-sref=".summary" ui-sref-opts="{reload: true}" class="sidebar__item"
+                      ui-sref-active="sidebar__item--selected">
+                        <i class="sidebar__item__icon mdi-action-trending-up"></i>
+                        <span ng-bind="::manage.strings.TAB_SUMMARY"></span>
+                    </a>
+                </li>
             </ul>
+            <div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
+              <div class="sidebar__bottom-action-dark-edit-acitivity">
+                  <ul class="list-inline list-unstyled text-center text-uppercase">
+                      <li>
+                          <a class="text-center text-uppercase" ui-sref="organizer-dashboard.activities.open">
+                              <i class="glyphicon glyphicon-arrow-left icon-edit-activity"></i>
+                              <span ng-bind="::manage.strings.COPY_VIEW_MY_ACTIVITIES"></span>
+                          </a>
+                      </li>
+                  </ul>
+              </div>
+            </div>
         </div>
         <div class="col-xs-12 with-footer">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
@@ -37,7 +66,7 @@
             <div ui-view>
             </div>
         </div>
-        <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': manage.scroll > 80}"
+        <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block print-hidden" ng-class="{'short': manage.scroll > 80}"
             ng-click="manage.toggleSidebar()">
             <i class="sidebar__item__icon mdi-navigation-menu"></i>
             <span ng-bind="::manage.strings.TAB_ASSISTANTS"
@@ -45,7 +74,7 @@
             <span ng-bind="::manage.strings.TAB_ORDERS"
                 ng-class="{'hidden-xs hidden-sm': !manage.isActive('dash.activities-manage.orders')}"></span>
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
-                <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
+                <img class="img-responsive" ng-src="{{manage.getAmazonUrl('static/img/close_dark.png')}}" alt=""/>
             </a>
         </div>
         <div class="col-xs-12">

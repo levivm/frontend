@@ -147,13 +147,12 @@
         function getSearchData(data){
             if(data){ setSearchData(data); }
 
-            if(!searchData[KEY_WEEKENDS]){ delete searchData[KEY_WEEKENDS];}
+            //if(!searchData[KEY_WEEKENDS]){ delete searchData[KEY_WEEKENDS];}
 
             return searchData;
         }
 
         function getSuggestions(keyword){
-            console.log('keyword:',keyword);
             return $http.get(api.autocomplete(),{params:{q: keyword}});
         }
 
@@ -165,7 +164,6 @@
 
             if(!searchData.hasOwnProperty(KEY_CITY)){ deferred.reject("A city is required"); }
             requestConfig = { 'params': searchData };
-            console.log(requestConfig);
             $http.get(api.search(), requestConfig).then(success, error);
 
             return deferred.promise;
@@ -193,8 +191,8 @@
                 delete searchData[KEY_QUERY];
             }
 
-            delete searchData[KEY_PAGE];
-            delete searchData[KEY_ORDER];
+            //delete searchData[KEY_PAGE];
+            //delete searchData[KEY_ORDER];
 
             return searchData;
         }
@@ -260,26 +258,20 @@
                 searchData[KEY_PAGE] = data[KEY_PAGE];
             } else {
                 //delete searchData[KEY_PAGE];
-                searchData[KEY_PAGE] = 1;
+                searchData[KEY_PAGE] = "1";
             }
 
             return searchData;
         }
 
         function setCategory(category){
-            if(category){
-                searchData[KEY_CATEGORY] = category;
-            } else {
-                delete searchData[KEY_CATEGORY];
-            }
+            searchData[KEY_CATEGORY] = category;
+
         }
 
         function setSubCategory(subcategory){
-            if(subcategory){
-                searchData[KEY_SUBCATEGORY] = subcategory;
-            } else {
-                delete searchData[KEY_SUBCATEGORY];
-            }
+            searchData[KEY_SUBCATEGORY] = subcategory;
+
         }
 
         function setDate(date){
@@ -287,7 +279,8 @@
         }
 
         function setLevel(level){
-            searchData[KEY_LEVEL] = level;
+           searchData[KEY_LEVEL] = level;
+
         }
 
         function setCosts(start, end){

@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast', 'calendar'];
+    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast', 'calendar', '$document', '$timeout'];
 
-    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar) {
+    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar, $document, $timeout) {
 
         var vm = this;
         vm.calendar = angular.copy(calendar);
@@ -65,16 +65,18 @@
         }
 
         function _errored(responseErrors) {
-
+            console.log(responseErrors);
             if (responseErrors) {
-                if (responseErrors['sessions']){
+              if (responseErrors['sessions'] && !responseErrors['number_of_sessions']){
                     Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
                     Toast.error(vm.strings.TOAST_SESSIONS_ERROR);
                     delete responseErrors['sessions'];
                 }
 
-                console.log('responseErrors',responseErrors);
-
+                if (responseErrors['number_of_sessions']){
+                  Toast.error(vm.strings.TOAST_SESSIONS_NUMBER_ERROR);
+                  delete responseErrors['number_of_sessions'];
+                }
                 if (!_.isEmpty(responseErrors)){
                     Elevator.toElement('activity_calendar_form');
                     Error.form.add(vm.activity_calendar_form, responseErrors);
@@ -118,7 +120,8 @@
                 LABEL_SESSION_DAY: "Día de la sesión",
                 LABEL_SESSION_START_TIME: "Hora de inicio:",
                 LABEL_SESSION_END_TIME: "Hora de fin:",
-                TOAST_SESSIONS_ERROR: "Existe un error en las sesiones"
+                TOAST_SESSIONS_ERROR: "Existe un error en las sesiones",
+                TOAST_SESSIONS_NUMBER_ERROR: "Deber haber mínimo una sesión"
 
             });
         }
@@ -151,6 +154,20 @@
                 vm.save_calendar = _updateCalendar;
             else
                 vm.save_calendar = _createCalendar;
+
+            $scope.$watch(
+              function(scope){
+                return scope.calendar.calendar.number_of_sessions;
+              },
+              function(newValue, oldValue){
+                if(newValue === 1){
+                  $timeout(function(){
+                    var scrollElement = angular.element(document.getElementById('calendar-0'));
+                    $document.scrollToElementAnimated(scrollElement);
+                  });
+                }
+              }
+            );
         }
     }
 })();

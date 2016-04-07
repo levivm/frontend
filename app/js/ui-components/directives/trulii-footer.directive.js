@@ -10,9 +10,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiFooter', truliiFooter);
 
-    truliiFooter.$inject = ['UIComponentsTemplatesPath'];
+    truliiFooter.$inject = ['UIComponentsTemplatesPath', 'serverConf', 'Elevator', '$state'];
 
-    function truliiFooter(UIComponentsTemplatesPath) {
+    function truliiFooter(UIComponentsTemplatesPath, serverConf, Elevator, $state) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-footer.html",
@@ -48,6 +48,22 @@
                         FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
                         FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"
                     });
+
+                    scope.getAmazonUrl = function(file){
+                        return  serverConf.s3URL + '/' +  file;
+                    };
+                    scope.howToWorkStudent = function(){
+                        if($state.current.name==='home')
+                          Elevator.toElement('anchor-how');
+                        else
+                          $state.go('home', {from_burger: true});
+                    }
+                    scope.howToWorkOrganizer = function(){
+                        if($state.current.name==='organizer-landing')
+                          Elevator.toElement('anchor-how');
+                        else
+                          $state.go('organizer-landing', {from_burger: true});
+                    }
                 }
 
                 function _activate() {

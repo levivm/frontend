@@ -123,7 +123,7 @@
     transform: translate(0%, 0);
     .sidebar-header{
       height:250px;
-      background-image: url('/css/img/activity-enroll/banner.png');
+      background-image: url('@{s3url}/static/img/activity-enroll/banner.png');
       position:relative;
       background-size: cover;
       color:white;
@@ -537,7 +537,7 @@
     background-size: 15px auto !important;
     background-position: 94.75% 50%;
     background-repeat: no-repeat;
-    background-image: url(/css/img/about/arrow.png) !important;
+    background-image: url(@{s3url}/static/img/about/arrow.png) !important;
   }
   .input-group{
     width: 100%;
@@ -556,7 +556,7 @@
     background-size: 15px auto !important;
     background-position: 93% 50%;
     background-repeat: no-repeat;
-    background-image: url(/css/img/about/arrow.png) !important;
+    background-image: url(@{s3url}/static/img/about/arrow.png) !important;
     height: 30px !important;
   }
   .filter-group{
@@ -570,11 +570,122 @@
   .btn-default{
     background-color: @gray-light-medium;
     color: @gray-light;
-    
+
     padding: 3px;
   }
   input.form-control, select.form-control{
     font-size: 0.75em;
     vertical-align: middle;
   }
+}
+
+.dashboard-messages{
+	form{
+		i{
+			float: right;
+			margin-top: -1.5em;
+		}
+	}
+}
+
+.dashboard-messages-container{
+	border: 1px solid @gray-lighter;
+	min-height: 16vh;
+	max-height: 90vh;
+	overflow-y: auto;
+	>a{
+		border-bottom: 1px solid @gray-lighter;
+		padding: 2em 1em 1em 3em;
+		cursor: pointer;
+		display: block;
+	}
+	p{
+		height: 2em;
+	    text-align: justify;
+	    text-overflow: ellipsis;
+	    line-height: 2em;
+	    word-wrap: break-word;
+	    white-space: nowrap;
+	    overflow: hidden;
+	    width: 70%;
+	}
+	.text-right{
+		.before-md({
+			text-align: left;
+		});
+	}
+	.text-line-more-xl {
+		.before-md({
+			line-height: 1.5em;
+		});
+	}
+	.student{
+		padding: 2em 1em 1em 1em;
+		.user-picture{
+			border-radius: 50%;
+			width: 3em;
+			height: 3em;
+		}
+	}
+
+
+}
+
+.dashboard-messages-detail{
+	border: 1px solid @gray-lighter;
+	.delete-message{
+		float: right;
+	    margin: 2em;
+	    font-size: 1.3em;
+		color: @gray-light;
+	}
+	.title-message{
+		padding: 3em 0em 1em 0em;
+		width: 90%;
+		border-bottom: 1px solid @gray-lighter;
+		margin: 0 auto;
+	}
+	.content-message{
+		padding: 3em;
+		.user-picture{
+			border-radius: 50%;
+			width: 3em;
+			height: 3em;
+		}
+
+		p{
+			height: auto;
+			width: 100%;
+			text-align: inherit;
+			text-overflow: inherit;
+			line-height: 1.5em;
+			word-wrap: normal;
+			white-space: normal;
+			padding-left: 8.5%;
+			.before-md({
+				padding-left: 0em;
+			});
+		}
+		.before-md({
+			padding: 2em;
+		});
+	}
+	.text-right{
+		.before-md({
+			text-align: left;
+		});
+	}
+	.text-line-more-xl {
+		.before-md({
+			line-height: 1.5em;
+		});
+	}
+}
+
+
+.pagination> li > a, .pagination > li > span{
+  color: @gray-light !important;
+}
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
+  color: white !important;
 }

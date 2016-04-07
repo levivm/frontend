@@ -18,22 +18,22 @@
                                 <div class="form-group">
                                     <input class="form-control input-s, " ng-readonly="true" name="name"
                                         ng-model="vm.auth.name" placeholder="Nombre de la Organización"
-                                        type="text" trulii-input-autofocus>
+                                        type="text">
                                     <trulii-input-alert field="vm.signup_form.name"
                                                         errors="vm.errors"></trulii-input-alert>
                                 </div>
                                 <div class="form-group" trulii-input-errors-control="email">
                                     <input class="form-control input-s, " ng-readonly="true" name="email"
                                         ng-model="vm.auth.email" placeholder="Correo electrónico"
-                                        type="text" autofocus>
+                                        type="text">
                                     <trulii-input-alert field="vm.signup_form.email"
                                                         errors="vm.errors"></trulii-input-alert>
                                 </div>
-                                <div class="form-group" trulii-input-errors-control="password1">
+                                <div class="form-group" trulii-input-errors-control="password">
                                     <input class="form-control input-s, "
-                                        placeholder="{{::vm.strings.PASSWORD_LABEL}}" name="password1"
+                                        placeholder="{{::vm.strings.PASSWORD_LABEL}}" name="password"
                                         ng-model="vm.auth.password" type="password" value="">
-                                    <trulii-input-alert field="vm.signup_form.password1"
+                                    <trulii-input-alert field="vm.signup_form.password"
                                                         errors="vm.errors"></trulii-input-alert>
                                 </div>
                                 <div class="form-group" trulii-input-errors-control="__all__">

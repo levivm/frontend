@@ -82,7 +82,7 @@
                 TITLE_DETAIL: "Detalles",
                 COPY_DETAIL: "Completa estos campos si deseas ser más preciso.",
                 LABEL_AUDIENCE: "Audiencia",
-                LABEL_GOALS: "Objectivos",
+                LABEL_GOALS: "Objetivos",
                 LABEL_CONTENT: "Contenido",
                 LABEL_METHODOLOGY: "Metodología",
                 LABEL_REQUIREMENTS: "Requerimientos",
@@ -99,10 +99,6 @@
                 COPY_HELP_TEXT_GOALS: "¿Cuál es la finalidad de su actividad?",  
                 COPY_HELP_TEXT_AUDIENCE: "¿A que tipo de personas va dirigido su actividad? "+  
                                          "¿Profesionales o público en general?",
-
-                
-
-
 
             });
         }

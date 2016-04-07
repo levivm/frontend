@@ -18,9 +18,9 @@
 <!--If there are no activities-->
 <div ng-if="activities.future_activities.length <= 0" class="row">
     <div class="col-md-6 col-md-offset-3 text-center">
-        <img class="separate-below-less" src="css/img/student_dashboard_activities_empty.png"
+        <img class="separate-below-less" width="120" ng-src="{{dash.getAmazonUrl('static/img/student_dashboard_activities_empty.png')}}"
              alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
-        <h4 ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES"></h4>
+        <h4 class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES"></h4>
         <div class="separate-below separate-above standout-text"
              ng-bind="::activities.strings.COPY_EMPTY_ACTIVITIES">
         </div>

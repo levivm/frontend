@@ -7,7 +7,7 @@
           <h1 class="text-primary title separate-above-less">
               <strong ng-bind="::success.activity.title"></strong>
           </h1>
-          <h3 class="text-gray text-spaced-less montserrat-regular separate-above success-info" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h3>
+          <h3 class="text-gray text-spaced-less montserrat-light separate-above success-info" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h3>
           <a ng-show="::success.orderId" target="_blank" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId,
             })" ng-bind="success.strings.COPY_VIEW_YOUR_ORDER"></a>
         </div>
@@ -17,19 +17,21 @@
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REMEMBER"></h4>
           <div class="items-container">
             <div class="item">
-              <img class="item-img" src="css/img/activity-enroll/remember_start.png"
+              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_start.png')}}"
                 alt="{{::success.strings.LABEL_START_DATE}}"/>
               <div class="item-text">
                 <div class="item-title text-spaced text-uppercase"
                   ng-bind="::success.strings.LABEL_START_DATE"></div>
                 <div class="item-copy text-capitalize"
-                  ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')"></div>
+                  ng-bind="::(success.calendar.initial_date | date : 'EEEE')"></div>
+                <div class="item-copy text-capitalize"
+                  ng-bind="::(success.calendar.initial_date | date : 'd MMM y')"></div>
                 <div class="item-copy "
                   ng-bind="::('A las ' + (success.calendar.sessions[0].start_time | date: 'h:mm a'))"></div>
               </div>
             </div>
             <div class="item">
-              <img class="item-img" src="css/img/activity-enroll/remember_location.png"
+              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_location.png')}}"
                 alt="{{::success.strings.LABEL_LOCATION}}"/>
               <div class="item-text">
                 <div class="item-title text-spaced text-uppercase" ng-bind="::success.strings.LABEL_LOCATION"></div>
@@ -41,7 +43,7 @@
               </div>
             </div>
             <div class="item">
-              <img class="item-img" src="css/img/activity-enroll/remember_doubts.png" alt="Doubts"/>
+              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_doubts.png')}}" alt="Doubts"/>
               <div class="item-text">
                 <div class="item-title text-spaced text-uppercase" ng-bind="success.strings.LABEL_QUESTIONS"></div>
                 <div class="item-copy" ng-bind="success.strings.LABEL_ANY_DOUBT"></div>
@@ -55,9 +57,9 @@
           </div>
           <div class="separator"></div>
         </div>
-        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less" ng-if="success.activity.requirements">
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
-          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below-more" ng-bind="success.activity.requirements"></p>
+          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below" ng-bind="success.activity.requirements"></p>
         </div>
       </div>
       <!--Attendees-->
@@ -84,7 +86,8 @@
             socialshare-caption="{{::success.social.FACEBOOK_SHARE_CAPTION}}"
             socialshare-description="{{::success.social.FACEBOOK_SHARE_DESCRIPTION}}"
             socialshare-url="{{::success.social.FACEBOOK_SHARE_URL}}">
-            <img src="css/img/activity-enroll/share_facebook.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_facebook.png')}}"
+              alt="{{::success.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
           </a>
 
           <a href="#"
@@ -94,17 +97,19 @@
             socialshare-text="{{::success.social.TWITTER_SHARE_TEXT}}"
             socialshare-hashtags="{{::success.social.TWITTER_SHARE_HASHTAGS}}"
             socialshare-url="{{::success.social.TWITTER_SHARE_URL}}">
-            <img src="css/img/activity-enroll/share_twitter.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_twitter.png')}}"
+              alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
           </a>
           <a href="#"
             ng-click="success.toggleEmailShow()">
-            <img src="css/img/activity-enroll/share_email.png" alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_email.png')}}"
+              alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
           </a>
         </div>
       </div>
 
       <div class="row separate-below">
-        <h2 class="text-center font-normal separate-above-medium separate-below-medium" ng-bind="success.strings.LABEL_SIMILAR"></h2>
+        <h2 class="text-center font-normal separate-above-medium separate-below-less" ng-bind="success.strings.LABEL_SIMILAR"></h2>
         <div class="col-xs-12 col-md-9 col-md-offset-2">
           <div ng-if="success.organizerActivities.length > 0">
             <div class="row activity-grid separate-above">
@@ -122,7 +127,8 @@
       <div class="row navigation-container container-gray-light">
         <div class="col-xs-12 col-md-6">
           <a class="btn btn-link" ui-sref="activities-detail({activity_id: success.activity.id})">
-            <img src="css/img/activity-enroll/navigation_back.png" alt="{{ ::success.strings.ACTION_GO_BACK }}"
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}"
+              alt="{{ ::success.strings.ACTION_GO_BACK }}"
               class="img-responsive inline-block"/>
             <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_BACK"></span>
           </a>
@@ -130,7 +136,8 @@
         <div class="col-xs-12 col-md-6">
           <a class="btn btn-link pull-right" ui-sref="student-dashboard.activities">
             <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_TO_ACTIVITIES"></span>
-            <img src="css/img/activity-enroll/navigation_go.png" alt="{{ ::success.strings.ACTION_GO_TO_ACTIVITIES }}"
+            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/navigation_go.png')}}"
+              alt="{{ ::success.strings.ACTION_GO_TO_ACTIVITIES }}"
               class="img-responsive inline-block"/>
           </a>
         </div>
@@ -143,7 +150,7 @@
 
 <div class="absolute-container" ng-show="success.showEmail">
   <button class="pull-right absolute-container__close" ng-click="success.toggleEmailShow()">
-    <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+    <img class="img-responsive" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
   </button>
   <div class="col-xs-12 col-md-7">
     <div class="modal-content modal-email">

@@ -9,6 +9,6 @@
 
     angular
         .module('trulii.utils.services')
-        .value("defaultPicture", "css/img/default_profile_pic.jpg");
+        .value("defaultPicture", "https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/default_profile_pic.jpg");
 
 })();

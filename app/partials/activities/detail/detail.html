@@ -1,4 +1,4 @@
-<div class="trulii-cover-medium trulii-cover-detail">
+<div class="trulii-cover-regular trulii-cover-detail">
   <div class="trulii-cover__container">
     <div class="trulii-cover__content">
     </div>
@@ -42,7 +42,7 @@
             socialshare-caption="{{::detail.social.FACEBOOK_SHARE_CAPTION}}"
             socialshare-description="{{::detail.social.FACEBOOK_SHARE_DESCRIPTION}}"
             socialshare-url="{{::detail.social.FACEBOOK_SHARE_URL}}">
-            <img class="img-responsive" src="/css/img/activity-detail/share_facebook.png"
+            <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/share_facebook.png')}}"
             alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
           </a>
           <a href="#"
@@ -54,14 +54,14 @@
             socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
             socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
             socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
-            <img class="img-responsive" src="/css/img/activity-detail/share_twitter.png"
+            <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/share_twitter.png')}}"
             alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
           </a>
 
           <a href="#"
             class="text-no-decoration btn-share-email"
             ng-click="detail.toggleEmailShow()">
-            <img class="img-responsive" src="/css/img/activity-detail/share_email.png"
+            <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/share_email.png')}}"
             alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
           </a>
         </div>
@@ -83,12 +83,12 @@
               ng-show="detail.currentGalleryPicture === $index"/>
             </div>
             <img class="gallery-previous" ng-hide="detail.currentGalleryPicture < 1"
-              src="css/img/activity-detail/gallery_slider_left.png" alt="Previous Picture"
+              ng-src="{{detail.getAmazonUrl('static/img/activity-detail/gallery_slider_left.png')}}" alt="Previous Picture"
               ng-click="detail.previousGalleryPicture()"/>
             <img class="gallery-next"
-            src="css/img/activity-detail/gallery_slider_right.png" alt="Next Picture"
-            ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
-            ng-click="detail.nextGalleryPicture()"/>
+              ng-src="{{detail.getAmazonUrl('static/img/activity-detail/gallery_slider_right.png')}}" alt="Next Picture"
+              ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
+              ng-click="detail.nextGalleryPicture()"/>
           </div>
         </div>
       </div>
@@ -98,8 +98,8 @@
         <div class="col-xs-12 section">
           <h2 class="text-success" ng-click="detail.showAudience = !detail.showAudience;">
             <strong ng-bind="::detail.strings.LABEL_AUDIENCE"></strong>
-            <img src="/css/img/plus.png" class="collapse-icon" alt="" ng-show="!detail.showAudience">
-            <img src="/css/img/minus.png" class="collapse-icon" alt="" ng-show="detail.showAudience">
+            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showAudience">
+            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showAudience">
           </h2>
           <p class="content" ng-bind="::detail.activity.audience" ng-class="{'hidden-xs': !detail.showAudience, 'hidden-sm': !detail.showAudience}"></p>
         </div>
@@ -112,8 +112,8 @@
           <div class="separator separate-vertical"></div>
           <h2 class="text-success" ng-click="detail.showContent = !detail.showContent;">
             <strong ng-bind="::detail.strings.LABEL_CONTENT"></strong>
-            <img src="/css/img/plus.png" class="collapse-icon" alt="" ng-show="!detail.showContent">
-            <img src="/css/img/minus.png" class="collapse-icon" alt="" ng-show="detail.showContent">
+            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
+            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showContent">
           </h2>
           <p class="content" ng-bind="::detail.activity.content" ng-class="{'hidden-xs': !detail.showContent, 'hidden-sm': !detail.showContent}"></p>
         </div>
@@ -126,8 +126,8 @@
           <div class="separator separate-vertical"></div>
           <h2 class="text-success" ng-click="detail.showGoals = !detail.showGoals;">
             <strong ng-bind="::detail.strings.LABEL_GOALS"></strong>
-            <img src="/css/img/plus.png" class="collapse-icon" alt="" ng-show="!detail.showGoals">
-            <img src="/css/img/minus.png" class="collapse-icon" alt="" ng-show="detail.showGoals">
+            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
+            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showGoals">
           </h2>
           <p class="content" ng-bind="::detail.activity.goals" ng-class="{'hidden-xs': !detail.showGoals, 'hidden-sm': !detail.showGoals}"></p>
         </div>
@@ -150,8 +150,8 @@
           <div class="separator separate-vertical" ng-if="!detail.activity.youtube_video_url"></div>
           <h2 class="text-success" ng-click="detail.showMethodology = !detail.showMethodology;">
             <strong ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong>
-            <img src="/css/img/plus.png" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
-            <img src="/css/img/minus.png" class="collapse-icon" alt="" ng-show="detail.showMethodology">
+            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
+            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showMethodology">
           </h2>
           <p class="content" ng-bind="::detail.activity.methodology" ng-class="{'hidden-xs': !detail.showMethodology, 'hidden-sm': !detail.showMethodology}"></p>
         </div>
@@ -164,8 +164,8 @@
           <div class="separator separate-vertical"></div>
           <h2 class="text-success" ng-click="detail.showRequirements = !detail.showRequirements;">
             <strong ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong>
-            <img src="/css/img/plus.png" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
-            <img src="/css/img/minus.png" class="collapse-icon" alt="" ng-show="detail.showRequirements">
+            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
+            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showRequirements">
           </h2>
           <p class="content" ng-bind="::detail.activity.requirements" ng-class="{'hidden-xs': !detail.showRequirements, 'hidden-sm': !detail.showRequirements}"></p>
         </div>
@@ -179,8 +179,8 @@
           <div class="separator separate-vertical"></div>
           <h2 class="text-success" ng-click="detail.showExtra = !detail.showExtra;">
             <strong ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong>
-            <img src="/css/img/plus.png" class="collapse-icon" alt="" ng-show="!detail.showExtra">
-            <img src="/css/img/minus.png" class="collapse-icon" alt="" ng-show="detail.showExtra">
+            <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
+            <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showExtra">
           </h2>
           <p class="content" ng-bind="::detail.activity.extra_info" ng-class="{'hidden-xs': !detail.showExtra, 'hidden-sm': !detail.showExtra}"></p>
         </div>
@@ -205,8 +205,7 @@
             <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                     readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
             <span ng-bind="::(detail.organizer.rating | number: 1) + ' / 5'"></span>
-            <span ng-bind="::detail.totalReviews"></span>
-            <img src="/css/img/activity-detail/rating_people.png" alt="Ratings"/>
+            <img ng-src="{{detail.getAmazonUrl('static//img/activity-detail/rating_people.png')}}" alt="Ratings" tooltip-placement="bottom" tooltip="{{::detail.totalReviews}} reviews"/>
           </div>
           <div ng-if="!detail.organizer.rating" ng-bind="detail.strings.COPY_NO_RATINGS"></div>
         </div>
@@ -272,30 +271,31 @@
               <span ng-bind="::detail.strings.ACTION_VIEW_OTHER_DATES"></span>
             </div>
           </div>
-          <div class="wishlist">
+          <div class="wishlist" ng-click="detail.wishList()">
             <div class="text-center">
               <h4>
-                <!--<i class="mdi-action-favorite-outline"></i>
-                <span class="text-muted" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></span>-->
-                <i class="mdi-action-favorite"></i>
-                <span class="text-muted" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST">=</span>
+                <i class="mdi-action-favorite-outline"
+                    ng-class="{'mdi-action-favorite': detail.activity.wish_list}"
+                    ></i>
+                <span class="text-muted" ng-if="detail.activity.wish_list" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST"></span>
+                <span class="text-muted" ng-if="!detail.activity.wish_list" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></span>
               </h4>
             </div>
           </div>
           <div class="info">
             <div class="level">
-              <img src="/css/img/activity-detail/widget_level.png" alt=""/>
+              <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_level.png')}}" alt=""/>
               <div class="title" ng-bind="detail.activity.level_display"></div>
             </div>
             <div class="certification">
-              <img src="/css/img/activity-detail/widget_certification.png" alt=""/>
+              <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_certification.png')}}" alt=""/>
               <div ng-if="detail.activity.certification" class="title"
                 ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></div>
               <div ng-if="!detail.activity.certification" class="title"
                 ng-bind="::detail.strings.VALUE_WITHOUT_CERTIFICATION"></div>
             </div>
             <div class="duration">
-              <img src="/css/img/activity-detail/widget_duration.png" alt=""/>
+              <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_duration.png')}}" alt=""/>
               <div class="title" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></div>
             </div>
           </div>
@@ -411,71 +411,60 @@
               </th>
               <th ng-bind="::detail.strings.LABEL_START">
               </th>
-              <th ng-bind="::detail.strings.LABEL_VACANCY" class="hidden-xs hidden-sm">
-              </th>
               <th ng-bind="::detail.strings.LABEL_CLOSING_DATE" class="hidden-xs hidden-sm">
               </th>
               <th ng-bind="::detail.strings.LABEL_SESSIONS_NUMBER">
               </th>
+              <th ng-bind="::detail.strings.LABEL_VACANCY" class="hidden-xs hidden-sm">
+              </th>
               <th ng-bind="::detail.strings.LABEL_COST">
               </th>
+              <th></th>
               <th class="hidden-md hidden-lg"></th>
             </tr>
             <tr
-              ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id "
+              class="text-uppercase"
+              ng-repeat="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id "
               ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
               <td>
                 <span class="checkbox"></span>
               </td>
               <td>
-                <span ng-bind="calendar.initial_date | date:'d MMM y' "></span>
+                <span ng-bind="calendar.initial_date | date:'d MMM' "></span>
               </td>
               <td class="hidden-xs hidden-sm">
-                <span ng-bind="calendar.available_capacity"></span>
-              </td>
-              <td class="hidden-xs hidden-sm">
-                <span ng-bind="calendar.closing_sale | date:'d MMM y' "></span>
+                <span ng-bind="calendar.closing_sale | date:'d MMM' "></span>
               </td>
               <td>
                 <span ng-bind="calendar.number_of_sessions "></span>
+                <span ng-bind="detail.strings.COPY_OTHER_SESSIONS"></span>
+              </td>
+              <td class="hidden-xs hidden-sm">
+                <span ng-bind="calendar.available_capacity"></span>
+                <span ng-bind="::detail.strings.COPY_OF"></span>
+                <span ng-bind="calendar.capacity"></span>
               </td>
               <td>
                 <span ng-if="!calendar.is_free" ng-bind="calendar.session_price | currency:$:0"></span>
                 <s ng-if="calendar.is_free" ng-bind="calendar.session_price | currency:$:0"></s>
                 <span ng-if="calendar.is_free" ng-bind="detail.strings.COPY_FREE"></span>
               </td>
-              <td class="hidden-md hidden-lg">
-                >
-              </td>
-            </tr>
-            <tr ng-repeat-end class="signup-row hidden-xs hidden-sm" ng-show="detail.selectedActivity === $index">
-              <td colspan=1>
-
-              </td>
-              <td colspan=4>
-                <div class="text-left" ng-if="calendar.available_capacity == 0">
-                  <span ng-bind="::detail.strings.COPY_NO_VACANCY"></span>
-                </div>
-                <div class="text-left" ng-if="calendar.available_capacity > 0">
-                  <span ng-bind="::detail.strings.COPY_VACANCY"></span>
-                  <span ng-bind="calendar.available_capacity"></span>
-                  <span ng-bind="::detail.strings.COPY_OF"></span>
-                  <span ng-bind="calendar.capacity"></span>
-                </div>
-              </td>
-              <td colspan=1>
-                <a class="btn btn-primary btn-block" ng-if="calendar.available_capacity > 0"
+              <td>
+                <a class="btn btn-primary btn-block text-uppercase" ng-if="calendar.available_capacity > 0"
                   ng-click="detail.signUp(detail.activity.id, calendar.id); detail.calendarSignUp()"
                   ng-bind="::detail.strings.ACTION_SIGN_UP">
                 </a>
+              </td>
+              <td class="hidden-md hidden-lg">
+                >
               </td>
             </tr>
           </table>
         </div>
         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-3 col-md-offset-0 sessions-container separate-above-medium">
-          <div class="sessions" ng-class="{'sessions-sm': detail.showSessions}">
+          <div class="sessions text-uppercase" ng-class="{'sessions-sm': detail.showSessions}">
             <button class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="detail.toggleSessions()">
-              <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+              <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
             </button>
             <h3 class="hidden-md hidden-lg" ng-bind="::detail.activity.title"></h3>
             <br class="hidden-md hidden-lg">
@@ -487,8 +476,8 @@
             <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.COPY_VACANCY"></h4>
             <h5 class="hidden-md hidden-lg" ng-bind="detail.activity.upcoming_calendars[detail.selectedActivity].available_capacity"></h5>
             <h4 class="text-uppercase" ng-bind="::detail.strings.COPY_OTHER_SESSIONS"></h4>
-            <h5 ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
-              <strong ng-bind="session.date | date: 'EEE d MMM y' "></strong>
+            <h5 class="separate-above-less" ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
+              <span ng-bind="session.date | date: 'EEE d MMM y' "></span>
               <br>
               <span ng-bind="session.start_time | amDateFormat: 'h:mm a' "></span>
               <span ng-bind="detail.COPY_TO"></span>
@@ -580,7 +569,7 @@
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-3 col-md-offset-0 sessions-container separate-above-medium">
             <div class="sessions" ng-class="{'sessions-sm': detail.showSessions}">
               <button class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="detail.toggleSessions()">
-                <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+                <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
               </button>
               <h3 class="hidden-md hidden-lg" ng-bind="::detail.activity.title"></h3>
               <br class="hidden-md hidden-lg">
@@ -617,7 +606,7 @@
 <!--Location-->
 <div class="location col-xs-12">
     <div class="address">
-      <img src="/css/img/activity-detail/map_location.png" alt=""/>
+      <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/map_location.png')}}" alt=""/>
       <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
       <span ng-bind="detail.activity.location.name"></span>
     </div>
@@ -635,7 +624,8 @@
 
 
 <!--Attendees-->
-<div class="col-xs-12">
+
+<div class="col-xs-12" ng-if="detail.assistants.length > 0">
   <div class="row">
     <div class="col-xs-12">
       <div class="attendees-container">
@@ -655,7 +645,7 @@
   </h3>
   <div class="reasons-container">
     <div class="reason">
-      <img class="reason-img" src="css/img/activity-detail/reason_no_commissions.png"
+      <img class="reason-img" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/reason_no_commissions.png')}}"
       alt="{{ ::detail.strings.REASON_NO_COMMISSIONS }}"/>
       <div class="reason-text">
         <div class="reason-title text-uppercase" ng-bind="::detail.strings.REASON_NO_COMMISSIONS"></div>
@@ -663,7 +653,7 @@
       </div>
     </div>
     <div class="reason">
-      <img class="reason-img" src="css/img/activity-detail/reason_guaranteed_refund.png"
+      <img class="reason-img" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/reason_guaranteed_refund.png')}}"
       alt="{{ ::detail.strings.REASON_REFUND }}"/>
       <div class="reason-text">
         <div class="reason-title text-uppercase" ng-bind="::detail.strings.REASON_REFUND"></div>
@@ -671,7 +661,7 @@
       </div>
     </div>
     <div class="reason">
-      <img class="reason-img" src="css/img/activity-detail/reason_secure_payment.png"
+      <img class="reason-img" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/reason_secure_payment.png')}}"
       alt="{{ ::detail.strings.REASON_SECURE }}"/>
       <div class="reason-text">
         <div class="reason-title text-uppercase" ng-bind="::detail.strings.REASON_SECURE"></div>
@@ -684,32 +674,25 @@
   <div class="row contact-us-container">
     <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3 text-center">
       <div class="separator"></div>
-      <h5 class="separate-above text-uppercase text-sm text-spaced montserrat-regular">
+      <h5 class="separate-above text-uppercase text-sm montserrat-regular">
         <span ng-bind="::detail.strings.COPY_DOUBTS"></span>
+
+      </h5>
+      <div class="separate-above-less">
         <strong>
           <a ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a>
         </strong>
-      </h5>
+      </div>
     </div>
   </div>
 </div>
-<div class="col-xs-12">
+<div class="col-xs-12" ng-if="detail.relatedActivities.length > 0">
   <div class="row related-activities-container">
     <div class="col-xs-12">
-      <h3 class="title separate-above" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
-      <div class="separate-above-more">
-        <trulii-activity-item
-        ng-if="detail.relatedActivities.length >= 1"
-        data-activity="detail.relatedActivities[0]"></trulii-activity-item>
-        <trulii-activity-item
-        ng-if="detail.relatedActivities.length >= 2"
-        data-activity="detail.relatedActivities[1]"></trulii-activity-item>
-        <trulii-activity-item
-        ng-if="detail.relatedActivities.length >= 3"
-        data-activity="detail.relatedActivities[2]"></trulii-activity-item>
-        <trulii-activity-item
-        ng-if="detail.relatedActivities.length >= 4"
-        data-activity="detail.relatedActivities[3]"></trulii-activity-item>
+      <h3 class="title separate-above-less separate-below" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
+      <div>
+        <trulii-activity-item ng-repeat="activity in detail.relatedActivities track by activity.id "
+        data-activity="activity"></trulii-activity-item>
       </div>
     </div>
   </div>
@@ -717,7 +700,7 @@
 
 <div class="absolute-container" ng-show="detail.showEmail">
   <button class="pull-right absolute-container__close" ng-click="detail.toggleEmailShow()">
-    <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt=""/>
+    <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
   </button>
   <div class="col-xs-12 col-md-7">
     <div class="modal-content modal-email">

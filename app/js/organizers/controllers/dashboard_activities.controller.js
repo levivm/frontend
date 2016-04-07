@@ -23,7 +23,7 @@
             open_activities : [],
             closed_activities : [],
             inactive_activities : [],
-            TYPE_OPEN: "open",
+            TYPE_OPEN: "opened",
             TYPE_CLOSED: "closed",
             TYPE_INACTIVE: "unpublished",
             openOptions : {

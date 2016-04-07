@@ -13,9 +13,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailAttendeesController', ActivityDetailAttendeesController);
 
-    ActivityDetailAttendeesController.$inject = ['$state','calendars'];
+    ActivityDetailAttendeesController.$inject = ['$state','calendars', 'serverConf'];
 
-    function ActivityDetailAttendeesController($state,calendars) {
+    function ActivityDetailAttendeesController($state,calendars, serverConf) {
 
         var vm = this;
         var assistants = [];
@@ -33,13 +33,18 @@
             assistants: [],
             pageChanged: pageChanged,
             goToPrevious: goToPrevious,
-            goToNext: goToNext
+            goToNext: goToNext,
+            getAmazonUrl: getAmazonUrl
         });
 
         initialize();
 
         //--------- Exposed Functions ---------//
 
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
+        
         function pageChanged() {
             var page = vm.currentPage - 1;
             var start = vm.pageOptions.itemsPerPage * page;
@@ -66,7 +71,7 @@
         }
 
         //--------- Internal Functions ---------//
-
+        
         function _getAssistants() {
             var assistants = [];
             //console.log('calendars',vm.calendars);
@@ -90,7 +95,7 @@
                 if(assistant.hasOwnProperty('student') && assistant.student.photo){
                     assistant.photo = assistant.student.photo;
                 } else {
-                    assistant.photo = 'css/img/default_profile_pic.jpg';
+                    assistant.photo =  getAmazonUrl('static/img/default_profile_pic.jpg');
                 }
             });
             return assistants;
@@ -103,7 +108,7 @@
 
             angular.extend(vm.strings, {
                 COPY_SO_FAR: "Hasta ahora ",
-                COPY_ALMOST_THERE: "¡Falta poco para conocerlos!",
+                COPY_ALMOST_THERE: " ¡Falta poco para conocerlos!",
                 COPY_ZERO_ATTENDEES: "esta actividad no tiene asistentes ¡Sé tú el primero!",
                 COPY_ONE_ATTENDEE: "va 1 asistente ".concat(join_us_string),
                 COPY_OTHER_ATTENDEES: "van {} asistentes ".concat(join_us_string),

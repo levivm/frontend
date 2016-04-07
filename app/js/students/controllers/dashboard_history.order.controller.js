@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryOrderCtrl', StudentHistoryOrderCtrl);
 
-    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order', 'Analytics'];
+    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order', 'Analytics', 'serverConf'];
 
-    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order, Analytics) {
+    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm,{
@@ -29,13 +29,17 @@
                 maxPagesSize:10,
                 pageNumber: 1
             },
-            updateByQuery:updateByQuery
+            updateByQuery:updateByQuery,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
         function updateByQuery(type){
             switch(type){
@@ -70,37 +74,6 @@
                       vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
                     });
                   break;
-
-                case vm.TYPE_REFUNDS:
-                  var params = {
-                    page: vm.refundsPaginationOpts.pageNumber,
-                    page_size: vm.refundsPaginationOpts.itemsPerPage
-                  };
-
-                  if(vm.refundsFilter.activity)
-                    params.activity = vm.refundsFilter.activity;
-
-                  if(vm.refundsFilter.from_date)
-                    params.from_date = new Date(vm.refundsFilter.from_date).getTime();
-
-                  if(vm.refundsFilter.until_date)
-                    params.until_date = new Date(vm.refundsFilter.until_date).getTime();
-
-                  if(vm.refundsFilter.status)
-                    params.status = vm.refundsFilter.status;
-
-                  if(vm.refundsFilter.query)
-                    params.id = vm.refundsFilter.query;
-
-                  $http.get(api.refunds(organizer.id),
-                      {params: params})
-                      .then(function(response){
-                      vm.refunds = response.data;
-                      vm.refunds.results = $filter('orderBy')(vm.refunds.results, 'id', true);
-                      vm.refundsPaginationOpts.totalItems = vm.refunds.count;
-                      vm.refunds = vm.refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-                    });
-                    break;
 
             }
         }

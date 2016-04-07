@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', 'refunds', '$http', 'activities'];
-    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, refunds, $http, activities) {
+    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', '$http', 'activities'];
+    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, $http, activities) {
 
         var vm = this;
         var api = OrganizerServerApi;
@@ -44,22 +44,7 @@
                 maxPagesSize:10,
                 pageNumber: 1
             },
-            refundsPaginationOpts: {
-                totalItems: 0,
-                itemsPerPage: 10,
-                maxPagesSize:10,
-                pageNumber: 1
-            },
             salesFilter: {
-              from_date: null,
-              until_date: null,
-              from_date_opened: false,
-              until_date_opened: false,
-              status: null,
-              query: null,
-              activity: null
-            },
-            refundsFilter: {
               from_date: null,
               until_date: null,
               from_date_opened: false,
@@ -90,14 +75,6 @@
           if(date === 'sales_until_date'){
             vm.salesFilter.until_date_opened = true;
             vm.salesFilter.from_date_opened = false;
-          }
-           if(date === 'refunds_from_date'){
-            vm.refundsFilter.from_date_opened = true;
-            vm.refundsFilter.until_date_opened = false;
-          }
-          if(date === 'refunds_until_date'){
-            vm.refundsFilter.until_date_opened = true;
-            vm.refundsFilter.from_date_opened = false;
           }
         }
 
@@ -134,38 +111,6 @@
                       vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
                     });
                   break;
-
-                case vm.TYPE_REFUNDS:
-                  var params = {
-                    page: vm.refundsPaginationOpts.pageNumber,
-                    page_size: vm.refundsPaginationOpts.itemsPerPage
-                  };
-
-                  if(vm.refundsFilter.activity)
-                    params.activity = vm.refundsFilter.activity;
-
-                  if(vm.refundsFilter.from_date)
-                    params.from_date = new Date(vm.refundsFilter.from_date).getTime();
-
-                  if(vm.refundsFilter.until_date)
-                    params.until_date = new Date(vm.refundsFilter.until_date).getTime();
-
-                  if(vm.refundsFilter.status)
-                    params.status = vm.refundsFilter.status;
-
-                  if(vm.refundsFilter.query)
-                    params.id = vm.refundsFilter.query;
-
-                  $http.get(api.refunds(organizer.id),
-                      {params: params})
-                      .then(function(response){
-                      vm.refunds = response.data;
-                      vm.refunds.results = $filter('orderBy')(vm.refunds.results, 'id', true);
-                      vm.refundsPaginationOpts.totalItems = vm.refunds.count;
-                      vm.refunds = vm.refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-                    });
-                    break;
-
             }
         }
 
@@ -190,7 +135,7 @@
                 COPY_NOT_AVAILABLE : "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE : "Fecha de inicio:",
-                COPY_SEARCH_ORDERS_HELPER : "Número de orden",
+                COPY_SEARCH_ORDERS_HELPER : "Nro. orden",
                 COPY_NO_ORDERS: "Aún no tienes ordenes en tu historial de Ventas",
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de venta restando la comisión de Trulii, consulte el detalle "+
                                           "para mayor información",

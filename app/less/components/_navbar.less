@@ -79,7 +79,7 @@
     }
 
     &__logo {
-        background: url('img/logo-trulii.png') no-repeat;
+        background: url('@{s3url}/static/img/logo-trulii.png') no-repeat;
         height: @navbar-inner-height;
         width: 9em;
         display: inline-block;
@@ -90,7 +90,7 @@
             width: 7em;
             background-size: contain;
             position: relative;
-            background-image: url('img/logo-yellow.png');
+            background-image: url('@{s3url}/static/img/logo-yellow.png');
             margin: 7px auto 0 !important;
             height: @navbar-short-inner-height;
         });
@@ -301,6 +301,29 @@
     top: @navbar-short-height;
   }
 }
+.navbar-landing{
+  background: transparent !important;
+  border: none;
+  color: #FFFFFF !important;
+    .navbar__logo-container{
+      background: transparent !important;
+    }
+    .navbar__option--right{
+      border-left: none;
+    }
+    .btn-primary{
+      background: transparent !important;
+      border: 1px solid white;
+      border-radius: 0;
+    }
+    .buttons-login{
+        > a{
+            color: #ffffff;
+        }
+    }
+
+}
+
 .navbar-secondary {
     background: @gray-lighter;
     height: @navbar-secondary-height;
@@ -392,6 +415,26 @@
         border-right: 0.1em solid gray;
         line-height: 2.5em;
         font-size: 1.1em;
+    }
+    
+    .arrow-back-messages{
+      border: 2px solid;
+      border-radius: 50%;
+      font-size: 1.3em;
+      line-height: 1em;
+      font-weight: 600;
+      margin-top: 0.5em;
+    }
+
+    .new-message{
+        line-height: 3em;
+        cursor: pointer;
+        span{
+            margin-right: 0.5em;
+            img{
+                margin-bottom: 0.1em;
+            }
+        }
     }
 
 }
