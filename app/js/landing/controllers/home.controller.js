@@ -137,7 +137,7 @@
         function _fromBurgerMenu(){
           angular.element(document).ready(function () {
               if ($stateParams.from_burger){
-                  setTimeout(function(){ Elevator.toElement('anchor-how'); }, 1000);
+                  setTimeout(function(){ Elevator.toElement('anchor-how'); }, 2000);
                   $stateParams.from_burger=null;
               }
            });

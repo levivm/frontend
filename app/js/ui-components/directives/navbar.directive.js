@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -40,13 +40,15 @@
                     clickLogo:clickLogo,
                     updateSearchCity:updateSearchCity,
                     isLandingState:isLandingState,
-                    getAmazonUrl: getAmazonUrl
+                    getAmazonUrl: getAmazonUrl,
+                    howToWorkStudent: howToWorkStudent,
+                    howToWorkOrganizer: howToWorkOrganizer
                 });
 
                 _activate();
 
                 // --------- Exposed Functions ----------//
-                
+
                 function getAmazonUrl(file){
                     return  serverConf.s3URL + '/' +  file;
                 }
@@ -78,7 +80,18 @@
                 function isLandingState(){
                   return ($state.current.name==='home' && scope.scroll<100) ;
                 }
-
+                function howToWorkStudent(){
+                    if($state.current.name==='home')
+                      Elevator.toElement('anchor-how');
+                    else
+                      $state.go('home', {from_burger: true});
+                }
+                function howToWorkOrganizer(){
+                    if($state.current.name==='organizer-landing')
+                      Elevator.toElement('anchor-how');
+                    else
+                      $state.go('organizer-landing', {from_burger: true});
+                }
                 //---Exposed functions for send data to Google Analytics----//
 
                 function clickItemSidebar(item){
