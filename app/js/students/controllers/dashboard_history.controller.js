@@ -53,15 +53,6 @@
               query: null,
               activity: null
             },
-            refundsFilter: {
-              from_date: null,
-              until_date: null,
-              from_date_opened: false,
-              until_date_opened: false,
-              status: null,
-              query: null,
-              activity: null
-            },
             openDatePicker: openDatePicker,
         });
 
@@ -84,14 +75,6 @@
           if(date === 'orders_until_date'){
             vm.ordersFilter.until_date_opened = true;
             vm.ordersFilter.from_date_opened = false;
-          }
-           if(date === 'refunds_from_date'){
-            vm.refundsFilter.from_date_opened = true;
-            vm.refundsFilter.until_date_opened = false;
-          }
-          if(date === 'refunds_until_date'){
-            vm.refundsFilter.until_date_opened = true;
-            vm.refundsFilter.from_date_opened = false;
           }
         }
 
@@ -127,36 +110,6 @@
                     vm.orders = vm.orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
                   });
                   break;
-                case vm.TYPE_REFUNDS:
-                  var params = {
-                    page: vm.refundsPaginationOpts.pageNumber,
-                    page_size: vm.refundsPaginationOpts.itemsPerPage
-                  };
-
-                  if(vm.refundsFilter.activity)
-                    params.activity = vm.refundsFilter.activity;
-
-                  if(vm.refundsFilter.from_date)
-                    params.from_date = new Date(vm.refundsFilter.from_date).getTime();
-
-                  if(vm.refundsFilter.until_date)
-                    params.until_date = new Date(vm.refundsFilter.until_date).getTime();
-
-                  if(vm.refundsFilter.status)
-                    params.status = vm.refundsFilter.status;
-
-                  if(vm.refundsFilter.query)
-                    params.id = vm.refundsFilter.query;
-
-                  $http.get(api.refunds(student.id),
-                      {params: params})
-                      .then(function(response){
-                      vm.refunds = response.data;
-                      vm.refunds.results = $filter('orderBy')(vm.refunds.results, 'id', true);
-                      vm.refundsPaginationOpts.totalItems = vm.refunds.count;
-                      vm.refunds = vm.refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-                  });
-                  break;
 
             }
         }
@@ -182,20 +135,6 @@
                 console.log('Error retrieving Student Orders History');
             }
 
-        }
-
-        function _getRefunds(){
-            student.getRefunds().then(success,error);
-
-            function success(data){
-              refunds = data;
-              refunds.results = $filter('orderBy')(refunds.results, 'id', true);
-              vm.refundsPaginationOpts.totalItems = refunds.count;
-              vm.refunds = refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-            }
-            function error(data){
-                console.log("Error getting Organizer's orders");
-            }
         }
 
 
