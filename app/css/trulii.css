@@ -12896,7 +12896,12 @@ hr.on-light {
   }
 }
 .text-lg-2 {
-  font-size: 1.3em;
+  font-size: 1.3em !important;
+}
+@media screen and (max-width: 992px) {
+  .text-lg-2 {
+    font-size: 1em !important;
+  }
 }
 .text-xlg {
   font-size: 1.5em;
@@ -15544,7 +15549,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 50%;
 }
 .sidebar .mandatory-mark-edit-activity {
-  background-color: #535353;
+  background-color: #38dbc8;
 }
 .sidebar .mandatory-mark.--right {
   float: right;
