@@ -22479,6 +22479,41 @@ input[type=text].form-control.referral-link:focus {
   height: auto;
   width: 100vw;
 }
+.summary-container .seat-metric-bar {
+  width: 80%;
+  display: inline-block;
+  background-color: #eeeeee;
+  height: 25px;
+  margin: 0 auto;
+  border-radius: 20px;
+  overflow: hidden;
+}
+.summary-container .seat-metric-bar .seat-metric-bar__fill {
+  height: 25px;
+  background-color: #ffd580;
+}
+.summary-container .seat-metric-text {
+  width: 20%;
+  display: inline-block;
+  height: 25px;
+  vertical-align: 6px;
+}
+.summary-container .views-metric-circle {
+  margin: 0 auto;
+  width: 250px;
+  height: 250px;
+  border-radius: 250px;
+  border: 3px solid #38dbc8;
+  padding: 50px;
+}
+.summary-container .sales-metric-circle {
+  margin: 0 auto;
+  width: 250px;
+  height: 250px;
+  border-radius: 250px;
+  border: 3px solid #FCAB54;
+  padding: 50px;
+}
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;

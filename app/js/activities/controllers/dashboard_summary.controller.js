@@ -36,6 +36,7 @@
         parseData();
         
         angular.extend(vm, {
+          activity: activity,
           stats: stats,
           nextDateOptions: {
             chart: {
@@ -161,13 +162,13 @@
                 COPY_TOTAL_SALES: "Total de ventas",
                 COPY_TOTAL_SEATS: "Total de cupos vendidos",
                 COPY_TOTAL_VIEWS: "Total de visitas recibidas",
-                COPY_SOLD_SEATS: "Cupos vendidos: "
+                COPY_SOLD_SEATS: "Cupos disponibles: ",
+                COPY_SEATS: "cupos"
             });
         }
 
         function _activate() {
             _setStrings();
-            vm.stats.total_points.total = vm.stats.total_points.total_gross + vm.stats.total_points.total_net + vm.stats.total_points.total_fee;
         }
 
     }
