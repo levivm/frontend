@@ -15559,6 +15559,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar__bottom-action-dark-edit-acitivity {
   background-color: gray;
   padding: 1em 0em 0.25em 0em;
+  height: 60px;
 }
 .sidebar__bottom-action-dark-edit-acitivity a {
   color: #FFFFFF;
