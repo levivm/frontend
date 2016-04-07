@@ -371,7 +371,7 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
-                COPY_OTHER_SESSIONS: "Sesiones",
+                COPY_OTHER_SESSIONS: "Horarios",
                 COPY_OTHER_OPORTUNITY: "Oportunidad",
                 COPY_OTHER_OPORTUNITIES: "Oportunidades",
                 COPY_ONE_REVIEW: " Evaluación",
@@ -384,7 +384,7 @@
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
                 LABEL_START: "Inicio",
                 LABEL_VACANCY: "Vacantes",
-                LABEL_SESSIONS_NUMBER: "N° Sesiones",
+                LABEL_SESSIONS_NUMBER: "N° Horarios",
                 LABEL_COST: "Precio",
                 LABEL_NEXT_DATE: "Próximo Inicio",
                 LABEL_CLOSING_DATE: "Ventas hasta",
@@ -481,7 +481,7 @@
                 if(assistant.hasOwnProperty('student') && assistant.student.photo){
                     assistant.photo = assistant.student.photo;
                 } else {
-                    assistant.photo = 'css/img/default_profile_pic.jpg';
+                    assistant.photo = getAmazonUrl('static/img/default_profile_pic.jpg');
                 }
             });
             return assistants;

@@ -120,7 +120,7 @@
                 ACTION_GO_BACK: "Regresar",
                 SECTION_HISTORY: "Historial de Compras",
                 COPY_REFUND_REQUESTED_BY_OTHER: "El reembolso fue solicitado por el estudiante",
-                LABEL_ORDER: "Ordén",
+                LABEL_ORDER: "Orden",
                 LABEL_FREE: "GRATIS",
                 LABEL_ACTIVITY: "Actividad",
                 LABEL_BUYER: "Comprador",
