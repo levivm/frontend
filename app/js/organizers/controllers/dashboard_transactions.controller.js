@@ -28,7 +28,6 @@
             isCollapsed: true,
             isSaving: false,
             sales: [],
-            refunds: [],
             dateOptions : {
                 formatYear: 'yyyy',
                 startingDay: 1,
@@ -36,7 +35,6 @@
             },
             queries : {
                 saleQuery : null,
-                refundQuery : null
             },
             salesPaginationOpts: {
                 totalItems: 0,

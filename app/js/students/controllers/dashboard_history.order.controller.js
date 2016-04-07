@@ -92,8 +92,6 @@
             angular.extend(vm.strings, {
                 ACTION_GO_BACK: "Regresar",
                 ACTION_PRINT: "Imprimir",
-                COPY_COUPON_NOT_REFUND_TOOLTIP: "El cupón no es reembolsable",
-                COPY_REFUND_REQUESTED_BY_OTHER: "El reembolso fue solicitado por el organizador",
                 COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y ayuda a identificar a un asistente",
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Ordén",
@@ -106,8 +104,6 @@
                 LABEL_SUB_TOTAL: "Sub-Total",
                 LABEL_COUPON: "Cupón",
                 LABEL_ORDER_STATUS: "Estatus: ",
-                LABEL_REIMBURSEMENTS_STATUS: "Estatus reembolso:",
-                REFUND_APPROVED_STATUS: "Aprobado",
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_EMAIL: "Correo",
                 HEADER_PRICE: "Precio",

@@ -36,13 +36,7 @@
                 pageNumber: 1,
                 maxPagesSize : 10
             },
-            refundsPaginationOpts: {
-                totalItems: 0,
-                itemsPerPage: 10,
-                pageNumber: 1
-            },
             TYPE_ORDER: 'order',
-            TYPE_REFUNDS: 'refunds',
             titleSize: titleTruncateSize,
             ordersFilter: {
               from_date: null,
@@ -59,7 +53,6 @@
         activate();
 
         var orders = [];
-        var refunds = [];
 
         /*      Exposed Functions      */
 
@@ -153,12 +146,10 @@
                 LABEL_SEARCH:"Revisa toda la informacion de tu orden de compra. "
                 + "Puedes incluso solicitar el reembolso del monto total de la orden o el monto "
                 + "correspondiente por cada asistente",
-                LABEL_EMPTY_REFUND: "No has solicitado ningún rembolso por el momento. Mientras tanto, ¿por qué no te a nimas a aprender algo nuevo?",
                 LABEL_EMPTY_ORDERS: "No te has inscrito en ninguna actividad aún. Eso nos parte el corazón. ¿Por qué no te animas hoy a aprender lo que te apasiona?",
                 LABEL_EVERYBODY: "Todos",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un nuevo pasatiemo o mejores tu curriculo",
                 TAB_ORDERS: "Compras",
-                TAB_REFUNDS: "Reembolsos",
                 PLURALIZE_ASSISTANT: "{} asistente",
                 PLURALIZE_ASSISTANTS: "{} asistentes",
                 HEADER_ORDER: "Orden",
@@ -168,9 +159,6 @@
                 HEADER_STATUS: "Estatus",
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_PURCHASE_DATE: "Fecha de compra",
-                HEADER_REFUND_DATE: "Fecha de reembolso",
-                HEADER_REFUND_TOTAL: "Monto",
-                HEADER_REFUND_STATUS: "Estado",
                 HEADER_TOTAL: "Monto"
             });
         }
@@ -178,7 +166,6 @@
         function activate() {
             _setStrings();
             _getOrders();
-            _getRefunds();
         }
 
     }
