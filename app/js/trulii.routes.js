@@ -46,7 +46,7 @@
                 controller:'HomeController as home',
                 templateUrl: 'partials/landing/landing.html',
                 params: {
-                  from_burger: null
+                  from_menu: null
                 },
                 resolve: {
                      activities: getRecommendedActivities,

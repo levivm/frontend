@@ -91,7 +91,7 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-        
+
         function collapseFilters(){
           vm.collapsedFilters = !vm.collapsedFilters;
         }
@@ -418,7 +418,6 @@
             _setStrings();
             _setGeneralInfo();
             _getSearchParams();
-            console.log($stateParams);
             _getActivities($stateParams).then(function () {
                 _scrollToCurrentCategory();
             });

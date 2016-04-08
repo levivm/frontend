@@ -139,9 +139,9 @@
         }
         function _fromBurgerMenu(){
 
-          if ($stateParams.from_burger){
+          if ($stateParams.from_menu){
               setTimeout(function(){ Elevator.toElement('anchor-how'); }, 2000);
-              $stateParams.from_burger=null;
+              $stateParams.from_menu=null;
           }
 
         }
