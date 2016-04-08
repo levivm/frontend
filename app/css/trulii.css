@@ -22479,6 +22479,37 @@ input[type=text].form-control.referral-link:focus {
   height: auto;
   width: 100vw;
 }
+.summary-container .nvd3-svg {
+  overflow: visible;
+}
+.summary-container .sales-info .flex-center-item {
+  margin-left: auto;
+}
+.summary-container .range-widget .range-tab {
+  text-transform: uppercase;
+  padding: 10px 30px 10px 30px;
+  border-bottom: 1px solid white;
+  cursor: pointer;
+}
+.summary-container .range-widget .range-tab-active {
+  border-bottom: 1px solid #FCAB54;
+}
+.summary-container .range-widget .range-slider {
+  margin: 20px 0 30px 0;
+  font-size: 1.5em;
+}
+.summary-container .range-widget .range-slider > * {
+  padding: 20px 30px;
+}
+.summary-container .range-widget .range-slider .range-arrow {
+  cursor: pointer;
+  font-weight: 100;
+}
+.summary-container .range-widget .range-slider .range-display {
+  text-transform: uppercase;
+  width: 200px;
+  text-align: center;
+}
 .summary-container .seat-metric-bar {
   width: 80%;
   display: inline-block;
@@ -22498,21 +22529,37 @@ input[type=text].form-control.referral-link:focus {
   height: 25px;
   vertical-align: 6px;
 }
-.summary-container .views-metric-circle {
+.summary-container .metric-circle {
+  position: relative;
   margin: 0 auto;
-  width: 250px;
-  height: 250px;
-  border-radius: 250px;
-  border: 3px solid #38dbc8;
-  padding: 50px;
+  width: 200px;
+  height: 200px;
+  border-radius: 200px;
+  padding: 55px 0;
 }
-.summary-container .sales-metric-circle {
+.summary-container .metric-circle .metric-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+  position: absolute;
+  top: 75px;
+}
+.summary-container .metric-circle .metric-icon img {
   margin: 0 auto;
-  width: 250px;
-  height: 250px;
-  border-radius: 250px;
+}
+.summary-container .metric-circle-views {
+  border: 3px solid #38dbc8;
+}
+.summary-container .metric-circle-views .metric-icon {
+  background-color: #38dbc8;
+  left: -25px;
+}
+.summary-container .metric-circle-sales {
   border: 3px solid #FCAB54;
-  padding: 50px;
+}
+.summary-container .metric-circle-sales .metric-icon {
+  background-color: #FCAB54;
+  right: -25px;
 }
 ::-webkit-scrollbar {
   width: 10px;
