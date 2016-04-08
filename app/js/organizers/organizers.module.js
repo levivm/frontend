@@ -40,7 +40,7 @@
                 controller: 'OrganizerLandingCtrl as landing',
                 templateUrl: 'partials/organizers/landing.html',
                 params: {
-                  from_burger: null
+                  from_menu: null
                 },
                 resolve:{
                     cities: getAvailableCities

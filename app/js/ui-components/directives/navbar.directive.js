@@ -24,6 +24,9 @@
                 var unsubscribeUserLoggedOut = null;
                 var unsubscribeStateChange = null;
                 var transitionOptions = {location : true, inherit : false, reload : false};
+                var STATE_HOW_TO_WORK_HOME = 'home';
+                var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
+
                 angular.extend(scope, {
                     state: null,
                     isSearchVisible : true,
@@ -81,17 +84,13 @@
                   return ($state.current.name==='home' && scope.scroll<100) ;
                 }
                 function howToWorkStudent(){
-                    if($state.current.name==='home')
-                      Elevator.toElement('anchor-how');
-                    else
-                      $state.go('home', {from_burger: true});
+                    _stateGoHowto(STATE_HOW_TO_WORK_HOME);
                 }
                 function howToWorkOrganizer(){
-                    if($state.current.name==='organizer-landing')
-                      Elevator.toElement('anchor-how');
-                    else
-                      $state.go('organizer-landing', {from_burger: true});
+                    _stateGoHowto(STATE_HOW_TO_WORK_ORGANIZER);
                 }
+
+
                 //---Exposed functions for send data to Google Analytics----//
 
                 function clickItemSidebar(item){
@@ -159,6 +158,15 @@
                     $timeout(function () {
                         scope.$apply();
                     }, 0);
+                }
+
+                function _stateGoHowto(howToWType){
+                  var currentState = $state.current.name;
+                  if(currentState===howToWType)
+                    Elevator.toElement('anchor-how');
+                  else
+                    $state.go((currentState==='home') ? 'organizer-landing': 'home', {from_menu: true})
+
                 }
 
                 function _setStrings() {

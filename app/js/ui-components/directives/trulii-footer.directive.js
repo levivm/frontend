@@ -17,8 +17,31 @@
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-footer.html",
             link: function (scope) {
-
+                var STATE_HOW_TO_WORK_HOME = 'home';
+                var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
                 _activate();
+
+                scope.getAmazonUrl = function(file){
+                  return  serverConf.s3URL + '/' +  file;
+                };
+                scope.howToWorkStudent = function(){
+                  _stateGoHowto(STATE_HOW_TO_WORK_HOME);
+                }
+                scope.howToWorkOrganizer = function(){
+                  _stateGoHowto(STATE_HOW_TO_WORK_ORGANIZER);
+                }
+
+
+                //---- Internal Functions----//
+
+                function _stateGoHowto(howToWType){
+                  var currentState = $state.current.name;
+                  if(currentState===howToWType)
+                    Elevator.toElement('anchor-how');
+                  else
+                    $state.go((currentState==='home') ? 'organizer-landing': 'home', {from_menu: true})
+
+                }
 
                 function _setStrings() {
                     if (!scope.strings) {
@@ -49,21 +72,6 @@
                         FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"
                     });
 
-                    scope.getAmazonUrl = function(file){
-                        return  serverConf.s3URL + '/' +  file;
-                    };
-                    scope.howToWorkStudent = function(){
-                        if($state.current.name==='home')
-                          Elevator.toElement('anchor-how');
-                        else
-                          $state.go('home', {from_burger: true});
-                    }
-                    scope.howToWorkOrganizer = function(){
-                        if($state.current.name==='organizer-landing')
-                          Elevator.toElement('anchor-how');
-                        else
-                          $state.go('organizer-landing', {from_burger: true});
-                    }
                 }
 
                 function _activate() {
