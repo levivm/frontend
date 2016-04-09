@@ -3,7 +3,7 @@
         <div class="sidebar lateral-slide" ng-class="{'sidebar-short': manage.scroll > 80, 'hidden-xs': !manage.showSidebar, 'hidden-sm': !manage.showSidebar}" style="padding-bottom: 48px">
             <ul>
                 <li>
-                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ASSISTANTS)" 
+                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ASSISTANTS)"
                        ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
                        ui-sref-active="sidebar__item--selected">
                         <i class="sidebar__item__icon mdi-social-people"></i>
@@ -55,7 +55,7 @@
                     <span class="hidden-xs hidden-sm" ng-bind="manage.strings.ACTION_VIEW"></span>
                     <i class="mdi-image-remove-red-eye hidden-md hidden-lg sidebar__item__icon text-center"></i>
                 </a>
-                <a class="btn btn-default pull-right"
+                <a class="btn btn-default pull-right hidden-xs hidden-sm"
                  ng-click="manage.actionNavbarSecondary('Editar actividad')"
                  ui-sref="dash.activities-edit.general({activity_id:{{manage.activity.id}}})">
                     <span class="hidden-xs hidden-sm" ng-bind="'Editar actividad'"></span>

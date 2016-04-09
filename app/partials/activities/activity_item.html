@@ -22,6 +22,7 @@
                class="activity-card__header__menu__item"
                ui-sref="{{::action.state}}"
                ng-click="clickAction(action.name)"
+               ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
                data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
               <span class=" activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
             </a>
