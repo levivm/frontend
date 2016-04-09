@@ -10,7 +10,7 @@
                 <a ui-sref="login" class=" montserrat-regular  margin-horizontal" ng-bind="::strings.ACTION_LOGIN"></a>
                 <a ui-sref="register" class="montserrat-regular " ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
-            <div class="buttons float-right" ng-if="user.is_organizer">
+            <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary montserrat-regular" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons visible-xs-block visible-sm-block" ng-if="user.is_organizer">
-                <div class="row">
+                <div class="row hidden-xs hidden-sm">
                     <div class="col-xs-12 col-md-5">
                         <a ui-sref="dash.activities-new.general" ng-click="toggleBurger()">
                             <button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_CREATE">
