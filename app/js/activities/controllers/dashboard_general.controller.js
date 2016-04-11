@@ -41,11 +41,11 @@
         _activate();
 
         /******************ACTIONS**************/
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-        
+
         function createActivity() {
             Error.form.clear(vm.activity_create_form);
             _updateTags();
@@ -94,7 +94,9 @@
         }
 
 
-        function checkValidTitle(){
+        function checkValidTitle(init){
+
+            init = init===true ? true: false;
 
             if (!vm.creating){
                 vm.weHaveTitle = true;
@@ -105,10 +107,12 @@
                 vm.activity.title = vm.activity_title;
                 vm.weHaveTitle = true;
                 Analytics.organizerEvents.newAcitvity(vm.activity.title);
-            }
-            else{
+            }else{
                 vm.weHaveTitle = false;
+                !init ? Toast.error(vm.strings.TOAST_TITLE_ERROR): null;
+
             }
+
         }
         /*****************SETTERS********************/
 
@@ -190,6 +194,7 @@
                 LABEL_SUB_CATEGORY: "Sub-categoria",
                 LABEL_SHOT_DESCRIPTION: "Descripción corta",
                 LABEL_TAGS: "Tags / Etiquetas",
+                TOAST_TITLE_ERROR: "El título es obligatiorio."
             });
         }
 
@@ -202,7 +207,7 @@
             else
                 _setCreate();
 
-            vm.checkValidTitle();
+            vm.checkValidTitle(true);
 
 
             _onSectionUpdated();

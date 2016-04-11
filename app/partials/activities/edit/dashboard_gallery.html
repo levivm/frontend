@@ -58,12 +58,12 @@
             </div>
 
             <!-- GALLERY SECTION -->
-            <div class="row separate-above">
-                <div class="section-title" ng-bind="::gallery.strings.LABEL_GALLERY_TITLE"></div>
+            <div class="section-title">
+                <span ng-bind="::gallery.strings.LABEL_GALLERY_TITLE"></span>
             </div>
-            <div class="row">
-                <div class="col-md-10 col-xs-offset-1 separate-right">
-                    <div class="section-description" ng-bind="::gallery.strings.COPY_GALLERY"></div>
+            <div class="col-md-10 col-xs-offset-1 separate-right">
+                <div class="section-description">
+                    <span ng-bind="::gallery.strings.COPY_GALLERY"></span>
                 </div>
             </div>
             <div class="row">
@@ -105,13 +105,17 @@
             </div>
 
             <!-- VIDEO SECTION -->
-            <div class="row separate-above">
-                    <div class="section-title" ng-bind="::gallery.strings.LABEL_VIDEO_TITLE"></div>
+            <div class="section-title">
+                <span ng-bind="::gallery.strings.LABEL_VIDEO_TITLE"></span>
+            </div>
+            <div class="col-md-10 col-xs-offset-1 separate-right">
+                <div class="section-description">
+                    <span ng-bind="::gallery.strings.COPY_VIDEO"></span>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-10 col-xs-offset-1 separate-right">
                     <form name='vm.activity_gallery_form' ng-submit="gallery.updateActivity()">
-                        <div class="section-description" ng-bind="::gallery.strings.COPY_VIDEO"></div>
                         <div class="form-group" trulii-input-errors-control="youtube_video_url">
                             <label for="youtube_video_url" class="control-label"
                                    ng-bind="::gallery.strings.LABEL_YOUTUBE_LINK"></label>

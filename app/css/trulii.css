@@ -12938,7 +12938,12 @@ hr.on-light {
   }
 }
 .text-lg-2 {
-  font-size: 1.3em;
+  font-size: 1.3em !important;
+}
+@media screen and (max-width: 992px) {
+  .text-lg-2 {
+    font-size: 1em !important;
+  }
 }
 .text-xlg {
   font-size: 1.5em;
@@ -15587,7 +15592,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 50%;
 }
 .sidebar .mandatory-mark-edit-activity {
-  background-color: #535353;
+  background-color: #38dbc8;
 }
 .sidebar .mandatory-mark.--right {
   float: right;
@@ -17748,9 +17753,15 @@ ul.dropdown-menu:after {
   z-index: 500;
   font-size: 3em;
   transition: all 0.125s;
+  margin: 0 auto;
   padding: 0 20px;
   max-width: 100%;
   word-break: break-word;
+}
+@media screen and (max-width: 1215px) {
+  .category-card__title {
+    font-size: 2.3em;
+  }
 }
 @media screen and (max-width: 480px) {
   .category-card__title {
@@ -18828,18 +18839,19 @@ button.toast-close-button {
 .detail-organizer-name {
   margin-right: 20px;
 }
-@media (min-aspect-ratio: 16/9) {
+/*@media (min-aspect-ratio: 16/9) {
   .trulii-cover__background-video {
     width: 100%;
     height: auto;
   }
 }
+
 @media (max-aspect-ratio: 16/9) {
   .trulii-cover__background-video {
     width: auto;
     height: 100%;
   }
-}
+}*/
 @media (max-width: 767px) {
   .trulii-cover__background video {
     display: none;
@@ -21951,6 +21963,11 @@ blockquote {
 .profile-location .map {
   width: 100%;
   height: 28em;
+}
+@media screen and (max-width: 480px) {
+  .profile-location .map {
+    height: 15em;
+  }
 }
 .profile-location .address {
   padding: 1.2em;
