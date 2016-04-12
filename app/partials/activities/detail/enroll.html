@@ -36,13 +36,26 @@
   <div class="trulii-cover-small">
     <div class="trulii-cover__container">
       <div class="trulii-cover__content">
-        <div class="col-xs-12">
+        <div class="col-xs-12 trulii-cover__content-enroll">
           <div class="row">
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
-              <h1 class="text-center  sub-title-light" ng-bind="enroll.strings.COPY_COVER"></h1>
-              <h1 class="text-center title">
-                <strong ng-bind="enroll.activity.title"></strong>
+            <div class="col-xs-12 col-md-8 col-md-offset-1 ">
+              <h2 class="sub-title-light" ng-bind="enroll.strings.COPY_COVER"></h1>
+              <h1 class="title montserrat-light">
+                <span ng-bind="enroll.activity.title"></span>
               </h1>
+            </div>
+            <div class="col-xs-12 col-md-2">
+              <h2 class="sub-title-light text-right separate-above-more text-spaced">
+                <span ng-bind="enroll.calendar.vacancy"></span>
+                <span>
+                    <ng-pluralize count="enroll.calendar.vacancy"
+                        when="{
+                            '1': enroll.strings.COPY_VACANCY_SINGULAR,
+                            'other': enroll.strings.COPY_VACANCY
+                            }">
+                    </ng-pluralize>
+                </span>
+              </h2>
             </div>
           </div>
         </div>
@@ -55,133 +68,32 @@
   <div class="col-xs-12">
     <div class="row separate-above-medium">
       <div class="col-xs-12 col-md-7 col-md-offset-1">
-          <!--Info-->
-          <div class="row text-center separate-above-less separate-below">
-              <div class="col-xs-12 text-uppercase">
-                  <h4 class="text-spaced no-margin sinkin-medium">
-                    <strong ng-bind="enroll.strings.COPY_STARTING_ON"></strong>
-                  </h4>
-                  <h2 class="text-spaced sinkin-semibold text-uppercase separate-above-less" ng-bind="enroll.calendar.initial_date | date:'d MMM  y'"></h2>
-                  <h4 class="text-spaced no-margin font-family-sans-alt">
-                      <span ng-bind="enroll.calendar.vacancy"></span>
-                      <span>
-                          <ng-pluralize count="enroll.calendar.vacancy"
-                              when="{
-                                  '1': enroll.strings.COPY_VACANCY_SINGULAR,
-                                  'other': enroll.strings.COPY_VACANCY
-                                  }">
-                          </ng-pluralize>
-                      </span>
-                  </h4>
-              </div>
-          </div>
-      </div>
-      <div class="col-xs-12 col-md-3 col-md-offset-0 widget-container">
-          <!--Organizer-->
-          <div class="organizer-widget">
-              <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
-                  <div class="content">
-                      <img class="picture" ng-src="{{::enroll.activity.organizer.photo}}"
-                          alt="{{::enroll.activity.organizer.name}}"/>
-                      <div class="data">
-                          <div class="name" ng-bind="::enroll.activity.organizer.name"></div>
-                          <div class="location" ng-bind="::enroll.activity.organizer.city"></div>
-                      </div>
-                  </div>
-              </a>
-          </div>
-      </div>
-  </div>
-  </div>
-
-  <div class="col-xs-12">
-    <div class="row separate-above-less">
-      <div class="col-xs-12 col-md-push-8 col-md-3 col-md-offset-0 widget-container">
-          <!--Billing-->
-          <div ng-show="::enroll.showWidget" class="billing-widget separate-above" ng-class="{'fixed-widget': (enroll.scroll > enroll.widgetOriginalPosition) && (enroll.scroll < enroll.widgetMaxPosition), 'absolute-widget': enroll.scroll >= enroll.widgetMaxPosition}"
-            ng-style="enroll.scroll >= enroll.widgetMaxPosition && {'top': enroll.widgetAbsolutePosition}">
-              <div class="invoice">
-                  <h4 class="text-uppercase" ng-bind="::enroll.strings.LABEL_INVOICE"></h4>
-                  <div class="row seats separate-above separate-below-less">
-                      <div class="col-xs-12 col-md-6 item">
-                          <span ng-bind="enroll.strings.LABEL_SEATS_X"></span><span ng-bind="enroll.assistants.length"></span>
-                      </div>
-                      <div class="col-xs-12 col-md-6 value">
-                          <span ng-bind="enroll.amount | currency"></span>
-                      </div>
-                  </div>
-                  <div class="row separate-below-less" ng-repeat="assistant in enroll.assistants" ng-if="assistant.first_name">
-                      <div class="col-xs-12 col-md-6 sub-item">
-                          <span ng-bind="assistant.first_name"></span> <span ng-bind="assistant.last_name"></span>
-                      </div>
-                      <div class="col-xs-12 col-md-6 sub-value">
-                          <span ng-bind="enroll.calendar.session_price | currency"></span>
-                      </div>
-                  </div>
-                  <!--if Free-->
-                  <div class="row separate-above" ng-if="enroll.calendar.is_free">
-                      <div class="col-xs-12 col-md-6 item">
-                          <span ng-bind="::enroll.strings.LABEL_FREE_CALENDAR"></span>
-                      </div>
-                      <div class="col-xs-12 col-md-6 value">
-                          <span ng-bind="- enroll.calendar.session_price | currency"></span>
-                      </div>
-                  </div>
-                  <!--Coupons-->
-                  <!--Coupon Form-->
-                  <div class="row separate-above" ng-if="!enroll.calendar.is_free" ng-hide="enroll.hasCouponApplied">
-                      <div class="col-xs-12">
-                          <div class="form-group form-classic">
-                              <label for="inputCoupon" class="sr-only" ng-bind="::enroll.strings.LABEL_APPLY_COUPON"></label>
-                              <div class="col-xs-12 no-padding">
-                                <div class="input-group">
-                                  <input type="text" class="form-control input-sm" id="inputCoupon"
-                                        ng-model="enroll.coupon.code" placeholder="{{::enroll.strings.LABEL_APPLY_COUPON}}">
-                                  <span class="input-group-btn">
-                                    <button class="btn btn-default discount-button"
-                                            ng-class="{'disabled': enroll.hasCouponApplied}"
-                                            ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
-                                  </span>
-                                </div>
-                                <div ng-show="enroll.invalidCoupon">
-                                  <br>
-                                  <p class="text-danger text-sm font-family-sans-alt" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
-                                </div>
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-xs-12" ng-show="enroll.invalidCoupon">
-                      </div>
-                  </div>
-                  <!--Coupon Render-->
-                  <div class="row separate-above" ng-show="enroll.hasCouponApplied">
-                      <div class="col-xs-12">
-                          <span class="item" ng-bind="::enroll.strings.LABEL_COUPON"></span>
-                      </div>
-                      <div class="col-xs-8 sub-item">
-                          <span class="text-success"><strong ng-bind="enroll.coupon.code"></strong></span>
-                          <a href="#"> <i class="glyphicon glyphicon-remove text-muted" ng-click="enroll.removeCoupon()" title="Remove Coupon"></a></i>
-                      </div>
-                      <div class="col-xs-4 value">
-                          <span ng-bind="enroll.coupon.amount | currency"></span>
-                      </div>
-                  </div>
-              </div>
-              <div class="total">
-                  <div class="row">
-                      <div class="col-xs-12">
-                          <span class="item" ng-bind="::enroll.strings.LABEL_TOTAL_AMOUNT"></span>
-                          <span class="value final" ng-bind="enroll.totalCost | currency"></span>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-xs-12 col-md-pull-3 col-md-7 col-md-offset-1 ">
           <!--Sessions-->
-          <div class="row separate-above">
+          <div class="row ">
               <div class="col-xs-12">
+                  <div class="select-calendar col-md-12 separate-left-less">
+                    <ui-select   ng-model="enroll.calendar" theme="bootstrap" search-enabled="false" >
+                      <ui-select-match  >
+                        <span class="montserrat-regular" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
+                        <span class="montserrat-light" ng-bind="$select.selected.initial_date | date:'d MMM y'"></span>
+                      </ui-select-match>
+                      <ui-select-choices repeat=" upcoming_calendar in enroll.activity.upcoming_calendars">
+                        <div class="" ng-click="enroll.changeCalendar()">
+                          <span class="montserrat-regular" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
+                          <span class="montserrat-light" ng-bind="upcoming_calendar.initial_date | date:'d MMM y'"></span>
+                        </div>
+                      </ui-select-choices>
+                    </ui-select>
+                    <img class="select-calendar__arrow"ng-src="{{enroll.getAmazonUrl('static/img/about/arrow.png')}}" alt="" />
+                  </div>
                   <div class="panel sessions-panel">
+                      <!--<select class="form-control" name="calendarSelect" id="calendarSelect"
+                      ng-model="enroll.calendar"
+                      ng-options="upcoming_calendar.initial_date | date:'d MMM y'  for upcoming_calendar in enroll.activity.upcoming_calendars track by upcoming_calendar.id"
+                      ng-change="enroll.changeCalendar()">
+                    </select>-->
+
+
                       <div class="panel-heading">
                           <h4>
                               <img class="img-responsive inline-block"
@@ -515,8 +427,104 @@
               </div>
           </form>
       </div>
+      <div class="col-xs-12 col-md-3 col-md-offset-0 widget-container">
+          <!--Organizer-->
+          <div class="organizer-widget">
+              <a class="card" ui-sref="organizer-profile({organizer_id: enroll.activity.organizer.id})">
+                  <div class="content">
+                      <img class="picture" ng-src="{{::enroll.activity.organizer.photo}}"
+                          alt="{{::enroll.activity.organizer.name}}"/>
+                      <div class="data">
+                          <div class="name" ng-bind="::enroll.activity.organizer.name"></div>
+                          <div class="location" ng-bind="::enroll.activity.organizer.city"></div>
+                      </div>
+                  </div>
+              </a>
+          </div>
+          <!--Billing-->
+          <div ng-show="::enroll.showWidget" class="billing-widget separate-above" ng-class="{'fixed-widget': (enroll.scroll > enroll.widgetOriginalPosition) && (enroll.scroll < enroll.widgetMaxPosition), 'absolute-widget': enroll.scroll >= enroll.widgetMaxPosition}"
+            ng-style="enroll.scroll >= enroll.widgetMaxPosition && {'top': enroll.widgetAbsolutePosition}">
+              <div class="invoice">
+                  <h4 class="text-uppercase" ng-bind="::enroll.strings.LABEL_INVOICE"></h4>
+                  <div class="row seats separate-above separate-below-less">
+                      <div class="col-xs-12 col-md-6 item">
+                          <span ng-bind="enroll.strings.LABEL_SEATS_X"></span><span ng-bind="enroll.assistants.length"></span>
+                      </div>
+                      <div class="col-xs-12 col-md-6 value">
+                          <span ng-bind="enroll.amount | currency"></span>
+                      </div>
+                  </div>
+                  <div class="row separate-below-less" ng-repeat="assistant in enroll.assistants" ng-if="assistant.first_name">
+                      <div class="col-xs-12 col-md-6 sub-item">
+                          <span ng-bind="assistant.first_name"></span> <span ng-bind="assistant.last_name"></span>
+                      </div>
+                      <div class="col-xs-12 col-md-6 sub-value">
+                          <span ng-bind="enroll.calendar.session_price | currency"></span>
+                      </div>
+                  </div>
+                  <!--if Free-->
+                  <div class="row separate-above" ng-if="enroll.calendar.is_free">
+                      <div class="col-xs-12 col-md-6 item">
+                          <span ng-bind="::enroll.strings.LABEL_FREE_CALENDAR"></span>
+                      </div>
+                      <div class="col-xs-12 col-md-6 value">
+                          <span ng-bind="- enroll.calendar.session_price | currency"></span>
+                      </div>
+                  </div>
+                  <!--Coupons-->
+                  <!--Coupon Form-->
+                  <div class="row separate-above" ng-if="!enroll.calendar.is_free" ng-hide="enroll.hasCouponApplied">
+                      <div class="col-xs-12">
+                          <div class="form-group form-classic">
+                              <label for="inputCoupon" class="sr-only" ng-bind="::enroll.strings.LABEL_APPLY_COUPON"></label>
+                              <div class="col-xs-12 no-padding">
+                                <div class="input-group">
+                                  <input type="text" class="form-control input-sm" id="inputCoupon"
+                                        ng-model="enroll.coupon.code" placeholder="{{::enroll.strings.LABEL_APPLY_COUPON}}">
+                                  <span class="input-group-btn">
+                                    <button class="btn btn-default discount-button"
+                                            ng-class="{'disabled': enroll.hasCouponApplied}"
+                                            ng-bind="::enroll.strings.ACTION_APPLY" ng-click="enroll.applyCoupon()"></button>
+                                  </span>
+                                </div>
+                                <div ng-show="enroll.invalidCoupon">
+                                  <br>
+                                  <p class="text-danger text-sm font-family-sans-alt" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
+                                </div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-xs-12" ng-show="enroll.invalidCoupon">
+                      </div>
+                  </div>
+                  <!--Coupon Render-->
+                  <div class="row separate-above" ng-show="enroll.hasCouponApplied">
+                      <div class="col-xs-12">
+                          <span class="item" ng-bind="::enroll.strings.LABEL_COUPON"></span>
+                      </div>
+                      <div class="col-xs-8 sub-item">
+                          <span class="text-success"><strong ng-bind="enroll.coupon.code"></strong></span>
+                          <a href="#"> <i class="glyphicon glyphicon-remove text-muted" ng-click="enroll.removeCoupon()" title="Remove Coupon"></a></i>
+                      </div>
+                      <div class="col-xs-4 value">
+                          <span ng-bind="enroll.coupon.amount | currency"></span>
+                      </div>
+                  </div>
+              </div>
+              <div class="total">
+                  <div class="row">
+                      <div class="col-xs-12">
+                          <span class="item" ng-bind="::enroll.strings.LABEL_TOTAL_AMOUNT"></span>
+                          <span class="value final" ng-bind="enroll.totalCost | currency"></span>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
   </div>
   </div>
+
+
   <div class="col-xs-12">
     <div class="row navigation-container img-carpet">
       <div class="col-xs-12 col-md-6">

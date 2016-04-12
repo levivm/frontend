@@ -31,7 +31,8 @@
             'trulii.help',
             'ngVideo',
             'templates',
-            'nvd3'
+            'nvd3',
+            'ui.select'
         ]);
 
     angular

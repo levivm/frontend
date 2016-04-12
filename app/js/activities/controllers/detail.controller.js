@@ -87,7 +87,7 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-        
+
         function previousGalleryPicture(){
             if(vm.currentGalleryPicture > 0){ vm.currentGalleryPicture--; }
         }
@@ -371,7 +371,7 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
-                COPY_OTHER_SESSIONS: "Horarios",
+                COPY_OTHER_SESSIONS: "Horario",
                 COPY_OTHER_OPORTUNITY: "Oportunidad",
                 COPY_OTHER_OPORTUNITIES: "Oportunidades",
                 COPY_ONE_REVIEW: " Evaluación",
