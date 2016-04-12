@@ -9,11 +9,9 @@
         <div class="col-xs-12">
           <div class="range-widget">
             <div class="range-tabs flex-center-container">
-              <div class="range-tab" ng-class="{'range-tab-active': summary.activeTab === summary.TAB_MONTHLY}" ng-click="summary.changeTab(summary.TAB_MONTHLY)">
-                Mensual
+              <div class="range-tab" ng-class="{'range-tab-active': summary.activeTab === summary.TAB_MONTHLY}" ng-click="summary.changeTab(summary.TAB_MONTHLY)" ng-bind="::summary.strings.COPY_MONTHLY">
               </div>
-              <div class="range-tab" ng-class="{'range-tab-active': summary.activeTab === summary.TAB_YEARLY}" ng-click="summary.changeTab(summary.TAB_YEARLY)">
-                Anual
+              <div class="range-tab" ng-class="{'range-tab-active': summary.activeTab === summary.TAB_YEARLY}" ng-click="summary.changeTab(summary.TAB_YEARLY)" ng-bind="::summary.strings.COPY_YEARLY">
               </div>
             </div>
             <div class="range-slider flex-center-container">

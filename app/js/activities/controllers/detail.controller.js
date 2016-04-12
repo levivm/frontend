@@ -351,6 +351,8 @@
                 COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
                 COPY_SHARE_WIDGET: "¡Compártelo con tus amigos!",
                 COPY_NO_RATINGS: "Sin Comentarios",
+                COPY_RATING: "Comentario",
+                COPY_RATINGS: "Comentarios",
                 COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                 COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizará en otra oportunidad ",
                 COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
@@ -370,7 +372,9 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
-                COPY_OTHER_SESSIONS: "Horarios",
+                COPY_OTHER_SESSIONS: "Sesiónes",
+                COPY_OTHER_SESSION: "Sesión",
+                COPY_OTHER_SCHEDULES: "Horarios",
                 COPY_OTHER_OPORTUNITY: "Oportunidad",
                 COPY_OTHER_OPORTUNITIES: "Oportunidades",
                 COPY_ONE_REVIEW: " Evaluación",
@@ -383,7 +387,7 @@
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
                 LABEL_START: "Inicio",
                 LABEL_VACANCY: "Vacantes",
-                LABEL_SESSIONS_NUMBER: "N° Horarios",
+                LABEL_SESSIONS_NUMBER: "N° Sesiónes",
                 LABEL_COST: "Precio",
                 LABEL_NEXT_DATE: "Próximo Inicio",
                 LABEL_CLOSING_DATE: "Ventas hasta",
@@ -464,7 +468,8 @@
             });
 
             // Updating the URL
-            $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: $state.current});
+            
+            $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: $state.current, location: 'replace'});
         }
 
         function _getAssistants() {
@@ -484,6 +489,15 @@
                 }
             });
             return assistants;
+        }
+        
+        function _setReviews(){
+          if(vm.totalReviews !== 1){
+            vm.strings.COPY_TOOLTIP_REVIEWS = vm.strings.COPY_RATINGS;
+          }
+          else{
+            vm.strings.COPY_TOOLTIP_REVIEWS = vm.strings.COPY_RATING;
+          }
         }
 
         function _activate(){
@@ -511,6 +525,7 @@
             }
             console.log(vm.reviews);
             _setSocialShare();
+            _setReviews();
             _initWidget();
             _initSignup();
 

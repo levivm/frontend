@@ -83,7 +83,7 @@
                          ng-bind="::messages.strings.LABEL_CALENDAR"></label>
                   <select id="calendar-select" name="calendar"
                          class="form-control" ng-model="messages.message.calendar"
-                         ng-options="calendar as (calendar.initial_date | date: 'dd MMM yyyy') for calendar in messages.calendars track by calendar.id">
+                         ng-options="calendar as (calendar.initial_date | date: 'dd MMM yyyy') for calendar in messages.calendars | orderBy: 'initial_date' track by calendar.id">
                          <option value="" ng-hide="messages.message.calendar"
                                  ng-bind="::messages.strings.OPTION_CALENDAR_DEFAULT" selected>
                          </option>

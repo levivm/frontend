@@ -518,7 +518,6 @@
 }
 
 .instructors-container{
-    padding: 3em 7.5em 5em 7.5em;
     background-color: @secondary-bg;
 
     .before-sm({
@@ -687,7 +686,8 @@
             cursor:pointer;
             border: 5px solid white;
             background-color: white;
-            box-shadow: 0px 0px 1px darken(@lightbg-accent, 50%);;
+            box-shadow: 0px 0px 1px darken(@lightbg-accent, 50%);
+            border-radius: 100%;
           }
 
           .checkbox, td{
@@ -724,16 +724,21 @@
             });
           }
 
+          &.active{
+            .checkbox{
+              background-color: @brand-success;
+            }
+
+            td{
+              background-color: darken(@lightbg-accent, 2.5%);
+            }
+            
+          }
+          
         }
-        tr.active{
-          .checkbox{
-            background-color: @brand-success;
-          }
-
-          td{
-            background-color: darken(@lightbg-accent, 2.5%);
-          }
-
+        
+        .signup-row{
+          background-color: darken(@lightbg-accent, .5%);
         }
       }
 
@@ -771,7 +776,22 @@
           text-transform: uppercase;
         }
       });
+      
+      &::after{
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent; 
+        border-right:10px solid darken(@gray-lighter, 5%);
+        content: "trulii";
+        color: transparent;
+        position: absolute;
+        left: 10px;
+        top: 15px;
+      }
     }
+    
+    
   }
 
 }
