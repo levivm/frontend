@@ -11,6 +11,12 @@
   p{
     word-break: break-all;
   }
+  .info{
+    .col-xs-4:nth-child(2){
+      border-left: 1px solid @gray-light-medium;
+      border-right: 1px solid @gray-light-medium;
+    }
+  }
 }
 
 .collapse-icon{
@@ -112,7 +118,6 @@
 
 .calendar-widget {
     &:extend(.separate-above-medium);
-    border: 1px solid @border-color;
     font-family: @font-sans;
 
     .HeaderText() {
@@ -128,6 +133,7 @@
 
     .widget-card{
         .header {
+            border: 1px solid @border-color;
 
             .next {
                 .HeaderText();
@@ -158,6 +164,7 @@
         }
 
         .price {
+            border: 1px solid @border-color;
             width: 100%;
             height: auto;
             padding: 0.8em;
@@ -174,7 +181,16 @@
               font-size: 0.75em;
             }
         }
-
+        .sign-up{
+          border: 1px solid @border-color;
+          padding: 1em 0em;
+          cursor: pointer;
+          .glyphicon{
+            font-size: 20px;
+            vertical-align: -4px;
+            padding-right: 5px;
+          }
+        }
         .btn-sign-up {
             width: 100%;
             height: auto;
@@ -221,8 +237,21 @@
                 .InfoSection();
             }
         }
+        
+        .signup{
+          border: 1px solid @border-color;
+          padding: 1em 0em;
+          cursor: pointer;
+          .glyphicon{
+            font-size: 20px;
+            vertical-align: -4px;
+            padding-right: 5px;
+          }
+        }
+        
         .wishlist{
-          border-bottom: @border-widget;
+          margin-top: 25px;
+          border: 1px solid @border-color;
           padding: 1em 0em;
           cursor: pointer;
           [class^="mdi-"], [class*="mdi-"]{
@@ -236,6 +265,7 @@
             vertical-align: middle;
           }
         }
+        
         .sessions {
             .sessions-title {
                 padding: 1em;
