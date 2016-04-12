@@ -5,7 +5,7 @@
          <div class="section-title" ng-bind="::detail.strings.TITLE_DETAIL">
          </div>
 
-         <form name='detail.activity_detail_form' ng-submit="detail.save_activity()">
+         <form name='detail.activity_detail_form' ng-submit="detail.save_activity()" class="col-lg-9">
                <fieldset>
 
                  <div class="section-description" ng-bind="::detail.strings.COPY_DETAIL">
@@ -17,7 +17,6 @@
                                      ng-model='detail.activity.audience'
                                      trulii-input-popover="{{::detail.strings.LABEL_AUDIENCE}}"
                                      help-text="::detail.strings.COPY_HELP_TEXT_AUDIENCE"
-                                     trulii-input-autofocus
                                      >
                            </textarea>
                    </div>

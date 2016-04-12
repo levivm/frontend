@@ -70,7 +70,7 @@
               }
             );
         }
-        
+
         function _error(response) {
             if (response.data) { Error.form.add(vm.login_form, response.data); }
             vm.errors.__all__ = response.data['non_field_errors'];

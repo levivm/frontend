@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -24,6 +24,9 @@
                 var unsubscribeUserLoggedOut = null;
                 var unsubscribeStateChange = null;
                 var transitionOptions = {location : true, inherit : false, reload : false};
+                var STATE_HOW_TO_WORK_HOME = 'home';
+                var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
+
                 angular.extend(scope, {
                     state: null,
                     isSearchVisible : true,
@@ -39,12 +42,19 @@
                     createActivity:createActivity,
                     clickLogo:clickLogo,
                     updateSearchCity:updateSearchCity,
-                    isLandingState:isLandingState
+                    isLandingState:isLandingState,
+                    getAmazonUrl: getAmazonUrl,
+                    howToWorkStudent: howToWorkStudent,
+                    howToWorkOrganizer: howToWorkOrganizer
                 });
 
                 _activate();
 
                 // --------- Exposed Functions ----------//
+
+                function getAmazonUrl(file){
+                    return  serverConf.s3URL + '/' +  file;
+                }
 
                 function toggleBurger(){
                   if(scope.showCities) scope.showCities=false;
@@ -71,8 +81,15 @@
                     scope.showCities=false;
                 }
                 function isLandingState(){
-                  return ($state.current.name==='home' && scope.scroll<640) ;
+                  return ($state.current.name==='home' && scope.scroll<100) ;
                 }
+                function howToWorkStudent(){
+                    _stateGoHowto(STATE_HOW_TO_WORK_HOME);
+                }
+                function howToWorkOrganizer(){
+                    _stateGoHowto(STATE_HOW_TO_WORK_ORGANIZER);
+                }
+
 
                 //---Exposed functions for send data to Google Analytics----//
 
@@ -141,6 +158,15 @@
                     $timeout(function () {
                         scope.$apply();
                     }, 0);
+                }
+
+                function _stateGoHowto(howToWType){
+                  var currentState = $state.current.name;
+                  if(currentState===howToWType)
+                    Elevator.toElement('anchor-how');
+                  else
+                    $state.go((currentState==='home') ? 'organizer-landing': 'home', {from_menu: true})
+
                 }
 
                 function _setStrings() {

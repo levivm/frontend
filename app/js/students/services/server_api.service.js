@@ -106,29 +106,6 @@
             'order': function(idStudent, idOrder){
                 return renderUrl('orders/', [idOrder]);
             },
-
-            /**
-             * @ngdoc function
-             * @name .#refund
-             * @description Renders **`/api/refunds/`** Refund URL
-             * @return {string} Rendered URL
-             * @methodOf trulii.students.services.StudentServerApi
-             */
-            'refund': function(){
-                return renderUrl('refunds/', []);
-            },
-
-            /**
-             * @ngdoc function
-             * @name .#refunds
-             * @description Renders **`/api/refunds/`** Refund URL
-             * @return {string} Rendered URL
-             * @methodOf trulii.students.services.StudentServerApi
-             */
-            'refunds': function(){
-                return renderUrl('refunds/', []);
-            },
-            
             /**
              * @ngdoc function
              * @name .#messages

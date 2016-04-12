@@ -52,7 +52,7 @@
                                 socialshare-caption="{{::referrals.social.FACEBOOK_SHARE_CAPTION}}"
                                 socialshare-description="{{::referrals.social.FACEBOOK_SHARE_DESCRIPTION}}"
                                 socialshare-url="{{::referrals.social.FACEBOOK_SHARE_URL}}">
-                                <img class="img-responsive" src="/css/img/activity-detail/share_facebook.png"
+                                <img class="img-responsive" ng-src="{{referrals.getAmazonUrl('static/img/activity-detail/share_facebook.png')}}"
                                     alt="{{referrals.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
                             </a>
                         </li>
@@ -65,7 +65,7 @@
                                 socialshare-text="{{::referrals.social.TWITTER_SHARE_TEXT}}"
                                 socialshare-url="{{::referrals.social.TWITTER_SHARE_URL}}"
                                 socialshare-hashtags="{{::referrals.social.TWITTER_SHARE_HASHTAGS}}">
-                                <img class="img-responsive" src="/css/img/activity-detail/share_twitter.png"
+                                <img class="img-responsive" ng-src="{{referrals.getAmazonUrl('static/img/activity-detail/share_twitter.png')}}"
                                     alt="{{referrals.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
                             </a>
                         </li>
@@ -74,7 +74,7 @@
                 </div>
             </div>
         </div>
-        <div class="trulii-cover__background" style="background-image:url(/css/img/cover.png)">
+        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{referrals.getAmazonUrl('static/img/cover.png')}}' }">
         </div>
     </div>
 </div>
@@ -99,7 +99,7 @@
                   <div class="referral-item">
                       <!--  Imagen de perfil de usuario-->
                       <div class="referral-item__picture">
-                          <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle" alt="">
+                          <img ng-src="{{referrals.getAmazonUrl('static/img/default_profile_pic.jpg')}}" class="img-responsive img-circle" alt="">
                       </div>
                       <div class="referral-item__info">
                           <h4 class="sinkin-semibold">Mariana Schiavino</h4>
@@ -122,7 +122,7 @@
                   <div class="referral-item">
                       <!--  Imagen de perfil de usuario-->
                       <div class="referral-item__picture">
-                          <img src="/css/img/default_profile_pic.jpg" class="img-responsive img-circle" alt="">
+                          <img ng-src="{{referrals.getAmazonUrl('static/img/default_profile_pic.jpg')}}" class="img-responsive img-circle" alt="">
                       </div>
 
                       <div class="referral-item__info">
@@ -141,7 +141,7 @@
                   <!--  Sin registrar -->
                   <div class="referral-item">
                       <div class="referral-item__picture">
-                          <img src="/css/img/referrals/email.png" class="img-responsive img-circle" alt="">
+                          <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/email.png')}}" class="img-responsive img-circle" alt="">
                       </div>
                       <div class="referral-item__info">
                           <h4 class="sinkin-semibold inline-block">roroferreira88@hotmail.com
@@ -167,20 +167,22 @@
           <div class="row">
               <div class="col-xs-12 col-md-4">
                   <div class="container-fluid separate-above-less">
-                      <img src="/css/img/referrals/truliimania.png" alt=""
+                      <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/truliimania.png')}}" alt=""
                           class="img-responsive center-block separate-above">
                       <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_MANIA_TEXT"></p>
                   </div>
               </div>
               <div class="col-xs-12 col-md-4">
                   <div class="container-fluid separate-above-less">
-                      <img src="/css/img/referrals/invited.png" alt="" class="img-responsive center-block separate-above">
+                      <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/invited.png')}}" alt=""
+                        class="img-responsive center-block separate-above">
                       <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_INVITED_TEXT"></p>
                   </div>
               </div>
               <div class="col-xs-12 col-md-4">
                   <div class="container-fluid separate-above-less">
-                      <img src="/css/img/referrals/coupon.png" alt="" class="img-responsive center-block separate-above">
+                      <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/coupon.png')}}" alt=""
+                        class="img-responsive center-block separate-above">
                       <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_COUPON_TEXT"></p>
                   </div>
               </div>

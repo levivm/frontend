@@ -5,7 +5,7 @@
         <div class="form-group">
           <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
           <div class="row dashboard-filters separate-below">
-            <div class="col-xs-6 col-md-2">
+            <div class="col-xs-12 col-md-2">
               <div class="input-group filter-group">
                 <span class="input-group-addon" id="from_date_icon" ng-click="transactions.openDatePicker($event, 'sales_from_date')">
                   <i class="mdi-action-today"></i>
@@ -23,7 +23,7 @@
                   ng-click="transactions.openDatePicker($event, 'sales_from_date')"/>
               </div>
             </div>
-            <div class="col-xs-6 col-md-2">
+            <div class="col-xs-12 col-md-2">
               <div class="input-group filter-group">
                 <span class="input-group-addon" id="until_date_icon" ng-click="transactions.openDatePicker($event, 'sales_until_date')">
                   <i class="mdi-action-today"></i>
@@ -57,7 +57,7 @@
             </div>
             <div class="col-xs-6 col-md-2">
               <div class="input-group filter-group">
-                <select name="status" 
+                <select name="status"
                   id="" class="form-control"
                   ng-model="transactions.salesFilter.status">
                   <option value="">Estatus</option>
@@ -68,15 +68,16 @@
                 </select>
               </div>
             </div>
-            <div class="col-xs-6 col-md-2">
+            <div class="col-xs-10 col-md-2">
               <input class="form-control floating-label" type="text"
                 ng-model="transactions.salesFilter.query"
                 placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}"/>
             </div>
-            <div class="col-xs-6 col-md-1">
-              <button class="btn btn-default btn-block" ng-click="transactions.updateByQuery(transactions.TYPE_SALES)">
+            <div class="col-xs-2 col-md-1 ">
+              <button class="btn btn-default btn-block hidden-xs hidden-sm" ng-click="transactions.updateByQuery(transactions.TYPE_SALES)">
                 <i class="mdi-action-search"></i>
               </button>
+              <i class="mdi-action-search separate-above-less hidden-md hidden-lg" ng-click="transactions.updateByQuery(transactions.TYPE_SALES)"></i>
             </div>
           </div>
         </div>

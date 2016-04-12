@@ -36,24 +36,9 @@
                 pageNumber: 1,
                 maxPagesSize : 10
             },
-            refundsPaginationOpts: {
-                totalItems: 0,
-                itemsPerPage: 10,
-                pageNumber: 1
-            },
             TYPE_ORDER: 'order',
-            TYPE_REFUNDS: 'refunds',
             titleSize: titleTruncateSize,
             ordersFilter: {
-              from_date: null,
-              until_date: null,
-              from_date_opened: false,
-              until_date_opened: false,
-              status: null,
-              query: null,
-              activity: null
-            },
-            refundsFilter: {
               from_date: null,
               until_date: null,
               from_date_opened: false,
@@ -68,7 +53,6 @@
         activate();
 
         var orders = [];
-        var refunds = [];
 
         /*      Exposed Functions      */
 
@@ -84,14 +68,6 @@
           if(date === 'orders_until_date'){
             vm.ordersFilter.until_date_opened = true;
             vm.ordersFilter.from_date_opened = false;
-          }
-           if(date === 'refunds_from_date'){
-            vm.refundsFilter.from_date_opened = true;
-            vm.refundsFilter.until_date_opened = false;
-          }
-          if(date === 'refunds_until_date'){
-            vm.refundsFilter.until_date_opened = true;
-            vm.refundsFilter.from_date_opened = false;
           }
         }
 
@@ -127,36 +103,6 @@
                     vm.orders = vm.orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
                   });
                   break;
-                case vm.TYPE_REFUNDS:
-                  var params = {
-                    page: vm.refundsPaginationOpts.pageNumber,
-                    page_size: vm.refundsPaginationOpts.itemsPerPage
-                  };
-
-                  if(vm.refundsFilter.activity)
-                    params.activity = vm.refundsFilter.activity;
-
-                  if(vm.refundsFilter.from_date)
-                    params.from_date = new Date(vm.refundsFilter.from_date).getTime();
-
-                  if(vm.refundsFilter.until_date)
-                    params.until_date = new Date(vm.refundsFilter.until_date).getTime();
-
-                  if(vm.refundsFilter.status)
-                    params.status = vm.refundsFilter.status;
-
-                  if(vm.refundsFilter.query)
-                    params.id = vm.refundsFilter.query;
-
-                  $http.get(api.refunds(student.id),
-                      {params: params})
-                      .then(function(response){
-                      vm.refunds = response.data;
-                      vm.refunds.results = $filter('orderBy')(vm.refunds.results, 'id', true);
-                      vm.refundsPaginationOpts.totalItems = vm.refunds.count;
-                      vm.refunds = vm.refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-                  });
-                  break;
 
             }
         }
@@ -184,20 +130,6 @@
 
         }
 
-        function _getRefunds(){
-            student.getRefunds().then(success,error);
-
-            function success(data){
-              refunds = data;
-              refunds.results = $filter('orderBy')(refunds.results, 'id', true);
-              vm.refundsPaginationOpts.totalItems = refunds.count;
-              vm.refunds = refunds.results.slice(0, vm.refundsPaginationOpts.itemsPerPage);
-            }
-            function error(data){
-                console.log("Error getting Organizer's orders");
-            }
-        }
-
 
         function _setStrings() {
             if (!vm.strings) {
@@ -214,12 +146,10 @@
                 LABEL_SEARCH:"Revisa toda la informacion de tu orden de compra. "
                 + "Puedes incluso solicitar el reembolso del monto total de la orden o el monto "
                 + "correspondiente por cada asistente",
-                LABEL_EMPTY_REFUND: "No has solicitado ningún rembolso por el momento. Mientras tanto, ¿por qué no te a nimas a aprender algo nuevo?",
                 LABEL_EMPTY_ORDERS: "No te has inscrito en ninguna actividad aún. Eso nos parte el corazón. ¿Por qué no te animas hoy a aprender lo que te apasiona?",
                 LABEL_EVERYBODY: "Todos",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un nuevo pasatiemo o mejores tu curriculo",
                 TAB_ORDERS: "Compras",
-                TAB_REFUNDS: "Reembolsos",
                 PLURALIZE_ASSISTANT: "{} asistente",
                 PLURALIZE_ASSISTANTS: "{} asistentes",
                 HEADER_ORDER: "Orden",
@@ -229,9 +159,6 @@
                 HEADER_STATUS: "Estatus",
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_PURCHASE_DATE: "Fecha de compra",
-                HEADER_REFUND_DATE: "Fecha de reembolso",
-                HEADER_REFUND_TOTAL: "Monto",
-                HEADER_REFUND_STATUS: "Estado",
                 HEADER_TOTAL: "Monto"
             });
         }
@@ -239,7 +166,6 @@
         function activate() {
             _setStrings();
             _getOrders();
-            _getRefunds();
         }
 
     }

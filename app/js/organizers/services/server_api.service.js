@@ -61,27 +61,6 @@
             },
             /**
              * @ngdoc function
-             * @name .#refund
-             * @description Renders **`/api/refunds/`** Refund URL
-             * @return {string} Rendered URL
-             * @methodOf trulii.organizers.services.OrganizerServerApi
-             */
-            'refund': function(){
-                return renderUrl('refunds/', []);
-            },
-            /**
-             * @ngdoc function
-             * @name .#refunds
-             * @description Renders **`/api/refunds/`** Refund URL
-             * @return {string} Rendered URL
-             * @methodOf trulii.organizers.services.OrganizerServerApi
-             */
-            'refunds': function(){
-                return renderUrl('refunds/', []);
-            },
-
-            /**
-             * @ngdoc function
              * @name .#reviews
              * @description Renders **`/api/organizers/:idOrganizer/reviews`** Organizer Reviews URL
              * @param {number} idOrganizer Organizer Id

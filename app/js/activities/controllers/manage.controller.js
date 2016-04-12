@@ -11,8 +11,8 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager', 'Analytics'];
-    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager, Analytics) {
+    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager', 'Analytics', 'serverConf'];
+    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -47,7 +47,8 @@
             sidebar: false,
             isActive: isActive,
             dashboardItem:dashboardItem,
-            actionNavbarSecondary:actionNavbarSecondary
+            actionNavbarSecondary:actionNavbarSecondary,
+            getAmazonUrl: getAmazonUrl
         });
 
         var orders = [];
@@ -55,6 +56,11 @@
         var assistants = [];
 
         _activate();
+
+        
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' +  file;
+        }
 
 
         function isActive(stateStr){

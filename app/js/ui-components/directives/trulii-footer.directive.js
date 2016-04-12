@@ -10,15 +10,38 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiFooter', truliiFooter);
 
-    truliiFooter.$inject = ['UIComponentsTemplatesPath'];
+    truliiFooter.$inject = ['UIComponentsTemplatesPath', 'serverConf', 'Elevator', '$state'];
 
-    function truliiFooter(UIComponentsTemplatesPath) {
+    function truliiFooter(UIComponentsTemplatesPath, serverConf, Elevator, $state) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-footer.html",
             link: function (scope) {
-
+                var STATE_HOW_TO_WORK_HOME = 'home';
+                var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
                 _activate();
+
+                scope.getAmazonUrl = function(file){
+                  return  serverConf.s3URL + '/' +  file;
+                };
+                scope.howToWorkStudent = function(){
+                  _stateGoHowto(STATE_HOW_TO_WORK_HOME);
+                }
+                scope.howToWorkOrganizer = function(){
+                  _stateGoHowto(STATE_HOW_TO_WORK_ORGANIZER);
+                }
+
+
+                //---- Internal Functions----//
+
+                function _stateGoHowto(howToWType){
+                  var currentState = $state.current.name;
+                  if(currentState===howToWType)
+                    Elevator.toElement('anchor-how');
+                  else
+                    $state.go((currentState==='home') ? 'organizer-landing': 'home', {from_menu: true})
+
+                }
 
                 function _setStrings() {
                     if (!scope.strings) {
@@ -48,6 +71,7 @@
                         FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
                         FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"
                     });
+
                 }
 
                 function _activate() {

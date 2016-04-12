@@ -10,22 +10,15 @@
                 <a ui-sref="login" class=" montserrat-regular  margin-horizontal" ng-bind="::strings.ACTION_LOGIN"></a>
                 <a ui-sref="register" class="montserrat-regular " ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
-            <div class="buttons float-right" ng-if="user.is_organizer">
+            <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary montserrat-regular" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
-            <!--<div ng-if="isExplore" class="buttons float-right">
-                <button class="btn btn-default"  ng-click="explore()">
-                    <span title="{{::strings.ACTION_EXPLORE}}">
-                        <img src="/css/img/boton-explorar.png" alt="Explorar" class="menu-icon ">
-                    </span>
-                </button>
-            </div>-->
         </div>
         <div class="navbar__right-wrapper">
             <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
                 <img ng-if="user" ng-src="{{user.photo}}" class="user-picture" alt="{{user.user.full_name}}"/>
-                <img ng-if="!isLandingState()" src="/css/img/menu.png" alt="Menu" class="menu-icon" ng-class="{'menu-icon-user': user}">
-                <img ng-if="isLandingState()" src="/css/img/menu-blanco.png" alt="Menu" class="menu-icon" ng-class="{'menu-icon-user': user}">
+                <img ng-if="!isLandingState()" ng-src="{{getAmazonUrl('static/img/menu.png')}}" alt="Menu" class="menu-icon" ng-class="{'menu-icon-user': user}">
+                <img ng-if="isLandingState()" ng-src="{{getAmazonUrl('static/img/menu-blanco.png')}}"  alt="Menu" class="menu-icon" ng-class="{'menu-icon-user': user}">
             </a>
         </div>
     </div>
@@ -35,7 +28,7 @@
         <div class="row">
             <div class="col-xs-12 visible-xs-block visible-sm-block">
                 <a ui-sref="home" ng-click="toggleBurger()">
-                    <img src="/css/img/logo-trulii.png" alt="" class="img-responsive center-block burger-menu__mobile-logo">
+                    <img ng-src="{{getAmazonUrl('static/img/logo-trulii.png')}}" alt="" class="img-responsive center-block burger-menu__mobile-logo">
                 </a>
             </div>
             <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons visible-xs-block visible-sm-block" ng-if="!user">
@@ -55,7 +48,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons visible-xs-block visible-sm-block" ng-if="user.is_organizer">
-                <div class="row">
+                <div class="row hidden-xs hidden-sm">
                     <div class="col-xs-12 col-md-5">
                         <a ui-sref="dash.activities-new.general" ng-click="toggleBurger()">
                             <button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_CREATE">
@@ -162,7 +155,7 @@
                         <div class="col-xs-12 burger-menu__header-links">
                             <ul class="list-unstyled list-inline">
                                 <li class="hidden-sm hidden-xs">
-                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                    <img ng-src="{{getAmazonUrl('static/img/logo-trulii.png')}}" alt="Trulii" class="img-responsive">
                                 </li>
                                 <li>
                                     <a ui-sref="organizer-landing"
@@ -175,7 +168,8 @@
                                        ng-bind="::strings.COPY_INVITE_FRIEND"></a>
                                 </li>
                                 <li>
-                                    <a href="https://trulii.com/blog"
+                                    <a href="https://blog.trulii.com"
+                                       target="_blank"
                                        ng-click="toggleBurger()"
                                        ng-bind="::strings.LABEL_BLOG"></a>
                                 </li>
@@ -189,7 +183,7 @@
                         <div class="col-xs-12 burger-menu__header-links">
                             <ul class="list-unstyled list-inline">
                                 <li class="hidden-sm hidden-xs">
-                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                    <img ng-src="{{getAmazonUrl('static/img/logo-trulii.png')}}" alt="Trulii" class="img-responsive">
                                 </li>
                                 <li>
                                     <a ui-sref="organizer-landing"
@@ -202,7 +196,8 @@
                                        ng-bind="::strings.COPY_INVITE_FRIEND"></a>
                                 </li>
                                 <li>
-                                    <a href="https://trulii.com/blog"
+                                    <a href="https://blog.trulii.com"
+                                       target="_blank"
                                        ng-click="toggleBurger()"
                                        ng-bind="::strings.LABEL_BLOG"></a>
                                 </li>
@@ -214,10 +209,11 @@
                         <div class="col-xs-12 burger-menu__header-links">
                             <ul class="list-unstyled list-inline">
                                 <li class="hidden-sm hidden-xs">
-                                    <img src="/css/img/logo-trulii.png" alt="Trulii" class="img-responsive">
+                                    <img ng-src="{{getAmazonUrl('static/img/logo-trulii.png')}}" alt="Trulii" class="img-responsive">
                                 </li>
                                 <li>
-                                    <a href="https://trulii.com/blog"
+                                    <a href="https://blog.trulii.com"
+                                       target="_blank"
                                        ng-click="toggleBurger()"
                                        ng-bind="::strings.LABEL_BLOG"></a>
                                 </li>
@@ -254,7 +250,7 @@
                                 <p ng-bind="::strings.LABEL_ORGANIZER"></p>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ng-click="howToWorkOrganizer(); toggleBurger()"
                                            ng-bind="::strings.LABEL_ORGANIZER_HOW"></a>
                                     </li>
                                     <li>
@@ -269,7 +265,7 @@
                                 <p ng-bind="::strings.LABEL_STUDENT"></p>
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a href="" ng-click="toggleBurger()"
+                                        <a ng-click="howToWorkStudent(); toggleBurger()"
                                            ng-bind="::strings.LABEL_STUDENT_HOW"></a>
                                     </li>
                                     <li>
@@ -284,7 +280,7 @@
             </div>
         </div>
         <button class="pull-right burger-menu__close" ng-click="toggleBurger()">
-            <img class="img-responsive" src="/css/img/activity-enroll/close.png" alt="{{ strings.ACTION_CLOSE }}"/>
+            <img class="img-responsive" ng-src="{{getAmazonUrl('static/img/activity-enroll/close.png')}}" alt="{{ strings.ACTION_CLOSE }}"/>
         </button>
     </div>
 </div>

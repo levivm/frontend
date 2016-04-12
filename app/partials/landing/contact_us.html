@@ -1,6 +1,6 @@
 <div class="trulii-cover-small">
   <div class="trulii-cover__container">
-    <div class="trulii-cover__content padding-vertical-more">
+    <div class="trulii-cover__content padding-top-more">
       <div class="col-xs-12">
         <div class="row padding-vertical-regular" ng-hide="contact.sent">
           <div class="col-xs-12 col-md-10 col-md-offset-1">
@@ -71,7 +71,7 @@
         </div>
         <div class="row fade-hide" ng-hide="!contact.sent">
           <div class="col-xs-12 padding-vertical-more">
-            <img src="/css/img/contact/brayan.png" alt="" class="img-responsive center-block padding-top-more">
+            <img ng-src="{{contact.getAmazonUrl('static/img/contact/brayan.png')}}" alt="" class="img-responsive center-block padding-top-more">
             <h1 class="text-center">
               <span ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TITLE"></span>
             </h1>
@@ -84,8 +84,8 @@
               <li>
                 <div class="item-long">
                   <a href="tel:573456789033" target="_blank">
-                    <img src="/css/img/contact/icon_phone.png" alt="" class="item-img img-responsive" />
-                    <img src="/css/img/contact/icon_phone_active.png" alt="" class="item-img-active img-responsive"/>
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_phone.png')}}" alt="" class="item-img img-responsive" />
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_phone_active.png')}}" alt="" class="item-img-active img-responsive"/>
                     <h4 class="item-description">
                       <span>¡Llámanos!</span>
                       <br>
@@ -97,8 +97,8 @@
               <li>
                 <div class="item">
                   <a href="https://twitter.com/Trulii_" target="_blank">
-                    <img src="/css/img/contact/icon_twitter.png" alt="" class="item-img img-responsive" />
-                    <img src="/css/img/contact/icon_twitter_active.png" alt="" class="item-img-active img-responsive"/>
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_twitter.png')}}" alt="" class="item-img img-responsive" />
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_twitter_active.png')}}" alt="" class="item-img-active img-responsive"/>
                     <h4 class="item-description">
                       <span>¡Lánzanos un tuit!</span>
                     </h4>
@@ -108,8 +108,8 @@
               <li>
                 <div class="item">
                   <a href="https://twitter.com/TruliiBoss" target="_blank">
-                    <img src="/css/img/contact/icon_angel.png" alt="" class="item-img img-responsive" />
-                    <img src="/css/img/contact/icon_angel_active.png" alt="" class="item-img-active img-responsive"/>
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_angel.png')}}" alt="" class="item-img img-responsive" />
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_angel_active.png')}}" alt="" class="item-img-active img-responsive"/>
                     <h4 class="item-description">
                       <span>¿Necesitas ayuda?</span>
                     </h4>
@@ -119,8 +119,8 @@
               <li>
                 <div class="item">
                   <a href="https://www.facebook.com/truliilatam/" target="_blank">
-                    <img src="/css/img/contact/icon_facebook.png" alt="" class="item-img img-responsive" />
-                    <img src="/css/img/contact/icon_facebook_active.png" alt="" class="item-img-active img-responsive"/>
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_facebook.png')}}" alt="" class="item-img img-responsive" />
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_facebook_active.png')}}" alt="" class="item-img-active img-responsive"/>
                     <h4 class="item-description">
                       <span>¡Escríbenos!</span>
                     </h4>
@@ -131,8 +131,8 @@
               <li>
                 <div class="item">
                   <a href="https://www.linkedin.com/company/trulii?trk" target="_blank">
-                    <img src="/css/img/contact/icon_in.png" alt="" class="item-img img-responsive" />
-                    <img src="/css/img/contact/icon_in_active.png" alt="" class="item-img-active img-responsive"/>
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_in.png')}}" alt="" class="item-img img-responsive" />
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_in_active.png')}}" alt="" class="item-img-active img-responsive"/>
                     <h4 class="item-description">
                       <span>¡Escríbenos!</span>
                     </h4>
@@ -142,8 +142,8 @@
               <li>
                 <div class="item-long">
                   <a href="#" target="_blank">
-                    <img src="/css/img/contact/icon_press.png" alt="" class="item-img img-responsive" />
-                    <img src="/css/img/contact/icon_press_active.png" alt="" class="item-img-active img-responsive"/>
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_press.png')}}" alt="" class="item-img img-responsive" />
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_press_active.png')}}" alt="" class="item-img-active img-responsive"/>
                     <h4 class="item-description">
                       <span>¿Prensa?</span>
                       <br>
@@ -155,8 +155,8 @@
               <li>
                 <div class="item">
                   <a href="#" target="_blank">
-                    <img src="/css/img/contact/icon_location.png" alt="" class="item-img img-responsive" />
-                    <img src="/css/img/contact/icon_location_active.png" alt="" class="item-img-active img-responsive"/>
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_location.png')}}" alt="" class="item-img img-responsive" />
+                    <img ng-src="{{contact.getAmazonUrl('static/img/contact/icon_location_active.png')}}" alt="" class="item-img-active img-responsive"/>
                     <h4 class="item-description">
                       <span>¡Estamos aquí!</span>
                     </h4>
@@ -168,7 +168,7 @@
         </div>
       </div>
     </div>
-    <div class="trulii-cover__background" style="background-image:url(/css/img/contact/banner.jpg)">
+    <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{contact.getAmazonUrl('static/img/contact/banner.jpg')}})' }">
     </div>
   </div>
 </div>

@@ -185,7 +185,8 @@
 
     }
     .btn-lg{
-      font-size: 1em;
+      font-size: 1.35em;
+      padding: 0.8em;
       .before-md({
         font-size: 0.75em;
       });
@@ -228,7 +229,7 @@
         background-size: 15px auto;
         background-position: 90% 50%;
         background-repeat: no-repeat;
-        background-image: url(/css/img/about/arrow.png) !important;
+        background-image: url(@{s3url}/static/img/about/arrow.png) !important;
         padding: 0 2em;
         display: inline-block;
         float: left;
@@ -418,7 +419,7 @@
     background-color: fade(@brand-warning, 40%);
   }
   &__background.background-dots:after{
-    background-image: url('/css/img/dots.png');
+    background-image: url('@{s3url}/static/img/dots.png');
     background-color: transparent;
     background-attachment: initial;
   }
@@ -470,7 +471,7 @@
 }
 
 
-@media (min-aspect-ratio: 16/9) {
+/*@media (min-aspect-ratio: 16/9) {
   .trulii-cover__background-video {
     width: 100%;
     height: auto;
@@ -482,7 +483,7 @@
     width: auto;
     height: 100%;
   }
-}
+}*/
 
 @media (max-width: 767px) {
 

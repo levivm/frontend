@@ -5,7 +5,7 @@
                 <div>
                     <div class="row print-visible">
                         <div class="col-xs-5 separate-below">
-                            <img class="img-responsive" src="../../css/img/logo-yellow.png" alt="">
+                            <img class="img-responsive" ng-src="{{order.getAmazonUrl('static/img/logo-yellow.png')}}" alt="">
                         </div>
                     </div>
                     <div class="row order-detail">
@@ -62,7 +62,7 @@
                                 <div class="hidden-xs hidden-sm">
                                     <a class="btn btn-default btn-return btn-block btn-sm"
                                       ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
-                                        <img src="css/img/activity-enroll/navigation_back.png"
+                                        <img ng-src="{{order.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}"
                                             alt="{{ ::order.strings.ACTION_GO_BACK }}"
                                             class="img-responsive inline-block"/>
                                         <span ng-bind="::order.strings.ACTION_GO_BACK"></span>
@@ -109,29 +109,13 @@
                                             <span ng-bind="::assistant.email"></span>
                                         </td>
                                         <td>
-                                        <span ng-bind="::(order.order.amount / order.order.assistants.length | currency:$:0)"
-                                              ng-class="{'text-strike':assistant.lastest_refund.status === order.strings.REFUND_APPROVED_STATUS}"></span>
+                                        <span ng-bind="::(order.order.amount / order.order.assistants.length | currency:$:0)"></span>
                                         </td>
                                         <td ng-show="::order.isStudent">
                                             <span ng-bind="::assistant.token"></span>
                                         </td>
-                                        <td ng-show="assistant.lastest_refund">
-                                            <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span><br/>
-                                        <span class="sinkin-medium"
-                                              ng-bind="assistant.lastest_refund.status"></span>
-                                            <i ng-show="!assistant.lastest_refund.requested_by_me"
-                                               class="glyphicon glyphicon-question-sign order-tooltip"
-                                               aria-hidden="true" tooltip-placement="right"
-                                               tooltip="{{::order.strings.COPY_REFUND_REQUESTED_BY_OTHER}}"></i>
-                                        </td>
-                                        <td class="column-button hidden-xs" ng-show="!assistant.lastest_refund">
-                                            <trulii-preloader
-                                                    loader-control="order.requestingRefund[assistant.id]"></trulii-preloader>
-                                            <button class="btn btn-default"
-                                                    ng-show="!assistant.lastest_refund && !order.order.lastest_refund && !order.requestingRefund[assistant.id]"
-                                                    ng-click="order.requestAssistantRefund(order.order.id,assistant)"
-                                                    ng-bind="::order.strings.ACTION_REIMBURSE"></button>
-                                        </td>
+
+
                                     </tr>
                                 </table>
                             </div>
@@ -140,7 +124,7 @@
                                 <div class="col-xs-6 col-md-3">
                                     <h4 class="text-lg montserrat-light" ng-bind="::order.strings.LABEL_SUB_TOTAL"></h4>
                                 </div>
-                                <div class="col-xs-5">
+                                <div class="col-xs-5 col-md-7">
                                     <h4 class="text-right text-lg montserrat-light"
                                         ng-bind="::(order.order.amount | currency:$:0)"></h4>
                                 </div>
@@ -151,7 +135,7 @@
                                     <h4 class="text-lg montserrat-light"
                                         ng-bind="::(order.strings.LABEL_COUPON +' '+ order.order.coupon.code)"></h4>
                                 </div>
-                                <div class="col-xs-5">
+                                <div class="col-xs-5 col-md-7">
                                     <h4 class="text-right text-lg montserrat-light"
                                         ng-bind="::('-' + (order.order.coupon.amount | currency:$:0))"></h4>
                                 </div>
@@ -160,25 +144,14 @@
                                    tooltip-placement="right"
                                    tooltip="{{::order.strings.COPY_COUPON_NOT_REFUND_TOOLTIP}}"></i>
                             </div>
-                            <!--Reimbursements-->
-                            <div class="row no-margin " ng-show="order.order.total_refunds_amount > 0">
-                                <div class="col-xs-6 col-md-3">
-                                    <h4 class="text-lg montserrat-light"
-                                        ng-bind="order.strings.LABEL_REIMBURSEMENTS"></h4>
 
-                                </div>
-                                <div class="col-xs-5">
-                                    <h4 class="text-right text-lg montserrat-light"
-                                        ng-bind="'-' + (order.order.total_refunds_amount | currency:$:0)"></h4>
-                                </div>
-                            </div>
                             <!--Fee-->
                             <div class="row no-margin hidden-xs hidden-sm" ng-show="::order.isOrganizer">
                                 <div class="col-xs-6 col-md-3">
                                     <h4 class="text-lg montserrat-light"
                                         ng-bind="order.strings.LABEL_TRULII_FEE + ' ' + (order.order.fee * 100) + '%'"></h4>
                                 </div>
-                                <div class="col-xs-5">
+                                <div class="col-xs-5 col-md-7">
                                     <h4 class="text-lg montserrat-light text-right "
                                         ng-bind="::('-' + (order.feeAmount | currency:$:0))"></h4>
                                 </div>
@@ -195,7 +168,7 @@
                                     <h4 class="separate-above-less" ng-bind="::order.strings.LABEL_TOTAL"></h4>
                                 </div>
 
-                                <div class="col-xs-5">
+                                <div class="col-xs-5 col-md-7">
                                     <h4 class="text-right " ng-show="::order.isStudent"
                                         ng-bind="::(order.order.total | currency:$:0)"
                                         ng-class="::{'text-strike':order.order.is_free}"></h4>
@@ -204,24 +177,6 @@
                                         ng-class="::{'text-strike':order.order.is_free}"></h4>
                                     <h4 class="text-right" ng-show="::order.order.is_free"
                                         ng-bind="::order.strings.LABEL_FREE"></h4>
-                                </div>
-
-                                <!--Refund Button-->
-                                <div class="col-xs-12 col-md-4 separate-below-less">
-                                  <div ng-show="order.order.lastest_refund">
-                                        <span ng-bind="::order.strings.LABEL_REIMBURSEMENTS_STATUS"></span>
-                                        <span class="sinkin-medium" ng-bind="order.order.lastest_refund.status"></span>
-                                        <i ng-show="!order.order.lastest_refund.requested_by_me"
-                                           class="glyphicon glyphicon-question-sign" aria-hidden="true"
-                                           tooltip-placement="right"
-                                           tooltip="{{::order.strings.COPY_REFUND_REQUESTED_BY_OTHER}}"></i>
-                                    </div>
-                                    <trulii-preloader loader-control="order.requestingOrderRefund"></trulii-preloader>
-
-                                    <button class="btn btn-block btn-primary hidden-xs"
-                                            ng-show="!order.order.lastest_refund && !(order.order.total_refunds_amount > 0) && !order.requestingOrderRefund"
-                                            ng-click="order.requestOrderRefund(order.order.id)"
-                                            ng-bind="::order.strings.ACTION_REIMBURSE_ORDER"></button>
                                 </div>
                             </div>
                         </div>

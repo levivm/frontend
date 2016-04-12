@@ -104,7 +104,7 @@
                 ng-class="{'hidden-xs hidden-sm': !pc.isActive('dash.activities-edit.{{step.name}}')}"
                 ng-bind="::step.title"></span>
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
-                <img class="img-responsive" src="/css/img/close_dark.png" alt=""/>
+                <img class="img-responsive" ng-src="{{pc.getAmazonUrl('static/img/close_dark.png')}}" alt=""/>
             </a>
         </div>
     </div>

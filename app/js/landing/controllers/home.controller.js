@@ -13,8 +13,9 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['$state', '$scope', 'video', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics'];
-    function HomeController($state, $scope, video, activities, generalInfo, LocationManager, serverConf, Analytics) {
+    HomeController.$inject = ['Elevator', '$state', '$scope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce', '$stateParams'];
+    function HomeController(Elevator, $state, $scope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce, $stateParams) {
+
 
         var ACTIVITIES_STEP = 8;
         var activitiesIndex = 0;
@@ -34,7 +35,8 @@
             organizerCategories: organizerCategories,
             searchCategory:searchCategory,
             coverVideo: {},
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            getAmazonVideoUrl:getAmazonVideoUrl
         });
 
         _activate();
@@ -44,7 +46,9 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-
+        function getAmazonVideoUrl(file){
+            return  $sce.trustAsResourceUrl( serverConf.s3URL + '/' +  file);
+        }
 
         function toggleVideoShow(){
           vm.showVideo = !vm.showVideo;
@@ -120,22 +124,6 @@
             });
         }
 
-        function _replayVideos(){
-            angular.element(document).ready(function () {
-                document.getElementsByClassName('trulii-cover__background-video')[0].addEventListener("ended",
-                  function(){
-                    setTimeout(
-                      function(){
-                        // document.getElementsByClassName('trulii-cover__background-video')[0].play();
-                        video.addSource('webm', serverConf.s3URL + '/static/videos/home1.webm');
-                        video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
-                        video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');
-                      }, 0
-                    );
-                  },
-                true);
-            });
-        }
 
 
         function _initScroll(){
@@ -146,17 +134,22 @@
               }
             );
         }
+        function _fromBurgerMenu(){
+          angular.element(document).ready(function () {
+              if ($stateParams.from_menu){
+                  setTimeout(function(){ Elevator.toElement('anchor-how'); }, 2000);
+                  $stateParams.from_menu=null;
+              }
+           });
+
+        }
 
         function _activate(){
             _setStrings();
             _setCategories();
             loadActivities();
             _initScroll();
-            video.addSource('webm', serverConf.s3URL + '/static/videos/home1.webm');
-            video.addSource('webm', serverConf.s3URL + '/static/videos/home2.webm');
-            video.addSource('webm', serverConf.s3URL + '/static/videos/home3.webm');
-            _replayVideos();
-
+            _fromBurgerMenu();
             //Analytics.generalEvents.landing();
 
         }

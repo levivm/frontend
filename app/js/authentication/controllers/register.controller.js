@@ -36,7 +36,6 @@
             registerOrganizer: registerOrganizer,
             isSelectedMethod: isSelectedMethod,
             setSelectedMethod: setSelectedMethod,
-            focusForm: focusForm,
             toLoginState: toLoginState
         });
 
@@ -47,12 +46,7 @@
         function isSelectedMethod(method){ return selectedMethod === method; }
 
         function setSelectedMethod(method){ selectedMethod = method; }
-
-        function focusForm(){
-            // this must be to use toElement but is not working :(
-            Elevator.toBottom(3000);
-        }
-
+        
         function fbRegister(){
             Authentication.facebookLogin()
                 .then(_registerSuccess, error);

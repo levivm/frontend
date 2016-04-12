@@ -185,7 +185,7 @@
                       <div class="panel-heading">
                           <h4>
                               <img class="img-responsive inline-block"
-                                  src="css/img/activity-enroll/section_sessions.png"
+                                  ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_sessions.png')}}"
                                   alt="{{::enroll.strings.LABEL_ACTIVITY_SESSIONS}}"/>
                               <span ng-bind="::enroll.strings.LABEL_ACTIVITY_SESSIONS"></span>
                           </h4>
@@ -221,7 +221,7 @@
                           <div class="panel-heading">
                               <h4>
                                   <img class="img-responsive inline-block"
-                                      src="css/img/activity-enroll/section_attendees.png"
+                                      ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_attendees.png')}}"
                                       alt="{{::enroll.strings.LABEL_ASSISTANTS}}"/>
                                   <span ng-bind="::enroll.strings.LABEL_ASSISTANTS"></span>
                               </h4>
@@ -286,7 +286,7 @@
                           <div class="panel-heading">
                               <h4>
                                   <img class="img-responsive inline-block"
-                                      src="css/img/activity-enroll/section_payments.png"
+                                      ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_payments.png')}}"
                                       alt="{{::enroll.strings.LABEL_PAYMENT_INFO}}"/>
                                   <span ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></span>
                               </h4>
@@ -300,7 +300,7 @@
                                   <li ng-class="{'active': enroll.paymentWithPse}"
                                       ng-click="enroll.changePSEPaymentMethod()">
                                       <a href="">
-                                          <img src="css/img/activity-enroll/logo_PSE.png" alt="PSE"/>
+                                          <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/logo_PSE.png')}}" alt="PSE"/>
                                       </a>
                                   </li>
                               </ul>
@@ -311,11 +311,11 @@
                                           <div class="col-xs-10 col-xs-offset-1 credit-cards-container">
                                               <div class="row">
                                                   <div class="col-xs-12 text-center separate-above separate-below">
-                                                      <img src="css/img/activity-enroll/card_mastercard.png" alt="Mastercard"/>
-                                                      <img src="css/img/activity-enroll/card_visa.png" alt="Visa"/>
-                                                      <img src="css/img/activity-enroll/card_amex.png" alt="American Express"/>
-                                                      <img src="css/img/activity-enroll/card_discover.png" alt="Discover"/>
-                                                      <img src="css/img/activity-enroll/card_diners.png" alt="Diners"/>
+                                                      <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/card_mastercard.png')}}" alt="Mastercard"/>
+                                                      <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/card_visa.png')}}" alt="Visa"/>
+                                                      <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/card_amex.png')}}" alt="American Express"/>
+                                                      <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/card_discover.png')}}" alt="Discover"/>
+                                                      <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/card_diners.png')}}" alt="Diners"/>
                                                   </div>
                                               </div>
                                           </div>
@@ -347,7 +347,7 @@
                                                           <span class="form-control-static"
                                                                 ng-show="enroll.cardData.method"
                                                                 >
-                                                              <img ng-src="css/img/activity-enroll/card_{{enroll.cardData.method | lowercase }}.png" alt="Visa"/>
+                                                              <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/card_') + (enroll.cardData.method | lowercase) + '.png'}}" alt="Visa"/>
                                                           </span>
 
                                                           <input type="hidden" ng-model="enroll.cardData.method" name="cardMethod"/>
@@ -521,7 +521,7 @@
     <div class="row navigation-container img-carpet">
       <div class="col-xs-12 col-md-6">
           <a class="btn btn-link" ui-sref="activities-detail({activity_id: enroll.activity.id})">
-              <img src="css/img/activity-enroll/navigation_back.png" alt="{{ ::enroll.strings.ACTION_GO_BACK }}"
+              <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}" alt="{{ ::enroll.strings.ACTION_GO_BACK }}"
                   class="img-responsive inline-block"/>
               <span ng-bind="::enroll.strings.ACTION_GO_BACK"></span>
           </a>

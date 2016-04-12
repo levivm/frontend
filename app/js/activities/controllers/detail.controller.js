@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager', '$filter'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter) {
         var visibleReviewListSize = 3;
         var vm = this;
         angular.extend(vm, {
@@ -74,7 +74,8 @@
             showRequirements: false,
             showExtra: false,
             shareSocialAnalytic:shareSocialAnalytic,
-            wishList:wishList
+            wishList:wishList,
+            getAmazonUrl: getAmazonUrl
         });
 
         _activate();
@@ -82,7 +83,7 @@
         // console.log('currentUser:', currentUser);
 
         //--------- Exposed Functions ---------//
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
         }
@@ -402,7 +403,7 @@
                 LABEL_INSTRUCTORS: "Instructores",
                 LABEL_REQUIREMENTS: "Requisitos",
                 LABEL_METHODOLOGY: "Metodología",
-                LABEL_EXTRA_INFO: "Adicionales",
+                LABEL_EXTRA_INFO: "Info Extra",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
                 TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",
@@ -504,12 +505,14 @@
             _setStrings();
             _setCurrentState();
             _updateUrl();
+            //activity.calendars= $filter('orderBy')(activity.calendars, 'initial_date');
+            activity.calendars = angular.copy(calendars);
             activity = _mapCalendars(activity);
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
             vm.assistants = _getAssistants();
             _setUpLocation(activity);
-            console.log(vm.relatedActivities);
+
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
@@ -519,11 +522,12 @@
                 calendar_selected : _getSelectedCalendar(activity)
             });
 
+
             if(!(vm.activity.published)){
                 Toast.setPosition("toast-top-center");
                 Toast.error(vm.strings.ACTIVITY_DISABLED);
             }
-            console.log(vm.reviews);
+
             _setSocialShare();
             _setReviews();
             _initWidget();

@@ -50,7 +50,8 @@
             angular.extend(vm.strings, {
                 SEARCH_PLACEHOLDER: "Buscar",
                 PREVIOUS_TEXT:"Previo",
-                NEXT_TEXT:"Siguiente"
+                NEXT_TEXT:"Siguiente",
+                COPY_NO_MESSAGES: "No tienes notificaciones por el momento"
             });
         }
 

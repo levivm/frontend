@@ -126,7 +126,7 @@ select.form-control.sort-select{
     border: 1px solid @gray-light-medium;
     border-radius: 3px;
     -webkit-appearance: none;
-    background-image: url(img/search/order.png);
+    background-image: url(@{s3url}/static/img/search/order.png);
     background-size: auto 85%;
     background-position: center center;
     &:focus{
@@ -286,7 +286,7 @@ select.form-control.sort-select{
       background-size: 15px auto;
       background-position: 94.75% 50%;
       background-repeat: no-repeat;
-      background-image: url(/css/img/about/arrow.png) !important;
+      background-image: url(@{s3url}/static/img/about/arrow.png) !important;
       font-weight: 500;
       text-transform: uppercase;
       color: @gray-light;
@@ -394,7 +394,7 @@ select.form-control.sort-select{
       background-position: 95% 50%;
       background-repeat: no-repeat;
       padding-left: 10px;
-      background-image: url(/css/img/about/arrow.png) !important;
+      background-image: url(@{s3url}/static/img/about/arrow.png) !important;
       font-size: 0.75em;
       &:focus{
         animation: none;
@@ -416,21 +416,20 @@ select.form-control.sort-select{
     }
     > * {
         background-color: white;
-        height: 75px !important;
-        .before-sm({
-          height: 55px !important;
-        })
+
     }
     > *:nth-child(1) {
         border-top-left-radius: @border-radius-base !important;
         border-bottom-left-radius: @border-radius-base !important;
         border-right: 1px solid @gray-lighter;
+        height: 75px !important;
         .before-sm({
           float: left;
           width: 80%;
           margin-top: 70px;
           border-color: transparent;
           border-right: none;
+          height: 55px !important;
           &:focus{
             width: 80% !important;
           }
@@ -446,7 +445,7 @@ select.form-control.sort-select{
           background-color: @brand-success;
           color: white;
           border-radius: @border-radius-base;
-          background-image: url(/css/img/about/arrow-white.png) !important;
+          background-image: url(@{s3url}/static/img/about/arrow-white.png) !important;
           padding: 0;
         });
     }
@@ -483,8 +482,12 @@ select.form-control.sort-select{
       background-size: 15px auto;
       background-position: 93% 50%;
       background-repeat: no-repeat;
-      background-image: url(/css/img/about/arrow.png) !important;
+      background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+      height: 75px !important;
 
+      .before-sm({
+        height: 55px !important
+      });
 
       select, select:focus {
         display: inline-block;
@@ -516,6 +519,7 @@ select.form-control.sort-select{
         border-top: 5px solid @brand-secondary;
         font-size: 1.25em;
         float: left;
+        height: 75px !important;
         .before-sm({
           width: 20%;
           float: right;
@@ -523,7 +527,7 @@ select.form-control.sort-select{
           border: none;
           margin-top: 70px;
           color: white !important;
-
+          height: 55px !important;
           .glyphicon{
               padding-top: 5px;
           }
@@ -603,7 +607,7 @@ select.form-control.sort-select{
           background-size: 15px auto;
           background-position: 93% 50%;
           background-repeat: no-repeat;
-          background-image: url(/css/img/about/arrow.png) !important;
+          background-image: url(@{s3url}/static/img/about/arrow.png) !important;
 
 
           select, select:focus {
