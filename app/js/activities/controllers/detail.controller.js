@@ -98,7 +98,7 @@
 
         function isSelectedCalendarFull(){
             if(vm.calendar_selected){
-                return vm.calendar_selected.assistants.length >= vm.calendar_selected.capacity;
+                return vm.calendar_selected.available_capacity <= 0;
             } else {
                 return true;
             }

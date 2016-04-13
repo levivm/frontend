@@ -47,7 +47,6 @@
             invalidCoupon: false,
             calendar : null,
             activity : null,
-            capacity : null,
             amount : null,
             showTerms : false,
             showReimbursement : false,
@@ -504,7 +503,7 @@
         }
 
         function addAssistant() {
-            if (vm.quantity + vm.calendar.assistants.length < vm.capacity) {
+            if (vm.quantity  < vm.available_capacity) {
 
                 vm.quantity += 1;
                 vm.assistants.push({});
@@ -541,7 +540,7 @@
         }
 
         function _isAllBooked(){
-            return calendar.capacity <= calendar.assistants.length;
+            return calendar.available_capacity <= 0;
         }
 
         function _mapMainPicture(activity){
@@ -562,7 +561,7 @@
         }
 
         function _mapVacancy(calendar){
-            calendar.vacancy = calendar.capacity - calendar.assistants.length;
+            calendar.vacancy = calendar.available_capacity;
             calendar.total_price = calendar.session_price * calendar.sessions.length;
             return calendar;
         }
@@ -725,7 +724,6 @@
 
             vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
             vm.calendar = _mapVacancy(calendar);
-            vm.capacity = calendar.capacity;
             vm.amount = calendar.session_price;
             vm.activity = activity;
             _mapMainPicture(vm.activity);

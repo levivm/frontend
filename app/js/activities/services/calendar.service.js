@@ -32,7 +32,7 @@
                 this.initial_date = today;
                 this.minStartDate = today;
                 this.closing_sale = tomorrow;
-                this.capacity = 1;
+                this.available_capacity = 1;
 
                 this.sessions = [];
                 this.number_of_sessions = 0;
