@@ -240,6 +240,16 @@
 	-ms-flex-align: center;
 	align-items: center;
 }
+.flex-align-items-end{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: flex-end;
+	-webkit-align-items: flex-end;
+	-ms-flex-align: flex-end;
+	align-items: flex-end;
+}
 .flex-center-item{
 	-webkit-box-flex: 0;
 	-webkit-flex: none;
@@ -688,4 +698,41 @@
 }
 .pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus{
   color: white !important;
+}
+
+
+
+//Styles of Angular Text
+.ta-root.focussed > .ta-scroll-window.form-control {
+    border-color: @brand-primary !important;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px @brand-primary !important;
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px @brand-primary !important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px @brand-primary !important;
+}
+
+.ta-scroll-window > .ta-bind {
+    border: 1px solid @btn-default-border !important;
+
+		&::before{
+			color: #9E9E9E !important;
+			display: block;
+			width: 70%;
+			text-align: center;
+			margin: 0 auto;
+			margin-top: 30px;
+		}
+		p{
+			color: @gray !important;
+			margin-bottom: 0px;
+			font-weight: 200;
+		}
+
+		ul{
+			padding: 0px 0px 0px 40px !important;
+		}
+
+		li{
+			font-weight: 400;
+		}
 }

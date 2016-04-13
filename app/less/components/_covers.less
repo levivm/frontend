@@ -52,13 +52,16 @@
 
 .trulii-cover, .trulii-cover-small, .trulii-cover-medium, .trulii-cover-regular{
 
-  margin-top: -100px; // Mientras se arregla la barra de navegacion
+  margin-top: -20px; // Mientras se arregla la barra de navegacion
   min-height: @trulii-cover-height;
   width: 100%;
   position:relative;
   display: block;
   clear: both;
 
+  &__home{
+    margin-top: -100px;
+  }
   .row{
     min-width:100%;
 
@@ -101,7 +104,7 @@
           padding-top: 7px;
           padding-left: 6px;
         }
-        
+
       }
     }
     .label{
@@ -250,8 +253,8 @@
       }
 
     }
-    
-    
+
+
     .well-container{
       float: none;
       margin: 0 auto;
@@ -381,7 +384,10 @@
         }
       }
     }
+
+
   }
+
   &__background{
     width: 100%;
     min-width: 100vw;

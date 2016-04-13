@@ -87,7 +87,7 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
         }
-        
+
         function previousGalleryPicture(){
             if(vm.currentGalleryPicture > 0){ vm.currentGalleryPicture--; }
         }
@@ -373,9 +373,7 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
-                COPY_OTHER_SESSIONS: "Sesiónes",
-                COPY_OTHER_SESSION: "Sesión",
-                COPY_OTHER_SCHEDULES: "Horarios",
+                COPY_OTHER_SESSIONS: "Horario",
                 COPY_OTHER_OPORTUNITY: "Oportunidad",
                 COPY_OTHER_OPORTUNITIES: "Oportunidades",
                 COPY_ONE_REVIEW: " Evaluación",
@@ -470,7 +468,7 @@
             });
 
             // Updating the URL
-            
+
             $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: $state.current, location: 'replace'});
         }
 
@@ -492,7 +490,7 @@
             });
             return assistants;
         }
-        
+
         function _setReviews(){
           if(vm.totalReviews !== 1){
             vm.strings.COPY_TOOLTIP_REVIEWS = vm.strings.COPY_RATINGS;

@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf', '$filter'];
 
     function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf) {
+                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf, $filter) {
 
         var vm = this;
         var isValidDate = false;
@@ -78,6 +78,7 @@
             applyCoupon: applyCoupon,
             removeCoupon: removeCoupon,
             getAmazonUrl: getAmazonUrl,
+            changeCalendar:changeCalendar,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -119,6 +120,14 @@
             return  serverConf.s3URL + '/' +  file;
         }
 
+        function changeCalendar(){
+
+          vm.calendar = _mapVacancy(vm.calendar);
+          vm.capacity = vm.calendar.capacity;
+          vm.amount = vm.calendar.session_price;
+          _setTotalCost();
+
+        }
 
 
         /** PSE Payments Methods **/
@@ -177,8 +186,8 @@
 
                 var data = {
                     activity: activity.id,
-                    calendar: calendar.id,
-                    amount: vm.quantity * calendar.session_price,
+                    calendar: vm.calendar.id,
+                    amount: vm.quantity * vm.calendar.session_price,
                     quantity: vm.quantity,
                     assistants: vm.assistants,
                     buyer: buyer,
@@ -302,8 +311,8 @@
 
             var data = {
                 activity: activity.id,
-                calendar: calendar.id,
-                amount: vm.quantity * calendar.session_price,
+                calendar: vm.calendar.id,
+                amount: vm.quantity * vm.calendar.session_price,
                 quantity: vm.quantity,
                 assistants: vm.assistants,
             };
@@ -314,9 +323,9 @@
             function _enrollSuccess(order) {
                 console.log('enrollSuccessFree');
                 Analytics.studentEvents.enrollSuccessFree();
-                calendar.addAssistants(order.assistants);
+                vm.calendar.addAssistants(order.assistants);
                 vm.success = true;
-                $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':calendar.id,
+                $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':vm.calendar.id,
                                     'order_id':order.id});
             }
 
@@ -346,7 +355,7 @@
             if(vm.paymentWithPse){
                 enrollPSE();
             }
-            else if (calendar.is_free){
+            else if (vm.calendar.is_free){
 
                 enrollFree();
             }
@@ -407,9 +416,9 @@
 
                 var data = {
                     activity: activity.id,
-                    calendar: calendar.id,
+                    calendar: vm.calendar.id,
                     token: token,
-                    amount: vm.quantity * calendar.session_price,
+                    amount: vm.quantity * vm.calendar.session_price,
                     quantity: vm.quantity,
                     assistants: vm.assistants,
                     buyer: buyer,
@@ -431,9 +440,9 @@
 
                 function _enrollSuccess(order) {
                     Analytics.studentEvents.enrollPayTdc();
-                    calendar.addAssistants(order.assistants);
+                    vm.calendar.addAssistants(order.assistants);
                     vm.success = true;
-                    $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':calendar.id,
+                    $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':vm.calendar.id,
                                         'order_id':order.id});
                 }
 
@@ -535,7 +544,7 @@
         //--------- Internal Functions ---------//
 
         function _calculateAmount() {
-            vm.amount = vm.quantity * calendar.session_price;
+            vm.amount = vm.quantity * vm.calendar.session_price;
             _setTotalCost();
         }
 
@@ -567,7 +576,7 @@
         }
 
         function _setTotalCost(){
-            if(calendar.is_free) {
+            if(vm.calendar.is_free) {
              vm.totalCost = 0;
             } else {
                 vm.totalCost = vm.amount;
@@ -616,6 +625,28 @@
         function _finishProccesingPayment(){
             vm.processingPayment = false;
 
+        }
+
+        function _mapCalendars(activity){
+            activity.upcoming_calendars = [];
+            if(activity.calendars){
+                activity.calendars = activity.calendars.map(mapVacancy);
+                var calendars = angular.copy(activity.calendars);
+                activity.upcoming_calendars = _.remove(calendars, removePastCalendars);
+            }
+
+            return activity;
+
+            function removePastCalendars(calendar){
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf(), 'day');
+                return !passed;
+            }
+
+            function mapVacancy(calendar){
+                calendar.vacancy = calendar.available_capacity;
+                calendar.total_price = calendar.session_price;
+                return calendar;
+            }
         }
 
 
@@ -671,7 +702,7 @@
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
-                LABEL_ACTIVITY_SESSIONS: "Horarios",
+                LABEL_ACTIVITY_SESSIONS: "Horario",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",
@@ -685,7 +716,7 @@
                 LABEL_EMAIL: "Email",
                 LABEL_PAYMENT_INFO: "Información de Pago",
                 LABEL_TOTAL_AMOUNT: "Total a Pagar",
-
+                LABEL_DROPDOWN_DATE_INIT: "Fecha de inicio: ",
                 LABEL_ID_NUMBER:"Número de identificación",
                 LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
                 LABEL_BANK:"Banco",
@@ -725,7 +756,10 @@
             vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
             vm.calendar = _mapVacancy(calendar);
             vm.amount = calendar.session_price;
+            activity.calendars= $filter('orderBy')(activity.calendars, 'initial_date');
+            activity = _mapCalendars(activity);
             vm.activity = activity;
+            console.log(vm.activity);
             _mapMainPicture(vm.activity);
             _setTotalCost();
 
@@ -742,13 +776,13 @@
                   vm.scroll = window.scrollY;
                   vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
 
-                  vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
-                  vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+                  vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
+                  vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
 
                   $scope.$on('scrolled',
                     function(scrolled, scroll){
-                        vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
-                        vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 190;
+                        vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
+                        vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
                       vm.scroll = scroll;
                       $scope.$apply();
                     }

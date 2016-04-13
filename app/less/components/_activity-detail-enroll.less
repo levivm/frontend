@@ -3,7 +3,7 @@
 .panel{
     box-shadow: none;
     border: 1px solid @gray-light-medium;
-
+    margin-top: 4.5em;
     .panel-heading {
         padding: 0.5em 1em;
 
@@ -14,8 +14,65 @@
         }
     }
 }
+.select-calendar{
+  position: relative;
 
+  &__arrow{
+    position: absolute;
+    right: 2em;
+    width: 15px;
+    top: 1.5em;
+  }
+  .dropdown{
+    display: block !important;
+    top: 0;
+    border: none;
+
+  }
+  .ui-select-match{
+    display: block !important;
+    height: 3em;
+    .btn-default{
+      padding: 0.8em 1em;
+      font-size: 1.2em;
+      border-radius: 4px;
+      height: 3em;
+      border-bottom: none;
+      color: @gray !important;
+      .caret{
+        display: none;
+      }
+    }
+  }
+  .ui-select-focusser {
+    display: none !important;
+  }
+  .ui-select-offscreen{
+    display: none !important;
+  }
+
+
+  .dropdown-menu {
+    width: 100%;
+    &::after{
+      display: none;
+    }
+  }
+
+  .ui-select-choices-row {
+    padding: 0.3em 1em;
+    font-size: 1.2em;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.18);
+    a{
+      color: @gray !important;
+    }
+  }
+
+
+
+}
 .sessions-panel {
+
     .panel;
 
     .panel-body {
