@@ -118,7 +118,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showAudience">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showAudience">
           </h2>
-          <p class="content" ng-bind="::detail.activity.audience" ng-class="{'hidden-xs': !detail.showAudience, 'hidden-sm': !detail.showAudience}"></p>
+          <p class="content" ng-bind-html="::detail.activity.audience" ng-class="{'hidden-xs': !detail.showAudience, 'hidden-sm': !detail.showAudience}"></p>
         </div>
       </div>
 
@@ -132,7 +132,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showContent">
           </h2>
-          <p class="content" ng-bind="::detail.activity.content" ng-class="{'hidden-xs': !detail.showContent, 'hidden-sm': !detail.showContent}"></p>
+          <p class="content" ng-bind-html="::detail.activity.content" ng-class="{'hidden-xs': !detail.showContent, 'hidden-sm': !detail.showContent}"></p>
         </div>
       </div>
 
@@ -146,7 +146,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showGoals">
           </h2>
-          <p class="content" ng-bind="::detail.activity.goals" ng-class="{'hidden-xs': !detail.showGoals, 'hidden-sm': !detail.showGoals}"></p>
+          <p class="content" ng-bind-html="::detail.activity.goals" ng-class="{'hidden-xs': !detail.showGoals, 'hidden-sm': !detail.showGoals}"></p>
         </div>
       </div>
 
@@ -170,7 +170,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showMethodology">
           </h2>
-          <p class="content" ng-bind="::detail.activity.methodology" ng-class="{'hidden-xs': !detail.showMethodology, 'hidden-sm': !detail.showMethodology}"></p>
+          <p class="content" ng-bind-html="::detail.activity.methodology" ng-class="{'hidden-xs': !detail.showMethodology, 'hidden-sm': !detail.showMethodology}"></p>
         </div>
       </div>
 
@@ -184,7 +184,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showRequirements">
           </h2>
-          <p class="content" ng-bind="::detail.activity.requirements" ng-class="{'hidden-xs': !detail.showRequirements, 'hidden-sm': !detail.showRequirements}"></p>
+          <p class="content" ng-bind-html="::detail.activity.requirements" ng-class="{'hidden-xs': !detail.showRequirements, 'hidden-sm': !detail.showRequirements}"></p>
         </div>
       </div>
 
@@ -199,7 +199,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showExtra">
           </h2>
-          <p class="content" ng-bind="::detail.activity.extra_info" ng-class="{'hidden-xs': !detail.showExtra, 'hidden-sm': !detail.showExtra}"></p>
+          <p class="content" ng-bind-html="::detail.activity.extra_info" ng-class="{'hidden-xs': !detail.showExtra, 'hidden-sm': !detail.showExtra}"></p>
         </div>
       </div>
       <div class="separate-above-more" ng-show="!detail.activity.extra_info"></div>

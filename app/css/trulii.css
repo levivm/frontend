@@ -12821,6 +12821,35 @@ hr.on-light {
 .pagination > .active > span:focus {
   color: white !important;
 }
+.ta-root.focussed > .ta-scroll-window.form-control {
+  border-color: #ffd580 !important;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #ffd580 !important;
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #ffd580 !important;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #ffd580 !important;
+}
+.ta-scroll-window > .ta-bind {
+  border: 1px solid #ccc !important;
+}
+.ta-scroll-window > .ta-bind::before {
+  color: #9E9E9E !important;
+  display: block;
+  width: 70%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+.ta-scroll-window > .ta-bind p {
+  color: #535353 !important;
+  margin-bottom: 0px;
+  font-weight: 200;
+}
+.ta-scroll-window > .ta-bind ul {
+  padding: 0px 0px 0px 40px !important;
+}
+.ta-scroll-window > .ta-bind li {
+  font-weight: 400;
+}
 .text-left {
   text-align: left;
 }
@@ -19241,6 +19270,14 @@ blockquote {
 }
 .activity-detail p {
   word-break: break-all;
+  margin-bottom: 0px;
+  font-size: 1.1em;
+}
+.activity-detail ol {
+  font-size: 1.1em;
+}
+.activity-detail ul {
+  font-size: 1.1em;
 }
 .activity-detail .info .col-xs-4:nth-child(2) {
   border-left: 1px solid #e3e3e3;
