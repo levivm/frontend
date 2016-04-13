@@ -147,6 +147,9 @@
                     console.groupEnd();
                     if(isCreatingCalendar()){
                         console.log('Creating New Calendar');
+                        CalendarsManager.loadCalendars(activity.id).then(function(dataCalendars){
+                          vm.calendars= dataCalendars;
+                        });
                     } else {
                         if(vm.republish){
 
