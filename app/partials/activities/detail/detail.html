@@ -280,7 +280,7 @@
             <div class="text-center">
               <h5>
                 <i class="mdi-action-favorite-outline"
-                  ng-class="{'mdi-action-favorite': detail.activity.wish_list}">
+                  ng-class="{'mdi-action-favorite': detail.activity.wish_list, 'text-muted': !detail.activity.wish_list}">
                 </i>
                 <strong class="" ng-if="detail.activity.wish_list" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST"></strong>
                 <strong class="" ng-if="!detail.activity.wish_list" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></strong>
