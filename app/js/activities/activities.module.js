@@ -39,6 +39,8 @@
      */
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
+
+
         $stateProvider
             .state('dash', {
                     template: '<div ui-view></div>'
@@ -554,7 +556,7 @@
             var deviceSessionId = md5.createHash(string);
             return deviceSessionId;
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getMessages
@@ -566,7 +568,7 @@
         function getMessages(activity){
             return activity.getMessages();
         }
-        
+
         /**
          * @ngdoc method
          * @name .#getStats
@@ -576,7 +578,7 @@
          */
         getStats.$inject = ['activity', 'moment'];
         function getStats(activity, moment){
-            return activity.getStats(moment().year());
+            return activity.getStats(moment().year(), moment().month()+1);
         }
 
         /**
@@ -590,7 +592,7 @@
         function getMessage(activity, $stateParams){
             return activity.getMessage($stateParams.messageId);
         }
-        
+
         /**
          * @ngdoc method
          * @name .#isStudent

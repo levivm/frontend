@@ -72,11 +72,51 @@
     z-index: 10;
     width: 100%;
     position: relative;
+    &.align-bottom{
+      padding-bottom: 10vh;
+      -webkit-box-align: flex-end !important;
+      -webkit-align-items: flex-end !important;
+      -ms-flex-align: flex-end !important;
+      align-items: flex-end !important;
+    }
   }
   &__content{
     &:extend(.flex-center-item);
     width: 100%;
     color: white;
+    .social{
+      .btn-share{
+        &-fb{
+          background-color: transparent;
+          border: 1px solid white;
+          padding-top: 7px;
+          padding-left: 5px;
+        }
+        &-twitter{
+          background-color: transparent;
+          border: 1px solid white;
+          padding-top: 7px;
+          padding-left: 5px;
+        }
+        &-email{
+          background-color: transparent;
+          border: 1px solid white;
+          padding-top: 7px;
+          padding-left: 6px;
+        }
+        
+      }
+    }
+    .label{
+      color: white;
+      border: 2px solid transparent;
+      background-color: transparent;
+      &-default{
+        color: white;
+        border: 2px solid white;
+        background-color: transparent;
+      }
+    }
     &-landing{
       .before-md({
         padding-bottom: 10vh;
@@ -213,6 +253,8 @@
       }
 
     }
+    
+    
     .well-container{
       float: none;
       margin: 0 auto;

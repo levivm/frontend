@@ -10,6 +10,20 @@
 .activity-detail{
   p{
     word-break: break-all;
+    margin-bottom: 0px;
+    font-size: 1.1em;
+  }
+  ol{
+    font-size: 1.1em;
+  }
+  ul{
+    font-size: 1.1em;
+  }
+  .info{
+    .col-xs-4:nth-child(2){
+      border-left: 1px solid @gray-light-medium;
+      border-right: 1px solid @gray-light-medium;
+    }
   }
 }
 
@@ -112,7 +126,6 @@
 
 .calendar-widget {
     &:extend(.separate-above-medium);
-    border: 1px solid @border-color;
     font-family: @font-sans;
 
     .HeaderText() {
@@ -128,6 +141,7 @@
 
     .widget-card{
         .header {
+            border: 1px solid @border-color;
 
             .next {
                 .HeaderText();
@@ -158,6 +172,7 @@
         }
 
         .price {
+            border: 1px solid @border-color;
             width: 100%;
             height: auto;
             padding: 0.8em;
@@ -174,7 +189,16 @@
               font-size: 0.75em;
             }
         }
-
+        .sign-up{
+          border: 1px solid @border-color;
+          padding: 1em 0em;
+          cursor: pointer;
+          .glyphicon{
+            font-size: 20px;
+            vertical-align: -4px;
+            padding-right: 5px;
+          }
+        }
         .btn-sign-up {
             width: 100%;
             height: auto;
@@ -221,8 +245,21 @@
                 .InfoSection();
             }
         }
+        
+        .signup{
+          border: 1px solid @border-color;
+          padding: 1em 0em;
+          cursor: pointer;
+          .glyphicon{
+            font-size: 20px;
+            vertical-align: -4px;
+            padding-right: 5px;
+          }
+        }
+        
         .wishlist{
-          border-bottom: @border-widget;
+          margin-top: 25px;
+          border: 1px solid @border-color;
           padding: 1em 0em;
           cursor: pointer;
           [class^="mdi-"], [class*="mdi-"]{
@@ -236,6 +273,7 @@
             vertical-align: middle;
           }
         }
+        
         .sessions {
             .sessions-title {
                 padding: 1em;
@@ -520,7 +558,6 @@
 }
 
 .instructors-container{
-    padding: 3em 7.5em 5em 7.5em;
     background-color: @secondary-bg;
 
     .before-sm({
@@ -693,7 +730,8 @@
             cursor:pointer;
             border: 5px solid white;
             background-color: white;
-            box-shadow: 0px 0px 1px darken(@lightbg-accent, 50%);;
+            box-shadow: 0px 0px 1px darken(@lightbg-accent, 50%);
+            border-radius: 100%;
           }
 
           .checkbox, td{
@@ -730,16 +768,21 @@
             });
           }
 
+          &.active{
+            .checkbox{
+              background-color: @brand-success;
+            }
+
+            td{
+              background-color: darken(@lightbg-accent, 2.5%);
+            }
+            
+          }
+          
         }
-        tr.active{
-          .checkbox{
-            background-color: @brand-success;
-          }
-
-          td{
-            background-color: darken(@lightbg-accent, 2.5%);
-          }
-
+        
+        .signup-row{
+          background-color: darken(@lightbg-accent, .5%);
         }
       }
 
@@ -777,7 +820,22 @@
           text-transform: uppercase;
         }
       });
+      
+      &::after{
+        width: 0; 
+        height: 0; 
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent; 
+        border-right:10px solid darken(@gray-lighter, 5%);
+        content: "trulii";
+        color: transparent;
+        position: absolute;
+        left: 10px;
+        top: 15px;
+      }
     }
+    
+    
   }
 
 }

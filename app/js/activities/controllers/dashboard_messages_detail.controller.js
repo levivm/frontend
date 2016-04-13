@@ -17,7 +17,8 @@
 
         var vm = this;
         angular.extend(vm, {
-            message: message
+            message: message,
+            activity: activity
 
         });
 

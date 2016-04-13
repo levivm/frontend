@@ -251,10 +251,6 @@
             if(!status){
               status = 'open';
             }
-            // var deferred = $q.defer();
-            // var cachedActivities = _getOrganizerActivitiesById(organizerId);
-
-            // if(cachedActivities){ deferred.resolve(cachedActivities); }
 
             return $http.get(apiOrg.activities(organizerId),
                 {params: {
@@ -263,12 +259,6 @@
                   status: status
                 }})
                 .then(function (response) {
-                    // _activities[organizerId] = [];
-                    // _.each(response.data.results, function (activityData) {
-                    //     var activity = _retrieveInstdadedaddadadsaasddsadassadrgdadasdasdasdjkbkhkhkjgjhg,jkjgjhjgjhgjhgjhgjhgance(activityData.id, activityData);
-                    //     _activities[organizerId].push(activity);
-                    // });
-                    // deferred.resolve(_activities[organizerId]);
                   return response.data;
                 });
         }

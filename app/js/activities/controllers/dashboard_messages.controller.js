@@ -17,6 +17,7 @@
 
         var vm = this;
         angular.extend(vm, {
+            activity: activity,
             showMessage: false,
             toggleMessageShow:toggleMessageShow,
             messages: messages.results,
@@ -32,7 +33,7 @@
 
         });
 
-
+        console.log(activity);
         _activate();
 
         //--------- Exposed Functions ---------//
