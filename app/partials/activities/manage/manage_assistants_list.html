@@ -37,7 +37,7 @@
                                       <strong>
                                           <span ng-bind="print.calendar.assistants.length"></span>
                                           <span> / </span>
-                                          <span ng-bind="print.calendar.capacity"></span>
+                                          <span ng-bind="(print.calendar.calendar.available_capacity + print.calendar.assistants.length)"></span>
                                       </strong>
                                       <br>
                                           <span ng-bind="print.strings.COPY_SEATS">

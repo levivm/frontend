@@ -112,7 +112,7 @@
                 LABEL_IS_FREE: "Habilitar inscripción gratuita",
                 LABEL_START_DATE: "Fecha de inicio",
                 LABEL_CLOSE_SALES: "Cierre de ventas",
-                LABEL_CALENDAR_SEATS: "Cupos",
+                LABEL_CALENDAR_SEATS: "Cupos disponibles",
                 LABEL_SESSION_PRICE: "Precio (COP)",
                 PLACEHOLDER_SESSION_PRICE: "Precio Mínimo COP 30.000",
                 TITLE_SESSIONS: "Sesiones",

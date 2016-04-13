@@ -207,6 +207,7 @@
                 COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
+                COPY_SOLD_SEATS: "Cupos vendidos",
                 COPY_SEARCH: "Buscar por número, fecha o monto",
                 COPY_FREE: "Gratis",
                 COPY_SEARCH_ASSISTANTS: "Buscar nombre, apellido, correo, orden o código",
