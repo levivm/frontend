@@ -578,7 +578,7 @@
          */
         getStats.$inject = ['activity', 'moment'];
         function getStats(activity, moment){
-            return activity.getStats(moment().year());
+            return activity.getStats(moment().year(), moment().month()+1);
         }
 
         /**
