@@ -24,7 +24,7 @@
     <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <!--End Favicon Section-->
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <!--Esto debe eliminarse luego, es solamente para ver probar el googlebot-->
     <meta name="google-site-verification" content="L0GSZBNmTtlvemy4mwKVxjVakV-vndq7si8bDy0h6pE" />
 
@@ -36,7 +36,7 @@
         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     </script>
     <!-- End Google Analytics -->
-
+    
     <!--Needed for HTML5 Mode-->
     <base href="/">
 
@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="lib/normalize.css/normalize.css">
     <link rel="stylesheet" href="lib/nouislider/distribute/nouislider.min.css">
     <link rel="stylesheet" href="lib/nvd3/build/nv.d3.css">
+    <link rel='stylesheet' href='lib/textAngular/dist/textAngular.css'>
     <!-- endinject -->
     <!-- endbuild -->
 
@@ -110,12 +111,21 @@
 <script src="lib/karma-read-json/karma-read-json.js"></script>
 <script src="lib/d3/d3.js"></script>
 <script src="lib/nvd3/build/nv.d3.js"></script>
+<script src="lib/rangy/rangy-core.js"></script>
+<script src="lib/rangy/rangy-classapplier.js"></script>
+<script src="lib/rangy/rangy-highlighter.js"></script>
+<script src="lib/rangy/rangy-selectionsaverestore.js"></script>
+<script src="lib/rangy/rangy-serializer.js"></script>
+<script src="lib/rangy/rangy-textrange.js"></script>
 <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
 <script src="lib/angular-input-masks/angular-input-masks-standalone.min.js"></script>
 <script src="lib/angular-moment/angular-moment.js"></script>
 <script src="lib/bootstrap/dist/js/bootstrap.js"></script>
 <script src="lib/ngvideo/dist/ng-video.js"></script>
 <script src="lib/angular-nvd3/dist/angular-nvd3.js"></script>
+<script src="lib/textAngular/dist/textAngular.js"></script>
+<script src="lib/textAngular/dist/textAngular-sanitize.js"></script>
+<script src="lib/textAngular/dist/textAngularSetup.js"></script>
 <!-- endinject -->
 <!-- TODO Add with gulp -->
 <script src="lib/angular-i18n/angular-locale_es-co.js"></script>
@@ -181,10 +191,6 @@
 <script src="js/authentication/directives/form_modal.directive.js"></script>
 <script src="js/organizers/directives/trulii-instructor-card.directive.js"></script>
 <script src="js/search/directives/search-bar.directive.js"></script>
-<script src="js/utils/directives/counter.directive.js"></script>
-<script src="js/utils/directives/datepicker_popup.directive.js"></script>
-<script src="js/utils/directives/elastic.directive.js"></script>
-<script src="js/utils/directives/saved_message.directive.js"></script>
 <script src="js/ui-components/directives/card-expandable.directive.js"></script>
 <script src="js/ui-components/directives/gallery.directive.js"></script>
 <script src="js/ui-components/directives/input-alert.directive.js"></script>
@@ -198,6 +204,10 @@
 <script src="js/ui-components/directives/submit.directive.js"></script>
 <script src="js/ui-components/directives/trulii-dashboard-footer.directive.js"></script>
 <script src="js/ui-components/directives/trulii-footer.directive.js"></script>
+<script src="js/utils/directives/counter.directive.js"></script>
+<script src="js/utils/directives/datepicker_popup.directive.js"></script>
+<script src="js/utils/directives/elastic.directive.js"></script>
+<script src="js/utils/directives/saved_message.directive.js"></script>
 <script src="js/utils/filters/format_duration.filter.js"></script>
 <script src="js/utils/filters/to_trusted_html.filter.js"></script>
 <script src="js/utils/filters/truncate_text.filter.js"></script>
