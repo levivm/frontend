@@ -32,6 +32,7 @@
             'ngVideo',
             'templates',
             'nvd3',
+            'ui.select',
             'textAngular'
         ]);
 
