@@ -1,0 +1,140 @@
+<div class="row">
+  <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="row balance">
+      <div class="col-xs-12 separate-below separate-above-more">
+          <p class="text-center  col-md-8 col-md-offset-2">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. mollit anim id est laborum.
+          </p>
+          <form class="separate-above-less col-md-12">
+              <fieldset>
+                  <div class="form-group " >
+                      <input type="text" class="form-control" placeholder="{{::transactions.strings.SEARCH_BALANCE_PLACEHOLDER}}"
+                             name="search" id="search"> <i class="mdi mdi-action-search search-icon-right"></i></input>
+                  </div>
+              </fieldset>
+          </form>
+
+      </div>
+
+      <div class="row separate-above">
+          <div class="col-xs-12 hidden-xs hidden-sm col-md-3">
+            <div class="mounts">
+              <div class="mounts-content s">
+                  <div class="">
+                    <h4 class="text-uppercase">Balance</h4>
+                  </div>
+                  <div class="separate-above-less">
+                    <h5 class="montserrat-light">Monto disponible</h5>
+                    <h4>COP 130.000.00</h4>
+                  </div>
+                  <div class="btn btn-success separate-above-less">
+                    <span>Solicitar dinero</span>
+                  </div>
+
+              </div>
+              <div class="mounts-footer">
+                <h5 class="montserrat-light">Monto no disponible</h5>
+                <h4>COP 130.000.00</h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 col-md-9">
+            <div class="table-responsive">
+              <table class="table table-responsive table-hover">
+                <tr class="text-center">
+                  <th ng-bind="::transactions.strings.LABEL_BALANCE_ORDER"></th>
+                  <th ng-bind="::transactions.strings.LABEL_BALANCE_DATE"></th>
+                  <th ng-bind="::transactions.strings.LABEL_BALANCE_MOUNT"></th>
+                  <th ng-bind="::transactions.strings.LABEL_BALANCE_STATUS"></th>
+                </tr>
+                <tr >
+                  <td>
+                    <a  ui-sref="">
+                      <span>#</span><span >0067890</span>
+                    </a>
+                  </td>
+
+                  <td >
+                    <span class="text-capitalize" >14 Ene. 2015</span>
+                  </td>
+                  <td >
+                    <span >COP 130.000.000</span>
+                  </td>
+                  <td >
+                    <span class="text-uppercase">Aprobada</span>
+                  </td>
+
+                </tr>
+                <tr >
+                  <td>
+                    <a  ui-sref="">
+                      <span>#</span><span >0067890</span>
+                    </a>
+                  </td>
+
+                  <td >
+                    <span class="text-capitalize" >14 Ene. 2015</span>
+                  </td>
+                  <td >
+                    <span >COP 130.000.000</span>
+                  </td>
+                  <td >
+                    <span class="text-uppercase">Aprobada</span>
+                  </td>
+
+                </tr>
+                <tr >
+                  <td>
+                    <a  ui-sref="">
+                      <span>#</span><span >0067890</span>
+                    </a>
+                  </td>
+
+                  <td >
+                    <span class="text-capitalize" >14 Ene. 2015</span>
+                  </td>
+                  <td >
+                    <span >COP 130.000.000</span>
+                  </td>
+                  <td >
+                    <span class="text-uppercase">Aprobada</span>
+                  </td>
+
+                </tr>
+                <tr >
+                  <td>
+                    <a  ui-sref="">
+                      <span>#</span><span >0067890</span>
+                    </a>
+                  </td>
+
+                  <td >
+                    <span class="text-capitalize" >14 Ene. 2015</span>
+                  </td>
+                  <td >
+                    <span >COP 130.000.000</span>
+                  </td>
+                  <td >
+                    <span class="text-uppercase">Aprobada</span>
+                  </td>
+
+                </tr>
+              </table>
+              <!--<div class="text-center" ng-if="transactions.salesPaginationOpts.totalItems > transactions.salesPaginationOpts.itemsPerPage">
+                <pagination class="pagination-sm"
+                  ng-model="transactions.salesPaginationOpts.pageNumber"
+                  ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
+                  data-total-items="transactions.salesPaginationOpts.totalItems"
+                  data-items-per-page="transactions.salesPaginationOpts.itemsPerPage"
+                  previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
+                  max-size="transactions.salesPaginationOpts.maxPagesSize"
+                  ></pagination>
+              </div>-->
+            </div>
+          </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

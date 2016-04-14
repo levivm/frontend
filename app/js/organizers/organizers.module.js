@@ -132,6 +132,10 @@
                 url:'sales',
                 templateUrl: 'partials/organizers/dashboard/transactions_sales.html'
             })
+            .state('organizer-dashboard.transactions.balance', {
+                url:'balance',
+                templateUrl: 'partials/organizers/dashboard/transactions_balance.html'
+            })
             .state('organizer-dashboard.profile', {
                 url:'profile',
                 controller: 'OrganizerProfileCtrl as profile',

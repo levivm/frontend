@@ -498,7 +498,10 @@
 
 }
 
-
+.search-icon-right{
+	float: right;
+	margin-top: -1.5em;
+}
 
 @media (max-width: 991px){
 
@@ -589,6 +592,8 @@
   }
 }
 
+
+// Messages
 .dashboard-messages{
 	form{
 		i{
@@ -692,6 +697,33 @@
 	}
 }
 
+//Balance
+
+.balance{
+	.mounts{
+		background: @gray-lighter;
+		height: 35em;
+		position: relative;
+		h4{
+  	  margin: 0.1em;
+		}
+		h5{
+			margin: 0.1em;
+		}
+		.mounts-content{
+			padding: 1.7em 2em;
+		}
+
+		.mounts-footer{
+			position: absolute;
+			bottom: 0;
+			padding: 1.7em 2em;
+			width: 100%;
+			background: #E0E0E0;
+		}
+	}
+
+}
 
 .pagination> li > a, .pagination > li > span{
   color: @gray-light !important;

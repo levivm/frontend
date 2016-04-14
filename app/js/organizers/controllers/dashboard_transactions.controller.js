@@ -139,6 +139,7 @@
                                           "para mayor información",
                 COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de la orden sin contar la comisión de Trulii",
                 TAB_SALES: "Ventas",
+                TAB_BALANCE: "Balance",
                 LABEL_SEARCH_ORDERS : "Buscar Ordenes",
                 LABEL_ORDER: "Orden",
                 LABEL_ACTIVITY: "Actividad",
@@ -150,6 +151,11 @@
                 LABEL_EVERYBODY: "Todos",
                 LABEL_FINAL_TOTAL: "Ventas Netas",
                 LABEL_NO_ORDERS: "No hay ordenes en el historial",
+                SEARCH_BALANCE_PLACEHOLDER: "Busca por nro. orden, fecha de retiro o monto solicitado",
+                LABEL_BALANCE_ORDER: "Nro. retiro petición",
+                LABEL_BALANCE_DATE: "Fecha de Retiro",
+                LABEL_BALANCE_MOUNT: "Monto solicitado",
+                LABEL_BALANCE_STATUS: "Estatus"
             });
         }
 
