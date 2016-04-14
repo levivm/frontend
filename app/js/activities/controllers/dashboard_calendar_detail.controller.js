@@ -24,8 +24,6 @@
 
         activate();
 
-        ///////////////////////////
-
         function _createCalendar() {
             Error.form.clear(vm.activity_calendar_form);
             vm.calendar.create()
@@ -34,9 +32,7 @@
 
             function success(calendar){
 
-                //Change Save button functionality
                 vm.save_calendar = _updateCalendar;
-                // vm.extend(calendar,vm.calendar);
                 CalendarsManager.setCalendar(calendar);
                 _onSectionUpdated();
 
@@ -82,7 +78,6 @@
                     Error.form.add(vm.activity_calendar_form, responseErrors);
                 }
 
-                // if responseErrors
             }
 
             vm.isSaving = false;

@@ -467,8 +467,8 @@
          * @requires trulii.activities.services.CalendarsManager
          * @methodOf trulii.activities.config
          */
-        getCalendar.$inject = ['$stateParams','CalendarsManager','activity'];
-        function getCalendar($stateParams, CalendarsManager,activity){
+        getCalendar.$inject = ['$stateParams','CalendarsManager', 'calendars', 'activity'];
+        function getCalendar($stateParams, CalendarsManager, calendars, activity){
             return CalendarsManager.getCalendar($stateParams.calendar_id, activity.id);
         }
 
