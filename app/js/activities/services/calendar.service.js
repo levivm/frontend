@@ -256,8 +256,8 @@
                 var previous_sessions = this.sessions.slice(0, $index);
                 var is_first_session = $index === 0;
 
-                if(is_first_session)
-                    session.minDate = this.closing_sale;
+                // if(is_first_session)
+                //     session.minDate = this.closing_sale;
 
                 rest_sessions.map(function (value) {
                     value.date = value.date <= session.date ? session.date : value.date;

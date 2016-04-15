@@ -241,8 +241,8 @@
             <div ng-bind="detail.calendar_selected.closing_sale | date:'d MMM y'"></div>
           </div>
           <div class="vacancy">
-            <span ng-bind="detail.calendar_selected.vacancy"></span>
-            <ng-pluralize count="detail.calendar_selected.vacancy"
+            <span ng-bind="detail.calendar_selected.available_capacity"></span>
+            <ng-pluralize count="detail.calendar_selected.available_capacity"
               when="{
                 '1': detail.strings.COPY_VACANCY_SINGULAR,
                 'other': detail.strings.COPY_VACANCY
@@ -454,10 +454,6 @@
                   <div class="text-left" ng-if="calendar.available_capacity == 0">
                     <span ng-bind="::detail.strings.COPY_NO_VACANCY"></span>
                   </div>
-                  <div class="text-left" ng-if="calendar.available_capacity > 0">
-                    <span ng-bind="::detail.strings.COPY_VACANCY"></span>
-                    <span ng-bind="calendar.available_capacity"></span>
-                  </div>
                 </td>
                 <td colspan=1>
                   <a class="btn btn-primary btn-block" ng-if="calendar.available_capacity > 0"
@@ -482,7 +478,6 @@
             </h5>
             <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.COPY_VACANCY"></h4>
             <h5 class="hidden-md hidden-lg" ng-bind="detail.activity.upcoming_calendars[detail.selectedActivity].available_capacity"></h5>
-            <h4 class="text-uppercase" ng-bind="::detail.strings.COPY_OTHER_SCHEDULES"></h4>
             <h5 class="separate-above-less" ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
               <span ng-bind="session.date | date: 'EEE d MMM y' "></span>
               <br>
