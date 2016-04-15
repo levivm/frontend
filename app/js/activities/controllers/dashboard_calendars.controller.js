@@ -32,6 +32,7 @@
             loadCalendar: loadCalendar,
             setCalendar: setCalendar,
             deleteCalendar: deleteCalendar,
+            calendar_errors: {}
 
         });
 

@@ -12,9 +12,9 @@
         .module('trulii.students.controllers')
         .controller('StudentDashboardCtrl', StudentDashboardCtrl);
 
-    StudentDashboardCtrl.$inject = ['$state', '$scope', 'Analytics', 'serverConf'];
+    StudentDashboardCtrl.$inject = ['$state', '$scope', 'Analytics', 'serverConf', 'cities', 'student', 'messages'];
 
-    function StudentDashboardCtrl($state, $scope, Analytics, serverConf) {
+    function StudentDashboardCtrl($state, $scope, Analytics, serverConf, cities, student, messages) {
 
         var vm = this;
         angular.extend(vm, {
@@ -24,7 +24,8 @@
             showSidebar: false,
             toggleSidebar: toggleSidebar,
             clickItem:clickItem,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            unreadNotificationsCount: messages.count
         });
 
         _activate();

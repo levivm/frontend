@@ -280,13 +280,16 @@
             <div class="text-center">
               <h5>
                 <i class="mdi-action-favorite-outline"
-                  ng-class="{'mdi-action-favorite': detail.activity.wish_list}">
+                  ng-class="{'mdi-action-favorite': detail.activity.wish_list, 'text-muted': !detail.activity.wish_list}">
                 </i>
                 <strong class="" ng-if="detail.activity.wish_list" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST"></strong>
                 <strong class="" ng-if="!detail.activity.wish_list" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></strong>
               </h5>
               <h5>
+                <span ng-bind="::detail.activity.wishlist_count"></span>
                 <span ng-bind="::detail.strings.COPY_NUMBER_OF_LIKES"></span>
+                <br>
+                <span ng-if="detail.activity.wishlist_count === 0" ng-bind="::detail.strings.COPY_BE_THE_FIRST"></span>
               </h5>
             </div>
           </div>

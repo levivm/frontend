@@ -37,7 +37,8 @@
                 templateUrl: 'partials/students/dashboard.html',
                 resolve:{
                     cities:getAvailableCities,
-                    student: getCurrentStudent
+                    student: getCurrentStudent,
+                    messages: getMessages
                 },
                 data: {
                     requiredAuthentication : true

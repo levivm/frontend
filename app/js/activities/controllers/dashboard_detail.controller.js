@@ -98,7 +98,7 @@
                 COPY_HELP_TEXT_CONTENT: "¿Cuáles son los temas que impartirá en su actividad?",  
                 COPY_HELP_TEXT_GOALS: "¿Cuál es la finalidad de su actividad?",  
                 COPY_HELP_TEXT_AUDIENCE: "¿A que tipo de personas va dirigido su actividad? "+  
-                                         "¿Profesionales o público en general?",
+                                         "¿Profesionales o público en general?"
 
             });
         }

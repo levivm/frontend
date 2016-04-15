@@ -11,7 +11,7 @@
                     <p ng-bind="::calendars.strings.COPY_REPUBLISH_CALENDAR"></p>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+                    <div class="col-xs-12 col-sm-10 col-sm-offset-0">
                         <div class="col-md-6">
                             <div class="card card-list-item card-list-item--empty" style="height: 21.6em;"
                                  ng-click="calendars.createCalendar()">
@@ -55,8 +55,7 @@
                                         </div>
                                     </div>
                                     <!--TODO revisar este alert-->
-                                    <alert type="danger" ng-show="calendars.calendar_errors[calendar.id]">
-                                        {{calendars.calendar_errors[calendar.id]}}
+                                    <alert type="danger" ng-show="calendars.calendar_errors[calendar.id]" ng-bind="calendars.calendar_errors[calendar.id]">
                                     </alert>
                                     <div class="card-list-item__actions">
                                         <i class="glyphicon glyphicon-pencil" ng-click="calendars.loadCalendar(calendar)"
