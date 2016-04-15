@@ -36,7 +36,8 @@
         <a class="activity-card__body__owner-name" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
            ng-bind="::activity.organizer.name"></a>
         <div class="relative">
-            <span class="activity-card__body__date sinkin-regular" ng-bind="activity.date_msg"></span>
+            <span class="activity-card__body__date sinkin-regular" ng-if="!current" ng-bind="activity.date_msg"></span>
+            <span class="activity-card__body__date sinkin-regular" ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
             <span class="text-muted" ng-if="activity.organizer.rating">|</span>
             <span class="activity-card__rating" ng-if="activity.organizer.rating">
                 <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
