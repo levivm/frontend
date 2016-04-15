@@ -144,7 +144,7 @@
             });
 
             // Updating the URL
-            $state.go($state.current, {organizer_id: organizer.id, organizer_name: name}, {notify: false, reload: $state.current});
+            $state.go($state.current, {organizer_id: organizer.id, organizer_name: name}, {notify: false, reload: $state.current, location: 'replace'});
         }
 
         function _activate(){

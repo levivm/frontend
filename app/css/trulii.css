@@ -16834,6 +16834,9 @@ ul.dropdown-menu:after {
     right: 85%;
   }
 }
+.about-container {
+  overflow: hidden;
+}
 /*
 	Code from https://github.com/Dogfalo/materialize/blob/master/sass/components/_global.scss
 */
@@ -19285,7 +19288,7 @@ blockquote {
   text-align: left;
 }
 .activity-detail p {
-  word-break: break-all;
+  word-break: break-word;
   margin-bottom: 0px;
   font-size: 1.1em;
 }
@@ -19551,6 +19554,9 @@ blockquote {
 }
 .calendar-widget .widget-card .wishlist span {
   vertical-align: middle;
+}
+.calendar-widget .widget-card .wishlist h5:nth-child(2) {
+  margin-top: -10px;
 }
 .calendar-widget .widget-card .sessions .sessions-title {
   padding: 1em;

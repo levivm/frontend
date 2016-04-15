@@ -428,7 +428,8 @@
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_EMPTY_REVIEWS: "Aun no hay evaluaciones para esta actividad",
-                COPY_NUMBER_OF_LIKES: "personas amaron esto"
+                COPY_NUMBER_OF_LIKES: "personas amaron esto",
+                COPY_BE_THE_FIRST: "¡Sé el primero!"
             });
         }
 

@@ -136,6 +136,7 @@
                 vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
                 $scope.$on('scrolled',
                   function(scrolled, scroll){
+                    console.log(vm.widgetMaxPosition);
                     vm.scroll = scroll;
                     vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
                     vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
