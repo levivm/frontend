@@ -17,6 +17,8 @@
     function ActivityDBGalleryController($q, $modal, activity, Toast, Elevator, ActivitiesManager) {
 
         var vm = this;
+        var SIZE_COVER_UP = 1000; //1Mb
+
         angular.extend(vm, {
             activity : angular.copy(activity),
             picture: null,
@@ -52,10 +54,16 @@
             if (!pictures) { return; }
 
             var pictureToUpload = pictures.pop();
+            console.log(pictureToUpload);
             if (pictureToUpload){
-                var extra_data = { 'main_photo': true };
-                vm.activity.addPicture(pictureToUpload, extra_data)
-                    .then(_coverUploadSuccess, _uploadError, _coverUploadProgress);
+                var sizeUpload = pictureToUpload.size / 1000;
+                if(sizeUpload < SIZE_COVER_UP){
+                  var extra_data = { 'main_photo': true };
+                  vm.activity.addPicture(pictureToUpload, extra_data)
+                  .then(_coverUploadSuccess, _uploadError, _coverUploadProgress);
+                }else {
+                  Toast.error(vm.strings.TOAST_COVER_UPLOAD_ERROR);
+                }
             } else {
                 console.log('uploadActivityCover. No picture selected');
             }
@@ -153,6 +161,7 @@
         //--------- Internal Functions ---------//
 
         function _coverUploadSuccess(response) {
+          console.log(response);
             vm.isLoadingCover = false;
             _.remove(vm.activity.pictures, 'main_photo', true);
             vm.activity.pictures.push(response.data.picture);
@@ -238,7 +247,8 @@
                 TOAST_GALLERY_UPLOAD_SUCCESS: "Imagen agregada exitosamente a la galería",
                 TOAST_GALLERY_UPLOAD_ERROR: "No se pudo cargar la imagen en la galería. Por favor intente de nuevo",
                 TOAST_GALLERY_DELETE_ERROR: "No se pudo eliminar la imagen de la galería. Por favor intente de nuevo",
-                TOAST_GALLERY_DELETE_SUCCESS: "Imagen eliminada exitosamente de la galería"
+                TOAST_GALLERY_DELETE_SUCCESS: "Imagen eliminada exitosamente de la galería",
+                TOAST_COVER_UPLOAD_ERROR: "La imagen del cover debe pesar menos de 1Mb"
             });
         }
 
