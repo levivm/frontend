@@ -4,7 +4,9 @@
     <div class="row activity-grid">
       <trulii-activity-item
         ng-repeat="activity in activities.current_activities track by activity.id"
-        data-activity="activity" data-options="{{activities.options}}">
+        data-activity="activity"
+        data-current="true"
+        data-options="{{activities.options}}">
       </trulii-activity-item>
     </div>
     <div class="text-center" ng-if="activities.currentPaginationOpts.totalItems > activities.currentPaginationOpts.itemsPerPage">

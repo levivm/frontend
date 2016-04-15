@@ -5,6 +5,7 @@
  * @description Trulii Activity Item Directive.
  * @param {object} activity Activity instance to represent
  * @param {object} options Options object
+ * @param {boolean} current If current Activity in student
  * @param {array} options.actions Action buttons to display
  * @param {boolean} options.disabled Defines if the activity should have an opacity overlay
  */
@@ -17,7 +18,7 @@
         .directive('truliiActivityItem', truliiActivityItem);
 
     truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'moment', 'ActivitiesTemplatesPath'
-        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 
+        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication',
         'StudentsManager', 'ActivitiesManager'];
 
     function truliiActivityItem($state, $stateParams, $filter, moment, ActivitiesTemplatesPath
@@ -27,6 +28,7 @@
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
             scope: {
                 'activity': '=',
+                'current': '=?',
                 'options': '@?'
             },
             link: function(scope, element, attrs){
@@ -170,7 +172,7 @@
 
                 function _mapDateMsg(activity){
                     var today = new Date();
-                    
+                    console.log(activity);
                     if(!!activity.closest_calendar){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
@@ -224,7 +226,8 @@
                         COPY_DAY: "día ",
                         COPY_DAYS: "días ",
                         COPY_IN: "Inicia en ",
-                        COPY_THE: "Inicia el "
+                        COPY_THE: "Inicia el ",
+                        COPY_CURRENT: "En curso"
                     });
                 }
 
@@ -260,6 +263,8 @@
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
+
+
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
                 }
