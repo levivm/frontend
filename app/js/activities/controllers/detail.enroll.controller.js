@@ -120,9 +120,10 @@
             return  serverConf.s3URL + '/' +  file;
         }
 
-        function changeCalendar(){
-
-          vm.calendar = _mapVacancy(vm.calendar);
+        function changeCalendar(calendar){
+          console.log(vm.activity);
+          vm.calendar = _mapVacancy(calendar);
+          console.log(vm.calendar);
           vm.capacity = vm.calendar.capacity;
           vm.amount = vm.calendar.session_price;
           _setTotalCost();
@@ -518,7 +519,8 @@
         }
 
         function addAssistant() {
-            if (vm.quantity  < vm.available_capacity) {
+          console.log(vm.calendar.available_capacity);
+            if (vm.quantity  < vm.calendar.available_capacity) {
 
                 vm.quantity += 1;
                 vm.assistants.push({});
@@ -555,7 +557,7 @@
         }
 
         function _isAllBooked(){
-            return calendar.available_capacity <= 0;
+            return vm.calendar.available_capacity <= 0;
         }
 
         function _mapMainPicture(activity){
@@ -761,6 +763,7 @@
 
             vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
             vm.calendar = _mapVacancy(calendar);
+            console.log(vm.calendar);
             vm.amount = calendar.session_price;
             activity.calendars= $filter('orderBy')(activity.calendars, 'initial_date');
             activity = _mapCalendars(activity);
