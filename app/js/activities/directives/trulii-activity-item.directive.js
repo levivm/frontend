@@ -172,7 +172,7 @@
 
                 function _mapDateMsg(activity){
                     var today = new Date();
-                    console.log(activity);
+                    //console.log(activity);
                     if(!!activity.closest_calendar){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);

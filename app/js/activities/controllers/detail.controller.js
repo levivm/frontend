@@ -75,6 +75,7 @@
             showExtra: false,
             shareSocialAnalytic:shareSocialAnalytic,
             wishList:wishList,
+            verifyWishList:verifyWishList,
             getAmazonUrl: getAmazonUrl
         });
 
@@ -163,6 +164,12 @@
               $state.go('register', registerParams);
           }
 
+        }
+        function verifyWishList(){
+          if(currentUser)
+              return vm.activity.wish_list;
+          else
+              return false;
         }
         //Functions for analytics states
         function calendarSignUp(){
