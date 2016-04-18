@@ -121,7 +121,7 @@
         
         function _getStats(type){
           if(type === vm.TAB_YEARLY){
-            activity.getStats(moment(vm.date).year(), moment(vm.date).month()+1)
+            activity.getStats(moment(vm.date).year())
             .then(
               function(data){
                 vm.stats = data;
@@ -131,7 +131,7 @@
             );
           }
           else if(type === vm.TAB_MONTHLY){
-            activity.getStats(moment(vm.date).year())
+            activity.getStats(moment(vm.date).year(), moment(vm.date).month()+1)
             .then(
               function(data){
                 vm.stats = data;

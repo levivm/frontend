@@ -50,7 +50,7 @@
               <span class="label" ng-bind="::detail.activity.category.name"
               ng-style="{'border-color': '{{detail.activity.category.color}}'}"></span>
               <span style="vertical-align: -2px;"> &gt; </span>
-              <span class="label label-default" ng-bind="::detail.activity.sub_category_display"></span>  
+              <span class="label label-default" ng-bind="::detail.activity.sub_category_display"></span>
             </div>
           </div>
         </div>
@@ -280,10 +280,10 @@
             <div class="text-center">
               <h5>
                 <i class="mdi-action-favorite-outline"
-                  ng-class="{'mdi-action-favorite': detail.activity.wish_list, 'text-muted': !detail.activity.wish_list}">
+                  ng-class="{'mdi-action-favorite': detail.verifyWishList(), 'text-muted': !detail.verifyWishList()}">
                 </i>
-                <strong class="" ng-if="detail.activity.wish_list" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST"></strong>
-                <strong class="" ng-if="!detail.activity.wish_list" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></strong>
+                <strong class="" ng-if="detail.verifyWishList()" ng-bind="::detail.strings.ACTION_REMOVE_FROM_WISHLIST"></strong>
+                <strong class="" ng-if="!detail.verifyWishList()" ng-bind="::detail.strings.ACTION_ADD_TO_WISHLIST"></strong>
               </h5>
               <h5>
                 <span ng-bind="::detail.activity.wishlist_count"></span>

@@ -32,7 +32,8 @@
             claimCoupon: claimCoupon,
             register: register,
             login: login,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            organizerCategories: organizerCategories
         });
 
         _activate();
@@ -41,6 +42,10 @@
 
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
+        }
+        
+         function organizerCategories(index){
+            return index < 2 ? 'col-md-6' :  index === 5 ?  'col-md-8': 'col-md-4';
         }
         
         function toggleVideoShow(){

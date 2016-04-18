@@ -24,18 +24,25 @@
         width: 30%;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
-        font-size: 0.75em;
+        font-size: 1em;
     }
 }
 .referral-share{
-  li.referral-link{
-    input{
-      background-color: white;
+  &.list-inline{  
+    li{
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+    li.referral-link{
+      input{
+        background-color: white;
+      }
+    }
+    li:nth-child(n+3){
+      vertical-align: -6px;
     }
   }
-  li:nth-child(n+3){
-    vertical-align: -6px;
-  }
+  
   .before-sm({
     li.referral-link{
       display: block;

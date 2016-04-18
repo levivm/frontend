@@ -75,6 +75,7 @@
             showExtra: false,
             shareSocialAnalytic:shareSocialAnalytic,
             wishList:wishList,
+            verifyWishList:verifyWishList,
             getAmazonUrl: getAmazonUrl
         });
 
@@ -162,6 +163,11 @@
           } else {
               $state.go('register', registerParams);
           }
+
+        }
+        function verifyWishList(){
+
+          return currentUser ? vm.activity.wish_list: false;
 
         }
         //Functions for analytics states

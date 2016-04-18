@@ -78,7 +78,7 @@
                         <span class="montserrat-light" ng-bind="$select.selected.initial_date | date:'d MMM y'"></span>
                       </ui-select-match>
                       <ui-select-choices repeat=" upcoming_calendar in enroll.activity.upcoming_calendars">
-                        <div class="" ng-click="enroll.changeCalendar()">
+                        <div class="" ng-click="enroll.changeCalendar(upcoming_calendar)">
                           <span class="montserrat-regular" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
                           <span class="montserrat-light" ng-bind="upcoming_calendar.initial_date | date:'d MMM y'"></span>
                         </div>
@@ -203,7 +203,7 @@
                                   <span ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></span>
                               </h4>
                           </div>
-                          <div class="panel-body" ng-show="::!enroll.calendar.is_free">
+                          <div class="panel-body" ng-show="!enroll.calendar.is_free">
                               <ul class="nav nav-tabs nav-tabs-light" style="margin-bottom: 15px;">
                                   <li ng-class="{'active': !enroll.paymentWithPse}"
                                       ng-click="enroll.changeCCPaymentMethod()">
