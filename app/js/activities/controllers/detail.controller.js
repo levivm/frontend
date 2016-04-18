@@ -166,10 +166,9 @@
 
         }
         function verifyWishList(){
-          if(currentUser)
-              return vm.activity.wish_list;
-          else
-              return false;
+
+          return currentUser ? vm.activity.wish_list: false;
+
         }
         //Functions for analytics states
         function calendarSignUp(){
