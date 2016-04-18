@@ -17,7 +17,7 @@
        function (taRegisterTool, taOptions) {
 
             taOptions.toolbar = [
-                 ['p','bold', 'italics', 'underline',  'ul', 'ol', 'redo', 'undo']
+                 ['bold', 'italics', 'underline',  'ul', 'ol', 'redo', 'undo']
              ];
            return taOptions;
        }]);
