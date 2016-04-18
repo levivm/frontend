@@ -13,13 +13,14 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsAnonCtrl', ReferralsAnonCtrl);
 
-    ReferralsAnonCtrl.$inject = ['$state', 'serverConf'];
+    ReferralsAnonCtrl.$inject = ['$state', 'serverConf', 'Authentication'];
 
-    function ReferralsAnonCtrl($state, serverConf) {
+    function ReferralsAnonCtrl($state, serverConf, Authentication) {
 
         var vm = this;
         angular.extend(vm, {
             showVideo: false,
+            user: {},
             stateInfo : {
                 toState: {
                     state: 'referrals.home'
@@ -47,7 +48,13 @@
         }
 
         //--------- Internal Functions ---------//
-
+        
+        function _isOrganizer(){
+          Authentication.isOrganizer().then(function (result) {
+              vm.user.is_organizer = result;
+          });
+        }
+        
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -71,6 +78,7 @@
 
         function _activate(){
             _setStrings();
+            _isOrganizer();
         }
 
     }
