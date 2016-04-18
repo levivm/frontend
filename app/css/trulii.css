@@ -19001,6 +19001,9 @@ button.toast-close-button {
 .container-success-dark * {
   color: white;
 }
+.container-success-dark a:hover {
+  color: white;
+}
 .absolute-container {
   max-width: 100vw;
   width: 100vw;
