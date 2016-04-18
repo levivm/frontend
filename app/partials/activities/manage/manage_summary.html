@@ -112,7 +112,7 @@
       <h4 class="text-center text-uppercase separate-below" ng-bind="summary.stats.next_data.date | date:'d MMM y'"></h4>
       <h4 class="text-center text-uppercase separate-below">
         <strong ng-bind="::summary.strings.COPY_SOLD_SEATS"></strong>
-        <span ng-bind="::summary.stats.next_data.sold"></span>
+        <span ng-bind="::summary.stats.next_data.available_capacity"></span>
       </h4>
       <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3 separate-above separate-below-more">
@@ -121,13 +121,13 @@
               <strong>
                 <span ng-bind="::summary.stats.next_data.sold"></span>
                 <span>/</span>
-                <span ng-bind="::summary.stats.next_data.capacity"></span>
+                <span ng-bind="::(summary.stats.next_data.available_capacity + summary.stats.next_data.sold)"></span>
                 <span ng-bind="::summary.strings.COPY_SEATS"></span>
               </strong>
             </h5>
           </div>
           <div class="seat-metric-bar">
-            <div class="seat-metric-bar__fill" ng-style="{'width': '{{summary.stats.next_data.sold / summary.stats.next_data.capacity * 100}}%'}"></div>
+            <div class="seat-metric-bar__fill" ng-style="{'width': '{{summary.stats.next_data.sold / (summary.stats.next_data.available_capacity + summary.stats.next_data.sold) * 100}}%'}"></div>
           </div>
         </div>
       </div>

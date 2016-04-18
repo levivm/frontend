@@ -481,7 +481,10 @@
             </h5>
             <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.COPY_VACANCY"></h4>
             <h5 class="hidden-md hidden-lg" ng-bind="detail.activity.upcoming_calendars[detail.selectedActivity].available_capacity"></h5>
+            <h4 ng-bind="::detail.strings.LABEL_SCHEDULE"></h3>
             <h5 class="separate-above-less" ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
+              
+
               <span ng-bind="session.date | date: 'EEE d MMM y' "></span>
               <br>
               <span ng-bind="session.start_time | amDateFormat: 'h:mm a' "></span>
