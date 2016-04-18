@@ -224,6 +224,7 @@
                     }
 
                 }
+
             }
 
             function getStudentError(response){
@@ -317,7 +318,8 @@
                 assistants: vm.assistants,
             };
 
-            ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
+            ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
+                              .finally(_finishProccesingPayment);
 
 
             function _enrollSuccess(order) {
@@ -392,6 +394,7 @@
                 console.log("Couldn't validate card expiry date");
                 isValidDate = false;
                 Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
+                _finishProccesingPayment();
             }
 
             function validateCardTypeSuccess(cardType){
@@ -404,6 +407,7 @@
             function validateCardTypeError(){
                 Error.form.add(vm.enrollForm, {'cardMethod': ["Tipo de tarjeta inválido"]});
                 console.log("Couldn't check card type");
+                _finishProccesingPayment();
             }
 
             function getTokenSuccess(response){
@@ -435,7 +439,8 @@
 
                 vm.processingPayment = true;
 
-                ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError);
+                ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
+                                  .finally(_finishProccesingPayment);
 
 
                 function _enrollSuccess(order) {
@@ -461,6 +466,7 @@
                         Elevator.toElement(base_selector.concat(error_index));
                         Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                     }
+
                 }
 
             }
