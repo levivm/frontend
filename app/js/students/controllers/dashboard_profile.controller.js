@@ -19,6 +19,7 @@
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var vm = this;
+        var SIZE_PICTURE_UP = 1000; //1Mb
         angular.extend(vm, {
             format : FORMATS[0],
             hstep : 1,
@@ -88,7 +89,14 @@
 
             if (!image) { return; }
             vm.photo_loading = true;
-            vm.student.upload_photo(image).then(success, error);
+
+            if(_verifySizePicture(image[0])){
+              vm.student.upload_photo(image).then(success, error);
+            }else{
+              Toast.error(vm.strings.TOAST_PICTURE_UPLOAD_ERROR);
+              vm.photo_loading = false;
+            }
+
 
             function success(response){
                 vm.student.load(vm.student.id).then(function(){
@@ -150,6 +158,12 @@
             vm.student.birth_date = new Date(student.birth_date);
         }
 
+        function _verifySizePicture(pictureToUpload){
+            var sizeUpload = pictureToUpload.size / 1000;
+            return sizeUpload < SIZE_PICTURE_UP;
+        }
+
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -168,7 +182,8 @@
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
                 OPTION_SELECT: "Seleccione Ciudad",
-                SECTION_PROFILE: "Mi Perfil"
+                SECTION_PROFILE: "Mi Perfil",
+                TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 1Mb"
             });
         }
 

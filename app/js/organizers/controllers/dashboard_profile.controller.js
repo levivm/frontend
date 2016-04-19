@@ -23,6 +23,7 @@
     function OrganizerProfileCtrl($rootScope, uiGmapIsReady, Authentication, LocationManager, Toast, Error, organizer, cities) {
 
         var vm = this;
+        var SIZE_PICTURE_UP = 1000; //1Mb
         angular.extend(vm, {
             organizer : angular.copy(organizer),
             cities : cities,
@@ -46,7 +47,10 @@
         function uploadPicture(image) {
             if (!image) { return; }
             Error.form.clear(vm.profile_picture_form);
-            vm.organizer.upload_photo(image).then(_successUploaded, _errorUpload, _progressUpload);
+            if(_verifySizePicture(image[0]))
+                vm.organizer.upload_photo(image).then(_successUploaded, _errorUpload, _progressUpload);
+            else
+                Toast.error(vm.strings.TOAST_PICTURE_UPLOAD_ERROR);
         }
 
         function submitVideo() {
@@ -66,6 +70,11 @@
         }
 
         //--------- Internal Functions ---------//
+
+        function _verifySizePicture(pictureToUpload){
+            var sizeUpload = pictureToUpload.size / 1000;
+            return sizeUpload < SIZE_PICTURE_UP;
+        }
 
         function _progressUpload() {
             vm.photo_loading = true;
@@ -151,7 +160,8 @@
                 HELPER_FULL_NAME: "Escribe el nombre de la organización o persona",
                 HELPER_HEADLINE: "Describe tu organización en pocas palabras",
                 HELPER_BIO: "Escribe sobre la historia, reputación y calidad de servicios de tu empresa "
-                    + "¡En pocas palabras, describe por qué tu empresa es genial!"
+                    + "¡En pocas palabras, describe por qué tu empresa es genial!",
+                TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 1Mb"
             });
         }
 
