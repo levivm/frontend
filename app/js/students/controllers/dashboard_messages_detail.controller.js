@@ -18,7 +18,8 @@
 
         angular.extend(vm,{
           message: message,
-          deleteMessage: deleteMessage
+          deleteMessage: deleteMessage,
+          readMessage: readMessage
         });
 
         activate();
@@ -32,6 +33,14 @@
               $state.go('student-dashboard.notifications');
             });
         }
+        
+        function readMessage(){
+          student.readMessage(message.id)
+            .then(function(){
+              Toast.success("Mensaje marcado como leido");
+              $state.go('student-dashboard.notifications');
+            });
+        }
 
         /*       Internal Functions      */
 
@@ -39,7 +48,9 @@
 
         function _setStrings() {
             if (!vm.strings) {
-                vm.strings = {};
+                vm.strings = {
+                  MARK_AS_READ: "Marcar como leído"
+                };
             }
             angular.extend(vm.strings, {
             });

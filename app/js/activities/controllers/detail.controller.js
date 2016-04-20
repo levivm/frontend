@@ -28,6 +28,7 @@
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter) {
         var visibleReviewListSize = 3;
         var vm = this;
+        
         angular.extend(vm, {
             city : null,
             calendars : [],

@@ -184,6 +184,14 @@
              * @methodOf trulii.students.services.Student
              */
             deleteMessage: deleteMessage,
+               
+            /**
+             * @ngdoc function
+             * @name .#readMessage
+             * @description Reads a message
+             * @methodOf trulii.students.services.Student
+             */
+            readMessage: readMessage,
             
             /**
              * @ngdoc function
@@ -277,12 +285,66 @@
                 });
         }
         
+        function readMessage(messageId){
+            // return $http.put(api.readMessage(messageId),
+            //     {
+            //       params: {
+            //         organizer_message: messageId,
+            //         student: this.id
+            //       }
+            //     })
+            //     .then(function (response) {
+            //         return response.data;
+            //     });
+            
+            return $http({
+                url: api.readMessage(messageId),
+                data:_parseParam({'organizer_message': messageId, 'student': this.id}),
+                method: 'put',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'}
+            });
+                
+                
+        }
+        
         function deleteMessage(messageId){
             return $http.delete(api.message(messageId))
                 .then(function (response) {
                     return response.data;
                 });
         }
+        
+         function _parseParam(obj) {
+            var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+
+            for(name in obj) {
+                value = obj[name];
+
+                if(value instanceof Array) {
+                    for(i=0; i<value.length; ++i) {
+                        subValue = value[i];
+                        fullSubName = name + '[]';
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + '&';
+                    }
+                }
+                else if(value instanceof Object) {
+                    for(subName in value) {
+                        subValue = value[subName];
+                        fullSubName = name + '[' + subName + ']';
+                        innerObj = {};
+                        innerObj[fullSubName] = subValue;
+                        query += param(innerObj) + '&';
+                    }
+                }
+                else if(value !== undefined && value !== null)
+                    query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+            }
+
+            return query.length ? query.substr(0, query.length - 1) : query;
+        }
+
     }
 
 })();
