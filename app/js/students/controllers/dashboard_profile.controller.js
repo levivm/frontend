@@ -19,7 +19,7 @@
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var vm = this;
-        var SIZE_PICTURE_UP = 1000; //1Mb
+        var SIZE_PICTURE_UP = 2500; //2.5Mb
         angular.extend(vm, {
             format : FORMATS[0],
             hstep : 1,
@@ -183,7 +183,7 @@
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
                 OPTION_SELECT: "Seleccione Ciudad",
                 SECTION_PROFILE: "Mi Perfil",
-                TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 1Mb"
+                TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 2.5Mb"
             });
         }
 

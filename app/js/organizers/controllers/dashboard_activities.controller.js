@@ -13,8 +13,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerActivitiesCtrl', OrganizerActivitiesCtrl);
 
-    OrganizerActivitiesCtrl.$inject = ['organizer', 'ActivitiesManager', 'openActivities', 'closedActivities', 'inactiveActivities'];
-    function OrganizerActivitiesCtrl(organizer, ActivitiesManager, openActivities, closedActivities, inactiveActivities) {
+    OrganizerActivitiesCtrl.$inject = ['organizer', 'ActivitiesManager', 'openActivities', 'closedActivities', 'inactiveActivities', '$window', '$scope'];
+    function OrganizerActivitiesCtrl(organizer, ActivitiesManager, openActivities, closedActivities, inactiveActivities, $window, $scope) {
 
         var vm = this;
         angular.extend(vm, {
@@ -26,6 +26,7 @@
             TYPE_OPEN: "opened",
             TYPE_CLOSED: "closed",
             TYPE_INACTIVE: "unpublished",
+            dashOrganizer: true,
             openOptions : {
                 actions: ['edit', 'manage']
             },
@@ -117,6 +118,15 @@
             return activity;
         }
 
+        function _isMobile(){
+          return $window.innerWidth < 992;
+        }
+
+        function _resize(){
+          vm.dashOrganizer = _isMobile() ? false:true;
+          $scope.$digest();
+        }
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -135,7 +145,10 @@
                 SECTION_ACTIVITIES: "Mis Actividades",
                 TAB_OPEN: "Abiertas",
                 TAB_CLOSED: "Cerradas",
-                TAB_INACTIVE: "Inactivas"
+                TAB_INACTIVE: "Inactivas",
+                COPY_INACTIVE: "Actividades inactivas son aquellas publicaciones cuyas inscripciones se encuentran en modo borrador",
+                COPY_CLOSED: "Una actividad anterior es aquella que finalizó. Puedes editar su información para re-utilizarla. ¡Así de fácil!",
+                COPY_OPEN: "Actividades abiertas son aquellas publicaciones cuyas inscripciones siguen abiertas"
             });
         }
 
@@ -144,7 +157,13 @@
             vm.open_activities.map(_mapMainPicture);
             vm.closed_activities.map(_mapMainPicture);
             vm.inactive_activities.map(_mapMainPicture);
+            var window = angular.element($window);
             _assignActivities();
+            vm.dashOrganizer = _isMobile() ? false:true;
+
+
+            window.bind('resize', _resize);
+
         }
 
     }
