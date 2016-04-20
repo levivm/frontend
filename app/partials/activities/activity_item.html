@@ -1,5 +1,5 @@
-<div class="activity-card">
-    <div class="activity-card__header ">
+<div class="activity-card"  ng-class="{'activity-card-non-organizer': !organizer, 'activity-card-organizer': organizer}">
+    <div class="activity-card__header " ng-class="{'activity-card__header-organizer': organizer}">
         <div class="activity-card__category" style="background-color: {{activity.category.color}}"
              ng-bind="::activity.category.name"></div>
 
@@ -13,10 +13,10 @@
            ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
 
         </a>
-        <a  class="activity-card__owner-picture" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
+        <a  ng-show="!organizer" class="activity-card__owner-picture" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
              style="background-image: url('{{::activity.organizer.photo}}') "></a>
         <!--Actions Menu-->
-        <span class="activity-card__header__menu horizontal-fade">
+        <span ng-if="!organizer" class="activity-card__header__menu horizontal-fade">
             <!--Actions-->
             <a ng-repeat="action in actions track by $index"
                class="activity-card__header__menu__item"
@@ -28,48 +28,68 @@
             </a>
         </span>
     </div>
-    <!--Body-->
-    <div class="activity-card__body">
-        <a class="activity-card__body__title" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })"
-           ng-bind="::activity.title | limitTo : titleSize">
-        </a>
-        <a class="activity-card__body__owner-name" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
-           ng-bind="::activity.organizer.name"></a>
-        <div class="relative">
-            <span class="activity-card__body__date sinkin-regular" ng-if="!current" ng-bind="activity.date_msg"></span>
-            <span class="activity-card__body__date sinkin-regular" ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
-            <span class="text-muted" ng-if="activity.organizer.rating">|</span>
-            <span class="activity-card__rating" ng-if="activity.organizer.rating">
+    <div class="activity-card__content" ng-class="{'activity-card__content-organizer': organizer}">
+
+        <!--Body-->
+        <div class="activity-card__body" ng-class="{'activity-card__body-organizer': organizer}">
+            <a class="activity-card__body__title" ng-class="{'activity-card__body__title-organizer': organizer}" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })"
+            ng-bind="::activity.title | limitTo : titleSize">
+            </a>
+            <a class="activity-card__body__owner-name" ui-sref="organizer-profile({organizer_id: activity.organizer.id})"
+            ng-bind="::activity.organizer.name"></a>
+            <div class="relative">
+              <span class="activity-card__body__date sinkin-regular" ng-if="!current" ng-bind="activity.date_msg"></span>
+              <span class="activity-card__body__date sinkin-regular" ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
+              <span class="text-muted" ng-if="activity.organizer.rating">|</span>
+              <span class="activity-card__rating" ng-if="activity.organizer.rating">
                 <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                        readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
-                        <!-- add star-empty-off if you want the inactive starts-->
-            </span>
-            <i ng-if="isStudent"
-                class="activity-card__like mdi-action-favorite-outline"
-                ng-class="{'mdi-action-favorite': activity.wish_list}"
-                ng-click="like(activity.id)"></i>
+                readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
+                <!-- add star-empty-off if you want the inactive starts-->
+              </span>
+              <i ng-if="isStudent"
+              class="activity-card__like mdi-action-favorite-outline"
+              ng-class="{'mdi-action-favorite': activity.wish_list}"
+              ng-click="like(activity.id)"></i>
 
 
-        </div>
-        <!--<div class="activity-card__body__description" ng-bind="::activity.short_description">-->
-        <!--</div>-->
-    </div>
-    <!--Cost-->
-    <a class="activity-card__bottom" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
+            </div>
+
+              <!--<div class="activity-card__body__description" ng-bind="::activity.short_description">-->
+              <!--</div>-->
+              <span ng-if="organizer" class="activity-card__body__menu-organizer horizontal-fade">
+                  <!--Actions-->
+                  <a ng-repeat="action in actions track by $index"
+                     class="activity-card__header__menu__item"
+                     ui-sref="{{::action.state}}"
+                     ng-click="clickAction(action.name)"
+                     ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
+                     data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+                    <span class=" activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}" ></span>
+                    <span class="activity-card__body__menu-name-organizer" ng-bind="::action.name"></span>
+                  </a>
+              </span>
+          </div>
+      <!--Cost-->
+      <a class="activity-card__bottom" ng-class="{'activity-card__bottom-organizer': organizer}" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
         <div ng-if="activity.closest_calendar" class="flex-container flex-around-container">
-            <div>
-                <img  src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Clock.png" alt="">
-                <span class="text-md" ng-bind="activity.closest_calendar.duration | formatDuration : 'seconds'"></span>
-            </div>
-            <div>
-                <img src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Precio.png" alt="">
-                <span class="text-md" ng-class="::{'text-strike':activity.closest_calendar.is_free}"
-                      ng-bind="::activity.closest_calendar.session_price | number"></span>
-                <strong class="text-md" ng-show="activity.closest_calendar.is_free"
-                        ng-bind="::strings.COPY_FREE"></strong>
-            </div>
+          <div ng-class="{'separate-right': organizer}">
+            <img  src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Clock.png" alt="">
+            <span class="text-md" ng-bind="activity.closest_calendar.duration | formatDuration : 'seconds'"></span>
+          </div>
+          <div>
+            <img src="https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/Precio.png" alt="">
+            <span class="text-md" ng-class="::{'text-strike':activity.closest_calendar.is_free}"
+            ng-bind="::activity.closest_calendar.session_price | number"></span>
+            <strong class="text-md" ng-show="activity.closest_calendar.is_free"
+            ng-bind="::strings.COPY_FREE"></strong>
+          </div>
         </div>
         <span ng-if="!activity.closest_calendar"
-              ng-bind="::strings.COPY_NA"></span>
-    </a>
+        ng-bind="::strings.COPY_NA"></span>
+        <span class="activity-card__bottom-organizer-assistants" ng-if="!activity.closest_calendar">
+          <a ui-sref="dash.activities-manage.assistants({activity_id: {{::activity.id}} })" class="activity-card__bottom-organizer-assistants" ng-if="organizer && activity.closest_calendar" >
+            <span ng-bind="::strings.COPY_SEE_ASSISTANTS"></span><span > ( {{activity.closest_calendar.assistants.length}} )</span></a>
+        </span>
+      </a>
+    </div>
 </div>

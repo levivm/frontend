@@ -12236,6 +12236,9 @@ hr.on-light {
   text-align: center;
   vertical-align: middle;
 }
+.width-70 {
+  width: 70% !important;
+}
 .clear-href:hover,
 .dropdown__item:hover {
   text-decoration: none !important;
@@ -12362,11 +12365,12 @@ hr.on-light {
 .clear-both {
   clear: both;
 }
-.flex-container {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
+.flex-container,
+.activity-card-organizer {
+  display: -webkit-box !important;
+  display: -webkit-flex !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
 }
 .flex-center-container,
 .circular-image-container,
@@ -19063,7 +19067,6 @@ blockquote {
 .activity-card {
   width: 100%;
   max-width: 20%;
-  min-width: 21em;
   display: inline-block;
   border-radius: 5px;
   background-color: white;
@@ -19078,6 +19081,13 @@ blockquote {
     max-width: 90%;
     min-width: 10%;
   }
+}
+.activity-card-non-organizer {
+  min-width: 21em;
+}
+.activity-card-organizer {
+  max-width: 70%;
+  min-width: 40em;
 }
 .activity-card:hover {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -19094,6 +19104,11 @@ blockquote {
   -moz-border-radius-topright: 5px;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
+}
+.activity-card__header-organizer {
+  max-width: 20%;
+  min-width: 30%;
+  height: 12em;
 }
 .activity-card__header__cover-container {
   position: absolute;
@@ -19182,6 +19197,23 @@ blockquote {
   background: #38dbc8;
   color: white;
 }
+.activity-card__content {
+  position: relative;
+}
+.activity-card__content-organizer {
+  padding: 1.2em 1.5em 0em 1.5em;
+  width: 100%;
+}
+.activity-card__content-organizer::before {
+  content: "";
+  color: transparent;
+  position: absolute;
+  left: -9px;
+  border-left: 0px solid transparent;
+  border-right: 10px solid #ffffff;
+  border-bottom: 7px solid transparent;
+  border-top: 7px solid transparent;
+}
 .activity-card__body {
   padding: 1em;
   display: block;
@@ -19190,8 +19222,27 @@ blockquote {
 .activity-card__body a:hover {
   color: rgba(0, 0, 0, 0.74);
 }
+.activity-card__body-organizer {
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 6.5em;
+}
 .activity-card__body:hover .activity-card__body__title {
   text-decoration: underline;
+}
+.activity-card__body__menu-name-organizer {
+  font-size: 0.5em;
+  text-transform: capitalize;
+}
+.activity-card__body__menu-organizer {
+  position: absolute;
+  right: 0;
+  top: -7px;
+}
+.activity-card__body__menu-organizer a span {
+  color: #999999;
+  vertical-align: middle;
 }
 .activity-card__body__title {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -19207,6 +19258,10 @@ blockquote {
   max-height: 3em;
   color: #3a3d3f;
   width: 85%;
+}
+.activity-card__body__title-organizer {
+  width: 40%;
+  max-height: 7em;
 }
 .activity-card__body__owner-name {
   height: 2em;
@@ -19264,6 +19319,22 @@ blockquote {
 .activity-card__bottom img {
   margin-right: 0.25em;
   vertical-align: text-bottom;
+}
+.activity-card__bottom-organizer {
+  background: transparent;
+  text-align: left;
+  height: 3.2em;
+  line-height: 3.2em;
+}
+.activity-card__bottom-organizer div {
+  display: inline-block !important;
+}
+.activity-card__bottom-organizer-assistants {
+  float: right;
+  margin-top: -33px;
+  color: #999999;
+  text-decoration: underline;
+  font-size: 0.8em;
 }
 .activity-card__rating {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;

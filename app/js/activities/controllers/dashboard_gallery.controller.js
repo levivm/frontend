@@ -17,7 +17,7 @@
     function ActivityDBGalleryController($q, $modal, activity, Toast, Elevator, ActivitiesManager) {
 
         var vm = this;
-        var SIZE_PICTURE_UP = 1000; //1Mb
+        var SIZE_PICTURE_UP = 2500; //2.5Mb
 
         angular.extend(vm, {
             activity : angular.copy(activity),
@@ -253,10 +253,10 @@
                 TOAST_COVER_SET_ERROR: "No se pudo asignar la portada. Por favor intente de nuevo",
                 TOAST_GALLERY_UPLOAD_SUCCESS: "Imagen agregada exitosamente a la galería",
                 TOAST_GALLERY_UPLOAD_ERROR: "No se pudo cargar la imagen en la galería. Por favor intente de nuevo",
-                TOAST_GALLERY_UPLOAD_ERROR_SIZE: "La imagen de la galería debe pesar menos de 1Mb",
+                TOAST_GALLERY_UPLOAD_ERROR_SIZE: "La imagen de la galería debe pesar menos de 2.5Mb",
                 TOAST_GALLERY_DELETE_ERROR: "No se pudo eliminar la imagen de la galería. Por favor intente de nuevo",
                 TOAST_GALLERY_DELETE_SUCCESS: "Imagen eliminada exitosamente de la galería",
-                TOAST_COVER_UPLOAD_ERROR: "La imagen del cover debe pesar menos de 1Mb"
+                TOAST_COVER_UPLOAD_ERROR: "La imagen del cover debe pesar menos de 2.5Mb"
 
             });
         }

@@ -23,7 +23,7 @@
     function OrganizerProfileCtrl($rootScope, uiGmapIsReady, Authentication, LocationManager, Toast, Error, organizer, cities) {
 
         var vm = this;
-        var SIZE_PICTURE_UP = 1000; //1Mb
+        var SIZE_PICTURE_UP = 2500; //2.5Mb
         angular.extend(vm, {
             organizer : angular.copy(organizer),
             cities : cities,
@@ -161,7 +161,7 @@
                 HELPER_HEADLINE: "Describe tu organización en pocas palabras",
                 HELPER_BIO: "Escribe sobre la historia, reputación y calidad de servicios de tu empresa "
                     + "¡En pocas palabras, describe por qué tu empresa es genial!",
-                TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 1Mb"
+                TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 2.5Mb"
             });
         }
 

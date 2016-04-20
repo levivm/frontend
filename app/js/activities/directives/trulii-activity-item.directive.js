@@ -29,6 +29,7 @@
             scope: {
                 'activity': '=',
                 'current': '=?',
+                'organizer': '=?',
                 'options': '@?'
             },
             link: function(scope, element, attrs){
@@ -227,7 +228,8 @@
                         COPY_DAYS: "días ",
                         COPY_IN: "Inicia en ",
                         COPY_THE: "Inicia el ",
-                        COPY_CURRENT: "En curso"
+                        COPY_CURRENT: "En curso",
+                        COPY_SEE_ASSISTANTS: "Ver asistentes "
                     });
                 }
 
@@ -263,7 +265,6 @@
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
-
 
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
