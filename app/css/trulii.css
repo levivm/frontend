@@ -19237,7 +19237,7 @@ blockquote {
 .activity-card__body__menu-organizer {
   position: absolute;
   right: 0;
-  top: -7px;
+  top: -10px;
 }
 .activity-card__body__menu-organizer a span {
   color: #999999;
@@ -19322,8 +19322,8 @@ blockquote {
 .activity-card__bottom-organizer {
   background: transparent;
   text-align: left;
-  height: 3.2em;
-  line-height: 3.2em;
+  height: 4em;
+  line-height: 5em;
 }
 .activity-card__bottom-organizer div {
   display: inline-block !important;
