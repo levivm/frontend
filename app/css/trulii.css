@@ -21265,6 +21265,7 @@ blockquote {
 }
 .payments-panel .form-control {
   font-size: 1.25em;
+  text-transform: capitalize;
 }
 .billing-widget {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
