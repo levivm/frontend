@@ -282,7 +282,7 @@
                                                           <select class=" form-control hidden-sm hidden-md hidden-lg " name="monthSelect" id="levelSelect"
                                                                   ng-model="enroll.monthSelected"
                                                                   ng-change="enroll.changeMonth()"
-                                                                  ng-options="month.name for month in enroll.months track by month.value">
+                                                                  ng-options="month as month for month in enroll.months">
                                                                   <option  ng-hide="enroll.monthSelected" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_MONTH"></option>
                                                           </select>
                                                           <input type="number" name="cardMonth" min=1 max=12 class="form-control hidden-xs" id="cardMonth"

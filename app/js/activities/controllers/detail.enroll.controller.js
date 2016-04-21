@@ -115,7 +115,7 @@
             years:[],
             yearSelected: CURRENT_YEAR,
             changeMonth: changeMonth,
-            monthSelected: {'name': 'enero', 'value': 1},
+            monthSelected: 'Enero',
             pseData: {}
         });
 
@@ -140,8 +140,8 @@
         }
 
         function changeMonth(){
-          console.log(vm.monthSelected);
-          vm.cardData.exp_month = vm.monthSelected.value;
+          var numberMonth = moment().month(vm.monthSelected).format("M")
+          vm.cardData.exp_month =  Number(numberMonth);
         }
 
 
@@ -669,16 +669,7 @@
             }
         }
 
-        function _mapMonthsYears(){
-          console.log(CURRENT_YEAR);
-          for(var value = 0; value <12; value++){
-              var month = {
-                'name': $filter('date')(new Date(2016, value), 'MMMM'),
-                'value': value+1
-              }
-             vm.months.push(month);
-          }
-
+        function _mapYears(){
           for (var year = MIN_YEAR; year < TOP_YEAR; year++)
               vm.years.push(year);
         }
@@ -797,7 +788,9 @@
             vm.activity = activity;
             _mapMainPicture(vm.activity);
             _setTotalCost();
-            _mapMonthsYears();
+            moment().locale('es')
+            vm.months = moment.months();
+            _mapYears();
             if(currentUser) {
                 vm.pseData.payerEmail = currentUser.user.email;
                 _setAssistants();
