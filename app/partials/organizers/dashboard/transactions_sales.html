@@ -146,10 +146,26 @@
         </div>
         <!--If there are no Sales-->
         <div ng-if="transactions.sales.length <= 0">
-          <h4 ng-bind="::transactions.strings.LABEL_NO_ORDERS"></h4>
-          <span ng-show="transactions.salesPaginationOpts.totalItems > 0" ng-bind="::transactions.strings.COPY_NO_ORDERS"></span>
+
+          <div class="col-xs-12">
+            <div class="row">
+              <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
+                <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
+                    alt="{{transactions.strings.LABEL_NO_ORDERS}}"
+                    class="center-block img-responsive"/>
+                <p class="separate-below separate-above font-family-sans-alt text-muted"
+                     ng-bind="::transactions.strings.COPY_NO_ORDERS">
+                </p>
+                <a class="btn btn-lg btn-success margin-horizontal-less"
+                   ui-sref="dash.activities-new.general"
+                   ng-bind="transactions.strings.ACTION_CREATE_ACTIVITY"></a>
+
+
+              </div>
+            </div>
+
+          </div>
         </div>
-      </div>
     </div>
   </div>
 </div>
