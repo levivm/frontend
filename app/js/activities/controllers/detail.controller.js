@@ -477,7 +477,7 @@
 
             // Updating the URL
 
-            $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: $state.current, location: 'replace'});
+            $state.transitionTo($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, location: 'replace'});
         }
 
         function _getAssistants() {

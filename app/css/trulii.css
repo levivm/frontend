@@ -12863,6 +12863,10 @@ hr.on-light {
 .ta-scroll-window > .ta-bind li {
   font-weight: 400;
 }
+.well-auth.well {
+  max-width: 450px;
+  margin: 0 auto;
+}
 .text-left {
   text-align: left;
 }
