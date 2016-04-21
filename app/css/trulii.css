@@ -21271,6 +21271,11 @@ blockquote {
   font-size: 1.25em;
   text-transform: capitalize;
 }
+@media screen and (max-width: 992px) {
+  .payments-panel .card-number {
+    height: 3em;
+  }
+}
 .billing-widget {
   font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #e3e3e3;
