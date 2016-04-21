@@ -29,15 +29,18 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf', '$filter'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf', '$filter', 'moment'];
 
     function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf, $filter) {
+                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf, $filter, moment) {
 
         var vm = this;
         var isValidDate = false;
+        var CURRENT_YEAR = moment().year();
+        var MIN_YEAR = CURRENT_YEAR-1;
+        var TOP_YEAR=CURRENT_YEAR+20;
 
         angular.extend(vm, {
             success : false,
@@ -85,7 +88,7 @@
                 "identificationNumber": "32144457",
                 "number": "4111111111111111",
                 exp_month: 1,
-                exp_year: 2017,
+                exp_year: 2016,
                 cvv: null,
                 "method": ""
             },
@@ -107,6 +110,12 @@
                     {'description':'Documento de identificación extranjero','value':'DE'}
                 ]
             },
+
+            months: [],
+            years:[],
+            yearSelected: CURRENT_YEAR,
+            changeMonth: changeMonth,
+            monthSelected: {'name': 'enero', 'value': 1},
             pseData: {}
         });
 
@@ -128,6 +137,11 @@
           vm.amount = vm.calendar.session_price;
           _setTotalCost();
 
+        }
+
+        function changeMonth(){
+          console.log(vm.monthSelected);
+          vm.cardData.exp_month = vm.monthSelected.value;
         }
 
 
@@ -354,7 +368,6 @@
         function enroll() {
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
-
             if(vm.paymentWithPse){
                 enrollPSE();
             }
@@ -374,9 +387,8 @@
                 vm.cardData.expirationDate = [exp_month, exp_year].join('/');
 
                 var card = vm.cardData;
-
                 Payments.validateExpiryDate(card.exp_year, card.exp_month)
-                    .then(successCheckCardExpiry,errorCheckCardExpiry);
+                        .then(successCheckCardExpiry,errorCheckCardExpiry);
             }
 
             function getStudentError(response){
@@ -657,6 +669,20 @@
             }
         }
 
+        function _mapMonthsYears(){
+          console.log(CURRENT_YEAR);
+          for(var value = 0; value <12; value++){
+              var month = {
+                'name': $filter('date')(new Date(2016, value), 'MMMM'),
+                'value': value+1
+              }
+             vm.months.push(month);
+          }
+
+          for (var year = MIN_YEAR; year < TOP_YEAR; year++)
+              vm.years.push(year);
+        }
+
 
         function _setStrings() {
             if (!vm.strings) {
@@ -743,6 +769,8 @@
                 LABEL_EXPIRY_DATE : "Fecha de Expiración",
                 LABEL_MONTH: "Mes",
                 PLACEHOLDER_MONTH: "MM",
+                PLACEHOLDER_SELECT_MONTH: "Seleccione el mes",
+                PLACEHOLDER_SELECT_YEAR: "Seleccione el año",
                 LABEL_YEAR: "Año",
                 PLACEHOLDER_YEAR: "YYYY",
                 LABEL_CVV:"CVV",
@@ -763,20 +791,17 @@
 
             vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
             vm.calendar = _mapVacancy(calendar);
-            console.log(vm.calendar);
             vm.amount = calendar.session_price;
             activity.calendars= $filter('orderBy')(activity.calendars, 'initial_date');
             activity = _mapCalendars(activity);
             vm.activity = activity;
-            console.log(vm.activity);
             _mapMainPicture(vm.activity);
             _setTotalCost();
-
+            _mapMonthsYears();
             if(currentUser) {
                 vm.pseData.payerEmail = currentUser.user.email;
                 _setAssistants();
             }
-
             if (vm.showWidget){
                 angular.element(document).ready(function () {
                   if (!(document.getElementsByClassName('billing-widget')[0])){
