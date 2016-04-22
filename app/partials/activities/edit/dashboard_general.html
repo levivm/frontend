@@ -1,30 +1,29 @@
-<div class="trulii-cover" ng-hide="vm.weHaveTitle">
-  <div class="trulii-cover__container">
-    <div class="trulii-cover__content">
-      <div class="col-xs-12 col-md-offset-3 col-md-6">
-        <div class="card text-center">
-          <div class="card-body card-body--shrink">
-            <h2 class="text-color-secondary font-black" ng-bind="::vm.strings.COPY_START_ACTIVITY_CREATION">
-            </h2>
-            <div class="separate-above-medium separate-below-less standout-text font-normal" ng-bind="::vm.strings.COPY_SELECT_ACTIVITY_TITLE">
+<div class="row height-create">
+  <div class="trulii-cover" ng-hide="vm.weHaveTitle">
+    <div class="trulii-cover__container">
+      <div class="trulii-cover__content">
+        <div class="col-xs-12 col-md-offset-3 col-md-6">
+          <div class="card text-center">
+            <div class="card-body card-body--shrink">
+              <h2 class="text-color-secondary font-black" ng-bind="::vm.strings.COPY_START_ACTIVITY_CREATION">
+              </h2>
+              <div class="separate-above-medium separate-below-less standout-text font-normal" ng-bind="::vm.strings.COPY_SELECT_ACTIVITY_TITLE">
+              </div>
+              <input id="activity_title" class="form-control input-lg text-center text-capi text-lg-2" name="title"
+                placeholder="Ej. Curso de Repostería"
+                ng-model='vm.activity_title'/>
+              <button type="button" class="separate-above-medium btn btn-success btn-lg btn-block"
+                    ng-click="vm.checkValidTitle()" ng-bind="::vm.strings.ACTION_CONTINUE"></button>
             </div>
-            <input id="activity_title" class="form-control input-lg text-center text-capi text-lg-2" name="title"
-              placeholder="Ej. Curso de Repostería"
-              ng-model='vm.activity_title'/>
-            <button type="button" class="separate-above-medium btn btn-success btn-lg btn-block"
-                  ng-click="vm.checkValidTitle()" ng-bind="::vm.strings.ACTION_CONTINUE"></button>
           </div>
         </div>
       </div>
-    </div>
-    <!--First section background-->
-    <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{vm.getAmazonUrl('static/img/creating.jpg')}})' }">
+      <!--First section background-->
+      <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{vm.getAmazonUrl('static/img/creating.jpg')}})' }">
+      </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12 col-md-11 col-md-offset-1 only-fade separate-below-more" ng-show="vm.weHaveTitle" ng-class="{ 'col-lg-6': vm.creating, 'col-lg-offset-3': vm.creating}"> <!-- col-lg-offset-2 col-md-offset-1 -->
+    <div class="col-xs-12 col-md-11 col-md-offset-1 only-fade separate-below-more fade-in" ng-show="vm.weHaveTitle" ng-class="{ 'col-lg-6': vm.creating, 'col-lg-offset-3': vm.creating}"> <!-- col-lg-offset-2 col-md-offset-1 -->
         <div class="row">
             <div class="section-title" ng-hide="vm.creating">
               General
