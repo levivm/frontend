@@ -19247,11 +19247,12 @@ blockquote {
 .activity-card__body__menu-organizer {
   position: absolute;
   right: 0;
-  top: -10px;
+  top: -5px;
 }
 .activity-card__body__menu-organizer a span {
   color: #999999;
   vertical-align: middle;
+  font-size: 1.2em;
 }
 .activity-card__body__title {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -19269,7 +19270,7 @@ blockquote {
   width: 85%;
 }
 .activity-card__body__title-organizer {
-  width: 40%;
+  width: 60%;
   max-height: 7em;
 }
 .activity-card__body__owner-name {

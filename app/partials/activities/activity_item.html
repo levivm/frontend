@@ -58,15 +58,24 @@
               <!--</div>-->
               <span ng-if="organizer" class="activity-card__body__menu-organizer horizontal-fade">
                   <!--Actions-->
-                  <a ng-repeat="action in actions track by $index"
-                     class="activity-card__header__menu__item"
-                     ui-sref="{{::action.state}}"
-                     ng-click="clickAction(action.name)"
-                     ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
-                     data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
-                    <span class=" activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}" ></span>
-                    <span class="activity-card__body__menu-name-organizer" ng-bind="::action.name"></span>
-                  </a>
+                  <span ng-repeat="action in actions track by $index">
+                    <a ng-show="action.state"
+                       class="activity-card__header__menu__item"
+                       ui-sref="{{::action.state}}"
+                       ng-click="clickAction(action.name);"
+                       ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
+                       data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+                      <span class=" activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}" ></span>
+                    </a>
+                    <a ng-show="!action.state"
+                       class="activity-card__header__menu__item"
+                       ng-click="clickAction(action.name); doAction(action)"
+                       ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
+                       data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+                      <span class=" activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}" ></span>
+                    </a>
+                  </span>
+
               </span>
           </div>
       <!--Cost-->
