@@ -76,11 +76,22 @@
               }
             );
         }
+        
+        function _initNotificationWatch(){
+          $scope.$on('update_notifications',
+            function(){
+              student.getMessages().then(function(data){
+                vm.unreadNotificationsCount = data.count;
+              });
+            }
+          );
+        }
 
 
         function _activate() {
             setStrings();
             _initScroll();
+            _initNotificationWatch();
         }
     }
 

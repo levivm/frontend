@@ -85,7 +85,6 @@
                 case vm.TYPE_INACTIVE:
                    ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_INACTIVE, vm.inactivePaginationOpts.pageNumber,  vm.inactivePaginationOpts.itemsPerPage)
                   .then(function (response) {
-                    console.log(response);
                     vm.inactive_activities = response.results;
                     vm.inactivePaginationOpts.totalItems = response.count;
                     vm.inactive_activities = vm.inactive_activities.slice(0, vm.inactivePaginationOpts.itemsPerPage);

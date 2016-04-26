@@ -12870,6 +12870,11 @@ hr.on-light {
   max-width: 450px;
   margin: 0 auto;
 }
+.limited-width {
+  max-width: 1300px;
+  float: none;
+  margin: 0 auto;
+}
 .text-left {
   text-align: left;
 }
@@ -19096,7 +19101,7 @@ blockquote {
   min-width: 21em;
 }
 .activity-card-organizer {
-  max-width: 70%;
+  max-width: 100%;
   min-width: 40em;
 }
 .activity-card:hover {
@@ -19437,8 +19442,8 @@ blockquote {
   margin-left: 10%;
   min-width: 80px;
   min-height: 80px;
-  width: 6vw;
-  height: 6vw;
+  width: 4vw;
+  height: 4vw;
 }
 .organizer-widget .card .content .data {
   width: 50%;
@@ -19983,6 +19988,9 @@ blockquote {
 .reviews-container--reviews-empty span {
   color: #3a3d3f;
   font-weight: 200;
+}
+.location {
+  padding: 0;
 }
 .location .map {
   width: 100%;
@@ -22034,6 +22042,10 @@ blockquote {
   .absolute-widget,
   .fixed-widget {
     z-index: 100;
+    background-color: transparent;
+  }
+  .absolute-widget .widget-card > div,
+  .fixed-widget .widget-card > div {
     background-color: white;
   }
   .fixed-widget {
@@ -22042,7 +22054,7 @@ blockquote {
     overflow-y: auto;
     overflow-x: hidden;
     top: 8vh;
-    width: calc(25% - 40px);
+    width: calc(25% - 92px);
   }
   .absolute-widget {
     position: absolute;
