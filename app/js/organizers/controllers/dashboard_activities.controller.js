@@ -66,24 +66,24 @@
                 case vm.TYPE_OPEN:
                   ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_OPEN, vm.openPaginationOpts.pageNumber,  vm.openPaginationOpts.itemsPerPage)
                   .then(function (response) {
-                    vm.open_activities = response.data.results;
-                    vm.openPaginationOpts.totalItems = response.data.count;
+                    vm.open_activities = response.results;
+                    vm.openPaginationOpts.totalItems = response.count;
                     vm.open_activities = vm.open_activities.slice(0, vm.openPaginationOpts.itemsPerPage);
                   });
                   break;
                 case vm.TYPE_CLOSED:
                    ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_CLOSED, vm.closedPaginationOpts.pageNumber,  vm.closedPaginationOpts.itemsPerPage)
                   .then(function (response) {
-                    vm.closed_activities = response.data.results;
-                    vm.closedPaginationOpts.totalItems = response.data.count;
+                    vm.closed_activities = response.results;
+                    vm.closedPaginationOpts.totalItems = response.count;
                     vm.closed_activities = vm.closed_activities.slice(0, vm.closedPaginationOpts.itemsPerPage);
                   });
                   break;
                 case vm.TYPE_INACTIVE:
                    ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_INACTIVE, vm.inactivePaginationOpts.pageNumber,  vm.inactivePaginationOpts.itemsPerPage)
                   .then(function (response) {
-                    vm.inactive_activities = response.data.results;
-                    vm.inactivePaginationOpts.totalItems = response.data.count;
+                    vm.inactive_activities = response.results;
+                    vm.inactivePaginationOpts.totalItems = response.count;
                     vm.inactive_activities = vm.inactive_activities.slice(0, vm.inactivePaginationOpts.itemsPerPage);
                   });
                   break;
