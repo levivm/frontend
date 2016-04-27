@@ -12687,7 +12687,7 @@ hr.on-light {
   background-size: 15px auto !important;
   background-position: 94.75% 50%;
   background-repeat: no-repeat;
-  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
 }
 .dashboard-filters .input-group {
   width: 100%;
@@ -12708,7 +12708,7 @@ hr.on-light {
   background-size: 15px auto !important;
   background-position: 93% 50%;
   background-repeat: no-repeat;
-  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
   height: 30px !important;
 }
 .dashboard-filters .filter-group {
@@ -12871,9 +12871,19 @@ hr.on-light {
   margin: 0 auto;
 }
 .limited-width {
-  max-width: 1300px;
   float: none;
   margin: 0 auto;
+}
+@media (max-width: 1299) {
+  .limited-width {
+    width: 1200px;
+    padding: 0 50px;
+  }
+}
+@media (min-width: 1300px) {
+  .limited-width {
+    max-width: 1300px;
+  }
 }
 .text-left {
   text-align: left;
@@ -14867,7 +14877,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     border: 1px solid #e3e3e3;
     border-radius: 3px;
     -webkit-appearance: none;
-    background-image: url(@{s3url}/static/img/search/order.png);
+    background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/search/order.png');
     background-size: auto 85%;
     background-position: center center;
   }
@@ -15010,7 +15020,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-size: 15px auto;
   background-position: 94.75% 50%;
   background-repeat: no-repeat;
-  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
   font-weight: 500;
   text-transform: uppercase;
   color: #999999;
@@ -15112,7 +15122,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     background-position: 95% 50%;
     background-repeat: no-repeat;
     padding-left: 10px;
-    background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+    background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
     font-size: 0.75em;
   }
   .filters-container .search-level-select:focus {
@@ -15202,7 +15212,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-size: 15px auto;
   background-position: 93% 50%;
   background-repeat: no-repeat;
-  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
   height: 75px !important;
 }
 @media screen and (max-width: 768px) {
@@ -15320,7 +15330,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-size: 15px auto;
   background-position: 93% 50%;
   background-repeat: no-repeat;
-  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
 }
 .search-bar__navbar .select-city select,
 .search-bar__navbar .select-city select:focus {
@@ -18545,7 +18555,7 @@ button.toast-close-button {
   background-size: 15px auto;
   background-position: 90% 50%;
   background-repeat: no-repeat;
-  background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
   padding: 0 2em;
   display: inline-block;
   float: left;
@@ -22054,11 +22064,20 @@ blockquote {
     overflow-y: auto;
     overflow-x: hidden;
     top: 8vh;
-    width: calc(25% - 92px);
   }
   .absolute-widget {
     position: absolute;
     width: calc(100% - 50px);
+  }
+}
+@media (min-width: 992px) and (max-width: 1299px) {
+  .fixed-widget {
+    width: calc(33% - 45px);
+  }
+}
+@media (min-width: 992px) and (min-width: 1300px) {
+  .fixed-widget {
+    width: calc((1300px * 0.33) - 45px);
   }
 }
 .review-detail p {

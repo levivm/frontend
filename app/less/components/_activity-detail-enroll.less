@@ -410,7 +410,12 @@
         overflow-y: auto;
         overflow-x: hidden;
         top: 8vh;
-        width: ~"calc(25% - 92px)"; //Width - el padding derecho
+        @media (max-width: 1299px){
+          width: ~"calc(33% - 45px)"; //Width - el padding derecho
+        }
+        @media (min-width: 1300px){
+          width: ~"calc((1300px * 0.33) - 45px)";
+        }
     }
     .absolute-widget{
         position: absolute;

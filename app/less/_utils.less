@@ -555,7 +555,7 @@
     background-size: 15px auto !important;
     background-position: 94.75% 50%;
     background-repeat: no-repeat;
-    background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+    background-image: url('@{s3url}/static/img/about/arrow.png') !important;
   }
   .input-group{
     width: 100%;
@@ -574,7 +574,7 @@
     background-size: 15px auto !important;
     background-position: 93% 50%;
     background-repeat: no-repeat;
-    background-image: url(@{s3url}/static/img/about/arrow.png) !important;
+    background-image: url('@{s3url}/static/img/about/arrow.png') !important;
     height: 30px !important;
   }
   .filter-group{
@@ -752,7 +752,13 @@
 }
 
 .limited-width{
-  max-width: 1300px;
   float: none;
   margin: 0 auto;
+  @media (max-width: 1299){
+    width: 1200px;
+    padding: 0 50px;
+  }
+  @media (min-width: 1300px){
+    max-width: 1300px;
+  }
 }
