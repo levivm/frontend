@@ -397,7 +397,12 @@
 @media (min-width: 992px){
     .absolute-widget, .fixed-widget{
         z-index: 100;
-        background-color: white;
+        background-color: transparent;
+        .widget-card{
+          > div{
+            background-color: white;
+          }
+        }
     }
     .fixed-widget{
         position: fixed;
@@ -405,7 +410,7 @@
         overflow-y: auto;
         overflow-x: hidden;
         top: 8vh;
-        width: ~"calc(25% - 40px)"; //Width - el padding derecho
+        width: ~"calc(25% - 92px)"; //Width - el padding derecho
     }
     .absolute-widget{
         position: absolute;

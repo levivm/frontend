@@ -31,7 +31,7 @@
         var categories = null;
         var defaultPageSize = 12;
         var defaultPage = 1;
-
+        var EVENT_DELETE_ACTIVITY='delete-activity';
         //noinspection UnnecessaryLocalVariableJS
         var ActivitiesManager = {
 
@@ -144,6 +144,19 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             like : like,
+            /**
+             * @ngdoc method
+             * @name .#deleteActivity
+             * @description Delete activity from organizer dashboard
+             * @param {number} activityId - Id of acitvity to delte
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            deleteActivity : deleteActivity,
+
+
+
+
+            EVENT_DELETE_ACTIVITY: EVENT_DELETE_ACTIVITY
 
         };
 
@@ -170,7 +183,7 @@
                     'page_size': RECOMMENDED_QTY
                 }
             };
-
+            console.log(config);
             return $http.get(api.search(), config).then(success, error);
 
             function success(response){
@@ -326,6 +339,16 @@
 
         }
 
+        function deleteActivity(activityID){
+          return $http.delete(api.activity(activityID)).then(success,error);
+
+          function success(response){
+              return response.data;
+          }
+          function error(response){
+              return $q.reject(response);
+          }
+        }
 
         function _retrieveInstance(activityID, activityData) {
             var instance = _pool[activityID];

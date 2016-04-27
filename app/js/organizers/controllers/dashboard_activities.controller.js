@@ -17,6 +17,10 @@
     function OrganizerActivitiesCtrl(organizer, ActivitiesManager, openActivities, closedActivities, inactiveActivities, $window, $scope) {
 
         var vm = this;
+        var URL_OPEN= "open",
+            URL_INACTIVE= "inactive",
+            URL_CLOSED= "closed";
+
         angular.extend(vm, {
             organizer : organizer,
             isCollapsed : true,
@@ -28,7 +32,7 @@
             TYPE_INACTIVE: "unpublished",
             dashOrganizer: true,
             openOptions : {
-                actions: ['edit', 'manage']
+                actions: ['edit', 'manage', 'delete']
             },
             openPaginationOpts: {
                 totalItems: 0,
@@ -46,11 +50,11 @@
                 pageNumber: 1
             },
             closedOptions : {
-                actions: ['edit', 'republish', 'manage'],
+                actions: ['edit', 'republish', 'manage', 'delete'],
                 isInactive: true
             },
             inactiveOptions : {
-                actions: ['edit', 'manage']
+                actions: ['edit', 'manage', 'delete']
             },
             pageChange: pageChange
         });
@@ -61,29 +65,28 @@
         //--------- Exposed Functions ---------//
 
         function pageChange(type){
-          console.log(type);
             switch(type){
                 case vm.TYPE_OPEN:
                   ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_OPEN, vm.openPaginationOpts.pageNumber,  vm.openPaginationOpts.itemsPerPage)
                   .then(function (response) {
-                    vm.open_activities = response.data.results;
-                    vm.openPaginationOpts.totalItems = response.data.count;
+                    vm.open_activities = response.results;
+                    vm.openPaginationOpts.totalItems = response.count;
                     vm.open_activities = vm.open_activities.slice(0, vm.openPaginationOpts.itemsPerPage);
                   });
                   break;
                 case vm.TYPE_CLOSED:
                    ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_CLOSED, vm.closedPaginationOpts.pageNumber,  vm.closedPaginationOpts.itemsPerPage)
                   .then(function (response) {
-                    vm.closed_activities = response.data.results;
-                    vm.closedPaginationOpts.totalItems = response.data.count;
+                    vm.closed_activities = response.results;
+                    vm.closedPaginationOpts.totalItems = response.count;
                     vm.closed_activities = vm.closed_activities.slice(0, vm.closedPaginationOpts.itemsPerPage);
                   });
                   break;
                 case vm.TYPE_INACTIVE:
                    ActivitiesManager.loadOrganizerActivities(organizer.id, vm.TYPE_INACTIVE, vm.inactivePaginationOpts.pageNumber,  vm.inactivePaginationOpts.itemsPerPage)
                   .then(function (response) {
-                    vm.inactive_activities = response.data.results;
-                    vm.inactivePaginationOpts.totalItems = response.data.count;
+                    vm.inactive_activities = response.results;
+                    vm.inactivePaginationOpts.totalItems = response.count;
                     vm.inactive_activities = vm.inactive_activities.slice(0, vm.inactivePaginationOpts.itemsPerPage);
                   });
                   break;
@@ -127,6 +130,24 @@
           $scope.$digest();
         }
 
+        function _loadActivities(event, urlType){
+
+          switch(urlType){
+              case URL_OPEN:
+                pageChange(vm.TYPE_OPEN);
+                break;
+              case URL_CLOSED:
+                pageChange(vm.TYPE_CLOSED);
+                break;
+              case URL_INACTIVE:
+                pageChange(vm.TYPE_INACTIVE);
+                break;
+          }
+
+          _activate();
+        }
+
+
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -154,6 +175,7 @@
 
         function _activate() {
             _setStrings();
+            console.log('actividades');
             vm.open_activities.map(_mapMainPicture);
             vm.closed_activities.map(_mapMainPicture);
             vm.inactive_activities.map(_mapMainPicture);
@@ -161,7 +183,7 @@
             _assignActivities();
             vm.dashOrganizer = _isMobile() ? false:true;
 
-
+            $scope.$on(ActivitiesManager.EVENT_DELETE_ACTIVITY, _loadActivities);
             window.bind('resize', _resize);
 
         }

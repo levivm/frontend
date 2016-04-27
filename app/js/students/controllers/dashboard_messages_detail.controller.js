@@ -10,9 +10,9 @@
     angular
         .module('trulii.students.controllers')
         .controller('StudentMessageDetailCtrl', StudentMessageDetailCtrl);
-    StudentMessageDetailCtrl.$inject = ['student', 'message', '$state', 'titleTruncateSize', 'Analytics', 'Toast'];
+    StudentMessageDetailCtrl.$inject = ['student', 'message', '$state', 'titleTruncateSize', 'Analytics', 'Toast', '$rootScope'];
 
-    function StudentMessageDetailCtrl(student, message, $state, titleTruncateSize, Analytics, Toast) {
+    function StudentMessageDetailCtrl(student, message, $state, titleTruncateSize, Analytics, Toast, $rootScope) {
         var vm = this;
 
 
@@ -30,7 +30,8 @@
           student.deleteMessage(message.id)
             .then(function(){
               Toast.success("Mensaje borrado");
-              $state.go('student-dashboard.notifications');
+              $rootScope.$broadcast('update_notifications');
+              $state.go('student-dashboard.notifications', {reload: true});
             });
         }
         
@@ -38,7 +39,8 @@
           student.readMessage(message.id)
             .then(function(){
               Toast.success("Mensaje marcado como leido");
-              $state.go('student-dashboard.notifications');
+              $rootScope.$broadcast('update_notifications');
+              $state.go('student-dashboard.notifications', {reload: true});
             });
         }
 
