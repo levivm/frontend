@@ -120,7 +120,7 @@
                 "te abrimos la puerta a nuevos clientes y hacemos el trabajo sucio por ti.",
                 PUBLISH_TEXT_2: "Regístrate sin costo alguno y disfruta de nuestra prueba gratuita en tus primeras tres actividades.",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
-                PUBLISH_BUTTON_COPY: "Quiero ser organizador"
+                PUBLISH_BUTTON_COPY: "Ser organizador"
             });
         }
 

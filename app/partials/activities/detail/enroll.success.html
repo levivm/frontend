@@ -1,7 +1,7 @@
 <div class="col-xs-12">
   <div class="row">
     <div class="col-xs-12">
-      <div class="row padding-vertical-medium">
+      <div class="row padding-vertical-medium limited-width">
         <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
           <h2 class="text-gray font-family-sans-alt success-title" ng-bind="success.strings.COPY_HEADER_TITLE"></h2>
           <h1 class="text-primary title separate-above-less">
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="row container-muted padding-vertical-medium">
-        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 remember-container text-center">
+        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 remember-container text-center limited-width">
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REMEMBER"></h4>
           <div class="items-container">
             <div class="item">
@@ -57,20 +57,20 @@
           </div>
           <div class="separator"></div>
         </div>
-        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less" ng-if="success.activity.requirements">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less limited-width" ng-if="success.activity.requirements">
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
-          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below" ng-bind="success.activity.requirements"></p>
+          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below success-requirements" ng-bind-html="success.activity.requirements"></p>
         </div>
       </div>
       <!--Attendees-->
       <div class="row">
-        <div class="col-xs-12 attendees-container">
+        <div class="col-xs-12 attendees-container limited-width">
           <h1 class="text-primary title text-center"><strong ng-bind="::success.strings.LABEL_ATTENDEES"></strong></h1>
           <div ui-view="attendees"></div>
         </div>
       </div>
       <div class="row share-container">
-        <div class="col-xs-12">
+        <div class="col-xs-12 limited-width">
           <h1 class="title">
             <strong ng-bind="success.strings.LABEL_SHARE"></strong>
           </h1>
@@ -110,7 +110,7 @@
 
       <div class="row separate-below">
         <h2 class="text-center font-normal separate-above-medium separate-below-less" ng-bind="success.strings.LABEL_SIMILAR"></h2>
-        <div class="col-xs-12 col-md-9 col-md-offset-2">
+        <div class="col-xs-12 col-md-9 col-md-offset-2 limited-width">
           <div ng-if="success.organizerActivities.length > 0">
             <div class="row activity-grid separate-above">
               <trulii-activity-item

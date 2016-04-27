@@ -90,76 +90,8 @@
                   <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_2"></span>
               </strong>
           </h3>
-          <h4 class="sinkin-regular text-muted text-center separate-above separate-below-more" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
+          <h4 class="sinkin-regular text-muted text-center separate-above" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
           </h4>
-          <!--Referral ng-repeat-->
-          <div class="row separate-above-less referral-sent">
-              <div class="col-xs-12 col-md-10 col-md-offset-1">
-                  <!--  Registrado-->
-                  <div class="referral-item">
-                      <!--  Imagen de perfil de usuario-->
-                      <div class="referral-item__picture">
-                          <img ng-src="{{referrals.getAmazonUrl('static/img/default_profile_pic.jpg')}}" class="img-responsive img-circle" alt="">
-                      </div>
-                      <div class="referral-item__info">
-                          <h4 class="sinkin-semibold">Mariana Schiavino</h4>
-                          <!--  Registrado e inscrito-->
-                          <h5 class="sinkin-regular">
-                              <span ng-bind="::referrals.strings.SHARES_REGISTERED"></span>
-                              <!--  Codigo de cupon-->
-                              <span class="sinkin-bold">XXYZ</span>
-                              <span>.</span>
-                              <span ng-bind="::referrals.strings.SHARES_EMAIL_CHECK"></span>
-                          </h5>
-                      </div>
-                      <div class="referral-item__status">
-                          <h5>
-                              <span class="sinkin-bold">COP 20.000</span>
-                              <span class="sinkin-light" ng-bind="::referrals.strings.SHARES_AVAILABLE"></span>
-                          </h5>
-                      </div>
-                  </div>
-                  <div class="referral-item">
-                      <!--  Imagen de perfil de usuario-->
-                      <div class="referral-item__picture">
-                          <img ng-src="{{referrals.getAmazonUrl('static/img/default_profile_pic.jpg')}}" class="img-responsive img-circle" alt="">
-                      </div>
-
-                      <div class="referral-item__info">
-                          <h4 class="sinkin-semibold">Daniel Schiavino</h4>
-                          <!--  Registrado sin inscribir-->
-                          <h5 class="sinkin-regular" ng-bind="::referrals.strings.SHARES_NOT_REGISTERED">
-                          </h5>
-                      </div>
-                      <div class="referral-item__status sinkin-regular">
-                          <h5>
-                              <span class="sinkin-bold">COP 20.000</span>
-                              <span class="sinkin-light" ng-bind="::referrals.strings.SHARES_PENDING"></span>
-                          </h5>
-                      </div>
-                  </div>
-                  <!--  Sin registrar -->
-                  <div class="referral-item">
-                      <div class="referral-item__picture">
-                          <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/email.png')}}" class="img-responsive img-circle" alt="">
-                      </div>
-                      <div class="referral-item__info">
-                          <h4 class="sinkin-semibold inline-block">roroferreira88@hotmail.com
-                          </h4>
-                          <span class="sinkin-regular" ng-bind="::referrals.strings.SHARES_NOT_REGISTERED_YET"></span>
-                          <h5>
-                              <span class="sinkin-bold">COP 20.000</span>
-                              <span class="sinkin-light" ng-bind="::referrals.strings.SHARES_PENDING"></span>
-                          </h5>
-                      </div>
-                      <div class="referral-item__status">
-                          <!--  Boton de reenvio de invitacion-->
-                          <button class="btn btn-default sinkin-light" ng-bind="::referrals.strings.ACTION_RESEND_INVITE">
-                          </button>
-                      </div>
-                  </div>
-              </div>
-          </div>
       </div>
   </div>
   <div class="row container-success">

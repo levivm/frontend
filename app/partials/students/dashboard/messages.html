@@ -1,6 +1,6 @@
 <div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
 </div>
-<div class="col-md-11 col-md-offset-1">
+<div class="col-md-11 col-md-offset-1 limited-width">
     <div class="row dashboard-messages" ng-if="messages.messages.length > 0">
         <div class="col-xs-12 col-md-9 col-md-offset-1 separate-above ">
             <form class="separate-above  ">
@@ -22,14 +22,14 @@
                   <img class="user-picture" ng-if="message.organizer.photo !== null" ng-src="{{message.organizer.photo}}" alt="">
                 </div>
                 <div class="col-md-7 text-line-more-xl">
-                    <span class=" text-dark montserrat-semibold" ng-bind="::message.organizer.name"></span>
+                    <span ng-class="{'text-gray-light montserrat-light': message.is_read, 'montserrat-semibold text-dark': !message.is_read}" ng-bind="::message.organizer.name"></span>
                 </div>
                 <div class="col-md-4 text-line-more-xl text-right">
                     <span class="text-gray-light montserrat-light" ng-bind="::message.created_at | date: 'dd MMM yyyy'"></span>
                 </div>
             </div>
             <div class="col-xs-12 col-md-11 col-md-offset-1">
-                <div class="text-dark montserrat-regular">
+                <div ng-class="{'text-gray-light montserrat-light': message.is_read, 'montserrat-semibold text-dark': !message.is_read}">
                     <span ng-bind="::message.activity"></span>
                 </div>
                 <div class="montserrat-light">

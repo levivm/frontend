@@ -130,6 +130,10 @@
             'message': function(idMessage){
               return renderUrl('messages/', [idMessage]);
             },
+            
+            'readMessage': function(idMessage){
+              return renderUrl('messages/', [idMessage, 'read/'])
+            },
 
             /**
              * @ngdoc function

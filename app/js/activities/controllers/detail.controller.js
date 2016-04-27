@@ -28,6 +28,7 @@
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter) {
         var visibleReviewListSize = 3;
         var vm = this;
+
         angular.extend(vm, {
             city : null,
             calendars : [],
@@ -75,6 +76,7 @@
             showExtra: false,
             shareSocialAnalytic:shareSocialAnalytic,
             wishList:wishList,
+            verifyWishList:verifyWishList,
             getAmazonUrl: getAmazonUrl
         });
 
@@ -162,6 +164,11 @@
           } else {
               $state.go('register', registerParams);
           }
+
+        }
+        function verifyWishList(){
+
+          return currentUser ? vm.activity.wish_list: false;
 
         }
         //Functions for analytics states
@@ -373,7 +380,6 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
-                COPY_OTHER_SESSIONS: "Horario",
                 COPY_OTHER_OPORTUNITY: "Oportunidad",
                 COPY_OTHER_OPORTUNITIES: "Oportunidades",
                 COPY_ONE_REVIEW: " Evaluación",
@@ -384,6 +390,7 @@
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días. Porque tú te lo mereces ",
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
+                LABEL_SCHEDULE: "Horario",
                 LABEL_START: "Inicio",
                 LABEL_VACANCY: "Vacantes",
                 LABEL_SESSIONS_NUMBER: "N° Sesiónes",
@@ -428,7 +435,8 @@
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_EMPTY_REVIEWS: "Aun no hay evaluaciones para esta actividad",
-                COPY_NUMBER_OF_LIKES: "personas amaron esto"
+                COPY_NUMBER_OF_LIKES: "personas amaron esto",
+                COPY_BE_THE_FIRST: "¡Sé el primero!"
             });
         }
 
@@ -462,14 +470,14 @@
             title = title.split(' ').join('-').toLowerCase();
 
             // Replacing most common special characters
-            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c", "ñ":"n"}
+            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c", "ñ":"n"};
             title = title.replace(/[^\w ]/g, function(char) {
               return dict[char] || char;
             });
 
             // Updating the URL
 
-            $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: $state.current, location: 'replace'});
+            $state.transitionTo($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: false, location: 'replace'});
         }
 
         function _getAssistants() {

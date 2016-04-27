@@ -10,7 +10,7 @@
 
       <div class="section-description" ng-bind="::calendar.strings.COPY_CALENDAR_INFO"></div>
 
-      <div class="row " >
+      <div class="row">
           <alert type="danger" ng-show="calendar.errors.non_field_errors">
               {{calendar.errors.non_field_errors}}
           </alert>
@@ -31,7 +31,7 @@
               <div class="form-group " trulii-input-errors-control="available_capacity">
                   <label class="control-label" for="available_capacity" ng-bind="::calendar.strings.LABEL_CALENDAR_SEATS"></label>
                   <input id="available_capacity" class="form-control " type="number" name="available_capacity"
-                         placeholder="0.00" min="1"
+                         placeholder="0.00" min="0"
                          ng-model="calendar.calendar.available_capacity" />
               </div>
           </div>
@@ -116,9 +116,13 @@
                 </div>
               </div>
             </div>
-
+            <div class="alert alert-error text-center" ng-show="calendar.errors[{{'sessions_'+$index}}]">
+                <strong ng-bind="calendar.errors[{{'sessions_'+$index}}]">
+                  <br>
+                </strong>
+            </div>
               <!--TODO revisar alert-->
-              <alert type="danger" ng-show="calendar.errors.{{'sessions_'+$index}}">{{calendar.errors.session_error}}</alert>
+              <alert type="danger" ng-show="calendar.errors[{{'sessions_'+$index}}]">{{calendar.errors.session_error}}</alert>
 
           </div>
         </div>

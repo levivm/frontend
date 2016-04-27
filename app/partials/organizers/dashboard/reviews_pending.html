@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="col-xs-12 col-md-11 col-md-offset-1">
+    <div class="col-xs-12">
         <div class="row">
             <div class="col-xs-12">
                 <p class="text-center separate-above-less" ng-bind="::reviews.strings.COPY_SEARCH_REVIEWS"></p>
@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div class="col-xs-12 col-md-10 col-md-offset-1 review-detail separate-above-medium separate-below-less"
+            <div class="col-xs-12 review-detail separate-above-medium separate-below-less"
                  ng-repeat="reviewObject in reviews.unread_reviews | filter:{$: reviews.searchUnreadQuery} ">
                 <trulii-activity-review data-review="reviewObject" data-activity="reviewObject.activity"
                                         data-on-dashboard="true" change-review-status="reviews.changeReviewStatus()"></trulii-activity-review>

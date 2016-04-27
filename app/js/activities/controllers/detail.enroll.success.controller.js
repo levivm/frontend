@@ -46,6 +46,7 @@
 
             function success(response){
                 Toast.success(vm.strings.COPY_SHARE_SUCCESS);
+                vm.formData = {};
             }
             function error(error){
                 Toast.error(vm.strings.COPY_SHARE_ERROR);

@@ -18,7 +18,7 @@
 
 				var options = {};
 				var position = 'right'
-				var w = angular.element($window);
+				var window = angular.element($window);
 				options['content'] = scope.helpText;
 				options['trigger'] = 'focus';
 				options['container'] = 'body';
@@ -30,8 +30,7 @@
 				options['placement'] = attrs.popoverPlacement && attrs.popoverPlacement != "" ?  attrs.popoverPlacement : _calcPosition();
 
 				function _calcPosition(){
-					console.log(w.width());
-					if(w.width()<768){
+					if(window.width()<768){
 						return 'top';
 					}else{
 						return 'right'

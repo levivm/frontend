@@ -254,7 +254,7 @@
                 HEADER_TOTAL:"Total",
                 HEADER_STATUS:"Estatus",
                 LABEL_FINAL_TOTAL: "Ventas netas:",
-                LABEL_TOTAL: "Total ventas:",
+                LABEL_TOTAL: "Ventas brutas:",
                 LABEL_FEE: "Comisión Trulii:",
                 COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades"
             });

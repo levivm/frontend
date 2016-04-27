@@ -147,7 +147,14 @@
     }
     .form-control{
       font-size: 1.25em;
+      text-transform: capitalize;
     }
+    .card-number{
+      .before-md({
+          height: 3em;
+      });
+    }
+
 }
 
 .billing-widget {
@@ -248,6 +255,23 @@
     .before-md({
         font-size: 1em;
     });
+}
+
+.success-requirements{
+  width: 50%;
+  margin: 0 auto;
+  ol{
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0em;
+  }
+  ul{
+    text-align: left;
+    width: 80%;
+    margin: 0 auto;
+    padding: 0em;
+  }
 }
 
 .remember-container {
@@ -373,7 +397,12 @@
 @media (min-width: 992px){
     .absolute-widget, .fixed-widget{
         z-index: 100;
-        background-color: white;
+        background-color: transparent;
+        .widget-card{
+          > div{
+            background-color: white;
+          }
+        }
     }
     .fixed-widget{
         position: fixed;
@@ -381,7 +410,7 @@
         overflow-y: auto;
         overflow-x: hidden;
         top: 8vh;
-        width: ~"calc(25% - 40px)"; //Width - el padding derecho
+        width: ~"calc(25% - 92px)"; //Width - el padding derecho
     }
     .absolute-widget{
         position: absolute;

@@ -120,8 +120,8 @@
         }
         
         function _getStats(type){
-          if(stats === vm.TAB_YEARLY){
-            activity.getStats(moment(vm.date).year(), moment(vm.date).month()+1)
+          if(type === vm.TAB_YEARLY){
+            activity.getStats(moment(vm.date).year())
             .then(
               function(data){
                 vm.stats = data;
@@ -130,8 +130,8 @@
               }
             );
           }
-          else if(stats === vm.TAB_MONTHLY){
-            activity.getStats(moment(vm.date).year())
+          else if(type === vm.TAB_MONTHLY){
+            activity.getStats(moment(vm.date).year(), moment(vm.date).month()+1)
             .then(
               function(data){
                 vm.stats = data;
@@ -196,20 +196,17 @@
             var net = [];
             var fee = [];
             
-            var first_date = true;
-            
             for (var i = 0; i < stats.points.length; i++) {
               
                 var key = Object.keys(stats.points[i])[0];
                 var date = moment(Object.keys(stats.points[i])[0], 'YYYY-MM-DD').valueOf();
-                if(stats.points[i][key].gross !== 0 && stats.points[i][key].net !== 0 && stats.points[i][key].fee !== 0 && date <= moment().valueOf()){
-                  first_date = true;
+                if(stats.points[i][key].gross !== 0 && stats.points[i][key].net !== 0 && stats.points[i][key].fee !== 0 && date <= moment().valueOf() && date >= moment(stats.created_at, 'YYYY-MM-DD').valueOf()){
                   gross.push({x: date, z: moment(date).format('YYYY-MM-DD'), y: d3.round(stats.points[i][key].gross, 4)});
                   net.push({x: date, z: moment(date).format('YYYY-MM-DD'), y: d3.round(stats.points[i][key].net, 4)});
                   fee.push({x:date, z: moment(date).format('YYYY-MM-DD'), y: d3.round(stats.points[i][key].fee, 4)});
                   
                 }
-                else if(stats.points[i][key].gross === 0 && stats.points[i][key].net === 0 && stats.points[i][key].fee === 0 && first_date && date <= moment().valueOf()){
+                else if(stats.points[i][key].gross === 0 && stats.points[i][key].net === 0 && stats.points[i][key].fee === 0 && date >= moment(stats.created_at, 'YYYY-MM-DD').valueOf() && date <= moment().valueOf()){
                   gross.push({x: date, y: d3.round(stats.points[i][key].gross, 4)});
                   net.push({x: date, y: d3.round(stats.points[i][key].net, 4)});
                   fee.push({x:date, y: d3.round(stats.points[i][key].fee, 4)});

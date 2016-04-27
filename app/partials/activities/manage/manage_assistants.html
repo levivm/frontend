@@ -3,9 +3,9 @@
         <p class="text-muted" ng-bind="manage.strings.COPY_ASSISTANTS"></p>
         <div ng-if="manage.calendars.length > 0" class="row">
             <div class="col-md-12">
-                <div class="panel panel-default" style="cursor: pointer;"
+                <div class="panel panel-default separate-above-less separate-below-less" style="cursor: pointer;"
                      ng-repeat="calendar in manage.calendars track by calendar.id">
-                    <div class="panel-heading" ng-click="manage.expandCalendar(calendar,manage.TYPE_ASSISTANT)">
+                    <div class="panel-heading " ng-click="manage.expandCalendar(calendar,manage.TYPE_ASSISTANT)">
                         <div class="row">
                             <div class="panel-date">
                                 <span>
@@ -88,7 +88,7 @@
                                             <span ng-bind="::assistant.email"></span>
                                         </td>
                                         <td class="text-center-mobile">
-                                            <a ng-bind="::assistant.order" 
+                                            <a ng-bind="::assistant.order"
                                               ui-sref="dash.activities-manage.orders.order({'orderId': assistant.order, 'previousState':{'state':'dash.activities-manage.assistants'}})">
                                             </a>
                                         </td>

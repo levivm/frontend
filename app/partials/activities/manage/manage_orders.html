@@ -5,7 +5,7 @@
               <p class="text-muted" ng-bind="manage.strings.COPY_ORDERS"></p>
               <div ng-if="manage.calendars.length > 0" class="row">
                   <div class="col-xs-12">
-                      <div class="panel panel-default" style="cursor: pointer;"
+                      <div class="panel panel-default separate-above-less separate-below-less" style="cursor: pointer;"
                           ng-repeat="calendar in manage.calendars track by calendar.id">
                           <div class="panel-heading" ng-click="manage.expandCalendar(calendar,manage.TYPE_ORDER)">
                               <div class="row">
@@ -105,7 +105,7 @@
                                               </a>
                                           </td>
                                       </tr>
-                                      
+
                                   </table>
                               </div>
                               <div class="order-total" ng-if="manage.orders.length > 0">
@@ -159,5 +159,5 @@
           </div>
       </div>
   </div>
-  
+
 </div>

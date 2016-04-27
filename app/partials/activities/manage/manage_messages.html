@@ -1,14 +1,11 @@
-<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
-
-    <div class="new-message pull-right" ng-click="messages.toggleMessageShow()">
-        <span ng-bind="::messages.strings.ACTION_NEW_MESSAGE"></span>
-        <span><img ng-src="{{manage.getAmazonUrl('static/img/msj_nuevo.png')}}" alt=""></span>
-    </div>
-</div>
 <div class="row fade in">
   <div class="col-xs-12 col-md-11 col-md-offset-1">
     <div class="row dashboard-messages">
       <div class="col-xs-12 col-md-9 col-md-offset-1 separate-above ">
+          <div class="btn btn-default padding-vertical" ng-click="messages.toggleMessageShow()">
+              <span ng-bind="::messages.strings.ACTION_NEW_MESSAGE"></span>
+              <span class="separate-left-less"><img ng-src="{{manage.getAmazonUrl('static/img/msj_nuevo.png')}}" alt=""></span>
+          </div>
           <form class="separate-above  ">
               <fieldset>
                   <div class="form-group" >

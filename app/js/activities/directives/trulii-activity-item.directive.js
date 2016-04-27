@@ -5,6 +5,7 @@
  * @description Trulii Activity Item Directive.
  * @param {object} activity Activity instance to represent
  * @param {object} options Options object
+ * @param {boolean} current If current Activity in student
  * @param {array} options.actions Action buttons to display
  * @param {boolean} options.disabled Defines if the activity should have an opacity overlay
  */
@@ -17,16 +18,18 @@
         .directive('truliiActivityItem', truliiActivityItem);
 
     truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'moment', 'ActivitiesTemplatesPath'
-        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication', 
-        'StudentsManager', 'ActivitiesManager'];
+        , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication',
+        'StudentsManager', 'ActivitiesManager', 'Toast', '$modal', '$rootScope'];
 
     function truliiActivityItem($state, $stateParams, $filter, moment, ActivitiesTemplatesPath
-        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager, ActivitiesManager){
+        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager, ActivitiesManager, Toast, $modal, $rootScope){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
             scope: {
                 'activity': '=',
+                'current': '=?',
+                'organizer': '=?',
                 'options': '@?'
             },
             link: function(scope, element, attrs){
@@ -45,6 +48,7 @@
                     hideMenu : hideMenu,
                     viewActivity:viewActivity,
                     clickAction: clickAction,
+                    doAction:doAction,
                     isStudent: false,
                     like:like
                 });
@@ -80,6 +84,31 @@
                     })
                 }
 
+                function doAction(action){
+                  
+                  if(scope.activity.total_assistants > 0){
+                      Toast.error(scope.strings.DELETE_ACTIVITY_ERROR);
+                      return;
+                  }
+                  var modalInstance = $modal.open({
+                      templateUrl : 'partials/activities/messages/confirm_delete_activity.html',
+                      controller : 'ModalInstanceCtrl',
+                      controllerAs:'modal',
+                      size : 'lg'
+                  });
+
+                  modalInstance.result.then(function () {
+                    ActivitiesManager.deleteActivity(scope.activity.id).then(success, error);
+                  });
+
+                  function success() {
+                    $rootScope.$broadcast(ActivitiesManager.EVENT_DELETE_ACTIVITY, $state.current.url);
+                  }
+                  function error(response) {
+                      console.log(response);
+                  }
+                }
+
                 //Functions Analytics data
                 function viewActivity(title){
                     Analytics.generalEvents.viewActivityDetail(title);
@@ -110,7 +139,6 @@
 
                 function _mapActions(actions){
                     if(!actions) return null;
-
                     actions = actions.filter(filterActions);
 
                     actions = actions.map(function(action){
@@ -153,6 +181,13 @@
                                         + ", republish: true})"
                                 };
                                 break;
+                            case scope.strings.ACTION_DELETE:
+                                return {
+                                    'name': scope.strings.LABEL_DELETE,
+                                    'icon': 'mdi-action-delete',
+                                    'state': false
+                                };
+                                break;
                             default:
                                 return null;
                         }
@@ -163,14 +198,15 @@
 
                         function isValidAction(action){
                             return action == scope.strings.ACTION_EDIT || action == scope.strings.ACTION_MANAGE
-                                || action == scope.strings.ACTION_CONTACT || action == scope.strings.ACTION_REPUBLISH;
+                                || action == scope.strings.ACTION_CONTACT || action == scope.strings.ACTION_REPUBLISH
+                                || action == scope.strings.ACTION_DELETE;
                         }
                     }
                 }
 
                 function _mapDateMsg(activity){
                     var today = new Date();
-                    
+                    //console.log(activity);
                     if(!!activity.closest_calendar){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
@@ -216,6 +252,8 @@
                         LABEL_CONTACT: "Contactar",
                         ACTION_REPUBLISH: "republish",
                         LABEL_REPUBLISH: "Republicar",
+                        ACTION_DELETE: "delete",
+                        LABEL_DELETE: "Eliminar",
                         LABEL_INACTIVE: "Borrador",
                         COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
                         COPY_NA: "N/A",
@@ -224,7 +262,10 @@
                         COPY_DAY: "día ",
                         COPY_DAYS: "días ",
                         COPY_IN: "Inicia en ",
-                        COPY_THE: "Inicia el "
+                        COPY_THE: "Inicia el ",
+                        COPY_CURRENT: "En curso",
+                        COPY_SEE_ASSISTANTS: "Ver asistentes ",
+                        DELETE_ACTIVITY_ERROR: "No puede eliminar esta actividad, tiene estudiantes inscritos, contactanos",
                     });
                 }
 
@@ -237,10 +278,19 @@
 
                 }
 
+                function _checkAssistants(){
+                  var assistants=0;
+                  angular.forEach(scope.activity.calendars, function(calendar, idx){
+                    assistants = assistants + calendar.assistants.length;
+                    scope.activity.total_assistants=assistants;
+                  });
+                }
+
                 function _activate(){
                     _setStrings();
                     _setCurrentState();
                     _isStudent();
+                    _checkAssistants();
 
                     if(attrs.options){
                         options = JSON.parse(attrs.options);
@@ -260,6 +310,7 @@
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
+
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
                 }

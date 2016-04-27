@@ -6,17 +6,17 @@
                     <div class="profile-cover__picture" style="background-image: url('{{::profile.organizer.photo}}')">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row limited-width">
                     <div class="col-xs-12">
                         <h1 class="text-uppercase text-center" ng-bind="::profile.organizer.name"></h1>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row limited-width">
                     <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                         <p class="profile-cover__description text-center" ng-bind="::profile.organizer.headline"></p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row limited-width">
                     <div class="profile-cover__verified">
                         <img ng-src="{{profile.getAmazonUrl('static/img/verified_organizer.png')}}" class="img-responsive img-circle pull-left"/>
                         <p class="pull-left">
@@ -28,10 +28,10 @@
         </div>
     </div>
 </div>
-<div class="col-xs-12 separate-below-more">
+<div class="col-xs-12 limited-width separate-below-more">
   <div class="row">
     <div class="profile-biography">
-      <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
+      <div class="col-xs-12">
         <h1 class="text-primary text-center"><strong ng-bind="::profile.strings.LABEL_BIO"></strong></h1>
         <div class="profile-biography--content">
           <p ng-bind="::profile.organizer.bio"></p>
@@ -44,6 +44,7 @@
   </div>
 </div>
 <div class="col-xs-12 profile-activities" ng-if="profile.activities.length > 0">
+  <div class="limited-width">
     <h3 class="text-center separate-below">
         <strong ng-if="profile.activities.length>0"><span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span> <span ng-bind="::profile.organizer.name"></span></strong>
         <strong ng-if="profile.activities.length==0"><span ng-bind="::profile.organizer.name"></span> <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span></strong>
@@ -52,14 +53,7 @@
           ng-repeat="activity in profile.activities track by activity.id"
           data-activity="activity" >
           </trulii-activity-item>
-    <!--<div class="text-center" ng-if="profile.paginationOpts.totalItems > profile.paginationOpts.itemsPerPage">
-      <pagination class="pagination-sm"
-        ng-model="profile.paginationOpts.pageNumber"
-        ng-change="profile.pageChange()"
-        data-total-items="profile.paginationOpts.totalItems"
-        previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
-        data-items-per-page="profile.paginationOpts.itemsPerPage"></pagination>
-    </div>-->
+  </div>
 </div>
 <!--Location-->
 <div class="row profile-location">
@@ -81,9 +75,9 @@
     </div>
 </div>
 <!-- Comments -->
-<div class="col-xs-12 profile-comments" ng-if="profile.reviews.length > 0">
+<div class="col-xs-12 limited-width profile-comments" ng-if="profile.reviews.length > 0">
     <div class="row">
-        <div class="col-xs-12 col-md-3 col-md-offset-0 col-md-push-8">
+        <div class="col-xs-12 col-md-4 col-md-offset-0 col-md-push-8">
             <div class="organizer-widget">
                 <div class="card">
                     <h1 class="text-center text-muted" ng-bind="::profile.organizer.rating | number: 1"></h1>
@@ -100,7 +94,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-12 col-md-7 col-md-offset-1 col-md-pull-3">
+        <div class="col-xs-12 col-md-8 col-md-offset-0 col-md-pull-1">
             <h3 class="separate-below separate-above-medium">
                 <strong ng-bind="::profile.strings.LABEL_COMMENTS"></strong>
             </h3>
