@@ -125,6 +125,8 @@
                 templateUrl: 'partials/organizers/dashboard/transactions.html',
                 resolve: {
                     orders: getOrders,
+                    balances: getBalances,
+                    withdraws: getWithDraw,
                     activities: getOrganizerActivityList
                 }
             })
@@ -278,6 +280,30 @@
         getOrders.$inject = ['organizer'];
         function getOrders(organizer){
             return organizer.getOrders();
+        }
+
+
+        /**
+         * @ngdoc method
+         * @name .#getBalances
+         * @description Retrieves an Organizer's Balances
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getBalances.$inject = ['organizer'];
+        function getBalances(organizer){
+            return organizer.getBalances();
+        }
+        /**
+         * @ngdoc method
+         * @name .#getWithDraws
+         * @description Retrieves an Organizer's withdraws
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getBalances.$inject = ['organizer'];
+        function getWithDraw(organizer){
+            return organizer.getWithDraw();
         }
 
         /**

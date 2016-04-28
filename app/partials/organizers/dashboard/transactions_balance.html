@@ -1,18 +1,18 @@
 <div class="row">
   <div class="col-xs-12 col-md-10 col-md-offset-1">
     <div class="row balance">
-      <div class="col-xs-12 separate-below separate-above-more">
+      <div class="col-xs-12 separate-below separate-above">
           <p class="text-center  col-md-8 col-md-offset-2">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. mollit anim id est laborum.
           </p>
-          <form class="separate-above-less col-md-12">
+          <!--<form class="separate-above-less col-md-12">
               <fieldset>
                   <div class="form-group " >
                       <input type="text" class="form-control" placeholder="{{::transactions.strings.SEARCH_BALANCE_PLACEHOLDER}}"
                              name="search" id="search"> <i class="mdi mdi-action-search search-icon-right"></i></input>
                   </div>
               </fieldset>
-          </form>
+          </form>-->
 
       </div>
 
@@ -21,20 +21,22 @@
             <div class="mounts">
               <div class="mounts-content s">
                   <div class="">
-                    <h4 class="text-uppercase">Balance</h4>
+                    <h4 class="text-uppercase" ng-bind="::transactions.strings.COPY_TITLE_BALANCE"></h4>
                   </div>
                   <div class="separate-above-less">
-                    <h5 class="montserrat-light">Monto disponible</h5>
-                    <h4>COP 130.000.00</h4>
+                    <h5 class="montserrat-light" ng-bind="::transactions.strings.COPY_BALANCE_AVAILABLE"></h5>
+                    <h4><span ng-bind="::transactions.strings.LABEL_CURRENCY"></span>
+                        <span ng-bind="transactions.balances.available | number"></span></h4>
                   </div>
-                  <div class="btn btn-success separate-above-less">
-                    <span>Solicitar dinero</span>
+                  <div class="btn btn-success separate-above-less" ng-click="transactions.withDraw()">
+                    <span ng-bind="::transactions.strings.ACTION_BALANCE_WITHDRAW"></span>
                   </div>
 
               </div>
               <div class="mounts-footer">
-                <h5 class="montserrat-light">Monto no disponible</h5>
-                <h4>COP 130.000.00</h4>
+                <h5 class="montserrat-light" ng-bind="::transactions.strings.COPY_BALANCE_AVAILABLE"></h5>
+                <h4><span ng-bind="::transactions.strings.LABEL_CURRENCY"></span>
+                    <span ng-bind="transactions.balances.unavailable | number"></span></h4>
               </div>
             </div>
           </div>
@@ -47,89 +49,38 @@
                   <th ng-bind="::transactions.strings.LABEL_BALANCE_MOUNT"></th>
                   <th ng-bind="::transactions.strings.LABEL_BALANCE_STATUS"></th>
                 </tr>
-                <tr >
+                <tr ng-repeat="withDraw in transactions.withdrawals">
                   <td>
-                    <a  ui-sref="">
-                      <span>#</span><span >0067890</span>
+                    <a  >
+                      <span>#</span><span ng-bind="withDraw.id"></span>
                     </a>
                   </td>
 
                   <td >
-                    <span class="text-capitalize" >14 Ene. 2015</span>
+                    <span class="text-capitalize" ng-bind="::withDraw.date | date:'EEEE d MMM y'"></span>
                   </td>
                   <td >
-                    <span >COP 130.000.000</span>
+                    <span >
+                      <span ng-bin="transactions.strings.LABEL_CURRENCY"></span >
+                      <span ng-bind="withDraw.amount | number"></span>
+                    </span>
                   </td>
                   <td >
-                    <span class="text-uppercase">Aprobada</span>
-                  </td>
-
-                </tr>
-                <tr >
-                  <td>
-                    <a  ui-sref="">
-                      <span>#</span><span >0067890</span>
-                    </a>
-                  </td>
-
-                  <td >
-                    <span class="text-capitalize" >14 Ene. 2015</span>
-                  </td>
-                  <td >
-                    <span >COP 130.000.000</span>
-                  </td>
-                  <td >
-                    <span class="text-uppercase">Aprobada</span>
-                  </td>
-
-                </tr>
-                <tr >
-                  <td>
-                    <a  ui-sref="">
-                      <span>#</span><span >0067890</span>
-                    </a>
-                  </td>
-
-                  <td >
-                    <span class="text-capitalize" >14 Ene. 2015</span>
-                  </td>
-                  <td >
-                    <span >COP 130.000.000</span>
-                  </td>
-                  <td >
-                    <span class="text-uppercase">Aprobada</span>
-                  </td>
-
-                </tr>
-                <tr >
-                  <td>
-                    <a  ui-sref="">
-                      <span>#</span><span >0067890</span>
-                    </a>
-                  </td>
-
-                  <td >
-                    <span class="text-capitalize" >14 Ene. 2015</span>
-                  </td>
-                  <td >
-                    <span >COP 130.000.000</span>
-                  </td>
-                  <td >
-                    <span class="text-uppercase">Aprobada</span>
+                    <span class="text-uppercase" ng-bind="withDraw.status"></span>
                   </td>
 
                 </tr>
               </table>
-              <!--<div class="text-center" ng-if="transactions.salesPaginationOpts.totalItems > transactions.salesPaginationOpts.itemsPerPage">
+              <div class="text-center" ng-if="transactions.withDrawsPaginationOpts.totalItems > transactions.withDrawsPaginationOpts.itemsPerPage">
                 <pagination class="pagination-sm"
-                  ng-model="transactions.salesPaginationOpts.pageNumber"
-                  ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
-                  data-total-items="transactions.salesPaginationOpts.totalItems"
-                  data-items-per-page="transactions.salesPaginationOpts.itemsPerPage"
+                  ng-model="transactions.withDrawsPaginationOpts.pageNumber"
+                  ng-change="transactions.changePageWithdraws()"
+                  data-total-items="transactions.withDrawsPaginationOpts.totalItems"
+                  data-items-per-page="transactions.withDrawsPaginationOpts.itemsPerPage"
                   previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
-                  max-size="transactions.salesPaginationOpts.maxPagesSize"
+                  max-size="transactions.withDrawsPaginationOpts.maxPagesSize"
                   ></pagination>
-              </div>-->
+              </div>
             </div>
           </div>
 

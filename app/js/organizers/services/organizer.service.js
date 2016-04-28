@@ -23,7 +23,8 @@
                        LocationManager, UploadFile, defaultPicture) {
 
         var api = OrganizerServerApi;
-        var defaultPageSize = 25;
+        var defaultPageSize = 10;
+        var defaultPageSizeWithd = 5;
         var reviewsDefaultPageSize = 5;
         var defaultPage = 1;
 
@@ -158,23 +159,80 @@
                     });
             },
 
-            getOrders : function (page, pageSize) {
+            getOrders : function (page, pageSize, paramsFilter) {
 
               if(!page)
                 page = defaultPage;
               if(!pageSize)
-                pageSize: defaultPageSize;
+                pageSize= defaultPageSize;
 
-              return $http.get(api.orders(this.id),
-                  {params: {
-                    page: page,
-                    page_size: pageSize
-                  }})
+              var params= {
+                page: page,
+                page_size: pageSize
+              };
+              if(paramsFilter)
+                angular.extend(params, paramsFilter);
+
+              console.log(params);
+
+
+              return $http.get(api.orders(this.id), {params: params})
                   .then(function (response) {
                       return response.data;
                   });
 
             },
+
+            getBalances: function (page, pageSize){
+
+              return $http.get(api.balance())
+                          .then(success, error);
+
+                  function success(response){
+                    return response.data
+                  }
+                  function error(response){
+                    console.log(response);
+                  }
+
+            },
+
+            getWithDraw: function (page, pageSize){
+              if(!page)
+                page = defaultPage;
+              if(!pageSize)
+                pageSize= defaultPageSizeWithd;
+
+              var params = {
+                page: page,
+                page_size: pageSize
+              };
+              return $http.get(api.withDraw(), {params: params})
+                          .then(success, error);
+
+                  function success(response){
+                    return response.data
+                  }
+                  function error(response){
+                    console.log(response);
+                  }
+
+            },
+
+            postWithDraw: function (){
+              return $http.post(api.withDraw(), {data: []})
+                          .then(success, error);
+
+                  function success(response){
+                    console.log(response);
+                    return response.data
+                  }
+                  function error(response){
+                    console.log(response);
+                  }
+
+            },
+
 
             /**
              * @ngdoc function
@@ -343,7 +401,7 @@
                 return $q.reject(response.data);
             }
         }
-       
+
     }
 
 })();

@@ -34,7 +34,7 @@
             'activities': function(idOrganizer){
                 return renderUrl('organizers/', [idOrganizer, 'activities']);
             },
-            
+
             /**
              * @ngdoc function
              * @name .#autocomplete
@@ -130,8 +130,18 @@
              */
             'bankingInfo': function (){
                 return renderUrl('organizers/', [ 'bankinfo/']);
+            },
+
+            'balance': function (){
+                return renderUrl('balances/', [ 'balance/']);
+            },
+
+            'withDraw': function (){
+                return renderUrl('balances/', [ 'withdraw/']);
             }
-            
+
+
+
         };
 
         /**
