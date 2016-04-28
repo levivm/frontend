@@ -1,7 +1,7 @@
 <div class="trulii-cover-regular trulii-cover-detail">
   <div class="trulii-cover__container align-bottom">
     <div class="trulii-cover__content">
-      <div class="col-xs-12 col-md-offset-1 col-md-10 limited-width">
+      <div class="col-xs-12 col-md-offset-1 col-md-10 limited-width padding-vertical-regular">
         <div class="row ">
           <div class="col-xs-12 col-md-10">
             <h1 class="title montserrat-light no-margin" ng-bind="::detail.activity.title"></h1>
@@ -94,18 +94,18 @@
         <div class="info separate-above">
             <div class="col-xs-4 padding-vertical-less">
               <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_level.png')}}" class="center-block" alt=""/>
-              <div class="title text-center" ng-bind="detail.activity.level_display"></div>
+              <p class="title text-center" ng-bind="detail.activity.level_display"></p>
             </div>
             <div class="col-xs-4 padding-vertical-less">
               <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_certification.png')}}" class="center-block" alt=""/>
-              <div ng-if="detail.activity.certification" class="title text-center"
-                ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></div>
-              <div ng-if="!detail.activity.certification" class="title text-center"
-                ng-bind="::detail.strings.VALUE_WITHOUT_CERTIFICATION"></div>
+              <p ng-if="detail.activity.certification" class="title text-center"
+                ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></p>
+              <p ng-if="!detail.activity.certification" class="title text-center"
+                ng-bind="::detail.strings.VALUE_WITHOUT_CERTIFICATION"></p>
             </div>
             <div class="col-xs-4 padding-vertical-less">
               <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_duration.png')}}" class="center-block" alt=""/>
-              <div class="title text-center" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></div>
+              <p class="title text-center" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></p>
             </div>
           </div>
       </div>

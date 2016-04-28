@@ -18342,6 +18342,14 @@ button.toast-close-button {
     padding-bottom: 10vh;
   }
 }
+@media screen and (max-width: 768px) {
+  .trulii-cover__content-landing,
+  .trulii-cover-small__content-landing,
+  .trulii-cover-medium__content-landing,
+  .trulii-cover-regular__content-landing {
+    padding-top: 20vh;
+  }
+}
 @media screen and (max-width: 992px) {
   .trulii-cover__content-detail,
   .trulii-cover-small__content-detail,
@@ -19384,6 +19392,13 @@ blockquote {
   margin-bottom: 0px;
   font-size: 1.1em;
 }
+@media screen and (max-width: 768px) {
+  .activity-detail p {
+    word-break: inherit;
+    margin-bottom: 0px;
+    font-size: 0.85em;
+  }
+}
 .activity-detail ol {
   font-size: 1.1em;
 }
@@ -20315,6 +20330,8 @@ blockquote {
 }
 .modal-email {
   border-radius: 4px;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 .modal-email .modal-header {
   color: #535353;
@@ -22562,6 +22579,9 @@ blockquote {
   background-color: white;
   padding: 0 2em;
 }
+.referral-input input:focus {
+  background-image: linear-gradient(#38dbc8, #38dbc8), linear-gradient(#ccc, #ccc);
+}
 .referral-input input {
   background-image: none;
 }
@@ -22570,6 +22590,11 @@ blockquote {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
   font-size: 1em;
+}
+@media screen and (max-width: 768px) {
+  .referral-input button {
+    font-size: 0.75em;
+  }
 }
 .referral-share.list-inline li {
   padding-left: 2px;

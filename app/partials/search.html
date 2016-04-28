@@ -193,11 +193,14 @@
     <div class="row padding-horizontal-less separate-above padding-vertical-less">
         <trulii-preloader loader-control="search.loadingActivities"></trulii-preloader>
         <div class="col-xs-12" ng-show="!search.loadingActivities">
-            <div class="text-left separate-left"  ng-if="search.activities.length > 0">
+          <div>
+            <div class="text-center"  ng-if="search.activities.length > 0">
                 <!--track by activity.id-->
                 <trulii-activity-item ng-repeat="activity in search.activities"
                                       data-activity="activity"></trulii-activity-item>
             </div>
+            
+          </div>
             <!--Pagination-->
             <div class="text-center"
                  ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">

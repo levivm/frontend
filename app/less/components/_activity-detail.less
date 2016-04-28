@@ -12,6 +12,11 @@
     word-break: break-word;
     margin-bottom: 0px;
     font-size: 1.1em;
+    .before-sm({
+      word-break: inherit;
+      margin-bottom: 0px;
+      font-size: 0.85em;
+    });
   }
   ol{
     font-size: 1.1em;
@@ -971,6 +976,8 @@
 
 .modal-email{
   border-radius: @border-radius-base;
+  max-height: 100vh;
+  overflow-y: auto;
   .modal-header{
     color: @gray;
     padding: 5px 5px 10px 5px;
