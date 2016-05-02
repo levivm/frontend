@@ -26,7 +26,7 @@
             STATUS_DECLINED_BACK = 'declined',
             STATUS_PENDING_BACK = 'pending';
 
-        var MIN_MOUNT = 300000;
+        var MIN_MOUNT = 30000;
 
         angular.extend(vm, {
             organizer: organizer,

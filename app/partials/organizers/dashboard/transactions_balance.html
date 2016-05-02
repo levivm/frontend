@@ -49,7 +49,7 @@
                   <th ng-bind="::transactions.strings.LABEL_BALANCE_MOUNT"></th>
                   <th ng-bind="::transactions.strings.LABEL_BALANCE_STATUS"></th>
                 </tr>
-                <tr ng-repeat="withDraw in transactions.withdrawals">
+                <tr ng-repeat="withDraw in transactions.withdrawals ">
                   <td>
                     <a  >
                       <span>#</span><span ng-bind="withDraw.id"></span>
