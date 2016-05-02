@@ -63,24 +63,22 @@
                       </div>
                   </div>
                   <div class="row">
+                    <div class="text-center separate-vertical" id="anchor">
+                        <a ui-sref="organizer-landing" class="text-underline montserrat-regular" ng-bind="::vm.strings.REGISTER_ORGANIZER_LABEL">
+                        </a>
+                    </div>
+                  <div class="row">
+                      <div class="separator"></div>
                       <div class="col-xs-10 col-xs-offset-1">
-                          <h5 class="text-muted text-tiny text-center separate-above">
+                          <h5 class="text-muted text-tiny text-center separate-above montserrat-light">
                               <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_1"></span>
-                              <a ui-sref="about.terms" ng-bind="vm.strings.LABEL_TERMS"></a>
+                              <a ui-sref="about.privacy-policy" class="text-muted text-underline montserrat-regular" ng-bind="vm.strings.LABEL_PRIVACY"></a>
                               <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_3"></span>
-                              <a ui-sref="about.privacy-policy" ng-bind="vm.strings.LABEL_PRIVACY"></a>
+                              <a ui-sref="about.terms" class="text-muted text-underline montserrat-regular" ng-bind="vm.strings.LABEL_TERMS"></a>
                               <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_5"></span>
                           </h5>
                       </div>
                   </div>
-                  <div class="row">
-                      <div class="separator"></div>
-                      <div class="text-center separate-vertical" id="anchor">
-                          <span class="fit-in-xs" ng-bind="vm.strings.ALREADY_HAVE_AN_ACCOUNT_COPY"></span>
-                          <a ng-click="vm.toLoginState()">
-                              <strong ng-bind="::vm.strings.LOGIN_LABEL"></strong>
-                          </a>
-                      </div>
                   </div>
               </div>
             </div>
