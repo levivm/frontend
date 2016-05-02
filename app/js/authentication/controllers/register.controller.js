@@ -46,7 +46,7 @@
         function isSelectedMethod(method){ return selectedMethod === method; }
 
         function setSelectedMethod(method){ selectedMethod = method; }
-        
+
         function fbRegister(){
             Authentication.facebookLogin()
                 .then(_registerSuccess, error);
@@ -110,7 +110,7 @@
                 SIGNUP_CONFIRMATION_LABEL: "Confirmar registro",
                 SIGNUP_SUBMIT: "Enviar",
                 SIGNUP_ALTERNATIVES_LABEL : "Regístrate con",
-                SIGNUP_EMAIL_LABEL: "O regístrate con tu correo electrónico",
+                SIGNUP_EMAIL_LABEL: "o con tu correo electrónico",
                 LOGIN_LABEL : "Iniciar Sesión",
                 EMAIL_LABEL : "Correo electrónico",
                 PASSWORD_LABEL : "Contraseña",
@@ -119,11 +119,12 @@
                 REGISTER_WITH_FACEBOOK_MSG : "Facebook",
                 FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook",
                 ALREADY_HAVE_AN_ACCOUNT_COPY: "¿Ya tienes cuenta en Trulii?",
-                TERMS_AND_CONDITIONS_COPY_1: "Registrándome estoy aceptando los",
+                TERMS_AND_CONDITIONS_COPY_1: "Registrándome estoy aceptando las",
                 LABEL_TERMS: "Términos y Condiciones",
-                TERMS_AND_CONDITIONS_COPY_3: "y la",
+                TERMS_AND_CONDITIONS_COPY_3: "y los",
                 LABEL_PRIVACY: "Política de Privacidad",
-                TERMS_AND_CONDITIONS_COPY_5: "de Trulii."
+                TERMS_AND_CONDITIONS_COPY_5: "de Trulii.",
+                REGISTER_ORGANIZER_LABEL: "¿Quieres registrarte como organizador?"
             });
         }
 
