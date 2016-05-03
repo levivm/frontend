@@ -18,7 +18,7 @@ xdescribe('Controller: HomeController', function(){
     });
     beforeEach(inject(function($controller, $rootScope, $http, $httpBackend) {
         scope = {};
-
+        scope = $rootScope.$new();
         /*Calls to resolve route / 'Home'
             activities: getRecommendedActivities,
             generalInfo: getPresaveActivityInfo
@@ -62,7 +62,7 @@ xdescribe('Controller: HomeController', function(){
         //End calls
 
 
-        HomeController =  $controller('HomeController', {'activities': activities,'generalInfo':generalInfo});
+        HomeController =  $controller('HomeController', {'activities': activities,'generalInfo':generalInfo, $scope: scope});
         rootScope = $rootScope;
 
     }));
