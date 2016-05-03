@@ -68,8 +68,8 @@ xdescribe('Controller: ActivityDetailController', function(){
                 console.log(response);
             });
 
-        function successReviews(reviews){
-            reviews = reviews;
+        function successReviews(revie){
+            reviews = readJSON('tests/mock/reviews.json');
         }
         function errorReviews(error){
             console.log(error);

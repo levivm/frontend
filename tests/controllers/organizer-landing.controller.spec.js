@@ -40,9 +40,6 @@ xdescribe('Controller: OrganizerLandingCtrl', function(){
 
 
 
-
-
-
         $scope =  _$rootScope_;
         $httpBackend.flush();
 
@@ -80,7 +77,7 @@ xdescribe('Controller: OrganizerLandingCtrl', function(){
             OrganizerLandingCtrl.requestSignup();
 
             $httpBackend
-                .when('POST', 'http://localhost:8000/api/users/request/signup/')
+                .when('POST', 'http://localhost:8000/api/auth/request/signup/')
                 .respond(readJSON('tests/mock/requestOrg.json'));
 
             $httpBackend.flush();

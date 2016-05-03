@@ -1,4 +1,4 @@
-describe('Controller: LoginController', function(){
+xdescribe('Controller: LoginController', function(){
     var LoginController,
         $scope = {};
 

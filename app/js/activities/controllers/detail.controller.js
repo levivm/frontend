@@ -519,7 +519,7 @@
             activity = _mapInfo(activity);
             vm.assistants = _getAssistants();
             _setUpLocation(activity);
-
+            console.log(reviews);
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
