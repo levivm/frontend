@@ -74,6 +74,7 @@
 
                 function updateSearchCity() {
                     LocationManager.setSearchCity(scope.search_city);
+                    LocationManager.setCurrentCity(scope.search_city);
                 }
 
                 //--------- Internal Functions ---------//
