@@ -477,7 +477,7 @@
               <br class="hidden-md hidden-lg">
               <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.LABEL_ADDRESS"></h4>
               <h5 class="hidden-md hidden-lg">
-                <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
+                <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">,</span>
                 <span ng-bind="detail.activity.location.name"></span>
               </h5>
               <h4 class="text-uppercase hidden-md hidden-lg" ng-bind="::detail.strings.COPY_VACANCY"></h4>
@@ -510,10 +510,10 @@
 <div class="location col-xs-12">
     <div class="address">
       <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/map_location.png')}}" alt=""/>
-      <span ng-bind="detail.activity.location.address"></span><span ng-if="detail.activity.location.address">.</span>
-      <span ng-bind="detail.activity.location.name"></span>
+      <span ng-bind="::detail.activity.location.address"></span><span ng-if="::detail.activity.location.address">,</span>
+      <span ng-bind="::detail.activity.location.name"></span>
     </div>
-  <div class="row " ng-show="detail.activity.location">
+  <div class="row " ng-show="::detail.activity.location">
     <ui-gmap-google-map class="map" center='detail.map.center' zoom='detail.map.zoom'
       bounds="detail.map.bounds" options="detail.map.options"
       events="detail.map.events">
@@ -528,7 +528,7 @@
 
 <!--Attendees-->
 
-<div class="col-xs-12 limited-width" ng-if="detail.assistants.length > 0">
+<div class="col-xs-12 limited-width" ng-if="::detail.assistants.length > 0">
   <div class="row">
     <div class="col-xs-12">
       <div class="attendees-container">

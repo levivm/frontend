@@ -5,7 +5,7 @@
             <label class="control-label" for="email"
                    ng-bind="::account.strings.LABEL_EMAIL"></label>
             <input id="email" class="form-control" name="email"
-                   ng-model="account.student.email" type="email"/>
+                   ng-model="account.student.user.email" type="email"/>
         </div>
         <trulii-submit-controls is-saving="account.isSaving"
             data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>

@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager', '$filter'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager', '$filter', '$location'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter, $location) {
         var visibleReviewListSize = 3;
         var vm = this;
 
@@ -474,10 +474,10 @@
             title = title.replace(/[^\w ]/g, function(char) {
               return dict[char] || char;
             });
+            
 
             // Updating the URL
-
-            $state.transitionTo($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: false, location: 'replace'});
+            $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false});
         }
 
         function _getAssistants() {
