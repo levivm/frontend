@@ -1,13 +1,17 @@
-<form name='account.account_form_email' ng-submit="account.changeEmail()">
-    <fieldset>
-        <p class="text-muted" ng-bind="::account.strings.COPY_TAB_EMAIL"></p>
-        <div class="form-group" trulii-input-errors-control="email">
-            <label class="control-label" for="email"
-                   ng-bind="::account.strings.LABEL_EMAIL"></label>
-            <input id="email" class="form-control" name="email"
-                   ng-model="account.student.email" type="email"/>
-        </div>
-        <trulii-submit-controls is-saving="account.isSaving"
-            data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
-    </fieldset>
-</form>
+<div class="col-xs-10 col-xs-offset-1 col-lg-8 col-lg-offset-0">
+    <div class="row">
+        <form name="account.account_form_email" class="col-xs-12 col-lg-8" ng-submit="account.changeEmail()">
+            <fieldset class="row">
+                <p class="text-muted" ng-bind="::account.strings.COPY_TAB_EMAIL"></p>
+                <div class="form-group" trulii-input-errors-control="email">
+                    <label class="control-label" for="email"
+                        ng-bind="::account.strings.LABEL_EMAIL"></label>
+                    <input id="email" class="form-control col-md-6" name="email"
+                        ng-model="account.student.email" type="email"/>
+                </div>
+                <trulii-submit-controls is-saving="account.isSaving"
+                    data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
+            </fieldset>
+        </form>
+    </div>
+</div>

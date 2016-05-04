@@ -94,18 +94,18 @@
         <div class="info separate-above">
             <div class="col-xs-4 padding-vertical-less">
               <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_level.png')}}" class="center-block" alt=""/>
-              <p class="title text-center" ng-bind="detail.activity.level_display"></p>
+              <p class="text-center" ng-bind="detail.activity.level_display"></p>
             </div>
             <div class="col-xs-4 padding-vertical-less">
               <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_certification.png')}}" class="center-block" alt=""/>
-              <p ng-if="detail.activity.certification" class="title text-center"
+              <p ng-if="detail.activity.certification" class="text-center"
                 ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></p>
-              <p ng-if="!detail.activity.certification" class="title text-center"
+              <p ng-if="!detail.activity.certification" class="text-center"
                 ng-bind="::detail.strings.VALUE_WITHOUT_CERTIFICATION"></p>
             </div>
             <div class="col-xs-4 padding-vertical-less">
               <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/widget_duration.png')}}" class="center-block" alt=""/>
-              <p class="title text-center" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></p>
+              <p class="text-center" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></p>
             </div>
           </div>
       </div>
@@ -460,7 +460,7 @@
                     </div>
                   </td>
                   <td colspan=1>
-                    <a class="btn btn-primary btn-block" ng-if="calendar.available_capacity > 0"
+                    <a class="btn btn-primary btn-block text-uppercase" ng-if="calendar.available_capacity > 0"
                       ng-click="detail.signUp(detail.activity.id, calendar.id); detail.calendarSignUp()"
                       ng-bind="::detail.strings.ACTION_SIGN_UP">
                     </a>

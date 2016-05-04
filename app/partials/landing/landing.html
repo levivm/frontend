@@ -170,8 +170,8 @@
         </div>
       </div>
       <div class="category-card-container">
-        <div class="row">
-          <div class="col-xs-12 " ng-class="::home.organizerCategories($index)" ng-repeat="category in home.categories track by category.id">
+        <div class="row limited-width">
+          <div class="col-xs-12" ng-class="::home.organizerCategories($index)" ng-repeat="category in home.categories track by category.id">
             <a ng-click="home.searchCategory(category)" ui-sref="search({category:category.id})" class="category-card " ng-class="::{'category-card-lg':  home.organizerCategories($index) === 'col-md-6','category-card-lg.before-xs': home.organizerCategories($index) === 'col-md-4' }">
               <div class="category-card__veil"></div>
               <div class="category-card__background" ng-style="{'background-image': 'url({{::home.getAmazonUrl(category.cover)}})'}"></div>

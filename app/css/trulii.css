@@ -8474,7 +8474,7 @@ h6,
 .h2,
 .h3,
 .h4 {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 h1,
@@ -12864,22 +12864,37 @@ hr.on-light {
   font-weight: 400;
 }
 .well-auth.well {
-  max-width: 450px;
+  max-width: 400px;
   margin: 0 auto;
 }
 .limited-width {
   float: none;
   margin: 0 auto;
+  clear: both;
 }
-@media (max-width: 1299) {
+@media (max-width: 1299px) {
   .limited-width {
-    width: 1200px;
+    max-width: 1200px;
     padding: 0 50px;
   }
 }
 @media (min-width: 1300px) {
   .limited-width {
     max-width: 1300px;
+  }
+}
+.limited-width-dashboard {
+  float: none;
+  clear: both;
+  margin: initial;
+  margin-left: 120px;
+  max-width: 1300px;
+}
+@media (max-width: 1299px) {
+  .limited-width-dashboard {
+    max-width: 100%;
+    margin: auto;
+    margin-left: auto;
   }
 }
 .text-left {
@@ -13011,7 +13026,7 @@ hr.on-light {
   line-height: 1.2em;
 }
 .font-title {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .strong-text-muted,
 .card__lateral-menu__title {
@@ -13039,7 +13054,7 @@ hr.on-light {
   color: #535353;
 }
 .font-family-sans {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .font-family-sans-alt {
   font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -13049,31 +13064,31 @@ hr.on-light {
 }
 .montserrat-ultralight {
   font-weight: 100;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .montserrat-light {
   font-weight: 200 !important;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .montserrat-regular,
 .sidebar-category-container .sidebar-category {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 .montserrat-semibold {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
 .montserrat-bold {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 .montserrat-extrabold {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
 .montserrat-black {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
 }
 .sinkin-thin {
@@ -13613,7 +13628,7 @@ a.no-text-decoration {
   line-height: 1em;
   text-transform: uppercase;
   border-radius: 4px;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: 1px;
   padding: 0.3em 0.6em;
 }
@@ -14446,7 +14461,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-align: left;
   position: fixed;
   top: 80px;
-  z-index: 1500;
+  z-index: 1050;
   padding: 0 1em;
   padding-right: 17em;
   transition: all 0.25s;
@@ -14591,7 +14606,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .burger-menu p {
   margin: 0.5em 0;
   font-weight: 400;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #1b9285;
 }
 .burger-menu ul.list-inline li:not(:first-child) {
@@ -15309,7 +15324,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-bar__navbar button {
   background-color: transparent;
   background-image: none;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.95em;
   font-weight: 200;
   float: left;
@@ -15372,7 +15387,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1.1em;
 }
 .sidebar {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: fixed;
   top: 80px;
   bottom: 0;
@@ -15717,7 +15732,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 0 0.4em;
 }
 .sidebar-category-container .sidebar-category .subcategories__item {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   padding: 0.6em 0.6em 0.6em 6em;
   color: #999999;
@@ -16086,7 +16101,7 @@ tags-input input {
   color: #ffbc33;
 }
 .btn {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .btn-lg {
   text-transform: uppercase;
@@ -16634,7 +16649,7 @@ td {
   border: 1px solid #eeeeee;
   border-radius: 0;
   color: #eeeeee;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .panel-default .panel-heading {
   border: 0;
@@ -16794,7 +16809,7 @@ ul.dropdown-menu:after {
 .values-container p {
   position: absolute;
   color: #000000;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
 }
 @media screen and (max-width: 992px) {
@@ -17537,7 +17552,7 @@ ul.dropdown-menu:after {
   margin: 1.5em 0;
   padding: 0;
   display: block;
-  width: 100%;
+  width: 19em;
   border: 1px solid #e3e3e3;
   border-radius: 5px;
 }
@@ -18108,7 +18123,7 @@ button.toast-close-button {
   bottom: 0;
   padding: .5em 1em;
   transition: .5s background ease;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .gallery-grid__photo__caption__title {
   display: block;
@@ -18295,6 +18310,7 @@ button.toast-close-button {
 .trulii-cover-small__content,
 .trulii-cover-medium__content,
 .trulii-cover-regular__content {
+  padding: 0 15px;
   width: 100%;
   color: white;
 }
@@ -18869,11 +18885,16 @@ button.toast-close-button {
 .trulii-cover-small__background-video,
 .trulii-cover-medium__background-video,
 .trulii-cover-regular__background-video {
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  background-size: cover;
+  overflow: hidden;
 }
 .trulii-cover__background:after,
 .trulii-cover-small__background:after,
@@ -19211,7 +19232,7 @@ blockquote {
 .activity-card__header__menu__item {
   color: #FFFFFF;
   font-size: 1.5em;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   cursor: pointer;
   margin-left: 0.3em;
@@ -19473,7 +19494,7 @@ blockquote {
   vertical-align: middle;
 }
 .organizer-widget .card .content .data .name {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 1em;
   letter-spacing: 2px;
@@ -19501,7 +19522,7 @@ blockquote {
   padding-bottom: 0.4em;
 }
 .calendar-widget {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .calendar-widget .widget-card .header {
   border: 1px solid #DEDEDE;
@@ -20091,9 +20112,6 @@ blockquote {
 .sign-up-container .btn span {
   vertical-align: middle;
   font-size: 1.25em;
-}
-.sign-up-container .btn:hover {
-  background-color: #22c7b5;
 }
 .sign-up-container h1,
 .sign-up-container h2,
@@ -21317,7 +21335,7 @@ blockquote {
   }
 }
 .billing-widget {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #e3e3e3;
   font-size: 0.8em;
   font-weight: 300;
@@ -22134,7 +22152,7 @@ blockquote {
 .review-detail .report-alert p {
   font-size: 1em;
   color: #3a3d3f;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .review-detail .reported-copy {
   font-size: 16px;
@@ -22240,7 +22258,7 @@ blockquote {
 .profile-cover h4,
 .profile-cover p {
   color: white;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .profile-cover h1 {
   letter-spacing: 5px;
@@ -22339,7 +22357,7 @@ blockquote {
 }
 .popover {
   box-shadow: none;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #f3f3f3 !important;
   color: #535353;
   border: 1px solid #f3f3f3;
@@ -22545,7 +22563,7 @@ blockquote {
 .home-footer__love p {
   font-size: 1em;
   padding-top: 20px;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: white;
   letter-spacing: 1px;
@@ -22837,7 +22855,7 @@ input[type=text].form-control.referral-link:focus {
   font-weight: 500;
 }
 .footer--dashboard {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   height: 2.4em;
   position: absolute;
@@ -23011,10 +23029,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 p {
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #999999;
   font-size: 1.2em;
   margin-bottom: 1.5em;

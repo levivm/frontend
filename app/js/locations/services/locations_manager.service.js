@@ -28,8 +28,8 @@
         var KEY_CURRENT_CITY = "current_city";
         var KEY_AVAILABLE_CITIES = "availableCities";
         var CURRENT_CITY_MODIFIED_EVENT = "currentCityModified";
-        var IP_INFO_DEV ='http://ipinfo.io/186.116.176.170?callback=JSON_CALLBACK';
-        var IP_INFO = 'http://ipinfo.io/?callback=JSON_CALLBACK'
+        var IP_INFO_DEV ='//ipinfo.io/186.116.176.170?callback=JSON_CALLBACK';
+        var IP_INFO = '//ipinfo.io/?callback=JSON_CALLBACK'
 
         //noinspection UnnecessaryLocalVariableJS
         var LocationManager = {
@@ -158,15 +158,6 @@
         function getCurrentCity() {
             if(!currentCity){
                 currentCity = localStorageService.get(KEY_CURRENT_CITY);
-                if(!currentCity){
-                    _requestAvailableCities().then(function(availableCities){
-                        _setCurrentCityFromIp().then(function(selectCity){
-                            setCurrentCity(selectCity);
-                            getSearchCity();
-                        });
-
-                    });
-                }
             }
 
             if (currentCity) {
@@ -325,7 +316,6 @@
             $http.jsonp(IP_INFO).then(success, error);
 
             function success(response){
-                console.log(response);
                 var latitude = parseFloat(response.data.loc.split(',')[0]).toFixed(2);
                 angular.forEach( availableCities, function (city, index){
                     calc =  Math.abs(latitude - parseFloat(city.point[0]).toFixed(2));

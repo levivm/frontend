@@ -742,7 +742,7 @@
 
 .well-auth{
     &.well{
-      max-width: 450px;
+      max-width: 400px;
       margin: 0 auto;
     }
 }
@@ -750,11 +750,26 @@
 .limited-width{
   float: none;
   margin: 0 auto;
-  @media (max-width: 1299){
-    width: 1200px;
+	clear: both;
+	
+  @media (max-width: 1299px){
+    max-width: 1200px;
     padding: 0 50px;
   }
   @media (min-width: 1300px){
     max-width: 1300px;
   }
+}
+
+.limited-width-dashboard{
+	float: none;
+	clear: both;
+	margin: initial;
+	margin-left: 120px;
+	max-width: 1300px;
+	@media (max-width: 1299px){
+		max-width: 100%;
+		margin: auto;
+		margin-left: auto;
+	}
 }

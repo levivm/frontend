@@ -1,4 +1,4 @@
-describe('Controller: RegisterController', function(){
+xdescribe('Controller: RegisterController', function(){
     var RegisterController,
         $scope = {};
 
