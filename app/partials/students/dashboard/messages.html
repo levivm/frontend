@@ -2,11 +2,10 @@
 </div>
 <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard">
     <div class="row dashboard-messages" ng-if="messages.messages.length > 0">
-        <div class="col-xs-12 col-md-9 col-md-offset-1 separate-above ">
+        <div class="col-xs-12 separate-above ">
             <form class="separate-above  ">
                 <fieldset>
                     <div class="form-group" >
-
                         <input type="text" class="form-control" placeholder="{{::messages.strings.SEARCH_PLACEHOLDER}}" ng-model='messages.search'
                         name="search" id="search"> <i class="mdi mdi-action-search"></i></input>
                     </div>
@@ -47,8 +46,8 @@
             next-text="{{::messages.strings.NEXT_TEXT}}"
             data-items-per-page="messages.paginationOpts.itemsPerPage"></pagination>
     </div>
-    <div ng-if="messages.messages.length === 0">
-      <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-center separate-above">
+    <div ng-if="messages.messages.length === 0" class="row">
+      <div class="col-xs-12 text-center separate-above">
           <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
               alt="{{messages.strings.COPY_NO_MESSAGES}}"
               class="center-block img-responsive"/>
