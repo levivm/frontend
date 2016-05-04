@@ -8459,12 +8459,6 @@ h6,
   font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
-h1,
-h2,
-h3,
-h4 {
-  letter-spacing: -1px;
-}
 h5,
 h6 {
   font-weight: 400;
@@ -17536,7 +17530,6 @@ ul.dropdown-menu:after {
   margin: 1.5em 0;
   padding: 0;
   display: block;
-  width: 19em;
   border: 1px solid #e3e3e3;
   border-radius: 5px;
 }
@@ -18297,6 +18290,13 @@ button.toast-close-button {
   padding: 0 15px;
   width: 100%;
   color: white;
+}
+.trulii-cover__content .limited-width,
+.trulii-cover-small__content .limited-width,
+.trulii-cover-medium__content .limited-width,
+.trulii-cover-regular__content .limited-width {
+  padding-right: 30px;
+  padding-left: 30px;
 }
 .trulii-cover__content .social .btn-share-fb,
 .trulii-cover-small__content .social .btn-share-fb,
@@ -19100,7 +19100,7 @@ blockquote {
   padding: 0 20px;
 }
 .activity-card {
-  width: 100%;
+  width: 19em;
   max-width: 20%;
   display: inline-block;
   border-radius: 5px;
