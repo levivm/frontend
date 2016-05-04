@@ -19254,6 +19254,9 @@ blockquote {
   margin-left: 0.3em;
   text-align: center;
 }
+.activity-card__header__menu__item:hover {
+  text-decoration: none;
+}
 .activity-card__header__menu__item__icon {
   font-size: 1em;
 }
@@ -19306,6 +19309,9 @@ blockquote {
   position: absolute;
   right: 0;
   top: -5px;
+}
+.activity-card__body__menu-organizer a:hover {
+  text-decoration: none;
 }
 .activity-card__body__menu-organizer a span {
   color: #999999;
