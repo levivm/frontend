@@ -33,7 +33,8 @@
             'templates',
             'nvd3',
             'ui.select',
-            'textAngular'
+            'textAngular',
+            'dynamicLayout'
         ]);
 
     angular

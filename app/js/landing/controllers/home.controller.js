@@ -36,7 +36,8 @@
             searchCategory:searchCategory,
             coverVideo: {},
             getAmazonUrl: getAmazonUrl,
-            getAmazonVideoUrl:getAmazonVideoUrl
+            getAmazonVideoUrl:getAmazonVideoUrl,
+            cards: []
         });
 
         _activate();
@@ -150,6 +151,13 @@
             loadActivities();
             _initScroll();
             _fromBurgerMenu();
+            
+            for(var i = 0; i < activities.results.length; i++){
+                activities.results[i].template = "partials/work1.html";
+            }
+            console.log(activities.results);
+            console.log(vm.cards);
+            vm.cards = activities.results;
             //Analytics.generalEvents.landing();
 
         }
