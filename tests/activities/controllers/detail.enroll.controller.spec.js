@@ -63,7 +63,9 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
             .when('GET', 'http://localhost:8000/api/activities/4/calendars/13')
             .respond(readJSON('tests/mock/calendar.json'));
 
-
+        $httpBackend
+           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .respond(readJSON('tests/mock/ipinfo.json'));
         ActivitiesManager.getActivity(4)
             .then(function(data){
                 activity = data;

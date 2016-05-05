@@ -57,6 +57,9 @@ xdescribe('Controller: ActivityDetailController', function(){
         $httpBackend
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
+        $httpBackend
+           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .respond(readJSON('tests/mock/ipinfo.json'));
 
         ActivitiesManager.getActivity(4)
             .then(function(data){
