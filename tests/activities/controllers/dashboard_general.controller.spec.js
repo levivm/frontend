@@ -16,6 +16,7 @@ xdescribe('Controller: ActivityGeneralController', function(){
             $httpBackend = $injector.get('$httpBackend');
             ActivitiesManager = $injector.get('ActivitiesManager'),
             Organizer = $injector.get('Organizer');
+            Activity = $injector.get('Activity');
          })
 
     });
@@ -57,7 +58,7 @@ xdescribe('Controller: ActivityGeneralController', function(){
 
         ActivitiesManager.getActivity(4)
             .then(function(data){
-                activity = data;
+                activity = new Activity(data);
                 var organizerObj = new Organizer(activity.organizer);
 
             }, function(response){
@@ -103,6 +104,7 @@ xdescribe('Controller: ActivityGeneralController', function(){
 
        }));
         it('should successfully update', function() {
+            ActivityGeneralController.isSaving = true;
             ActivityGeneralController.activity_create_form = $scope.vm.activity_create_form;
             ActivityGeneralController.save_activity();
             $httpBackend
@@ -110,6 +112,7 @@ xdescribe('Controller: ActivityGeneralController', function(){
                  .respond(readJSON('tests/mock/activity.json'));
 
             $httpBackend.flush();
+            expect(ActivityGeneralController.isSaving).toBe(false);
          });
     });
 

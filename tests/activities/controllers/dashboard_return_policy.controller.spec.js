@@ -1,10 +1,9 @@
-xdescribe('Controller: ActivityCalendarController', function(){
-    var ActivityCalendarController,
+xdescribe('Controller: ActivityDBReturnPDashboard', function(){
+    var ActivityDBReturnPDashboard,
         ActivitiesManager,
         rootScope,
         activity='',
         organizer='',
-        calendar,
         Organizer,
         $httpBackend,
         currentUser,
@@ -15,8 +14,7 @@ xdescribe('Controller: ActivityCalendarController', function(){
         module('trulii');
         inject(function ($injector) {
             $httpBackend = $injector.get('$httpBackend');
-            ActivitiesManager = $injector.get('ActivitiesManager');
-            CalendarsManager = $injector.get('CalendarsManager');
+            ActivitiesManager = $injector.get('ActivitiesManager'),
             Organizer = $injector.get('Organizer');
             Activity = $injector.get('Activity');
          })
@@ -60,35 +58,30 @@ xdescribe('Controller: ActivityCalendarController', function(){
 
         ActivitiesManager.getActivity(4)
             .then(function(data){
+                
                 activity = new Activity(data);
                 var organizerObj = new Organizer(activity.organizer);
 
             }, function(response){
                 console.log(response);
             });
-            
-        CalendarsManager.getCalendar(null, 4)
-            .then(function(data){
-                  console.log(data)
-                  calendar = data;
-
-            }, function(response){
-                console.log(response);
-            });
-                
 
 
 
 
-       
+        ActivitiesManager.loadGeneralInfo()
+              .then(function(data){
+                  presaveInfo=data;
+              }, function(response){
+                  console.log(response);
+              })
         currentUser = readJSON('tests/mock/currentUser.json');
         //End calls
         $httpBackend.flush();
 
-        ActivityCalendarController =  $controller('ActivityCalendarController', {
+        ActivityDBReturnPDashboard =  $controller('ActivityDBReturnPDashboard', {
             'activity': activity,
             'organizer': organizer,
-            'calendar': calendar,
             '$scope': $scope});
 
 
@@ -97,36 +90,32 @@ xdescribe('Controller: ActivityCalendarController', function(){
 
     describe("Initializacion", function(){
         it('should have controller defined and strings is object defined', function() {
-            expect(ActivityCalendarController).toBeDefined();
-            expect(ActivityCalendarController.strings).toBeDefined();
+            expect(ActivityDBReturnPDashboard).toBeDefined();
+            expect(ActivityDBReturnPDashboard.strings).toBeDefined();
          });
-         
-        
     });
-     describe("Create Calendar", function(){
+
+    describe("Update", function(){
         var template, element, regForm;
         beforeEach(inject(function ($templateCache, $compile) {
-           template = '<form  id="activity_calendar_form" name="calendar.activity_calendar_form" ng-submit="calendar.save_calendar()" novalidate></form>';
+           template = '<form name="returnPolicy.activity_return_policy_form" class="col-md-10" ng-submit="returnPolicy.save_activity()"></form>'
            element = angular.element(template);
            $compile(element)($scope);
 
        }));
-        it('should successfully create', function() {
-            ActivityCalendarController.isSaving = true;
-            ActivityCalendarController.activity_calendar_form = $scope.calendar.activity_calendar_form;
-            ActivityCalendarController.calendar = calendar;
-            ActivityCalendarController.save_calendar();
+        it('should successfully update', function() {
+            ActivityDBReturnPDashboard.isSaving = true;
+            ActivityDBReturnPDashboard.activity_return_policy_form = $scope.returnPolicy.activity_return_policy_form;
+            ActivityDBReturnPDashboard.save_activity();
             $httpBackend
-                 .when('POST', 'http://localhost:8000/api/activities/4/calendars')
-                 .respond(readJSON('tests/mock/calendar_sessions.json'));
-            $scope.calendar.calendar = readJSON('tests/mock/calendar_sessions.json');
+                 .when('PUT', 'http://localhost:8000/api/activities/4')
+                 .respond(readJSON('tests/mock/activity.json'));
+
             $httpBackend.flush();
-            expect(ActivityCalendarController.isSaving).toBe(false);
+            expect(ActivityDBReturnPDashboard.isSaving).toBe(false);
          });
     });
 
-
-    
 
 
 

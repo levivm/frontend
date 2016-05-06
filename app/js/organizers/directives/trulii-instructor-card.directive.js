@@ -54,7 +54,7 @@
                 };
 
                 var resource = scope.onDashboard? scope.organizer: scope.activity;
-
+                console.log(resource)
                 _activate();
 
                 //--------- Exposed Functions ---------//
@@ -85,7 +85,6 @@
 
                 function saveInstructor(){
                     var instructor = scope.instructorEditable;
-
                     if(instructor.full_name && instructor.bio){
                         toggleEditMode();
                         if(instructor.id){
