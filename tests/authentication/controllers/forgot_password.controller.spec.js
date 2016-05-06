@@ -31,7 +31,7 @@ xdescribe('Controller: ForgotPasswordCtrl', function(){
             .when('GET', 'http://localhost:8000/api/activities/info')
             .respond(readJSON('tests/mock/generalinfo.json'));
         $httpBackend
-           .when('JSONP', 'http://ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
 
         $scope =  _$rootScope_;

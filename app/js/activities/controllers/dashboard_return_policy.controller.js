@@ -58,7 +58,6 @@
             angular.extend(activity, vm.activity);
             vm.isCollapsed = false;
             _onSectionUpdated();
-
             vm.isSaving = false;
 
             Toast.generics.weSaved();

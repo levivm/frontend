@@ -15,9 +15,9 @@
         .controller('ActivityDBDetailController', ActivityDBDetailController);
 
 
-    ActivityDBDetailController.$inject = ['$scope', '$state', '$timeout', '$q', '$stateParams', 'activity', 'Elevator', 'Toast', 'Error'];
+    ActivityDBDetailController.$inject = ['$state', '$timeout', '$q', 'activity', 'Elevator', 'Toast', 'Error'];
 
-    function ActivityDBDetailController($scope, $state, $timeout, $q, $stateParams, activity, Elevator, Toast, Error) {
+    function ActivityDBDetailController($state, $timeout, $q, activity, Elevator, Toast, Error) {
 
         var vm = this;
 
@@ -60,7 +60,7 @@
             vm.isCollapsed = false;
             vm.isSaving = false;
             angular.extend(activity, vm.activity);
-            _onSectionUpdated();            
+            _onSectionUpdated();
 
             Toast.generics.weSaved();
 
@@ -91,13 +91,13 @@
                 COPY_HELP_TEXT_EXTRA_INFO: "¿Alguna otra información adicional que quieras comunicar "+
                                             "a tus posibles participantes?",
                 COPY_HELP_TEXT_REQUIREMETS: "¿Para inscribirse hace falta conocimientos previos en algún tema? "+
-                                            "¿Deben llevar algún material para realizar la actividad? ¿Se requiere " + 
+                                            "¿Deben llevar algún material para realizar la actividad? ¿Se requiere " +
                                             "algunar documentación?",
-                COPY_HELP_TEXT_METHODOLOGY: "¿Aplicarás algún método de enseñanza en particular? "+  
+                COPY_HELP_TEXT_METHODOLOGY: "¿Aplicarás algún método de enseñanza en particular? "+
                                             "¿Su actividad será evaluadad? ¿Cómo?",
-                COPY_HELP_TEXT_CONTENT: "¿Cuáles son los temas que impartirá en su actividad?",  
-                COPY_HELP_TEXT_GOALS: "¿Cuál es la finalidad de su actividad?",  
-                COPY_HELP_TEXT_AUDIENCE: "¿A que tipo de personas va dirigido su actividad? "+  
+                COPY_HELP_TEXT_CONTENT: "¿Cuáles son los temas que impartirá en su actividad?",
+                COPY_HELP_TEXT_GOALS: "¿Cuál es la finalidad de su actividad?",
+                COPY_HELP_TEXT_AUDIENCE: "¿A que tipo de personas va dirigido su actividad? "+
                                          "¿Profesionales o público en general?"
 
             });
