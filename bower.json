@@ -48,8 +48,7 @@
     "angular-nvd3": "~1.0.5",
     "ui-select": "angular-ui-select#~0.16.1",
     "textAngular": "~1.5.0",
-    "font-awesome": "fontawesome#~4.6.1",
-    "angular-dynamic-layout": "^0.1.11"
+    "font-awesome": "fontawesome#~4.6.1"
   },
   "resolutions": {
     "lodash": "~3.6.0",

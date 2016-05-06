@@ -12942,8 +12942,7 @@ hr.on-light {
   float: left;
   position: relative;
 }
-.container-fluid,
-.detail-cover {
+.dynamic-layout-container-fluid {
   position: absolute;
   left: 50%;
   transform: translate(-50%);

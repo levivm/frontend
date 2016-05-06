@@ -144,6 +144,14 @@
            });
 
         }
+        
+        function _mapTemplates(){
+            for(var i = 0; i < activities.results.length; i++){
+                activities.results[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.cards = activities.results;
+            
+        }
 
         function _activate(){
             _setStrings();
@@ -151,13 +159,8 @@
             loadActivities();
             _initScroll();
             _fromBurgerMenu();
+            _mapTemplates();
             
-            for(var i = 0; i < activities.results.length; i++){
-                activities.results[i].template = "partials/work1.html";
-            }
-            console.log(activities.results);
-            console.log(vm.cards);
-            vm.cards = activities.results;
             //Analytics.generalEvents.landing();
 
         }

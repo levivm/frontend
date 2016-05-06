@@ -87,20 +87,15 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <div class="container-fluid separate-above-medium">
+        <div class="col-xs-12 dynamic-layout-wrapper">
+          <div class="dynamic-layout-container-fluid separate-above-medium">
             <div class="text-center">
-              <!--<trulii-activity-item
-              ng-repeat="activity in home.activities track by activity.id"
-              ng-class="{'hidden-xs hidden-sm': $index > 3 }"
-              data-activity="activity" ></trulii-activity-item>-->
-              <!--{{home.cards}}-->
               <div dynamic-layout items="home.cards" class="dynamic-layout"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row separate-above separate-below-more">
+      <div class="row separate-above-more separate-below-more">
         <div class="col-xs-10 col-md-8 center-block float-none no-padding">
           <span class="btn btn-success btn-block btn-padding"
             ng-show="home.activities.length > 0" ng-click="home.viewMoreActivities()">
@@ -118,7 +113,7 @@
 <!--End of activities section-->
 
 <!--Video section-->
-<!--<div class="col-xs-12">
+<div class="col-xs-12">
   <div class="row">
     <div class="trulii-cover">
       <div class="trulii-cover__container">
@@ -138,12 +133,12 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
 
 <!--End of video section-->
 
 <!--Video container section-->
-<!--<div class="absolute-container" ng-show="home.showVideo">
+<div class="absolute-container" ng-show="home.showVideo">
   <button class="pull-right absolute-container__close" ng-click="truliiVideo.stopVideo(); home.toggleVideoShow()">
     <img class="img-responsive" ng-src="{{home.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
   </button>
@@ -152,11 +147,11 @@
       <youtube-video player="truliiVideo" video-url="'https://www.youtube.com/watch?v=fCED7SMj3Kg&feature=youtu.be'"></youtube-video>
     </div>
   </div>
-</div>-->
+</div>
 <!--End of video container section-->
 
 <!--Categories section-->
-<!--<div class="col-xs-12 separate-above-more separate-below-more">
+<div class="col-xs-12 separate-above-more separate-below-more">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
       <div class="row">
@@ -184,11 +179,11 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
 <!--End of categories section-->
 
 <!--Info section-->
-<!--<div class="col-xs-12 container-muted" id="anchor-how">
+<div class="col-xs-12 container-muted" id="anchor-how">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1 separate-above separate-below">
       <div class="row">
@@ -232,11 +227,11 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
 <!--End of info section-->
 
 <!--Publish section-->
-<!--<div class="col-xs-12 ">
+<div class="col-xs-12 ">
   <div class="row separate-above-more separate-below-more">
     <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2">
       <h1 class="text-center text-color-success separate-below title-sm">
@@ -256,7 +251,7 @@
       </div>
     </div>
   </div>
-</div>-->
+</div>
 <!--End of publish section-->
 
-<!--<trulii-footer></trulii-footer>-->
+<trulii-footer></trulii-footer>

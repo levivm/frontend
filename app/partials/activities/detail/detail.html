@@ -593,9 +593,12 @@
   <div class="row related-activities-container">
     <div class="col-xs-12 limited-width">
       <h3 class="title separate-above-less separate-below" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
-      <div>
-        <trulii-activity-item ng-repeat="activity in detail.relatedActivities track by activity.id "
-        data-activity="activity"></trulii-activity-item>
+      <div class="col-xs-12 dynamic-layout-wrapper separate-below">
+        <div class="dynamic-layout-container-fluid separate-above-medium">
+          <div class="text-center">
+              <div dynamic-layout items="detail.cards" class="dynamic-layout"></div>
+          </div>
+          </div>
       </div>
     </div>
   </div>

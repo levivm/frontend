@@ -6,13 +6,14 @@
 
           <!--If there are activities-->
           <div ng-if="wishlist.activities.length > 0">
-            <div class="row activity-grid">
-              <trulii-activity-item
-                      ng-repeat="activity in wishlist.activities track by activity.id"
-                      data-activity="activity" >
-              </trulii-activity-item>
-            </div>
-            <div class="text-center" ng-if="wishlist.nextPaginationOpts.totalItems > wishlist.nextPaginationOpts.itemsPerPage">
+              <div class="col-xs-12 dynamic-layout-wrapper separate-below">
+                <div class="dynamic-layout-container-fluid separate-above-medium">
+                  <div class="text-center">
+                      <div dynamic-layout items="wishlist.cards" class="dynamic-layout"></div>
+                  </div>
+                </div>
+              </div>
+            <div class="text-center separate-above-more" ng-if="wishlist.nextPaginationOpts.totalItems > wishlist.nextPaginationOpts.itemsPerPage">
               <pagination class="pagination-sm"
                 ng-model="wishlist.nextPaginationOpts.pageNumber"
                 ng-change="wishlist.updateByQuery()"

@@ -82,7 +82,8 @@
             collapsedFilters: false,
             collapseFilters: collapseFilters,
             loadingActivities: true,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            cards: []
         });
 
         _activate();
@@ -258,6 +259,12 @@
                 vm.activities = response.activities;
                 vm.activitiesPaginationOpts.totalItems = response.count;
                 vm.loadingActivities = false;
+                
+                for(var i = 0; i < vm.activities.length; i++){
+                    vm.activities[i].template = "partials/activities/dynamic_layout_item.html";
+                }
+            
+                vm.cards = vm.activities;
             }
 
             function error(error) {

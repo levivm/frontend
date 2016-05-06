@@ -112,10 +112,12 @@
         <h2 class="text-center font-normal separate-above-medium separate-below-less" ng-bind="success.strings.LABEL_SIMILAR"></h2>
         <div class="col-xs-12 col-md-9 col-md-offset-2 limited-width">
           <div ng-if="success.organizerActivities.length > 0">
-            <div class="row activity-grid separate-above">
-              <trulii-activity-item
-                ng-repeat="activity in success.organizerActivities track by activity.id"
-                data-activity="activity"></trulii-activity-item>
+            <div class="col-xs-12 dynamic-layout-wrapper separate-below">
+              <div class="dynamic-layout-container-fluid separate-above-medium">
+                <div class="text-center">
+                    <div dynamic-layout items="success.cards" class="dynamic-layout"></div>
+                </div>
+                </div>
             </div>
           </div>
           <div ng-if="success.organizerActivities.length <= 0"
