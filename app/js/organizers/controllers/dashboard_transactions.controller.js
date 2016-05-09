@@ -99,15 +99,15 @@
 
                   if(vm.salesFilter.query)
                     params.id = vm.salesFilter.query;
-
-                  $http.get(api.orders(organizer.id),
-                      {params: params})
-                      .then(function(response){
+                  
+                  organizer.getOrders(vm.salesPaginationOpts.pageNumber, vm.salesPaginationOpts.itemsPerPage)
+                  .then(function(response){
                       vm.sales = response.data;
                       vm.sales.results = $filter('orderBy')(vm.sales.results, 'id', true);
                       vm.salesPaginationOpts.totalItems = vm.sales.count;
                       vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
-                    });
+                  })
+                  
                   break;
             }
         }

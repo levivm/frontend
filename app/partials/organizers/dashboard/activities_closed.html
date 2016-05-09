@@ -9,7 +9,7 @@
                 data-organizer="activities.dashOrganizer"
                 data-options="{{activities.closedOptions}}"></trulii-activity-item>
     </div>
-    <div class="text-center col-xs-10 col-md-9" ng-if="activities.closed_activities.length > 0">
+    <div class="text-center col-xs-12" ng-if="activities.closed_activities.length > 0">
         <pagination class="pagination-sm"
             ng-model="activities.closedPaginationOpts.pageNumber"
             ng-change="activities.pageChange(activities.TYPE_CLOSED)"

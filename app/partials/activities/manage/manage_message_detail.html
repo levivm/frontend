@@ -1,11 +1,6 @@
-<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
-    <a ui-sref="dash.activities-manage.messages( { activity_id: {{detail.activity.id}} })">
-      <i class="mdi mdi-navigation-arrow-back arrow-back-messages"></i>
-    </a>
-</div>
 <div class="row fade in">
-  <div class="col-xs-12 col-md-11 col-md-offset-1">
-      <div class="separate-above dashboard-messages-detail col-xs-12 col-md-9 col-md-offset-1">
+  <div class="col-xs-12">
+      <div class="separate-above dashboard-messages-detail col-xs-12">
         <div class="title-message">
             <h1 class="montserrat-light" ng-bind="::detail.message.activity"></h1>
         </div>

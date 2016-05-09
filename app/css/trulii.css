@@ -12950,6 +12950,20 @@ hr.on-light {
 .title {
   margin-bottom: 50px;
 }
+.limited-width-dashboard .dynamic-layout {
+  width: 900px;
+  margin-top: 20px;
+}
+.limited-width-dashboard .dynamic-layout-col-4 {
+  width: 300px;
+}
+.limited-width-dashboard .dynamic-layout-col-8 {
+  width: 600px;
+}
+.limited-width-dashboard .dynamic-layout-container-fluid {
+  left: 0;
+  transform: none;
+}
 .text-left {
   text-align: left;
 }
@@ -19200,6 +19214,7 @@ blockquote {
 .activity-card-organizer {
   max-width: 100%;
   min-width: 40em;
+  width: 100%;
 }
 .activity-card:hover {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);

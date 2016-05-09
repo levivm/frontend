@@ -13,7 +13,7 @@
             </form>
         </div>
     </div>
-    <div class="separate-above dashboard-messages-container col-xs-12 col-md-9 col-md-offset-1" ng-if="messages.messages.length > 0">
+    <div class="separate-above dashboard-messages-container col-xs-12" ng-if="messages.messages.length > 0">
         <a ng-repeat="message in messages.messages track by message.id" ui-sref="student-dashboard.messages-detail({'messageId': message.id})" class="row student">
             <div class="col-xs-12 row separate-below-less">
                 <div class="col-md-1">
@@ -37,7 +37,7 @@
             </div>
         </a>
     </div>
-    <div class="text-center col-xs-10" ng-if="messages.messages.length > 0">
+    <div class="text-center col-xs-12" ng-if="messages.messages.length > 0">
         <pagination class="pagination-sm"
             ng-model="messages.paginationOpts.pageNumber"
             ng-change="messages.pageChange()"

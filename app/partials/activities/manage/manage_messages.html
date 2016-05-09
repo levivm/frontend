@@ -1,7 +1,7 @@
 <div class="row fade in">
-  <div class="col-xs-12 col-md-11 col-md-offset-1">
+  <div class="col-xs-12">
     <div class="row dashboard-messages">
-      <div class="col-xs-12 col-md-9 col-md-offset-1 separate-above ">
+      <div class="col-xs-12 separate-above">
           <div class="btn btn-default padding-vertical" ng-click="messages.toggleMessageShow()">
               <span ng-bind="::messages.strings.ACTION_NEW_MESSAGE"></span>
               <span class="separate-left-less"><img ng-src="{{manage.getAmazonUrl('static/img/msj_nuevo.png')}}" alt=""></span>
@@ -16,7 +16,7 @@
           </form>
       </div>
     </div>
-    <div class="separate-above dashboard-messages-container col-xs-12 col-md-9 col-md-offset-1" ng-if="messages.messages.length > 0">
+    <div class="separate-above dashboard-messages-container col-xs-12" ng-if="messages.messages.length > 0">
         <a ng-repeat="message in messages.messages track by message.id" ui-sref="dash.activities-manage.messages-detail({'messageId': message.id})"  class="row">
             <div class="col-xs-12 row separate-below-less">
                 <div class="col-md-8">
@@ -35,7 +35,7 @@
             </div>
         </a>
     </div>
-    <div class="text-center col-xs-10" ng-if="messages.messages.length > 0">
+    <div class="text-center col-xs-12" ng-if="messages.messages.length > 0">
         <pagination class="pagination-sm"
             ng-model="messages.paginationOpts.pageNumber"
             ng-change="messages.pageChange()"

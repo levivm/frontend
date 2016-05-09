@@ -93,15 +93,9 @@
 
                   if(vm.ordersFilter.query)
                     params.id = vm.ordersFilter.query;
-
-                  $http.get(api.orders(student.id),
-                    {params: params})
-                    .then(function(response){
-                    vm.orders = response.data;
-                    vm.orders.results = $filter('orderBy')(vm.orders.results, 'id', true);
-                    vm.ordersPaginationOpts.totalItems = vm.orders.count;
-                    vm.orders = vm.orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
-                  });
+                  
+                  student.getOrders(vm.ordersPaginationOpts.pageNumber, vm.ordersPaginationOpts.itemsPerPage).then(success, error);
+                  
                   break;
 
             }
