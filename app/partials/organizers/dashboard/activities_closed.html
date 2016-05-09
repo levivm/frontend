@@ -1,5 +1,5 @@
 <div class="fade in">
-    <p class="separate-below separate-above font-family-sans-alt text-muted text-center"
+    <p class="separate-below separate-above text-muted text-center"
          ng-bind="::activities.strings.COPY_CLOSED">
     </p>
     <div class="row activity-grid --left" ng-if="activities.closed_activities.length > 0">
@@ -9,7 +9,7 @@
                 data-organizer="activities.dashOrganizer"
                 data-options="{{activities.closedOptions}}"></trulii-activity-item>
     </div>
-    <div class="text-center col-xs-10 col-md-9" ng-if="activities.closed_activities.length > 0">
+    <div class="text-center col-xs-12" ng-if="activities.closed_activities.length > 0">
         <pagination class="pagination-sm"
             ng-model="activities.closedPaginationOpts.pageNumber"
             ng-change="activities.pageChange(activities.TYPE_CLOSED)"
@@ -23,7 +23,7 @@
             <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
                  alt="{{activities.strings.LABEL_EMPTY_CLOSED}}"
                  class="img-responsive center-block"/>
-            <p class="separate-below separate-above font-family-sans-alt text-muted"
+            <p class="separate-below separate-above text-muted"
                  ng-bind="::activities.strings.COPY_EMPTY_CLOSED">
             </p>
             <a class="btn btn-lg btn-success margin-horizontal-less separate-below-less"

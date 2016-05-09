@@ -33,6 +33,7 @@
             city : null,
             calendars : [],
             reviews: [],
+            cards: [],
             relatedActivities: relatedActivities.results.slice(0, 3),
             calendar : null,
             activity : null,
@@ -507,6 +508,14 @@
             vm.strings.COPY_TOOLTIP_REVIEWS = vm.strings.COPY_RATING;
           }
         }
+        
+        function _mapTemplates(){
+            for(var i = 0; i < vm.relatedActivities.length; i++){
+                vm.relatedActivities[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.cards = vm.relatedActivities;
+            
+        }
 
         function _activate(){
             _setStrings();
@@ -517,6 +526,7 @@
             activity = _mapCalendars(activity);
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
+            _mapTemplates();
             vm.assistants = _getAssistants();
             _setUpLocation(activity);
             console.log(reviews);

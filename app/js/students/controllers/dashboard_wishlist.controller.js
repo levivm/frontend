@@ -20,6 +20,7 @@
         var vm = this;
         angular.extend(vm, {
             student : student,
+            cards: [],
             activities: [],
             past_activities: [],
             nextPaginationOpts: {
@@ -80,10 +81,18 @@
             console.log(vm.activities);
 
         }
+        
+        function _mapTemplates(){
+             for(var i = 0; i < vm.activities.length; i++){
+                vm.activities[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.cards = vm.activities;
+        }
 
         function activate() {
             _setStrings();
             _setActivities();
+            _mapTemplates();
         }
 
     }

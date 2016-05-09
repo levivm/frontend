@@ -47,7 +47,9 @@
               pageNumber: 1
             },
             updateByQuery:updateByQuery,
-            TYPE_NEXT: 'next'
+            TYPE_NEXT: 'next',
+            current_cards: [],
+            future_cards: []
         });
 
         _activate();
@@ -61,6 +63,7 @@
                   .then(function(response){
                     vm.future_activities = response.results;
                     vm.nextPaginationOpts.totalItems = response.count;
+                    _mapTemplatesFuture();
                   });
                   break;
                 case vm.TYPE_PAST:
@@ -75,6 +78,7 @@
                   .then(function(response){
                     vm.current_activities = response.results;
                     vm.currentPaginationOpts.totalItems = response.count;
+                    _mapTemplatesCurrent();
                   });
                   break;
             }
@@ -236,11 +240,29 @@
             vm.current_activities = currentActivities.results;
 
         }
+        
+        function _mapTemplatesCurrent(){
+            for(var i = 0; i < vm.current_activities.length; i++){
+                vm.current_activities[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.current_cards = vm.current_activities;
+            
+        }
+        
+        function _mapTemplatesFuture(){
+            for(var i = 0; i < vm.future_activities.length; i++){
+                vm.future_activities[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.future_cards = vm.future_activities;
+            
+        }
 
         function _activate() {
             _setStrings();
             _setActivities();
             _setOrders();
+            _mapTemplatesCurrent();
+            _mapTemplatesFuture();
         }
 
     }

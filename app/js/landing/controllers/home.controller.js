@@ -36,7 +36,8 @@
             searchCategory:searchCategory,
             coverVideo: {},
             getAmazonUrl: getAmazonUrl,
-            getAmazonVideoUrl:getAmazonVideoUrl
+            getAmazonVideoUrl:getAmazonVideoUrl,
+            cards: []
         });
 
         _activate();
@@ -143,6 +144,14 @@
            });
 
         }
+        
+        function _mapTemplates(){
+            for(var i = 0; i < activities.results.length; i++){
+                activities.results[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.cards = activities.results;
+            
+        }
 
         function _activate(){
             _setStrings();
@@ -150,6 +159,8 @@
             loadActivities();
             _initScroll();
             _fromBurgerMenu();
+            _mapTemplates();
+            
             //Analytics.generalEvents.landing();
 
         }

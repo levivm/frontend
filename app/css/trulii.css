@@ -8456,7 +8456,7 @@ h6,
 .h2,
 .h3,
 .h4 {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
 h5,
@@ -12873,6 +12873,97 @@ hr.on-light {
     margin-left: auto;
   }
 }
+@media (min-width: 1366px) {
+  .dynamic-layout {
+    width: 1300px;
+    margin-top: 20px;
+  }
+  .dynamic-layout-col-4 {
+    width: 300px;
+  }
+}
+@media (min-width: 900px) and (max-width: 1366px) {
+  .dynamic-layout {
+    width: 900px;
+    margin-top: 20px;
+  }
+  .dynamic-layout-col-4 {
+    width: 300px;
+  }
+  .dynamic-layout-col-8 {
+    width: 600px;
+  }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .dynamic-layout {
+    width: 600px;
+  }
+  .dynamic-layout-col-4 {
+    width: 300px;
+  }
+  .dynamic-layout-col-8 {
+    width: 600px;
+  }
+}
+@media (max-width: 600px) {
+  .dynamic-layout {
+    width: 300px;
+  }
+  .dynamic-layout-col-4 {
+    width: 300px;
+  }
+  .dynamic-layout-col-8 {
+    width: 300px;
+  }
+}
+.dynamic-layout-item {
+  padding: 10px;
+}
+.move-items-animation {
+  transition-property: left, top;
+  transition-duration: .5s;
+  transition-timing-function: ease-in-out;
+}
+.dynamic-layout-item-parent.ng-enter {
+  transition: 0.5s ease-in-out;
+  opacity: 0;
+}
+.dynamic-layout-item-parent.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.dynamic-layout-item-parent.ng-leave {
+  transition: 0.5s ease-in-out;
+  opacity: 1;
+}
+.dynamic-layout-item-parent.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.dynamic-layout {
+  float: left;
+  position: relative;
+}
+.dynamic-layout-container-fluid {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+.title {
+  margin-bottom: 50px;
+}
+.limited-width-dashboard .dynamic-layout {
+  width: 900px;
+  margin-top: 20px;
+}
+.limited-width-dashboard .dynamic-layout-col-4 {
+  width: 300px;
+}
+.limited-width-dashboard .dynamic-layout-col-8 {
+  width: 600px;
+}
+.limited-width-dashboard .dynamic-layout-container-fluid {
+  left: 0;
+  transform: none;
+}
 .text-left {
   text-align: left;
 }
@@ -13002,7 +13093,7 @@ hr.on-light {
   line-height: 1.2em;
 }
 .font-title {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .strong-text-muted,
 .card__lateral-menu__title {
@@ -13012,7 +13103,7 @@ hr.on-light {
   opacity: .4;
 }
 .standout-text {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
   font-size: 1.1em;
   color: #999999;
@@ -13030,77 +13121,77 @@ hr.on-light {
   color: #535353;
 }
 .font-family-sans {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .font-family-sans-alt {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .font-family-serif {
   font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
 }
 .montserrat-ultralight {
   font-weight: 100;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .montserrat-light {
   font-weight: 200 !important;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .montserrat-regular,
 .sidebar-category-container .sidebar-category {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 .montserrat-semibold {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
 .montserrat-bold {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 .montserrat-extrabold {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
 .montserrat-black {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
 }
 .sinkin-thin {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 100;
 }
 .sinkin-ultralight {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
 }
 .sinkin-light {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 .sinkin-regular {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
 .sinkin-medium {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
 }
 .sinkin-semibold {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
 }
 .sinkin-bold {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
 }
 .sinkin-black {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 800;
 }
 .sinkin-extrablack {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
 }
 .pt-serif {
@@ -13606,7 +13697,7 @@ a.no-text-decoration {
   line-height: 1em;
   text-transform: uppercase;
   border-radius: 4px;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   letter-spacing: 1px;
   padding: 0.3em 0.6em;
 }
@@ -14462,7 +14553,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-right: 0;
 }
 .navbar-secondary__item {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: .85em;
   color: rgba(0, 0, 0, 0.74);
   display: inline-block;
@@ -14584,7 +14675,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .burger-menu p {
   margin: 0.5em 0;
   font-weight: 400;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #1b9285;
 }
 .burger-menu ul.list-inline li:not(:first-child) {
@@ -15302,7 +15393,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-bar__navbar button {
   background-color: transparent;
   background-image: none;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.95em;
   font-weight: 200;
   float: left;
@@ -15365,7 +15456,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1.1em;
 }
 .sidebar {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: fixed;
   top: 80px;
   bottom: 0;
@@ -15448,7 +15539,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-decoration: none;
   line-height: 3em;
   cursor: pointer;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   font-size: .9em;
   border-left: 5px solid transparent;
@@ -15539,7 +15630,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 100%;
   padding: 1em;
   margin-top: 2em;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
   font-size: .9em;
   color: #fafafa;
@@ -15710,7 +15801,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 0 0.4em;
 }
 .sidebar-category-container .sidebar-category .subcategories__item {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   padding: 0.6em 0.6em 0.6em 6em;
   color: #999999;
@@ -15735,7 +15826,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 input,
 textarea,
 select {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: normal;
 }
 ::-webkit-input-placeholder {
@@ -15753,7 +15844,7 @@ select {
   font-weight: 200;
 }
 label {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   color: #999999 !important;
   font-size: 1em;
@@ -16079,7 +16170,7 @@ tags-input input {
   color: #ffbc33;
 }
 .btn {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .btn-lg {
   text-transform: uppercase;
@@ -16364,7 +16455,7 @@ tags-input input {
   display: block;
   width: 100%;
   background-color: #FAFAFA;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   padding: 1em 2.5rem;
   font-size: 1.2em;
 }
@@ -16373,7 +16464,7 @@ tags-input input {
   margin: 0 2.5rem;
 }
 .section-description {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
   margin: 1.5em 0;
   font-weight: normal;
@@ -16477,7 +16568,7 @@ tags-input input {
   color: rgba(0, 0, 0, 0.74) !important;
 }
 table {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 table a {
   text-decoration: underline;
@@ -16574,13 +16665,13 @@ td {
 }
 .order__info__label {
   margin-top: 2em;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: .9em;
   font-weight: 200;
   color: #999999;
 }
 .order__info__data {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.1em;
 }
 .order__assistants {
@@ -16627,7 +16718,7 @@ td {
   border: 1px solid #eeeeee;
   border-radius: 0;
   color: #eeeeee;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .panel-default .panel-heading {
   border: 0;
@@ -16644,7 +16735,7 @@ td {
   }
 }
 .panel-default .panel-date {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 13em;
   float: left;
   padding: 0 3%;
@@ -16673,7 +16764,7 @@ td {
   }
 }
 .panel-default .panel-counter .numbers {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .panel-default .panel-counter .progress {
   margin: 0em 1em;
@@ -16787,7 +16878,7 @@ ul.dropdown-menu:after {
 .values-container p {
   position: absolute;
   color: #000000;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
 }
 @media screen and (max-width: 992px) {
@@ -17591,14 +17682,14 @@ ul.dropdown-menu:after {
   color: #999999;
   text-align: center;
   font-weight: bold;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .card-list-item {
   padding: 3em 2em;
   position: relative;
   background-color: white !important;
   overflow-y: auto;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .card-list-item h1 {
   font-size: 1.2em;
@@ -18100,7 +18191,7 @@ button.toast-close-button {
   bottom: 0;
   padding: .5em 1em;
   transition: .5s background ease;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .gallery-grid__photo__caption__title {
   display: block;
@@ -18446,7 +18537,7 @@ button.toast-close-button {
   font-size: 1.8em;
   margin-top: 1em;
   margin-bottom: 1.5em;
-  font-family: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 200;
 }
 @media screen and (max-width: 768px) {
@@ -19123,6 +19214,7 @@ blockquote {
 .activity-card-organizer {
   max-width: 100%;
   min-width: 40em;
+  width: 100%;
 }
 .activity-card:hover {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
@@ -19216,7 +19308,7 @@ blockquote {
 .activity-card__header__menu__item {
   color: #FFFFFF;
   font-size: 1.5em;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   cursor: pointer;
   margin-left: 0.3em;
@@ -19287,7 +19379,7 @@ blockquote {
   font-size: 1.2em;
 }
 .activity-card__body__title {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: 0.85em;
   margin-bottom: 0.25em;
@@ -19307,7 +19399,7 @@ blockquote {
 }
 .activity-card__body__owner-name {
   height: 2em;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: bold;
   font-size: .75em;
   width: 100%;
@@ -19350,7 +19442,7 @@ blockquote {
   color: #6c6c6c;
   text-align: center;
   font-weight: bold;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-decoration: none;
   border-radius: 0px 0px 5px 5px;
 }
@@ -19379,7 +19471,7 @@ blockquote {
   font-size: 0.8em;
 }
 .activity-card__rating {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   display: inline-block;
   color: #767676;
@@ -19484,7 +19576,7 @@ blockquote {
   vertical-align: middle;
 }
 .organizer-widget .card .content .data .name {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 600;
   font-size: 1em;
   letter-spacing: 2px;
@@ -19492,7 +19584,7 @@ blockquote {
   text-transform: uppercase;
 }
 .organizer-widget .card .content .data .location {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 0.75em;
   color: #999999;
 }
@@ -19506,13 +19598,13 @@ blockquote {
 .organizer-widget .ratings span {
   color: #999999;
   margin-left: .7em;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .organizer-widget .ratings img {
   padding-bottom: 0.4em;
 }
 .calendar-widget {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .calendar-widget .widget-card .header {
   border: 1px solid #DEDEDE;
@@ -19569,7 +19661,7 @@ blockquote {
   font-weight: 400;
   text-align: center;
   color: #FFFFFF;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #999999;
   border-bottom: none;
   border-top: none;
@@ -20392,7 +20484,7 @@ blockquote {
 }
 .panel .panel-heading h4 {
   margin: 0;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
 }
 .select-calendar {
@@ -20714,7 +20806,7 @@ blockquote {
 }
 .sessions-panel .panel-heading h4 {
   margin: 0;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
 }
 .sessions-panel .panel-body {
@@ -21001,7 +21093,7 @@ blockquote {
 }
 .attendees-panel .panel-heading h4 {
   margin: 0;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
 }
 .attendees-panel .form-group:not(:first-child) {
@@ -21278,7 +21370,7 @@ blockquote {
 }
 .payments-panel .panel-heading h4 {
   margin: 0;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
 }
 .payments-panel .credit-cards-container img {
@@ -21325,7 +21417,7 @@ blockquote {
   }
 }
 .billing-widget {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   border: 1px solid #e3e3e3;
   font-size: 0.8em;
   font-weight: 300;
@@ -21655,7 +21747,7 @@ blockquote {
 }
 .pse-panel .panel-heading h4 {
   margin: 0;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
 }
 .pse-panel .panel-body {
@@ -21937,7 +22029,7 @@ blockquote {
 }
 .success-panel .panel-heading h4 {
   margin: 0;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #535353;
 }
 @media screen and (max-width: 992px) {
@@ -22031,7 +22123,7 @@ blockquote {
   }
 }
 .share-container p {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #FFFFFF;
   font-size: 1.4em;
 }
@@ -22142,7 +22234,7 @@ blockquote {
 .review-detail .report-alert p {
   font-size: 1em;
   color: #3a3d3f;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .review-detail .reported-copy {
   font-size: 16px;
@@ -22248,7 +22340,7 @@ blockquote {
 .profile-cover h4,
 .profile-cover p {
   color: white;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .profile-cover h1 {
   letter-spacing: 5px;
@@ -22343,11 +22435,11 @@ blockquote {
 }
 .profile-comments .card h1 {
   margin: 0.25em 0;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .popover {
   box-shadow: none;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   background-color: #f3f3f3 !important;
   color: #535353;
   border: 1px solid #f3f3f3;
@@ -22417,7 +22509,7 @@ blockquote {
   }
 }
 .order-detail h5 {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .order-detail .order-description,
 .order-detail .order-info {
@@ -22553,7 +22645,7 @@ blockquote {
 .home-footer__love p {
   font-size: 1em;
   padding-top: 20px;
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   color: white;
   letter-spacing: 1px;
@@ -22809,7 +22901,7 @@ input[type=text].form-control.referral-link:focus {
   padding: 12px 2em;
   background-color: #d3d3d3;
   color: #535353;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 0;
 }
@@ -22845,7 +22937,7 @@ input[type=text].form-control.referral-link:focus {
   font-weight: 500;
 }
 .footer--dashboard {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   height: 2.4em;
   position: absolute;
@@ -23011,7 +23103,7 @@ ul {
 }
 body {
   overflow-x: hidden;
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 h1,
 h2,
@@ -23019,10 +23111,10 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 p {
-  font-family: 'Raleway', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #999999;
   font-size: 1.2em;
   margin-bottom: 1.5em;
@@ -23031,7 +23123,7 @@ p {
   font-size: 0.85em;
 }
 .pagination-sm {
-  font-family: 'Sinkin Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 1.1em;
 }
 

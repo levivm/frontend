@@ -87,18 +87,15 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xs-12">
-          <div class="container-fluid separate-above-medium">
+        <div class="col-xs-12 dynamic-layout-wrapper">
+          <div class="dynamic-layout-container-fluid separate-above-medium">
             <div class="text-center">
-              <trulii-activity-item
-              ng-repeat="activity in home.activities track by activity.id"
-              ng-class="{'hidden-xs hidden-sm': $index > 3 }"
-              data-activity="activity" ></trulii-activity-item>
+              <div dynamic-layout items="home.cards" class="dynamic-layout"></div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row separate-above separate-below-more">
+      <div class="row separate-above-more separate-below-more">
         <div class="col-xs-10 col-md-8 center-block float-none no-padding">
           <span class="btn btn-success btn-block btn-padding"
             ng-show="home.activities.length > 0" ng-click="home.viewMoreActivities()">
@@ -204,27 +201,27 @@
           <div class="container-fluid separate-above">
             <img ng-src="{{home.getAmazonUrl('static/img/home/find.png')}}" alt="{{ ::home.strings.HOW_FIND_COPY }}" style="width: 8em;"
               class="img-responsive center-block">
-            <p class="text-uppercase text-center text-color-secondary font-family-sans separate-above-less separate-below-less"
+            <p class="text-uppercase text-center text-color-secondary separate-above-less separate-below-less"
               ng-bind="::home.strings.HOW_FIND_COPY"></p>
-            <p class="text-center font-family-sans" ng-bind="::home.strings.HOW_FIND_TEXT"></p>
+            <p class="text-center" ng-bind="::home.strings.HOW_FIND_TEXT"></p>
           </div>
         </div>
         <div class="col-xs-12 col-md-4">
           <div class="container-fluid separate-above">
             <img ng-src="{{home.getAmazonUrl('static/img/home/signup.png')}}" alt="{{ ::home.strings.HOW_SIGN_UP_TEXT }}" style="width: 8em;"
             class="img-responsive center-block">
-            <p class="text-uppercase text-center text-success font-family-sans separate-above-less separate-below-less"
+            <p class="text-uppercase text-center text-success separate-above-less separate-below-less"
               ng-bind="::home.strings.HOW_SIGN_UP_COPY"></p>
-            <p class="text-center font-family-sans" ng-bind="::home.strings.HOW_SIGN_UP_TEXT"></p>
+            <p class="text-center" ng-bind="::home.strings.HOW_SIGN_UP_TEXT"></p>
           </div>
         </div>
         <div class="col-xs-12 col-md-4">
           <div class="container-fluid separate-above">
             <img ng-src="{{home.getAmazonUrl('static/img/home/learn.png')}}" alt="{{ ::home.strings.HOW_LEARN_TEXT }}" style="width: 8em;"
               class="img-responsive center-block">
-            <p class="text-uppercase text-center text-warning font-family-sans separate-above-less separate-below-less"
+            <p class="text-uppercase text-center text-warning separate-above-less separate-below-less"
               ng-bind="::home.strings.HOW_LEARN_COPY"></p>
-            <p class="text-center font-family-sans" ng-bind="::home.strings.HOW_LEARN_TEXT"></p>
+            <p class="text-center" ng-bind="::home.strings.HOW_LEARN_TEXT"></p>
           </div>
         </div>
       </div>

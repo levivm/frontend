@@ -1,13 +1,14 @@
 <!--If there are activities-->
 <div ng-if="activities.current_activities.length > 0">
   <div>
-    <div class="row activity-grid">
-      <trulii-activity-item
-        ng-repeat="activity in activities.current_activities track by activity.id"
-        data-activity="activity"
-        data-current="true"
-        data-options="{{activities.options}}">
-      </trulii-activity-item>
+    <div class="row">
+      <div class="col-xs-12 dynamic-layout-wrapper separate-below">
+        <div class="dynamic-layout-container-fluid separate-above-medium">
+          <div class="text-center">
+              <div dynamic-layout items="activities.current_cards" class="dynamic-layout"></div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="text-center" ng-if="activities.currentPaginationOpts.totalItems > activities.currentPaginationOpts.itemsPerPage">
       <pagination class="pagination-sm"
