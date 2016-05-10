@@ -18341,7 +18341,7 @@ button.toast-close-button {
   background-color: transparent;
   border: 1px solid white;
   padding-top: 7px;
-  padding-left: 0px;
+  padding-left: 1px;
   color: white;
   text-align: center;
   font-size: 1.1em;
@@ -18683,7 +18683,7 @@ button.toast-close-button {
   background-color: transparent;
   border: 3px solid;
   border-radius: 100%;
-  padding: 1em 1.1em;
+  padding: 1em 1.1em 1em 1.3em;
   margin-top: 0.5em;
 }
 .trulii-cover__content-play-controllers i:hover,
@@ -18697,6 +18697,7 @@ button.toast-close-button {
 .trulii-cover-medium__content-contact-controllers,
 .trulii-cover-regular__content-contact-controllers {
   background-color: rgba(83, 83, 83, 0.4);
+  padding: 1em;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content-contact-controllers ul,
@@ -18721,22 +18722,9 @@ button.toast-close-button {
 .trulii-cover-medium__content-contact-controllers li .item-long,
 .trulii-cover-regular__content-contact-controllers li .item-long {
   position: relative;
-  height: 120px;
+  height: 110px;
   width: 110px;
   transition: all 0.5s;
-}
-@media screen and (max-width: 992px) {
-  .trulii-cover__content-contact-controllers li .item,
-  .trulii-cover-small__content-contact-controllers li .item,
-  .trulii-cover-medium__content-contact-controllers li .item,
-  .trulii-cover-regular__content-contact-controllers li .item,
-  .trulii-cover__content-contact-controllers li .item-long,
-  .trulii-cover-small__content-contact-controllers li .item-long,
-  .trulii-cover-medium__content-contact-controllers li .item-long,
-  .trulii-cover-regular__content-contact-controllers li .item-long {
-    height: 50px;
-    width: 50px;
-  }
 }
 .trulii-cover__content-contact-controllers li .item a,
 .trulii-cover-small__content-contact-controllers li .item a,
@@ -18781,6 +18769,90 @@ button.toast-close-button {
   margin-left: 50%;
   transform: translateX(-50%);
 }
+.trulii-cover__content-contact-controllers li .item .item-icon,
+.trulii-cover-small__content-contact-controllers li .item .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item .item-icon,
+.trulii-cover__content-contact-controllers li .item-long .item-icon,
+.trulii-cover-small__content-contact-controllers li .item-long .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item-long .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item-long .item-icon {
+  font-size: 2em;
+  border: 2px solid;
+  border-radius: 50%;
+  transition: all 0.50s;
+  margin-top: 1.2em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-phone,
+.trulii-cover-small__content-contact-controllers li .item .fa-phone,
+.trulii-cover-medium__content-contact-controllers li .item .fa-phone,
+.trulii-cover-regular__content-contact-controllers li .item .fa-phone,
+.trulii-cover__content-contact-controllers li .item-long .fa-phone,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-phone,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-phone,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-phone {
+  padding: 0.5em 0.6em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-twitter,
+.trulii-cover-small__content-contact-controllers li .item .fa-twitter,
+.trulii-cover-medium__content-contact-controllers li .item .fa-twitter,
+.trulii-cover-regular__content-contact-controllers li .item .fa-twitter,
+.trulii-cover__content-contact-controllers li .item-long .fa-twitter,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-twitter,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-twitter,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-twitter {
+  padding: 0.55em 0.6em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-map-marker,
+.trulii-cover-small__content-contact-controllers li .item .fa-map-marker,
+.trulii-cover-medium__content-contact-controllers li .item .fa-map-marker,
+.trulii-cover-regular__content-contact-controllers li .item .fa-map-marker,
+.trulii-cover__content-contact-controllers li .item-long .fa-map-marker,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-map-marker,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-map-marker,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-map-marker {
+  padding: 0.6em 0.9em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-newspaper-o,
+.trulii-cover-small__content-contact-controllers li .item .fa-newspaper-o,
+.trulii-cover-medium__content-contact-controllers li .item .fa-newspaper-o,
+.trulii-cover-regular__content-contact-controllers li .item .fa-newspaper-o,
+.trulii-cover__content-contact-controllers li .item-long .fa-newspaper-o,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-newspaper-o,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-newspaper-o,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-newspaper-o {
+  padding: 0.6em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-linkedin-square,
+.trulii-cover-small__content-contact-controllers li .item .fa-linkedin-square,
+.trulii-cover-medium__content-contact-controllers li .item .fa-linkedin-square,
+.trulii-cover-regular__content-contact-controllers li .item .fa-linkedin-square,
+.trulii-cover__content-contact-controllers li .item-long .fa-linkedin-square,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-linkedin-square,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-linkedin-square,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-linkedin-square {
+  padding: 0.6em 0.7em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-facebook,
+.trulii-cover-small__content-contact-controllers li .item .fa-facebook,
+.trulii-cover-medium__content-contact-controllers li .item .fa-facebook,
+.trulii-cover-regular__content-contact-controllers li .item .fa-facebook,
+.trulii-cover__content-contact-controllers li .item-long .fa-facebook,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-facebook,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-facebook,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-facebook {
+  padding: 0.6em 0.8em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-angellist,
+.trulii-cover-small__content-contact-controllers li .item .fa-angellist,
+.trulii-cover-medium__content-contact-controllers li .item .fa-angellist,
+.trulii-cover-regular__content-contact-controllers li .item .fa-angellist,
+.trulii-cover__content-contact-controllers li .item-long .fa-angellist,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-angellist,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-angellist,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-angellist {
+  padding: 0.6em 0.75em;
+}
 .trulii-cover__content-contact-controllers li .item .item-description,
 .trulii-cover-small__content-contact-controllers li .item .item-description,
 .trulii-cover-medium__content-contact-controllers li .item .item-description,
@@ -18818,6 +18890,17 @@ button.toast-close-button {
 .trulii-cover-regular__content-contact-controllers li .item-long .item-img-active {
   opacity: 0;
 }
+.trulii-cover__content-contact-controllers li .item:hover .item-icon,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item:hover .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item:hover .item-icon,
+.trulii-cover__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-small__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover .item-icon {
+  background: #38dbc8;
+  transform: translateY(-50%);
+}
 .trulii-cover__content-contact-controllers li .item:hover .item-img,
 .trulii-cover-small__content-contact-controllers li .item:hover .item-img,
 .trulii-cover-medium__content-contact-controllers li .item:hover .item-img,
@@ -18848,29 +18931,17 @@ button.toast-close-button {
 .trulii-cover-regular__content-contact-controllers li .item-long:hover .item-description {
   max-height: 100%;
 }
-.trulii-cover__content-contact-controllers li .item:hover,
-.trulii-cover-small__content-contact-controllers li .item:hover,
-.trulii-cover-medium__content-contact-controllers li .item:hover,
-.trulii-cover-regular__content-contact-controllers li .item:hover {
-  height: 135px;
-}
 .trulii-cover__content-contact-controllers li .item:hover img,
 .trulii-cover-small__content-contact-controllers li .item:hover img,
 .trulii-cover-medium__content-contact-controllers li .item:hover img,
 .trulii-cover-regular__content-contact-controllers li .item:hover img {
   padding-bottom: 40px;
 }
-.trulii-cover__content-contact-controllers li .item-long:hover,
-.trulii-cover-small__content-contact-controllers li .item-long:hover,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover,
-.trulii-cover-regular__content-contact-controllers li .item-long:hover {
-  height: 150px;
-}
-.trulii-cover__content-contact-controllers li .item-long:hover img,
-.trulii-cover-small__content-contact-controllers li .item-long:hover img,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover img,
-.trulii-cover-regular__content-contact-controllers li .item-long:hover img {
-  padding-bottom: 55px;
+.trulii-cover__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-small__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover .item-icon {
+  transform: translateY(-65%);
 }
 .trulii-cover__background,
 .trulii-cover-small__background,
@@ -22092,6 +22163,7 @@ blockquote {
 }
 .share-container a .share-facebook {
   padding: 0.25em;
+  margin-right: 2px;
 }
 .share-container a .share-twitter {
   padding: 0.1em;
@@ -22575,9 +22647,12 @@ blockquote {
   margin-bottom: 1em;
 }
 .home-footer__links .link-column .link .icon {
-  width: 15px;
+  width: 20px;
   height: 15px;
   display: inline-block;
+}
+.home-footer__links .link-column .link .icon i {
+  font-size: 1.3em;
 }
 .home-footer__links .link-column .link a {
   color: #999999;
