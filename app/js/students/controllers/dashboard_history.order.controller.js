@@ -29,7 +29,6 @@
                 maxPagesSize:10,
                 pageNumber: 1
             },
-            updateByQuery:updateByQuery,
             getAmazonUrl: getAmazonUrl
         });
 
