@@ -96,9 +96,7 @@
 
                       <div class="panel-heading">
                           <h4>
-                              <img class="img-responsive inline-block"
-                                  ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_sessions.png')}}"
-                                  alt="{{::enroll.strings.LABEL_ACTIVITY_SESSIONS}}"/>
+                              <i class="fa fa-calendar-o separate-right-less" aria-hidden="true"></i>
                               <span ng-bind="::enroll.strings.LABEL_ACTIVITY_SESSIONS"></span>
                           </h4>
                       </div>
@@ -132,9 +130,7 @@
                       <div class="panel attendees-panel">
                           <div class="panel-heading">
                               <h4>
-                                  <img class="img-responsive inline-block"
-                                      ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_attendees.png')}}"
-                                      alt="{{::enroll.strings.LABEL_ASSISTANTS}}"/>
+                                  <i class="fa fa-users separate-right-less" aria-hidden="true"></i>
                                   <span ng-bind="::enroll.strings.LABEL_ASSISTANTS"></span>
                               </h4>
                           </div>
@@ -197,9 +193,7 @@
                       <div class="panel payments-panel">
                           <div class="panel-heading">
                               <h4>
-                                  <img class="img-responsive inline-block"
-                                      ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_payments.png')}}"
-                                      alt="{{::enroll.strings.LABEL_PAYMENT_INFO}}"/>
+                                  <i class="fa fa-credit-card separate-right-less" aria-hidden="true"></i>
                                   <span ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></span>
                               </h4>
                           </div>
@@ -542,8 +536,7 @@
     <div class="row navigation-container img-carpet">
       <div class="col-xs-12 col-md-6">
           <a class="btn btn-link" ui-sref="activities-detail({activity_id: enroll.activity.id})">
-              <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}" alt="{{ ::enroll.strings.ACTION_GO_BACK }}"
-                  class="img-responsive inline-block"/>
+              <i class="fa fa-undo" aria-hidden="true"></i>
               <span ng-bind="::enroll.strings.ACTION_GO_BACK"></span>
           </a>
       </div>

@@ -12926,6 +12926,9 @@ hr.on-light {
 .text-gray-light {
   color: #999999;
 }
+.text-gray-lightest {
+  color: #fafafa;
+}
 .text-dark {
   color: #3a3d3f;
 }
@@ -14309,6 +14312,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar__option--right:hover {
   text-decoration: none;
+}
+.navbar__option--right .fa-bars {
+  font-size: 1.5em;
+  padding: 1.2em 0.8em;
 }
 .navbar__option--right .user-picture {
   display: block;
@@ -17156,23 +17163,23 @@ ul.dropdown-menu:after {
  */
 .active .spinner-layer.spinner-blue {
   /* durations: 4 * ARCTIME */
-  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 .active .spinner-layer.spinner-red {
   /* durations: 4 * ARCTIME */
-  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 .active .spinner-layer.spinner-yellow {
   /* durations: 4 * ARCTIME */
-  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 .active .spinner-layer.spinner-green {
   /* durations: 4 * ARCTIME */
-  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 .active .spinner-layer.spinner-blue-only,
 .active .spinner-layer.spinner-red-only,
@@ -18241,6 +18248,11 @@ button.toast-close-button {
 .detail-cover .text-container * {
   color: #FFFFFF;
 }
+.icon-explore {
+  color: white;
+  vertical-align: sub;
+  font-size: 1.4em;
+}
 .trulii-cover,
 .trulii-cover-small,
 .trulii-cover-medium,
@@ -18305,7 +18317,10 @@ button.toast-close-button {
   background-color: transparent;
   border: 1px solid white;
   padding-top: 7px;
-  padding-left: 5px;
+  padding-left: 0px;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
 }
 .trulii-cover__content .social .btn-share-twitter,
 .trulii-cover-small__content .social .btn-share-twitter,
@@ -18314,7 +18329,10 @@ button.toast-close-button {
   background-color: transparent;
   border: 1px solid white;
   padding-top: 7px;
-  padding-left: 5px;
+  padding-left: 0px;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
 }
 .trulii-cover__content .social .btn-share-email,
 .trulii-cover-small__content .social .btn-share-email,
@@ -18323,7 +18341,10 @@ button.toast-close-button {
   background-color: transparent;
   border: 1px solid white;
   padding-top: 7px;
-  padding-left: 6px;
+  padding-left: 0px;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
 }
 .trulii-cover__content .label,
 .trulii-cover-small__content .label,
@@ -18652,18 +18673,23 @@ button.toast-close-button {
   margin-top: 11px;
   margin-right: 5px;
 }
-.trulii-cover__content-play-controllers img,
-.trulii-cover-small__content-play-controllers img,
-.trulii-cover-medium__content-play-controllers img,
-.trulii-cover-regular__content-play-controllers img {
+.trulii-cover__content-play-controllers i,
+.trulii-cover-small__content-play-controllers i,
+.trulii-cover-medium__content-play-controllers i,
+.trulii-cover-regular__content-play-controllers i {
+  font-size: 1.8em;
+  color: white;
   transition: all 0.25s;
   background-color: transparent;
+  border: 3px solid;
   border-radius: 100%;
+  padding: 1em 1.1em;
+  margin-top: 0.5em;
 }
-.trulii-cover__content-play-controllers img:hover,
-.trulii-cover-small__content-play-controllers img:hover,
-.trulii-cover-medium__content-play-controllers img:hover,
-.trulii-cover-regular__content-play-controllers img:hover {
+.trulii-cover__content-play-controllers i:hover,
+.trulii-cover-small__content-play-controllers i:hover,
+.trulii-cover-medium__content-play-controllers i:hover,
+.trulii-cover-regular__content-play-controllers i:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 .trulii-cover__content-contact-controllers,
@@ -19373,7 +19399,7 @@ blockquote {
 }
 .activity-card__bottom-organizer-assistants {
   float: right;
-  margin-top: -33px;
+  margin-top: -30px;
   color: #999999;
   text-decoration: underline;
   font-size: 0.8em;
@@ -22050,6 +22076,31 @@ blockquote {
 }
 .share-container a {
   text-decoration: none;
+  color: white;
+  font-size: 3em;
+  border-radius: 50%;
+  border: 1px solid;
+  padding: 0.7em;
+  margin-right: 1em;
+}
+@media screen and (max-width: 768px) {
+  .share-container a {
+    font-size: 2em;
+    padding: 0.4em;
+    margin-right: 0.2em;
+  }
+}
+.share-container a .share-facebook {
+  padding: 0.25em;
+}
+.share-container a .share-twitter {
+  padding: 0.1em;
+}
+.share-container a .share-twitter {
+  padding: 0.1em;
+}
+.share-container a:hover {
+  color: white !important;
 }
 .navigation-container img {
   padding: 0.2em 0.5em;
@@ -22526,7 +22577,6 @@ blockquote {
 .home-footer__links .link-column .link .icon {
   width: 15px;
   height: 15px;
-  padding-right: 2.5em;
   display: inline-block;
 }
 .home-footer__links .link-column .link a {
@@ -22558,8 +22608,10 @@ blockquote {
   color: white;
   letter-spacing: 1px;
 }
-.home-footer__love p img {
-  padding: 0 0.25em;
+.home-footer__love p i {
+  font-size: 1.3em;
+  color: #ec5469;
+  padding: 0 0.1em;
 }
 .home-footer__rights {
   height: 60px;
@@ -22624,6 +22676,12 @@ blockquote {
 .referral-share.list-inline li {
   padding-left: 2px;
   padding-right: 2px;
+}
+.referral-share.list-inline li a {
+  color: white;
+}
+.referral-share.list-inline li a .fa-facebook {
+  margin-right: 0.3em;
 }
 .referral-share.list-inline li.referral-link input {
   background-color: white;
