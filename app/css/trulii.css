@@ -13120,15 +13120,6 @@ hr.on-light {
   letter-spacing: 0px;
   color: #535353;
 }
-.font-family-sans {
-  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.font-family-sans-alt {
-  font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.font-family-serif {
-  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
-}
 .montserrat-ultralight {
   font-weight: 100;
   font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -13193,9 +13184,6 @@ hr.on-light {
 .sinkin-extrablack {
   font-family: 'Hind', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 900;
-}
-.pt-serif {
-  font-family: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
 }
 h1,
 h2,
@@ -19006,6 +18994,11 @@ button.toast-close-button {
     min-height: 30vh;
   }
 }
+@media (min-height: 1081px) {
+  .trulii-cover-regular {
+    min-height: 700px;
+  }
+}
 .trulii-cover-small {
   min-height: 50vh;
 }
@@ -19014,11 +19007,21 @@ button.toast-close-button {
     min-height: 45vh;
   }
 }
+@media (min-height: 1081px) {
+  .trulii-cover-small {
+    min-height: 400px;
+  }
+}
 .trulii-cover-medium {
   min-height: 55vh;
 }
 .trulii-cover-medium.trulii-cover-detail {
   min-height: 27.5vh;
+}
+@media (min-height: 1081px) {
+  .trulii-cover-medium {
+    min-height: 550px;
+  }
 }
 .detail-organizer {
   position: absolute;
@@ -22168,8 +22171,8 @@ blockquote {
     z-index: 100;
     background-color: transparent;
   }
-  .absolute-widget .widget-card > div,
-  .fixed-widget .widget-card > div {
+  .absolute-widget .widget-card > div:not(.btn),
+  .fixed-widget .widget-card > div:not(.btn) {
     background-color: white;
   }
   .fixed-widget {
