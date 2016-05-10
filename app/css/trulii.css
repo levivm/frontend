@@ -13017,6 +13017,9 @@ hr.on-light {
 .text-gray-light {
   color: #999999;
 }
+.text-gray-lightest {
+  color: #fafafa;
+}
 .text-dark {
   color: #3a3d3f;
 }
@@ -14400,6 +14403,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar__option--right:hover {
   text-decoration: none;
+}
+.navbar__option--right .fa-bars {
+  font-size: 1.5em;
+  padding: 1.2em 0.8em;
 }
 .navbar__option--right .user-picture {
   display: block;
@@ -17247,23 +17254,23 @@ ul.dropdown-menu:after {
  */
 .active .spinner-layer.spinner-blue {
   /* durations: 4 * ARCTIME */
-  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, blue-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 .active .spinner-layer.spinner-red {
   /* durations: 4 * ARCTIME */
-  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, red-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 .active .spinner-layer.spinner-yellow {
   /* durations: 4 * ARCTIME */
-  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, yellow-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 .active .spinner-layer.spinner-green {
   /* durations: 4 * ARCTIME */
-  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
-  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  -webkit-animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
+  animation: fill-unfill-rotate 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both, green-fade-in-out 5332ms cubic-bezier(0.4, 0, 0.2, 1) infinite both;
 }
 .active .spinner-layer.spinner-blue-only,
 .active .spinner-layer.spinner-red-only,
@@ -18332,6 +18339,11 @@ button.toast-close-button {
 .detail-cover .text-container * {
   color: #FFFFFF;
 }
+.icon-explore {
+  color: white;
+  vertical-align: sub;
+  font-size: 1.4em;
+}
 .trulii-cover,
 .trulii-cover-small,
 .trulii-cover-medium,
@@ -18396,7 +18408,10 @@ button.toast-close-button {
   background-color: transparent;
   border: 1px solid white;
   padding-top: 7px;
-  padding-left: 5px;
+  padding-left: 0px;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
 }
 .trulii-cover__content .social .btn-share-twitter,
 .trulii-cover-small__content .social .btn-share-twitter,
@@ -18405,7 +18420,10 @@ button.toast-close-button {
   background-color: transparent;
   border: 1px solid white;
   padding-top: 7px;
-  padding-left: 5px;
+  padding-left: 0px;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
 }
 .trulii-cover__content .social .btn-share-email,
 .trulii-cover-small__content .social .btn-share-email,
@@ -18414,7 +18432,10 @@ button.toast-close-button {
   background-color: transparent;
   border: 1px solid white;
   padding-top: 7px;
-  padding-left: 6px;
+  padding-left: 1px;
+  color: white;
+  text-align: center;
+  font-size: 1.1em;
 }
 .trulii-cover__content .label,
 .trulii-cover-small__content .label,
@@ -18743,18 +18764,23 @@ button.toast-close-button {
   margin-top: 11px;
   margin-right: 5px;
 }
-.trulii-cover__content-play-controllers img,
-.trulii-cover-small__content-play-controllers img,
-.trulii-cover-medium__content-play-controllers img,
-.trulii-cover-regular__content-play-controllers img {
+.trulii-cover__content-play-controllers i,
+.trulii-cover-small__content-play-controllers i,
+.trulii-cover-medium__content-play-controllers i,
+.trulii-cover-regular__content-play-controllers i {
+  font-size: 1.8em;
+  color: white;
   transition: all 0.25s;
   background-color: transparent;
+  border: 3px solid;
   border-radius: 100%;
+  padding: 1em 1.1em 1em 1.3em;
+  margin-top: 0.5em;
 }
-.trulii-cover__content-play-controllers img:hover,
-.trulii-cover-small__content-play-controllers img:hover,
-.trulii-cover-medium__content-play-controllers img:hover,
-.trulii-cover-regular__content-play-controllers img:hover {
+.trulii-cover__content-play-controllers i:hover,
+.trulii-cover-small__content-play-controllers i:hover,
+.trulii-cover-medium__content-play-controllers i:hover,
+.trulii-cover-regular__content-play-controllers i:hover {
   background-color: rgba(255, 255, 255, 0.4);
 }
 .trulii-cover__content-contact-controllers,
@@ -18762,6 +18788,7 @@ button.toast-close-button {
 .trulii-cover-medium__content-contact-controllers,
 .trulii-cover-regular__content-contact-controllers {
   background-color: rgba(83, 83, 83, 0.4);
+  padding: 1em;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content-contact-controllers ul,
@@ -18786,22 +18813,9 @@ button.toast-close-button {
 .trulii-cover-medium__content-contact-controllers li .item-long,
 .trulii-cover-regular__content-contact-controllers li .item-long {
   position: relative;
-  height: 120px;
+  height: 110px;
   width: 110px;
   transition: all 0.5s;
-}
-@media screen and (max-width: 992px) {
-  .trulii-cover__content-contact-controllers li .item,
-  .trulii-cover-small__content-contact-controllers li .item,
-  .trulii-cover-medium__content-contact-controllers li .item,
-  .trulii-cover-regular__content-contact-controllers li .item,
-  .trulii-cover__content-contact-controllers li .item-long,
-  .trulii-cover-small__content-contact-controllers li .item-long,
-  .trulii-cover-medium__content-contact-controllers li .item-long,
-  .trulii-cover-regular__content-contact-controllers li .item-long {
-    height: 50px;
-    width: 50px;
-  }
 }
 .trulii-cover__content-contact-controllers li .item a,
 .trulii-cover-small__content-contact-controllers li .item a,
@@ -18846,6 +18860,90 @@ button.toast-close-button {
   margin-left: 50%;
   transform: translateX(-50%);
 }
+.trulii-cover__content-contact-controllers li .item .item-icon,
+.trulii-cover-small__content-contact-controllers li .item .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item .item-icon,
+.trulii-cover__content-contact-controllers li .item-long .item-icon,
+.trulii-cover-small__content-contact-controllers li .item-long .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item-long .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item-long .item-icon {
+  font-size: 2em;
+  border: 2px solid;
+  border-radius: 50%;
+  transition: all 0.50s;
+  margin-top: 1.2em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-phone,
+.trulii-cover-small__content-contact-controllers li .item .fa-phone,
+.trulii-cover-medium__content-contact-controllers li .item .fa-phone,
+.trulii-cover-regular__content-contact-controllers li .item .fa-phone,
+.trulii-cover__content-contact-controllers li .item-long .fa-phone,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-phone,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-phone,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-phone {
+  padding: 0.5em 0.6em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-twitter,
+.trulii-cover-small__content-contact-controllers li .item .fa-twitter,
+.trulii-cover-medium__content-contact-controllers li .item .fa-twitter,
+.trulii-cover-regular__content-contact-controllers li .item .fa-twitter,
+.trulii-cover__content-contact-controllers li .item-long .fa-twitter,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-twitter,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-twitter,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-twitter {
+  padding: 0.55em 0.6em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-map-marker,
+.trulii-cover-small__content-contact-controllers li .item .fa-map-marker,
+.trulii-cover-medium__content-contact-controllers li .item .fa-map-marker,
+.trulii-cover-regular__content-contact-controllers li .item .fa-map-marker,
+.trulii-cover__content-contact-controllers li .item-long .fa-map-marker,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-map-marker,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-map-marker,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-map-marker {
+  padding: 0.6em 0.9em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-newspaper-o,
+.trulii-cover-small__content-contact-controllers li .item .fa-newspaper-o,
+.trulii-cover-medium__content-contact-controllers li .item .fa-newspaper-o,
+.trulii-cover-regular__content-contact-controllers li .item .fa-newspaper-o,
+.trulii-cover__content-contact-controllers li .item-long .fa-newspaper-o,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-newspaper-o,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-newspaper-o,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-newspaper-o {
+  padding: 0.6em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-linkedin-square,
+.trulii-cover-small__content-contact-controllers li .item .fa-linkedin-square,
+.trulii-cover-medium__content-contact-controllers li .item .fa-linkedin-square,
+.trulii-cover-regular__content-contact-controllers li .item .fa-linkedin-square,
+.trulii-cover__content-contact-controllers li .item-long .fa-linkedin-square,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-linkedin-square,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-linkedin-square,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-linkedin-square {
+  padding: 0.6em 0.7em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-facebook,
+.trulii-cover-small__content-contact-controllers li .item .fa-facebook,
+.trulii-cover-medium__content-contact-controllers li .item .fa-facebook,
+.trulii-cover-regular__content-contact-controllers li .item .fa-facebook,
+.trulii-cover__content-contact-controllers li .item-long .fa-facebook,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-facebook,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-facebook,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-facebook {
+  padding: 0.6em 0.8em;
+}
+.trulii-cover__content-contact-controllers li .item .fa-angellist,
+.trulii-cover-small__content-contact-controllers li .item .fa-angellist,
+.trulii-cover-medium__content-contact-controllers li .item .fa-angellist,
+.trulii-cover-regular__content-contact-controllers li .item .fa-angellist,
+.trulii-cover__content-contact-controllers li .item-long .fa-angellist,
+.trulii-cover-small__content-contact-controllers li .item-long .fa-angellist,
+.trulii-cover-medium__content-contact-controllers li .item-long .fa-angellist,
+.trulii-cover-regular__content-contact-controllers li .item-long .fa-angellist {
+  padding: 0.6em 0.75em;
+}
 .trulii-cover__content-contact-controllers li .item .item-description,
 .trulii-cover-small__content-contact-controllers li .item .item-description,
 .trulii-cover-medium__content-contact-controllers li .item .item-description,
@@ -18883,6 +18981,17 @@ button.toast-close-button {
 .trulii-cover-regular__content-contact-controllers li .item-long .item-img-active {
   opacity: 0;
 }
+.trulii-cover__content-contact-controllers li .item:hover .item-icon,
+.trulii-cover-small__content-contact-controllers li .item:hover .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item:hover .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item:hover .item-icon,
+.trulii-cover__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-small__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover .item-icon {
+  background: #38dbc8;
+  transform: translateY(-50%);
+}
 .trulii-cover__content-contact-controllers li .item:hover .item-img,
 .trulii-cover-small__content-contact-controllers li .item:hover .item-img,
 .trulii-cover-medium__content-contact-controllers li .item:hover .item-img,
@@ -18913,29 +19022,17 @@ button.toast-close-button {
 .trulii-cover-regular__content-contact-controllers li .item-long:hover .item-description {
   max-height: 100%;
 }
-.trulii-cover__content-contact-controllers li .item:hover,
-.trulii-cover-small__content-contact-controllers li .item:hover,
-.trulii-cover-medium__content-contact-controllers li .item:hover,
-.trulii-cover-regular__content-contact-controllers li .item:hover {
-  height: 135px;
-}
 .trulii-cover__content-contact-controllers li .item:hover img,
 .trulii-cover-small__content-contact-controllers li .item:hover img,
 .trulii-cover-medium__content-contact-controllers li .item:hover img,
 .trulii-cover-regular__content-contact-controllers li .item:hover img {
   padding-bottom: 40px;
 }
-.trulii-cover__content-contact-controllers li .item-long:hover,
-.trulii-cover-small__content-contact-controllers li .item-long:hover,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover,
-.trulii-cover-regular__content-contact-controllers li .item-long:hover {
-  height: 150px;
-}
-.trulii-cover__content-contact-controllers li .item-long:hover img,
-.trulii-cover-small__content-contact-controllers li .item-long:hover img,
-.trulii-cover-medium__content-contact-controllers li .item-long:hover img,
-.trulii-cover-regular__content-contact-controllers li .item-long:hover img {
-  padding-bottom: 55px;
+.trulii-cover__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-small__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-medium__content-contact-controllers li .item-long:hover .item-icon,
+.trulii-cover-regular__content-contact-controllers li .item-long:hover .item-icon {
+  transform: translateY(-65%);
 }
 .trulii-cover__background,
 .trulii-cover-small__background,
@@ -19465,7 +19562,7 @@ blockquote {
 }
 .activity-card__bottom-organizer-assistants {
   float: right;
-  margin-top: -33px;
+  margin-top: -30px;
   color: #999999;
   text-decoration: underline;
   font-size: 0.8em;
@@ -22142,6 +22239,32 @@ blockquote {
 }
 .share-container a {
   text-decoration: none;
+  color: white;
+  font-size: 3em;
+  border-radius: 50%;
+  border: 1px solid;
+  padding: 0.7em;
+  margin-right: 1em;
+}
+@media screen and (max-width: 768px) {
+  .share-container a {
+    font-size: 2em;
+    padding: 0.4em;
+    margin-right: 0.2em;
+  }
+}
+.share-container a .share-facebook {
+  padding: 0.25em;
+  margin-right: 2px;
+}
+.share-container a .share-twitter {
+  padding: 0.1em;
+}
+.share-container a .share-twitter {
+  padding: 0.1em;
+}
+.share-container a:hover {
+  color: white !important;
 }
 .navigation-container img {
   padding: 0.2em 0.5em;
@@ -22616,10 +22739,12 @@ blockquote {
   margin-bottom: 1em;
 }
 .home-footer__links .link-column .link .icon {
-  width: 15px;
+  width: 20px;
   height: 15px;
-  padding-right: 2.5em;
   display: inline-block;
+}
+.home-footer__links .link-column .link .icon i {
+  font-size: 1.3em;
 }
 .home-footer__links .link-column .link a {
   color: #999999;
@@ -22650,8 +22775,10 @@ blockquote {
   color: white;
   letter-spacing: 1px;
 }
-.home-footer__love p img {
-  padding: 0 0.25em;
+.home-footer__love p i {
+  font-size: 1.3em;
+  color: #ec5469;
+  padding: 0 0.1em;
 }
 .home-footer__rights {
   height: 60px;
@@ -22716,6 +22843,12 @@ blockquote {
 .referral-share.list-inline li {
   padding-left: 2px;
   padding-right: 2px;
+}
+.referral-share.list-inline li a {
+  color: white;
+}
+.referral-share.list-inline li a .fa-facebook {
+  margin-right: 0.3em;
 }
 .referral-share.list-inline li.referral-link input {
   background-color: white;
