@@ -12862,7 +12862,7 @@ hr.on-light {
 .limited-width-dashboard {
   float: none;
   clear: both;
-  margin: initial;
+  margin: 0;
   margin-left: 120px;
   max-width: 1300px;
 }
