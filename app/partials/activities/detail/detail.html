@@ -24,8 +24,7 @@
               socialshare-caption="{{::detail.social.FACEBOOK_SHARE_CAPTION}}"
               socialshare-description="{{::detail.social.FACEBOOK_SHARE_DESCRIPTION}}"
               socialshare-url="{{::detail.social.FACEBOOK_SHARE_URL}}">
-              <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/share_facebook.png')}}"
-              alt="{{detail.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+              <i class="fa fa-facebook" aria-hidden="true"></i>
             </a>
             <a href="#"
               ng-click="detail.shareSocialAnalytic(detail.social.TWITTER_SOCIAL_PROVIDER, detail.social.TWITTER_SHARE_URL)"
@@ -36,15 +35,13 @@
               socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
               socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}"
               socialshare-hashtags="{{::detail.social.TWITTER_SHARE_HASHTAGS}}">
-              <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/share_twitter.png')}}"
-              alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+              <i class="fa fa-twitter" aria-hidden="true"></i>
             </a>
 
             <a href="#"
               class="text-no-decoration btn-share-email"
               ng-click="detail.toggleEmailShow()">
-              <img class="img-responsive" ng-src="{{detail.getAmazonUrl('static/img/activity-detail/share_email.png')}}"
-              alt="{{detail.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+              <i class="fa fa-envelope" aria-hidden="true"></i>
             </a>
             <div class="category pull-right">
               <span class="label" ng-bind="::detail.activity.category.name"
@@ -509,7 +506,7 @@
 <!--Location-->
 <div class="location col-xs-12">
     <div class="address">
-      <img ng-src="{{detail.getAmazonUrl('static/img/activity-detail/map_location.png')}}" alt=""/>
+      <i class="fa fa-map-marker text-xlg separate-right-less" aria-hidden="true"></i>
       <span ng-bind="::detail.activity.location.address"></span><span ng-if="::detail.activity.location.address">,</span>
       <span ng-bind="::detail.activity.location.name"></span>
     </div>

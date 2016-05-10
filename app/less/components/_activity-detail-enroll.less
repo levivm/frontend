@@ -363,7 +363,33 @@
     }
 
     a {
-        text-decoration: none;
+            text-decoration: none;
+            color: white;
+            font-size: 3em;
+            border-radius: 50%;
+            border: 1px solid;
+            padding: 0.7em;
+            margin-right: 1em;
+            .before-sm({
+                font-size: 2em;
+                padding: 0.4em;
+                margin-right: 0.2em;
+            });
+
+            .share-facebook{
+                padding: 0.25em;
+                margin-right: 2px;
+            }
+            .share-twitter{
+                padding: 0.1em;
+            }
+            .share-twitter{
+                padding: 0.1em;
+            }
+            
+            &:hover{
+                color: white !important;
+            }
     }
 }
 
@@ -399,7 +425,7 @@
         z-index: 100;
         background-color: transparent;
         .widget-card{
-          > div:not(.btn){
+          > div:not(.btn):not(.price){
             background-color: white;
           }
         }

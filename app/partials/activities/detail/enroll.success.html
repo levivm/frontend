@@ -86,8 +86,7 @@
             socialshare-caption="{{::success.social.FACEBOOK_SHARE_CAPTION}}"
             socialshare-description="{{::success.social.FACEBOOK_SHARE_DESCRIPTION}}"
             socialshare-url="{{::success.social.FACEBOOK_SHARE_URL}}">
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_facebook.png')}}"
-              alt="{{::success.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+            <i class="fa fa-facebook share-facebook" aria-hidden="true"></i>
           </a>
 
           <a href="#"
@@ -97,13 +96,11 @@
             socialshare-text="{{::success.social.TWITTER_SHARE_TEXT}}"
             socialshare-hashtags="{{::success.social.TWITTER_SHARE_HASHTAGS}}"
             socialshare-url="{{::success.social.TWITTER_SHARE_URL}}">
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_twitter.png')}}"
-              alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+            <i class="fa fa-twitter share-twitter" aria-hidden="true"></i>
           </a>
           <a href="#"
             ng-click="success.toggleEmailShow()">
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_email.png')}}"
-              alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+            <i class="fa fa-envelope share-email" aria-hidden="true"></i>
           </a>
         </div>
       </div>
@@ -129,18 +126,14 @@
       <div class="row navigation-container container-gray-light">
         <div class="col-xs-12 col-md-6">
           <a class="btn btn-link" ui-sref="activities-detail({activity_id: success.activity.id})">
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}"
-              alt="{{ ::success.strings.ACTION_GO_BACK }}"
-              class="img-responsive inline-block"/>
+            <i class="fa fa-undo separate-right-less" aria-hidden="true"></i>
             <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_BACK"></span>
           </a>
         </div>
         <div class="col-xs-12 col-md-6">
           <a class="btn btn-link pull-right" ui-sref="student-dashboard.activities">
             <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_TO_ACTIVITIES"></span>
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/navigation_go.png')}}"
-              alt="{{ ::success.strings.ACTION_GO_TO_ACTIVITIES }}"
-              class="img-responsive inline-block"/>
+            <i class="fa fa-arrow-right separate-left-less" aria-hidden="true"></i>
           </a>
         </div>
       </div>
