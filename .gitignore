@@ -15,6 +15,7 @@ app/lib/
 # Compiled Styles
 app/css/*.css
 app/css/*.css.map
+!app/css/font-awesome.css #Except for font-awesome
 
 # Videos
 app/videos/*
