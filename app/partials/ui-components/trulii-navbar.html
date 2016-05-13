@@ -7,25 +7,105 @@
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
             <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true"></trulii-search-bar>
             <div class="buttons buttons-login float-right" ng-if="!user">
-                <a ui-sref="register" class=" montserrat-regular  margin-horizontal" ng-bind="::strings.ACTION_REGISTER"></a>
+                <a ui-sref="register" class=" montserrat-regular  margin-horizontal-less" ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
             <div class="buttons buttons-login float-right" ng-if="!user">
-                <a ui-sref="login" class=" montserrat-regular  margin-horizontal" ng-bind="::strings.ACTION_LOGIN"></a>
+                <a ui-sref="login" class=" montserrat-regular  margin-horizontal-less" ng-bind="::strings.ACTION_LOGIN"></a>
             </div>
             <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary montserrat-regular" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
         </div>
         <div class="navbar__right-wrapper">
-            <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
-                <img ng-if="user" ng-src="{{user.photo}}" class="user-picture" alt="{{user.user.full_name}}"/>
-                 <i class="fa fa-bars " ng-class="{'text-gray-lightest': isLandingState(), 'text-gray-light': !isLandingState()}" aria-hidden="true"></i>  
+            
+            <a class="navbar__option navbar__option--right" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
+                <span class=" montserrat-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.first_name"></span>
+                <img ng-if="user" ng-src="{{user.photo}}" class="user-picture hidden-xs hidden-sm" alt="{{user.user.full_name}}"/>
+                 <i class="fa fa-bars hidden-md hidden-lg" ng-class="{'text-gray-lightest': isLandingState(), 'text-gray-light': !isLandingState()}" aria-hidden="true"></i>  
                 <!--<img ng-if="" ng-src="{{getAmazonUrl('static/img/menu.png')}}" alt="Menu" class="menu-icon" ng-class="{'menu-icon-user': user}">
                 <img ng-if="" ng-src="{{getAmazonUrl('static/img/menu-blanco.png')}}"  alt="Menu" class="menu-icon" ng-class="{'menu-icon-user': user}">-->
             </a>
         </div>
     </div>
 </nav>
+
+<div class="drop-menu" ng-show="showMenu" ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()">
+    <ul class="list-unstyled" ng-if="user.is_organizer">
+        <li>
+            <a ui-sref="organizer-dashboard.activities.open"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
+                ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.transactions.sales"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_ORGANIZER_SALES"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.profile"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_PROFILE)"
+                ng-bind="::strings.LABEL_ORGANIZER_PROFILE"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.account.settings"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)"
+                ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.reviews.pending"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
+                ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.instructors"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
+                ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
+        </li>
+        <li>
+            <a ui-sref="logout"
+                ng-click="toggleBurger(); clickItemSidebar(strings.ACTION_EXIT)"
+                ng-bind="::strings.ACTION_EXIT"></a>
+        </li>
+    </ul>
+    <!--Student Sidebar-->
+    <ul class="list-unstyled" ng-if="user.is_student">
+        <li>
+            <a ui-sref="student-dashboard.activities.open"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
+                ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
+        </li>
+        <li>
+            <a ui-sref="referrals.home"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
+                ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.profile"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
+                ng-bind="::strings.LABEL_STUDENT_PROFILE"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.account.password"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
+                ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.history.orders"
+                ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
+                ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.wishlist"
+                ng-click="toggleBurger()"
+                ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
+        </li>
+        <li>
+            <a ui-sref="logout"
+                ng-click="toggleBurger(); clickItemSidebar(strings.ACTION_EXIT)"
+                ng-bind="::strings.ACTION_EXIT"></a>
+        </li>
+    </ul>
+</div>
 <div class="burger-menu" ng-show="showBurger">
     <div class="col-xs-12">
         <div class="row">

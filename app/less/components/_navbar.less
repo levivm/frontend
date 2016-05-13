@@ -84,7 +84,7 @@
         width: 9em;
         display: inline-block;
         background-size: contain;
-        margin: 5px auto 0;
+        margin: 10px auto 0;
         transition: @transition-navbar;
         .before-md({
             width: 7em;
@@ -114,7 +114,7 @@
             transition: @transition-navbar;
         }
         .buttons-login{
-            line-height: 2.5em;
+            line-height: 3.5em;
             > a{
                 color: @gray-regular;
                 text-decoration: none;
@@ -140,7 +140,7 @@
         float: right;
         font-size: 0.9em;
         margin-right: 10px;
-
+        border-left: 1px solid @gray-light;
         .before-md({
             max-width: 150px;
             display: inline-block;
@@ -181,10 +181,12 @@
 
         &--right {
             text-decoration: none;
-            border-left: 1px solid @color-delimeter-dark;
+            padding: 5px 1em 5px 0em;
             text-align: left;
             cursor: pointer;
-
+            span{
+              text-transform: capitalize;
+            }
             &:hover{
                 text-decoration: none;
             }
@@ -278,7 +280,7 @@
         }
 
         &__option {
-          padding: 0px 1em;
+          padding: 0px 1em 0px 0em;
           height: @navbar-short-height;
           line-height: @navbar-short-height - (@navbar-padding-vertical*2);
           .before-md({
@@ -287,8 +289,7 @@
         }
       }
       .search-bar__navbar{
-        height: @navbar-short-height - 15;
-        margin-top: 5px;
+        margin-top: 10px;
       }
 
     }
@@ -450,6 +451,16 @@
     .before-md({
       margin-top: @navbar-short-height;
     });
+}
+
+.drop-menu{
+  position: fixed;
+  width: 25em;
+  right: 15px;
+  z-index: 1000;
+  background: white;
+  padding: 1em;
+  border: 2px solid @gray-light
 }
 
 .burger-menu{

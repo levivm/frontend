@@ -467,7 +467,7 @@ select.form-control.sort-select{
         display: inline-block;
         width: 50%;
         float: left;
-        border-top: 5px solid @brand-primary;
+        
     }
 
 
@@ -543,8 +543,8 @@ select.form-control.sort-select{
     &__navbar {
 
         width: 40em;
-        height: 50px;
-        margin-top: 10px;
+        height: 45px;
+        margin-top: 20px;
         margin-left: 20px;
         background: white;
         border-radius: 0;
@@ -563,13 +563,24 @@ select.form-control.sort-select{
             display: none !important;
         }
 
-        ::-webkit-input-placeholder,
-        ::-moz-placeholder,
-        :-ms-input-placeholder,
-        input:-moz-placeholder {
-            font-weight: 400;
+        ::-webkit-input-placeholder { 
+          font-weight: 600;
+          color: @gray-light;
         }
-
+        :-moz-placeholder { 
+         font-weight: 600;
+          opacity:  1;
+          color: @gray-light;
+        }
+        ::-moz-placeholder { 
+          font-weight: 600;
+          opacity:  1;
+          color: @gray-light;
+        }
+        :-ms-input-placeholder { 
+          font-weight: 600;
+          color: @gray-light;
+        }
         input, input:focus {
             display: block;
             position: relative;
@@ -578,8 +589,9 @@ select.form-control.sort-select{
             width: 60%;
             padding-left: 35px;
             border: 1px solid darken(@gray-lighter, 4%);
-            border-top: 3px solid @brand-primary;
             border-right: none;
+            background-image: none;
+            border-radius: 1.5em 0em 0em 1.5em; 
         }
 
         input, select, button {
@@ -589,6 +601,7 @@ select.form-control.sort-select{
             font-size: 0.95em;
             font-weight: 200;
             float: left;
+            
             &:focus{
 
             }
@@ -608,7 +621,26 @@ select.form-control.sort-select{
           background-position: 93% 50%;
           background-repeat: no-repeat;
           background-image: url('@{s3url}/static/img/about/arrow.png') !important;
-
+          border-left: none; 
+          border-right: none;
+          &:before {
+            content: "";
+            border-left: 1px solid darken(@gray-lighter, 4%);
+            position: absolute;
+            display: block;
+            height: 31px;
+            top: 8px;
+            left: -5px;
+          }
+           &:after {
+            content: "";
+            border-left: 1px solid darken(@gray-lighter, 4%);
+            position: absolute;
+            display: block;
+            height: 31px;
+            top: 8px;
+            right: -1px;
+          }
 
           select, select:focus {
             display: inline-block;
@@ -618,14 +650,12 @@ select.form-control.sort-select{
             -moz-appearance: none;
             height: 100% !important;
             cursor: pointer;
+            font-weight: 600;
+            color: @gray-regular;
             .text-overflow();
 
             &:focus {
-              animation: input-highlight 0.5s forwards;
-              box-shadow: none;
-              background-size: 0 2px, 100% 1px;
-              background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light, @gray-light) !important;
-              background-position: 0 bottom;
+              background-image: none; 
             }
 
           }
@@ -648,8 +678,18 @@ select.form-control.sort-select{
             border: 1px solid darken(@gray-lighter, 4%);
             border-radius: 0;
             background: transparent;
-
+            border-radius: 0em 1.5em 1.5em 0em; 
+            border-left: none;
             &:extend(.show-after-sm);
+            span{
+                top: 3px;
+                color: @gray-dark;
+                font-size: 0.9em;
+            }
+            &:hover{
+                background: transparent;
+                border-color: darken(@gray-lighter, 4%);
+            }
         }
 
 

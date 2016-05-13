@@ -31,6 +31,9 @@
                     state: null,
                     isSearchVisible : true,
                     showBurger : false,
+                    showMenu:false,
+                    showDropMenu: showDropMenu,
+                    hideDropMenu: hideDropMenu,
                     showCities: false,
                     search_city : null,
                     toggleBurger: toggleBurger,
@@ -45,7 +48,8 @@
                     isLandingState:isLandingState,
                     getAmazonUrl: getAmazonUrl,
                     howToWorkStudent: howToWorkStudent,
-                    howToWorkOrganizer: howToWorkOrganizer
+                    howToWorkOrganizer: howToWorkOrganizer,
+                    goToProfile:goToProfile
                 });
 
                 _activate();
@@ -63,8 +67,15 @@
                 function toogleCities(){
                   scope.showCities = !scope.showCities;
                 }
-
-
+                function showDropMenu() {
+                    scope.showMenu=true;
+                }
+                 function hideDropMenu() {
+                    scope.showMenu=false;
+                }
+                function goToProfile() {
+                   $state.go((scope.user.is_organizer) ? 'organizer-dashboard.profile': 'student-dashboard.profile')
+                }
                 function explore(){
                     $rootScope.$broadcast(SearchManager.EVENT_EXPLORE);
                 }

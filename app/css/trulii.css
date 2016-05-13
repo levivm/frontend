@@ -13716,7 +13716,7 @@ a.no-text-decoration {
 }
 .navbar {
   position: relative;
-  min-height: 80px;
+  min-height: 90px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -13825,7 +13825,7 @@ a.no-text-decoration {
   padding: 5px 15px;
   font-size: 18px;
   line-height: 20px;
-  height: 80px;
+  height: 90px;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -13845,8 +13845,8 @@ a.no-text-decoration {
   float: right;
   margin-right: 15px;
   padding: 9px 10px;
-  margin-top: 23px;
-  margin-bottom: 23px;
+  margin-top: 28px;
+  margin-bottom: 28px;
   background-color: transparent;
   background-image: none;
   border: 1px solid transparent;
@@ -13920,8 +13920,8 @@ a.no-text-decoration {
   border-bottom: 1px solid transparent;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 0 rgba(255, 255, 255, 0.1);
-  margin-top: 23px;
-  margin-bottom: 23px;
+  margin-top: 28px;
+  margin-bottom: 28px;
 }
 @media (min-width: 768px) {
   .navbar-form .form-group {
@@ -14006,20 +14006,20 @@ a.no-text-decoration {
   border-bottom-left-radius: 0;
 }
 .navbar-btn {
-  margin-top: 23px;
-  margin-bottom: 23px;
+  margin-top: 28px;
+  margin-bottom: 28px;
 }
 .navbar-btn.btn-sm {
-  margin-top: 25px;
-  margin-bottom: 25px;
-}
-.navbar-btn.btn-xs {
-  margin-top: 29px;
-  margin-bottom: 29px;
-}
-.navbar-text {
   margin-top: 30px;
   margin-bottom: 30px;
+}
+.navbar-btn.btn-xs {
+  margin-top: 34px;
+  margin-bottom: 34px;
+}
+.navbar-text {
+  margin-top: 35px;
+  margin-bottom: 35px;
 }
 @media (min-width: 768px) {
   .navbar-text {
@@ -14252,29 +14252,29 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .navbar {
-  height: 80px;
+  height: 90px;
   width: 100vw;
   padding-right: 15px;
   transition: all 0.25s;
 }
 @media screen and (max-width: 992px) {
   .navbar {
-    height: 60px;
-    min-height: 60px;
-    max-height: 60px;
+    height: 70px;
+    min-height: 70px;
+    max-height: 70px;
   }
 }
 .navbar .btn {
-  line-height: 26.66666667px;
+  line-height: 30px;
 }
 .navbar__button-all {
   display: inline-block;
   vertical-align: top;
 }
 .navbar__link {
-  line-height: 65px;
+  line-height: 75px;
   display: inline-block;
-  height: 70px;
+  height: 80px;
   transition: all 0.25s;
   vertical-align: top;
   padding: 5px 1em 5px 0.5em;
@@ -14289,7 +14289,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar__logo-container {
   background-color: transparent;
-  height: 80px;
+  height: 90px;
   width: 18.1em;
   display: inline-block;
   text-align: center;
@@ -14300,18 +14300,18 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 992px) {
   .navbar__logo-container {
-    height: 59px !important;
+    height: 69px !important;
     width: 125px;
     background-color: white;
   }
 }
 .navbar__logo {
   background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-green.png') no-repeat;
-  height: 70px;
+  height: 80px;
   width: 9em;
   display: inline-block;
   background-size: contain;
-  margin: 5px auto 0;
+  margin: 10px auto 0;
   transition: all 0.25s;
 }
 @media screen and (max-width: 992px) {
@@ -14321,7 +14321,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     position: relative;
     background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-yellow.png');
     margin: 7px auto 0 !important;
-    height: 50px;
+    height: 60px;
   }
 }
 .navbar__mobile-dashboard-controllers {
@@ -14330,7 +14330,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__left-wrapper {
   display: inline-block;
   vertical-align: top;
-  height: 70px;
+  height: 80px;
   width: calc(100% - 450px);
   margin: 0.2em 1em;
 }
@@ -14341,7 +14341,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   transition: all 0.25s;
 }
 .navbar__left-wrapper .buttons-login {
-  line-height: 2.5em;
+  line-height: 3.5em;
 }
 .navbar__left-wrapper .buttons-login > a {
   color: #9b9b9b;
@@ -14358,19 +14358,20 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__right-wrapper {
   display: inline-block;
   vertical-align: top;
-  height: 80px;
+  height: 90px;
   transition: all 0.25s;
   text-align: right;
   float: right;
   font-size: 0.9em;
   margin-right: 10px;
+  border-left: 1px solid #cbcbcb;
 }
 @media screen and (max-width: 992px) {
   .navbar__right-wrapper {
     max-width: 150px;
     display: inline-block;
     margin-right: 0;
-    height: 60px;
+    height: 70px;
   }
 }
 .navbar__right-wrapper .btn {
@@ -14383,17 +14384,17 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: rgba(0, 0, 0, 0.74);
   display: inline-block;
   padding: 5px 1em;
-  height: 80px;
+  height: 90px;
   transition: all 0.25s;
   font-weight: bold;
   text-transform: uppercase;
-  line-height: 70px;
+  line-height: 80px;
 }
 @media screen and (max-width: 992px) {
   .navbar__option {
     padding: 0;
-    height: 60px;
-    line-height: 50px;
+    height: 70px;
+    line-height: 60px;
   }
 }
 .navbar__option:active,
@@ -14403,9 +14404,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar__option--right {
   text-decoration: none;
-  border-left: 1px solid #d7d7d7;
+  padding: 5px 1em 5px 0em;
   text-align: left;
   cursor: pointer;
+}
+.navbar__option--right span {
+  text-transform: capitalize;
 }
 .navbar__option--right:hover {
   text-decoration: none;
@@ -14451,20 +14455,20 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-color: white;
 }
 .navbar.navbar-short {
-  height: 60px;
-  min-height: 60px;
+  height: 70px;
+  min-height: 70px;
 }
 .navbar.navbar-short .btn {
-  line-height: 20px;
+  line-height: 23.33333333px;
 }
 .navbar.navbar-short .navbar__link {
   padding: 5px 1em 5px 0.5em;
 }
 .navbar.navbar-short .navbar__logo-container {
-  height: 60px;
+  height: 70px;
 }
 .navbar.navbar-short .navbar__logo {
-  height: 50px;
+  height: 60px;
   margin: 5px auto 0;
   width: 7em;
 }
@@ -14478,14 +14482,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-left: 2px;
 }
 .navbar.navbar-short .navbar__left-wrapper {
-  height: 50px;
+  height: 60px;
 }
 .navbar.navbar-short .navbar__left-wrapper .buttons {
   padding: 0.75em 0;
   margin-top: 0;
 }
 .navbar.navbar-short .navbar__right-wrapper {
-  height: 60px;
+  height: 70px;
 }
 .navbar.navbar-short .navbar__right-wrapper .navbar__option--right .menu-icon {
   margin-top: 5px;
@@ -14494,9 +14498,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-top: 0;
 }
 .navbar.navbar-short .navbar__option {
-  padding: 0px 1em;
-  height: 60px;
-  line-height: 50px;
+  padding: 0px 1em 0px 0em;
+  height: 70px;
+  line-height: 60px;
 }
 @media screen and (max-width: 992px) {
   .navbar.navbar-short .navbar__option {
@@ -14504,8 +14508,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .navbar.navbar-short .search-bar__navbar {
-  height: 45px;
-  margin-top: 5px;
+  margin-top: 10px;
 }
 .navbar [class*=mdi-navigation]:before {
   position: relative;
@@ -14515,7 +14518,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   transition: all 0.25s;
 }
 .sidebar.sidebar-short {
-  top: 60px;
+  top: 70px;
 }
 .navbar-landing {
   background: transparent !important;
@@ -14542,7 +14545,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 100%;
   text-align: left;
   position: fixed;
-  top: 80px;
+  top: 90px;
   z-index: 1050;
   padding: 0 1em;
   padding-right: 17em;
@@ -14550,13 +14553,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 992px) {
   .navbar-secondary {
-    top: 60px;
+    top: 70px;
     padding-right: 0;
     margin-left: -15px;
   }
 }
 .navbar-secondary.navbar-secondary-short {
-  top: 60px;
+  top: 70px;
 }
 .navbar-secondary ul,
 .navbar-secondary li {
@@ -14650,13 +14653,22 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-bottom: 0.1em;
 }
 .with-navbar {
-  margin-top: 80px;
+  margin-top: 90px;
   padding-top: 20px;
 }
 @media screen and (max-width: 992px) {
   .with-navbar {
-    margin-top: 60px;
+    margin-top: 70px;
   }
+}
+.drop-menu {
+  position: fixed;
+  width: 25em;
+  right: 15px;
+  z-index: 1000;
+  background: white;
+  padding: 1em;
+  border: 2px solid #cbcbcb;
 }
 .burger-menu {
   width: 100vw;
@@ -14789,7 +14801,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-overflow: ellipsis;
   font-weight: 400;
   text-transform: uppercase;
-  line-height: 70px;
+  line-height: 80px;
   vertical-align: middle;
   letter-spacing: 1px;
   display: inline-block;
@@ -14800,8 +14812,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .burger-menu__user__picture {
-  width: 62px;
-  height: 62px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   width: 80px;
   height: 80px;
@@ -15293,7 +15305,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   width: 50%;
   float: left;
-  border-top: 5px solid #00e2aa;
 }
 .search-bar .select-city {
   width: 35%;
@@ -15362,8 +15373,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-bar__navbar {
   width: 40em;
-  height: 50px;
-  margin-top: 10px;
+  height: 45px;
+  margin-top: 20px;
   margin-left: 20px;
   background: white;
   border-radius: 0;
@@ -15383,11 +15394,23 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     display: none !important;
   }
 }
-.search-bar__navbar ::-webkit-input-placeholder,
-.search-bar__navbar ::-moz-placeholder,
-.search-bar__navbar :-ms-input-placeholder,
-.search-bar__navbar input:-moz-placeholder {
-  font-weight: 400;
+.search-bar__navbar ::-webkit-input-placeholder {
+  font-weight: 600;
+  color: #cbcbcb;
+}
+.search-bar__navbar :-moz-placeholder {
+  font-weight: 600;
+  opacity: 1;
+  color: #cbcbcb;
+}
+.search-bar__navbar ::-moz-placeholder {
+  font-weight: 600;
+  opacity: 1;
+  color: #cbcbcb;
+}
+.search-bar__navbar :-ms-input-placeholder {
+  font-weight: 600;
+  color: #cbcbcb;
 }
 .search-bar__navbar input,
 .search-bar__navbar input:focus {
@@ -15398,8 +15421,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 60%;
   padding-left: 35px;
   border: 1px solid #e3e3e3;
-  border-top: 3px solid #00e2aa;
   border-right: none;
+  background-image: none;
+  border-radius: 1.5em 0em 0em 1.5em;
 }
 .search-bar__navbar input,
 .search-bar__navbar select,
@@ -15425,6 +15449,26 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-position: 93% 50%;
   background-repeat: no-repeat;
   background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
+  border-left: none;
+  border-right: none;
+}
+.search-bar__navbar .select-city:before {
+  content: "";
+  border-left: 1px solid #e3e3e3;
+  position: absolute;
+  display: block;
+  height: 31px;
+  top: 8px;
+  left: -5px;
+}
+.search-bar__navbar .select-city:after {
+  content: "";
+  border-left: 1px solid #e3e3e3;
+  position: absolute;
+  display: block;
+  height: 31px;
+  top: 8px;
+  right: -1px;
 }
 .search-bar__navbar .select-city select,
 .search-bar__navbar .select-city select:focus {
@@ -15435,17 +15479,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   -moz-appearance: none;
   height: 100% !important;
   cursor: pointer;
+  font-weight: 600;
+  color: #9b9b9b;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .search-bar__navbar .select-city select:focus,
 .search-bar__navbar .select-city select:focus:focus {
-  animation: input-highlight 0.5s forwards;
-  box-shadow: none;
-  background-size: 0 2px, 100% 1px;
-  background-image: linear-gradient(#00e2aa, #00e2aa), linear-gradient(#cbcbcb, #cbcbcb) !important;
-  background-position: 0 bottom;
+  background-image: none;
 }
 @media screen and (max-width: 768px) {
   .search-bar__navbar .select-city {
@@ -15462,16 +15504,27 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border: 1px solid #e3e3e3;
   border-radius: 0;
   background: transparent;
+  border-radius: 0em 1.5em 1.5em 0em;
+  border-left: none;
 }
 .search-bar__navbar button:before {
   display: inline-block;
   color: rgba(0, 0, 0, 0.74);
   font-size: 1.1em;
 }
+.search-bar__navbar button span {
+  top: 3px;
+  color: #767676;
+  font-size: 0.9em;
+}
+.search-bar__navbar button:hover {
+  background: transparent;
+  border-color: #e3e3e3;
+}
 .sidebar {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: fixed;
-  top: 80px;
+  top: 90px;
   bottom: 0;
   left: 0;
   display: block;
@@ -15490,12 +15543,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 768px) {
   .sidebar {
-    top: 60px;
+    top: 70px;
     max-height: calc(100vh - 60px);
   }
 }
 .sidebar-short {
-  top: 60px;
+  top: 70px;
   max-height: calc(100vh - 60px) !important;
 }
 .sidebar-short.--float {
@@ -15750,7 +15803,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #9b9b9b;
   width: 100%;
   background-color: white;
-  height: 58px;
+  height: 68px;
   position: fixed;
   left: 0;
   top: 0;
@@ -15759,7 +15812,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 1em 1em;
 }
 .sidebar-mobile-toggle.short {
-  height: 60px;
+  height: 70px;
 }
 .sidebar-mobile-toggle:focus,
 .sidebar-mobile-toggle:hover {
@@ -18366,7 +18419,7 @@ button.toast-close-button {
 .trulii-cover-small__home,
 .trulii-cover-medium__home,
 .trulii-cover-regular__home {
-  margin-top: -100px;
+  margin-top: -110px;
 }
 .trulii-cover .row,
 .trulii-cover-small .row,

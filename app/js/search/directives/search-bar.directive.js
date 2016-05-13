@@ -101,7 +101,7 @@
                 function _setStrings() {
                     if (!scope.strings) { scope.strings = {}; }
                     angular.extend(scope.strings, {
-                        PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
+                        PLACEHOLDER_WANT_TO_LEARN: 'Buscar...',
                         LABEL_CITY: 'Ciudad',
                         LABEL_CITY_DEFAULT: 'Ciudad..'
                     });
