@@ -28,13 +28,13 @@
                                              ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
                                              data-allow-dir="true" data-accept="image/*">
 
-                                            <button class="btn btn-default profile-photo-input__action montserrat-regular"
+                                            <button class="btn btn-default profile-photo-input__action font-regular"
                                                     aria-label="{{::profile.strings.ACTION_UPDATE_PICTURE}}">
                                                 <span ng-bind="::profile.strings.ACTION_UPDATE_PICTURE"></span>
                                             </button>
                                         </div>
                                     </div>
-                                    <a class="btn btn-primary separate-left-less montserrat-regular"
+                                    <a class="btn btn-primary separate-left-less font-regular"
                                        ui-sref="organizer-profile({organizer_id: profile.organizer.id})" target="_blank">
                                         <div ng-bind="::profile.strings.ACTION_VIEW_PROFILE"></div>
                                     </a>

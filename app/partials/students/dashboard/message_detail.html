@@ -12,7 +12,7 @@
         <a class="btn btn-default float-right separate-above separate-right-less" href="" ng-click="detail.readMessage()" ng-bind="::detail.strings.MARK_AS_READ">
         </a>
         <div class="title-message separate-above">
-            <h1 class="montserrat-light" ng-bind="::detail.message.activity"></h1>
+            <h1 class="font-light" ng-bind="::detail.message.activity"></h1>
         </div>
         <div class="content-message">
             <div class="row">
@@ -21,15 +21,15 @@
                     <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">
                 </div>
                 <div class="col-md-8 text-line-more-xl">
-                    <span class="montserrat-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
+                    <span class="font-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
                 </div>
                 <div class="col-md-3 text-line-more-xl text-right">
-                    <span class="text-gray-light montserrat-light" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
+                    <span class="text-gray-light font-light" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
                 </div>
             </div>
 
             <div class="separate-above-less ">
-                <p class="text-dark montserrat-light" ng-bind="::detail.message.message"></p>
+                <p class="text-dark font-light" ng-bind="::detail.message.message"></p>
             </div>
         </div>
       </div>

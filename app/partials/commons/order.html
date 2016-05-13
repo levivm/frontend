@@ -122,21 +122,21 @@
                             <!--Sub-Total-->
                             <div class="row no-margin hidden-xs hidden-sm">
                                 <div class="col-xs-6 col-md-3">
-                                    <h4 class="text-lg montserrat-light" ng-bind="::order.strings.LABEL_SUB_TOTAL"></h4>
+                                    <h4 class="text-lg font-light" ng-bind="::order.strings.LABEL_SUB_TOTAL"></h4>
                                 </div>
                                 <div class="col-xs-5 col-md-7">
-                                    <h4 class="text-right text-lg montserrat-light"
+                                    <h4 class="text-right text-lg font-light"
                                         ng-bind="::(order.order.amount | currency:$:0)"></h4>
                                 </div>
                             </div>
                             <!--Coupons-->
                             <div class="row no-margin hidden-xs hidden-sm" ng-show="::(order.order.coupon.amount > 0 && order.isStudent)">
                                 <div class="col-xs-6 col-md-3">
-                                    <h4 class="text-lg montserrat-light"
+                                    <h4 class="text-lg font-light"
                                         ng-bind="::(order.strings.LABEL_COUPON +' '+ order.order.coupon.code)"></h4>
                                 </div>
                                 <div class="col-xs-5 col-md-7">
-                                    <h4 class="text-right text-lg montserrat-light"
+                                    <h4 class="text-right text-lg font-light"
                                         ng-bind="::('-' + (order.order.coupon.amount | currency:$:0))"></h4>
                                 </div>
                                 <i ng-show="::(order.order.total_without_coupon === 0)"
@@ -148,11 +148,11 @@
                             <!--Fee-->
                             <div class="row no-margin hidden-xs hidden-sm" ng-show="::order.isOrganizer">
                                 <div class="col-xs-6 col-md-3">
-                                    <h4 class="text-lg montserrat-light"
+                                    <h4 class="text-lg font-light"
                                         ng-bind="order.strings.LABEL_TRULII_FEE + ' ' + (order.order.fee * 100) + '%'"></h4>
                                 </div>
                                 <div class="col-xs-5 col-md-7">
-                                    <h4 class="text-lg montserrat-light text-right "
+                                    <h4 class="text-lg font-light text-right "
                                         ng-bind="::('-' + (order.feeAmount | currency:$:0))"></h4>
                                 </div>
                             </div>

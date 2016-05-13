@@ -4443,7 +4443,6 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-top-right-radius: 3px;
 }
 .label,
-.activity-card__category,
 .trulii-activity-card__category__label {
   display: inline;
   padding: .2em .6em .3em;
@@ -12360,8 +12359,7 @@ hr.on-light {
 .clear-both {
   clear: both;
 }
-.flex-container,
-.activity-card-organizer {
+.flex-container {
   display: -webkit-box !important;
   display: -webkit-flex !important;
   display: -ms-flexbox !important;
@@ -13140,70 +13138,21 @@ hr.on-light {
   letter-spacing: 0px;
   color: #9b9b9b;
 }
-.montserrat-ultralight {
-  font-weight: 100;
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+.font-light {
+  font-weight: 300;
 }
-.montserrat-light {
-  font-weight: 200 !important;
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-.montserrat-regular,
+.font-regular,
 .sidebar-category-container .sidebar-category {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-}
-.montserrat-semibold {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
 }
-.montserrat-bold {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
-}
-.montserrat-extrabold {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 800;
-}
-.montserrat-black {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 900;
-}
-.sinkin-thin {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 100;
-}
-.sinkin-ultralight {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 200;
-}
-.sinkin-light {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-}
-.sinkin-regular {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
-}
-.sinkin-medium {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-}
-.sinkin-semibold {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+.font-semibold {
   font-weight: 600;
 }
-.sinkin-bold {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+.font-bold {
   font-weight: 700;
 }
-.sinkin-black {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+.font-extrabold {
   font-weight: 800;
-}
-.sinkin-extrablack {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 900;
 }
 h1,
 h2,
@@ -13269,8 +13218,6 @@ h5 a {
 .burger-menu__user__picture,
 .sidebar__activity,
 .gallery-grid__photo,
-.activity-card__header__cover-container,
-.activity-card__owner-picture,
 .img-cover-preview {
   background-size: cover !important;
 }
@@ -13279,8 +13226,6 @@ h5 a {
 .profile-photo-input__photo,
 .burger-menu__user__picture,
 .sidebar__activity,
-.activity-card__header__cover-container,
-.activity-card__owner-picture,
 .img-cover-preview {
   background-position: center !important;
 }
@@ -13699,7 +13644,6 @@ a.no-text-decoration {
   font-size: 0.85em;
 }
 .label,
-.activity-card__category,
 .trulii-activity-card__category__label {
   font-size: 0.7em;
   font-weight: bold;
@@ -15814,8 +15758,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin: 0 0.4em;
 }
 .sidebar-category-container .sidebar-category .subcategories__item {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   padding: 0.6em 0.6em 0.6em 6em;
   color: #cbcbcb;
   background-color: #f0f2f7;
@@ -19308,314 +19251,6 @@ button.toast-close-button {
 }
 blockquote {
   padding: 0 20px;
-}
-.activity-card {
-  width: 19em;
-  max-width: 20%;
-  display: inline-block;
-  border-radius: 5px;
-  background-color: white;
-  border: 1px solid #ededed;
-  margin: 0 0.8em 1em;
-  text-align: left;
-  transition: .2s all ease;
-  margin-bottom: 3rem;
-}
-@media screen and (max-width: 992px) {
-  .activity-card {
-    max-width: 90%;
-    min-width: 10%;
-  }
-}
-.activity-card-non-organizer {
-  min-width: 21em;
-}
-.activity-card-organizer {
-  max-width: 100%;
-  min-width: 40em;
-  width: 100%;
-}
-.activity-card:hover {
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-}
-.activity-card__header {
-  height: 13em;
-  width: 100%;
-  padding: 1rem;
-  position: relative;
-  background-color: #ededed;
-  -webkit-border-top-left-radius: 5px;
-  -webkit-border-top-right-radius: 5px;
-  -moz-border-radius-topleft: 5px;
-  -moz-border-radius-topright: 5px;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-.activity-card__header-organizer {
-  max-width: 20%;
-  min-width: 30%;
-  height: 12em;
-}
-.activity-card__header__cover-container {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-}
-.activity-card__header__cover-container.inactive-cover:before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.5);
-  top: 0;
-  left: 0;
-}
-.activity-card__header__cover-gradient {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-}
-.activity-card__header__cover-gradient:after {
-  width: 100%;
-  height: 100%;
-  content: "";
-  background-color: rgba(60, 61, 65, 0.4);
-  z-index: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-.activity-card__header__btn-more {
-  color: white;
-  background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  position: absolute;
-  padding: 0.5rem;
-  right: 0;
-  top: 0;
-  cursor: pointer;
-  border-radius: 50%;
-  transition: .2s all ease;
-  margin: 0.5rem;
-}
-.activity-card__header__btn-more:hover {
-  background: rgba(255, 255, 255, 0.6);
-}
-.activity-card__header__menu {
-  position: relative;
-  float: right;
-  width: 7em;
-  border-radius: 2.5px;
-  z-index: 10;
-  text-align: right;
-}
-.activity-card__header__menu__btn-close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  cursor: pointer;
-}
-.activity-card__header__menu__item {
-  color: #FFFFFF;
-  font-size: 1.5em;
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  cursor: pointer;
-  margin-left: 0.3em;
-  text-align: center;
-}
-.activity-card__header__menu__item:hover {
-  text-decoration: none;
-}
-.activity-card__header__menu__item__icon {
-  font-size: 1em;
-}
-.activity-card__header__menu__item span {
-  color: #FFFFFF;
-}
-.activity-card__header__menu__item:active {
-  background: #03d69a;
-  color: white;
-}
-.activity-card__content {
-  position: relative;
-}
-.activity-card__content-organizer {
-  padding: 1.2em 1.5em 0em 1.5em;
-  width: 100%;
-}
-.activity-card__content-organizer::before {
-  content: "";
-  color: transparent;
-  position: absolute;
-  left: -9px;
-  border-left: 0px solid transparent;
-  border-right: 10px solid #ffffff;
-  border-bottom: 7px solid transparent;
-  border-top: 7px solid transparent;
-}
-.activity-card__body {
-  padding: 1em;
-  display: block;
-  height: 7.5em;
-}
-.activity-card__body a:hover {
-  color: rgba(0, 0, 0, 0.74);
-}
-.activity-card__body-organizer {
-  padding: 0;
-  position: relative;
-  width: 100%;
-  height: 6.5em;
-}
-.activity-card__body:hover .activity-card__body__title {
-  text-decoration: underline;
-}
-.activity-card__body__menu-name-organizer {
-  font-size: 0.5em;
-  text-transform: capitalize;
-}
-.activity-card__body__menu-organizer {
-  position: absolute;
-  right: 0;
-  top: -5px;
-}
-.activity-card__body__menu-organizer a:hover {
-  text-decoration: none;
-}
-.activity-card__body__menu-organizer a span {
-  color: #cbcbcb;
-  vertical-align: middle;
-  font-size: 1.2em;
-}
-.activity-card__body__title {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  font-size: 0.85em;
-  margin-bottom: 0.25em;
-  display: block;
-  overflow: hidden;
-  padding-bottom: .4em;
-  text-transform: capitalize;
-  text-overflow: ellipsis;
-  word-break: normal;
-  max-height: 3em;
-  color: #767676;
-  width: 85%;
-}
-.activity-card__body__title-organizer {
-  width: 60%;
-  max-height: 7em;
-}
-.activity-card__body__owner-name {
-  height: 2em;
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  font-size: .75em;
-  width: 100%;
-  display: block;
-  padding-bottom: .7em;
-  color: #767676;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.activity-card__body__description {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding-top: 1em;
-  color: #9b9b9b;
-  text-transform: capitalize;
-  overflow: hidden;
-  word-break: break-all;
-  height: 5em;
-  font-size: .9em;
-}
-.activity-card__body__date {
-  color: #cbcbcb;
-  font-size: 0.8em;
-  display: inline-block;
-}
-.activity-card__owner-picture {
-  border-radius: 50%;
-  width: 3em;
-  height: 3em;
-  position: absolute;
-  bottom: -1.5em;
-  right: 1rem;
-}
-.activity-card__bottom {
-  display: block;
-  width: 100%;
-  height: 3.5em;
-  line-height: 3.5em;
-  background: #ededed;
-  color: #6c6c6c;
-  text-align: center;
-  font-weight: bold;
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-decoration: none;
-  border-radius: 0px 0px 5px 5px;
-}
-.activity-card__bottom:hover {
-  color: rgba(0, 0, 0, 0.74);
-  text-decoration: none;
-}
-.activity-card__bottom img {
-  margin-right: 0.25em;
-  vertical-align: text-bottom;
-}
-.activity-card__bottom-organizer {
-  background: transparent;
-  text-align: left;
-  height: 4em;
-  line-height: 5em;
-}
-.activity-card__bottom-organizer div {
-  display: inline-block !important;
-}
-.activity-card__bottom-organizer-assistants {
-  float: right;
-  margin-top: -30px;
-  color: #999999;
-  text-decoration: underline;
-  font-size: 0.8em;
-}
-.activity-card__rating {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 700;
-  display: inline-block;
-  color: #767676;
-  font-size: 0.9em;
-}
-.activity-card__rating__star {
-  color: #f4d352;
-  font-size: 1.1em;
-}
-.activity-card__rating__star.--empty {
-  color: #ededed;
-}
-.activity-card__like {
-  float: right;
-  line-height: 10px;
-  font-size: 2em;
-  color: #fe5339;
-  cursor: pointer;
-}
-.activity-card__category {
-  position: absolute;
-  z-index: 1;
-}
-.activity-grid {
-  text-align: left;
 }
 .trulii-activity-card {
   position: relative;

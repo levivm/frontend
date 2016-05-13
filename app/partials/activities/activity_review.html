@@ -1,9 +1,9 @@
 <!-- If user hasnt posted a review yet -->
 <div ng-hide="hasReview">
     <div class="separate-above-medium separate-below-medium">
-        <h3 class="text-center text-muted montserrat-light" ng-bind="strings.LABEL_RATE_EXPERIENCE"></h3>
+        <h3 class="text-center text-muted font-light" ng-bind="strings.LABEL_RATE_EXPERIENCE"></h3>
         <div>
-            <h4 class="text-center text-muted montserrat-light">
+            <h4 class="text-center text-muted font-light">
                 <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                         state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
                 <span ng-bind="review.rating + ' / 5'"></span>
@@ -43,12 +43,12 @@
             <div class="row">
                 <div class="col-xs-12">
                     <!-- Name-->
-                    <span class="text-center text-sm text-uppercase text-dark montserrat-semibold" ng-bind="::user.user.full_name"></span>
+                    <span class="text-center text-sm text-uppercase text-dark font-semibold" ng-bind="::user.user.full_name"></span>
                     <!-- End name -->
                     <span class="hidden-xs hidden-sm separate-left-less separate-right-less">|</span>
                     <br class="hidden-md hidden-lg">
                     <!-- Score -->
-                    <span class="text-uppercase montserrat-regular hidden-xs hidden-sm">
+                    <span class="text-uppercase font-regular hidden-xs hidden-sm">
                         <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                                 readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="custom-icons-1">
                         </rating>
@@ -108,15 +108,15 @@
             </div>
             <!--Buttons-->
             <div class="separate-above-less separate-below-less  flex-betweent-container review-buttons" ng-hide="hasReply || review.read">
-                    <button class="btn btn-default  montserrat-light" ng-bind="::strings.LABEL_REPORT_BUTTON"
+                    <button class="btn btn-default  font-light" ng-bind="::strings.LABEL_REPORT_BUTTON"
                             ng-click="show.reportWarning = !show.reportWarning">
                     </button>
                     <div class="flex-container separate-left-less ">
-                        <button class="btn btn-primary  montserrat-light"
+                        <button class="btn btn-primary  font-light"
                                 ng-click="reply()">
                                 <span ng-bind="::strings.LABEL_REPLY_BUTTON"></span>
                         </button>
-                        <button class="btn btn-success  separate-left-less montserrat-light" ng-click="markAsRead()" >
+                        <button class="btn btn-success  separate-left-less font-light" ng-click="markAsRead()" >
                             <span class="text-md"  ng-bind="::strings.ACTION_MARK_AS_READ"></span>
                         </button>
                     </div>
@@ -145,7 +145,7 @@
             </div>
         </div>
         <div class="col-xs-7 col-xs-offset-1 col-md-9 col-md-offset-0 paragraph-condensed review-content">
-            <span class="text-center text-sm montserrat-semibold" ng-bind="::organizer.name"></span>
+            <span class="text-center text-sm font-semibold" ng-bind="::organizer.name"></span>
             <span class="hidden-xs hidden-sm">|</span>
             <br class="hidden-md hidden-lg">
             <span class="text-sm" ng-if="review.replied_at">
