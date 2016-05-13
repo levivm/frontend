@@ -61,7 +61,7 @@
     }
 
     &__logo-container {
-        background-color: @primary;
+        background-color: transparent;
         height: @navbar-height;
         width: @sidebar-width + 1.1;
         display: inline-block;
@@ -79,7 +79,7 @@
     }
 
     &__logo {
-        background: url('@{s3url}/static/img/logo-trulii.png') no-repeat;
+        background: url('@{s3url}/static/img/logo-green.png') no-repeat;
         height: @navbar-inner-height;
         width: 9em;
         display: inline-block;
@@ -116,7 +116,7 @@
         .buttons-login{
             line-height: 2.5em;
             > a{
-                color: @gray;
+                color: @gray-regular;
                 text-decoration: none;
             }
         }
@@ -385,7 +385,7 @@
 
     .sub-title{
         font-weight: 500;
-        color: @gray;
+        color: @gray-regular;
         font-size: 1.25em;
         float: right;
         padding: 0 1em;

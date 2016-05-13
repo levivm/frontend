@@ -262,9 +262,9 @@
         }
 
         &__description{
-            font-family: @font-serif;
+            font-family: @font-sans;
             padding-top: 1em;
-            color: @gray;
+            color: @gray-regular;
             text-transform: capitalize;
             overflow: hidden;
             word-break: break-all;
@@ -343,7 +343,7 @@
         font-size: 0.9em;
 
         &__star{
-            color: @primary;
+            color: @brand-warning;
             font-size: 1.1em;
 
             &.--empty{
@@ -370,4 +370,97 @@
 
 .activity-grid {
     text-align: left;
+}
+
+@activity-card-height: 350px;
+
+.trulii-activity-card{
+    position: relative;
+    height: @activity-card-height;
+    width: 290px;
+    border-radius: @border-radius-large;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: #DCDDE2 0px 0px 0px 0px;
+    transition: all 0.33s;
+    cursor: pointer;
+    
+    &:hover{
+        box-shadow: #DCDDE2 5px 10px 25px 4px;
+    }
+    &__header{
+        height: @activity-card-height/2;
+        width: 100%;
+        background-size: cover;
+        background-color: lightgray;
+        &__menu{
+            position: relative;
+            float: right;
+            text-align: right;
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 1em;
+            &__item{
+                cursor: pointer;
+                margin-left: 5px;
+                text-align: center;
+                &__icon{
+                    color: white;
+                    &.mdi-action-favorite{
+                        color: @brand-heart;
+                    }
+                }
+            }
+        }
+    }
+    &__category{
+        &__label{
+            &:extend(.label);
+            position: absolute;
+            z-index: 1;
+            padding: 4px 10px;
+            letter-spacing: 1px;
+            font-size: 9px;
+            top: 165px;
+            left: 50%;
+            transform: translate(-50%);
+            opacity: 0.9;
+        }
+    }
+    &__body{
+        &:extend(.flex-center-container);
+        height: @activity-card-height/2;
+        &__content{
+            &:extend(.flex-center-item);
+            &__title{
+                color: @gray-darker;
+                font-weight: 700;
+                font-size: 1.1em;
+                display: inline-block;
+                padding-bottom: 5px;
+            }
+            &__organizer{
+                color: @gray-regular;
+                font-weight: 600;
+                font-size: 0.9em;
+                display: inline-block;
+                padding-bottom: 10px;
+            }
+            &__date{
+                color: @gray-regular;
+                font-size: 0.9em;
+            }
+            &__rating{
+                color: @gray-regular;
+                font-size: 0.9em;
+            }
+            &__price{
+                color: @gray-darker;
+                font-weight: 600;
+                font-size: 1em;
+                display: inline-block;
+                padding-top: 15px;
+            }
+        }
+    }
 }

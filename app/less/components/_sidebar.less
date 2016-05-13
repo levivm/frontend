@@ -101,7 +101,7 @@
 		border-left: 5px solid transparent;
 
 		&-edit-activity{
-			color: @gray;
+			color: @gray-regular;
 
 		}
 		&--selected{
@@ -126,7 +126,7 @@
 		&--selected-edit-activity{
 			background: @gray-lighter;
 			transition: ease all 0.1s;
-			color: @gray;
+			color: @gray-regular;
 
 			.@{sidebar-float-class} &{
 				background: lighten(@gray-light, 50%);
@@ -135,7 +135,7 @@
 				border-width: 0;
 			}
 			&:focus{
-				color:@gray;
+				color:@gray-regular;
 			}
 
 
@@ -210,7 +210,7 @@
 		font-family: @font-sans-alt;
 		font-weight: normal;
 		font-size: .9em;
-		color: @gray-lightest;
+		color: @gray-lighter;
 
 		&-edit-activity{
 			background: @gray-lighter;
@@ -309,7 +309,7 @@
 
 	&.@{sidebar-float-class}{
 		background-color: white;
-		border: 1px solid @gray-light-medium;
+		border: 1px solid @gray-light;
 		margin: 1em;
 		border-radius: @border-radius-standard;
 		bottom: auto;
@@ -324,12 +324,12 @@
 
 }
 .sidebar__item-edit-activity:hover {
-    color: @gray !important;
+    color: @gray-regular !important;
 	background: @gray-lighter;
 }
 
 .sidebar-mobile-toggle{
-    color: @gray;
+    color: @gray-regular;
     width: 100%;
     background-color: white;
     height: @navbar-short-height - 2;
@@ -343,7 +343,7 @@
        height: @navbar-short-height;
     }
     &:focus, &:hover{
-        color: @gray;
+        color: @gray-regular;
     }
 	.absolute-container__close{
 		z-index: 1050;
