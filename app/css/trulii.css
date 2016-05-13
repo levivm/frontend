@@ -19699,6 +19699,29 @@ blockquote {
   display: inline-block;
   padding-top: 15px;
 }
+.trulii-activity-card-organizer {
+  width: 100%;
+}
+.trulii-activity-card-organizer.trulii-activity-card {
+  height: 175px;
+}
+.trulii-activity-card-organizer .trulii-activity-card__header {
+  width: 30%;
+  display: inline-block;
+  float: left;
+}
+.trulii-activity-card-organizer .trulii-activity-card__body {
+  width: 70%;
+  float: left;
+}
+.trulii-activity-card-organizer .trulii-activity-card__body__content {
+  margin-right: auto;
+  margin-left: 25px;
+}
+.trulii-activity-card-organizer .trulii-activity-card__category__label {
+  top: 10px;
+  left: calc(30% + 45px);
+}
 .activity-detail p {
   word-break: break-word;
   margin-bottom: 0px;

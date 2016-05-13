@@ -463,4 +463,31 @@
             }
         }
     }
+    &-organizer{
+        width: 100%;
+        &.trulii-activity-card{
+            height: @activity-card-height/2;
+        }
+        .trulii-activity-card{
+            &__header{
+                width: 30%;
+                display: inline-block;
+                float: left;
+            }
+            &__body{
+                width: 70%;
+                float: left;
+                &__content{
+                    margin-right: auto;
+                    margin-left: 25px;
+                }
+            }
+             &__category{
+                &__label{
+                    top: 10px;
+                left: ~"calc(30% + 45px)";
+                }
+            }
+        }
+    }
 }

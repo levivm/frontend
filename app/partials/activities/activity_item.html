@@ -95,7 +95,7 @@
 </div>-->
 
 
-<div class="trulii-activity-card">
+<div class="trulii-activity-card" ng-class="{'trulii-activity-card-non-organizer': !organizer, 'trulii-activity-card-organizer': organizer}">
   <div class="trulii-activity-card__header" style="background-image: url('{{activity.main_photo}}') ">
     <span ng-if="!organizer" class="trulii-activity-card__header__menu">
         <a ng-repeat="action in actions track by $index"
@@ -112,6 +112,16 @@
             data-toggle="tooltip" data-placement="bottom" data-original-title="{{strings.ADD_TO_WISHLIST}}">
           <span class="trulii-activity-card__header__menu__item__icon mdi-action-favorite-outline" ng-class="{'mdi-action-favorite': activity.wish_list}" title="{{strings.ADD_TO_WISHLIST}}"></span>
         </a>
+    </span>
+    <span ng-if="organizer" class="trulii-activity-card__header__menu">
+      <a ng-repeat="action in actions track by $index"
+          class="trulii-activity-card__header__menu__item"
+          ui-sref="{{::action.state}}"
+          ng-click="clickAction(action.name)"
+          ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
+          data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+        <span class="trulii-activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
+      </a>
     </span>
   </div>
   <div class="trulii-activity-card__category">
@@ -136,13 +146,13 @@
         readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
       </span>
       <br>
-      <span class="trulii-activity-card__body__content__price">
+      <span class="trulii-activity-card__body__content__price" ng-if="activity.closest_calendar">
         <strong ng-show="activity.closest_calendar.is_free">
           <span ng-bind="::strings.COPY_FREE"></span>
           <br>
         </strong>
-        <span ng-class="::{'text-strike':activity.closest_calendar.is_free}">
-          <span ng-bind="'COP'"></span>
+        <span ng-class="::{'text-strike': activity.closest_calendar.is_free}">
+          <span ng-bind="strings.CURRENCY"></span>
           <span ng-bind=" ::activity.closest_calendar.session_price | number"></span>
         </span>
       </span>
