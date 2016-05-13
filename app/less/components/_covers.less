@@ -263,14 +263,14 @@
         border-top: 5px solid @brand-success;
       }
       select:focus{
-        background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light-medium, @gray-light-medium) !important;
+        background-image: linear-gradient(@brand-primary, @brand-primary), linear-gradient(@gray-light, @gray-light) !important;
         background-position: 0 bottom;
       }
       .btn.btn-default{
         width:15%;
         border-radius: 0;
         border-color: transparent;
-        color: @gray !important;
+        color: @gray-regular !important;
         border-top: 5px solid @brand-secondary;
         font-size: 1.25em;
       }
@@ -287,7 +287,7 @@
         padding: 5em 7em;
 
         p{
-          color: @gray !important;
+          color: @gray-regular !important;
           padding: 0;
         }
 
@@ -337,7 +337,7 @@
       }
     }
     &-contact-controllers{
-      background-color: fade(@gray, 40%);
+      background-color: fade(@gray-regular, 40%);
       padding: 1em;
       ul{
         .before-md({

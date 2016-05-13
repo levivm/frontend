@@ -12,29 +12,39 @@
 //
 //## Gray and brand colors for use across Bootstrap.
 
-@gray-base:              #000;
-@gray-darker:            lighten(@gray-base, 13.5%); // #222
-@gray-dark:              lighten(@gray-base, 20%);   // #333
-@gray-dark:              #3a3d3f;
-@gray:                   lighten(@gray-base, 33.5%); // #555
-@gray:                   #535353;
-@gray-light:             lighten(@gray-base, 60%); // #777
-@gray-light-medium:      lighten(@gray-base, 89%);      // ccc
-@gray-lighter:           lighten(@gray-base, 93.5%); // #eee
-@gray-lightest:          #fafafa;
-@lightbg-accent: lighten(@gray-base, 98.5%);
-@gray-alt:               #7a7a7a;
 
-@brand-primary:           #ffd580; // Yellow Trulii
-@brand-secondary:         #732ebb; // Purple
-@brand-success:         #38dbc8;
-@brand-red:             #ec5469;
+@gray-darker: #222328;
+@gray-dark: #767676;
+@gray-regular: #9b9b9b;
+@gray-light: #cbcbcb;
+@gray-lighter: #ededed;
+@gray-light-brand: #e4e7ef;
+@gray-lighter-brand: #f0f2f7;
+
+// @gray-base:              #000;
+// @gray-darker:            #1c1e23;
+// @gray-dark:              #3a3d3f;
+// @gray:                   #535353;
+// @gray-light:             #9b9b9b;
+// @gray-light-medium:      lighten(@gray-base, 89%);      // ccc
+// @gray-lighter:           lighten(@gray-base, 93.5%); // #eee
+// @gray-lightest:          #fafafa;
+// @lightbg-accent: lighten(@gray-base, 98.5%);
+// @gray-alt:               #7a7a7a;
+
+@brand-primary:           #00e2aa;
+@brand-secondary:         #03d69a;
+
+@brand-success:         #03d69a;
+@brand-red:             #fe5339;
 
 @brand-success-dark:      #22c7b5;
 
-@brand-info:            #5bc0de;
-@brand-warning:         #FCAB54;
-@brand-danger:          #d9534f;
+@brand-info:            #51dde9;
+@brand-warning:         #f4d352;
+@brand-danger:          #fe5339;
+
+@brand-heart: #ff5a5f;
 
 @dark-element: #393b3f;
 
@@ -72,14 +82,12 @@
 
 @fonts-url: '/css/fonts/';
 
-@font-serif: 'PT Serif', Georgia, "Times New Roman", Times, serifsi;
-@font-sans: 'Cabin', "Helvetica Neue", Helvetica, Arial, sans-serif;
-// @font-sans: 'Montserrat', "Helvetica Neue", Helvetica, Arial, sans-serif;
+@font-sans: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 @font-sans-alt: @font-sans;
 
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 @font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace;
-@font-family-base:        @font-serif;
+@font-family-base:        @font-sans;
 
 //## Font, line-height, and color for body text, headings, and more.
 
@@ -220,7 +228,7 @@
 @input-bg-disabled:              @gray-lighter;
 
 //** Text color for `<input>`s
-@input-color:                    @gray;
+@input-color:                    @gray-darker;
 //** `<input>` border color
 @input-border:                   #ccc;
 
@@ -407,7 +415,7 @@
 @navbar-default-link-color:                @gray-light;
 @navbar-default-link-hover-color:          @gray-dark;
 @navbar-default-link-hover-bg:             transparent;
-@navbar-default-link-active-color:         @gray;
+@navbar-default-link-active-color:         @gray-darker;
 @navbar-default-link-active-bg:            darken(@navbar-default-bg, 6.5%);
 @navbar-default-link-disabled-color:       #ccc;
 @navbar-default-link-disabled-bg:          transparent;
@@ -481,7 +489,7 @@
 @nav-tabs-link-hover-border-color:          @gray-lighter;
 
 @nav-tabs-active-link-hover-bg:             @body-bg;
-@nav-tabs-active-link-hover-color:          @gray;
+@nav-tabs-active-link-hover-color:          @gray-darker;
 @nav-tabs-active-link-hover-border-color:   #ddd;
 
 @nav-tabs-justified-link-border-color:            #ddd;
@@ -585,7 +593,7 @@
 //##
 
 //** Popover body background color
-@popover-bg:                          @gray-light-medium;
+@popover-bg:                          @gray-regular;
 //** Popover maximum width
 @popover-max-width:                   276px;
 //** Popover border color
