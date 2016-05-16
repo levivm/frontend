@@ -49,7 +49,9 @@
                     getAmazonUrl: getAmazonUrl,
                     howToWorkStudent: howToWorkStudent,
                     howToWorkOrganizer: howToWorkOrganizer,
-                    goToProfile:goToProfile
+                    goToProfile:goToProfile,
+                    toggleSideBar:toggleSideBar,
+                    showSideBar:false
                 });
 
                 _activate();
@@ -75,6 +77,11 @@
                 }
                 function goToProfile() {
                    $state.go((scope.user.is_organizer) ? 'organizer-dashboard.profile': 'student-dashboard.profile')
+                }
+                
+                function toggleSideBar() {
+                    console.log(scope.showSideBar);
+                   scope.showSideBar= !scope.showSideBar;
                 }
                 function explore(){
                     $rootScope.$broadcast(SearchManager.EVENT_EXPLORE);

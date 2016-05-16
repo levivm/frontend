@@ -140,7 +140,7 @@
         float: right;
         font-size: 0.9em;
         margin-right: 10px;
-        border-left: 1px solid @gray-light;
+        
         .before-md({
             max-width: 150px;
             display: inline-block;
@@ -167,7 +167,6 @@
         font-weight: bold;
         text-transform: uppercase;
         line-height: @navbar-height - (@navbar-padding-vertical*2);
-
         .before-md({
           padding: 0;
           height: @navbar-short-height;
@@ -315,6 +314,9 @@
     }
     .navbar__option--right{
       border-left: none;
+      span{
+        color: #ffffff;
+      }
     }
     .btn-primary{
       background: transparent !important;
@@ -453,14 +455,53 @@
     });
 }
 
+//Dropdown Menu when hover picture profile in navbar
 .drop-menu{
   position: fixed;
-  width: 25em;
+  width: 20em;
   right: 15px;
-  z-index: 1000;
+  z-index: 10000;
   background: white;
-  padding: 1em;
-  border: 2px solid @gray-light
+  border: 1px solid #cbcbcb;
+  border-top: none;
+  box-shadow: rgba(68, 68, 68, 0.09) 0px 7px 13px 1px;
+  border-radius: 5px;
+  
+  &.short{
+    top: 68px;
+  }
+  &:before{
+    content: "";
+    position: absolute;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 10px solid white;
+    right: 15px;
+    top: -10px;
+    
+  }
+  ul{
+    padding: 1em 1em 0em 1em;
+    margin-bottom: 0;
+    li{
+      font-size: 1.1em;
+      border-bottom: 1px solid #e3e3e3;
+      padding: 0.8em;
+      a{
+        color: @gray-dark;
+        display: block;
+        width: 100%;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+      &:hover{
+         background-color: @gray-lighter-brand;
+      }
+      
+    }
+  }
+  
 }
 
 .burger-menu{
@@ -621,8 +662,18 @@
     }
   }
 }
+//Cover opacity with sidebar is true
 
-
+.cover-sidebar{
+  background: rgba(0, 0, 0, 0.52);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  top: 0;
+  transition: .4s ease all;
+  
+}
 
 @media (max-width: 991px){
   .burger-menu{

@@ -4645,7 +4645,7 @@ a.thumbnail.active {
   line-height: 20px;
   color: #fff;
   text-align: center;
-  background-color: #00e2aa;
+  background-color: #3b5998;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
   -webkit-transition: width 0.6s ease;
@@ -12036,12 +12036,24 @@ hr.on-light {
   animation-name: lateral-slide;
   animation-duration: 0.4s;
 }
+.lateral-slide-right {
+  animation-name: lateral-slide-right;
+  animation-duration: 0.4s;
+}
 @keyframes lateral-slide {
   from {
     left: -20em;
   }
   to {
     left: 0em;
+  }
+}
+@keyframes lateral-slide-right {
+  from {
+    right: -20em;
+  }
+  to {
+    right: 0em;
   }
 }
 .lateral-fadein.ng-hide-remove,
@@ -13038,7 +13050,7 @@ hr.on-light {
   color: #ededed;
 }
 .text-dark {
-  color: #222328;
+  color: #222328 !important;
 }
 .text-gray-green {
   color: #587272;
@@ -14364,7 +14376,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   float: right;
   font-size: 0.9em;
   margin-right: 10px;
-  border-left: 1px solid #cbcbcb;
 }
 @media screen and (max-width: 992px) {
   .navbar__right-wrapper {
@@ -14531,6 +14542,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar-landing .navbar__option--right {
   border-left: none;
 }
+.navbar-landing .navbar__option--right span {
+  color: #ffffff;
+}
 .navbar-landing .btn-primary {
   background: transparent !important;
   border: 1px solid white;
@@ -14663,12 +14677,46 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .drop-menu {
   position: fixed;
-  width: 25em;
+  width: 20em;
   right: 15px;
-  z-index: 1000;
+  z-index: 10000;
   background: white;
-  padding: 1em;
-  border: 2px solid #cbcbcb;
+  border: 1px solid #cbcbcb;
+  border-top: none;
+  box-shadow: rgba(68, 68, 68, 0.09) 0px 7px 13px 1px;
+  border-radius: 5px;
+}
+.drop-menu.short {
+  top: 68px;
+}
+.drop-menu:before {
+  content: "";
+  position: absolute;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-bottom: 10px solid white;
+  right: 15px;
+  top: -10px;
+}
+.drop-menu ul {
+  padding: 1em 1em 0em 1em;
+  margin-bottom: 0;
+}
+.drop-menu ul li {
+  font-size: 1.1em;
+  border-bottom: 1px solid #e3e3e3;
+  padding: 0.8em;
+}
+.drop-menu ul li a {
+  color: #767676;
+  display: block;
+  width: 100%;
+}
+.drop-menu ul li a:hover {
+  text-decoration: none;
+}
+.drop-menu ul li:hover {
+  background-color: #f0f2f7;
 }
 .burger-menu {
   width: 100vw;
@@ -14824,6 +14872,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     width: 50px;
     height: 50px;
   }
+}
+.cover-sidebar {
+  background: rgba(0, 0, 0, 0.52);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  top: 0;
+  transition: .4s ease all;
 }
 @media (max-width: 991px) {
   .burger-menu__buttons {
@@ -15521,6 +15578,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: transparent;
   border-color: #e3e3e3;
 }
+.search-bar__navbar button:focus {
+  outline: 0 !important;
+}
 .sidebar {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: fixed;
@@ -15798,6 +15858,46 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar__item-edit-activity:hover {
   color: #9b9b9b !important;
   background: #ededed;
+}
+.sidebar-profile {
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: block;
+  z-index: 10000;
+  overflow-x: visible;
+  overflow-y: auto;
+  padding: 20px 0 0 0;
+  background-color: #393b3f;
+  width: 17em;
+  max-height: 100vh;
+  transition: transform 0.5s;
+  transition: .4s ease all;
+  font-size: 1.2em;
+}
+.sidebar-profile .profile {
+  border-bottom: 1px solid #ffffff;
+  padding: 1em 1.2em;
+}
+.sidebar-profile .profile img {
+  border-radius: 50%;
+  width: 3em;
+}
+.sidebar-profile .profile span {
+  color: white;
+}
+.sidebar-profile ul {
+  padding: 1em 1.5em;
+  margin-top: 1em;
+}
+.sidebar-profile ul li {
+  padding-bottom: 1em;
+}
+.sidebar-profile ul li a {
+  color: white;
+  font-weight: 700;
 }
 .sidebar-mobile-toggle {
   color: #9b9b9b;

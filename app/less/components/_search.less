@@ -601,10 +601,7 @@ select.form-control.sort-select{
             font-size: 0.95em;
             font-weight: 200;
             float: left;
-            
-            &:focus{
-
-            }
+           
         }
 
         .select-city{
@@ -689,6 +686,9 @@ select.form-control.sort-select{
             &:hover{
                 background: transparent;
                 border-color: darken(@gray-lighter, 4%);
+            }
+            &:focus{
+                outline: 0 !important;
             }
         }
 
