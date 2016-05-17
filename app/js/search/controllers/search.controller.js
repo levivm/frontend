@@ -83,12 +83,19 @@
             collapseFilters: collapseFilters,
             loadingActivities: true,
             getAmazonUrl: getAmazonUrl,
-            cards: []
+            cards: [],
+            expandedSort: false,
+            toggleExpandedSort: toggleExpandedSort 
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function toggleExpandedSort(){
+            vm.expandedSort = !vm.expandedSort;
+        }
+        
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
@@ -401,15 +408,17 @@
                 LABEL_SORT_BY: "Ordenar por",
                 LABEL_LEVEL : "Nivel",
                 LABEL_COST : "Precio",
-                LABEL_DATE : "Desde",
-                LABEL_WITH_CERTIFICATE : "Con Certificado",
+                LABEL_DATE : "Fecha de inicio",
+                LABEL_OTHERS: "Otros",
+                LABEL_WITH_CERTIFICATE : "Con certificado",
                 LABEL_WEEKENDS : "Fines de Semana",
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
                 PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
                 SHOW_FILTERS: "Mostrar filtros",
-                COLLAPSE_FILTERS: "Ocultar filtros"
+                COLLAPSE_FILTERS: "Ocultar filtros",
+                LABEL_FREE: "Clases gratis"
             });
         }
 
