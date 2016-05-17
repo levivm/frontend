@@ -67,7 +67,7 @@
                     'gender': scope.gender,
                     'bio' : scope.bio,
                     'city' : scope.city,
-                    'telephone' : scope.telephone,
+                    'telephone' : scope.telephone ? scope.telephone : '',
                 };
                 return scope.update(profile_data);
             },
