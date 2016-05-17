@@ -16,14 +16,14 @@
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary montserrat-regular" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
         </div>
-        <div class="navbar__right-wrapper" ng-if="user">
+        <div class="navbar__right-wrapper" >
             
-            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
+            <a ng-if="user" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
                 <span class=" montserrat-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.first_name"></span>
                 <img ng-if="user" ng-src="{{user.photo}}" class="user-picture hidden-xs hidden-sm" alt="{{user.user.full_name}}"/>
             </a>
             <a class="navbar__option navbar__option--right  hidden-md hidden-lg" ng-click="toggleSideBar()">
-                 <i class="fa fa-bars " ng-class="{'text-gray-lightest': isLandingState(), 'text-gray-light': !isLandingState()}" aria-hidden="true"></i>
+                 <i class="fa fa-bars " ng-class="{'text-gray-lighter': isLandingState(), 'text-gray': !isLandingState()}" aria-hidden="true"></i>
             </a>
         </div>
         
@@ -34,7 +34,7 @@
     <ul class="list-unstyled" ng-if="user.is_organizer">
         <li>
             <a ui-sref="organizer-dashboard.activities.open"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
+                ng-click="hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
                 ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
         </li>
         <li>
@@ -56,6 +56,9 @@
             <a ui-sref="organizer-dashboard.reviews.pending"
                 ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
                 ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
+             <span class="label label-notification separate-left-less"
+                      ng-if="unreadReviewsCount"
+                      ng-bind="unreadReviewsCount"></span>
         </li>
         <li>
             <a ui-sref="organizer-dashboard.instructors"
@@ -107,12 +110,19 @@
         </li>
     </ul>
 </div>
+
+<!-- Menu side bar mobile-->
 <div class="cover-sidebar" ng-show="showSideBar"   ng-click="toggleSideBar()"></div>
 
-<div class="sidebar-profile lateral-slide-right " ng-show="showSideBar"  >
+<div class="sidebar-profile lateral-slide-right hidden-md hidden-lg" ng-show="showSideBar"  >
     <div class="profile" ng-if="user">
         <img ng-if="user" ng-src="{{user.photo}}" class="user-picture " alt="{{user.user.full_name}}"/>
         <span class=" montserrat-bold  margin-horizontal-less " ng-bind="user.user.full_name"></span>
+    </div>
+    
+    <div class="sign" ng-if="!user">
+        <a ui-sref="login" class=" montserrat-regular  margin-horizontal-less "  ng-click="toggleSideBar();" ng-bind="::strings.ACTION_LOGIN"></a>
+        <a ui-sref="register" class=" montserrat-regular  margin-horizontal-less" ng-click="toggleSideBar();" ng-bind="::strings.ACTION_REGISTER"></a>
     </div>
     <ul class="list-unstyled" ng-if="user.is_organizer">
         <li>
@@ -138,7 +148,13 @@
         <li>
             <a ui-sref="organizer-dashboard.reviews.pending"
                 ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
-                ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
+                ng-bind="::strings.LABEL_ORGANIZER_REVIEWS">
+                
+                </a>
+                <span class="label label-notification separate-left-less"
+                      ng-if="unreadReviewsCount"
+                      ng-bind="unreadReviewsCount"></span>
+                
         </li>
         <li>
             <a ui-sref="organizer-dashboard.instructors"
@@ -189,4 +205,13 @@
                 ng-bind="::strings.ACTION_EXIT"></a>
         </li>
     </ul>
+    
+    <div class="social">
+        <a href="https://twitter.com/trulii_">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a class="separate-left" href="https://www.facebook.com/truliilatam/">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+    </div>
 </div>

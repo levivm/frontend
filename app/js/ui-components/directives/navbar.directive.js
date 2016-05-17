@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -138,9 +138,11 @@
                             return;
                         }
                         scope.user = user;
+                        console.log(scope.user);
                         Authentication.isOrganizer().then(function (result) {
                             scope.user.is_organizer = result;
                             scope.isSearchVisible = !result;
+                            _getOrganizerReviews();
                         });
                         Authentication.isStudent().then(function (result) {
                             scope.user.is_student = result;
@@ -148,14 +150,19 @@
                         _mapDisplayName(scope.user);
                         _setUserChangedWatch();
                     }
-
+                    
                     function error() {
                         console.error("navbar.getUser. Couldn't get user");
                         scope.user = null;
                         _setUserChangedWatch();
                     }
                 }
-
+                function  _getOrganizerReviews() {
+                    OrganizersManager.getReviews(scope.user.id, 1, 6, 'unread')
+                                    .then(function (data) {
+                                        scope.unreadReviewsCount = data.count;
+                                    })
+                }
                 function _mapDisplayName(data) {
                     var user = data.user;
                     var company = data.name;
@@ -216,7 +223,7 @@
                         LABEL_ORGANIZER_SALES: 'Mis Ventas',
                         LABEL_ORGANIZER_PROFILE: 'Perfil',
                         LABEL_ORGANIZER_ACCOUNT: 'Cuenta',
-                        LABEL_ORGANIZER_REVIEWS: 'Comentarios Recibidos',
+                        LABEL_ORGANIZER_REVIEWS: 'Comentarios',
                         LABEL_ORGANIZER_INSTRUCTORS: 'Mis Instructores',
                         LABEL_STUDENT_ACTIVITIES: 'Mis Actividades',
                         LABEL_STUDENT_INVITE: 'Invitar Amigos',
@@ -256,7 +263,7 @@
                     _getUser();
                     _initScroll();
                     _setUserChangedWatch();
-
+                    
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');

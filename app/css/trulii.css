@@ -13726,6 +13726,10 @@ a.no-text-decoration {
   color: #6d6d6d;
   background-color: #dbdbdb;
 }
+.label-notification {
+  background-color: #334cd5;
+  color: #ffffff;
+}
 .navbar {
   position: relative;
   min-height: 90px;
@@ -14328,12 +14332,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 992px) {
   .navbar__logo {
-    width: 7em;
+    width: 1.2em;
     background-size: contain;
     position: relative;
-    background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-yellow.png');
-    margin: 7px auto 0 !important;
-    height: 60px;
+    background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-green-mobile.png');
+    margin: 18px auto 0 !important;
+    height: 35px;
   }
 }
 .navbar__mobile-dashboard-controllers {
@@ -14482,6 +14486,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 60px;
   margin: 5px auto 0;
   width: 7em;
+}
+@media screen and (max-width: 992px) {
+  .navbar.navbar-short .navbar__logo {
+    width: 1.2em;
+    background-size: contain;
+    position: relative;
+    background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-green-mobile.png');
+    margin: 18px auto 0 !important;
+    height: 35px;
+  }
 }
 .navbar.navbar-short .navbar__city {
   font-size: 11px;
@@ -14706,6 +14720,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1.1em;
   border-bottom: 1px solid #e3e3e3;
   padding: 0.8em;
+  position: relative;
 }
 .drop-menu ul li a {
   color: #767676;
@@ -14717,6 +14732,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .drop-menu ul li:hover {
   background-color: #f0f2f7;
+}
+.drop-menu ul li .label-notification {
+  background-color: #cbcbcb;
+  color: #ffffff;
+  position: absolute;
+  border-radius: 45%;
+  top: 14px;
+  right: 3px;
+  padding: 0.4em 0.7em;
 }
 .burger-menu {
   width: 100vw;
@@ -15870,7 +15894,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   overflow-x: visible;
   overflow-y: auto;
   padding: 20px 0 0 0;
-  background-color: #393b3f;
+  background-color: #222328;
   width: 17em;
   max-height: 100vh;
   transition: transform 0.5s;
@@ -15888,16 +15912,47 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar-profile .profile span {
   color: white;
 }
+.sidebar-profile .sign {
+  padding: 1em;
+  padding-top: 12em;
+}
+.sidebar-profile .sign a {
+  font-weight: 700;
+  color: white;
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+.sidebar-profile .social {
+  position: absolute;
+  bottom: 4em;
+  left: 1.5em;
+}
+.sidebar-profile .social a {
+  font-size: 1.4em;
+  color: white;
+}
 .sidebar-profile ul {
   padding: 1em 1.5em;
   margin-top: 1em;
 }
 .sidebar-profile ul li {
   padding-bottom: 1em;
+  position: relative;
 }
 .sidebar-profile ul li a {
   color: white;
-  font-weight: 700;
+  font-weight: 500;
+  width: 100%;
+  display: block;
+}
+.sidebar-profile ul li .label-notification {
+  position: absolute;
+  right: 0;
+  top: 0px;
+  z-index: 0;
+  border-radius: 45%;
+  padding: 0.4em 0.8em;
+  font-size: 0.7em;
 }
 .sidebar-mobile-toggle {
   color: #9b9b9b;
@@ -22967,7 +23022,7 @@ blockquote {
 .home-footer__links {
   min-height: 200px;
   color: #cbcbcb;
-  background-color: #393B3F;
+  background-color: #222328;
   padding: 2em 0em;
 }
 @media screen and (max-width: 768px) {
@@ -22984,14 +23039,13 @@ blockquote {
   color: white;
   font-size: 0.9em;
   text-transform: uppercase;
-  letter-spacing: 4px;
   margin-bottom: 2em;
   font-weight: bold;
 }
 .home-footer__links .link-column .link {
   color: #cbcbcb;
-  font-size: 0.75em;
-  font-weight: bold;
+  font-size: 0.9em;
+  font-weight: 500;
   margin-bottom: 1em;
 }
 .home-footer__links .link-column .link .icon {
@@ -23021,7 +23075,7 @@ blockquote {
 }
 .home-footer__love {
   height: 60px;
-  background-color: #2E3034;
+  background-color: #191818;
 }
 .home-footer__love p {
   font-size: 1em;
@@ -23038,7 +23092,7 @@ blockquote {
 }
 .home-footer__rights {
   height: 60px;
-  background-color: #25272A;
+  background-color: #191818;
 }
 .home-footer__rights p {
   font-size: 1em;

@@ -1,6 +1,6 @@
 @footer-light-color:    #393B3F;
-@footer-medium-color:   #2E3034;
-@footer-dark-color:     #25272A;
+@footer-medium-color:   #191818;
+@footer-dark-color:     @gray-darker;
 
 .not-found-search-bar {
   background-color: @footer-light-color;
@@ -11,7 +11,7 @@
   &__links{
     min-height: 200px;
     color: @gray-light;
-    background-color: @footer-light-color;
+    background-color: @footer-dark-color;
     padding: 2em 0em;
     
     .before-sm({
@@ -26,14 +26,13 @@
         color: white;
         font-size: 0.9em;
         text-transform: uppercase;
-        letter-spacing: 4px;
         margin-bottom: 2em;
         font-weight: bold;
       }
       .link{
         color: @gray-light;
-        font-size: 0.75em;
-        font-weight: bold;
+        font-size: 0.9em;
+        font-weight: 500;
         margin-bottom: 1em;
         .icon{
           width:20px;
@@ -80,7 +79,7 @@
   }
   &__rights{
     height: 60px;
-    background-color: @footer-dark-color;
+    background-color: @footer-medium-color;
     p{
       font-size: 1em;
       padding-top: 20px;
