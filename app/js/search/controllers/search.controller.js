@@ -85,7 +85,8 @@
             getAmazonUrl: getAmazonUrl,
             cards: [],
             expandedSort: false,
-            toggleExpandedSort: toggleExpandedSort 
+            toggleExpandedSort: toggleExpandedSort,
+            cities: [],
         });
 
         _activate();
@@ -426,7 +427,13 @@
             unsuscribeSearchModified();
             //unsuscribeExitSearch();
         }
-
+        
+        function _setCities(){
+            LocationManager.getAvailableCities().then(function(data){
+                vm.cities = data;
+                console.log(data);
+            });
+        }
         function _activate() {
             datepickerPopupConfig.showButtonBar = false;
             datepickerConfig.showWeeks = false;
@@ -437,6 +444,8 @@
             _getActivities($stateParams).then(function () {
                 _scrollToCurrentCategory();
             });
+            _setCities();
+            
 
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event, data) {
                     angular.extend(data, SearchManager.getSearchData());

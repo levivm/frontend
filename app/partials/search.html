@@ -223,17 +223,31 @@
 
 <div class="row">
     <div class="search-container">
-        <div class="search-sidebar">
-            <div class="search-sidebar__div hidden-md hidden-lg">
-                <ul>
+        <div class="search-mobile-filters">
+            <div class="col-xs-12 hidden-md hidden-lg">                
+                <div class="search-mobile-filters__bar">
+                    <input type="text" class="form-control">
+                    <select name="" id="" class="form-control" ng-options="city.name for city in search.cities"></select>
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <button class="btn btn-default btn-block btn-filters" ng-click="search.toggleFilters()">
+                    <img ng-src="{{search.getAmazonUrl('static/img/search/filters.png')}}" alt="" class="img-responsive center-block">
+                </button>
+            </div>
+        </div>
+        <div class="search-sidebar" ng-class="{'hidden-xs hidden-sm': !search.showFilters}">
+            <div class="search-sidebar__div search-sidebar__div-mobile hidden-md hidden-lg">
+                <ul ng-class="{'search-sidebar__div-expanded': search.expandedSort, 'search-sidebar__div-not-expanded': !search.expandedSort}">
                     <li class="search-sidebar__div__header" ng-click="search.toggleExpandedSort()">
                         <span ng-bind="::search.strings.LABEL_SORT_BY"></span>
                         <i class="fa fa-chevron-right" ng-hide="search.expandedSort" aria-hidden="true"></i>
                         <i class="fa fa-chevron-down" ng-hide="!search.expandedSort" aria-hidden="true"></i>
                     </li>
-                    <li class="order" ng-class="{'order-expanded': search.expandedSort}" ng-hide="!search.expandedSort">
-                        <ul class="orders">
-                            <li class="orders__item" ng-repeat="option in search.orderByOptions"
+                    <li class="search-order" ng-class="{'order-expanded': search.expandedSort}" ng-hide="!search.expandedSort">
+                        <ul class="search-orders">
+                            <li class="search-orders__item" ng-repeat="option in search.orderByOptions"
                                 ng-click="search.changeOrderBy(option.orderByPredicate)" ng-bind="option.name">
                             </li>
                         </ul>
@@ -401,6 +415,7 @@
         <div class="text-center"
             ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">
             <pagination class="pagination-sm"
+                    ng-class="{'hidden-xs hidden-sm': search.showFilters}"
                     ng-model="search.activitiesPaginationOpts.pageNumber"
                     ng-change="search.pageChange()"
                     data-total-items="search.activitiesPaginationOpts.totalItems"

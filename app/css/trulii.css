@@ -12828,6 +12828,15 @@ hr.on-light {
   padding-top: 13px;
   border-radius: 100%;
 }
+@media (max-width: 768px) {
+  .pagination > li > a,
+  .pagination > li > span {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+    padding-top: 8px;
+  }
+}
 .pagination > .active > a,
 .pagination > .active > span,
 .pagination > .active > a:hover,
@@ -14891,383 +14900,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     width: 95%;
   }
 }
-.search-filter {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex-direction: column;
-  flex-direction: column;
-  height: 14.8em;
-  padding: 10px;
-}
-.search-filter .search-control select {
-  font-size: 1em;
-  height: 2em;
-}
-.search-filter .search-control .btn-group .btn {
-  font-size: .8em;
-  text-transform: uppercase;
-  padding: 0.6em 1em;
-  border-color: #9b9b9b;
-}
-.search-filter label {
-  margin-right: 1em;
-  margin-top: 1.2em;
-}
-.search-filter label.margin-more {
-  margin-top: 0em;
-}
-.search-filter .btn-default {
-  color: rgba(0, 0, 0, 0.74);
-}
-.search-filter__levels {
-  margin-top: 0 !important;
-}
-.search-filter__levels-buttons {
-  width: 90%;
-}
-.search-filter .search-certificate {
-  margin-left: 0em;
-}
-.search-filter .search-slider {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}
-.search-filter .search-slider span {
-  color: #cbcbcb;
-  font-size: .9em;
-}
-.search-filter .search-date-container {
-  background: #FFFFFF;
-  padding-left: 0.4em;
-  cursor: pointer;
-  border-radius: 0.3em;
-  width: 80%;
-  position: relative;
-  border: 1px solid #e3e3e3;
-}
-.search-filter .search-date-container span {
-  font-size: 1.4em;
-  margin-top: 0.2em;
-  cursor: pointer;
-}
-.search-filter .search-date-container input {
-  color: #999999;
-  font-weight: 600;
-  padding-left: 0.4em;
-  cursor: pointer;
-  padding-top: 0.1em;
-  background-image: linear-gradient(rgba(255, 213, 128, 0), rgba(255, 255, 255, 0)), linear-gradient(rgba(210, 210, 210, 0), rgba(210, 210, 210, 0)) !important;
-  font-size: 0.7em;
-}
-@media screen and (max-width: 992px) {
-  .search-filter .search-date-container input {
-    width: 90vw;
-  }
-}
-.search-filter .search-date-container:hover {
-  background: #FFFFFF;
-}
-.search-filter .search-date-container i {
-  color: #999;
-  margin-top: 0.1em;
-  position: absolute;
-  right: 0.1em;
-}
-.search-filter .search-date-container ::-webkit-input-placeholder {
-  /* WebKit, Blink, Edge */
-  color: #999999;
-  font-weight: 600;
-  opacity: 1;
-}
-.search-filter .search-date-container :-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  color: #999999;
-  font-weight: 600;
-  opacity: 1;
-}
-.search-filter .search-date-container ::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  color: #999999;
-  font-weight: 600;
-  opacity: 1;
-}
-.search-filter .search-date-container :-ms-input-placeholder {
-  /* Internet Explorer 10-11 */
-  color: #999999;
-  font-weight: 600;
-}
-.search-filter .search-date-container :placeholder-shown {
-  /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
-  color: #999999;
-  font-weight: 600;
-}
-@media screen and (max-width: 768px) {
-  select.form-control.sort-select {
-    width: 47.5%;
-    height: 50px;
-    float: left;
-    color: transparent;
-    border: 1px solid #9b9b9b;
-    border-radius: 3px;
-    -webkit-appearance: none;
-    background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/search/order.png');
-    background-size: auto 85%;
-    background-position: center center;
-  }
-  select.form-control.sort-select:focus {
-    animation: none;
-  }
-}
-@media (min-width: 1080px) {
-  .search-filter {
-    -webkit-flex-direction: row;
-    flex-direction: row;
-    -webkit-flex-wrap: wrap;
-    flex-wrap: wrap;
-    height: 11.8em;
-    justify-content: flex-start;
-    -webkit-align-self: flex-start;
-    align-self: flex-start;
-  }
-  .search-filter__date {
-    width: 20%;
-  }
-  .search-filter__levels {
-    width: 55%;
-  }
-  .search-filter .search-certificate {
-    margin-left: 0em;
-    margin-top: 0.7em;
-  }
-  .search-filter .search-filter-slider {
-    width: 55%;
-    margin-left: 2em;
-  }
-}
-@media (min-width: 1280px) {
-  .search-filter {
-    -webkit-justify-content: flex-start;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-  .search-filter__levels {
-    width: 45%;
-  }
-  .search-filter .search-filter-slider {
-    width: 55%;
-    margin: 0 auto;
-  }
-  .search-filter .search-certificate {
-    margin-left: 1em;
-    margin-top: 0.7em;
-  }
-  .search-filter__date {
-    margin-top: 0.8em !important;
-  }
-}
-@media (min-width: 1420px) {
-  .search-filter {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    height: 9.8em;
-    -webkit-justify-content: space-between;
-    justify-content: space-between;
-  }
-  .search-filter__date {
-    width: 20%;
-  }
-  .search-filter__levels {
-    width: 45%;
-  }
-  .search-filter .search-certificate {
-    margin-right: 5em;
-  }
-  .search-filter .search-date-container {
-    width: 70%;
-    margin-left: 5em;
-  }
-}
-@media (min-width: 1602px) {
-  .search-filter {
-    width: 85%;
-    margin: 0 auto;
-  }
-}
-@media screen and (max-width: 992px) {
-  .results-info > span {
-    font-size: 0.85em !important;
-  }
-}
-.search-info {
-  color: #cbcbcb;
-  padding: 0.5em 4em;
-  height: 40px;
-  width: 100%;
-  line-height: 2;
-}
-.search-info * {
-  font-size: 1em;
-}
-@media screen and (max-width: 768px) {
-  .search-info {
-    padding: 0.5em 1em;
-  }
-  .search-info .input-group {
-    width: 100%;
-    float: left;
-    margin-right: 10px;
-    margin-bottom: 10px;
-  }
-  .search-info .input-group .form-control {
-    height: 50px;
-    border: 1px solid #9b9b9b;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    background-image: none;
-    border-right: none;
-    padding: 1em;
-  }
-  .search-info .input-group .btn {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    height: 50px;
-    width: 50px;
-  }
-  .search-info .input-group .btn .mdi {
-    color: white;
-    font-size: 1.5em;
-  }
-  .search-info .btn {
-    width: 47.5%;
-    height: 50px;
-    padding: 0;
-    float: left;
-    margin-right: 5%;
-  }
-}
-.with-context-menu {
-  margin-top: 120px;
-}
-.search-filter .search-date-container input {
-  background-size: 15px auto;
-  background-position: 94.75% 50%;
-  background-repeat: no-repeat;
-  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
-  font-weight: 500;
-  text-transform: uppercase;
-  color: #9b9b9b;
-}
-.filters-toggle a:focus,
-.filters-toggle a:hover {
-  color: #9b9b9b;
-  text-decoration: none;
-}
-.filters-container {
-  transition: height 0.25s;
-}
-.filters-container.collapsed {
-  height: 0;
-  overflow: hidden;
-}
-@media screen and (max-width: 768px) {
-  .filters-container {
-    padding: 2em 2.5em;
-    padding-top: 175px;
-    background-color: white;
-    display: none;
-    opacity: 0;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 10000;
-    transition: all 0.25s;
-  }
-  .filters-container .flex-align-items-center {
-    display: block;
-  }
-  .filters-container.filters-container-sm {
-    display: inline-block;
-    opacity: 1;
-  }
-  .filters-container .search-filter-slider {
-    position: absolute;
-    top: 75px;
-    width: calc(100vw - 5em);
-  }
-  .filters-container .search-filter-slider label {
-    margin: 0 auto;
-    width: 100%;
-    text-align: center;
-    font-weight: 500;
-  }
-  .filters-container .search-certificate .btn {
-    width: 49%;
-    height: 40px;
-    border: 1px solid #9b9b9b;
-    font-weight: 500;
-    text-transform: none;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    color: #9b9b9b;
-    font-size: 0.75em;
-  }
-  .filters-container .search-certificate .btn:first-child {
-    float: left;
-  }
-  .filters-container .search-certificate .btn:last-child {
-    float: right;
-  }
-  .filters-container .search-date-container {
-    width: 100%;
-    height: 40px;
-    border: 1px solid #9b9b9b;
-    font-weight: 500;
-    text-transform: uppercase;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    padding-top: 5px;
-  }
-  .filters-container .search-date-container input {
-    font-size: 0.75em;
-  }
-  .filters-container .search-date-container input::-webkit-input-placeholder {
-    font-weight: 500;
-    color: #9b9b9b;
-  }
-  .filters-container .search-date-container input::-moz-placeholder {
-    font-weight: 500;
-    color: #9b9b9b;
-  }
-  .filters-container .search-level-select {
-    color: #9b9b9b;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    height: 40px;
-    border: 1px solid #9b9b9b;
-    font-weight: 500;
-    text-transform: uppercase;
-    border-radius: 3px;
-    margin-bottom: 20px;
-    background-size: 15px auto;
-    background-position: 95% 50%;
-    background-repeat: no-repeat;
-    padding-left: 10px;
-    background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
-    font-size: 0.75em;
-  }
-  .filters-container .search-level-select:focus {
-    animation: none;
-    height: 40px;
-  }
-  .filters-container .btn {
-    text-transform: uppercase;
-  }
-}
 .search-bar {
   position: relative;
 }
@@ -15510,9 +15142,28 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1.1em;
 }
 .search-container {
-  margin-top: 50px;
+  margin-top: 0px;
   width: 100%;
   padding: 0 30px;
+}
+@media (max-width: 768px) {
+  .search-container {
+    position: relative;
+    height: calc(90vh + 75px);
+  }
+}
+.search-container .search-mobile-filters {
+  height: 100px;
+}
+.search-container .search-mobile-filters .btn-filters {
+  padding: 0;
+  height: 40px;
+  border: 1px solid #cbcbcb;
+  border-radius: 25px;
+}
+.search-container .search-mobile-filters .btn-filters:focus,
+.search-container .search-mobile-filters .btn-filters:hover {
+  outline: none;
 }
 .search-container .search-sidebar {
   font-weight: 700;
@@ -15522,18 +15173,40 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   padding: 0 45px;
 }
-.search-container .search-sidebar .order {
+.search-container .search-sidebar .search-order {
   padding: 0px 15px;
 }
-.search-container .search-sidebar .orders {
+.search-container .search-sidebar .search-orders {
   margin-top: 0;
   margin-bottom: 0;
+  font-weight: 600;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  margin: 0 -15px;
+  text-transform: uppercase;
+  color: #9b9b9b;
+  background-color: #ededed;
+}
+.search-container .search-sidebar .search-orders li:not(:last-child) {
+  border-bottom: 1px solid #cbcbcb;
+}
+.search-container .search-sidebar .search-orders li:last-child {
+  padding-bottom: 10px !important;
 }
 .search-container .search-sidebar__div {
   width: 100%;
   border: 1px solid #ededed;
   border-radius: 5px;
   margin-bottom: 15px;
+}
+.search-container .search-sidebar__div-expanded {
+  margin-bottom: -5px;
+}
+.search-container .search-sidebar__div-not-expanded {
+  margin-bottom: 0px !important;
+}
+.search-container .search-sidebar__div-not-expanded li:first-child {
+  border-bottom: none !important;
 }
 .search-container .search-sidebar__div__header {
   text-transform: uppercase;
@@ -15620,8 +15293,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media (max-width: 768px) {
   .search-container .search-sidebar {
-    width: 100%;
     padding: 0;
+    position: absolute;
+    top: 75px;
+    left: 0px;
+    height: 90vh;
+    overflow-y: scroll;
+    width: 100%;
+    padding: 0 50px;
+    background-color: white;
+    z-index: 1000;
   }
 }
 .search-container .search-content {
@@ -15633,6 +15314,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-container .search-content__results {
   float: left;
   text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  .search-container .search-content__results {
+    float: none;
+    text-align: center;
+  }
 }
 .search-container .search-content__filters {
   float: right;
@@ -15678,6 +15365,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   .search-container .search-content {
     width: 100%;
     padding: 0;
+    position: absolute;
+    top: 75px;
+    left: 0px;
+    height: 90vh;
+    overflow-y: scroll;
+    padding: 0 50px;
+    background-color: white;
+    z-index: 900;
   }
 }
 .sidebar {
