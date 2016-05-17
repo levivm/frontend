@@ -8475,7 +8475,7 @@ h6,
 .h3,
 .h4 {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 400;
+  font-weight: 200;
 }
 h5,
 h6 {
@@ -12897,7 +12897,7 @@ hr.on-light {
 .limited-width-dashboard {
   float: none;
   clear: both;
-  margin-left: 0 0 0 120px;
+  margin: 0 0 0 120px;
   max-width: 1300px;
 }
 @media (max-width: 1299px) {
@@ -16051,7 +16051,7 @@ input,
 textarea,
 select {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: normal;
+  font-weight: 300;
 }
 ::-webkit-input-placeholder {
   font-weight: 200;

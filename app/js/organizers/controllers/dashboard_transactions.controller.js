@@ -100,9 +100,9 @@
                   if(vm.salesFilter.query)
                     params.id = vm.salesFilter.query;
                   
-                  organizer.getOrders(vm.salesPaginationOpts.pageNumber, vm.salesPaginationOpts.itemsPerPage)
+                  organizer.getOrders(params)
                   .then(function(response){
-                      vm.sales = response.data;
+                      vm.sales = response;
                       vm.sales.results = $filter('orderBy')(vm.sales.results, 'id', true);
                       vm.salesPaginationOpts.totalItems = vm.sales.count;
                       vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);

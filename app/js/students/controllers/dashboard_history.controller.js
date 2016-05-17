@@ -76,7 +76,7 @@
                 case vm.TYPE_ORDER:
                   var params = {
                     page: vm.ordersPaginationOpts.pageNumber,
-                    page_size: vm.ordersPaginationOpts.itemsPerPage
+                    pageSize: vm.ordersPaginationOpts.itemsPerPage
                   };
 
                   if(vm.ordersFilter.activity)
@@ -94,7 +94,7 @@
                   if(vm.ordersFilter.query)
                     params.id = vm.ordersFilter.query;
                   
-                  student.getOrders(vm.ordersPaginationOpts.pageNumber, vm.ordersPaginationOpts.itemsPerPage).then(success, error);
+                  student.getOrders(params).then(success, error);
                   
                   break;
 
@@ -107,20 +107,20 @@
 
         /*       Internal Functions      */
 
+        function success(ordersResponse){
+            orders = ordersResponse;
+            orders.results = $filter('orderBy')(orders.results, 'id', true);
+            vm.ordersPaginationOpts.totalItems = orders.count;
+            vm.orders = orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
+
+        }
+        function error(orders){
+            console.log('Error retrieving Student Orders History');
+        }
         function _getOrders(){
 
             student.getOrders().then(success, error);
 
-            function success(ordersResponse){
-              orders = ordersResponse;
-              orders.results = $filter('orderBy')(orders.results, 'id', true);
-              vm.ordersPaginationOpts.totalItems = orders.count;
-              vm.orders = orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
-
-            }
-            function error(orders){
-                console.log('Error retrieving Student Orders History');
-            }
 
         }
 

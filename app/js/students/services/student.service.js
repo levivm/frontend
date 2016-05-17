@@ -133,19 +133,19 @@
                     });
             },
 
-            getOrders : function (page, pageSize) {
-              if(!page){
-                page = defaultPage;
-              }
-              if(!pageSize){
-                pageSize = defaultPageSize
-              }
+            getOrders : function (params) {
+                if(!params){
+                    params = {}
+                }
+                if(!params.page){
+                    params.page = defaultPage;
+                }
+                if(!params.pageSize){
+                    params.pageSize = defaultPageSize
+                }
 
               return $http.get(api.orders(this.id),
-                  {params: {
-                    page: page,
-                    page_size: pageSize
-                  }})
+                  {params: params})
                   .then(function (response) {
                       return angular.copy(response.data);
                   });
@@ -266,7 +266,7 @@
             if(!page)
               page = defaultPage;
             if(!pageSize)
-              pageSize: defaultPageSize;
+              pageSize = defaultPageSize;
 
             return $http.get(api.messages(this.id),
                 {params: {
