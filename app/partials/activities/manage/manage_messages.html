@@ -20,17 +20,17 @@
         <a ng-repeat="message in messages.messages track by message.id" ui-sref="dash.activities-manage.messages-detail({'messageId': message.id})"  class="row">
             <div class="col-xs-12 row separate-below-less">
                 <div class="col-md-8">
-                    <span class=" text-dark montserrat-semibold" ng-bind="::message.activity"></span>
+                    <span class=" text-dark font-semibold" ng-bind="::message.activity"></span>
                 </div>
                 <div class="col-md-4 text-right">
-                    <span class="text-gray-light montserrat-light" ng-bind="::message.created_at | date: 'dd MMM yyyy'"></span>
+                    <span class="text-gray-light font-light" ng-bind="::message.created_at | date: 'dd MMM yyyy'"></span>
                 </div>
             </div>
-            <div class="col-xs-12 text-dark montserrat-regular">
+            <div class="col-xs-12 text-dark font-regular">
                 <span ng-bind="::message.strings.LABEL_INITIAL_DATE"></span>
                 <span ng-bind="::message.initial_date | date: 'dd MMM yyyy'"></span>
             </div>
-            <div class="col-xs-12 montserrat-light">
+            <div class="col-xs-12 font-light">
                 <p ng-bind="::message.subject"></p>
             </div>
         </a>

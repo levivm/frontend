@@ -2,7 +2,7 @@
 /temp
 
 # Templates file
-/app/js/trulii.templates.js
+app/js/trulii.templates.js
 
 # serverConf
 app/js/trulii.serverConf.js
@@ -16,7 +16,6 @@ app/lib/
 app/css/*.css
 app/css/*.css.map
 !app/css/font-awesome.css #Except font-awesome
-
 # Videos
 app/videos/*
 
