@@ -78,7 +78,6 @@
             toggleFilters: toggleFilters,
             showFilters: false,
             newSearchQuery: '',
-            search: search,
             collapsedFilters: false,
             collapseFilters: collapseFilters,
             loadingActivities: true,
@@ -87,11 +86,18 @@
             expandedSort: false,
             toggleExpandedSort: toggleExpandedSort,
             cities: [],
+            searchCity: null,
+            triggerSearch: triggerSearch,
+            updateCity: updateCity
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function updateCity(){
+            LocationManager.setSearchCity(vm.searchCity);
+        }
         
         function toggleExpandedSort(){
             vm.expandedSort = !vm.expandedSort;
@@ -239,7 +245,7 @@
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
 
-        function search(){
+        function triggerSearch(){
           _search();
         }
 
@@ -294,6 +300,7 @@
             if ($stateParams.city) {
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
                 LocationManager.setSearchCity(city);
+                vm.searchCity = city;
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
