@@ -128,7 +128,7 @@
 
 <div class="sidebar-profile lateral-slide-right hidden-md hidden-lg" ng-show="showSideBar"  >
     <div class="profile" ng-if="user">
-        <img ng-if="user" ng-src="{{user.photo}}" class="user-picture " alt="{{user.user.full_name}}"/>
+        <trulii-avatar user="user" size="40" avatar-class="small" class="avatar-landing"></trulii-avatar>
         <span class=" montserrat-bold  margin-horizontal-less " ng-bind="user.user.full_name"></span>
     </div>
     

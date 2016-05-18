@@ -15943,6 +15943,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar-profile .profile {
   border-bottom: 1px solid #ffffff;
   padding: 1em 1.2em;
+  display: flex;
+  align-items: center;
 }
 .sidebar-profile .profile img {
   border-radius: 50%;
@@ -23072,7 +23074,11 @@ blockquote {
 }
 .home-footer__links .link-column {
   padding: 0em 2em;
-  height: 165px;
+}
+@media screen and (max-width: 768px) {
+  .home-footer__links .link-column {
+    margin-top: 2em;
+  }
 }
 .home-footer__links .link-column .header {
   color: white;
@@ -23080,6 +23086,55 @@ blockquote {
   text-transform: uppercase;
   margin-bottom: 2em;
   font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+  .home-footer__links .link-column .header {
+    margin-bottom: 0.8em;
+    font-size: 1.4em;
+  }
+}
+.home-footer__links .link-column .arrow-down {
+  float: right;
+  margin-top: -42px;
+  font-size: 2em;
+  cursor: pointer;
+  -webkit-transform: rotate(0deg);
+  -moz-transform: rotate(0deg);
+  -ms-transform: rotate(0deg);
+  -o-transform: rotate(0deg);
+  transform: rotate(0deg);
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  -webkit-transition: 300ms ease all;
+  -moz-transition: 300ms ease all;
+  -o-transition: 300ms ease all;
+  transition: 300ms ease all;
+}
+.home-footer__links .link-column .rotate-icon {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  -webkit-transform-origin: 50% 50%;
+  -moz-transform-origin: 50% 50%;
+  -ms-transform-origin: 50% 50%;
+  -o-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+}
+@media screen and (max-width: 768px) {
+  .home-footer__links .link-column ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.15s ease-out;
+  }
+}
+.home-footer__links .link-column .show-content {
+  max-height: 165px;
+  transition: max-height 0.25s ease-in;
 }
 .home-footer__links .link-column .link {
   color: #cbcbcb;
