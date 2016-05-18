@@ -305,7 +305,7 @@
             }
             
         }
-        &__div{
+        &__element{
             width: 100%;
             border: 1px solid @gray-lighter;
             border-radius: @border-radius-standard;
@@ -376,10 +376,12 @@
                     border-bottom: 1px solid @gray-lighter;
                 }
                 li:last-child{
-                    padding-bottom: 5px;
+                    &.search-sidebar__sub-element-expanded{
+                        margin-bottom: -10px;
+                    }
                 }
             }
-            .category{
+            .search-sidebar__sub-element{
                 position: relative;
                 .fa{
                     position: absolute;
@@ -387,7 +389,7 @@
                     color: @gray-dark-brand;
                 }
             }
-            .category-expanded{
+            .search-sidebar__sub-element-expanded{
                 padding-bottom: 0;
                 .subcategories{
                     margin-top: 10px;

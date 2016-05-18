@@ -15193,29 +15193,29 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-container .search-sidebar .search-orders li:last-child {
   padding-bottom: 10px !important;
 }
-.search-container .search-sidebar__div {
+.search-container .search-sidebar__element {
   width: 100%;
   border: 1px solid #ededed;
   border-radius: 5px;
   margin-bottom: 15px;
 }
-.search-container .search-sidebar__div-expanded {
+.search-container .search-sidebar__element-expanded {
   margin-bottom: -5px;
 }
-.search-container .search-sidebar__div-not-expanded {
+.search-container .search-sidebar__element-not-expanded {
   margin-bottom: 0px !important;
 }
-.search-container .search-sidebar__div-not-expanded li:first-child {
+.search-container .search-sidebar__element-not-expanded li:first-child {
   border-bottom: none !important;
 }
-.search-container .search-sidebar__div__header {
+.search-container .search-sidebar__element__header {
   text-transform: uppercase;
   letter-spacing: 1px;
 }
-.search-container .search-sidebar__div__date {
+.search-container .search-sidebar__element__date {
   padding: 10px 15px 10px 15px;
 }
-.search-container .search-sidebar__div__date input {
+.search-container .search-sidebar__element__date input {
   width: calc(100% - 30px);
   display: inline-block;
   background-image: none;
@@ -15224,62 +15224,62 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-weight: 700;
   font-size: 1em;
 }
-.search-container .search-sidebar__div__date ::-webkit-input-placeholder {
+.search-container .search-sidebar__element__date ::-webkit-input-placeholder {
   font-weight: 700;
   color: #767676;
 }
-.search-container .search-sidebar__div__date :-moz-placeholder {
+.search-container .search-sidebar__element__date :-moz-placeholder {
   font-weight: 700;
   color: #767676;
 }
-.search-container .search-sidebar__div__date ::-moz-placeholder {
+.search-container .search-sidebar__element__date ::-moz-placeholder {
   font-weight: 700;
   color: #767676;
 }
-.search-container .search-sidebar__div__date :-ms-input-placeholder {
+.search-container .search-sidebar__element__date :-ms-input-placeholder {
   font-weight: 700;
   color: #767676;
 }
-.search-container .search-sidebar__div__date span {
+.search-container .search-sidebar__element__date span {
   vertical-align: -5px;
   color: #767676;
 }
-.search-container .search-sidebar__div__price-slider {
+.search-container .search-sidebar__element__price-slider {
   padding: 15px 35px 10px 35px !important;
 }
-.search-container .search-sidebar__div__price-slider .noUi-connect {
+.search-container .search-sidebar__element__price-slider .noUi-connect {
   background-color: #767676;
 }
-.search-container .search-sidebar__div ul {
+.search-container .search-sidebar__element ul {
   list-style: none;
 }
-.search-container .search-sidebar__div ul li {
+.search-container .search-sidebar__element ul li {
   padding: 15px 15px 10px 15px;
 }
-.search-container .search-sidebar__div ul li:not(:last-child) {
+.search-container .search-sidebar__element ul li:not(:last-child) {
   border-bottom: 1px solid #ededed;
 }
-.search-container .search-sidebar__div ul li:last-child {
-  padding-bottom: 5px;
+.search-container .search-sidebar__element ul li:last-child.search-sidebar__sub-element-expanded {
+  margin-bottom: -10px;
 }
-.search-container .search-sidebar__div .category {
+.search-container .search-sidebar__element .search-sidebar__sub-element {
   position: relative;
 }
-.search-container .search-sidebar__div .category .fa {
+.search-container .search-sidebar__element .search-sidebar__sub-element .fa {
   position: absolute;
   right: 15px;
   color: #a1a6bb;
 }
-.search-container .search-sidebar__div .category-expanded {
+.search-container .search-sidebar__element .search-sidebar__sub-element-expanded {
   padding-bottom: 0;
 }
-.search-container .search-sidebar__div .category-expanded .subcategories {
+.search-container .search-sidebar__element .search-sidebar__sub-element-expanded .subcategories {
   margin-top: 10px;
 }
-.search-container .search-sidebar__div .category-expanded .subcategories li:last-child {
+.search-container .search-sidebar__element .search-sidebar__sub-element-expanded .subcategories li:last-child {
   padding-bottom: 10px;
 }
-.search-container .search-sidebar__div .subcategories {
+.search-container .search-sidebar__element .subcategories {
   font-weight: 600;
   font-size: 0.8em;
   letter-spacing: 1px;
@@ -15288,7 +15288,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #9b9b9b;
   background-color: #ededed;
 }
-.search-container .search-sidebar__div .subcategories li:not(:last-child) {
+.search-container .search-sidebar__element .subcategories li:not(:last-child) {
   border-bottom: 1px solid #cbcbcb;
 }
 @media (max-width: 768px) {

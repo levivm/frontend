@@ -238,9 +238,9 @@
             </div>
         </div>
         <div class="search-sidebar" ng-class="{'hidden-xs hidden-sm': !search.showFilters}">
-            <div class="search-sidebar__div search-sidebar__div-mobile hidden-md hidden-lg">
-                <ul ng-class="{'search-sidebar__div-expanded': search.expandedSort, 'search-sidebar__div-not-expanded': !search.expandedSort}">
-                    <li class="search-sidebar__div__header" ng-click="search.toggleExpandedSort()">
+            <div class="search-sidebar__element search-sidebar__element-mobile hidden-md hidden-lg">
+                <ul ng-class="{'search-sidebar__element-expanded': search.expandedSort, 'search-sidebar__element-not-expanded': !search.expandedSort}">
+                    <li class="search-sidebar__element__header" ng-click="search.toggleExpandedSort()">
                         <span ng-bind="::search.strings.LABEL_SORT_BY"></span>
                         <i class="fa fa-chevron-right" ng-hide="search.expandedSort" aria-hidden="true"></i>
                         <i class="fa fa-chevron-down" ng-hide="!search.expandedSort" aria-hidden="true"></i>
@@ -254,9 +254,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="search-sidebar__div">
+            <div class="search-sidebar__element">
                 <ul>
-                    <li class="search-sidebar__div__date">
+                    <li class="search-sidebar__element__date">
                         <input id="date" type="text" class="form-control "
                             placeholder="{{::search.strings.LABEL_DATE}}"
                             name="date" ng-model="search.searchDate"
@@ -272,12 +272,12 @@
                     </li>
                 </ul>
             </div>
-            <div class="search-sidebar__div">
+            <div class="search-sidebar__element">
                 <ul>
-                    <li class="search-sidebar__div__header">
+                    <li class="search-sidebar__element__header">
                         <span ng-bind="::search.strings.LABEL_COST"></span>
                     </li>
-                    <li class="search-sidebar__div__price-slider">
+                    <li class="search-sidebar__element__price-slider">
                         <trulii-slider class="search-slider" min="search.sliderOptions.min" max="search.sliderOptions.max"
                             step="search.sliderOptions.step" start="search.searchStartCost"
                             end="search.searchEndCost" update="search.updateCost(start, end)" stop-drag="search.stopDrag()"></trulii-slider>    
@@ -290,12 +290,12 @@
                     </li>
                 </ul>
             </div>
-            <div class="search-sidebar__div">
+            <div class="search-sidebar__element">
                 <ul>
                     <li>
                         <span ng-click="search.setCategory(search.strings.ACTION_ALL_FILTER)" ng-bind="::search.strings.ACTION_ALL_FILTER"></span>
                     </li>
-                    <li class="category" ng-class="{'category-expanded': category.id === search.expandedCategory}" ng-repeat="category in search.categories | orderBy:'name'">
+                    <li class="search-sidebar__sub-element" ng-class="{'search-sidebar__sub-element-expanded': category.id === search.expandedCategory}" ng-repeat="category in search.categories | orderBy:'name'">
                         <a href="#" id="{{::category.name}}"></a>
                         <i class="fa fa-chevron-right" ng-hide="category.id === search.expandedCategory" aria-hidden="true"></i>
                         <i class="fa fa-chevron-down" ng-hide="category.id !== search.expandedCategory" aria-hidden="true"></i>
@@ -314,9 +314,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="search-sidebar__div">
+            <div class="search-sidebar__element">
                 <ul>
-                    <li class="search-sidebar__div__header">
+                    <li class="search-sidebar__element__header">
                         <span ng-bind="::search.strings.LABEL_LEVEL"></span>
                     </li>
                     <ul>
@@ -330,9 +330,9 @@
                     </ul>
                 </ul>
             </div>
-            <div class="search-sidebar__div hidden-md hidden-lg">
+            <div class="search-sidebar__element hidden-md hidden-lg">
                 <ul>
-                    <li class="search-sidebar__div__header">
+                    <li class="search-sidebar__element__header">
                         <span ng-bind="::search.strings.LABEL_OTHERS"></span>
                     </li>
                     <li>
