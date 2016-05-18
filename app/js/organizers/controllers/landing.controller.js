@@ -91,7 +91,8 @@
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_SIGNUP: 'Listo para unirme',
-                HEADER_TITLE_COPY: "Enfócate en enseñar lo que te apasiona",
+                HEADER_TITLE_COPY_1: "Enfócate en enseñar",
+                HEADER_TITLE_COPY_2: "lo que te apasiona",
                 HEADER_TEXT_COPY: "¡Nosotros nos encargamos del resto!",
                 HEADER_ACTION_START_NOW: "Comienza ya",
                 PUBLISH_TITLE_COPY: "¿Por qué publicar tu actividad en Trulii?",

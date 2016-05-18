@@ -17,6 +17,9 @@
         background-color: white;
         padding: 0 2em;
     }
+    input:focus{
+      background-image: linear-gradient(@brand-success, @brand-success), linear-gradient(@input-border, @input-border);
+    }
     input {
         background-image: none;
     }
@@ -25,6 +28,9 @@
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         font-size: 1em;
+        .before-sm({
+          font-size: 0.75em;
+        });
     }
 }
 .referral-share{
@@ -32,6 +38,12 @@
     li{
       padding-left: 2px;
       padding-right: 2px;
+      a{
+          color: white;
+          .fa-facebook{
+            margin-right: 0.3em;
+          }
+      }
     }
     li.referral-link{
       input{
@@ -41,6 +53,7 @@
     li:nth-child(n+3){
       vertical-align: -6px;
     }
+    
   }
   
   .before-sm({

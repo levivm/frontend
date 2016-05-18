@@ -33,18 +33,6 @@
                     </div>
                 </div>
                 <div ng-if="!referrals.student">
-                    <div class="row">
-                        <div class="col-xs-10 col-xs-offset-1">
-                            <h1 class="text-center">
-                                <strong>
-                                    <span ng-bind="::referrals.referrer.user.first_name"></span>
-                                    <span ng-bind="::referrals.strings.HEADER_TITLE_COPY_1"></span>
-                                    <span>20.000</span>
-                                    <span ng-bind="::referrals.strings.HEADER_TITLE_COPY_2"></span>
-                                </strong>
-                            </h1>
-                        </div>
-                    </div>
                     <div class="row separate-above-less separate-below">
                         <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
                             <h3 class="text-center" ng-bind="::referrals.strings.HEADER_TEXT_COPY"></h3>
@@ -181,27 +169,27 @@
             <div class="container-fluid separate-above">
               <img ng-src="{{referrals.getAmazonUrl('static/img/home/find.png')}}" alt="{{ ::referrals.strings.HOW_FIND_COPY }}" style="width: 8em;"
                 class="img-responsive center-block">
-              <p class="text-uppercase text-center text-color-secondary font-family-sans separate-above-less separate-below-less"
+              <p class="text-uppercase text-center text-color-secondary separate-above-less separate-below-less"
                 ng-bind="::referrals.strings.HOW_FIND_COPY"></p>
-              <p class="text-center font-family-sans" ng-bind="::referrals.strings.HOW_FIND_TEXT"></p>
+              <p class="text-center" ng-bind="::referrals.strings.HOW_FIND_TEXT"></p>
             </div>
           </div>
           <div class="col-xs-12 col-md-4">
             <div class="container-fluid separate-above">
               <img ng-src="{{referrals.getAmazonUrl('static/img/home/signup.png')}}" alt="{{ ::referrals.strings.HOW_SIGN_UP_TEXT }}" style="width: 8em;"
               class="img-responsive center-block">
-              <p class="text-uppercase text-center text-success font-family-sans separate-above-less separate-below-less"
+              <p class="text-uppercase text-center text-success separate-above-less separate-below-less"
                 ng-bind="::referrals.strings.HOW_SIGN_UP_COPY"></p>
-              <p class="text-center font-family-sans" ng-bind="::referrals.strings.HOW_SIGN_UP_TEXT"></p>
+              <p class="text-center" ng-bind="::referrals.strings.HOW_SIGN_UP_TEXT"></p>
             </div>
           </div>
           <div class="col-xs-12 col-md-4">
             <div class="container-fluid separate-above">
               <img ng-src="{{referrals.getAmazonUrl('static/img/home/learn.png')}}" alt="{{ ::referrals.strings.HOW_LEARN_TEXT }}" style="width: 8em;"
                 class="img-responsive center-block">
-              <p class="text-uppercase text-center text-warning font-family-sans separate-above-less separate-below-less"
+              <p class="text-uppercase text-center text-warning separate-above-less separate-below-less"
                 ng-bind="::referrals.strings.HOW_LEARN_COPY"></p>
-              <p class="text-center font-family-sans" ng-bind="::referrals.strings.HOW_LEARN_TEXT"></p>
+              <p class="text-center" ng-bind="::referrals.strings.HOW_LEARN_TEXT"></p>
             </div>
           </div>
         </div>

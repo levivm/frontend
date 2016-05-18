@@ -36,7 +36,8 @@
             searchCategory:searchCategory,
             coverVideo: {},
             getAmazonUrl: getAmazonUrl,
-            getAmazonVideoUrl:getAmazonVideoUrl
+            getAmazonVideoUrl:getAmazonVideoUrl,
+            cards: []
         });
 
         _activate();
@@ -120,7 +121,7 @@
                 "te abrimos la puerta a nuevos clientes y hacemos el trabajo sucio por ti.",
                 PUBLISH_TEXT_2: "Regístrate sin costo alguno y disfruta de nuestra prueba gratuita en tus primeras tres actividades.",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
-                PUBLISH_BUTTON_COPY: "Quiero ser organizador"
+                PUBLISH_BUTTON_COPY: "Ser organizador"
             });
         }
 
@@ -143,6 +144,14 @@
            });
 
         }
+        
+        function _mapTemplates(){
+            for(var i = 0; i < activities.results.length; i++){
+                activities.results[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.cards = activities.results;
+            
+        }
 
         function _activate(){
             _setStrings();
@@ -150,6 +159,8 @@
             loadActivities();
             _initScroll();
             _fromBurgerMenu();
+            _mapTemplates();
+            
             //Analytics.generalEvents.landing();
 
         }

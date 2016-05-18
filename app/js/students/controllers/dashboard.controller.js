@@ -25,7 +25,7 @@
             toggleSidebar: toggleSidebar,
             clickItem:clickItem,
             getAmazonUrl: getAmazonUrl,
-            unreadNotificationsCount: messages.count
+            unreadNotificationsCount: messages.unread_messages
         });
 
         _activate();
@@ -76,11 +76,22 @@
               }
             );
         }
+        
+        function _initNotificationWatch(){
+          $scope.$on('update_notifications',
+            function(){
+              student.getMessages().then(function(data){
+                vm.unreadNotificationsCount = data.unread_messages;
+              });
+            }
+          );
+        }
 
 
         function _activate() {
             setStrings();
             _initScroll();
+            _initNotificationWatch();
         }
     }
 

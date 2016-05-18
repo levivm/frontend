@@ -17,27 +17,27 @@
                 abstract: true,
                 url: '/about/',
                 controller: 'AboutController as about',
-                templateUrl: '/partials/about/about.html'
+                templateUrl: 'partials/about/about.html'
             })
             .state('about.mission', {
                 url: 'mission',
-                templateUrl: '/partials/about/mission.html'
+                templateUrl: 'partials/about/mission.html'
             })
             .state('about.culture', {
                 url: 'culture',
-                templateUrl: '/partials/about/culture.html'
+                templateUrl: 'partials/about/culture.html'
             })
             .state('about.team', {
                 url: 'team',
-                templateUrl: '/partials/about/team.html'
+                templateUrl: 'partials/about/team.html'
             })
             .state('about.terms', {
                 url: 'terms',
-                templateUrl: '/partials/about/terms.html'
+                templateUrl: 'partials/about/terms.html'
             })
             .state('about.privacy-policy', {
                 url:'privacy-policy',
-                templateUrl: '/partials/about/privacy.html'
+                templateUrl: 'partials/about/privacy.html'
             });
     }
 })();

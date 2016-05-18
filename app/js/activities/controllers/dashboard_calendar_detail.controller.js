@@ -20,6 +20,7 @@
     function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar, $document, $timeout) {
 
         var vm = this;
+        vm.activity_calendar_form = {};
         vm.calendar = angular.copy(calendar);
 
         activate();
@@ -28,10 +29,9 @@
             Error.form.clear(vm.activity_calendar_form);
             vm.calendar.create()
                 .then(success, _errored);
-
-
+                
+                
             function success(calendar){
-
                 vm.save_calendar = _updateCalendar;
                 CalendarsManager.setCalendar(calendar);
                 _onSectionUpdated();
@@ -44,7 +44,7 @@
         }
 
         function _updateCalendar() {
-            Error.form.clear(vm.activity_calendar_form);
+            _clearCalendarForm();
             vm.calendar.update()
                 .then(success, _errored);
 
@@ -61,7 +61,7 @@
         }
 
         function _errored(responseErrors) {
-            console.log(responseErrors);
+          
             if (responseErrors) {
               if (responseErrors['sessions'] && !responseErrors['number_of_sessions']){
                     Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
@@ -121,6 +121,21 @@
             });
         }
 
+        function _clearCalendarForm(){
+          for(var i = 0; i < vm.calendar.number_of_sessions; i++){
+            if(vm.activity_calendar_form["date_"+i]){
+              if(vm.activity_calendar_form["date_"+i].error_message){
+                delete vm.activity_calendar_form["date_"+i].error_message;
+              }
+              if(vm.activity_calendar_form["start_time_"+i]){
+                delete vm.activity_calendar_form["start_time_"+i].error_message;
+              }
+              if(vm.activity_calendar_form["end_time_"+i].error_message){
+                delete vm.activity_calendar_form["end_time_"+i].error_message;
+              }
+            }
+          }
+        }
         function activate() {
 
             _setStrings();

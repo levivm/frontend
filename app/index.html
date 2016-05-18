@@ -25,7 +25,7 @@
     <meta name="theme-color" content="#ffffff">
     <!--End Favicon Section-->
     <!--Esto debe eliminarse luego, es solamente para ver probar el googlebot-->
-    <meta name="google-site-verification" content="L0GSZBNmTtlvemy4mwKVxjVakV-vndq7si8bDy0h6pE" />
+    <meta name="google-site-verification" content="eF7Ds4QTx83YODB8gep_douTzRTCjnamIfzq_VOUer4" />
 
     <!-- Google Analytics -->
     <script >
@@ -46,15 +46,17 @@
     <link rel="stylesheet" href="lib/normalize.css/normalize.css">
     <link rel="stylesheet" href="lib/nouislider/distribute/nouislider.min.css">
     <link rel="stylesheet" href="lib/nvd3/build/nv.d3.css">
-    <link rel='stylesheet' href='lib/textAngular/dist/textAngular.css'>
-    <link rel='stylesheet' href='lib/font-awesome/css/font-awesome.min.css'>
+    <link rel="stylesheet" href="lib/ui-select/dist/select.css">
+    <link rel="stylesheet" href="lib/textAngular/dist/textAngular.css">
     <!-- endinject -->
     <!-- endbuild -->
 
     <!--build:css css/trulii.min.css -->
     <!-- inject:css -->
+    <link rel="stylesheet" href="css/font-awesome.css">
     <link rel="stylesheet" href="css/trulii.css">
     <!-- endinject -->
+    <link rel="stylesheet" href="css/font-awesome.css">
     <!-- endbuild -->
 
     <!--build:js js/head.min.js -->
@@ -64,6 +66,7 @@
     <!-- endbuild -->
 
     <script src="https://www.youtube.com/iframe_api"></script>
+    <link href='https://fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
 </head>
 
 <body>
@@ -127,11 +130,14 @@
 <script src="lib/textAngular/dist/textAngular.js"></script>
 <script src="lib/textAngular/dist/textAngular-sanitize.js"></script>
 <script src="lib/textAngular/dist/textAngularSetup.js"></script>
-<!-- endinject -->
-<!-- TODO Add with gulp -->
+<script src="lib/moment/locale/es.js"></script>
 <script src="lib/angular-i18n/angular-locale_es-co.js"></script>
-<!-- endbuild -->
+<!-- endinject -->
 
+
+<!-- endbuild -->
+<!-- ES locale moment js -->
+<script src="lib/moment/min/locales.min.js"></script>
 <!--build:js js/build.min.js -->
 <!-- inject:js -->
 <script src="js/trulii.js"></script>
@@ -141,15 +147,15 @@
 <script src="js/trulii.templates.js"></script>
 <script src="js/about/about.module.js"></script>
 <script src="js/activities/activities.module.js"></script>
-<script src="js/authentication/authentication.module.js"></script>
 <script src="js/help/help.module.js"></script>
-<script src="js/landing/landing.module.js"></script>
+<script src="js/authentication/authentication.module.js"></script>
 <script src="js/locations/locations.module.js"></script>
+<script src="js/landing/landing.module.js"></script>
 <script src="js/organizers/organizers.module.js"></script>
 <script src="js/payments/payments.module.js"></script>
 <script src="js/referrals/referrals.module.js"></script>
-<script src="js/students/students.module.js"></script>
 <script src="js/search/search.module.js"></script>
+<script src="js/students/students.module.js"></script>
 <script src="js/ui-components/ui-components.module.js"></script>
 <script src="js/utils/utils.module.js"></script>
 <script src="js/activities/activities.config.js"></script>
@@ -207,22 +213,13 @@
 <script src="js/ui-components/directives/trulii-footer.directive.js"></script>
 <script src="js/utils/directives/counter.directive.js"></script>
 <script src="js/utils/directives/datepicker_popup.directive.js"></script>
+<script src="js/utils/directives/dynamic-layout.directive.js"></script>
 <script src="js/utils/directives/elastic.directive.js"></script>
 <script src="js/utils/directives/saved_message.directive.js"></script>
 <script src="js/utils/filters/format_duration.filter.js"></script>
 <script src="js/utils/filters/to_trusted_html.filter.js"></script>
 <script src="js/utils/filters/truncate_text.filter.js"></script>
 <script src="js/about/controllers/about.controller.js"></script>
-<<<<<<< HEAD
-<script src="js/authentication/controllers/email_confirm.controller.js"></script>
-<script src="js/authentication/controllers/forgot_password.controller.js"></script>
-<script src="js/authentication/controllers/login.controller.js"></script>
-<script src="js/authentication/controllers/logout.controller.js"></script>
-<script src="js/authentication/controllers/register.controller.js"></script>
-<script src="js/authentication/controllers/reset_password.controller.js"></script>
-<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
-=======
->>>>>>> f3d2de0638da228e6c21133ad7eaaa5f0fbe25be
 <script src="js/activities/controllers/dashboard.controller.js"></script>
 <script src="js/activities/controllers/dashboard_calendar_detail.controller.js"></script>
 <script src="js/activities/controllers/dashboard_calendars.controller.js"></script>
@@ -243,13 +240,17 @@
 <script src="js/activities/controllers/manage.controller.js"></script>
 <script src="js/activities/controllers/manage.orders.order.controller.js"></script>
 <script src="js/activities/controllers/manage_list.controller.js"></script>
+<script src="js/authentication/controllers/email_confirm.controller.js"></script>
+<script src="js/authentication/controllers/forgot_password.controller.js"></script>
+<script src="js/authentication/controllers/login.controller.js"></script>
+<script src="js/authentication/controllers/logout.controller.js"></script>
+<script src="js/authentication/controllers/register.controller.js"></script>
+<script src="js/authentication/controllers/reset_password.controller.js"></script>
+<script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
+<script src="js/help/controllers/help.controller.js"></script>
 <script src="js/landing/controllers/contact.controller.js"></script>
 <script src="js/landing/controllers/home.controller.js"></script>
 <script src="js/landing/controllers/not_found.controller.js"></script>
-<<<<<<< HEAD
-<script src="js/help/controllers/help.controller.js"></script>
-=======
->>>>>>> f3d2de0638da228e6c21133ad7eaaa5f0fbe25be
 <script src="js/organizers/controllers/dashboard.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_account.controller.js"></script>
 <script src="js/organizers/controllers/dashboard_activities.controller.js"></script>

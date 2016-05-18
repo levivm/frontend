@@ -53,7 +53,6 @@
 
                     SearchManager.setSearchBarData(data);
                     Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
-
                     if ($state.current.name==='search')
                       $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED, data);
                     else
@@ -75,6 +74,7 @@
 
                 function updateSearchCity() {
                     LocationManager.setSearchCity(scope.search_city);
+                    LocationManager.setCurrentCity(scope.search_city);
                 }
 
                 //--------- Internal Functions ---------//

@@ -1,9 +1,9 @@
 <div class="col-xs-12">
   <div class="row">
     <div class="col-xs-12">
-      <div class="row padding-vertical-medium">
+      <div class="row padding-vertical-medium limited-width">
         <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-          <h2 class="text-gray font-family-sans-alt success-title" ng-bind="success.strings.COPY_HEADER_TITLE"></h2>
+          <h2 class="text-gray success-title" ng-bind="success.strings.COPY_HEADER_TITLE"></h2>
           <h1 class="text-primary title separate-above-less">
               <strong ng-bind="::success.activity.title"></strong>
           </h1>
@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="row container-muted padding-vertical-medium">
-        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 remember-container text-center">
+        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 remember-container text-center limited-width">
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REMEMBER"></h4>
           <div class="items-container">
             <div class="item">
@@ -57,20 +57,20 @@
           </div>
           <div class="separator"></div>
         </div>
-        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less" ng-if="success.activity.requirements">
+        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less limited-width" ng-if="success.activity.requirements">
           <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
-          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below" ng-bind="success.activity.requirements"></p>
+          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below success-requirements" ng-bind-html="success.activity.requirements"></p>
         </div>
       </div>
       <!--Attendees-->
       <div class="row">
-        <div class="col-xs-12 attendees-container">
+        <div class="col-xs-12 attendees-container limited-width">
           <h1 class="text-primary title text-center"><strong ng-bind="::success.strings.LABEL_ATTENDEES"></strong></h1>
           <div ui-view="attendees"></div>
         </div>
       </div>
       <div class="row share-container">
-        <div class="col-xs-12">
+        <div class="col-xs-12 limited-width">
           <h1 class="title">
             <strong ng-bind="success.strings.LABEL_SHARE"></strong>
           </h1>
@@ -86,8 +86,7 @@
             socialshare-caption="{{::success.social.FACEBOOK_SHARE_CAPTION}}"
             socialshare-description="{{::success.social.FACEBOOK_SHARE_DESCRIPTION}}"
             socialshare-url="{{::success.social.FACEBOOK_SHARE_URL}}">
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_facebook.png')}}"
-              alt="{{::success.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+            <i class="fa fa-facebook share-facebook" aria-hidden="true"></i>
           </a>
 
           <a href="#"
@@ -97,25 +96,25 @@
             socialshare-text="{{::success.social.TWITTER_SHARE_TEXT}}"
             socialshare-hashtags="{{::success.social.TWITTER_SHARE_HASHTAGS}}"
             socialshare-url="{{::success.social.TWITTER_SHARE_URL}}">
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_twitter.png')}}"
-              alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+            <i class="fa fa-twitter share-twitter" aria-hidden="true"></i>
           </a>
           <a href="#"
             ng-click="success.toggleEmailShow()">
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/share_email.png')}}"
-              alt="{{::success.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+            <i class="fa fa-envelope share-email" aria-hidden="true"></i>
           </a>
         </div>
       </div>
 
       <div class="row separate-below">
         <h2 class="text-center font-normal separate-above-medium separate-below-less" ng-bind="success.strings.LABEL_SIMILAR"></h2>
-        <div class="col-xs-12 col-md-9 col-md-offset-2">
+        <div class="col-xs-12 col-md-9 col-md-offset-2 limited-width">
           <div ng-if="success.organizerActivities.length > 0">
-            <div class="row activity-grid separate-above">
-              <trulii-activity-item
-                ng-repeat="activity in success.organizerActivities track by activity.id"
-                data-activity="activity"></trulii-activity-item>
+            <div class="col-xs-12 dynamic-layout-wrapper separate-below">
+              <div class="dynamic-layout-container-fluid separate-above-medium">
+                <div class="text-center">
+                    <div dynamic-layout items="success.cards" class="dynamic-layout"></div>
+                </div>
+                </div>
             </div>
           </div>
           <div ng-if="success.organizerActivities.length <= 0"
@@ -127,18 +126,14 @@
       <div class="row navigation-container container-gray-light">
         <div class="col-xs-12 col-md-6">
           <a class="btn btn-link" ui-sref="activities-detail({activity_id: success.activity.id})">
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}"
-              alt="{{ ::success.strings.ACTION_GO_BACK }}"
-              class="img-responsive inline-block"/>
+            <i class="fa fa-undo separate-right-less" aria-hidden="true"></i>
             <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_BACK"></span>
           </a>
         </div>
         <div class="col-xs-12 col-md-6">
           <a class="btn btn-link pull-right" ui-sref="student-dashboard.activities">
             <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_TO_ACTIVITIES"></span>
-            <img ng-src="{{success.getAmazonUrl('static/img/activity-enroll/navigation_go.png')}}"
-              alt="{{ ::success.strings.ACTION_GO_TO_ACTIVITIES }}"
-              class="img-responsive inline-block"/>
+            <i class="fa fa-arrow-right separate-left-less" aria-hidden="true"></i>
           </a>
         </div>
       </div>

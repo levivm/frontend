@@ -1,11 +1,11 @@
 <div class="separate-below-more">
-    <div class="col-xs-12 col-md-10 col-md-offset-1">
+    <div class="col-xs-12">
         <p class="text-muted" ng-bind="manage.strings.COPY_ASSISTANTS"></p>
         <div ng-if="manage.calendars.length > 0" class="row">
             <div class="col-md-12">
-                <div class="panel panel-default" style="cursor: pointer;"
+                <div class="panel panel-default separate-above-less separate-below-less" style="cursor: pointer;"
                      ng-repeat="calendar in manage.calendars track by calendar.id">
-                    <div class="panel-heading" ng-click="manage.expandCalendar(calendar,manage.TYPE_ASSISTANT)">
+                    <div class="panel-heading " ng-click="manage.expandCalendar(calendar,manage.TYPE_ASSISTANT)">
                         <div class="row">
                             <div class="panel-date">
                                 <span>
@@ -88,7 +88,7 @@
                                             <span ng-bind="::assistant.email"></span>
                                         </td>
                                         <td class="text-center-mobile">
-                                            <a ng-bind="::assistant.order" 
+                                            <a ng-bind="::assistant.order"
                                               ui-sref="dash.activities-manage.orders.order({'orderId': assistant.order, 'previousState':{'state':'dash.activities-manage.assistants'}})">
                                             </a>
                                         </td>
@@ -228,14 +228,16 @@
                         </div>
                     </div>
                 </div>
-                <pagination class="pagination-sm"
-                            ng-model="manage.calendarPaginationOpts.pageNumber"
-                            ng-change="manage.pageChange(manage.TYPE_CALENDAR)"
-                            data-total-items="manage.calendarPaginationOpts.totalItems"
-                            data-items-per-page="manage.calendarPaginationOpts.itemsPerPage"
-                            previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
-                            max-size="manage.calendarPaginationOpts.maxPagesSize">
-                </pagination>
+                <div class="text-center">
+                    <pagination class="pagination-sm"
+                                ng-model="manage.calendarPaginationOpts.pageNumber"
+                                ng-change="manage.pageChange(manage.TYPE_CALENDAR)"
+                                data-total-items="manage.calendarPaginationOpts.totalItems"
+                                data-items-per-page="manage.calendarPaginationOpts.itemsPerPage"
+                                previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
+                                max-size="manage.calendarPaginationOpts.maxPagesSize">
+                    </pagination>
+                </div>
             </div>
         </div>
         <!--If there are no calendars-->

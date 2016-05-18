@@ -33,26 +33,44 @@ gulp.task('bower-js-injector', function() {
     var target = gulp.src(source.html.index);
     var srcParams = { base: BOWER_COMPONENTS_PATH, relative: true };
 
+
     // Filter globs
     var filter = '**/*.js';
     var jQueryFilter = '**/jquery/**/*.js';
     var jQueryExcludeFilter = '!' + jQueryFilter;
 
+
+    // Filter globs Non Main Files in  Lib
+    var localeFilter = BOWER_COMPONENTS_PATH+'/moment/locale/es.js';  // Moment locale es js
+    var localeTranslateFilter = BOWER_COMPONENTS_PATH+'/angular-i18n/angular-locale_es-co.js';  // Angular Translate es
+    var nonMainFiles = [localeFilter, localeTranslateFilter]
+
+
+    var arrayFiles = mainBowerFiles([filter, jQueryExcludeFilter]);
+    //arrayFiles = arrayFiles.contact(nonMainFiles);
+
+    arrayFiles = _concatFiles(arrayFiles, nonMainFiles);
+
     //Inject into Body
     var injectParams = { name: 'inject:bower', relative: true};
-    var sources = gulp.src(mainBowerFiles([filter, jQueryExcludeFilter]), srcParams);
-    //gutil.log('bower-js-injector.sources:', mainBowerFiles([filter, jQueryExcludeFilter]));
+    var sources = gulp.src(arrayFiles, srcParams);
+    //gutil.log('bower-js-injector.sources:', mainBowerFiles([filter, jQueryExcludeFilter, localeFilter]));
 
     // Inject into head
     var injectjQueryParams = {name: 'inject:head', relative: true};
-    var sourcesJquery = gulp.src(mainBowerFiles(jQueryFilter), srcParams);
+    var sourcesJquery = gulp.src(mainBowerFiles([jQueryFilter]), srcParams);
     //gutil.log('bower-js-injector.head.sources:', mainBowerFiles(jQueryFilter));
+
+
+
 
     return target
         .pipe(inject(sourcesJquery, injectjQueryParams))
         .pipe(inject(sources, injectParams))
         .pipe(gulp.dest(APP_ROOT));
 });
+
+
 
 /** Injects .js sources inside '<!-- inject:js -->' tag **/
 gulp.task('source-js-injector', ['minify-html-partials'], function () {
@@ -86,3 +104,11 @@ gulp.task('serverConf-injector', function(){
         .pipe(ngConfig(MODULE_NAME, options))
         .pipe(gulp.dest(source.javascript.root));
 });
+
+//Internal Functions
+function  _concatFiles(arrayFiles, nonMainFiles){
+  for (var i = 0; i < nonMainFiles.length; i++) {
+    arrayFiles.push(nonMainFiles[i])
+  }
+  return arrayFiles;
+}

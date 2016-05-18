@@ -6,9 +6,8 @@
 @activity-card-date-color: #767676;
 
 .activity-card{
-    width: 100%;
+    width: 19em;
     max-width: 20%;
-    min-width: 21em;
     display: inline-block;
     border-radius: @activity-border-radius;
     background-color: white;
@@ -23,6 +22,15 @@
       min-width: 10%;
     });
 
+    &-non-organizer{
+      min-width: 21em;
+    }
+    &-organizer{
+      max-width: 100%;
+      min-width: 40em;
+      width: 100%;
+      &:extend(.flex-container);
+    }
     &:hover{
         box-shadow: 0 1px 2px rgba(0,0,0,0.4);
     }
@@ -41,7 +49,11 @@
         -moz-border-radius-topright: @activity-border-radius;
         border-top-left-radius: @activity-border-radius;
         border-top-right-radius: @activity-border-radius;
-
+        &-organizer{
+          max-width: 20%;
+          min-width: 30%;
+          height: 12em;
+        }
         &__cover-container {
             &:extend(.img-size-cover);
             &:extend(.img-position-center);
@@ -128,7 +140,9 @@
                 cursor: pointer;
                 margin-left: 0.3em;
                 text-align: center;
-
+                &:hover{
+                  text-decoration: none;
+                }
                 &__icon{
                     font-size: 1em;
                 }
@@ -147,6 +161,24 @@
         }
 
     }
+    &__content{
+      position: relative;
+      &-organizer{
+        padding: 1.2em 1.5em 0em 1.5em;
+        width: 100%;
+
+        &::before{
+          content: "";
+          color: transparent;
+          position: absolute;
+          left: -9px;
+          border-left: 0px solid transparent;
+          border-right: 10px solid #ffffff;
+          border-bottom: 7px solid transparent;
+          border-top: 7px solid transparent;
+        }
+      }
+    }
 
     &__body{
         padding: 1em;
@@ -159,11 +191,42 @@
             }
         }
 
+        &-organizer{
+          padding: 0;
+          position: relative;
+          width: 100%;
+          height: 6.5em;
+
+        }
+
         &:hover .activity-card__body__title{
             text-decoration: underline;
         }
 
+        &__menu{
+          &-name{
+            &-organizer{
+              font-size: 0.5em;
+              text-transform: capitalize;
+            }
+          }
+          &-organizer{
+            position: absolute;
+            right: 0;
+            top: -5px;
 
+            a{
+              &:hover{
+                  text-decoration: none;
+              }
+              span{
+                color: @gray-light;
+                vertical-align: middle;
+                font-size: 1.2em;
+              }
+            }
+          }
+        }
         &__title{
             font-family: @font-sans-alt;
             font-weight: bold;
@@ -178,6 +241,11 @@
             max-height: 3em;
             color: @gray-dark;
             width: 85%;
+
+            &-organizer{
+              width: 60%;
+              max-height: 7em;
+            }
 
         }
 
@@ -209,6 +277,8 @@
             font-size: 0.8em;
             display: inline-block;
         }
+
+
     }
 
     &__owner-picture{
@@ -244,6 +314,26 @@
             margin-right: 0.25em;
             vertical-align: text-bottom;
         }
+
+        &-organizer{
+          background: transparent;
+          text-align: left;
+          height: 4em;
+          line-height: 5em;
+
+          div{
+            display: inline-block !important;
+          }
+          &-assistants{
+            float: right;
+            margin-top: -30px;
+            color: #999999;
+            text-decoration: underline;
+            font-size: 0.8em;
+          }
+        }
+
+
     }
 
     &__rating{

@@ -18,7 +18,7 @@ xdescribe('Controller: HomeController', function(){
     });
     beforeEach(inject(function($controller, $rootScope, $http, $httpBackend) {
         scope = {};
-
+        scope = $rootScope.$new();
         /*Calls to resolve route / 'Home'
             activities: getRecommendedActivities,
             generalInfo: getPresaveActivityInfo
@@ -41,11 +41,11 @@ xdescribe('Controller: HomeController', function(){
           httpBackend
              .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
              .respond(readJSON('tests/mock/activities.json'));
-        activities = readJSON('tests/mock/activities.json');
+             activities = readJSON('tests/mock/activities.json');
 
-         httpBackend
-            .when('JSONP', 'http://ipinfo.io/?callback=JSON_CALLBACK')
-            .respond(readJSON('tests/mock/ipinfo.json'));
+          httpBackend
+             .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+             .respond(readJSON('tests/mock/ipinfo.json'));
 
 
 
@@ -62,7 +62,7 @@ xdescribe('Controller: HomeController', function(){
         //End calls
 
 
-        HomeController =  $controller('HomeController', {'activities': activities,'generalInfo':generalInfo});
+        HomeController =  $controller('HomeController', {'activities': activities,'generalInfo':generalInfo, $scope: scope});
         rootScope = $rootScope;
 
     }));

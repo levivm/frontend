@@ -54,6 +54,9 @@
     color: @secondary;
 }
 
+.text-color-success {
+    color: @brand-success;
+}
 .text-gray {
     color: @gray;
 }
@@ -64,6 +67,9 @@
 
 .text-gray-light{
   color: @gray-light;
+}
+.text-gray-lightest{
+  color: @gray-lightest;
 }
 .text-dark {
     color: @gray-dark;
@@ -175,19 +181,6 @@
     color: @gray;
 }
 
-//Font Families
-
-.font-family-sans {
-    font-family: @font-sans;
-}
-
-.font-family-sans-alt {
-    font-family: @font-sans-alt;
-}
-
-.font-family-serif {
-    font-family: @font-serif;
-}
 
 .montserrat-ultralight {
     font-weight: 100;
@@ -269,13 +262,9 @@
     font-weight: 900;
 }
 
-.pt-serif {
-    font-family: @font-serif;
-}
-
 h1, h2, h3, h4 {
     line-height: 1.25em;
-    letter-spacing: -1px;
+    // letter-spacing: -1px;
 }
 
 .title {
@@ -290,6 +279,9 @@ h1, h2, h3, h4 {
 
     h3& {
         font-weight: 400;
+    }
+    strong{
+        font-weight: 800;
     }
 }
 .title-sm {

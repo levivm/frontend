@@ -13,6 +13,7 @@
         var vm = this;
         angular.extend(vm, {
             activity : null,
+            cards: [],
             calendar : calendar,
             organizer : activity.organizer,
             organizerActivities : [],
@@ -46,6 +47,7 @@
 
             function success(response){
                 Toast.success(vm.strings.COPY_SHARE_SUCCESS);
+                vm.formData = {};
             }
             function error(error){
                 Toast.error(vm.strings.COPY_SHARE_ERROR);
@@ -138,6 +140,14 @@
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje"
             });
         }
+        
+        function _mapTemplates(){
+            for(var i = 0; i < vm.organizerActivities.length; i++){
+                vm.organizerActivities[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.cards = vm.organizerActivities;
+            
+        }
 
         function _activate() {
             _setStrings();
@@ -148,6 +158,7 @@
             vm.organizerActivities = vm.organizerActivities.slice(0, 3);
             console.log('activity:', activity);
             _setSocialShare();
+            _mapTemplates();
         }
     }
 })();

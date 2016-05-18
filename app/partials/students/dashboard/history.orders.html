@@ -1,7 +1,6 @@
-<div class="col-xs-12">
-
+<div class="col-xs-12 with-footer limited-width-dashboard">
   <div class="row">
-      <div ui-view class="lateral-fade col-xs-12 col-md-11 col-md-offset-1">
+      <div ui-view class="lateral-fade col-xs-12">
           <div class="tab-content">
               <div class="card-body tab-content">
                   <div class="tab-pane active fade in" id="history-orders-tab">
@@ -159,7 +158,7 @@
                                   <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
                                       <img ng-src="{{dash.getAmazonUrl('static/img/student_dashboard_activities_empty.png')}}"
                                           alt="{{history.strings.LABEL_EMPTY_ORDERS}}"/>
-                                      <p class="separate-below separate-above font-family-sans-alt text-muted"
+                                      <p class="separate-below separate-above text-muted"
                                             ng-bind="::history.strings.LABEL_EMPTY_ORDERS">
                                       </p>
 

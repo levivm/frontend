@@ -35,11 +35,8 @@ xdescribe('Controller: OrganizerLandingCtrl', function(){
              .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
              .respond(readJSON('tests/mock/activities.json'));
          $httpBackend
-            .when('JSONP', 'http://ipinfo.io/?callback=JSON_CALLBACK')
+            .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
             .respond(readJSON('tests/mock/ipinfo.json'));
-
-
-
 
 
 
@@ -80,7 +77,7 @@ xdescribe('Controller: OrganizerLandingCtrl', function(){
             OrganizerLandingCtrl.requestSignup();
 
             $httpBackend
-                .when('POST', 'http://localhost:8000/api/users/request/signup/')
+                .when('POST', 'http://localhost:8000/api/auth/request/signup/')
                 .respond(readJSON('tests/mock/requestOrg.json'));
 
             $httpBackend.flush();

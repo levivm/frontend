@@ -12,6 +12,11 @@
     word-break: break-word;
     margin-bottom: 0px;
     font-size: 1.1em;
+    .before-sm({
+      word-break: inherit;
+      margin-bottom: 0px;
+      font-size: 0.85em;
+    });
   }
   ol{
     font-size: 1.1em;
@@ -78,8 +83,8 @@
                 margin-left: 10%;
                 min-width: 80px;
                 min-height: 80px;
-                width: 6vw;
-                height: 6vw;
+                width: 4vw;
+                height: 4vw;
 
             }
 
@@ -133,7 +138,7 @@
         height: auto;
         padding: 1em 1em 0;
         font-size: 1.2em;
-        font-weight: 400;
+        font-weight: 500;
         color: @lightbg-text;
         text-align: center;
         text-transform: uppercase;
@@ -152,7 +157,7 @@
 
                 .next-date {
                     font-size: 1.5em;
-                    font-weight: 300;
+                    font-weight: 500;
                     line-height: 2em;
                 }
             }
@@ -160,14 +165,14 @@
             .closing-date {
                 .HeaderText();
                 font-size: 1em;
-                font-weight: 100;
+                font-weight: 500;
             }
 
             .vacancy{
                 .HeaderText();
                 padding: 1em;
                 font-size: 1em;
-                font-weight: 400;
+                font-weight: 500;
             }
 
         }
@@ -178,7 +183,7 @@
             height: auto;
             padding: 0.8em;
             font-size: 1.4em;
-            font-weight: 400;
+            font-weight: 500;
             text-align: center;
             color: @white;
             font-family: @font-sans-alt;
@@ -209,7 +214,7 @@
             padding: 1em;
             border-radius: 0;
             font-size: 1.4em;
-            font-weight: 400;
+            font-weight: 500;
             text-transform: uppercase;
             text-align: center;
             color: @black !important;
@@ -233,7 +238,7 @@
                 .title {
                   padding-top: 0.5em;
                   font-size: 0.825em;
-                  font-weight: 400;
+                  font-weight: 500;
                   line-height: 1em;
                   margin-top: 0.75em !important;
                 }
@@ -318,7 +323,7 @@
                         .HeaderText();
                         padding: 0;
                         font-size: 1em;
-                        font-weight: 400;
+                        font-weight: 500;
                         color: @text-muted;
                     }
 
@@ -327,7 +332,7 @@
                         margin: @padding-session-item/2 0 0 0;
                         padding: 0;
                         font-size: 0.8em;
-                        font-weight: 100;
+                        font-weight: 500;
                         color: @text-muted;
                         text-transform: lowercase;
                     }
@@ -356,7 +361,7 @@
                 .HeaderText();
                 padding: 0;
                 font-size: 1.1em;
-                font-weight: 400;
+                font-weight: 500;
                 color: @gray;
                 margin-top: 1.5rem;
             }
@@ -620,6 +625,7 @@
 }
 
 .location {
+  padding: 0;
     .map{
         width: 100%;
         height: 24em;
@@ -706,9 +712,6 @@
     span{
       vertical-align: middle;
       font-size: 1.25em;
-    }
-    &:hover {
-        background-color:  @brand-success-dark;
     }
 
   }
@@ -970,6 +973,8 @@
 
 .modal-email{
   border-radius: @border-radius-base;
+  max-height: 100vh;
+  overflow-y: auto;
   .modal-header{
     color: @gray;
     padding: 5px 5px 10px 5px;
