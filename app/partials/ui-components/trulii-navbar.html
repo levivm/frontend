@@ -20,7 +20,7 @@
             
             <a ng-if="userLogged" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
                 <!--<img ng-if="user" ng-src="{{user.photo}}" class="user-picture hidden-xs hidden-sm" alt="{{user.user.full_name}}"/>-->
-                <trulii-avatar user="user" size="40" avatar-class="small" class="avatar-landing"></trulii-avatar>
+                <trulii-avatar user="user" size="40" avatar-class="small" ng-class="{'avatar-landing': !user.photo}"></trulii-avatar>
                 <span class=" montserrat-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.first_name"></span>
                 <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isLandingState(), 'text-gray': !isLandingState()}" aria-hidden="true"></i>
             </a>
