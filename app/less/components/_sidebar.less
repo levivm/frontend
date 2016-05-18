@@ -328,6 +328,84 @@
 	background: @gray-lighter;
 }
 
+//Principal menu side bar in Mobile
+
+
+.sidebar-profile{
+	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: block;
+    z-index: 10000;
+    overflow-x: visible;
+    overflow-y: auto;
+    padding: 20px 0 0 0;
+    background-color: @gray-darker;
+    width: 17em;
+    max-height: 100vh;
+    transition: transform 0.5s;
+	transition: .4s ease all;
+	font-size: 1.2em;
+	.profile{
+		border-bottom: 1px solid rgb(255, 255, 255);
+		padding: 1em 1.2em;
+		display: flex;
+    	align-items: center;
+		img{
+			border-radius: 50%;
+			width: 3em;
+		}
+		span{
+			color: white;
+		}
+	}
+	
+	.sign{
+		padding: 1em;
+    	padding-top: 12em;
+		a{
+			font-weight: 700;
+    		color: white;
+			font-size: 0.8em;
+			text-transform: uppercase;
+		}
+	}
+	.social{
+		position: absolute;
+		bottom: 4em;
+		left: 1.5em;
+		a{
+			font-size: 1.4em;
+    		color: white;
+		}
+	}
+	
+	ul{
+		padding: 1em 1.5em;
+    	margin-top: 1em;
+		li{
+			padding-bottom: 1em;
+			position: relative;
+			a{
+				color: white;
+				font-weight: 500;
+				width: 100%;
+    			display: block;
+			}
+			.label-notification{
+				position: absolute;
+				right: 0;
+				top: 0px;
+				z-index: 0;
+				border-radius: 45%;
+				padding: 0.4em 0.8em;
+				font-size: 0.7em;
+			}
+		}
+	}
+}
 .sidebar-mobile-toggle{
     color: @gray-regular;
     width: 100%;

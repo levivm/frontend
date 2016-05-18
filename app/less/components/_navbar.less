@@ -84,15 +84,15 @@
         width: 9em;
         display: inline-block;
         background-size: contain;
-        margin: 5px auto 0;
+        margin: 10px auto 0;
         transition: @transition-navbar;
         .before-md({
-            width: 7em;
+            width: 1.2em;
             background-size: contain;
             position: relative;
-            background-image: url('@{s3url}/static/img/logo-yellow.png');
-            margin: 7px auto 0 !important;
-            height: @navbar-short-inner-height;
+            background-image: url('@{s3url}/static/img/logo-green-mobile.png');
+            margin: 18px auto 0 !important;
+            height: 35px;
         });
     }
 
@@ -104,7 +104,7 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-inner-height;
-        width: ~"calc(100% - 450px)";
+        width: ~"calc(100% - 550px)";
         margin: 0.2em 1em;
 
         .buttons{
@@ -114,7 +114,7 @@
             transition: @transition-navbar;
         }
         .buttons-login{
-            line-height: 2.5em;
+            line-height: 3.5em;
             > a{
                 color: @gray-regular;
                 text-decoration: none;
@@ -139,8 +139,8 @@
         text-align: right;
         float: right;
         font-size: 0.9em;
-        margin-right: 10px;
-
+        margin-right: 3em;
+        
         .before-md({
             max-width: 150px;
             display: inline-block;
@@ -167,7 +167,6 @@
         font-weight: bold;
         text-transform: uppercase;
         line-height: @navbar-height - (@navbar-padding-vertical*2);
-
         .before-md({
           padding: 0;
           height: @navbar-short-height;
@@ -181,10 +180,21 @@
 
         &--right {
             text-decoration: none;
-            border-left: 1px solid @color-delimeter-dark;
+            padding: 5px 1em 5px 0em;
             text-align: left;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            span{
+              text-transform: capitalize;
+              font-weight: 600;
+              color: @gray-dark;
+            }
+            i{
+              font-size: 1.7em;
+              vertical-align: middle;
 
+            }
             &:hover{
                 text-decoration: none;
             }
@@ -195,9 +205,9 @@
             .user-picture{
                 .img-responsive;
                 .img-circle;
-                padding: 0.7em;
-                width: 5em;
-                height: 5em;
+                padding: 0.6em;
+                width: 4em;
+                height: 4em;
                 display: inline-block;
                 .before-md({
                   margin-right: -15px;
@@ -247,6 +257,14 @@
           height: @navbar-short-inner-height;
           margin: 5px auto 0;
           width: 7em;
+          .before-md({
+            width: 1.2em;
+            background-size: contain;
+            position: relative;
+            background-image: url('@{s3url}/static/img/logo-green-mobile.png');
+            margin: 18px auto 0 !important;
+            height: 35px;
+          });
         }
         &__city{
             font-size: 11px;
@@ -278,7 +296,7 @@
         }
 
         &__option {
-          padding: 0px 1em;
+          padding: 0px 1em 0px 0em;
           height: @navbar-short-height;
           line-height: @navbar-short-height - (@navbar-padding-vertical*2);
           .before-md({
@@ -287,8 +305,7 @@
         }
       }
       .search-bar__navbar{
-        height: @navbar-short-height - 15;
-        margin-top: 5px;
+        margin-top: 10px;
       }
 
     }
@@ -314,6 +331,9 @@
     }
     .navbar__option--right{
       border-left: none;
+      span{
+        color: #ffffff;
+      }
     }
     .btn-primary{
       background: transparent !important;
@@ -324,6 +344,11 @@
         > a{
             color: #ffffff;
         }
+    }
+    
+    .avatar-landing{
+      background: transparent !important;
+       border: 1px solid white !important;
     }
 
 }
@@ -450,6 +475,68 @@
     .before-md({
       margin-top: @navbar-short-height;
     });
+}
+
+//Dropdown Menu when hover picture profile in navbar
+.drop-menu{
+  position: fixed;
+  width: 17em;
+  right: 1.35em;
+  top: 85px;
+  z-index: 10000;
+  background: white;
+  border: 1px solid #cbcbcb;
+  border-top: none;
+  box-shadow: rgba(68, 68, 68, 0.09) 0px 7px 13px 1px;
+  border-radius: 5px;
+  
+  &.short{
+    top: 68px;
+  }
+  &:before{
+    content: "";
+    position: absolute;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 10px solid white;
+    right: 15px;
+    top: -10px;
+    
+  }
+  ul{
+    margin-bottom: 0;
+    padding: 0em 1.2em 0em 1.2em;
+    li{
+      font-size: 1.1em;
+      border-bottom: 1px solid #e3e3e3;
+      position: relative;
+      transition: all .1s ease;
+      cursor: pointer;
+      a{
+        color: @gray-dark;
+        display: block;
+        width: 100%;
+        padding: 0.8em 1em 0.8em 0em;
+        &:hover{
+          text-decoration: none;
+        }
+      }
+      &:hover{
+        padding-left: 0.8em;
+      }
+      
+      .label-notification{
+          color: #ffffff;
+          position: absolute;
+          border-radius: 45%;
+          top: 14px;
+          right: 3px;
+          padding: 0.4em 0.7em;
+      }
+      
+    }
+  }
+  
 }
 
 .burger-menu{
@@ -610,8 +697,18 @@
     }
   }
 }
+//Cover opacity with sidebar is true
 
-
+.cover-sidebar{
+  background: rgba(0, 0, 0, 0.52);
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+  top: 0;
+  transition: .4s ease all;
+  
+}
 
 @media (max-width: 991px){
   .burger-menu{
