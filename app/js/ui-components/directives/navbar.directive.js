@@ -51,7 +51,8 @@
                     howToWorkOrganizer: howToWorkOrganizer,
                     goToProfile:goToProfile,
                     toggleSideBar:toggleSideBar,
-                    showSideBar:false
+                    showSideBar:false,
+                    logout:logout
                 });
 
                 _activate();
@@ -80,8 +81,14 @@
                 }
                 
                 function toggleSideBar() {
-                    console.log(scope.showSideBar);
                    scope.showSideBar= !scope.showSideBar;
+                }
+                function logout() {
+                    scope.userLogged = false;
+                    $timeout(function () {
+                        $state.go('logout');
+                        scope.$apply();
+                    }, 500);
                 }
                 function explore(){
                     $rootScope.$broadcast(SearchManager.EVENT_EXPLORE);
@@ -138,11 +145,12 @@
                             return;
                         }
                         scope.user = user;
-                        console.log(scope.user);
+                        scope.userLogged = true;
                         Authentication.isOrganizer().then(function (result) {
                             scope.user.is_organizer = result;
                             scope.isSearchVisible = !result;
-                            _getOrganizerReviews();
+                            if(scope.user.is_organizer)
+                                _getOrganizerReviews();
                         });
                         Authentication.isStudent().then(function (result) {
                             scope.user.is_student = result;
@@ -176,10 +184,7 @@
                         user.full_name = 'User';
                     }
 
-                    if (!data.photo) {
-                        data.photo = defaultPicture;
-                    }
-
+                    
                     $timeout(function () {
                         scope.$apply();
                     }, 0);
@@ -219,17 +224,19 @@
                         LABEL_STUDENT_HOW: '¿Cómo funciona?',
                         LABEL_STUDENT_HELP: 'Ayuda',
                         LABEL_STUDENT_WISHLIST: 'Mis Favoritos',
-                        LABEL_ORGANIZER_ACTIVITIES: 'Mis Actividades',
-                        LABEL_ORGANIZER_SALES: 'Mis Ventas',
+                        LABEL_ORGANIZER_ACTIVITIES: 'Actividades',
+                        LABEL_ORGANIZER_SALES: 'Transacciones',
                         LABEL_ORGANIZER_PROFILE: 'Perfil',
                         LABEL_ORGANIZER_ACCOUNT: 'Cuenta',
                         LABEL_ORGANIZER_REVIEWS: 'Comentarios',
-                        LABEL_ORGANIZER_INSTRUCTORS: 'Mis Instructores',
+                        LABEL_ORGANIZER_INSTRUCTORS: 'Instructores',
+                        LABEL_ORGANIZER_MESSAGES: 'Mensajes',
                         LABEL_STUDENT_ACTIVITIES: 'Mis Actividades',
                         LABEL_STUDENT_INVITE: 'Invitar Amigos',
                         LABEL_STUDENT_PROFILE: 'Perfil',
                         LABEL_STUDENT_ACCOUNT: 'Cuenta',
-                        LABEL_STUDENT_PURCHASES: 'Mis Compras',
+                        LABEL_STUDENT_PURCHASES: 'Compras',
+                        LABEL_STUDENT_NOTIFICATIONS: 'Notificaciones',
                         PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
                         LABEL_CITY_MENU:'Elige tu ciudad'
                     });

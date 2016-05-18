@@ -18,9 +18,11 @@
         </div>
         <div class="navbar__right-wrapper" >
             
-            <a ng-if="user" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
+            <a ng-if="userLogged" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
+                <!--<img ng-if="user" ng-src="{{user.photo}}" class="user-picture hidden-xs hidden-sm" alt="{{user.user.full_name}}"/>-->
+                <trulii-avatar user="user" size="40" avatar-class="small" class="avatar-landing"></trulii-avatar>
                 <span class=" montserrat-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.first_name"></span>
-                <img ng-if="user" ng-src="{{user.photo}}" class="user-picture hidden-xs hidden-sm" alt="{{user.user.full_name}}"/>
+                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isLandingState(), 'text-gray': !isLandingState()}" aria-hidden="true"></i>
             </a>
             <a class="navbar__option navbar__option--right  hidden-md hidden-lg" ng-click="toggleSideBar()">
                  <i class="fa fa-bars " ng-class="{'text-gray-lighter': isLandingState(), 'text-gray': !isLandingState()}" aria-hidden="true"></i>
@@ -29,19 +31,10 @@
         
     </div>
 </nav>
-<!--ng-show="showMenu" ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()"-->
+<!--Dropdown menu when hiver in profile picture"-->
 <div class="drop-menu" ng-show="showMenu" ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" ng-class="{'short': scroll > 80, 'landing': isLandingState() }">
     <ul class="list-unstyled" ng-if="user.is_organizer">
-        <li>
-            <a ui-sref="organizer-dashboard.activities.open"
-                ng-click="hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
-                ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
-        </li>
-        <li>
-            <a ui-sref="organizer-dashboard.transactions.sales"
-                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
-                ng-bind="::strings.LABEL_ORGANIZER_SALES"></a>
-        </li>
+        
         <li>
             <a ui-sref="organizer-dashboard.profile"
                 ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_PROFILE)"
@@ -53,6 +46,16 @@
                 ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
         </li>
         <li>
+            <a ui-sref="organizer-dashboard.activities.open"
+                ng-click="hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
+                ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.instructors"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
+                ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
+        </li>
+        <li>
             <a ui-sref="organizer-dashboard.reviews.pending"
                 ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
                 ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
@@ -61,23 +64,22 @@
                       ng-bind="unreadReviewsCount"></span>
         </li>
         <li>
-            <a ui-sref="organizer-dashboard.instructors"
-                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
-                ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
+            <a ui-sref="organizer-dashboard.transactions.sales"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_ORGANIZER_SALES"></a>
         </li>
         <li>
-            <a ui-sref="logout"
-                ng-click=" hideDropMenu(); clickItemSidebar(strings.ACTION_EXIT)"
+            <a href="#"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_ORGANIZER_MESSAGES"></a>
+        </li>
+        <li>
+            <a  ng-click=" hideDropMenu(); logout(); clickItemSidebar(strings.ACTION_EXIT)"
                 ng-bind="::strings.ACTION_EXIT"></a>
         </li>
     </ul>
     <!--Student Sidebar-->
     <ul class="list-unstyled" ng-if="user.is_student">
-        <li>
-            <a ui-sref="student-dashboard.activities.open"
-                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
-                ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
-        </li>
         <li>
             <a ui-sref="referrals.home"
                 ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
@@ -94,9 +96,9 @@
                 ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
         </li>
         <li>
-            <a ui-sref="student-dashboard.history.orders"
-                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
-                ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
+            <a ui-sref="student-dashboard.activities.open"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
+                ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
         </li>
         <li>
             <a ui-sref="student-dashboard.wishlist"
@@ -104,8 +106,18 @@
                 ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
         </li>
         <li>
-            <a ui-sref="logout"
-                ng-click="hideDropMenu(); clickItemSidebar(strings.ACTION_EXIT)"
+            <a href="#"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_STUDENT_NOTIFICATIONS"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.history.orders"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
+                ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
+        </li>
+        
+        <li>
+            <a  ng-click=" hideDropMenu(); logout(); clickItemSidebar(strings.ACTION_EXIT)"
                 ng-bind="::strings.ACTION_EXIT"></a>
         </li>
     </ul>
@@ -126,79 +138,87 @@
     </div>
     <ul class="list-unstyled" ng-if="user.is_organizer">
         <li>
+            <a ui-sref="organizer-dashboard.profile"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_PROFILE)"
+                ng-bind="::strings.LABEL_ORGANIZER_PROFILE"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.account.settings"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)"
+                ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
+        </li>
+        <li>
             <a ui-sref="organizer-dashboard.activities.open"
                 ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
                 ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
         </li>
         <li>
-            <a ui-sref="organizer-dashboard.transactions.sales"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
-                ng-bind="::strings.LABEL_ORGANIZER_SALES"></a>
-        </li>
-        <li>
-            <a ui-sref="organizer-dashboard.profile"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_PROFILE)"
-                ng-bind="::strings.LABEL_ORGANIZER_PROFILE"></a>
-        </li>
-        <li>
-            <a ui-sref="organizer-dashboard.account.settings"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)"
-                ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
-        </li>
-        <li>
-            <a ui-sref="organizer-dashboard.reviews.pending"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
-                ng-bind="::strings.LABEL_ORGANIZER_REVIEWS">
-                
-                </a>
-                <span class="label label-notification separate-left-less"
-                      ng-if="unreadReviewsCount"
-                      ng-bind="unreadReviewsCount"></span>
-                
-        </li>
-        <li>
             <a ui-sref="organizer-dashboard.instructors"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
                 ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
         </li>
         <li>
+            <a ui-sref="organizer-dashboard.reviews.pending"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
+                ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
+             <span class="label label-notification separate-left-less"
+                      ng-if="unreadReviewsCount"
+                      ng-bind="unreadReviewsCount"></span>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.transactions.sales"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_ORGANIZER_SALES"></a>
+        </li>
+        <li>
+            <a href="#"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_ORGANIZER_MESSAGES"></a>
+        </li>
+        <li>
             <a ui-sref="logout"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.ACTION_EXIT)"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.ACTION_EXIT)"
                 ng-bind="::strings.ACTION_EXIT"></a>
         </li>
     </ul>
     <!--Student Sidebar-->
     <ul class="list-unstyled" ng-if="user.is_student">
         <li>
-            <a ui-sref="student-dashboard.activities.open"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
-                ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
-        </li>
-        <li>
             <a ui-sref="referrals.home"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
                 ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
         </li>
         <li>
             <a ui-sref="student-dashboard.profile"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
                 ng-bind="::strings.LABEL_STUDENT_PROFILE"></a>
         </li>
         <li>
             <a ui-sref="student-dashboard.account.password"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
                 ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
         </li>
         <li>
-            <a ui-sref="student-dashboard.history.orders"
-                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
-                ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
+            <a ui-sref="student-dashboard.activities.open"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
+                ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
         </li>
         <li>
             <a ui-sref="student-dashboard.wishlist"
                 ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_WISHLIST)"
                 ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
         </li>
+        <li>
+            <a href="#"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_STUDENT_NOTIFICATIONS"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.history.orders"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
+                ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
+        </li>
+        
         <li>
             <a ui-sref="logout"
                 ng-click="toggleSideBar(); clickItemSidebar(strings.ACTION_EXIT)"

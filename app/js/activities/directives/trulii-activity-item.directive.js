@@ -311,7 +311,6 @@
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
-
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
                 }

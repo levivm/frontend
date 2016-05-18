@@ -104,7 +104,7 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-inner-height;
-        width: ~"calc(100% - 450px)";
+        width: ~"calc(100% - 550px)";
         margin: 0.2em 1em;
 
         .buttons{
@@ -139,7 +139,7 @@
         text-align: right;
         float: right;
         font-size: 0.9em;
-        margin-right: 10px;
+        margin-right: 3em;
         
         .before-md({
             max-width: 150px;
@@ -183,8 +183,17 @@
             padding: 5px 1em 5px 0em;
             text-align: left;
             cursor: pointer;
+            display: flex;
+            align-items: center;
             span{
               text-transform: capitalize;
+              font-weight: 600;
+              color: @gray-dark;
+            }
+            i{
+              font-size: 1.7em;
+              vertical-align: middle;
+
             }
             &:hover{
                 text-decoration: none;
@@ -196,9 +205,9 @@
             .user-picture{
                 .img-responsive;
                 .img-circle;
-                padding: 0.7em;
-                width: 5em;
-                height: 5em;
+                padding: 0.6em;
+                width: 4em;
+                height: 4em;
                 display: inline-block;
                 .before-md({
                   margin-right: -15px;
@@ -336,6 +345,11 @@
             color: #ffffff;
         }
     }
+    
+    .avatar-landing{
+      background: transparent !important;
+       border: 1px solid white !important;
+    }
 
 }
 
@@ -466,8 +480,9 @@
 //Dropdown Menu when hover picture profile in navbar
 .drop-menu{
   position: fixed;
-  width: 20em;
-  right: 15px;
+  width: 17em;
+  right: 1.35em;
+  top: 85px;
   z-index: 10000;
   background: white;
   border: 1px solid #cbcbcb;
@@ -489,27 +504,28 @@
     
   }
   ul{
-    padding: 1em 1em 0em 1em;
     margin-bottom: 0;
+    padding: 0em 1.2em 0em 1.2em;
     li{
       font-size: 1.1em;
       border-bottom: 1px solid #e3e3e3;
-      padding: 0.8em;
       position: relative;
+      transition: all .1s ease;
+      cursor: pointer;
       a{
         color: @gray-dark;
         display: block;
         width: 100%;
+        padding: 0.8em 1em 0.8em 0em;
         &:hover{
           text-decoration: none;
         }
       }
       &:hover{
-         background-color: @gray-lighter-brand;
+        padding-left: 0.8em;
       }
       
       .label-notification{
-          background-color: @gray-light;
           color: #ffffff;
           position: absolute;
           border-radius: 45%;
