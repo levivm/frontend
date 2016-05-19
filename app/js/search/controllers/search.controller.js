@@ -73,13 +73,10 @@
             setWeekends : setWeekends,
             pageChange : pageChange,
             changeOrderBy : changeOrderBy,
-            toggleSidebar: toggleSidebar,
             showSidebar: false,
             toggleFilters: toggleFilters,
             showFilters: false,
             newSearchQuery: '',
-            collapsedFilters: false,
-            collapseFilters: collapseFilters,
             loadingActivities: true,
             getAmazonUrl: getAmazonUrl,
             cards: [],
@@ -107,12 +104,6 @@
             return  serverConf.s3URL + '/' +  file;
         }
 
-        function collapseFilters(){
-          vm.collapsedFilters = !vm.collapsedFilters;
-        }
-        function toggleSidebar(){
-          vm.showSidebar = !vm.showSidebar;
-        }
 
         function toggleFilters(){
           vm.showFilters = !vm.showFilters;
@@ -214,7 +205,6 @@
 
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
-            console.log(vm.onWeekends);
             SearchManager.setWeekends(vm.onWeekends);
             Analytics.generalEvents.searchWeekends(vm.onWeekends);
             if(!_isMobile()){
@@ -240,8 +230,6 @@
         }
 
         function getLevelClassStyle(level) {
-            //console.log(level);
-            //console.log(vm.searchLevel);
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
 
@@ -405,14 +393,10 @@
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_CLOSE : "Cerrar",
-                ACTION_SEARCH: "Buscar",
                 ACTION_ALL_FILTER : "Todas",
                 COPY_RESULTS : "resultados ",
                 COPY_FOR : "para ",
                 COPY_IN : "en",
-                OPTION_SELECT_LEVEL : "-- Nivel --",
-                PLACEHOLDER_DATE : "A Partir de",
-                COPY_INTERESTS : "¿Qué tema te interesa?",
                 LABEL_SORT_BY: "Ordenar por",
                 LABEL_LEVEL : "Nivel",
                 LABEL_COST : "Precio",
@@ -423,10 +407,7 @@
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
-                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
-                SHOW_FILTERS: "Mostrar filtros",
-                COLLAPSE_FILTERS: "Ocultar filtros",
-                LABEL_FREE: "Clases gratis"
+                LABEL_FILTER_ACTIVITIES: "Filtrar actividades"
             });
         }
 
