@@ -294,7 +294,7 @@
 /// New search
 
 .search-container{
-    margin-top: 0px;
+    margin-top: 75px;
     width: 100%;
     padding: 0 30px;
     @media (max-width: 992px){
@@ -380,6 +380,9 @@
             height: 45px;
             border: 1px solid @gray-light;
             border-radius: 25px;
+            color: @gray-dark !important;
+            font-weight: 700;
+            text-transform: uppercase;
             &:focus, &:hover{
                 outline: none;
             }
@@ -392,7 +395,7 @@
         float: left;
         width: 400px;
         display: inline-block;
-        padding: 0 45px;
+        padding: 0 15px 50px 45px;
         
         .search-order{
             padding: 0px 15px;
@@ -438,7 +441,7 @@
             }
             
             &__date{
-                padding: 10px 15px 10px 15px;
+                padding: 10px 15px 0px 15px !important;
                 input{
                     width: ~"calc(100% - 30px)";
                     display: inline-block;
@@ -540,8 +543,7 @@
         float: left;
         width: ~"calc(100% - 400px)";
         display: inline-block;
-        padding: 0 45px;
-        
+        padding: 0 15px 50px 45px;
         
         // Dynamic layout stuff
         @media (min-width: 1900px) {
@@ -550,36 +552,47 @@
                 margin-top: 20px;
             }
             .dynamic-layout-col-4{
-                width : 300px;
+                width: 400px;
             }
         }
         
-        @media (min-width: 1366px) {
+        @media (min-width: 1366px) and (max-width: 1899px){
             .dynamic-layout{
                 width: 1000px;
                 margin-top: 20px;
             }
             .dynamic-layout-col-4{
-                width : 300px;
+                width: 350px;
             }
         }
 
-        @media (min-width: 992px) and (max-width: 1366px){
+        @media (min-width: 1025px) and (max-width: 1366px){
             padding: 0 0;
             .dynamic-layout{
-                width: 600px; // 900
+                width: 800px; // 900
                 margin-top: 20px;
             }
             .dynamic-layout-col-4{
-                width : 300px;
+                width: 350px;
             }
         }
+        
+        @media (min-width: 992px) and (max-width: 1024px){
+            .dynamic-layout{
+                width: 550px; // 900
+                margin-top: 20px;
+            }
+            .dynamic-layout-col-4{
+                width: 350px;
+            }
+        }
+        
         @media (min-width: 768px) and (max-width: 991px){
             .dynamic-layout{
                 width: 400px;
             }
             .dynamic-layout-col-4{
-                width : 300px;  
+                width : 320px;
             }
         }
         // End of dynamic layout stuff
@@ -592,6 +605,10 @@
                 float: none;
                 text-align: center;
             }
+        }
+        
+        &__result-info{
+            padding: 0 50px;
         }
         &__filters{
             float: right;
@@ -611,7 +628,9 @@
                         background-image: none;
                     }
                 }
+                
                 label {position:relative}
+                
                 label:after {
                     content: "\f078";   
                     font-family: "FontAwesome";
@@ -644,6 +663,12 @@
             padding: 0 50px;
             background-color: white;
             z-index: 900;
+        }
+    }
+    
+    .limited-width-search{
+        @media (min-width: 1900px) {
+            max-width: 1200px;
         }
     }
 }

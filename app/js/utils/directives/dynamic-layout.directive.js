@@ -608,7 +608,6 @@
         items[i].x = itemColumnsAndPosition.position.x;
         items[i].y = itemColumnsAndPosition.position.y;
       }
-      console.log('??');
       setDynamicLayoutHeight(columns);
       
     }
