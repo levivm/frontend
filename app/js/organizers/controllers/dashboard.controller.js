@@ -23,7 +23,9 @@
             showSidebar: false,
             toggleSidebar: toggleSidebar,
             clicItemDash:clicItemDash,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            subItems: {},
+            showSubItems: showSubItems
         });
 
 
@@ -40,6 +42,11 @@
         function toggleSidebar(){
             vm.showSidebar = !vm.showSidebar;
         }
+        
+        function  showSubItems(item) {
+            vm.subItems[item] = !vm.subItems[item];
+            console.log(vm.subItems[item]);
+        }
 
         //Function send data analytics
 
@@ -54,11 +61,24 @@
             angular.extend(vm.strings, {
                 SECTION_PROFILE: "Perfil",
                 SECTION_ACCOUNT: "Cuenta",
+                SECTION_ACCOUNT_SETTINGS: "Ajustes",
+                SECTION_ACCOUNT_BANK: "Información Bancaria",
                 SECTION_ACTIVITIES: "Actividades",
+                SECTION_ACTIVITIES_OPENED: "Abiertas",
+                SECTION_ACTIVITIES_CLOSED: "Cerradas",
+                SECTION_ACTIVITIES_INACTIVES: "Inactivas",
                 SECTION_INSTRUCTORS: "Instructores",
                 SECTION_REVIEWS: "Comentarios",
+                SECTION_REVIEWS_PENDING: "Sin Revisar",
+                SECTION_REVIEWS_DONE: "Done",
                 SECTION_TRANSACTIONS: "Transacciones",
-                SECTION_MESSAGES: "Mensajes"
+                SECTION_TRANSACTIONS_SALES: "Ventas",
+                SECTION_MESSAGES: "Mensajes",
+                ACCOUNT_ITEMS: 'account',
+                ACTIVITIES_ITEMS: 'activities',
+                REVIEWS_ITEMS: 'reviews',
+                TRANSACTIONS_ITEMS: 'transactions',
+                
             });
         }
 
@@ -74,6 +94,12 @@
         function _activate() {
             _setStrings();
             _initScroll();
+            vm.subItems ={
+                activities: false,
+                account: false,
+                reviews: false,
+                transactions: false
+            }
         }
 
     }

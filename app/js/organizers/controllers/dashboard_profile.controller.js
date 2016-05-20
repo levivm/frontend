@@ -140,7 +140,7 @@
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
                 ACTION_DELETE: "Eliminar",
-                ACTION_UPDATE_PICTURE: "Subir Foto",
+                ACTION_UPDATE_PICTURE: "Cambiar imagen",
                 ACTION_VIEW_PROFILE: "Ver Perfil",
                 SECTION_PROFILE: "Perfil",
                 COPY_PROFILE: "Esta información aparecerá en tu perfil y lo verán los demás usuarios",
@@ -168,6 +168,7 @@
         function _activate(){
             _setStrings();
             _initialize_map();
+            console.log(vm.organizer);
         }
 
     }

@@ -3,33 +3,50 @@
 @import url('../_trulii-variables');
 
 //@import url('inputs');
-@import "_inputs";
+//@import "_inputs";
 
 input, textarea, select{
 	font-family: @font-sans-alt;
 	font-weight: 300;
 }
+input[type="text"]{
+	height: 50px !important;
+    border-radius: 1.7em !important;
+    font-weight: 700;
+	padding: 2em !important;
+	border: 1px solid @gray-lighter;
+	box-shadow: 0 0 !important;
+}
 
+textarea{
+	border-radius: 2em !important;
+	padding: 2em !important;
+	font-weight: 700;
+	height: 7em !important;
+    resize: none;
+	border: 1px solid @gray-lighter !important;
+	box-shadow: 0 0 !important;
+}
 ::-webkit-input-placeholder {
-   font-weight: 200;
+   font-weight: 600;
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   font-weight: 200;
+   font-weight: 600;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   font-weight: 200;
+   font-weight: 600;
 }
 
 :-ms-input-placeholder {
-   font-weight: 200;
+   font-weight: 600;
 }
 
 label{
 	font-family: @font-sans-alt;
-	font-weight: 300;
-	color: @gray-light !important;
+	font-weight: 600;
+	color: @gray-dark !important;
 	font-size: 1em;
 	margin-bottom: 1em
 }
