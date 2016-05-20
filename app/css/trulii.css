@@ -11787,6 +11787,18 @@ hr.on-light {
   width: 100%;
   height: 100%;
 }
+.location-dashboard select {
+  border-radius: 1.5em 0em 0em 1.5em;
+  height: 45px !important;
+  border: 1px solid #ededed;
+  box-shadow: 0 0;
+  width: 35%;
+  background: #e4e7ef;
+  font-weight: 600;
+}
+.location-dashboard input {
+  border-radius: 0em 1.5em 1.5em 0em !important;
+}
 @media (min-width: 992px) {
   .row-stretch {
     display: flex;
@@ -11801,7 +11813,8 @@ hr.on-light {
 .clear-both {
   clear: both;
 }
-.flex-container {
+.flex-container,
+.location-dashboard > div {
   display: -webkit-box !important;
   display: -webkit-flex !important;
   display: -ms-flexbox !important;
@@ -12345,11 +12358,25 @@ hr.on-light {
     max-width: 1300px;
   }
 }
+.limited-width-dashboard-container {
+  width: 1000px;
+  margin: 0 auto;
+  position: relative;
+}
+@media (max-width: 1299px) {
+  .limited-width-dashboard-container {
+    max-width: 100%;
+    margin: auto;
+    margin-left: auto;
+  }
+}
 .limited-width-dashboard {
   float: none;
   clear: both;
   margin: 0 auto;
   max-width: 1300px;
+  width: 850px;
+  margin-left: 20px;
 }
 @media (max-width: 1299px) {
   .limited-width-dashboard {
@@ -14666,6 +14693,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 1.5em 0em 0em 1.5em !important;
   padding: 0em !important;
   padding-left: 1em !important;
+  border-right-color: transparent;
 }
 .search-bar__navbar input,
 .search-bar__navbar select,
@@ -15013,7 +15041,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   position: fixed;
   top: 90px;
-  left: 30px;
   display: block;
   z-index: 1000;
   overflow-x: visible;
@@ -15128,6 +15155,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar__item-subitem:last-child {
   border-bottom: 1px solid transparent;
+}
+.sidebar__item .label-notification {
+  position: absolute;
+  top: 17px;
+  font-size: 0.8em;
+  border-radius: 45%;
+  top: 15px;
+  right: 30px;
+  padding: 0.4em 0.7em;
 }
 .sidebar__item .arrow-right {
   float: right;
@@ -15498,17 +15534,18 @@ textarea,
 select {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
+  color: #3a405b !important;
 }
 input[type="text"] {
-  height: 50px !important;
-  border-radius: 1.7em !important;
+  height: 45px !important;
+  border-radius: 1.7em ;
   font-weight: 700;
-  padding: 2em !important;
-  border: 1px solid #ededed !important;
+  padding: 1.2em 2em !important;
+  border: 1px solid #ededed;
   box-shadow: 0 0 !important;
 }
 textarea {
-  border-radius: 2em !important;
+  border-radius: 1.5em !important;
   padding: 2em !important;
   font-weight: 700;
   height: 7em !important;
@@ -15517,18 +15554,22 @@ textarea {
   box-shadow: 0 0 !important;
 }
 ::-webkit-input-placeholder {
-  font-weight: 200;
+  font-weight: 600;
+  color: #cbcbcb;
 }
 :-moz-placeholder {
   /* Firefox 18- */
-  font-weight: 200;
+  font-weight: 600;
+  color: #cbcbcb;
 }
 ::-moz-placeholder {
   /* Firefox 19+ */
-  font-weight: 200;
+  font-weight: 600;
+  color: #cbcbcb;
 }
 :-ms-input-placeholder {
-  font-weight: 200;
+  font-weight: 600;
+  color: #cbcbcb;
 }
 label {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -15552,19 +15593,19 @@ label {
 }
 .input--main ::-webkit-input-placeholder {
   /* WebKit browsers */
-  color: rgba(128, 128, 128, 0.8);
+  color: #cbcbcb;
 }
 .input--main :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
-  color: rgba(128, 128, 128, 0.8);
+  color: #cbcbcb;
 }
 .input--main ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
-  color: rgba(128, 128, 128, 0.8);
+  color: #cbcbcb;
 }
 .input--main :-ms-input-placeholder {
   /* Internet Explorer 10+ */
-  color: rgba(128, 128, 128, 0.8);
+  color: #cbcbcb;
 }
 .input--med {
   font-size: 1.3em;
@@ -15839,19 +15880,8 @@ tags-input input {
   font-size: 0.8em;
 }
 .btn-lg {
-  font-size: 1.1em;
-  padding: 1em 5em;
-}
-.btn-md {
-  font-size: 0.6em;
-}
-.btn-xlg {
-  text-transform: uppercase;
-  padding: 0.75em 2em;
   font-size: 1em;
-  line-height: 1.3333333;
-  border-radius: 6px;
-  font-weight: bold;
+  padding: 0.8em 5em;
 }
 .btn-default {
   background-color: white;
@@ -22773,7 +22803,7 @@ h6 {
 }
 p {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #cbcbcb;
+  color: #767676;
   font-size: 1.2em;
   margin-bottom: 1.5em;
 }

@@ -1,6 +1,6 @@
 
 <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard">
+    <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-7 with-footer limited-width-dashboard">
         <div class="row separate-above-less">
             <div class="col-xs-12">
                 <!--Profile-->
@@ -58,7 +58,7 @@
                                 <textarea elastic id="headline"  placeholder="{{::profile.strings.HELPER_HEADLINE}}"  class="form-control" ng-model='profile.organizer.headline'
                                           name="headline"></textarea>
                         </div>
-                        <div class="form-group separate-below">
+                        <div class="form-group separate-below-more">
                             <label class="control-label" for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
                                 <textarea elastic id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"  placeholder="{{::profile.strings.HELPER_BIO}}"></textarea>
                         </div>
@@ -72,14 +72,14 @@
                     <h4 class="dashboard-header" ng-bind="profile.strings.SUB_SECTION_VIDEO"></h4>
                     <p ng-bind="::profile.strings.COPY_VIDEO"></p>
                 </div>-->
-                <form name='profile.profile_form_photo' class="col-xs-12 " ng-submit="profile.submitVideo()">
+                <form name='profile.profile_form_photo' class="col-xs-12 separate-above" ng-submit="profile.submitVideo()">
                     <fieldset>
                         <div class="form-group separate-below ">
                             <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
                             <input type="text" class="form-control" ng-model="profile.organizer.youtube_video_url"
                                    name="video" placeholder="{{::profile.strings.COPY_VIDEO}}">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group separate-below-more">
                             <youtube-video video-url="profile.organizer.youtube_video_url" player-width="'100%'">
                             </youtube-video>
                         </div>
@@ -89,16 +89,15 @@
                 </form>
 
                 <!--Location-->
-                <div class="separate-above-more col-xs-12">
+                <!--<div class="separate-above-more col-xs-12">
                     <h4 class="dashboard-header" ng-bind="profile.strings.SUB_SECTION_LOCATION"></h4>
                     <p ng-bind="::profile.strings.COPY_LOCATION"></p>
-                </div>
-                <form name='profile.organizer_location_form' class="col-xs-12 col-lg-6" ng-submit="profile.submitLocation()">
+                </div>-->
+                <form name='profile.organizer_location_form' class="col-xs-12 " ng-submit="profile.submitLocation()">
                     <fieldset>
                         <div class="row">
-                            <div class="col-xs-12 col-md-6 separate-below">
-                                <div class="form-group" trulii-input-errors-control="city">
-                                    <label for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
+                            <div class="col-xs-12  separate-below separate-above">
+                                <div class="form-group location-dashboard" trulii-input-errors-control="city">
                                     <select id="city" name="city" class="form-control"
                                             ng-model="profile.organizer.location.city"
                                             ng-options="city as city.name for city in profile.cities track by city.id">
@@ -106,10 +105,12 @@
                                                 ng-bind="::profile.strings.OPTION_SELECT" selected>
                                         </option>
                                     </select>
+                                    <input type="text" class="form-control" placeholder="{{::profile.strings.PLACEHOLDER_LOCATION}}" ng-model='profile.organizer.location.address'
+                                   name="name" id="name">
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <!--<div class="row">
                             <div class="col-xs-12">
                                 <div class="form-group" trulii-input-errors-control="address">
                                     <label for="address" ng-bind="::profile.strings.LABEL_ADDRESS"></label>
@@ -118,14 +119,10 @@
                                           name="address"></textarea>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="row">
+                            <p class="col-xs-8 col-xs-offset-2 font-semibold text-center" ng-bind="::profile.strings.COPY_MAP"></p>
                             <div class="col-xs-12">
-                                <div class="map-help separate-above">
-                                    <span><strong>Arrastre </strong> el indicador (</span>
-                                    <span class="mdi-action-room" style="color: #F86161"></span>
-                                    <span>) en el mapa hasta el lugar donde se llevará a cabo su actividad.</span>
-                                </div>
                                 <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
                                                     bounds="profile.map.bounds"
                                                     events="profile.map.events" control="profile.map.control">
@@ -133,8 +130,8 @@
                                                     events="profile.marker.events"
                                                     idkey="profile.marker.id"></ui-gmap-marker>
                                 </ui-gmap-google-map>
-                                <div class="separate-above">
-                                    <trulii-submit-controls is-saving="profile.isSaving"
+                                <div class="separate-above-more">
+                                    <trulii-submit-controls class="separate-above" is-saving="profile.isSaving"
                                       data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>
                                 </div>
                             </div>
@@ -144,5 +141,4 @@
             </div>
         </div>
     </div>
-    <trulii-dashboard-footer></trulii-dashboard-footer>
 </div>

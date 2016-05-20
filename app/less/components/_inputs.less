@@ -8,18 +8,19 @@
 input, textarea, select{
 	font-family: @font-sans-alt;
 	font-weight: 300;
+	color: @blue-dark !important;
 }
 input[type="text"]{
-	height: 50px !important;
-    border-radius: 1.7em !important;
+	height: 45px !important;
+    border-radius: 1.7em ;
     font-weight: 700;
-	padding: 2em !important;
+	padding: 1.2em 2em !important;
 	border: 1px solid @gray-lighter;
 	box-shadow: 0 0 !important;
 }
 
 textarea{
-	border-radius: 2em !important;
+	border-radius: 1.5em !important;
 	padding: 2em !important;
 	font-weight: 700;
 	height: 7em !important;
@@ -29,18 +30,23 @@ textarea{
 }
 ::-webkit-input-placeholder {
    font-weight: 600;
+   color: @gray-light;
+   
 }
 
 :-moz-placeholder { /* Firefox 18- */
    font-weight: 600;
+   color: @gray-light;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
    font-weight: 600;
+   color: @gray-light;
 }
 
 :-ms-input-placeholder {
    font-weight: 600;
+   color: @gray-light;
 }
 
 label{
@@ -75,16 +81,16 @@ label{
 		}
 
 		::-webkit-input-placeholder { /* WebKit browsers */
-		    color:    fadeout(gray, 20%) ;
+		    color:    @gray-light;
 		}
 		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-		   color:    fadeout(gray, 20%) ;
+		   color:    @gray-light;
 		}
 		::-moz-placeholder { /* Mozilla Firefox 19+ */
-		   color:    fadeout(gray, 20%) ;
+		   color:    @gray-light;
 		}
 		:-ms-input-placeholder { /* Internet Explorer 10+ */
-		   color:    fadeout(gray, 20%) ;
+		   color:    @gray-light;
 		}
 	}
 

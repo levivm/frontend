@@ -171,6 +171,31 @@
   }
 
 }
+
+
+//Utils from Dashboard Organizer 
+
+
+.location-dashboard{
+	>div{
+		&:extend(.flex-container);
+	}
+	
+	select{
+		border-radius: 1.5em 0em 0em 1.5em;
+    height: 45px !important;
+    border: 1px solid @gray-lighter;
+    box-shadow: 0 0;
+    width: 35%;
+    background: @gray-light-brand;
+    font-weight: 600;
+	}
+	
+	input{
+		 border-radius: 0em 1.5em 1.5em 0em !important;
+	}
+}
+
 @media (min-width:992px){
 	.row-stretch{
 		display: flex;
@@ -782,12 +807,24 @@
     max-width: 1300px;
   }
 }
+.limited-width-dashboard-container{
+	width: 1000px;
+	margin: 0 auto;
+	position: relative;
+	@media (max-width: 1299px){
+		max-width: 100%;
+		margin: auto;
+		margin-left: auto;
+	}
+}
 
 .limited-width-dashboard{
 	float: none;
 	clear: both;
 	margin: 0 auto;
 	max-width: 1300px;
+	width: 850px;    
+	margin-left: 20px;
 	@media (max-width: 1299px){
 		max-width: 100%;
 		margin: auto;
