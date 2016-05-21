@@ -20,9 +20,20 @@
 	  background-color: @sidebar-acitvity-color;
 	  border-right: 0.1em solid @gray-light;
   }
-  .before-sm({
-    top: @navbar-short-height;
-    max-height: ~"calc(100vh - 60px)";
+  .before-md({
+	position: absolute;
+	width: 90%;
+	top: 43px;
+	left: 5%;
+	background: white;
+	padding: 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.15s ease-out;
+	&-expanded{
+		max-height: 700px;
+		transition: max-height 0.25s ease-in;
+	}
   });
 
   &-short{
@@ -213,10 +224,6 @@
 
 
 		
-
-		&:first-child{
-			margin-top: 20px;
-		}
 
 		&__icon{
 			top: 0;

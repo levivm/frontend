@@ -25,7 +25,8 @@
             clicItemDash:clicItemDash,
             getAmazonUrl: getAmazonUrl,
             subItems: {},
-            showSubItems: showSubItems
+            showSubItems: showSubItems,
+            titleActive: ''
         });
 
 
@@ -35,18 +36,23 @@
             return  serverConf.s3URL + '/' +  file;
         }
         
-        function isActive(stateStr){
+        function isActive(stateStr, title){
+            if($state.includes(stateStr) && title)
+                vm.titleActive = title;
+                
             return $state.includes(stateStr);
         }
 
         function toggleSidebar(){
             vm.showSidebar = !vm.showSidebar;
+            console.log(vm.showSidebar);
         }
         
         function  showSubItems(item) {
             vm.subItems[item] = !vm.subItems[item];
             console.log(vm.subItems[item]);
         }
+        
 
         //Function send data analytics
 
