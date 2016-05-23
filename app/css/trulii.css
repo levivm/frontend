@@ -15381,7 +15381,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     margin-top: 20px;
   }
   .search-container .search-content .dynamic-layout-col-4 {
-    width: 400px;
+    width: 395px;
   }
 }
 @media (min-width: 1366px) and (max-width: 1899px) {
