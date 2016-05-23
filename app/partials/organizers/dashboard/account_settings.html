@@ -1,12 +1,13 @@
 <div class="row fade in">
-  <div class="col-xs-12">
+  <div class="col-xs-12 ">
     <div class="row">
-      <div class="col-xs-12">
-        <h4 class="dashboard-header" ng-bind="::account.strings.SUB_SECTION_EMAIL"></h4>
-        <p ng-bind="::account.strings.COPY_EMAIL"></p>
-        <form class="col-xs-12 col-lg-6" name='account.account_form_email' ng-submit="account.changeEmail()">
+      <div class="col-xs-12 ">
+        <div class="col-xs-12 panel-default panel-default__dashboard ">
+            <h4 class="panel-default__dashboard-title" ng-bind="::account.strings.SECTION_ACCOUNT_SETTINGS"></h4>
+        </div>
+        <form class="col-xs-12" name='account.account_form_email' ng-submit="account.changeEmail()">
             <fieldset>
-                <div class="form-group" trulii-input-errors-control="email">
+                <div class="form-group separate-below-more" trulii-input-errors-control="email">
                     <label for="email" ng-bind="::account.strings.LABEL_EMAIL"></label>
                     <input class="form-control" id="email" name="email"
                           ng-model="account.organizer.user.email" type="email">
@@ -17,9 +18,7 @@
         </form>
       </div>
       <div class="col-xs-12 separate-above-more">
-        <h4 class="dashboard-header" ng-bind="::account.strings.SUB_SECTION_PASSWORD"></h4>
-        <p ng-bind="::account.strings.COPY_PASSWORD"></p>
-        <form class="col-xs-12 col-lg-6" name='account.account_form_password' ng-submit="account.changePassword()">
+        <form class="col-xs-12" name='account.account_form_password' ng-submit="account.changePassword()">
           <fieldset>
             <div class="form-group" trulii-input-errors-control="password">
               <label ng-bind="::account.strings.LABEL_CURRENT_PASSWORD"></label>
@@ -31,7 +30,7 @@
               <label ng-bind="::account.strings.LABEL_NEW_PASSWORD"></label>
               <input class="form-control" name="password1" ng-model="account.password_data.password1" type="password">
             </div>
-            <div class="form-group" trulii-input-errors-control="password2">
+            <div class="form-group separate-below-more" trulii-input-errors-control="password2">
               <label ng-bind="::account.strings.LABEL_REPEAT_PASSWORD"></label>
               <input class="form-control" name="password2" ng-model="account.password_data.password2"type="password">
             </div>

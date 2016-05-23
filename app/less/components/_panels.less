@@ -7,7 +7,7 @@
     box-shadow: none;
     border: 1px solid @gray-lighter;
     border-radius: 0;
-    color: @gray-lighter;
+    color: @gray-darker;
     font-family: @font-sans;
     .panel-heading{
         border: 0;
@@ -21,6 +21,19 @@
           padding: 20px 0;
         });
     }
+    
+    &__dashboard{
+        padding: 0.8em 2em;
+        border-radius: 5px;
+        margin-bottom: 2em;
+        &-title{
+            font-size: 1em;
+            font-weight: 600;
+            margin: 0;
+            color: @blue-dark;
+        }
+    }
+    
     .panel-date{
         font-family: @font-sans-alt;
         width: 13em;
@@ -83,12 +96,12 @@
           th, td{
              .before-sm({
                 padding: 1.5em 5px !important;
-                font-size: 0.75em;
+                font-size: 0.7em;
               });
               
               .before-md({
                 padding: 1.5em 2em;
-                font-size: 0.75em;
+                font-size: 0.7em;
               });
           }
         }
