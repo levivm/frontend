@@ -52,7 +52,9 @@
                     goToProfile:goToProfile,
                     toggleSideBar:toggleSideBar,
                     showSideBar:false,
-                    logout:logout
+                    logout:logout,
+                    subItems: {},
+                    showSubItems: showSubItems,
                 });
 
                 _activate();
@@ -82,6 +84,9 @@
                 
                 function toggleSideBar() {
                    scope.showSideBar= !scope.showSideBar;
+                }
+                function showSubItems(item) {
+                    scope.subItems[item] = !scope.subItems[item];
                 }
                 function logout() {
                     scope.userLogged = false;
@@ -225,10 +230,18 @@
                         LABEL_STUDENT_HELP: 'Ayuda',
                         LABEL_STUDENT_WISHLIST: 'Mis Favoritos',
                         LABEL_ORGANIZER_ACTIVITIES: 'Actividades',
-                        LABEL_ORGANIZER_SALES: 'Transacciones',
+                        LABEL_ORGANIZER_ACTIVITIES_OPEN: 'Abiertas',
+                        LABEL_ORGANIZER_ACTIVITIES_CLOSED: 'Cerradas',
+                        LABEL_ORGANIZER_ACTIVITIES_INACTIVES: 'Inactivas',
+                        LABEL_ORGANIZER_TRANSACTIONS: 'Transacciones',
+                        LABEL_ORGANIZER_TRANSACTIONS_SALES: 'Ventas',
                         LABEL_ORGANIZER_PROFILE: 'Perfil',
                         LABEL_ORGANIZER_ACCOUNT: 'Cuenta',
+                        LABEL_ORGANIZER_ACCOUNT_SETTINGS: 'Ajustes',
+                        LABEL_ORGANIZER_ACCOUNT_BANK: 'Información Bancaria',
                         LABEL_ORGANIZER_REVIEWS: 'Comentarios',
+                        LABEL_ORGANIZER_REVIEWS_UNREAD: 'Sin Revisar',
+                        LABEL_ORGANIZER_REVIEWS_DONE: 'Revisados',
                         LABEL_ORGANIZER_INSTRUCTORS: 'Instructores',
                         LABEL_ORGANIZER_MESSAGES: 'Mensajes',
                         LABEL_STUDENT_ACTIVITIES: 'Mis Actividades',
@@ -238,7 +251,11 @@
                         LABEL_STUDENT_PURCHASES: 'Compras',
                         LABEL_STUDENT_NOTIFICATIONS: 'Notificaciones',
                         PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
-                        LABEL_CITY_MENU:'Elige tu ciudad'
+                        LABEL_CITY_MENU:'Elige tu ciudad',
+                        SUBITEM_ACTIVITIES: 'activities',
+                        SUBITEM_ACCOUNT:'account',
+                        SUBITEM_REVIEWS: 'reviews',
+                        SUBITEM_TRANSACTIONS: 'transactions'
                     });
                 }
 
@@ -282,7 +299,12 @@
                         console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         _getUser();
                     });
-
+                    scope.subItems ={
+                        activities: false,
+                        account: false,
+                        reviews: false,
+                        transactions: false
+                    }
 
                     scope.$on('$destroy', _cleanUp);
                 }

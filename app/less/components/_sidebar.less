@@ -6,7 +6,8 @@
 .sidebar{
 	font-family: @font-sans;
 	position: fixed;
-	top: @navbar-height;
+	top: @navbar-height + 20px;
+	background: white;
 	display: block;
 	z-index: 1000;
 	overflow-x: visible;
@@ -25,7 +26,6 @@
 	width: 90%;
 	top: 43px;
 	left: 5%;
-	background: white;
 	padding: 0;
 	max-height: 0;
 	overflow: hidden;
@@ -36,16 +36,6 @@
 	}
   });
 
-  &-short{
-		top: @navbar-short-height;
-		max-height: ~"calc(100vh - 60px)" !important;
-		&.@{sidebar-float-class}{
-			max-height: ~"calc(100vh - 80px)" !important;
-		}
-	}
-	a:hover{
-		color: @primary;
-	}
 
 	&__activity{
 		padding: 1em.5em;
@@ -121,6 +111,9 @@
 			}
 		}
 		&-subitems{
+			text-transform: uppercase;
+			font-weight: 300;
+			font-size: 0.8em;
 			max-height: 0;
             overflow: hidden;
             transition: max-height 0.15s ease-out;
@@ -132,7 +125,9 @@
 		&-subitem{
 			border-bottom: 1px solid @gray-light;
 			background: @gray-lighter;
-			
+			a{
+				padding-left: 1.3em
+			}
 			&--selected{
 				a{
 					color: @gray-darker !important;
@@ -422,6 +417,7 @@
 		padding: 1em 1.2em;
 		display: flex;
     	align-items: center;
+		font-weight: 600;
 		img{
 			border-radius: 50%;
 			width: 3em;
@@ -443,7 +439,7 @@
 	}
 	.social{
 		position: absolute;
-		bottom: 4em;
+		bottom: 1em;
 		left: 1.5em;
 		a{
 			font-size: 1.4em;
@@ -451,17 +447,21 @@
 		}
 	}
 	
-	ul{
+	&__items{
 		padding: 1em 1.5em;
     	margin-top: 1em;
-		li{
-			padding-bottom: 1em;
+		max-height: 75vh;
+		overflow-y: auto;
+		&-item{
+			padding-bottom: 0.7em;
 			position: relative;
 			a{
 				color: white;
-				font-weight: 500;
+				font-weight: 600;
 				width: 100%;
     			display: block;
+				font-size: 0.9em;
+				text-decoration: none;
 			}
 			.label-notification{
 				position: absolute;
@@ -470,7 +470,27 @@
 				z-index: 0;
 				border-radius: 45%;
 				padding: 0.4em 0.8em;
-				font-size: 0.7em;
+				font-size: 0.8em;
+			}
+			
+		}
+	}
+	
+	
+	&__subitems{
+		padding-left: 1.8em; 
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.15s ease-out;
+		
+		&-expanded{
+			max-height: 250px;
+       	 	transition: max-height 0.25s ease-in;
+		}
+		&-subitem{
+			padding: 0.2em;
+			a{
+				font-weight: 100;
 			}
 		}
 	}

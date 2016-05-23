@@ -1,7 +1,4 @@
 <div class="fade in">
-    <p class="separate-below separate-above text-muted text-center"
-         ng-bind="::activities.strings.COPY_CLOSED">
-    </p>
     <div class="row activity-grid --left" ng-if="activities.closed_activities.length > 0">
         <trulii-activity-item
                 ng-repeat="activity in activities.closed_activities track by activity.id"

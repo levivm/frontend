@@ -76,7 +76,7 @@
                 SECTION_INSTRUCTORS: "Instructores",
                 SECTION_REVIEWS: "Comentarios",
                 SECTION_REVIEWS_PENDING: "Sin Revisar",
-                SECTION_REVIEWS_DONE: "Done",
+                SECTION_REVIEWS_DONE: "Revisados",
                 SECTION_TRANSACTIONS: "Transacciones",
                 SECTION_TRANSACTIONS_SALES: "Ventas",
                 SECTION_MESSAGES: "Mensajes",

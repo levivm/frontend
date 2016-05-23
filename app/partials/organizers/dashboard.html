@@ -1,11 +1,11 @@
 <div class="container-fluid limited-width-dashboard-container">
     <div class="row">
-        <div class="dropdown-mobile hidden-md hidden-lg" ng-click="dash.toggleSidebar()" >
+        <!--<div class="dropdown-mobile hidden-md hidden-lg" ng-click="dash.toggleSidebar()" >
             <span ng-bind="dash.titleActive"></span>
             <i class="fa fa-angle-right arrow-right" 
                        ng-class="{'rotate-icon': dash.showSidebar}" aria-hidden="true"></i>
-        </div>
-        <ul class="sidebar " ng-class="{'sidebar-expanded': dash.showSidebar}">
+        </div>-->
+        <ul class="sidebar hidden-xs hidden-sm" ng-class="{'sidebar-expanded': dash.showSidebar}">
             <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.profile.*', 'Perfil')}">
                 <a  ui-sref=".profile"
                     ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_PROFILE)">
@@ -53,13 +53,13 @@
                         </a>
                     </li>
                     <li class="sidebar__item-subitem" ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.activities.closed', 'Actividades > Cerradas')}">
-                        <a ui-sref=".activities.banking"
+                        <a ui-sref=".activities.closed"
                             ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_ACTIVITIES)">
                             <span ng-bind="::dash.strings.SECTION_ACTIVITIES_CLOSED" ></span>
                         </a>
                     </li>
                     <li class="sidebar__item-subitem" ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.activities.inactive', 'Actividades > Inactivas')}">
-                        <a ui-sref=".activities.banking"
+                        <a ui-sref=".activities.inactive"
                             ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_ACTIVITIES)">
                             <span ng-bind="::dash.strings.SECTION_ACTIVITIES_INACTIVES" ></span>
                         </a>

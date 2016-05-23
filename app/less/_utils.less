@@ -176,7 +176,7 @@
 //Utils from Dashboard Organizer 
 
 
-.location-dashboard{
+.location-dashboard, .double-input{
 	>div{
 		&:extend(.flex-container);
 		.before-md({
@@ -184,18 +184,23 @@
 			&:extend(.flex-column);
 		});
 	}
-	
+	.select-forms{
+		 width: 35%;
+		 .before-md({
+				width: 100%;
+		});
+	}
 	select{
-		border-radius: 1.5em 0em 0em 1.5em;
+		border-radius: 1.5em 0em 0em 1.5em !important;
     height: 45px !important;
     border: 1px solid @gray-lighter;
     box-shadow: 0 0;
-    width: 35%;
+    width: 100%;
     background: @gray-light-brand;
     font-weight: 600;
 		.before-md({
 			width: 100%;
-			border-radius: 1.7em;
+			border-radius: 1.7em !important;
 		});
 	}
 	
@@ -879,10 +884,12 @@
 	width: 1000px;
 	margin: 0 auto;
 	position: relative;
+	
 	@media (max-width: 1299px){
 		max-width: 100%;
 		margin: auto;
 		margin-left: auto;
+		
 	}
 }
 
@@ -893,11 +900,19 @@
 	max-width: 1300px;
 	width: 850px;    
 	margin-left: 20px;
+	margin-top: 1.3em;
 	@media (max-width: 1299px){
 		max-width: 100%;
 		margin: auto;
 		margin-left: auto;
+		margin-top: 1.3em;
+    margin-left: 15px;
 	}
+	.before-md({
+		max-width: 100%;
+		margin: auto;
+		margin-left: auto;
+	});
 }
 
 
