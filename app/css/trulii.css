@@ -15048,7 +15048,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   float: right;
 }
 .search-container .search-content__filters .search-select select {
-  height: 30px !important;
+  height: 25px !important;
   width: 125px;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -15057,10 +15057,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-weight: 700;
   border: none !important;
   box-shadow: 0 0 !important;
-  margin-top: -8px;
   padding: 0 1em !important;
   display: inline-block;
   border-radius: 0 !important;
+  background-color: transparent !important;
 }
 .search-container .search-content__filters .search-select select:hover,
 .search-container .search-content__filters .search-select select:focus {
