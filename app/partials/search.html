@@ -68,8 +68,8 @@
             </div>
             <div class="search-sidebar__element">
                 <ul>
-                    <li>
-                        <span ng-click="search.setCategory(search.strings.ACTION_ALL_FILTER)" ng-bind="::search.strings.ACTION_ALL_FILTER"></span>
+                    <li ng-click="search.setCategory(search.strings.ACTION_ALL_FILTER)">
+                        <span ng-bind="::search.strings.ACTION_ALL_FILTER"></span>
                     </li>
                     <li class="search-sidebar__sub-element" ng-class="{'search-sidebar__sub-element-expanded': category.id === search.expandedCategory}" ng-repeat="category in search.categories | orderBy:'name'">
                         <a href="#" id="{{::category.name}}"></a>
@@ -147,7 +147,6 @@
                                 <span ng-bind="search.searchData.category_display"></span>
                             </span>
                             <span ng-if="search.searchSubCategory">
-                                <i class="mdi-navigation-chevron-right"></i>
                                 <span> </span>
                                 <span ng-bind="search.searchData.subcategory_display"></span>
                             </span>
@@ -165,13 +164,13 @@
                             </div>
                             
                             <div class="trulii-checkbox">
-                                <input type="checkbox" id="cert" ng-model="search.withCert" ng-click="search.setCertification()">
-                                <label for="cert"><span></span>{{search.strings.LABEL_WITH_CERTIFICATE}}</label>
+                                <input type="checkbox" id="cert" ng-checked="search.withCert"  ng-model="search.withCert" >
+                                <label for="cert" ng-click="search.setCertification()"><span></span>{{search.strings.LABEL_WITH_CERTIFICATE}}</label>
                             </div>
                             
                             <div class="trulii-checkbox">
-                                <input type="checkbox" id="weekend" ng-model="search.onWeekends" ng-click="search.setWeekends()">
-                                <label for="weekend"><span></span>{{search.strings.LABEL_WEEKENDS}}</label>
+                                <input type="checkbox" id="weekend" ng-checked="search.onWeekends" ng-model="search.onWeekends" >
+                                <label for="weekend" ng-click="search.setWeekends()"><span></span>{{search.strings.LABEL_WEEKENDS}}</label>
                             </div>
                         </div>
                     </div>

@@ -122,7 +122,7 @@
                 vm.searchCategory = undefined;
             } else {
                 vm.searchCategory = category.id;
-
+                vm.searchData["category_display"] = category.name;
             }
 
             _expandCategory(category);
@@ -144,6 +144,7 @@
             } else {
                 vm.searchSubCategory = subcategory.id;
                 vm.searchCategory = subcategory.category;
+                vm.searchData["subcategory_display"] = subcategory.name;
             }
 
             SearchManager.setCategory(vm.searchCategory);
@@ -284,6 +285,8 @@
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
+            
+            console.log(vm.searchData);
 
             if ($stateParams.city) {
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
@@ -324,6 +327,7 @@
                     setCategory(category, true);
                     if (category) {
                         vm.searchData["category_display"] = category.name;
+                        console.log(category.name);
                         if (vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)) {
                             var subcategory = category.subcategories.filter(subCategoryFilter)[0];
                             vm.searchSubCategory = vm.searchData[sm.KEY_SUBCATEGORY];
@@ -419,7 +423,6 @@
         function _setCities(){
             LocationManager.getAvailableCities().then(function(data){
                 vm.cities = data;
-                console.log(data);
             });
         }
         function _activate() {
