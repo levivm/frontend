@@ -305,21 +305,95 @@
 /// New search
 
 .search-container{
-    margin-top: 0px;
+    margin-top: 75px;
     width: 100%;
     padding: 0 30px;
-    @media (max-width: 768px){
+    @media (max-width: 992px){
         position: relative;
-        height: ~"calc(90vh + 75px)";
+        height: ~"calc(90vh + 150px)";
     }
     
     .search-mobile-filters{
-        height: 100px;
+        height: 150px;
+        &__bar{
+            border: 1px solid @gray-light;
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            height: 45px;
+            ::-webkit-input-placeholder {
+                font-weight: 700;
+                color: @gray-dark;
+            }
+            :-moz-placeholder {
+                font-weight: 700;
+                color: @gray-dark;
+            }
+            ::-moz-placeholder {
+                font-weight: 700;
+                color: @gray-dark; 
+            }
+            :-ms-input-placeholder {  
+                font-weight: 700;
+                color: @gray-dark;
+            }
+            >*:nth-child(1){
+                font-weight: 700;
+                color: @gray-dark;
+                height: 35px;
+                width: 60%;
+                display: inline-block;
+                margin-top: 5px;
+                padding: 0px 20px;
+                background-image: none;
+                &:hover, &:focus{
+                    background-image: none;
+                }
+            }
+            >*:nth-child(2){
+                font-weight: 700;
+                color: @gray-dark;
+                height: 35px;
+                width: 30%;
+                display: inline-block;
+                margin-top: 5px;
+                border-left: 1px solid @gray-light;
+                border-right: 1px solid @gray-light;
+                padding: 0px 20px;
+                -webkit-appearance: none;
+                -moz-appearance: none;
+                background-size: 15px !important;
+                background-position-x: 90%;
+                background-position-y: 55%;
+                background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
+                &:hover, &:focus{
+                    // background-size: 15px !important;
+                    // background-position-x: 90%;
+                    // background-position-y: 55%;
+                    animation: none;
+                    // background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;;
+                }
+            }
+            >*:nth-child(3){
+                color: @gray-dark;
+                width: 10%;
+                height: 45px;
+                margin-top: -3px;
+                &:focus, &:hover{
+                    outline: none;
+                    border: none;
+                    background-color: transparent;
+                }
+            }
+        }
         .btn-filters{
             padding: 0;
-            height: 40px;
-            border: 1px solid #cbcbcb;
+            height: 45px;
+            border: 1px solid @gray-light;
             border-radius: 25px;
+            color: @gray-dark !important;
+            font-weight: 700;
+            text-transform: uppercase;
             &:focus, &:hover{
                 outline: none;
             }
@@ -332,7 +406,7 @@
         float: left;
         width: 400px;
         display: inline-block;
-        padding: 0 45px;
+        padding: 0 15px 50px 45px;
         
         .search-order{
             padding: 0px 15px;
@@ -378,7 +452,7 @@
             }
             
             &__date{
-                padding: 10px 15px 10px 15px;
+                padding: 10px 15px 0px 15px !important;
                 input{
                     width: ~"calc(100% - 30px)";
                     display: inline-block;
@@ -465,11 +539,11 @@
                 }
             }
         }
-        @media (max-width: 768px){
+        @media (max-width: 992px){
             width: 100%;
             padding: 0;
             position: absolute;
-            top: 75px;
+            top: 150px;
             left: 0px;
             height: 90vh;
             overflow-y: scroll;
@@ -483,15 +557,72 @@
         float: left;
         width: ~"calc(100% - 400px)";
         display: inline-block;
-        padding: 0 45px;
+        padding: 0 15px 50px 45px;
+        
+        // Dynamic layout stuff
+        @media (min-width: 1900px) {
+            .dynamic-layout{
+                width: 1200px;
+                margin-top: 20px;
+            }
+            .dynamic-layout-col-4{
+                width: 400px;
+            }
+        }
+        
+        @media (min-width: 1366px) and (max-width: 1899px){
+            .dynamic-layout{
+                width: 1000px;
+                margin-top: 20px;
+            }
+            .dynamic-layout-col-4{
+                width: 350px;
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1366px){
+            padding: 0 0;
+            .dynamic-layout{
+                width: 800px; // 900
+                margin-top: 20px;
+            }
+            .dynamic-layout-col-4{
+                width: 350px;
+            }
+        }
+        
+        @media (min-width: 992px) and (max-width: 1024px){
+            .dynamic-layout{
+                width: 550px; // 900
+                margin-top: 20px;
+            }
+            .dynamic-layout-col-4{
+                width: 350px;
+            }
+        }
+        
+        @media (min-width: 768px) and (max-width: 991px){
+            .dynamic-layout{
+                width: 400px;
+            }
+            .dynamic-layout-col-4{
+                width : 320px;
+            }
+        }
+        // End of dynamic layout stuff
+        
         
         &__results{
             float: left;
             text-transform: uppercase;
-            @media (max-width: 768px){
+            @media (max-width: 992px){
                 float: none;
                 text-align: center;
             }
+        }
+        
+        &__result-info{
+            padding: 0 50px;
         }
         &__filters{
             float: right;
@@ -515,7 +646,9 @@
                         background-image: none;
                     }
                 }
+                
                 label {position:relative}
+                
                 label:after {
                     content: "\f078";   
                     font-family: "FontAwesome";
@@ -537,17 +670,23 @@
                 }
             }
         }
-        @media (max-width: 768px){
+        @media (max-width: 992px){
             width: 100%;
             padding: 0;
             position: absolute;
-            top: 75px;
+            top: 150px;
             left: 0px;
             height: 90vh;
             overflow-y: scroll;
             padding: 0 50px;
             background-color: white;
             z-index: 900;
+        }
+    }
+    
+    .limited-width-search{
+        @media (min-width: 1900px) {
+            max-width: 1200px;
         }
     }
 }
