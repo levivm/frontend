@@ -14370,6 +14370,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   right: 3px;
   padding: 0.4em 0.7em;
 }
+.drop-menu ul li:last-child {
+  border-bottom: none;
+}
 .cover-sidebar {
   background: rgba(0, 0, 0, 0.52);
   position: fixed;
