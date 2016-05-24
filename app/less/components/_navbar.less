@@ -81,7 +81,7 @@
     &__logo {
         background: url('@{s3url}/static/img/logo-green.png') no-repeat;
         height: @navbar-inner-height;
-        width: 9em;
+        width: 7em;
         display: inline-block;
         background-size: contain;
         margin: 10px auto 0;
@@ -91,7 +91,6 @@
             background-size: contain;
             position: relative;
             background-image: url('@{s3url}/static/img/logo-green-mobile.png');
-            margin: 18px auto 0 !important;
             height: 35px;
         });
     }
@@ -482,7 +481,7 @@
   position: fixed;
   width: 17em;
   right: 1.35em;
-  top: 85px;
+  top: @navbar-height;
   z-index: 10000;
   background: white;
   border: 1px solid #cbcbcb;
@@ -535,168 +534,15 @@
       }
       
     }
+    
+    li:last-child{
+       border-bottom: none;
+    }
   }
   
 }
 
-.burger-menu{
-  width:100vw;
-  height:100vh;
-  position:fixed;
-  top:0;
-  left:0;
-  background-color: #22c7b5;
-  color: white;
-  z-index: 10000;
-  overflow-y: auto;
-  opacity: 1;
-  transition: all 0.25s;
-  &.ng-hide{
-    opacity: 0;
-  }
-  .btn-success, .input-group-btn{
-    background-color: #1eaf9f;
-    color: white;
-  }
-  .form-classic{
-    .input-group-btn{
-      .btn{
-        padding-top: 2px;
-        .mdi {
-          color: white;
-        }
-      }
-    }
-  }
-  p{
-    margin: 0.5em 0;
-    font-weight: 400;
-    font-family: @font-sans;
-    color: darken(@brand-success, 20%);
-  }
-  ul{
-    &.list-inline{
-      li:not(:first-child){
-        vertical-align: 1.5em;
-        font-size: 1em;
-        padding: 0 1em;
-      }
-    }
-    li{
-      font-weight: 200;
-      font-size:1.5em;
 
-    }
-  }
-
-  a{
-    color:white;
-  }
-  a:focus, a:hover{
-    color: @brand-primary;
-    text-decoration: none;
-  }
-  &__buttons{
-    padding-top: 3.5em;
-    [class*="col-"] {
-      padding: 0 1em;
-    }
-    .btn{
-      margin: 1em 0;
-      padding: 0.75em 1em;
-    }
-    .btn-login{
-      background-color:transparent;
-      color: white !important;
-      transition: all 0.25s;
-      border-color: white;
-    }
-    .btn-login:hover, .btn-login:focus{
-      background-color: white;
-      color: @brand-success !important;
-      border-color: white;
-    }
-    .btn-reg{
-      color: @brand-success !important;
-      transition: all 0.25s;
-      border-color: white;
-    }
-    .btn-reg:hover, .btn-reg:focus{
-      background-color: transparent;
-      color: white !important;
-    }
-  }
-  &__close{
-    border: none;
-    outline: none;
-    background-color: transparent;
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    img{
-      border-radius: 100%;
-      transition: all 0.25s;
-      &:hover{
-        background-color: rgba(255, 255, 255, 0.5);
-      }
-    }
-  }
-  &__column {
-    padding: 3em 2em;
-  }
-  &__links{
-    padding-top: 4vh;
-    li{
-      line-height:1.75em;
-    }
-    .row-stretch{
-      padding-top: 5vh;
-    }
-  }
-  &__user{
-    &-links{
-      min-height:100vh;
-      background-color: #249588;
-      padding: 10vh 5em 0 5em;
-      max-height: 100vh;
-      overflow-y: auto;
-      ul{
-        padding: 5em 3em;
-        li{
-          font-size: 1.25em;
-          line-height: 2.25em;
-        }
-      }
-    }
-    &__name{
-        min-width: 80px;
-        max-width: 100px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        font-weight: 400;
-        text-transform: uppercase;
-        line-height: @navbar-height - (@navbar-padding-vertical*2);
-        vertical-align: middle;
-        letter-spacing: 1px;
-        display: inline-block;
-        .before-md({
-          max-width: 70%;
-        });
-    }
-    &__picture:extend(.img-size-cover):extend(.img-position-center) {
-        .square(@navbar-inner-height - 8);
-        border-radius: 50%;
-        width: 80px;
-        height: 80px;
-        margin: 0 1em;
-        .before-md({
-          width: 50px;
-          height: 50px;
-        });
-    }
-  }
-}
 //Cover opacity with sidebar is true
 
 .cover-sidebar{

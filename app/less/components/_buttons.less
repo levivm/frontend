@@ -3,6 +3,7 @@
 // ...Because there is a strange issue on bootstrap-material
 .btn-success, .btn-primary {
     color: white !important;
+    border-color: transparent;
 }
 
 .btn-link {
@@ -20,31 +21,24 @@
 
 .btn {
     font-family: @font-sans;
-
+    border-radius: 1.5em;
+    padding: 1em 2em;
+    font-weight: 700 !important;
+    text-transform: uppercase;
+    font-size: 0.8em;
     &-lg{
-        text-transform: uppercase;
-        padding: 1.25em 2em;
-        font-size: 0.8em;
-        line-height: 1.3333333;
-        border-radius: 6px;
-        font-weight: bold;
+        font-size: 1em;
+        padding: 0.8em 5em;
     }
-    &-md{
-      font-size: 0.6em;
-    }
-    &-xlg{
-      text-transform: uppercase;
-      padding: 0.75em 2em;
-      font-size: 1em;
-      line-height: 1.3333333;
-      border-radius: 6px;
-      font-weight: bold;
-    }
+   
 
     &-default{
         background-color: white;
-        border: 1px solid lighten(@gray-light, 30%); ;
-        color: @gray-light !important;
+        border: 1px solid @gray-lighter;
+        color: @gray-darker !important;
+    }
+    &-success{
+        border-color: transparent;
     }
 
     &-light{
@@ -124,6 +118,9 @@
     &-multiline{
         white-space: normal !important;
         word-wrap: break-word;
+    }
+    &:focus{
+        outline: 0 !important;
     }
 
 }

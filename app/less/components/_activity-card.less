@@ -101,6 +101,18 @@
                 width: 30%;
                 display: inline-block;
                 float: left;
+                &__menu{
+                    position: absolute;
+                    right: 0;
+                    &__item{
+                        &__icon{
+                            color: @gray-light;
+                            &:hover{
+                                color: @gray-regular;
+                            }
+                        }
+                    }
+                }
             }
             &__body{
                 width: 70%;
@@ -108,12 +120,17 @@
                 &__content{
                     margin-right: auto;
                     margin-left: 25px;
+                    height: 85%;
+                    &__price{
+                        padding-top: 40px;
+                    }
                 }
             }
              &__category{
                 &__label{
                     top: 10px;
-                left: ~"calc(30% + 45px)";
+                    left: 5%;
+                    opacity: 1;
                 }
             }
         }

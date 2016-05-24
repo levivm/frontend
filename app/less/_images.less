@@ -130,17 +130,39 @@
 }
 
 @photo-input-size: 8em;
-
+.profile-picture-form{
+  .before-sm({
+    text-align: center;
+  });
+}
 .profile-photo-input {
-  line-height: @photo-input-size;
-
+  line-height: 4em;
+  
+  div{
+   margin-top: 1em !important;
+   
+   h3{
+      margin: 0;
+      margin-left: 1rem;
+      font-weight: 700;
+      color: @blue-dark;
+   }
+  }
   .before-sm({
     line-height: 5em;
-  });
+    margin-top: 1em !important;
 
+  });
+  .before-md({
+    margin-top: 5em;
+  });
   & > * {
     display: inline-block;
     vertical-align: top;
+     .before-sm({
+        display: block;
+        margin: 0 auto !important;
+      });
   }
 
   &__photo {
@@ -151,14 +173,10 @@
     &:extend(.img-position-center);
 
     .before-sm({
-      width: 5em;
-      height: 5em;
+       margin: 0 auto;;
     });
   }
 
-  &__action {
-
-  }
 
   & .preloader-container {
     margin: 0;

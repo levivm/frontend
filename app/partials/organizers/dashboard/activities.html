@@ -1,16 +1,3 @@
-<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
-    <ul>
-        <li class="navbar-secondary__item" ui-sref=".open" ui-sref-active="active">
-            <span ng-bind="::activities.strings.TAB_OPEN"></span>
-        </li>
-        <li class="navbar-secondary__item" ui-sref=".closed" ui-sref-active="active">
-            <span ng-bind="::activities.strings.TAB_CLOSED"></span>
-        </li>
-        <li class="navbar-secondary__item" ui-sref=".inactive" ui-sref-active="active">
-            <span ng-bind="::activities.strings.TAB_INACTIVE"></span>
-        </li>
-    </ul>
-</div>
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard" ui-view></div>
 </div>
