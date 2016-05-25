@@ -40,7 +40,7 @@ module.exports = {
         },
         'txt':{
             'robots': path.join(APP_ROOT, '/robots.txt'),
-        }
+        },
         'html': {
             'index': path.join(APP_ROOT, '/index.html'),
             'partials': path.join(APP_ROOT, '/partials/**/*.html')
