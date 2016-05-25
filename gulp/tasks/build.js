@@ -24,6 +24,12 @@ gulp.task('copy-index', ['injector'], function() {
     return gulp.src(config.source.html.index).pipe(gulp.dest(config.dist.all))
 });
 
+/** Clean task to remove everything from public **/
+gulp.task('copy-robots', ['injector'], function() {
+    return gulp.src(config.source.txt.robots).pipe(gulp.dest(config.dist.all))
+});
+
+
 /** Clean task to gzip everything in public/ folder **/
 gulp.task('dist-gzip', function() {
     return gulp.src(config.gzip.src)
@@ -45,5 +51,5 @@ gulp.task('build-useref', function() {
 
 /** Task to build resources from APP to DIST **/
 gulp.task('build', function(callback){
-    runSequence('clean', 'copy-resources', 'copy-index', 'build-useref', 'minify-html-index', 'dist-gzip', callback);
+    runSequence('clean', 'copy-resources', 'copy-index', 'copy-robots', 'build-useref', 'minify-html-index', 'dist-gzip', callback);
 });
