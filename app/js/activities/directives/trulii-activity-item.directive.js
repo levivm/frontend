@@ -264,7 +264,7 @@
                         COPY_IN: "En ",
                         COPY_THE: "El ",
                         COPY_CURRENT: "En curso",
-                        COPY_SEE_ASSISTANTS: "Ver asistentes ",
+                        COPY_ATTENDES: "Ver asistentes ",
                         ADD_TO_WISHLIST: "Agregar a favoritos",
                         CURRENCY: "COP",
                         DELETE_ACTIVITY_ERROR: "No puede eliminar esta actividad, tiene estudiantes inscritos, contactanos",

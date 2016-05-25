@@ -1,9 +1,12 @@
 <div class="fade in">
-    <div class="col-xs-12 panel-default panel-default__dashboard ">
-            <h4 class="panel-default__dashboard-title" ng-bind="::activities.strings.TAB_OPEM"></h4>
-        </div>
+    <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+            <h4 class="panel-default__dashboard-title" ng-bind="::activities.strings.TAB_OPEN"></h4>
+     </div>
+     <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+            <span class="separate-left text-gray-dark" ng-bind="::activities.strings.COPY_OPEN"></span>
+     </div>
     <div ng-if="activities.open_activities.length > 0">
-        <div class="row activity-grid">
+        <div class="row activity-grid-organizer">
             <trulii-activity-item
                     ng-repeat="activity in activities.open_activities track by activity.id"
                     data-activity="activity"

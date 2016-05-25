@@ -9,7 +9,7 @@
 	padding: 0;
 	width: 100%;
 	display: block;
-	border: 1px solid @gray-light;
+	border: 1px solid  @gray-lighter;
 	border-radius: @border-radius-standard;
 
 	.card-header{
@@ -164,14 +164,13 @@
 			display: inline-block;
 			margin-bottom: 1em;
 			font-weight: 200;
-
 			&:before{
 				content: '+';
 				font-size: 4em;
 				display: inline-block;
 				width: 100%;
-				color: @gray-light;
-				line-height: (@card-add-icon-height - 4) / 2;
+				color: white;
+				line-height: 1.8em;
 				padding-top: 0.1em;
 			}
 
@@ -187,7 +186,145 @@
 		padding: 1.5em;
     	overflow: visible;
 	}
+	
+	&__instructor{
+		position: relative;
+		&-header{
+			border-bottom: 1px solid @gray-lighter;
+			text-transform: uppercase;
+			padding: 1em;
+			
+			&-title{
+				color: @gray-dark;
+				font-weight: 600;
+			}
+			
+			&-name{
+				color: #979797;
+				font-weight: 600;
+			}
+			&-actions{
+				position: absolute;
+				font-size: 1.4em;
+				right: 25px;
+				color: #979797;
+				top: 10px;
+				cursor: pointer;
+		    }
+		}	
+		&-actions{
+			position: absolute;
+			z-index: 100;
+			right: 0px;
+			width: 16em;
+			right: 1.35em;
+			top: 38px;
+			z-index: 10000;
+			background: white;
+			border: 1px solid #cbcbcb;
+			border-top: none;
+			box-shadow: rgba(68, 68, 68, 0.09) 0px 7px 13px 1px;
+			border-radius: 5px;
+			
+			&:before{
+				content: "";
+				position: absolute;
+				border-left: 12px solid transparent;
+				border-right: 12px solid transparent;
+				border-bottom: 10px solid white;
+				right: 15px;
+				top: -10px;
+			}
+			
+			&-item{
+				color: @gray-dark;
+				display: block;
+				width: 100%;
+				padding: 0.6em 1em 0.6em 0em;
+				font-size: 1em;
+				border-bottom: 1px solid @gray-lighter;
+				position: relative;
+				transition: all .1s ease;
+				cursor: pointer;
+				width: 90%;
+				margin: 0 auto;
+				font-weight: 600;
+				&:hover{
+					padding-left: 0.5em;
+				}
+			}
+			&-item:last-child{
+				border-bottom: none;
+				color: #fe5339;
+			}
+		}
+		.card-list-item{
+			padding: 1em 0em 0em 0em;
+			overflow-y: visible;
+			
+			.form-group{
+				padding: 0em 2em 0em 2em;
+			}
+			
+			.view-mode{
+				padding: 1em 2em 4em 2em;
+			}
+			textarea{
+				resize: none;
+				height: 10em !important;
+			}
 
+		}
+		
+		&-buttons{
+			display: flex;
+			justify-content: space-around;
+			margin-top: 2em;
+			height: 4em;
+			
+			button{
+				background: transparent;
+				width: 50%;
+				border-radius: 0;
+				border: 1px solid @gray-lighter;
+			}
+			.btn-default{
+				border-bottom: none;
+				border-left: none;
+				
+				&:hover{
+					background: transparent;
+					border: 1px solid @gray-lighter;
+				}
+				&:active{
+					background: transparent;
+					border: 1px solid @gray-lighter;
+				}
+				&:focus{
+					background: transparent;
+					border: 1px solid @gray-lighter;
+				}
+			}
+			
+			.btn-success, .btn-primary{
+				color: @brand-primary !important;
+				border-bottom: none;
+				border-right: none;
+				&:hover{
+					background: transparent;
+					border: 1px solid @gray-lighter;
+				}
+				&:focus{
+					background: transparent;
+					border: 1px solid @gray-lighter;
+				}
+				&:active{
+					background: transparent;
+					border: 1px solid @gray-lighter;
+				}
+			}
+		}
+	}
 	&__lateral-menu{
 		//border-right: 1px solid @color-delimeter-dark;
 		position: absolute;

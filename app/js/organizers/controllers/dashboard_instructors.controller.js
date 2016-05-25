@@ -81,7 +81,7 @@
             }
             angular.extend(vm.strings, {
                 SECTION_INSTRUCTORS: "Instructores",
-                COPY_INSTRUCTORS: "Cuéntanos de cada una de las personas que impartirán la actividad."
+                COPY_INSTRUCTORS: "Administa la información de los instructores de tus actividades. Añade, elimina o edita la información de cada uno."
             });
         }
 

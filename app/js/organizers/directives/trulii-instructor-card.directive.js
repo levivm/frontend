@@ -44,7 +44,10 @@
                     selectedInstructor: null,
                     instructorEditable:null,
                     emptyInstructor: true,
-                    cardHeight: '31em'
+                    showActions: showActions,
+                    hideActions: hideActions,
+                    actions: false,
+                    cardHeight: '25em'
                 });
 
                 var EMPTY_INSTRUCTOR = {
@@ -81,6 +84,13 @@
                 function toggleEditMode(){
                     scope.editMode = !scope.editMode;
                     scope.instructorEditable = angular.copy(scope.instructor);
+                }
+                
+                function showActions(){
+                    scope.actions = true;
+                }
+                function hideActions(){
+                    scope.actions = false;
                 }
 
                 function saveInstructor(){
@@ -207,6 +217,7 @@
                         ACTION_DELETE: "Eliminar Instructor",
                         LABEL_FULL_NAME: "Nombre Completo",
                         PLACEHOLDER_FULL_NAME: "Ingrese nombre de instructor",
+                        LABEL_HEADER: "Instructor:",
                         LABEL_WEBSITE: "Website",
                         LABEL_OPTIONAL: " (Opcional)",
                         PLACEHOLDER_WEBSITE: "Ingrese URL de website",
