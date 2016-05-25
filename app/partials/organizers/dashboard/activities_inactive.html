@@ -22,9 +22,7 @@
       </div>
     <!--If there are no activities-->
     <div ng-if="activities.inactive_activities.length <= 0" class="row">
-        <div class="col-md-8 col-md-offset-2 text-center">
-            <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
-                 alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
+        <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
             <p class="separate-below separate-above">
                 <span ng-bind="::activities.strings.LABEL_EMPTY_INACTIVE"></span>
                 <span ng-bind="::activities.strings.COPY_EMPTY_INACTIVE"></span>

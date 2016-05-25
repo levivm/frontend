@@ -23,10 +23,7 @@
       </div>
     <!--If there are no activities-->
     <div ng-if="activities.closed_activities.length <= 0" class="row">
-        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 text-center">
-            <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
-                 alt="{{activities.strings.LABEL_EMPTY_CLOSED}}"
-                 class="img-responsive center-block"/>
+        <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
             <p class="separate-below separate-above text-muted"
                  ng-bind="::activities.strings.COPY_EMPTY_CLOSED">
             </p>

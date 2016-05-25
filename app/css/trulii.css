@@ -15132,6 +15132,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-color: #FFFFFF;
   border-right: 0.1em solid #cbcbcb;
 }
+.sidebar__absolute {
+  position: absolute;
+  height: auto;
+  top: 1845px;
+}
+.sidebar__fixed {
+  position: fixed;
+  top: 90px;
+}
 @media screen and (max-width: 992px) {
   .sidebar {
     position: absolute;
@@ -16425,11 +16434,19 @@ td {
 }
 .table thead tr th,
 .table tbody tr th,
+.table tfoot tr th {
+  text-transform: uppercase;
+}
+.table thead tr th,
+.table tbody tr th,
 .table tfoot tr th,
 .table thead tr td,
 .table tbody tr td,
 .table tfoot tr td {
-  padding: 35px 1.5em;
+  padding: 35px 1em;
+  border: none;
+  font-size: 0.9em;
+  color: #222328;
 }
 .table thead tr th.column-button,
 .table tbody tr th.column-button,
@@ -17578,11 +17595,6 @@ ul.dropdown-menu:after {
 }
 .card-list-item__actions i:hover {
   color: #03d69a;
-}
-.card-list-item label,
-.card-list-item input,
-.card-list-item textarea {
-  font-size: .9em;
 }
 .card-list-item--empty {
   border: 1px dashed;
