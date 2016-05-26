@@ -11831,6 +11831,22 @@ hr.on-light {
     margin-top: 1em;
   }
 }
+.add-instructors {
+  position: absolute;
+  border-radius: 1.5em;
+  border: 1px solid #ededed;
+  color: #767676;
+  font-size: 1.2em;
+  width: 80px;
+  display: flex;
+  justify-content: space-around;
+  font-weight: 600;
+  top: 15px;
+  right: 27px;
+}
+.add-instructors span {
+  cursor: pointer;
+}
 .activity-grid-organizer {
   padding: 11em 2em;
 }
@@ -16604,7 +16620,7 @@ td {
 }
 .panel-default__dashboard-sub-second {
   border-radius: 0px 0px 5px 5px;
-  padding: 0.8em 0em;
+  padding: 1em 2em;
 }
 .panel-default .panel-date {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -17497,6 +17513,9 @@ ul.dropdown-menu:after {
   border: 1px solid #ededed;
   border-radius: 5px;
 }
+.card-nonborder {
+  border-bottom: none;
+}
 .card .card-header {
   -webkit-border-top-left-radius: 2px;
   -webkit-border-top-right-radius: 2px;
@@ -17561,8 +17580,20 @@ ul.dropdown-menu:after {
   padding: 3em 2em;
   position: relative;
   background-color: white !important;
-  overflow-y: auto;
+  overflow: hidden;
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+@media screen and (max-width: 992px) {
+  .card-list-item {
+    max-height: 0;
+    padding: 0 !important;
+    overflow: hidden;
+    transition: max-height 0.15s ease-out;
+  }
+}
+.card-list-item__expanded {
+  max-height: 350px;
+  transition: max-height 0.25s ease-in;
 }
 .card-list-item h1 {
   font-size: 1.2em;
@@ -17650,9 +17681,19 @@ ul.dropdown-menu:after {
   color: #767676;
   font-weight: 600;
 }
+@media screen and (max-width: 992px) {
+  .card__instructor-header-title {
+    font-size: 0.9em;
+  }
+}
 .card__instructor-header-name {
   color: #979797;
   font-weight: 600;
+}
+@media screen and (max-width: 992px) {
+  .card__instructor-header-name {
+    font-size: 0.9em;
+  }
 }
 .card__instructor-header-actions {
   position: absolute;
@@ -17708,7 +17749,6 @@ ul.dropdown-menu:after {
 }
 .card__instructor .card-list-item {
   padding: 1em 0em 0em 0em;
-  overflow-y: visible;
 }
 .card__instructor .card-list-item .form-group {
   padding: 0em 2em 0em 2em;

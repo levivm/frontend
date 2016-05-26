@@ -1,14 +1,18 @@
-<div ng-if="!emptyInstructor" class="card card__instructor">
+<div  class="card card__instructor" >
     <div class="card__instructor-header">
            <span class="card__instructor-header-title" ng-bind="::strings.LABEL_HEADER"></span>
            <span class="card__instructor-header-name" ng-bind="instructor.full_name"></span>
-           <span class="card__instructor-header-actions" ng-mouseover="showActions()" ng-mouseleave="hideActions()">
+           <span class="card__instructor-header-actions  hidden-xs hidden-sm" ng-mouseover="showActions()" ng-mouseleave="hideActions()">
                <i class="fa fa-cog" aria-hidden="true"></i>
                <i class="fa fa-angle-down" aria-hidden="true"></i>
            </span>
+           <span class="card__instructor-header-actions  hidden-md hidden-lg" ng-click="toggleMobile()">
+               <i ng-show="!showBio" class="fa fa-angle-right" aria-hidden="true"></i>
+               <i ng-show="showBio" class="fa fa-angle-down" aria-hidden="true"></i>
+           </span>
            
       </div>
-     <div ng-show="actions" class="card__instructor-actions" ng-mouseover="showActions()" ng-mouseleave="hideActions()">
+     <div ng-show="actions" class="card__instructor-action" ng-mouseover="showActions()" ng-mouseleave="hideActions()">
          <ul class="list-unstyled">
              <li class="card__instructor-actions-item" ng-click="toggleEditMode()">
                  <span ng-bind="::strings.ACTION_EDIT"></span>
@@ -18,7 +22,7 @@
              </li>
          </ul>
      </div>
-    <div class="card-list-item" >
+    <div class="card-list-item" ng-class="{'card-list-item__expanded': showBio}">
         
         <!--<div class="card-list-item__actions">
             <i class="glyphicon glyphicon-pencil" ng-if="!editMode" ng-click="toggleEditMode()"
@@ -66,14 +70,3 @@
         </div>
     </div>
 </div>
-<!--if there's no instructor asigned-->
-<!--<div class="card">-->
-    <div ng-if="emptyInstructor" class="card card-list-item card-list-item--empty card-list-item--instructor"
-         ng-style="{'height': cardHeight}">
-        <div>
-            <div class="card-list-item__add-icon" ng-click="addInstructor()">
-                <div class="separate-above-less">Agregar Instructor</div>
-            </div>
-        </div>
-    </div>
-<!--</div>-->

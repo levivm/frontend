@@ -11,7 +11,9 @@
 	display: block;
 	border: 1px solid  @gray-lighter;
 	border-radius: @border-radius-standard;
-
+	&-nonborder{
+		border-bottom: none;
+	}
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
 		-webkit-border-top-right-radius: @material-border-radius;
@@ -91,9 +93,20 @@
 		position: relative;
 		background-color: white !important;
 		//margin-bottom: 2em;
-		overflow-y: auto;
+		overflow: hidden;
 		font-family: @font-sans-alt;
-
+		.before-md({
+			max-height: 0;
+			padding: 0 !important;
+			overflow: hidden;
+			transition: max-height 0.15s ease-out;
+		});
+		
+		
+		&__expanded{
+			max-height: 350px;
+       	 	transition: max-height 0.25s ease-in;
+		}
 		h1{
 			font-size: 1.2em;
 			font-weight: 700;
@@ -194,11 +207,18 @@
 			&-title{
 				color: @gray-dark;
 				font-weight: 600;
+				
+				.before-md({
+					font-size: 0.9em;
+				});
 			}
 			
 			&-name{
 				color: #979797;
 				font-weight: 600;
+				.before-md({
+					font-size: 0.9em;
+				});
 			}
 			&-actions{
 				position: absolute;
@@ -257,7 +277,6 @@
 		}
 		.card-list-item{
 			padding: 1em 0em 0em 0em;
-			overflow-y: visible;
 			
 			.form-group{
 				padding: 0em 2em 0em 2em;
