@@ -73,32 +73,37 @@
             setWeekends : setWeekends,
             pageChange : pageChange,
             changeOrderBy : changeOrderBy,
-            toggleSidebar: toggleSidebar,
             showSidebar: false,
             toggleFilters: toggleFilters,
             showFilters: false,
             newSearchQuery: '',
-            search: search,
-            collapsedFilters: false,
-            collapseFilters: collapseFilters,
             loadingActivities: true,
             getAmazonUrl: getAmazonUrl,
-            cards: []
+            cards: [],
+            expandedSort: false,
+            toggleExpandedSort: toggleExpandedSort,
+            cities: [],
+            searchCity: null,
+            triggerSearch: triggerSearch,
+            updateCity: updateCity
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function updateCity(){
+            LocationManager.setSearchCity(vm.searchCity);
+        }
+        
+        function toggleExpandedSort(){
+            vm.expandedSort = !vm.expandedSort;
+        }
+        
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
 
-        function collapseFilters(){
-          vm.collapsedFilters = !vm.collapsedFilters;
-        }
-        function toggleSidebar(){
-          vm.showSidebar = !vm.showSidebar;
-        }
 
         function toggleFilters(){
           vm.showFilters = !vm.showFilters;
@@ -117,7 +122,7 @@
                 vm.searchCategory = undefined;
             } else {
                 vm.searchCategory = category.id;
-
+                vm.searchData["category_display"] = category.name;
             }
 
             _expandCategory(category);
@@ -139,6 +144,7 @@
             } else {
                 vm.searchSubCategory = subcategory.id;
                 vm.searchCategory = subcategory.category;
+                vm.searchData["subcategory_display"] = subcategory.name;
             }
 
             SearchManager.setCategory(vm.searchCategory);
@@ -200,7 +206,6 @@
 
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
-            console.log(vm.onWeekends);
             SearchManager.setWeekends(vm.onWeekends);
             Analytics.generalEvents.searchWeekends(vm.onWeekends);
             if(!_isMobile()){
@@ -226,12 +231,10 @@
         }
 
         function getLevelClassStyle(level) {
-            //console.log(level);
-            //console.log(vm.searchLevel);
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
 
-        function search(){
+        function triggerSearch(){
           _search();
         }
 
@@ -282,10 +285,13 @@
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
+            
+            console.log(vm.searchData);
 
             if ($stateParams.city) {
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
                 LocationManager.setSearchCity(city);
+                vm.searchCity = city;
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
@@ -321,6 +327,7 @@
                     setCategory(category, true);
                     if (category) {
                         vm.searchData["category_display"] = category.name;
+                        console.log(category.name);
                         if (vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)) {
                             var subcategory = category.subcategories.filter(subCategoryFilter)[0];
                             vm.searchSubCategory = vm.searchData[sm.KEY_SUBCATEGORY];
@@ -390,26 +397,21 @@
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_CLOSE : "Cerrar",
-                ACTION_SEARCH: "Buscar",
                 ACTION_ALL_FILTER : "Todas",
                 COPY_RESULTS : "resultados ",
                 COPY_FOR : "para ",
                 COPY_IN : "en",
-                OPTION_SELECT_LEVEL : "-- Nivel --",
-                PLACEHOLDER_DATE : "A Partir de",
-                COPY_INTERESTS : "¿Qué tema te interesa?",
                 LABEL_SORT_BY: "Ordenar por",
                 LABEL_LEVEL : "Nivel",
                 LABEL_COST : "Precio",
-                LABEL_DATE : "Desde",
-                LABEL_WITH_CERTIFICATE : "Con Certificado",
+                LABEL_DATE : "Fecha de inicio",
+                LABEL_OTHERS: "Otros",
+                LABEL_WITH_CERTIFICATE : "Con certificado",
                 LABEL_WEEKENDS : "Fines de Semana",
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
-                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
-                SHOW_FILTERS: "Mostrar filtros",
-                COLLAPSE_FILTERS: "Ocultar filtros"
+                LABEL_FILTER_ACTIVITIES: "Filtrar actividades"
             });
         }
 
@@ -417,7 +419,12 @@
             unsuscribeSearchModified();
             //unsuscribeExitSearch();
         }
-
+        
+        function _setCities(){
+            LocationManager.getAvailableCities().then(function(data){
+                vm.cities = data;
+            });
+        }
         function _activate() {
             datepickerPopupConfig.showButtonBar = false;
             datepickerConfig.showWeeks = false;
@@ -428,6 +435,8 @@
             _getActivities($stateParams).then(function () {
                 _scrollToCurrentCategory();
             });
+            _setCities();
+            
 
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event, data) {
                     angular.extend(data, SearchManager.getSearchData());

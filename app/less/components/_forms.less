@@ -12,20 +12,14 @@
 	text-align: right;
 	position: relative;
 	height: 4.5em;
-	.btn{
-		display: inline-block;
-    	min-width: 9em;
-		font-size: 1em;
-		line-height: 1.5em;
-		margin-left: 1em;
-		font-weight: 300;
-    	margin-top: 25px;
-	}
 	.progress{
 		position: absolute;
 		margin-top: 0;
 		top: 50%;
 	}
+	.before-md({
+		text-align: center;
+	});
 }
 
 .material-form{
@@ -45,13 +39,14 @@
 	}
 }
 
+
 .form-classic{
 	input, select, textarea, input:focus, select:focus, textarea:focus{
 		background-color: white;
 		padding: 2em;
 		border-radius: 3px;
 		background-image: none;
-		border: 1px solid @gray-light-medium;
+		border: 1px solid @gray-light;
 		border-radius: @border-radius-base;
 		&.input-sm{
 			padding: 5px 15px;

@@ -1,42 +1,41 @@
 @import url('../_trulii-variables');
 
 @sidebar-float-class: --float;
+//Sidebar menu dashboards organizer and student
 
 .sidebar{
 	font-family: @font-sans;
 	position: fixed;
-	top: @navbar-height;
-	bottom: 0;
-	left: 0;
+	top: @navbar-height + 20px;
+	background: white;
 	display: block;
 	z-index: 1000;
 	overflow-x: visible;
 	overflow-y: auto;
 	padding: 20px 0 0 0;
-	background-color: @sidebar-color;
 	width: @sidebar-width;
-	max-height: ~"calc(100vh - 80px)";
-  transition: transform 0.5s;
-
+  	transition: transform 0.5s;
+	border-bottom: 1px solid @gray-lighter;  
+	border-radius: 4px;
   &-edit-activity{
 	  background-color: @sidebar-acitvity-color;
 	  border-right: 0.1em solid @gray-light;
   }
-  .before-sm({
-    top: @navbar-short-height;
-    max-height: ~"calc(100vh - 60px)";
+  .before-md({
+	position: absolute;
+	width: 90%;
+	top: 43px;
+	left: 5%;
+	padding: 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.15s ease-out;
+	&-expanded{
+		max-height: 700px;
+		transition: max-height 0.25s ease-in;
+	}
   });
 
-  &-short{
-		top: @navbar-short-height;
-		max-height: ~"calc(100vh - 60px)" !important;
-		&.@{sidebar-float-class}{
-			max-height: ~"calc(100vh - 80px)" !important;
-		}
-	}
-	a:hover{
-		color: @primary;
-	}
 
 	&__activity{
 		padding: 1em.5em;
@@ -87,46 +86,122 @@
 	&__item{
 		border-radius: 0px;
 		position: relative;
-		color: @darkbg-text;
+		color: @gray-dark;
 		display: block;
 		width: 100%;
-		padding: 10px;
-		padding-left: 1em;
 		text-decoration: none;
 		line-height: 3em;
 		cursor: pointer;
 		font-family: @font-sans-alt;
-		font-weight: 500;
+		font-weight: 600;
 		font-size: .9em;
-		border-left: 5px solid transparent;
+		border-left: 1px solid @gray-lighter;
+		border-top: 1px solid @gray-lighter;
+		border-right: 1px solid @gray-lighter;
+		a{
+			color: @gray-dark !important;
+			width: 100%;
+			display: block;
+			padding: 5px;
+			padding-left: 1em;
+			&:hover, &:focus{
+				text-decoration: none;
+				outline: 0;
+				color: @gray-darker !important;
+			}
+		}
+		&-subitems{
+			text-transform: uppercase;
+			font-weight: 300;
+			font-size: 0.8em;
+			max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.15s ease-out;
+		}
+		&-expanded{
+			max-height: 250px;
+       	 	transition: max-height 0.25s ease-in;
+		}
+		&-subitem{
+			border-bottom: 1px solid @gray-light;
+			background: @gray-lighter;
+			a{
+				padding-left: 1.3em
+			}
+			&--selected{
+				a{
+					color: @gray-darker !important;
+				}
+			}
+			
+			&:last-child{
+				border-bottom: 1px solid transparent;
+			}
+		}
+		
+		.label-notification{
+			position: absolute;
+			top: 17px;
+			right: 30px;
+			font-size: 0.8em;
+			border-radius: 45%;
+			top: 15px;
+			right: 30px;
+			padding: 0.4em 0.7em;
+		}
+		
+		.arrow-right{
+			float: right;
+			margin-top: 10px;
+			font-size: 1.4em;
+			margin-right: 8px;
+			-webkit-transform: rotate(0deg);
+			-moz-transform: rotate(0deg);
+			-ms-transform: rotate(0deg);
+			-o-transform: rotate(0deg);
+			transform: rotate(0deg);
 
+			-webkit-transform-origin: 50% 50%;
+			-moz-transform-origin: 50% 50%;
+			-ms-transform-origin: 50% 50%;
+			-o-transform-origin: 50% 50%;
+			transform-origin: 50% 50%;
+
+			-webkit-transition: 300ms ease all;
+			-moz-transition: 300ms ease all;
+			-o-transition: 300ms ease all;
+			transition: 300ms ease all;
+		}
+      .rotate-icon{
+          -webkit-transform: rotate(90deg);
+          -moz-transform: rotate(90deg);
+          -ms-transform: rotate(90deg);
+          -o-transform: rotate(90deg);
+          transform: rotate(90deg);
+
+          -webkit-transform-origin: 50% 50%;
+          -moz-transform-origin: 50% 50%;
+          -ms-transform-origin: 50% 50%;
+          -o-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+      }
 		&-edit-activity{
-			color: @gray;
+			color: @gray-regular;
 
 		}
 		&--selected{
-			background: lighten(@dark-element, 10%);
+			background: @gray-lighter;
 			//border-top: 1px solid @color-delimeter-light;
 			//border-right: 1px solid $color-delimeter-light
 			transition: ease all 0.1s;
-			color: @primary;
 
-			.@{sidebar-float-class} &{
-				background: lighten(@gray-light, 50%);
-				font-weight: bold !important;
-				color: @success !important;
-				border-width: 0;
-			}
-			&:focus{
-				color:@primary;
-			}
 
 
 		}
 		&--selected-edit-activity{
 			background: @gray-lighter;
 			transition: ease all 0.1s;
-			color: @gray;
+			color: @gray-regular;
 
 			.@{sidebar-float-class} &{
 				background: lighten(@gray-light, 50%);
@@ -135,7 +210,7 @@
 				border-width: 0;
 			}
 			&:focus{
-				color:@gray;
+				color:@gray-regular;
 			}
 
 
@@ -143,18 +218,7 @@
 
 
 
-		&:hover, &:focus{
-			text-decoration: none;
-			outline: 0;
-
-			.@{sidebar-float-class} &{
-				color: @success;
-			}
-		}
-
-		&:first-child{
-			margin-top: 20px;
-		}
+		
 
 		&__icon{
 			top: 0;
@@ -210,7 +274,7 @@
 		font-family: @font-sans-alt;
 		font-weight: normal;
 		font-size: .9em;
-		color: @gray-lightest;
+		color: @gray-lighter;
 
 		&-edit-activity{
 			background: @gray-lighter;
@@ -309,7 +373,7 @@
 
 	&.@{sidebar-float-class}{
 		background-color: white;
-		border: 1px solid @gray-light-medium;
+		border: 1px solid @gray-light;
 		margin: 1em;
 		border-radius: @border-radius-standard;
 		bottom: auto;
@@ -324,12 +388,115 @@
 
 }
 .sidebar__item-edit-activity:hover {
-    color: @gray !important;
+    color: @gray-regular !important;
 	background: @gray-lighter;
 }
 
+//Principal menu side bar in Mobile
+
+
+.sidebar-profile{
+	font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: block;
+    z-index: 10000;
+    overflow-x: visible;
+    overflow-y: auto;
+    padding: 20px 0 0 0;
+    background-color: @gray-darker;
+    width: 17em;
+    max-height: 100vh;
+    transition: transform 0.5s;
+	transition: .4s ease all;
+	font-size: 1.2em;
+	.profile{
+		border-bottom: 1px solid rgb(255, 255, 255);
+		padding: 1em 1.2em;
+		display: flex;
+    	align-items: center;
+		font-weight: 600;
+		img{
+			border-radius: 50%;
+			width: 3em;
+		}
+		span{
+			color: white;
+		}
+	}
+	
+	.sign{
+		padding: 1em;
+    	padding-top: 12em;
+		a{
+			font-weight: 700;
+    		color: white;
+			font-size: 0.8em;
+			text-transform: uppercase;
+		}
+	}
+	.social{
+		position: absolute;
+		bottom: 1em;
+		left: 1.5em;
+		a{
+			font-size: 1.4em;
+    		color: white;
+		}
+	}
+	
+	&__items{
+		padding: 1em 1.5em;
+    	margin-top: 1em;
+		max-height: 75vh;
+		overflow-y: auto;
+		&-item{
+			padding-bottom: 0.7em;
+			position: relative;
+			a{
+				color: white;
+				font-weight: 600;
+				width: 100%;
+    			display: block;
+				font-size: 0.9em;
+				text-decoration: none;
+			}
+			.label-notification{
+				position: absolute;
+				right: 0;
+				top: 0px;
+				z-index: 0;
+				border-radius: 45%;
+				padding: 0.4em 0.8em;
+				font-size: 0.8em;
+			}
+			
+		}
+	}
+	
+	
+	&__subitems{
+		padding-left: 1.8em; 
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.15s ease-out;
+		
+		&-expanded{
+			max-height: 250px;
+       	 	transition: max-height 0.25s ease-in;
+		}
+		&-subitem{
+			padding: 0.2em;
+			a{
+				font-weight: 100;
+			}
+		}
+	}
+}
 .sidebar-mobile-toggle{
-    color: @gray;
+    color: @gray-regular;
     width: 100%;
     background-color: white;
     height: @navbar-short-height - 2;
@@ -343,7 +510,7 @@
        height: @navbar-short-height;
     }
     &:focus, &:hover{
-        color: @gray;
+        color: @gray-regular;
     }
 	.absolute-container__close{
 		z-index: 1050;

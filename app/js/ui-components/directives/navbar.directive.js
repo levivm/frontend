@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -31,6 +31,9 @@
                     state: null,
                     isSearchVisible : true,
                     showBurger : false,
+                    showMenu:false,
+                    showDropMenu: showDropMenu,
+                    hideDropMenu: hideDropMenu,
                     showCities: false,
                     search_city : null,
                     toggleBurger: toggleBurger,
@@ -45,7 +48,13 @@
                     isLandingState:isLandingState,
                     getAmazonUrl: getAmazonUrl,
                     howToWorkStudent: howToWorkStudent,
-                    howToWorkOrganizer: howToWorkOrganizer
+                    howToWorkOrganizer: howToWorkOrganizer,
+                    goToProfile:goToProfile,
+                    toggleSideBar:toggleSideBar,
+                    showSideBar:false,
+                    logout:logout,
+                    subItems: {},
+                    showSubItems: showSubItems,
                 });
 
                 _activate();
@@ -63,8 +72,29 @@
                 function toogleCities(){
                   scope.showCities = !scope.showCities;
                 }
-
-
+                function showDropMenu() {
+                    scope.showMenu=true;
+                }
+                 function hideDropMenu() {
+                    scope.showMenu=false;
+                }
+                function goToProfile() {
+                   $state.go((scope.user.is_organizer) ? 'organizer-dashboard.profile': 'student-dashboard.profile')
+                }
+                
+                function toggleSideBar() {
+                   scope.showSideBar= !scope.showSideBar;
+                }
+                function showSubItems(item) {
+                    scope.subItems[item] = !scope.subItems[item];
+                }
+                function logout() {
+                    scope.userLogged = false;
+                    $timeout(function () {
+                        $state.go('logout');
+                        scope.$apply();
+                    }, 500);
+                }
                 function explore(){
                     $rootScope.$broadcast(SearchManager.EVENT_EXPLORE);
                 }
@@ -120,9 +150,12 @@
                             return;
                         }
                         scope.user = user;
+                        scope.userLogged = true;
                         Authentication.isOrganizer().then(function (result) {
                             scope.user.is_organizer = result;
                             scope.isSearchVisible = !result;
+                            if(scope.user.is_organizer)
+                                _getOrganizerReviews();
                         });
                         Authentication.isStudent().then(function (result) {
                             scope.user.is_student = result;
@@ -130,14 +163,19 @@
                         _mapDisplayName(scope.user);
                         _setUserChangedWatch();
                     }
-
+                    
                     function error() {
                         console.error("navbar.getUser. Couldn't get user");
                         scope.user = null;
                         _setUserChangedWatch();
                     }
                 }
-
+                function  _getOrganizerReviews() {
+                    OrganizersManager.getReviews(scope.user.id, 1, 6, 'unread')
+                                    .then(function (data) {
+                                        scope.unreadReviewsCount = data.count;
+                                    })
+                }
                 function _mapDisplayName(data) {
                     var user = data.user;
                     var company = data.name;
@@ -151,10 +189,7 @@
                         user.full_name = 'User';
                     }
 
-                    if (!data.photo) {
-                        data.photo = defaultPicture;
-                    }
-
+                    
                     $timeout(function () {
                         scope.$apply();
                     }, 0);
@@ -194,19 +229,33 @@
                         LABEL_STUDENT_HOW: '¿Cómo funciona?',
                         LABEL_STUDENT_HELP: 'Ayuda',
                         LABEL_STUDENT_WISHLIST: 'Mis Favoritos',
-                        LABEL_ORGANIZER_ACTIVITIES: 'Mis Actividades',
-                        LABEL_ORGANIZER_SALES: 'Mis Ventas',
+                        LABEL_ORGANIZER_ACTIVITIES: 'Actividades',
+                        LABEL_ORGANIZER_ACTIVITIES_OPEN: 'Abiertas',
+                        LABEL_ORGANIZER_ACTIVITIES_CLOSED: 'Cerradas',
+                        LABEL_ORGANIZER_ACTIVITIES_INACTIVES: 'Inactivas',
+                        LABEL_ORGANIZER_TRANSACTIONS: 'Transacciones',
+                        LABEL_ORGANIZER_TRANSACTIONS_SALES: 'Ventas',
                         LABEL_ORGANIZER_PROFILE: 'Perfil',
                         LABEL_ORGANIZER_ACCOUNT: 'Cuenta',
-                        LABEL_ORGANIZER_REVIEWS: 'Comentarios Recibidos',
-                        LABEL_ORGANIZER_INSTRUCTORS: 'Mis Instructores',
+                        LABEL_ORGANIZER_ACCOUNT_SETTINGS: 'Ajustes',
+                        LABEL_ORGANIZER_ACCOUNT_BANK: 'Información Bancaria',
+                        LABEL_ORGANIZER_REVIEWS: 'Comentarios',
+                        LABEL_ORGANIZER_REVIEWS_UNREAD: 'Sin Revisar',
+                        LABEL_ORGANIZER_REVIEWS_DONE: 'Revisados',
+                        LABEL_ORGANIZER_INSTRUCTORS: 'Instructores',
+                        LABEL_ORGANIZER_MESSAGES: 'Mensajes',
                         LABEL_STUDENT_ACTIVITIES: 'Mis Actividades',
                         LABEL_STUDENT_INVITE: 'Invitar Amigos',
                         LABEL_STUDENT_PROFILE: 'Perfil',
                         LABEL_STUDENT_ACCOUNT: 'Cuenta',
-                        LABEL_STUDENT_PURCHASES: 'Mis Compras',
+                        LABEL_STUDENT_PURCHASES: 'Compras',
+                        LABEL_STUDENT_NOTIFICATIONS: 'Notificaciones',
                         PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
-                        LABEL_CITY_MENU:'Elige tu ciudad'
+                        LABEL_CITY_MENU:'Elige tu ciudad',
+                        SUBITEM_ACTIVITIES: 'activities',
+                        SUBITEM_ACCOUNT:'account',
+                        SUBITEM_REVIEWS: 'reviews',
+                        SUBITEM_TRANSACTIONS: 'transactions'
                     });
                 }
 
@@ -238,7 +287,7 @@
                     _getUser();
                     _initScroll();
                     _setUserChangedWatch();
-
+                    
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');
@@ -250,7 +299,12 @@
                         console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         _getUser();
                     });
-
+                    scope.subItems ={
+                        activities: false,
+                        account: false,
+                        reviews: false,
+                        transactions: false
+                    }
 
                     scope.$on('$destroy', _cleanUp);
                 }

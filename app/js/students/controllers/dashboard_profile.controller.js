@@ -76,11 +76,9 @@
             }
 
             function error(response){
-                console.log(response.data);
-                var responseErrors = response.data['form_errors'];
-                if (responseErrors) {
+                var responseErrors = response.data.user ? response.data.user : response.data;
+                if (responseErrors)
                     Error.form.add(vm.profile_form, responseErrors);
-                }
                 vm.isSaving = false;
             }
         }

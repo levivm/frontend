@@ -53,7 +53,7 @@
 
                 <div class="row separate-below">
                     <div class="col-xs-12 col-xs-12 col-md-6 col-lg-5 col-lg-5">
-                        <div class="form-group" trulii-input-errors-control="name">
+                        <div class="form-group" trulii-input-errors-control="first_name">
                             <label class="control-label" ng-bind="::profile.strings.LABEL_FIRST_NAMES"></label>
                             <input type="text" class="form-control" ng-model='profile.student.user.first_name'
                                    name="first_name"
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6 col-lg-5">
-                       <div class="form-group">
+                       <div class="form-group" trulii-input-errors-control="last_name">
                             <label class="control-label" for="last-names" ng-bind="::profile.strings.LABEL_LAST_NAMES"></label>
                             <input id="headline" class="form-control" ng-model='profile.student.user.last_name' name="last_name"
                                       placeholder="{{::profile.strings.LABEL_LAST_NAMES}}"/>
@@ -117,10 +117,10 @@
                         </div>
                     </div>
                     <div class="col-xs-12 col-md-6 col-lg-5">
-                       <div class="form-group">
+                       <div class="form-group" trulii-input-errors-control="telephone">
                             <label class="control-label" for="telephone" ng-bind="::profile.strings.LABEL_TELEPHONE"></label>
                             <i class="glyphicon glyphicon-question-sign separate-horizontal-less" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
-                            <input id="telephone" type="number" class="form-control" ng-model='profile.student.telephone' name="telephone"/>
+                            <input id="telephone" type="number" class="form-control" ng-model='profile.student.telephone' name="telephone" />
                         </div>
                     </div>
                 </div>

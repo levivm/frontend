@@ -35,7 +35,6 @@
             link: function(scope, element, attrs){
 
                 var options;
-                var MAX_DAYS = 5;
 
                 angular.extend(scope, {
                     actions : [],
@@ -50,7 +49,8 @@
                     clickAction: clickAction,
                     doAction:doAction,
                     isStudent: false,
-                    like:like
+                    like:like,
+                    MAX_DAYS: 5
                 });
 
                 _activate();
@@ -223,11 +223,11 @@
                     } else if(activity.days_to_closest === 1){
                         activity.date_msg = scope.strings.COPY_IN + " "
                             + activity.days_to_closest + " " + scope.strings.COPY_DAY;
-                    } else if(activity.days_to_closest <= MAX_DAYS){
+                    } else if(activity.days_to_closest <= scope.MAX_DAYS){
                         activity.date_msg = scope.strings.COPY_IN + " "
                             + activity.days_to_closest + " " + scope.strings.COPY_DAYS;
                     } else {
-                        activity.date_msg = scope.strings.COPY_THE + $filter('date')(activity.closest_calendar.initial_date, " dd 'de' MMMM");
+                        activity.date_msg = $filter('date')(activity.closest_calendar.initial_date, "MMM dd");
                     }
                     return activity;
                 }
@@ -261,10 +261,12 @@
                         COPY_TODAY: "Hoy",
                         COPY_DAY: "día ",
                         COPY_DAYS: "días ",
-                        COPY_IN: "Inicia en ",
-                        COPY_THE: "Inicia el ",
+                        COPY_IN: "En ",
+                        COPY_THE: "El ",
                         COPY_CURRENT: "En curso",
                         COPY_SEE_ASSISTANTS: "Ver asistentes ",
+                        ADD_TO_WISHLIST: "Agregar a favoritos",
+                        CURRENCY: "COP",
                         DELETE_ACTIVITY_ERROR: "No puede eliminar esta actividad, tiene estudiantes inscritos, contactanos",
                     });
                 }
@@ -310,7 +312,6 @@
                     if(!organizer.photo){
                         organizer.photo = defaultPicture;
                     }
-
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
                 }

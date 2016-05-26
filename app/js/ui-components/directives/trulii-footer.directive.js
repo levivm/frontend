@@ -10,16 +10,22 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiFooter', truliiFooter);
 
-    truliiFooter.$inject = ['UIComponentsTemplatesPath', 'serverConf', 'Elevator', '$state'];
+    truliiFooter.$inject = ['UIComponentsTemplatesPath', 'serverConf', 'Elevator', '$state', '$window'];
 
-    function truliiFooter(UIComponentsTemplatesPath, serverConf, Elevator, $state) {
+    function truliiFooter(UIComponentsTemplatesPath, serverConf, Elevator, $state, $window) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-footer.html",
             link: function (scope) {
                 var STATE_HOW_TO_WORK_HOME = 'home';
                 var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
+                angular.extend(scope, {
+                    toggleFooter: toggleFooter,
+                    showFooter: {}
+                });
+                
                 _activate();
+                
 
                 scope.getAmazonUrl = function(file){
                   return  serverConf.s3URL + '/' +  file;
@@ -31,7 +37,9 @@
                   _stateGoHowto(STATE_HOW_TO_WORK_ORGANIZER);
                 }
 
-
+                function toggleFooter(param) {
+                    scope.showFooter[param] = !scope.showFooter[param];
+                }
                 //---- Internal Functions----//
 
                 function _stateGoHowto(howToWType){
@@ -69,13 +77,30 @@
                         FOOTER_LINKS_ORGANIZER_FEEDBACK: "Danos tu feedback",
                         FOOTER_LINKS_ORGANIZER_HELP: "Ayuda",
                         FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
-                        FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!"
+                        FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!",
+                        FOOTER_SHOW_ABOUT: 'about',
+                        FOOTER_SHOW_STUDENT: 'student',
+                        FOOTER_SHOW_ORGANIZER: 'organizer',
+                        FOOTER_SHOW_SOCIAL: 'social'
+                        
                     });
 
                 }
-
+                function _initShows() {
+                    scope.showFooter={
+                        about: !_isMobile(),
+                        student: !_isMobile(),
+                        organizer: !_isMobile(),
+                        social: !_isMobile()
+                    }
+                    
+                }
+                function _isMobile(){
+                    return $window.innerWidth < 768;
+                }
                 function _activate() {
                     _setStrings();
+                    _initShows();
                 }
             }
         }

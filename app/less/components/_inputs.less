@@ -3,35 +3,99 @@
 @import url('../_trulii-variables');
 
 //@import url('inputs');
-@import "_inputs";
+//@import "_inputs";
 
 input, textarea, select{
 	font-family: @font-sans-alt;
-	font-weight: normal;
+	font-weight: 300;
+	color: @blue-dark !important;
+}
+input[type="text"], input[type="email"], input[type="password"], input[type="number"]{
+	height: 45px !important;
+    border-radius: 1.7em ;
+    font-weight: 700;
+	padding: 0em 2em !important;
+	border: 1px solid @gray-lighter;
+	box-shadow: 0 0 !important;
 }
 
+select{
+	height: 45px !important;
+    border-radius: 1.7em !important;
+    font-weight: 700;
+    padding: 0em 2em !important;
+    border: 1px solid #ededed !important;
+    box-shadow: 0 0 !important;
+	background-color: @gray-light-brand !important;
+
+}
+
+.select-forms{
+	position: relative;
+	label{
+		width: 100%;
+		select{
+			-webkit-appearance: none;
+			-moz-appearance: none;
+			appearance: none;
+		}
+		&:after{
+			content: "\f107";   
+			font-family: "FontAwesome";
+			font-size: 25px;
+			color: @gray-dark-brand;
+			right: 20px;
+			top: 4px;
+			position: absolute;
+			font-weight: 100;
+		}
+	}
+	
+	
+}
+
+select option {
+    margin:40px;
+    background: #fff;
+	font-weight: 600;
+}
+textarea{
+	border-radius: 0.8em !important;
+	padding: 2em !important;
+	font-weight: 700;
+	height: 7em !important;
+    resize: none;
+	border: 1px solid @gray-lighter !important;
+	box-shadow: 0 0 !important;
+}
 ::-webkit-input-placeholder {
-   font-weight: 200;
+   font-weight: 600;
+   color: @gray-light !important;
+   
 }
 
 :-moz-placeholder { /* Firefox 18- */
-   font-weight: 200;
+   font-weight: 600;
+   color: @gray-light !important;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
-   font-weight: 200;
+   font-weight: 600;
+   color: @gray-light !important;
 }
 
 :-ms-input-placeholder {
-   font-weight: 200;
+   font-weight: 600;
+   color: @gray-light !important;
 }
 
 label{
 	font-family: @font-sans-alt;
-	font-weight: 300;
-	color: @gray-light !important;
-	font-size: 1em;
-	margin-bottom: 1em
+	font-weight: 600;
+	color: @gray-dark !important;
+	font-size: 0.9em;
+	margin-bottom: 1em;
+	text-transform: uppercase;
 }
 
 .input{
@@ -58,16 +122,16 @@ label{
 		}
 
 		::-webkit-input-placeholder { /* WebKit browsers */
-		    color:    fadeout(gray, 20%) ;
+		    color:    @gray-light;
 		}
 		:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-		   color:    fadeout(gray, 20%) ;
+		   color:    @gray-light;
 		}
 		::-moz-placeholder { /* Mozilla Firefox 19+ */
-		   color:    fadeout(gray, 20%) ;
+		   color:    @gray-light;
 		}
 		:-ms-input-placeholder { /* Internet Explorer 10+ */
-		   color:    fadeout(gray, 20%) ;
+		   color:    @gray-light;
 		}
 	}
 
@@ -219,7 +283,7 @@ tags-input{
 		color: @gray-light;
 		width: 1.3em;
 		line-height: 1.3em;
-		border: 1px solid @gray-light-medium;
+		border: 1px solid @gray-light;
 		text-align: center;
 		border-radius: 50%;
 

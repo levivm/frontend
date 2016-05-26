@@ -158,22 +158,21 @@
                     });
             },
 
-            getOrders : function (page, pageSize) {
+            getOrders : function (params) {
+                if(!params){
+                    params = {};
+                }
 
-              if(!page)
-                page = defaultPage;
-              if(!pageSize)
-                pageSize: defaultPageSize;
+                if(!params.page)
+                    params.page = defaultPage;
+                if(!params.pageSize)
+                    params.pageSize = defaultPageSize;
 
-              return $http.get(api.orders(this.id),
-                  {params: {
-                    page: page,
-                    page_size: pageSize
-                  }})
-                  .then(function (response) {
-                      return response.data;
-                  });
-
+                return $http.get(api.orders(this.id),
+                    {params: params})
+                    .then(function (response) {
+                        return response.data;
+                      });
             },
 
             /**
