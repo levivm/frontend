@@ -205,9 +205,7 @@
                     // TODO Might be redundant
                     if(scope.activity){
                         scope.organizer = scope.activity.organizer;
-                        if(!scope.organizer.photo){
-                            scope.organizer.photo = defaultPicture;
-                        }
+                        console.log(scope.organizer);
                     }
                     _getActivityInstance();
                 }

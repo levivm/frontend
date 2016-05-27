@@ -19463,6 +19463,7 @@ blockquote {
   margin-right: auto;
   margin-left: 25px;
   height: 85%;
+  z-index: 1000;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__price {
   padding-top: 40px;
@@ -22302,7 +22303,7 @@ blockquote {
   margin: 0 auto;
 }
 .review-response .review-content {
-  margin-left: -10px;
+  margin-left: -40px;
 }
 @media screen and (max-width: 768px) {
   .review-response .review-content {

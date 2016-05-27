@@ -153,26 +153,31 @@
         </div>
     </div>
     <!-- Response -->
-    <div ng-show="hasReply" class="row separate-above-less separate-below-less review-response">
-        <div class="col-xs-2 col-xs-offset-1">
+    <div ng-show="hasReply" class="row separate-above-less separate-below-less review-response review-detail">
+        <div class="col-xs-3 col-xs-offset-1 col-sm-2">
             <!--TODO organizer-->
-            <div class="review-avatar" style="background-image: url({{ organizer.photo }})">
+             <div class="review-avatar">
+                <trulii-avatar user="organizer" size="60" avatar-class="medium" ></trulii-avatar>
             </div>
         </div>
-        <div class="col-xs-7 col-xs-offset-1 col-md-9 col-md-offset-0 paragraph-condensed review-content">
-            <span class="text-center text-sm font-semibold" ng-bind="::organizer.name"></span>
-            <span class="hidden-xs hidden-sm">|</span>
-            <br class="hidden-md hidden-lg">
-            <span class="text-sm" ng-if="review.replied_at">
-                <span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-                <em class="text-capitalize" ng-bind="::review.replied_at | date : 'MMM d, y'"></em>
-            </span>
-            <div class="separate-above-less hidden-xs hidden-sm">
-                <p><em ng-bind="::review.reply"></em></p>
+        <div class="col-xs-8 col-xs-offset-1 col-sm-7 col-md-9 col-md-offset-0 paragraph-condensed review-content">
+                     <!-- Name-->
+                    <span class="review-content__name" ng-bind="::organizer.name"></span>
+                    <!-- End name -->
+                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less">|</span>
+                    <br class="hidden-md hidden-lg">
+                    <!-- Date -->
+                    <span class="review-content__text-header"  ng-bind="::review.replied_at | date : 'MMM d, y'">
+                    </span>
+                     <span class="hidden-xs hidden-sm separate-left-less separate-right-less">|</span>
+                    <!-- End date-->
+                    <!-- Activity <a ui-sref="activities-detail({'activity_id': review.activity_data.id})" ng-bind="::review.activity_data.title"></a>-->
+                    <span class="review-content__text-header">
+                        <span ng-bind="::review.activity_data.title"></span>
+                    </span>
+            <div class="separate-above-less ">
+                <p ng-bind="::review.reply"></p>
             </div>
-        </div>
-        <div class="col-xs-12 separate-above-less hidden-md hidden-lg">
-            <p><em ng-bind="::review.reply"></em></p>
         </div>
     </div>
 </div>

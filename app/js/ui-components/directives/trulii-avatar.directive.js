@@ -51,14 +51,17 @@
                 }
                 
                 function _setAvatar() {
-                    if(!scope.user.photo){
-                        scope.initial =scope.user.user.first_name.substring(0,1);
-                        element.css('background', colors[scope.user.id % 10].hex);
-                        element.css('border-radius', '50%');
-                        element.css('width', scope.size + 'px');
-                        element.css('height', scope.size + 'px');
-                        element.css('display', 'block');
+                    if(scope.user){
+                       if(!scope.user.photo){
+                            scope.initial =scope.user.user.first_name.substring(0,1);
+                            element.css('background', colors[scope.user.id % 10].hex);
+                            element.css('border-radius', '50%');
+                            element.css('width', scope.size + 'px');
+                            element.css('height', scope.size + 'px');
+                            element.css('display', 'block');
+                        } 
                     }
+                    
                 }
 
                 function _activate() {
