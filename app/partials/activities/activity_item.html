@@ -59,6 +59,10 @@
           <span ng-bind=" ::activity.closest_calendar.session_price | number"></span>
         </span>
       </span>
+      <a ng-if="organizer" 
+         ui-sref="dash.activities-manage.assistants({activity_id: {{::activity.id}} })" 
+         class="trulii-activity-card__body__content__attendes" 
+         ng-bind="::strings.COPY_ATTENDES"></a>
     </div>
   </div>
 </div>

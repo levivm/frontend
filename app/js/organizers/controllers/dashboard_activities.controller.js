@@ -153,7 +153,7 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                ACTION_CREATE_ACTIVITY: "Crear Nueva Actividad",
+                ACTION_CREATE_ACTIVITY: "Crear Actividad",
                 ACTION_PUBLISH_ACTIVITY: "Publicar Actividad Existente",
                 ACTION_REPUBLISH_ACTIVITY: "Republicar Actividad",
                 COPY_EMPTY_CLOSED: "Por ahora no tienes ninguna actividad cerrada. ¿Te animas a publicar " +
