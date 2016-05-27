@@ -5,7 +5,7 @@
             <i class="fa fa-angle-right arrow-right" 
                        ng-class="{'rotate-icon': dash.showSidebar}" aria-hidden="true"></i>
         </div>-->
-        <ul class="sidebar hidden-xs hidden-sm" ng-class="{'sidebar-expanded': dash.showSidebar}">
+        <ul class="sidebar sidebar-organizer hidden-xs hidden-sm" ng-class="{'sidebar-expanded': dash.showSidebar, 'sidebar__absolute':  !dash.sideBarFixed, 'sidebar__fixed': dash.sideBarFixed }">
             <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.profile.*', 'Perfil')}">
                 <a  ui-sref=".profile"
                     ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_PROFILE)">
@@ -106,7 +106,7 @@
                 <ul class="sidebar__item-subitems" 
                     ng-class="{'sidebar__item-expanded': dash.isActive('organizer-dashboard.transactions.*') || dash.subItems[dash.strings.TRANSACTIONS_ITEMS]}" > 
                     <li class="sidebar__item-subitem"  ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.transactions.sales', 'Transacciones > Ventas')}">
-                        <a ui-sref=".reviews.pending"
+                        <a ui-sref=".transactions.sales"
                             ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_TRANSACTIONS)">
                             <span ng-bind="::dash.strings.SECTION_TRANSACTIONS_SALES"></span>
                         </a>

@@ -30,8 +30,38 @@
             font-size: 1em;
             font-weight: 600;
             margin: 0;
-            color: @blue-dark;
+            color: @gray-dark;
         }
+        
+        &-sub{
+            margin-bottom: 0;
+            border-radius: 5px 5px 0px 0px;
+            border-bottom: none;
+            padding: 1.5em 2em;
+        }
+        
+        &-sub-second{ 
+            border-radius: 0px 0px 5px 5px;
+            padding: 1em 2em;
+        }
+        
+        &-search{
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 250px;
+            input{
+                height: 37px !important;  
+            }
+            i{
+                float: right;
+                margin-top: -28px;
+                font-size: 1.2em;
+                margin-right: 0.4em;
+                color: gray;
+            }
+        }
+        
     }
     
     .panel-date{
