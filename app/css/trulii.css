@@ -16622,6 +16622,22 @@ td {
   border-radius: 0px 0px 5px 5px;
   padding: 1em 2em;
 }
+.panel-default__dashboard-search {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 250px;
+}
+.panel-default__dashboard-search input {
+  height: 37px !important;
+}
+.panel-default__dashboard-search i {
+  float: right;
+  margin-top: -28px;
+  font-size: 1.2em;
+  margin-right: 0.4em;
+  color: gray;
+}
 .panel-default .panel-date {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 13em;
@@ -22203,13 +22219,33 @@ blockquote {
 .review-detail .review-avatar {
   width: 60px;
   height: 60px;
-  background-size: cover;
-  background-position: center center;
-  border-radius: 50%;
   margin: 0 auto;
+  margin-left: -10px;
+}
+@media screen and (max-width: 992px) {
+  .review-detail .review-avatar {
+    margin-left: 0px;
+  }
+}
+.review-detail .review-organizer-avatar {
+  width: 40px;
+  height: 40px;
 }
 .review-detail button {
   width: 11em;
+}
+.review-detail .btn-mark-read {
+  width: 5em;
+  margin-right: 1em;
+  padding: 0;
+}
+.review-detail .btn-mark-read i {
+  font-size: 1.7em;
+  font-weight: 100;
+  color: #767676;
+}
+.review-detail .btn-reply {
+  background: #334cd5;
 }
 .review-detail .report-alert {
   background-color: #ededed;
@@ -22230,8 +22266,17 @@ blockquote {
   font-size: 16px;
   font-weight: 200;
 }
-.review-detail .review-content {
-  margin-left: -5px;
+.review-detail .review-content__name {
+  font-size: 1em;
+  color: #3a405b;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.review-detail .review-content__text-header {
+  font-size: 1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #979797;
 }
 @media screen and (max-width: 768px) {
   .review-detail .review-content {
@@ -22254,9 +22299,6 @@ blockquote {
 .review-response .review-avatar {
   width: 45px;
   height: 45px;
-  background-size: cover;
-  background-position: center center;
-  border-radius: 50%;
   margin: 0 auto;
 }
 .review-response .review-content {

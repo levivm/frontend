@@ -20,13 +20,34 @@
     .review-avatar{
       width: 60px;
       height: 60px;
-      background-size: cover;
-      background-position: center center;
-      border-radius: 50%;
       margin: 0 auto;
+      margin-left: -10px;
+      .before-md({
+        margin-left: 0px;
+      })
+    }
+    
+    .review-organizer-avatar{
+      width: 40px;
+      height: 40px;
     }
     button{
         width:11em;
+    }
+    
+    .btn-mark-read{
+      width: 5em;
+      margin-right: 1em;
+      padding: 0;
+      i{
+        font-size: 1.7em;
+        font-weight: 100;
+        color: @gray-dark;
+      }
+    }
+    
+    .btn-reply{
+      background: @brand-notification;
     }
 
     .report-alert{
@@ -50,8 +71,21 @@
     }
 
     .review-content{
-      margin-left: -5px;
-
+      &__name{
+        font-size: 1em;
+        color: @blue-dark;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      
+      &__text-header{
+        font-size: 1em;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: @gray-regular-dark;
+        
+      }
+      
       .before-sm({
         margin-left: 0;
       });
@@ -78,9 +112,6 @@
   .review-avatar{
     width: 45px;
     height: 45px;
-    background-size: cover;
-    background-position: center center;
-    border-radius: 50%;
     margin: 0 auto;
   }
 

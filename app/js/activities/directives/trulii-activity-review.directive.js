@@ -113,7 +113,22 @@
                         activityInstance = activityInstanceResponse;
                     });
                 }
+                function _getOwnUser() {
+                    Authentication.getAuthenticatedAccount().then(success, error);
 
+                    function success(user) {
+                        if (!user) {
+                            scope.ownUser = null;
+                            return;
+                        }
+                        scope.ownUser = user;
+                    }
+
+                    function error() {
+                        console.error("review getOwnUser. Couldn't get user");
+                        scope.ownUser = null;
+                    }
+                }
                 function _getUser(){
                   if(scope.review){
                     if(!scope.review.author){
@@ -131,9 +146,9 @@
                         user.full_name = 'User';
                     }
 
-                    if(!author.photo){
+                    /*if(!author.photo){
                         author.photo = defaultPicture;
-                    }
+                    }*/
                     scope.user = author;  
                   }
                 }
@@ -168,6 +183,8 @@
 
                 function _activate(){
                     _getUser();
+                    _getOwnUser();
+                    
                     if(scope.review){
                       scope.hasReply = !!scope.review.reply;
                       if(scope.review.id){

@@ -57,10 +57,12 @@
                         element.css('border-radius', '50%');
                         element.css('width', scope.size + 'px');
                         element.css('height', scope.size + 'px');
+                        element.css('display', 'block');
                     }
                 }
 
                 function _activate() {
+                    console.log(scope.user);
                     _setStrings();
                     _setAvatar();
 
