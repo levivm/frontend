@@ -838,7 +838,49 @@
 }
 
 //Balance
-
+.balance{
+	&__mount-available{
+		display: flex;
+		justify-content: space-between;
+		padding: 2em 0em 1em 1em;
+		border-bottom: 1px solid @gray-light;
+		
+		&-title{
+			h4{
+				font-size: 1em;
+				font-weight: 700;
+				color: @gray-darker;
+			}
+			
+			h5{
+				font-size: 1.1em;
+				color: @gray-darker;
+			}
+		}
+		
+		.btn-success{
+			line-height: 1em;
+			height: 3em;
+			background-color: @brand-info;
+			span{
+				font-weight: bold;
+			}
+		}
+	}
+	
+	&__mount-unavailable{
+		 padding: 1em 0em 1em 1em;
+	}
+	&__note{
+		padding: 3em 1em;
+		border-bottom: 1px solid @gray-light;;
+		color: @gray-darker;
+		
+		&-title{
+			font-weight: 600;
+		}
+	}
+}
 .balance{
 	.mounts{
 		background: @gray-lighter;

@@ -78,6 +78,8 @@
                 SECTION_REVIEWS_DONE: "Revisados",
                 SECTION_TRANSACTIONS: "Transacciones",
                 SECTION_TRANSACTIONS_SALES: "Ventas",
+                SECTION_TRANSACTIONS_BALANCE: "Balance",
+                SECTION_TRANSACTIONS_WITHDRAWALS: "Historial de Retiros",
                 SECTION_MESSAGES: "Mensajes",
                 ACCOUNT_ITEMS: 'account',
                 ACTIVITIES_ITEMS: 'activities',

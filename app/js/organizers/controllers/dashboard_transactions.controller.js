@@ -69,8 +69,8 @@
             updateByQuery:updateByQuery,
             openDatePicker: openDatePicker,
             TYPE_SALES: 'sales',
-            'withDraw': withDraw,
-            'changePageWithdraws':changePageWithdraws
+            withDraw: withDraw,
+            changePageWithdraws:changePageWithdraws
         });
 
         _activate();
@@ -219,15 +219,18 @@
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de venta restando la comisión de Trulii, consulte el detalle "+
                                           "para mayor información",
                 COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de la orden sin contar la comisión de Trulii",
-<<<<<<< HEAD
                 COPY_TITLE_BALANCE: "Balance",
                 COPY_BALANCE_AVAILABLE: "Monto disponible",
                 COPY_BALANCE_UNAVAILABLE: "Monto no disponible",
-                TAB_SALES: "Ventas",
-                TAB_BALANCE: "Balance",
-=======
+                TAB_BALANCE: "Transacciones > Balance",
                 TAB_SALES: "Transacciones > Ventas",
->>>>>>> feature/TRUL-252
+                TAB_WITHDRAWALS: "Transacciones > Historial de retiros",
+                COPY_WITHDRAWALS: "Revisa todos los retiros que has solicitado en la plataforma desde el mas reciente hasta el primero.",
+                COPY_NO_WITHDRAWALS: "Hasta ahora no has solicitado ningún retiro a tu cuenta bancaria. Recuerads que puedes solicitar el monto disponible cuando desees.",
+                COPY_BALANCE: "Revisa la cantidad de dinero que tienes disponible para solicitar la transferencia a tu cuenta. Solicita el retiro cuando quieras.",
+                COPY_BALANCE_NOTE: "El monto será transferido a tu cuenta de",
+                COPY_TOOLTIP_MOUNT_AVAILABLE: "Este es el monto disponible a ser trasnferido a tu cuenta.",
+                COPY_TOOLTIP_MOUNT_UNAVAILABLE: "Aún no puedes solicitar la transferencia de este monto",
                 LABEL_SEARCH_ORDERS : "Buscar Ordenes",
                 LABEL_ORDER: "Orden",
                 LABEL_ACTIVITY: "Actividad",
@@ -245,7 +248,11 @@
                 LABEL_BALANCE_MOUNT: "Monto solicitado",
                 LABEL_BALANCE_STATUS: "Estatus",
                 LABEL_CURRENCY: "COP",
-                DELETE_AVAILABLE_ERROR: "No tiene suficiemente monto para solicitarlo"
+                DELETE_AVAILABLE_ERROR: "No tiene suficiemente monto para solicitarlo",
+                STATUS_APPROVED: 'Aprobado',
+                STATUS_DECLINED: 'Rechazado',
+                STATUS_PENDING: 'Pendiente'
+
             });
         }
 
@@ -255,6 +262,8 @@
             _getOrders();
             _getBalances();
             _mapWithdraws();
+            
+            console.log(vm.withdrawals);
 
         }
 

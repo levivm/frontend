@@ -1,25 +1,55 @@
-<div class="row">
-  <div class="col-xs-12 col-md-10 col-md-offset-1">
-    <div class="row balance">
-      <div class="col-xs-12 separate-below separate-above">
-          <p class="text-center  col-md-8 col-md-offset-2">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. mollit anim id est laborum.
-          </p>
-          <!--<form class="separate-above-less col-md-12">
-              <fieldset>
-                  <div class="form-group " >
-                      <input type="text" class="form-control" placeholder="{{::transactions.strings.SEARCH_BALANCE_PLACEHOLDER}}"
-                             name="search" id="search"> <i class="mdi mdi-action-search search-icon-right"></i></input>
-                  </div>
-              </fieldset>
-          </form>-->
-
+<div class="fade-in">
+    <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+      <h4 class="panel-default__dashboard-title" ng-bind="::transactions.strings.TAB_BALANCE"></h4>
+    </div>
+    <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+      <span class="text-gray-dark" ng-bind="::transactions.strings.COPY_BALANCE"></span>
+    </div>
+    
+    
+    
+     <div class="col-xs-12 ">
+         <div class="balance ">
+            <div class="balance__mount balance__mount-available">
+                <div class="balance__mount-available-title">
+                  <h4>
+                    <span  ng-bind="::transactions.strings.COPY_BALANCE_AVAILABLE"></span>
+                     <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top"  tooltip="{{::transactions.strings. COPY_TOOLTIP_MOUNT_AVAILABLE}}"></i>
+                  </h4>
+                  <h5><span ng-bind="::transactions.strings.LABEL_CURRENCY"></span>
+                        <span ng-bind="transactions.balances.available | number"></span></h5>
+                </div>
+                
+                <div class="btn btn-success separate-above-less" ng-click="transactions.withDraw()">
+                          <span ng-bind="::transactions.strings.ACTION_BALANCE_WITHDRAW"></span>
+                </div>
+                
+            </div>
+            
+            <div class="balance__note">
+              <div class="balance__note-title">
+                <span>Nota:</span>
+              </div>
+              <div class="balance__note-copy">
+                <span>El monto será transferido a tu cuenta de Bancolombia núemro <strong>******1234</strong></span>
+              </div>
+            </div>
+            <div class="balance__mount balance__mount-available balance__mount-unavailable">
+                <div class="balance__mount-available-title">
+                  <h4>
+                    <span  ng-bind="::transactions.strings.COPY_BALANCE_AVAILABLE"></span>
+                    <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top"  tooltip="{{::transactions.strings. COPY_TOOLTIP_MOUNT_UNAVAILABLE}}"></i>
+                  </h4>
+                  <h5><span ng-bind="::transactions.strings.LABEL_CURRENCY"></span>
+                        <span ng-bind="transactions.balances.available | number"></span></h5>
+                </div>
+            </div>
+          </div>
       </div>
-
-      <div class="row separate-above">
-          <div class="col-xs-12 hidden-xs hidden-sm col-md-3">
+      <!--<div class="row separate-above">
+          <div class="col-xs-12">
             <div class="mounts">
-              <div class="mounts-content s">
+              <div class="mounts-content ">
                   <div class="">
                     <h4 class="text-uppercase" ng-bind="::transactions.strings.COPY_TITLE_BALANCE"></h4>
                   </div>
@@ -40,52 +70,7 @@
               </div>
             </div>
           </div>
-          <div class="col-xs-12 col-md-9">
-            <div class="table-responsive">
-              <table class="table table-responsive table-hover">
-                <tr class="text-center">
-                  <th ng-bind="::transactions.strings.LABEL_BALANCE_ORDER"></th>
-                  <th ng-bind="::transactions.strings.LABEL_BALANCE_DATE"></th>
-                  <th ng-bind="::transactions.strings.LABEL_BALANCE_MOUNT"></th>
-                  <th ng-bind="::transactions.strings.LABEL_BALANCE_STATUS"></th>
-                </tr>
-                <tr ng-repeat="withDraw in transactions.withdrawals ">
-                  <td>
-                    <a  >
-                      <span>#</span><span ng-bind="withDraw.id"></span>
-                    </a>
-                  </td>
+          
 
-                  <td >
-                    <span class="text-capitalize" ng-bind="::withDraw.date | date:'EEEE d MMM y'"></span>
-                  </td>
-                  <td >
-                    <span >
-                      <span ng-bin="transactions.strings.LABEL_CURRENCY"></span >
-                      <span ng-bind="withDraw.amount | number"></span>
-                    </span>
-                  </td>
-                  <td >
-                    <span class="text-uppercase" ng-bind="withDraw.status"></span>
-                  </td>
-
-                </tr>
-              </table>
-              <div class="text-center" ng-if="transactions.withDrawsPaginationOpts.totalItems > transactions.withDrawsPaginationOpts.itemsPerPage">
-                <pagination class="pagination-sm"
-                  ng-model="transactions.withDrawsPaginationOpts.pageNumber"
-                  ng-change="transactions.changePageWithdraws()"
-                  data-total-items="transactions.withDrawsPaginationOpts.totalItems"
-                  data-items-per-page="transactions.withDrawsPaginationOpts.itemsPerPage"
-                  previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
-                  max-size="transactions.withDrawsPaginationOpts.maxPagesSize"
-                  ></pagination>
-              </div>
-            </div>
-          </div>
-
-      </div>
-    </div>
-
-  </div>
+      </div>-->
 </div>

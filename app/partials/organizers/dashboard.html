@@ -107,8 +107,20 @@
                     ng-class="{'sidebar__item-expanded': dash.isActive('organizer-dashboard.transactions.*') || dash.subItems[dash.strings.TRANSACTIONS_ITEMS]}" > 
                     <li class="sidebar__item-subitem"  ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.transactions.sales', 'Transacciones > Ventas')}">
                         <a ui-sref=".transactions.sales"
-                            ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_TRANSACTIONS)">
+                            ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_TRANSACTIONS_SALES)">
                             <span ng-bind="::dash.strings.SECTION_TRANSACTIONS_SALES"></span>
+                        </a>
+                    </li>
+                    <li class="sidebar__item-subitem"  ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.transactions.balance', 'Transacciones > Balance')}">
+                        <a ui-sref=".transactions.balance"
+                            ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_TRANSACTIONS_BALANCE)">
+                            <span ng-bind="::dash.strings.SECTION_TRANSACTIONS_BALANCE"></span>
+                        </a>
+                    </li>
+                    <li class="sidebar__item-subitem"  ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.transactions.withdrawals', 'Transacciones > Historial de Retiros')}">
+                        <a ui-sref=".transactions.withdrawals"
+                            ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_TRANSACTIONS_WITHDRAWALS)">
+                            <span ng-bind="::dash.strings.SECTION_TRANSACTIONS_WITHDRAWALS"></span>
                         </a>
                     </li>
                 </ul>

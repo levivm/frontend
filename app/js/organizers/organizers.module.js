@@ -138,6 +138,10 @@
                 url:'balance',
                 templateUrl: 'partials/organizers/dashboard/transactions_balance.html'
             })
+            .state('organizer-dashboard.transactions.withdrawals', {
+                url:'withdrawals',
+                templateUrl: 'partials/organizers/dashboard/transactions_withdrawals.html'
+            })
             .state('organizer-dashboard.profile', {
                 url:'profile',
                 controller: 'OrganizerProfileCtrl as profile',
