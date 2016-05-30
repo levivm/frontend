@@ -2,7 +2,7 @@
   <div class="trulii-cover" ng-hide="vm.weHaveTitle">
     <div class="trulii-cover__container">
       <div class="trulii-cover__content">
-        <div class="col-xs-12 col-md-offset-3 col-md-6">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4 limited-width">
           <div class="card text-center">
             <div class="card-body card-body--shrink">
               <h2 class="text-color-secondary font-black" ng-bind="::vm.strings.COPY_START_ACTIVITY_CREATION">
@@ -23,7 +23,7 @@
       </div>
     </div>
   </div>
-    <div class="col-xs-12 col-md-11 col-md-offset-1 only-fade separate-below-more fade-in" ng-show="vm.weHaveTitle" ng-class="{ 'col-lg-6': vm.creating, 'col-lg-offset-3': vm.creating}"> <!-- col-lg-offset-2 col-md-offset-1 -->
+    <div class="col-xs-12 only-fade separate-below-more fade-in" ng-show="vm.weHaveTitle" ng-class="{ 'col-lg-6': vm.creating, 'col-lg-offset-3': vm.creating}"> <!-- col-lg-offset-2 col-md-offset-1 -->
         <div class="row">
             <div class="section-title" ng-hide="vm.creating">
               General
@@ -118,6 +118,5 @@
                 </fieldset>
             </form>
         </div>
-
-        </div>
+    </div>
 </div>

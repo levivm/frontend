@@ -86,11 +86,15 @@
           if(date === 'sales_from_date'){
             vm.salesFilter.from_date_opened = true;
             vm.salesFilter.until_date_opened = false;
+            console.log('sales_from_date');
           }
           if(date === 'sales_until_date'){
             vm.salesFilter.until_date_opened = true;
             vm.salesFilter.from_date_opened = false;
+            console.log('sales_until_date');
           }
+          
+          //updateByQuery(vm.TYPE_SALES);
         }
 
         function updateByQuery(type){
@@ -112,17 +116,15 @@
                     params.status = vm.salesFilter.status;
 
                   if(vm.salesFilter.query)
-                    params.id = vm.salesFilter.query;
-
-
-                  organizer.getOrders(vm.salesPaginationOpts.pageNumber, vm.salesPaginationOpts.itemsPerPage, params)
-                            .then(function(data){
-                                vm.sales = data;
-                                vm.sales.results = $filter('orderBy')(vm.sales.results, 'id', true);
-                                vm.salesPaginationOpts.totalItems = vm.sales.count;
-                                vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
-                              });
-
+                    params.id = vm.salesFilter.query;   
+                  organizer.getOrders(params)
+                  .then(function(response){
+                      vm.sales = response;
+                      vm.sales.results = $filter('orderBy')(vm.sales.results, 'id', true);
+                      vm.salesPaginationOpts.totalItems = vm.sales.count;
+                      vm.sales = vm.sales.results.slice(0, vm.salesPaginationOpts.itemsPerPage);
+                  })
+                  
                   break;
             }
         }
@@ -212,15 +214,20 @@
                 COPY_NA : "N/A",
                 COPY_START_DATE : "Fecha de inicio:",
                 COPY_SEARCH_ORDERS_HELPER : "Nro. orden",
+                COPY_SALES: "Estas son las transacciones realizadas",
                 COPY_NO_ORDERS: "No has hecho ninguna venta hasta ahora. Mientras tanto, ¿por qué no te animas a publicar una actividad?",
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de venta restando la comisión de Trulii, consulte el detalle "+
                                           "para mayor información",
                 COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de la orden sin contar la comisión de Trulii",
+<<<<<<< HEAD
                 COPY_TITLE_BALANCE: "Balance",
                 COPY_BALANCE_AVAILABLE: "Monto disponible",
                 COPY_BALANCE_UNAVAILABLE: "Monto no disponible",
                 TAB_SALES: "Ventas",
                 TAB_BALANCE: "Balance",
+=======
+                TAB_SALES: "Transacciones > Ventas",
+>>>>>>> feature/TRUL-252
                 LABEL_SEARCH_ORDERS : "Buscar Ordenes",
                 LABEL_ORDER: "Orden",
                 LABEL_ACTIVITY: "Actividad",

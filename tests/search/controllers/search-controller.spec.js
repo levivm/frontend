@@ -57,7 +57,7 @@ xdescribe('Controller: SearchController', function(){
               .respond(readJSON('tests/mock/cities.json'));
 
          httpBackend
-            .when('JSONP', 'http://ipinfo.io/?callback=JSON_CALLBACK')
+            .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
             .respond(readJSON('tests/mock/ipinfo.json'));
 
 

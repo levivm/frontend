@@ -3,16 +3,16 @@
     <i class="mdi mdi-navigation-arrow-back arrow-back-messages"></i>
   </a>
 </div>
-<div class="row fade in limited-width">
-  <div class="col-xs-12 col-md-11 col-md-offset-1">
-      <div class="separate-above dashboard-messages-detail col-xs-12 col-md-9 col-md-offset-1">
+<div class="row fade in">
+  <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard">
+      <div class="separate-above dashboard-messages-detail col-xs-12">
         <a class="btn btn-default float-right separate-above" href="" ng-click="detail.deleteMessage()">
           <i class="delete-message glyphicon glyphicon-trash"></i>
         </a>
         <a class="btn btn-default float-right separate-above separate-right-less" href="" ng-click="detail.readMessage()" ng-bind="::detail.strings.MARK_AS_READ">
         </a>
-        <div class="title-message">
-            <h1 class="montserrat-light" ng-bind="::detail.message.activity"></h1>
+        <div class="title-message separate-above">
+            <h1 class="font-light" ng-bind="::detail.message.activity"></h1>
         </div>
         <div class="content-message">
             <div class="row">
@@ -21,15 +21,15 @@
                     <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">
                 </div>
                 <div class="col-md-8 text-line-more-xl">
-                    <span class="montserrat-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
+                    <span class="font-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
                 </div>
                 <div class="col-md-3 text-line-more-xl text-right">
-                    <span class="text-gray-light montserrat-light" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
+                    <span class="text-gray-light font-light" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
                 </div>
             </div>
 
             <div class="separate-above-less ">
-                <p class="text-dark montserrat-light" ng-bind="::detail.message.message"></p>
+                <p class="text-dark font-light" ng-bind="::detail.message.message"></p>
             </div>
         </div>
       </div>

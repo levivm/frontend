@@ -2,7 +2,7 @@
 
 .panel{
     box-shadow: none;
-    border: 1px solid @gray-light-medium;
+    border: 1px solid @gray-light;
     margin-top: 4.5em;
     .panel-heading {
         padding: 0.5em 1em;
@@ -10,7 +10,7 @@
         h4 {
             margin: 0;
             font-family: @font-sans-alt;
-            color: @gray;
+            color: @gray-regular;
         }
     }
 }
@@ -38,7 +38,7 @@
       border-radius: 4px;
       height: 3em;
       border-bottom: none;
-      color: @gray !important;
+      color: @gray-regular !important;
       .caret{
         display: none;
       }
@@ -64,7 +64,7 @@
     font-size: 1.2em;
     border-bottom: 1px solid rgba(204, 204, 204, 0.18);
     a{
-      color: @gray !important;
+      color: @gray-regular !important;
     }
   }
 
@@ -113,20 +113,20 @@
     }
     .panel-body {
         padding: 0;
-        border: 1px solid @gray-light-medium;
+        border: 1px solid @gray-light;
         margin-top: 3rem;
         border-top-right: @border-radius-base;
         border-top-left: @border-radius-base;
     }
     .panel-header{
-      border: 1px solid @gray-light-medium;
+      border: 1px solid @gray-light;
     }
 
     .panel-footer {
         padding: 3em 4em;
         text-align: center;
-        background-color: @gray-lightest;
-        border: 1px solid @gray-light-medium;
+        background-color: @gray-lighter;
+        border: 1px solid @gray-light;
         border-top: none;
         border-bottom-right: @border-radius-base;
         border-bottom-left: @border-radius-base;
@@ -159,7 +159,7 @@
 
 .billing-widget {
     font-family: @font-sans;
-    border: 1px solid @gray-light-medium;
+    border: 1px solid @gray-light;
     font-size: 0.8em;
     font-weight: 300;
     border-radius: 4px;
@@ -207,7 +207,7 @@
     }
 
     .total {
-        background-color: @gray-light-medium;
+        background-color: @gray-light;
         padding: 1em;
 
         .item {
@@ -220,7 +220,7 @@
         }
     }
     .discount-button{
-      background-color: @gray-light-medium;
+      background-color: @gray-light;
       color: white !important;
       font-weight: 300;
     }
@@ -363,7 +363,33 @@
     }
 
     a {
-        text-decoration: none;
+            text-decoration: none;
+            color: white;
+            font-size: 3em;
+            border-radius: 50%;
+            border: 1px solid;
+            padding: 0.7em;
+            margin-right: 1em;
+            .before-sm({
+                font-size: 2em;
+                padding: 0.4em;
+                margin-right: 0.2em;
+            });
+
+            .share-facebook{
+                padding: 0.25em;
+                margin-right: 2px;
+            }
+            .share-twitter{
+                padding: 0.1em;
+            }
+            .share-twitter{
+                padding: 0.1em;
+            }
+            
+            &:hover{
+                color: white !important;
+            }
     }
 }
 
@@ -399,7 +425,7 @@
         z-index: 100;
         background-color: transparent;
         .widget-card{
-          > div{
+          > div:not(.btn):not(.price){
             background-color: white;
           }
         }
@@ -410,7 +436,12 @@
         overflow-y: auto;
         overflow-x: hidden;
         top: 8vh;
-        width: ~"calc(25% - 92px)"; //Width - el padding derecho
+        @media (max-width: 1299px){
+          width: ~"calc(33% - 45px)"; //Width - el padding derecho
+        }
+        @media (min-width: 1300px){
+          width: ~"calc((1300px * 0.33) - 45px)";
+        }
     }
     .absolute-widget{
         position: absolute;

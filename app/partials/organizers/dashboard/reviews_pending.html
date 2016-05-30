@@ -1,43 +1,38 @@
-<div class="row">
+<div class="fade in">
+     <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+            <h4 class="panel-default__dashboard-title" ng-bind="::reviews.strings.TAB_REVIEWS_PENDING"></h4>
+            <div class="panel-default__dashboard-search"  ng-if="reviews.unread_reviews.length > 0">
+                <input class="form-control floating-label" type="text"
+                        ng-model="reviews.searchUnreadQuery"
+                        placeholder="{{reviews.strings.LABEL_SEARCH_ORDERS}}">
+                   <i class="mdi-action-search"></i>
+            </div>
+    </div>
+    <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+            <span class="text-gray-dark" ng-bind="::reviews.strings.COPY_REVIEWS_PENDING"></span>
+    </div>
     <div class="col-xs-12">
-        <div class="row">
-            <div class="col-xs-12">
-                <p class="text-center separate-above-less" ng-bind="::reviews.strings.COPY_SEARCH_REVIEWS"></p>
-            </div>
-            <div class="col-xs-12" ng-if="reviews.unread_reviews.length > 0">
-                <div class="form-group">
-                    <label class="control-label sr-only" ng-bind="::reviews.strings.LABEL_SEARCH_ORDERS"></label>
-                    <div class="input-group">
-                        <input class="form-control floating-label" type="text"
-                               ng-model="reviews.searchUnreadQuery"
-                               placeholder="{{reviews.strings.LABEL_SEARCH_ORDERS}}">
-                        <span class="input-group-addon">
-                             <i class="mdi-action-search"></i>
-                        </span>
-                    </div>
-                </div>
-            </div>
+        <p class="text-center separate-above-less" ng-bind="::reviews.strings.COPY_SEARCH_REVIEWS"></p>
+    </div>
+    
 
-            <div class="col-xs-12 review-detail separate-above-medium separate-below-less"
-                 ng-repeat="reviewObject in reviews.unread_reviews | filter:{$: reviews.searchUnreadQuery} ">
-                <trulii-activity-review data-review="reviewObject" data-activity="reviewObject.activity"
-                                        data-on-dashboard="true" change-review-status="reviews.changeReviewStatus()"></trulii-activity-review>
-            </div>
-            <div class="text-center" ng-if="reviews.unreadPaginationOpts.totalItems > reviews.unreadPaginationOpts.itemsPerPage">
-              <pagination class="pagination-sm"
-                  ng-model="reviews.unreadPaginationOpts.pageNumber"
-                  ng-change="reviews.changeReviewStatus()"
-                  data-total-items="reviews.unreadPaginationOpts.totalItems"
-                  data-items-per-page="reviews.unreadPaginationOpts.itemsPerPage"></pagination>
-            </div>
-            <div class="col-xs-8 col-xs-offset-2 text-center"  ng-if="reviews.unread_reviews.length <= 0">
-                <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
-                     alt="{{reviews.strings.COPY_EMPTY_UNREAD}}"
-                     class="img-responsive center-block"/>
-                <p class="separate-below separate-above font-family-sans-alt text-muted"
-                   ng-bind="::reviews.strings.COPY_EMPTY_UNREAD">
-                </p>
-            </div>
+    <div class="col-xs-12 review-detail separate-above-medium separate-below-less"
+            ng-repeat="reviewObject in reviews.unread_reviews | filter:{$: reviews.searchUnreadQuery} ">
+        <trulii-activity-review data-review="reviewObject" data-activity="reviewObject.activity"
+                                data-on-dashboard="true" change-review-status="reviews.changeReviewStatus()"></trulii-activity-review>
+    </div>
+    <div class="text-center" ng-if="reviews.unreadPaginationOpts.totalItems > reviews.unreadPaginationOpts.itemsPerPage">
+        <pagination class="pagination-sm"
+            ng-model="reviews.unreadPaginationOpts.pageNumber"
+            ng-change="reviews.changeReviewStatus()"
+            data-total-items="reviews.unreadPaginationOpts.totalItems"
+            data-items-per-page="reviews.unreadPaginationOpts.itemsPerPage"></pagination>
+    </div>
+    <div ng-if="reviews.unread_reviews.length <= 0"class="row">
+        <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
+             <p class="separate-below separate-above "
+                ng-bind="::reviews.strings.COPY_EMPTY_UNREAD">
+            </p>
         </div>
     </div>
 </div>

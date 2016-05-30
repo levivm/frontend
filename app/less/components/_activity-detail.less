@@ -12,6 +12,11 @@
     word-break: break-word;
     margin-bottom: 0px;
     font-size: 1.1em;
+    .before-sm({
+      word-break: inherit;
+      margin-bottom: 0px;
+      font-size: 0.85em;
+    });
   }
   ol{
     font-size: 1.1em;
@@ -21,8 +26,8 @@
   }
   .info{
     .col-xs-4:nth-child(2){
-      border-left: 1px solid @gray-light-medium;
-      border-right: 1px solid @gray-light-medium;
+      border-left: 1px solid @gray-light;
+      border-right: 1px solid @gray-light;
     }
   }
 }
@@ -51,7 +56,7 @@
   a{
     color: @gray-light !important;
     &:hover, &:focus{
-      color: @gray !important;
+      color: @gray-regular !important;
     }
   }
 }
@@ -133,7 +138,7 @@
         height: auto;
         padding: 1em 1em 0;
         font-size: 1.2em;
-        font-weight: 400;
+        font-weight: 500;
         color: @lightbg-text;
         text-align: center;
         text-transform: uppercase;
@@ -152,7 +157,7 @@
 
                 .next-date {
                     font-size: 1.5em;
-                    font-weight: 300;
+                    font-weight: 500;
                     line-height: 2em;
                 }
             }
@@ -160,14 +165,14 @@
             .closing-date {
                 .HeaderText();
                 font-size: 1em;
-                font-weight: 100;
+                font-weight: 500;
             }
 
             .vacancy{
                 .HeaderText();
                 padding: 1em;
                 font-size: 1em;
-                font-weight: 400;
+                font-weight: 500;
             }
 
         }
@@ -178,7 +183,7 @@
             height: auto;
             padding: 0.8em;
             font-size: 1.4em;
-            font-weight: 400;
+            font-weight: 500;
             text-align: center;
             color: @white;
             font-family: @font-sans-alt;
@@ -186,7 +191,7 @@
             border-bottom: none;
             border-top: none;
             .text-muted{
-              color: @gray-light-medium;
+              color: @gray-light;
             }
             &-free{
               font-size: 0.75em;
@@ -209,7 +214,7 @@
             padding: 1em;
             border-radius: 0;
             font-size: 1.4em;
-            font-weight: 400;
+            font-weight: 500;
             text-transform: uppercase;
             text-align: center;
             color: @black !important;
@@ -233,7 +238,7 @@
                 .title {
                   padding-top: 0.5em;
                   font-size: 0.825em;
-                  font-weight: 400;
+                  font-weight: 500;
                   line-height: 1em;
                   margin-top: 0.75em !important;
                 }
@@ -318,7 +323,7 @@
                         .HeaderText();
                         padding: 0;
                         font-size: 1em;
-                        font-weight: 400;
+                        font-weight: 500;
                         color: @text-muted;
                     }
 
@@ -327,7 +332,7 @@
                         margin: @padding-session-item/2 0 0 0;
                         padding: 0;
                         font-size: 0.8em;
-                        font-weight: 100;
+                        font-weight: 500;
                         color: @text-muted;
                         text-transform: lowercase;
                     }
@@ -349,20 +354,20 @@
                 padding: 0 2em;
                 font-size: 0.9em;
                 font-weight: 200;
-                color: @gray;
+                color: @gray-regular;
             }
 
             &-count {
                 .HeaderText();
                 padding: 0;
                 font-size: 1.1em;
-                font-weight: 400;
-                color: @gray;
+                font-weight: 500;
+                color: @gray-regular;
                 margin-top: 1.5rem;
             }
 
             &-more {
-                color: @gray !important;
+                color: @gray-regular !important;
                 margin-top: 1.5rem;
                 padding: 0.7em 2em;
                 >i{
@@ -454,7 +459,7 @@
                 font-size: 0.8em;
                 padding: 0.6em;
                 border-radius: 4px;
-                color: @gray;
+                color: @gray-regular;
             }
 
             * .btn-detail {
@@ -467,7 +472,7 @@
 
 .social{
     .info{
-        font-family: @font-serif;
+        font-family: @font-sans;
         font-size: 1.1em;
         color: @text-muted;
         margin: 0 0.3em;
@@ -564,7 +569,7 @@
 
         * {
             color: @darkbg-text;
-            font-family: @font-serif;
+            font-family: @font-sans;
             font-style: italic;
         }
     }
@@ -694,7 +699,7 @@
 
 .sign-up-container {
   text-align: center;
-  background-color: @lightbg-accent;
+  background-color: @gray-lighter-brand;
   a{
     text-decoration: none;
   }
@@ -708,14 +713,11 @@
       vertical-align: middle;
       font-size: 1.25em;
     }
-    &:hover {
-        background-color:  @brand-success-dark;
-    }
 
   }
 
   h1, h2, h3, h4, h5, p, td, th {
-      color: lighten(@gray, 10%);
+      color: lighten(@gray-regular, 10%);
   }
   h4{
     margin-bottom: 1.5em;
@@ -728,7 +730,7 @@
 
   .calendars-container{
     padding: 0;
-    border: 1px solid darken(@lightbg-accent, 10%);
+    border: 1px solid darken(@gray-lighter-brand, 10%);
     background-color: white;
 
     .table{
@@ -744,7 +746,7 @@
             cursor:pointer;
             border: 5px solid white;
             background-color: white;
-            box-shadow: 0px 0px 1px darken(@lightbg-accent, 50%);
+            box-shadow: 0px 0px 1px darken(@gray-lighter-brand, 50%);
             border-radius: 100%;
           }
 
@@ -788,7 +790,7 @@
             }
 
             td{
-              background-color: darken(@lightbg-accent, 2.5%);
+              background-color: darken(@gray-lighter-brand, 2.5%);
             }
             
           }
@@ -796,7 +798,7 @@
         }
         
         .signup-row{
-          background-color: darken(@lightbg-accent, .5%);
+          background-color: darken(@gray-lighter-brand, .5%);
         }
       }
 
@@ -810,7 +812,7 @@
 
     .sessions{
       text-align: left;
-      border: 1px solid darken(@lightbg-accent, 10%);
+      border: 1px solid darken(@gray-lighter-brand, 10%);
       padding: 2em 2.5em;
       background-color: darken(@gray-lighter, 5%);
       .before-sm({
@@ -971,8 +973,10 @@
 
 .modal-email{
   border-radius: @border-radius-base;
+  max-height: 100vh;
+  overflow-y: auto;
   .modal-header{
-    color: @gray;
+    color: @gray-regular;
     padding: 5px 5px 10px 5px;
     background-color: @brand-success;
     border-top-left-radius: @border-radius-base;
@@ -993,7 +997,7 @@
       color: @gray-dark !important;
     }
     input, textarea{
-      border: 1px solid @gray-light-medium;
+      border: 1px solid @gray-light;
     }
   }
 }

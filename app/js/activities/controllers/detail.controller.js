@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager', '$filter'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager', '$filter', '$location'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter, $location) {
         var visibleReviewListSize = 3;
         var vm = this;
 
@@ -33,6 +33,7 @@
             city : null,
             calendars : [],
             reviews: [],
+            cards: [],
             relatedActivities: relatedActivities.results.slice(0, 3),
             calendar : null,
             activity : null,
@@ -474,10 +475,10 @@
             title = title.replace(/[^\w ]/g, function(char) {
               return dict[char] || char;
             });
+            
 
             // Updating the URL
-
-            $state.transitionTo($state.current, {activity_id: activity.id, activity_title: title}, {notify: false, reload: false, location: 'replace'});
+            $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false});
         }
 
         function _getAssistants() {
@@ -507,6 +508,14 @@
             vm.strings.COPY_TOOLTIP_REVIEWS = vm.strings.COPY_RATING;
           }
         }
+        
+        function _mapTemplates(){
+            for(var i = 0; i < vm.relatedActivities.length; i++){
+                vm.relatedActivities[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.cards = vm.relatedActivities;
+            
+        }
 
         function _activate(){
             _setStrings();
@@ -517,9 +526,10 @@
             activity = _mapCalendars(activity);
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
+            _mapTemplates();
             vm.assistants = _getAssistants();
             _setUpLocation(activity);
-
+            console.log(reviews);
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,

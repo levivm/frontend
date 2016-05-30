@@ -28,8 +28,14 @@ td{
 .table{
   thead, tbody, tfoot{
     tr{
+			th{
+				text-transform: uppercase;
+			}
       th, td{
-        padding: 35px 1.5em;
+        padding: 35px 1em;
+				border: none;
+				font-size: 0.9em;
+				color: @gray-darker;
         &.column-button{
           padding-top: 2.2em;
           .btn{
@@ -115,6 +121,6 @@ td{
 
 .table-dark{
   th{
-    background-color:@gray-light-medium;
+    background-color:@gray-light;
   }
 }

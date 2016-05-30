@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="row row-stretch">
-        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-1">
+        <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-1 separate-above">
           <div ng-if="summary.hasData()">
             <nvd3 options="summary.options" data="summary.data" config="{refreshDataOnly: true, deepWatchData: true}" class="with-3d-shadow with-transitions"></nvd3>
           </div>
@@ -42,7 +42,7 @@
             <h3 class="separate-above separate-below text-center">No hay datos para la fecha seleccionada</h1>
           </div>
         </div>
-        <div class="col-xs-12 col-md-2 col-md-offset-1 text-uppercase flex-align-items-center sales-info">
+        <div class="col-xs-12 col-md-2 col-md-offset-1 separate-above text-uppercase flex-align-items-center sales-info">
           <div class="flex-center-item">
             <h5 class="text-right">
               <span class="text-info" ng-bind="::summary.strings.COPY_GROSS_SALES"></span>

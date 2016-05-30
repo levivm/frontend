@@ -11,7 +11,7 @@
                 </div>
                 <div class="row">
                   <div class="col-xs-12 col-md-8 col-md-offset-2">
-                    <h3 class="montserrat-regular no-margin-top text-center" ng-bind="::referrals.strings.HEADER_TEXT_COPY">
+                    <h3 class="font-regular no-margin-top text-center" ng-bind="::referrals.strings.HEADER_TEXT_COPY">
                     </h3>
                   </div>
                 </div>
@@ -52,8 +52,7 @@
                                 socialshare-caption="{{::referrals.social.FACEBOOK_SHARE_CAPTION}}"
                                 socialshare-description="{{::referrals.social.FACEBOOK_SHARE_DESCRIPTION}}"
                                 socialshare-url="{{::referrals.social.FACEBOOK_SHARE_URL}}">
-                                <img class="img-responsive" ng-src="{{referrals.getAmazonUrl('static/img/activity-detail/share_facebook.png')}}"
-                                    alt="{{referrals.strings.COPY_SOCIAL_SHARE_FACEBOOK}}"/>
+                                <i class="fa fa-facebook " aria-hidden="true"></i>
                             </a>
                         </li>
                         <li>
@@ -65,8 +64,7 @@
                                 socialshare-text="{{::referrals.social.TWITTER_SHARE_TEXT}}"
                                 socialshare-url="{{::referrals.social.TWITTER_SHARE_URL}}"
                                 socialshare-hashtags="{{::referrals.social.TWITTER_SHARE_HASHTAGS}}">
-                                <img class="img-responsive" ng-src="{{referrals.getAmazonUrl('static/img/activity-detail/share_twitter.png')}}"
-                                    alt="{{referrals.strings.COPY_SOCIAL_SHARE_TWITTER}}"/>
+                                <i class="fa fa-twitter " aria-hidden="true"></i>
                             </a>
                         </li>
                     </ul>
@@ -90,7 +88,7 @@
                   <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_2"></span>
               </strong>
           </h3>
-          <h4 class="sinkin-regular text-muted text-center separate-above" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
+          <h4 class="font-regular text-muted text-center separate-above" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
           </h4>
       </div>
   </div>

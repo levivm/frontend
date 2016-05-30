@@ -36,7 +36,8 @@
             hasMoreReviews: true,
             showMoreReviews: showMoreReviews,
             pageChange:pageChange,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            cards: []
         });
 
         _activate();
@@ -72,6 +73,11 @@
         function _setActivities(){
             vm.paginationOpts.totalItems = activities.count;
             vm.activities = activities.results;
+            for(var i = 0; i < activities.results.length; i++){
+                activities.results[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.cards = activities.results;
+            
         }
 
         function _setOrganizerCity(){

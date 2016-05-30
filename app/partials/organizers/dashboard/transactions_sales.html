@@ -1,85 +1,89 @@
 <div class="row">
-  <div class="col-xs-12 col-md-10 col-md-offset-1">
+  <div class="col-xs-12">
     <div class="row">
       <div class="col-xs-12">
-        <div class="form-group">
-          <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
-          <div class="row dashboard-filters separate-below">
-            <div class="col-xs-12 col-md-2">
-              <div class="input-group filter-group">
-                <span class="input-group-addon" id="from_date_icon" ng-click="transactions.openDatePicker($event, 'sales_from_date')">
-                  <i class="mdi-action-today"></i>
-                </span>
-                <input id="from_date" type="text" class="form-control date-picker"
+        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+            <span class="panel-default__dashboard-title" ng-bind="::transactions.strings.TAB_SALES"></span>
+            <span class="separate-left text-gray-dark" ng-bind="::transactions.strings.COPY_SALES"></span>
+        </div>
+        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+                
+          <div class="row dashboard-filters">
+            <div class="dashboard-filters__searchbox ">
+              <input class="form-control floating-label" type="text"
+                ng-model="transactions.salesFilter.query"
+                placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}"/>
+            </div>
+            <div class="dashboard-filters__selects">
+              <div class="input-group filter-group select-forms">
+                <label >
+                  <input id="from_date" type="text" class="form-control date-picker"
                   aria-describedby="from_date_icon"
                   name="from_date"
                   placeholder="Desde"
                   ng-model="transactions.salesFilter.from_date"
+                  ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
                   datepicker-popup="{{::transactions.format}}"
                   data-is-open="transactions.salesFilter.from_date_opened"
                   data-max-date="transactions.maxStartDate"
                   data-datepicker-options="transactions.dateOptions"
                   data-close-text="{{transactions.strings.ACTION_CLOSE}}"
                   ng-click="transactions.openDatePicker($event, 'sales_from_date')"/>
+                </label>
+                
               </div>
-            </div>
-            <div class="col-xs-12 col-md-2">
-              <div class="input-group filter-group">
-                <span class="input-group-addon" id="until_date_icon" ng-click="transactions.openDatePicker($event, 'sales_until_date')">
-                  <i class="mdi-action-today"></i>
-                </span>
-                <input id="until_date" type="text" class="form-control date-picker"
+              <div class="input-group filter-group select-forms">
+                <label >
+                  <input id="until_date" type="text" class="form-control date-picker"
                   aria-describedby="until_date_icon"
                   name="until_date"
                   placeholder="Hasta"
                   ng-model="transactions.salesFilter.until_date"
+                  ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
                   datepicker-popup="{{::transactions.format}}"
                   data-is-open="transactions.salesFilter.until_date_opened"
                   data-max-date="transactions.maxStartDate"
                   data-datepicker-options="transactions.dateOptions"
                   data-close-text="{{transactions.strings.ACTION_CLOSE}}"
                   ng-click="transactions.openDatePicker($event, 'sales_until_date')"/>
+                </label>
+                
+              </div>
+              <div class="input-group filter-group select-forms dashboard-filters__activity ">
+                <label>
+                   <select name="activity"
+                            id="" class="form-control"
+                            ng-model="transactions.salesFilter.activity"
+                            aria-describedby="activity_icon"
+                            ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
+                            ng-options="activity.id as activity.title for activity in transactions.activities">
+                            <option value="">Actividad</option>
+                    </select>
+                </label>
+               
+             </div>
+              <div class="input-group filter-group select-forms">
+                <label>
+                  <select name="status"
+                          id="" class="form-control"
+                          ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
+                          ng-model="transactions.salesFilter.status">
+                          <option value="">Estatus</option>
+                          <option value="approved">Aprobadas</option>
+                          <option value="pending">Pendientes</option>
+                          <option value="cancelled">Canceladas</option>
+                          <option value="declined">Rechazadas</option>
+                   </select>
+                </label>
+                
               </div>
             </div>
-            <div class="col-xs-6 col-md-3">
-              <div class="input-group filter-group">
-                <span class="input-group-addon" id="activity_icon">
-                  <i class="mdi mdi-action-dashboard"></i>
-                </span>
-                <select name="activity"
-                  id="" class="form-control"
-                  ng-model="transactions.salesFilter.activity"
-                  aria-describedby="activity_icon"
-                  ng-options="activity.id as activity.title for activity in transactions.activities">
-                  <option value="">Actividad</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-xs-6 col-md-2">
-              <div class="input-group filter-group">
-                <select name="status"
-                  id="" class="form-control"
-                  ng-model="transactions.salesFilter.status">
-                  <option value="">Estatus</option>
-                  <option value="approved">Aprobadas</option>
-                  <option value="pending">Pendientes</option>
-                  <option value="cancelled">Canceladas</option>
-                  <option value="declined">Rechazadas</option>
-                </select>
-              </div>
-            </div>
-            <div class="col-xs-10 col-md-2">
-              <input class="form-control floating-label" type="text"
-                ng-model="transactions.salesFilter.query"
-                placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}"/>
-            </div>
-            <div class="col-xs-2 col-md-1 ">
-              <button class="btn btn-default btn-block hidden-xs hidden-sm" ng-click="transactions.updateByQuery(transactions.TYPE_SALES)">
-                <i class="mdi-action-search"></i>
-              </button>
-              <i class="mdi-action-search separate-above-less hidden-md hidden-lg" ng-click="transactions.updateByQuery(transactions.TYPE_SALES)"></i>
-            </div>
+            
           </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label sr-only" ng-bind="::transactions.strings.LABEL_SEARCH_ORDERS"></label>
+         
         </div>
       </div>
     </div>
@@ -104,7 +108,7 @@
             <tr ng-repeat="order in transactions.sales track by order.id | filter:transactions.queries.saleQuery">
               <td>
                 <a  ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity.id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">
-                  <strong><span>#</span><span ng-bind="::order.id"></span></strong>
+                 <span ng-bind="::order.id"></span>
                 </a>
               </td>
               <td>
@@ -121,7 +125,7 @@
               <td class="hidden-xs hidden-sm">
                 <span ng-bind="::(order.amount - order.amount*order.fee | currency:$:0)"></span>
               </td>
-              <td class="column-button">
+              <!--<td class="column-button">
                 <a ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity.id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">
                   <button class="btn btn-default">
                     <span class="hidden-xs hidden-sm" ng-bind="::transactions.strings.ACTION_VIEW_DETAIL"></span>
@@ -130,7 +134,7 @@
                     </span>
                   </button>
                 </a>
-              </td>
+              </td>-->
             </tr>
           </table>
           <div class="text-center" ng-if="transactions.salesPaginationOpts.totalItems > transactions.salesPaginationOpts.itemsPerPage">
@@ -145,26 +149,16 @@
           </div>
         </div>
         <!--If there are no Sales-->
-        <div ng-if="transactions.sales.length <= 0">
-
-          <div class="col-xs-12">
-            <div class="row">
-              <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
-                <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
-                    alt="{{transactions.strings.LABEL_NO_ORDERS}}"
-                    class="center-block img-responsive"/>
-                <p class="separate-below separate-above font-family-sans-alt text-muted"
-                     ng-bind="::transactions.strings.COPY_NO_ORDERS">
+        <div class="row" ng-if="transactions.sales.length <= 0">
+            <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
+                <p class="separate-below separate-above "
+                   ng-bind="::transactions.strings.COPY_NO_ORDERS">
                 </p>
                 <a class="btn btn-lg btn-success margin-horizontal-less"
-                   ui-sref="dash.activities-new.general"
-                   ng-bind="transactions.strings.ACTION_CREATE_ACTIVITY"></a>
-
-
-              </div>
+                  ui-sref="dash.activities-new.general"
+                  ng-bind="transactions.strings.ACTION_CREATE_ACTIVITY"></a>
+               
             </div>
-
-          </div>
         </div>
     </div>
   </div>

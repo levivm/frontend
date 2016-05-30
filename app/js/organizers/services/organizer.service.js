@@ -159,28 +159,21 @@
                     });
             },
 
-            getOrders : function (page, pageSize, paramsFilter) {
 
-              if(!page)
-                page = defaultPage;
-              if(!pageSize)
-                pageSize= defaultPageSize;
+            getOrders : function (params) {
+                if(!params){
+                    params = {};
+                }
 
-              var params= {
-                page: page,
-                page_size: pageSize
-              };
-              if(paramsFilter)
-                angular.extend(params, paramsFilter);
-
-              console.log(params);
-
-
-              return $http.get(api.orders(this.id), {params: params})
-                  .then(function (response) {
-                      return response.data;
-                  });
-
+                if(!params.page)
+                    params.page = defaultPage;
+                if(!params.pageSize)
+                    params.pageSize = defaultPageSize;
+                return $http.get(api.orders(this.id),
+                    {params: params})
+                    .then(function (response) {
+                        return response.data;
+                      });
             },
 
             getBalances: function (page, pageSize){

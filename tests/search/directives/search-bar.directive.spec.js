@@ -23,7 +23,7 @@ xdescribe('Directive: truliiSearchBar', function(){
              .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/info')
+             .when('GET', '//localhost:8000/api/activities/info')
              .respond(readJSON('tests/mock/generalinfo.json'));
 
         $httpBackend

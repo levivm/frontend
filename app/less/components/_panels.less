@@ -7,11 +7,11 @@
     box-shadow: none;
     border: 1px solid @gray-lighter;
     border-radius: 0;
-    color: @gray-lighter;
+    color: @gray-darker;
     font-family: @font-sans;
     .panel-heading{
         border: 0;
-        color: @gray;
+        color: @gray-regular;
         padding: 1em 1em;
         position: relative;
     }
@@ -21,6 +21,49 @@
           padding: 20px 0;
         });
     }
+    
+    &__dashboard{
+        padding: 0.8em 2em;
+        border-radius: 5px;
+        margin-bottom: 2em;
+        &-title{
+            font-size: 1em;
+            font-weight: 600;
+            margin: 0;
+            color: @gray-dark;
+        }
+        
+        &-sub{
+            margin-bottom: 0;
+            border-radius: 5px 5px 0px 0px;
+            border-bottom: none;
+            padding: 1.5em 2em;
+        }
+        
+        &-sub-second{ 
+            border-radius: 0px 0px 5px 5px;
+            padding: 1em 2em;
+        }
+        
+        &-search{
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 250px;
+            input{
+                height: 37px !important;  
+            }
+            i{
+                float: right;
+                margin-top: -28px;
+                font-size: 1.2em;
+                margin-right: 0.4em;
+                color: gray;
+            }
+        }
+        
+    }
+    
     .panel-date{
         font-family: @font-sans-alt;
         width: 13em;
@@ -32,7 +75,7 @@
         });
         
         &:nth-child(1){
-            border-right: 1px solid @gray-light-medium;
+            border-right: 1px solid @gray-light;;
         }
         &:nth-child(2){
             padding-left:4%;
@@ -78,17 +121,17 @@
           td{
               padding: 2em 1em;
               font-size: 1em;
-              color: @gray;
+              color: @gray-regular;
           }
           th, td{
              .before-sm({
                 padding: 1.5em 5px !important;
-                font-size: 0.75em;
+                font-size: 0.7em;
               });
               
               .before-md({
                 padding: 1.5em 2em;
-                font-size: 0.75em;
+                font-size: 0.7em;
               });
           }
         }

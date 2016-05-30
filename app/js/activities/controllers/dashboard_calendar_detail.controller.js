@@ -29,10 +29,9 @@
             Error.form.clear(vm.activity_calendar_form);
             vm.calendar.create()
                 .then(success, _errored);
-
-
+                
+                
             function success(calendar){
-
                 vm.save_calendar = _updateCalendar;
                 CalendarsManager.setCalendar(calendar);
                 _onSectionUpdated();

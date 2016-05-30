@@ -40,7 +40,7 @@
           <div class="row">
             <div class="col-xs-12 col-md-8 col-md-offset-1 ">
               <h2 class="sub-title-light" ng-bind="enroll.strings.COPY_COVER"></h1>
-              <h1 class="title montserrat-light">
+              <h1 class="title font-light">
                 <span ng-bind="enroll.activity.title"></span>
               </h1>
             </div>
@@ -74,13 +74,13 @@
                   <div class="select-calendar col-md-12 separate-left-less">
                     <ui-select   ng-model="enroll.calendar" theme="bootstrap" search-enabled="false" >
                       <ui-select-match  >
-                        <span class="montserrat-regular" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
-                        <span class="montserrat-light" ng-bind="$select.selected.initial_date | date:'d MMM y'"></span>
+                        <span class="font-regular" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
+                        <span class="font-light" ng-bind="$select.selected.initial_date | date:'d MMM y'"></span>
                       </ui-select-match>
                       <ui-select-choices repeat=" upcoming_calendar in enroll.activity.upcoming_calendars">
                         <div class="" ng-click="enroll.changeCalendar(upcoming_calendar)">
-                          <span class="montserrat-regular" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
-                          <span class="montserrat-light" ng-bind="upcoming_calendar.initial_date | date:'d MMM y'"></span>
+                          <span class="font-regular" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
+                          <span class="font-light" ng-bind="upcoming_calendar.initial_date | date:'d MMM y'"></span>
                         </div>
                       </ui-select-choices>
                     </ui-select>
@@ -96,9 +96,7 @@
 
                       <div class="panel-heading">
                           <h4>
-                              <img class="img-responsive inline-block"
-                                  ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_sessions.png')}}"
-                                  alt="{{::enroll.strings.LABEL_ACTIVITY_SESSIONS}}"/>
+                              <i class="fa fa-calendar-o separate-right-less" aria-hidden="true"></i>
                               <span ng-bind="::enroll.strings.LABEL_ACTIVITY_SESSIONS"></span>
                           </h4>
                       </div>
@@ -132,9 +130,7 @@
                       <div class="panel attendees-panel">
                           <div class="panel-heading">
                               <h4>
-                                  <img class="img-responsive inline-block"
-                                      ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_attendees.png')}}"
-                                      alt="{{::enroll.strings.LABEL_ASSISTANTS}}"/>
+                                  <i class="fa fa-users separate-right-less" aria-hidden="true"></i>
                                   <span ng-bind="::enroll.strings.LABEL_ASSISTANTS"></span>
                               </h4>
                           </div>
@@ -197,9 +193,7 @@
                       <div class="panel payments-panel">
                           <div class="panel-heading">
                               <h4>
-                                  <img class="img-responsive inline-block"
-                                      ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/section_payments.png')}}"
-                                      alt="{{::enroll.strings.LABEL_PAYMENT_INFO}}"/>
+                                  <i class="fa fa-credit-card separate-right-less" aria-hidden="true"></i>
                                   <span ng-bind="::enroll.strings.LABEL_PAYMENT_INFO"></span>
                               </h4>
                           </div>
@@ -398,8 +392,8 @@
                               </div>
                               <div class="row" ng-show="enroll.calendar.is_free">
                                   <div class="col-xs-12 separate-below">
-                                      <h2 class="text-muted sinkin-bold" ng-bind="::enroll.strings.COPY_FREE_CALENDAR_1"></h3>
-                                      <h4 class="text-muted montserrat-light" ng-bind="::enroll.strings.COPY_FREE_CALENDAR_2"></h4>
+                                      <h2 class="text-muted font-bold" ng-bind="::enroll.strings.COPY_FREE_CALENDAR_1"></h3>
+                                      <h4 class="text-muted font-light" ng-bind="::enroll.strings.COPY_FREE_CALENDAR_2"></h4>
                                   </div>
                               </div>
                               <div class="row">
@@ -417,7 +411,7 @@
                                           ng-bind="::enroll.strings.ACTION_ENROLL" ng-show="!enroll.processingPayment"></button>
                                 </div>
                               </div>
-                              <div class="text-muted separate-above-medium text-md montserrat-semibold" >
+                              <div class="text-muted separate-above-medium text-md font-semibold" >
                                   <span ng-bind="::enroll.strings.COPY_RELEASE_1">
                                   </span>
                                   <a ng-click='enroll.toggleReimbursement()' href="#" ng-bind="::enroll.strings.COPY_RELEASE_2"></a>
@@ -428,7 +422,7 @@
                                   </span>
 
                               </div>
-                              <div class="text-muted separate-above text-lg montserrat-semibold" >
+                              <div class="text-muted separate-above text-lg font-semibold" >
                                   <span ng-bind="::enroll.strings.COPY_ANY_DOUBT">
                                   </span>
                                   <a class="text-md" href="#"  ui-sref="contact-us" ng-bind="::enroll.strings.LABEL_CONTACT_US"></a>
@@ -502,7 +496,7 @@
                                 </div>
                                 <div ng-show="enroll.invalidCoupon">
                                   <br>
-                                  <p class="text-danger text-sm font-family-sans-alt" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
+                                  <p class="text-danger text-sm" ng-bind="enroll.strings.COPY_INVALID_COUPON"></p>
                                 </div>
                               </div>
                           </div>
@@ -542,8 +536,7 @@
     <div class="row navigation-container img-carpet">
       <div class="col-xs-12 col-md-6">
           <a class="btn btn-link" ui-sref="activities-detail({activity_id: enroll.activity.id})">
-              <img ng-src="{{enroll.getAmazonUrl('static/img/activity-enroll/navigation_back.png')}}" alt="{{ ::enroll.strings.ACTION_GO_BACK }}"
-                  class="img-responsive inline-block"/>
+              <i class="fa fa-undo" aria-hidden="true"></i>
               <span ng-bind="::enroll.strings.ACTION_GO_BACK"></span>
           </a>
       </div>

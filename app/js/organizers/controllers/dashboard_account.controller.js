@@ -125,6 +125,8 @@
                 COPY_PASSWORD: "¿Desea cambiar su contraseña?",
                 COPY_EMAIL: "¿Desea cambiar su correo electrónico?",
                 SECTION_ACCOUNT: "Cuenta",
+                SECTION_ACCOUNT_SETTINGS: "Cuenta > Ajustes",
+                SECTION_ACCOUNT_BANK: "Cuenta > Información Bancaria",
                 TAB_SETTINGS: "Ajustes",
                 TAB_BANKING: "Información Bancaria",
                 LABEL_CURRENT_PASSWORD: "Contraseña Actual",

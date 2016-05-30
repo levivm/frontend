@@ -49,10 +49,13 @@
         <strong ng-if="profile.activities.length>0"><span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span> <span ng-bind="::profile.organizer.name"></span></strong>
         <strong ng-if="profile.activities.length==0"><span ng-bind="::profile.organizer.name"></span> <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span></strong>
     </h3>
-    <trulii-activity-item
-          ng-repeat="activity in profile.activities track by activity.id"
-          data-activity="activity" >
-          </trulii-activity-item>
+    <div class="col-xs-12 dynamic-layout-wrapper separate-below">
+        <div class="dynamic-layout-container-fluid separate-above-medium">
+        <div class="text-center">
+            <div dynamic-layout items="profile.cards" class="dynamic-layout"></div>
+        </div>
+        </div>
+    </div>
   </div>
 </div>
 <!--Location-->
@@ -82,7 +85,7 @@
                 <div class="card">
                     <h1 class="text-center text-muted" ng-bind="::profile.organizer.rating | number: 1"></h1>
                     <h1 class="text-center">
-                        <span class="text-uppercase text-muted montserrat-regular">
+                        <span class="text-uppercase text-muted font-regular">
                             <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                                     readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="custom-icons-1"></rating>
                         </span>

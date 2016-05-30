@@ -140,12 +140,13 @@
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
                 ACTION_DELETE: "Eliminar",
-                ACTION_UPDATE_PICTURE: "Subir Foto",
+                ACTION_UPDATE_PICTURE: "Cambiar imagen",
                 ACTION_VIEW_PROFILE: "Ver Perfil",
                 SECTION_PROFILE: "Perfil",
                 COPY_PROFILE: "Esta información aparecerá en tu perfil y lo verán los demás usuarios",
                 COPY_VIDEO: "¿Posee algún video donde describa o presente su organización?",
                 COPY_LOCATION: "¿Donde funciona su organización?",
+                COPY_MAP: "Hazle click al pin rojo del mapa para desplazarlo a la dirección exacta del lugar donde estás establecido.",
                 SUB_SECTION_VIDEO: "Video",
                 SUB_SECTION_LOCATION: "Ubicación",
                 SUB_SECTION_COMMENTS: "Comentarios",
@@ -157,6 +158,7 @@
                 LABEL_ADDRESS: "Dirección Exacta",
                 OPTION_SELECT: "Seleccione...",
                 PLACEHOLDER_VIDEO: "Ejemplo: www.youtube.com/watch?v=video_id",
+                PLACEHOLDER_LOCATION: "¿En donde está tu oficina o realiza la mayoria de tus actividades?",
                 HELPER_FULL_NAME: "Escribe el nombre de la organización o persona",
                 HELPER_HEADLINE: "Describe tu organización en pocas palabras",
                 HELPER_BIO: "Escribe sobre la historia, reputación y calidad de servicios de tu empresa "
@@ -168,6 +170,7 @@
         function _activate(){
             _setStrings();
             _initialize_map();
+            console.log(vm.organizer);
         }
 
     }

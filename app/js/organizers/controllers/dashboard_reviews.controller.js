@@ -101,10 +101,11 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                TAB_REVIEWS_PENDING: "Sin revisar",
-                TAB_REVIEWS_DONE: "Revisados",
-                COPY_SEARCH_REVIEWS: "Revisa los comentarios que han hecho a tus actividades",
-                LABEL_SEARCH_ORDERS: "Filtrar por nombre de actividad",
+                TAB_REVIEWS_PENDING: "Comentarios > Sin revisar",
+                TAB_REVIEWS_DONE: "Comentarios > Revisados",
+                COPY_REVIEWS_DONE: "Revisa los comentarios que han hecho a tus actividades",
+                COPY_REVIEWS_PENDING: "Encuentra todos los comentarios que le han hecho a tus actividades. Respóndeles dando las gracias a o tu poinión. Esto aparece en tu publicación y en tu perfil",
+                LABEL_SEARCH_ORDERS: "Buscar",
                 COPY_EMPTY_UNREAD: "No tienes comentarios por leer",
                 COPY_EMPTY_READ: "Aún no has respondido ni leído ningún comentario",
                 COPY_REVIEW_READ: "Su comentario fue movido a revisados."

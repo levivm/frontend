@@ -191,7 +191,7 @@
                 delete searchData[KEY_QUERY];
             }
 
-            //delete searchData[KEY_PAGE];
+            delete searchData[KEY_PAGE];
             //delete searchData[KEY_ORDER];
 
             return searchData;
