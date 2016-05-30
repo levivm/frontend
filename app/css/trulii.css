@@ -12228,53 +12228,60 @@ hr.on-light {
     display: none !important;
   }
 }
+.dashboard-filters {
+  display: flex !important;
+  justify-content: space-between;
+  width: 100%;
+}
+.dashboard-filters__searchbox {
+  width: 17em;
+  margin-left: -17px;
+}
+.dashboard-filters__activity {
+  width: 10em !important;
+}
+.dashboard-filters__activity select {
+  width: 87% !important;
+}
+.dashboard-filters__selects {
+  display: flex;
+}
+.dashboard-filters__selects .input-group {
+  width: 8em;
+}
+.dashboard-filters__selects .input-group input[type="text"] {
+  font-size: 0.8em;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+}
+.dashboard-filters__selects .input-group select {
+  font-size: 0.8em;
+  background-color: transparent !important;
+  border: none !important;
+  color: #767676 !important;
+}
+.dashboard-filters__selects ::-webkit-input-placeholder {
+  font-weight: 600;
+  color: #767676 !important;
+}
+.dashboard-filters__selects :-moz-placeholder {
+  /* Firefox 18- */
+  font-weight: 600;
+  color: #767676 !important;
+}
+.dashboard-filters__selects ::-moz-placeholder {
+  /* Firefox 19+ */
+  font-weight: 600;
+  color: #767676 !important;
+}
+.dashboard-filters__selects :-ms-input-placeholder {
+  font-weight: 600;
+  color: #767676 !important;
+}
 .dashboard-filters .date-picker,
 .dashboard-filters .date-picker:focus {
   animation: none;
-  background-size: 15px auto !important;
-  background-position: 94.75% 50%;
-  background-repeat: no-repeat;
-  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
-}
-.dashboard-filters .input-group {
-  width: 100%;
-}
-.dashboard-filters .input-group .input-group-addon {
-  padding: 6px 8px 6px 0;
-}
-.dashboard-filters .input-group input {
-  margin-top: 5px;
-}
-.dashboard-filters select,
-.dashboard-filters .form-group .form-control select:focus,
-.dashboard-filters .form-control select:focus {
-  margin-top: 5px;
-  animation: none !important;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-size: 15px auto !important;
-  background-position: 93% 50%;
-  background-repeat: no-repeat;
-  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
-  height: 30px !important;
-}
-.dashboard-filters .filter-group {
-  border-radius: 4px;
-  border: 1px solid #cbcbcb;
-  padding: 0 10px;
-}
-.dashboard-filters input.form-control.floating-label {
-  height: 35px;
-}
-.dashboard-filters .btn-default {
-  background-color: #9b9b9b;
-  color: #cbcbcb;
-  padding: 3px;
-}
-.dashboard-filters input.form-control,
-.dashboard-filters select.form-control {
-  font-size: 0.75em;
-  vertical-align: middle;
 }
 .dashboard-messages form i {
   float: right;
@@ -14343,7 +14350,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: white;
   border: 1px solid #cbcbcb;
   border-top: none;
-  box-shadow: rgba(68, 68, 68, 0.09) 0px 7px 13px 1px;
+  box-shadow: rgba(68, 68, 68, 0.31) 0px 2px 31px 1px;
   border-radius: 5px;
 }
 .drop-menu.short {
@@ -15702,6 +15709,7 @@ select {
   top: 4px;
   position: absolute;
   font-weight: 100;
+  z-index: 100;
 }
 select option {
   margin: 40px;

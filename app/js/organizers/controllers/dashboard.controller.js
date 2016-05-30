@@ -50,7 +50,6 @@
         
         function  showSubItems(item) {
             vm.subItems[item] = !vm.subItems[item];
-            console.log(vm.subItems[item]);
         }
         
         
