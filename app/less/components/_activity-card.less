@@ -58,6 +58,7 @@
         &:extend(.flex-center-container);
         height: @activity-card-height/2;
         background-color: white;
+        text-align: center;
         &__content{
             &:extend(.flex-center-item);
             &__title{
@@ -101,9 +102,11 @@
                 width: 30%;
                 display: inline-block;
                 float: left;
+                
                 &__menu{
                     position: absolute;
                     right: 0;
+                    top: 7px;
                     &__item{
                         &__icon{
                             color: @gray-light;
@@ -117,21 +120,24 @@
             &__body{
                 width: 70%;
                 float: left;
+                text-align: left;
                 &__content{
                     margin-right: auto;
                     margin-left: 25px;
                     height: 85%;
                     z-index: 1000;
                     &__price{
-                        padding-top: 40px;
+                        padding-top: 50px;
                     }
-                    
+                    &__free{
+                        padding-top: 35px;
+                    }
                     &__attendes{
                         color: @gray-dark;
                         text-decoration: underline;
                         position: absolute;
                         right: 12px;
-                        top: 122px;
+                        top: 137px;
                     }
                 }
             }

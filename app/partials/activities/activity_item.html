@@ -5,7 +5,7 @@
             class="trulii-activity-card__header__menu__item"
             ui-sref="{{::action.state}}"
             ng-click="clickAction(action.name)"
-            ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
+            ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT || action.name===strings.LABEL_DELETE}"
             data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
           <span class="trulii-activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
         </a>
@@ -49,7 +49,7 @@
         readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
       </span>
       <br>
-      <span class="trulii-activity-card__body__content__price" ng-if="activity.closest_calendar">
+      <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar">
         <strong ng-show="activity.closest_calendar.is_free">
           <span ng-bind="::strings.COPY_FREE"></span>
           <br>
