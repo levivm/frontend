@@ -176,42 +176,7 @@
 //Utils from Dashboard Organizer 
 
 
-.location-dashboard, .double-input{
-	>div{
-		&:extend(.flex-container);
-		.before-md({
-			flex-direction: column;
-			&:extend(.flex-column);
-		});
-	}
-	.select-forms{
-		 width: 35%;
-		 .before-md({
-				width: 100%;
-		});
-	}
-	select{
-		border-radius: 1.5em 0em 0em 1.5em !important;
-    height: 45px !important;
-    border: 1px solid @gray-lighter;
-    box-shadow: 0 0;
-    width: 100%;
-    background: @gray-light-brand;
-    font-weight: 600;
-		.before-md({
-			width: 100%;
-			border-radius: 1.7em !important;
-		});
-	}
-	
-	input{
-		 border-radius: 0em 1.5em 1.5em 0em !important;
-		 .before-md({
-			border-radius: 1.7em !important;
-			margin-top: 1em;
-		});
-	}
-}
+
 .add-instructors{
 	position: absolute;
 	border-radius: 1.5em;
@@ -667,10 +632,17 @@
 	display: flex !important;
 	justify-content: space-between;
 	width: 100%;
+	.before-sm({
+		flex-direction: column;
+	});
 	
 	&__searchbox{
 		width: 17em;
-    margin-left: -17px;
+   		margin-left: -17px;
+		.before-sm({
+			width: 100%;
+			margin-left: 0;
+		});
 	}
 	
 	&__activity{
@@ -682,10 +654,14 @@
 	
 	&__selects{
 		 display: flex;
-		 
+		 .before-sm({
+			 flex-wrap: wrap;
+		 });
 		 .input-group{
 			 width: 8em;
-			 
+			 .before-sm({
+				 width: 10em;
+			});
 			 input[type="text"]{
 				  font-size: 0.8em;
 					border: none;

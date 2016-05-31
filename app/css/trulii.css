@@ -11787,50 +11787,6 @@ hr.on-light {
   width: 100%;
   height: 100%;
 }
-@media screen and (max-width: 992px) {
-  .location-dashboard > div,
-  .double-input > div {
-    flex-direction: column;
-  }
-}
-.location-dashboard .select-forms,
-.double-input .select-forms {
-  width: 35%;
-}
-@media screen and (max-width: 992px) {
-  .location-dashboard .select-forms,
-  .double-input .select-forms {
-    width: 100%;
-  }
-}
-.location-dashboard select,
-.double-input select {
-  border-radius: 1.5em 0em 0em 1.5em !important;
-  height: 45px !important;
-  border: 1px solid #ededed;
-  box-shadow: 0 0;
-  width: 100%;
-  background: #e4e7ef;
-  font-weight: 600;
-}
-@media screen and (max-width: 992px) {
-  .location-dashboard select,
-  .double-input select {
-    width: 100%;
-    border-radius: 1.7em !important;
-  }
-}
-.location-dashboard input,
-.double-input input {
-  border-radius: 0em 1.5em 1.5em 0em !important;
-}
-@media screen and (max-width: 992px) {
-  .location-dashboard input,
-  .double-input input {
-    border-radius: 1.7em !important;
-    margin-top: 1em;
-  }
-}
 .add-instructors {
   position: absolute;
   border-radius: 1.5em;
@@ -12233,9 +12189,20 @@ hr.on-light {
   justify-content: space-between;
   width: 100%;
 }
+@media screen and (max-width: 768px) {
+  .dashboard-filters {
+    flex-direction: column;
+  }
+}
 .dashboard-filters__searchbox {
   width: 17em;
   margin-left: -17px;
+}
+@media screen and (max-width: 768px) {
+  .dashboard-filters__searchbox {
+    width: 100%;
+    margin-left: 0;
+  }
 }
 .dashboard-filters__activity {
   width: 10em !important;
@@ -12246,8 +12213,18 @@ hr.on-light {
 .dashboard-filters__selects {
   display: flex;
 }
+@media screen and (max-width: 768px) {
+  .dashboard-filters__selects {
+    flex-wrap: wrap;
+  }
+}
 .dashboard-filters__selects .input-group {
   width: 8em;
+}
+@media screen and (max-width: 768px) {
+  .dashboard-filters__selects .input-group {
+    width: 10em;
+  }
 }
 .dashboard-filters__selects .input-group input[type="text"] {
   font-size: 0.8em;
@@ -13922,7 +13899,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .navbar .btn {
-  line-height: 23.33333333px;
+  line-height: 1em;
 }
 .navbar__button-all {
   display: inline-block;
@@ -13987,17 +13964,17 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 60px;
-  width: calc(100% - 550px);
+  width: calc(100% - 440px);
   margin: 0.2em 1em;
 }
 .navbar__left-wrapper .buttons {
   height: 100%;
   padding: 1em 0;
-  margin-top: 4px;
+  margin-top: 3px;
   transition: all 0.25s;
 }
 .navbar__left-wrapper .buttons-login {
-  line-height: 3.5em;
+  line-height: 2.5em;
 }
 .navbar__left-wrapper .buttons-login > a {
   color: #9b9b9b;
@@ -14210,7 +14187,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar-landing .btn-primary {
   background: transparent !important;
   border: 1px solid white;
-  border-radius: 0;
 }
 .navbar-landing .buttons-login > a {
   color: #ffffff;
@@ -14615,9 +14591,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-bar__navbar .dropdown-menu {
   width: 60%;
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1210px) {
   .search-bar__navbar {
-    width: 40%;
+    width: 65%;
   }
 }
 @media screen and (max-width: 768px) {
@@ -15247,9 +15223,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   color: #222328 !important;
 }
 .sidebar__item-subitems {
-  text-transform: uppercase;
-  font-weight: 300;
-  font-size: 0.8em;
+  text-transform: Capitalize;
+  font-weight: 400;
+  font-size: 1em;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.15s ease-out;
@@ -15259,11 +15235,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   transition: max-height 0.25s ease-in;
 }
 .sidebar__item-subitem {
-  border-bottom: 1px solid #cbcbcb;
-  background: #ededed;
+  border-bottom: 1px solid rgba(203, 203, 203, 0.4);
+  background: #f0f2f7;
 }
 .sidebar__item-subitem a {
   padding-left: 1.3em;
+  color: #9b9b9b !important;
 }
 .sidebar__item-subitem--selected a {
   color: #222328 !important;
@@ -15498,7 +15475,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1.2em;
 }
 .sidebar-profile .profile {
-  border-bottom: 1px solid #ffffff;
+  border-bottom: 1px solid #a1a6bb;
   padding: 1em 1.2em;
   display: flex;
   align-items: center;
@@ -15710,6 +15687,54 @@ select {
   position: absolute;
   font-weight: 100;
   z-index: 100;
+}
+@media screen and (max-width: 992px) {
+  .location-dashboard > div,
+  .double-input > div {
+    flex-direction: column;
+  }
+}
+.location-dashboard .select-forms,
+.double-input .select-forms {
+  width: 35%;
+}
+.location-dashboard .select-forms label:after,
+.double-input .select-forms label:after {
+  right: 7px;
+}
+@media screen and (max-width: 992px) {
+  .location-dashboard .select-forms,
+  .double-input .select-forms {
+    width: 100%;
+  }
+}
+.location-dashboard select,
+.double-input select {
+  border-radius: 1.5em 0em 0em 1.5em !important;
+  height: 45px !important;
+  border: 1px solid #ededed;
+  box-shadow: 0 0;
+  width: 100%;
+  background: #e4e7ef;
+  font-weight: 600;
+}
+@media screen and (max-width: 992px) {
+  .location-dashboard select,
+  .double-input select {
+    width: 100%;
+    border-radius: 1.7em !important;
+  }
+}
+.location-dashboard input,
+.double-input input {
+  border-radius: 0em 1.5em 1.5em 0em !important;
+}
+@media screen and (max-width: 992px) {
+  .location-dashboard input,
+  .double-input input {
+    border-radius: 1.7em !important;
+    margin-top: 1em;
+  }
 }
 select option {
   margin: 40px;
@@ -16613,6 +16638,11 @@ td {
   padding: 0.8em 2em;
   border-radius: 5px;
   margin-bottom: 2em;
+}
+@media screen and (max-width: 992px) {
+  .panel-default__dashboard {
+    margin-bottom: 1em;
+  }
 }
 .panel-default__dashboard-title {
   font-size: 1em;
@@ -17696,10 +17726,15 @@ ul.dropdown-menu:after {
 .card__instructor {
   position: relative;
 }
+@media screen and (max-width: 992px) {
+  .card__instructor {
+    margin: 0.8em 0;
+  }
+}
 .card__instructor-header {
   border-bottom: 1px solid #ededed;
   text-transform: uppercase;
-  padding: 1em;
+  padding: 1em 1.5em;
 }
 .card__instructor-header-title {
   color: #767676;
@@ -17775,10 +17810,10 @@ ul.dropdown-menu:after {
   padding: 1em 0em 0em 0em;
 }
 .card__instructor .card-list-item .form-group {
-  padding: 0em 2em 0em 2em;
+  padding: 0em 1.5em 0em 1.5em;
 }
 .card__instructor .card-list-item .view-mode {
-  padding: 1em 2em 4em 2em;
+  padding: 1em 1.5em 4em 1.5em;
 }
 .card__instructor .card-list-item textarea {
   resize: none;
@@ -17799,6 +17834,7 @@ ul.dropdown-menu:after {
 .card__instructor-buttons .btn-default {
   border-bottom: none;
   border-left: none;
+  color: #979797 !important;
 }
 .card__instructor-buttons .btn-default:hover {
   background: transparent;
@@ -19412,6 +19448,7 @@ blockquote {
 .trulii-activity-card__body {
   height: 175px;
   background-color: white;
+  text-align: center;
 }
 .trulii-activity-card__body__content__title {
   color: #222328;
@@ -19456,6 +19493,7 @@ blockquote {
 .trulii-activity-card-organizer .trulii-activity-card__header__menu {
   position: absolute;
   right: 0;
+  top: 7px;
 }
 .trulii-activity-card-organizer .trulii-activity-card__header__menu__item__icon {
   color: #cbcbcb;
@@ -19466,6 +19504,7 @@ blockquote {
 .trulii-activity-card-organizer .trulii-activity-card__body {
   width: 70%;
   float: left;
+  text-align: left;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content {
   margin-right: auto;
@@ -19474,14 +19513,17 @@ blockquote {
   z-index: 1000;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__price {
-  padding-top: 40px;
+  padding-top: 50px;
+}
+.trulii-activity-card-organizer .trulii-activity-card__body__content__free {
+  padding-top: 35px;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__attendes {
   color: #767676;
   text-decoration: underline;
   position: absolute;
   right: 12px;
-  top: 122px;
+  top: 137px;
 }
 .trulii-activity-card-organizer .trulii-activity-card__category__label {
   top: 10px;
@@ -22244,14 +22286,14 @@ blockquote {
   width: 11em;
 }
 .review-detail .btn-mark-read {
-  width: 5em;
+  width: auto;
   margin-right: 1em;
-  padding: 0;
 }
 .review-detail .btn-mark-read i {
-  font-size: 1.7em;
+  font-size: 1.5em;
   font-weight: 100;
   color: #767676;
+  margin-left: 0.3em;
 }
 .review-detail .btn-reply {
   background: #334cd5;
@@ -22304,6 +22346,9 @@ blockquote {
   .review-detail .review-content .pull-right {
     float: none !important;
   }
+}
+.review-detail .review-buttons .btn-default {
+  color: #979797 !important;
 }
 .review-response .review-avatar {
   width: 45px;
@@ -22654,11 +22699,12 @@ blockquote {
   .home-footer__links .link-column {
     margin-top: 2em;
     padding: 0em 2em 0em 0em;
+    border-bottom: 1px solid #a1a6bb;
   }
 }
 .home-footer__links .link-column .header {
   color: white;
-  font-size: 0.9em;
+  font-size: 1em;
   text-transform: uppercase;
   margin-bottom: 2em;
   font-weight: bold;
@@ -22667,7 +22713,6 @@ blockquote {
 @media screen and (max-width: 768px) {
   .home-footer__links .link-column .header {
     margin-bottom: 0.8em;
-    font-size: 1.2em;
   }
 }
 .home-footer__links .link-column .arrow-down {

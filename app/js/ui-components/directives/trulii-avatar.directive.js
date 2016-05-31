@@ -40,15 +40,7 @@
 
                 //--------- Internal Functions ---------//
 
-                function _setStrings() {
-                    if (!scope.strings) {
-                        scope.strings = {};
-                    }
-
-                    angular.extend(scope.strings, {
-
-                    });
-                }
+               
                 
                 function _setAvatar() {
                     if(scope.user){
@@ -65,8 +57,6 @@
                 }
 
                 function _activate() {
-                    console.log(scope.user);
-                    _setStrings();
                     _setAvatar();
 
                 }
