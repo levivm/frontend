@@ -23,15 +23,16 @@
     font-family: @font-sans;
     border-radius: 1.5em;
     padding: 1em 2em;
-    font-weight: 700 !important;
+    font-weight: 800 !important;
     text-transform: uppercase;
     font-size: 0.8em;
+    transition: all 0.25s;
     &-lg{
         font-size: 1em;
-        padding: 0.8em 5em;
+        padding: 1.25em 0;
+        border-radius: 3em;
     }
-   
-
+    
     &-default{
         background-color: white;
         border: 1px solid @gray-lighter;
@@ -41,6 +42,14 @@
         border-color: transparent;
     }
 
+    &-dark{
+        color: @btn-dark-color;
+        background-color: @btn-dark-bg;
+        &:hover, &:focus{
+            color: @btn-dark-color;
+            background-color: @btn-darker-border;
+        }
+    }
     &-light{
         border: 1px solid white;
         background-color: transparent;

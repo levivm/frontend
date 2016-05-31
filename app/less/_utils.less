@@ -281,7 +281,15 @@
 .clear-both{
   clear: both;
 }
+.flex-wrap{
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
 
+	-webkit-flex-wrap: wrap;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
+}
 .flex-container{
 	display: -webkit-box !important;
 	display: -webkit-flex !important;
@@ -1100,4 +1108,8 @@
 			-moz-transition:background-color 0.4s linear;
 			transition:background-color 0.4s linear;
 	}
+}
+
+.dynamic-layout-wrapper{
+	margin-bottom: 50px;
 }

@@ -15,7 +15,7 @@
 }
 .cover:after{
   width: 100%;
-  background-color:rgba(60, 61, 65, 0.4);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .detail-cover{
@@ -55,6 +55,9 @@
   font-size: 1.4em;
 
 }
+.trulii-cover__detail{
+    margin-top: -110px;
+  }
 .trulii-cover, .trulii-cover-small, .trulii-cover-medium, .trulii-cover-regular{
 
   margin-top: -20px; // Mientras se arregla la barra de navegacion
@@ -63,8 +66,7 @@
   position:relative;
   display: block;
   clear: both;
-
-  &__home{
+  &__home, &__detail{
     margin-top: -110px;
   }
   .row{
@@ -95,46 +97,31 @@
        padding-right: 30px;
        padding-left: 30px;
     }
-    .social{
-      .btn-share{
-        &-fb{
-          background-color: transparent;
-          border: 1px solid white;
-          padding-top: 7px;
-          padding-left: 0px;
-          color: white;
-          text-align: center;
-          font-size: 1.1em;
-        }
-        &-twitter{
-          background-color: transparent;
-          border: 1px solid white;
-          padding-top: 7px;
-          padding-left: 0px;
-          color: white;
-          text-align: center;
-          font-size: 1.1em;
-        }
-        &-email{
-          background-color: transparent;
-          border: 1px solid white;
-          padding-top: 7px;
-          padding-left: 1px;
-          color: white;
-          text-align: center;
-          font-size: 1.1em;
-        }
-
-      }
-    }
+    
     .label{
+      display: inline-block;
+      margin: 0 auto;
+      margin-left: 50%;
       color: white;
       border: 2px solid transparent;
-      background-color: transparent;
-      &-default{
-        color: white;
-        border: 2px solid white;
-        background-color: transparent;
+      transform: translateX(-50%);
+    }
+
+    .organizer{
+        text-align: center;
+        font-size: 16px;
+        font-weight: 500;
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    .rating{
+      display: inline-block;
+      margin-left: 50%;
+      margin-top: 15px;
+      transform: translateX(-50%);
+      .glyphicon{
+        padding: 0 2px;
       }
     }
     &-landing{
@@ -178,7 +165,7 @@
     .title{
       font-size: 4.4em;
       margin-top: 0.25em !important;
-
+      margin-bottom: 25px;
       .before-md({
         font-size: 2.5em;
         line-height: 0.85em;
@@ -188,9 +175,6 @@
           margin-bottom: 0.2em;
         }
       });
-
-
-
     }
     p{
       color:white;

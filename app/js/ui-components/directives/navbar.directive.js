@@ -111,7 +111,7 @@
                     scope.showCities=false;
                 }
                 function isLandingState(){
-                  return ($state.current.name==='home' && scope.scroll<100) ;
+                  return (($state.current.name==='home' || $state.current.name==='activities-detail') && scope.scroll<100);
                 }
                 function howToWorkStudent(){
                     _stateGoHowto(STATE_HOW_TO_WORK_HOME);

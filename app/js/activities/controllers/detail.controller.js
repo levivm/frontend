@@ -34,7 +34,7 @@
             calendars : [],
             reviews: [],
             cards: [],
-            relatedActivities: relatedActivities.results.slice(0, 3),
+            relatedActivities: relatedActivities.results.slice(0, 4),
             calendar : null,
             activity : null,
             organizer : organizer,
@@ -290,6 +290,9 @@
             }
 
             vm.map = LocationManager.getMap(activity.location, false);
+
+            vm.map.options = {icon: getAmazonUrl('static/img/map.png')};
+
             vm.marker = LocationManager.getMarker(activity.location);
 
             //uiGmapIsReady.promise(1).then(function (instances) {
@@ -369,6 +372,7 @@
                 COPY_OPPORTUNITIES: " oportunidades",
                 COPY_EMPTY_SECTION: "El Organizador no ha completado la información de esta sección aún ¡Regresa pronto!",
                 COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
+                COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
                 COPY_TODAY: "Hoy",
                 COPY_DAY: "día ",
                 COPY_DAYS: "días ",
@@ -389,12 +393,12 @@
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
                 COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase, agrégala a favoritos y te avisaremos cuando hayan más fechas disponibles.",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
-                COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días. Porque tú te lo mereces ",
+                COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
                 LABEL_SCHEDULE: "Horario",
                 LABEL_START: "Inicio",
-                LABEL_VACANCY: "Vacantes",
-                LABEL_SESSIONS_NUMBER: "N° Sesiónes",
+                LABEL_VACANCY: "Cupos Disponibles",
+                LABEL_SESSIONS_NUMBER: "N° de Clases",
                 LABEL_COST: "Precio",
                 LABEL_NEXT_DATE: "Próximo Inicio",
                 LABEL_CLOSING_DATE: "Ventas hasta",
@@ -420,11 +424,15 @@
                 VALUE_WITH_CERTIFICATION: "Con Certificado",
                 VALUE_WITHOUT_CERTIFICATION: "Sin Certificado",
                 REASON_NO_COMMISSIONS: "Sin Comisiones",
-                REASON_COPY_NO_COMMISSIONS: "En serio, ¡te lo prometemos!",
+                REASON_COPY_NO_COMMISSIONS_1: "Nuestro servicio para ti",
+                REASON_COPY_NO_COMMISSIONS_2: "es totalmente gratuito.",
                 REASON_REFUND: "Devolución Garantizada",
-                REASON_COPY_REFUND: "Por si no se realiza la actividad.",
+                REASON_COPY_REFUND_1: "Protegemos tu pago hasta",
+                REASON_COPY_REFUND_2: "que se efectúe la clase.",
                 REASON_SECURE: "Pago Seguro",
-                REASON_COPY_SECURE: "Inscribete con tranquilidad.",
+                REASON_COPY_SECURE_1: "Los datos del pago de tu",
+                REASON_COPY_SECURE_2: "inscripción están seguros",
+                REASON_COPY_SECURE_3: "con nosotros.",
                 EMAIL_MODAL_HEADER: "Comparte vía correo electrónico",
                 EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
                 EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
@@ -441,22 +449,22 @@
             });
         }
 
-        function _initWidget(){
-            angular.element(document).ready(function () {
-                vm.scroll = window.scrollY;
-                vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-                vm.widgetAbsolutePosition = (document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-                $scope.$on('scrolled',
-                  function(scrolled, scroll){
-                    vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-                    vm.widgetAbsolutePosition = (document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-                    vm.scroll = scroll;
-                    $scope.$apply();
-                  }
-                );
-            });
-        }
+        // function _initWidget(){
+        //     angular.element(document).ready(function () {
+        //         vm.scroll = window.scrollY;
+        //         vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
+        //         vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+        //         vm.widgetAbsolutePosition = (document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+        //         $scope.$on('scrolled',
+        //           function(scrolled, scroll){
+        //             vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+        //             vm.widgetAbsolutePosition = (document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
+        //             vm.scroll = scroll;
+        //             $scope.$apply();
+        //           }
+        //         );
+        //     });
+        // }
 
         function _initSignup(){
           vm.selectedActivity = 0;
@@ -547,7 +555,7 @@
 
             _setSocialShare();
             _setReviews();
-            _initWidget();
+            // _initWidget();
             _initSignup();
 
         }
