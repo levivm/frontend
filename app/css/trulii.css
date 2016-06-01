@@ -12460,7 +12460,7 @@ hr.on-light {
   margin: 0 auto;
   max-width: 1300px;
   width: 850px;
-  margin-left: 20px;
+  margin-left: 30px;
   margin-top: 1.3em;
 }
 @media (max-width: 1299px) {
@@ -15684,6 +15684,20 @@ select {
   color: #a1a6bb;
   right: 20px;
   top: 4px;
+  position: absolute;
+  font-weight: 100;
+  z-index: 100;
+}
+.select-forms__date label .datepicker {
+  background-color: #e4e7ef !important;
+}
+.select-forms__date label:after {
+  content: "\f133";
+  font-family: "FontAwesome";
+  font-size: 20px;
+  color: #767676;
+  right: 20px;
+  top: 6px;
   position: absolute;
   font-weight: 100;
   z-index: 100;
@@ -23115,7 +23129,7 @@ input[type=text].form-control.referral-link:focus {
   font-weight: normal;
 }
 .with-footer {
-  padding-bottom: 35px !important;
+  padding-bottom: 60px !important;
 }
 .dashboard-footer {
   padding: 0.75em 1em 0.125em 1em;

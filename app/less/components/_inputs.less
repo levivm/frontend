@@ -52,6 +52,27 @@ select{
 		}
 	}
 	
+	&__date{
+		label{
+			.datepicker{
+				background-color: @gray-light-brand !important;
+			}
+			&:after{
+				content: "\f133";   
+				font-family: "FontAwesome";
+				font-size: 20px;
+				color: @gray-dark;
+				right: 20px;
+				top: 6px;
+				position: absolute;
+				font-weight: 100;
+				z-index: 100;
+			}
+		}
+	
+		
+	}
+	
 	
 }
 .location-dashboard, .double-input{

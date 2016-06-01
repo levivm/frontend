@@ -46,13 +46,11 @@
             vm.subItems[item] = !vm.subItems[item];
         }
         
-        function hideSubItems() {
-            vm.subItems ={
-                activities: false,
-                account: false,
-                reviews: false,
-                transactions: false
-            }
+        function hideSubItems(subItem) {
+            angular.forEach(vm.subItems, function(value, item){
+                if(item!==subItem)
+                    vm.subItems[item] = false;  
+            });   
         }
         
         //--------- Internal Functions ---------//

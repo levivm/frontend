@@ -2,6 +2,18 @@
     <div class="row ">
         
         <ul class="sidebar sidebar-organizer hidden-xs hidden-sm">
+            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.profile')}">
+                <a ui-sref=".profile"
+                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_PROFILE); dash.hideSubItems()">
+                    <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
+                </a>
+            </li>
+            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account.password')}">
+                <a ui-sref=".account.password"
+                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACCOUNT); dash.hideSubItems()">
+                    <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
+                </a>
+            </li>
             <li class="sidebar__item" >
                 <a ng-click="dash.showSubItems(dash.strings.ACTIVITIES_ITEMS); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES)">
                     <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
@@ -12,35 +24,23 @@
                     ng-class="{'sidebar__item-expanded': dash.isActive('student-dashboard.activities.*') || dash.subItems[dash.strings.ACTIVITIES_ITEMS]}" > 
                     <li class="sidebar__item-subitem"  ng-class="{'sidebar__item-subitem--selected': dash.isActive('student-dashboard.activities.current')}">
                         <a ui-sref=".activities.current"
-                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems()">
+                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems(dash.strings.ACTIVITIES_ITEMS)">
                             <span ng-bind="::dash.strings.SECTION_ACTIVITIES_CURRENT"></span>
                         </a>
                     </li>
                     <li class="sidebar__item-subitem" ng-class="{'sidebar__item-subitem--selected': dash.isActive('student-dashboard.activities.open')}">
                         <a ui-sref=".activities.open"
-                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems()">
+                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems(dash.strings.ACTIVITIES_ITEMS)">
                             <span ng-bind="::dash.strings.SECTION_ACTIVITIES_NEXT" ></span>
                         </a>
                     </li>
                     <li class="sidebar__item-subitem" ng-class="{'sidebar__item-subitem--selected': dash.isActive('student-dashboard.activities.closed')}">
                         <a ui-sref=".activities.closed"
-                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems()">
+                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems(dash.strings.ACTIVITIES_ITEMS)">
                             <span ng-bind="::dash.strings.SECTION_ACTIVITIES_LAST" ></span>
                         </a>
                     </li>
                 </ul>
-            </li>
-            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account.password')}">
-                <a ui-sref=".account.password"
-                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACCOUNT); dash.hideSubItems()">
-                    <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
-                </a>
-            </li>
-            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.profile')}">
-                <a ui-sref=".profile"
-                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_PROFILE); dash.hideSubItems()">
-                    <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
-                </a>
             </li>
             <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.history.orders')}">
                 <a ui-sref=".history.orders"

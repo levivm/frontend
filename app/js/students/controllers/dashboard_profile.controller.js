@@ -160,6 +160,10 @@
             var sizeUpload = pictureToUpload.size / 1000;
             return sizeUpload < SIZE_PICTURE_UP;
         }
+        
+        function _setFullName(){
+            vm.student.fullName= vm.student.user.first_name+' '+vm.student.user.last_name;
+        }
 
 
         function _setStrings() {
@@ -180,7 +184,8 @@
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
                 OPTION_SELECT: "Seleccione Ciudad",
-                SECTION_PROFILE: "Mi Perfil",
+                SECTION_PROFILE: "Perfil",
+                COPY_PROFILE: "Esta información aparecerá en tu perfil y lo veran los demás usuarios.",
                 TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 2.5Mb"
             });
         }
@@ -190,6 +195,8 @@
             _setGender(vm.student.gender);
             _setCity(vm.student.city);
             _setDates();
+            _setFullName();
+            console.log(vm.student);
             datepickerPopupConfig.showButtonBar = false;
         }
 
