@@ -25,7 +25,10 @@
             toggleSidebar: toggleSidebar,
             clickItem:clickItem,
             getAmazonUrl: getAmazonUrl,
-            unreadNotificationsCount: messages.unread_messages
+            unreadNotificationsCount: messages.unread_messages,
+            subItems: {},
+            showSubItems: showSubItems,
+            hideSubItems:hideSubItems,
         });
 
         _activate();
@@ -39,7 +42,19 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-
+         function  showSubItems(item) {
+            vm.subItems[item] = !vm.subItems[item];
+        }
+        
+        function hideSubItems() {
+            vm.subItems ={
+                activities: false,
+                account: false,
+                reviews: false,
+                transactions: false
+            }
+        }
+        
         //--------- Internal Functions ---------//
 
         function _changeState(newState) {
@@ -60,23 +75,40 @@
             }
             angular.extend(vm.strings, {
                 SECTION_ACTIVITIES: "Actividades",
+                SECTION_ACTIVITIES_CURRENT: "Actuales",
+                SECTION_ACTIVITIES_NEXT: "Próximas",
+                SECTION_ACTIVITIES_LAST: "Anteriores",
                 SECTION_ACCOUNT: "Cuenta",
                 SECTION_PROFILE: "Perfil",
                 SECTION_HISTORY: "Transacciones",
                 SECTION_WISHLIST: "Favoritos",
-                SECTION_NOTIFICATIONS: "Notificaciones"
+                SECTION_NOTIFICATIONS: "Notificaciones",
+                ACTIVITIES_ITEMS: 'activities',
+                
             });
         }
-
-        function _initScroll(){
-            $scope.$on('scrolled',
-              function(scrolled, scroll){
-                vm.scroll = scroll;
-                $scope.$apply();
-              }
-            );
+        function _initWidget(){
+            angular.element(document).ready(function () {
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
+                    var sideBarPosition = (document.getElementsByClassName('sidebar-organizer')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('sidebar-organizer')[0].offsetHeight;
+                    var footerPosition = document.getElementsByClassName('container-fluid')[0].offsetHeight - 80 ;
+                    vm.scroll = scroll;
+                    var positionToFixed = window.scrollY +  document.getElementsByClassName('sidebar-organizer')[0].offsetHeight;
+                    if( positionToFixed >= footerPosition ){
+                         document.getElementsByClassName('sidebar-organizer')[0].style.position = 'absolute';
+                         document.getElementsByClassName('sidebar-organizer')[0].style.top =  footerPosition-document.getElementsByClassName('sidebar-organizer')[0].offsetHeight+'px';
+                       
+                    }else{
+                        document.getElementsByClassName('sidebar-organizer')[0].style.position = 'fixed';
+                        document.getElementsByClassName('sidebar-organizer')[0].style.top = '90px';
+                    }
+                    
+                    $scope.$apply();
+                  }
+                );
+            });
         }
-        
         function _initNotificationWatch(){
           $scope.$on('update_notifications',
             function(){
@@ -87,11 +119,14 @@
           );
         }
 
-
+        
         function _activate() {
             setStrings();
-            _initScroll();
             _initNotificationWatch();
+            _initWidget();
+             vm.subItems ={
+                activities: false
+            }
         }
     }
 
