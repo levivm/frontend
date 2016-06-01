@@ -41,7 +41,9 @@
 
             function result(){
                 console.log('onChange.vm.instructors:', vm.instructors);
-                vm.countInstructors--;
+                if(vm.countInstructors>0){
+                    vm.countInstructors--;
+                }
                 _setInstructors();
             }
         }

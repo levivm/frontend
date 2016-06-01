@@ -48,19 +48,19 @@
                     <!-- Name-->
                     <span class="review-content__name" ng-bind="::user.user.full_name"></span>
                     <!-- End name -->
-                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less">|</span>
+                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <br class="hidden-md hidden-lg">
                     <!-- Date -->
                     <span class="review-content__text-header" ng-if="review.created_at" ng-bind="::review.created_at | date : 'MMM d, y'">
                     </span>
-                     <span class="hidden-xs hidden-sm separate-left-less separate-right-less">|</span>
+                     <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <!-- End date-->
                     <!-- Activity <a ui-sref="activities-detail({'activity_id': review.activity_data.id})" ng-bind="::review.activity_data.title"></a>-->
                     <span class="review-content__text-header">
                         <span ng-bind="::review.activity_data.title"></span>
                     </span>
                     <!-- End Activity -->
-                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less">|</span>
+                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <!-- Score -->
                     <span class="review-content__rating hidden-xs hidden-sm">
                         <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
@@ -69,7 +69,7 @@
                     </span>
                     <!-- End score-->
                     <!-- Review mobile -->
-                    <span class="hidden-md hidden-lg" style="padding: 0 5px; font-size: 0.8125em;">|</span> <!-- Porque Daniel es obsesivo compulsivo -->
+                    <span class="hidden-md hidden-lg text-gray-light" style="padding: 0 5px; font-size: 0.8125em;">|</span> <!-- Porque Daniel es obsesivo compulsivo -->
                     <span class="hidden-md hidden-lg review-content__rating-mobile" ng-if="review.created_at">
                         <i class="glyphicon glyphicon-star star">
                             <span class="sr-only ng-binding">(*)</span>
@@ -103,12 +103,12 @@
     <div class="row" ng-if="isOrganizer && onDashboard" ng-hide="hasReply || review.read">
         <div class="col-xs-11 col-sm-offset-1">
             <div class="row">
-                <div class="col-xs-1 col-sm-1 separate-above-less separate-below-less">
+                <div class="col-xs-1 col-sm-1 separate-below-less">
                      <div class="review-organizer-avatar">
                          <trulii-avatar user="ownUser" size="40" avatar-class="small" ></trulii-avatar>
                      </div>
                 </div>
-                <div class="col-xs-11 col-sm-11 separate-above-less separate-below-less">
+                <div class="col-xs-11 col-sm-11  separate-below-less">
                     <!--<input id="review-reply" class="form-control" name="review-reply"
                            ng-model="review.reply"
                            placeholder="{{strings.COPY_COMMENT_PLACEHOLDER}}"
@@ -121,12 +121,13 @@
                 </div>
             </div>
             <!--Buttons-->
-            <div class="separate-above-less separate-below-less  flex-betweent-container review-buttons" ng-hide="hasReply || review.read">
+            <div class="col-sm-11 col-sm-offset-1 no-padding-horizontal separate-above-less separate-below-less  flex-betweent-container review-buttons" ng-hide="hasReply || review.read">
                     <button class="btn btn-default  font-light" ng-bind="::strings.LABEL_REPORT_BUTTON"
                             ng-click="show.reportWarning = !show.reportWarning">
                     </button>
                     <div class="flex-container separate-left-less ">
                         <button class="btn btn-default btn-mark-read separate-left-less font-light" ng-click="markAsRead()" >
+                           <span ng-bind="::strings.ACTION_MARK_AS_READ"></span>
                            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                         </button>
                         <button class="btn btn-primary btn-reply font-light"
@@ -157,19 +158,19 @@
         <div class="col-xs-3 col-xs-offset-1 col-sm-2">
             <!--TODO organizer-->
              <div class="review-avatar">
-                <trulii-avatar user="organizer" size="60" avatar-class="medium" ></trulii-avatar>
+                <trulii-avatar user="activity.organizer" size="40" avatar-class="small" ></trulii-avatar>
             </div>
         </div>
         <div class="col-xs-8 col-xs-offset-1 col-sm-7 col-md-9 col-md-offset-0 paragraph-condensed review-content">
                      <!-- Name-->
                     <span class="review-content__name" ng-bind="::organizer.name"></span>
                     <!-- End name -->
-                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less">|</span>
+                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <br class="hidden-md hidden-lg">
                     <!-- Date -->
                     <span class="review-content__text-header"  ng-bind="::review.replied_at | date : 'MMM d, y'">
                     </span>
-                     <span class="hidden-xs hidden-sm separate-left-less separate-right-less">|</span>
+                     <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <!-- End date-->
                     <!-- Activity <a ui-sref="activities-detail({'activity_id': review.activity_data.id})" ng-bind="::review.activity_data.title"></a>-->
                     <span class="review-content__text-header">

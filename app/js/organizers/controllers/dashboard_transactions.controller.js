@@ -69,11 +69,15 @@
           if(date === 'sales_from_date'){
             vm.salesFilter.from_date_opened = true;
             vm.salesFilter.until_date_opened = false;
+            console.log('sales_from_date');
           }
           if(date === 'sales_until_date'){
             vm.salesFilter.until_date_opened = true;
             vm.salesFilter.from_date_opened = false;
+            console.log('sales_until_date');
           }
+          
+          //updateByQuery(vm.TYPE_SALES);
         }
 
         function updateByQuery(type){

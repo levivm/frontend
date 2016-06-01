@@ -121,9 +121,9 @@
 			}
 		}
 		&-subitems{
-			text-transform: uppercase;
-			font-weight: 300;
-			font-size: 0.8em;
+			text-transform: Capitalize;
+			font-weight: 400;
+			font-size: 1em;
 			max-height: 0;
             overflow: hidden;
             transition: max-height 0.15s ease-out;
@@ -133,10 +133,11 @@
        	 	transition: max-height 0.25s ease-in;
 		}
 		&-subitem{
-			border-bottom: 1px solid @gray-light;
-			background: @gray-lighter;
+			border-bottom: 1px solid rgba(203, 203, 203, 0.4);
+			background: @gray-lighter-brand;
 			a{
-				padding-left: 1.3em
+				padding-left: 1.3em;
+				color: @gray-regular !important;
 			}
 			&--selected{
 				a{
@@ -423,7 +424,7 @@
 	transition: .4s ease all;
 	font-size: 1.2em;
 	.profile{
-		border-bottom: 1px solid rgb(255, 255, 255);
+		border-bottom: 1px solid @gray-dark-brand;
 		padding: 1em 1.2em;
 		display: flex;
     	align-items: center;

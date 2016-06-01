@@ -26,6 +26,7 @@
             getAmazonUrl: getAmazonUrl,
             subItems: {},
             showSubItems: showSubItems,
+            hideSubItems:hideSubItems,
             titleActive: ''
         });
 
@@ -50,9 +51,16 @@
         
         function  showSubItems(item) {
             vm.subItems[item] = !vm.subItems[item];
-            console.log(vm.subItems[item]);
         }
         
+        function hideSubItems() {
+            vm.subItems ={
+                activities: false,
+                account: false,
+                reviews: false,
+                transactions: false
+            }
+        }
         
         //Function send data analytics
 

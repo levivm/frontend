@@ -201,11 +201,10 @@
                       scope.hasReview = false;
                       angular.extend(scope.review, EMPTY_REVIEW);
                     }
-
+                    console.log(scope.review);
                     // TODO Might be redundant
                     if(scope.activity){
                         scope.organizer = scope.activity.organizer;
-                        console.log(scope.organizer);
                     }
                     _getActivityInstance();
                 }

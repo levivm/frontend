@@ -55,6 +55,8 @@
                     logout:logout,
                     subItems: {},
                     showSubItems: showSubItems,
+                    isActive:isActive,
+                    hideSubItems:hideSubItems
                 });
 
                 _activate();
@@ -85,9 +87,23 @@
                 function toggleSideBar() {
                    scope.showSideBar= !scope.showSideBar;
                 }
+                
+                function isActive(stateStr){
+                    return $state.includes(stateStr);
+                }
                 function showSubItems(item) {
                     scope.subItems[item] = !scope.subItems[item];
                 }
+                
+                function hideSubItems() {
+                     scope.subItems ={
+                        activities: false,
+                        account: false,
+                        reviews: false,
+                        transactions: false
+                    }
+                }
+                
                 function logout() {
                     scope.userLogged = false;
                     $timeout(function () {

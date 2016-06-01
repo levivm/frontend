@@ -28,12 +28,12 @@
             data-total-items="reviews.readPaginationOpts.totalItems"
             data-items-per-page="reviews.readPaginationOpts.itemsPerPage"></pagination>
     </div>
-    <div class="col-xs-8 col-xs-offset-2 text-center" ng-if="reviews.read_reviews.length <= 0">
-        <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
-                alt="{{reviews.strings.COPY_EMPTY_READ}}"
-                class="img-responsive center-block"/>
-        <p class="separate-below separate-above text-muted"
-            ng-bind="::reviews.strings.COPY_EMPTY_READ">
-        </p>
+    
+     <div ng-if="reviews.read_reviews.length <= 0" class="row">
+        <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
+             <p class="separate-below separate-above "
+                ng-bind="::reviews.strings.COPY_EMPTY_READ">
+            </p>
+        </div>
     </div>
 </div>
