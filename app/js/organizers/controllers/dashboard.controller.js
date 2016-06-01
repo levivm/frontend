@@ -50,9 +50,10 @@
         }
         
         function hideSubItems(subItem) {
-            for (var item in  vm.subItems)
+            angular.forEach(vm.subItems, function(value, item){
                 if(item!==subItem)
                     vm.subItems[item] = false;  
+            });    
         }
         
         //Function send data analytics
