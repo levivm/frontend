@@ -8,8 +8,8 @@
                     <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
                 </a>
             </li>
-            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account.password')}">
-                <a ui-sref=".account.password"
+            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account')}">
+                <a ui-sref=".account"
                     ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACCOUNT); dash.hideSubItems()">
                     <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
                 </a>

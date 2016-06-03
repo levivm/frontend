@@ -103,7 +103,7 @@
 
             change_email : function () {
                 var scope = this;
-                return Authentication.change_email(this.email)
+                return Authentication.change_email(this.user.email)
                     .then(success, error);
 
                 function success(response) {
