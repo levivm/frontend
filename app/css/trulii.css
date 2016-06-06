@@ -12307,10 +12307,12 @@ hr.on-light {
 .dashboard-messages-detail {
   border: 1px solid #ededed;
 }
-.dashboard-messages-detail .delete-message {
+.dashboard-messages-detail__delete {
   float: right;
   font-size: 1.3em;
-  color: #cbcbcb;
+  margin-top: 0.4em;
+  cursor: pointer;
+  color: #767676;
 }
 .dashboard-messages-detail .title-message {
   padding: 3em 0em 1em 0em;
@@ -12472,6 +12474,9 @@ hr.on-light {
     margin-left: 15px;
   }
 }
+.limited-width-dashboard__activities {
+  width: 910px;
+}
 @media screen and (max-width: 992px) {
   .limited-width-dashboard {
     max-width: 100%;
@@ -12551,15 +12556,22 @@ hr.on-light {
   width: 900px;
   margin-top: 20px;
 }
+@media (max-width: 1299px) {
+  .limited-width-dashboard .dynamic-layout {
+    width: 600px;
+    margin-left: 1rem;
+  }
+}
+@media (max-width: 640px) {
+  .limited-width-dashboard .dynamic-layout {
+    width: 300px;
+  }
+}
 .limited-width-dashboard .dynamic-layout-col-4 {
   width: 300px;
 }
 .limited-width-dashboard .dynamic-layout-col-8 {
   width: 600px;
-}
-.limited-width-dashboard .dynamic-layout-container-fluid {
-  left: 0;
-  transform: none;
 }
 .trulii-checkbox input[type="checkbox"] {
   display: none;
@@ -12700,6 +12712,9 @@ hr.on-light {
 }
 .text-dark {
   color: #222328 !important;
+}
+.text-blue-dark {
+  color: #3a405b !important;
 }
 .text-gray-green {
   color: #587272;
@@ -16673,6 +16688,9 @@ td {
 .panel-default__dashboard-sub-second {
   border-radius: 0px 0px 5px 5px;
   padding: 1em 2em;
+}
+.panel-default__dashboard__search {
+  padding: 1.5em 2em;
 }
 .panel-default__dashboard-search {
   position: absolute;
@@ -22588,7 +22606,6 @@ blockquote {
 }
 .order-detail {
   margin: 0;
-  border: 1px solid #ededed;
 }
 .order-detail .pull-left {
   margin-right: 40px;
@@ -22613,11 +22630,11 @@ blockquote {
 }
 .order-detail .order-description,
 .order-detail .order-info {
-  background-color: #ededed;
+  background-color: rgba(119, 133, 191, 0.15);
   align-items: stretch;
 }
 .order-detail .order-description {
-  padding: 25px 35px;
+  padding: 0px 35px;
 }
 .order-detail .order-info {
   background-color: white;
@@ -22676,6 +22693,9 @@ blockquote {
   }
   .glyphicon,
   .column-button {
+    display: none;
+  }
+  .home-footer__links {
     display: none;
   }
 }

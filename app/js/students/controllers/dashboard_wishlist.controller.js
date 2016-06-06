@@ -68,7 +68,8 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                COPY_WISHLIST: "Favoritos",
+                TAB_WISHLIST: "Favoritos",
+                COPY_WISHLIST: "Estas son tus actividades favoritas. No te despistes que en cualquiere momento se pueden agotar los cupos. ¿Qué esperas para insicribirte?",
                 COPY_EMPTY_ACTIVITIES: "No tienes favoritos, comienza a buscar actividades ya",
                 ACTION_SEARCH_ACTIVITY: "Buscar Actividad"
             });

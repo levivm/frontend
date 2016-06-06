@@ -1,45 +1,47 @@
-<!--If there are activities-->
-<div ng-if="activities.past_activities.length > 0">
 
 
-  <div class="row separate-above-medium separate-below-medium"
-     ng-repeat="activity in activities.past_activities track by activity.id">
-    <div class="col-xs-12 col-md-4">
-        <trulii-activity-item
-                data-activity="activity" data-options="{{activities.options}}">
-        </trulii-activity-item>
-    </div>
-    <div class="col-xs-12 col-md-7">
-        <a ui-sref="student-dashboard.history.orders.order({orderId: activity.orders[0].id})"
-           ng-bind="activities.strings.COPY_ORDER_DETAIL"
-           class="text-underline text-gray-light"></a>
-        <trulii-activity-review data-review="activity.reviews[0]"
-                                data-activity="activity"
-                                data-on-dashboard="true"
-                                class="separate-above" ></trulii-activity-review>
-    </div>
-    <hr/>
-  </div>
-
-  <div class="text-center" ng-if="activities.pastPaginationOpts.totalItems > activities.pastPaginationOpts.itemsPerPage">
-    <pagination class="pagination-sm"
-      ng-model="activities.pastPaginationOpts.pageNumber"
-      ng-change="activities.updateByQuery(activities.TYPE_PAST)"
-      data-total-items="activities.pastPaginationOpts.totalItems"
-      data-items-per-page="activities.pastPaginationOpts.itemsPerPage"></pagination>
-  </div>
-</div>
-
-<!--If there are no activities-->
-<div ng-if="activities.past_activities.length <= 0" class="row">
-    <div class="col-md-6 col-md-offset-3 text-center">
-        <img class="separate-below-less " width="120" ng-src="{{dash.getAmazonUrl('static/img/student_dashboard_activities_empty.png')}}"
-             alt="{{activities.strings.LABEL_EMPTY_ACTIVITIES}}"/>
-        <h4 class="standout-text" ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES"></h4>
-        <div class="separate-below separate-above standout-text"
-             ng-bind="::activities.strings.COPY_EMPTY_ACTIVITIES">
+<div class="fade in">
+    
+    <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+            <h4 class="panel-default__dashboard-title" ng-bind="::activities.strings.TAB_LAST"></h4>
+     </div>
+     <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+            <span class="text-gray-dark" ng-bind="::activities.strings.COPY_LAST"></span>
+     </div>
+    <div ng-if="activities.past_activities.length > 0" class="row separate-below-medium"
+        ng-repeat="activity in activities.past_activities track by activity.id">
+        <div class="col-xs-12 col-md-4">
+            <trulii-activity-item
+                    data-activity="activity" data-options="{{activities.options}}">
+            </trulii-activity-item>
         </div>
-        <button class="btn btn-lg btn-success" ng-click="activities.searchActivities()"
-           ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES"></button>
+        <div class="col-xs-12 col-md-7">
+            <a ui-sref="student-dashboard.history.orders.order({orderId: activity.orders[0].id})"
+            ng-bind="activities.strings.COPY_ORDER_DETAIL"
+            class="text-underline text-gray-light"></a>
+            <trulii-activity-review data-review="activity.reviews[0]"
+                                    data-activity="activity"
+                                    data-on-dashboard="true"
+                                    class="separate-above" ></trulii-activity-review>
+        </div>
+        <hr/>
+    </div>
+     <div class="text-center" ng-if="activities.pastPaginationOpts.totalItems > activities.pastPaginationOpts.itemsPerPage">
+        <pagination class="pagination-sm"
+        ng-model="activities.pastPaginationOpts.pageNumber"
+        ng-change="activities.updateByQuery(activities.TYPE_PAST)"
+        data-total-items="activities.pastPaginationOpts.totalItems"
+        data-items-per-page="activities.pastPaginationOpts.itemsPerPage"></pagination>
+    </div>
+    <!--If there are no activities-->
+    <div  ng-if="activities.past_activities.length <= 0"  class="row">
+        <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
+            <p class="separate-below separate-above "
+                 ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES">
+            </p> 
+            <button class="btn col-md-5 btn-success margin-horizontal-less separate-below-less" ng-click="activities.searchActivities()"
+                    ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES">
+            </button>
+        </div>
     </div>
 </div>

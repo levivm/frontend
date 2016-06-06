@@ -137,6 +137,7 @@
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE: "Fecha inicio: ",
+                TAB_HISTORY: "Transacciones",
                 LABEL_SEARCH:"Revisa toda la informacion de tu orden de compra. "
                 + "Puedes incluso solicitar el reembolso del monto total de la orden o el monto "
                 + "correspondiente por cada asistente",

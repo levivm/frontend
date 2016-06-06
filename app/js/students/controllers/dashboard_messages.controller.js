@@ -51,7 +51,9 @@
                 SEARCH_PLACEHOLDER: "Buscar",
                 PREVIOUS_TEXT:"Previo",
                 NEXT_TEXT:"Siguiente",
-                COPY_NO_MESSAGES: "No tienes notificaciones por el momento"
+                SECTION_MESSAGES: "Notificaciones",
+                COPY_NO_MESSAGES: "No tienes notificaciones por el momento",
+                COPY_MESSAGES: "El organizador se contactará por esta via para notificarte cualquier novedad sobre la actividad"
             });
         }
 

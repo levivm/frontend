@@ -43,9 +43,15 @@
                
                 
                 function _setAvatar() {
+                    var name='';
                     if(scope.user){
                        if(!scope.user.photo){
-                            scope.initial =scope.user.user.first_name.substring(0,1);
+                            if(!scope.user.user ){
+                                name= scope.user.name;
+                            }else{
+                                name = scope.user.user.first_name;
+                            }
+                            scope.initial =name.substring(0,1);
                             element.css('background', colors[scope.user.id % 10].hex);
                             element.css('border-radius', '50%');
                             element.css('width', scope.size + 'px');

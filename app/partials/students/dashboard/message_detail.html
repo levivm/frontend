@@ -1,15 +1,15 @@
-<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
-  <a ui-sref="student-dashboard.notifications">
-    <i class="mdi mdi-navigation-arrow-back arrow-back-messages"></i>
-  </a>
-</div>
 <div class="row fade in">
   <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard">
-      <div class="separate-above dashboard-messages-detail col-xs-12">
-        <a class="btn btn-default float-right separate-above" href="" ng-click="detail.deleteMessage()">
-          <i class="delete-message glyphicon glyphicon-trash"></i>
+      <div class="col-xs-12 panel-default panel-default__dashboard ">
+        <a class="btn btn-default separate-right-less"
+            ui-sref="student-dashboard.notifications">
+            <span ng-bind="::detail.strings.ACTION_GO_BACK"></span>
         </a>
-        <a class="btn btn-default float-right separate-above separate-right-less" href="" ng-click="detail.readMessage()" ng-bind="::detail.strings.MARK_AS_READ">
+        <span class="panel-default__dashboard-title" ng-bind="::detail.strings.SECTION_MESSAGES"></span>
+        <i class="dashboard-messages-detail__delete glyphicon glyphicon-trash pull-right" ng-click="detail.deleteMessage()"></i>
+    </div>
+      <div class="separate-above dashboard-messages-detail col-xs-12">
+        <a class="btn btn-default float-right separate-above separate-right-less" ng-if="!detail.message.is_read" href="" ng-click="detail.readMessage()" ng-bind="::detail.strings.MARK_AS_READ">
         </a>
         <div class="title-message separate-above">
             <h1 class="font-light" ng-bind="::detail.message.activity"></h1>
@@ -17,8 +17,7 @@
         <div class="content-message">
             <div class="row">
                 <div class="col-md-1">
-                    <img class="user-picture" ng-if="detail.message.organizer.photo === null" ng-src="{{dash.getAmazonUrl('static/img/default_profile_pic.jpg')}}" alt="">
-                    <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">
+                    <trulii-avatar user="detail.message.organizer" size="40" avatar-class="small" ></trulii-avatar>
                 </div>
                 <div class="col-md-8 text-line-more-xl">
                     <span class="font-regular text-lg" ng-bind="::detail.message.organizer.name"></span>

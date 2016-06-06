@@ -205,16 +205,17 @@
             }
             angular.extend(vm.strings, {
                 ACTION_SEARCH_ACTIVITIES: "Buscar Actividades",
-                COPY_CURRENT: "Revisa las actividades que estás cursando actualmente o que inician próximamente.",
-                COPY_HISTORY: "Revisa las actividades en las que te has inscrito anteriormente.",
+                COPY_CURRENT: "Estas son las actividades que estás cursando en este momento. Recuerda evaluarlas al terminar",
+                COPY_LAST: "Estas actividades son las que ya culminaron. Guárdalas en favoritos para que sepas cando vuelven a darse.",
                 SECTION_ACTIVITIES: "Mis Actividades",
                 LABEL_EMPTY_ACTIVITIES: "Hasta ahora no ha terminado ninguna actividad",
                 LABEL_EMPTY_CURRENT_ACTIVITIES: "Por los momentos no tiene ninguna actividad en curso",
                 COPY_EMPTY_ACTIVITIES: "Parece ser el momento perfecto para que descubra una nueva pasión,"
                     + " aprenda un nuevo pasatiempo o mejore su currículo",
-                TAB_OPEN: "Próximas",
-                TAB_CLOSED: "Anteriores",
-                TAB_CURRENT: "Actuales",
+                TAB_NEXT: "Actividades / Próximas",
+                COPY_NEXT: "Estas son las actividades que próximamente realizarás. ¡Ya falta poco?",
+                TAB_LAST: "Actividades / Anteriores",
+                TAB_CURRENT: "Actividades / Actuales",
                 COPY_ORDER_DETAIL: "Detalle de la compra",
                 COPY_BEGINNING_ON: "Iniciado el "
             });

@@ -760,10 +760,12 @@
 
 .dashboard-messages-detail{
 	border: 1px solid @gray-lighter;
-	.delete-message{
+	&__delete{
 		float: right;
-    font-size: 1.3em;
-		color: @gray-light;
+		font-size: 1.3em;
+		margin-top: 0.4em;
+		cursor: pointer;
+		color: @gray-dark;
 	}
 	.title-message{
 		padding: 3em 0em 1em 0em;
@@ -923,6 +925,10 @@
 		margin-top: 1.3em;
     margin-left: 15px;
 	}
+	
+	&__activities{
+		width: 910px;    
+	}
 	.before-md({
 		max-width: 100%;
 		margin: auto;
@@ -1011,16 +1017,22 @@
 	.dynamic-layout{
 		width: 900px;
 		margin-top: 20px;
+		@media (max-width: 1299px){
+			width: 600px;
+			margin-left: 1rem;
+		}
+		
+		@media (max-width: 640px){
+			width: 300px;
+		}
+	
+		
 	}
 	.dynamic-layout-col-4{
 		width : 300px;
 	}
 	.dynamic-layout-col-8{
 		width : 600px;
-	}
-	.dynamic-layout-container-fluid{
-		left: 0;
-		transform: none;
 	}
 }
 		

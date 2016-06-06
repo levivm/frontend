@@ -50,11 +50,12 @@
 
         function _setStrings() {
             if (!vm.strings) {
-                vm.strings = {
-                  MARK_AS_READ: "Marcar como leído"
-                };
+                vm.strings = {};
             }
             angular.extend(vm.strings, {
+                SECTION_MESSAGES: "Notificaciones",
+                MARK_AS_READ: "Marcar como leído",
+                ACTION_GO_BACK: "Regresar"
             });
         }
 
