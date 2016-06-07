@@ -196,7 +196,6 @@
             _setCity(vm.student.city);
             _setDates();
             _setFullName();
-            console.log(vm.student);
             datepickerPopupConfig.showButtonBar = false;
         }
 

@@ -11,24 +11,31 @@
       <div class="separate-above dashboard-messages-detail col-xs-12">
         <a class="btn btn-default float-right separate-above separate-right-less" ng-if="!detail.message.is_read" href="" ng-click="detail.readMessage()" ng-bind="::detail.strings.MARK_AS_READ">
         </a>
-        <div class="title-message separate-above">
-            <h1 class="font-light" ng-bind="::detail.message.activity"></h1>
-        </div>
         <div class="content-message">
             <div class="row">
                 <div class="col-md-1">
                     <trulii-avatar user="detail.message.organizer" size="40" avatar-class="small" ></trulii-avatar>
                 </div>
                 <div class="col-md-8 text-line-more-xl">
-                    <span class="font-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
+                    <span class="font-semibold text-blue-dark text-lg" ng-bind="::detail.message.organizer.name"></span>
                 </div>
                 <div class="col-md-3 text-line-more-xl text-right">
-                    <span class="text-gray-light font-light" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
+                    <span class="text-gray-dark font-regular" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
                 </div>
             </div>
-
-            <div class="separate-above-less ">
-                <p class="text-dark font-light" ng-bind="::detail.message.message"></p>
+            <div class="row">
+                <div class="col-md-8  col-md-offset-1 text-line-more-xl">
+                     <div class="font-semibold text-gray-dark" >
+                        <span  ng-bind="::detail.message.activity"></span>
+                    </div>
+                </div>
+            </div>
+             <div class="row">
+                <div class="col-md-8  col-md-offset-1 text-line-more-xl">
+                     <div class="font-light">
+                        <p  ng-bind="::detail.message.message"></p>
+                    </div>
+                </div>
             </div>
         </div>
       </div>

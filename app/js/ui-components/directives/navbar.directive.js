@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -95,13 +95,11 @@
                     scope.subItems[item] = !scope.subItems[item];
                 }
                 
-                function hideSubItems() {
-                     scope.subItems ={
-                        activities: false,
-                        account: false,
-                        reviews: false,
-                        transactions: false
-                    }
+                function hideSubItems(subItem) {
+                    angular.forEach(scope.subItems, function(value, item){
+                        if(item!==subItem)
+                            scope.subItems[item] = false;  
+                    });    
                 }
                 
                 function logout() {
@@ -170,11 +168,22 @@
                         Authentication.isOrganizer().then(function (result) {
                             scope.user.is_organizer = result;
                             scope.isSearchVisible = !result;
+                            scope.subItems ={
+                                activities: false,
+                                account: false,
+                                reviews: false,
+                                transactions: false
+                            }
                             if(scope.user.is_organizer)
                                 _getOrganizerReviews();
                         });
                         Authentication.isStudent().then(function (result) {
                             scope.user.is_student = result;
+                            scope.subItems ={
+                                activities: false
+                            }
+                            if(scope.user.is_student)
+                                _getStudentMessages();
                         });
                         _mapDisplayName(scope.user);
                         _setUserChangedWatch();
@@ -190,6 +199,13 @@
                     OrganizersManager.getReviews(scope.user.id, 1, 6, 'unread')
                                     .then(function (data) {
                                         scope.unreadReviewsCount = data.count;
+                                    })
+                }
+                 
+                function _getStudentMessages() {
+                    StudentsManager.getMessages(scope.user.id, 1, 6)
+                                    .then(function (data) {
+                                        scope.unreadNotificationsCount = data.unread_messages;
                                     })
                 }
                 function _mapDisplayName(data) {
@@ -261,6 +277,9 @@
                         LABEL_ORGANIZER_INSTRUCTORS: 'Instructores',
                         LABEL_ORGANIZER_MESSAGES: 'Mensajes',
                         LABEL_STUDENT_ACTIVITIES: 'Mis Actividades',
+                        LABEL_STUDENT_ACTIVITIES_NEXT: 'Próximas',
+                        LABEL_STUDENT_ACTIVITIES_LAST: 'Anteriores',
+                        LABEL_STUDENT_ACTIVITIES_CURRENT: 'Actuales',
                         LABEL_STUDENT_INVITE: 'Invitar Amigos',
                         LABEL_STUDENT_PROFILE: 'Perfil',
                         LABEL_STUDENT_ACCOUNT: 'Cuenta',
@@ -315,12 +334,7 @@
                         console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         _getUser();
                     });
-                    scope.subItems ={
-                        activities: false,
-                        account: false,
-                        reviews: false,
-                        transactions: false
-                    }
+                    
 
                     scope.$on('$destroy', _cleanUp);
                 }

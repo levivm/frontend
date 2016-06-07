@@ -141,7 +141,7 @@
                 LABEL_SEARCH:"Revisa toda la informacion de tu orden de compra. "
                 + "Puedes incluso solicitar el reembolso del monto total de la orden o el monto "
                 + "correspondiente por cada asistente",
-                LABEL_EMPTY_ORDERS: "No te has inscrito en ninguna actividad aún. Eso nos parte el corazón. ¿Por qué no te animas hoy a aprender lo que te apasiona?",
+                LABEL_EMPTY_ORDERS: "No tienes ninguna transacción porque aún no te has inscrito a ninguna actividad. Anda, ¡anímate!",
                 LABEL_EVERYBODY: "Todos",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un nuevo pasatiemo o mejores tu curriculo",
                 TAB_ORDERS: "Compras",

@@ -15,20 +15,20 @@
     </div>
     <div class="separate-above dashboard-messages-container col-xs-12" ng-if="messages.messages.length > 0">
         <a ng-repeat="message in messages.messages track by message.id" ui-sref="student-dashboard.messages-detail({'messageId': message.id})" class="row student">
-            <div class="col-xs-12 row separate-below-less">
+            <div class="col-xs-12 row ">
                 <div class="col-md-1">
                   
                   <trulii-avatar user="message.organizer" size="40" avatar-class="small" ></trulii-avatar>
                 </div>
                 <div class="col-md-7 text-line-more-xl">
-                    <span class="text-dark" ng-bind="::message.organizer.name"></span>
+                    <span class="text-blue-dark font-semibold" ng-bind="::message.organizer.name"></span>
                 </div>
-                <div class="col-md-4 text-line-more-xl text-right">
-                    <span class="text-gray-light text-dark" ng-bind="::message.created_at | date: 'dd MMM yyyy'"></span>
+                <div class="col-md-4 text-line-more-xl text-right ">
+                    <span class="text-gray-dark font-regular" ng-bind="::message.created_at | date: 'dd MMM yyyy'"></span>
                 </div>
             </div>
             <div class="col-xs-12 col-md-11 col-md-offset-1">
-                <div class="font-semibold text-dark" >
+                <div class="font-semibold text-gray-dark" >
                     <span ng-bind="::message.activity"></span>
                 </div>
                 <div class="font-light">

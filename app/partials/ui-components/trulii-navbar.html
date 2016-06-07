@@ -101,9 +101,12 @@
                 ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
         </li>
         <li>
-            <a href="#"
+            <a  ui-sref="student-dashboard.notifications"
                 ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
                 ng-bind="::strings.LABEL_STUDENT_NOTIFICATIONS"></a>
+                <span class="label label-notification separate-left-less"
+                        ng-if="unreadNotificationsCount"
+                        ng-bind="unreadNotificationsCount"></span>
         </li>
         <li>
             <a ui-sref="student-dashboard.history.orders"
@@ -143,13 +146,13 @@
                <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded':isActive('organizer-dashboard.account.*') || subItems[strings.SUBITEM_ACCOUNT]}">
                    <li class="sidebar-profile__subitems-subitem">
                        <a  ui-sref="organizer-dashboard.account.settings"
-                           ng-click=" hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)">
+                           ng-click=" hideSubItems(strings.SUBITEM_ACCOUNT); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)">
                            <span ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT_SETTINGS"></span>
                        </a>
                    </li>
                    <li class="sidebar-profile__subitems-subitem">
                        <a ui-sref="organizer-dashboard.account.banking"
-                          ng-click=" hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)">
+                          ng-click=" hideSubItems(strings.SUBITEM_ACCOUNT); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)">
                            <span ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT_BANK"></span>
                        </a>
                    </li>
@@ -162,19 +165,19 @@
             <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded': isActive('organizer-dashboard.activities.*') || subItems[strings.SUBITEM_ACTIVITIES]}" > 
                     <li class="sidebar-profile__subitems-subitem" >
                         <a ui-sref="organizer-dashboard.activities.open" 
-                            ng-click=" hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_OPEN)">
+                            ng-click=" hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_OPEN)">
                             <span ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES_OPEN"></span>
                         </a>
                     </li>
                     <li class="sidebar-profile__subitems-subitem" >
                         <a ui-sref="organizer-dashboard.activities.closed" 
-                            ng-click=" hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_CLOSED)">
+                            ng-click=" hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_CLOSED)">
                             <span ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES_CLOSED" ></span>
                         </a>
                     </li>
                     <li class="sidebar-profile__subitems-subitem">
                         <a ui-sref="organizer-dashboard.activities.inactive"  
-                             ng-click="hideSubItems();  toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_INACTIVE)">
+                             ng-click="hideSubItems(strings.SUBITEM_ACTIVITIES);  toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_INACTIVE)">
                             <span ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES_INACTIVES" ></span>
                         </a>
                     </li>
@@ -195,13 +198,13 @@
             <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded': isActive('organizer-dashboard.reviews.*') || subItems[strings.SUBITEM_REVIEWS]}" >
                    <li class="sidebar-profile__subitems-subitem">
                        <a  ui-sref="organizer-dashboard.reviews.pending"
-                            ng-click=" hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS_UNREAD)">
+                            ng-click=" hideSubItems(strings.SUBITEM_REVIEWS); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS_UNREAD)">
                            <span ng-bind="::strings.LABEL_ORGANIZER_REVIEWS_UNREAD"></span>
                        </a>
                    </li>
                    <li class="sidebar-profile__subitems-subitem">
                        <a ui-sref="organizer-dashboard.reviews.done"
-                            ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS_DONE)">
+                            ng-click="hideSubItems(strings.SUBITEM_REVIEWS); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS_DONE)">
                            <span ng-bind="::strings.LABEL_ORGANIZER_REVIEWS_DONE"></span>
                        </a>
                    </li>
@@ -214,7 +217,7 @@
                  <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded': isActive('organizer-dashboard.transactions.*') || subItems[strings.SUBITEM_TRANSACTIONS]}">
                    <li class="sidebar-profile__subitems-subitem">
                        <a ui-sref="organizer-dashboard.transactions.sales"
-                        ng-click=" toghideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_TRANSACTIONS_SALES)">
+                        ng-click=" hideSubItems(strings.SUBITEM_TRANSACTIONS); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_TRANSACTIONS_SALES)">
                            <span ng-bind="::strings.LABEL_ORGANIZER_TRANSACTIONS_SALES"></span>
                        </a>
                    </li>
@@ -228,26 +231,45 @@
         </li>
     </ul>
     <!--Student Sidebar-->
-    <ul class="sidebar-profile__items-items list-unstyled" ng-if="user.is_student">
+    <ul class="sidebar-profile__items list-unstyled" ng-if="user.is_student">
         <li class="sidebar-profile__items-item">
             <a ui-sref="referrals.home"
-                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
+                ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
                 ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
         </li>
         <li class="sidebar-profile__items-item">
             <a ui-sref="student-dashboard.profile"
-                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
+                ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
                 ng-bind="::strings.LABEL_STUDENT_PROFILE"></a>
         </li>
         <li class="sidebar-profile__items-item">
             <a ui-sref="student-dashboard.account.password"
-                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
+                ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
                 ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
         </li>
         <li class="sidebar-profile__items-item">
-            <a ui-sref="student-dashboard.activities.open"
-                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
+            <a ng-click="showSubItems(strings.SUBITEM_ACTIVITIES); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
                 ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
+            <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded': isActive('organizer-dashboard.activities.*') || subItems[strings.SUBITEM_ACTIVITIES]}" > 
+                <li class="sidebar-profile__subitems-subitem" >
+                    <a ui-sref="student-dashboard.activities.current" 
+                        ng-click=" hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENTNIZER_ACTIVITIES_CURRENT)">
+                        <span ng-bind="::strings.LABEL_STUDENT_ACTIVITIES_CURRENT"></span>
+                    </a>
+                </li>
+                <li class="sidebar-profile__subitems-subitem" >
+                    <a ui-sref="student-dashboard.activities.open" 
+                        ng-click=" hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENTZER_ACTIVITIES_NEXT)">
+                        <span ng-bind="::strings.LABEL_STUDENT_ACTIVITIES_NEXT" ></span>
+                    </a>
+                </li>
+                <li class="sidebar-profile__subitems-subitem">
+                    <a ui-sref="student-dashboard.activities.closed"  
+                            ng-click="hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES_LAST)">
+                        <span ng-bind="::strings.LABEL_STUDENT_ACTIVITIES_LAST" ></span>
+                    </a>
+                </li>
+            </ul>
         </li>
         <li class="sidebar-profile__items-item">
             <a ui-sref="student-dashboard.wishlist"
@@ -255,9 +277,12 @@
                 ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
         </li>
         <li class="sidebar-profile__items-item">
-            <a href="#"
+            <a ui-sref="student-dashboard.notifications"
                 ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
                 ng-bind="::strings.LABEL_STUDENT_NOTIFICATIONS"></a>
+            <span class="label label-notification separate-left-less"
+                        ng-if="unreadNotificationsCount"
+                        ng-bind="unreadNotificationsCount"></span>
         </li>
         <li class="sidebar-profile__items-item">
             <a ui-sref="student-dashboard.history.orders"

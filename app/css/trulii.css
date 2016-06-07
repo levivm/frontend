@@ -12285,6 +12285,7 @@ hr.on-light {
   white-space: nowrap;
   overflow: hidden;
   width: 70%;
+  font-size: 1em;
 }
 @media screen and (max-width: 992px) {
   .dashboard-messages-container .text-right {
@@ -12336,7 +12337,7 @@ hr.on-light {
   line-height: 1.5em;
   word-wrap: normal;
   white-space: normal;
-  padding-left: 8.5%;
+  margin-top: 1.2em;
 }
 @media screen and (max-width: 992px) {
   .dashboard-messages-detail .content-message p {
@@ -16110,6 +16111,10 @@ tags-input input {
   font-size: 1em;
   padding: 0.8em 5em;
 }
+.btn-sm {
+  font-size: 0.8em !important;
+  padding: 0.8em 2em;
+}
 .btn-default {
   background-color: white;
   border: 1px solid #ededed;
@@ -19559,7 +19564,7 @@ blockquote {
 }
 .trulii-activity-card-organizer .trulii-activity-card__category__label {
   top: 10px;
-  left: 5%;
+  left: 7%;
   opacity: 1;
 }
 .activity-detail p {
