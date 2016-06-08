@@ -16,16 +16,15 @@
             </trulii-activity-item>
         </div>-->
         <div class="col-xs-12">
-            <a ui-sref="student-dashboard.history.orders.order({orderId: activity.orders[0].id})"
+            <a ui-sref="student-dashboard.history.orders.order({orderId: orderId})"
             ng-bind="activities.strings.COPY_ORDER_DETAIL"
-            class="text-underline text-gray-light"></a>
+            class="text-underline text-gray-light review-student__detail"></a>
             <trulii-activity-review data-review="activity.reviews[0]"
                                     data-activity="activity"
                                     data-student="true"
                                     data-on-dashboard="true"
                                     class="separate-above" ></trulii-activity-review>
         </div>
-        <hr/> 
     </div>
      <div class="text-center" ng-if="activities.pastPaginationOpts.totalItems > activities.pastPaginationOpts.itemsPerPage">
         <pagination class="pagination-sm"

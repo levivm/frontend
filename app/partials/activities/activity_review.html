@@ -1,6 +1,6 @@
 <!-- If user hasnt posted a review yet -->
-<div ng-hide="hasReview">
-    <div class="separate-above-medium separate-below-medium">
+<div  ng-if="isStudent" class="review-student">
+    <!--<div class="separate-above-medium separate-below-medium">
         <h3 class="text-center text-muted font-light" ng-bind="strings.LABEL_RATE_EXPERIENCE"></h3>
         <div>
             <h4 class="text-center text-muted font-light">
@@ -9,22 +9,36 @@
                 <span ng-bind="review.rating + ' / 5'"></span>
             </h4>
         </div>
+    </div>-->
+    <div class="review-student__activity-picture" style="background-image: url('{{activity.main_photo}}') ">
+        <div class="review-student__activity-category">
+            <div class="review-student__activity-category-label" style="background-color: {{activity.category.color}}"
+            ng-bind="::activity.category.name"></div>
+        </div>
+    </div>
+    <div class="review-student__header">
+       <div class="review-student__header-title">
+           <span ng-bind="::activity.title"></span>
+       </div>
+       <div class="review-student__header-rating">
+           <span ng-bind="strings.LABEL_RATE_EXPERIENCE" class="separate-right-less"></span>
+           <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'" class="review-student__header-rating-stars"
+                    state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
+       </div>
+       
     </div>
     <!-- Should be hidden until a score has been chosen-->
-    <div >
-        <div class="separate-above-medium separate-below-more">
+    <div ng-show="!hasReview" class="review-student__comment" >
+        <div class="">
+            <label for="review-comment" ng-bind="::strings.LABEL_COMMENT"></label>
             <textarea id="review-comment" class="form-control" name="review-comment"
                    ng-model="review.comment"
                    placeholder="{{ strings.PLACEHOLDER_REVIEW_COMMENT }}"
                    type="text"></textarea>
         </div>
-        <div class="separate-above-medium separate-below-medium">
-            <div class="row">
-                <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-6 col-md-4 col-md-offset-8">
-                    <button class="btn btn-success btn-block btn-md" ng-bind="strings.ACTION_DONE" ng-click="postReview()">
-                    </button>
-                </div>
-            </div>
+        <div class="separate-above-less">
+            <button class="btn btn-success  pull-right " ng-bind="strings.ACTION_DONE" ng-click="postReview()">
+            </button>
         </div>
     </div>
 </div>
@@ -37,7 +51,8 @@
             <!--<div class="review-avatar" style="background-image: url({{user.photo}})">
             </div>-->
             <div class="review-avatar">
-                <trulii-avatar user="review.author" size="60" avatar-class="medium" ></trulii-avatar>
+                <trulii-avatar ng-if="!isStudent" user="review.author" size="60" avatar-class="medium" ></trulii-avatar>
+                <trulii-avatar ng-if="isStudent" user="review.author" size="40" avatar-class="small" ></trulii-avatar>
             </div>
             <!-- End profile picture-->
         </div>
@@ -48,21 +63,21 @@
                     <!-- Name-->
                     <span class="review-content__name" ng-bind="::user.user.full_name"></span>
                     <!-- End name -->
-                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
+                    <span ng-class="{'ng-hide': isStudent}" class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <br class="hidden-md hidden-lg">
                     <!-- Date -->
-                    <span class="review-content__text-header" ng-if="review.created_at" ng-bind="::review.created_at | date : 'MMM d, y'">
+                    <span ng-class="{'ng-hide': isStudent}"  class="review-content__text-header" ng-if="review.created_at" ng-bind="::review.created_at | date : 'MMM d, y'">
                     </span>
-                     <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
+                     <span ng-class="{'ng-hide': isStudent}"  class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <!-- End date-->
                     <!-- Activity <a ui-sref="activities-detail({'activity_id': review.activity_data.id})" ng-bind="::review.activity_data.title"></a>-->
                     <span class="review-content__text-header">
                         <span ng-bind="::review.activity_data.title"></span>
                     </span>
                     <!-- End Activity -->
-                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
+                    <span ng-class="{'ng-hide': isStudent}"  class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <!-- Score -->
-                    <span class="review-content__rating hidden-xs hidden-sm">
+                    <span ng-class="{'ng-hide': isStudent}"  class="review-content__rating hidden-xs hidden-sm">
                         <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                                 readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="custom-icons-1">
                         </rating>
@@ -165,12 +180,12 @@
                      <!-- Name-->
                     <span class="review-content__name" ng-bind="::organizer.name"></span>
                     <!-- End name -->
-                    <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
+                    <span ng-class="{'ng-hide': isStudent}"  class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <br class="hidden-md hidden-lg">
                     <!-- Date -->
-                    <span class="review-content__text-header"  ng-bind="::review.replied_at | date : 'MMM d, y'">
+                    <span ng-class="{'ng-hide': isStudent}"  class="review-content__text-header"  ng-bind="::review.replied_at | date : 'MMM d, y'">
                     </span>
-                     <span class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
+                     <span ng-class="{'ng-hide': isStudent}"  class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <!-- End date-->
                     <!-- Activity <a ui-sref="activities-detail({'activity_id': review.activity_data.id})" ng-bind="::review.activity_data.title"></a>-->
                     <span class="review-content__text-header">

@@ -44,7 +44,9 @@
                     cancelReport: cancelReport,
                     markAsRead: markAsRead,
                     reply: reply,
-                    isStudent: (scope.onDashboard && scope.student)
+                    isStudent: (scope.onDashboard && scope.student),
+                    sizeAvar: 60,
+                    classAvatar: 'medium'
                 });
 
                 var activityInstance = null;
@@ -180,7 +182,7 @@
                 function _setStrings(){
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
-                        ACTION_DONE: "Listo",
+                        ACTION_DONE: "Comentar",
                         ACTION_MARK_AS_READ: "Marcar como Leído",
                         COPY_EMPTY_REPLY: "Por favor escriba una respuesta",
                         COPY_REVIEW_REPORTED: "El comentario será revisado por Trulii",
@@ -189,12 +191,14 @@
                         COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por "
                             + "el equipo de Trulii para ser retirado público. Próximamente la enviaremos un correo "
                             + " con el resultado de nuestra evaluación",
-                        LABEL_RATE_EXPERIENCE: "¿Cómo calificarías la experiencia?",
+                        LABEL_RATE_EXPERIENCE: "¿Cómo calificarías la actividad?",
                         LABEL_REPORT_BUTTON: "Reportar",
                         LABEL_REPLY_BUTTON: "Responder",
                         LABEL_CANCEL_BUTTON: "Cancelar",
                         LABEL_CONTINUE_BUTTON: "Continuar",
-                        PLACEHOLDER_REVIEW_COMMENT: "Deja tu comentario. Esto lo verá el organizador y demás usuarios"
+                        LABEL_COMMENT: "Comentario",
+                        PLACEHOLDER_REVIEW_COMMENT: "Deja tu comentario. Esto lo verá el organizador y demás usuarios",
+                        COPY_ORDER_DETAIL: "Detalle de compra"
 
                     });
                 }
@@ -228,7 +232,6 @@
                     if(scope.isStudent)
                         _mapMainPicture(scope.activity);
                     
-                    console.log(scope.activity);
                 }
 
                 scope.$watch('activity', function(){
