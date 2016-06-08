@@ -876,17 +876,20 @@
 }
 
 .limited-width{
-  float: none;
-  margin: 0 auto;
+	float: none;
+	margin: 0 auto;
 	clear: both;
 	
-  @media (max-width: 1299px){
-    max-width: 1200px;
-    padding: 0 50px;
-  }
-  @media (min-width: 1300px){
-    max-width: 1300px;
-  }
+	@media (max-width: 1299px){
+		max-width: 1200px;
+		padding: 0 50px;
+	}
+	@media (min-width: 1300px){
+		max-width: 1300px;
+	}
+	@media (max-width: 768px){
+		padding: 0;
+	}
 }
 .limited-width-dashboard-container{
 	width: 1000px;
@@ -1112,4 +1115,9 @@
 
 .dynamic-layout-wrapper{
 	margin-bottom: 50px;
+}
+
+.widget-fixed{
+	position: fixed !important;
+	top: 100px !important;
 }

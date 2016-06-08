@@ -64,6 +64,7 @@
             widgetAbsolutePosition: 0,
             showWidget: true,
             processingPayment: false,
+            attendeesOffset: 0,
 
             addAssistant : addAssistant,
             removeAssistant : removeAssistant,
@@ -82,6 +83,8 @@
             removeCoupon: removeCoupon,
             getAmazonUrl: getAmazonUrl,
             changeCalendar:changeCalendar,
+            attendeesScrollDown: attendeesScrollDown,
+            attendeesScrollUp: attendeesScrollUp,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -561,6 +564,16 @@
             vm.showReimbursement = !vm.showReimbursement;
         }
 
+        function attendeesScrollDown(){
+            vm.attendeesOffset--;
+            document.getElementsByClassName('attendees-container__body__attendees-list')[0].css('transform', 'translateY('+ vm.attendeesOffset*45 +')');
+        }
+
+        function attendeesScrollUp(){
+            vm.attendeesOffset++;
+            document.getElementsByClassName('attendees-container__body__attendees-list')[0].css('transform', 'translateY('+ vm.attendeesOffset*45 +')');
+        }
+
         //--------- Internal Functions ---------//
 
         function _calculateAmount() {
@@ -788,7 +801,7 @@
             vm.activity = activity;
             _mapMainPicture(vm.activity);
             _setTotalCost();
-            moment().locale('es')
+            moment().locale('es');
             vm.months = moment.months();
             _mapYears();
             if(currentUser) {

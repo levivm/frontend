@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Analytics', 'StudentsManager', '$filter', '$location'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', '$filter', '$location'];
 
     function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Analytics, StudentsManager, $filter, $location) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, $filter, $location) {
         var visibleReviewListSize = 3;
         var vm = this;
 
@@ -56,6 +56,7 @@
             showEmail: false,
             showSessions: false,
             hasMoreReviews: true,
+            attendeesOffset: 0,
             changeSelectedCalendar : changeSelectedCalendar,
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
@@ -78,7 +79,10 @@
             shareSocialAnalytic:shareSocialAnalytic,
             wishList:wishList,
             verifyWishList:verifyWishList,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            attendeesScrollDown: attendeesScrollDown,
+            attendeesScrollUp: attendeesScrollUp,
+            facebookShares: 0
         });
 
         _activate();
@@ -202,6 +206,7 @@
 
         function toggleEmailShow(){
           vm.showEmail = !vm.showEmail;
+            vm.formData.message = vm.social.EMAIL_SHARE_TEXT;
         }
 
         function toggleSessions(){
@@ -228,6 +233,22 @@
             function error(error){
                 Toast.error(vm.strings.COPY_SHARE_ERROR);
                 console.log('Error sharing activity', error);
+            }
+        }
+
+        function attendeesScrollDown(){
+            console.log(vm.attendeesOffset);
+            if(vm.attendeesOffset*-1 <= vm.calendar_selected.assistants.length -2){
+                vm.attendeesOffset--;
+                document.getElementsByClassName('attendees-container__body__attendees-list')[0].style.transform = 'translateY('+ vm.attendeesOffset*60 +'px)';
+            }
+        }
+
+        function attendeesScrollUp (){
+            console.log(vm.attendeesOffset);
+            if(vm.attendeesOffset < 0){
+                vm.attendeesOffset++;
+                document.getElementsByClassName('attendees-container__body__attendees-list')[0].style.transform = 'translateY('+ vm.attendeesOffset*60 +'px)';
             }
         }
 
@@ -331,17 +352,39 @@
                 FACEBOOK_API_KEY: serverConf.FACEBOOK_APP_KEY,
                 FACEBOOK_SHARE_TYPE: "feed",
                 FACEBOOK_SHARE_CAPTION: "Trulii.com | ¡Aprende lo que quieras en tu ciudad!",
-                FACEBOOK_SHARE_TEXT: vm.activity.title,
+                FACEBOOK_SHARE_TEXT: 'Comparte esto con tus amigos o menciónalos con @ "' + vm.activity.title + ' - ' + vm.activity.short_description + '"',
                 FACEBOOK_SHARE_MEDIA: vm.activity.main_photo,
                 FACEBOOK_SHARE_DESCRIPTION: vm.activity.short_description,
                 FACEBOOK_REDIRECT_URI: current_url,
                 FACEBOOK_SHARE_URL: current_url,
                 TWITTER_SOCIAL_PROVIDER: 'twitter',
-                TWITTER_SHARE_ACCOUNT:'Trulii_',
-                TWITTER_SHARE_TEXT:'Échale un vistazo a ' + vm.activity.title,
+                TWITTER_SHARE_ACCOUNT: 'Trulii_',
+                TWITTER_SHARE_TEXT: 'Amé esta actividad en @Trulii_  ' + vm.activity.title + ' #Aprende',
                 TWITTER_SHARE_URL:current_url,
-                TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(',')
+                TWITTER_SHARE_HASHTAGS: '#Aprende',
+                LINKEDIN_SOCIAL_PROVIDER: 'linkedin',
+                LINKEDIN_SHARE_TEXT: vm.activity.title + ' - ' + vm.activity.short_description,
+                LINKEDIN_SHARE_DESCRIPTION: vm.activity.short_description,
+                LINKEDIN_SHARE_URL: current_url,
+                WHATSAPP_SOCIAL_PROVIDER: 'whatsapp',
+                WHATSAPP_SHARE_TEXT: '¡Hey!, échale un vistazo a esta actividad en Trulii a la que planeo asistir dentro de poco. Avísame si te interesa y vamos juntos. ¡Sé que te encantará!',
+                WHATSAPP_SHARE_URL: current_url,
+                MESSENGER_SOCIAL_PROVIDER: 'facebook-messenger',
+                MESSENGER_SHARE_URL: current_url,
+                EMAIL_SHARE_TEXT: '¡Hey!, échale un vistazo a esta actividad en Trulii a la que planeo asistir dentro de poco. Avísame si te interesa y vamos juntos. ¡Sé que te encantará!'
             });
+
+            Facebook.api({
+                    method: 'links.getStats',
+                    urls: current_url.toString()
+                },
+                function (response) {
+                    if(response.length > 0){
+                        vm.facebookShares = response[0].share_count;
+                        console.log(response[0].share_count);
+                    }
+            });
+
         }
 
         function _setStrings(){
@@ -381,8 +424,8 @@
                 COPY_OF: " de ",
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_FREE: " Gratis",
-                COPY_VACANCY_SINGULAR: " Vacante",
-                COPY_VACANCY: " Vacantes",
+                COPY_VACANCY_SINGULAR: " vacante",
+                COPY_VACANCY: " vacantes",
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_ONE_SESSION: "Sesión",
                 COPY_OTHER_OPORTUNITY: "Oportunidad",
@@ -397,10 +440,10 @@
                 COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
                 LABEL_SCHEDULE: "Horario",
                 LABEL_START: "Inicio",
-                LABEL_VACANCY: "Cupos Disponibles",
+                LABEL_VACANCY: "Vacantes",
                 LABEL_SESSIONS_NUMBER: "N° de Clases",
                 LABEL_COST: "Precio",
-                LABEL_NEXT_DATE: "Próximo Inicio",
+                LABEL_NEXT_DATE: "Próxima fecha de inicio",
                 LABEL_CLOSING_DATE: "Ventas hasta",
                 LABEL_LEVEL: "Nivel",
                 LABEL_DURATION: "Duration",
@@ -444,30 +487,40 @@
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_EMPTY_REVIEWS: "Aun no hay evaluaciones para esta actividad",
-                COPY_NUMBER_OF_LIKES: "personas amaron esto",
-                COPY_BE_THE_FIRST: "¡Sé el primero!"
+                COPY_NUMBER_OF_LIKES: "personas aman esta actividad",
+                COPY_BE_THE_FIRST: "¡Sé el primero!",
+                COPY_ATTENDEES_LIST: "Hasta ahora estas personas asistirán a esta actividad. ¿Qué esperas para unírteles?"
             });
         }
 
-        // function _initWidget(){
-        //     angular.element(document).ready(function () {
-        //         vm.scroll = window.scrollY;
-        //         vm.widgetOriginalPosition = document.getElementsByClassName('calendar-widget')[0].getBoundingClientRect().top + window.scrollY;
-        //         vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-        //         vm.widgetAbsolutePosition = (document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-        //         $scope.$on('scrolled',
-        //           function(scrolled, scroll){
-        //             vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-        //             vm.widgetAbsolutePosition = (document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('calendar-widget')[0].offsetHeight - 80;
-        //             vm.scroll = scroll;
-        //             $scope.$apply();
-        //           }
-        //         );
-        //     });
-        // }
+        function _initWidget(){
+            angular.element(document).ready(function () {
+                vm.scroll = window.scrollY;
+                vm.widgetOriginalPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().top + window.scrollY + 50;
+                vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - 420 - 80;
+                vm.widgetAbsolutePosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + 210;
+                vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().left + 30;
+                vm.widgetFixedPositionRight = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().right - 30 - 250;
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
+                    vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - 420 - 80;
+                    vm.scroll = scroll;
+                    $scope.$apply();
+                  }
+                );
+                $scope.$on('resized', function(){
+                    vm.scroll = window.scrollY;
+                    vm.widgetOriginalPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().top + window.scrollY + 50;
+                    vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - 420 - 80;
+                    vm.widgetAbsolutePosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + 210;
+                    vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().left + 30;
+                    vm.widgetFixedPositionRight = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().right - 30 - 250;
+                });
+            });
+        }
 
         function _initSignup(){
-          vm.selectedActivity = 0;
+          vm.selectedActivity = -1;
         }
 
         function _updateUrl(){
@@ -555,8 +608,9 @@
 
             _setSocialShare();
             _setReviews();
-            // _initWidget();
+            _initWidget();
             _initSignup();
+            console.log(vm.calendar_selected);
 
         }
     }
