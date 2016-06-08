@@ -12271,7 +12271,6 @@ hr.on-light {
   overflow-y: auto;
 }
 .dashboard-messages-container > a {
-  border-bottom: 1px solid #ededed;
   padding: 2em 1em 1em 3em;
   cursor: pointer;
   display: block;

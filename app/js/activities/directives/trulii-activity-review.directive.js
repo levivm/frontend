@@ -64,6 +64,7 @@
                 //--------- Exposed Functions ---------//
 
                 function postReview(){
+                    console.log(scope.review);
                     activityInstance.postReview(scope.review).then(success);
 
                     function success(review){
