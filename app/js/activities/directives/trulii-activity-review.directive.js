@@ -25,6 +25,7 @@
                 'review': '=',
                 'activity': '=',
                 'onDashboard': '=',
+                'student': '=',
                 'changeReviewStatus': '&'
             },
             link: function(scope){
@@ -42,7 +43,8 @@
                     confirmReport: confirmReport,
                     cancelReport: cancelReport,
                     markAsRead: markAsRead,
-                    reply: reply
+                    reply: reply,
+                    isStudent: (scope.onDashboard && scope.student)
                 });
 
                 var activityInstance = null;
@@ -152,6 +154,22 @@
                     scope.user = author;  
                   }
                 }
+                function _mapMainPicture(activity){
+                    if(activity.pictures.length > 0){
+                        angular.forEach(activity.pictures, function(picture, index, array){
+                            if(picture.main_photo){
+                                activity.main_photo = picture.photo;
+                            }
+
+                            if( index === (array.length - 1) && !activity.main_photo){
+                                activity.main_photo = array[0].photo;
+                            }
+                        });
+                    } else {
+                        activity.main_photo = defaultCover;
+                    }
+                    return activity;
+                }
 
                 function _getLoggedUser(){
                     Authentication.getAuthenticatedAccount().then(function(user){
@@ -207,6 +225,10 @@
                         scope.organizer = scope.activity.organizer;
                     }
                     _getActivityInstance();
+                    if(scope.isStudent)
+                        _mapMainPicture(scope.activity);
+                    
+                    console.log(scope.activity);
                 }
 
                 scope.$watch('activity', function(){

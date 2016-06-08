@@ -10,21 +10,22 @@
      </div>
     <div ng-if="activities.past_activities.length > 0" class="row separate-below-medium"
         ng-repeat="activity in activities.past_activities track by activity.id">
-        <div class="col-xs-12 col-md-4">
+        <!--<div class="col-xs-12 col-md-4">
             <trulii-activity-item
                     data-activity="activity" data-options="{{activities.options}}">
             </trulii-activity-item>
-        </div>
-        <div class="col-xs-12 col-md-7">
+        </div>-->
+        <div class="col-xs-12">
             <a ui-sref="student-dashboard.history.orders.order({orderId: activity.orders[0].id})"
             ng-bind="activities.strings.COPY_ORDER_DETAIL"
             class="text-underline text-gray-light"></a>
             <trulii-activity-review data-review="activity.reviews[0]"
                                     data-activity="activity"
+                                    data-student="true"
                                     data-on-dashboard="true"
                                     class="separate-above" ></trulii-activity-review>
         </div>
-        <hr/>
+        <hr/> 
     </div>
      <div class="text-center" ng-if="activities.pastPaginationOpts.totalItems > activities.pastPaginationOpts.itemsPerPage">
         <pagination class="pagination-sm"

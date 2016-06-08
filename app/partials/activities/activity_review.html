@@ -11,12 +11,12 @@
         </div>
     </div>
     <!-- Should be hidden until a score has been chosen-->
-    <div ng-show="review.rating">
+    <div >
         <div class="separate-above-medium separate-below-more">
-            <input id="review-comment" class="form-control" name="review-comment"
+            <textarea id="review-comment" class="form-control" name="review-comment"
                    ng-model="review.comment"
                    placeholder="{{ strings.PLACEHOLDER_REVIEW_COMMENT }}"
-                   type="text">
+                   type="text"></textarea>
         </div>
         <div class="separate-above-medium separate-below-medium">
             <div class="row">
@@ -29,7 +29,7 @@
     </div>
 </div>
 <!-- If it has a review -->
-<div ng-show="hasReview" class="review-detail">
+<div ng-show="hasReview" class="review-detail" ng-class="{'review-detail__student': isStudent}">
     <div class="row separate-above-less">
         <!-- Comment -->
         <div class="col-xs-3 col-md-1">
