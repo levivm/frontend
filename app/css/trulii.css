@@ -12505,7 +12505,7 @@ hr.on-light {
 }
 @media (min-width: 900px) and (max-width: 1366px) {
   .dynamic-layout {
-    width: 900px;
+    width: 615px;
     margin-top: 20px;
   }
   .dynamic-layout-col-4 {
@@ -19388,6 +19388,7 @@ blockquote {
     left: initial !important;
     bottom: 50px !important;
     width: calc(100vw - 80px);
+    position: absolute !important;
   }
   .activity-detail__share-widget ul {
     width: 300px;
@@ -20507,9 +20508,6 @@ blockquote {
     -webkit-justify-content: flex-end;
     justify-content: flex-end;
   }
-  .reasons-container .reason .reason-text {
-    width: calc(100% - 99px);
-  }
 }
 .reasons-container .reason .reason-img {
   height: 6em;
@@ -20530,6 +20528,11 @@ blockquote {
   font-size: 0.85em;
   font-weight: 500;
   color: #767676;
+}
+@media (min-width: 1200px) {
+  .reasons-container .reason .reason-text {
+    width: calc(100% - 99px);
+  }
 }
 .reasons-container .contact-us {
   margin-top: 185px;

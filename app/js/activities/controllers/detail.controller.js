@@ -492,29 +492,26 @@
                 COPY_ATTENDEES_LIST: "Hasta ahora estas personas asistirán a esta actividad. ¿Qué esperas para unírteles?"
             });
         }
-
+        function _updateWidgetValues(){
+            vm.scroll = window.scrollY;
+            vm.widgetOriginalPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().top + window.scrollY + 50;
+            vm.widgetMaxPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY - 420 - 70;
+            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY) - 420 - (document.getElementsByClassName('trulii-cover-regular')[0].getBoundingClientRect().bottom + window.scrollY);
+            vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().left + 30;
+            vm.widgetFixedPositionRight = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().right - 30 - 250;
+        }
         function _initWidget(){
             angular.element(document).ready(function () {
-                vm.scroll = window.scrollY;
-                vm.widgetOriginalPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().top + window.scrollY + 50;
-                vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - 420 - 80;
-                vm.widgetAbsolutePosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + 210;
-                vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().left + 30;
-                vm.widgetFixedPositionRight = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().right - 30 - 250;
+                _updateWidgetValues()
                 $scope.$on('scrolled',
                   function(scrolled, scroll){
-                    vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - 420 - 80;
-                    vm.scroll = scroll;
+                    _updateWidgetValues()
                     $scope.$apply();
                   }
                 );
                 $scope.$on('resized', function(){
-                    vm.scroll = window.scrollY;
-                    vm.widgetOriginalPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().top + window.scrollY + 50;
-                    vm.widgetMaxPosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + window.scrollY - 420 - 80;
-                    vm.widgetAbsolutePosition = document.getElementsByClassName('more-calendars')[0].getBoundingClientRect().top + 210;
-                    vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().left + 30;
-                    vm.widgetFixedPositionRight = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().right - 30 - 250;
+                    _updateWidgetValues()
+                    $scope.$apply();
                 });
             });
         }

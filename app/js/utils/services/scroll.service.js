@@ -25,6 +25,8 @@
         });
 
         angular.element($window).bind('resize', function () {
+            scroll = window.scrollY;
+            $rootScope.$broadcast('scrolled', scroll);
             $rootScope.$broadcast('resized');
         });
         
