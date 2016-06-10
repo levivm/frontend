@@ -70,6 +70,7 @@
                   ActivitiesManager.getStudentActivities(student.id, vm.TYPE_PAST, vm.pastPaginationOpts.pageNumber, vm.pastPaginationOpts.itemsPerPage)
                   .then(function(response){
                     vm.past_activities = response.results;
+                    _setOrders();
                     vm.pastPaginationOpts.totalItems = response.count;
                   });
                   break;
@@ -145,18 +146,20 @@
         //    }
         //}
 
-        //function _mapOrders(activities, orders){
-        //    angular.forEach(activities, mapOrders);
-        //    return activities;
-        //
-        //    function mapOrders(activity){
-        //        activity.orders = orders.filter(filterOrders);
-        //
-        //        function filterOrders(order){
-        //            return order.activity_id === activity.id;
-        //        }
-        //    }
-        //}
+        function _mapOrders(activities, orders){
+            angular.forEach(activities, mapOrders);
+            return activities;
+        
+            function mapOrders(activity){
+                activity.orders = orders.filter(filterOrders);
+                
+                function filterOrders(order){
+                    if(order.activity.id === activity.id){
+                        return order;
+                    }
+                }
+            }
+        }
 
         function _mapReviews(activity, reviews){
             var review = reviews.filter(function(review){
@@ -171,34 +174,9 @@
             activity.review = review;
             return activity;
         }
-
-        function _mapOrders(orders, activities, reviews){
-            var deferred = $q.defer();
-            var promiseArray = [];
-
-            orders.forEach(function(order){
-              promiseArray.push(processOrder(order));
-            });
-
-            $q.all(promiseArray).then(function(){
-              deferred.resolve(orders);
-            });
-
-            return deferred.promise;
-
-            function processOrder(order){
-                order = setOrderActivity(order, activities);
-            }
-
-            function setOrderActivity(order, activities){
-                order.activity = activities.filter(function(activity){
-                  return activity.id == order.activity.id;
-                })[0];
-
-                return order;
-            }
+        function _(params) {
+            
         }
-
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -222,11 +200,8 @@
         }
 
         function _setOrders(){
-           var activities = nextActivities.results.concat(pastActivities.results).concat(currentActivities.results);
-            _mapOrders(orders.results, activities, reviews)
-            .then(function(){
-                _mapReviews(vm.past_activities, reviews);
-            });
+            vm.past_activities =  _mapOrders(vm.past_activities, orders.results);
+            _mapReviews(vm.past_activities, reviews);
         }
 
         function _setActivities(){

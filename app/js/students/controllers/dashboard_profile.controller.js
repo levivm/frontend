@@ -178,7 +178,7 @@
                 LABEL_BIRTH_DATE: "Fecha de nacimiento",
                 LABEL_LAST_NAMES: "Apellidos",
                 LABEL_GENDER: "Género",
-                LABEL_CITY: "Ciudad",
+                LABEL_CITY: "¿En qué ciudad vives?",
                 LABEL_TELEPHONE: "Teléfono",
                 COPY_PRIVATE_DATA_TOOLTIP: "Esta información no la compartiremos con nadie.",
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
@@ -191,6 +191,7 @@
         }
 
         function _activate() {
+            console.log(vm.student);
             _setStrings();
             _setGender(vm.student.gender);
             _setCity(vm.student.city);

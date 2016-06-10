@@ -7,20 +7,21 @@
                  <div class="row ">
                     <div class="col-xs-12 panel-default panel-default__dashboard ">
                         <span class="panel-default__dashboard-title" ng-bind="::profile.strings.SECTION_PROFILE"></span>
-                        <span class="separate-left text-gray-dark" ng-bind="::profile.strings.COPY_PROFILE"></span>
+                        <span class="separate-left-less text-gray-dark" ng-bind="::profile.strings.COPY_PROFILE"></span>
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <form class="col-xs-12 profile-picture-form" name="profile.picture_form">
                     <fieldset>
-                        <div class="form-group inline-childs">
+                        <div class="form-group ">
                             <div class="profile-photo-input">
-                                <img class="profile-photo-input__photo"
+                                <!--<img class="profile-photo-input__photo"
                                     ng-src="{{profile.student.photo}}" alt="{{profile.student.user.first_name}}"
-                                    ng-hide="profile.photo_loading"/>
+                                    ng-hide="profile.photo_loading"/>-->
+                                 <trulii-avatar user="profile.student" size="100" avatar-class="big" ></trulii-avatar>
                                 <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
 
-                                <div class="separate-left" ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select=""
+                                <div class="separate-left separate-above-less" ng-model="profile.student.photo_url" ng-file-drop="" ng-file-select=""
                                     ng-multiple="false"
                                     data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
                                     ng-file-change="profile.uploadPicture(profile.student.photo_url)"
@@ -49,13 +50,13 @@
                     </form>
 
                 </div>
-                <form class="col-xs-12 separate-above-medium" name="profile.profile_form" ng-submit="profile.updateProfile()">
+                <form class="col-xs-12 s" name="profile.profile_form" ng-submit="profile.updateProfile()">
                     <fieldset>
 
                         <div class="row separate-below">
                             <div class="col-xs-12 col-xs-12 col-md-6 ">
                                 <div class="form-group" trulii-input-errors-control="first_name">
-                                    <label class="control-label" ng-bind="::profile.strings.LABEL_FIRST_NAMES"></label>
+                                    <label class="form-label" ng-bind="::profile.strings.LABEL_FIRST_NAMES"></label>
                                     <input type="text" class="form-control" ng-model='profile.student.user.first_name'
                                         name="first_name"
                                         placeholder="{{::profile.strings.LABEL_FIRST_NAMES}}">
@@ -63,7 +64,7 @@
                             </div>
                             <div class="col-xs-12 col-md-6 ">
                             <div class="form-group" trulii-input-errors-control="last_name">
-                                    <label class="control-label" for="last-names" ng-bind="::profile.strings.LABEL_LAST_NAMES"></label>
+                                    <label class="form-label" for="last-names" ng-bind="::profile.strings.LABEL_LAST_NAMES"></label>
                                     <input type="text" id="headline" class="form-control" ng-model='profile.student.user.last_name' name="last_name"
                                             placeholder="{{::profile.strings.LABEL_LAST_NAMES}}"/>
                                 </div>
@@ -72,26 +73,14 @@
 
                         <div class="row separate-below">
                             <div class="col-xs-12 col-md-6 ">
-                                <div class="form-group">
-                                    <label class="control-label" for="gender" ng-bind="::profile.strings.LABEL_GENDER"></label>
-                                    <div class="select-forms">
-                                        <label>
-                                            <select id="gender" class="form-control" ng-model="profile.selected_gender"
-                                                    name="gender"
-                                                    ng-options="gender as gender.name for gender in profile.genders track by gender.name"
-                                                    ng-change="profile.selectGender(profile.selected_gender)">
-                                                <option value="" ng-show="!profile.student.gender"
-                                                        ng-bind="::profile.strings.OPTION_SELECT" selected>
-                                                </option>
-                                            </select>
-                                        </label>
-                                    </div>
+                                <div class="form-group" trulii-input-errors-control="telephone">
+                                    <label class="form-label" for="telephone" ng-bind="::profile.strings.LABEL_TELEPHONE"></label>
+                                    <input id="telephone" type="number" class="form-control" ng-model='profile.student.telephone' name="telephone" />
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6">
                                 <div class="form-group">
-                                    <label class="control-label" for="birth_date" ng-bind="::profile.strings.LABEL_BIRTH_DATE"></label>
-                                    <i class="glyphicon glyphicon-question-sign separate-horizontal-less" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
+                                    <label class="form-label" for="birth_date" ng-bind="::profile.strings.LABEL_BIRTH_DATE"></label>
                                     
                                     <div class="select-forms select-forms__date">
                                         <label>
@@ -114,9 +103,25 @@
                         <div class="row">
                             <div class="col-xs-12 col-md-6 ">
                                 <div class="form-group">
-                                    <label class="control-label" for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
-                                    <i class="glyphicon glyphicon-question-sign separate-horizontal-less" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
-                                    
+                                    <label class="form-label" for="gender" ng-bind="::profile.strings.LABEL_GENDER"></label>
+                                    <div class="select-forms">
+                                        <label>
+                                            <select id="gender" class="form-control" ng-model="profile.selected_gender"
+                                                    name="gender"
+                                                    ng-options="gender as gender.name for gender in profile.genders track by gender.name"
+                                                    ng-change="profile.selectGender(profile.selected_gender)">
+                                                <option value="" ng-show="!profile.student.gender"
+                                                        ng-bind="::profile.strings.OPTION_SELECT" selected>
+                                                </option>
+                                            </select>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-6 ">
+                                
+                                <div class="form-group">
+                                    <label class="form-label" for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
                                     <div class="select-forms">
                                         <label>
                                             <select id="city" class="form-control" name="city"
@@ -129,13 +134,6 @@
                                             </select>
                                         </label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="col-xs-12 col-md-6 ">
-                            <div class="form-group" trulii-input-errors-control="telephone">
-                                    <label class="control-label" for="telephone" ng-bind="::profile.strings.LABEL_TELEPHONE"></label>
-                                    <i class="glyphicon glyphicon-question-sign separate-horizontal-less" aria-hidden="true" tooltip-placement="right" tooltip="{{::profile.strings.COPY_PRIVATE_DATA_TOOLTIP}}"></i>
-                                    <input id="telephone" type="number" class="form-control" ng-model='profile.student.telephone' name="telephone" />
                                 </div>
                             </div>
                         </div>

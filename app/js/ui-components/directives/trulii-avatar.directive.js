@@ -64,7 +64,7 @@
 
                 function _activate() {
                     _setAvatar();
-
+                    scope.$watch('user', function(newVal, oldVal){scope.user = newVal; _setAvatar()});
                 }
             }
         }

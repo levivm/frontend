@@ -48,7 +48,13 @@
 
 
         //--------- Internal Functions ---------//
-
+        function _mapAssistants() {
+            vm.order.assistants = vm.order.assistants.map(function (value) {
+               value.showMobile= false;
+               return value; 
+            });
+            console.log(vm.order.assistants);
+        }
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
@@ -80,6 +86,7 @@
         function _activate() {
             vm.previousState = $stateParams.previousState;
             _setStrings();
+            _mapAssistants();
             console.log('order',order);
         }
     }

@@ -37,9 +37,9 @@
                 var scope = this;
 
                 angular.extend(scope, studentData);
-                if(!scope.photo) {
+                /*if(!scope.photo) {
                     scope.photo = defaultPicture;
-                }
+                }*/
                 scope._setDates();
 
             },

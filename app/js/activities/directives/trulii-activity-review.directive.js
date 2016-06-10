@@ -64,7 +64,6 @@
                 //--------- Exposed Functions ---------//
 
                 function postReview(){
-                    console.log(scope.review);
                     activityInstance.postReview(scope.review).then(success);
 
                     function success(review){
@@ -224,7 +223,6 @@
                       scope.hasReview = false;
                       angular.extend(scope.review, EMPTY_REVIEW);
                     }
-                    console.log(scope.review);
                     // TODO Might be redundant
                     if(scope.activity){
                         scope.organizer = scope.activity.organizer;
