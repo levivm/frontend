@@ -59,7 +59,6 @@
 
         function activate() {
             _setStrings();
-            console.log(vm.messages);
         }
 
     }

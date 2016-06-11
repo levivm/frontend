@@ -13,28 +13,27 @@
     <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
             <span class="text-gray-dark" ng-bind="::messages.strings.COPY_MESSAGES"></span>
     </div>
-    <div class="separate-above dashboard-messages-container col-xs-12" ng-if="messages.messages.length > 0">
-        <a ng-repeat="message in messages.messages track by message.id" ui-sref="student-dashboard.messages-detail({'messageId': message.id})" class="row student">
-            <div class="col-xs-12 row ">
-                <div class="col-md-1">
-                  
-                  <trulii-avatar user="message.organizer" size="40" avatar-class="small" ></trulii-avatar>
-                </div>
-                <div class="col-md-7 text-line-more-xl">
-                    <span class="text-blue-dark font-semibold" ng-bind="::message.organizer.name"></span>
-                </div>
-                <div class="col-md-4 text-line-more-xl text-right ">
-                    <span class="text-gray-dark font-regular" ng-bind="::message.created_at | date: 'dd MMM yyyy'"></span>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-11 col-md-offset-1">
-                <div class="font-semibold text-gray-dark" >
-                    <span ng-bind="::message.activity"></span>
-                </div>
-                <div class="font-light">
-                    <p ng-bind="::message.message"></p>
+    <div class="separate-above dashboard-messages col-xs-12" ng-if="messages.messages.length > 0">
+        <a ng-repeat="message in messages.messages track by message.id" ui-sref="student-dashboard.messages-detail({'messageId': message.id})" >
+            <div class="col-xs-12  dashboard-messages__header">
+                
+                <div class="dashboard-messages__header-first">
+                    <div class="dashboard-messages__avatar">
+                        <trulii-avatar user="message.organizer" size="40" avatar-class="small" ></trulii-avatar>
+                    </div>
+                    <div class="text-line-more-xl dashboard-messages__title" ng-class="{'dashboard-messages__title-read': message.is_read}">
+                        <h4 class="text-blue-dark font-semibold" ng-bind="::message.organizer.name"></h4>
+                        <span class="font-semibold text-gray-dark" ng-bind="::message.activity"></span>
+                        <div class="font-light">
+                            <p ng-bind="::message.message"></p>
+                        </div> 
+                    </div>
+                </div> 
+                <div class="text-line-more-xl text-right dashboard-messages__date">
+                     <span class="text-gray-dark font-regular" ng-bind="::message.created_at | date: 'dd MMM yyyy'"></span>
                 </div>
             </div>
+            <div ng-show="!message.is_read" class="dashboard-messages__is-read"></div>
         </a>
     </div>
     <div class="text-center col-xs-12" ng-if="messages.messages.length > 0">
