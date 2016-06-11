@@ -85,6 +85,7 @@
             changeCalendar:changeCalendar,
             attendeesScrollDown: attendeesScrollDown,
             attendeesScrollUp: attendeesScrollUp,
+            setPayment: setPayment,
 
             cardData : {
                 "name_card": "APPROVED",
@@ -95,6 +96,7 @@
                 cvv: null,
                 "method": ""
             },
+            selectedPayment: 'card',
             pseFormData: {
                 "banksList": [],
                 "userTypes":[
@@ -148,6 +150,14 @@
         }
 
 
+        function setPayment(){
+            if(vm.selectedPayment === 'card'){
+                changeCCPaymentMethod();
+            }
+            else{
+                changePSEPaymentMethod();
+            }
+        }
         /** PSE Payments Methods **/
 
         function changePSEPaymentMethod(){
@@ -713,15 +723,16 @@
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
                 COPY_UNTIL_NOW: "Hasta ahora",
-                COPY_ANY_DOUBT: "¿Alguna duda? ",
+                COPY_ANY_DOUBT: "¿Problemas o dudas en el pago? ",
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los",
-                COPY_RELEASE_1: "Al confirmar la inscripción, estás de acuerdo con el monto total a cancelar, la ",
-                COPY_RELEASE_2: "Política de reembolso del organizador ",
-                COPY_RELEASE_3: "y con los ",
-                COPY_RELEASE_4: "Términos y condiciones ",
-                COPY_RELEASE_5: "de Trulii",
+                COPY_RELEASE_1: "Al confirmar la inscripción, estás de acuerdo con el monto total a cancelar,",
+                COPY_RELEASE_2: "al ",
+                COPY_RELEASE_3: "Política de reembolso del organizador ",
+                COPY_RELEASE_4: "y con los ",
+                COPY_RELEASE_5: "Términos y condiciones ",
+                COPY_RELEASE_6: "de Trulii",
                 COPY_SLIDEBAR_TERMS_TITLE: "Términos y condiciones",
                 COPY_SLIDEBAR_TERMS_HEADER: "Titulo de terminos y condiciones",
                 COPY_SLIDEBAR_TERMS_BODY: "All work and no play makes Jack a dull boy",
@@ -766,9 +777,9 @@
 
                 LABEL_PHONE_NUMBER:"Teléfono",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
-                LABEL_CARD_HOLDER: "Nombre en la tarjeta",
-                PLACEHOLDER_CARD_HOLDER: "Nombre en la tarjeta",
-                LABEL_CARD_NUMBER:"Número de tarjeta",
+                LABEL_CARD_HOLDER: "Nombre del titular",
+                PLACEHOLDER_CARD_HOLDER: "Nombre del titular",
+                LABEL_CARD_NUMBER:"Número de tarjeta de credito",
                 PLACEHOLDER_CARD_NUMBER: "Número de tarjeta",
                 LABEL_EXPIRY_DATE : "Fecha de Expiración",
                 LABEL_MONTH: "Mes",
@@ -778,7 +789,49 @@
                 LABEL_YEAR: "Año",
                 PLACEHOLDER_YEAR: "YYYY",
                 LABEL_CVV:"CVV",
-                PLACEHOLDER_CVV:"CVV"
+                PLACEHOLDER_CVV:"CVV",
+                LABEL_CARD: "Tarjeta",
+                LABEL_PSE: "PSE",
+
+                COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
+                COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
+                REASON_NO_COMMISSIONS: "Sin Comisiones",
+                REASON_COPY_NO_COMMISSIONS_1: "Nuestro servicio para ti",
+                REASON_COPY_NO_COMMISSIONS_2: "es totalmente gratuito.",
+                REASON_REFUND: "Devolución Garantizada",
+                REASON_COPY_REFUND_1: "Protegemos tu pago hasta",
+                REASON_COPY_REFUND_2: "que se efectúe la clase.",
+                REASON_SECURE: "Pago Seguro",
+                REASON_COPY_SECURE_1: "Los datos del pago de tu",
+                REASON_COPY_SECURE_2: "inscripción están seguros",
+                REASON_COPY_SECURE_3: "con nosotros.",
+                ACTION_CONTACT_US: "Contáctanos",
+                LABEL_PAYMENT_ENCRYPTED: "Pago encriptado"
+            });
+        }
+
+        function _updateWidgetValues(){
+            vm.scroll = window.scrollY;
+            vm.widgetOriginalPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().top + window.scrollY + 50;
+            vm.widgetMaxPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY - 420 - 70;
+            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - 420 - (document.getElementsByClassName('trulii-cover-regular')[0].getBoundingClientRect().bottom + window.scrollY);
+            vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().left + 30;
+            vm.widgetFixedPositionRight = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().right - 30 - 225;
+        }
+
+        function _initWidget(){
+            angular.element(document).ready(function () {
+                _updateWidgetValues()
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
+                    _updateWidgetValues()
+                    $scope.$apply();
+                  }
+                );
+                $scope.$on('resized', function(){
+                    _updateWidgetValues()
+                    $scope.$apply();
+                });
             });
         }
 
@@ -786,6 +839,7 @@
             _setStrings();
             _setOrganizer();
             _showWidget();
+            _initWidget();
             vm.stateInfo = {
                 toState: {
                     state : $state.current.name,
@@ -807,27 +861,6 @@
             if(currentUser) {
                 vm.pseData.payerEmail = currentUser.user.email;
                 _setAssistants();
-            }
-            if (vm.showWidget){
-                angular.element(document).ready(function () {
-                  if (!(document.getElementsByClassName('billing-widget')[0])){
-                    return;
-                  }
-                  vm.scroll = window.scrollY;
-                  vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
-
-                  vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
-                  vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
-
-                  $scope.$on('scrolled',
-                    function(scrolled, scroll){
-                        vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
-                        vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
-                      vm.scroll = scroll;
-                      $scope.$apply();
-                    }
-                  );
-                });
             }
 
 
