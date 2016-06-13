@@ -131,7 +131,7 @@
             }
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Solicitar Reembolso",
-                ACTION_FIND_ACTIVITY: "Buscar Actividad",
+                ACTION_FIND_ACTIVITY: "A ver qué encuentro",
                 ACTION_VIEW_DETAIL: "Ver detalle",
                 COPY_SEARCH_ORDERS_HELPER: "Nro de orden",
                 COPY_NOT_AVAILABLE: "No Disponible",
@@ -154,7 +154,8 @@
                 HEADER_STATUS: "Estatus",
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_PURCHASE_DATE: "Fecha de compra",
-                HEADER_TOTAL: "Monto"
+                HEADER_TOTAL: "Monto",
+                STATUS_CANCELLED: "Cancelada"
             });
         }
 

@@ -107,7 +107,7 @@
                                                   <span ng-bind="order.amount | currency:$:0"></span>
                                               </td>
                                               <td class="hidden-xs hidden-sm">
-                                                  <span class="text-uppercase"  ng-bind="::order.status"></span>
+                                                 <strong> <span class="text-uppercase" ng-class="{'text-red': order.status==history.strings.STATUS_CANCELLED}"  ng-bind="::order.status"></span></strong>
                                               </td>
                                               <td class="">
                                                 <a  ui-sref="student-dashboard.history.orders.order({'orderId': order.id})">
@@ -128,6 +128,8 @@
                               data-total-items="history.ordersPaginationOpts.totalItems"
                               data-items-per-page="history.ordersPaginationOpts.itemsPerPage"
                               max-size="history.ordersPaginationOpts.maxPagesSize"
+                              previous-text="Previo"
+                              next-text="Siguiente"
                               boundary-link-numbers="true"></pagination>
                           </div>
                       <!--If there are no orders-->

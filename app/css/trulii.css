@@ -12447,6 +12447,7 @@ hr.on-light {
 .pagination-sm > li:first-child > a,
 .pagination-sm > li:first-child > span {
   border-radius: 100%;
+  margin-right: 1.2em;
 }
 .ta-root.focussed > .ta-scroll-window.form-control {
   border-color: #00e2aa !important;
@@ -12771,6 +12772,9 @@ hr.on-light {
 }
 .text-gray-green {
   color: #587272;
+}
+.text-red {
+  color: #fe5339;
 }
 .text-ssm {
   font-size: 0.5em;
