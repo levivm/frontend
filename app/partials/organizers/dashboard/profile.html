@@ -7,7 +7,7 @@
                 <div class="row ">
                     <div class="col-xs-12 panel-default panel-default__dashboard ">
                         <span class="panel-default__dashboard-title" ng-bind="::profile.strings.SECTION_PROFILE"></span>
-                        <span class="separate-left text-gray-dark" ng-bind="::profile.strings.COPY_PROFILE"></span>
+                        <span class="separate-left-less text-gray-dark" ng-bind="::profile.strings.COPY_PROFILE"></span>
                     </div>
                 </div>
                 <div class="row">
@@ -49,18 +49,18 @@
                 <form class="separate-above col-xs-12 col-md-12" name='profile.profile_form_info' ng-submit="profile.submitInfo()">
                     <fieldset>
                         <div class="form-group" trulii-input-errors-control="name">
-                            <label for="name" class="control-label" ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
+                            <label for="name" class="form-label" ng-bind="::profile.strings.LABEL_FULL_NAME"></label>
                             <input type="text" class="form-control" placeholder="{{::profile.strings.HELPER_FULL_NAME}}" ng-model='profile.organizer.name'
                                    name="name" id="name">
                         </div>
                         <div class="form-group">
-                            <label class="control-label" for="headline"
+                            <label class="form-label" for="headline"
                                    ng-bind="::profile.strings.LABEL_HEADLINE"></label>
                                 <textarea elastic id="headline"  placeholder="{{::profile.strings.HELPER_HEADLINE}}"  class="form-control" ng-model='profile.organizer.headline'
                                           name="headline"></textarea>
                         </div>
                         <div class="form-group separate-below-more">
-                            <label class="control-label" for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
+                            <label class="form-label" for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
                                 <textarea elastic id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"  placeholder="{{::profile.strings.HELPER_BIO}}"></textarea>
                         </div>
                         <trulii-submit-controls is-saving="profile.isSaving"
@@ -76,7 +76,7 @@
                 <form name='profile.profile_form_photo' class="col-xs-12 separate-above" ng-submit="profile.submitVideo()">
                     <fieldset>
                         <div class="form-group separate-below ">
-                            <label ng-bind="::profile.strings.LABEL_VIDEO"></label>
+                            <label class="form-label"  ng-bind="::profile.strings.LABEL_VIDEO"></label>
                             <input type="text" class="form-control" ng-model="profile.organizer.youtube_video_url"
                                    name="video" placeholder="{{::profile.strings.COPY_VIDEO}}">
                         </div>
