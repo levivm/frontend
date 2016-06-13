@@ -69,11 +69,15 @@
           if(date === 'sales_from_date'){
             vm.salesFilter.from_date_opened = true;
             vm.salesFilter.until_date_opened = false;
+            console.log('sales_from_date');
           }
           if(date === 'sales_until_date'){
             vm.salesFilter.until_date_opened = true;
             vm.salesFilter.from_date_opened = false;
+            console.log('sales_until_date');
           }
+          
+          //updateByQuery(vm.TYPE_SALES);
         }
 
         function updateByQuery(type){
@@ -137,11 +141,12 @@
                 COPY_NA : "N/A",
                 COPY_START_DATE : "Fecha de inicio:",
                 COPY_SEARCH_ORDERS_HELPER : "Nro. orden",
+                COPY_SALES: "Estas son las transacciones realizadas",
                 COPY_NO_ORDERS: "No has hecho ninguna venta hasta ahora. Mientras tanto, ¿por qué no te animas a publicar una actividad?",
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de venta restando la comisión de Trulii, consulte el detalle "+
                                           "para mayor información",
                 COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de la orden sin contar la comisión de Trulii",
-                TAB_SALES: "Ventas",
+                TAB_SALES: "Transacciones > Ventas",
                 LABEL_SEARCH_ORDERS : "Buscar Ordenes",
                 LABEL_ORDER: "Orden",
                 LABEL_ACTIVITY: "Actividad",

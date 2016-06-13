@@ -37,9 +37,9 @@
                 var scope = this;
 
                 angular.extend(scope, studentData);
-                if(!scope.photo) {
+                /*if(!scope.photo) {
                     scope.photo = defaultPicture;
-                }
+                }*/
                 scope._setDates();
 
             },
@@ -103,7 +103,7 @@
 
             change_email : function () {
                 var scope = this;
-                return Authentication.change_email(this.email)
+                return Authentication.change_email(this.user.email)
                     .then(success, error);
 
                 function success(response) {

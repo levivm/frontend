@@ -39,9 +39,6 @@
             setData : function (organizerData) {
                 angular.extend(this, organizerData);
                 this._setCity();
-                if(!this.photo) {
-                    this.photo = defaultPicture;
-                }
             },
 
             _setCity : function () {

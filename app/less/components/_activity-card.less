@@ -3,7 +3,7 @@
 .trulii-activity-card{
     position: relative;
     height: @activity-card-height;
-    width: 290px;
+    width: 270px;
     margin: 0 auto;
     border-radius: @border-radius-large;
     overflow: hidden;
@@ -58,6 +58,7 @@
         &:extend(.flex-center-container);
         height: @activity-card-height/2;
         background-color: white;
+        text-align: center;
         &__content{
             &:extend(.flex-center-item);
             &__title{
@@ -101,9 +102,11 @@
                 width: 30%;
                 display: inline-block;
                 float: left;
+                
                 &__menu{
                     position: absolute;
                     right: 0;
+                    top: 7px;
                     &__item{
                         &__icon{
                             color: @gray-light;
@@ -117,19 +120,31 @@
             &__body{
                 width: 70%;
                 float: left;
+                text-align: left;
                 &__content{
                     margin-right: auto;
                     margin-left: 25px;
                     height: 85%;
+                    z-index: 1000;
                     &__price{
-                        padding-top: 40px;
+                        padding-top: 50px;
+                    }
+                    &__free{
+                        padding-top: 35px;
+                    }
+                    &__attendes{
+                        color: @gray-dark;
+                        text-decoration: underline;
+                        position: absolute;
+                        right: 12px;
+                        top: 137px;
                     }
                 }
             }
              &__category{
                 &__label{
                     top: 10px;
-                    left: 5%;
+                    left: 7%;
                     opacity: 1;
                 }
             }

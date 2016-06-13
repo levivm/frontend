@@ -48,7 +48,13 @@
 
 
         //--------- Internal Functions ---------//
-
+        function _mapAssistants() {
+            vm.order.assistants = vm.order.assistants.map(function (value) {
+               value.showMobile= false;
+               return value; 
+            });
+            console.log(vm.order.assistants);
+        }
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
@@ -56,7 +62,7 @@
                 ACTION_PRINT: "Imprimir",
                 COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y ayuda a identificar a un asistente",
                 SECTION_HISTORY: "Historial de Compras",
-                LABEL_ORDER: "Ordén",
+                LABEL_ORDER: "Nro. de Orden",
                 LABEL_FREE: "GRATIS",
                 LABEL_ACTIVITY: "Actividad",
                 LABEL_BUYER: "Comprador",
@@ -72,13 +78,15 @@
                 HEADER_ORDER: "Orden",
                 HEADER_FIRST_NAME: "Nombre",
                 HEADER_LAST_NAME: "Apellido",
-                HEADER_ASSISTANT_CODE: "Código"
+                HEADER_ASSISTANT_CODE: "Código",
+                TAB_ORDER: "Transacción > Orden de compra"
             });
         }
 
         function _activate() {
             vm.previousState = $stateParams.previousState;
             _setStrings();
+            _mapAssistants();
             console.log('order',order);
         }
     }

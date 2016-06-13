@@ -1,15 +1,59 @@
-<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
-    <ul>
-        <li class="navbar-secondary__item" ui-sref=".password" ui-sref-active="active">
-            <span ng-bind="::account.strings.TAB_PASSWORD"></span>
-        </li>
-        <li class="navbar-secondary__item" ui-sref=".email" ui-sref-active="active">
-            <span ng-bind="::account.strings.TAB_EMAIL"></span>
-        </li>
-    </ul>
-</div>
 <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard" ui-view>
+    <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-7 with-footer limited-width-dashboard">
+        <div class="row col-xs-12">
+            <div class="col-xs-12">
+              
+                 <div class="row ">
+                    <div class="col-xs-12 panel-default panel-default__dashboard ">
+                        <span class="panel-default__dashboard-title" ng-bind="::account.strings.SECTION_ACCOUNT"></span>
+                        <span class="separate-left-less  text-gray-dark" ng-bind="::account.strings.COPY_ACCOUNT"></span>
+                    </div>
+                </div>
+                <div class="col-xs-12">
+                   <form name="account.account_form_email" ng-submit="account.changeEmail()">
+                        <fieldset class="row">
+                            <div class="form-group separate-below-more separate-above" trulii-input-errors-control="email">
+                                <label class="form-label" for="email"
+                                    ng-bind="::account.strings.LABEL_EMAIL"></label>
+                                <input id="email" class="form-control " name="email"
+                                    ng-model="account.student.user.email" type="email"/>
+                            </div>
+                            <trulii-submit-controls class="separate-above separate-below" is-saving="account.isSaving"
+                                data-value="{{account.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                        </fieldset>
+                    </form>
+                    <form name='account.account_form_password' ng-submit="account.changePassword()">
+                        <fieldset class="row">
+                            <div class="form-group" trulii-input-errors-control="password">
+                                <label class="form-label" for="password"
+                                    ng-bind="::account.strings.LABEL_CURRENT_PASSWORD"></label>
+                                <input id="password" class="form-control" name="password"
+                                    type="password"
+                                    ng-model="account.password_data.password">
+                            </div>
+                            <div class="form-group" trulii-input-errors-control="password1">
+                                <label class="form-label" for="password1"
+                                    ng-bind="::account.strings.LABEL_NEW_PASSWORD"></label>
+                                <input id="password1" class="form-control" name="password1"
+                                    ng-model="account.password_data.password1"
+                                    type="password">
+                            </div>
+                            <div class="form-group separate-below-more" trulii-input-errors-control="password2">
+                                <label class="form-label" for="password2"
+                                    ng-bind="::account.strings.LABEL_CONFIRM_PASSWORD"></label>
+                                <input id="password2" class="form-control" name="password2"
+                                    type="password"
+                                    ng-model="account.password_data.password2">
+                            </div>
+                            <trulii-submit-controls is-saving="account.isSaving"
+                                    data-value="{{::account.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                        </fieldset>
+                    </form>
+
+                </div>
+              
+
+            </div>
+        </div>
     </div>
 </div>
-<trulii-dashboard-footer></trulii-dashboard-footer>

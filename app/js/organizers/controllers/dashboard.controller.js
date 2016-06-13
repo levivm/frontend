@@ -26,6 +26,7 @@
             getAmazonUrl: getAmazonUrl,
             subItems: {},
             showSubItems: showSubItems,
+            hideSubItems:hideSubItems,
             titleActive: ''
         });
 
@@ -36,24 +37,25 @@
             return  serverConf.s3URL + '/' +  file;
         }
         
-        function isActive(stateStr, title){
-            if($state.includes(stateStr) && title)
-                vm.titleActive = title;
-                
+        function isActive(stateStr){
             return $state.includes(stateStr);
         }
 
         function toggleSidebar(){
             vm.showSidebar = !vm.showSidebar;
-            console.log(vm.showSidebar);
         }
         
         function  showSubItems(item) {
             vm.subItems[item] = !vm.subItems[item];
-            console.log(vm.subItems[item]);
         }
         
-
+        function hideSubItems(subItem) {
+            angular.forEach(vm.subItems, function(value, item){
+                if(item!==subItem)
+                    vm.subItems[item] = false;  
+            });    
+        }
+        
         //Function send data analytics
 
         function clicItemDash(item){
@@ -87,6 +89,28 @@
                 
             });
         }
+          function _initWidget(){
+            angular.element(document).ready(function () {
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
+                    var sideBarPosition = (document.getElementsByClassName('sidebar-organizer')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('sidebar-organizer')[0].offsetHeight;
+                    var footerPosition = document.getElementsByClassName('container-fluid')[0].offsetHeight - 80 ;
+                    vm.scroll = scroll;
+                    var positionToFixed = window.scrollY +  document.getElementsByClassName('sidebar-organizer')[0].offsetHeight;
+                    if( positionToFixed >= footerPosition ){
+                         document.getElementsByClassName('sidebar-organizer')[0].style.position = 'absolute';
+                         document.getElementsByClassName('sidebar-organizer')[0].style.top =  footerPosition-document.getElementsByClassName('sidebar-organizer')[0].offsetHeight+'px';
+                       
+                    }else{
+                        document.getElementsByClassName('sidebar-organizer')[0].style.position = 'fixed';
+                        document.getElementsByClassName('sidebar-organizer')[0].style.top = '90px';
+                    }
+                    
+                    $scope.$apply();
+                  }
+                );
+            });
+        }
 
         function _initScroll(){
             $scope.$on('scrolled',
@@ -99,7 +123,8 @@
 
         function _activate() {
             _setStrings();
-            _initScroll();
+            //_initScroll();
+            _initWidget();
             vm.subItems ={
                 activities: false,
                 account: false,

@@ -14,7 +14,6 @@
 
 .order-detail{
   margin: 0;
-  border: 1px solid @gray-lighter;
   
   .pull-left{
     margin-right: 40px;
@@ -39,11 +38,11 @@
     font-family: @font-sans-alt;
   }
   .order-description, .order-info{
-    background-color: @gray-lighter;
+    background-color: @gray-lighter-brand;
     align-items: stretch;
   }
   .order-description{
-    padding: 25px 35px;
+    padding: 0px 35px;
   }
   
   .order-info{
@@ -65,9 +64,83 @@
         }
       }
     });
+    
+    .order-mobile{
+      &__asisstant{
+        border: 1px solid @gray-lighter;
+        margin-top: 1em;
+        padding-bottom: 1em;
+        max-height: 55px;
+        overflow: hidden;
+        transition: max-height 0.15s ease-out;
+        
+        &-show{
+          max-height: 400px;
+          transition: max-height 0.25s ease-in;
+        }
+        h4{
+          font-size: 1.2em;
+          font-weight: 600;
+          i{
+            font-size: 1.2em;
+            font-weight: 700;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            -o-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            -webkit-transition: 300ms ease all;
+            -moz-transition: 300ms ease all;
+            -o-transition: 300ms ease all;
+            transition: 300ms ease all;
+          }
+          .rotate-icon{
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            -o-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+          }
+        }
+        &-header{
+          padding: 0.3em 1em;
+        }
+        
+        &-row{
+          border-bottom: 1px solid @gray-lighter;
+          padding: 0.5em 1em;
+        }
+        
+        &-row:last-child{
+          border-bottom: none;
+        }
+      }
+    }
 
   }
+  
+  
+  
+ 
+}
 
+.btn-print{
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: transparent;
+    border: 2px solid @gray-dark-brand;
 }
 
 .order-container{
@@ -122,6 +195,9 @@
     display: none !important;
   }
   .glyphicon, .column-button{
+    display: none;
+  }
+  .home-footer__links {
     display: none;
   }
 }
