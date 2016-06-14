@@ -13145,6 +13145,9 @@ h5 a {
   padding: 0;
   margin: 0 !important;
 }
+.margin-auto {
+  margin: 0 auto;
+}
 .separate-above,
 .separate-vertical,
 .separate,
@@ -15523,7 +15526,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 50%;
 }
 .sidebar .mandatory-mark-edit-activity {
-  background-color: #03d69a;
+  background-color: #a1a6bb;
 }
 .sidebar .mandatory-mark.--right {
   float: right;
@@ -16175,6 +16178,7 @@ tags-input input {
 .btn-primary {
   color: white !important;
   border-color: transparent;
+  background-color: #00e2aa !important;
 }
 .btn-link {
   color: rgba(0, 0, 0, 0.74);
@@ -16189,7 +16193,7 @@ tags-input input {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-radius: 1.5em;
   padding: 1em 2em;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   text-transform: uppercase;
   font-size: 0.8em;
   transition: all 0.25s;
@@ -18556,9 +18560,67 @@ button.toast-close-button {
   background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/banner_edit_activity.png');
   background-size: cover;
   width: 100vw;
-  height: 200px;
+  height: 210px;
   position: absolute;
   top: 70px;
+}
+@media screen and (max-width: 992px) {
+  .cover-edit-activity {
+    padding: 0 1em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .cover-edit-activity {
+    height: auto;
+  }
+}
+.cover-edit-activity__create {
+  position: relative;
+  top: -20px;
+}
+.cover-edit-activity__content {
+  width: 1044px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+@media (max-width: 1299px) {
+  .cover-edit-activity__content {
+    max-width: 100%;
+    margin: auto;
+    margin-left: auto;
+  }
+}
+.cover-edit-activity__content-title {
+  padding: 0.2em 0 1em 0;
+}
+.cover-edit-activity__content-title h1 {
+  color: white;
+  font-weight: 700;
+  margin: 0;
+}
+.cover-edit-activity__content-title h5 {
+  color: white;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.cover-edit-activity__content-second {
+  border-top: 1px solid white;
+  padding: 1em 0 0.2em 0;
+}
+.cover-edit-activity__content-steps {
+  color: white;
+  font-weight: 400;
+}
+.cover-edit-activity__content-steps .mandatory-mark {
+  width: 8px;
+  height: 8px;
+  background-color: #a1a6bb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 0.2em;
 }
 .detail-cover:after {
   height: 420px;
@@ -18680,6 +18742,48 @@ button.toast-close-button {
 .trulii-cover-medium__content .rating .glyphicon,
 .trulii-cover-regular__content .rating .glyphicon {
   padding: 0 2px;
+}
+.trulii-cover__content-create,
+.trulii-cover-small__content-create,
+.trulii-cover-medium__content-create,
+.trulii-cover-regular__content-create {
+  width: 45em;
+  margin: 0 auto;
+  height: 30em;
+}
+.trulii-cover__content-create-title,
+.trulii-cover-small__content-create-title,
+.trulii-cover-medium__content-create-title,
+.trulii-cover-regular__content-create-title {
+  text-align: center;
+  margin-bottom: 2em;
+}
+.trulii-cover__content-create-title h2,
+.trulii-cover-small__content-create-title h2,
+.trulii-cover-medium__content-create-title h2,
+.trulii-cover-regular__content-create-title h2 {
+  font-weight: bold;
+  font-size: 2.6em;
+}
+.trulii-cover__content-create-subtitle,
+.trulii-cover-small__content-create-subtitle,
+.trulii-cover-medium__content-create-subtitle,
+.trulii-cover-regular__content-create-subtitle {
+  text-align: center;
+  margin-bottom: 5em;
+}
+.trulii-cover__content-create-subtitle h5,
+.trulii-cover-small__content-create-subtitle h5,
+.trulii-cover-medium__content-create-subtitle h5,
+.trulii-cover-regular__content-create-subtitle h5 {
+  font-weight: 400;
+  font-size: 1.3em;
+}
+.trulii-cover__content-create-input,
+.trulii-cover-small__content-create-input,
+.trulii-cover-medium__content-create-input,
+.trulii-cover-regular__content-create-input {
+  margin-bottom: 6em;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content-landing,
@@ -18810,8 +18914,10 @@ button.toast-close-button {
 .trulii-cover-small__content .btn-lg,
 .trulii-cover-medium__content .btn-lg,
 .trulii-cover-regular__content .btn-lg {
-  font-size: 1.35em;
+  font-size: 1.2em;
   padding: 0.8em;
+  width: 15em;
+  margin: 0 auto;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content .btn-lg,

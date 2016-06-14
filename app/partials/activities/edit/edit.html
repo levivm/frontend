@@ -1,7 +1,33 @@
 
 <div class="cover-edit-activity">
     <div class="cover-edit-activity__content">
-        <h1>Nombre de Actividad</h1>
+         <div class="cover-edit-activity__content-title">
+             <h1 ng-bind="pc.activity.title"></h1>
+             <h5 ng-bind="pc.activity.organizer.name"></h5>
+         </div>
+         <div class="cover-edit-activity__content-second">
+             <div class="cover-edit-activity__content-steps" ng-show="!pc.areAllStepsCompleted()">
+                 <ng-pluralize count="pc.activity.steps_left"
+                                when="{
+                                    '0':'',
+                                    '1': 'Falta ',
+                                    'other': 'Faltan '
+                                    }">
+                            </ng-pluralize>
+                            <strong>{{pc.activity.steps_left}}
+                                <ng-pluralize count="pc.activity.steps_left"
+                                    when="{
+                                        '0':'',
+                                        '1': ' paso ',
+                                        'other': ' pasos '
+                                        }">
+                                </ng-pluralize>
+                            </strong>
+                            <span>Para publicar tu actividad</span></br>
+                            <span>Obligatorios</span>
+                            <i class="mandatory-mark mandatory-mark-edit-activity --right"></i>
+             </div>
+         </div>
     </div>
 </div>
 <div class="container-fluid limited-width-dashboard-container">

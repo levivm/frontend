@@ -176,15 +176,7 @@
 
         }
 
-        function _initScroll(){
-            $scope.$on('scrolled',
-              function(scrolled, scroll){
-                pc.scroll = scroll;
-                $scope.$apply();
-              }
-            );
-        }
-
+     
 
         function activate() {
             _setStrings();
@@ -194,7 +186,7 @@
             activity.updateAllSections();
 
             match_required_steps(pc.steps, pc.activity.required_steps);
-
+            console.log(pc.activity);
             function match_required_steps(steps, required_steps){
                 _.each(steps, function(step){
 

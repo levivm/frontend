@@ -13,10 +13,10 @@
         .controller('ActivityGeneralController', ActivityGeneralController);
 
     ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Elevator', 'Toast', 'Error',
-            'activity', 'presaveInfo', 'Analytics', 'serverConf'];
+            'activity', 'presaveInfo', 'Analytics', 'serverConf', 'organizer'];
 
     function ActivityGeneralController($state, $q, filterFilter, Elevator, Toast, Error,
-            activity, presaveInfo, Analytics, serverConf) {
+            activity, presaveInfo, Analytics, serverConf, organizer) {
 
         var vm = this;
         var MAX_LENGTH_SHORT_DESC = 300;
@@ -34,7 +34,8 @@
             checkValidTitle: checkValidTitle,
             getSubmitButtonText: getSubmitButtonText,
             loadAutocompleteTags: loadAutocompleteTags,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            organizer:organizer
         });
 
 
@@ -182,8 +183,8 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                COPY_START_ACTIVITY_CREATION: "¡Comencemos a registrar su actividad!",
-                COPY_SELECT_ACTIVITY_TITLE: "Cuéntanos como titularías tu actividad",
+                COPY_START_ACTIVITY_CREATION: "¡Comienza a crear tu actividad!",
+                COPY_SELECT_ACTIVITY_TITLE: "¿Como titularías esta actividad?",
                 COPY_CERTIFICATION: "¿Entregará certificado u otorgará alguna certificación?",
                 ACTION_CONTINUE: "Continuar",
                 ACTION_SAVE: "Guardar",
@@ -208,7 +209,7 @@
                 _setCreate();
 
             vm.checkValidTitle(true);
-
+            console.log(organizer);
 
             _onSectionUpdated();
         }
