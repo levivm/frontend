@@ -19,7 +19,7 @@
                                 <div class="dashboard-filters__selects">
                                     <div class="input-group filter-group select-forms">
                                         <label>
-                                            <input id="from_date" type="text" class="form-control date-picker"
+                                            <input id="from_date" type="text" class="form-control datepicker"
                                                     aria-describedby="from_date_icon"
                                                     name="from_date"
                                                     placeholder="Desde"
@@ -29,12 +29,14 @@
                                                     data-max-date="history.maxStartDate"
                                                     data-datepicker-options="history.dateOptions"
                                                     data-close-text="{{history.strings.ACTION_CLOSE}}"
+                                                    show-button-bar="false"
+                                                    ng-change="history.updateByQuery(history.TYPE_ORDER)"
                                                     ng-click="history.openDatePicker($event, 'orders_from_date')"/>
                                         </label>
                                     </div>
                                     <div class="input-group filter-group select-forms">
                                         <label>
-                                            <input id="until_date" type="text" class="form-control date-picker"
+                                            <input id="until_date" type="text" class="form-control datepicker"
                                                     aria-describedby="until_date_icon"
                                                     name="until_date"
                                                     placeholder="Hasta"
@@ -44,7 +46,10 @@
                                                     data-max-date="history.maxStartDate"
                                                     data-datepicker-options="history.dateOptions"
                                                     data-close-text="{{history.strings.ACTION_CLOSE}}"
+                                                    show-button-bar="false"
+                                                    ng-change="history.updateByQuery(history.TYPE_ORDER)"
                                                     ng-click="history.openDatePicker($event, 'orders_until_date')"/>
+                                                    
                                         </label>
                                     </div>
                                     <div class="input-group filter-group select-forms dashboard-filters__activity ">
@@ -64,6 +69,7 @@
                                         <label>
                                             <select name="status"
                                                     id="" class="form-control"
+                                                     ng-change="history.updateByQuery(history.TYPE_ORDER)"
                                                     ng-model="history.ordersFilter.status">
                                                     <option value="">Estatus</option>
                                                     <option value="approved">Aprobadas</option>
@@ -136,16 +142,13 @@
                       <div ng-if="history.orders.length <= 0" class="row">
                           <div class="col-xs-12">
                               <div class="row">
-                                  <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center">
-                                      <img ng-src="{{dash.getAmazonUrl('static/img/student_dashboard_activities_empty.png')}}"
-                                          alt="{{history.strings.LABEL_EMPTY_ORDERS}}"/>
-                                      <p class="separate-below separate-above text-muted"
+                                  <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
+                                      <p class="separate-below separate-above"
                                             ng-bind="::history.strings.LABEL_EMPTY_ORDERS">
                                       </p>
-
-                                      <a class="btn btn-lg btn-success"
-                                        ng-bind="history.strings.ACTION_FIND_ACTIVITY">
-                                      </a>
+                                       <button class="btn btn-md btn-success margin-horizontal-less separate-below-less" ng-click="wishlist.searchActivities()"
+                                                 ng-bind="history.strings.ACTION_FIND_ACTIVITY">
+                                        </button>
                                   </div>
                               </div>
                           </div>

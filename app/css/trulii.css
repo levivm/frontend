@@ -16175,6 +16175,7 @@ tags-input input {
 .btn-primary {
   color: white !important;
   border-color: transparent;
+  background-color: #00e2aa !important;
 }
 .btn-link {
   color: rgba(0, 0, 0, 0.74);
@@ -16189,7 +16190,7 @@ tags-input input {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   border-radius: 1.5em;
   padding: 1em 2em;
-  font-weight: 800 !important;
+  font-weight: 700 !important;
   text-transform: uppercase;
   font-size: 0.8em;
   transition: all 0.25s;
@@ -16197,6 +16198,10 @@ tags-input input {
 .btn-lg {
   font-size: 1em;
   padding: 0.8em 5em;
+}
+.btn-md {
+  font-size: 0.8em;
+  padding: 0.8em 4em;
 }
 .btn-sm {
   font-size: 0.8em !important;
@@ -22776,6 +22781,12 @@ blockquote {
 .review-student__header {
   padding: 1em 2em;
 }
+.review-student__header a {
+  color: #222328;
+}
+.review-student__header a:hover {
+  color: #222328;
+}
 .review-student__header-title {
   font-size: 1em;
   font-weight: 600;
@@ -22952,6 +22963,9 @@ blockquote {
   color: #ededed;
 }
 .star-empty:hover {
+  color: #f4d352;
+}
+.star:hover {
   color: #f4d352;
 }
 @media (max-width: 768px) {
