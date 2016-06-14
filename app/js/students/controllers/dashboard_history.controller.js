@@ -47,6 +47,11 @@
               query: null,
               activity: null
             },
+            dateOptions : {
+                formatYear: 'yyyy',
+                startingDay: 1,
+                showWeeks:false,
+            },
             openDatePicker: openDatePicker,
         });
 

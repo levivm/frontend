@@ -182,7 +182,7 @@
                 function _setStrings(){
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
-                        ACTION_DONE: "Comentar",
+                        ACTION_DONE: "Calificar",
                         ACTION_MARK_AS_READ: "Marcar como Leído",
                         COPY_EMPTY_REPLY: "Por favor escriba una respuesta",
                         COPY_REVIEW_REPORTED: "El comentario será revisado por Trulii",

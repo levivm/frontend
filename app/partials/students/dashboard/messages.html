@@ -46,10 +46,7 @@
             data-items-per-page="messages.paginationOpts.itemsPerPage"></pagination>
     </div>
     <div ng-if="messages.messages.length === 0" class="row">
-      <div class="col-xs-12 text-center separate-above">
-          <img ng-src="{{dash.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
-              alt="{{messages.strings.COPY_NO_MESSAGES}}"
-              class="center-block img-responsive"/>
+      <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
           <p class="separate-below separate-above text-muted"
                 ng-bind="::messages.strings.COPY_NO_MESSAGES">
           </p>

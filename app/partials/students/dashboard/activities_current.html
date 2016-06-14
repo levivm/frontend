@@ -21,15 +21,17 @@
           ng-model="activities.currentPaginationOpts.pageNumber"
           ng-change="activities.updateByQuery(activities.TYPE_PAST)"
           data-total-items="activities.currentPaginationOpts.totalItems"
+          previous-text="Previo"
+          next-text="Siguiente"                
           data-items-per-page="activities.currentPaginationOpts.itemsPerPage"></pagination>
     </div>
     <!--If there are no activities-->
     <div  ng-if="activities.current_activities.length <= 0"  class="row">
-        <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
             <p class="separate-below separate-above "
                  ng-bind="::activities.strings.LABEL_EMPTY_ACTIVITIES">
             </p> 
-            <button class="btn col-md-5 btn-success margin-horizontal-less separate-below-less" ng-click="activities.searchActivities()"
+            <button class="btn btn-md  btn-success margin-horizontal-less separate-below-less" ng-click="activities.searchActivities()"
                     ng-bind="activities.strings.ACTION_SEARCH_ACTIVITIES">
             </button>
         </div>

@@ -192,7 +192,7 @@
                     + " aprenda un nuevo pasatiempo o mejore su currículo",
                 TAB_NEXT: "Actividades / Próximas",
                 COPY_NEXT: "Estas son las actividades que próximamente realizarás. ¡Ya falta poco?",
-                TAB_LAST: "Actividades / Anteriores",
+                TAB_LAST: "Actividades / Por revisar",
                 TAB_CURRENT: "Actividades / Actuales",
                 COPY_ORDER_DETAIL: "Detalle de la compra",
                 COPY_BEGINNING_ON: "Iniciado el "
