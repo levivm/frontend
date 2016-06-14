@@ -27,9 +27,22 @@ select{
     border: 1px solid #ededed !important;
     box-shadow: 0 0 !important;
 	background-color: @gray-light-brand !important;
+	&.input-lg{
+		height: 46px !important;
+		line-height: 46px;
+		font-weight: bold;
+	}
 
 }
 
+.input-group{
+	.input-group-btn{
+		font-size: 12px;
+		.btn{
+    		font-size: 12px;
+		}
+	}
+}
 .select-forms{
 	position: relative;
 	label{
@@ -160,6 +173,12 @@ label{
 	font-size: 0.9em;
 	margin-bottom: 1em;
 	text-transform: uppercase;
+}
+
+.form-group{
+	label{
+		margin-left: 20px;
+	}
 }
 
 .input{
@@ -411,4 +430,10 @@ tags-input{
 
 .search-input{
   margin: 10px 0px 50px 10px;
+}
+
+
+.input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group-btn:last-child > .btn-group:not(:last-child) > .btn{
+	border-bottom-right-radius: 0 !important;
+    border-top-right-radius: 0 !important;
 }
