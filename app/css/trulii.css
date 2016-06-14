@@ -15230,8 +15230,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 4px;
 }
 .sidebar-edit-activity {
-  background-color: #FFFFFF;
-  border-right: 0.1em solid #cbcbcb;
+  position: absolute;
+  top: 210px;
 }
 .sidebar__absolute {
   position: absolute;
@@ -18550,6 +18550,15 @@ button.toast-close-button {
 .full-screen-cover:after {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+}
+.cover-edit-activity {
+  background-repeat: no-repeat;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/banner_edit_activity.png');
+  background-size: cover;
+  width: 100vw;
+  height: 200px;
+  position: absolute;
+  top: 70px;
 }
 .detail-cover:after {
   height: 420px;
