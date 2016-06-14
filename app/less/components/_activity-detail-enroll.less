@@ -246,7 +246,7 @@
     &__body{
         padding: 15px 15px 50px;
         @media (max-width: 768px){
-            padding: 15px 15px 35px;
+            padding: 15px 15px 3 5px;
         }
         .session{
             margin: 0 0 10px 0;
@@ -697,5 +697,15 @@
     .absolute-widget{
         position: absolute;
         width: ~"calc(100% - 50px)"; // Ni idea de porque 50, pero se ve bien
+    }
+}
+
+
+.pse-payment{
+    .input-group{
+        width: 100%;
+        select, input{
+            width: 50%;
+        }
     }
 }
