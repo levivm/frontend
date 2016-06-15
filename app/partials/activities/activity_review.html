@@ -12,7 +12,7 @@
                 <span ng-bind="::activity.title"></span>
             </div>
         </a>
-       <div class="review-student__header-rating">
+       <div class="review-student__header-rating" ng-class="{'review-student__header-rating-unrating': !review.rating}">
            <span ng-bind="strings.LABEL_RATE_EXPERIENCE" class="separate-right-less"></span>
            <rating ng-model="review.rating" readonly="review.rating>0" max="5" state-on="'glyphicon glyphicon-star star'" class="review-student__header-rating-stars"
                     state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
@@ -20,7 +20,7 @@
        
     </div>
     <!-- Should be hidden until a score has been chosen-->
-    <div ng-show="!hasReview" class="review-student__comment" >
+    <div ng-show="!hasReview && review.rating" class="review-student__comment" >
         <div class="">
             <label for="review-comment" ng-bind="::strings.LABEL_COMMENT"></label>
             <textarea id="review-comment" class="form-control" name="review-comment"
