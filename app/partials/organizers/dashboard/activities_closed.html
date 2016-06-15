@@ -23,11 +23,11 @@
       </div>
     <!--If there are no activities-->
     <div ng-if="activities.closed_activities.length <= 0" class="row">
-        <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
             <p class="separate-below separate-above "
                  ng-bind="::activities.strings.COPY_EMPTY_CLOSED">
             </p>
-            <a class="btn col-md-5 btn-success margin-horizontal-less separate-below-less"
+            <a class="btn btn-md btn-success margin-horizontal-less separate-below-less"
                ui-sref="dash.activities-new.general"
                ng-bind="activities.strings.ACTION_CREATE_ACTIVITY"></a>
         </div>
