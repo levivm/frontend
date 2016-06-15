@@ -14,6 +14,7 @@
                                 <div class="dashboard-filters__searchbox ">
                                     <input class="form-control floating-label" type="text"
                                     ng-model="history.ordersFilter.query"
+                                    ng-change="history.filterById()"
                                     placeholder="{{::history.strings.COPY_SEARCH_ORDERS_HELPER}}"/>
                                 </div>
                                 <div class="dashboard-filters__selects">

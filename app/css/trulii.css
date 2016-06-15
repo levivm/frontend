@@ -22756,6 +22756,15 @@ blockquote {
   font-size: 1.4em;
   vertical-align: sub;
 }
+.review-student__header-rating-unrating {
+  position: absolute;
+  font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 7em;
+  left: 20em;
+}
 .review-student__comment {
   position: absolute;
   width: 60%;
