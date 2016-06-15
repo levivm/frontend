@@ -76,9 +76,7 @@
                 }
 
                 function cancelEdition(){
-                    console.log('limpiar');
-                    scope.instructorEditable.full_name = '';
-                    scope.instructorEditable .bio = '';
+                    _onChange();
                 }
 
                 function toggleEditMode(){
@@ -217,7 +215,7 @@
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
                         ACTION_SAVE: "Guardar",
-                        ACTION_CANCEL: "Limpiar",
+                        ACTION_CANCEL: "Cancelar",
                         ACTION_EDIT: "Editar Instructor",
                         ACTION_DELETE: "Eliminar Instructor",
                         LABEL_FULL_NAME: "Nombre Completo",

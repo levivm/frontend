@@ -15,9 +15,9 @@
 
         .directive('truliiActivityReview', truliiActivityReview);
 
-    truliiActivityReview.$inject = ['ActivitiesTemplatesPath', 'Authentication', 'ActivitiesManager', 'Toast', 'defaultPicture', 'Analytics'];
+    truliiActivityReview.$inject = ['ActivitiesTemplatesPath', 'Authentication', 'ActivitiesManager', 'Toast', 'defaultPicture', 'Analytics', '$rootScope'];
 
-    function truliiActivityReview(ActivitiesTemplatesPath, Authentication, ActivitiesManager, Toast, defaultPicture, Analytics){
+    function truliiActivityReview(ActivitiesTemplatesPath, Authentication, ActivitiesManager, Toast, defaultPicture, Analytics, $rootScope){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_review.html",
@@ -97,7 +97,7 @@
                     function success(){
                         scope.hasReply = true;
                         if (scope.onDashboard) scope.changeReviewStatus();
-
+                        $rootScope.$broadcast('update_reviews');
                     }
                 }
 
@@ -106,6 +106,7 @@
                     activityInstance.markReviewAsRead(scope.review).then(success);
 
                     function success(){
+                        $rootScope.$broadcast('update_reviews');
                         if (scope.onDashboard) scope.changeReviewStatus();
                     }
                 }

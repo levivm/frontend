@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics', 'serverConf'];
-    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics, serverConf) {
+    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics', 'serverConf', 'organizer'];
+    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics, serverConf, organizer) {
 
         var vm = this;
         angular.extend(vm, {
@@ -57,7 +57,7 @@
         }
         
         //Function send data analytics
-
+ 
         function clicItemDash(item){
             Analytics.organizerEvents.dashboardOrgItems(item);
         }
@@ -120,11 +120,25 @@
               }
             );
         }
+        
+        function _initNotificationWatch(){
+          $scope.$on('update_reviews',
+            function(){
+              organizer.getReviews(1, 6, 'unread').then(function(data){
+                console.log('data', data);
+                vm.unreadReviewsCount = data.count;
+              });
+            }
+          );
+        }
+
+        
 
         function _activate() {
             _setStrings();
             //_initScroll();
             _initWidget();
+            _initNotificationWatch();
             vm.subItems ={
                 activities: false,
                 account: false,

@@ -22,12 +22,12 @@
       </div>
     <!--If there are no activities-->
     <div ng-if="activities.inactive_activities.length <= 0" class="row">
-        <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
             <p class="separate-below separate-above">
                 <span ng-bind="::activities.strings.LABEL_EMPTY_INACTIVE"></span>
                 <span ng-bind="::activities.strings.COPY_EMPTY_INACTIVE"></span>
             </p>
-            <a class="btn col-md-5 btn-success"
+            <a class="btn btn-md btn-success margin-horizontal-less separate-below-less"
                ui-sref="dash.activities-new.general"
                ng-bind="activities.strings.ACTION_CREATE_ACTIVITY"></a>
         </div>

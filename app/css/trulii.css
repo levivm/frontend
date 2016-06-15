@@ -15354,12 +15354,17 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar__item .label-notification {
   position: absolute;
-  top: 17px;
-  font-size: 0.9em;
+  font-size: 1em;
   border-radius: 45%;
   top: 13px;
   right: 30px;
   padding: 0.4em 0.7em;
+}
+.sidebar__item .label-notification-empty {
+  display: block;
+  padding: 0.4em;
+  top: 18px;
+  right: 33px;
 }
 .sidebar__item .arrow-right {
   float: right;
@@ -16224,8 +16229,7 @@ tags-input input {
 }
 .btn-lg {
   font-size: 1em;
-  padding: 1.25em;
-  border-radius: 3em;
+  padding: 0.8em 5em;
 }
 .btn-md {
   font-size: 0.8em;
@@ -17996,8 +18000,9 @@ ul.dropdown-menu:after {
 .card__instructor-buttons button {
   background: transparent;
   width: 50%;
-  border-radius: 0;
+  border-radius: 0 !important;
   border: 1px solid #ededed;
+  background-color: transparent !important;
 }
 .card__instructor-buttons .btn-default {
   border-bottom: none;

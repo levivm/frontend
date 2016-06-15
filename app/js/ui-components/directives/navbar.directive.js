@@ -316,12 +316,30 @@
                     }
                   );
                 }
+                
+                function _initReviewsWatch(){
+                    scope.$on('update_reviews',
+                        function(){
+                            _getOrganizerReviews();
+                        }
+                    );
+                }
+                
+                function _initNotificationWatch(){
+                    scope.$on('update_notifications',
+                        function(){
+                             _getStudentMessages();
+                        }
+                    );
+                }
 
                 function _activate() {
                     _setStrings();
                     _getUser();
                     _initScroll();
                     _setUserChangedWatch();
+                    _initReviewsWatch();
+                    _initNotificationWatch();
                     
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
