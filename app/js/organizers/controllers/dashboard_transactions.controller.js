@@ -12,12 +12,21 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', '$http', 'activities'];
-    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, $http, activities) {
+    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', 'balances', '$http', 'activities', 'withdraws', '$modal', 'Toast'];
+    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, balances, $http, activities, withdraws, $modal, Toast) {
 
         var vm = this;
         var api = OrganizerServerApi;
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
+        var STATUS_APPROVED = 'Aprobado',
+            STATUS_DECLINED = 'Rechazado',
+            STATUS_PENDING = 'Pendiente';
+
+        var STATUS_APPROVED_BACK = 'approved',
+            STATUS_DECLINED_BACK = 'declined',
+            STATUS_PENDING_BACK = 'pending';
+
+        var MIN_MOUNT = 30000;
 
         angular.extend(vm, {
             organizer: organizer,
@@ -42,6 +51,12 @@
                 maxPagesSize:10,
                 pageNumber: 1
             },
+            withDrawsPaginationOpts: {
+                totalItems: 0,
+                itemsPerPage: 5,
+                maxPagesSize:10,
+                pageNumber: 1
+            },
             salesFilter: {
               from_date: null,
               until_date: null,
@@ -54,6 +69,8 @@
             updateByQuery:updateByQuery,
             openDatePicker: openDatePicker,
             TYPE_SALES: 'sales',
+            withDraw: withDraw,
+            changePageWithdraws:changePageWithdraws,
             filterById: filterById
         });
 
@@ -89,10 +106,7 @@
             switch(type){
                 case vm.TYPE_SALES:
 
-                  var params = {
-                    page: vm.salesPaginationOpts.pageNumber,
-                    page_size: vm.salesPaginationOpts.itemsPerPage
-                  };
+                  var params = {};
 
                   if(vm.salesFilter.activity)
                     params.activity = vm.salesFilter.activity;
@@ -107,8 +121,7 @@
                     params.status = vm.salesFilter.status;
 
                   if(vm.salesFilter.query)
-                    params.id = vm.salesFilter.query;
-                  
+                    params.id = vm.salesFilter.query;   
                   organizer.getOrders(params)
                   .then(function(response){
                       vm.sales = response;
@@ -120,7 +133,41 @@
                   break;
             }
         }
+        function withDraw(){
+          if(vm.balances.available<=MIN_MOUNT){
+              Toast.error(vm.strings.DELETE_AVAILABLE_ERROR);
+              return;
+          }
+          var modalInstance = $modal.open({
+              templateUrl : 'partials/organizers/messages/confirm_withdraw.html',
+              controller : 'ModalInstanceCtrl',
+              controllerAs:'modal',
+              size : 'lg'
+          });
 
+          modalInstance.result.then(function () {
+             organizer.postWithDraw()
+                      .then(success, error)
+          });
+
+          function success(data) {
+            changePageWithdraws();
+          }
+          function error(response) {
+              console.log(response);
+          }
+        }
+
+        function changePageWithdraws(){
+            organizer.getWithDraw(vm.withDrawsPaginationOpts.pageNumber, vm.withDrawsPaginationOpts.itemsPerPage)
+                     .then(function (response) {
+                       console.log(response);
+                       vm.withdrawals = response.results;
+                       vm.withDrawsPaginationOpts.totalItems = response.count;
+                       vm.withdrawals = response.results.slice(0, vm.withDrawsPaginationOpts.itemsPerPage);
+                       _mapWithdraws();
+                      });
+        }
         //--------- Internal Functions ---------//
 
         function _getOrders(){
@@ -132,6 +179,31 @@
 
         }
 
+        function _getBalances(){
+          vm.balances = balances;
+          vm.withdrawals = withdraws.results;
+          vm.withDrawsPaginationOpts.totalItems = withdraws.count;
+          vm.withdrawals = withdraws.results.slice(0, vm.withDrawsPaginationOpts.itemsPerPage);
+
+        }
+        function _mapWithdraws(){
+          vm.withdrawals = vm.withdrawals.map(mapStatus);
+
+          function mapStatus(withdraw){
+            switch (withdraw.status) {
+              case STATUS_PENDING_BACK:
+                withdraw.status = STATUS_PENDING;
+                break;
+              case STATUS_APPROVED_BACK:
+                withdraw.status = STATUS_APPROVED;
+                break;
+              case STATUS_DECLINED_BACK:
+                withdraw.status = STATUS_DECLINED;
+                break;
+            }
+            return withdraw;
+          }
+        }
 
         function _setStrings() {
             if (!vm.strings) {
@@ -141,6 +213,7 @@
             angular.extend(vm.strings, {
                 ACTION_VIEW_DETAIL: "Ver detalle",
                 ACTION_CREATE_ACTIVITY: "Crear actividad",
+                ACTION_BALANCE_WITHDRAW: "Solicitar dinero",
                 COPY_EMAIL: "¿Desea cambiar su correo electrónico?",
                 COPY_NOT_AVAILABLE : "No Disponible",
                 COPY_NA : "N/A",
@@ -151,7 +224,18 @@
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de venta restando la comisión de Trulii, consulte el detalle "+
                                           "para mayor información",
                 COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de la orden sin contar la comisión de Trulii",
+                COPY_TITLE_BALANCE: "Balance",
+                COPY_BALANCE_AVAILABLE: "Monto disponible",
+                COPY_BALANCE_UNAVAILABLE: "Monto no disponible",
+                TAB_BALANCE: "Transacciones > Balance",
                 TAB_SALES: "Transacciones > Ventas",
+                TAB_WITHDRAWALS: "Transacciones > Historial de retiros",
+                COPY_WITHDRAWALS: "Revisa todos los retiros que has solicitado en la plataforma desde el mas reciente hasta el primero.",
+                COPY_NO_WITHDRAWALS: "Hasta ahora no has solicitado ningún retiro a tu cuenta bancaria. Recuerads que puedes solicitar el monto disponible cuando desees.",
+                COPY_BALANCE: "Revisa la cantidad de dinero que tienes disponible para solicitar la transferencia a tu cuenta. Solicita el retiro cuando quieras.",
+                COPY_BALANCE_NOTE: "El monto será transferido a tu cuenta de",
+                COPY_TOOLTIP_MOUNT_AVAILABLE: "Este es el monto disponible a ser trasnferido a tu cuenta.",
+                COPY_TOOLTIP_MOUNT_UNAVAILABLE: "Aún no puedes solicitar la transferencia de este monto",
                 LABEL_SEARCH_ORDERS : "Buscar Ordenes",
                 LABEL_ORDER: "Orden",
                 LABEL_ACTIVITY: "Actividad",
@@ -163,6 +247,17 @@
                 LABEL_EVERYBODY: "Todos",
                 LABEL_FINAL_TOTAL: "Ventas Netas",
                 LABEL_NO_ORDERS: "No hay ordenes en el historial",
+                SEARCH_BALANCE_PLACEHOLDER: "Busca por nro. orden, fecha de retiro o monto solicitado",
+                LABEL_BALANCE_ORDER: "Nro. retiro petición",
+                LABEL_BALANCE_DATE: "Fecha de Retiro",
+                LABEL_BALANCE_MOUNT: "Monto solicitado",
+                LABEL_BALANCE_STATUS: "Estatus",
+                LABEL_CURRENCY: "COP",
+                DELETE_AVAILABLE_ERROR: "No tiene suficiemente monto para solicitarlo",
+                STATUS_APPROVED: 'Aprobado',
+                STATUS_DECLINED: 'Rechazado',
+                STATUS_PENDING: 'Pendiente'
+
             });
         }
 
@@ -170,7 +265,11 @@
             datepickerPopupConfig.showButtonBar = false;
             _setStrings();
             _getOrders();
-            console.log('organizer:', organizer);
+            _getBalances();
+            _mapWithdraws();
+            
+            console.log(vm.withdrawals);
+
         }
 
     }

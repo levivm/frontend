@@ -114,7 +114,7 @@
                                                   <span ng-bind="order.amount | currency:$:0"></span>
                                               </td>
                                               <td class="hidden-xs hidden-sm">
-                                                 <strong> <span class="text-uppercase" ng-class="{'text-red': order.status==history.strings.STATUS_CANCELLED}"  ng-bind="::order.status"></span></strong>
+                                                 <strong> <span class="text-uppercase" ng-class="{'text-color-red': order.status==history.strings.STATUS_CANCELLED}"  ng-bind="::order.status"></span></strong>
                                               </td>
                                               <td class="">
                                                 <a  ui-sref="student-dashboard.history.orders.order({'orderId': order.id})">
