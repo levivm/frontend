@@ -408,7 +408,7 @@
         font-weight: 700;
         font-size: 0.85em;
         float: left;
-        width: 400px;
+        width: 295px;
         display: inline-block;
         padding: 0 15px 50px 45px;
         
@@ -439,6 +439,10 @@
             border: 1px solid @gray-lighter;
             border-radius: @border-radius-standard;
             margin-bottom: 15px;
+
+            &-cursor{
+                cursor: pointer;
+            }
             
             &-expanded{
                 margin-bottom: -5px;
@@ -492,9 +496,16 @@
             }
             &__price{
                 &-slider{
-                    padding: 15px 35px 10px 35px !important;
+                    padding: 15px 15px 10px 15px !important;
                     .noUi-connect{
                         background-color: @gray-dark; 
+                    }
+                }
+                &-free{
+                    margin-bottom: -10px;
+                    padding-bottom: 0 !important;
+                    .trulii-checkbox input[type="checkbox"] + label{
+                        color: @gray-darker !important;
                     }
                 }
             }
@@ -560,35 +571,37 @@
     
     .search-content{
         float: left;
-        width: ~"calc(100% - 400px)";
+        width: ~"calc(100% - 325px)";
         display: inline-block;
         padding: 0 15px 50px 45px;
-        
+        .trulii-activity-card{
+            width: 245px;
+        }
         // Dynamic layout stuff
         @media (min-width: 1900px) {
             .dynamic-layout{
-                width: 1200px;
+                width: 800px;
                 margin-top: 20px;
             }
             .dynamic-layout-col-4{
-                width: 395px;
+                width: 265px;
             }
         }
         
         @media (min-width: 1366px) and (max-width: 1899px){
             .dynamic-layout{
-                width: 1000px;
+                width: 600px;
                 margin-top: 20px;
             }
             .dynamic-layout-col-4{
-                width: 350px;
+                width: 300px;
             }
         }
 
         @media (min-width: 1025px) and (max-width: 1366px){
             padding: 0 0;
             .dynamic-layout{
-                width: 800px; // 900
+                width: 700px; // 900
                 margin-top: 20px;
             }
             .dynamic-layout-col-4{
@@ -598,11 +611,11 @@
         
         @media (min-width: 992px) and (max-width: 1024px){
             .dynamic-layout{
-                width: 550px; // 900
+                width: 400px; // 900
                 margin-top: 20px;
             }
             .dynamic-layout-col-4{
-                width: 350px;
+                width: 400px;
             }
         }
         
@@ -611,7 +624,7 @@
                 width: 400px;
             }
             .dynamic-layout-col-4{
-                width : 320px;
+                width : 400px;
             }
         }
         // End of dynamic layout stuff
@@ -691,7 +704,7 @@
     
     .limited-width-search{
         @media (min-width: 1900px) {
-            max-width: 1200px;
+            max-width: 850px;
         }
     }
 }
