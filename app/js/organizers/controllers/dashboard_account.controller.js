@@ -20,7 +20,8 @@
             organizer : organizer,
             bankingInfo: bankingInfo,
             bankingData: {
-                'organizer': organizer.id
+                'organizer': organizer.id,
+                
             },
             password_data : {},
             isCollapsed : true,
@@ -40,6 +41,7 @@
 
         function updateBankingInfo(){
             vm.isSaving = true;
+            console.log(vm.bankingData);
             Error.form.clear(vm.account_form_banking_info);
             organizer.saveBankingInfo(vm.bankingData).then(success, error);
 
@@ -109,7 +111,9 @@
             organizer.getBankingInfo().then(success);
 
             function success(bankingData){
+                
                 if(bankingData){ vm.bankingData = bankingData; }
+                console.log(vm.bankingData);
             }
         }
 
