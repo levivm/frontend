@@ -47,7 +47,13 @@
               query: null,
               activity: null
             },
+            dateOptions : {
+                formatYear: 'yyyy',
+                startingDay: 1,
+                showWeeks:false,
+            },
             openDatePicker: openDatePicker,
+            filterById: filterById
         });
 
         activate();
@@ -70,7 +76,11 @@
             vm.ordersFilter.from_date_opened = false;
           }
         }
-
+        
+        function filterById() {
+            setTimeout(function(){ updateByQuery(vm.TYPE_ORDER) }, 1000);
+        }
+        
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_ORDER:
@@ -131,16 +141,17 @@
             }
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Solicitar Reembolso",
-                ACTION_FIND_ACTIVITY: "Buscar Actividad",
+                ACTION_FIND_ACTIVITY: "A ver qué encuentro",
                 ACTION_VIEW_DETAIL: "Ver detalle",
                 COPY_SEARCH_ORDERS_HELPER: "Nro de orden",
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE: "Fecha inicio: ",
+                TAB_HISTORY: "Transacciones",
                 LABEL_SEARCH:"Revisa toda la informacion de tu orden de compra. "
                 + "Puedes incluso solicitar el reembolso del monto total de la orden o el monto "
                 + "correspondiente por cada asistente",
-                LABEL_EMPTY_ORDERS: "No te has inscrito en ninguna actividad aún. Eso nos parte el corazón. ¿Por qué no te animas hoy a aprender lo que te apasiona?",
+                LABEL_EMPTY_ORDERS: "No tienes ninguna transacción porque aún no te has inscrito a ninguna actividad. Anda, ¡anímate!",
                 LABEL_EVERYBODY: "Todos",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un nuevo pasatiemo o mejores tu curriculo",
                 TAB_ORDERS: "Compras",
@@ -153,7 +164,8 @@
                 HEADER_STATUS: "Estatus",
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_PURCHASE_DATE: "Fecha de compra",
-                HEADER_TOTAL: "Monto"
+                HEADER_TOTAL: "Monto",
+                STATUS_CANCELLED: "Cancelada"
             });
         }
 

@@ -27,7 +27,6 @@
     "angular-md5": "~0.1.8",
     "angular-moment": "~0.10.3",
     "angular-scroll": "~0.7.0",
-    "angular-socialshare": "angularjs-socialshare#~0.1.14",
     "angular-ui-router": "0.2.14",
     "angular-youtube-mb": "~1.0.0",
     "arrive": "~2.1.0",
@@ -48,7 +47,8 @@
     "angular-nvd3": "~1.0.5",
     "ui-select": "angular-ui-select#~0.16.1",
     "textAngular": "~1.5.0",
-    "font-awesome": "fontawesome#~4.6.1"
+    "font-awesome": "fontawesome#~4.6.1",
+    "angular-socialshare": "angularjs-socialshare#^2.1.10"
   },
   "resolutions": {
     "lodash": "~3.6.0",

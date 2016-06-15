@@ -1,3 +1,12 @@
+/**
+ * @ngdoc service
+ * @name trulii.utils.services.Scroll
+ * @description Window Scroll Service
+ * @requires ng.$window
+ * @requires ng.$rootScope
+ */
+
+
 (function () {
     'use strict';
 
@@ -13,6 +22,12 @@
         angular.element($window).bind('scroll ', function () {
           scroll = window.scrollY;
           $rootScope.$broadcast('scrolled', scroll);
+        });
+
+        angular.element($window).bind('resize', function () {
+            scroll = window.scrollY;
+            $rootScope.$broadcast('scrolled', scroll);
+            $rootScope.$broadcast('resized');
         });
         
 

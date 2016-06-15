@@ -14,6 +14,7 @@
 	&-nonborder{
 		border-bottom: none;
 	}
+	
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
 		-webkit-border-top-right-radius: @material-border-radius;
@@ -199,10 +200,13 @@
 	
 	&__instructor{
 		position: relative;
+		.before-md({
+			margin: 0.8em 0;
+		});
 		&-header{
 			border-bottom: 1px solid @gray-lighter;
 			text-transform: uppercase;
-			padding: 1em;
+			padding: 1em 1.5em;
 			
 			&-title{
 				color: @gray-dark;
@@ -214,7 +218,7 @@
 			}
 			
 			&-name{
-				color: #979797;
+				color: @gray-regular-dark;
 				font-weight: 600;
 				.before-md({
 					font-size: 0.9em;
@@ -224,7 +228,7 @@
 				position: absolute;
 				font-size: 1.4em;
 				right: 25px;
-				color: #979797;
+				color: @gray-regular-dark;
 				top: 10px;
 				cursor: pointer;
 		    }
@@ -279,11 +283,11 @@
 			padding: 1em 0em 0em 0em;
 			
 			.form-group{
-				padding: 0em 2em 0em 2em;
+				padding: 0em 1.5em 0em 1.5em;
 			}
 			
 			.view-mode{
-				padding: 1em 2em 4em 2em;
+				padding: 1em 1.5em 4em 1.5em;
 			}
 			textarea{
 				resize: none;
@@ -301,12 +305,14 @@
 			button{
 				background: transparent;
 				width: 50%;
-				border-radius: 0;
+				border-radius: 0 !important;
 				border: 1px solid @gray-lighter;
+				background-color: transparent !important;
 			}
 			.btn-default{
 				border-bottom: none;
 				border-left: none;
+				color: @gray-regular-dark !important;
 				
 				&:hover{
 					background: transparent;

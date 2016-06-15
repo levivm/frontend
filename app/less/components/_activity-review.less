@@ -1,5 +1,119 @@
-.review-detail{
+.review-student{
+    display: flex;
+    height: 310px;
+    overflow: hidden;
+    box-shadow: #DCDDE2 0px 0px 0px 0px;
+    transition: all 0.33s;
+    cursor: pointer;
+    
+    &:hover{
+        box-shadow: #DCDDE2 5px 10px 25px 4px;
+    }
+    
+    &__activity-picture{
+       width: 30%;
+    }
+    
+    &__activity-category-label {
+      text-align: center;
+      white-space: nowrap;
+      vertical-align: baseline;
+      border-radius: 4px;
+      padding: 4px 10px;
+      letter-spacing: 1px;
+      font-size: 9px;
+      color: white;
+      position: absolute;
+      margin: 10px;
+    }
+    
+    &__header{
+       padding: 1em 2em;
+       
+       a{
+         color: @gray-darker; 
+         &:hover{
+           color: @gray-darker; 
+         }
+       }
+       &-title{
+          font-size: 1em;
+          font-weight: 600;
+          color: @gray-darker;
+       }
+       &-rating{
+          font-size: 0.85em;
+          font-weight: 600;
+          margin-top: 0.5em;
+          color: @gray-regular;
+          &-stars{
+            font-size: 1.4em;
+            vertical-align: sub;
+          }
+          
+          &-unrating{
+            position: absolute;
+            font-size: 1.5em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            top: 7em;
+            left: 20em;
+          }
+       }
+    }
+    
+    
+    &__comment{
+        position: absolute;
+        width: 60%;
+        left: 34%;
+        top: 8em;
+        padding-top: 2em;
+        border-top: 1px solid @gray-lighter;
+        .btn{
+          background-color: @gray-regular;
+          border: none;
+        }
+    }
+    
+    &__detail{
+        position: absolute;
+        right: 55px;
+        top: 40px;
+        color: @gray-regular;
+    }
+}
 
+.review-detail{
+    &__student{
+      position: absolute;
+      width: 60%;
+      left: 34%;
+      top: 8em;
+      height: 225px;
+      overflow: hidden;
+      overflow-y: auto;
+      padding-left: 1em;
+      padding-top: 1em;
+      border-top: 1px solid @gray-lighter;
+      
+      p{
+        font-size: 1em !important;
+      }
+      .review-content{
+          &__name{
+            text-transform: capitalize !important;
+          }
+          
+          &__text-header{
+              text-transform: inherit !important;
+              display: block;
+              margin-top: 0.4em;
+            
+          }
+      }
+    }
     p{
       margin-bottom: 0.5em;
       font-size: 1.125em;
@@ -36,13 +150,13 @@
     }
     
     .btn-mark-read{
-      width: 5em;
+      width: auto;
       margin-right: 1em;
-      padding: 0;
       i{
-        font-size: 1.7em;
+        font-size: 1.5em;
         font-weight: 100;
         color: @gray-dark;
+        margin-left: 0.3em;
       }
     }
     
@@ -105,6 +219,11 @@
       }
 
     }
+    .review-buttons{
+      .btn-default{
+        color: @gray-regular-dark !important;
+      }
+    }
 
 }
 .review-response{
@@ -125,12 +244,16 @@
 }
 .star{
   color: @brand-warning;
-
+  
   &-empty{
     transition: all 0.25s;
     color: @gray-lighter;
   }
   &-empty:hover{
+    color: @brand-warning;
+  }
+  
+  &:hover{
     color: @brand-warning;
   }
 }

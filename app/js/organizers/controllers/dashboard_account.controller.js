@@ -20,7 +20,8 @@
             organizer : organizer,
             bankingInfo: bankingInfo,
             bankingData: {
-                'organizer': organizer.id
+                'organizer': organizer.id,
+                
             },
             password_data : {},
             isCollapsed : true,
@@ -40,6 +41,7 @@
 
         function updateBankingInfo(){
             vm.isSaving = true;
+            console.log(vm.bankingData);
             Error.form.clear(vm.account_form_banking_info);
             organizer.saveBankingInfo(vm.bankingData).then(success, error);
 
@@ -109,7 +111,9 @@
             organizer.getBankingInfo().then(success);
 
             function success(bankingData){
+                
                 if(bankingData){ vm.bankingData = bankingData; }
+                console.log(vm.bankingData);
             }
         }
 
@@ -119,9 +123,9 @@
             }
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
-                COPY_BANKING: "Coloque los datos de su cuenta bancaria para recibir los pagos de las inscripciones. "
-                    + "Esta información no será compartida con nadie.",
-
+                COPY_BANKING: "Coloca los datos de tu cuenta bancaria para poder transferirte el dinero de las inscripciones que recibas. "
+                    + "Relax, esta información no la compartiremos con nadie.",
+                COPY_SETTINGS: "Cambia tu dirección de correo electrónico cuando quieras. Te enviaremos un correo electornico a tu nueva dirección para que confirmes el cambio.",
                 COPY_PASSWORD: "¿Desea cambiar su contraseña?",
                 COPY_EMAIL: "¿Desea cambiar su correo electrónico?",
                 SECTION_ACCOUNT: "Cuenta",

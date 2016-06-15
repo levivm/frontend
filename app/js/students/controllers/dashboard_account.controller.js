@@ -24,6 +24,7 @@
             password_data : {},
             isCollapsed : true,
             isSaving : false,
+            isPassSaving: false,
             orderQuery : '',
             changeEmail : changeEmail,
             changePassword : changePassword
@@ -34,7 +35,7 @@
         //--------- Functions Implementation ---------//
 
         function changeEmail() {
-            console.log(vm.student);
+            vm.isSaving = true;
             Error.form.clear(vm.account_form_email);
             vm.student.change_email()
                 .then(_changeSuccess, fail);
@@ -48,9 +49,9 @@
 
         function changePassword() {
             Error.form.clear(vm.account_form_password);
-
+            vm.isPassSaving = true;
             if(vm.password_data.password === vm.password_data.password1){
-              vm.isSaving = false;
+              vm.isPassSaving = false;
               Toast.error(vm.strings.COPY_TOAST_SAME,{timeOut: 10000});
             }
 
@@ -60,8 +61,7 @@
             }
 
             function success(response) {
-                vm.isSaving = false;
-                console.log(response);
+                vm.isPassSaving = false;
                 angular.extend(vm.password_data,{
                     'password':null,
                     'password1':null,
@@ -75,7 +75,7 @@
 
             function fail(response){
                 _changeFail(response, vm.account_form_password);
-                vm.isSaving = false;
+               vm.isPassSaving = false;
             }
         }
 
@@ -111,14 +111,12 @@
             }
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
-                COPY_TAB_EMAIL: "Luego de cambiar tu dirección de correo electrónico te enviaremos un"
-                       + " correo a tu nueva dirección.",
-                COPY_TAB_PASSWORD: "En caso de modificar tu contraseña te recomendamos crear una segura y fácil de recordar.",
                 LABEL_CURRENT_PASSWORD: "Contraseña actual",
                 LABEL_NEW_PASSWORD: "Nueva contraseña",
                 LABEL_CONFIRM_PASSWORD: "Confirmar nueva contraseña",
                 LABEL_EMAIL: "Correo electrónico",
                 SECTION_ACCOUNT: "Cuenta",
+                COPY_ACCOUNT: "Cambia tu dirección de correo electrónico cuando quieras. Te enviaremos un correo electrónico a tu nueva dirección para que confirmes el cambio",
                 TAB_PASSWORD: "Cambiar contraseña",
                 TAB_EMAIL: "Correo electrónico",
                 COPY_TOAST_EMAIL_CHANGED: "Correo cambiado",
@@ -132,6 +130,7 @@
         function activate() {
             _setStrings();
             _getOrders();
+            console.log(vm.student);
         }
 
     }

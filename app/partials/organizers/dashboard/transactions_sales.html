@@ -12,6 +12,7 @@
             <div class="dashboard-filters__searchbox ">
               <input class="form-control floating-label" type="text"
                 ng-model="transactions.salesFilter.query"
+                ng-change="transactions.filterById()"
                 placeholder="{{::transactions.strings.COPY_SEARCH_ORDERS_HELPER}}"/>
             </div>
             <div class="dashboard-filters__selects">
@@ -62,21 +63,6 @@
                 </label>
                
              </div>
-              <div class="input-group filter-group select-forms">
-                <label>
-                  <select name="status"
-                          id="" class="form-control"
-                          ng-change="transactions.updateByQuery(transactions.TYPE_SALES)"
-                          ng-model="transactions.salesFilter.status">
-                          <option value="">Estatus</option>
-                          <option value="approved">Aprobadas</option>
-                          <option value="pending">Pendientes</option>
-                          <option value="cancelled">Canceladas</option>
-                          <option value="declined">Rechazadas</option>
-                   </select>
-                </label>
-                
-              </div>
             </div>
             
           </div>
@@ -150,11 +136,11 @@
         </div>
         <!--If there are no Sales-->
         <div class="row" ng-if="transactions.sales.length <= 0">
-            <div class="col-sm-6 col-md-8 text-left separate-left-less separate-above">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
                 <p class="separate-below separate-above "
                    ng-bind="::transactions.strings.COPY_NO_ORDERS">
                 </p>
-                <a class="btn btn-lg btn-success margin-horizontal-less"
+                <a class="btn btn-md btn-success margin-horizontal-less"
                   ui-sref="dash.activities-new.general"
                   ng-bind="transactions.strings.ACTION_CREATE_ACTIVITY"></a>
                

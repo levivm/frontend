@@ -38,6 +38,9 @@ module.exports = {
             'img': path.join(APP_ROOT, '/css/img/**/*'),
             'root' : path.join(APP_ROOT, '/css/')
         },
+        'txt':{
+            'robots': path.join(APP_ROOT, '/robots.txt'),
+        },
         'html': {
             'index': path.join(APP_ROOT, '/index.html'),
             'partials': path.join(APP_ROOT, '/partials/**/*.html')
@@ -61,6 +64,9 @@ module.exports = {
             "img": path.join(DIST_ROOT, '/css/img')
         },
         'javascript': path.join(DIST_ROOT, '/js'),
+        'txt':{
+            'robots': path.join(APP_ROOT, '/robots.txt'),
+        },        
         'html': {
             'index': path.join(DIST_ROOT, '/index.html'),
             'partials': path.join(DIST_ROOT, '/partials')

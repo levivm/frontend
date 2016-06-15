@@ -1,19 +1,22 @@
-<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
-</div>
-<div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard">
-  <div class="row">
-      <div class="col-xs-12 separate-below-more activities-container" >
-
-          <!--If there are activities-->
-          <div ng-if="wishlist.activities.length > 0">
-              <div class="col-xs-12 dynamic-layout-wrapper separate-below">
-                <div class="dynamic-layout-container-fluid separate-above-medium">
-                  <div class="text-center">
-                      <div dynamic-layout items="wishlist.cards" class="dynamic-layout"></div>
-                  </div>
-                </div>
-              </div>
-            <div class="text-center separate-above-more" ng-if="wishlist.nextPaginationOpts.totalItems > wishlist.nextPaginationOpts.itemsPerPage">
+<div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard  limited-width-dashboard__activities">
+  <div class="fade in">
+    
+    <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+            <h4 class="panel-default__dashboard-title" ng-bind="::wishlist.strings.TAB_WISHLIST"></h4>
+     </div>
+     <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+            <span class="text-gray-dark" ng-bind="::wishlist.strings.COPY_WISHLIST"></span>
+     </div>
+    <div class="row"  ng-if="wishlist.activities.length > 0">
+        <div class="col-xs-12 dynamic-layout-wrapper separate-below">
+          <div class="dynamic-layout-container-fluid ">
+            <div class="text-center">
+                <div dynamic-layout items="wishlist.cards" class="dynamic-layout"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="text-center separate-above-more" ng-if="wishlist.nextPaginationOpts.totalItems > wishlist.nextPaginationOpts.itemsPerPage">
               <pagination class="pagination-sm"
                 ng-model="wishlist.nextPaginationOpts.pageNumber"
                 ng-change="wishlist.updateByQuery()"
@@ -21,24 +24,17 @@
                 previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
                 data-items-per-page="wishlist.nextPaginationOpts.itemsPerPage"></pagination>
             </div>
-          </div>
-
-          <!--If there are no activities-->
-          <div ng-if="wishlist.activities.length <= 0" class="row">
-              <div class="col-xs-12 col-md-8 col-md-offset-2 text-center">
-                  <img class="separate-below-less ing-responsive" ng-src="{{dash.getAmazonUrl('static/img/student_dashboard_activities_empty.png')}}"
-                       alt="{{wishlist.strings.LABEL_EMPTY_ACTIVITIES}}"/>
-                  <h4 class="separate-below separate-above standout-text"
-                       ng-bind="::wishlist.strings.COPY_EMPTY_ACTIVITIES">
-                  </h4>
-                  <div class="col-xs-12 col-md-8 col-md-offset-2">
-                    <button class="btn btn-success btn-lg" ng-bind="::wishlist.strings.ACTION_SEARCH_ACTIVITY" ng-click="wishlist.searchActivities()">
-                    </button>
-                  </div>
-              </div>
-          </div>
-
-      </div>
-  </div>
+    <!--If there are no activities-->
+    <div  ng-if="wishlist.activities.length <= 0"  class="row">
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
+            <p class="separate-below separate-above "
+                 ng-bind="::wishlist.strings.COPY_EMPTY_ACTIVITIES">
+            </p> 
+            <button class="btn btn-md btn-success margin-horizontal-less separate-below-less" ng-click="wishlist.searchActivities()"
+                    ng-bind="::wishlist.strings.ACTION_SEARCH_ACTIVITY">
+            </button>
+        </div>
+    </div> 
 </div>
-<trulii-dashboard-footer></trulii-dashboard-footer>
+
+</div>

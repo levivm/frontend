@@ -160,6 +160,10 @@
             var sizeUpload = pictureToUpload.size / 1000;
             return sizeUpload < SIZE_PICTURE_UP;
         }
+        
+        function _setFullName(){
+            vm.student.fullName= vm.student.user.first_name+' '+vm.student.user.last_name;
+        }
 
 
         function _setStrings() {
@@ -174,22 +178,25 @@
                 LABEL_BIRTH_DATE: "Fecha de nacimiento",
                 LABEL_LAST_NAMES: "Apellidos",
                 LABEL_GENDER: "Género",
-                LABEL_CITY: "Ciudad",
+                LABEL_CITY: "¿En qué ciudad vives?",
                 LABEL_TELEPHONE: "Teléfono",
                 COPY_PRIVATE_DATA_TOOLTIP: "Esta información no la compartiremos con nadie.",
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
                 OPTION_SELECT: "Seleccione Ciudad",
-                SECTION_PROFILE: "Mi Perfil",
+                SECTION_PROFILE: "Perfil",
+                COPY_PROFILE: "Esta información aparecerá en tu perfil y lo veran los demás usuarios.",
                 TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 2.5Mb"
             });
         }
 
         function _activate() {
+            console.log(vm.student);
             _setStrings();
             _setGender(vm.student.gender);
             _setCity(vm.student.city);
             _setDates();
+            _setFullName();
             datepickerPopupConfig.showButtonBar = false;
         }
 

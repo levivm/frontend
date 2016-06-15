@@ -70,7 +70,8 @@
             openDatePicker: openDatePicker,
             TYPE_SALES: 'sales',
             withDraw: withDraw,
-            changePageWithdraws:changePageWithdraws
+            changePageWithdraws:changePageWithdraws,
+            filterById: filterById
         });
 
         _activate();
@@ -95,6 +96,10 @@
           }
           
           //updateByQuery(vm.TYPE_SALES);
+        }
+        
+        function filterById() {
+            setTimeout(function(){ updateByQuery(vm.TYPE_SALES) }, 1000);
         }
 
         function updateByQuery(type){

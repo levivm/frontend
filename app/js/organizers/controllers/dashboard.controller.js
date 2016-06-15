@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics', 'serverConf'];
-    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics, serverConf) {
+    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics', 'serverConf', 'organizer'];
+    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics, serverConf, organizer) {
 
         var vm = this;
         angular.extend(vm, {
@@ -26,6 +26,7 @@
             getAmazonUrl: getAmazonUrl,
             subItems: {},
             showSubItems: showSubItems,
+            hideSubItems:hideSubItems,
             titleActive: ''
         });
 
@@ -36,25 +37,27 @@
             return  serverConf.s3URL + '/' +  file;
         }
         
-        function isActive(stateStr, title){
-            if($state.includes(stateStr) && title)
-                vm.titleActive = title;
-                
+        function isActive(stateStr){
             return $state.includes(stateStr);
         }
 
         function toggleSidebar(){
             vm.showSidebar = !vm.showSidebar;
-            console.log(vm.showSidebar);
         }
         
         function  showSubItems(item) {
             vm.subItems[item] = !vm.subItems[item];
         }
         
+        function hideSubItems(subItem) {
+            angular.forEach(vm.subItems, function(value, item){
+                if(item!==subItem)
+                    vm.subItems[item] = false;  
+            });    
+        }
         
         //Function send data analytics
-
+ 
         function clicItemDash(item){
             Analytics.organizerEvents.dashboardOrgItems(item);
         }
@@ -119,11 +122,25 @@
               }
             );
         }
+        
+        function _initNotificationWatch(){
+          $scope.$on('update_reviews',
+            function(){
+              organizer.getReviews(1, 6, 'unread').then(function(data){
+                console.log('data', data);
+                vm.unreadReviewsCount = data.count;
+              });
+            }
+          );
+        }
+
+        
 
         function _activate() {
             _setStrings();
             //_initScroll();
             _initWidget();
+            _initNotificationWatch();
             vm.subItems ={
                 activities: false,
                 account: false,

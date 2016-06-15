@@ -167,9 +167,9 @@
                 TAB_OPEN: "Actividades > Abiertas",
                 TAB_CLOSED: "Actividades > Cerradas",
                 TAB_INACTIVE: "Actividades > Inactivas",
-                COPY_INACTIVE: "Actividades inactivas son aquellas publicaciones cuyas inscripciones se encuentran en modo borrador",
-                COPY_CLOSED: "Una actividad anterior es aquella que finalizó. Puedes editar su información para re-utilizarla. ¡Así de fácil!",
-                COPY_OPEN: "Actividades abiertas son aquellas publicaciones cuyas inscripciones siguen abiertas"
+                COPY_INACTIVE: "Una actividad inactiva es aquella que se encuentra en modo borrador y no está publicada.",
+                COPY_CLOSED: "Una actividad cerrada es aquella que ya finalizó. Puedes editar parte de su informaciń (como el calendario) para reu-tilizarla.",
+                COPY_OPEN: "Una actividad abierta es aquella cuyas inscripciones siguen abiertas."
             });
         }
 

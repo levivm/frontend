@@ -1,7 +1,10 @@
 <div class="row fade in">
   <div class="col-xs-12 ">
-      <div class="col-xs-12 panel-default panel-default__dashboard ">
+        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
             <h4 class="panel-default__dashboard-title" ng-bind="::account.strings.SECTION_ACCOUNT_BANK"></h4>
+        </div>
+        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+             <span class="text-gray-dark" ng-bind="::account.strings.COPY_BANKING"></span>
         </div>
     <div class="row">
       <div class="col-xs-12">
@@ -11,8 +14,8 @@
                 <div class="row separate-below-more separate-left-less">
                     <div class="col-xs-12 separate-above">
                             <div class="row">
-                                <div class="col-xs-12 col-md-6" trulii-input-errors-control="beneficiary">
-                                    <label for="beneficiary" ng-bind="::account.strings.LABEL_BENEFICIARY"></label>
+                                <div class="col-xs-12 col-md-6 form-group" trulii-input-errors-control="beneficiary">
+                                    <label for="beneficiary" class="form-label" ng-bind="::account.strings.LABEL_BENEFICIARY"></label>
                                     <input id="beneficiary" class="form-control" name="beneficiary"
                                         ng-model="account.bankingData.beneficiary"
                                         type="text">
@@ -30,8 +33,8 @@
                                 </div>
                             </div>
                          <div class="row ">
-                            <div class="col-xs-12 separate-above">
-                                <label ng-bind="::account.strings.LABEL_DOCUMENT"></label>
+                            <div class="col-xs-12 separate-above form-group">
+                                <label class="form-label"  ng-bind="::account.strings.LABEL_DOCUMENT"></label>
                             </div>
                             <div class="col-xs-12 ">
                                 <div class="form-group double-input" trulii-input-errors-control="document_type">
@@ -46,14 +49,14 @@
                                     <input id="document" class="form-control" name="document"
                                           ng-model="account.bankingData.document"
                                           placeholder="{{ ::account.strings.PLACEHOLDER_DOCUMENT_NUMBER }}"
-                                          type="number">
+                                          type="text">
                                     </div>
                                 </div>
                             </div>
                             
-                            <div class="row separate-above">
-                               <div class="col-xs-12 col-md-6" trulii-input-errors-control="account_type">
-                                    <label for="account_type" ng-bind="::account.strings.LABEL_ACCOUNT_TYPE"></label>
+                            <div class="row separate-above form-group">
+                               <div class="col-xs-12 col-md-6 " trulii-input-errors-control="account_type">
+                                    <label for="account_type" class="form-label"  ng-bind="::account.strings.LABEL_ACCOUNT_TYPE"></label>
                                     <div class="select-forms">
                                         <label>
                                             <select id="account_type" class="form-control" name="account_type" ng-model="account.bankingData.account_type"
@@ -64,11 +67,11 @@
                                     </div>
                                 </div>
                                 <div class="col-xs-12 col-md-6" trulii-input-errors-control="account">
-                                    <label for="account" ng-bind="::account.strings.LABEL_ACCOUNT_NUMBER"></label>
+                                    <label for="account" class="form-label"  ng-bind="::account.strings.LABEL_ACCOUNT_NUMBER"></label>
                                     <input id="account" class="form-control" name="account"
                                         ng-model="account.bankingData.account"
                                         placeholder="{{ ::account.strings.PLACEHOLDER_ACCOUNT_NUMBER }}"
-                                        type="number">
+                                        type="text">
                                 </div>
                             </div>
                         </div>
@@ -76,19 +79,11 @@
                        
                         <!--TODO Hidden organizer input-->
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 ">
-                        <trulii-submit-controls is-saving="account.isSaving"
+                 <trulii-submit-controls is-saving="account.isSaving"
                                 data-value="{{::account.strings.ACTION_SAVE}}"></trulii-submit-controls>
-                    </div>
-                </div>
             </fieldset>
         </form>
       </div>
     </div>
   </div>
-</div>
-<div class="">
-
 </div>
