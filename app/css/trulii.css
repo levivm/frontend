@@ -12580,6 +12580,9 @@ hr.on-light {
   margin: 0 auto;
   position: relative;
 }
+.limited-width-dashboard-container-edit-activity {
+  margin-top: 210px;
+}
 @media (max-width: 1299px) {
   .limited-width-dashboard-container {
     max-width: 100%;
@@ -15295,7 +15298,24 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .sidebar-edit-activity {
   position: absolute;
-  top: 210px;
+  top: 0px;
+}
+.sidebar-edit-activity .sidebar__item {
+  border-bottom: 1px solid #ededed;
+  border-top: none;
+}
+.sidebar-edit-activity .sidebar__item-preview {
+  margin-top: 20px;
+  border-top: 1px solid #ededed;
+  background: #ededed;
+  text-align: center;
+  text-transform: uppercase;
+}
+.sidebar-edit-activity .sidebar__item-preview a {
+  padding-left: 0;
+}
+.sidebar-edit-activity .sidebar__item-preview a i {
+  font-size: 1.2em;
 }
 .sidebar__absolute {
   position: absolute;

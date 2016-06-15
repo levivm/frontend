@@ -5,8 +5,8 @@
              <h1 ng-bind="pc.activity.title"></h1>
              <h5 ng-bind="pc.activity.organizer.name"></h5>
          </div>
-         <div class="cover-edit-activity__content-second">
-             <div class="cover-edit-activity__content-steps" ng-show="!pc.areAllStepsCompleted()">
+         <div class="cover-edit-activity__content-second" ng-show="!pc.areAllStepsCompleted()">
+             <div class="cover-edit-activity__content-steps" >
                  <ng-pluralize count="pc.activity.steps_left"
                                 when="{
                                     '0':'',
@@ -30,7 +30,7 @@
          </div>
     </div>
 </div>
-<div class="container-fluid limited-width-dashboard-container">
+<div class="container-fluid limited-width-dashboard-container limited-width-dashboard-container-edit-activity">
     
     <div class="row">
         <ul class="sidebar sidebar-edit-activity hidden-xs hidden-sm">
@@ -44,9 +44,10 @@
                 </a>
             </li>
             
-            <li  class="sidebar__item">
-                <a ng-click="pc.actionNavbarSecondary(pc.strings.COPY_VIEW_ACTIVITY)" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
-                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_VIEW_ACTIVITY"></span>
+            <li  class="sidebar__item sidebar__item-preview">
+                <a ng-click="pc.actionNavbarSecondary(pc.strings.COPY_PRE_VIEW_ACTIVITY)" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
+                   <i class="fa fa-eye" aria-hidden="true"></i>
+                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_PRE_VIEW_ACTIVITY"></span>
                 </a>
             </li>
         </ul>
@@ -134,7 +135,7 @@
              </nav>
             -->
        
-        <div ui-view class="col-xs-12 with-footer" style="margin-top: 210px;"></div>
+        <div ui-view class="col-xs-12 with-footer"></div>
         <!--<div class="col-sm-10 separate-above with-footer">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': pc.scroll > 80}">
 
