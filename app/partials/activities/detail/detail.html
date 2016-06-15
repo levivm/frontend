@@ -504,35 +504,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-lg-3 flex-container">
-          <div class="attendees-container">
-            <div class="attendees-container__header" ng-class="{'attendees-container__header__not-empty' :detail.calendar_selected.assistants.length > 0}">
-              <h3 ng-bind="detail.strings.LABEL_ATTENDEES"></h3>
-              <h5 ng-if="detail.calendar_selected.assistants.length > 0" ng-bind="detail.strings.COPY_ATTENDEES_LIST"></h5>
-            </div>
-            <div class="attendees-container__body" ng-class="{'attendees-container__body__not-empty' :detail.calendar_selected.assistants.length > 0}">
-                <div class="attendees-container__body__placeholder" ng-if="detail.calendar_selected.assistants.length <= 0" ng-bind="detail.strings.COPY_ATTENDEES_LIST">
-                    <h5>!Se el primero en inscribirte y aprovecha en invitar a tus amigos¡</h5>
-                    <a href="">Ver más fechas de inicio</a>
-                </div>
-              <div class="attendees-container__body__attendees-list" ng-if="detail.calendar_selected.assistants.length > 0">
-                <div class="attendee-item" ng-repeat="attendee in detail.calendar_selected.assistants track by attendee.id">
-                  <trulii-avatar user="attendee" size="40" avatar-class="small" ng-class="{'avatar-landing': !attendee.photo}"></trulii-avatar>
-                  <div class="attendee-item__name" ng-bind="attendee.full_name">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="attendees-container__footer">
-              <div class="attendees-container__footer__prev" ng-click="detail.attendeesScrollUp()">
-                <i class="fa fa-chevron-up" aria-hidden="true"></i>
-              </div>
-              <div class="attendees-container__footer__next" ng-click="detail.attendeesScrollDown()">
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="hidden-xs hidden-sm" ui-view="attendees"></div>
       </div>
     </div>
   </div>

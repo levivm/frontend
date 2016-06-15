@@ -259,7 +259,7 @@
         height: 300px;
         background-color: white;
     }
-    .separator{;
+    .separator{
         height: 0px;
         opacity: 0;
         margin: 20px 0 !important;
@@ -269,16 +269,16 @@
         }
     }
 
-  p{
-    word-break: break-word;
-    margin-bottom: 0px;
-    font-size: 1.1em;
-    .before-sm({
-      word-break: inherit;
-      margin-bottom: 0px;
-      font-size: 0.85em;
-    });
-  }
+    p{
+        word-break: break-word;
+        margin-bottom: 0px;
+        font-size: 1.1em;
+        .before-sm({
+        word-break: inherit;
+        margin-bottom: 0px;
+        font-size: 0.85em;
+        });
+    }
   .info{
       display: inline-block;
       width: 100%;
@@ -862,6 +862,7 @@
     width: 100%;
     position: relative;
     overflow: hidden;
+    height: 500px;
     &__header{
         border-top-left-radius: @border-radius-base;
         border-top-right-radius: @border-radius-base;
@@ -920,6 +921,18 @@
                     float: left;
                     margin-top: 10px;
                     margin-right: 15px;
+                }
+                .trulii-avatar{
+                    width: 50px;
+                    display: inline-block;
+                    float: left;
+                    margin-top: 10px;
+                    &.small{
+                        width: 42px;
+                        display: inline-block;
+                        float: left;
+                        margin-top: 0;
+                    }
                 }
                 &__name{
                     display: inline-block;

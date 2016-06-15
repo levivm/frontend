@@ -6,9 +6,9 @@
         .controller('ActivityEnrollSuccessController', ActivityEnrollSuccessController);
 
     ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'LocationManager', 'Toast', 'activity', 'calendar', 'organizerActivities',
-                                                'serverConf'];
+                                                'serverConf', 'uiGmapIsReady'];
 
-    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, Toast, activity, calendar, organizerActivities, serverConf) {
+    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, Toast, activity, calendar, organizerActivities, serverConf, uiGmapIsReady) {
 
         var vm = this;
         angular.extend(vm, {
@@ -81,29 +81,46 @@
             if(activity.location && activity.location.city){
                 activity.location.city = LocationManager.getCityById(activity.location.city);
             }
+
+            vm.map = LocationManager.getMap(activity.location, false);
+
+            vm.map.options = {icon: getAmazonUrl('static/img/map.png')};
+
+            vm.marker = LocationManager.getMarker(activity.location);
+
             return activity;
         }
 
 
         function _setSocialShare(){
-
-            var share_url = $state.href('activities-detail', $state.params, {absolute: true});
+            var current_url = $state.href($state.current.name, $state.params, {absolute: true});
             vm.social = {};
+
             angular.extend(vm.social, {
                 FACEBOOK_SOCIAL_PROVIDER: 'facebook',
                 FACEBOOK_API_KEY: serverConf.FACEBOOK_APP_KEY,
                 FACEBOOK_SHARE_TYPE: "feed",
                 FACEBOOK_SHARE_CAPTION: "Trulii.com | ¡Aprende lo que quieras en tu ciudad!",
-                FACEBOOK_SHARE_TEXT: vm.activity.title,
+                FACEBOOK_SHARE_TEXT: 'Comparte esto con tus amigos o menciónalos con @ "' + vm.activity.title + ' - ' + vm.activity.short_description + '"',
                 FACEBOOK_SHARE_MEDIA: vm.activity.main_photo,
                 FACEBOOK_SHARE_DESCRIPTION: vm.activity.short_description,
-                FACEBOOK_REDIRECT_URI: share_url,
-                FACEBOOK_SHARE_URL: share_url,
+                FACEBOOK_REDIRECT_URI: current_url,
+                FACEBOOK_SHARE_URL: current_url,
                 TWITTER_SOCIAL_PROVIDER: 'twitter',
-                TWITTER_SHARE_ACCOUNT:'Trulii_',
-                TWITTER_SHARE_TEXT:'Échale un vistazo a ' + vm.activity.title,
-                TWITTER_SHARE_URL: share_url ,
-                TWITTER_SHARE_HASHTAGS:vm.activity.tags.join(',')
+                TWITTER_SHARE_ACCOUNT: 'Trulii_',
+                TWITTER_SHARE_TEXT: 'Amé esta actividad en @Trulii_  ' + vm.activity.title + ' #Aprende',
+                TWITTER_SHARE_URL:current_url,
+                TWITTER_SHARE_HASHTAGS: '#Aprende',
+                LINKEDIN_SOCIAL_PROVIDER: 'linkedin',
+                LINKEDIN_SHARE_TEXT: vm.activity.title + ' - ' + vm.activity.short_description,
+                LINKEDIN_SHARE_DESCRIPTION: vm.activity.short_description,
+                LINKEDIN_SHARE_URL: current_url,
+                WHATSAPP_SOCIAL_PROVIDER: 'whatsapp',
+                WHATSAPP_SHARE_TEXT: '¡Hey!, échale un vistazo a esta actividad en Trulii a la que planeo asistir dentro de poco. Avísame si te interesa y vamos juntos. ¡Sé que te encantará!',
+                WHATSAPP_SHARE_URL: current_url,
+                MESSENGER_SOCIAL_PROVIDER: 'facebook-messenger',
+                MESSENGER_SHARE_URL: current_url,
+                EMAIL_SHARE_TEXT: '¡Hey!, échale un vistazo a esta actividad en Trulii a la que planeo asistir dentro de poco. Avísame si te interesa y vamos juntos. ¡Sé que te encantará!'
             });
         }
 
@@ -119,7 +136,8 @@
                 LABEL_QUESTIONS: "¿Dudas?",
                 LABEL_REQUIREMENTS: "¿Qué debo llevar?",
                 LABEL_ANY_DOUBT: "Cualquier pregunta",
-                COPY_VIEW_YOUR_ORDER: "También puedes revisar tu ordén aquí",
+                COPY_VIEW_YOUR_ORDER_1: "Revisa tu",
+                COPY_VIEW_YOUR_ORDER_2: "orden de compra",
                 LABEL_ATTENDEES: "Asistentes",
                 COPY_ASSISTANTS: "Estos son algunos de los asistentes a esta actividad. ¡Falta poco para conocerlos!",
                 LABEL_SHARE: "¡En compañía se la pasa mejor!",
@@ -137,7 +155,12 @@
                 COPY_SHARE_SUCCESS: "La Actividad fue compartida exitosamente",
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
-                COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje"
+                COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
+                COPY_VACANCY_SINGULAR: " vacante",
+                COPY_VACANCY: " vacantes",
+                COPY_NO_VACANCY: "Sin vacantes",
+                COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
+                COPY_TELL_YOUR_FRIENDS: "Cúentale a tus amigos"
             });
         }
         
@@ -149,15 +172,119 @@
             
         }
 
+        function _setConfetti(){
+            var canvas = document.getElementById("confetti");
+            var ctx = canvas.getContext("2d");
+
+            //canvas dimensions
+            var W = window.innerWidth;
+            var H = window.innerHeight;
+            canvas.width = W;
+            canvas.height = H;
+
+            //snowflake particles
+            var mp = 200; //max particles
+            var particles = [];
+            for (var i = 0; i < mp; i++) {
+                particles.push({
+                    x: Math.random() * W, //x-coordinate
+                    y: Math.random() * H, //y-coordinate
+                    r: Math.random() * 15 + 1, //radius
+                    d: Math.random() * mp, //density
+                    color: "rgba(" + Math.floor((Math.random() * 255)) + ", " + Math.floor((Math.random() * 255)) + ", " + Math.floor((Math.random() * 255)) + ", 0.8)",
+                    tilt: Math.floor(Math.random() * 5) - 5
+                });
+            }
+
+            //Lets draw the flakes
+            function draw() {
+                ctx.clearRect(0, 0, W, H);
+
+
+
+                for (var i = 0; i < mp; i++) {
+                    var p = particles[i];
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color; // Green path
+                    ctx.moveTo(p.x, p.y);
+                    ctx.lineTo(p.x + p.tilt + p.r / 2, p.y + p.tilt);
+                    ctx.stroke(); // Draw it
+                }
+
+                update();
+            }
+
+            //Function to move the snowflakes
+            //angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
+            var angle = 0;
+
+            function update() {
+                angle += 0.01;
+                for (var i = 0; i < mp; i++) {
+                    var p = particles[i];
+                    //Updating X and Y coordinates
+                    //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+                    //Every particle has its own density which can be used to make the downward movement different for each flake
+                    //Lets make it more random by adding in the radius
+                    p.y += Math.cos(angle + p.d) + 1 + p.r / 2;
+                    p.x += Math.sin(angle) * 2;
+
+                    //Sending flakes back from the top when it exits
+                    //Lets make it a bit more organic and let flakes enter from the left and right also.
+                    if (p.x > W + 5 || p.x < -5 || p.y > H) {
+                        if (i % 3 > 0) //66.67% of the flakes
+                        {
+                            particles[i] = {
+                                x: Math.random() * W,
+                                y: -10,
+                                r: p.r,
+                                d: p.d,
+                                color: p.color,
+                                tilt: p.tilt
+                            };
+                        } else {
+                            //If the flake is exitting from the right
+                            if (Math.sin(angle) > 0) {
+                                //Enter from the left
+                                particles[i] = {
+                                    x: -5,
+                                    y: Math.random() * H,
+                                    r: p.r,
+                                    d: p.d,
+                                    color: p.color,
+                                    tilt: p.tilt
+                                };
+                            } else {
+                                //Enter from the right
+                                particles[i] = {
+                                    x: W + 5,
+                                    y: Math.random() * H,
+                                    r: p.r,
+                                    d: p.d,
+                                    color: p.color,
+                                    tilt: p.tilt
+                                };
+                            }
+                        }
+                    }
+                }
+            }
+
+            //animation loop
+            setInterval(draw, 20);
+        }
+
         function _activate() {
             _setStrings();
             _setCurrentState();
             activity = _setCity(activity);
             vm.activity = activity;
             vm.organizerActivities = _getOrganizerActivities();
-            vm.organizerActivities = vm.organizerActivities.slice(0, 3);
+            vm.organizerActivities = vm.organizerActivities.slice(0, 4);
             console.log('activity:', activity);
             _setSocialShare();
+            _setConfetti();
             _mapTemplates();
         }
     }
