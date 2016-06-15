@@ -43,6 +43,12 @@
                       <i class="mandatory-mark mandatory-mark-edit-activity --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
                 </a>
             </li>
+            
+            <li  class="sidebar__item">
+                <a ng-click="pc.actionNavbarSecondary(pc.strings.COPY_VIEW_ACTIVITY)" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
+                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_VIEW_ACTIVITY"></span>
+                </a>
+            </li>
         </ul>
         
                

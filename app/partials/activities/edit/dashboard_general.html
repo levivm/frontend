@@ -22,7 +22,7 @@
       </div>
     </div>
   </div>
-  <div class="cover-edit-activity" ng-show="vm.weHaveTitle" ng-class="{ 'cover-edit-activity__create': vm.creating}">
+  <div class="cover-edit-activity" ng-show="vm.weHaveTitle && vm.creating" ng-class="{ 'cover-edit-activity__create': vm.creating}">
     <div class="cover-edit-activity__content">
          <div class="cover-edit-activity__content-title">
              <h1 ng-bind="vm.activity.title"></h1>
