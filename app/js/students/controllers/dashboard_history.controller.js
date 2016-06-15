@@ -47,7 +47,13 @@
               query: null,
               activity: null
             },
+            dateOptions : {
+                formatYear: 'yyyy',
+                startingDay: 1,
+                showWeeks:false,
+            },
             openDatePicker: openDatePicker,
+            filterById: filterById
         });
 
         activate();
@@ -70,7 +76,11 @@
             vm.ordersFilter.from_date_opened = false;
           }
         }
-
+        
+        function filterById() {
+            setTimeout(function(){ updateByQuery(vm.TYPE_ORDER) }, 1000);
+        }
+        
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_ORDER:

@@ -139,6 +139,7 @@
 			a{
 				padding-left: 1.3em;
 				color: @gray-regular !important;
+				position: relative;
 			}
 			&--selected{
 				a{
@@ -153,13 +154,19 @@
 		
 		.label-notification{
 			position: absolute;
-			top: 17px;
 			right: 30px;
-			font-size: 0.9em;
+			font-size: 1em;
 			border-radius: 45%;
 			top: 13px;
 			right: 30px;
 			padding: 0.4em 0.7em;
+			
+			&-empty{
+				display: block;
+				padding: 0.4em;
+				top: 18px;
+				right: 33px;
+			}
 		}
 		
 		.arrow-right{
@@ -324,8 +331,8 @@
 		}
 		&-dark-edit-acitivity{
 			background-color: gray;
-      padding: 1em 0em 0.25em 0em;
-      height: 60px;
+			padding: 1em 0em 0.25em 0em;
+			height: 60px;
 			a{
 				color: @white;
 				text-decoration: none;

@@ -360,9 +360,9 @@
               <h5 class="separate-above-less" ng-repeat="session in calendar.sessions">
                 <span ng-bind="session.date | date: 'EEEE d MMM y' "></span>
                 <br>
-                <span ng-bind="session.start_time | amDateFormat: 'h:mm a' "></span>
+                <span ng-bind="session.start_time | date: 'h:mm a'"></span>
                 <span ng-bind="detail.COPY_TO"></span>
-                <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
+                <span ng-bind="session.end_time | date: 'h:mm a'"></span>
               </h5>
               <button class="btn btn-rounded btn-primary text-uppercase" ng-if="calendar.available_capacity > 0"
                  ng-click="detail.signUp(detail.activity.id, calendar.id); detail.calendarSignUp()"
@@ -463,11 +463,11 @@
               <div class="sessions">
                 <h4 class="sessions__header text-uppercase" ng-bind="::detail.strings.LABEL_SCHEDULE"></h4>
                   <h5 class="separate-above-less" ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
-                    <span ng-bind="session.date | date: 'EEEE d MMM y' "></span>
+                    <span ng-bind="session.date | date: 'EEEE d MMM y'"></span>
                     <br>
-                    <span ng-bind="session.start_time | amDateFormat: 'h:mm a' "></span>
+                    <span ng-bind="session.start_time | date: 'h:mm a'"></span>
                     <span ng-bind="detail.COPY_TO"></span>
-                    <span ng-bind="session.end_time | amDateFormat: 'h:mm a'"></span>
+                    <span ng-bind="session.end_time | date: 'h:mm a'"></span>
                   </h5>
               </div>
             </div>
@@ -532,33 +532,11 @@
               </div>
             </div>
           </div>
-
-          <!--&lt;!&ndash;Attendees&ndash;&gt;-->
-
-          <!--<div class="col-xs-12 limited-width" ng-if="::detail.assistants.length > 0">-->
-          <!--<div class="row">-->
-          <!--<div class="col-xs-12">-->
-          <!--<div class="attendees-container">-->
-          <!--<h1 class="text-primary text-center title">-->
-          <!--<strong ng-bind="::detail.strings.LABEL_ATTENDEES"></strong>-->
-          <!--</h1>-->
-          <!--<div ui-view="attendees"></div>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</div>-->
-          <!--</div>-->
         </div>
-
       </div>
     </div>
   </div>
 </div>
-
-
-
-
-
-
 
 <!--Reviews-->
 <div class="reviews-container col-xs-12 hidden-xs hidden-sm">
@@ -606,7 +584,6 @@
     </div>
   </div>
 </div>
-
 
 <!--Why Use Trulii-->
 <div class="reasons-container col-xs-12 hidden-xs hidden-sm">

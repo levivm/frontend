@@ -111,6 +111,9 @@
         font-size: 1.25em;
         float: left;
         height: 75px !important;
+        border-bottom-left-radius: 0 !important;
+        border-top-left-radius: 0 !important;
+        
         .before-sm({
           width: 20%;
           float: right;
@@ -277,7 +280,7 @@
             border: 1px solid darken(@gray-lighter, 4%);
             border-radius: 0;
             background: transparent;
-            border-radius: 0em 1.5em 1.5em 0em; 
+            border-radius: 0em 1.5em 1.5em 0em !important; 
             border-left: none;
             padding: 0;
             &:extend(.show-after-sm);

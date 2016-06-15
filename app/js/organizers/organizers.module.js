@@ -125,12 +125,22 @@
                 templateUrl: 'partials/organizers/dashboard/transactions.html',
                 resolve: {
                     orders: getOrders,
+                    balances: getBalances,
+                    withdraws: getWithDraw,
                     activities: getOrganizerActivityList
                 }
             })
             .state('organizer-dashboard.transactions.sales', {
                 url:'sales',
                 templateUrl: 'partials/organizers/dashboard/transactions_sales.html'
+            })
+            .state('organizer-dashboard.transactions.balance', {
+                url:'balance',
+                templateUrl: 'partials/organizers/dashboard/transactions_balance.html'
+            })
+            .state('organizer-dashboard.transactions.withdrawals', {
+                url:'withdrawals',
+                templateUrl: 'partials/organizers/dashboard/transactions_withdrawals.html'
             })
             .state('organizer-dashboard.profile', {
                 url:'profile',
@@ -274,6 +284,30 @@
         getOrders.$inject = ['organizer'];
         function getOrders(organizer){
             return organizer.getOrders();
+        }
+
+
+        /**
+         * @ngdoc method
+         * @name .#getBalances
+         * @description Retrieves an Organizer's Balances
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getBalances.$inject = ['organizer'];
+        function getBalances(organizer){
+            return organizer.getBalances();
+        }
+        /**
+         * @ngdoc method
+         * @name .#getWithDraws
+         * @description Retrieves an Organizer's withdraws
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getBalances.$inject = ['organizer'];
+        function getWithDraw(organizer){
+            return organizer.getWithDraw();
         }
 
         /**

@@ -75,7 +75,7 @@
                 SECTION_ACTIVITIES: "Actividades",
                 SECTION_ACTIVITIES_CURRENT: "Actuales",
                 SECTION_ACTIVITIES_NEXT: "Próximas",
-                SECTION_ACTIVITIES_LAST: "Anteriores",
+                SECTION_ACTIVITIES_LAST: "Por revisar",
                 SECTION_ACCOUNT: "Cuenta",
                 SECTION_PROFILE: "Perfil",
                 SECTION_HISTORY: "Transacciones",

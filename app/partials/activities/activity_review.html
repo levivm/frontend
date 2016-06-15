@@ -1,15 +1,5 @@
 <!-- If user hasnt posted a review yet -->
 <div  ng-if="isStudent" class="review-student">
-    <!--<div class="separate-above-medium separate-below-medium">
-        <h3 class="text-center text-muted font-light" ng-bind="strings.LABEL_RATE_EXPERIENCE"></h3>
-        <div>
-            <h4 class="text-center text-muted font-light">
-                <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                        state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
-                <span ng-bind="review.rating + ' / 5'"></span>
-            </h4>
-        </div>
-    </div>-->
     <div class="review-student__activity-picture" style="background-image: url('{{activity.main_photo}}') ">
         <div class="review-student__activity-category">
             <div class="review-student__activity-category-label" style="background-color: {{activity.category.color}}"
@@ -17,18 +7,20 @@
         </div>
     </div>
     <div class="review-student__header">
-       <div class="review-student__header-title">
-           <span ng-bind="::activity.title"></span>
-       </div>
-       <div class="review-student__header-rating">
+        <a  ui-sref="activities-detail({activity_id: {{::activity.id}} })">
+            <div class="review-student__header-title">
+                <span ng-bind="::activity.title"></span>
+            </div>
+        </a>
+       <div class="review-student__header-rating" ng-class="{'review-student__header-rating-unrating': !review.rating}">
            <span ng-bind="strings.LABEL_RATE_EXPERIENCE" class="separate-right-less"></span>
-           <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'" class="review-student__header-rating-stars"
+           <rating ng-model="review.rating" readonly="review.rating>0" max="5" state-on="'glyphicon glyphicon-star star'" class="review-student__header-rating-stars"
                     state-off="'glyphicon glyphicon-star star-empty'" aria-labelledby="custom-icons-1"></rating>
        </div>
        
     </div>
     <!-- Should be hidden until a score has been chosen-->
-    <div ng-show="!hasReview" class="review-student__comment" >
+    <div ng-show="!hasReview && review.rating" class="review-student__comment" >
         <div class="">
             <label for="review-comment" ng-bind="::strings.LABEL_COMMENT"></label>
             <textarea id="review-comment" class="form-control" name="review-comment"

@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerDashboardCtrl', OrganizerDashboardCtrl);
 
-    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics', 'serverConf'];
-    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics, serverConf) {
+    OrganizerDashboardCtrl.$inject = ['$state', '$scope', '$window', 'unreadReviewsCount', 'Analytics', 'serverConf', 'organizer'];
+    function OrganizerDashboardCtrl($state, $scope, $window, unreadReviewsCount, Analytics, serverConf, organizer) {
 
         var vm = this;
         angular.extend(vm, {
@@ -57,7 +57,7 @@
         }
         
         //Function send data analytics
-
+ 
         function clicItemDash(item){
             Analytics.organizerEvents.dashboardOrgItems(item);
         }
@@ -81,6 +81,8 @@
                 SECTION_REVIEWS_DONE: "Revisados",
                 SECTION_TRANSACTIONS: "Transacciones",
                 SECTION_TRANSACTIONS_SALES: "Ventas",
+                SECTION_TRANSACTIONS_BALANCE: "Balance",
+                SECTION_TRANSACTIONS_WITHDRAWALS: "Historial de Retiros",
                 SECTION_MESSAGES: "Mensajes",
                 ACCOUNT_ITEMS: 'account',
                 ACTIVITIES_ITEMS: 'activities',
@@ -120,11 +122,25 @@
               }
             );
         }
+        
+        function _initNotificationWatch(){
+          $scope.$on('update_reviews',
+            function(){
+              organizer.getReviews(1, 6, 'unread').then(function(data){
+                console.log('data', data);
+                vm.unreadReviewsCount = data.count;
+              });
+            }
+          );
+        }
+
+        
 
         function _activate() {
             _setStrings();
             //_initScroll();
             _initWidget();
+            _initNotificationWatch();
             vm.subItems ={
                 activities: false,
                 account: false,

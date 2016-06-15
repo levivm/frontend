@@ -49,7 +49,7 @@
                                     <input id="document" class="form-control" name="document"
                                           ng-model="account.bankingData.document"
                                           placeholder="{{ ::account.strings.PLACEHOLDER_DOCUMENT_NUMBER }}"
-                                          type="number">
+                                          type="text">
                                     </div>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                                     <input id="account" class="form-control" name="account"
                                         ng-model="account.bankingData.account"
                                         placeholder="{{ ::account.strings.PLACEHOLDER_ACCOUNT_NUMBER }}"
-                                        type="number">
+                                        type="text">
                                 </div>
                             </div>
                         </div>
@@ -79,19 +79,11 @@
                        
                         <!--TODO Hidden organizer input-->
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12 ">
-                        <trulii-submit-controls is-saving="account.isSaving"
+                 <trulii-submit-controls is-saving="account.isSaving"
                                 data-value="{{::account.strings.ACTION_SAVE}}"></trulii-submit-controls>
-                    </div>
-                </div>
             </fieldset>
         </form>
       </div>
     </div>
   </div>
-</div>
-<div class="">
-
 </div>

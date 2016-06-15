@@ -30,6 +30,12 @@
     &__header{
        padding: 1em 2em;
        
+       a{
+         color: @gray-darker; 
+         &:hover{
+           color: @gray-darker; 
+         }
+       }
        &-title{
           font-size: 1em;
           font-weight: 600;
@@ -43,6 +49,16 @@
           &-stars{
             font-size: 1.4em;
             vertical-align: sub;
+          }
+          
+          &-unrating{
+            position: absolute;
+            font-size: 1.5em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            top: 7em;
+            left: 20em;
           }
        }
     }
@@ -228,12 +244,16 @@
 }
 .star{
   color: @brand-warning;
-
+  
   &-empty{
     transition: all 0.25s;
     color: @gray-lighter;
   }
   &-empty:hover{
+    color: @brand-warning;
+  }
+  
+  &:hover{
     color: @brand-warning;
   }
 }

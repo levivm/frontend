@@ -75,9 +75,8 @@
             <li class="sidebar__item" >
                 <a  ng-click="dash.showSubItems(dash.strings.REVIEWS_ITEMS); dash.clicItemDash(dash.strings.SECTION_REVIEWS)">
                     <span ng-bind="::dash.strings.SECTION_REVIEWS"></span>
-                    <span class="label label-notification separate-left-less"
-                            ng-if="dash.unreadReviewsCount"
-                            ng-bind="dash.unreadReviewsCount"></span>
+                    <span class="label label-notification label-notification-empty separate-left-less"
+                            ng-if="dash.unreadReviewsCount"></span>
                     <i class="fa fa-angle-right arrow-right" 
                        ng-class="{'rotate-icon': dash.isActive('organizer-dashboard.reviews.*') || dash.subItems[dash.strings.REVIEWS_ITEMS]}" aria-hidden="true"></i>
                 </a>
@@ -87,6 +86,9 @@
                         <a ui-sref=".reviews.pending"
                             ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_REVIEWS); dash.hideSubItems(dash.strings.REVIEWS_ITEMS)">
                             <span ng-bind="::dash.strings.SECTION_REVIEWS_PENDING"></span>
+                            <span class="label label-notification separate-left-less"
+                                    ng-if="dash.unreadReviewsCount"
+                                    ng-bind="dash.unreadReviewsCount"></span>
                         </a>
                     </li>
                     <li class="sidebar__item-subitem" ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.reviews.done', 'Comentarios > Revisados')}">
@@ -109,6 +111,18 @@
                         <a ui-sref=".transactions.sales"
                             ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_TRANSACTIONS); dash.hideSubItems(dash.strings.TRANSACTIONS_ITEMS)">
                             <span ng-bind="::dash.strings.SECTION_TRANSACTIONS_SALES"></span>
+                        </a>
+                    </li>
+                    <li class="sidebar__item-subitem"  ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.transactions.balance', 'Transacciones > Balance')}">
+                        <a ui-sref=".transactions.balance"
+                            ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_TRANSACTIONS_BALANCE); dash.hideSubItems(dash.strings.TRANSACTIONS_ITEMS)">
+                            <span ng-bind="::dash.strings.SECTION_TRANSACTIONS_BALANCE"></span>
+                        </a>
+                    </li>
+                    <li class="sidebar__item-subitem"  ng-class="{'sidebar__item-subitem--selected': dash.isActive('organizer-dashboard.transactions.withdrawals', 'Transacciones > Historial de Retiros')}">
+                        <a ui-sref=".transactions.withdrawals"
+                            ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_TRANSACTIONS_WITHDRAWALS); dash.hideSubItems(dash.strings.TRANSACTIONS_ITEMS)">
+                            <span ng-bind="::dash.strings.SECTION_TRANSACTIONS_WITHDRAWALS"></span>
                         </a>
                     </li>
                 </ul>
