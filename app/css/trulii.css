@@ -14754,9 +14754,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   border: 0;
   border: 1px solid #e3e3e3;
-  border-radius: 0;
   background: transparent;
-  border-radius: 0em 1.5em 1.5em 0em;
+  border-radius: 0em 1.5em 1.5em 0em !important;
   border-left: none;
   padding: 0;
 }
