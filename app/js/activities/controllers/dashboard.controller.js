@@ -119,7 +119,7 @@
         function _initWidget(){
             var ctrlFooter = false;
             var positionStyle = 'absolute';
-            var valuePosition = '210px';
+            var valuePosition = '0px';
             angular.element(document).ready(function () {
                 $scope.$on('scrolled',
                   function(scrolled, scroll){
@@ -168,10 +168,10 @@
             pc.strings.UNPUBLISH_ACTIVITY_LABEL = "Desactivar";
             pc.strings.COPY_UNPUBLISH_ACTIVITY = "Remover publicación de los resultados de búsqueda";
             pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad saldrá de los motores de búsqueda";
-            pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar";
+            pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar actividad";
             pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
             pc.strings.COPY_VIEW_ACTIVITY = "Ver";
-            pc.strings.COPY_MANAGE_ACTIVITY = "Gestionar actividad";
+            pc.strings.COPY_MANAGE_ACTIVITY = "Gestionar";
             pc.strings.COPY_PRE_VIEW_ACTIVITY = "Previsualizar";
             pc.strings.COPY_VIEW_MY_ACTIVITIES = "Ver mis actividades";
 

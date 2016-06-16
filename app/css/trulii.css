@@ -12580,9 +12580,6 @@ hr.on-light {
   margin: 0 auto;
   position: relative;
 }
-.limited-width-dashboard-container-edit-activity {
-  margin-top: 210px;
-}
 @media (max-width: 1299px) {
   .limited-width-dashboard-container {
     max-width: 100%;
@@ -15317,6 +15314,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar-edit-activity .sidebar__item-preview a i {
   font-size: 1.2em;
 }
+.sidebar-edit-activity .sidebar__item:first-child {
+  border-top: 1px solid #ededed;
+}
 .sidebar__absolute {
   position: absolute;
   height: auto;
@@ -15993,8 +15993,11 @@ label {
   margin-bottom: 1em;
   text-transform: uppercase;
 }
-.form-group label {
-  margin-left: 20px;
+.form-label {
+  margin-left: 2em;
+}
+.control-label {
+  margin-left: 2em;
 }
 .input--main {
   margin-top: 0px;
@@ -16067,6 +16070,8 @@ tags-input .tags {
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   border: 0px;
+  height: 60px;
+  padding: 12px 25px;
 }
 tags-input .tags:focus {
   border-color: #66afe9;
@@ -16146,22 +16151,23 @@ tags-input .tag-item {
   display: inline-block;
   color: white;
   font-weight: bolder;
-  padding: 2px 10px;
-  padding-right: 20px;
   margin-right: 5px;
   position: relative;
-  border-radius: 2px;
+  border-radius: 1.7em;
+  padding: 0.2em 1.2em;
+  font-size: 1.1em;
 }
 tags-input .tag-item span {
-  padding-right: 5px;
+  padding-right: 8px;
 }
 tags-input .remove-button {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  right: 0.25em;
-  font-size: 23px;
-  line-height: 0px;
+  right: 0.3em;
+  font-size: 20px;
+  line-height: 2px;
+  font-weight: 800;
   color: #02a476;
 }
 tags-input .remove-button:hover {
@@ -16169,7 +16175,7 @@ tags-input .remove-button:hover {
 }
 tags-input input {
   border: 0px;
-  width: 8em !important;
+  width: 12em !important;
 }
 .checkbox {
   padding-top: 0 !important;
@@ -18677,8 +18683,8 @@ button.toast-close-button {
   background-size: cover;
   width: 100vw;
   height: 220px;
-  position: absolute;
-  top: 70px;
+  position: relative;
+  top: -20px;
 }
 @media screen and (max-width: 992px) {
   .cover-edit-activity {
@@ -18722,9 +18728,25 @@ button.toast-close-button {
   font-size: 1.3em;
   font-weight: 400;
 }
+.cover-edit-activity__content-first {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .cover-edit-activity__content-second {
   border-top: 1px solid white;
   padding: 1em 0 0.2em 0;
+}
+.cover-edit-activity__content-buttons .btn-manage {
+  background-color: #e4e7ef;
+  margin-right: 1em;
+}
+.cover-edit-activity__content-buttons .btn-publish {
+  background-color: #51dde9;
+  color: white;
+}
+.cover-edit-activity__content-buttons .btn-unpublish {
+  background-color: #f4d352;
 }
 .cover-edit-activity__content-steps {
   color: white;

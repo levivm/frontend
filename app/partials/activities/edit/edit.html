@@ -1,9 +1,25 @@
 
 <div class="cover-edit-activity">
     <div class="cover-edit-activity__content">
-         <div class="cover-edit-activity__content-title">
-             <h1 ng-bind="pc.activity.title"></h1>
-             <h5 ng-bind="pc.activity.organizer.name"></h5>
+         <div class="cover-edit-activity__content-first">
+             <div class="cover-edit-activity__content-title">
+                 <h1 ng-bind="pc.activity.title"></h1>
+                 <h5 ng-bind="pc.activity.organizer.name"></h5>
+             </div>
+             <div class="cover-edit-activity__content-buttons" ng-show="pc.areAllStepsCompleted()">
+                <a class="btn btn-default btn-manage " ng-click="pc.actionNavbarSecondary(pc.strings.COPY_MANAGE_ACTIVITY)"
+                ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
+                    <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_MANAGE_ACTIVITY"></span>
+                </a>
+                 <button class="btn btn-publish" ng-show="!pc.activity.published" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
+                        ng-click="pc.publish_activity()">
+                        <span ng-bind="::pc.strings.PUBLISH_ACTIVITY_LABEL"></span>
+                </button>
+                <button ng-show="pc.activity.published" class="btn btn-unpublish"
+                        ng-click="pc.unpublish_activity()">
+                    <span ng-bind="::pc.strings.UNPUBLISH_ACTIVITY_LABEL"></span>
+                </button>
+             </div>
          </div>
          <div class="cover-edit-activity__content-second" ng-show="!pc.areAllStepsCompleted()">
              <div class="cover-edit-activity__content-steps" >
@@ -44,7 +60,7 @@
                 </a>
             </li>
             
-            <li  class="sidebar__item sidebar__item-preview">
+            <li  class="sidebar__item sidebar__item-preview" ng-show="pc.areAllStepsCompleted()">
                 <a ng-click="pc.actionNavbarSecondary(pc.strings.COPY_PRE_VIEW_ACTIVITY)" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
                    <i class="fa fa-eye" aria-hidden="true"></i>
                    <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_PRE_VIEW_ACTIVITY"></span>

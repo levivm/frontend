@@ -175,11 +175,14 @@ label{
 	text-transform: uppercase;
 }
 
-.form-group{
-	label{
-		margin-left: 20px;
-	}
+
+.form-label{
+	margin-left: 2em;
 }
+.control-label{
+	margin-left: 2em;
+}
+
 
 .input{
 
@@ -254,6 +257,8 @@ tags-input{
 	.tags{
 		.form-control;
 		border: 0px;
+		height: 60px;
+		padding: 12px 25px;
 	}
 
 	.tag-list{
@@ -311,15 +316,14 @@ tags-input{
 		display: inline-block;
 		color: white;
 		font-weight: bolder;
-		padding: 2px 10px;
-		padding-right: 20px;
 		margin-right: 5px;
 		position: relative;
-		border-radius: @material-border-radius;
-
+		border-radius: 1.7em;
+		padding: 0.2em 1.2em;
+		font-size: 1.1em;
 		// Tag Text
 		span{
-			padding-right: 5px;
+			padding-right: 8px;
 		}
 	}
 
@@ -327,9 +331,10 @@ tags-input{
 		cursor: pointer;
 		position: absolute;
 		top: 50%;
-		right: 0.25em;
-		font-size: 23px;
-		line-height: 0px;
+		right: 0.3em;
+		font-size: 20px;
+		line-height: 2px;
+		font-weight: 800;
 		color: darken(@success, 10%);
 
 		&:hover{
@@ -339,7 +344,7 @@ tags-input{
 
 	input{
 		border: 0px;
-		width:8em !important;
+		width:12em !important;
 	}
 
 }

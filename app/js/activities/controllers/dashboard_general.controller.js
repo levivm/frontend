@@ -35,7 +35,9 @@
             getSubmitButtonText: getSubmitButtonText,
             loadAutocompleteTags: loadAutocompleteTags,
             getAmazonUrl: getAmazonUrl,
-            organizer:organizer
+            organizer:organizer,
+            optionsCertificate : [ {value: false, label: 'Sin certificación'},
+                                    {value: true, label: 'Con certificación'}]
         });
 
 
@@ -64,6 +66,7 @@
         }
 
         function updateActivity() {
+            console.log(vm.activity);
             Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
@@ -185,7 +188,8 @@
             angular.extend(vm.strings, {
                 COPY_START_ACTIVITY_CREATION: "¡Comienza a crear tu actividad!",
                 COPY_SELECT_ACTIVITY_TITLE: "¿Como titularías esta actividad?",
-                COPY_CERTIFICATION: "¿Entregará certificado u otorgará alguna certificación?",
+                COPY_CERTIFICATION: "¿Entregarás certificación?",
+                COPY_DESCRIPTION_TOOLTIP: "Describe tu actividad de forma atractiva, especifica y díficil de olvidar.",
                 ACTION_CONTINUE: "Continuar",
                 ACTION_SAVE: "Guardar",
                 OPTION_WITHOUT_CERTIFICATION: "Sin certificación",
@@ -195,7 +199,8 @@
                 LABEL_SUB_CATEGORY: "Sub-categoria",
                 LABEL_SHOT_DESCRIPTION: "Descripción corta",
                 LABEL_TAGS: "Tags / Etiquetas",
-                TOAST_TITLE_ERROR: "El título es obligatiorio."
+                TOAST_TITLE_ERROR: "El título es obligatiorio.",
+                SECTION_GENERAL: "General"
             });
         }
 
