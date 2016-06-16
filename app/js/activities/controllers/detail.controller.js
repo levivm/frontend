@@ -312,9 +312,9 @@
 
             vm.map = LocationManager.getMap(activity.location, false);
 
-            vm.map.options = {icon: getAmazonUrl('static/img/map.png')};
 
             vm.marker = LocationManager.getMarker(activity.location);
+            vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
 
             //uiGmapIsReady.promise(1).then(function (instances) {
             //    instances.forEach(function (inst) {
@@ -487,7 +487,7 @@
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_EMPTY_REVIEWS: "Aun no hay evaluaciones para esta actividad",
-                COPY_NUMBER_OF_LIKES: "personas aman esta actividad",
+                COPY_NUMBER_OF_LIKES: "personas aman esto",
                 COPY_BE_THE_FIRST: "¡Sé el primero!",
                 COPY_ATTENDEES_LIST: "Hasta ahora estas personas asistirán a esta actividad. ¿Qué esperas para unírteles?"
             });

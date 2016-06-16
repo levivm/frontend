@@ -22,6 +22,7 @@
         var KEY_SUBCATEGORY = 'subcategory';
         var KEY_DATE = 'date';
         var KEY_LEVEL = 'level';
+        var KEY_FREE = 'is_free';
         var KEY_COST_START = 'cost_start';
         var KEY_COST_END = 'cost_end';
         var KEY_CERTIFICATION = 'certification';
@@ -124,6 +125,7 @@
             setPageSize: setPageSize,
             setOrder: setOrder,
             setQuery: setQuery,
+            setFree: setFree,
 
             orderingOptions: orderingOptions,
             KEY_QUERY : KEY_QUERY,
@@ -132,6 +134,7 @@
             KEY_SUBCATEGORY : KEY_SUBCATEGORY,
             KEY_DATE : KEY_DATE,
             KEY_LEVEL: KEY_LEVEL,
+            KEY_FREE: KEY_FREE,
             KEY_COST_START : KEY_COST_START,
             KEY_COST_END : KEY_COST_END,
             KEY_CERTIFICATION : KEY_CERTIFICATION,
@@ -191,7 +194,6 @@
                 delete searchData[KEY_QUERY];
             }
 
-            delete searchData[KEY_PAGE];
             //delete searchData[KEY_ORDER];
 
             return searchData;
@@ -236,14 +238,14 @@
                 delete searchData[KEY_COST_END];
             }
 
-            if(data.hasOwnProperty(KEY_CERTIFICATION) && (data[KEY_CERTIFICATION] == 'true')){
-                searchData[KEY_CERTIFICATION] = (data[KEY_CERTIFICATION] == 'true');
+            if(data.hasOwnProperty(KEY_CERTIFICATION) && (data[KEY_CERTIFICATION] === true)){
+                searchData[KEY_CERTIFICATION] = (data[KEY_CERTIFICATION] === true);
             } else {
                 delete searchData[KEY_CERTIFICATION];
             }
 
-            if(data.hasOwnProperty(KEY_WEEKENDS) && (data[KEY_WEEKENDS] == 'true')){
-                searchData[KEY_WEEKENDS] = (data[KEY_WEEKENDS] == 'true');
+            if(data.hasOwnProperty(KEY_WEEKENDS) && (data[KEY_WEEKENDS] === true)){
+                searchData[KEY_WEEKENDS] = (data[KEY_WEEKENDS] === true);
             } else {
                 delete searchData[KEY_WEEKENDS];
             }
@@ -254,13 +256,18 @@
                 delete searchData[KEY_ORDER];
             }
 
-            if(data.hasOwnProperty(KEY_PAGE) && data[KEY_PAGE]){
-                searchData[KEY_PAGE] = data[KEY_PAGE];
+             if(data.hasOwnProperty(KEY_FREE) && (data[KEY_FREE] === true)){
+                searchData[KEY_FREE] = (data[KEY_FREE] === true);
             } else {
-                //delete searchData[KEY_PAGE];
-                searchData[KEY_PAGE] = "1";
+                delete searchData[KEY_FREE];
             }
 
+            if(data.hasOwnProperty(KEY_PAGE) && data[KEY_PAGE]){
+                searchData[KEY_PAGE] = data[KEY_PAGE];
+            } 
+             else {
+                searchData[KEY_PAGE] = "1";
+            }
             return searchData;
         }
 
@@ -286,6 +293,10 @@
         function setCosts(start, end){
             searchData[KEY_COST_START] = start;
             searchData[KEY_COST_END] = end;
+        }
+
+        function setFree(free){
+            searchData[KEY_FREE] = free;
         }
 
         function setCertification(withCertification){

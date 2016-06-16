@@ -1,5 +1,5 @@
 <div class="row">
-    <div class="search-container">
+    <div class="search-container limited-width">
         <div class="search-mobile-filters hidden-md hidden-lg">
             <div class="col-xs-12 limited-width-search">                
                 <div class="search-mobile-filters__bar">
@@ -64,9 +64,15 @@
                             step="search.sliderOptions.step" start="search.searchStartCost"
                             end="search.searchEndCost" update="search.updateCost(start, end)" stop-drag="search.stopDrag()"></trulii-slider>    
                     </li>
+                    <li class="search-sidebar__element__price-free">
+                         <div class="trulii-checkbox" ng-click="search.setFree()">
+                            <input type="checkbox" id="free" ng-model="search.isFree">
+                            <label for="free"><span></span>{{search.strings.LABEL_FREE}}</label>
+                        </div>
+                    </li>
                 </ul>
             </div>
-            <div class="search-sidebar__element">
+            <div class="search-sidebar__element search-sidebar__element-cursor">
                 <ul>
                     <li ng-click="search.setCategory(search.strings.ACTION_ALL_FILTER)">
                         <span ng-bind="::search.strings.ACTION_ALL_FILTER"></span>

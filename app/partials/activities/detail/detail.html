@@ -71,6 +71,11 @@
                 ng-hide="detail.isSelectedCalendarFull()"
                 ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id); detail.widgetSignup()">
             </button>
+            <div class="row">
+              <div class="col-xs-4 col-xs-offset-4">
+                <hr>
+              </div>
+            </div>
             <div class="more-dates">
                 <a href="" ng-click="detail.viewMoreCalendars()" ng-bind="detail.strings.ACTION_VIEW_OTHER_DATES"></a>
             </div>
@@ -89,7 +94,7 @@
           </div>
         </div>
       </div>
-      <div class="activity-detail__share-widget" ng-class="{'widget-fixed': (detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition)}" ng-style="(detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}) || ((detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition) && {'left': detail.widgetFixedPositionLeft})">
+      <div class="activity-detail__share-widget">
         <ul class="list-unstyled">
           <li class="hidden-xs hidden-sm">
             <span ng-bind="detail.facebookShares"></span>
@@ -107,7 +112,8 @@
                socialshare-caption="{{::detail.social.FACEBOOK_SHARE_CAPTION}}"
                socialshare-description="{{::detail.social.FACEBOOK_SHARE_DESCRIPTION}}"
                socialshare-url="{{::detail.social.FACEBOOK_SHARE_URL}}">
-              <img ng-src="{{detail.getAmazonUrl('static/img/share/facebook.png')}}" alt="">
+              <img class="img-on" ng-src="{{detail.getAmazonUrl('static/img/share/facebook.png')}}" alt="">
+              <img class="img-off" ng-src="{{detail.getAmazonUrl('static/img/share/facebook-off.png')}}" alt="">
             </a>
           </li>
           <li>
@@ -118,7 +124,8 @@
                socialshare-provider="{{::detail.social.TWITTER_SOCIAL_PROVIDER}}"
                socialshare-text="{{::detail.social.TWITTER_SHARE_TEXT}}"
                socialshare-url="{{::detail.social.TWITTER_SHARE_URL}}">
-              <img ng-src="{{detail.getAmazonUrl('static/img/share/twitter.png')}}" alt="">
+              <img class="img-on" ng-src="{{detail.getAmazonUrl('static/img/share/twitter.png')}}" alt="">
+              <img class="img-off" ng-src="{{detail.getAmazonUrl('static/img/share/twitter-off.png')}}" alt="">
             </a>
           </li>
           <li>
@@ -129,13 +136,15 @@
                socialshare-text="{{::detail.social.LINKEDIN_SHARE_TEXT}}"
                socialshare-description="{{::detail.social.LINKEDIN_SHARE_DESCRIPTION}}"
                socialshare-url="{{::detail.social.LINKEDIN_SHARE_URL}}">
-              <img ng-src="{{detail.getAmazonUrl('static/img/share/linkedin.png')}}" alt="">
+              <img class="img-on" ng-src="{{detail.getAmazonUrl('static/img/share/linkedin.png')}}" alt="">
+              <img class="img-off" ng-src="{{detail.getAmazonUrl('static/img/share/linkedin-off.png')}}" alt="">
             </a>
           </li>
           <li>
             <a href="#"
                ng-click="detail.toggleEmailShow()">
-              <img ng-src="{{detail.getAmazonUrl('static/img/share/email.png')}}" alt="">
+              <img class="img-on" ng-src="{{detail.getAmazonUrl('static/img/share/email.png')}}" alt="">
+              <img class="img-off" ng-src="{{detail.getAmazonUrl('static/img/share/email-off.png')}}" alt="">
             </a>
           </li>
           <li class="hidden-md hidden-lg">
@@ -144,7 +153,8 @@
                socialshare-provider="{{::detail.social.WHATSAPP_SOCIAL_PROVIDER}}"
                socialshare-text="{{::detail.social.WHATSAPP_SHARE_TEXT}}"
                socialshare-url="{{::detail.social.WHATSAPP_SHARE_URL}}">
-              <img ng-src="{{detail.getAmazonUrl('static/img/share/whatsapp.png')}}" alt="">
+              <img class="img-on" ng-src="{{detail.getAmazonUrl('static/img/share/whatsapp.png')}}" alt="">
+              <img class="img-off" ng-src="{{detail.getAmazonUrl('static/img/share/whatsapp-off.png')}}" alt="">
             </a>
           </li>
           <li class="hidden-md hidden-lg">
@@ -152,7 +162,8 @@
                socialshare
                socialshare-provider="{{::detail.social.MESSENGER_SOCIAL_PROVIDER}}"
                socialshare-url="{{::detail.social.MESSENGER_SHARE_URL}}">
-              <img ng-src="{{detail.getAmazonUrl('static/img/share/messenger.png')}}" alt="">
+              <img class="img-on" ng-src="{{detail.getAmazonUrl('static/img/share/messenger.png')}}" alt="">
+              <img class="img-off" ng-src="{{detail.getAmazonUrl('static/img/share/messenger-off.png')}}" alt="">
             </a>
           </li>
         </ul>
@@ -224,7 +235,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showContent">
           </h4>
-          <p class="content" ng-bind-html="::detail.activity.content" ng-class="{'content-mobile': !detail.showAudience}"></p>
+          <p class="content" ng-bind-html="::detail.activity.content" ng-class="{'content-mobile': !detail.showContent}"></p>
         </div>
       </div>
 
@@ -238,7 +249,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showGoals">
           </h4>
-          <p class="content" ng-bind-html="::detail.activity.goals" ng-class="{'content-mobile': !detail.showAudience}"></p>
+          <p class="content" ng-bind-html="::detail.activity.goals" ng-class="{'content-mobile': !detail.showGoals}"></p>
         </div>
       </div>
 
@@ -262,7 +273,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showMethodology">
           </h4>
-          <p class="content" ng-bind-html="::detail.activity.methodology" ng-class="{'content-mobile': !detail.showAudience}"></p>
+          <p class="content" ng-bind-html="::detail.activity.methodology" ng-class="{'content-mobile': !detail.showMethodology}"></p>
         </div>
       </div>
 
@@ -276,7 +287,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showRequirements">
           </h4>
-          <p class="content" ng-bind-html="::detail.activity.requirements" ng-class="{'content-mobile': !detail.showAudience}"></p>
+          <p class="content" ng-bind-html="::detail.activity.requirements" ng-class="{'content-mobile': !detail.showRequirements}"></p>
         </div>
       </div>
 
@@ -291,7 +302,7 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showExtra">
           </h4>
-          <p class="content" ng-bind-html="::detail.activity.extra_info" ng-class="{'content-mobile': !detail.showAudience}"></p>
+          <p class="content" ng-bind-html="::detail.activity.extra_info" ng-class="{'content-mobile': !detail.showExtra}"></p>
         </div>
       </div>
 
@@ -357,8 +368,8 @@
           <div class="row">
             <div class="col-xs-12 calendar-mobile__sessions">
               <h5 class="sessions__header text-uppercase" ng-bind="::detail.strings.LABEL_SCHEDULE"></h5>
-              <h5 class="separate-above-less" ng-repeat="session in calendar.sessions">
-                <span ng-bind="session.date | date: 'EEEE d MMM y' "></span>
+              <h5 class="separate-above-less separate-below" ng-repeat="session in calendar.sessions">
+                <strong ng-bind="session.date | date: 'EEEE d MMM y' "></strong>
                 <br>
                 <span ng-bind="session.start_time | date: 'h:mm a'"></span>
                 <span ng-bind="detail.COPY_TO"></span>
@@ -393,7 +404,7 @@
         <div class="col-xs-12">
           <div class="row flex-wrap">
 
-            <div class="col-xs-12 col-lg-9 col-lg-offset-0 calendars-container separate-above-medium flex-container">
+            <div class="col-xs-12 col-lg-9 col-lg-offset-0 calendars-container separate-above flex-container">
               <table class="table table-responsive table-justified">
                 <tr>
                   <th>
@@ -459,7 +470,7 @@
                 </tr>
               </table>
             </div>
-            <div class="col-xs-12 col-lg-3 col-lg-offset-0 sessions-container separate-above-medium flex-container">
+            <div class="col-xs-12 col-lg-3 col-lg-offset-0 sessions-container separate-above flex-container">
               <div class="sessions">
                 <h4 class="sessions__header text-uppercase" ng-bind="::detail.strings.LABEL_SCHEDULE"></h4>
                   <h5 class="separate-above-less" ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
@@ -480,7 +491,7 @@
 
 
 <!--Location-->
-<div class="col-xs-12 hidden-xs hidden-sm">
+<div class="col-xs-12 hidden-xs hidden-sm address-assistants-container">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1 limited-width">
       <div class="row flex-wrap">
@@ -504,35 +515,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-12 col-lg-3 flex-container">
-          <div class="attendees-container">
-            <div class="attendees-container__header" ng-class="{'attendees-container__header__not-empty' :detail.calendar_selected.assistants.length > 0}">
-              <h3 ng-bind="detail.strings.LABEL_ATTENDEES"></h3>
-              <h5 ng-if="detail.calendar_selected.assistants.length > 0" ng-bind="detail.strings.COPY_ATTENDEES_LIST"></h5>
-            </div>
-            <div class="attendees-container__body" ng-class="{'attendees-container__body__not-empty' :detail.calendar_selected.assistants.length > 0}">
-                <div class="attendees-container__body__placeholder" ng-if="detail.calendar_selected.assistants.length <= 0" ng-bind="detail.strings.COPY_ATTENDEES_LIST">
-                    <h5>!Se el primero en inscribirte y aprovecha en invitar a tus amigos¡</h5>
-                    <a href="">Ver más fechas de inicio</a>
-                </div>
-              <div class="attendees-container__body__attendees-list" ng-if="detail.calendar_selected.assistants.length > 0">
-                <div class="attendee-item" ng-repeat="attendee in detail.calendar_selected.assistants track by attendee.id">
-                  <trulii-avatar user="attendee" size="40" avatar-class="small" ng-class="{'avatar-landing': !attendee.photo}"></trulii-avatar>
-                  <div class="attendee-item__name" ng-bind="attendee.full_name">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="attendees-container__footer">
-              <div class="attendees-container__footer__prev" ng-click="detail.attendeesScrollUp()">
-                <i class="fa fa-chevron-up" aria-hidden="true"></i>
-              </div>
-              <div class="attendees-container__footer__next" ng-click="detail.attendeesScrollDown()">
-                <i class="fa fa-chevron-down" aria-hidden="true"></i>
-              </div>
-            </div>
-          </div>
-        </div>
+        <div class="hidden-xs hidden-sm" ui-view="attendees"></div>
       </div>
     </div>
   </div>
