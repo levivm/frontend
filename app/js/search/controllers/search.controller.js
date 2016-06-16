@@ -46,6 +46,7 @@
             minStartDate : new Date(),
             dateOptions : {
                 formatYear : 'yyyy',
+                formatDayHeader : "EEE",
                 startingDay : 1
             },
             activitiesPaginationOpts : {
