@@ -37,12 +37,84 @@
             padding-top: 13px;
             font-weight: bold;
             transition: all 0.5s;
+            background-color: transparent;
             a{
                 height: 50px;
                 width: 50px;
                 margin-top: -15px;
                 display: block;
-                padding-top: 15px;
+                padding-top: 18px;
+            }
+            .img-on{
+                opacity: 0;
+            }
+            .img-off{
+                opacity: 1;
+            }
+            .img-on, .img-off{
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 18px;
+                height: 18px;
+                transition: all 0.5s;
+            }
+            &:hover, &:focus{
+                .img-off{
+                    opacity: 0;
+                }
+                .img-on{
+                    opacity: 1;
+                }
+            }
+            @media (max-width: 768px){
+                &:nth-child(1){
+                    background-color: darken(@facebook-blue, 10);
+                    color: white;
+                    border-color: darken(@facebook-blue, 10) !important;
+                }
+                &:nth-child(2){
+                    background-color: @facebook-blue;
+                    border-color: @facebook-blue !important;
+                    color: white;
+                    &:hover{
+                        background-color: darken(@facebook-blue, 10);
+                    }
+                }
+                &:nth-child(3){
+                    background-color: @twitter-accent;
+                    border-color: @twitter-accent !important;
+                    &:hover{
+                        background-color: darken(@twitter-accent, 10);
+                    }
+                }
+                &:nth-child(4){
+                    background-color: @linkedin-accent;
+                    border-color: @linkedin-accent !important;
+                    &:hover{
+                        background-color: darken(@linkedin-accent, 10);
+                    }
+                }
+                &:nth-child(5){
+                    background-color: @brand-secondary;
+                    border-color: @brand-secondary !important;
+                    &:hover{
+                        background-color: darken(@brand-secondary, 10);
+                    }
+                }
+                &:nth-child(6){
+                    background-color: @whatsapp-accent;
+                    border-color: @whatsapp-accent !important;
+                    &:hover{
+                        background-color: darken(@whatsapp-accent, 10);
+                    }
+                }
+                &:nth-child(7){
+                    background-color: #FFFFFF;
+                    &:hover{
+                        background-color: darken(#FFFFFF, 10);
+                    }
+                }
             }
             &:nth-child(1){
                 background-color: darken(@facebook-blue, 10);
@@ -50,45 +122,38 @@
                 border-color: darken(@facebook-blue, 10) !important;
             }
             &:nth-child(2){
-                background-color: @facebook-blue;
-                border-color: @facebook-blue !important;
-                color: white;
-                &:hover{
-                    background-color: darken(@facebook-blue, 10);
+                &:hover, &:focus{
+                    background-color: @facebook-blue;
+                    border-color: @facebook-blue !important;
                 }
             }
             &:nth-child(3){
-                background-color: @twitter-accent;
-                border-color: @twitter-accent !important;
-                &:hover{
-                    background-color: darken(@twitter-accent, 10);
+                &:hover, &:focus{
+                    background-color: @twitter-accent;
+                    border-color: @twitter-accent !important;
                 }
             }
             &:nth-child(4){
-                background-color: @linkedin-accent;
-                border-color: @linkedin-accent !important;
-                &:hover{
-                    background-color: darken(@linkedin-accent, 10);
+                &:hover, &:focus{
+                    background-color: @linkedin-accent;
+                    border-color: @linkedin-accent !important;
                 }
             }
             &:nth-child(5){
-                background-color: @brand-secondary;
-                border-color: @brand-secondary !important;
-                &:hover{
-                    background-color: darken(@brand-secondary, 10);
+                &:hover, &:focus{
+                    background-color: @brand-secondary;
+                    border-color: @brand-secondary !important;
                 }
             }
             &:nth-child(6){
-                background-color: @whatsapp-accent;
-                border-color: @whatsapp-accent !important;
-                &:hover{
-                    background-color: darken(@whatsapp-accent, 10);
+                &:hover, &:focus{
+                    background-color: @whatsapp-accent;
+                    border-color: @whatsapp-accent !important;
                 }
             }
             &:nth-child(7){
-                background-color: #FFFFFF;
                 &:hover{
-                    background-color: darken(#FFFFFF, 10);
+                    background-color: #FFFFFF;
                 }
             }
             &:not(:last-child){
@@ -130,6 +195,7 @@
             &__content{
                 width: 100% !important;
                 border: none !important;
+                padding-top: 0;
                 .btn-block{
                     width: auto;
                     margin: 15px auto !important;
@@ -138,22 +204,31 @@
                 }
             }
             &__likes{
-                margin: 0 auto 50px;
+                margin: 0 auto 100px;
                 border: none !important;
             }
         }
         &.widget-fixed{
             .activity-detail__share-widget, .activity-detail__enroll-widget__content, .activity-detail__enroll-widget__likes{
-                box-shadow: 0px 6px 20px -10px rgba(0, 0, 0, 0.25)
+                box-shadow: 0px 6px 20px -10px rgba(0, 0, 0, 0.25);
+                @media (max-width: 768px){
+                    box-shadow: none;
+                }
             }
         }
         &__content{
             box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
             width: 250px;
-            height: 325px;
+            height: 355px;
             border: 1px solid @gray-lighter;
             padding: 20px;
             transition: all 0.5s;
+            color: @gray-darker-brand;
+            hr{
+                margin-top: 5px;
+                margin-bottom: 10px;
+                border-top: 2px solid @gray-lighter;
+            }
             .seats{
                 display: block;
                 width: 190px;
@@ -211,6 +286,7 @@
                     margin: 0 auto;
                     display: inherit;
                     font-weight: bold;
+                    font-size: 12px;
                 }
             }
             .btn{
@@ -221,14 +297,14 @@
             margin-top: 20px;
             padding: 15px 10px;
             width: 250px;
-            height: 75px;
+            height: 55px;
             border: 1px solid @gray-lighter;
             transition: all 0.5s;
+            color: @gray-darker-brand;
             .heart{
-                width: 80px;
+                width: 60px;
                 display: inline-block;
                 float: left;
-                margin-top: 6px;
                 text-align: center;
                 .mdi-action-favorite{
                     color: @brand-heart;
@@ -236,8 +312,9 @@
             }
             .copy{
                 float: left;
-                width: 140px;
-                display: inline-block;;
+                width: 160px;
+                display: inline-block;
+                margin-top: 2px;
             }
         }
     }
@@ -279,6 +356,14 @@
         font-size: 0.85em;
         });
     }
+    .instructor{
+        .name{
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: @gray-darker-brand;
+        }
+    }
   .info{
       display: inline-block;
       width: 100%;
@@ -286,7 +371,7 @@
       &__content{
           font-weight: 800 !important;
           text-transform: uppercase;
-          border: 1px solid @gray-light;
+          border: 1px solid @gray-lighter;
           border-radius: @border-radius-base;
           width: 100%;
           padding: 10px;
@@ -327,6 +412,17 @@
         border: 1px solid @gray-lighter;
         border-radius: @border-radius-base;
         padding: 20px 0;
+        margin-top: 20px;
+        .row{
+            > .col-xs-6{
+                &:first-child{
+                    padding-right: 5px;
+                }
+                &:last-child{
+                    padding-left: 5px;
+                }
+            }
+        }
         &__labels{
             text-align: right;
             h5{
@@ -338,15 +434,24 @@
             transition: all 0.5s;
             overflow-y: hidden;
             text-align: center;
+            color: @gray-dark;
+
+            h5{
+                line-height: 18px;
+            }
+
             .btn{
                 margin: 0 auto;
             }
             .sessions__header{
                 color: @brand-primary;
+                font-weight: bold;
+                margin-top: 25px;
+                margin-bottom: 30px;
             }
         }
         &.active{
-            background-color: @gray-lighter;
+            background-color: @gray-lighter-brand;
             .calendar-mobile__sessions{
                 height: 100%;
             }
@@ -713,6 +818,9 @@
                 height: 0;
             }
         }
+        ul, ol{
+            padding-left: 30px;
+        }
     }
 
     &::after{
@@ -804,7 +912,16 @@
     }
 }
 
-
+.address-assistants-container{
+    .flex-wrap{
+        > div:nth-child(2){
+            width: 25%;
+            .col-lg-3{
+                width: 100%;
+            }
+        }
+    }
+}
 .reviews-container{
     padding-top: 30px;
     padding-bottom: 30px;
@@ -817,7 +934,7 @@
             display: inline-block;
             font-weight: bold;
             padding: 1em 0.5em;
-            color: @gray-darker;
+            color: @gray-darker-brand;
             margin-right: 5px;
         }
 
@@ -828,6 +945,7 @@
         .rating{
             font-size: 16px;
             font-weight: 600;
+            color: @gray-darker-brand;
         }
 
     }
@@ -846,7 +964,7 @@
     }
 
     .address{
-        border: 1px solid @gray-light;
+        border: 1px solid @gray-regular;
         border-radius: @border-radius-base;
         width: 100%;
         margin-bottom: 25px;
@@ -1023,9 +1141,10 @@
         margin-bottom: 1.5em;
         }
         h5{
-        font-weight: 200;
-        line-height: 1.35em;
-        margin: 1.5em 0em;
+            font-weight: 200;
+            line-height: 1.35em;
+            margin: 1.5em 0em;
+            color: @gray-darker-brand;
         }
 
         .calendars-container{
@@ -1071,7 +1190,7 @@
               th{
                 font-weight: bold;
                 text-transform: uppercase;
-                padding: 2.5em;
+                padding: 28px;
                 text-align: center;
               }
 
@@ -1104,6 +1223,12 @@
 
             .signup-row{
               background-color: @gray-light-brand;
+              td:first-child{
+                  border-bottom-left-radius: @border-radius-base;
+              }
+              td:last-child{
+                  border-bottom-right-radius: @border-radius-base;
+              }
             }
           }
 
@@ -1129,6 +1254,8 @@
             font-size: 14px;
             font-weight: bold;
             color: @brand-primary;
+            margin-top: 0;
+            margin-bottom: 25px;
          }
         }
     }

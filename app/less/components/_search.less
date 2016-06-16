@@ -9,6 +9,7 @@
         background-color: white;
 
     }
+    
     > *:nth-child(1) {
         border-top-left-radius: @border-radius-base !important;
         border-bottom-left-radius: @border-radius-base !important;
@@ -411,6 +412,48 @@
         width: 295px;
         display: inline-block;
         padding: 0 15px 50px 45px;
+
+        ul.dropdown-menu{
+            box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.33);
+            left: initial !important;
+            right: -81px;
+            top: 50px !important;
+            &:after{
+                left: ~"calc(50% - 15px)";
+                border-bottom-color: white;
+            }
+            table{
+                .btn{
+                    border-radius: 0 !important;
+                    font-weight: 600 !important;
+                }
+                thead{
+                    tr:nth-child(1){
+                        background-color:white;
+                        *{
+                            color: @brand-primary;
+                            font-size: 1em;
+                        }
+                        .btn{
+                            border-radius: 0 !important;
+                            &:hover, &:focus{
+                                background-color: @gray-lighter;
+                            }
+                        }
+                    }
+                    tr:not(:first-child){
+                        background-color: white;
+                    }
+                    tr:nth-child(2){
+                        th{
+                            padding: 15px 0 10px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            } 
+           
+        }
         
         .search-order{
             padding: 0px 15px;
@@ -460,7 +503,9 @@
             }
             
             &__date{
-                padding: 10px 15px 0px 15px !important;
+                padding: 0px 15px 0px 15px !important;
+                margin-bottom: -10px;
+                position: relative;
                 input{
                     width: ~"calc(100% - 30px)";
                     display: inline-block;
