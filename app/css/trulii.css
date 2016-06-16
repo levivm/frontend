@@ -12530,6 +12530,7 @@ hr.on-light {
 }
 .ta-scroll-window > .ta-bind {
   border: 1px solid #ccc !important;
+  padding: 2em;
 }
 .ta-scroll-window > .ta-bind::before {
   color: #9E9E9E !important;
@@ -17013,6 +17014,7 @@ td {
   text-transform: uppercase;
   padding: 1em;
   border-color: #cbcbcb;
+  border-radius: 2px !important;
 }
 ul.dropdown-menu {
   padding: 0;

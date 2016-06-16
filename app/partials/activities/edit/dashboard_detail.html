@@ -1,16 +1,12 @@
-<div class="row">
+<div class="row limited-width-dashboard ">
     <div class="col-xs-12">
 
      <div class="row">
-         <div class="section-title" ng-bind="::detail.strings.TITLE_DETAIL">
-         </div>
-
-         <form name='detail.activity_detail_form' ng-submit="detail.save_activity()" class="col-lg-9">
+          <div class="panel-default panel-default__dashboard ">
+                <h4 class="panel-default__dashboard-title" ng-bind="::detail.strings.TITLE_DETAIL"></h4>
+            </div>
+         <form name='detail.activity_detail_form' ng-submit="detail.save_activity()" class="col-xs-12">
                <fieldset>
-
-                 <div class="section-description" ng-bind="::detail.strings.COPY_DETAIL">
-                 </div>
-
                    <div class="form-group" trulii-input-errors-control="audience">
                        <label class="control-label" for="audience" ng-bind="::detail.strings.LABEL_AUDIENCE"></label>
 
@@ -58,7 +54,7 @@
                            </text-angular>
 
                    </div>
-                   <trulii-submit-controls is-saving="detail.isSaving" value="{{::detail.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                   <trulii-submit-controls class="separate-above" is-saving="detail.isSaving" value="{{::detail.strings.ACTION_SAVE}}"></trulii-submit-controls>
 
                </fieldset>
          </form>
