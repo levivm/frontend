@@ -1,19 +1,17 @@
-<div class="row">
+<div class="row limited-width-dashboard">
     <div class="col-xs-12">
         <div class="row">
-            <div class="section-title">
-                <span ng-bind="::gallery.strings.LABEL_COVER"></span>
-                <span class="text-muted" ng-bind="::gallery.strings.LABEL_REQUIRED"></span>
+            <div class="col-xs-12 panel-default panel-default__dashboard">
+                    <h4 class="panel-default__dashboard-title" ng-bind="::gallery.strings.LABEL_GALLERY_TITLE"></h4>
             </div>
-
-            <div class="col-md-10 col-xs-offset-1 separate-right">
+            <div class="separate-above-more">
                 <div class="section-description">
+                    <h4 class="section-description__title"  ng-bind="::gallery.strings.LABEL_COVER"></h4>
                     <span ng-bind="::gallery.strings.COPY_COVER"></span>
                 </div>
             </div>
-
             <div class="row">
-                <div class="col-md-10 col-xs-offset-1 separate-right">
+                <div class="col-xs-12 separate-right">
                     <!--Cover Preview-->
                     <div class="img-dashed-frame">
                         <div class="img-cover-preview img-actionable"
@@ -49,25 +47,20 @@
                          drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
                          ng-file-change="gallery.uploadActivityCover(gallery.coverToUpload)"
                          allow-dir="true" accept="image/*">
-                        <div class="separate-vertical text-center">
-                            <button class="btn btn-default" ng-bind="::gallery.strings.ACTION_UPLOAD_COVER"></button>
-                            <span class="text-muted" ng-bind="::gallery.strings.COPY_UPLOAD_COVER"></span>
+                        <div class="separate-vertical ">
+                            <button class="btn btn-default btn-gray-light" ng-bind="::gallery.strings.ACTION_UPLOAD_COVER"></button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- GALLERY SECTION -->
-            <div class="section-title">
-                <span ng-bind="::gallery.strings.LABEL_GALLERY_TITLE"></span>
-            </div>
-            <div class="col-md-10 col-xs-offset-1 separate-right">
-                <div class="section-description">
-                    <span ng-bind="::gallery.strings.COPY_GALLERY"></span>
-                </div>
+             <div class="section-description">
+                <h4 class="section-description__title"  ng-bind="::gallery.strings.LABEL_GALLERY_TITLE"></h4>
+                <span ng-bind="::gallery.strings.COPY_GALLERY"></span>
             </div>
             <div class="row">
-                <div class="col-md-10 col-xs-offset-1 separate-right">
+                <div class="col-xs-12 separate-right">
                     <div class="gallery-grid--fixed">
                         <div class="gallery-grid__photo img-actionable img-actionable--small"
                              ng-repeat="picture in gallery.pictures track by picture.id"
@@ -105,21 +98,17 @@
             </div>
 
             <!-- VIDEO SECTION -->
-            <div class="section-title">
-                <span ng-bind="::gallery.strings.LABEL_VIDEO_TITLE"></span>
-            </div>
-            <div class="col-md-10 col-xs-offset-1 separate-right">
-                <div class="section-description">
-                    <span ng-bind="::gallery.strings.COPY_VIDEO"></span>
-                </div>
+            <div class="section-description">
+                <h4 class="section-description__title"  ng-bind="::gallery.strings.LABEL_VIDEO_TITLE"></h4>
+                 <span ng-bind="::gallery.strings.COPY_VIDEO"></span>
             </div>
             <div class="row">
-                <div class="col-md-10 col-xs-offset-1 separate-right">
+                <div class="col-xs-12 ">
                     <form name='vm.activity_gallery_form' ng-submit="gallery.updateActivity()">
                         <div class="form-group" trulii-input-errors-control="youtube_video_url">
                             <label for="youtube_video_url" class="control-label"
                                    ng-bind="::gallery.strings.LABEL_YOUTUBE_LINK"></label>
-                            <input id="youtube_video_url" class="form-control" name="youtube_video_url"
+                            <input id="youtube_video_url" type="text" class="form-control" name="youtube_video_url"
                                    placeholder="{{::gallery.strings.PLACEHOLDER_YOUTUBE_LINK}}"
                                    ng-model='gallery.activity.youtube_video_url'/>
                         </div>

@@ -129,8 +129,6 @@
                     var navBarHeight = document.getElementsByClassName('navbar')[0].offsetHeight;
                     var sidebarTop =  document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top - navBarHeight;
                     var positionToFixed = window.scrollY +  document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight;
-                    console.log('px', positionToFixed);
-                    console.log('fp', footerPosition);
                     if(sidebarTop <= 20){
                        if(sideBarPosition <= coverPosition){
                             positionStyle = 'absolute';
