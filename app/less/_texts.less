@@ -54,6 +54,9 @@
     color: @secondary;
 }
 
+.text-gray-brand{
+    color: @gray-darkest-brand;
+}
 .text-color-success {
     color: @brand-success;
 }
@@ -204,6 +207,7 @@
 
 h1, h2, h3, h4 {
     line-height: 1.25em;
+    font-weight: 400;
     // letter-spacing: -1px;
 }
 
@@ -215,13 +219,16 @@ h1, h2, h3, h4 {
           font-size: 2.5em;
           line-height: 1em;
         });
+        .before-xs({
+            line-height: 1.25em;
+        })
     }
 
     h3& {
         font-weight: 400;
     }
     strong{
-        font-weight: 800;
+        font-weight: 700;
     }
 }
 .title-sm {
