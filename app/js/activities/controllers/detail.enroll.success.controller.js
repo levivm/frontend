@@ -100,26 +100,25 @@
                 FACEBOOK_API_KEY: serverConf.FACEBOOK_APP_KEY,
                 FACEBOOK_SHARE_TYPE: "feed",
                 FACEBOOK_SHARE_CAPTION: "Trulii.com | ¡Aprende lo que quieras en tu ciudad!",
-                FACEBOOK_SHARE_TEXT: 'Comparte esto con tus amigos o menciónalos con @ "' + vm.activity.title + ' - ' + vm.activity.short_description + '"',
+                FACEBOOK_SHARE_TEXT: 'Invita a tus amigos a que se inscriban a esta misma actividad. Menciónalos con @ "' + vm.activity.title + ' - ' + vm.activity.short_description + '"',
                 FACEBOOK_SHARE_MEDIA: vm.activity.main_photo,
                 FACEBOOK_SHARE_DESCRIPTION: vm.activity.short_description,
                 FACEBOOK_REDIRECT_URI: current_url,
                 FACEBOOK_SHARE_URL: current_url,
                 TWITTER_SOCIAL_PROVIDER: 'twitter',
                 TWITTER_SHARE_ACCOUNT: 'Trulii_',
-                TWITTER_SHARE_TEXT: 'Amé esta actividad en @Trulii_  ' + vm.activity.title + ' #Aprende',
+                TWITTER_SHARE_TEXT: 'Acabo de inscribirme en @Trulii_  ' + vm.activity.title + ' ¿Qué esperas para unirte? #Únete',
                 TWITTER_SHARE_URL:current_url,
-                TWITTER_SHARE_HASHTAGS: '#Aprende',
                 LINKEDIN_SOCIAL_PROVIDER: 'linkedin',
-                LINKEDIN_SHARE_TEXT: vm.activity.title + ' - ' + vm.activity.short_description,
+                LINKEDIN_SHARE_TEXT: 'Invita a tus amigos a que se inscriban a esta misma actividad' + vm.activity.title + ' - ' + vm.activity.short_description,
                 LINKEDIN_SHARE_DESCRIPTION: vm.activity.short_description,
                 LINKEDIN_SHARE_URL: current_url,
                 WHATSAPP_SOCIAL_PROVIDER: 'whatsapp',
-                WHATSAPP_SHARE_TEXT: '¡Hey!, échale un vistazo a esta actividad en Trulii a la que planeo asistir dentro de poco. Avísame si te interesa y vamos juntos. ¡Sé que te encantará!',
+                WHATSAPP_SHARE_TEXT: '¡Hey!, acabo de inscribirme a esta actividad en Trulii. ¿Te anotas para acompañarme? Estoy seguro que te encantará. ¡Vamos, anímate!',
                 WHATSAPP_SHARE_URL: current_url,
                 MESSENGER_SOCIAL_PROVIDER: 'facebook-messenger',
                 MESSENGER_SHARE_URL: current_url,
-                EMAIL_SHARE_TEXT: '¡Hey!, échale un vistazo a esta actividad en Trulii a la que planeo asistir dentro de poco. Avísame si te interesa y vamos juntos. ¡Sé que te encantará!'
+                EMAIL_SHARE_TEXT: '¡Hey!, acabo de inscribirme a esta actividad en Trulii. ¿Te anotas para acompañarme? Estoy seguro que te encantará. ¡Vamos, anímate! '
             });
         }
 
