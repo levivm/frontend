@@ -1,9 +1,15 @@
 <div class="row  limited-width-dashboard">
     <div class="col-xs-12  ">
         <div class="row" ui-view>
-            <div class="col-xs-12 panel-default panel-default__dashboard">
-                    <span class="panel-default__dashboard-title" ng-bind="::calendars.strings.LABEL_CALENDARS"></span>
-                    <span  class="separate-left-less" ng-bind="::calendars.strings.COPY_ADD_CALENDAR"></span>
+            <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+                    <h4 class="panel-default__dashboard-title"  ng-bind="::calendars.strings.LABEL_CALENDARS"></h4>
+                    
+                    <button class="btn btn-default btn-gray-light btn-panel"  
+                            ng-click="calendars.createCalendar()"
+                             ng-bind="::calendars.strings.LABEL_ADD_CALENDAR"></button>
+            </div>
+            <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+                    <span  class="" ng-bind="::calendars.strings.COPY_ADD_CALENDAR"></span>
             </div>
                 <div ng-if="calendars.republish" class="alert alert-warning">
                     <h4 ng-bind="::calendars.strings.LABEL_WARNING">Advertencia!</h4>
@@ -12,16 +18,6 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                      <!--  <div class="col-md-6">
-                            <div class="card card-list-item card-list-item--empty" style="height: 21.6em;"
-                                 ng-click="calendars.createCalendar()">
-                                <div>
-                                    <div class="card-list-item__add-icon"></div>
-                                    <br/>
-                                    <span ng-bind="::calendars.strings.LABEL_ADD_CALENDAR"></span>
-                                </div>
-                            </div>
-                        </div>-->
                         <div class="col-xs-12 clear-spacings" ng-repeat="calendar in calendars.calendars | orderBy: 'initial_date'">
                             <div class="card card__calendar">
                                 <div class="card__calendar-header">

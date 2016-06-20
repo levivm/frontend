@@ -96,22 +96,25 @@
 
             var LABEL_CALENDAR_TITLE = "Nuevo Calendario";
             if (vm.calendar.id)
-                LABEL_CALENDAR_TITLE = "Calendario";
+                LABEL_CALENDAR_TITLE = "Calendario > Editar";
 
 
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 LABEL_CALENDARS: "Calendarios",
                 LABEL_CALENDAR_TITLE: LABEL_CALENDAR_TITLE,
-                COPY_CALENDAR_INFO: "Especifica precio, cupos y  fecha cierre de ventas de la clase.",
+                COPY_CALENDAR_INFO: "Especifique la información solicitada para continuar.",
                 LABEL_IS_FREE: "Habilitar inscripción gratuita",
                 LABEL_START_DATE: "Fecha de inicio",
                 LABEL_CLOSE_SALES: "Cierre de ventas",
+                TOOLTIP_CLOSE_SALES: "El cierre de ventas debe ser menor a la primera sesión",
                 LABEL_CALENDAR_SEATS: "Cupos disponibles",
                 LABEL_SESSION_PRICE: "Precio (COP)",
+                LABEL_NOTES: "Notas",
+                PLACEHOLDER_NOTES: "Explica con pocas palabras en que se distinque esta fecha de inicio entre las demás",
                 PLACEHOLDER_SESSION_PRICE: "Precio Mínimo COP 30.000",
                 TITLE_SESSIONS: "Sesiones",
-                LABEL_SESSIONS_AMOUNT: "¿Cuántas sesiones o clases se realizarán?",
+                LABEL_SESSIONS_AMOUNT: "En una misma publicación puedes tener diferentes fechas de inicio, cada una con diferentes número de sesiones, fechas y horas.",
                 LABEL_SESSION_DAY: "Día de la sesión",
                 LABEL_SESSION_START_TIME: "Hora de inicio:",
                 LABEL_SESSION_END_TIME: "Hora de fin:",
@@ -164,10 +167,11 @@
                 vm.save_calendar = _updateCalendar;
             else
                 vm.save_calendar = _createCalendar;
-
+            
+            console.log(vm.calendar);
             $scope.$watch(
               function(scope){
-                return scope.calendar.calendar.number_of_sessions;
+                return scope.calendar.number_of_sessions;
               },
               function(newValue, oldValue){
                 if(newValue === 1){

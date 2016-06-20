@@ -24,9 +24,9 @@ select{
     border-radius: 1.7em !important;
     font-weight: 700;
     padding: 0em 2em !important;
-    border: 1px solid #ededed !important;
+    border: 1px solid  @gray-lighter-brand !important;
     box-shadow: 0 0 !important;
-	background-color: @gray-light-brand !important;
+	background-color: @gray-lighter-brand !important;
 	&.input-lg{
 		height: 46px !important;
 		line-height: 46px;
@@ -68,7 +68,8 @@ select{
 	&__date{
 		label{
 			.datepicker{
-				background-color: @gray-light-brand !important;
+				background-color: @gray-lighter-brand !important;
+				border: 1px solid  @gray-lighter-brand !important;
 			}
 			&:after{
 				content: "\f133";   
@@ -113,8 +114,8 @@ select{
     border: 1px solid @gray-lighter;
     box-shadow: 0 0;
     width: 100%;
-    background: @gray-light-brand;
-    font-weight: 600;
+    background: @gray-lighter-brand;
+    font-weight: 600; 
 		.before-md({
 			width: 100%;
 			border-radius: 1.7em !important;
@@ -367,15 +368,15 @@ tags-input{
 		outline: none;
 		text-align: center;
 		width: 2em;
+		border-radius: 0;
+		padding: 0 !important;
 	}
 
 	.counter-control{
 		color: @gray-light;
 		width: 1.3em;
 		line-height: 1.3em;
-		border: 1px solid @gray-light;
 		text-align: center;
-		border-radius: 50%;
 
 		&:hover{
 			text-decoration: none;

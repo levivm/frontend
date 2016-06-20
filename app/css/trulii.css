@@ -11808,6 +11808,15 @@ hr.on-light {
 .add-instructors span {
   cursor: pointer;
 }
+.add-sessions {
+  position: absolute;
+  right: 25px;
+  top: 9px;
+  border: 1px solid #ededed;
+  border-radius: 7em;
+  padding: 0 1em;
+  width: 135px;
+}
 .activity-grid-organizer {
   padding: 11em 2em;
 }
@@ -12608,6 +12617,10 @@ hr.on-light {
 }
 .limited-width-dashboard__activities {
   width: 910px;
+}
+.limited-width-dashboard__calendar {
+  margin-left: 0px;
+  margin-top: 0em;
 }
 @media screen and (max-width: 992px) {
   .limited-width-dashboard {
@@ -15854,9 +15867,9 @@ select {
   border-radius: 1.7em !important;
   font-weight: 700;
   padding: 0em 2em !important;
-  border: 1px solid #ededed !important;
+  border: 1px solid #f0f2f7 !important;
   box-shadow: 0 0 !important;
-  background-color: #e4e7ef !important;
+  background-color: #f0f2f7 !important;
 }
 select.input-lg {
   height: 46px !important;
@@ -15892,7 +15905,8 @@ select.input-lg {
   z-index: 100;
 }
 .select-forms__date label .datepicker {
-  background-color: #e4e7ef !important;
+  background-color: #f0f2f7 !important;
+  border: 1px solid #f0f2f7 !important;
 }
 .select-forms__date label:after {
   content: "\f133";
@@ -15932,7 +15946,7 @@ select.input-lg {
   border: 1px solid #ededed;
   box-shadow: 0 0;
   width: 100%;
-  background: #e4e7ef;
+  background: #f0f2f7;
   font-weight: 600;
 }
 @media screen and (max-width: 992px) {
@@ -16193,14 +16207,14 @@ tags-input input {
   outline: none;
   text-align: center;
   width: 2em;
+  border-radius: 0;
+  padding: 0 !important;
 }
 .counter-input .counter-control {
   color: #cbcbcb;
   width: 1.3em;
   line-height: 1.3em;
-  border: 1px solid #cbcbcb;
   text-align: center;
-  border-radius: 50%;
 }
 .counter-input .counter-control:hover {
   text-decoration: none;
@@ -16948,6 +16962,11 @@ td {
   font-size: 1.2em;
   margin-right: 0.4em;
   color: gray;
+}
+.panel-default__dashboard .btn-panel {
+  position: absolute;
+  right: 20px;
+  top: 9px;
 }
 .panel-default .panel-date {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -18062,6 +18081,11 @@ ul.dropdown-menu:after {
   padding: 1.5em;
   overflow: visible;
 }
+.card--session {
+  padding: 0em;
+  border: none;
+  margin: 0;
+}
 .card__instructor {
   position: relative;
 }
@@ -18713,11 +18737,18 @@ button.toast-close-button {
     margin: 0 4px 6px 0 !important;
   }
 }
+.timepicker {
+  background-color: #f0f2f7;
+  height: 10px;
+  position: relative;
+  border-radius: 7px;
+}
 .timepicker .btn-default {
   padding: 5px 30px;
 }
 .timepicker td {
   padding: 0 !important;
+  font-size: 0.60em !important;
 }
 .timepicker .btn-default {
   padding: 5px 12px;
@@ -18729,12 +18760,56 @@ button.toast-close-button {
   padding-top: 0;
   padding-bottom: 0;
   border-radius: 4px;
+  position: absolute;
+  font-size: 1em;
 }
 .timepicker .btn-link:hover {
-  background-color: #ededed;
+  background-color: transparent;
+}
+.timepicker .btn-link .glyphicon-chevron-up:before {
+  content: "\002b" !important;
+}
+.timepicker .btn-link .glyphicon-chevron-down:before {
+  content: "\2212" !important;
+}
+.timepicker a[ng-click="incrementHours()"] {
+  right: 75px;
+  top: 6px;
+}
+.timepicker a[ng-click="incrementMinutes()"] {
+  right: 23px;
+  top: 6px;
+}
+.timepicker a[ng-click="decrementHours()"] {
+  right: 75px;
+  top: 20px;
+}
+.timepicker a[ng-click="decrementMinutes()"] {
+  right: 23px;
+  top: 20px;
 }
 .timepicker [class*="glyphicon"] {
-  color: #cbcbcb;
+  color: #3a405b;
+  background: white;
+  padding: 0.3em;
+  border: 1px solid #b9bed1;
+}
+.timepicker input[type="text"] {
+  padding: 0px 15px!important;
+  border: none;
+  border-radius: 0;
+  background-color: #ededed;
+  height: 20px !important;
+  text-align: left;
+}
+.timepicker button[ng-click="toggleMeridian()"] {
+  color: #3a405b !important;
+  background: white;
+  padding: 0.3em 0.4em;
+  border: 1px solid #b9bed1;
+  font-size: 1em;
+  margin-right: 7px;
+  border-radius: 2px !important;
 }
 .cover,
 .detail-cover,
