@@ -2,14 +2,12 @@
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4">
         <div class="well well-auth remove-shadow separate-above separate-below-more">
-            <h5 class="text-center text-muted font-medium" ng-bind="vm.strings.LOGIN_ALTERNATIVES_LABEL">
+            <h5 class="text-center font-medium" ng-bind="vm.strings.LOGIN_ALTERNATIVES_LABEL">
             </h5>
             <div class="row">
-                <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-                    <button type="button" class="btn btn-block btn-facebook"
-                            ng-click="vm.facebookLogin()">
-                        <i class="trulii-icon-facebook text-spaced-more"></i>
-                        <strong class="text-uppercase text-spaced" ng-bind="vm.strings.LOGIN_WITH_FACEBOOK_MSG"></strong>
+                <div class="col-xs-10 col-xs-offset-1">
+                    <button type="button" class="btn btn-block btn-facebook btn-lg"
+                            ng-click="vm.facebookLogin()" ng-bind="vm.strings.LOGIN_WITH_FACEBOOK_MSG">
                     </button>
 
                     <!--TODO replace with toast-->
@@ -20,16 +18,16 @@
             </div>
             <div class="row">
                 <div class="col-xs-10 col-xs-offset-1">
-                    <hr class="separate-above separate-below-less">
+                    <hr class="separate-above separate-below">
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                  <h5 class="text-center text-muted font-medium" ng-bind="vm.strings.LOGIN_EMAIL_LABEL">
+                  <h5 class="text-center font-medium separate-below" ng-bind="vm.strings.LOGIN_EMAIL_LABEL">
                   </h5>
                 </div>
                 <div class="col-xs-10 col-xs-offset-1 separate-above-less">
-                    <form class="form-classic" name='vm.login_form' ng-submit="vm.login()">
+                    <form name='vm.login_form' ng-submit="vm.login()">
                         <fieldset>
                             <div>
                                 <div class="form-group" trulii-input-errors-control="email">
@@ -43,7 +41,6 @@
                                            ng-model="vm.auth.password">
                                 </div>
                                 
-
                                 <div class="form-group" trulii-input-errors-control="__all__">
                                     <input type="hidden" name="__all__"
                                            ng-model="__all__"/>
@@ -56,26 +53,25 @@
                                     </strong>
                                 </div>
                             </div>
-                            <button type="submit" id="submit" class="btn btn-xlg btn-primary btn-block"
-                                       ng-bind="::vm.strings.LOGIN_LABEL">
-                            </button>
-                            <h5 class="text-center separate-above">
-                                <a ui-sref="password-forgot" class="text-muted">
-                                    <span class="text-underline text-sm font-medium" ng-bind="vm.strings.FORGOT_PASSWORD"></span>
+                            <h5 class="text-center separate-above separate-below">
+                                <a ui-sref="password-forgot" class="">
+                                    <span class="text-underline text-md text-muted font-medium" ng-bind="vm.strings.FORGOT_PASSWORD"></span>
                                 </a>
                             </h5>
+                            <button type="submit" id="submit" class="btn btn-lg btn-primary btn-block"
+                                       ng-bind="::vm.strings.LOGIN_LABEL">
+                            </button>
+                            
                         </fieldset>
                     </form>
                 </div>
             </div>
             <div class="row">
-                <div class="separator"></div>
-                <div class="text-center text-md separate-vertical" id="anchor">
+                <p class="text-center text-md separate-vertical" id="anchor">
                     <span class="fit-in-xs" ng-bind="vm.strings.NO_ACCOUNT_COPY"></span>
-                     <a ng-click="vm.goSignupState()">
-                         <strong ng-bind="vm.strings.REGISTER_COPY"></strong>
+                     <a ng-click="vm.goSignupState()" ng-bind="vm.strings.REGISTER_COPY">
                      </a>
-                </div>
+                </p>
             </div>
         </div>
     </div>

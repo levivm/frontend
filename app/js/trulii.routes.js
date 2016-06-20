@@ -30,7 +30,7 @@
 
         $stateProvider
             .state('search', {
-                url: '/search?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends&page&o',
+                url: '/search?q&city&category&subcategory&date&level&cost_start&is_free&cost_end&certification&weekends&page&o',
                 controller:'SearchController as search',
                 templateUrl: 'partials/search.html',
                 resolve:{
