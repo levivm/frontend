@@ -18865,7 +18865,7 @@ button.toast-close-button {
   top: 20px;
 }
 .timepicker [class*="glyphicon"] {
-  color: #3a405b;
+  color: #3A405B;
   background: white;
   padding: 0.3em;
   border: 1px solid #b9bed1;
@@ -18879,7 +18879,7 @@ button.toast-close-button {
   text-align: left;
 }
 .timepicker button[ng-click="toggleMeridian()"] {
-  color: #3a405b !important;
+  color: #3A405B !important;
   background: white;
   padding: 0.3em 0.4em;
   border: 1px solid #b9bed1;
