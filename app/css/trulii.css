@@ -16211,14 +16211,17 @@ tags-input input {
   padding: 0 !important;
 }
 .counter-input .counter-control {
-  color: #cbcbcb;
+  color: #767676;
   width: 1.3em;
   line-height: 1.3em;
   text-align: center;
+  font-weight: 500;
 }
 .counter-input .counter-control:hover {
   text-decoration: none;
-  background-color: #ededed;
+}
+.counter-input .counter-control:activate {
+  text-decoration: none;
 }
 .counter-input * {
   display: inline-block;
@@ -18626,6 +18629,7 @@ button.toast-close-button {
   background-color: #cbcbcb;
   width: 11em;
   height: 10em;
+  transition: all 0.33s;
 }
 .gallery-grid__photo.--small {
   width: 9.50em;
@@ -18642,6 +18646,10 @@ button.toast-close-button {
 .gallery-grid__photo.--unselected {
   opacity: .5;
   border: none;
+}
+.gallery-grid__photo.--unselected:hover {
+  box-shadow: #A9A9A9 5px 10px 25px 4px;
+  opacity: 1;
 }
 .gallery-grid__photo__caption {
   color: white;
@@ -18845,6 +18853,12 @@ button.toast-close-button {
   .cover-edit-activity {
     height: auto;
   }
+}
+.cover-edit-activity .tooltip-unpublish {
+  color: #C5C5C5;
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin-left: 0.2em;
 }
 .cover-edit-activity__create {
   position: relative;

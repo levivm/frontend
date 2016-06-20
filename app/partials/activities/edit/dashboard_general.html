@@ -117,6 +117,7 @@
                       </label>
                       <textarea id="short_description" class="form-control"
                                 ng-model="vm.activity.short_description" name="short_description"
+                                placeholder="{{vm.strings.PLACEHOLDER_DESCRIPTION}}"
                                 maxlength="{{ vm.MAX_LENGTH_SHORT_DESC }}"
                                 ></textarea>
                                 <span class="text-muted pull-right" ng-bind="vm.MAX_LENGTH_SHORT_DESC - vm.activity.short_description.length"></span>

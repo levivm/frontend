@@ -19,6 +19,9 @@
                         ng-click="pc.unpublish_activity()">
                     <span ng-bind="::pc.strings.UNPUBLISH_ACTIVITY_LABEL"></span>
                 </button>
+                 <i ng-show="pc.activity.published" 
+                    class="glyphicon glyphicon-question-sign tooltip-unpublish" 
+                    aria-hidden="true" tooltip-placement="top" tooltip="{{::pc.strings.COPY_UNPUBLISH_ACTIVITY}}"></i>
              </div>
          </div>
          <div class="cover-edit-activity__content-second" ng-show="!pc.areAllStepsCompleted()">

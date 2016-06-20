@@ -194,6 +194,7 @@
                 ACTION_SAVE: "Guardar",
                 OPTION_WITHOUT_CERTIFICATION: "Sin certificación",
                 OPTION_WITH_CERTIFICATION: "Con certificación",
+                PLACEHOLDER_DESCRIPTION: "Escribe una descripción corta.",
                 LABEL_LEVEL: "Nivel",
                 LABEL_CATEGORY: "Categoría",
                 LABEL_SUB_CATEGORY: "Sub-categoria",
