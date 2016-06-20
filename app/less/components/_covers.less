@@ -192,10 +192,89 @@
     &:extend(.flex-center-item);
     width: 100%;
     color: white;
+
+    &__share{
+      width: 280px;
+      margin: 35px auto 0px;
+      @media (max-width: 768px){
+         width: 324px;
+      }
+      li{
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        padding-top: 13px;
+        font-weight: bold;
+        transition: all 0.5s;
+        display: inline-block;
+        float: left;
+        margin: 0 10px;
+        @media (max-width: 768px){
+          margin: 0 2px;
+        }
+        a{
+            height: 50px;
+            width: 50px;
+            margin-top: -15px;
+            display: block;
+            padding-top: 15px;
+        }
+        &:nth-child(1){
+            background-color: @facebook-blue;
+            border-color: @facebook-blue !important;
+            color: white;
+            &:hover{
+                background-color: darken(@facebook-blue, 10);
+            }
+        }
+        &:nth-child(2){
+            background-color: @twitter-accent;
+            border-color: @twitter-accent !important;
+            &:hover{
+                background-color: darken(@twitter-accent, 10);
+            }
+        }
+        &:nth-child(3){
+            background-color: @linkedin-accent;
+            border-color: @linkedin-accent !important;
+            &:hover{
+                background-color: darken(@linkedin-accent, 10);
+            }
+        }
+        &:nth-child(4){
+            background-color: @brand-secondary;
+            border-color: @brand-secondary !important;
+            &:hover{
+                background-color: darken(@brand-secondary, 10);
+            }
+        }
+        &:nth-child(5){
+            background-color: @whatsapp-accent;
+            border-color: @whatsapp-accent !important;
+            &:hover{
+                background-color: darken(@whatsapp-accent, 10);
+            }
+        }
+        &:nth-child(6){
+            background-color: #FFFFFF;
+            &:hover{
+                background-color: darken(#FFFFFF, 10);
+            }
+        }
+        &:not(:last-child){
+            border-bottom: 1px solid @gray-lighter;
+        }
+      }
+    }
+
     
     .limited-width{
        padding-right: 30px;
        padding-left: 30px;
+       @media (max-width: 768px){
+         padding-right: 0;
+         padding-left: 0;
+       }
     }
     
     .label{

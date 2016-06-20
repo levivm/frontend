@@ -40,11 +40,13 @@
             searchEndCost : 250000,
             withCert : false,
             onWeekends : false,
+            isFree: false,
             categories : [],
             format : FORMATS[0],
             minStartDate : new Date(),
             dateOptions : {
                 formatYear : 'yyyy',
+                formatDayHeader : "EEE",
                 startingDay : 1
             },
             activitiesPaginationOpts : {
@@ -85,7 +87,8 @@
             cities: [],
             searchCity: null,
             triggerSearch: triggerSearch,
-            updateCity: updateCity
+            updateCity: updateCity,
+            setFree: setFree
         });
 
         _activate();
@@ -184,6 +187,14 @@
             Analytics.generalEvents.searchDate(vm.searchDate);
         }
 
+        function setFree(){
+            console.log(vm.isFree);
+            vm.searchData[SearchManager.KEY_FREE] = vm.isFree;
+            if(!_isMobile()){
+              _search();
+            }
+        }
+
         function updateCost(costStart, costEnd) {
             SearchManager.setCosts(costStart, costEnd);
         }
@@ -198,6 +209,7 @@
         function setCertification() {
             vm.withCert = !vm.withCert;
             SearchManager.setCertification(vm.withCert);
+            vm.searchData[SearchManager.KEY_CERTIFICATION] = vm.withCert;
             Analytics.generalEvents.searchCertificate(vm.withCert);
             if(!_isMobile()){
               _search();
@@ -207,6 +219,7 @@
         function setWeekends() {
             vm.onWeekends = !vm.onWeekends;
             SearchManager.setWeekends(vm.onWeekends);
+            vm.searchData[SearchManager.KEY_WEEKENDS] = vm.onWeekends;
             Analytics.generalEvents.searchWeekends(vm.onWeekends);
             if(!_isMobile()){
               _search();
@@ -252,11 +265,10 @@
             page = page.toString();
             SearchManager.setPage(page);
             vm.searchData[SearchManager.KEY_PAGE] = page;
-
         }
 
         function _getActivities(searchData) {
-            return SearchManager.searchActivities(searchData).then(success, error);
+            return SearchManager.searchActivities(SearchManager.getSearchData()).then(success, error);
 
             function success(response) {
                 vm.activities = response.activities;
@@ -286,7 +298,6 @@
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
             
-            console.log(vm.searchData);
 
             if ($stateParams.city) {
                 var city = LocationManager.getCityById(parseInt($stateParams.city));
@@ -319,6 +330,9 @@
 
             if (vm.searchData.hasOwnProperty(sm.KEY_WEEKENDS) && vm.searchData[sm.KEY_WEEKENDS]) {
                 vm.onWeekends = vm.searchData[sm.KEY_WEEKENDS];
+            }
+            if (vm.searchData.hasOwnProperty(sm.KEY_FREE) && vm.searchData[sm.KEY_FREE]) {
+                vm.isFree = vm.searchData[sm.KEY_FREE];
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)) {
@@ -385,12 +399,17 @@
         function _search() {
             vm.loadingActivities = true;
             SearchManager.setQuery(vm.newSearchQuery);
-            var searchData = SearchManager.getSearchData();
-            $state.go('search', vm.searchData,  {notify: false});
-            _getActivities(vm.searchData).then(function () {
-                //_scrollToCurrentCategory();
-            });
 
+            vm.searchData = SearchManager.getSearchData();
+
+            SearchManager.getSearchData(vm.searchData);
+            
+            
+             _getActivities(vm.searchData).then(function () {
+                //_scrollToCurrentCategory();
+                $state.go('search', vm.searchData,  {notify: false});
+            });
+        
         }
 
         function _setStrings() {
@@ -411,7 +430,8 @@
                 LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
                 COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
-                LABEL_FILTER_ACTIVITIES: "Filtrar actividades"
+                LABEL_FILTER_ACTIVITIES: "Filtrar actividades",
+                LABEL_FREE: "Clases gratis"
             });
         }
 

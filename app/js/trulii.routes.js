@@ -37,8 +37,7 @@
                     'generalInfo':getPresaveActivityInfo
                 },
                 params: {
-                    'activities': [],
-                    'page': '1'
+                    'activities': []
                 }
             })
             .state('home',{
