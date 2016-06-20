@@ -20,12 +20,16 @@
 
         var vm = this;
 
-        vm.isSaving = false;
-        vm.activity = angular.copy(activity);
-        vm.availableInstructors = angular.copy(organizer.instructors);
-        vm.organizer = organizer;
-        vm.updateActivity = updateActivity;
-
+        
+        
+        angular.extend(vm, {
+            activity : angular.copy(activity),
+            isSaving : false,
+            organizer : organizer,
+            availableInstructors: angular.copy(organizer.instructors),
+            updateActivity:updateActivity,
+            countInstructors: MAX_INSTRUCTORS
+        });
         _activate();
 
         //--------- Exposed Functions ---------//
@@ -34,8 +38,9 @@
         function updateActivity() {
             Error.form.clear(vm.activity_instructors_forms);
             angular.extend(activity, vm.activity);
+            _setInstructors();
         }
-
+        
         //--------- Internal Functions ---------//
 
         function _setInstructors() {
@@ -69,6 +74,7 @@
             _setStrings();
             Elevator.toTop();
             _setInstructors();
+            console.log(organizer);
             activity.getInstructors().then(function(instructors){
                 console.log('activity.getInstructors:', instructors);
             });

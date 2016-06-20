@@ -1,17 +1,90 @@
-<div class="container-fluid">
+
+<div class="cover-edit-activity">
+    <div class="cover-edit-activity__content">
+         <div class="cover-edit-activity__content-first">
+             <div class="cover-edit-activity__content-title">
+                 <h1 ng-bind="pc.activity.title"></h1>
+                 <h5 ng-bind="pc.activity.organizer.name"></h5>
+             </div>
+             <div class="cover-edit-activity__content-buttons" ng-show="pc.areAllStepsCompleted()">
+                <a class="btn btn-default btn-manage " ng-click="pc.actionNavbarSecondary(pc.strings.COPY_MANAGE_ACTIVITY)"
+                ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
+                    <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_MANAGE_ACTIVITY"></span>
+                </a>
+                 <button class="btn btn-publish" ng-show="!pc.activity.published" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
+                        ng-click="pc.publish_activity()">
+                        <span ng-bind="::pc.strings.PUBLISH_ACTIVITY_LABEL"></span>
+                </button>
+                <button ng-show="pc.activity.published" class="btn btn-unpublish"
+                        ng-click="pc.unpublish_activity()">
+                    <span ng-bind="::pc.strings.UNPUBLISH_ACTIVITY_LABEL"></span>
+                </button>
+                 <i ng-show="pc.activity.published" 
+                    class="glyphicon glyphicon-question-sign tooltip-unpublish" 
+                    aria-hidden="true" tooltip-placement="top" tooltip="{{::pc.strings.COPY_UNPUBLISH_ACTIVITY}}"></i>
+             </div>
+         </div>
+         <div class="cover-edit-activity__content-second" ng-show="!pc.areAllStepsCompleted()">
+             <div class="cover-edit-activity__content-steps" >
+                 <ng-pluralize count="pc.activity.steps_left"
+                                when="{
+                                    '0':'',
+                                    '1': 'Falta ',
+                                    'other': 'Faltan '
+                                    }">
+                            </ng-pluralize>
+                            <strong>{{pc.activity.steps_left}}
+                                <ng-pluralize count="pc.activity.steps_left"
+                                    when="{
+                                        '0':'',
+                                        '1': ' paso ',
+                                        'other': ' pasos '
+                                        }">
+                                </ng-pluralize>
+                            </strong>
+                            <span>Para publicar tu actividad</span></br>
+                            <span>Obligatorios</span>
+                            <i class="mandatory-mark mandatory-mark-edit-activity --right"></i>
+             </div>
+         </div>
+    </div>
+</div>
+<div class="container-fluid limited-width-dashboard-container limited-width-dashboard-container-edit-activity">
+    
     <div class="row">
-        <nav class="sidebar lateral-slide sidebar-edit-activity" ng-class="{'sidebar-short': pc.scroll > 80, 'hidden-xs': !pc.showSidebar, 'hidden-sm': !pc.showSidebar}" ng-style="(!pc.areAllStepsCompleted() && {'padding-bottom': '180px'}) || (pc.areAllStepsCompleted() && {'padding-bottom': '175px'})">
+        <ul class="sidebar sidebar-edit-activity hidden-xs hidden-sm">
+            <li ng-repeat="step in pc.steps track by step.name"
+                class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                 <a  ui-sref="{{step.sref}}"
+                     ng-click="pc.toggleSidebar(); pc.clickItemDashboard(step.title)">
+                     <span ng-bind="::step.title"></span>
+                      <i class="mandatory-mark mandatory-mark-edit-activity --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
+                </a>
+            </li>
+            
+            <li  class="sidebar__item sidebar__item-preview" ng-show="pc.areAllStepsCompleted()">
+                <a ng-click="pc.actionNavbarSecondary(pc.strings.COPY_PRE_VIEW_ACTIVITY)" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
+                   <i class="fa fa-eye" aria-hidden="true"></i>
+                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_PRE_VIEW_ACTIVITY"></span>
+                </a>
+            </li>
+        </ul>
+        
+               
+           <!-- 
+               <nav class="sidebar  hidden-xs hidden-sm" >
                 <a  ng-repeat="step in pc.steps track by step.name"
                 ui-sref="{{step.sref}}"
                 class="sidebar__item sidebar__item-edit-activity"
-                ui-sref-active="sidebar__item--selected-edit-activity"
+                ui-sref-active="sidebar__item--selected"
                 ng-class="{ '--muted': !pc.isSectionCompleted(step.name)} "
                 ng-click="pc.toggleSidebar(); pc.clickItemDashboard(step.title)">
-                    <i class="{{::step.icon}} sidebar__item__icon"></i>
                     <span ng-bind="::step.title"></span>
                     <i class="mandatory-mark mandatory-mark-edit-activity --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
                 </a>
-            <div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
+               
+               <div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
                 <div class="sidebar__bottom-action sidebar__bottom-action-edit-activity text-center" >
 
                     <div ng-show="!pc.areAllStepsCompleted()">
@@ -78,8 +151,11 @@
                </div>
 
             </div>
-        </nav>
-        <div class="col-sm-10 separate-above with-footer">
+             </nav>
+            -->
+       
+        <div ui-view class="col-xs-12 with-footer"></div>
+        <!--<div class="col-sm-10 separate-above with-footer">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': pc.scroll > 80}">
 
               <a class="btn btn-default pull-right" ng-click="pc.actionNavbarSecondary(pc.strings.COPY_VIEW_ACTIVITY)" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
@@ -106,11 +182,8 @@
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
                 <img class="img-responsive" ng-src="{{pc.getAmazonUrl('static/img/close_dark.png')}}" alt=""/>
             </a>
-        </div>
+        </div>-->
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <trulii-dashboard-footer></trulii-dashboard-footer>
-        </div>
-    </div>
+   
 </div>
+<trulii-footer></trulii-footer> 

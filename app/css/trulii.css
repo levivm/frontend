@@ -11809,6 +11809,15 @@ hr.on-light {
 .add-instructors span {
   cursor: pointer;
 }
+.add-sessions {
+  position: absolute;
+  right: 25px;
+  top: 9px;
+  border: 1px solid #ededed;
+  border-radius: 7em;
+  padding: 0 1em;
+  width: 135px;
+}
 .activity-grid-organizer {
   padding: 11em 2em;
 }
@@ -12531,6 +12540,7 @@ hr.on-light {
 }
 .ta-scroll-window > .ta-bind {
   border: 1px solid #ccc !important;
+  padding: 2em;
 }
 .ta-scroll-window > .ta-bind::before {
   color: #9E9E9E !important;
@@ -12608,6 +12618,10 @@ hr.on-light {
 }
 .limited-width-dashboard__activities {
   width: 910px;
+}
+.limited-width-dashboard__calendar {
+  margin-left: 0px;
+  margin-top: 0em;
 }
 @media screen and (max-width: 992px) {
   .limited-width-dashboard {
@@ -13077,8 +13091,7 @@ h5 a {
   padding: 5px;
   border: 1px dashed #ffffff;
   border-radius: 5px;
-  max-width: 710px;
-  margin: 0 auto;
+  max-width: 99%;
   margin-bottom: 0.5em;
 }
 .img-actionable {
@@ -13219,6 +13232,9 @@ h5 a {
 .clear-spacings {
   padding: 0;
   margin: 0 !important;
+}
+.margin-auto {
+  margin: 0 auto;
 }
 .separate-above,
 .separate-vertical,
@@ -15334,8 +15350,28 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 4px;
 }
 .sidebar-edit-activity {
-  background-color: #FFFFFF;
-  border-right: 0.1em solid #cbcbcb;
+  position: absolute;
+  top: 0px;
+}
+.sidebar-edit-activity .sidebar__item {
+  border-bottom: 1px solid #ededed;
+  border-top: none;
+}
+.sidebar-edit-activity .sidebar__item-preview {
+  margin-top: 20px;
+  border-top: 1px solid #ededed;
+  background: #ededed;
+  text-align: center;
+  text-transform: uppercase;
+}
+.sidebar-edit-activity .sidebar__item-preview a {
+  padding-left: 0;
+}
+.sidebar-edit-activity .sidebar__item-preview a i {
+  font-size: 1.2em;
+}
+.sidebar-edit-activity .sidebar__item:first-child {
+  border-top: 1px solid #ededed;
 }
 .sidebar__absolute {
   position: absolute;
@@ -15633,7 +15669,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 50%;
 }
 .sidebar .mandatory-mark-edit-activity {
-  background-color: #03d69a;
+  background-color: #a1a6bb;
 }
 .sidebar .mandatory-mark.--right {
   float: right;
@@ -15875,9 +15911,9 @@ select {
   border-radius: 1.7em !important;
   font-weight: 700;
   padding: 0em 2em !important;
-  border: 1px solid #ededed !important;
+  border: 1px solid #f0f2f7 !important;
   box-shadow: 0 0 !important;
-  background-color: #e4e7ef !important;
+  background-color: #f0f2f7 !important;
 }
 select.input-lg {
   height: 46px !important;
@@ -15913,7 +15949,8 @@ select.input-lg {
   z-index: 100;
 }
 .select-forms__date label .datepicker {
-  background-color: #e4e7ef !important;
+  background-color: #f0f2f7 !important;
+  border: 1px solid #f0f2f7 !important;
 }
 .select-forms__date label:after {
   content: "\f133";
@@ -15953,7 +15990,7 @@ select.input-lg {
   border: 1px solid #ededed;
   box-shadow: 0 0;
   width: 100%;
-  background: #e4e7ef;
+  background: #f0f2f7;
   font-weight: 600;
 }
 @media screen and (max-width: 992px) {
@@ -16014,8 +16051,14 @@ label {
   margin-bottom: 1em;
   text-transform: uppercase;
 }
-.form-group label {
-  margin-left: 20px;
+.textarea-lg {
+  height: 20em !important;
+}
+.form-label {
+  margin-left: 2em;
+}
+.control-label {
+  margin-left: 2em;
 }
 .input--main {
   margin-top: 0px;
@@ -16088,6 +16131,8 @@ tags-input .tags {
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   border: 0px;
+  height: 60px;
+  padding: 12px 25px;
 }
 tags-input .tags:focus {
   border-color: #66afe9;
@@ -16167,22 +16212,23 @@ tags-input .tag-item {
   display: inline-block;
   color: white;
   font-weight: bolder;
-  padding: 2px 10px;
-  padding-right: 20px;
   margin-right: 5px;
   position: relative;
-  border-radius: 2px;
+  border-radius: 1.7em;
+  padding: 0.2em 1.2em;
+  font-size: 1.1em;
 }
 tags-input .tag-item span {
-  padding-right: 5px;
+  padding-right: 8px;
 }
 tags-input .remove-button {
   cursor: pointer;
   position: absolute;
   top: 50%;
-  right: 0.25em;
-  font-size: 23px;
-  line-height: 0px;
+  right: 0.3em;
+  font-size: 20px;
+  line-height: 2px;
+  font-weight: 800;
   color: #02a476;
 }
 tags-input .remove-button:hover {
@@ -16190,7 +16236,7 @@ tags-input .remove-button:hover {
 }
 tags-input input {
   border: 0px;
-  width: 8em !important;
+  width: 12em !important;
 }
 .checkbox {
   padding-top: 0 !important;
@@ -16205,18 +16251,21 @@ tags-input input {
   outline: none;
   text-align: center;
   width: 2em;
+  border-radius: 0;
+  padding: 0 !important;
 }
 .counter-input .counter-control {
-  color: #cbcbcb;
+  color: #767676;
   width: 1.3em;
   line-height: 1.3em;
-  border: 1px solid #cbcbcb;
   text-align: center;
-  border-radius: 50%;
+  font-weight: 500;
 }
 .counter-input .counter-control:hover {
   text-decoration: none;
-  background-color: #ededed;
+}
+.counter-input .counter-control:activate {
+  text-decoration: none;
 }
 .counter-input * {
   display: inline-block;
@@ -16360,6 +16409,9 @@ tags-input input {
 .btn-dark:focus {
   color: #fff;
   background-color: #2941c6;
+}
+.btn-gray-light {
+  background-color: #e4e7ef;
 }
 .btn-light {
   border: 1px solid white;
@@ -16636,6 +16688,11 @@ tags-input input {
   margin: 1.5em 0;
   font-weight: normal;
   font-size: 1.1em;
+}
+.section-description__title {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1em;
 }
 .btn-share,
 .btn-share-fb,
@@ -16954,6 +17011,11 @@ td {
   margin-right: 0.4em;
   color: gray;
 }
+.panel-default__dashboard .btn-panel {
+  position: absolute;
+  right: 20px;
+  top: 9px;
+}
 .panel-default .panel-date {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 13em;
@@ -17029,6 +17091,7 @@ td {
   text-transform: uppercase;
   padding: 1em;
   border-color: #cbcbcb;
+  border-radius: 2px !important;
 }
 ul.dropdown-menu {
   padding: 0;
@@ -17870,6 +17933,72 @@ ul.dropdown-menu:after {
 .card-nonborder {
   border-bottom: none;
 }
+.card__calendar {
+  padding: 1.5em 2em;
+  border-radius: 0;
+  height: 13em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: none;
+}
+.card__calendar:hover {
+  box-shadow: #DCDDE2 5px 10px 25px 4px;
+}
+.card__calendar-header {
+  display: flex;
+  justify-content: space-between;
+}
+.card__calendar-header-date {
+  display: flex;
+}
+.card__calendar-header-actions {
+  color: #767676;
+  font-size: 1.3em;
+}
+.card__calendar-header-actions i {
+  z-index: 10000;
+  cursor: pointer;
+  margin-left: 0.5em;
+}
+.card__calendar-date {
+  border-right: 1px solid;
+  height: 2em;
+  padding-right: 1em;
+}
+.card__calendar-date h5 {
+  margin: 0;
+  font-weight: 700;
+}
+.card__calendar-date span {
+  font-weight: 400;
+}
+.card__calendar-date:last-child {
+  border-right: none;
+  padding-left: 1em;
+}
+.card__calendar-footer {
+  display: flex;
+  justify-content: space-between;
+}
+.card__calendar-footer-sales h3 {
+  color: #767676;
+  font-size: 0.9em;
+  font-weight: 700;
+}
+.card__calendar-footer-sales span {
+  font-size: 0.9em;
+  font-weight: 300;
+}
+.card__calendar-footer-price {
+  font-size: .9em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.card__calendar-footer-price .price-separator {
+  margin: 0.3em;
+  font-weight: 300;
+}
 .card .card-header {
   -webkit-border-top-left-radius: 2px;
   -webkit-border-top-right-radius: 2px;
@@ -18022,6 +18151,11 @@ ul.dropdown-menu:after {
 .card--narrow {
   padding: 1.5em;
   overflow: visible;
+}
+.card--session {
+  padding: 0em;
+  border: none;
+  margin: 0;
 }
 .card__instructor {
   position: relative;
@@ -18543,8 +18677,7 @@ button.toast-close-button {
 }
 .gallery-grid {
   margin-top: 1em;
-  max-width: 720px;
-  margin: 0 auto;
+  max-width: 100%;
   padding-left: 0.3em;
 }
 .gallery-grid [class*=col-] {
@@ -18556,17 +18689,18 @@ button.toast-close-button {
   border-radius: 5px;
   display: inline-block;
   vertical-align: top;
-  margin: 0 4px 6px 0;
+  margin: 0 7px 5px 0;
   padding: 0;
   height: 16em;
   width: 100%;
   position: relative;
   background-color: #cbcbcb;
-  width: 12em;
-  height: 12em;
+  width: 11em;
+  height: 10em;
+  transition: all 0.33s;
 }
 .gallery-grid__photo.--small {
-  width: 8.20em;
+  width: 9.50em;
   height: 8.20em;
 }
 .gallery-grid__photo.--small-less {
@@ -18576,11 +18710,14 @@ button.toast-close-button {
 }
 .gallery-grid__photo.--selectable {
   cursor: pointer;
-  border: 3px solid #03d69a;
 }
 .gallery-grid__photo.--unselected {
   opacity: .5;
   border: none;
+}
+.gallery-grid__photo.--unselected:hover {
+  box-shadow: #A9A9A9 5px 10px 25px 4px;
+  opacity: 1;
 }
 .gallery-grid__photo__caption {
   color: white;
@@ -18651,13 +18788,12 @@ button.toast-close-button {
 }
 .check-photo {
   color: white;
-  font-size: 15px;
+  font-size: 10px;
   position: absolute;
-  top: -8px;
-  left: -13px;
+  top: 5px;
+  right: 6px;
   background: #38dbc8;
-  border-radius: 50%;
-  padding: 0.3em 0.37em 0.3em 0.3em;
+  padding: 0.4em 0.37em 0.4em 0.3em;
 }
 @media (max-width: 1640px) {
   .--small-less {
@@ -18677,11 +18813,18 @@ button.toast-close-button {
     margin: 0 4px 6px 0 !important;
   }
 }
+.timepicker {
+  background-color: #f0f2f7;
+  height: 10px;
+  position: relative;
+  border-radius: 7px;
+}
 .timepicker .btn-default {
   padding: 5px 30px;
 }
 .timepicker td {
   padding: 0 !important;
+  font-size: 0.60em !important;
 }
 .timepicker .btn-default {
   padding: 5px 12px;
@@ -18693,12 +18836,56 @@ button.toast-close-button {
   padding-top: 0;
   padding-bottom: 0;
   border-radius: 4px;
+  position: absolute;
+  font-size: 1em;
 }
 .timepicker .btn-link:hover {
-  background-color: #ededed;
+  background-color: transparent;
+}
+.timepicker .btn-link .glyphicon-chevron-up:before {
+  content: "\002b" !important;
+}
+.timepicker .btn-link .glyphicon-chevron-down:before {
+  content: "\2212" !important;
+}
+.timepicker a[ng-click="incrementHours()"] {
+  right: 75px;
+  top: 6px;
+}
+.timepicker a[ng-click="incrementMinutes()"] {
+  right: 23px;
+  top: 6px;
+}
+.timepicker a[ng-click="decrementHours()"] {
+  right: 75px;
+  top: 20px;
+}
+.timepicker a[ng-click="decrementMinutes()"] {
+  right: 23px;
+  top: 20px;
 }
 .timepicker [class*="glyphicon"] {
-  color: #cbcbcb;
+  color: #3A405B;
+  background: white;
+  padding: 0.3em;
+  border: 1px solid #b9bed1;
+}
+.timepicker input[type="text"] {
+  padding: 0px 15px!important;
+  border: none;
+  border-radius: 0;
+  background-color: #ededed;
+  height: 20px !important;
+  text-align: left;
+}
+.timepicker button[ng-click="toggleMeridian()"] {
+  color: #3A405B !important;
+  background: white;
+  padding: 0.3em 0.4em;
+  border: 1px solid #b9bed1;
+  font-size: 1em;
+  margin-right: 7px;
+  border-radius: 2px !important;
 }
 .cover,
 .detail-cover,
@@ -18715,6 +18902,95 @@ button.toast-close-button {
 .full-screen-cover:after {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
+}
+.cover-edit-activity {
+  background-repeat: no-repeat;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/banner_edit_activity.png');
+  background-size: cover;
+  width: 100vw;
+  height: 220px;
+  position: relative;
+  top: -20px;
+}
+@media screen and (max-width: 992px) {
+  .cover-edit-activity {
+    padding: 0 1em;
+  }
+}
+@media screen and (max-width: 768px) {
+  .cover-edit-activity {
+    height: auto;
+  }
+}
+.cover-edit-activity .tooltip-unpublish {
+  color: #C5C5C5;
+  font-size: 1.2em;
+  vertical-align: middle;
+  margin-left: 0.2em;
+}
+.cover-edit-activity__create {
+  position: relative;
+  top: -20px;
+}
+.cover-edit-activity__content {
+  width: 1044px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+@media (max-width: 1299px) {
+  .cover-edit-activity__content {
+    max-width: 100%;
+    margin: auto;
+    margin-left: auto;
+  }
+}
+.cover-edit-activity__content-title {
+  padding: 0.2em 0 1em 0;
+}
+.cover-edit-activity__content-title h1 {
+  color: white;
+  font-weight: 700;
+  margin: 0;
+}
+.cover-edit-activity__content-title h5 {
+  color: white;
+  font-size: 1.3em;
+  font-weight: 400;
+}
+.cover-edit-activity__content-first {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cover-edit-activity__content-second {
+  border-top: 1px solid white;
+  padding: 1em 0 0.2em 0;
+}
+.cover-edit-activity__content-buttons .btn-manage {
+  background-color: #e4e7ef;
+  margin-right: 1em;
+}
+.cover-edit-activity__content-buttons .btn-publish {
+  background-color: #51dde9;
+  color: white;
+}
+.cover-edit-activity__content-buttons .btn-unpublish {
+  background-color: #f4d352;
+}
+.cover-edit-activity__content-steps {
+  color: white;
+  font-weight: 400;
+}
+.cover-edit-activity__content-steps .mandatory-mark {
+  width: 8px;
+  height: 8px;
+  background-color: #a1a6bb;
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 0.2em;
 }
 .detail-cover:after {
   height: 420px;
@@ -18977,6 +19253,48 @@ button.toast-close-button {
 .trulii-cover-regular__content .rating .glyphicon {
   padding: 0 2px;
 }
+.trulii-cover__content-create,
+.trulii-cover-small__content-create,
+.trulii-cover-medium__content-create,
+.trulii-cover-regular__content-create {
+  width: 45em;
+  margin: 0 auto;
+  height: 30em;
+}
+.trulii-cover__content-create-title,
+.trulii-cover-small__content-create-title,
+.trulii-cover-medium__content-create-title,
+.trulii-cover-regular__content-create-title {
+  text-align: center;
+  margin-bottom: 2em;
+}
+.trulii-cover__content-create-title h2,
+.trulii-cover-small__content-create-title h2,
+.trulii-cover-medium__content-create-title h2,
+.trulii-cover-regular__content-create-title h2 {
+  font-weight: bold;
+  font-size: 2.6em;
+}
+.trulii-cover__content-create-subtitle,
+.trulii-cover-small__content-create-subtitle,
+.trulii-cover-medium__content-create-subtitle,
+.trulii-cover-regular__content-create-subtitle {
+  text-align: center;
+  margin-bottom: 5em;
+}
+.trulii-cover__content-create-subtitle h5,
+.trulii-cover-small__content-create-subtitle h5,
+.trulii-cover-medium__content-create-subtitle h5,
+.trulii-cover-regular__content-create-subtitle h5 {
+  font-weight: 400;
+  font-size: 1.3em;
+}
+.trulii-cover__content-create-input,
+.trulii-cover-small__content-create-input,
+.trulii-cover-medium__content-create-input,
+.trulii-cover-regular__content-create-input {
+  margin-bottom: 6em;
+}
 @media screen and (max-width: 992px) {
   .trulii-cover__content-landing,
   .trulii-cover-small__content-landing,
@@ -19100,6 +19418,23 @@ button.toast-close-button {
   .trulii-cover-medium__content p,
   .trulii-cover-regular__content p {
     font-size: 1.125em;
+  }
+}
+.trulii-cover__content .btn-lg,
+.trulii-cover-small__content .btn-lg,
+.trulii-cover-medium__content .btn-lg,
+.trulii-cover-regular__content .btn-lg {
+  font-size: 1.2em;
+  padding: 0.8em;
+  width: 15em;
+  margin: 0 auto;
+}
+@media screen and (max-width: 992px) {
+  .trulii-cover__content .btn-lg,
+  .trulii-cover-small__content .btn-lg,
+  .trulii-cover-medium__content .btn-lg,
+  .trulii-cover-regular__content .btn-lg {
+    font-size: 0.75em;
   }
 }
 .trulii-cover__content__search.form-classic input,

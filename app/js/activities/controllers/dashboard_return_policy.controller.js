@@ -76,8 +76,9 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                TITLE_RETURN_POLICY: "Política de Devolución",
-                COPY_RETURN_POLICY: "Especifica bajo qué condiciones aceptas reembolsar pagos",
+                TITLE_RETURN_POLICY: "Políticas de Devolución",
+                COPY_RETURN_POLICY: "Escribe tus condiciones para reembolsar al asistente el pago que hizo por la insripción."
+                                    +  "Si no aceptas reembolso, también ponlo, o en caso contrario aplicarán los terminos de trulii.",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 PLACEHOLDER_RETURN_POLICY: "Condiciones para reembolso",
                 ACTION_SAVE: "Guardar",

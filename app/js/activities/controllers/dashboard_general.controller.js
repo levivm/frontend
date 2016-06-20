@@ -13,10 +13,10 @@
         .controller('ActivityGeneralController', ActivityGeneralController);
 
     ActivityGeneralController.$inject = ['$state', '$q', 'filterFilter', 'Elevator', 'Toast', 'Error',
-            'activity', 'presaveInfo', 'Analytics', 'serverConf'];
+            'activity', 'presaveInfo', 'Analytics', 'serverConf', 'organizer'];
 
     function ActivityGeneralController($state, $q, filterFilter, Elevator, Toast, Error,
-            activity, presaveInfo, Analytics, serverConf) {
+            activity, presaveInfo, Analytics, serverConf, organizer) {
 
         var vm = this;
         var MAX_LENGTH_SHORT_DESC = 300;
@@ -34,7 +34,10 @@
             checkValidTitle: checkValidTitle,
             getSubmitButtonText: getSubmitButtonText,
             loadAutocompleteTags: loadAutocompleteTags,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            organizer:organizer,
+            optionsCertificate : [ {value: false, label: 'Sin certificación'},
+                                    {value: true, label: 'Con certificación'}]
         });
 
 
@@ -63,6 +66,7 @@
         }
 
         function updateActivity() {
+            console.log(vm.activity);
             Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
@@ -182,19 +186,22 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                COPY_START_ACTIVITY_CREATION: "¡Comencemos a registrar su actividad!",
-                COPY_SELECT_ACTIVITY_TITLE: "Cuéntanos como titularías tu actividad",
-                COPY_CERTIFICATION: "¿Entregará certificado u otorgará alguna certificación?",
+                COPY_START_ACTIVITY_CREATION: "¡Comienza a crear tu actividad!",
+                COPY_SELECT_ACTIVITY_TITLE: "¿Como titularías esta actividad?",
+                COPY_CERTIFICATION: "¿Entregarás certificación?",
+                COPY_DESCRIPTION_TOOLTIP: "Describe tu actividad de forma atractiva, especifica y díficil de olvidar.",
                 ACTION_CONTINUE: "Continuar",
                 ACTION_SAVE: "Guardar",
                 OPTION_WITHOUT_CERTIFICATION: "Sin certificación",
                 OPTION_WITH_CERTIFICATION: "Con certificación",
+                PLACEHOLDER_DESCRIPTION: "Escribe una descripción corta.",
                 LABEL_LEVEL: "Nivel",
                 LABEL_CATEGORY: "Categoría",
                 LABEL_SUB_CATEGORY: "Sub-categoria",
                 LABEL_SHOT_DESCRIPTION: "Descripción corta",
                 LABEL_TAGS: "Tags / Etiquetas",
-                TOAST_TITLE_ERROR: "El título es obligatiorio."
+                TOAST_TITLE_ERROR: "El título es obligatiorio.",
+                SECTION_GENERAL: "General"
             });
         }
 
@@ -208,7 +215,7 @@
                 _setCreate();
 
             vm.checkValidTitle(true);
-
+            console.log(organizer);
 
             _onSectionUpdated();
         }

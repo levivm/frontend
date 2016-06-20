@@ -14,7 +14,82 @@
 	&-nonborder{
 		border-bottom: none;
 	}
-	
+	//Card Calendar in Edit Activity Dashboard
+	&__calendar{
+		padding: 1.5em 2em;
+		border-radius: 0;
+		height: 13em;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		border: none;
+		
+		&:hover{
+			box-shadow: #DCDDE2 5px 10px 25px 4px;
+		}
+		&-header{
+			display: flex;
+			justify-content: space-between;
+			
+			&-date{
+				display: flex;
+			}
+			
+			&-actions{
+				color: @gray-dark;
+				font-size: 1.3em;
+				i{
+					z-index: 10000;
+					cursor: pointer;
+					margin-left: 0.5em;
+				}
+			}
+		}
+		&-date{
+			border-right: 1px solid;
+			height: 2em;
+			padding-right: 1em;
+			h5{
+				margin: 0;
+				font-weight: 700;
+			}
+			span{
+				font-weight: 400;
+			}
+		}
+		&-date:last-child{
+			border-right: none;
+			padding-left: 1em;
+		}
+		&-footer{
+			display: flex;
+			justify-content: space-between;
+			
+			&-sales{
+				h3{
+					color: #767676;
+					font-size: 0.9em;
+					font-weight: 700;
+				}
+				
+				span{
+					font-size: 0.9em;
+					font-weight: 300;
+				}
+			}
+			
+			&-price{
+				font-size: .9em;
+				font-weight: 700;
+				text-transform: uppercase;
+				
+				.price-separator{
+					margin: 0.3em;
+					font-weight: 300;
+				}
+			}
+		}
+	}
 	.card-header{
 		-webkit-border-top-left-radius: @material-border-radius;
 		-webkit-border-top-right-radius: @material-border-radius;
@@ -196,6 +271,12 @@
 	&--narrow{
 		padding: 1.5em;
     	overflow: visible;
+	}
+	
+	&--session{
+		padding: 0em;
+		border: none;
+		margin: 0;
 	}
 	
 	&__instructor{

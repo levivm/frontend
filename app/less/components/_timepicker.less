@@ -1,12 +1,16 @@
 
 .timepicker{
-
+	background-color: @gray-lighter-brand;
+	height: 10px;
+	position: relative;
+	border-radius: 7px;
 	.btn-default{
 		padding: 5px 30px;
 	}
 
 	td{
 		padding: 0 !important;
+		font-size: 0.60em !important;
 	}
 
 	.btn-default{ // AM/PM Button
@@ -20,15 +24,62 @@
 		padding-top: 0;
 		padding-bottom: 0;
 		border-radius: 4px;
-
+		position: absolute;
+		font-size: 1em;
 		&:hover{
-			background-color: @gray-lighter;
+			background-color: transparent;
+		}
+		
+		.glyphicon-chevron-up:before {
+			content: "\002b" !important;
+		}
+		.glyphicon-chevron-down:before {
+			content: "\2212" !important;
 		}
 	}
+	
+	a[ng-click="incrementHours()"] {
+		right: 75px;
+		top: 6px;
+	}
+	a[ng-click="incrementMinutes()"] {
+		right: 23px;
+		top: 6px;
+	}
+	a[ng-click="decrementHours()"] {
+		right: 75px;
+		top: 20px;
+	}
+	a[ng-click="decrementMinutes()"] {
+		right: 23px;
+		top: 20px;
+	}
+
 
 	[class*="glyphicon"]{ // Arrow
-		color: @gray-light;
+		color: @blue-dark;
+		background: white;
+		padding: 0.3em;
+		border: 1px solid @gray-regular-brand;
 
+	}
+	input[type="text"]{
+		padding: 0px 15px!important;
+		border: none;
+		border-radius: 0;
+		background-color: @gray-lighter;
+		height: 20px !important;
+		text-align: left;
+	}
+	
+	button[ng-click="toggleMeridian()"]{
+		color:  @blue-dark !important;
+		background: white;
+		padding: 0.3em 0.4em;
+		border: 1px solid @gray-regular-brand;
+		font-size: 1em;
+		margin-right: 7px;
+		border-radius: 2px !important;
 	}
 
 }

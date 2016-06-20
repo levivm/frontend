@@ -18,10 +18,34 @@
 	border-bottom: 1px solid @gray-lighter;  
 	border-radius: 4px;
   &-edit-activity{
-	  background-color: @sidebar-acitvity-color;
-	  border-right: 0.1em solid @gray-light;
+	position: absolute;
+	top: 0px;
+	.sidebar__item{
+		border-bottom: 1px solid @gray-lighter;
+		border-top: none; 
+		&-preview{
+			margin-top: 20px;
+			border-top: 1px solid @gray-lighter;
+			background: @gray-lighter;
+			text-align: center;
+			text-transform: uppercase;
+			a{
+				padding-left: 0;
+				i{
+					font-size: 1.2em;
+				}
+			}
+		}
+		
+		&:first-child{
+			border-top: 1px solid @gray-lighter;
+		}
+	}
+	
+	
   }
   
+ 
   &__absolute{
 	position: absolute;
     height: auto;
@@ -365,8 +389,8 @@
 		background-color: @brand-primary;
 		border-radius: 50%;
 
-		&-edit-activity{
-			background-color: @brand-success;
+		&-edit-activity{ 
+			background-color: @gray-dark-brand;
 		}
 		&.--right{
 			float: right;

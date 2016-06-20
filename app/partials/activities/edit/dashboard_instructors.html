@@ -1,19 +1,19 @@
-<div class="row">
-    <div class="col-xs-12">
+<div class="row limited-width-dashboard">
+    <div class="col-xs-12 ">
         <div class="row">
-            <div class="section-title" ng-bind="::instructors.strings.SECTION_INSTRUCTORS"></div>
-            <form name='instructors.activity_instructors_forms' class="col-lg-9 ">
-                <div class="standout-text" ng-bind="instructors.strings.COPY_INSTRUCTORS"></div>
+            <div class="col-xs-12 panel-default panel-default__dashboard">
+                    <span class="panel-default__dashboard-title" ng-bind="::instructors.strings.SECTION_INSTRUCTORS"></span>
+                    <span class="text-gray-dark separate-left-less" ng-bind="instructors.strings.COPY_INSTRUCTORS"></span>
+            </div>
+            <form name='instructors.activity_instructors_forms' class="col-xs-12">
                 <div class="row">
                     <div class="col-md-12 horizontal-fade" ng-repeat="instructor in instructors.instructors track by $index">
                         <trulii-instructor-card instructor="instructor" activity="instructors.activity"
                                                 organizer="instructors.organizer" on-change="instructors.updateActivity()"
                                                 available-instructors="instructors.availableInstructors"></trulii-instructor-card>
-                    </div>
+                    </div> 
                 </div>
             </form>
-            <div class="col-md-4">
-            </div>
         </div>
     </div>
 </div>

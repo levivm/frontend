@@ -1,28 +1,32 @@
-<div class="row">
+<div class="row limited-width-dashboard">
     <div class="col-xs-12">
         <div class="row">
-            <div class="section-title" ng-bind="::location.strings.LABEL_LOCATION" >
+            <div class="panel-default panel-default__dashboard ">
+                <h4 class="panel-default__dashboard-title" ng-bind="::location.strings.LABEL_LOCATION"></h4>
             </div>
             <form  name='location.activity_location_form'
-                class="col-lg-9"
+                class="col-xs-12"
                 ng-submit="location.save_activity()">
                 <fieldset>
-                    <div class="section-description" ng-bind="::location.strings.COPY_CITY">
-                    </div>
                     <div class="form-group" trulii-input-errors-control="city">
                         <label for="city" class="control-label" ng-bind="::location.strings.LABEL_CITY"></label>
-                        <select class="form-control" id="city" ng-model="location.activity.location.city"
-                                ng-options="city as city.name for city in location.cities track by city.id" name="city">
-                            <option value="" selected ng-show="!location.activity_location_form.city" ng-bind="::location.strings.LABEL_SELECTED" >
-                            </option>
-                        </select>
+                        
+                        <div class="select-forms">
+                            <label>
+                                <select class="form-control" id="city" ng-model="location.activity.location.city"
+                                        ng-options="city as city.name for city in location.cities track by city.id" name="city">
+                                    <option value="" selected ng-show="!location.activity_location_form.city" ng-bind="::location.strings.LABEL_SELECTED" >
+                                    </option>
+                                </select>
+                            </label>
+                        </div>
                     </div>
                     <div class="form-group" trulii-input-errors-control="address">
                         <label for="address" class="control-label" ng-bind="::location.strings.LABEL_ADDRESS"></label>
                             <textarea id="address" class="form-control" ng-model='location.activity.location.address'
                                       name="address" typeahead="address for address in location.address_autocomplete " typeahead-focus-first="false">  </textarea>
                     </div>
-                    <div class="text-center separate-above">
+                    <div class="text-center separate-above separate-below-less">
                         <strong><span ng-bind="::location.strings.COPY_MAP_1"></span></strong> <span ng-bind="::location.strings.COPY_MAP_2"></span> (<span class="mdi-action-room" style="color: #F86161"></span>) <span ng-bind="::location.strings.COPY_MAP_3"></span>
                     </div>
                     <div>
