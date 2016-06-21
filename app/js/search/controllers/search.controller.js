@@ -402,11 +402,12 @@
 
             vm.searchData = SearchManager.getSearchData();
             SearchManager.getSearchData(vm.searchData);
-            console.log(vm.searchData);
             
-             _getActivities(vm.searchData).then(function () {
+            $state.go('search', vm.searchData,  {notify: false});
+            
+            _getActivities(vm.searchData).then(function () {
                 //_scrollToCurrentCategory();
-                $state.go('search', vm.searchData,  {notify: false});
+                
             });
         
         }

@@ -555,9 +555,15 @@
                 font-size: 0.8em;
                 letter-spacing: 1px;
                 margin: 0 -15px;
-                text-transform: uppercase;
+                text-transform: capitalize;
                 color: @gray-regular;
                 background-color: @gray-lighter;
+                .subcategories__item{
+                    &.active{
+                        font-weight: 900;
+                    }
+                }
+                
                 li:not(:last-child){
                     border-bottom: 1px solid @gray-light;
                 }

@@ -134,6 +134,7 @@
                 LABEL_QUESTIONS: "¿Dudas?",
                 LABEL_REQUIREMENTS: "¿Qué debo llevar?",
                 LABEL_ANY_DOUBT: "Cualquier pregunta",
+                LABEL_ADDRESS: "Dirección",
                 COPY_VIEW_YOUR_ORDER_1: "Revisa tu",
                 COPY_VIEW_YOUR_ORDER_2: "orden de compra",
                 LABEL_ATTENDEES: "Asistentes",

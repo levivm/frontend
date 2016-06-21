@@ -12472,7 +12472,7 @@ hr.on-light {
 }
 @media (min-width: 1300px) {
   .limited-width {
-    max-width: 1300px;
+    max-width: 1200px;
   }
 }
 @media (max-width: 768px) {
@@ -15056,9 +15056,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 0.8em;
   letter-spacing: 1px;
   margin: 0 -15px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #9b9b9b;
   background-color: #ededed;
+}
+.search-container .search-sidebar__element .subcategories .subcategories__item.active {
+  font-weight: 900;
 }
 .search-container .search-sidebar__element .subcategories li:not(:last-child) {
   border-bottom: 1px solid #cbcbcb;
@@ -20438,6 +20441,8 @@ blockquote {
   z-index: 6;
   border-radius: 50%;
   cursor: pointer;
+  color: white;
+  font-size: 30px;
 }
 .gallery .gallery-slide {
   position: absolute;
@@ -20464,6 +20469,8 @@ blockquote {
   z-index: 6;
   border-radius: 50%;
   cursor: pointer;
+  color: white;
+  font-size: 30px;
   left: 1em;
   z-index: 7;
 }
@@ -20473,6 +20480,8 @@ blockquote {
   z-index: 6;
   border-radius: 50%;
   cursor: pointer;
+  color: white;
+  font-size: 30px;
   right: 1em;
   z-index: 7;
 }
@@ -20539,7 +20548,10 @@ blockquote {
   width: 100%;
   margin-bottom: 25px;
   padding: 5px 20px;
-  color: #767676;
+  color: #222328;
+}
+.location .address span {
+  font-weight: 600;
 }
 .attendees-container {
   border: 1px solid #ededed;
@@ -21127,6 +21139,7 @@ blockquote {
 }
 .activity-enroll__billing-widget .total .value {
   font-size: 1.2em;
+  margin-top: 3px;
 }
 .activity-enroll__billing-widget .discount-button {
   background-color: #a1a6bb;
@@ -21358,6 +21371,9 @@ blockquote {
   margin-left: 20px;
   font-weight: bold;
   color: #a1a6bb !important;
+}
+.enroll-section__body .input-error {
+  text-align: center;
 }
 .select-calendar {
   position: relative;

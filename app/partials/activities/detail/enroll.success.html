@@ -151,8 +151,14 @@
               <h4>
                 <strong ng-bind="::success.strings.LABEL_LOCATION"></strong>
               </h4>
-              <div class="content" ng-class="{'content-mobile': !success.showAudience}">
-                <p class="text-capitalize content hidden-md hidden-lg" ng-bind="success.activity.location.address"></p>
+              <div class="content location" ng-class="{'content-mobile': !success.showAudience}">
+                <div class="address">
+                  <h5>
+                    <strong class="text-uppercase" ng-bind="success.strings.LABEL_ADDRESS"></strong>
+                    <span>:</span>
+                    <span class="text-uppercase" ng-bind="success.activity.location.address"></span>
+                  </h5>
+                </div>
                 <ui-gmap-google-map class="map hidden-xs hidden-sm" center='success.map.center' zoom='success.map.zoom'
                   bounds="success.map.bounds" options="success.map.options"
                   events="success.map.events">
