@@ -183,7 +183,7 @@
             }
             angular.extend(vm.strings, {
                 ACTION_SEARCH_ACTIVITIES: "A ver qué encuentro",
-                COPY_CURRENT: "Estas son las actividades que estás cursando en este momento. Recuerda evaluarlas al terminar",
+                COPY_CURRENT: "Estas son las actividades que estás cursando en este momento. Recuerda evaluarlas al terminar.",
                 COPY_LAST: "Estas actividades son las que ya culminaron. Guárdalas en favoritos para que sepas cando vuelven a darse.",
                 SECTION_ACTIVITIES: "Mis Actividades",
                 LABEL_EMPTY_ACTIVITIES: "Hasta ahora no ha terminado ninguna actividad",

@@ -15738,6 +15738,20 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar-profile .profile span {
   color: white;
 }
+.sidebar-profile .profile_name {
+  position: absolute;
+  top: 40px;
+  right: 20px;
+  color: white;
+  font-weight: 600;
+  text-align: justify;
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 2em;
+  word-wrap: break-word;
+  white-space: nowrap;
+}
 .sidebar-profile .sign {
   padding: 1em;
   padding-top: 12em;
@@ -23787,10 +23801,10 @@ blockquote {
   color: #ededed;
 }
 .star-empty:hover {
-  color: #1F5DEA;
+  color: #f4d352;
 }
 .star:hover {
-  color: #1F5DEA;
+  color: #f4d352;
 }
 @media (max-width: 768px) {
   .review-buttons {

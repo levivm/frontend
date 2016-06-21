@@ -127,13 +127,17 @@
 <div class="sidebar-profile lateral-slide-right hidden-md hidden-lg" ng-show="showSideBar"  >
     <div class="profile" ng-if="user">
         <trulii-avatar user="user" size="40" avatar-class="small" class="avatar-landing"></trulii-avatar>
-        <span class=" montserrat-bold  margin-horizontal-less " ng-bind="user.user.full_name"></span>
+    </div>
+    <div class="profile_name">
+         <span class=" montserrat-bold  margin-horizontal-less " ng-bind="user.user.full_name"></span>
     </div>
     
     <div class="sign" ng-if="!user">
         <a ui-sref="login" class=" montserrat-regular  margin-horizontal-less "  ng-click="toggleSideBar();" ng-bind="::strings.ACTION_LOGIN"></a>
         <a ui-sref="register" class=" montserrat-regular  margin-horizontal-less" ng-click="toggleSideBar();" ng-bind="::strings.ACTION_REGISTER"></a>
     </div>
+    
+    <!--Organizer Sidebar-->
     <ul class="sidebar-profile__items list-unstyled" ng-if="user.is_organizer">
         <li class="sidebar-profile__items-item">
             <a ui-sref="organizer-dashboard.profile"

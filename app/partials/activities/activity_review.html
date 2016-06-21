@@ -35,7 +35,7 @@
     </div>
 </div>
 <!-- If it has a review -->
-<div ng-show="hasReview" class="review-detail" ng-class="{'review-detail__student': isStudent}">
+<div ng-show="hasReview && review.rating"  class="review-detail" ng-class="{'review-detail__student': isStudent}">
     <div class="row separate-above-less">
         <!-- Comment -->
         <div class="col-xs-3 col-md-1">
