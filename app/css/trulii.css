@@ -12534,14 +12534,14 @@ hr.on-light {
   margin-right: 1.2em;
 }
 .ta-root.focussed > .ta-scroll-window.form-control {
-  border-color: #00e2aa !important;
-  outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #00e2aa !important;
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #00e2aa !important;
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #00e2aa !important;
+  border-color: transparent;
+  box-shadow: none !important;
+}
+.ta-scroll-window.form-control {
+  border: 1px solid #ededed !important;
 }
 .ta-scroll-window > .ta-bind {
-  border: 1px solid #ccc !important;
+  border: 1px solid #ededed !important;
   padding: 2em;
 }
 .ta-scroll-window > .ta-bind::before {
@@ -15971,10 +15971,10 @@ select.input-lg {
 .select-forms__date label:after {
   content: "\f133";
   font-family: "FontAwesome";
-  font-size: 20px;
+  font-size: 17px;
   color: #767676;
   right: 20px;
-  top: 6px;
+  top: 10px;
   position: absolute;
   font-weight: 100;
   z-index: 100;
@@ -16269,6 +16269,7 @@ tags-input input {
   width: 2em;
   border-radius: 0;
   padding: 0 !important;
+  font-size: 0.8em;
 }
 .counter-input .counter-control {
   color: #767676;
@@ -16531,6 +16532,11 @@ tags-input input {
   text-align: right;
   position: relative;
   height: 4.5em;
+}
+.form-submit-controls .copy-edit {
+  float: left;
+  height: 55px;
+  line-height: 55px;
 }
 .form-submit-controls .progress {
   position: absolute;
@@ -18135,7 +18141,7 @@ ul.dropdown-menu:after {
   color: #03d69a;
 }
 .card-list-item--empty {
-  border: 1px dashed;
+  border: 2px dashed;
   display: table;
   font-weight: normal;
   color: #cbcbcb;
@@ -18151,7 +18157,6 @@ ul.dropdown-menu:after {
   border-color: #03d69a;
 }
 .card-list-item__add-icon {
-  background-color: #cbcbcb;
   border-radius: 50%;
   width: 8em;
   height: 8em;
@@ -18164,7 +18169,8 @@ ul.dropdown-menu:after {
   font-size: 4em;
   display: inline-block;
   width: 100%;
-  color: white;
+  color: #767676;
+  font-weight: 400;
   line-height: 1.8em;
   padding-top: 0.1em;
 }

@@ -16,7 +16,8 @@
 			transclude: true,
 			scope: {				
 				isSaving: '=',
-				cancelActive: '='
+				cancelActive: '=',
+				editActivity: '='
 				//value: '=?'
 			}, 
 			
@@ -35,7 +36,7 @@
 
 		        btn.addEventListener("click", onSubmit);
 		        scope.cancelAction = cancelDefaultResponse;
-
+				scope.COPY_EDIT ="Guarda la información antes de previsualizar tu publicación";
 		        ///////////////// 
 
 				function onSubmit(event){
