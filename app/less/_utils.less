@@ -1026,10 +1026,30 @@
 }
 
 .well-auth{
+	
     &.well{
+		p, h1, h2, h3, h4, h5{
+			font-weight: 500;
+			color: @gray-darker-brand;
+			line-height: 1.5em;
+		}
+		a{
+			color: @brand-warning;
+			text-decoration: underline;
+			font-weight: regular;
+			&.text-brand-dark{
+				color: @gray-darker-brand;
+			}
+		}
       max-width: 400px;
       margin: 0 auto;
+	  padding: 0 5% !important;
     }
+	&-lg{
+		&.well{
+			max-width: 800px;
+		}		
+	}
 }
 
 .limited-width{
@@ -1042,7 +1062,7 @@
 		padding: 0 50px;
 	}
 	@media (min-width: 1300px){
-		max-width: 1300px;
+		max-width: 1200px;
 	}
 	@media (max-width: 768px){
 		padding: 0;

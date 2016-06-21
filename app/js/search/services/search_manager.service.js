@@ -60,7 +60,7 @@
 
             /**
              * @ngdoc method
-             * @name .#searchActivities
+             * @name .#getSearchData
              * @description Returns `searchData`. Also accepts an optional data object to extend or update current
              * search query data
              * @param {object=} data External Query Data
@@ -71,7 +71,7 @@
 
             /**
              * @ngdoc method
-             * @name .#searchActivities
+             * @name .#setSearchBarData
              * @description Used to set search Query Data from searchBar
              * @param {object} data External Query Data
              * @param {string} q User search String
@@ -98,7 +98,7 @@
 
             /**
              * @ngdoc method
-             * @name .#searchActivities
+             * @name .#clearData
              * @description Clears the current search query data
              * @param {object=} data External Query Data
              * @return {object} searchData Current Search Query Data
@@ -167,7 +167,14 @@
 
             if(!searchData.hasOwnProperty(KEY_CITY)){ deferred.reject("A city is required"); }
             requestConfig = { 'params': searchData };
-            $http.get(api.search(), requestConfig).then(success, error);
+            // $http.get(api.search(), requestConfig).then(success, error);
+
+            $http({
+                method: 'get',
+                url: api.search(),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'},
+                params: searchData
+            }).then(success, error);
 
             return deferred.promise;
 

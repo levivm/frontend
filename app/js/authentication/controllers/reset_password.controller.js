@@ -19,6 +19,12 @@
     var vm = this;
 
     vm.resetPassword = _resetPassword;
+    vm.strings = {
+      COPY_TITLE: "Restablecer contraseña",
+      COPY_TEXT: "Define tu nueva contraseña para acceder a tu cuenta. Procura que sea segura y fácil de recordar",
+      COPY_NEW_PASSWORD: "Nueva contraseña",
+      ACTION_SAVE_PASSWORD: "Guardar contraseña"
+    }
     
 
     function _resetPassword(){

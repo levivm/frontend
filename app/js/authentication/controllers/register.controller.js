@@ -107,9 +107,11 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 SIGNUP_LABEL : "Registrarme",
-                SIGNUP_CONFIRMATION_LABEL: "Confirmar registro",
+                SIGNUP_CONFIRMATION_LABEL: "Confirmación de registro",
+                SIGNUP_CONFIRMATION_COPY_1: "!Ya estás aprobado como organizador!",
+                SIGNUP_CONFIRMATION_COPY_2: "Solo falta que coloques tu contraseña para empezar a disfrutar de Trulii.",
                 SIGNUP_SUBMIT: "Enviar",
-                SIGNUP_ALTERNATIVES_LABEL : "Regístrate con",
+                SIGNUP_ALTERNATIVES_LABEL : "Regístrate como asistente con",
                 SIGNUP_EMAIL_LABEL: "o con tu correo electrónico",
                 LOGIN_LABEL : "Iniciar Sesión",
                 EMAIL_LABEL : "Correo electrónico",

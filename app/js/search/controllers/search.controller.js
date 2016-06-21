@@ -188,8 +188,7 @@
         }
 
         function setFree(){
-            console.log(vm.isFree);
-            vm.searchData[SearchManager.KEY_FREE] = vm.isFree;
+            SearchManager.setFree(vm.isFree);
             if(!_isMobile()){
               _search();
             }
@@ -333,6 +332,7 @@
             }
             if (vm.searchData.hasOwnProperty(sm.KEY_FREE) && vm.searchData[sm.KEY_FREE]) {
                 vm.isFree = vm.searchData[sm.KEY_FREE];
+                console.log("??");
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)) {
@@ -401,13 +401,13 @@
             SearchManager.setQuery(vm.newSearchQuery);
 
             vm.searchData = SearchManager.getSearchData();
-
             SearchManager.getSearchData(vm.searchData);
             
+            $state.go('search', vm.searchData,  {notify: false});
             
-             _getActivities(vm.searchData).then(function () {
+            _getActivities(vm.searchData).then(function () {
                 //_scrollToCurrentCategory();
-                $state.go('search', vm.searchData,  {notify: false});
+                
             });
         
         }

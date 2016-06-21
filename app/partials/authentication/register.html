@@ -2,14 +2,12 @@
     <div class="row">
         <div class="col-xs-10 col-xs-offset-1 col-md-4 col-md-offset-4 separate-below-more separate-above">
             <div class="well well-auth no-padding remove-shadow separate-below-more">
-                <h5 class="text-center separate-above-less text-muted font-medium" ng-bind="vm.strings.SIGNUP_ALTERNATIVES_LABEL">
+                <h5 class="text-center separate-above-less" ng-bind="vm.strings.SIGNUP_ALTERNATIVES_LABEL">
                 </h5>
                 <div class="row">
-                    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-                        <button type="button" class="btn btn-block btn-facebook"
-                                ng-click="vm.fbRegister()">
-                            <i class="trulii-icon-facebook text-spaced-more"></i>
-                            <strong class="text-uppercase text-spaced" ng-bind="vm.strings.REGISTER_WITH_FACEBOOK_MSG"></strong>
+                    <div class="col-xs-10 col-xs-offset-1 separate-above-less separate-below-less">
+                        <button type="button" class="btn btn-block btn-lg btn-facebook"
+                                ng-click="vm.fbRegister()" ng-bind="vm.strings.REGISTER_WITH_FACEBOOK_MSG">
                         </button>
 
                         <!--TODO replace with toast-->
@@ -19,16 +17,16 @@
                     </div>
                   <div class="row">
                       <div class="col-xs-10 col-xs-offset-1">
-                          <hr class="separate-above-less">
+                          <hr class="">
                       </div>
                   </div>
                   <div class="row">
                       <div class="col-xs-12">
-                        <h5 class="text-center text-muted font-medium" ng-bind="vm.strings.SIGNUP_EMAIL_LABEL">
+                        <h5 class="text-center" ng-bind="vm.strings.SIGNUP_EMAIL_LABEL">
                         </h5>
                       </div>
                       <div class="col-xs-10 col-xs-offset-1">
-                          <form class="form-classic" name='vm.signup_form' ng-submit="vm.register()">
+                          <form name='vm.signup_form' ng-submit="vm.register()">
                               <div class="row">
                                   <div class="col-sm-12">
                                       <div class="separate-above-less">
@@ -54,7 +52,7 @@
                                           </div>
                                       </div>
                                       <input type="hidden" ng-model="vm.user_type">
-                                      <button type="submit" id="submit" class="btn btn-xlg btn-primary btn-block"
+                                      <button type="submit" id="submit" class="btn btn-lg btn-primary btn-block separate-above-medium separate-below-less"
                                               ng-bind="::vm.strings.SIGNUP_LABEL">
                                       </button>
                                   </div>
@@ -64,17 +62,16 @@
                   </div>
                   <div class="row">
                     <div class="text-center separate-vertical" id="anchor">
-                        <a ui-sref="organizer-landing" class="text-underline font-regular" ng-bind="::vm.strings.REGISTER_ORGANIZER_LABEL">
+                        <a ui-sref="organizer-landing" class="text-underline font-regular text-warning" ng-bind="::vm.strings.REGISTER_ORGANIZER_LABEL">
                         </a>
                     </div>
                   <div class="row">
-                      <div class="separator"></div>
                       <div class="col-xs-10 col-xs-offset-1">
-                          <h5 class="text-muted text-tiny text-center separate-above font-light">
+                          <h5 class="text-md text-center separate-above font-dark text-brand-dark">
                               <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_1"></span>
-                              <a ui-sref="about.privacy-policy" class="text-muted text-underline font-regular" ng-bind="vm.strings.LABEL_PRIVACY"></a>
+                              <a ui-sref="about.privacy-policy" class="text-underline font-regular text-brand-dark" ng-bind="vm.strings.LABEL_PRIVACY"></a>
                               <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_3"></span>
-                              <a ui-sref="about.terms" class="text-muted text-underline font-regular" ng-bind="vm.strings.LABEL_TERMS"></a>
+                              <a ui-sref="about.terms" class="text-underline font-regular text-brand-dark" ng-bind="vm.strings.LABEL_TERMS"></a>
                               <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_5"></span>
                           </h5>
                       </div>
