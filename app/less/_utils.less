@@ -892,10 +892,10 @@
 .balance{
 	&__mount-available{
 		display: flex;
-		justify-content: space-between;
-		padding: 2em 0em 1em 1em;
+		justify-content: flex-start;
+		padding: 2em 0em 0em 1em;
 		border-bottom: 1px solid @gray-light;
-		
+		align-items: center;
 		&-title{
 			h4{
 				font-size: 1em;
@@ -909,10 +909,10 @@
 			}
 		}
 		
-		.btn-success{
+		.btn{
 			line-height: 1em;
 			height: 3em;
-			background-color: @brand-info;
+			margin-left: 5em;
 			span{
 				font-weight: bold;
 			}
@@ -920,11 +920,12 @@
 	}
 	
 	&__mount-unavailable{
-		 padding: 1em 0em 1em 1em;
+		padding: 0em 1em 0em 1em;
+		border-bottom: 1px solid @gray-light;
 	}
 	&__note{
-		padding: 3em 1em;
-		border-bottom: 1px solid @gray-light;;
+		padding: 1em 1em 5em 1em;
+		border-bottom: 1px solid @gray-light;
 		color: @gray-darker;
 		
 		&-title{

@@ -12440,9 +12440,10 @@ hr.on-light {
 }
 .balance__mount-available {
   display: flex;
-  justify-content: space-between;
-  padding: 2em 0em 1em 1em;
+  justify-content: flex-start;
+  padding: 2em 0em 0em 1em;
   border-bottom: 1px solid #cbcbcb;
+  align-items: center;
 }
 .balance__mount-available-title h4 {
   font-size: 1em;
@@ -12453,19 +12454,20 @@ hr.on-light {
   font-size: 1.1em;
   color: #222328;
 }
-.balance__mount-available .btn-success {
+.balance__mount-available .btn {
   line-height: 1em;
   height: 3em;
-  background-color: #51dde9;
+  margin-left: 5em;
 }
-.balance__mount-available .btn-success span {
+.balance__mount-available .btn span {
   font-weight: bold;
 }
 .balance__mount-unavailable {
-  padding: 1em 0em 1em 1em;
+  padding: 0em 1em 0em 1em;
+  border-bottom: 1px solid #cbcbcb;
 }
 .balance__note {
-  padding: 3em 1em;
+  padding: 1em 1em 5em 1em;
   border-bottom: 1px solid #cbcbcb;
   color: #222328;
 }
@@ -16412,6 +16414,14 @@ tags-input input {
 }
 .btn-gray-light {
   background-color: #e4e7ef;
+}
+.btn-gray-dark {
+  background-color: #a1a6bb;
+  color: white !important;
+}
+.btn-info {
+  background-color: #51dde9;
+  color: white !important;
 }
 .btn-light {
   border: 1px solid white;
@@ -23770,7 +23780,7 @@ blockquote {
   }
 }
 .star {
-  color: #1F5DEA;
+  color: #f4d352;
 }
 .star-empty {
   transition: all 0.25s;

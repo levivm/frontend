@@ -127,6 +127,7 @@
                     orders: getOrders,
                     balances: getBalances,
                     withdraws: getWithDraw,
+                    bankingInfo: getBankingInfo,
                     activities: getOrganizerActivityList
                 }
             })
