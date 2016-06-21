@@ -1402,7 +1402,7 @@ mark,
   text-transform: capitalize;
 }
 .text-muted {
-  color: #cbcbcb;
+  color: #9b9b9b;
 }
 .text-primary {
   color: #00e2aa;
@@ -2321,7 +2321,7 @@ table {
 caption {
   padding-top: 35px 8px;
   padding-bottom: 35px 8px;
-  color: #cbcbcb;
+  color: #9b9b9b;
   text-align: left;
 }
 th {
@@ -12566,6 +12566,28 @@ hr.on-light {
 .well-auth.well {
   max-width: 400px;
   margin: 0 auto;
+  padding: 0 5% !important;
+}
+.well-auth.well p,
+.well-auth.well h1,
+.well-auth.well h2,
+.well-auth.well h3,
+.well-auth.well h4,
+.well-auth.well h5 {
+  font-weight: 500;
+  color: #4E546C;
+  line-height: 1.5em;
+}
+.well-auth.well a {
+  color: #1F5DEA;
+  text-decoration: underline;
+  font-weight: regular;
+}
+.well-auth.well a.text-brand-dark {
+  color: #4E546C;
+}
+.well-auth-lg.well {
+  max-width: 800px;
 }
 .limited-width {
   float: none;
@@ -12580,7 +12602,7 @@ hr.on-light {
 }
 @media (min-width: 1300px) {
   .limited-width {
-    max-width: 1300px;
+    max-width: 1200px;
   }
 }
 @media (max-width: 768px) {
@@ -12856,7 +12878,7 @@ hr.on-light {
   color: #03d69a;
 }
 .text-gray-brand {
-  color: #333C4E;
+  color: #3A405B;
 }
 .text-color-success {
   color: #03d69a;
@@ -12884,6 +12906,9 @@ hr.on-light {
 }
 .text-color-red {
   color: #fe5339;
+}
+.text-brand-dark {
+  color: #4E546C;
 }
 .text-ssm {
   font-size: 0.5em;
@@ -12988,6 +13013,9 @@ hr.on-light {
 .font-regular,
 .sidebar-category-container .sidebar-category {
   font-weight: 400;
+}
+.font-dark {
+  font-weight: 500;
 }
 .font-semibold {
   font-weight: 600;
@@ -15181,9 +15209,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 0.8em;
   letter-spacing: 1px;
   margin: 0 -15px;
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: #9b9b9b;
   background-color: #ededed;
+}
+.search-container .search-sidebar__element .subcategories .subcategories__item.active {
+  font-weight: 900;
 }
 .search-container .search-sidebar__element .subcategories li:not(:last-child) {
   border-bottom: 1px solid #cbcbcb;
@@ -15915,16 +15946,16 @@ input[type="email"],
 input[type="password"],
 input[type="number"],
 input[type="tel"] {
-  height: 45px !important;
-  border-radius: 1.7em ;
+  height: 52px !important;
+  border-radius: 52px;
   font-weight: 700;
   padding: 0em 2em !important;
   border: 1px solid #ededed;
   box-shadow: 0 0 !important;
 }
 select {
-  height: 45px !important;
-  border-radius: 1.7em !important;
+  height: 52px !important;
+  border-radius: 52px;
   font-weight: 700;
   padding: 0em 2em !important;
   border: 1px solid #f0f2f7 !important;
@@ -16337,6 +16368,10 @@ tags-input input {
   border-bottom-right-radius: 0 !important;
   border-top-right-radius: 0 !important;
 }
+.input-group .form-control:first-child {
+  border-bottom-left-radius: 52px !important;
+  border-top-left-radius: 52px !important;
+}
 @font-face {
   font-family: 'fontello';
   src: url('fonts/fontello/fontello.eot?27890168');
@@ -16491,7 +16526,10 @@ tags-input input {
 .btn-facebook {
   color: white !important;
   background-color: #3A5998 !important;
-  text-transform: none;
+  text-transform: capitalize;
+  padding: 14px 20px;
+  font-weight: 600 !important;
+  font-size: 1.125em;
 }
 .btn-facebook:hover {
   background-color: #375591 !important;
@@ -16522,7 +16560,7 @@ tags-input input {
   }
 }
 .form-group:not(:first-child) {
-  margin-top: 3.4em;
+  margin-top: 1.5em;
 }
 .form-group:not(:first-child).form-group-sm {
   margin-top: 1em;
@@ -20093,7 +20131,7 @@ button.toast-close-button {
 .container-muted h3,
 .container-muted h4,
 .container-muted h5 {
-  color: #333C4E;
+  color: #3A405B;
 }
 .container-brand {
   background-color: #3A405B;
@@ -20838,7 +20876,7 @@ blockquote {
   text-align: center;
   color: #FFFFFF;
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background-color: #cbcbcb;
+  background-color: #9b9b9b;
   border-bottom: none;
   border-top: none;
 }
@@ -20873,7 +20911,7 @@ blockquote {
 .calendar-widget .widget-card .info {
   width: 100%;
   text-align: center;
-  color: #cbcbcb;
+  color: #9b9b9b;
   padding: 0.4em 0em;
   border-bottom: 1px solid #DEDEDE;
   border-bottom: none;
@@ -20991,7 +21029,7 @@ blockquote {
   padding: 0;
   font-size: 1em;
   font-weight: 500;
-  color: #cbcbcb;
+  color: #9b9b9b;
 }
 .calendar-widget .widget-card .sessions .sessions-list .session-item-time {
   width: 100%;
@@ -21005,7 +21043,7 @@ blockquote {
   padding: 0;
   font-size: 0.8em;
   font-weight: 500;
-  color: #cbcbcb;
+  color: #9b9b9b;
   text-transform: lowercase;
 }
 .calendar-widget .widget-card .other-calendars {
@@ -21058,7 +21096,7 @@ blockquote {
 }
 .calendar-widget .widget-card .share p {
   font-size: 1em;
-  color: #cbcbcb;
+  color: #9b9b9b;
 }
 .calendar-widget .widget-card .share .btn-share-fb,
 .calendar-widget .widget-card .share .btn-share-twitter,
@@ -21201,6 +21239,8 @@ blockquote {
   z-index: 6;
   border-radius: 50%;
   cursor: pointer;
+  color: white;
+  font-size: 30px;
 }
 .gallery .gallery-slide {
   position: absolute;
@@ -21227,6 +21267,8 @@ blockquote {
   z-index: 6;
   border-radius: 50%;
   cursor: pointer;
+  color: white;
+  font-size: 30px;
   left: 1em;
   z-index: 7;
 }
@@ -21236,6 +21278,8 @@ blockquote {
   z-index: 6;
   border-radius: 50%;
   cursor: pointer;
+  color: white;
+  font-size: 30px;
   right: 1em;
   z-index: 7;
 }
@@ -21302,7 +21346,10 @@ blockquote {
   width: 100%;
   margin-bottom: 25px;
   padding: 5px 20px;
-  color: #767676;
+  color: #222328;
+}
+.location .address span {
+  font-weight: 600;
 }
 .attendees-container {
   border: 1px solid #ededed;
@@ -21890,6 +21937,7 @@ blockquote {
 }
 .activity-enroll__billing-widget .total .value {
   font-size: 1.2em;
+  margin-top: 3px;
 }
 .activity-enroll__billing-widget .discount-button {
   background-color: #a1a6bb;
@@ -22081,12 +22129,12 @@ blockquote {
 }
 .enroll-section__body .enroll-footer__disclaimer {
   margin-top: 50px;
-  color: #cbcbcb;
+  color: #9b9b9b;
   text-align: center;
   font-weight: 600;
 }
 .enroll-section__body .enroll-footer__disclaimer a {
-  color: #cbcbcb;
+  color: #9b9b9b;
   text-decoration: underline;
 }
 .enroll-section__body .enroll-footer__disclaimer a:hover,
@@ -22121,6 +22169,9 @@ blockquote {
   margin-left: 20px;
   font-weight: bold;
   color: #a1a6bb !important;
+}
+.enroll-section__body .input-error {
+  text-align: center;
 }
 .select-calendar {
   position: relative;
@@ -23350,7 +23401,7 @@ blockquote {
   font-weight: 500;
 }
 .remember-container .items-container .item .item-text .item-copy {
-  color: #cbcbcb;
+  color: #9b9b9b;
   font-size: 0.9em;
 }
 .share-container {
@@ -23420,14 +23471,14 @@ blockquote {
 .navigation-container a {
   font-size: 1em;
   text-decoration: none;
-  color: #cbcbcb;
+  color: #9b9b9b;
 }
 .navigation-container a:hover {
   text-decoration: none;
   color: rgba(0, 0, 0, 0.74);
 }
 .navigation-container a:visited {
-  color: #cbcbcb;
+  color: #9b9b9b;
 }
 .navigation-container a:visited:hover {
   text-decoration: none;
@@ -24016,7 +24067,7 @@ blockquote {
 }
 .organizer-publish p,
 .organizer-publish h5 {
-  color: #333C4E;
+  color: #3A405B;
 }
 .organizer-publish h5 {
   margin-bottom: 15px;
