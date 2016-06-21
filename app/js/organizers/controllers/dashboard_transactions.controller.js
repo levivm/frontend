@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', 'balances', '$http', 'activities', 'withdraws', '$modal', 'Toast'];
-    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, balances, $http, activities, withdraws, $modal, Toast) {
+    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', 'balances', '$http', 'activities', 'withdraws', '$modal', 'Toast', 'bankingInfo'];
+    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, balances, $http, activities, withdraws, $modal, Toast, bankingInfo) {
 
         var vm = this;
         var api = OrganizerServerApi;
@@ -71,7 +71,8 @@
             TYPE_SALES: 'sales',
             withDraw: withDraw,
             changePageWithdraws:changePageWithdraws,
-            filterById: filterById
+            filterById: filterById,
+            minMount:MIN_MOUNT
         });
 
         _activate();
@@ -204,7 +205,19 @@
             return withdraw;
           }
         }
+        
+        function _getOrganizerBankingInfo(){
 
+            organizer.getBankingInfo().then(success);
+
+            function success(bankingData){
+                if(bankingData){ 
+                    vm.bank= bankingData.bank;
+                    vm.accountBank = bankingData.account.substr(bankingData.account.length -4); 
+                    
+                }
+            }
+        }
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
@@ -253,6 +266,8 @@
                 LABEL_BALANCE_MOUNT: "Monto solicitado",
                 LABEL_BALANCE_STATUS: "Estatus",
                 LABEL_CURRENCY: "COP",
+                LABE_DESCRIPTION: "Descripción",
+                COPY_BALANCE_ACCOUNT: "El monto será transferido a tu cuenta de ",
                 DELETE_AVAILABLE_ERROR: "No tiene suficiemente monto para solicitarlo",
                 STATUS_APPROVED: 'Aprobado',
                 STATUS_DECLINED: 'Rechazado',
@@ -267,8 +282,9 @@
             _getOrders();
             _getBalances();
             _mapWithdraws();
+            _getOrganizerBankingInfo();
+            //console.log(vm.withdrawals);
             
-            console.log(vm.withdrawals);
 
         }
 

@@ -20,7 +20,7 @@
                         <span ng-bind="transactions.balances.available | number"></span></h5>
                 </div>
                 
-                <div class="btn btn-success separate-above-less" ng-click="transactions.withDraw()">
+                <div class="btn btn-gray-dark " ng-class="{'btn-info': transactions.balances.available > transactions.minMount}" ng-click="transactions.withDraw()">
                           <span ng-bind="::transactions.strings.ACTION_BALANCE_WITHDRAW"></span>
                 </div>
                 
@@ -28,11 +28,14 @@
             
             <div class="balance__note">
               <div class="balance__note-title">
-                <span>Nota:</span>
+                <span ng-bind="::transactions.strings.LABEL_DESCRIPTION"></span>
               </div>
               <div class="balance__note-copy">
-                <span>El monto será transferido a tu cuenta de Bancolombia núemro <strong>******1234</strong></span>
-              </div>
+                <span ng-bind="::transactions.strings.COPY_BALANCE_ACCOUNT"></span>
+                <span ng-bind="transactions.bank"></span>
+                <span> número </span>
+                <strong>******<span ng-bind="transactions.accountBank"></span></strong>
+              </div> 
             </div>
             <div class="balance__mount balance__mount-available balance__mount-unavailable">
                 <div class="balance__mount-available-title">
