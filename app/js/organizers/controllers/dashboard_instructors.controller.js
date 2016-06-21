@@ -53,6 +53,7 @@
         function addInstructors() {
             var tempInstructor = angular.extend({}, EMPTY_INSTRUCTOR);
             vm.instructors.unshift(tempInstructor);
+           
             vm.countInstructors++;
         }
          function removeInstructors() {
@@ -84,7 +85,6 @@
                 vm.instructors.sort(compare);
 
                 console.log('vm.instructors:', vm.instructors);
-                console.log(vm.instructors.length, vm.instructors[0]);
             }, 0);
 
             function hasEmptySlot(instructor){

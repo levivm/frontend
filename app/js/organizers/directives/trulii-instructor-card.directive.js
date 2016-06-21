@@ -238,18 +238,19 @@
                     _setStrings();
                     _setAvailableInstructors();
                     scope.instructorEditable = angular.copy(scope.instructor);
+                    console.log(_isValid());
                     if(_isValid()){ 
                         scope.editMode = false;
                     }else{
                         scope.editMode = true;
                     }
-                    console.group('trulii-instructor-card:', scope.instructor.full_name? scope.instructor.full_name : '');
+                    /*console.group('trulii-instructor-card:', scope.instructor.full_name? scope.instructor.full_name : '');
                     console.log('instructor:', scope.instructor);
                     console.log('activity:', scope.activity);
                     console.log('organizer:', scope.organizer);
                     console.log('onDashboard:', scope.onDashboard);
                     console.log('emptyInstructor:', scope.emptyInstructor);
-                    console.groupEnd();
+                    console.groupEnd();*/
                 }
             }
         }
