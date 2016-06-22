@@ -8,7 +8,7 @@
              </div>
              <div class="cover-edit-activity__content-buttons" ng-show="pc.areAllStepsCompleted()">
                 <a class="btn btn-default btn-manage " ng-click="pc.actionNavbarSecondary(pc.strings.COPY_MANAGE_ACTIVITY)"
-                ui-sref="dash.activities-manage.orders({activity_id: {{pc.activity.id}}})">
+                ui-sref="dash.activities-manage.summary({activity_id: {{pc.activity.id}}})">
                     <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_MANAGE_ACTIVITY"></span>
                 </a>
                  <button class="btn btn-publish" ng-show="!pc.activity.published" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"

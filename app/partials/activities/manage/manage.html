@@ -6,6 +6,12 @@
                  <h1 ng-bind="manage.activity.title"></h1>
                  <h5 ng-bind="manage.activity.organizer.name"></h5>
              </div>
+             <div class="cover-edit-activity__content-buttons" >
+                <a class="btn btn-publish "
+                    ui-sref="dash.activities-edit.general({activity_id: {{manage.activity.id}}})">
+                    <span class="hidden-xs hidden-sm" ng-bind="::manage.strings.COPY_EDIT_ACTIVITY"></span>
+                </a>
+             </div>
          </div>
     </div>
 </div>

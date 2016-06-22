@@ -233,6 +233,7 @@
                 COPY_TOTAL_FEE_TOOLTIP: "Este es el monto total de la comisión de Trulii",
                 COPY_CLOSING_DATE: "Cierre",
                 COPY_VIEW_DETAIL: "Ver detalle",
+                COPY_EDIT_ACTIVITY: "Editar actividad",
                 SECTION_MANAGE: "Gestionar",
                 TAB_ORDERS: "Ordenes de Compra",
                 TAB_ASSISTANTS: "Lista de Asistentes",

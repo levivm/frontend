@@ -24807,11 +24807,21 @@ input[type=text].form-control.referral-link:focus {
 .summary-container .range-widget .range-tab {
   text-transform: uppercase;
   padding: 10px 30px 10px 30px;
-  border-bottom: 1px solid white;
+  border: 1px solid #cbcbcb;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.summary-container .range-widget .range-tab__left {
+  border-radius: 1.7em 0em 0em 1.7em;
+  border-right: none;
+}
+.summary-container .range-widget .range-tab__right {
+  border-radius: 0em 1.7em 1.7em 0em;
+  border-left: none;
 }
 .summary-container .range-widget .range-tab-active {
-  border-bottom: 1px solid #1F5DEA;
+  background: #ededed;
 }
 .summary-container .range-widget .range-slider {
   margin: 20px 0 30px 0;
@@ -24828,6 +24838,7 @@ input[type=text].form-control.referral-link:focus {
   text-transform: uppercase;
   width: 200px;
   text-align: center;
+  font-weight: 600;
 }
 .summary-container .seat-metric-bar {
   width: 80%;
@@ -24840,7 +24851,7 @@ input[type=text].form-control.referral-link:focus {
 }
 .summary-container .seat-metric-bar .seat-metric-bar__fill {
   height: 25px;
-  background-color: #00e2aa;
+  background-color: #1F5DEA;
 }
 .summary-container .seat-metric-text {
   width: 20%;
@@ -24868,17 +24879,11 @@ input[type=text].form-control.referral-link:focus {
 }
 .summary-container .metric-circle-views {
   border: 3px solid #03d69a;
-}
-.summary-container .metric-circle-views .metric-icon {
-  background-color: #03d69a;
-  left: -25px;
+  color: #03d69a;
 }
 .summary-container .metric-circle-sales {
   border: 3px solid #1F5DEA;
-}
-.summary-container .metric-circle-sales .metric-icon {
-  background-color: #1F5DEA;
-  right: -25px;
+  color: #1F5DEA;
 }
 ::-webkit-scrollbar {
   width: 10px;
