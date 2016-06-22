@@ -51,6 +51,8 @@ select{
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
+			border-radius: 54px;
+			height: 54px;
 		}
 		&:after{
 			content: "\f107";   
@@ -58,7 +60,7 @@ select{
 			font-size: 25px;
 			color: @gray-dark-brand;
 			right: 20px;
-			top: 4px;
+			top: 10px;
 			position: absolute;
 			font-weight: 100;
 			z-index: 100;
@@ -185,8 +187,9 @@ label{
 .control-label{
 	margin-left: 2em;
 }
-
-
+textarea.form-control{
+	min-height: 150px;
+}
 .input{
 
 	&--main{

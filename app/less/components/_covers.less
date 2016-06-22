@@ -304,8 +304,6 @@
       }
     }
     
-    
-    
     &-create{
       width: 45em;
       margin: 0 auto;
@@ -532,7 +530,7 @@
       }
     }
     &-contact-controllers{
-      background-color: fade(@gray-regular, 40%);
+      background-color: @gray-lighter-brand;
       padding: 1em;
       ul{
         .before-md({
@@ -563,10 +561,10 @@
           }
           .item-icon{
             font-size: 2em;
-            border: 2px solid;
             border-radius: 50%;
             transition: all 0.50s;
             margin-top: 1.2em;
+            background-color: @brand-warning;
             
           }
           .fa-phone{
@@ -599,6 +597,8 @@
             transition: all 0.25s;
             margin-left: 50%;
             transform: translateX(-50%);
+            color: @gray-darkest-brand;
+            font-size: 14px;
           }
           .item-img{
             opacity: 1;
@@ -607,9 +607,13 @@
             opacity: 0;
           }
         }
+        .item-long{
+          .item-description{
+            bottom: -25px;
+          }
+        }
         .item:hover, .item-long:hover{
           .item-icon{
-            background: @brand-success;
             transform: translateY(-50%);
           }
           .item-img{

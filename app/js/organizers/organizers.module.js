@@ -243,7 +243,7 @@
          */
         getOrganizerProfileActivities.$inject = ['ActivitiesManager','organizer'];
         function getOrganizerProfileActivities(ActivitiesManager, organizer){
-            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', 1, 4);
+            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', 1, 8);
         }
 
 

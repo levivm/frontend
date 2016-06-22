@@ -332,7 +332,6 @@
             }
             if (vm.searchData.hasOwnProperty(sm.KEY_FREE) && vm.searchData[sm.KEY_FREE]) {
                 vm.isFree = vm.searchData[sm.KEY_FREE];
-                console.log("??");
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)) {
@@ -403,11 +402,10 @@
             vm.searchData = SearchManager.getSearchData();
             SearchManager.getSearchData(vm.searchData);
             
-            $state.go('search', vm.searchData,  {notify: false});
+            
             
             _getActivities(vm.searchData).then(function () {
-                //_scrollToCurrentCategory();
-                
+                $state.go('search', vm.searchData,  {notify: false});
             });
         
         }
@@ -427,8 +425,8 @@
                 LABEL_OTHERS: "Otros",
                 LABEL_WITH_CERTIFICATE : "Con certificado",
                 LABEL_WEEKENDS : "Fines de Semana",
-                LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
-                COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
+                LABEL_EMPTY_SEARCH : "Houston, tenemos un problema."
+                + " Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
                 LABEL_FILTER_ACTIVITIES: "Filtrar actividades",
                 LABEL_FREE: "Clases gratis"

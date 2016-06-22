@@ -263,7 +263,7 @@
                 delete searchData[KEY_ORDER];
             }
 
-             if(data.hasOwnProperty(KEY_FREE) && (data[KEY_FREE] === true)){
+            if(data.hasOwnProperty(KEY_FREE) && (data[KEY_FREE] === true)){
                 searchData[KEY_FREE] = (data[KEY_FREE] === true);
             } else {
                 delete searchData[KEY_FREE];
@@ -327,7 +327,7 @@
         }
 
         function setQuery(predicate){
-          searchData[KEY_QUERY] = predicate;
+            searchData[KEY_QUERY] = predicate;
         }
     }
 })();

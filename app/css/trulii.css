@@ -8447,7 +8447,7 @@ Then, run this script to get the list.
 }
 body {
   background-color: white;
-  color: #222328;
+  color: #767676;
 }
 body.inverse {
   background: #333333;
@@ -14119,6 +14119,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     max-height: 50px;
   }
 }
+.navbar .navbar-search-bar {
+  opacity: 1;
+  transition: all 0.25s;
+}
+.navbar .navbar-search-bar-hidden {
+  opacity: 0;
+}
 .navbar .btn {
   line-height: 1em;
 }
@@ -14961,7 +14968,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1.1em;
 }
 .search-bar__navbar button span {
-  top: 3px;
+  top: 2px;
   color: #767676;
   font-size: 0.9em;
 }
@@ -15173,7 +15180,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding-bottom: 0 !important;
 }
 .search-container .search-sidebar__element__price-free .trulii-checkbox input[type="checkbox"] + label {
-  color: #222328 !important;
+  color: #767676 !important;
 }
 .search-container .search-sidebar__element ul {
   list-style: none;
@@ -15983,6 +15990,8 @@ select.input-lg {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  border-radius: 54px;
+  height: 54px;
 }
 .select-forms label:after {
   content: "\f107";
@@ -15990,7 +15999,7 @@ select.input-lg {
   font-size: 25px;
   color: #a1a6bb;
   right: 20px;
-  top: 4px;
+  top: 10px;
   position: absolute;
   font-weight: 100;
   z-index: 100;
@@ -16106,6 +16115,9 @@ label {
 }
 .control-label {
   margin-left: 2em;
+}
+textarea.form-control {
+  min-height: 150px;
 }
 .input--main {
   margin-top: 0px;
@@ -19700,7 +19712,7 @@ button.toast-close-button {
 .trulii-cover-small__content-contact-controllers,
 .trulii-cover-medium__content-contact-controllers,
 .trulii-cover-regular__content-contact-controllers {
-  background-color: rgba(155, 155, 155, 0.4);
+  background-color: #f0f2f7;
   padding: 1em;
 }
 @media screen and (max-width: 992px) {
@@ -19782,10 +19794,10 @@ button.toast-close-button {
 .trulii-cover-medium__content-contact-controllers li .item-long .item-icon,
 .trulii-cover-regular__content-contact-controllers li .item-long .item-icon {
   font-size: 2em;
-  border: 2px solid;
   border-radius: 50%;
   transition: all 0.50s;
   margin-top: 1.2em;
+  background-color: #1F5DEA;
 }
 .trulii-cover__content-contact-controllers li .item .fa-phone,
 .trulii-cover-small__content-contact-controllers li .item .fa-phone,
@@ -19873,6 +19885,8 @@ button.toast-close-button {
   transition: all 0.25s;
   margin-left: 50%;
   transform: translateX(-50%);
+  color: #3A405B;
+  font-size: 14px;
 }
 .trulii-cover__content-contact-controllers li .item .item-img,
 .trulii-cover-small__content-contact-controllers li .item .item-img,
@@ -19894,6 +19908,12 @@ button.toast-close-button {
 .trulii-cover-regular__content-contact-controllers li .item-long .item-img-active {
   opacity: 0;
 }
+.trulii-cover__content-contact-controllers li .item-long .item-description,
+.trulii-cover-small__content-contact-controllers li .item-long .item-description,
+.trulii-cover-medium__content-contact-controllers li .item-long .item-description,
+.trulii-cover-regular__content-contact-controllers li .item-long .item-description {
+  bottom: -25px;
+}
 .trulii-cover__content-contact-controllers li .item:hover .item-icon,
 .trulii-cover-small__content-contact-controllers li .item:hover .item-icon,
 .trulii-cover-medium__content-contact-controllers li .item:hover .item-icon,
@@ -19902,7 +19922,6 @@ button.toast-close-button {
 .trulii-cover-small__content-contact-controllers li .item-long:hover .item-icon,
 .trulii-cover-medium__content-contact-controllers li .item-long:hover .item-icon,
 .trulii-cover-regular__content-contact-controllers li .item-long:hover .item-icon {
-  background: #03d69a;
   transform: translateY(-50%);
 }
 .trulii-cover__content-contact-controllers li .item:hover .item-img,
@@ -23522,10 +23541,28 @@ blockquote {
     width: calc((1300px * 0.33) - 45px);
   }
 }
+.pse-payment .form-group label select {
+  border-radius: 54px;
+  height: 54px !important;
+}
+.pse-payment .form-group label:after {
+  top: 10px;
+}
 .pse-payment .input-group {
   width: 100%;
 }
-.pse-payment .input-group select,
+.pse-payment .input-group .select-forms {
+  width: 50%;
+  display: inline-block;
+  float: left;
+}
+.pse-payment .input-group .select-forms label select {
+  border-radius: 54px;
+  height: 54px !important;
+}
+.pse-payment .input-group .select-forms label:after {
+  top: 10px;
+}
 .pse-payment .input-group input {
   width: 50%;
 }
@@ -23910,6 +23947,16 @@ blockquote {
   width: 100%;
   padding-top: 80px;
 }
+.profile-cover__content .rating {
+  display: inline-block;
+  margin-left: 50%;
+  margin-top: 15px;
+  transform: translateX(-50%);
+}
+.profile-cover__content .rating .glyphicon {
+  padding: 0px 3px;
+  font-size: 18px;
+}
 .profile-cover h1,
 .profile-cover h2,
 .profile-cover h3,
@@ -23919,13 +23966,12 @@ blockquote {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .profile-cover h1 {
-  letter-spacing: 5px;
   font-weight: 400;
   margin: 1em 0em;
 }
 .profile-cover p {
-  font-size: 0.9em;
-  font-weight: 200;
+  font-size: 1em;
+  font-weight: 500;
 }
 .profile-cover__description {
   padding: 0px 20px;
@@ -23941,13 +23987,13 @@ blockquote {
   border: 5px solid white;
 }
 .profile-cover__verified {
-  width: 200px;
+  width: 270px;
   margin: 0 auto;
   overflow: hidden;
   padding: 20px 0px;
 }
 .profile-cover__verified p {
-  padding: 3px 10px;
+  padding: 12px 0px 5px 10px;
   font-size: 0.95em;
 }
 .profile-cover:after {
@@ -23988,14 +24034,6 @@ blockquote {
   .profile-location .map {
     height: 15em;
   }
-}
-.profile-location .address {
-  padding: 1.2em;
-  background-color: #F7F7F7;
-  text-align: center;
-  font-size: 1.5em;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 0.74);
 }
 .profile-comments {
   background-color: white;

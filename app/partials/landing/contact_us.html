@@ -1,168 +1,161 @@
-<div class="trulii-cover-small">
-  <div class="trulii-cover__container">
-    <div class="trulii-cover__content padding-top-more">
-      <div class="col-xs-12">
-        <div class="row padding-vertical-regular" ng-hide="contact.sent">
-          <div class="col-xs-12 col-md-10 col-md-offset-1 separate-above-more">
-            <h1 class="title text-center separate-above-more">
-              <span>
-                <span ng-bind="::contact.strings.CONTACT_COVER_TITLE_1"></span>
-                <br>
-                <span ng-bind="::contact.strings.CONTACT_COVER_TITLE_2"></span>
-              </span>
-            </h1>
-            <h3 class="font-regular text-center separate-above" ng-bind="::contact.strings.CONTACT_COVER_TEXT"></h3>
-          </div>
-          <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-            <form name='contact.contact_form' ng-submit="contact.sendContactForm()" class="separate-above-medium separate-below-more form-classic">
-              <fieldset>
-                <div class="form-group" trulii-input-errors-control="name">
-                    <label for="name" class="sr-only"
-                          ng-bind="::contact.strings.LABEL_NAME"></label>
-                    <input id="name" class="form-control" name="name" type="text"
-                                  ng-model="contact.formData.name"
-                                  placeholder="{{::contact.strings.LABEL_NAME}}" >
+<div class="row">
+  <div class="col-xs-12 limited-width">
+    <div class="row padding-vertical-regular" ng-hide="contact.sent">
+      <div class="col-xs-12 col-md-10 col-md-offset-1 separate-above">
+        <h2 class="title text-center separate-below-less text-brand-dark">
+          <span>
+            <span ng-bind="::contact.strings.CONTACT_COVER_TITLE_1"></span>
+            <br>
+            <span ng-bind="::contact.strings.CONTACT_COVER_TITLE_2"></span>
+          </span>
+        </h2>
+      </div>
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <h4 class="font-regular text-center text-brand-dark" ng-bind="::contact.strings.CONTACT_COVER_TEXT"></h4>
+      </div>
+      <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
+        <form name='contact.contact_form' ng-submit="contact.sendContactForm()" class="separate-above separate-below-more">
+          <fieldset>
+            <div class="form-group" trulii-input-errors-control="name">
+                <label for="name" class="sr-only"
+                      ng-bind="::contact.strings.LABEL_NAME"></label>
+                <input id="name" class="form-control" name="name" type="text"
+                              ng-model="contact.formData.name"
+                              placeholder="{{::contact.strings.LABEL_NAME}}" >
+            </div>
+            <div class="form-group" trulii-input-errors-control="email">
+                <label for="email" class="sr-only"
+                      ng-bind="::contact.strings.LABEL_EMAIL"></label>
+                <input id="email" class="form-control" name="email" type="text"
+                        ng-model="contact.formData.email"
+                        placeholder="{{::contact.strings.LABEL_EMAIL}}">
+            </div>
+            <div class="form-group" trulii-input-errors-control="phone_number">
+                <label for="phone" class="sr-only"
+                        ng-bind="::contact.strings.LABEL_PHONE"></label>
+                <input id="phone" name="phone_number" class="form-control" type="tel"
+                        placeholder="{{::contact.strings.LABEL_PHONE}}"
+                        ng-model="contact.formData.phone_number" value="">
+            </div>
+            <div class="form-group" trulii-input-errors-control="topic">
+                <label for="topic-select" class="sr-only"
+                      ng-bind="::contact.strings.LABEL_TOPIC"></label>
+                <div class="select-forms">
+                    <label>
+                        <select id="topic-select" name="topic"
+                              class="form-control" ng-model="contact.selectedTopic"
+                              ng-options="topic as topic.title for topic in contact.topics track by topic.id">
+                          <option value="" ng-hide="contact.selectedTopic"
+                                  ng-bind="::contact.strings.OPTION_TOPIC_DEFAULT" selected>
+                          </option>
+                        </select>
+                    </label>
                 </div>
-                <div class="form-group" trulii-input-errors-control="email">
-                    <label for="email" class="sr-only"
-                          ng-bind="::contact.strings.LABEL_EMAIL"></label>
-                    <input id="email" class="form-control" name="email" type="text"
-                            ng-model="contact.formData.email"
-                            placeholder="{{::contact.strings.LABEL_EMAIL}}">
-                </div>
-                <div class="form-group" trulii-input-errors-control="phone_number">
-                    <label for="phone" class="sr-only"
-                            ng-bind="::contact.strings.LABEL_PHONE"></label>
-                    <input id="phone" name="phone_number" class="form-control" type="tel"
-                            placeholder="{{::contact.strings.LABEL_PHONE}}"
-                            ng-model="contact.formData.phone_number" value="">
-                </div>
-                <div class="form-group" trulii-input-errors-control="topic">
-                    <label for="topic-select" class="sr-only"
-                          ng-bind="::contact.strings.LABEL_TOPIC"></label>
-                    <select id="topic-select" name="topic"
-                          class="form-control" ng-model="contact.selectedTopic"
-                          ng-options="topic as topic.title for topic in contact.topics track by topic.id">
-                      <option value="" ng-hide="contact.selectedTopic"
-                              ng-bind="::contact.strings.OPTION_TOPIC_DEFAULT" selected>
-                      </option>
-                    </select>
-                </div>
+                
+            </div>
 
-                <div class="form-group" trulii-input-errors-control="description">
-                  <textarea name="description" class="form-control"
-                            ng-model="contact.formData.description"
-                            placeholder="{{::contact.strings.PLACEHOLDER_DESCRIPTION}}">
-                  </textarea>
-                </div>
-                <div class="form-group" trulii-input-errors-control="__all__">
-                    <input type="hidden" name="__all__" ng-model="__all__"/>
-                </div>
+            <div class="form-group" trulii-input-errors-control="description">
+              <textarea name="description" class="form-control"
+                        ng-model="contact.formData.description"
+                        placeholder="{{::contact.strings.PLACEHOLDER_DESCRIPTION}}">
+              </textarea>
+            </div>
+            <div class="form-group" trulii-input-errors-control="__all__">
+                <input type="hidden" name="__all__" ng-model="__all__"/>
+            </div>
 
-                <div class="form-group">
-                    <button type="submit" id="submit"
-                            class="btn btn-lg btn-success btn-block"
-                            ng-bind="::contact.strings.ACTION_SEND">
-                    </button>
-                </div>
-              </fieldset>
-            </form>
-          </div>
-        </div>
-        <div class="row fade-hide" ng-hide="!contact.sent">
-          <div class="col-xs-12 padding-vertical-more">
-            <img ng-src="{{contact.getAmazonUrl('static/img/contact/brayan.png')}}" alt="" class="img-responsive center-block padding-top-more">
-            <h1 class="text-center">
-              <span ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TITLE"></span>
-            </h1>
-            <h3 class="text-center" ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TEXT"></h3>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-12 trulii-cover__content-contact-controllers">
-            <ul class="list-unstyled list-inline text-center">
-              <li>
-                <div class="item-long">
-                  <a href="tel:573456789033" target="_blank">
-                    <i class="fa fa-phone item-icon" aria-hidden="true"></i>
-                    <h4 class="item-description">
-                      <span>¡Llámanos!</span>
-                      <br>
-                      <span>(+57) 1. 357.76.44</span>
-                    </h4>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="item">
-                  <a href="https://twitter.com/Trulii_" target="_blank">
-                    <i class="fa fa-twitter item-icon" aria-hidden="true"></i>
-                    <h4 class="item-description">
-                      <span>¡Lánzanos un tuit!</span>
-                    </h4>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="item">
-                  <a href="https://twitter.com/TruliiBoss" target="_blank">
-                    <i class="fa fa-angellist item-icon" aria-hidden="true"></i>
-                    <h4 class="item-description">
-                      <span>¿Necesitas ayuda?</span>
-                    </h4>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="item">
-                  <a href="https://www.facebook.com/truliilatam/" target="_blank">
-                    <i class="fa fa-facebook item-icon" aria-hidden="true"></i>
-                    <h4 class="item-description">
-                      <span>¡Escríbenos!</span>
-                    </h4>
-
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="item">
-                  <a href="https://www.linkedin.com/company/trulii?trk" target="_blank">
-                    <i class="fa fa-linkedin-square item-icon" aria-hidden="true"></i>
-                    <h4 class="item-description">
-                      <span>¡Escríbenos!</span>
-                    </h4>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="item-long">
-                  <a href="#" target="_blank">
-                    <i class="fa fa-newspaper-o item-icon" aria-hidden="true"></i>
-                    <h4 class="item-description">
-                      <span>¿Prensa?</span>
-                      <br>
-                      <span>¡Escríbenos un email!</span>
-                    </h4>
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div class="item">
-                  <a href="#" target="_blank">
-                    <i class="fa fa-map-marker item-icon" aria-hidden="true"></i>
-                    <h4 class="item-description">
-                      <span>¡Estamos aquí!</span>
-                    </h4>
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+            <div class="form-group">
+                <button type="submit" id="submit"
+                        class="btn btn-lg btn-success center-block separate-above-medium"
+                        ng-bind="::contact.strings.ACTION_SEND">
+                </button>
+            </div>
+          </fieldset>
+        </form>
       </div>
     </div>
-    <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{contact.getAmazonUrl('static/img/contact/banner.jpg')}})' }">
+    <div class="row fade-hide padding-vertical-more" ng-hide="!contact.sent">
+      <div class="col-xs-12">
+        <h2 class="title text-center separate-above-more separate-below-less text-brand-dark">
+          <span ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TITLE"></span>
+        </h2>
+      </div>
+      <div class="col-xs-12 col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
+        <h4 class="font-regular text-center text-brand-dark separate-below-more" ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TEXT"></h4>
+      </div>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 trulii-cover__content-contact-controllers">
+    <ul class="list-unstyled list-inline text-center">
+      <li>
+        <div class="item-long">
+          <a href="tel:573456789033" target="_blank">
+            <i class="fa fa-phone item-icon" aria-hidden="true"></i>
+            <h4 class="item-description">
+              <strong>¡Llámanos!</strong>
+              <br>
+              <br>
+              <span>(+57) 1. 357.76.44</span>
+              <br>
+              <span>(+57) 1. 631.71.15</span>
+            </h4>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item">
+          <a href="https://twitter.com/Trulii_" target="_blank">
+            <i class="fa fa-twitter item-icon" aria-hidden="true"></i>
+            <h4 class="item-description">
+              <strong>¡Escríbenos un tuit!</strong>
+            </h4>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item">
+          <a href="https://www.facebook.com/truliilatam/" target="_blank">
+            <i class="fa fa-facebook item-icon" aria-hidden="true"></i>
+            <h4 class="item-description">
+              <strong>¡Escríbenos un mensaje!</strong>
+            </h4>
+
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item">
+          <a href="https://www.linkedin.com/company/trulii?trk" target="_blank">
+            <i class="fa fa-linkedin-square item-icon" aria-hidden="true"></i>
+            <h4 class="item-description">
+              <strong>¡Chatea con nosotros!</strong>
+            </h4>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item">
+          <a href="#" target="_blank">
+            <i class="fa fa-newspaper-o item-icon" aria-hidden="true"></i>
+            <h4 class="item-description">
+              <strong>Danos tu feedback</strong>
+            </h4>
+          </a>
+        </div>
+      </li>
+      <li>
+        <div class="item">
+          <a href="#" target="_blank">
+            <i class="fa fa-map-marker item-icon" aria-hidden="true"></i>
+            <h4 class="item-description">
+              <strong>¡Estamos aquí!</strong>
+            </h4>
+          </a>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
 <trulii-footer>

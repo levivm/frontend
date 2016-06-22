@@ -23,13 +23,12 @@
             options : {
                 actions: ['view']
             },
-            paginationOpts : {
-                totalItems: 0,
-                itemsPerPage: 6,
-                maxPagesSize:6,
-                pageNumber: 1
+            activitiesPaginationOpts : {
+                totalItems : 0,
+                itemsPerPage : 8,
+                pageNumber : 1,
+                maxPagesSize : 10
             },
-            pageNumber : 1,
             activities : [],
             reviews : [],
             totalReviews: 0,
@@ -49,12 +48,18 @@
         }
         
         function pageChange(){
-          ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', vm.paginationOpts.pageNumber,  vm.paginationOpts.itemsPerPage)
+          ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', vm.activitiesPaginationOpts.pageNumber,  vm.activitiesPaginationOpts.itemsPerPage)
           .then(function (response) {
             console.log(response);
             vm.activities = response.results;
-            vm.paginationOpts.totalItems = response.count;
-            vm.activities = vm.activities.slice(0, vm.paginationOpts.itemsPerPage);
+            vm.activitiesPaginationOpts.totalItems = response.count;
+            vm.activities = vm.activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
+
+            for(var i = 0; i < vm.activities.length; i++){
+                vm.activities[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+        
+            vm.cards = vm.activities;
           });
         }
 
@@ -71,7 +76,7 @@
         }
 
         function _setActivities(){
-            vm.paginationOpts.totalItems = activities.count;
+            vm.activitiesPaginationOpts.totalItems = activities.count;
             vm.activities = activities.results;
             for(var i = 0; i < activities.results.length; i++){
                 activities.results[i].template = "partials/activities/dynamic_layout_item.html";
@@ -82,6 +87,7 @@
 
         function _setOrganizerCity(){
             LocationManager.getAvailableCities().then(successCities);
+            vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
 
             function successCities(cities){
                 vm.city = _getCity(cities, organizer);
@@ -91,6 +97,7 @@
                 if(organizer.locations.length > 0){
                     var cityId = organizer.locations[0].city.id;
                     cities.find(isSameCity);
+                    vm.organizer.location = organizer.locations[0];
                 } else {
                     return null;
                 }
@@ -106,7 +113,7 @@
             vm.reviews = reviews.results;
             vm.totalReviews = reviews.results.length;
             vm.hasMoreReviews= vm.reviews.length > visibleReviewListSize;
-          console.log('reviews', vm.reviews);
+            console.log('reviews', vm.reviews);
         }
 
         function _setCurrentState(){
@@ -125,10 +132,11 @@
                 LABEL_UNPUBLISHED_ACTIVITIES: "no tiene actividades",
                 LABEL_BIO: "Biografía",
                 LABEL_CONTACT: "Contactar",
-                LABEL_COMMENTS: "Comentarios",
+                LABEL_REVIEWS: "Evaluaciones",
                 LABEL_TOTAL: "en total",
-                LABEL_MORE_COMMENTS: "Ver más comentarios",
-                LABEL_NO_MORE_COMMENTS: "No hay más comentarios",
+                LABEL_MORE_REVIEWS: "Ver más evaluaciones",
+                LABEL_ADDRESS: "Dirección",
+                LABEL_NO_MORE_REVIEWS: "No hay más evaluaciones",
                 COPY_MEMBER_SINCE: "Miembro desde ",
                 COPY_VERIFIED_1: "Organizador",
                 COPY_VERIFIED_2: "verficado por Trulii"
@@ -163,9 +171,9 @@
             _setReviews();
             //console.log('organizer:', organizer);
 
-            //vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
+            //vm.activities = activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
             //if(vm.activities.length > 0)
-            //  vm.activities = activities.slice(0, vm.paginationOpts.itemsPerPage);
+            //  vm.activities = activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
             //console.log('organizer:', organizer);
             //console.log('reviews:', reviews);
         }

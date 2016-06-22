@@ -29,7 +29,7 @@
 
                 angular.extend(scope, {
                     state: null,
-                    isSearchVisible : true,
+                    isSearchVisible : isSearchVisible,
                     showBurger : false,
                     showMenu:false,
                     showDropMenu: showDropMenu,
@@ -125,7 +125,10 @@
                     scope.showCities=false;
                 }
                 function isLandingState(){
-                  return (($state.current.name==='home' || $state.current.name==='activities-detail') && scope.scroll<100);
+                    return (($state.current.name==='home' || $state.current.name==='activities-detail' || $state.current.name==='activities-enroll') && scope.scroll<100);
+                }
+                function isSearchVisible(){
+                     return (!($state.current.name==='search') && scope.scroll<100);
                 }
                 function howToWorkStudent(){
                     _stateGoHowto(STATE_HOW_TO_WORK_HOME);
@@ -167,7 +170,6 @@
                         scope.userLogged = true;
                         Authentication.isOrganizer().then(function (result) {
                             scope.user.is_organizer = result;
-                            scope.isSearchVisible = !result;
                             scope.subItems ={
                                 activities: false,
                                 account: false,
@@ -345,7 +347,6 @@
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');
                         Analytics.sendPageView();
-                        scope.isSearchVisible = !(toState.name == 'home' || toState.name == 'not-found' || $state.includes('dash'));
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
