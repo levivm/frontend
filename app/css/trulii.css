@@ -17016,23 +17016,34 @@ td {
 .panel-default {
   box-shadow: none;
   border: 1px solid #ededed;
-  border-radius: 0;
+  border-radius: 4px;
   color: #222328;
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .panel-default .panel-heading {
   border: 0;
-  color: #9b9b9b;
-  padding: 1em 1em;
+  padding: 0.7em 1em;
   position: relative;
+  background: white;
 }
 .panel-default .panel-body {
   padding: 3em;
+  border-top: 1px solid #ededed;
 }
 @media screen and (max-width: 992px) {
   .panel-default .panel-body {
     padding: 20px 0;
   }
+}
+.panel-default .panel-body .input-search input[type="text"] {
+  height: 40px !important;
+}
+.panel-default .panel-body .input-search i {
+  position: absolute;
+  right: 30px;
+  top: 11px;
+  font-size: 1.4em;
+  color: #b9bed1;
 }
 .panel-default__dashboard {
   padding: 0.8em 2em;
@@ -17086,9 +17097,10 @@ td {
 }
 .panel-default .panel-date {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 13em;
+  width: 10em;
   float: left;
-  padding: 0 3%;
+  padding: 0.1em 1em;
+  font-size: 0.9em;
 }
 @media screen and (max-width: 992px) {
   .panel-default .panel-date {
@@ -17097,9 +17109,6 @@ td {
 }
 .panel-default .panel-date:nth-child(1) {
   border-right: 1px solid #cbcbcb;
-}
-.panel-default .panel-date:nth-child(2) {
-  padding-left: 4%;
 }
 .panel-default .panel-counter {
   width: 25em;
@@ -17128,8 +17137,11 @@ td {
 .panel-default .expand {
   position: absolute;
   right: 1em;
-  top: 1em;
+  top: 0.7em;
   color: #cbcbcb;
+}
+.panel-default table tr th {
+  padding: 25px 1em 10px 1em;
 }
 @media screen and (max-width: 992px) {
   .panel-default table tr th {
@@ -17137,9 +17149,8 @@ td {
   }
 }
 .panel-default table tr td {
-  padding: 2em 1em;
+  padding: 1em 1em;
   font-size: 1em;
-  color: #9b9b9b;
 }
 @media screen and (max-width: 768px) {
   .panel-default table tr th,

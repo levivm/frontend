@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid limited-width-dashboard">
     <div class="col-xs-12">
       <a class="btn btn-default" ui-sref="dash.activities-manage.assistants">Regresar</a>
       <button class="btn btn-default" ng-click="print.printList()" ng-bind="::print.strings.ACTION_PRINT"></button>
@@ -6,7 +6,7 @@
           <div class="page" ng-repeat="page in print.pages">
               <div class="subpage">
                   <div class="col-xs-3">
-                      <img ng-src="{{manage.getAmazonUrl('static/img/trulii-inverse-med.png')}}" alt="Trulii Logo" class="img-responsive">
+                      <img ng-src="{{manage.getAmazonUrl('static/img/logo-green.png')}}" alt="Trulii Logo" class="img-responsive">
                   </div>
                   <div class="col-xs-7 col-xs-offset-2">
                       <div class="separate-above-less">
