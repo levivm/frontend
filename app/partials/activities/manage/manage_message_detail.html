@@ -1,27 +1,32 @@
-<div class="row fade in">
+<div class="row fade in limited-width-dashboard">
+    
+    <div class="col-xs-12 panel-default panel-default__dashboard ">
+        <a class="btn btn-default separate-right-less"
+            ui-sref="dash.activities-manage.messages({activity_id: {{detail.activity.id}}})">
+            <span ng-bind="::detail.strings.ACTION_GO_BACK"></span>
+        </a>
+        <span class="panel-default__dashboard-title" ng-bind="::detail.strings.SECTION_MESSAGES"></span>
+        <i class="dashboard-messages-detail__delete glyphicon glyphicon-trash pull-right" ng-click="detail.deleteMessage()"></i>
+    </div>
   <div class="col-xs-12">
       <div class="separate-above dashboard-messages-detail col-xs-12">
-        <div class="title-message">
-            <h1 class="font-light" ng-bind="::detail.message.activity"></h1>
-        </div>
-        <div class="content-message">
-            <div class="row">
-                <div class="col-md-1">
-                    <img class="user-picture" ng-if="detail.message.organizer.photo === null" ng-src="{{manage.getAmazonUrl('static/img/default_profile_pic.jpg')}}" alt="">
-                    <img class="user-picture" ng-if="detail.message.organizer.photo !== null" ng-src="{{detail.message.organizer.photo}}" alt="">
-                </div>
-                <div class="col-md-8 text-line-more-xl">
-                    <span class="font-regular text-lg" ng-bind="::detail.message.organizer.name"></span>
-                </div>
-                <div class="col-md-3 text-line-more-xl text-right">
-                    <span class="text-gray-light font-light" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
+          <div class="content-message">
+                <div class="col-xs-12  dashboard-messages__header">
+                    <div class="dashboard-messages__header-first">
+                        <div class="text-line-more-xl dashboard-messages__title">
+                            <h4 class="text-blue-dark font-semibold"  ng-bind="::detail.message.activity"></h4>
+                            <div class="font-light">
+                                <p ng-bind="::detail.message.message"></p>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="text-line-more-xl text-right dashboard-messages__date">
+                        <span class="text-gray-dark font-regular" ng-bind="::detail.message.initial_date | date: 'dd MMM yyyy'"></span>
+                    </div>
                 </div>
             </div>
-
-            <div class="separate-above-less ">
-                <p class="text-dark font-light" ng-bind="::detail.message.message"></p>
-            </div>
-        </div>
       </div>
   </div>
 </div>
+
+

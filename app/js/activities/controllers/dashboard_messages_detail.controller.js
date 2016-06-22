@@ -37,6 +37,8 @@
             }
             angular.extend(vm.strings, {
                 TITLE_NEW_MESSAGE: "Nuevo Mensaje",
+                SECTION_MESSAGES: "Mensajes > Detalle",
+                ACTION_GO_BACK: "Regresar",
                 SEARCH_PLACEHOLDER: "Buscar",
                 OPTION_ACTIVITY_DEFAULT: "Seleccione una actividad",
                 OPTION_CALENDAR_DEFAULT: "Seleccione una fecha de inicio",
