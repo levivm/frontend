@@ -15955,7 +15955,7 @@ input[type="tel"] {
 }
 select {
   height: 52px !important;
-  border-radius: 52px;
+  border-radius: 52px !important;
   font-weight: 700;
   padding: 0em 2em !important;
   border: 1px solid #f0f2f7 !important;
@@ -15990,7 +15990,7 @@ select.input-lg {
   font-size: 25px;
   color: #a1a6bb;
   right: 20px;
-  top: 4px;
+  top: 10px;
   position: absolute;
   font-weight: 100;
   z-index: 100;
@@ -16005,7 +16005,7 @@ select.input-lg {
   font-size: 17px;
   color: #767676;
   right: 20px;
-  top: 10px;
+  top: 13px;
   position: absolute;
   font-weight: 100;
   z-index: 100;
