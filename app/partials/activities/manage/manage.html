@@ -1,40 +1,48 @@
-<div class="container-fluid">
+
+<div class="cover-edit-activity">
+    <div class="cover-edit-activity__content">
+         <div class="cover-edit-activity__content-first">
+             <div class="cover-edit-activity__content-title">
+                 <h1 ng-bind="manage.activity.title"></h1>
+                 <h5 ng-bind="manage.activity.organizer.name"></h5>
+             </div>
+         </div>
+    </div>
+</div>
+<div menu-activity class="container-fluid container-fluid limited-width-dashboard-container limited-width-dashboard-container-edit-activity">
     <div class="row">
-        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': manage.scroll > 80, 'hidden-xs': !manage.showSidebar, 'hidden-sm': !manage.showSidebar}" style="padding-bottom: 48px">
-            <ul>
-                <li>
-                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ASSISTANTS)"
-                       ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
-                       ui-sref-active="sidebar__item--selected">
-                        <i class="sidebar__item__icon mdi-social-people"></i>
-                        <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
-                    </a>
-                </li>
-                <li>
-                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ORDERS)" ui-sref=".orders" ui-sref-opts="{reload: true}" class="sidebar__item"
-                       ui-sref-active="sidebar__item--selected">
-                        <i class="sidebar__item__icon mdi-maps-local-atm"></i>
-                        <span ng-bind="::manage.strings.TAB_ORDERS"></span>
-                    </a>
-                </li>
-                <li>
-                    <a  ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_MESSAGES)"
-                      ui-sref=".messages" ui-sref-opts="{reload: true}" class="sidebar__item"
-                      ui-sref-active="sidebar__item--selected">
-                        <i class="sidebar__item__icon mdi-communication-email"></i>
-                        <span ng-bind="::manage.strings.TAB_MESSAGES"></span>
-                    </a>
-                </li>
-                <li>
-                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_SUMMARY)"
-                      ui-sref=".summary" ui-sref-opts="{reload: true}" class="sidebar__item"
-                      ui-sref-active="sidebar__item--selected">
-                        <i class="sidebar__item__icon mdi-action-trending-up"></i>
-                        <span ng-bind="::manage.strings.TAB_SUMMARY"></span>
-                    </a>
-                </li>
-            </ul>
-            <div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
+        <ul class="sidebar sidebar-edit-activity hidden-xs hidden-sm">
+            <li class="sidebar__item"
+               ui-sref-active="sidebar__item--selected">
+                 <a  ui-sref=".summary" ui-sref-opts="{reload: true}" 
+                     ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_SUMMARY)">
+                     <span ng-bind="::manage.strings.TAB_SUMMARY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                 <a  ui-sref=".assistants" ui-sref-opts="{reload: true}" 
+                     ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ASSISTANTS)">
+                     <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+               ui-sref-active="sidebar__item--selected">
+                 <a  ui-sref=".orders" ui-sref-opts="{reload: true}" 
+                     ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ORDERS)">
+                     <span ng-bind="::manage.strings.TAB_ORDERS"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+               ui-sref-active="sidebar__item--selected">
+                 <a  ui-sref=".messages" ui-sref-opts="{reload: true}"
+                     ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_MESSAGES)">
+                     <span ng-bind="::manage.strings.TAB_MESSAGES"></span>
+                </a>
+            </li>
+            
+        </ul>
+            <!--<div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
               <div class="sidebar__bottom-action-dark-edit-acitivity">
                   <ul class="list-inline list-unstyled text-center text-uppercase">
                       <li>
@@ -45,9 +53,9 @@
                       </li>
                   </ul>
               </div>
-            </div>
-        </div>
-        <div class="col-xs-12 with-footer">
+            </div>-->
+        <div ui-view class="col-xs-12 with-footer"></div>
+       <!-- <div class="col-xs-12 with-footer">
             <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
                 <a class="btn btn-default pull-right"
                     ng-click="manage.actionNavbarSecondary(manage.strings.ACTION_VIEW)"
@@ -76,9 +84,7 @@
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
                 <img class="img-responsive" ng-src="{{manage.getAmazonUrl('static/img/close_dark.png')}}" alt=""/>
             </a>
-        </div>
-        <div class="col-xs-12">
-            <trulii-dashboard-footer></trulii-dashboard-footer>
-        </div>
+        </div>-->
     </div>
 </div>
+<trulii-footer></trulii-footer> 

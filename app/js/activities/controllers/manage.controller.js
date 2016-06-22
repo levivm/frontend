@@ -193,6 +193,7 @@
             calendar.toDate = $filter('date')(calendar.closing_sale, 'dd MMM yy');
             return calendar;
         }
+        
 
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
@@ -253,7 +254,7 @@
                 HEADER_UNIT_PRICE:"Precio Unitario",
                 HEADER_TOTAL:"Total",
                 HEADER_STATUS:"Estatus",
-                LABEL_FINAL_TOTAL: "Ventas netas:",
+                LABEL_FINAL_TOTAL: "Ventas netas:", 
                 LABEL_TOTAL: "Ventas brutas:",
                 LABEL_FEE: "Comisión Trulii:",
                 COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades"
@@ -265,12 +266,13 @@
                 vm.scroll = scroll;
                 $scope.$apply();
               }
-            );
+            ); 
         }
 
         function _activate() {
             _setStrings();
             _initScroll();
+           // _initWidget();
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
