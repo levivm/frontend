@@ -104,7 +104,6 @@
 
         function addErrors(form, responseErrors) {
             //form.$valid = false;
-            console.log(responseErrors);
             angular.forEach(responseErrors, function (fieldErrors, field) {
                 var message = fieldErrors[0];
 
