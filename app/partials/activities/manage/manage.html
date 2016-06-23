@@ -40,7 +40,7 @@
                 </a>
             </li>
             <li class="sidebar__item"
-               ui-sref-active="sidebar__item--selected">
+                 ng-class="{'sidebar__item--selected': manage.isActive('dash.activities-manage.messages'), 'sidebar__item--selected_message': manage.isActive('dash.activities-manage.messages-detail')}">
                  <a  ui-sref=".messages" ui-sref-opts="{reload: true}"
                      ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_MESSAGES)">
                      <span ng-bind="::manage.strings.TAB_MESSAGES"></span>

@@ -15580,6 +15580,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: #ededed;
   transition: ease all 0.1s;
 }
+.sidebar__item--selected_message {
+  background: #ededed;
+  transition: ease all 0.1s;
+}
 .sidebar__item--selected-edit-activity {
   background: #ededed;
   transition: ease all 0.1s;
@@ -17143,8 +17147,13 @@ td {
   top: 0.7em;
   color: #cbcbcb;
 }
+.panel-default .table tbody tr td.column-button,
+.panel-default .table tfoot tr td.column-button {
+  padding-top: 0.7em !important;
+}
 .panel-default table tr th {
   padding: 25px 1em 10px 1em;
+  background-color: white;
 }
 @media screen and (max-width: 992px) {
   .panel-default table tr th {
@@ -17161,6 +17170,10 @@ td {
     padding: 1.5em 5px !important;
     font-size: 0.7em;
   }
+}
+.panel-default table tr th .column-button,
+.panel-default table tr td .column-button {
+  padding-top: 0.7em !important;
 }
 @media screen and (max-width: 992px) {
   .panel-default table tr th,
@@ -24719,9 +24732,9 @@ input[type=text].form-control.referral-link:focus {
   width: 100%;
   height: 40px;
   margin: 0 -3em;
-  padding: 12px 2em;
-  background-color: #ffffff;
-  color: #9b9b9b;
+  padding: 12px 0em;
+  background-color: #e4e7ef;
+  color: #222328;
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 0;
@@ -24735,7 +24748,8 @@ input[type=text].form-control.referral-link:focus {
   }
 }
 .panel-body .order-total ul {
-  font-size: 0.9em;
+  font-size: 1em;
+  font-weight: 400;
 }
 @media screen and (max-width: 992px) {
   .panel-body .order-total ul {
@@ -24744,7 +24758,7 @@ input[type=text].form-control.referral-link:focus {
   }
 }
 .panel-body .order-total ul li {
-  width: 30%;
+  width: 33%;
 }
 @media screen and (max-width: 992px) {
   .panel-body .order-total ul li {

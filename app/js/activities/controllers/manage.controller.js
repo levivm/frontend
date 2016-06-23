@@ -61,6 +61,9 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
+        function isActive(){
+            return $state.includes(stateStr);
+        }
 
 
         function isActive(stateStr){
@@ -193,6 +196,7 @@
             calendar.toDate = $filter('date')(calendar.closing_sale, 'dd MMM yy');
             return calendar;
         }
+         
         
 
         function _setStrings() {
@@ -205,6 +209,7 @@
                 ACTION_PRINT: "Imprimir",
                 COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad agrupadas por calendario",
                 SECTION_ASSISTANTS: "Lista de asistentes",
+                SECTION_ORDERS: "Ordenes de compra",
                 COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
@@ -277,6 +282,7 @@
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
+            console.log($state);
             //console.log("reloadin",assistants);
         }
     }

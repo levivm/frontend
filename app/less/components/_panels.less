@@ -135,10 +135,14 @@
         top: 0.7em;
         color: @gray-light;
     }
+    .table tbody tr td.column-button, .table tfoot tr td.column-button {
+       padding-top: 0.7em !important;
+    }
     table{
         tr{ 
           th{
              padding: 25px 1em 10px 1em;
+             background-color: white;
             .before-md({
               background-color: white;
             });
@@ -152,7 +156,9 @@
                 padding: 1.5em 5px !important;
                 font-size: 0.7em;
               });
-              
+              .column-button{
+                 padding-top: 0.7em !important;
+              }
               .before-md({
                 padding: 1.5em 2em;
                 font-size: 0.7em;
