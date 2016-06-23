@@ -19519,9 +19519,9 @@ button.toast-close-button {
 .trulii-cover-small__content .btn-lg,
 .trulii-cover-medium__content .btn-lg,
 .trulii-cover-regular__content .btn-lg {
-  font-size: 1.2em;
-  padding: 0.8em;
-  width: 15em;
+  font-size: 1.1em;
+  padding: 0.7em;
+  width: 14em;
   margin: 0 auto;
 }
 @media screen and (max-width: 992px) {
