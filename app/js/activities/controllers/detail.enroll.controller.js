@@ -535,8 +535,8 @@
         function removeAssistant(index) {
             if (vm.quantity > 1) {
                 vm.quantity -= 1;
-                vm.assistants.splice(index, 1);
-                vm.assistantsForms.splice(index, 1);
+                vm.assistants.splice(vm.quantity, 1);
+                vm.assistantsForms.splice(vm.quantity, 1);
                 _calculateAmount();
             } else {
                 Toast.warning('Es necesario al menos un asistente a inscribir');
@@ -772,7 +772,7 @@
                 LABEL_BANK: "Seleccione un banco",
                 OPTION_BANK_DEFAULT: "Seleccione un banco",
                 LABEL_USER_TYPE:"Tipo de Persona",
-                OPTION_USER_TYPE_DEFAULT: "Seleccione  una opción",
+                OPTION_USER_TYPE_DEFAULT: "Seleccione una opción",
                 LABEL_ID_TYPE:"Tipo de Documento de Identificación",
                 OPTION_ID_TYPE_DEFAULT:"-- Seleccione Tipo de Documento --",
 

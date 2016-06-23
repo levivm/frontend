@@ -79,7 +79,7 @@
                         </div>
                         <div class="gallery-grid__photo">
                             <div class="no-margin card card-list-item card-list-item--empty drop-box no-padding"
-                                 style="height: 12em"
+                                 style="height: 10em"
                                  ng-show="gallery.pictures.length < 5"
                                  ng-model="gallery.picture" ng-file-drop="" ng-file-select="" ng-multiple="false"
                                  drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
@@ -115,7 +115,9 @@
                         <youtube-video ng-if="gallery.activity.youtube_video_url"
                                        video-url="gallery.activity.youtube_video_url"
                                        player-width="'100%'"></youtube-video>
-                        <trulii-submit-controls class="separate-above separate-below-more" is-saving="gallery.isSaving"
+                        <trulii-submit-controls class="separate-above separate-below-more" 
+                                                is-saving="gallery.isSaving"
+                                                edit-activity="true"
                                                 value="{{::gallery.strings.ACTION_SAVE_ACTIVITY}}"></trulii-submit-controls>
                     </form>
                 </div>

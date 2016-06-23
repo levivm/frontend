@@ -11,17 +11,17 @@ input, textarea, select{
 	color: @blue-dark !important;
 }
 input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="tel"]{
-	height: 45px !important;
-    border-radius: 1.7em ;
+	height: 52px !important;
+    border-radius: 52px !important;
     font-weight: 700;
 	padding: 0em 2em !important;
-	border: 1px solid @gray-lighter;
+	border: 1px solid @gray-lighter !important;
 	box-shadow: 0 0 !important;
 }
 
 select{
-	height: 45px !important;
-    border-radius: 1.7em !important;
+	height: 52px !important;
+    border-radius: 52px !important;
     font-weight: 700;
     padding: 0em 2em !important;
     border: 1px solid  @gray-lighter-brand !important;
@@ -58,7 +58,7 @@ select{
 			font-size: 25px;
 			color: @gray-dark-brand;
 			right: 20px;
-			top: 4px;
+			top: 10px;
 			position: absolute;
 			font-weight: 100;
 			z-index: 100;
@@ -74,10 +74,10 @@ select{
 			&:after{
 				content: "\f133";   
 				font-family: "FontAwesome";
-				font-size: 20px;
+				font-size: 17px;
 				color: @gray-dark;
 				right: 20px;
-				top: 6px;
+   				top: 13px;
 				position: absolute;
 				font-weight: 100;
 				z-index: 100;
@@ -370,6 +370,7 @@ tags-input{
 		width: 2em;
 		border-radius: 0;
 		padding: 0 !important;
+		font-size: 0.8em;
 	}
 
 	.counter-control{
@@ -446,4 +447,12 @@ tags-input{
 .input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .btn-group > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle), .input-group-btn:last-child > .btn-group:not(:last-child) > .btn{
 	border-bottom-right-radius: 0 !important;
     border-top-right-radius: 0 !important;
+}
+.input-group{
+	.form-control{
+		&:first-child{
+			border-bottom-left-radius: 52px !important;
+    		border-top-left-radius: 52px !important;
+		}
+	}
 }

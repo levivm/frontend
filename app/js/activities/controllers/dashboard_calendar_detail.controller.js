@@ -20,9 +20,12 @@
     function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar, $document, $timeout) {
 
         var vm = this;
+        var MAX_LENGTH_NOTE = 200;
+        
+        vm.maxLengthNote = MAX_LENGTH_NOTE;
         vm.activity_calendar_form = {};
         vm.calendar = angular.copy(calendar);
-
+        
         activate();
 
         function _createCalendar() {
@@ -107,7 +110,7 @@
                 LABEL_IS_FREE: "Habilitar inscripción gratuita",
                 LABEL_START_DATE: "Fecha de inicio",
                 LABEL_CLOSE_SALES: "Cierre de ventas",
-                TOOLTIP_CLOSE_SALES: "El cierre de ventas debe ser menor a la primera sesión",
+                TOOLTIP_CLOSE_SALES: "El cierre de ventas debe ser menor a la primera sesión.",
                 LABEL_CALENDAR_SEATS: "Cupos disponibles",
                 LABEL_SESSION_PRICE: "Precio (COP)",
                 LABEL_NOTES: "Notas",

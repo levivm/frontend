@@ -15,9 +15,9 @@
                 <div class="col-md-6">
                     <div class="form-group " trulii-input-errors-control="closing_sale">
                         
-                        <label class="control-label" for="closing_sale" >
+                        <label class="control-label"  >
                             <span ng-bind="::calendar.strings.LABEL_CLOSE_SALES"></span>
-                             <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top" tooltip="{{::calendar.strings.TOOLTIP_CLOSE_SALE}}"></i>
+                             <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top" tooltip="{{::calendar.strings.TOOLTIP_CLOSE_SALES}}"></i>
                         </label>
                         <div class="select-forms select-forms__date">
                             <label>
@@ -28,7 +28,7 @@
                                         max-date="null" close-text="Close"
                                         ng-click="calendar.calendar.openCloseDate($event)" ng-readonly='true'
                                         />
-                            </label>
+                            </label> 
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                     <div class="form-group " trulii-input-errors-control="available_capacity">
                         <label class="control-label" for="available_capacity" ng-bind="::calendar.strings.LABEL_CALENDAR_SEATS"></label>
                         <input id="available_capacity" class="form-control " type="number" name="available_capacity"
-                                placeholder="0.00" min="0"
+                                placeholder="0" min="0"
                                 ng-model="calendar.calendar.available_capacity" />
                     </div>
                 </div>
@@ -66,8 +66,9 @@
                                 name="short_description"
                                 ng-model="calendar.calendar.note"
                                 placeholder="{{::calendar.strings.PLACEHOLDER_NOTES}}"
-                                maxlength="400"
+                                maxlength="{{ calendar.maxLengthNote }}"
                                 ></textarea>
+                       <span class="text-muted pull-right" ng-bind="calendar.maxLengthNote  - calendar.calendar.note.length"></span>
                   </div>
             </div>
 

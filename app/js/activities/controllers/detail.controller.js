@@ -517,7 +517,7 @@
         }
 
         function _initSignup(){
-          vm.selectedActivity = -1;
+          vm.selectedActivity = 0;
         }
 
         function _updateUrl(){

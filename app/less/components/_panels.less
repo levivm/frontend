@@ -6,20 +6,35 @@
 .panel-default{
     box-shadow: none;
     border: 1px solid @gray-lighter;
-    border-radius: 0;
+    border-radius: 4px;
     color: @gray-darker;
     font-family: @font-sans;
     .panel-heading{
         border: 0;
-        color: @gray-regular;
-        padding: 1em 1em;
+        padding: 0.7em 1em;
         position: relative;
+        background: white;
     }
     .panel-body{
         padding:3em;
+        border-top: 1px solid @gray-lighter;
         .before-md({
           padding: 20px 0;
         });
+        
+        .input-search{
+            
+            input[type="text"]{
+                    height: 40px !important;
+             }
+             i{
+                position: absolute;
+                right: 30px;
+                top: 11px;
+                font-size: 1.4em;
+                color: @gray-regular-brand;
+             }
+        } 
     }
     
     &__dashboard{
@@ -77,19 +92,17 @@
     
     .panel-date{
         font-family: @font-sans-alt;
-        width: 13em;
+        width: 10em;
         float: left;
-        padding: 0 3%;
-        
+        padding: 0.1em 1em;
+        font-size: 0.9em;
+
         .before-md({
           width: 8em;  
         });
         
         &:nth-child(1){
-            border-right: 1px solid @gray-light;;
-        }
-        &:nth-child(2){
-            padding-left:4%;
+            border-right: 1px solid @gray-light;
         }
     }
     .panel-counter{
@@ -119,27 +132,33 @@
     .expand{
         position: absolute;
         right: 1em;
-        top: 1em;
+        top: 0.7em;
         color: @gray-light;
     }
+    .table tbody tr td.column-button, .table tfoot tr td.column-button {
+       padding-top: 0.7em !important;
+    }
     table{
-        tr{
+        tr{ 
           th{
+             padding: 25px 1em 10px 1em;
+             background-color: white;
             .before-md({
               background-color: white;
             });
           }
           td{
-              padding: 2em 1em;
+              padding: 1em 1em;
               font-size: 1em;
-              color: @gray-regular;
           }
           th, td{
              .before-sm({
                 padding: 1.5em 5px !important;
                 font-size: 0.7em;
               });
-              
+              .column-button{
+                 padding-top: 0.7em !important;
+              }
               .before-md({
                 padding: 1.5em 2em;
                 font-size: 0.7em;

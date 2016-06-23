@@ -184,13 +184,14 @@
               src="{{ picture.photo }}" alt=""
               ng-show="detail.currentGalleryPicture === $index"/>
             </div>
-            <img class="gallery-previous" ng-hide="detail.currentGalleryPicture < 1"
-              ng-src="{{detail.getAmazonUrl('static/img/activity-detail/gallery_slider_left.png')}}" alt="Previous Picture"
-              ng-click="detail.previousGalleryPicture()"/>
-            <img class="gallery-next"
-              ng-src="{{detail.getAmazonUrl('static/img/activity-detail/gallery_slider_right.png')}}" alt="Next Picture"
-              ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
-              ng-click="detail.nextGalleryPicture()"/>
+
+            <i class="gallery-previous mdi-hardware-keyboard-arrow-left" ng-hide="detail.currentGalleryPicture < 1"
+              ng-click="detail.previousGalleryPicture()">
+            </i>
+            <i class="gallery-next mdi-hardware-keyboard-arrow-right" ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
+              ng-click="detail.nextGalleryPicture()">
+            </i>
+            
           </div>
         </div>
       </div>
@@ -474,7 +475,7 @@
               <div class="sessions">
                 <h4 class="sessions__header text-uppercase" ng-bind="::detail.strings.LABEL_SCHEDULE"></h4>
                   <h5 class="separate-above-less" ng-repeat="session in detail.activity.upcoming_calendars[detail.selectedActivity].sessions">
-                    <span ng-bind="session.date | date: 'EEEE d MMM y'"></span>
+                    <strong ng-bind="session.date | date: 'EEEE d MMM y'"></strong>
                     <br>
                     <span ng-bind="session.start_time | date: 'h:mm a'"></span>
                     <span ng-bind="detail.COPY_TO"></span>
@@ -502,7 +503,7 @@
                 <h5>
                   <strong class="text-uppercase" ng-bind="detail.strings.LABEL_ADDRESS"></strong>
                   <span>:</span>
-                  <span ng-bind="detail.activity.location.address"></span>
+                  <span class="text-uppercase" ng-bind="detail.activity.location.address"></span>
                 </h5>
               </div>
               <ui-gmap-google-map class="map" center='detail.map.center' zoom='detail.map.zoom'
@@ -610,7 +611,7 @@
       </div>
       <p class="contact-us">
         <span ng-bind="::detail.strings.COPY_DOUBTS"></span>
-        <a class="text-uppercase" ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a>
+        <a class="text-uppercase" target="_blank" ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a>
       </p>
     </div>
   </div>

@@ -751,6 +751,10 @@
 	max-height: 90vh;
 	overflow-y: auto;
 	padding: 0;
+	
+	&__manage{
+		min-height: 12vh;
+	}
 	a{
 		padding: 1em 1em 1em 3em;
 		cursor: pointer;
@@ -993,15 +997,14 @@
 
 //Styles of Angular Text
 .ta-root.focussed > .ta-scroll-window.form-control {
-    border-color: @brand-primary !important;
-    outline: 0;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px @brand-primary !important;
-    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px @brand-primary !important;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px @brand-primary !important;
+	border-color: transparent;
+	box-shadow: none !important;
 }
-
+.ta-scroll-window.form-control {
+    border: 1px solid @gray-lighter  !important;
+}
 .ta-scroll-window > .ta-bind {
-    border: 1px solid @btn-default-border !important;
+    border: 1px solid @gray-lighter !important;
 	padding: 2em;
 		&::before{
 			color: #9E9E9E !important;
@@ -1027,10 +1030,30 @@
 }
 
 .well-auth{
+	
     &.well{
+		p, h1, h2, h3, h4, h5{
+			font-weight: 500;
+			color: @gray-darker-brand;
+			line-height: 1.5em;
+		}
+		a{
+			color: @brand-warning;
+			text-decoration: underline;
+			font-weight: regular;
+			&.text-brand-dark{
+				color: @gray-darker-brand;
+			}
+		}
       max-width: 400px;
       margin: 0 auto;
+	  padding: 0 5% !important;
     }
+	&-lg{
+		&.well{
+			max-width: 800px;
+		}		
+	}
 }
 
 .limited-width{
@@ -1043,7 +1066,7 @@
 		padding: 0 50px;
 	}
 	@media (min-width: 1300px){
-		max-width: 1300px;
+		max-width: 1200px;
 	}
 	@media (max-width: 768px){
 		padding: 0;

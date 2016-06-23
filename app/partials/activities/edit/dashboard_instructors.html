@@ -1,13 +1,21 @@
 <div class="row limited-width-dashboard">
     <div class="col-xs-12 ">
         <div class="row">
-            <div class="col-xs-12 panel-default panel-default__dashboard">
-                    <span class="panel-default__dashboard-title" ng-bind="::instructors.strings.SECTION_INSTRUCTORS"></span>
-                    <span class="text-gray-dark separate-left-less" ng-bind="instructors.strings.COPY_INSTRUCTORS"></span>
+            <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+                    <h4 class="panel-default__dashboard-title" ng-bind="::instructors.strings.SECTION_INSTRUCTORS"></h4>
+                    
+                    <div class="add-instructors hidden-xs hidden-sm">
+                                    <span class="less" ng-click="instructors.removeInstructors()">-</span>
+                                    <span class="count" ng-bind="instructors.countInstructors"></span>
+                                    <span class="plus" ng-click="instructors.addInstructors()">+</span>
+                                </div>
+            </div>
+            <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+                    <span class="text-gray-dark " ng-bind="instructors.strings.COPY_INSTRUCTORS"></span>
             </div>
             <form name='instructors.activity_instructors_forms' class="col-xs-12">
                 <div class="row">
-                    <div class="col-md-12 horizontal-fade" ng-repeat="instructor in instructors.instructors track by $index">
+                    <div class="col-md-12 horizontal-fade" ng-repeat="instructor in instructors.instructors  ">
                         <trulii-instructor-card instructor="instructor" activity="instructors.activity"
                                                 organizer="instructors.organizer" on-change="instructors.updateActivity()"
                                                 available-instructors="instructors.availableInstructors"></trulii-instructor-card>

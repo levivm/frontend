@@ -19,7 +19,7 @@
 
 
 
-
+        
 
         /* Facebook initialization */
         FacebookProvider.init(serverConf.FACEBOOK_APP_KEY);
@@ -33,8 +33,6 @@
         $locationProvider.hashPrefix('!');
 
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-
 
 
         /**
