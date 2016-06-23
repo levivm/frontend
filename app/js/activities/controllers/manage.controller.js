@@ -222,12 +222,9 @@
                 LABEL_CALENDAR: "Fecha de inicio",
                 LABEL_SEARCH: "Buscar Ordenes",
                 LABEL_EMPTY_ORDERS: "No hay órdenes de compra",
-                COPY_EMPTY_ORDERS: "Aún no tienes órdenes de compra para esta actividad  ¿No atrae lo suficiente"
-                    + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
-                    + "un vídeo. ¡Ánimo!",
+                COPY_EMPTY_CALENDARS: "Por ahora nadie se ha inscrito a tu actividad. Estamos trabajando para conseguirte más inscripciones.",
                 LABEL_EMPTY_CALENDARS: "No hay calendarios",
-                COPY_EMPTY_CALENDARS: "Aún no tienes calendarios creados para esta actividad. Ve a la sección de "
-                + "Editar Actividad para comenzar a crear calendarios para que tus estudiantes se inscriban. ¡Anímate!",
+                COPY_EMPTY_ORDERS: "Por ahora no tienes ninguna orden de compra para esta actividad. Estamos trabajando pra conseguirte más inscripciones.",
                 LABEL_EMPTY_ASSISTANTS: "No hay asistentes",
                 COPY_EMPTY_ASSISTANTS: "Aún no tienes asistentes registrados en esta actividad¿No atrae lo suficiente"
                 + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
