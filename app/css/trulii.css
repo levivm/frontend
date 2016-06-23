@@ -11812,7 +11812,7 @@ hr.on-light {
 .add-sessions {
   position: absolute;
   right: 25px;
-  top: 9px;
+  top: 3px;
   border: 1px solid #ededed;
   border-radius: 7em;
   padding: 0 1em;
@@ -12310,7 +12310,7 @@ hr.on-light {
   min-height: 12vh;
 }
 .dashboard-messages a {
-  padding: 1em 1em 1em 3em;
+  padding: 1em;
   cursor: pointer;
   display: block;
   border-bottom: 1px solid #ededed;
@@ -16301,11 +16301,11 @@ tags-input input {
 }
 .counter-input .counter-field {
   background-color: transparent;
-  border: 0;
+  border: 0 !important;
   outline: none;
   text-align: center;
   width: 2em;
-  border-radius: 0;
+  border-radius: 0 !important;
   padding: 0 !important;
   font-size: 0.8em;
 }
@@ -17076,7 +17076,10 @@ td {
 }
 .panel-default__dashboard-sub-second {
   border-radius: 0px 0px 5px 5px;
-  padding: 1em 2em;
+  padding: 1em 1em 1em 2em;
+}
+.panel-default__dashboard-sub-second .btn-message {
+  margin-left: 5em;
 }
 .panel-default__dashboard__search {
   padding: 1.5em 2em;
@@ -21867,6 +21870,10 @@ blockquote {
     padding: 0 2em;
   }
 }
+.modal-email .input-error {
+  color: red;
+  margin-left: 2em;
+}
 .modal-email .modal-body {
   padding: 10px 60px;
 }
@@ -24194,6 +24201,12 @@ blockquote {
 .order-detail a.btn {
   text-decoration: none;
 }
+.order-detail__total {
+  display: flex;
+  justify-content: space-between;
+  width: 680px;
+  margin-left: 1em;
+}
 @media screen and (max-width: 992px) {
   .order-detail {
     display: block;
@@ -24215,7 +24228,7 @@ blockquote {
 }
 .order-detail .order-info {
   background-color: white;
-  padding: 0px 35px 25px 35px;
+  padding: 0px 35px 0px 20px ;
 }
 @media screen and (max-width: 992px) {
   .order-detail .order-info .table-responsive .table tbody tr th,
@@ -24227,6 +24240,20 @@ blockquote {
     padding: 20px .5em;
     font-size: 0.75em;
   }
+}
+.order-detail .order-info .order-mounts {
+  padding: 0px 10px !important;
+}
+.order-detail .order-info .order-mounts td {
+  padding: 0px 1em;
+  font-size: 1em;
+}
+.order-detail .order-info .order-mounts-first {
+  padding: 0px 0px !important;
+  border-top: 1px solid #dddddd;
+}
+.order-detail .order-info .order-mounts-first td {
+  padding: 15px 1em 0px 1em;
 }
 .order-detail .order-info .order-mobile__asisstant {
   border: 1px solid #ededed;

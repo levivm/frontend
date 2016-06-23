@@ -12,8 +12,8 @@
         .module('trulii.activities.controllers')
         .controller('ActivitySummaryCtrl', ActivitySummaryCtrl);
 
-    ActivitySummaryCtrl.$inject = ['ActivitiesManager', 'activity', '$q', 'Error', 'Toast', 'stats', 'moment', 'serverConf', '$scope', '$timeout'];
-    function ActivitySummaryCtrl(ActivitiesManager, activity, $q, Error, Toast, stats, moment, serverConf, $scope, $timeout) {
+    ActivitySummaryCtrl.$inject = ['$scope', '$q', '$timeout', 'ActivitiesManager', 'activity','Error', 'Toast', 'stats', 'moment', 'serverConf' ];
+    function ActivitySummaryCtrl($scope, $q, $timeout, ActivitiesManager, activity, Error, Toast, stats, moment, serverConf) {
 
         var vm = this;
         var d3Col = d3.locale ({
@@ -256,6 +256,7 @@
                 COPY_TOTAL_SEATS: "Total de cupos vendidos",
                 COPY_TOTAL_VIEWS: "Total de visitas recibidas",
                 COPY_SOLD_SEATS: "Cupos disponibles: ",
+                COPY_EMPTY_NEXT_DATE: "No hay próxima fecha",
                 COPY_SEATS: "cupos",
                 COPY_MONTHLY: "Mensual",
                 COPY_YEARLY: "Anual"
@@ -267,6 +268,7 @@
             _setDate();
             _setOptions(vm.TAB_MONTHLY);
             _parseData();
+            console.log(vm.stats);
         }
 
     }

@@ -19,13 +19,13 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams',  '$filter', '$location', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', '$filter', '$location'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager'];
 
-    function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
+    function ActivityDetailController($scope, $state, $stateParams,  $filter, $location, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, $filter, $location) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager) {
         var visibleReviewListSize = 3;
         var vm = this;
 

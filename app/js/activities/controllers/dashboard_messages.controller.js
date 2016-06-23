@@ -12,8 +12,8 @@
         .module('trulii.activities.controllers')
         .controller('ActivityMessagesCtrl', ActivityMessagesCtrl);
 
-    ActivityMessagesCtrl.$inject = ['ActivitiesManager', 'activity', 'messages', '$q', 'Error', 'Toast'];
-    function ActivityMessagesCtrl(ActivitiesManager, activity, messages, $q, Error, Toast) {
+    ActivityMessagesCtrl.$inject = ['$q','ActivitiesManager', 'activity', 'messages',  'Error', 'Toast'];
+    function ActivityMessagesCtrl($q, ActivitiesManager, activity, messages,  Error, Toast) {
 
         var vm = this;
         angular.extend(vm, {
@@ -33,7 +33,6 @@
 
         });
 
-        console.log(activity);
         _activate();
 
         //--------- Exposed Functions ---------//
@@ -49,13 +48,19 @@
 
 
         function toggleMessageShow(){
-            console.log(vm.showMessage);
             vm.showMessage = !vm.showMessage;
         }
 
 
         function submitMessage(){
-          activity.sendMessage(vm.message).then(_success, _error)
+           Error.form.clear(vm.message_form);
+           if(!vm.message.calendar){
+                vm.message.calendar={
+                    id: undefined
+                }
+           }
+           activity.sendMessage(vm.message).then(_success, _error)
+           
         }
 
 
@@ -72,8 +77,7 @@
         }
 
         function _error(response) {
-            if (response.data) { Error.form.add(vm.login_form, response.data); }
-            vm.errors.__all__ = response.data['non_field_errors'];
+            if (response.data) { Error.form.add(vm.message_form, response.data); }
             return $q.reject(response);
         }
 
@@ -111,7 +115,6 @@
         function _activate() {
             _setStrings();
             _loadCalendars();
-            console.log(vm.messages);
         }
 
     }

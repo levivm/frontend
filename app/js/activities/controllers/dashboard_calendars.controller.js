@@ -15,10 +15,10 @@
         .controller('ActivityCalendarsController', ActivityCalendarsController);
 
     ActivityCalendarsController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', '$filter', '$modal',
-        'CalendarsManager','Toast','activity', 'calendars'];
+        'CalendarsManager','activity', 'calendars','Toast'];
 
     function ActivityCalendarsController($rootScope, $scope, $state, $stateParams, $filter, $modal,
-                                         CalendarsManager,Toast, activity, calendars) {
+                                         CalendarsManager, activity, calendars,Toast) {
 
         var vm = this;
         var DETAIL_STATE = '.detail';

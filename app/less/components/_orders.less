@@ -27,6 +27,13 @@
     }
   }
   
+ 
+  &__total{
+    display: flex;
+    justify-content: space-between;
+    width: 680px;
+    margin-left: 1em;
+  }
   .before-md({
     display: block;
     .pull-left{
@@ -47,8 +54,9 @@
   
   .order-info{
     background-color:white;
-    padding: 0px 35px 25px 35px;
+    padding: 0px 35px 0px 20px ;
     
+   
     
     .before-md({
       .table-responsive{
@@ -64,6 +72,25 @@
         }
       }
     });
+    
+    .order-mounts{
+       padding: 0px 10px !important;
+       td{
+         padding: 0px 1em;
+         font-size: 1em;
+       }
+       
+       
+    }
+    
+    .order-mounts-first{
+      padding: 0px 0px !important;
+      border-top: 1px solid #dddddd;
+      td{
+         padding: 15px 1em 0px 1em;
+      }
+    }
+    
     
     .order-mobile{
       &__asisstant{
