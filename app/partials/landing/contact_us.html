@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 limited-width">
-    <div class="row padding-vertical-regular" ng-hide="contact.sent">
+    <div class="row padding-vertical-regular" ng-show="contact.sent">
       <div class="col-xs-12 col-md-10 col-md-offset-1 separate-above">
         <h2 class="title text-center separate-below-less text-brand-dark">
           <span>
@@ -74,7 +74,7 @@
         </form>
       </div>
     </div>
-    <div class="row fade-hide padding-vertical-more" ng-hide="!contact.sent">
+    <div class="row fade-hide padding-vertical-more" ng-show="!contact.sent">
       <div class="col-xs-12">
         <h2 class="title text-center separate-above-more separate-below-less text-brand-dark">
           <span ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TITLE"></span>

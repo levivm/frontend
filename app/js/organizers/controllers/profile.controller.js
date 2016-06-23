@@ -139,7 +139,9 @@
                 LABEL_NO_MORE_REVIEWS: "No hay más evaluaciones",
                 COPY_MEMBER_SINCE: "Miembro desde ",
                 COPY_VERIFIED_1: "Organizador",
-                COPY_VERIFIED_2: "verficado por Trulii"
+                COPY_VERIFIED_2: "verficado por Trulii",
+                COPY_TOTAL_REVIEWS: "evaluaciones totales",
+                COPY_NO_REVIEWS: "El organizador aún no ha recibido evaluaciones en sus actividades"
             });
         }
 

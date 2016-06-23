@@ -39,7 +39,7 @@
         </div>
     </div>
 </div>
-<div class="col-xs-12 limited-width separate-below-more">
+<div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width separate-below-more">
   <div class="row">
     <div class="profile-biography">
       <div class="col-xs-12">
@@ -59,8 +59,61 @@
     </div>
   </div>
 </div>
+<div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width separate-above" ng-if="profile.activities.length > 0">
+    <h1 class="text-gray-brand text-center font-extrabold separate-above-more separate-below">
+        <span ng-if="profile.activities.length>0">
+            <span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span>
+            <span ng-bind="::profile.organizer.name"></span>
+        </span>
+        <span ng-if="profile.activities.length==0">
+            <span ng-bind="::profile.organizer.name"></span>
+            <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span>
+        </span>
+    </h1>
+    <div class="col-xs-12 dynamic-layout-wrapper separate-below-more">
+        <div class="dynamic-layout-container-fluid separate-above-medium">
+        <div class="text-center">
+            <div dynamic-layout items="profile.cards" class="dynamic-layout"></div>
+        </div>
+        </div>
+    </div>
+    <div class="col-xs-12 separate-below-more">
+        <div class="text-center"
+            ng-if="profile.activitiesPaginationOpts.totalItems > profile.activitiesPaginationOpts.itemsPerPage">
+            <pagination class="pagination-sm"
+                    ng-class="{'hidden-xs hidden-sm': profile.showFilters}"
+                    ng-model="profile.activitiesPaginationOpts.pageNumber"
+                    ng-change="profile.pageChange()"
+                    data-total-items="profile.activitiesPaginationOpts.totalItems"
+                    data-items-per-page="profile.activitiesPaginationOpts.itemsPerPage"
+                    previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
+                    max-size="profile.activitiesPaginationOpts.maxPagesSize"></pagination>
+        </div>
+    </div>
+</div>
+<!--Location-->
+<div class="row profile-location">
+    <div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width location">
+        <div class="address">
+            <h5>
+                <strong class="text-uppercase" ng-bind="profile.strings.LABEL_ADDRESS"></strong>
+                <span>:</span>
+                <span class="text-uppercase" ng-bind="profile.organizer.location.address"></span>
+            </h5>
+        </div>
+        <div class="map" id="map-canvas">
+            <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
+                                bounds="profile.map.bounds" options="profile.map.options"
+                                events="profile.map.events" control="profile.map.control">
+                <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
+                                events="profile.marker.events"
+                                idkey="profile.marker.id"></ui-gmap-marker>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+</div>
 <!-- Comments -->
-<div class="col-xs-12 limited-width profile-comments" ng-if="profile.reviews.length > 0">
+<div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width profile-comments separate-below-more" ng-if="profile.reviews.length > 0">
     <div class="row">
         <div class="col-xs-12">
             <h1 class="text-gray-brand text-center font-extrabold" ng-bind="::profile.strings.LABEL_REVIEWS"></h1>
@@ -73,12 +126,14 @@
                 <strong>/</strong>
                 <strong>5</strong>
             </h3>
-            <p class="text-center text-md">
+            <p class="text-center text-md" ng-if="profile.totalReviews > 0">
                 <span ng-bind="profile.totalReviews"></span>
-                <span>evaluaciones totales</span>
+                <span ng-bind="::profile.strings.COPY_TOTAL_REVIEWS"></span>
             </p>
+            <p class="text-center text-dark separate-above-more" ng-if="profile.totalReviews === 0" ng-bind="::profile.strings.COPY_NO_REVIEWS"></p>
+            
         </div>
-        <div class="col-xs-12">
+        <div class="col-xs-12" ng-if="profile.totalReviews > 0">
             <h3 class="separate-below separate-above-medium">
                 <strong ></strong>
             </h3>
@@ -99,59 +154,6 @@
                     </button>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!--Location-->
-<div class="row profile-location">
-    <div class="col-xs-12 limited-width location">
-        <div class="address">
-            <h5>
-                <strong class="text-uppercase" ng-bind="profile.strings.LABEL_ADDRESS"></strong>
-                <span>:</span>
-                <span class="text-uppercase" ng-bind="profile.organizer.location.address"></span>
-            </h5>
-        </div>
-        <div class="map" id="map-canvas">
-            <ui-gmap-google-map center='profile.map.center' zoom='profile.map.zoom'
-                                bounds="profile.map.bounds" options="profile.map.options"
-                                events="profile.map.events" control="profile.map.control">
-                <ui-gmap-marker coords="profile.marker.coords" options="profile.marker.options"
-                                events="profile.marker.events"
-                                idkey="profile.marker.id"></ui-gmap-marker>
-            </ui-gmap-google-map>
-        </div>
-    </div>
-</div>
-<div class="col-xs-12 limited-width separate-above" ng-if="profile.activities.length > 0">
-    <h1 class="text-gray-brand text-center font-extrabold separate-above-more separate-below">
-        <span ng-if="profile.activities.length>0">
-            <span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span>
-            <span ng-bind="::profile.organizer.name"></span>
-        </span>
-        <span ng-if="profile.activities.length==0">
-            <span ng-bind="::profile.organizer.name"></span>
-            <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span>
-        </span>
-    </h1>
-    <div class="col-xs-12 dynamic-layout-wrapper separate-below-more">
-        <div class="dynamic-layout-container-fluid separate-above-medium">
-        <div class="text-center">
-            <div dynamic-layout items="profile.cards" class="dynamic-layout"></div>
-        </div>
-        </div>
-    </div>
-    <div class="col-xs-12">
-        <div class="text-center"
-            ng-if="profile.activitiesPaginationOpts.totalItems > profile.activitiesPaginationOpts.itemsPerPage">
-            <pagination class="pagination-sm"
-                    ng-class="{'hidden-xs hidden-sm': profile.showFilters}"
-                    ng-model="profile.activitiesPaginationOpts.pageNumber"
-                    ng-change="profile.pageChange()"
-                    data-total-items="profile.activitiesPaginationOpts.totalItems"
-                    data-items-per-page="profile.activitiesPaginationOpts.itemsPerPage"
-                    previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
-                    max-size="profile.activitiesPaginationOpts.maxPagesSize"></pagination>
         </div>
     </div>
 </div>

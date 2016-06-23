@@ -125,7 +125,7 @@
                     scope.showCities=false;
                 }
                 function isLandingState(){
-                    return (($state.current.name==='home' || $state.current.name==='activities-detail' || $state.current.name==='activities-enroll') && scope.scroll<100);
+                    return (($state.current.name==='home' || $state.current.name==='activities-detail' || $state.current.name==='activities-enroll' || $state.current.name==='organizer-profile') && scope.scroll<100);
                 }
                 function isSearchVisible(){
                      return (!($state.current.name==='search') && scope.scroll<100);
