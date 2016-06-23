@@ -152,7 +152,11 @@
           });
 
           function success(data) {
+            vm.balances.available = data.new_available_amount;
+            Toast.setPosition("toast-top-center");
+            Toast.success(vm.strings.COPY_WITHDRAW_SUCCESS);
             changePageWithdraws();
+
           }
           function error(response) {
               console.log(response);
@@ -249,6 +253,7 @@
                 COPY_BALANCE_NOTE: "El monto será transferido a tu cuenta de",
                 COPY_TOOLTIP_MOUNT_AVAILABLE: "Este es el monto disponible a ser trasnferido a tu cuenta.",
                 COPY_TOOLTIP_MOUNT_UNAVAILABLE: "Aún no puedes solicitar la transferencia de este monto",
+                COPY_WITHDRAW_SUCCESS: "Su retiro está siendo procesado.",
                 LABEL_SEARCH_ORDERS : "Buscar Ordenes",
                 LABEL_ORDER: "Orden",
                 LABEL_ACTIVITY: "Actividad",
