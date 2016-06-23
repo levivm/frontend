@@ -13,10 +13,22 @@
     .range-tab{
       text-transform: uppercase;
       padding: 10px 30px 10px 30px;
-      border-bottom: 1px solid white;
+      border: 1px solid @gray-light;
       cursor: pointer;
+      font-weight: 600;
+      font-size: 0.9em;
+      
+      &__left{
+         border-radius: 1.7em 0em 0em 1.7em;
+         border-right: none;
+      }
+      
+      &__right{
+        border-radius: 0em 1.7em 1.7em 0em;
+        border-left: none;
+      }
       &-active{
-        border-bottom: 1px solid @brand-warning;
+        background: @gray-lighter;
       }
     }
     .range-slider{
@@ -33,6 +45,7 @@
         text-transform: uppercase;
         width: 200px;
         text-align: center;
+        font-weight: 600;
       }
     }
   }
@@ -47,7 +60,7 @@
     overflow: hidden;
     .seat-metric-bar__fill{
       height:25px;
-      background-color: @brand-primary;
+      background-color: @brand-warning;
     }
   }
   
@@ -77,18 +90,12 @@
     }
     &-views{
       border: 3px solid @brand-success;
-      .metric-icon{
-        background-color: @brand-success;
-        left: -25px;
-      }
+      color: @brand-success;
     }
     
     &-sales{
       border: 3px solid @brand-warning;
-      .metric-icon{
-        background-color: @brand-warning;
-        right: -25px;
-      }
+      color: @brand-warning;
     }
   }
   

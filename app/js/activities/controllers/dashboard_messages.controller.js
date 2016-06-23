@@ -91,13 +91,18 @@
             angular.extend(vm.strings, {
                 ACTION_NEW_MESSAGE: "Nuevo Mensaje",
                 SEARCH_PLACEHOLDER: "Buscar",
+                SECTION_MESSAGES: "Mensajes",
                 OPTION_ACTIVITY_DEFAULT: "Seleccione una actividad",
                 OPTION_CALENDAR_DEFAULT: "Seleccione una fecha de inicio",
                 LABEL_INITIAL_DATE: "Fecha de inicio: ",
                 LABEL_SEND_MESSAGE: "Enviar",
+                LABEL_CALENDAR: "Calendarios",
+                LABEL_CANCEL_MESSAGE: "Cancelar",
+                EMAIL_MODAL_MESSAGE_LABEL: "Mensaje",
                 SUBJECT_MESSAGE_PLACEHOLDER:"Asunto",
                 MODAL_MESSAGE_PLACEHOLDER:"Este mensaje llegará a todos los usuarios inscritos en esta actividad",
                 COPY_NO_MESSAGES: "Aún no ha enviado ningún mensaje a sus asistentes",
+                COPY_MESSAGES:"Envíales un mensaje a los asitentes para comunicarles cualquier novedad sobre la actividad",
                 PREVIOUS_TEXT:"Previo",
                 NEXT_TEXT:"Siguiente"
             });

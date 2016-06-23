@@ -12306,6 +12306,9 @@ hr.on-light {
   overflow-y: auto;
   padding: 0;
 }
+.dashboard-messages__manage {
+  min-height: 12vh;
+}
 .dashboard-messages a {
   padding: 1em 1em 1em 3em;
   cursor: pointer;
@@ -15577,6 +15580,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background: #ededed;
   transition: ease all 0.1s;
 }
+.sidebar__item--selected_message {
+  background: #ededed;
+  transition: ease all 0.1s;
+}
 .sidebar__item--selected-edit-activity {
   background: #ededed;
   transition: ease all 0.1s;
@@ -15947,10 +15954,10 @@ input[type="password"],
 input[type="number"],
 input[type="tel"] {
   height: 52px !important;
-  border-radius: 52px;
+  border-radius: 52px !important;
   font-weight: 700;
   padding: 0em 2em !important;
-  border: 1px solid #ededed;
+  border: 1px solid #ededed !important;
   box-shadow: 0 0 !important;
 }
 select {
@@ -17016,23 +17023,34 @@ td {
 .panel-default {
   box-shadow: none;
   border: 1px solid #ededed;
-  border-radius: 0;
+  border-radius: 4px;
   color: #222328;
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .panel-default .panel-heading {
   border: 0;
-  color: #9b9b9b;
-  padding: 1em 1em;
+  padding: 0.7em 1em;
   position: relative;
+  background: white;
 }
 .panel-default .panel-body {
   padding: 3em;
+  border-top: 1px solid #ededed;
 }
 @media screen and (max-width: 992px) {
   .panel-default .panel-body {
     padding: 20px 0;
   }
+}
+.panel-default .panel-body .input-search input[type="text"] {
+  height: 40px !important;
+}
+.panel-default .panel-body .input-search i {
+  position: absolute;
+  right: 30px;
+  top: 11px;
+  font-size: 1.4em;
+  color: #b9bed1;
 }
 .panel-default__dashboard {
   padding: 0.8em 2em;
@@ -17086,9 +17104,10 @@ td {
 }
 .panel-default .panel-date {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  width: 13em;
+  width: 10em;
   float: left;
-  padding: 0 3%;
+  padding: 0.1em 1em;
+  font-size: 0.9em;
 }
 @media screen and (max-width: 992px) {
   .panel-default .panel-date {
@@ -17097,9 +17116,6 @@ td {
 }
 .panel-default .panel-date:nth-child(1) {
   border-right: 1px solid #cbcbcb;
-}
-.panel-default .panel-date:nth-child(2) {
-  padding-left: 4%;
 }
 .panel-default .panel-counter {
   width: 25em;
@@ -17128,8 +17144,16 @@ td {
 .panel-default .expand {
   position: absolute;
   right: 1em;
-  top: 1em;
+  top: 0.7em;
   color: #cbcbcb;
+}
+.panel-default .table tbody tr td.column-button,
+.panel-default .table tfoot tr td.column-button {
+  padding-top: 0.7em !important;
+}
+.panel-default table tr th {
+  padding: 25px 1em 10px 1em;
+  background-color: white;
 }
 @media screen and (max-width: 992px) {
   .panel-default table tr th {
@@ -17137,9 +17161,8 @@ td {
   }
 }
 .panel-default table tr td {
-  padding: 2em 1em;
+  padding: 1em 1em;
   font-size: 1em;
-  color: #9b9b9b;
 }
 @media screen and (max-width: 768px) {
   .panel-default table tr th,
@@ -17147,6 +17170,10 @@ td {
     padding: 1.5em 5px !important;
     font-size: 0.7em;
   }
+}
+.panel-default table tr th .column-button,
+.panel-default table tr td .column-button {
+  padding-top: 0.7em !important;
 }
 @media screen and (max-width: 992px) {
   .panel-default table tr th,
@@ -20152,6 +20179,10 @@ button.toast-close-button {
 .container-brand a {
   color: white;
   text-decoration: underline;
+}
+.modal-email .modal-header-message {
+  color: #3A405B !important;
+  background-color: #f0f2f7 !important;
 }
 .container-gray-light {
   background-color: #ededed;
@@ -24701,9 +24732,9 @@ input[type=text].form-control.referral-link:focus {
   width: 100%;
   height: 40px;
   margin: 0 -3em;
-  padding: 12px 2em;
-  background-color: #ffffff;
-  color: #9b9b9b;
+  padding: 12px 0em;
+  background-color: #e4e7ef;
+  color: #222328;
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   line-height: 0;
@@ -24717,7 +24748,8 @@ input[type=text].form-control.referral-link:focus {
   }
 }
 .panel-body .order-total ul {
-  font-size: 0.9em;
+  font-size: 1em;
+  font-weight: 400;
 }
 @media screen and (max-width: 992px) {
   .panel-body .order-total ul {
@@ -24726,7 +24758,7 @@ input[type=text].form-control.referral-link:focus {
   }
 }
 .panel-body .order-total ul li {
-  width: 30%;
+  width: 33%;
 }
 @media screen and (max-width: 992px) {
   .panel-body .order-total ul li {
@@ -24807,11 +24839,21 @@ input[type=text].form-control.referral-link:focus {
 .summary-container .range-widget .range-tab {
   text-transform: uppercase;
   padding: 10px 30px 10px 30px;
-  border-bottom: 1px solid white;
+  border: 1px solid #cbcbcb;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9em;
+}
+.summary-container .range-widget .range-tab__left {
+  border-radius: 1.7em 0em 0em 1.7em;
+  border-right: none;
+}
+.summary-container .range-widget .range-tab__right {
+  border-radius: 0em 1.7em 1.7em 0em;
+  border-left: none;
 }
 .summary-container .range-widget .range-tab-active {
-  border-bottom: 1px solid #1F5DEA;
+  background: #ededed;
 }
 .summary-container .range-widget .range-slider {
   margin: 20px 0 30px 0;
@@ -24828,6 +24870,7 @@ input[type=text].form-control.referral-link:focus {
   text-transform: uppercase;
   width: 200px;
   text-align: center;
+  font-weight: 600;
 }
 .summary-container .seat-metric-bar {
   width: 80%;
@@ -24840,7 +24883,7 @@ input[type=text].form-control.referral-link:focus {
 }
 .summary-container .seat-metric-bar .seat-metric-bar__fill {
   height: 25px;
-  background-color: #00e2aa;
+  background-color: #1F5DEA;
 }
 .summary-container .seat-metric-text {
   width: 20%;
@@ -24868,17 +24911,11 @@ input[type=text].form-control.referral-link:focus {
 }
 .summary-container .metric-circle-views {
   border: 3px solid #03d69a;
-}
-.summary-container .metric-circle-views .metric-icon {
-  background-color: #03d69a;
-  left: -25px;
+  color: #03d69a;
 }
 .summary-container .metric-circle-sales {
   border: 3px solid #1F5DEA;
-}
-.summary-container .metric-circle-sales .metric-icon {
-  background-color: #1F5DEA;
-  right: -25px;
+  color: #1F5DEA;
 }
 ::-webkit-scrollbar {
   width: 10px;
