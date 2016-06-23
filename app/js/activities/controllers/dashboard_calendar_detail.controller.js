@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast', 'calendar', '$document', '$timeout'];
+    ActivityCalendarController.$inject = ['$scope','$state', '$document', '$timeout', 'activity', 'CalendarsManager', 'calendar', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast' ];
 
-    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar, $document, $timeout) {
+    function ActivityCalendarController($scope, $state, $document , $timeout, activity, CalendarsManager, calendar, Elevator, Error, datepickerPopupConfig, Toast) {
 
         var vm = this;
         var MAX_LENGTH_NOTE = 200;

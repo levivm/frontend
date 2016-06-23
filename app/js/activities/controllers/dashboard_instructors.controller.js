@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBInstructorsController', ActivityDBInstructorsController);
 
-    ActivityDBInstructorsController.$inject = ['activity', 'organizer', 'Toast', 'Elevator', 'Error', '$timeout'];
+    ActivityDBInstructorsController.$inject = ['$timeout', 'activity', 'organizer', 'Toast', 'Elevator', 'Error' ];
 
-    function ActivityDBInstructorsController(activity, organizer, Toast, Elevator, Error, $timeout) {
+    function ActivityDBInstructorsController($timeout, activity, organizer, Toast, Elevator, Error ) {
 
         var MAX_INSTRUCTORS = organizer.max_allowed_instructors;
 

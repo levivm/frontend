@@ -12,8 +12,8 @@
         .module('trulii.activities.controllers')
         .controller('ActivitySummaryCtrl', ActivitySummaryCtrl);
 
-    ActivitySummaryCtrl.$inject = ['ActivitiesManager', 'activity', '$q', 'Error', 'Toast', 'stats', 'moment', 'serverConf', '$scope', '$timeout'];
-    function ActivitySummaryCtrl(ActivitiesManager, activity, $q, Error, Toast, stats, moment, serverConf, $scope, $timeout) {
+    ActivitySummaryCtrl.$inject = ['$scope', '$q', '$timeout', 'ActivitiesManager', 'activity','Error', 'Toast', 'stats', 'moment', 'serverConf' ];
+    function ActivitySummaryCtrl($scope, $q, $timeout, ActivitiesManager, activity, Error, Toast, stats, moment, serverConf) {
 
         var vm = this;
         var d3Col = d3.locale ({
