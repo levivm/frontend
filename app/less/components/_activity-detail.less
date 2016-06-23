@@ -1447,11 +1447,16 @@
   max-height: 100vh;
   overflow-y: auto;
   .modal-header{
-    color: @gray-regular;
-    padding: 5px 5px 10px 5px;
-    background-color: @brand-success;
+    background-color: @gray-light-brand;
     border-top-left-radius: @border-radius-base;
     border-top-right-radius: @border-radius-base;
+    padding: 10px 30px;
+    h4{
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 1em;
+        color: @gray-dark;
+    }
     .before-md({
       .well-title {
         padding: 0 2em;
@@ -1459,16 +1464,16 @@
     });
   }
   .modal-body{
-    padding: 10px 60px;
+    padding: 10px 40px;
       .before-md({
         padding: 10px 15px;
       });
     label{
-      font-weight: 500;
+      font-weight: 700;
       color: @gray-dark !important;
     }
     input, textarea{
-      border: 1px solid @gray-light;
+      border: 1px solid @gray-light !important;
     }
   }
 }

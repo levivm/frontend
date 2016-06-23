@@ -36,6 +36,7 @@ select{
 }
 
 .input-group{
+	width: 100%;
 	.input-group-btn{
 		font-size: 12px;
 		.btn{
@@ -51,6 +52,8 @@ select{
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
+			border-radius: 54px;
+			height: 54px;
 		}
 		&:after{
 			content: "\f107";   
@@ -185,8 +188,9 @@ label{
 .control-label{
 	margin-left: 2em;
 }
-
-
+textarea.form-control{
+	min-height: 150px;
+}
 .input{
 
 	&--main{
