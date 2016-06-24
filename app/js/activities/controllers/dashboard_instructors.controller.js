@@ -131,6 +131,7 @@
             angular.extend(vm.strings, {
                 SECTION_INSTRUCTORS: "Instructores",
                 COPY_INSTRUCTORS: "Cuéntanos de cada una de las personas que impartirán la actividad.",
+                ACTION_ADD_INSTRUCTORS: "Agregar instructor",
                 TOAST_MAX_ERROR: "Deben ser máximo 4 instructores"
             });
         }
