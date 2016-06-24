@@ -19800,23 +19800,6 @@ button.toast-close-button {
 .trulii-cover-regular__content-contact-controllers li .item-long a:focus {
   color: white;
 }
-.trulii-cover__content-contact-controllers li .item img,
-.trulii-cover-small__content-contact-controllers li .item img,
-.trulii-cover-medium__content-contact-controllers li .item img,
-.trulii-cover-regular__content-contact-controllers li .item img,
-.trulii-cover__content-contact-controllers li .item-long img,
-.trulii-cover-small__content-contact-controllers li .item-long img,
-.trulii-cover-medium__content-contact-controllers li .item-long img,
-.trulii-cover-regular__content-contact-controllers li .item-long img {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  transition: all 0.25s;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
 .trulii-cover__content-contact-controllers li .item .item-icon,
 .trulii-cover-small__content-contact-controllers li .item .item-icon,
 .trulii-cover-medium__content-contact-controllers li .item .item-icon,
@@ -19828,78 +19811,11 @@ button.toast-close-button {
   font-size: 2em;
   border-radius: 50%;
   transition: all 0.50s;
-  margin-top: 1.2em;
+  height: 90px;
+  width: 90px;
+  padding-top: 28px;
+  margin: 2em auto;
   background-color: #1F5DEA;
-}
-.trulii-cover__content-contact-controllers li .item .fa-phone,
-.trulii-cover-small__content-contact-controllers li .item .fa-phone,
-.trulii-cover-medium__content-contact-controllers li .item .fa-phone,
-.trulii-cover-regular__content-contact-controllers li .item .fa-phone,
-.trulii-cover__content-contact-controllers li .item-long .fa-phone,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-phone,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-phone,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-phone {
-  padding: 0.5em 0.6em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-twitter,
-.trulii-cover-small__content-contact-controllers li .item .fa-twitter,
-.trulii-cover-medium__content-contact-controllers li .item .fa-twitter,
-.trulii-cover-regular__content-contact-controllers li .item .fa-twitter,
-.trulii-cover__content-contact-controllers li .item-long .fa-twitter,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-twitter,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-twitter,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-twitter {
-  padding: 0.55em 0.6em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-map-marker,
-.trulii-cover-small__content-contact-controllers li .item .fa-map-marker,
-.trulii-cover-medium__content-contact-controllers li .item .fa-map-marker,
-.trulii-cover-regular__content-contact-controllers li .item .fa-map-marker,
-.trulii-cover__content-contact-controllers li .item-long .fa-map-marker,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-map-marker,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-map-marker,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-map-marker {
-  padding: 0.6em 0.9em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-newspaper-o,
-.trulii-cover-small__content-contact-controllers li .item .fa-newspaper-o,
-.trulii-cover-medium__content-contact-controllers li .item .fa-newspaper-o,
-.trulii-cover-regular__content-contact-controllers li .item .fa-newspaper-o,
-.trulii-cover__content-contact-controllers li .item-long .fa-newspaper-o,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-newspaper-o,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-newspaper-o,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-newspaper-o {
-  padding: 0.6em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-linkedin-square,
-.trulii-cover-small__content-contact-controllers li .item .fa-linkedin-square,
-.trulii-cover-medium__content-contact-controllers li .item .fa-linkedin-square,
-.trulii-cover-regular__content-contact-controllers li .item .fa-linkedin-square,
-.trulii-cover__content-contact-controllers li .item-long .fa-linkedin-square,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-linkedin-square,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-linkedin-square,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-linkedin-square {
-  padding: 0.6em 0.7em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-facebook,
-.trulii-cover-small__content-contact-controllers li .item .fa-facebook,
-.trulii-cover-medium__content-contact-controllers li .item .fa-facebook,
-.trulii-cover-regular__content-contact-controllers li .item .fa-facebook,
-.trulii-cover__content-contact-controllers li .item-long .fa-facebook,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-facebook,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-facebook,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-facebook {
-  padding: 0.6em 0.8em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-angellist,
-.trulii-cover-small__content-contact-controllers li .item .fa-angellist,
-.trulii-cover-medium__content-contact-controllers li .item .fa-angellist,
-.trulii-cover-regular__content-contact-controllers li .item .fa-angellist,
-.trulii-cover__content-contact-controllers li .item-long .fa-angellist,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-angellist,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-angellist,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-angellist {
-  padding: 0.6em 0.75em;
 }
 .trulii-cover__content-contact-controllers li .item .item-description,
 .trulii-cover-small__content-contact-controllers li .item .item-description,
