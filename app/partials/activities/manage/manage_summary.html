@@ -47,16 +47,17 @@
         <div class="col-xs-12 pull-right separate-above text-capitalize sales-info">
           <div class="pull-right">
             <h5 class="text-right text-warning font-semibold">
-              <span class="" ng-bind="::summary.strings.COPY_GROSS_SALES"></span>
+              <span class="separate-right-less" ng-bind="::summary.strings.COPY_GROSS_SALES"></span>
               <span ng-bind=" (summary.stats.total_points.total_gross || 0) | currency:$"></span>
             </h5>
             <h5 class="text-right font-semibold">
-              <span ng-bind="summary.strings.COPY_FEE"></span>
+              <span class="separate-right-less"  ng-bind="summary.strings.COPY_FEE"></span>
+              <span>-</span>
               <span ng-bind="(summary.stats.total_points.total_fee  || 0) | currency:$"></span>
             </h5>
             <hr>
             <h5 class="text-right text-color-success font-semibold">
-              <span class="" ng-bind="::summary.strings.COPY_NET_SALES"></span>
+              <span class="separate-right-less"  ng-bind="::summary.strings.COPY_NET_SALES"></span>
               <span ng-bind="(summary.stats.total_points.total_net  || 0) | currency:$"></span>
             </h5>
           </div>
