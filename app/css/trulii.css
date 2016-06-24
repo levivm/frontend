@@ -15974,6 +15974,16 @@ select.input-lg {
 .input-group {
   width: 100%;
 }
+.input-group .form-control:last-child {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
 .input-group .input-group-btn {
   font-size: 12px;
 }
@@ -20728,6 +20738,7 @@ blockquote {
   display: inline-block;
   float: left;
   text-align: center;
+  cursor: pointer;
 }
 .activity-detail__enroll-widget__likes .heart .mdi-action-favorite {
   color: #ff5a5f;
@@ -23585,8 +23596,8 @@ blockquote {
   }
 }
 .pse-payment .form-group label select {
-  border-radius: 54px;
-  height: 54px !important;
+  border-radius: 52px;
+  height: 52px !important;
 }
 .pse-payment .form-group label:after {
   top: 10px;
@@ -23600,8 +23611,8 @@ blockquote {
   float: left;
 }
 .pse-payment .input-group .select-forms label select {
-  border-radius: 54px;
-  height: 54px !important;
+  border-radius: 52px;
+  height: 52px !important;
 }
 .pse-payment .input-group .select-forms label:after {
   top: 10px;

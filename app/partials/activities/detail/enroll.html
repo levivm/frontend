@@ -212,7 +212,7 @@
                         <div class="enroll-section__body">
                             <div class="row enroll-assistants">
                                 <div class="col-xs-12" ng-repeat="assistant in enroll.assistants" ng-form="enroll.assistantForm{{$index}}">
-                                    <div  ng-init="enroll.setForm(enroll['assistantForm'+$index]);" id="assistant_card_{{$index}}">
+                                    <div ng-init="enroll.setForm(enroll['assistantForm'+$index]);" id="assistant_card_{{$index}}">
                                         <div class="row">
                                             <div class="col-xs-12 col-lg-4">
                                                 <div class="form-group" trulii-input-errors-control="first_name">
@@ -229,7 +229,7 @@
                                              <div class="col-xs-12 col-lg-4">
                                                 <div class="form-group" trulii-input-errors-control="email">
                                                     <input class="form-control" name="email" type="text"
-                                                        ng-model="assistant.email" placeholder="{{::enroll.strings.LABEL_EMAIL}}"/>
+                                                        ng-model="assistant.email" placeholder="{{::enroll.strings.PLACEHOLDER_EMAIL}}"/>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-lg-4">

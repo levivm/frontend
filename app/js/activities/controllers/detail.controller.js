@@ -26,6 +26,7 @@
     function ActivityDetailController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager) {
+                                          
         var visibleReviewListSize = 3;
         var vm = this;
 
@@ -202,6 +203,7 @@
 
         function viewMoreCalendars(){
             Elevator.toElement('more_calendars_section');
+            console.log('??');
         }
 
         function toggleEmailShow(){

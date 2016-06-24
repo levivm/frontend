@@ -77,7 +77,7 @@
               </div>
             </div>
             <div class="more-dates">
-                <a href="" ng-click="detail.viewMoreCalendars()" ng-bind="detail.strings.ACTION_VIEW_OTHER_DATES"></a>
+                <a href="#" ng-click="detail.viewMoreCalendars()" ng-bind="detail.strings.ACTION_VIEW_OTHER_DATES"></a>
             </div>
         </div>
         <div class="activity-detail__enroll-widget__likes" ng-click="detail.wishList()">
@@ -326,7 +326,7 @@
               </div>
           </div>
       </div>
-      <div class="calendars-mobile hidden-md hidden-lg" id="more_calendars_section">
+      <div class="calendars-mobile hidden-md hidden-lg">
 
         <div class="calendar-mobile" ng-repeat="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id"
         ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index;">

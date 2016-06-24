@@ -37,6 +37,17 @@ select{
 
 .input-group{
 	width: 100%;
+	.form-control:last-child{
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+	}
+	.form-control:not(:first-child):not(:last-child){
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+		border-top-right-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+	}
+
 	.input-group-btn{
 		font-size: 12px;
 		.btn{

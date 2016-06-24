@@ -35,7 +35,7 @@
             var element_id = '#' + id;
             var element = angular.element($document[0].querySelector(element_id));
 
-            $document.scrollToElementAnimated(element);
+            $document.scrollToElementAnimated(element, 90);
         }
 
         function _easingFunction(t) {
