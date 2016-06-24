@@ -11795,16 +11795,8 @@ hr.on-light {
 }
 .add-instructors {
   position: absolute;
-  border-radius: 1.5em;
-  border: 1px solid #ededed;
-  color: #767676;
-  font-size: 1.2em;
-  width: 80px;
-  display: flex;
-  justify-content: space-around;
-  font-weight: 600;
-  top: 15px;
-  right: 27px;
+  top: 11px;
+  right: 30px;
 }
 .add-instructors span {
   cursor: pointer;

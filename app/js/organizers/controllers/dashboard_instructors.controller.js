@@ -108,6 +108,7 @@
             }
             angular.extend(vm.strings, {
                 SECTION_INSTRUCTORS: "Instructores",
+                ACTION_ADD_INSTRUCTORS: "Agregar instructor",
                 COPY_INSTRUCTORS: "Administa la información de los instructores de tus actividades. Añade, elimina o edita la información de cada uno."
             });
         }
