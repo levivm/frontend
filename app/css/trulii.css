@@ -12249,8 +12249,8 @@ hr.on-light {
 .dashboard-filters__selects .input-group input[type="text"] {
   font-size: 0.8em;
   border: none;
-  border-radius: 0;
-  cursor: pointer;
+  border: none !important;
+  border-radius: 0 !important;
 }
 .dashboard-filters__selects .input-group select {
   font-size: 0.8em;
@@ -12263,7 +12263,7 @@ hr.on-light {
 }
 .dashboard-filters__selects .input-group label:after {
   font-size: 20px;
-  top: 8px;
+  top: 12px;
 }
 .dashboard-filters__selects ::-webkit-input-placeholder {
   font-weight: 600;
@@ -12450,8 +12450,6 @@ hr.on-light {
   color: #222328;
 }
 .balance__mount-available .btn {
-  line-height: 1em;
-  height: 3em;
   margin-left: 5em;
 }
 .balance__mount-available .btn span {
@@ -16044,7 +16042,6 @@ select.input-lg {
 .location-dashboard select,
 .double-input select {
   border-radius: 1.5em 0em 0em 1.5em !important;
-  height: 45px !important;
   border: 1px solid #ededed;
   box-shadow: 0 0;
   width: 100%;
