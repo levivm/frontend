@@ -181,29 +181,32 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 limited-width-search dynamic-layout-wrapper">
+                <div class="col-xs-12 limited-width-search separate-above" ng-hide="search.cards.length > 0">
+                    <h5 class="text-center text-muted separate-above-more padding-horizontal-regular">
+                        <strong ng-bind="search.strings.LABEL_EMPTY_SEARCH"></strong>
+                    </h5>
+                </div>
+                <div class="col-xs-12 limited-width-search dynamic-layout-wrapper" ng-show="search.cards.length > 0">
                     <div class="dynamic-layout-container-fluid separate-above-medium">
                         <div class="text-center">
                             <div dynamic-layout items="search.cards" class="dynamic-layout"></div>
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-12 limited-width-search">
+                    <div class="text-center"
+                        ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">
+                        <pagination class="pagination-sm"
+                                ng-class="{'hidden-xs hidden-sm': search.showFilters}"
+                                ng-model="search.activitiesPaginationOpts.pageNumber"
+                                ng-change="search.pageChange()"
+                                data-total-items="search.activitiesPaginationOpts.totalItems"
+                                data-items-per-page="search.activitiesPaginationOpts.itemsPerPage"
+                                previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
+                                max-size="search.activitiesPaginationOpts.maxPagesSize"></pagination>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12 limited-width">
-        <div class="text-center"
-            ng-if="search.activitiesPaginationOpts.totalItems > search.activitiesPaginationOpts.itemsPerPage">
-            <pagination class="pagination-sm"
-                    ng-class="{'hidden-xs hidden-sm': search.showFilters}"
-                    ng-model="search.activitiesPaginationOpts.pageNumber"
-                    ng-change="search.pageChange()"
-                    data-total-items="search.activitiesPaginationOpts.totalItems"
-                    data-items-per-page="search.activitiesPaginationOpts.itemsPerPage"
-                    previous-text="&lsaquo;" next-text="&rsaquo;" rotate="false"
-                    max-size="search.activitiesPaginationOpts.maxPagesSize"></pagination>
         </div>
     </div>
 </div>
