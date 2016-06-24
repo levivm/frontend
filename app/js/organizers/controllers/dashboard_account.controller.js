@@ -19,10 +19,7 @@
         angular.extend(vm, {
             organizer : organizer,
             bankingInfo: bankingInfo,
-            bankingData: {
-                'organizer': organizer.id,
-                
-            },
+            bankingData: {},
             password_data : {},
             isCollapsed : true,
             isSaving:false,
@@ -41,6 +38,7 @@
 
         function updateBankingInfo(){
             vm.isSaving = true;
+            vm.bankingData.organizer = organizer.id;
             console.log(vm.bankingData);
             Error.form.clear(vm.account_form_banking_info);
             organizer.saveBankingInfo(vm.bankingData).then(success, error);
@@ -112,7 +110,12 @@
 
             function success(bankingData){
                 
-                if(bankingData){ vm.bankingData = bankingData; }
+                if(!(_.isEmpty(bankingData))){ 
+                    var current_bank_data = _.find(vm.bankingInfo.banks, 
+                                                   { 'bank_name': bankingData.bank });
+                    vm.bankingData = bankingData; 
+                    vm.bankingData.bank = current_bank_data.bank_id;
+                }
                 console.log(vm.bankingData);
             }
         }
