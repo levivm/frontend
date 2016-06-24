@@ -180,7 +180,7 @@
                 if(newValue === 1){
                   $timeout(function(){
                     var scrollElement = angular.element(document.getElementById('calendar-0'));
-                    $document.scrollToElementAnimated(scrollElement);
+                    $document.scrollToElementAnimated(scrollElement, -90);
                   });
                 }
               }
