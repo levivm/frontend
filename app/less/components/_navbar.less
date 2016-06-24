@@ -34,7 +34,13 @@
       max-height: @navbar-short-height;
     });
 
-
+    .navbar-search-bar{
+      opacity: 1;
+      transition: @transition-navbar;
+      &-hidden{
+        opacity: 0;
+      }
+    }
     .btn {
         line-height: 1em;
     }

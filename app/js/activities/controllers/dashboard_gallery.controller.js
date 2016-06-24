@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBGalleryController', ActivityDBGalleryController);
 
-    ActivityDBGalleryController.$inject = ['$q', '$modal', 'activity', 'Toast', 'Elevator', 'ActivitiesManager'];
+    ActivityDBGalleryController.$inject = ['$q', '$modal', 'activity', 'ActivitiesManager', 'Toast', 'Elevator'];
 
-    function ActivityDBGalleryController($q, $modal, activity, Toast, Elevator, ActivitiesManager) {
+    function ActivityDBGalleryController($q, $modal, activity, ActivitiesManager ,Toast, Elevator) {
 
         var vm = this;
         var SIZE_PICTURE_UP = 2500; //2.5Mb

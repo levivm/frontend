@@ -706,9 +706,34 @@
 
 
 .pse-payment{
+    .form-group{
+        label{
+            select{
+                border-radius: 52px;
+                height: 52px !important;
+            }
+            &:after{
+                top: 10px;
+            }
+        }
+    }
     .input-group{
         width: 100%;
-        select, input{
+        .select-forms{
+            width: 50%;
+            display: inline-block;
+            float: left;
+            label{
+                select{
+                    border-radius: 52px;
+                    height: 52px !important;
+                }
+                &:after{
+                    top: 10px;
+                }
+            }
+        }
+        input{
             width: 50%;
         }
     }

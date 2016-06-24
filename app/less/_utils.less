@@ -179,16 +179,8 @@
 
 .add-instructors{
 	position: absolute;
-	border-radius: 1.5em;
-	border: 1px solid @gray-lighter;
-	color: @gray-dark;
-	font-size: 1.2em;
-	width: 80px;
-	display: flex;
-	justify-content: space-around;
-	font-weight: 600;
-	top: 15px;
-	right: 27px;
+    top: 11px;
+    right: 30px;
 	span{
 		cursor: pointer;
 	}
@@ -196,7 +188,7 @@
 .add-sessions{
 	position: absolute;
 	right: 25px;
-	top: 9px;
+	top: 3px;
 	border: 1px solid @gray-lighter;
 	border-radius: 7em;
 	padding: 0 1em;
@@ -683,10 +675,10 @@
 				 width: 10em;
 			});
 			 input[type="text"]{
-				  font-size: 0.8em;
+				 	font-size: 0.8em;
 					border: none;
-					border-radius: 0;
-					cursor: pointer;
+					border: none !important;
+					border-radius: 0 !important;
 					
 				
 					
@@ -701,7 +693,7 @@
 				 margin-bottom: 0px !important;
 				 &:after{
 					font-size: 20px;
-					top: 8px;
+					top: 12px;
 				}
 			 }
 			 
@@ -756,7 +748,7 @@
 		min-height: 12vh;
 	}
 	a{
-		padding: 1em 1em 1em 3em;
+		padding: 1em;
 		cursor: pointer;
 		display: block;
 		border-bottom: 1px solid @gray-lighter;
@@ -914,8 +906,6 @@
 		}
 		
 		.btn{
-			line-height: 1em;
-			height: 3em;
 			margin-left: 5em;
 			span{
 				font-weight: bold;

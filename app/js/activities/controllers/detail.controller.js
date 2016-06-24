@@ -19,13 +19,14 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', 'moment', 'Elevator',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', '$filter', '$location'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager'];
 
-    function ActivityDetailController($scope, $state, $stateParams, moment, Elevator,
+    function ActivityDetailController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, $filter, $location) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager) {
+                                          
         var visibleReviewListSize = 3;
         var vm = this;
 
@@ -202,10 +203,12 @@
 
         function viewMoreCalendars(){
             Elevator.toElement('more_calendars_section');
+            console.log('??');
         }
 
         function toggleEmailShow(){
-          vm.showEmail = !vm.showEmail;
+            console.log("showing email");
+            vm.showEmail = !vm.showEmail;
             vm.formData.message = vm.social.EMAIL_SHARE_TEXT;
         }
 
@@ -214,6 +217,7 @@
         }
 
         function shareEmailForm(){
+            console.log('??');
             if(!vm.formData.emails){
                 Toast.warning(vm.strings.COPY_EMPTY_EMAIL);
                 return;
@@ -476,12 +480,13 @@
                 REASON_COPY_SECURE_1: "Los datos del pago de tu",
                 REASON_COPY_SECURE_2: "inscripción están seguros",
                 REASON_COPY_SECURE_3: "con nosotros.",
-                EMAIL_MODAL_HEADER: "Comparte vía correo electrónico",
+                EMAIL_MODAL_HEADER: "Compartir la actividad correo electrónico",
                 EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
                 EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
                 EMAIL_MODAL_MESSAGE_LABEL: "Escribe un mensaje:",
                 EMAIL_MODAL_MESSAGE_PLACEHOLDER: "Hey, échale un vistazo a esta actividad en Trulii. ¡Sé que te encantará!",
-                EMAIL_MODAL_SEND: "Enviar invitacion",
+                EMAIL_MODAL_SEND: "Enviar",
+                EMAIL_MODAL_DISMISS: "Cancelar",
                 COPY_SHARE_SUCCESS: "La Actividad fue compartida exitosamente",
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
@@ -571,6 +576,7 @@
             for(var i = 0; i < vm.relatedActivities.length; i++){
                 vm.relatedActivities[i].template = "partials/activities/dynamic_layout_item.html";
             }
+            vm.relatedActivities = vm.relatedActivities.splice(0, 4);
             vm.cards = vm.relatedActivities;
             
         }

@@ -36,6 +36,18 @@ select{
 }
 
 .input-group{
+	width: 100%;
+	.form-control:last-child{
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+	}
+	.form-control:not(:first-child):not(:last-child){
+		border-top-left-radius: 0 !important;
+		border-bottom-left-radius: 0 !important;
+		border-top-right-radius: 0 !important;
+		border-bottom-right-radius: 0 !important;
+	}
+
 	.input-group-btn{
 		font-size: 12px;
 		.btn{
@@ -51,6 +63,8 @@ select{
 			-webkit-appearance: none;
 			-moz-appearance: none;
 			appearance: none;
+			border-radius: 54px;
+			height: 54px;
 		}
 		&:after{
 			content: "\f107";   
@@ -110,12 +124,11 @@ select{
 	}
 	select{
 		border-radius: 1.5em 0em 0em 1.5em !important;
-    height: 45px !important;
-    border: 1px solid @gray-lighter;
-    box-shadow: 0 0;
-    width: 100%;
-    background: @gray-lighter-brand;
-    font-weight: 600; 
+		border: 1px solid @gray-lighter;
+		box-shadow: 0 0;
+		width: 100%;
+		background: @gray-lighter-brand;
+		font-weight: 600; 
 		.before-md({
 			width: 100%;
 			border-radius: 1.7em !important;
@@ -185,8 +198,9 @@ label{
 .control-label{
 	margin-left: 2em;
 }
-
-
+textarea.form-control{
+	min-height: 150px;
+}
 .input{
 
 	&--main{
@@ -364,11 +378,11 @@ tags-input{
 	.counter-field{
 		//font-weight: bold;
 		background-color: transparent;
-		border: 0;
+		border: 0 !important;
 		outline: none;
 		text-align: center;
 		width: 2em;
-		border-radius: 0;
+		border-radius: 0 !important;
 		padding: 0 !important;
 		font-size: 0.8em;
 	}

@@ -71,7 +71,7 @@
 
 
                         </div>
-                        <div class="col-xs-12 order-info no-padding">
+                        <div class="col-xs-12 order-info">
                             <div class="table-responsive table-fixed table-condensed hidden-sm hidden-xs">
                                 <table class="table table-hover border-bottom" valign="middle">
                                     <tr class="text-center">
@@ -109,6 +109,66 @@
 
 
                                     </tr>
+                                    <!--Sub-Total-->
+                                    <tr class="order-mounts order-mounts-first">
+                                        <td>
+                                            <h4 class="text-md font-light text-dark font-semibold"  ng-bind="::order.strings.LABEL_SUB_TOTAL"></h4>
+                                        </td>
+                                        <td>
+                                            <span></span>
+                                        </td>
+                                        <td>
+                                           <h4 class="text-md text-dark font-semibold"
+                                                 ng-bind="::(order.order.amount | currency:$:0)"></h4>
+                                        </td>
+                                    </tr>
+                                    <!--Coupons-->
+                                    <tr class="order-mounts"  ng-show="::(order.order.coupon.amount > 0 && order.isStudent)">
+                                        <td>
+                                            <h4  class="text-md text-dark font-semibold"
+                                                 ng-bind="::(order.strings.LABEL_COUPON +' '+ order.order.coupon.code)"></h4>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td>
+                                            <h4  class=" text-md text-dark font-semibold"
+                                                 ng-bind="::('-' + (order.order.coupon.amount | currency:$:0))"></h4>
+                                        </td>
+                                    </tr>
+                                     <!--Fee-->
+                                    <tr class="order-mounts">
+                                        <td>
+                                            <h4 class="text-md font-light text-dark font-semibold"
+                                                 ng-bind="order.strings.LABEL_TRULII_FEE + ' ' + (order.order.fee * 100) + '%'"></h4>
+                                        </td>
+                                        
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            <h4 class="text-md font-light text-dark font-semibold"
+                                                ng-bind="::('-' + (order.feeAmount | currency:$:0))"></h4>
+                                        </td>
+                                    </tr>
+                                     <!--Amount-->
+                                    <tr class="order-mounts">
+                                        <td>
+                                            <h4 class="separate-above-less text-lg text-dark font-semibold" ng-bind="::order.strings.LABEL_TOTAL"></h4>
+                                        </td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                            <h4 class="text-md text-dark font-semibold" ng-show="::order.isStudent"
+                                                ng-bind="::(order.order.total | currency:$:0)"
+                                                ng-class="::{'text-strike':order.order.is_free}"></h4>
+                                            <h4 class="text-lg text-dark font-semibold" ng-show="::order.isOrganizer"
+                                                ng-bind="::(order.totalAmount | currency:$:0)"
+                                                ng-class="::{'text-strike':order.order.is_free}"></h4>
+                                            <h4 class="text-lg text-dark font-semibold" ng-show="::order.order.is_free"
+                                                ng-bind="::order.strings.LABEL_FREE"></h4>
+                                        </td>
+                                    </tr>
                                 </table>
                             </div>
                             
@@ -138,25 +198,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--Sub-Total-->
+                            <!--Sub-Total
                             <div class="row no-margin hidden-xs hidden-sm">
                                 <div class="col-xs-6 col-md-3">
-                                    <h4 class="text-md font-light text-dark font-semibold"  ng-bind="::order.strings.LABEL_SUB_TOTAL"></h4>
+                                    
                                 </div>
                                 <div class="col-xs-5 col-md-7">
-                                    <h4 class="text-right text-md text-dark font-semibold"
-                                        ng-bind="::(order.order.amount | currency:$:0)"></h4>
+                                    
                                 </div>
                             </div>
-                            <!--Coupons-->
+                            <!--Coupons
                             <div class="row no-margin hidden-xs hidden-sm" ng-show="::(order.order.coupon.amount > 0 && order.isStudent)">
                                 <div class="col-xs-6 col-md-3">
-                                    <h4 class="text-md text-dark font-semibold"
-                                        ng-bind="::(order.strings.LABEL_COUPON +' '+ order.order.coupon.code)"></h4>
+                                    
                                 </div>
                                 <div class="col-xs-5 col-md-7">
-                                    <h4 class="text-right text-md text-dark font-semibold"
-                                        ng-bind="::('-' + (order.order.coupon.amount | currency:$:0))"></h4>
+                                    
                                 </div>
                                 <i ng-show="::(order.order.total_without_coupon === 0)"
                                    class="glyphicon glyphicon-question-sign" aria-hidden="true"
@@ -164,48 +221,35 @@
                                    tooltip="{{::order.strings.COPY_COUPON_NOT_REFUND_TOOLTIP}}"></i>
                             </div>
 
-                            <!--Fee-->
+                            <!--Fee
                             <div class="row no-margin hidden-xs hidden-sm" ng-show="::order.isOrganizer">
                                 <div class="col-xs-6 col-md-3">
-                                    <h4 class="text-md font-light text-dark font-semibold"
-                                        ng-bind="order.strings.LABEL_TRULII_FEE + ' ' + (order.order.fee * 100) + '%'"></h4>
+                                   
                                 </div>
                                 <div class="col-xs-5 col-md-7">
-                                    <h4 class="text-md font-light text-right text-dark font-semibold"
-                                        ng-bind="::('-' + (order.feeAmount | currency:$:0))"></h4>
+                                    
                                 </div>
                             </div>
-                            <!--Separator-->
+                            <!--Separator
                             <div class="row no-margin hidden-xs hidden-sm" ng-show="::(order.order.total !== order.order.amount)">
                                 <div class="col-xs-12 no-padding">
                                     <hr class="complete no-margin"/>
                                 </div>
                             </div>
-                            <!--Amount-->
+                            <!--Amount
                             <div class="row no-margin">
                                 <div class="col-xs-6 col-md-3">
-                                    <h4 class="separate-above-less text-lg text-dark font-semibold" ng-bind="::order.strings.LABEL_TOTAL"></h4>
+                                    
                                 </div>
 
                                 <div class="col-xs-5 col-md-7">
-                                    <h4 class="text-right text-md text-dark font-semibold" ng-show="::order.isStudent"
-                                        ng-bind="::(order.order.total | currency:$:0)"
-                                        ng-class="::{'text-strike':order.order.is_free}"></h4>
-                                    <h4 class="text-right text-lg text-dark font-semibold" ng-show="::order.isOrganizer"
-                                        ng-bind="::(order.totalAmount | currency:$:0)"
-                                        ng-class="::{'text-strike':order.order.is_free}"></h4>
-                                    <h4 class="text-right text-lg text-dark font-semibold" ng-show="::order.order.is_free"
-                                        ng-bind="::order.strings.LABEL_FREE"></h4>
+                                   
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                     </div>
                 </div>
             </div>
-             <a class="btn btn-default separate-right-less separate-above-more pull-left hidden-md hidden-lg"
-                ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
-                <span ng-bind="::order.strings.ACTION_GO_BACK"></span>
-            </a>
         </div>
     </div>
 </div>

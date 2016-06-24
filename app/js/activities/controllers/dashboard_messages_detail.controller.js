@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('ActivityMessageDetailCtrl', ActivityMessageDetailCtrl);
 
-    ActivityMessageDetailCtrl.$inject = ['activity', 'message', '$state', 'Toast'];
-    function ActivityMessageDetailCtrl(activity, message, $state, Toast) {
+    ActivityMessageDetailCtrl.$inject = ['$state', 'activity', 'message', 'Toast'];
+    function ActivityMessageDetailCtrl($state, activity, message, Toast) {
 
         var vm = this;
         angular.extend(vm, {

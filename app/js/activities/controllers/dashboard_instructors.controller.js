@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBInstructorsController', ActivityDBInstructorsController);
 
-    ActivityDBInstructorsController.$inject = ['activity', 'organizer', 'Toast', 'Elevator', 'Error', '$timeout'];
+    ActivityDBInstructorsController.$inject = ['$timeout', 'activity', 'organizer', 'Toast', 'Elevator', 'Error' ];
 
-    function ActivityDBInstructorsController(activity, organizer, Toast, Elevator, Error, $timeout) {
+    function ActivityDBInstructorsController($timeout, activity, organizer, Toast, Elevator, Error ) {
 
         var MAX_INSTRUCTORS = organizer.max_allowed_instructors;
 
@@ -131,6 +131,7 @@
             angular.extend(vm.strings, {
                 SECTION_INSTRUCTORS: "Instructores",
                 COPY_INSTRUCTORS: "Cuéntanos de cada una de las personas que impartirán la actividad.",
+                ACTION_ADD_INSTRUCTORS: "Agregar instructor",
                 TOAST_MAX_ERROR: "Deben ser máximo 4 instructores"
             });
         }
