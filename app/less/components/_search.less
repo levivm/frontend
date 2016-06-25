@@ -11,10 +11,10 @@
     }
     
     > *:nth-child(1) {
-        border-top-left-radius: @border-radius-base !important;
-        border-bottom-left-radius: @border-radius-base !important;
         border-right: 1px solid @gray-lighter;
-        height: 75px !important;
+        height: 60px !important;
+        border-top-right-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
         .before-sm({
           float: left;
           width: 80%;
@@ -42,8 +42,8 @@
         });
     }
     > *:last-child {
-        border-top-right-radius: @border-radius-base !important;
-        border-bottom-right-radius: @border-radius-base !important;
+        border-top-right-radius: 52px !important;
+        border-bottom-right-radius: 52px !important;
     }
     > *:not(.btn) {
         padding: 0 2.5em;
@@ -57,25 +57,20 @@
 
     input, input:focus {
         display: inline-block;
-        width: 50%;
+        width: 55%;
         float: left;
         
     }
 
 
     .select-city{
-      width: 35%;
-      height: 100%;
-      display: inline-block;
-      position: relative;
-      padding: 0;
-      border-top: 5px solid #38dbc8;
-      float: left;
-      background-size: 15px auto;
-      background-position: 93% 50%;
-      background-repeat: no-repeat;
-      background-image: url('@{s3url}/static/img/about/arrow.png') !important;
-      height: 75px !important;
+        width: 30%;
+        height: 100%;
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        float: left;
+        height: 60px !important;
 
       .before-sm({
         height: 55px !important
@@ -84,11 +79,18 @@
       select, select:focus {
         display: inline-block;
         width: 100%;
-        padding: 0 1em;
-        -webkit-appearance: none;
+        padding: 0 1em !important;
         -moz-appearance: none;
+        -webkit-appearance: none;
         height: 100% !important;
         cursor: pointer;
+        background-color: white !important;
+        border-radius: 0 !important;
+        background-position: 95% 50%;
+        background-repeat: no-repeat;
+        background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
+        background-size: 16px;
+        background-size: 15px auto;
 
       }
 
@@ -103,22 +105,18 @@
       background-position: 0 bottom;
     }
 
-    .btn.btn-default {
+    .btn.btn-primary {
         width: 15%;
-        color: @gray-regular !important;
         border-radius: 0;
         border-color: transparent;
-        border-top: 5px solid @brand-secondary;
-        font-size: 1.25em;
         float: left;
-        height: 75px !important;
+        height: 60px !important;
         border-bottom-left-radius: 0 !important;
         border-top-left-radius: 0 !important;
         
         .before-sm({
           width: 20%;
           float: right;
-          background-color: @brand-primary;
           border: none;
           margin-top: 70px;
           color: white !important;
@@ -127,6 +125,10 @@
               padding-top: 5px;
           }
         });
+        
+        span{
+          font-size: 2em;
+        }
     }
 
     .dropdown-menu{

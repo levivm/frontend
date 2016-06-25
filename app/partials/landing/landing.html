@@ -1,10 +1,15 @@
 <!--First section-->
 <div class="trulii-cover trulii-cover__home">
   <div class="trulii-cover__container">
-    <div class="trulii-cover__content trulii-cover__content-landing">
+    <div class="trulii-cover__content trulii-cover__content-landing limited-width">
       <div class="col-xs-12">
-        <div class="row">
-          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+        <div class="trulii-cover__content-landing-categories">
+          <a  ui-sref="search({category:category.id})" ng-repeat="category in home.categories track by category.id">
+            <span  ng-bind="::category.name"></span>
+          </a>
+        </div>
+        <div class="row separate-above-more">
+          <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
             <h1 class="text-center title"><strong ng-bind="::home.strings.HEADER_TITLE_COPY"></strong></h1>
           </div>
           <div class="col-xs-12">

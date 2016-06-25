@@ -92,7 +92,7 @@
 
             angular.extend(vm.strings, {
                 HEADER_TITLE_COPY: "¡Hoy es un nuevo día para aprender!",
-                HEADER_TEXT_COPY: "Consigue e inscríbete en las mejores actividades y eventos educativos de tu ciudad.",
+                HEADER_TEXT_COPY: "Encuentra e inscríbete en las mejores clases y cursos de tu ciudad.",
                 HEADER_SEARCH_PLACEHOLDER: "¿Qué quieres aprender hoy?",
                 HEADER_CITY_PLACEHOLDER: "Elige tu ciudad",
                 REASON_NO_COMMISSIONS: "Sin comisiones",
