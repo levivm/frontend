@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
 
-    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Toast', 'Error', 'organizer', 'bankingInfo'];
-    function OrganizerAccountCtrl($state, Authentication, Toast, Error, organizer, bankingInfo) {
+    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Toast', 'Error', 'organizer', 'bankingInfo', 'bankingData'];
+    function OrganizerAccountCtrl($state, Authentication, Toast, Error, organizer, bankingInfo, bankingData) {
 
         var vm = this;
         angular.extend(vm, {
@@ -104,19 +104,13 @@
 
         //--------- Internal Functions ---------//
 
-        function _getOrganizerBankingInfo(){
+        function _setOrganizerBankingData(){
 
-            organizer.getBankingInfo().then(success);
-
-            function success(bankingData){
-                
-                if(!(_.isEmpty(bankingData))){ 
-                    var current_bank_data = _.find(vm.bankingInfo.banks, 
-                                                   { 'bank_name': bankingData.bank });
-                    vm.bankingData = bankingData; 
-                    vm.bankingData.bank = current_bank_data.bank_id;
-                }
-                console.log(vm.bankingData);
+            if(!(_.isEmpty(bankingData))){ 
+                var current_bank_data = _.find(vm.bankingInfo.banks, 
+                                                { 'bank_id': bankingData.bank });
+                vm.bankingData = bankingData; 
+                vm.bankingData.bank = current_bank_data.bank_id;
             }
         }
 
@@ -159,7 +153,7 @@
 
         function _activate() {
             _setStrings();
-            _getOrganizerBankingInfo();
+            _setOrganizerBankingData();
         }
 
     }

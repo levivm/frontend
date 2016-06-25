@@ -81,7 +81,8 @@
                 controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard/account.html',
                 resolve: {
-                    bankingInfo: getBankingInfo
+                    bankingInfo: getBankingInfo,
+                    bankingData: getBankingData
                 }
             })
             .state('organizer-dashboard.account.settings', {
@@ -128,7 +129,8 @@
                     balances: getBalances,
                     withdraws: getWithDraw,
                     bankingInfo: getBankingInfo,
-                    activities: getOrganizerActivityList
+                    activities: getOrganizerActivityList,
+                    bankingData: getBankingData
                 }
             })
             .state('organizer-dashboard.transactions.sales', {
@@ -488,6 +490,11 @@
         getBankingInfo.$inject = ['Payments'];
         function getBankingInfo(Payments){
             return Payments.getBankingInfo();
+        }
+        
+        getOrganizerActivityList.$inject = ['organizer'];
+        function getBankingData(organizer){
+            return  organizer.getBankingInfo();
         }
 
         /**
