@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerTransactionsCtrl', OrganizerTransactionsCtrl);
 
-    OrganizerTransactionsCtrl.$inject = ['$filter', 'organizer', 'datepickerPopupConfig', 'OrganizerServerApi', 'orders', 'balances', '$http', 'activities', 'withdraws', '$modal', 'Toast', 'bankingInfo'];
-    function OrganizerTransactionsCtrl($filter, organizer, datepickerPopupConfig, OrganizerServerApi, orders, balances, $http, activities, withdraws, $modal, Toast, bankingInfo) {
+    OrganizerTransactionsCtrl.$inject = ['$http', '$filter', '$modal', 'organizer', 'OrganizerServerApi', 'orders', 'balances',  'activities', 'withdraws', 'bankingInfo', 'bankingData', 'datepickerPopupConfig', 'Toast'];
+    function OrganizerTransactionsCtrl($http, $filter, $modal, organizer, OrganizerServerApi, orders, balances, activities, withdraws, bankingInfo, bankingData, datepickerPopupConfig, Toast) {
 
         var vm = this;
         var api = OrganizerServerApi;
@@ -210,16 +210,13 @@
           }
         }
         
-        function _getOrganizerBankingInfo(){
+         function _setOrganizerBankingData(){
 
-            organizer.getBankingInfo().then(success);
-
-            function success(bankingData){
-                if(bankingData){ 
-                    vm.bank= bankingData.bank;
-                    vm.accountBank = bankingData.account.substr(bankingData.account.length -4); 
-                    
-                }
+            if(!(_.isEmpty(bankingData))){ 
+                var current_bank_data = _.find(bankingInfo.banks, 
+                                                { 'bank_id': bankingData.bank });
+                vm.bank = current_bank_data.bank_name;
+                vm.accountBank = bankingData.account.substr(bankingData.account.length -4); 
             }
         }
         function _setStrings() {
@@ -287,8 +284,7 @@
             _getOrders();
             _getBalances();
             _mapWithdraws();
-            _getOrganizerBankingInfo();
-            //console.log(vm.withdrawals);
+            _setOrganizerBankingData();
             
 
         }
