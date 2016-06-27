@@ -33,7 +33,8 @@
                     onNavbar : !!attrs.onNavbar,
                     updateSearchCity : updateSearchCity,
                     search : search,
-                    getSuggestions:getSuggestions
+                    getSuggestions:getSuggestions,
+                    onFocus: false
                 });
 
                 _activate();

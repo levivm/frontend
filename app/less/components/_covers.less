@@ -338,7 +338,12 @@
       .before-sm({
         padding-top: 20vh;
       });
-      
+      &-content{
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          height: 55vh;
+      }
       &-categories{
         text-align: center;
         font-size: 1em;
@@ -354,6 +359,20 @@
           }
         } 
       }
+       
+      &-searchbar{
+          width: 675px;
+          margin: 0 auto;
+          height: 60px;
+          position: relative;
+          .before-sm({
+              width: 100%;
+              margin: 0 auto; 
+          });
+          
+          
+      }
+
     }
 
     &-detail{
@@ -565,44 +584,16 @@
           a, a:hover, a:focus{
             color: white;
           }
-          img{
-            padding-top: 20px;
-            padding-bottom: 20px;
-            transition: all 0.25s;
-            position: absolute;
-            bottom: 0px;
-            left: 0px;
-            margin-left: 50%;
-            transform: translateX(-50%);
-          }
           .item-icon{
-            font-size: 2em;
-            border-radius: 50%;
-            transition: all 0.50s;
-            margin-top: 1.2em;
-            background-color: @brand-warning;
+              font-size: 2em;
+              border-radius: 50%;
+              transition: all 0.50s;
+              height: 90px;
+              width: 90px;
+              padding-top: 28px;
+              margin: 2em auto;
+              background-color: @brand-warning;
             
-          }
-          .fa-phone{
-              padding: 0.5em 0.6em;
-           }
-          .fa-twitter{
-              padding: 0.55em 0.6em;
-          }
-          .fa-map-marker{
-            padding: 0.6em 0.9em;
-          }
-          .fa-newspaper-o{
-            padding: 0.6em;
-          }
-          .fa-linkedin-square{
-            padding: 0.6em 0.7em;
-          }
-          .fa-facebook{
-            padding: 0.6em 0.8em;
-          }
-          .fa-angellist{
-            padding: 0.6em 0.75em;
           }
           .item-description{
             position: absolute;

@@ -26,6 +26,7 @@
             options : {
                 actions: ['view', 'edit', 'contact', 'manage', 'republish']
             },
+            trendingCategories: [],
             showVideo: false,
             activitiesCount: activities.count,
             hasMoreActivities: true,
@@ -101,9 +102,9 @@
                 REASON_COPY_REFUND: "Por si no se realiza la actividad",
                 REASON_SECURE: "Pago seguro",
                 REASON_COPY_SECURE: "Inscríbete con tranquilidad",
-                ACTIVITIES_TITLE_COPY: "Actividades",
-                ACTIVITIES_TEXT_COPY: "Encuentra en tu ciudad talleres, cursos, diplomados y ponencias de cualquier tipo. Tú eliges.",
-                ACTIVITIES_BUTTON_COPY: "Ver más actividades",
+                ACTIVITIES_TITLE_COPY: "Actividades populares",
+                ACTIVITIES_TEXT_COPY: "Hacemos de tu ciudad un sitio con infinitas posibilidades para aprender algo nuevo.",
+                ACTIVITIES_BUTTON_COPY: "Ver más actividades similares",
                 VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
                 CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
@@ -152,6 +153,31 @@
             vm.cards = activities.results;
             
         }
+        
+        function _setTrendingCategories() {
+            vm.trendingCategories = [
+                {
+                    name: 'Inglés',
+                    cover: 'static/img/home/ingles.jpg',
+                    category_id: 9,
+                    subcategory_id: 84
+                    
+                }, 
+                {
+                    name: 'Salsa',
+                    cover: 'static/img/home/salsa.jpg',
+                    category_id: 1,
+                    subcategory_id: 6
+                }, 
+                {
+                    name: 'Fotografía',
+                    cover: 'static/img/home/fotografia.jpg',
+                    category_id: 8,
+                    subcategory_id: 76
+                }, 
+            ]
+            
+        }
 
         function _activate(){
             _setStrings();
@@ -160,7 +186,7 @@
             _initScroll();
             _fromBurgerMenu();
             _mapTemplates();
-            
+            _setTrendingCategories();
             //Analytics.generalEvents.landing();
 
         }

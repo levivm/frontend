@@ -246,7 +246,7 @@
                             return (!(_.isEmpty(error_dict)));
                         });
                         var base_selector = 'assistant_card_';
-                        // console.log('selector',base_selector.concat(error_index));
+                        console.log('selector',base_selector.concat(error_index));
                         Elevator.toElement(base_selector.concat(error_index));
                         Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                     }
@@ -763,6 +763,7 @@
                 LABEL_FIRST_NAME: "Nombre",
                 LABEL_LAST_NAME: "Apellido",
                 LABEL_EMAIL: "Email",
+                PLACEHOLDER_EMAIL: "Email - opcional",
                 LABEL_PAYMENT_INFO: "Información de Pago",
                 LABEL_TOTAL_AMOUNT: "Total a Pagar",
                 LABEL_DROPDOWN_DATE_INIT: "Fecha de inicio: ",

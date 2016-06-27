@@ -12546,7 +12546,7 @@ hr.on-light {
   margin-top: 30px;
 }
 .ta-scroll-window > .ta-bind p {
-  color: #9b9b9b !important;
+  color: #3A405B !important;
   margin-bottom: 0px;
   font-weight: 200;
 }
@@ -12555,6 +12555,7 @@ hr.on-light {
 }
 .ta-scroll-window > .ta-bind li {
   font-weight: 400;
+  color: #3A405B !important;
 }
 .well-auth.well {
   max-width: 400px;
@@ -12652,11 +12653,11 @@ hr.on-light {
 }
 @media (min-width: 1366px) {
   .dynamic-layout {
-    width: 1300px;
+    width: 1200px;
     margin-top: 20px;
   }
   .dynamic-layout-col-4 {
-    width: 320px;
+    width: 300px;
   }
 }
 @media (min-width: 900px) and (max-width: 1366px) {
@@ -14673,6 +14674,19 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-bar {
   position: relative;
+  height: 60px;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  width: 100%;
+  background: transparent;
+  border-radius: 52px;
+}
+@media screen and (max-width: 768px) {
+  .search-bar {
+    box-shadow: none !important;
+  }
+}
+.search-bar__shadow {
+  box-shadow: -35px 43px 53px -20px #000000;
 }
 .search-bar input,
 .search-bar select,
@@ -14690,15 +14704,17 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 768px) {
   .search-bar > *:nth-child(1) {
-    float: left;
-    width: 80%;
-    margin-top: 70px;
+    width: 100%;
+    margin-top: 10px;
     border-color: transparent;
     border-right: none;
     height: 55px !important;
+    margin-left: 0;
+    margin: 0 auto;
+    border-radius: 52px !important;
   }
   .search-bar > *:nth-child(1):focus {
-    width: 80% !important;
+    width: 100% !important;
   }
 }
 .search-bar > *:not(:nth-child(1)):not(:last-child) {
@@ -14707,14 +14723,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 @media screen and (max-width: 768px) {
   .search-bar > *:not(:nth-child(1)):not(:last-child) {
     width: 100%;
-    position: absolute;
-    left: 0;
     border-color: transparent;
-    background-color: #03d69a;
     color: white;
-    border-radius: 4px;
-    background-image: url(@{s3url}/static/img/about/arrow-white.png) !important;
-    padding: 0;
+    border-radius: 52px;
+    margin-top: 20px;
   }
 }
 .search-bar > *:last-child {
@@ -14729,13 +14741,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 768px) {
   .search-bar .form-control {
-    font-size: 0.8em;
+    font-size: 0.9em;
   }
 }
 .search-bar input,
 .search-bar input:focus {
   display: inline-block;
-  width: 55%;
+  width: 60%;
   float: left;
 }
 .search-bar .select-city {
@@ -14768,6 +14780,20 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
   background-size: 16px;
   background-size: 15px auto;
+  color: #9b9b9b !important;
+  text-transform: uppercase;
+}
+@media screen and (max-width: 768px) {
+  .search-bar .select-city select,
+  .search-bar .select-city select:focus {
+    border-radius: 52px !important;
+    padding: 0em 2em !important;
+    background-color: #f0f2f7 !important;
+    color: #3A405B !important;
+  }
+}
+.search-bar .select-shadow:before {
+  content: "l";
 }
 .search-bar select:focus {
   animation: input-highlight 0.5s forwards;
@@ -14777,7 +14803,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   background-position: 0 bottom;
 }
 .search-bar .btn.btn-primary {
-  width: 15%;
+  width: 10%;
   border-radius: 0;
   border-color: transparent;
   float: left;
@@ -14787,12 +14813,14 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 768px) {
   .search-bar .btn.btn-primary {
-    width: 20%;
+    width: 100%;
     float: right;
     border: none;
-    margin-top: 70px;
+    margin-top: 20px;
     color: white !important;
     height: 55px !important;
+    border-radius: 52px !important;
+    font-size: 0.6em;
   }
   .search-bar .btn.btn-primary .glyphicon {
     padding-top: 5px;
@@ -15975,6 +16003,16 @@ select.input-lg {
 .input-group {
   width: 100%;
 }
+.input-group .form-control:last-child {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+.input-group .form-control:not(:first-child):not(:last-child) {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
 .input-group .input-group-btn {
   font-size: 12px;
 }
@@ -16479,6 +16517,10 @@ tags-input input {
 }
 .btn-gray-dark {
   background-color: #a1a6bb;
+  color: white !important;
+}
+.btn-blue-dark {
+  background-color: #3A405B;
   color: white !important;
 }
 .btn-info {
@@ -18460,8 +18502,7 @@ ul.dropdown-menu:after {
 }
 .category-card {
   text-decoration: none !important;
-  height: 22vw;
-  min-height: 300px;
+  height: 270px;
   width: 100%;
   background-color: gray;
   border-radius: 4px;
@@ -18484,7 +18525,7 @@ ul.dropdown-menu:after {
 }
 @media screen and (max-width: 992px) {
   .category-card {
-    min-height: 95px;
+    height: 100px;
   }
 }
 .category-card.category-card-lg {
@@ -18535,6 +18576,8 @@ ul.dropdown-menu:after {
 }
 .category-card__background {
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -19414,6 +19457,15 @@ button.toast-close-button {
     padding-top: 20vh;
   }
 }
+.trulii-cover__content-landing-content,
+.trulii-cover-small__content-landing-content,
+.trulii-cover-medium__content-landing-content,
+.trulii-cover-regular__content-landing-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 55vh;
+}
 .trulii-cover__content-landing-categories,
 .trulii-cover-small__content-landing-categories,
 .trulii-cover-medium__content-landing-categories,
@@ -19436,6 +19488,24 @@ button.toast-close-button {
 .trulii-cover-medium__content-landing-categories a:hover,
 .trulii-cover-regular__content-landing-categories a:hover {
   color: white;
+}
+.trulii-cover__content-landing-searchbar,
+.trulii-cover-small__content-landing-searchbar,
+.trulii-cover-medium__content-landing-searchbar,
+.trulii-cover-regular__content-landing-searchbar {
+  width: 675px;
+  margin: 0 auto;
+  height: 60px;
+  position: relative;
+}
+@media screen and (max-width: 768px) {
+  .trulii-cover__content-landing-searchbar,
+  .trulii-cover-small__content-landing-searchbar,
+  .trulii-cover-medium__content-landing-searchbar,
+  .trulii-cover-regular__content-landing-searchbar {
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content-detail,
@@ -19814,23 +19884,6 @@ button.toast-close-button {
 .trulii-cover-regular__content-contact-controllers li .item-long a:focus {
   color: white;
 }
-.trulii-cover__content-contact-controllers li .item img,
-.trulii-cover-small__content-contact-controllers li .item img,
-.trulii-cover-medium__content-contact-controllers li .item img,
-.trulii-cover-regular__content-contact-controllers li .item img,
-.trulii-cover__content-contact-controllers li .item-long img,
-.trulii-cover-small__content-contact-controllers li .item-long img,
-.trulii-cover-medium__content-contact-controllers li .item-long img,
-.trulii-cover-regular__content-contact-controllers li .item-long img {
-  padding-top: 20px;
-  padding-bottom: 20px;
-  transition: all 0.25s;
-  position: absolute;
-  bottom: 0px;
-  left: 0px;
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
 .trulii-cover__content-contact-controllers li .item .item-icon,
 .trulii-cover-small__content-contact-controllers li .item .item-icon,
 .trulii-cover-medium__content-contact-controllers li .item .item-icon,
@@ -19842,78 +19895,11 @@ button.toast-close-button {
   font-size: 2em;
   border-radius: 50%;
   transition: all 0.50s;
-  margin-top: 1.2em;
+  height: 90px;
+  width: 90px;
+  padding-top: 28px;
+  margin: 2em auto;
   background-color: #1F5DEA;
-}
-.trulii-cover__content-contact-controllers li .item .fa-phone,
-.trulii-cover-small__content-contact-controllers li .item .fa-phone,
-.trulii-cover-medium__content-contact-controllers li .item .fa-phone,
-.trulii-cover-regular__content-contact-controllers li .item .fa-phone,
-.trulii-cover__content-contact-controllers li .item-long .fa-phone,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-phone,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-phone,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-phone {
-  padding: 0.5em 0.6em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-twitter,
-.trulii-cover-small__content-contact-controllers li .item .fa-twitter,
-.trulii-cover-medium__content-contact-controllers li .item .fa-twitter,
-.trulii-cover-regular__content-contact-controllers li .item .fa-twitter,
-.trulii-cover__content-contact-controllers li .item-long .fa-twitter,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-twitter,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-twitter,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-twitter {
-  padding: 0.55em 0.6em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-map-marker,
-.trulii-cover-small__content-contact-controllers li .item .fa-map-marker,
-.trulii-cover-medium__content-contact-controllers li .item .fa-map-marker,
-.trulii-cover-regular__content-contact-controllers li .item .fa-map-marker,
-.trulii-cover__content-contact-controllers li .item-long .fa-map-marker,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-map-marker,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-map-marker,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-map-marker {
-  padding: 0.6em 0.9em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-newspaper-o,
-.trulii-cover-small__content-contact-controllers li .item .fa-newspaper-o,
-.trulii-cover-medium__content-contact-controllers li .item .fa-newspaper-o,
-.trulii-cover-regular__content-contact-controllers li .item .fa-newspaper-o,
-.trulii-cover__content-contact-controllers li .item-long .fa-newspaper-o,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-newspaper-o,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-newspaper-o,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-newspaper-o {
-  padding: 0.6em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-linkedin-square,
-.trulii-cover-small__content-contact-controllers li .item .fa-linkedin-square,
-.trulii-cover-medium__content-contact-controllers li .item .fa-linkedin-square,
-.trulii-cover-regular__content-contact-controllers li .item .fa-linkedin-square,
-.trulii-cover__content-contact-controllers li .item-long .fa-linkedin-square,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-linkedin-square,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-linkedin-square,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-linkedin-square {
-  padding: 0.6em 0.7em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-facebook,
-.trulii-cover-small__content-contact-controllers li .item .fa-facebook,
-.trulii-cover-medium__content-contact-controllers li .item .fa-facebook,
-.trulii-cover-regular__content-contact-controllers li .item .fa-facebook,
-.trulii-cover__content-contact-controllers li .item-long .fa-facebook,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-facebook,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-facebook,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-facebook {
-  padding: 0.6em 0.8em;
-}
-.trulii-cover__content-contact-controllers li .item .fa-angellist,
-.trulii-cover-small__content-contact-controllers li .item .fa-angellist,
-.trulii-cover-medium__content-contact-controllers li .item .fa-angellist,
-.trulii-cover-regular__content-contact-controllers li .item .fa-angellist,
-.trulii-cover__content-contact-controllers li .item-long .fa-angellist,
-.trulii-cover-small__content-contact-controllers li .item-long .fa-angellist,
-.trulii-cover-medium__content-contact-controllers li .item-long .fa-angellist,
-.trulii-cover-regular__content-contact-controllers li .item-long .fa-angellist {
-  padding: 0.6em 0.75em;
 }
 .trulii-cover__content-contact-controllers li .item .item-description,
 .trulii-cover-small__content-contact-controllers li .item .item-description,
@@ -20752,6 +20738,7 @@ blockquote {
   display: inline-block;
   float: left;
   text-align: center;
+  cursor: pointer;
 }
 .activity-detail__enroll-widget__likes .heart .mdi-action-favorite {
   color: #ff5a5f;
@@ -23609,8 +23596,8 @@ blockquote {
   }
 }
 .pse-payment .form-group label select {
-  border-radius: 54px;
-  height: 54px !important;
+  border-radius: 52px;
+  height: 52px !important;
 }
 .pse-payment .form-group label:after {
   top: 10px;
@@ -23624,8 +23611,8 @@ blockquote {
   float: left;
 }
 .pse-payment .input-group .select-forms label select {
-  border-radius: 54px;
-  height: 54px !important;
+  border-radius: 52px;
+  height: 52px !important;
 }
 .pse-payment .input-group .select-forms label:after {
   top: 10px;

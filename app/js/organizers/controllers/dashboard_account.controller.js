@@ -12,17 +12,14 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
 
-    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Toast', 'Error', 'organizer', 'bankingInfo'];
-    function OrganizerAccountCtrl($state, Authentication, Toast, Error, organizer, bankingInfo) {
+    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Toast', 'Error', 'organizer', 'bankingInfo', 'bankingData'];
+    function OrganizerAccountCtrl($state, Authentication, Toast, Error, organizer, bankingInfo, bankingData) {
 
         var vm = this;
         angular.extend(vm, {
             organizer : organizer,
             bankingInfo: bankingInfo,
-            bankingData: {
-                'organizer': organizer.id,
-                
-            },
+            bankingData: {},
             password_data : {},
             isCollapsed : true,
             isSaving:false,
@@ -41,6 +38,7 @@
 
         function updateBankingInfo(){
             vm.isSaving = true;
+            vm.bankingData.organizer = organizer.id;
             console.log(vm.bankingData);
             Error.form.clear(vm.account_form_banking_info);
             organizer.saveBankingInfo(vm.bankingData).then(success, error);
@@ -106,14 +104,13 @@
 
         //--------- Internal Functions ---------//
 
-        function _getOrganizerBankingInfo(){
+        function _setOrganizerBankingData(){
 
-            organizer.getBankingInfo().then(success);
-
-            function success(bankingData){
-                
-                if(bankingData){ vm.bankingData = bankingData; }
-                console.log(vm.bankingData);
+            if(!(_.isEmpty(bankingData))){ 
+                var current_bank_data = _.find(vm.bankingInfo.banks, 
+                                                { 'bank_id': bankingData.bank });
+                vm.bankingData = bankingData; 
+                vm.bankingData.bank = current_bank_data.bank_id;
             }
         }
 
@@ -156,7 +153,7 @@
 
         function _activate() {
             _setStrings();
-            _getOrganizerBankingInfo();
+            _setOrganizerBankingData();
         }
 
     }

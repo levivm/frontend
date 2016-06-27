@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 limited-width">
-    <div class="row padding-vertical-regular" ng-show="contact.sent">
+    <div class="row padding-vertical-regular" ng-hide="contact.sent">
       <div class="col-xs-12 col-md-10 col-md-offset-1 separate-above">
         <h2 class="title text-center separate-below-less text-brand-dark">
           <span>
@@ -74,9 +74,10 @@
         </form>
       </div>
     </div>
-    <div class="row fade-hide padding-vertical-more" ng-show="!contact.sent">
+    <div class="row fade-hide padding-vertical-more" ng-hide="!contact.sent">
       <div class="col-xs-12">
-        <h2 class="title text-center separate-above-more separate-below-less text-brand-dark">
+        <img ng-src="{{contact.getAmazonUrl('static/img/contact/check.png')}}" class="img-responsive center-block separate-above" alt="">
+        <h2 class="title text-center separate-above separate-below-less text-brand-dark">
           <span ng-bind="::contact.strings.CONTACT_SUCCESS_COVER_TITLE"></span>
         </h2>
       </div>
@@ -92,7 +93,9 @@
       <li>
         <div class="item-long">
           <a href="tel:573456789033" target="_blank">
-            <i class="fa fa-phone item-icon" aria-hidden="true"></i>
+            <div class="item-icon">
+              <img ng-src="{{contact.getAmazonUrl('static/img/contact/call.png')}}" class="img-responsive center-block" alt="">
+            </div>
             <h4 class="item-description">
               <strong>¡Llámanos!</strong>
               <br>
@@ -107,7 +110,9 @@
       <li>
         <div class="item">
           <a href="https://twitter.com/Trulii_" target="_blank">
-            <i class="fa fa-twitter item-icon" aria-hidden="true"></i>
+            <div class="item-icon">
+              <img ng-src="{{contact.getAmazonUrl('static/img/contact/twitter.png')}}" class="img-responsive center-block" alt="">
+            </div>
             <h4 class="item-description">
               <strong>¡Escríbenos un tuit!</strong>
             </h4>
@@ -117,7 +122,9 @@
       <li>
         <div class="item">
           <a href="https://www.facebook.com/truliilatam/" target="_blank">
-            <i class="fa fa-facebook item-icon" aria-hidden="true"></i>
+            <div class="item-icon">
+              <img ng-src="{{contact.getAmazonUrl('static/img/contact/messenger.png')}}" class="img-responsive center-block" alt="">
+            </div>
             <h4 class="item-description">
               <strong>¡Escríbenos un mensaje!</strong>
             </h4>
@@ -128,7 +135,9 @@
       <li>
         <div class="item">
           <a href="https://www.linkedin.com/company/trulii?trk" target="_blank">
-            <i class="fa fa-linkedin-square item-icon" aria-hidden="true"></i>
+            <div class="item-icon">
+              <img ng-src="{{contact.getAmazonUrl('static/img/contact/whatsapp.png')}}" class="img-responsive center-block" alt="">
+            </div>
             <h4 class="item-description">
               <strong>¡Chatea con nosotros!</strong>
             </h4>
@@ -138,7 +147,9 @@
       <li>
         <div class="item">
           <a href="#" target="_blank">
-            <i class="fa fa-newspaper-o item-icon" aria-hidden="true"></i>
+            <div class="item-icon">
+              <img ng-src="{{contact.getAmazonUrl('static/img/contact/trello.png')}}" class="img-responsive center-block" alt="">
+            </div>
             <h4 class="item-description">
               <strong>Danos tu feedback</strong>
             </h4>
@@ -148,7 +159,9 @@
       <li>
         <div class="item">
           <a href="#" target="_blank">
-            <i class="fa fa-map-marker item-icon" aria-hidden="true"></i>
+            <div class="item-icon">
+              <img ng-src="{{contact.getAmazonUrl('static/img/contact/maps.png')}}" class="img-responsive center-block" alt="">
+            </div>
             <h4 class="item-description">
               <strong>¡Estamos aquí!</strong>
             </h4>
