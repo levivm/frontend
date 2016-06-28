@@ -104,12 +104,8 @@
         </div>
       </div>
       <hr class="col-xs-12 col-md-6 col-md-offset-3">
-      <div class="col-xs-12 limited-width dynamic-layout-wrapper" >
-          <div class="dynamic-layout-container-fluid ">
-              <div class="text-center">
-                  <div dynamic-layout items="home.cards" class="dynamic-layout "></div>
-              </div>
-          </div>
+      <div class="col-xs-12 limited-width flex-cards" >
+           <trulii-activity-item data-activity="activity" ng-repeat="activity in home.cards"></trulii-activity-item>
       </div>
       <div class="row separate-above-more separate-below-more">
         <div class="col-xs-10 col-md-8 center-block float-none ">

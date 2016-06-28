@@ -23729,6 +23729,23 @@ blockquote {
 .related-activities-container-enroll {
   padding: 4em 4em;
 }
+.flex-cards {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+@media screen and (max-width: 1290px) {
+  .flex-cards {
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+  }
+}
 .review-student {
   display: flex;
   height: 310px;
