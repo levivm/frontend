@@ -48,6 +48,8 @@
             },
             updateByQuery:updateByQuery,
             TYPE_NEXT: 'next',
+            TYPE_PAST: 'past',
+            TYPE_CURRENT: 'current',
             current_cards: [],
             future_cards: []
         });
@@ -75,6 +77,7 @@
                   });
                   break;
                 case vm.TYPE_CURRENT:
+                  console.log(vm.currentPaginationOpts);
                   ActivitiesManager.getStudentActivities(student.id, vm.TYPE_CURRENT, vm.currentPaginationOpts.pageNumber, vm.currentPaginationOpts.itemsPerPage)
                   .then(function(response){
                     vm.current_activities = response.results;

@@ -8,18 +8,14 @@
             <span class="text-gray-dark" ng-bind="::activities.strings.COPY_CURRENT"></span>
      </div>
     <div class="row" ng-if="activities.current_activities.length > 0">
-        <div class="col-xs-12 dynamic-layout-wrapper separate-below">
-            <div class="dynamic-layout-container-fluid ">
-                <div class="text-center">
-                    <div dynamic-layout items="activities.current_cards" class="dynamic-layout"></div>
-                </div>
-            </div>
+        <div class="col-xs-12 flex-cards" >
+            <trulii-activity-item data-activity="activity" ng-repeat="activity in activities.current_cards"></trulii-activity-item>
         </div>
     </div>
     <div class="text-center" ng-if="activities.currentPaginationOpts.totalItems > activities.currentPaginationOpts.itemsPerPage">
         <pagination class="pagination-sm"
           ng-model="activities.currentPaginationOpts.pageNumber"
-          ng-change="activities.updateByQuery(activities.TYPE_PAST)"
+          ng-change="activities.updateByQuery(activities.TYPE_CURRENT)"
           data-total-items="activities.currentPaginationOpts.totalItems"
           previous-text="Previo"
           next-text="Siguiente"                

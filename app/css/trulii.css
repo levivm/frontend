@@ -12608,6 +12608,27 @@ hr.on-light {
     padding: 0;
   }
 }
+.limited-width-search-container {
+  float: none;
+  margin: 0 auto;
+  clear: both;
+}
+@media (max-width: 1299px) {
+  .limited-width-search-container {
+    max-width: 1200px;
+    padding: 0 50px;
+  }
+}
+@media (min-width: 1300px) {
+  .limited-width-search-container {
+    max-width: 1200px;
+  }
+}
+@media (max-width: 768px) {
+  .limited-width-search-container {
+    padding: 0;
+  }
+}
 .limited-width-dashboard-container {
   width: 1044px;
   margin: 0 auto;
@@ -25157,6 +25178,7 @@ input[type=text].form-control.referral-link:focus {
 .home-footer {
   height: auto;
   width: 100vw;
+  background-color: #222328;
 }
 .summary-container .nvd3-svg {
   overflow: visible;
