@@ -101,7 +101,7 @@
       <div class="category-card-container">
         <div class="row limited-width">
           <div class="col-xs-12 col-md-4"  ng-repeat="category in home.trendingCategories ">
-            <a ng-click="home.searchCategory(category)" ui-sref="search({category:category.category_id, subcategory: category.subcategory_id})" class="category-card ">
+            <a ng-click="home.searchCategory(category)" ui-sref="search({category:category.category.id, subcategory: category.subcategory.id})" class="category-card ">
               <div class="category-card__veil"></div>
               <div class="category-card__background" ng-style="{'background-image': 'url({{::home.getAmazonUrl(category.cover)}})'}"></div>
               <h2 class="category-card__title" ng-bind="::category.name"></h2>

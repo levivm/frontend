@@ -85,7 +85,7 @@
 
         function _setCategories(){
             vm.categories = angular.copy(generalInfo.categories);
-
+            console.log(vm.categories);
         }
 
         function _setStrings() {
@@ -161,27 +161,34 @@
         }
         
         function _setTrendingCategories() {
+            //_.find(vm.categories, { 'name': 'Idiomas' }),
+           // _.find(this.category.subcategories, { 'name': 'Inglés' });
             vm.trendingCategories = [
                 {
                     name: 'Inglés',
                     cover: 'static/img/home/ingles.jpg',
-                    category_id: 9,
-                    subcategory_id: 84
+                    category: 'Idiomas',
+                    subcategory: 'Inglés'
                     
                 }, 
                 {
                     name: 'Salsa',
                     cover: 'static/img/home/salsa.jpg',
-                    category_id: 1,
-                    subcategory_id: 6
+                    category: 'Danza',
+                    subcategory: 'Latinas'
                 }, 
                 {
                     name: 'Fotografía',
                     cover: 'static/img/home/fotografia.jpg',
-                    category_id: 8,
-                    subcategory_id: 76
+                    category: 'Arte',
+                    subcategory: 'Fotografía'
                 }, 
             ]
+            vm.trendingCategories.map(function(trend){
+                    trend.category = _.find(vm.categories, { 'name': trend.category });
+                    trend.subcategory = _.find(trend.category.subcategories, { 'name': trend.subcategory });
+            });
+            
             
         }
 

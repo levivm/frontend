@@ -18588,7 +18588,7 @@ ul.dropdown-menu:after {
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
-  font-weight: bold;
+  font-weight: 700;
   color: white;
   z-index: 500;
   font-size: 3em;
