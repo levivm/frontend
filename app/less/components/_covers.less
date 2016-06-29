@@ -173,6 +173,17 @@
     min-width:100%;
 
   }
+  
+  &__notfound{
+    h1{
+      font-size: 6em !important;
+      font-weight: 600;
+    }
+    h2{
+      font-size: 2.5em;
+      font-weight: 700;
+    }
+  }
   &__container{
     &:extend(.flex-center-container);
     min-height: inherit;
@@ -770,6 +781,19 @@
   }
   &__background.background-dark:after{
     background-color:rgba(60, 61, 65, 0.75);
+  }
+  
+  &__background-notfound{
+    img:first-child{
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    img:last-child{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+    }
   }
 }
 
