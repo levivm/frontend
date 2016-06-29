@@ -70,12 +70,8 @@
             <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span>
         </span>
     </h1>
-    <div class="col-xs-12 dynamic-layout-wrapper separate-below-more">
-        <div class="dynamic-layout-container-fluid separate-above-medium">
-        <div class="text-center">
-            <div dynamic-layout items="profile.cards" class="dynamic-layout"></div>
-        </div>
-        </div>
+    <div class="limited-width flex-cards separate-below-more separate-above-medium" >
+        <trulii-activity-item data-activity="activity" ng-repeat="activity in profile.cards"></trulii-activity-item>
     </div>
     <div class="col-xs-12 separate-below-more">
         <div class="text-center"

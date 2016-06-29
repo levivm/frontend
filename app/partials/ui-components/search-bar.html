@@ -1,9 +1,16 @@
-<form name="search_box" ng-class="{'search-bar__navbar': onNavbar, 'search-bar': !onNavbar}" ng-submit="search()">
-    <input type="text" class="form-control" typeahead="suggestion for suggestion in getSuggestions($viewValue)"
-     typeahead-min-length="3" typeahead-focus-first="false" ng-model="q" placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"/>
+<form name="search_box" ng-class="{'search-bar__navbar': onNavbar, 'search-bar': !onNavbar, 'search-bar__shadow': onFocus}"  ng-submit="search()">
+    <input type="text" 
+           class="form-control" 
+           typeahead="suggestion for suggestion in getSuggestions($viewValue)" 
+           typeahead-min-length="3" 
+           typeahead-focus-first="false" 
+           ng-model="q" 
+           ng-focus="onFocus=!onFocus"
+           ng-blur="onFocus=!onFocus"
+           placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"/>
     <div class="select-city">
       <label for="search-city-selector" class="sr-only">Cities</label>
-      <select id="search-city-selector" class="form-control" name="city"
+      <select id="search-city-selector select-shadow" class="form-control" name="city"
              ng-model="search_city" ng-change="updateSearchCity()"
              ng-options="city as city.name for city in cities track by city.id">
 
@@ -13,7 +20,8 @@
       </select>
       
     </div>
-    <button class="btn btn-default" type="submit">
-        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    <button class="btn btn-primary" type="submit">
+        <span class="glyphicon glyphicon-search hidden-xs" aria-hidden="true"></span>
+        <span class="hidden-sm hidden-md hidden-lg">Buscar</span>
     </button>
 </form>

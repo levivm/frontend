@@ -39,6 +39,106 @@
 .container-gray-light{
   background-color: @gray-lighter;
 }
+
+.container-how{
+  color: @blue-dark;
+  position: relative;
+  text-align: center;
+  &__image{
+    width: 100px;
+    padding: 30px;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    &-find{
+      background-color: @brand-info;
+    }
+    &-sign{
+      background-color: @brand-success;
+    }
+    &-learn{
+      background-color: @blue-dark;
+    }
+    &-review{
+      background-color: @brand-yellow;
+    }
+  }
+  .fa-long-arrow-right{
+    position: absolute;
+    top: 40px;
+    right: -20px;
+    font-size: 2em;
+    font-weight: 100;
+  }
+  .fa-long-arrow-down{
+    font-size: 2em;
+    font-weight: 100;
+  }
+}
+
+.container-reasons{
+    min-height: 100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 2em 2em 0em 2em;
+    
+    .before-md({
+        flex-direction: column;
+        align-items: center;
+    });
+    .reason{
+        display: flex;
+        align-items: center;
+        margin-bottom: 2em;
+        .reason-img{
+            width: 90px;
+            text-align: center;
+            border-radius: 50%;
+            padding: 16px;
+            height: 90px;
+            
+            &__commisions{
+              background-color: @brand-danger;
+            }
+            &__refund{
+              background-color: @brand-info;
+            }
+            
+            &__payment{
+              background-color: @brand-success;
+            }
+        }
+        
+        .reason-text{
+            font-size: 0.9em;
+            margin-left: 2em;
+            width: 160px;
+            .reason-title{
+              color: @gray-darker;
+              font-weight: 700;
+            }
+            .reason-copy{
+              font-weight: 500;
+            }
+        }
+    }
+}
+
+.container-organizers{
+    display: flex;
+    justify-content: space-between;
+    img{
+      width: 150px;
+      height: 160px;
+      .before-sm({
+            width: 200px;
+            height: 200px;
+        });
+    }
+    
+    
+}
 .container-success{
   background-color: @brand-success-dark;
   *{

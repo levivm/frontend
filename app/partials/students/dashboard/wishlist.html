@@ -1,4 +1,4 @@
-<div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard  limited-width-dashboard__activities">
+<div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard ">
   <div class="fade in">
     
     <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
@@ -8,12 +8,8 @@
             <span class="text-gray-dark" ng-bind="::wishlist.strings.COPY_WISHLIST"></span>
      </div>
     <div class="row"  ng-if="wishlist.activities.length > 0">
-        <div class="col-xs-12 dynamic-layout-wrapper separate-below">
-          <div class="dynamic-layout-container-fluid ">
-            <div class="text-center">
-                <div dynamic-layout items="wishlist.cards" class="dynamic-layout"></div>
-            </div>
-          </div>
+        <div class="col-xs-12 flex-cards" >
+            <trulii-activity-item data-activity="activity" ng-repeat="activity in wishlist.cards"></trulii-activity-item>
         </div>
     </div>
     <div class="text-center separate-above-more" ng-if="wishlist.nextPaginationOpts.totalItems > wishlist.nextPaginationOpts.itemsPerPage">

@@ -1,201 +1,203 @@
 <div class="home-footer">
-    <div class="col-xs-12 home-footer__links">
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-8">
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="link-column ">
-                                <h4 class="header" ng-bind="::strings.FOOTER_LINKS_ABOUT_US_HEADER">
+    <div class="limited-width">
+        <div class="col-xs-12 home-footer__links">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="link-column ">
+                                    <h4 class="header" ng-bind="::strings.FOOTER_LINKS_ABOUT_US_HEADER">
+                                        
+                                    </h4>
+                                    <i class="fa fa-angle-down arrow-down hidden-sm hidden-md hidden-lg " 
+                                    ng-click="toggleFooter(strings.FOOTER_SHOW_ABOUT)" 
+                                    ng-class="{'rotate-icon': showFooter[strings.FOOTER_SHOW_ABOUT]}" aria-hidden="true"></i>
+                                    <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_ABOUT]}" >
+                                        <li class="link">
+                                            <a ui-sref="about.team">
+                                            <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_ABOUT"></span>
+                                            </a>
+                                        </li>
+                                        <li class="link">
+                                            <a href="https://blog.trulii.com"
+                                            target="_blank">
+                                            <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_BLOG"></span>
+                                            </a>
+                                        </li>
+                                        <li class="link">
+                                            <a ui-sref="about.terms">
+                                            <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_TERMS"></span>
+                                            </a>
+                                        </li>
+                                        <li class="link">
+                                            <a ui-sref="about.privacy-policy">
+                                            <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_PRIVACY"></span>
+                                            </a>
+                                        </li>
+                                        <li class="link">
+                                            <a ui-sref="contact-us">
+                                            <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_CONTACT"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                     
-                                </h4>
-                                <i class="fa fa-angle-down arrow-down hidden-sm hidden-md hidden-lg " 
-                                   ng-click="toggleFooter(strings.FOOTER_SHOW_ABOUT)" 
-                                   ng-class="{'rotate-icon': showFooter[strings.FOOTER_SHOW_ABOUT]}" aria-hidden="true"></i>
-                                <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_ABOUT]}" >
-                                    <li class="link">
-                                        <a ui-sref="about.team">
-                                          <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_ABOUT"></span>
-                                        </a>
-                                    </li>
-                                    <li class="link">
-                                        <a href="https://blog.trulii.com"
-                                           target="_blank">
-                                          <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_BLOG"></span>
-                                        </a>
-                                    </li>
-                                    <li class="link">
-                                        <a ui-sref="about.terms">
-                                          <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_TERMS"></span>
-                                        </a>
-                                    </li>
-                                    <li class="link">
-                                        <a ui-sref="about.privacy-policy">
-                                          <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_PRIVACY"></span>
-                                        </a>
-                                    </li>
-                                    <li class="link">
-                                        <a ui-sref="contact-us">
-                                          <span ng-bind="::strings.FOOTER_LINKS_ABOUT_US_CONTACT"></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                                
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="link-column ">
+                                    <h4 class="header" ng-bind="::strings.FOOTER_LINKS_STUDENTS_HEADER">
+                                    </h4>
+                                    <i class="fa fa-angle-down arrow-down hidden-sm hidden-md hidden-lg " 
+                                    ng-click="toggleFooter(strings.FOOTER_SHOW_STUDENT)" 
+                                    ng-class="{'rotate-icon': showFooter[strings.FOOTER_SHOW_STUDENT]}" aria-hidden="true"></i>
+                                    
+                                    <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_STUDENT]}" >
+                                        <li class="link">
+                                            <a ui-sref="referrals.home">
+                                                <span ng-bind="::strings.FOOTER_LINKS_STUDENTS_INVITE"></span>
+                                            </a>
+                                        </li>
+                                        <li class="link">
+                                            <a ng-click="howToWorkStudent()">
+                                            <span ng-bind="::strings.FOOTER_LINKS_STUDENTS_HOW"></span>
+                                            </a>
+                                        </li>
+                                        <!--<li class="link">-->
+                                            <!--<a href="">-->
+                                            <!--<span ng-bind="::strings.FOOTER_LINKS_STUDENTS_SUGGEST"></span>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="link">-->
+                                            <!--<a href="">-->
+                                            <!--<span ng-bind="::strings.FOOTER_LINKS_STUDENTS_FEEDBACK"></span>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                        <li class="link">
+                                            <a ui-sref="help.student">
+                                            <span ng-bind="::strings.FOOTER_LINKS_STUDENTS_HELP"></span>
+                                            </a>
+                                        </li>
+                                        <!--<li class="link">-->
+                                            <!--<a href="">-->
+                                            <!--<span ng-bind="::strings.FOOTER_LINKS_STUDENTS_FAQ"></span>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-4">
+                                <div class="link-column ">
+                                    <h4 class="header" ng-bind="::strings.FOOTER_LINKS_ORGANIZER_HEADER">
+                                    </h4>
+                                    <i class="fa fa-angle-down arrow-down hidden-sm hidden-md hidden-lg" 
+                                    ng-click="toggleFooter(strings.FOOTER_SHOW_ORGANIZER)" 
+                                    ng-class="{'rotate-icon': showFooter[strings.FOOTER_SHOW_ORGANIZER]}" aria-hidden="true"></i>
+                                    <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_ORGANIZER]}" >
+                                        <li class="link">
+                                            <a ui-sref="organizer-landing">
+                                            <span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_BE"></span>
+                                            </a>
+                                        </li>
+                                        <li class="link">
+                                            <a ng-click="howToWorkOrganizer()">
+                                            <span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_HOW"></span>
+                                            </a>
+                                        </li>
+                                        <!--<li class="link">-->
+                                            <!--<a href="">-->
+                                            <!--<span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_GUIDE"></span>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                        <!--<li class="link">-->
+                                            <!--<a href="">-->
+                                            <!--<span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_FEEDBACK"></span>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                        <li class="link">
+                                            <a ui-sref="help.organizer">
+                                            <span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_HELP"></span>
+                                            </a>
+                                        </li>
+                                        <!--<li class="link">-->
+                                            <!--<a href="">-->
+                                            <!--<span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_FAQ"></span>-->
+                                            <!--</a>-->
+                                        <!--</li>-->
+                                    </ul>
+                                    
+                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="link-column ">
-                                <h4 class="header" ng-bind="::strings.FOOTER_LINKS_STUDENTS_HEADER">
-                                </h4>
-                                <i class="fa fa-angle-down arrow-down hidden-sm hidden-md hidden-lg " 
-                                   ng-click="toggleFooter(strings.FOOTER_SHOW_STUDENT)" 
-                                   ng-class="{'rotate-icon': showFooter[strings.FOOTER_SHOW_STUDENT]}" aria-hidden="true"></i>
-                                   
-                                <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_STUDENT]}" >
-                                    <li class="link">
-                                        <a ui-sref="referrals.home">
-                                            <span ng-bind="::strings.FOOTER_LINKS_STUDENTS_INVITE"></span>
-                                        </a>
-                                    </li>
-                                    <li class="link">
-                                        <a ng-click="howToWorkStudent()">
-                                          <span ng-bind="::strings.FOOTER_LINKS_STUDENTS_HOW"></span>
-                                        </a>
-                                    </li>
-                                    <!--<li class="link">-->
-                                        <!--<a href="">-->
-                                          <!--<span ng-bind="::strings.FOOTER_LINKS_STUDENTS_SUGGEST"></span>-->
-                                        <!--</a>-->
-                                    <!--</li>-->
-                                    <!--<li class="link">-->
-                                        <!--<a href="">-->
-                                          <!--<span ng-bind="::strings.FOOTER_LINKS_STUDENTS_FEEDBACK"></span>-->
-                                        <!--</a>-->
-                                    <!--</li>-->
-                                    <li class="link">
-                                        <a ui-sref="help.student">
-                                          <span ng-bind="::strings.FOOTER_LINKS_STUDENTS_HELP"></span>
-                                        </a>
-                                    </li>
-                                    <!--<li class="link">-->
-                                        <!--<a href="">-->
-                                          <!--<span ng-bind="::strings.FOOTER_LINKS_STUDENTS_FAQ"></span>-->
-                                        <!--</a>-->
-                                    <!--</li>-->
-                                </ul>
-                                
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4">
-                            <div class="link-column ">
-                                <h4 class="header" ng-bind="::strings.FOOTER_LINKS_ORGANIZER_HEADER">
+                        <div class="col-xs-12 col-sm-4 social-footer">
+                            <div class="link-column">
+                                <h4 class="header" ng-bind="::strings.FOOTER_LINKS_SOCIAL_HEADER">
                                 </h4>
                                 <i class="fa fa-angle-down arrow-down hidden-sm hidden-md hidden-lg" 
-                                   ng-click="toggleFooter(strings.FOOTER_SHOW_ORGANIZER)" 
-                                   ng-class="{'rotate-icon': showFooter[strings.FOOTER_SHOW_ORGANIZER]}" aria-hidden="true"></i>
-                                <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_ORGANIZER]}" >
-                                    <li class="link">
-                                        <a ui-sref="organizer-landing">
-                                          <span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_BE"></span>
-                                        </a>
-                                    </li>
-                                    <li class="link">
-                                        <a ng-click="howToWorkOrganizer()">
-                                          <span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_HOW"></span>
-                                        </a>
-                                    </li>
-                                    <!--<li class="link">-->
-                                        <!--<a href="">-->
-                                          <!--<span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_GUIDE"></span>-->
-                                        <!--</a>-->
-                                    <!--</li>-->
-                                    <!--<li class="link">-->
-                                        <!--<a href="">-->
-                                          <!--<span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_FEEDBACK"></span>-->
-                                        <!--</a>-->
-                                    <!--</li>-->
-                                    <li class="link">
-                                        <a ui-sref="help.organizer">
-                                          <span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_HELP"></span>
-                                        </a>
-                                    </li>
-                                    <!--<li class="link">-->
-                                        <!--<a href="">-->
-                                          <!--<span ng-bind="::strings.FOOTER_LINKS_ORGANIZER_FAQ"></span>-->
-                                        <!--</a>-->
-                                    <!--</li>-->
-                                </ul>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 social-footer">
-                        <div class="link-column">
-                            <h4 class="header" ng-bind="::strings.FOOTER_LINKS_SOCIAL_HEADER">
-                            </h4>
-                             <i class="fa fa-angle-down arrow-down hidden-sm hidden-md hidden-lg" 
-                                ng-click="toggleFooter(strings.FOOTER_SHOW_SOCIAL)" 
-                                ng-class="{'rotate-icon': showFooter[strings.FOOTER_SHOW_SOCIAL]}" aria-hidden="true"></i>
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-6">
-                                    <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_SOCIAL]}">
-                                        <li class="link">
-                                            <a href="https://www.facebook.com/truliilatam/">
-                                                <div class="icon">
-                                                   <i class="fa fa-facebook" aria-hidden="true"></i>
-                                                </div>
-                                                <span>Facebook</span>
-                                            </a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="https://www.linkedin.com/company/trulii?trk">
-                                                <div class="icon">
-                                                    
-                                                    <i class="fa fa-linkedin-square" aria-hidden="true"></i>
-                                                </div>
-                                                <span>Linkedin</span>
-                                            </a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="http://www.slideshare.net/trulii">
-                                                <div class="icon">
-                                                    <i class="fa fa-slideshare" aria-hidden="true"></i>
-                                                </div>
-                                                <span>Slideshare</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-xs-12 col-sm-6">
-                                    <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_SOCIAL]}">
-                                        <li class="link">
-                                            <a href="https://twitter.com/trulii_">
-                                                <div class="icon">
-                                                    <i class="fa fa-twitter" aria-hidden="true"></i>
-                                                </div>
-                                                <span>Twitter</span>
-                                            </a>
-                                        </li>
+                                    ng-click="toggleFooter(strings.FOOTER_SHOW_SOCIAL)" 
+                                    ng-class="{'rotate-icon': showFooter[strings.FOOTER_SHOW_SOCIAL]}" aria-hidden="true"></i>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-6">
+                                        <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_SOCIAL]}">
+                                            <li class="link">
+                                                <a href="https://www.facebook.com/truliilatam/">
+                                                    <div class="icon">
+                                                    <i class="fa fa-facebook" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span>Facebook</span>
+                                                </a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="https://www.linkedin.com/company/trulii?trk">
+                                                    <div class="icon">
+                                                        
+                                                        <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span>Linkedin</span>
+                                                </a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="http://www.slideshare.net/trulii">
+                                                    <div class="icon">
+                                                        <i class="fa fa-slideshare" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span>Slideshare</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+                                        <ul class="list-unstyled" ng-class="{'show-content': showFooter[strings.FOOTER_SHOW_SOCIAL]}">
+                                            <li class="link">
+                                                <a href="https://twitter.com/trulii_">
+                                                    <div class="icon">
+                                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span>Twitter</span>
+                                                </a>
+                                            </li>
+                                            
+                                            <li class="link">
+                                                <a href="https://www.youtube.com/channel/UC5XSPxND_Wlhx999o2CrPXw">
+                                                    <div class="icon">
+                                                        <i class="fa fa-youtube-play" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span>YouTube</span>
+                                                </a>
+                                            </li>
+                                            <li class="link">
+                                                <a href="https://angel.co/trulii">
+                                                    <div class="icon">
+                                                        <i class="fa fa-angellist" aria-hidden="true"></i>
+                                                    </div>
+                                                    <span>AngelList</span>
+                                                </a>
+                                            </li>
+                                            
+                                        </ul>
                                         
-                                        <li class="link">
-                                            <a href="https://www.youtube.com/channel/UC5XSPxND_Wlhx999o2CrPXw">
-                                                <div class="icon">
-                                                    <i class="fa fa-youtube-play" aria-hidden="true"></i>
-                                                </div>
-                                                <span>YouTube</span>
-                                            </a>
-                                        </li>
-                                        <li class="link">
-                                            <a href="https://angel.co/trulii">
-                                                <div class="icon">
-                                                    <i class="fa fa-angellist" aria-hidden="true"></i>
-                                                </div>
-                                                <span>AngelList</span>
-                                            </a>
-                                        </li>
-                                        
-                                    </ul>
-                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -211,3 +213,4 @@
         <p class="text-center">&#9400; 2015 Trulii S.A.S.</p>
     </div>
 </div>
+
