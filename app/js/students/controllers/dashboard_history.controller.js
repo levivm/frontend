@@ -53,7 +53,8 @@
                 showWeeks:false,
             },
             openDatePicker: openDatePicker,
-            filterById: filterById
+            filterById: filterById,
+            search:false
         });
 
         activate();
@@ -118,10 +119,12 @@
         /*       Internal Functions      */
 
         function success(ordersResponse){
+            vm.search = true;
             orders = ordersResponse;
             orders.results = $filter('orderBy')(orders.results, 'id', true);
             vm.ordersPaginationOpts.totalItems = orders.count;
             vm.orders = orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
+            
 
         }
         function error(orders){
@@ -152,6 +155,7 @@
                 + "Puedes incluso solicitar el reembolso del monto total de la orden o el monto "
                 + "correspondiente por cada asistente",
                 LABEL_EMPTY_ORDERS: "No tienes ninguna transacción porque aún no te has inscrito a ninguna actividad. Anda, ¡anímate!",
+                LABEL_EMPTY_SEARCH_ORDERS: "No hay ninguna orden que cumpla con los párametros de busqueda.",
                 LABEL_EVERYBODY: "Todos",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un nuevo pasatiemo o mejores tu curriculo",
                 TAB_ORDERS: "Compras",
