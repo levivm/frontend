@@ -59,9 +59,6 @@
         }
         function addInstructors() {
             var tempInstructor = angular.extend({}, EMPTY_INSTRUCTOR);
-            console.log('lenght', vm.instructors.length); 
-            console.log('sum',vm.instructors.length + vm.countInstructors);
-            console.log('count', vm.countInstructors);
             if(vm.instructors.length<4){
                 vm.instructors.unshift(tempInstructor);
                 vm.countInstructors++;

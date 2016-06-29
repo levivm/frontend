@@ -33,7 +33,7 @@
   </div>
   <div class="trulii-activity-card__body">
     <div class="trulii-activity-card__body__content">
-      <a class="trulii-activity-card__body__content__title text-center" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })" ng-bind="::activity.title | limitTo : titleSize">
+      <a class="trulii-activity-card__body__content__title text-center" ng-class="{'text-left': organizer}" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })" ng-bind="::activity.title | limitTo : titleSize">
       </a>
       <br>
       <a class="trulii-activity-card__body__content__organizer text-center" ui-sref="organizer-profile({organizer_id: activity.organizer.id})" ng-bind="::activity.organizer.name">
