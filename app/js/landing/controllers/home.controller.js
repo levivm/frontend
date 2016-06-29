@@ -97,32 +97,38 @@
                 HEADER_SEARCH_PLACEHOLDER: "¿Qué quieres aprender hoy?",
                 HEADER_CITY_PLACEHOLDER: "Elige tu ciudad",
                 REASON_NO_COMMISSIONS: "Sin comisiones",
-                REASON_COPY_NO_COMMISSIONS: "En serio ¡Te lo prometemos!",
-                REASON_REFUND: "Devolución Garantizada",
-                REASON_COPY_REFUND: "Por si no se realiza la actividad",
+                REASON_COPY_NO_COMMISSIONS: "Nuestro servicio para ti es totalmente gratuito.",
+                REASON_REFUND: "Devolución garantizada",
+                REASON_COPY_REFUND: "Protegemos tu pago hasta que se efectue la clase.",
                 REASON_SECURE: "Pago seguro",
-                REASON_COPY_SECURE: "Inscríbete con tranquilidad",
+                REASON_COPY_SECURE: "Los datos del pago de tu inscripción están seguros con nosotros.",
                 ACTIVITIES_TITLE_COPY: "Actividades populares",
                 ACTIVITIES_TEXT_COPY: "Hacemos de tu ciudad un sitio con infinitas posibilidades para aprender algo nuevo.",
                 ACTIVITIES_BUTTON_COPY: "Ver más actividades similares",
                 VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
+                VIDEO_TEXT: "Somos una plataforma que facilitará tu aprendizaje, te permitirá aprovechar tu tiempo libre y mejorarará tu currículum. " +
+                             "Puedes aprender desde finanzas hasta yoga. Encuentra en un solo sitio e inscríbite en las mejores clases y cursos de tu ciudad. "+
+                             "!Conócemos mas en este video!",
                 CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
                 HOW_TITLE_COPY: "¿Cómo funciona?",
                 HOW_TEXT_COPY: "En cada rincón de tu ciudad existe algo nuevo que aprender. Nosotros te lo facilitamos en tres pasos:",
                 HOW_FIND_COPY: "Encuentra",
-                HOW_FIND_TEXT: "Lo que quieras aprender.",
+                HOW_FIND_TEXT: "Clases y cursos de cualquier tipo. ¡Tú eliges!",
                 HOW_SIGN_UP_COPY: "Inscríbete",
-                HOW_SIGN_UP_TEXT: "Tu pago está en buenas manos con nosotros.",
+                HOW_SIGN_UP_TEXT: "En la actividad que más te llame la atención.",
                 HOW_LEARN_COPY: "Aprende",
-                HOW_LEARN_TEXT: "La vida es corta. ¡Aprende todo lo que puedas!",
+                HOW_LEARN_TEXT: "¡Disfruta y parende todo lo que puedas!",
+                HOW_REVIEW_COPY: "Evalúa",
+                HOW_REVIEW_TEXT: "La actividad para que otros tengan una referencia.",
+                ORGANIZERS_TITLE: "Algunos de nuestros organizadores",
                 PUBLISH_COPY: "¿Quieres publicar una actividad?",
-                PUBLISH_TEXT_1: "Trulii es el mejor espacio para dar a conocer " +
-                "tu actividad. Bien sea un curso de cocina, una classe de crossfit, un foro de negocios o un diplomado universitario, nosotros " +
-                "te abrimos la puerta a nuevos clientes y hacemos el trabajo sucio por ti.",
-                PUBLISH_TEXT_2: "Regístrate sin costo alguno y disfruta de nuestra prueba gratuita en tus primeras tres actividades.",
+                PUBLISH_TEXT_1: "Trulii es el <strong>mejor espacio</strong> para dar a conocer " +
+                "tu actividad. Bien sea un curso de cocina, una classe de cross-fit, un foro de negocios o un diplomado universitario, nosotros " +
+                "te ayudamos a <strong>aumentar tus ingresos</strong> buscándote nuevos asistentes mientras tú <strong>te enfocas en enseñar</strong> lo que te gusta.",
+                PUBLISH_TEXT_2: "Regístrate sin costo alguno y aprovecha <strong>nuestra prueba gratuita.</strong> <br>¡Te esperamos!",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
-                PUBLISH_BUTTON_COPY: "Ser organizador"
+                PUBLISH_BUTTON_COPY: "Me interesa, ¡Cuéntame más!"
             });
         }
 

@@ -186,12 +186,13 @@
                         <strong ng-bind="search.strings.LABEL_EMPTY_SEARCH"></strong>
                     </h5>
                 </div>
-                <div class="col-xs-12 limited-width-search dynamic-layout-wrapper" ng-show="search.cards.length > 0">
-                    <div class="dynamic-layout-container-fluid separate-above-medium">
+                <div class="col-xs-12 limited-width-search flex-cards separate-above-more" ng-show="search.cards.length > 0">
+                    <trulii-activity-item data-activity="activity" ng-repeat="activity in search.cards"></trulii-activity-item>
+                    <!--<div class="dynamic-layout-container-fluid separate-above-medium">
                         <div class="text-center">
                             <div dynamic-layout items="search.cards" class="dynamic-layout"></div>
-                        </div>
-                    </div>
+                        </div> 
+                    </div>-->
                 </div>
                 <div class="col-xs-12 limited-width-search">
                     <div class="text-center"

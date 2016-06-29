@@ -40,43 +40,49 @@
 </div>
 <!--End of first section-->
 
-<!--Reasons section
-<div class="col-xs-12">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="reasons-container separate-below container-muted">
-        <div class="reason">
-          <img class="reason-img" ng-src="{{home.getAmazonUrl('static/img/activity-detail/reason_no_commissions.png')}}"
-            alt="{{ ::home.strings.REASON_NO_COMMISSIONS }}"/>
-          <div class="reason-text">
-            <div class="reason-title text-uppercase" ng-bind="::home.strings.REASON_NO_COMMISSIONS"></div>
-            <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_NO_COMMISSIONS"></div>
-          </div>
+<!--Reasons section-->
+<div class="row clear-spacings">
+  <div class="col-xs-12 container-muted">
+    <div class="container-reasons limited-width">
+      <div class="reason ">
+        <div class="reason-img reason-img__commisions">
+          <img ng-src="{{home.getAmazonUrl('static/img/home/comiciones.png')}}"
+          alt="{{ ::home.strings.REASON_NO_COMMISSIONS }}"/>
         </div>
-        <div class="reason">
-          <img class="reason-img" ng-src="{{home.getAmazonUrl('static/img/activity-detail/reason_guaranteed_refund.png')}}"
-            alt="{{ ::home.strings.REASON_REFUND }}"/>
-          <div class="reason-text">
-            <div class="reason-title text-uppercase" ng-bind="::home.strings.REASON_REFUND"></div>
-            <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_REFUND"></div>
-          </div>
+        <div class="reason-text">
+          <div class="reason-title " ng-bind="::home.strings.REASON_NO_COMMISSIONS"></div>
+          <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_NO_COMMISSIONS"></div>
         </div>
-        <div class="reason">
-          <img class="reason-img" ng-src="{{home.getAmazonUrl('static/img/activity-detail/reason_secure_payment.png')}}"
-          alt="{{ ::home.strings.REASON_SECURE }}"/>
-          <div class="reason-text">
-            <div class="reason-title text-uppercase" ng-bind="::home.strings.REASON_SECURE"></div>
-            <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_SECURE"></div>
-          </div>
+      </div>
+      <div class="reason ">
+        <div class="reason-img reason-img__refund">
+          <img ng-src="{{home.getAmazonUrl('static/img/home/devolucion.png')}}"
+          alt="{{ ::home.strings.REASON_REFUND }}"/>
+        </div>
+        <div class="reason-text">
+          <div class="reason-title " ng-bind="::home.strings.REASON_REFUND"></div>
+          <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_REFUND"></div>
+        </div>
+      </div>
+      <div class="reason ">
+        <div class="reason-img reason-img__payment">
+          <img  ng-src="{{home.getAmazonUrl('static/img/home/pago_seguro.png')}}"
+        alt="{{ ::home.strings.REASON_SECURE }}"/>
+        </div>
+        <div class="reason-text">
+          <div class="reason-title " ng-bind="::home.strings.REASON_SECURE"></div>
+          <div class="reason-copy" ng-bind="::home.strings.REASON_COPY_SECURE"></div>
         </div>
       </div>
     </div>
   </div>
-</div>-->
+</div>
+
+
 <!--End of reasons section-->
 
 <!--Activities section-->
-<div class="col-xs-12 separate-above separate-below-more">
+<div class="separate-above ">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-sm-offset-1">
       <div class="row">
@@ -92,7 +98,7 @@
         </div>
       </div>
       
-      <div class="category-card-container separate-below">
+      <div class="category-card-container">
         <div class="row limited-width">
           <div class="col-xs-12 col-md-4"  ng-repeat="category in home.trendingCategories ">
             <a ng-click="home.searchCategory(category)" ui-sref="search({category:category.category_id, subcategory: category.subcategory_id})" class="category-card ">
@@ -103,7 +109,7 @@
           </div>
         </div>
       </div>
-      <hr class="col-xs-12 col-md-6 col-md-offset-3">
+      <hr class="col-xs-12 col-md-6 col-md-offset-3  separate-below-medium  separate-above-medium">
       <div class="col-xs-12 limited-width flex-cards" >
            <trulii-activity-item data-activity="activity" ng-repeat="activity in home.cards"></trulii-activity-item>
       </div>
@@ -119,47 +125,108 @@
   </div>
 </div>
 <!--End of activities section-->
+<!--Info section-->
+<div class="col-xs-12 container-muted" id="anchor-how">
+  <div class="row limited-width">
+    <div class="col-xs-12 separate-above separate-below">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-primary title text-center"><strong ng-bind="::home.strings.HOW_TITLE_COPY"></strong></h1>
+        </div>
+      </div>
+      <div class="row separate-below-more">
+        <div class="col-xs-12 col-md-3">
+          <div class="container-how separate-above ">
+            <div class="container-how__image container-how__image-find">
+              <img ng-src="{{home.getAmazonUrl('static/img/home/encuentra.png')}}" alt="{{ ::home.strings.HOW_FIND_COPY }}" 
+              class="img-responsive center-block">
+              
+            </div>
+            <h4 class="text-uppercase font-bold text-center text-color-secondary separate-above-less separate-below-less"
+              ng-bind="::home.strings.HOW_FIND_COPY"></h4>
+            <p class="text-center" ng-bind="::home.strings.HOW_FIND_TEXT"></p>
+            <i class="fa fa-long-arrow-right hidden-xs hidden-sm" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-down hidden-md hidden-lg" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="container-how separate-above">
+            <div class="container-how__image container-how__image-sign">
+              <img ng-src="{{home.getAmazonUrl('static/img/home/inscribite.png')}}" alt="{{ ::home.strings.HOW_SIGN_UP_COPY }}" 
+              class="img-responsive center-block">
+            </div>
+            <h4 class="text-uppercase font-bold text-center text-success separate-above-less separate-below-less"
+              ng-bind="::home.strings.HOW_SIGN_UP_COPY"></h4>
+            <p class="text-center" ng-bind="::home.strings.HOW_SIGN_UP_TEXT"></p>
+            <i class="fa fa-long-arrow-right hidden-xs hidden-sm" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-down hidden-md hidden-lg" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="container-how separate-above">
+            <div class="container-how__image container-how__image-learn">
+              <img ng-src="{{home.getAmazonUrl('static/img/home/aprende.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
+              class="img-responsive center-block">
+            </div>
+            <h4 class="text-uppercase font-bold text-center text-warning separate-above-less separate-below-less"
+              ng-bind="::home.strings.HOW_LEARN_COPY"></h4>
+            <p class="text-center" ng-bind="::home.strings.HOW_LEARN_TEXT"></p>
+            <i class="fa fa-long-arrow-right hidden-xs hidden-sm" aria-hidden="true"></i>
+            <i class="fa fa-long-arrow-down hidden-md hidden-lg" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="col-xs-12 col-md-3">
+          <div class="container-fluid container-how separate-above">
+            <div class="container-how__image container-how__image-review">
+              <img ng-src="{{home.getAmazonUrl('static/img/home/evalua.png')}}" alt="{{ ::home.strings.HOW_REVIEW_COPY }}" 
+              class="img-responsive center-block">
+            </div>
+            <h4 class="text-uppercase font-bold text-center text-warning separate-above-less separate-below-less"
+              ng-bind="::home.strings.HOW_REVIEW_COPY"></h4>
+            <p class="text-center" ng-bind="::home.strings.HOW_REVIEW_TEXT"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> 
+</div>
+<!--End of info section-->
 
 <!--Video section-->
 <div class="col-xs-12">
   <div class="row">
-    <div class="trulii-cover">
       <div class="trulii-cover__container">
-        <div class="trulii-cover__content">
-          <div class="col-xs-12">
-            <div class="row">
-              <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-center">
-                <h1 class="text-center title"><strong ng-bind="::home.strings.VIDEO_COPY"></strong></h1>
-                <a href="" class="trulii-cover__content-play-controllers" ng-click="truliiVideo.playVideo(); home.toggleVideoShow()">
-                  <!--<img ng-src="{{home.getAmazonUrl('static/img/home/play.png')}}" alt="" class="img-responsive center-block separate-above">-->
-                  <i class="fa fa-play" aria-hidden="true"></i>
-                </a>
-              </div>
-            </div>
+        <div class="trulii-cover__video limited-width"  >
+          <div class="trulii-cover__video-text">
+            <h2 class="title " ng-bind="::home.strings.VIDEO_COPY"></h2>
+            <p ng-bind="::home.strings.VIDEO_TEXT"></p>
           </div>
-        </div>
-        <div class="trulii-cover__background background-dots" ng-style="{'background-image': 'url({{home.getAmazonUrl('static/img/home/banners/video.png')}})'}"></div>
+          
+          <div class="trulii-cover__video-play " ng-click="truliiVideo.playVideo(); home.toggleVideoShow()">
+            <i class="fa fa-play" aria-hidden="true"></i>
+          </div>
+        </div> 
+        <div class="trulii-cover__background background-none" ng-style="{'background-image': 'url({{home.getAmazonUrl('static/img/home/cover_video.jpg')}})'}"></div>
       </div>
-    </div>
   </div>
 </div>
-
-<!--End of video section-->
-
-<!--Video container section-->
-<!-- <div class="absolute-container" ng-show="home.showVideo">
+<div class="absolute-container" ng-show="home.showVideo">
   <button class="pull-right absolute-container__close" ng-click="truliiVideo.stopVideo(); home.toggleVideoShow()">
     <img class="img-responsive" ng-src="{{home.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
   </button>
   <div class="col-xs-12 col-md-8">
     <div class="youtube-container separate-above separate-below">
-      <youtube-video player="truliiVideo" video-url="'https://www.youtube.com/watch?v=fCED7SMj3Kg&rel=0'"></youtube-video>
+      <youtube-video player="truliiVideo" video-url="'https://www.youtube.com/watch?v=ZHzQxVBNxfI'"></youtube-video>
     </div>
   </div>
-</div> -->
+</div> 
+<!--End of video section-->
+
+<!--Video container section-->
+<!--  -->
 <!--End of video container section-->
 
-<!--Categories section-->
+<!--Categories section
 <div class="col-xs-12 separate-above-more separate-below-more">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
@@ -191,75 +258,51 @@
 </div>
 <!--End of categories section-->
 
-<!--Info section-->
 <div class="col-xs-12 container-muted" id="anchor-how">
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 separate-above separate-below">
+  <div class="row limited-width">
+    <div class="col-xs-12 separate-above separate-below">
       <div class="row">
         <div class="col-xs-12">
-          <h1 class="text-primary title text-center"><strong ng-bind="::home.strings.HOW_TITLE_COPY"></strong></h1>
+          <h1 class="text-primary title text-center"><strong ng-bind="::home.strings.ORGANIZERS_TITLE"></strong></h1>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xs-12 col-md-6 col-md-offset-3">
-          <h3 class="text-center pt-sans" ng-bind="::home.strings.HOW_TEXT_COPY"></h3>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 col-md-4">
-          <div class="container-fluid separate-above">
-            <img ng-src="{{home.getAmazonUrl('static/img/home/find.png')}}" alt="{{ ::home.strings.HOW_FIND_COPY }}" style="width: 8em;"
+      <div class="row separate-above separate-below-more container-organizers flex-cards">
+          <img ng-src="{{home.getAmazonUrl('static/img/home/logo_organizer.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
               class="img-responsive center-block">
-            <p class="text-uppercase text-center text-color-secondary separate-above-less separate-below-less"
-              ng-bind="::home.strings.HOW_FIND_COPY"></p>
-            <p class="text-center" ng-bind="::home.strings.HOW_FIND_TEXT"></p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="container-fluid separate-above">
-            <img ng-src="{{home.getAmazonUrl('static/img/home/signup.png')}}" alt="{{ ::home.strings.HOW_SIGN_UP_TEXT }}" style="width: 8em;"
-            class="img-responsive center-block">
-            <p class="text-uppercase text-center text-success separate-above-less separate-below-less"
-              ng-bind="::home.strings.HOW_SIGN_UP_COPY"></p>
-            <p class="text-center" ng-bind="::home.strings.HOW_SIGN_UP_TEXT"></p>
-          </div>
-        </div>
-        <div class="col-xs-12 col-md-4">
-          <div class="container-fluid separate-above">
-            <img ng-src="{{home.getAmazonUrl('static/img/home/learn.png')}}" alt="{{ ::home.strings.HOW_LEARN_TEXT }}" style="width: 8em;"
+          <img ng-src="{{home.getAmazonUrl('static/img/home/logo_organizer.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
+          class="img-responsive center-block">
+          <img ng-src="{{home.getAmazonUrl('static/img/home/logo_organizer.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
+          class="img-responsive center-block">
+          <img ng-src="{{home.getAmazonUrl('static/img/home/logo_organizer.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
+          class="img-responsive center-block">
+          <img ng-src="{{home.getAmazonUrl('static/img/home/logo_organizer.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
               class="img-responsive center-block">
-            <p class="text-uppercase text-center text-warning separate-above-less separate-below-less"
-              ng-bind="::home.strings.HOW_LEARN_COPY"></p>
-            <p class="text-center" ng-bind="::home.strings.HOW_LEARN_TEXT"></p>
-          </div>
-        </div>
       </div>
     </div>
-  </div>
+  </div> 
 </div>
-<!--End of info section-->
-
 <!--Publish section-->
-<div class="col-xs-12 ">
-  <div class="row separate-above-more separate-below-more">
+<div class="col-xs-12 trulii-cover__container">
+  <div class="row separate-above-more separate-below-more limited-width text-white ">
     <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2">
-      <h1 class="text-center text-color-success separate-below title-sm">
+      <h1 class="text-center separate-below title" >
         <strong ng-bind="::home.strings.PUBLISH_COPY"></strong>
       </h1>
     </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-6 col-md-offset-3">
-      <h4 class="text-center text-line-more" ng-bind="::home.strings.PUBLISH_TEXT_1"></h4>
+    <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 ">
+      <h4 class="text-center font-dark text-line-more text-white" ng-bind-html="::home.strings.PUBLISH_TEXT_1"></h4>
       <br>
-      <h4 class="text-center text-line-more" ng-bind="::home.strings.PUBLISH_TEXT_2"></h4>
+      <h4 class="text-center  font-dark text-line-more text-white" ng-bind-html="::home.strings.PUBLISH_TEXT_2"></h4>
 
-      <div class="col-xs-12 col-sm-8 col-sm-offset-2 separate-above-more">
-        <a class="btn btn-block btn-primary btn-lg text-lg"
+      <div class="col-xs-12 text-center separate-above-more">
+        <a class="btn btn-primary btn-lg "
           ui-sref="organizer-landing"
           ng-bind="::home.strings.PUBLISH_BUTTON_COPY">
         </a>
       </div>
     </div>
   </div>
+   <div class="trulii-cover__background background-dark" ng-style="{'background-image': 'url({{home.getAmazonUrl('static/img/home/organizador.png')}})'}"></div>
 </div>
 <!--End of publish section-->
 
