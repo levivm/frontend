@@ -47,7 +47,6 @@
                     hideMenu : hideMenu,
                     viewActivity:viewActivity,
                     clickAction: clickAction,
-                    doAction:doAction,
                     isStudent: false,
                     like:like,
                     MAX_DAYS: 5
@@ -84,31 +83,7 @@
                     })
                 }
 
-                function doAction(action){
-                  
-                  if(scope.activity.total_assistants > 0){
-                      Toast.error(scope.strings.DELETE_ACTIVITY_ERROR);
-                      return;
-                  }
-                  var modalInstance = $modal.open({
-                      templateUrl : 'partials/activities/messages/confirm_delete_activity.html',
-                      controller : 'ModalInstanceCtrl',
-                      controllerAs:'modal',
-                      size : 'lg'
-                  });
-
-                  modalInstance.result.then(function () {
-                    ActivitiesManager.deleteActivity(scope.activity.id).then(success, error);
-                  });
-
-                  function success() {
-                    $rootScope.$broadcast(ActivitiesManager.EVENT_DELETE_ACTIVITY, $state.current.url);
-                  }
-                  function error(response) {
-                      console.log(response);
-                  }
-                }
-
+               
                 //Functions Analytics data
                 function viewActivity(title){
                     Analytics.generalEvents.viewActivityDetail(title);
@@ -116,9 +91,38 @@
 
                 function clickAction(action){
                     Analytics.generalEvents.actionCard(action);
+                    console.log(action);
+                    if(action===scope.strings.LABEL_DELETE){
+                        __deleteActivity();
+                        
+                    }
                 }
 
                 //--------- Internal Functions ---------//
+               function __deleteActivity(){
+                  
+                    if(scope.activity.total_assistants > 0){
+                        Toast.error(scope.strings.DELETE_ACTIVITY_ERROR);
+                        return;
+                    }
+                    var modalInstance = $modal.open({
+                        templateUrl : 'partials/activities/messages/confirm_delete_activity.html',
+                        controller : 'ModalInstanceCtrl',
+                        controllerAs:'modal',
+                        size : 'lg'
+                    });
+
+                    modalInstance.result.then(function () {
+                        ActivitiesManager.deleteActivity(scope.activity.id).then(success, error);
+                    });
+
+                    function success() {
+                        $rootScope.$broadcast(ActivitiesManager.EVENT_DELETE_ACTIVITY, $state.current.url);
+                    }
+                    function error(response) {
+                        console.log(response);
+                    }
+                }
 
                 function _mapMainPicture(activity){
                     if(activity.pictures.length > 0){
@@ -163,7 +167,7 @@
                                 return {
                                     'name': scope.strings.LABEL_MANAGE,
                                     'icon': 'mdi-action-settings',
-                                    'state': "dash.activities-manage.orders({activity_id: " + scope.activity.id + "})"
+                                    'state': "dash.activities-manage.summary({activity_id: " + scope.activity.id + "})"
                                 };
                                 break;
                             case scope.strings.ACTION_CONTACT:
@@ -185,7 +189,7 @@
                                 return {
                                     'name': scope.strings.LABEL_DELETE,
                                     'icon': 'mdi-action-delete',
-                                    'state': false
+                                    'state': $state.current.name
                                 };
                                 break;
                             default:

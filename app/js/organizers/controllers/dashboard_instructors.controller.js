@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerInstructorsCtrl', OrganizerInstructorsCtrl);
 
-    OrganizerInstructorsCtrl.$inject = ['$timeout', 'organizer'];
-    function OrganizerInstructorsCtrl($timeout, organizer) {
+    OrganizerInstructorsCtrl.$inject = ['$timeout', 'organizer', 'Toast'];
+    function OrganizerInstructorsCtrl($timeout, organizer, Toast) {
 
         var vm = this;
         var EMPTY_INSTRUCTOR = {
@@ -52,8 +52,13 @@
         
         function addInstructors() {
             var tempInstructor = angular.extend({}, EMPTY_INSTRUCTOR);
-            vm.instructors.unshift(tempInstructor);
-           
+           if(vm.instructors.length<9){
+                vm.instructors.unshift(tempInstructor);
+                vm.countInstructors++;
+            }else{
+                Toast.error(vm.strings.TOAST_MAX_ERROR);
+            }
+            
             vm.countInstructors++;
         }
          function removeInstructors() {
@@ -109,7 +114,8 @@
             angular.extend(vm.strings, {
                 SECTION_INSTRUCTORS: "Instructores",
                 ACTION_ADD_INSTRUCTORS: "Agregar instructor",
-                COPY_INSTRUCTORS: "Administa la información de los instructores de tus actividades. Añade, elimina o edita la información de cada uno."
+                COPY_INSTRUCTORS: "Administa la información de los instructores de tus actividades. Añade, elimina o edita la información de cada uno.",
+                TOAST_MAX_ERROR: "Deben ser máximo 9 instructores"
             });
         }
 

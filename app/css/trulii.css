@@ -20668,6 +20668,7 @@ blockquote {
   margin-left: 25px;
   height: 85%;
   z-index: 1000;
+  width: 65%;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__price {
   padding-top: 50px;
