@@ -33,9 +33,10 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
+                TITLE_404: "404",
                 TITLE_DOES_NOT_EXISTS: "Esta página no existe...",
                 COPY_DOES_NOT_EXISTS: "Creemos que la culpa es del practicante.",
-                COPY_FIND_NEW_ACTIVITIES: "Ya que estamos acá ¿Quieres buscar más actividades?"
+                COPY_FIND_NEW_ACTIVITIES: "Ya que estamos acá ¿Quieres buscar más actividades?" 
             });
         }
 

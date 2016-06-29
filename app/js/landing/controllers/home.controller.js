@@ -90,7 +90,6 @@
 
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
-
             angular.extend(vm.strings, {
                 HEADER_TITLE_COPY: "¡Hoy es un nuevo día para aprender!",
                 HEADER_TEXT_COPY: "Encuentra e inscríbete en las mejores clases y cursos de tu ciudad.",
@@ -107,8 +106,8 @@
                 ACTIVITIES_BUTTON_COPY: "Ver más actividades similares",
                 VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
                 VIDEO_TEXT: "Somos una plataforma que facilitará tu aprendizaje, te permitirá aprovechar tu tiempo libre y mejorarará tu currículum. " +
-                             "Puedes aprender desde finanzas hasta yoga. Encuentra en un solo sitio e inscríbite en las mejores clases y cursos de tu ciudad. "+
-                             "!Conócemos mas en este video!",
+                             "Puedes aprender desde finanzas hasta yoga. Encuentra e inscríbite en las mejores clases y cursos de tu ciudad, todo en un sólo sitio. "+
+                             " ¡Conoce más sobre nosotros en este video!",
                 CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
                 HOW_TITLE_COPY: "¿Cómo funciona?",

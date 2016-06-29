@@ -14714,7 +14714,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .search-bar__shadow {
-  box-shadow: -35px 43px 53px -20px #000000;
+  box-shadow: -23px 36px 52px -20px #000000;
 }
 .search-bar input,
 .search-bar select,
@@ -19235,6 +19235,20 @@ button.toast-close-button {
 .trulii-cover-regular .row {
   min-width: 100%;
 }
+.trulii-cover__notfound h1,
+.trulii-cover-small__notfound h1,
+.trulii-cover-medium__notfound h1,
+.trulii-cover-regular__notfound h1 {
+  font-size: 6em !important;
+  font-weight: 600;
+}
+.trulii-cover__notfound h2,
+.trulii-cover-small__notfound h2,
+.trulii-cover-medium__notfound h2,
+.trulii-cover-regular__notfound h2 {
+  font-size: 2.5em;
+  font-weight: 700;
+}
 .trulii-cover__container,
 .trulii-cover-small__container,
 .trulii-cover-medium__container,
@@ -20228,6 +20242,22 @@ button.toast-close-button {
 .trulii-cover-medium__background.background-dark:after,
 .trulii-cover-regular__background.background-dark:after {
   background-color: rgba(60, 61, 65, 0.75);
+}
+.trulii-cover__background-notfound img:first-child,
+.trulii-cover-small__background-notfound img:first-child,
+.trulii-cover-medium__background-notfound img:first-child,
+.trulii-cover-regular__background-notfound img:first-child {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.trulii-cover__background-notfound img:last-child,
+.trulii-cover-small__background-notfound img:last-child,
+.trulii-cover-medium__background-notfound img:last-child,
+.trulii-cover-regular__background-notfound img:last-child {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 .trulii-cover-regular {
   min-height: 60vh;
