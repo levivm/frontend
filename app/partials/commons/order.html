@@ -136,7 +136,7 @@
                                         </td>
                                     </tr>
                                      <!--Fee-->
-                                    <tr class="order-mounts">
+                                    <tr class="order-mounts" ng-show="!order.isStudent">
                                         <td>
                                             <h4 class="text-md font-light text-dark font-semibold"
                                                  ng-bind="order.strings.LABEL_TRULII_FEE + ' ' + (order.order.fee * 100) + '%'"></h4>

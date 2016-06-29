@@ -145,7 +145,12 @@
                               <div class="row">
                                   <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
                                       <p class="separate-below separate-above"
+                                         ng-show="!history.search"
                                             ng-bind="::history.strings.LABEL_EMPTY_ORDERS">
+                                      </p>
+                                      <p class="separate-below separate-above"
+                                         ng-show="history.search"
+                                            ng-bind="::history.strings.LABEL_EMPTY_SEARCH_ORDERS">
                                       </p>
                                        <button class="btn btn-md btn-success margin-horizontal-less separate-below-less" ng-click="wishlist.searchActivities()"
                                                  ng-bind="history.strings.ACTION_FIND_ACTIVITY">

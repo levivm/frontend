@@ -44,8 +44,8 @@
 
             },
             _setDates: function(){
-
-                this.birth_date = new Date(this.birth_date);
+               
+                this.birth_date = this.birth_date ? new Date(this.birth_date): this.birth_date;
 
             },
 
