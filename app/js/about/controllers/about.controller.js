@@ -12,17 +12,24 @@
         .module('trulii.about.controllers')
         .controller('AboutController', AboutController);
 
-    AboutController.$inject = ['$scope', '$window', 'serverConf'];
+    AboutController.$inject = ['$scope', '$window', '$state', 'serverConf'];
 
-    function AboutController($scope, $window, serverConf) {
+    function AboutController($scope, $window, $state, serverConf) {
         var vm = this;
-
+        var TEAM_STATE = 'about.team',
+            MISSION_STATE = 'about.mission',
+            CULTURE_STATE = 'about.culture';
+             
         angular.extend(vm,{
           scroll: 0,
           widgetOriginalPosition: 0,
           widgetMaxPosition: 0,
           widgetAbsolutePosition: 0,
-          getAmazonUrl: getAmazonUrl
+          getAmazonUrl: getAmazonUrl,
+          changeContentCover: changeContentCover,
+          coverTitle: '',
+          coverSubtitle: '',
+          coverBackground: ''
         });
 
         _activate();
@@ -31,6 +38,31 @@
         
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
+        }
+        
+        function changeContentCover(state) {
+            
+            switch (state) {
+                case TEAM_STATE:
+                    vm.coverTitle = vm.strings.TEAM_TITLE;
+                    vm.coverSubtitle= vm.strings.TEAM_TITLE_TEXT;
+                    vm.coverBackground= getAmazonUrl('static/img/about/team.jpg');
+                    break;
+                case MISSION_STATE:
+                    vm.coverTitle = vm.strings.MISSION_TITLE;
+                    vm.coverSubtitle= vm.strings.MISSION_TITLE_TEXT;
+                    vm.coverBackground= getAmazonUrl('static/img/about/mission.jpg');
+                    break;
+                case CULTURE_STATE:
+                    vm.coverTitle = vm.strings.CULTURE_TITLE;
+                    vm.coverSubtitle= vm.strings.CULTURE_TITLE_TEXT;
+                    vm.coverBackground= getAmazonUrl('static/img/about/culture.png');
+                    break;    
+                default:
+                    break;
+            }
+            
+            console.log(vm.coverTitle);
         }
         
 
@@ -127,29 +159,55 @@
         }
 
         function _initWidget(){
-            angular.element(document).ready(function () {
-                vm.scroll = document.body.scrollTop;
-                vm.widgetOriginalPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().top + window.scrollY;
-
-                vm.widgetOriginalPosition = document.getElementsByClassName('navigation-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
-                vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
-                $scope.$on('scrolled',
-                  function(scrolled, scroll){
-                    console.log(vm.widgetMaxPosition);
-                    vm.scroll = scroll;
-                    vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
-                    vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
-                    $scope.$apply();
-                  }
-                );
-            });
+                var ctrlFooter = false;
+                var positionStyle = 'absolute';
+                var valuePosition = '0px';
+                angular.element(document).ready(function () {
+                    $scope.$on('scrolled',
+                    function(scrolled, scroll){
+                        var sideBarPosition = (document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top + window.scrollY)  + document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight;
+                        var footerPosition = document.getElementsByClassName('home-footer')[0].getBoundingClientRect().top  ;
+                        var coverPosition = (document.getElementsByClassName('trulii-cover-small')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('trulii-cover-small')[0].offsetHeight +150;
+                        var navBarHeight = document.getElementsByClassName('navbar')[0].offsetHeight;
+                        var sidebarTop =  document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top - navBarHeight;
+                        var positionToFixed = window.scrollY +  document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight;
+                       
+                        if(sidebarTop <= 20){
+                            if(sideBarPosition <= coverPosition ){
+                                positionStyle = 'absolute';
+                                valuePosition = '0px';
+                                console.log(positionStyle)
+                                ctrlFooter = false;
+                            }else{
+                                if( footerPosition < 300 ){
+                                    positionStyle = 'absolute';
+                                    valuePosition = '1500px';
+                                    ctrlFooter = true;
+                                }else{
+                                    positionStyle = 'fixed';
+                                    valuePosition = '90px';
+                                }
+                            }  
+                        }else{
+                        if( positionToFixed <= footerPosition && ctrlFooter){
+                                positionStyle = 'fixed';
+                                valuePosition = '90px';
+                            } 
+                        
+                        }
+                        document.getElementsByClassName('sidebar-edit-activity')[0].style.position = positionStyle;
+                        document.getElementsByClassName('sidebar-edit-activity')[0].style.top = valuePosition;
+                        $scope.$apply();
+                    }
+                    );
+                });
         }
 
 
         function _activate(){
             _setStrings();
-            _initWidget();
+            //_initWidget();
+             //changeContentCover($state.current.name);
         };
 
     }

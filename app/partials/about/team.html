@@ -1,26 +1,48 @@
+
 <div class="trulii-cover-small">
     <div class="trulii-cover__container">
-        <div class="trulii-cover__content">
+        <div class="trulii-cover__content trulii-cover__content-about limited-width">
             <div class="col-xs-12">
                 <div class="row">
-                    <div class="col-xs-12 col-md-8 col-md-offset-4 padding-vertical-more">
-                        <h1 class="title text-center-mobile title-mobile-no-margin">
-                            <strong ng-bind="::about.strings.TEAM_TITLE"></strong>
+                    <div class="col-xs-12  padding-vertical-more">
+                        <h1 class="title text-center-mobile title-mobile-no-margin"  ng-bind="::about.strings.TEAM_TITLE">
                         </h1>
-                        <h3 class="pt-serif no-margin-top text-center-mobile" ng-bind="::about.strings.TEAM_TITLE_TEXT"></h3>
+                        <h3 class="pt-serif subtitle no-margin-top text-center-mobile"  ng-bind="::about.strings.TEAM_TITLE_TEXT"></h3>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/team.jpg')}})'}">
+        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/team.jpg')}})' }">
         </div>
     </div>
 </div>
-<div class="col-xs-12">
-  <div class="row padding-more">
-      <div class="col-xs-12 col-md-7 col-md-offset-4">
-          <h1 class="text-muted text-xxlg">
-              <strong ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TITLE"></strong>
+
+<div class="col-xs-12 only-fade separate-below-more">
+  <div class="row  ">
+      
+    <ul class="sidebar sidebar-about hidden-xs hidden-sm">
+        <li class="sidebar__item"
+            ui-sref-active="sidebar__item--selected">
+                <a ui-sref="about.mission" ng-click="about.changeContentCover('about.mission')">
+                <span ng-bind="::about.strings.WIDGET_MISSION_COPY"></span>
+            </a>
+        </li>
+        <li class="sidebar__item"
+            ui-sref-active="sidebar__item--selected">
+                <a  ui-sref="about.culture" ng-click="about.changeContentCover('about.culture')">
+                    <span ng-bind="::about.strings.WIDGET_CULTURE_COPY"></span>
+            </a>
+        </li>
+        <li class="sidebar__item"
+            ui-sref-active="sidebar__item--selected">
+                <a  ui-sref="about.team" ng-click="about.changeContentCover('about.team')">
+                    <span ng-bind="::about.strings.WIDGET_TEAM_COPY"></span>
+            </a>
+        </li>
+        
+    </ul>
+      <div class="col-xs-12 ">
+          <h1 class="" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TITLE">
           </h1>
           <h4 class="font-light text-muted separate-above separate-below-medium text-xlg" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TEXT"></h4>
           <div class="row">

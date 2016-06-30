@@ -12674,6 +12674,16 @@ hr.on-light {
     margin-left: auto;
   }
 }
+.limited-width-about {
+  width: 75%;
+  margin-left: 4em;
+}
+@media (max-width: 990px) {
+  .limited-width-about {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
 .center-block {
   float: none;
 }
@@ -15779,6 +15789,21 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 @media screen and (max-width: 992px) {
   .sidebar + * {
+    padding-left: 15px;
+  }
+}
+.sidebar-about {
+  top: 0;
+  position: relative;
+}
+.sidebar-about + * {
+  padding-left: 0 !important;
+  position: relative;
+  min-height: calc(100vh - 100px);
+  width: 100%;
+}
+@media screen and (max-width: 992px) {
+  .sidebar-about + * {
     padding-left: 15px;
   }
 }
@@ -19395,6 +19420,20 @@ button.toast-close-button {
   padding: 0 15px;
   width: 100%;
   color: white;
+}
+.trulii-cover__content-about .title,
+.trulii-cover-small__content-about .title,
+.trulii-cover-medium__content-about .title,
+.trulii-cover-regular__content-about .title {
+  font-size: 4em !important;
+  margin-top: 0.25em !important;
+  margin-bottom: 10px !important;
+}
+.trulii-cover__content-about .subtitle,
+.trulii-cover-small__content-about .subtitle,
+.trulii-cover-medium__content-about .subtitle,
+.trulii-cover-regular__content-about .subtitle {
+  font-size: 1.5em;
 }
 .trulii-cover__content__share,
 .trulii-cover-small__content__share,
