@@ -456,10 +456,12 @@
             _setCities();
             
 
-            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event, data) {
-                    angular.extend(data, SearchManager.getSearchData());
-                    vm.searchData = data;
-                    _search();
+            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
+                    vm.searchData = SearchManager.getSearchData();
+
+                    _getActivities(vm.searchData).then(function () {
+                        $state.go('search', vm.searchData,  {notify: false});
+                    });
                 }
             );
 

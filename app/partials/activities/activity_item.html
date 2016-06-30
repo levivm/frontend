@@ -1,68 +1,71 @@
-<div class="trulii-activity-card" ng-class="{'trulii-activity-card-non-organizer': !organizer, 'trulii-activity-card-organizer': organizer}">
-  <div class="trulii-activity-card__header" style="background-image: url('{{activity.main_photo}}') ">
-    <span ng-if="!organizer" class="trulii-activity-card__header__menu">
-        <a ng-repeat="action in actions track by $index"
+<a ui-sref="activities-detail({activity_id: {{::activity.id}} })" class="trulii-activity-card-anchor">
+  <div class="trulii-activity-card" ng-class="{'trulii-activity-card-non-organizer': !organizer, 'trulii-activity-card-organizer': organizer}">
+    <div class="trulii-activity-card__header" style="background-image: url('{{activity.main_photo}}') ">
+      <span ng-if="!organizer" class="trulii-activity-card__header__menu">
+          <div ng-repeat="action in actions track by $index"
+              class="trulii-activity-card__header__menu__item"
+              ui-sref="{{::action.state}}"
+              ng-click="clickAction(action.name)"
+              ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT || action.name===strings.LABEL_DELETE}"
+              data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
+            <span class="trulii-activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
+          </div>
+          <div ng-if="isStudent"
+              class="trulii-activity-card__header__menu__item"
+              ng-click="like(activity.id)"
+              data-toggle="tooltip" data-placement="bottom" data-original-title="{{strings.ADD_TO_WISHLIST}}">
+            <span class="trulii-activity-card__header__menu__item__icon mdi-action-favorite-outline" ng-class="{'mdi-action-favorite': activity.wish_list}" title="{{strings.ADD_TO_WISHLIST}}"></span>
+          </div>
+      </span>
+      <span ng-if="organizer" class="trulii-activity-card__header__menu">
+        <div ng-repeat="action in actions track by $index"
             class="trulii-activity-card__header__menu__item"
             ui-sref="{{::action.state}}"
             ng-click="clickAction(action.name)"
-            ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT || action.name===strings.LABEL_DELETE}"
+            ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
             data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
           <span class="trulii-activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
-        </a>
-        <a ng-if="isStudent"
-            class="trulii-activity-card__header__menu__item"
-            ng-click="like(activity.id)"
-            data-toggle="tooltip" data-placement="bottom" data-original-title="{{strings.ADD_TO_WISHLIST}}">
-          <span class="trulii-activity-card__header__menu__item__icon mdi-action-favorite-outline" ng-class="{'mdi-action-favorite': activity.wish_list}" title="{{strings.ADD_TO_WISHLIST}}"></span>
-        </a>
-    </span>
-    <span ng-if="organizer" class="trulii-activity-card__header__menu">
-      <a ng-repeat="action in actions track by $index"
-          class="trulii-activity-card__header__menu__item"
-          ui-sref="{{::action.state}}"
-          ng-click="clickAction(action.name)"
-          ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
-          data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
-        <span class="trulii-activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
-      </a>
-    </span>
-  </div>
-  <div class="trulii-activity-card__category">
-    <div class="trulii-activity-card__category__label" style="background-color: {{activity.category.color}}"
-      ng-bind="::activity.category.name"></div>
-  </div>
-  <div class="trulii-activity-card__body">
-    <div class="trulii-activity-card__body__content">
-      <a class="trulii-activity-card__body__content__title text-center" ng-class="{'text-left': organizer}" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })" ng-bind="::activity.title | limitTo : titleSize">
-      </a>
-      <br>
-      <a class="trulii-activity-card__body__content__organizer text-center" ui-sref="organizer-profile({organizer_id: activity.organizer.id})" ng-bind="::activity.organizer.name">
-      </a>
-      <br>
-      <span class="trulii-activity-card__body__content__date" ng-if="activity.closest_calendar">
-        <span ng-class="{'text-uppercase': activity.days_to_closest > MAX_DAYS}" ng-if="!current" ng-bind="activity.date_msg"></span>
-        <span ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
-        <span ng-if="activity.organizer.rating" ng-bind=" ' - ' "></span>
+        </div>
       </span>
-      <span class="trulii-activity-card__body__content__rating" ng-if="activity.organizer.rating">
-        <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-        readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
-      </span>
-      <br>
-      <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar">
-        <strong ng-show="activity.closest_calendar.is_free">
-          <span ng-bind="::strings.COPY_FREE"></span>
-          <br>
-        </strong>
-        <span ng-class="::{'text-strike': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar">
-          <span ng-bind="strings.CURRENCY"></span>
-          <span ng-bind=" ::activity.closest_calendar.session_price | number"></span>
+    </div>
+    <div class="trulii-activity-card__category">
+      <div class="trulii-activity-card__category__label" style="background-color: {{activity.category.color}}"
+        ng-bind="::activity.category.name"></div>
+    </div>
+    <div class="trulii-activity-card__body">
+      <div class="trulii-activity-card__body__content">
+        <div class="trulii-activity-card__body__content__title text-center" ng-class="{'text-left': organizer}" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })" ng-bind="::activity.title | limitTo : titleSize">
+        </div>
+        <br>
+        <div class="trulii-activity-card__body__content__organizer text-center" ng-click="goToOrganizer($event)" ng-bind="::activity.organizer.name">
+        </div>
+        <br>
+        <span class="trulii-activity-card__body__content__date" ng-if="activity.closest_calendar">
+          <span ng-class="{'text-uppercase': activity.days_to_closest > MAX_DAYS}" ng-if="!current" ng-bind="activity.date_msg"></span>
+          <span ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
+          <span ng-if="activity.organizer.rating" ng-bind=" ' - ' "></span>
         </span>
-      </span>
-      <a ng-if="organizer" 
-         ui-sref="dash.activities-manage.assistants({activity_id: {{::activity.id}} })" 
-         class="trulii-activity-card__body__content__attendes" 
-         ng-bind="::strings.COPY_ATTENDES"></a>
+        <span class="trulii-activity-card__body__content__rating" ng-if="activity.organizer.rating">
+          <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
+          readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
+        </span>
+        <br>
+        <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar">
+          <strong ng-show="activity.closest_calendar.is_free">
+            <span ng-bind="::strings.COPY_FREE"></span>
+            <br>
+          </strong>
+          <span ng-class="::{'text-strike': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar">
+            <span ng-bind="strings.CURRENCY"></span>
+            <span ng-bind=" ::activity.closest_calendar.session_price | number"></span>
+          </span>
+        </span>
+        <div ng-if="organizer" 
+          ui-sref="dash.activities-manage.assistants({activity_id: {{::activity.id}} })" 
+          class="trulii-activity-card__body__content__attendes" 
+          ng-bind="::strings.COPY_ATTENDES"></div>
+      </div>
     </div>
   </div>
-</div>
+
+</a>

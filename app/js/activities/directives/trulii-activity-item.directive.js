@@ -46,6 +46,7 @@
                     showMenu : showMenu,
                     hideMenu : hideMenu,
                     viewActivity:viewActivity,
+                    goToOrganizer: goToOrganizer,
                     clickAction: clickAction,
                     isStudent: false,
                     like:like,
@@ -88,6 +89,14 @@
                 function viewActivity(title){
                     Analytics.generalEvents.viewActivityDetail(title);
                 }
+
+                function goToOrganizer($event){
+                    console.log('??');
+                    $event.preventDefault();
+                    $event.stopPropagation();
+                    $state.go('organizer-profile', {organizer_id: scope.activity.organizer.id});
+                }
+
 
                 function clickAction(action){
                     Analytics.generalEvents.actionCard(action);

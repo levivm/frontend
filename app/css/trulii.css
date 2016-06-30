@@ -14561,7 +14561,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .with-navbar {
   margin-top: 70px;
-  padding-top: 20px;
 }
 @media screen and (max-width: 992px) {
   .with-navbar {
@@ -14925,6 +14924,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: 0em !important;
   padding-left: 1em !important;
   border-right-color: transparent;
+  border-right: none !important;
 }
 .search-bar__navbar input,
 .search-bar__navbar select,
@@ -15197,8 +15197,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-weight: 700;
   font-size: 1em;
   background-color: transparent;
-  border: none;
   box-shadow: 0 0;
+  border: none !important;
 }
 .search-container .search-sidebar__element__date ::-webkit-input-placeholder {
   font-weight: 700;
@@ -15358,7 +15358,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .search-container .search-content__result-info {
-  padding: 0 50px;
+  padding: 0;
 }
 .search-container .search-content__filters {
   float: right;
@@ -20618,6 +20618,12 @@ blockquote {
   transition: all 0.33s;
   cursor: pointer;
 }
+.trulii-activity-card-anchor {
+  font-weight: 500;
+}
+.trulii-activity-card-anchor:hover {
+  text-decoration: none;
+}
 .trulii-activity-card:hover {
   box-shadow: #DCDDE2 5px 10px 25px 4px;
 }
@@ -20655,7 +20661,7 @@ blockquote {
   top: 165px;
   left: 50%;
   transform: translate(-50%);
-  opacity: 0.9;
+  opacity: 1;
 }
 .trulii-activity-card__body {
   height: 175px;
@@ -20680,9 +20686,13 @@ blockquote {
   display: inline-block;
   padding-bottom: 10px;
 }
+.trulii-activity-card__body__content__organizer:hover {
+  text-decoration: underline;
+}
 .trulii-activity-card__body__content__date {
   color: #9b9b9b;
-  font-size: 0.9em;
+  font-size: 0.8em;
+  font-weight: 700;
 }
 .trulii-activity-card__body__content__rating {
   color: #9b9b9b;
@@ -24410,7 +24420,7 @@ blockquote {
 }
 .profile-location .map {
   width: 100%;
-  height: 28em;
+  height: 40em;
 }
 @media screen and (max-width: 480px) {
   .profile-location .map {

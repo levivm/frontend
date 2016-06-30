@@ -18,8 +18,8 @@
         angular.extend(vm, {
             organizer : organizer,
             city : null,
-            map : LocationManager.getMap(organizer.location, false),
-            marker : LocationManager.getMarker(organizer.location),
+            map : {},
+            marker : {},
             options : {
                 actions: ['view']
             },
@@ -87,6 +87,9 @@
 
         function _setOrganizerCity(){
             LocationManager.getAvailableCities().then(successCities);
+            
+            vm.map = LocationManager.getMap(organizer.location, false)
+            vm.marker = LocationManager.getMarker(organizer.location)
             vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
 
             function successCities(cities){
@@ -171,6 +174,7 @@
             _setCurrentState();
             _setActivities();
             _setReviews();
+
             //console.log('organizer:', organizer);
 
             //vm.activities = activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);

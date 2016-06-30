@@ -71,18 +71,6 @@
 
             /**
              * @ngdoc method
-             * @name .#setSearchBarData
-             * @description Used to set search Query Data from searchBar
-             * @param {object} data External Query Data
-             * @param {string} q User search String
-             * @param {number} city ID of the city to search from
-             * @return {object} searchData Current Search Query Data
-             * @methodOf trulii.search.services.SearchManager
-             */
-            setSearchBarData: setSearchBarData,
-
-            /**
-             * @ngdoc method
              * @name .#searchActivities
              * @description Searches activities with provided search parameters
              * @param {string} data Query Data
@@ -124,6 +112,7 @@
             setPage: setPage,
             setPageSize: setPageSize,
             setOrder: setOrder,
+            setCity: setCity,
             setQuery: setQuery,
             setFree: setFree,
 
@@ -151,7 +140,7 @@
             if(data){ setSearchData(data); }
 
             //if(!searchData[KEY_WEEKENDS]){ delete searchData[KEY_WEEKENDS];}
-
+            console.log(searchData);
             return searchData;
         }
 
@@ -188,26 +177,10 @@
         }
 
         function clearData(){
-            console.log('clearing Data');
             searchData = {};
         }
 
-        function setSearchBarData(data){
-            if(data.hasOwnProperty(KEY_CITY) && data[KEY_CITY]){ searchData[KEY_CITY] = parseInt(data[KEY_CITY]); }
-
-            if(data.hasOwnProperty(KEY_QUERY) && data[KEY_QUERY]){
-                searchData[KEY_QUERY] = data[KEY_QUERY];
-            } else {
-                delete searchData[KEY_QUERY];
-            }
-
-            //delete searchData[KEY_ORDER];
-
-            return searchData;
-        }
-
         function setSearchData(data){
-            setSearchBarData(data);
 
             if(data.hasOwnProperty(KEY_CATEGORY) && data[KEY_CATEGORY]){
                 searchData[KEY_CATEGORY] = parseInt(data[KEY_CATEGORY]);
@@ -269,18 +242,33 @@
                 delete searchData[KEY_FREE];
             }
 
+            if(data.hasOwnProperty(KEY_CITY) && data[KEY_CITY]){
+                searchData[KEY_CITY] = parseInt(data[KEY_CITY]);
+            }
+
+            if(data.hasOwnProperty(KEY_QUERY) && data[KEY_QUERY]){
+                searchData[KEY_QUERY] = data[KEY_QUERY];
+            } else {
+                delete searchData[KEY_QUERY];
+            }
+
             if(data.hasOwnProperty(KEY_PAGE) && data[KEY_PAGE]){
                 searchData[KEY_PAGE] = data[KEY_PAGE];
             } 
              else {
                 searchData[KEY_PAGE] = "1";
             }
+
             return searchData;
         }
 
         function setCategory(category){
             searchData[KEY_CATEGORY] = category;
 
+        }
+        
+        function setCity(city){
+            searchData[KEY_CITY] = parseInt(city);
         }
 
         function setSubCategory(subcategory){
@@ -327,6 +315,7 @@
         }
 
         function setQuery(predicate){
+            console.log('predicate: ', predicate);
             searchData[KEY_QUERY] = predicate;
         }
     }
