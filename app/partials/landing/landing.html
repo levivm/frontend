@@ -211,6 +211,7 @@
   </div>
 </div>
 <div class="absolute-container" ng-show="home.showVideo">
+  <div class="absolute-container__cover-close"  ng-click="truliiVideo.stopVideo(); home.toggleVideoShow()"></div>
   <button class="pull-right absolute-container__close" ng-click="truliiVideo.stopVideo(); home.toggleVideoShow()">
     <img class="img-responsive" ng-src="{{home.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
   </button>
@@ -218,7 +219,7 @@
     <div class="youtube-container separate-above separate-below">
       <youtube-video player="truliiVideo" video-url="'https://www.youtube.com/watch?v=ZHzQxVBNxfI'"></youtube-video>
     </div>
-  </div>
+  </div> 
 </div> 
 <!--End of video section-->
 
