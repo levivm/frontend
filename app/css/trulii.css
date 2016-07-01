@@ -19229,6 +19229,19 @@ button.toast-close-button {
 .trulii-cover-medium__detail,
 .trulii-cover-regular__detail {
   margin-top: -110px;
+  min-height: 90vh !important;
+}
+@media screen and (min-width: 1600px) {
+  .trulii-cover__home,
+  .trulii-cover-small__home,
+  .trulii-cover-medium__home,
+  .trulii-cover-regular__home,
+  .trulii-cover__detail,
+  .trulii-cover-small__detail,
+  .trulii-cover-medium__detail,
+  .trulii-cover-regular__detail {
+    min-height: 765px !important;
+  }
 }
 .trulii-cover .row,
 .trulii-cover-small .row,
