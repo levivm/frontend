@@ -27,9 +27,10 @@
           widgetAbsolutePosition: 0,
           getAmazonUrl: getAmazonUrl,
           changeContentCover: changeContentCover,
-          coverTitle: '',
-          coverSubtitle: '',
-          coverBackground: ''
+          selectTitle: '',
+          showSidebar: false,
+          toggleSidebar:toggleSidebar
+          
         });
 
         _activate();
@@ -41,28 +42,26 @@
         }
         
         function changeContentCover(state) {
-            
+            console.log(state);
             switch (state) {
                 case TEAM_STATE:
-                    vm.coverTitle = vm.strings.TEAM_TITLE;
-                    vm.coverSubtitle= vm.strings.TEAM_TITLE_TEXT;
-                    vm.coverBackground= getAmazonUrl('static/img/about/team.jpg');
+                    vm.selectTitle = vm.strings.WIDGET_TEAM_COPY;
                     break;
                 case MISSION_STATE:
-                    vm.coverTitle = vm.strings.MISSION_TITLE;
-                    vm.coverSubtitle= vm.strings.MISSION_TITLE_TEXT;
-                    vm.coverBackground= getAmazonUrl('static/img/about/mission.jpg');
+                    vm.selectTitle = vm.strings.WIDGET_MISSION_COPY;
                     break;
                 case CULTURE_STATE:
-                    vm.coverTitle = vm.strings.CULTURE_TITLE;
-                    vm.coverSubtitle= vm.strings.CULTURE_TITLE_TEXT;
-                    vm.coverBackground= getAmazonUrl('static/img/about/culture.png');
+                    vm.selectTitle = vm.strings.WIDGET_CULTURE_COPY;
                     break;    
                 default:
                     break;
             }
             
-            console.log(vm.coverTitle);
+           
+        }
+        
+        function toggleSidebar() {
+            vm.showSidebar=!vm.showSidebar;
         }
         
 
@@ -149,65 +148,21 @@
                 // TEAM
 
                 TEAM_TITLE: "Trabajamos para deleitarte",
-                TEAM_TITLE_TEXT: "Poniéndole mucho corazón y talento para alcanzar la excelencia",
+                TEAM_TITLE_TEXT: "Poniéndole corazónpara hacerte feliz y ofrecerte el mejor servicio posible.",
 
-                TEAM_CONTENT_SECTION_1_TITLE: "El equipo",
-                TEAM_CONTENT_SECTION_1_TEXT: "Somos un equipo pequeño conformado en su mayoría por programadores, creativos y diseñadores trabajando con muchísimas ganas para llevar nuestra misión a escala global.",
+                TEAM_CONTENT_SECTION_1_TITLE: "El Equipo",
+                TEAM_CONTENT_SECTION_1_TEXT: "Somos un equipo pequeño conformado en su mayoría por programadores, creativos y diseñadores trabajando con muchísimas ganas para que te enamores de Trulii y llevar nuestra misión a escala global.",
 
                 // END TEAM
             });
         }
 
-        function _initWidget(){
-                var ctrlFooter = false;
-                var positionStyle = 'absolute';
-                var valuePosition = '0px';
-                angular.element(document).ready(function () {
-                    $scope.$on('scrolled',
-                    function(scrolled, scroll){
-                        var sideBarPosition = (document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top + window.scrollY)  + document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight;
-                        var footerPosition = document.getElementsByClassName('home-footer')[0].getBoundingClientRect().top  ;
-                        var coverPosition = (document.getElementsByClassName('trulii-cover-small')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('trulii-cover-small')[0].offsetHeight +150;
-                        var navBarHeight = document.getElementsByClassName('navbar')[0].offsetHeight;
-                        var sidebarTop =  document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top - navBarHeight;
-                        var positionToFixed = window.scrollY +  document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight;
-                       
-                        if(sidebarTop <= 20){
-                            if(sideBarPosition <= coverPosition ){
-                                positionStyle = 'absolute';
-                                valuePosition = '0px';
-                                console.log(positionStyle)
-                                ctrlFooter = false;
-                            }else{
-                                if( footerPosition < 300 ){
-                                    positionStyle = 'absolute';
-                                    valuePosition = '1500px';
-                                    ctrlFooter = true;
-                                }else{
-                                    positionStyle = 'fixed';
-                                    valuePosition = '90px';
-                                }
-                            }  
-                        }else{
-                        if( positionToFixed <= footerPosition && ctrlFooter){
-                                positionStyle = 'fixed';
-                                valuePosition = '90px';
-                            } 
-                        
-                        }
-                        document.getElementsByClassName('sidebar-edit-activity')[0].style.position = positionStyle;
-                        document.getElementsByClassName('sidebar-edit-activity')[0].style.top = valuePosition;
-                        $scope.$apply();
-                    }
-                    );
-                });
-        }
-
+    
 
         function _activate(){
             _setStrings();
-            //_initWidget();
-             //changeContentCover($state.current.name);
+           
+            changeContentCover($state.current.name);
         };
 
     }

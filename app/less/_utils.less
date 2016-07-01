@@ -406,10 +406,32 @@
   }
 
 }
-
-
+ 
+.select-about{
+	position: absolute;
+    width: 90%;
+    background: #e4e7ef;
+    margin: 0 auto;
+    top: -60px;
+    left: 0;
+	width: 95%;
+    height: 52px;
+    border-radius: 52px;
+    font-weight: 700;
+    padding: 0.7em 2em !important;
+    z-index: 10;
+    font-size: 1.2em;
+    cursor: pointer;
+	color: @blue-dark;
+	
+	i{
+		float: right;
+		font-size: 1.7em;
+		color: @gray-dark-brand;
+	}
+}
 .team-card{
-	width: 345px;
+	width: 350px;
     height: 376px;
 	
 	background-color: gray;
@@ -421,6 +443,7 @@
     border-radius: 7px;
 	.before-md({
 		margin: 0 auto;
+		margin-bottom: 2em;
 	});
 	.before-sm({
 		width: 100%;
@@ -449,8 +472,15 @@
 		}
 		&-social{
 			position: absolute;
-	    left: 1em;
-	    bottom: 0px;
+			left: 1em;
+			bottom: 0px;
+			a{
+				color: white;
+				font-size: 0.8em;
+				&:hover{
+					color: white;
+				}
+			}
 		}
 		hr{
 			margin: 5px 0px 10px 0px;
@@ -471,6 +501,7 @@
 		width: 100%;
 		z-index: 101;
 		transition: all 0.25s;
+		border-radius: 7px;
 
     .before-sm({
       opacity: 0.75;

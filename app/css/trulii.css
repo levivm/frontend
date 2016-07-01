@@ -12026,8 +12026,30 @@ hr.on-light {
   z-index: 100;
   transition: all 0.25s;
 }
+.select-about {
+  position: absolute;
+  width: 90%;
+  background: #e4e7ef;
+  margin: 0 auto;
+  top: -60px;
+  left: 0;
+  width: 95%;
+  height: 52px;
+  border-radius: 52px;
+  font-weight: 700;
+  padding: 0.7em 2em !important;
+  z-index: 10;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #3A405B;
+}
+.select-about i {
+  float: right;
+  font-size: 1.7em;
+  color: #a1a6bb;
+}
 .team-card {
-  width: 345px;
+  width: 350px;
   height: 376px;
   background-color: gray;
   position: relative;
@@ -12040,6 +12062,7 @@ hr.on-light {
 @media screen and (max-width: 992px) {
   .team-card {
     margin: 0 auto;
+    margin-bottom: 2em;
   }
 }
 @media screen and (max-width: 768px) {
@@ -12074,6 +12097,13 @@ hr.on-light {
   left: 1em;
   bottom: 0px;
 }
+.team-card__content-social a {
+  color: white;
+  font-size: 0.8em;
+}
+.team-card__content-social a:hover {
+  color: white;
+}
 .team-card__content hr {
   margin: 5px 0px 10px 0px;
 }
@@ -12091,6 +12121,7 @@ hr.on-light {
   width: 100%;
   z-index: 101;
   transition: all 0.25s;
+  border-radius: 7px;
 }
 @media screen and (max-width: 768px) {
   .team-card__veil {
@@ -15801,6 +15832,19 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar-about {
   top: 0;
   position: relative;
+}
+@media screen and (max-width: 992px) {
+  .sidebar-about {
+    top: -8px;
+    position: absolute;
+    margin: 0;
+    border: none;
+    width: 95%;
+    left: 0;
+  }
+}
+.sidebar-about__expanded {
+  max-height: 300px;
 }
 .sidebar-about + * {
   padding-left: 0 !important;

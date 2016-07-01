@@ -415,6 +415,19 @@
 	&-about{
 		top: 0;
 		position: relative;
+		
+		.before-md({
+			top: -8px;
+			position: absolute;
+			margin: 0;
+			border: none;
+			width: 95%;
+			left:0;
+		});
+		
+		&__expanded{
+			max-height: 300px;
+		}
 		& + *{
 			padding-left: 0 !important;
 			position: relative;
