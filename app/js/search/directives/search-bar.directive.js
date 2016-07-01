@@ -50,12 +50,16 @@
 
                     var data = {};
                     data[KEY_SEARCH_Q] = scope.q;
+                    
                     data[KEY_SEARCH_CITY] = scope.search_city.id;
 
-                    SearchManager.setSearchBarData(data);
+                    SearchManager.setCity(data[KEY_SEARCH_CITY]);
+                    SearchManager.setQuery(data[KEY_SEARCH_Q]);
+
                     Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
+
                     if ($state.current.name==='search')
-                      $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED, data);
+                      $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
                     else
                       $state.go('search', data);
 

@@ -17,36 +17,38 @@
     </div>
 </div>
 
-<div class="col-xs-12 only-fade separate-below-more">
-  <div class="row  ">
-      
-    <ul class="sidebar sidebar-about hidden-xs hidden-sm">
-        <li class="sidebar__item"
-            ui-sref-active="sidebar__item--selected">
-                <a ui-sref="about.mission" ng-click="about.changeContentCover('about.mission')">
-                <span ng-bind="::about.strings.WIDGET_MISSION_COPY"></span>
-            </a>
-        </li>
-        <li class="sidebar__item"
-            ui-sref-active="sidebar__item--selected">
-                <a  ui-sref="about.culture" ng-click="about.changeContentCover('about.culture')">
-                    <span ng-bind="::about.strings.WIDGET_CULTURE_COPY"></span>
-            </a>
-        </li>
-        <li class="sidebar__item"
-            ui-sref-active="sidebar__item--selected">
-                <a  ui-sref="about.team" ng-click="about.changeContentCover('about.team')">
-                    <span ng-bind="::about.strings.WIDGET_TEAM_COPY"></span>
-            </a>
-        </li>
-        
-    </ul>
-      <div class="col-xs-12 ">
-          <h1 class="" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TITLE">
+<div class="col-xs-12 only-fade separate-above separate-below-more">
+  <div class="row limited-width no-padding ">
+   
+     <div class="col-md-2 separate-left-less">
+        <ul class="sidebar sidebar-about hidden-xs hidden-sm">
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                    <a ui-sref="about.mission" ng-click="about.changeContentCover('about.mission')">
+                    <span ng-bind="::about.strings.WIDGET_MISSION_COPY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                    <a  ui-sref="about.culture" ng-click="about.changeContentCover('about.culture')">
+                        <span ng-bind="::about.strings.WIDGET_CULTURE_COPY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                    <a  ui-sref="about.team" ng-click="about.changeContentCover('about.team')">
+                        <span ng-bind="::about.strings.WIDGET_TEAM_COPY"></span>
+                </a>
+            </li>
+            
+        </ul>
+      </div>
+      <div class="col-xs-12 limited-width-about">
+          <h1 class="text-dark text-xlg font-bold" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TITLE">
           </h1>
-          <h4 class="font-light text-muted separate-above separate-below-medium text-xlg" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TEXT"></h4>
+          <h4 class="separate-above text-standout text-dark font-regular" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TEXT"></h4>
           <div class="row">
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
                       <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
@@ -55,11 +57,7 @@
                               <h5><strong>Levi Velázquez</strong></h5>
                               <h5>CTO & <strong>Black</strong>end Developer</h5>
                           </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
+                          
                           <h5 class="text-ssm">
                               Python y Django son su biblia. Le gusta gritar los goles del Barca y llorar por los partidos de Argentina (a pesar de ser venezolano...). Fan de Cortázar y poeta clandestino.
                           </h5>
@@ -90,7 +88,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
                       <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
@@ -99,11 +97,7 @@
                               <h5><strong>Rodrigo Ferreira</strong></h5>
                               <h5>Chief Email Officer (CEO) & Fundador & Aseo</h5>
                           </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
+                          
                           <h5 class="text-ssm">
                               Fundraising, operaciones, marketing y product management. Obsesivo-compulsivo de la limpieza. Nuestro Lobo de Wall Street. Pero sin las drogas. Ni las mujeres. Ni el yate...
                           </h5>
@@ -119,7 +113,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
                       <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
@@ -128,11 +122,7 @@
                               <h5><strong>Fernando De Freitas</strong></h5>
                               <h5>Developer “de altura”</h5>
                           </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
+                          
                           <h5 class="text-ssm">
                               El Tim Duncan del Frontend y Android. Nuestro IMDB gigante: dos metros de conocimiento de películas y series. El marido perfecto: cocina, plancha y guinda la ropa húmeda.
                           </h5>
@@ -163,7 +153,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
                       <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
@@ -172,11 +162,7 @@
                               <h5><strong>Daniel Pérez</strong></h5>
                               <h5>Chief Photoshop Officer</h5>
                           </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
+                         
                           <h5 class="text-ssm">
                               El que pone Trulii bonito. Se califica como pseudo-hipster y Apple fanboy. Si ves a alguien en el Transmilenio con una manzana, de seguro es él. Nómada por obligación.
                           </h5>
@@ -197,7 +183,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
                       <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
@@ -206,11 +192,7 @@
                               <h5><strong>Harvey Forero</strong></h5>
                               <h5>Stand-up Comedy Manager (Ba Dum Tss)</h5>
                           </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
+                          
                           <h5 class="text-ssm">
                               Django y iOS . Pelirrojo colombiano “venezolanizado”. Nombrado en Trulii como “Persona Mejor Vestida”. Encargado en coordinar los partidos de FIFA. Amante de los comics.
                           </h5>
@@ -236,7 +218,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
                       <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
@@ -245,11 +227,7 @@
                               <h5><strong>Andrés De Freitas</strong></h5>
                               <h5></h5>
                           </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
+                          
                           <h5 class="text-ssm">
 
                           </h5>
@@ -275,7 +253,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
                       <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
@@ -284,11 +262,7 @@
                               <h5><strong>María Parra</strong></h5>
                               <h5>Diseño Gráfico & Co-fundadora & Todera</h5>
                           </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
+                          
                           <h5 class="text-ssm">
                               Cuando no nos deleita con un diseño hermoso, ayuda en todo lo demás. Futura diseñadora de modas. Decoradora de interiores frustrada y compradora compulsiva.
                           </h5>
@@ -300,7 +274,7 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
                       <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>

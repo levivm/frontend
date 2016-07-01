@@ -16,9 +16,6 @@
     config.$inject = ['$locationProvider','$httpProvider','FacebookProvider','serverConf'];
 
     function config($locationProvider, $httpProvider,FacebookProvider, serverConf) {
-
-
-
         
 
         /* Facebook initialization */

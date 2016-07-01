@@ -11,7 +11,12 @@
     box-shadow: #DCDDE2 0px 0px 0px 0px;
     transition: all 0.33s;
     cursor: pointer;
-    
+    &-anchor{
+        font-weight: 500;
+        &:hover{
+            text-decoration: none;
+        }
+    }
     &:hover{
         box-shadow: #DCDDE2 5px 10px 25px 4px;
     }
@@ -51,7 +56,7 @@
             top: 165px;
             left: 50%;
             transform: translate(-50%);
-            opacity: 0.9;
+            opacity: 1;
         }
     }
     &__body{
@@ -77,10 +82,14 @@
                 font-size: 0.9em;
                 display: inline-block;
                 padding-bottom: 10px;
+                &:hover{
+                    text-decoration: underline;
+                }
             }
             &__date{
                 color: @gray-regular;
-                font-size: 0.9em;
+                font-size: 0.8em;
+                font-weight: 700;
             }
             &__rating{
                 color: @gray-regular;
