@@ -16645,6 +16645,10 @@ tags-input input {
   background-color: #3A405B;
   color: white !important;
 }
+.btn-blue {
+  background-color: #1F5DEA;
+  color: white !important;
+}
 .btn-info {
   background-color: #51dde9;
   color: white !important;
@@ -19324,6 +19328,31 @@ button.toast-close-button {
 .trulii-cover-regular .row {
   min-width: 100%;
 }
+.trulii-cover .show-presentation,
+.trulii-cover-small .show-presentation,
+.trulii-cover-medium .show-presentation,
+.trulii-cover-regular .show-presentation {
+  color: white;
+  font-size: 1.2em;
+  position: absolute;
+  bottom: 40px;
+  display: block;
+  right: 65px;
+  font-weight: 400;
+}
+.trulii-cover .show-presentation:hover,
+.trulii-cover-small .show-presentation:hover,
+.trulii-cover-medium .show-presentation:hover,
+.trulii-cover-regular .show-presentation:hover {
+  text-decoration: none;
+}
+.trulii-cover .show-presentation i,
+.trulii-cover-small .show-presentation i,
+.trulii-cover-medium .show-presentation i,
+.trulii-cover-regular .show-presentation i {
+  font-size: 1.6em;
+  vertical-align: text-top;
+}
 .trulii-cover__notfound h1,
 .trulii-cover-small__notfound h1,
 .trulii-cover-medium__notfound h1,
@@ -20707,6 +20736,9 @@ button.toast-close-button {
 }
 blockquote {
   padding: 0 20px;
+  border-left: 5px solid #51dde9 !important;
+  font-size: 16.5px;
+  line-height: 30px;
 }
 .trulii-activity-card {
   position: relative;
