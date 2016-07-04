@@ -34,8 +34,6 @@
         });
 
       modalInstance.result.then(function(){
-
-
         $state.go("home");
       });
 
@@ -51,7 +49,6 @@
         });
 
       modalInstance.result.then(function(){
-
         $state.go("home");
       });
 
