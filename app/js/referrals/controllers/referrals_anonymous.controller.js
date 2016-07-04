@@ -61,17 +61,13 @@
             }
 
             angular.extend(vm.strings, {
-                HEADER_TITLE_COPY: "¡Gana cupones de COP 20.000 para cualquier actividad por cada amigo que invites!",
+                HEADER_TITLE_COPY_1: "Gana cupones de COP 20.000",
+                HEADER_TITLE_COPY_2: "por cada amigo que invites",
                 HEADER_TEXT_COPY: "¿No tienes cuenta aún?",
                 HEADER_ACTION_REGISTER: "Regístrate",
                 HEADER_ACTION_LOGIN: "Iniciar sesión para invitar a mis amigos",
-                BODY_TEXT_1: "Invita a tus amigos por ",
-                BODY_TEXT_2: "correo electrónico",
-                BODY_TEXT_3: "o",
-                BODY_TEXT_4: "redes sociales",
-                BODY_TEXT_5: "a que se unan a Trulii. Una vez registrados, estos recibirán un",
-                BODY_TEXT_6: "cupón por COP 20.000,",
-                BODY_TEXT_7: "y tú recibirás el tuyo apenas se inscriban a una actividad paga. Tu cupón lo podrás aplicar en tu próxima inscripción a una actividad.",
+                BODY_TEXT: "Invita a tus amigos por correo electrónico o redes sociales a que se unan a Trulii. Una vez registrados, estos recibirán un cupón por COP 20.000,"
+                +  "y tú recibirás el tuyo apenas se inscriban a una actividad paga. Tu cupón lo podrás aplicar en tu próxima inscripción a una actividad.",
                 LEARN_MORE: "Aprende más sobre cómo funciona nuestro sistema de invitaciones"
             });
         }

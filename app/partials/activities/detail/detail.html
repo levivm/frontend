@@ -24,7 +24,7 @@
 <div class="col-xs-12 limited-width">
   <div class="row activity-detail">
     <div class="activity-detail__enroll-widget" ng-class="{'widget-fixed': (detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition)}" ng-style="(detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}) || ((detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition) && {'left': detail.widgetFixedPositionRight})">
-      <div class="activity-detail__enroll-widget__content">
+      <div class="activity-detail__enroll-widget__content" ng-class="{'activity-detail__enroll-widget__content-free': detail.calendar_selected.is_free}">
             <div class="seats" >
                 <div ng-show="!detail.isSelectedCalendarFull()">
                     <span ng-bind="detail.calendar_selected.available_capacity"></span>
@@ -66,7 +66,8 @@
                 <div class="next-date__date" ng-bind="detail.calendar_selected.initial_date | date:'d MMM y'">
                 </div>
             </div>
-            <button class="btn btn-success btn-lg btn-rounded btn-block" ng-bind="::detail.strings.ACTION_SIGN_UP"
+            <button class="btn btn-success btn-lg btn-rounded btn-block"
+                ng-bind="::detail.strings.ACTION_SIGN_UP"
                 ng-disabled="detail.isSelectedCalendarFull()"
                 ng-hide="detail.isSelectedCalendarFull()"
                 ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id); detail.widgetSignup()">
@@ -80,9 +81,10 @@
                 <a href="#" ng-click="detail.viewMoreCalendars()" ng-bind="detail.strings.ACTION_VIEW_OTHER_DATES"></a>
             </div>
         </div>
-        <div class="activity-detail__enroll-widget__likes" ng-click="detail.wishList()">
+        <div class="activity-detail__enroll-widget__likes">
           <div class="heart">
             <i class="mdi-action-favorite-outline"
+              ng-click="detail.wishList()"
               ng-class="{'mdi-action-favorite': detail.verifyWishList(), 'text-muted': !detail.verifyWishList()}">
             </i>
           </div>
@@ -624,7 +626,7 @@
            <trulii-activity-item data-activity="activity" ng-repeat="activity in detail.cards"></trulii-activity-item>
       </div>
       <div class="col-xs-12">
-        <button class="btn btn-lg btn-block btn-info" ng-bind="detail.strings.COPY_MORE_SIMILAR_ACTIVITIES"></button>
+        <a class="btn btn-lg btn-block btn-info" ui-sref="search(detail.searchData)" ng-bind="detail.strings.COPY_MORE_SIMILAR_ACTIVITIES"></a>
       </div>
     </div>
   </div>

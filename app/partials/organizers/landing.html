@@ -312,11 +312,11 @@
               <div class="input-group">
                 <select id="document_type" class="form-control" name="document_type"
                   ng-model="landing.request.document_type"
-                  ng-options="document.id as document.name for document in landing.documentTypes" style="width: 35%">
+                  ng-options="document.id as document.name for document in landing.documentTypes" style="width: 40%">
                 </select>
                 <input name="document" class="form-control" id="document" type="text"
                   placeholder="{{::landing.strings.PLACEHOLDER_DOCUMENT}}"
-                  ng-model="landing.request.document" value="" style="width: 65%">
+                  ng-model="landing.request.document" value="" style="width: 60%">
               </div>
             </div>
             <div class="form-group" trulii-input-errors-control="__all__">

@@ -58,7 +58,7 @@
 
                     Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
 
-                    if ($state.current.name==='search')
+                    if ($state.current.name === 'search')
                       $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
                     else
                       $state.go('search', data);

@@ -1,99 +1,174 @@
-<div class="trulii-cover">
-    <div class="trulii-cover__container">
-        <div class="trulii-cover__content">
-            <div class="col-xs-12  separate-above-more">
-                <div class="row">
-                    <div class="col-xs-12 col-md-8 col-md-offset-2">
-                        <h1 class="text-center">
-                            <strong ng-bind="::referrals.strings.HEADER_TITLE_COPY"></strong>
-                        </h1>
-                    </div>
-                </div>
-                <div class="row">
-                  <div class="col-xs-12 col-md-8 col-md-offset-2">
-                    <h3 class="font-regular no-margin-top text-center" ng-bind="::referrals.strings.HEADER_TEXT_COPY">
-                    </h3>
-                  </div>
-                </div>
-                <div class="row separate-above-more">
-                  <div class="col-xs-12 col-md-8 col-md-offset-2">
-                    <div class="referral-input">
-                      <input type="text" class="form-control pull-left"
-                            ng-model="referrals.emails"
-                            placeholder=" {{ ::referrals.strings.PLACEHOLDER_REFERRAL_EMAILS  }}">
-                      <button class="btn btn-success text-uppercase pull-left"
-                              ng-click="referrals.postInvite()"
-                              ng-bind="::referrals.strings.ACTION_SEND_INVITES">
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div class="row separate-above separate-below">
-                  <div class="col-xs-12 col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
-                    <ul class="list-inline list-unstyled text-center referral-share">
-                        <li>
-                            <strong ng-bind="::referrals.strings.SHARE_URL_COPY"></strong>
-                        </li>
-                        <li class="referral-link">
-                            <label for="referral-link" class="sr-only" ng-bind="::referrals.strings.SHARE_URL_COPY"></label>
-                            <input type="text" id="referral-link" class="form-control referral-link"
-                                  ng-model="::referrals.referrerUrl">
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="btn-share-fb"
-                                socialshare
-                                socialshare-provider="{{::referrals.social.FACEBOOK_SOCIAL_PROVIDER}}"
-                                socialshare-type="{{::referrals.social.FACEBOOK_SHARE_TYPE}}"
-                                socialshare-via="{{::referrals.social.FACEBOOK_API_KEY}}"
-                                socialshare-redirect-uri="{{::referrals.social.FACEBOOK_REDIRECT_URI}}"
-                                socialshare-media="{{::referrals.social.FACEBOOK_SHARE_MEDIA}}"
-                                socialshare-text="{{::referrals.social.FACEBOOK_SHARE_TEXT}}"
-                                socialshare-caption="{{::referrals.social.FACEBOOK_SHARE_CAPTION}}"
-                                socialshare-description="{{::referrals.social.FACEBOOK_SHARE_DESCRIPTION}}"
-                                socialshare-url="{{::referrals.social.FACEBOOK_SHARE_URL}}">
-                                <i class="fa fa-facebook " aria-hidden="true"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="btn-share-twitter"
-                                socialshare
-                                socialshare-provider="{{::referrals.social.TWITTER_SOCIAL_PROVIDER}}"
-                                socialshare-via="{{::referrals.social.TWITTER_SHARE_ACCOUNT}}"
-                                socialshare-text="{{::referrals.social.TWITTER_SHARE_TEXT}}"
-                                socialshare-url="{{::referrals.social.TWITTER_SHARE_URL}}"
-                                socialshare-hashtags="{{::referrals.social.TWITTER_SHARE_HASHTAGS}}">
-                                <i class="fa fa-twitter " aria-hidden="true"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                </div>
-            </div>
+<div class="col-xs-10 col-xs-offset-1 separate-above-more limited-width">
+    <div class="row">
+        <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <h1 class="title text-center text-gray-brand">
+                <strong>
+                    <span ng-bind="::referrals.strings.HEADER_TITLE_COPY_1"></span>
+                    <br>
+                    <span ng-bind="::referrals.strings.HEADER_TITLE_COPY_2"></span>
+                </strong>
+            </h1>
         </div>
-        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{referrals.getAmazonUrl('static/img/cover.png')}}' }">
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <h4 class="font-regular no-margin-top text-center text-gray-brand" ng-bind="::referrals.strings.HEADER_TEXT_COPY">
+        </h4>
+        </div>
+    </div>
+    <div class="row separate-above-more">
+        <div class="col-xs-12 col-md-6 col-md-offset-3">
+        <div class="referral-input">
+            <input type="text" class="form-control pull-left"
+                ng-model="referrals.emails"
+                placeholder=" {{ ::referrals.strings.PLACEHOLDER_REFERRAL_EMAILS  }}">
+            <button class="btn btn-success text-uppercase pull-left"
+                    ng-click="referrals.postInvite()"
+                    ng-bind="::referrals.strings.ACTION_SEND_INVITES">
+            </button>
+        </div>
+        </div>
+    </div>
+    <div class="row separate-above separate-below">
+        <div class="col-xs-12 col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
+            <ul class="list-inline list-unstyled text-center referral-share">
+                <li>
+                    <h4 class="no-margin" ng-bind="::referrals.strings.SHARE_URL_COPY">
+                    </h4>
+                </li>
+                <li class="referral-link">
+                    <label for="referral-link" class="sr-only" ng-bind="::referrals.strings.SHARE_URL_COPY"></label>
+                    <input type="text" id="referral-link" class="form-control referral-link"
+                            ng-model="::referrals.referrerUrl">
+                </li>
+                <li>
+                    <a href="#"
+                        class="share-button share-button-fb"
+                        socialshare
+                        socialshare-provider="{{::referrals.social.FACEBOOK_SOCIAL_PROVIDER}}"
+                        socialshare-type="{{::referrals.social.FACEBOOK_SHARE_TYPE}}"
+                        socialshare-via="{{::referrals.social.FACEBOOK_API_KEY}}"
+                        socialshare-redirect-uri="{{::referrals.social.FACEBOOK_REDIRECT_URI}}"
+                        socialshare-media="{{::referrals.social.FACEBOOK_SHARE_MEDIA}}"
+                        socialshare-text="{{::referrals.social.FACEBOOK_SHARE_TEXT}}"
+                        socialshare-caption="{{::referrals.social.FACEBOOK_SHARE_CAPTION}}"
+                        socialshare-description="{{::referrals.social.FACEBOOK_SHARE_DESCRIPTION}}"
+                        socialshare-url="{{::referrals.social.FACEBOOK_SHARE_URL}}">
+                        <img class="img-on" ng-src="{{referrals.getAmazonUrl('static/img/share/facebook.png')}}" alt="">
+                        <img class="img-off" ng-src="{{referrals.getAmazonUrl('static/img/share/facebook-off.png')}}" alt="">
+                    </a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="share-button share-button-twitter"
+                        socialshare
+                        socialshare-provider="{{::referrals.social.TWITTER_SOCIAL_PROVIDER}}"
+                        socialshare-via="{{::referrals.social.TWITTER_SHARE_ACCOUNT}}"
+                        socialshare-text="{{::referrals.social.TWITTER_SHARE_TEXT}}"
+                        socialshare-url="{{::referrals.social.TWITTER_SHARE_URL}}"
+                        socialshare-hashtags="{{::referrals.social.TWITTER_SHARE_HASHTAGS}}">
+                        <img class="img-on" ng-src="{{referrals.getAmazonUrl('static/img/share/twitter.png')}}" alt="">
+                        <img class="img-off" ng-src="{{referrals.getAmazonUrl('static/img/share/twitter-off.png')}}" alt="">
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 <div class="col-xs-12">
   <div class="row separate-above-more separate-below-more">
       <div class="col-xs-12 col-md-10 col-md-offset-1">
-          <h3 class="text-uppercase text-muted text-center">
+          <h3 class="text-gray-brand-regular text-muted text-center">
               <strong>
                   <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_1"></span>
                   <!--  Cantidad para gastar -->
-                  <span class="text-primary">COP 20.000</span>
+                  <span></span>
+                  <span class="text-gray-brand">COP 20.000</span>
+                  <span></span>
                   <!--  Fin cantidad para gastar -->
                   <span ng-bind="::referrals.strings.SHARES_TITLE_COPY_2"></span>
               </strong>
           </h3>
-          <h4 class="font-regular text-muted text-center separate-above" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
+      </div>
+      <div class="col-xs-12 col-md-4 col-md-offset-4">
+          <h4 class="font-regular text-gray-brand-regular text-center separate-above" ng-bind="::referrals.strings.SHARES_TEXT_COPY">
           </h4>
       </div>
   </div>
-  <div class="row container-success">
-      <div class="col-xs-12 col-md-10 col-md-offset-1 separate-below-medium">
+<div class="row separate-above-less">
+    <div class="col-xs-10 col-xs-offset-1 limited-width referral-sent">
+        <!--  Registrado-->
+        <div class="referral-item">
+            <!--  Imagen de perfil de usuario-->
+            <div class="referral-item__picture">
+                <img ng-src="{{referrals.getAmazonUrl('static/img/default_profile_pic.jpg')}}" class="img-responsive img-circle" alt="">
+            </div>
+            <div class="referral-item__info">
+                <!--  Registrado e inscrito-->
+                <h5>
+                    <!--Nombre-->
+                    <strong>Mariana Schiavino</strong>
+                    <span ng-bind="::referrals.strings.SHARES_REGISTERED"></span>
+                    <!--  Codigo de cupon-->
+                    <strong>XXYZ</strong>
+                    <span>.</span>
+                    <br>
+                    <span ng-bind="::referrals.strings.SHARES_EMAIL_CHECK"></span>
+                </h5>
+            </div>
+            <div class="referral-item__status">
+                <h5>
+                    <strong>
+                        <span>COP 20.000</span>
+                        <span ng-bind="::referrals.strings.SHARES_AVAILABLE"></span>
+                    </strong>
+                </h5>
+            </div>
+        </div>
+        <div class="referral-item">
+            <!--  Imagen de perfil de usuario-->
+            <div class="referral-item__picture">
+                <img ng-src="{{referrals.getAmazonUrl('static/img/default_profile_pic.jpg')}}" class="img-responsive img-circle" alt="">
+            </div>
+
+            <div class="referral-item__info">
+                <!--  Registrado sin inscribir-->
+                <h5>
+                    <!--Nombre-->
+                    <strong>Daniel Schiavino</strong>
+                    <span ng-bind="::referrals.strings.SHARES_NOT_REGISTERED"></span>
+                </h5>
+            </div>
+            <div class="referral-item__status">
+                <h5>
+                    <strong>
+                        <span>COP 20.000</span>
+                        <span ng-bind="::referrals.strings.SHARES_PENDING"></span>
+                    </strong>
+                </h5>
+            </div>
+        </div>
+        <!--  Sin registrar -->
+        <div class="referral-item">
+            <div class="referral-item__info">
+                <h5>
+                    <strong>roroferreira88@hotmail.com</strong>
+                    <span ng-bind="::referrals.strings.SHARES_NOT_REGISTERED_YET"></span>
+                    <strong>COP 20.000</strong>
+                    <span ng-bind="::referrals.strings.SHARES_PENDING"></span>
+                </h5>
+                </h5>
+            </div>
+            <div class="referral-item__status">
+                <!--  Boton de reenvio de invitacion-->
+                <button class="btn btn-default" ng-bind="::referrals.strings.ACTION_RESEND_INVITE">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+  <div class="row container-muted">
+      <div class="col-xs-10 col-xs-offset-1 separate-below-medium limited-width">
           <div class="row">
               <div class="col-xs-12 col-md-4">
                   <div class="container-fluid separate-above-less">
@@ -118,12 +193,12 @@
               </div>
           </div>
       </div>
-  </div>
-  <div class="row container-success-dark">
-      <div class="col-xs-12">
-          <h4 class="text-center text-underline">
-              <a ui-sref="about.terms" ng-bind="::referrals.strings.LEARN_MORE"></a>
-          </h4>
+      <div class="row container-muted padding-vertical-regular">
+        <div class="col-xs-10 col-xs-offset-1 limited-width">
+            <h4 class="text-center text-underline">
+                <a ui-sref="about.terms" ng-bind="::referrals.strings.LEARN_MORE"></a>
+            </h4>
+        </div>
       </div>
   </div>
 </div>

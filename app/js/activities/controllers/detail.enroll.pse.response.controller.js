@@ -70,7 +70,7 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                COPY_PAYMENT_INFO: "Resultado de transacción de pago",
+                COPY_PAYMENT_INFO: "Información de pago PSE",
                 COPY_PREPARE_TO_ASSIST_TO: "Prepárate para asistir a:",
                 COPY_ASSISTANCE: "Aprender algo nuevo siempre es más divertido si lo compartes con tus amigos. "
                     + "¡Invítalos y disfruta el doble! Ellos también asistirán",
@@ -84,7 +84,7 @@
                 ACTION_VIEW_RECEIPT: "Ver Recibo",
                 ACTION_VIEW_MORE: "Ver Más",
                 ACTION_RETRY_PAYMENT: "Reintentar el pago",
-                ACTION_FINISH_PAYMENT: "Finalizar pago",
+                ACTION_FINISH_PAYMENT: "Continuar",
                 ACTION_PUBLISH: "Publica Ya",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
