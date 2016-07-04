@@ -355,7 +355,15 @@
              * @param {object} shareInfo Share infor
              * @methodOf trulii.activities.services.Activity
              */
-            share: share
+            share: share,
+
+            /**
+             * @ngdoc function
+             * @name .#updateViews
+             * @description Update the number of views
+             * @methodOf trulii.activities.services.Activity
+             */
+            updateViews: updateViews
         };
 
         return Activity;
@@ -792,6 +800,10 @@
                 .then(function (response) {
                     return response.data;
                 });
+        }
+
+        function updateViews(){
+            return $http.put(api.viewsCounter(this.id));
         }
     }
 })();

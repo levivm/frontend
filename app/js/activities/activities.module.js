@@ -623,6 +623,8 @@
             }
         }
 
+        // api/activities/<id>/views_counter
+
     }
 
 })();

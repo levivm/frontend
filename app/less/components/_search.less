@@ -348,6 +348,7 @@
         height: ~"calc(90vh + 150px)";
     }
     
+
     .search-mobile-filters{
         height: 150px;
         &__bar{
@@ -355,7 +356,7 @@
             border-radius: 30px;
             overflow: hidden;
             margin-bottom: 20px;
-            height: 45px;
+            height: 52px;
             ::-webkit-input-placeholder {
                 font-weight: 700;
                 color: @gray-dark;
@@ -375,12 +376,15 @@
             >*:nth-child(1){
                 font-weight: 700;
                 color: @gray-dark;
-                height: 35px;
-                width: 60%;
+                height: 52px !important;
+                width: ~"calc((100% - 65px) / 2 )";
                 display: inline-block;
                 margin-top: 5px;
                 padding: 0px 20px;
                 background-image: none;
+                margin-top: 0;
+                border-top-right-radius: 0 !important;
+                border-bottom-right-radius: 0 !important;
                 &:hover, &:focus{
                     background-image: none;
                 }
@@ -388,8 +392,9 @@
             >*:nth-child(2){
                 font-weight: 700;
                 color: @gray-dark;
-                height: 35px;
-                width: 30%;
+                height: 52px !important;
+                background-color: white !important;
+                width: ~"calc((100% - 65px) / 2 )";
                 display: inline-block;
                 margin-top: 5px;
                 border-left: 1px solid @gray-light;
@@ -401,6 +406,9 @@
                 background-position-x: 90%;
                 background-position-y: 55%;
                 background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
+                background-repeat: no-repeat;
+                margin-top: 0;
+                border-radius: 0 !important;
                 &:hover, &:focus{
                     // background-size: 15px !important;
                     // background-position-x: 90%;
@@ -411,9 +419,11 @@
             }
             >*:nth-child(3){
                 color: @gray-dark;
-                width: 10%;
-                height: 45px;
+                width: 65px;
+                height: 52px !important;
                 margin-top: -3px;
+                border-top-left-radius: 0 !important;
+                border-bottom-left-radius: 0 !important;
                 &:focus, &:hover{
                     outline: none;
                     border: none;
