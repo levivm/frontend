@@ -12690,7 +12690,7 @@ hr.on-light {
   max-width: 1300px;
   width: 850px;
   margin-left: 30px;
-  margin-top: 1.3em;
+  margin-top: 38px;
 }
 @media (max-width: 1299px) {
   .limited-width-dashboard {
@@ -18914,6 +18914,41 @@ button.toast-close-button {
     padding: 15px 15px 15px 50px;
     width: 25em;
   }
+}
+.toast-success {
+  background-color: #03d69a !important;
+}
+.toast-error {
+  background-color: #fe5339 !important;
+}
+.toast-info {
+  background-color: #1F5DEA !important;
+}
+.toast-warning {
+  background-color: #f4d352 !important;
+}
+.toast-top-full-width {
+  top: 65px !important;
+}
+#toast-container {
+  position: fixed;
+  z-index: 999999;
+}
+#toast-container > div {
+  opacity: 1;
+  font-weight: 600;
+}
+#toast-container > .toast-info {
+  background-image: none !important;
+}
+#toast-container > .toast-error {
+  background-image: none !important;
+}
+#toast-container > .toast-success {
+  background-image: none !important;
+}
+#toast-container > .toast-warning {
+  background-image: none !important;
 }
 .dropdown {
   display: inline-block;
