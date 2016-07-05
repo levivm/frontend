@@ -20813,7 +20813,8 @@ blockquote {
 .trulii-activity-card__header__menu__item {
   cursor: pointer;
   margin-left: 5px;
-  text-align: center;
+  text-align: right;
+  display: inline-block;
 }
 .trulii-activity-card__header__menu__item__icon {
   color: white;
