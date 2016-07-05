@@ -179,6 +179,24 @@
 
   }
   
+  .show-presentation{
+      color: white;
+      font-size: 1.2em;
+      position: absolute;
+      bottom: 40px;
+      display: block;
+      right: 65px;
+      font-weight: 400;
+      
+      &:hover{
+        text-decoration: none;
+      }
+      
+      i{
+          font-size: 1.6em;
+          vertical-align: text-top;
+      }
+  }
   &__notfound{
     h1{
       font-size: 6em !important;
@@ -282,7 +300,18 @@
     &:extend(.flex-center-item);
     width: 100%;
     color: white;
-
+    
+    &-about{
+      .title{
+        font-size: 4em !important;
+        margin-top: 0.25em !important;
+        margin-bottom: 10px !important;
+      }
+      
+      .subtitle{
+         font-size: 1.5em;
+      }
+    }
     &__share{
       width: 280px;
       margin: 35px auto 0px;

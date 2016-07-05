@@ -109,9 +109,9 @@
             // var timeOut = timeout ? timeout : "3500";
             // var positionClass = positionClass ? positionClass : "toast-bottom-right";
             toastr.options = {
-                "progressBar" : true,
+                "progressBar" : false,
                 "timeOut" : "3500",
-                "positionClass" : "toast-bottom-right"
+                "positionClass" : "toast-top-full-width"
             }
         }
 

@@ -1,4 +1,4 @@
-<div class="trulii-cover-small">
+<!--<div class="trulii-cover-small">
     <div class="trulii-cover__container">
         <div class="trulii-cover__content">
             <div class="col-xs-12">
@@ -16,48 +16,93 @@
         <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/mission.jpg')}})' }">
         </div>
     </div>
+</div>-->
+
+
+<div class="trulii-cover-small">
+    <div class="trulii-cover__container">
+        <div class="trulii-cover__content trulii-cover__content-about limited-width">
+            <div class="col-xs-12">
+                <div class="row">
+                    <div class="padding-vertical-more">
+                        <h1 class="title text-center-mobile title-mobile-no-margin" ng-bind="::about.strings.MISSION_TITLE">
+                        </h1>
+                        <h3 class="pt-serif subtitle no-margin-top text-center-mobile" ng-bind="::about.strings.MISSION_TITLE_TEXT"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/mision.jpg')}})' }">
+        </div>
+    </div>
 </div>
+
+
+
 <div class="col-xs-12">
-  <div class="row padding-more">
-      <div class="col-xs-12 col-md-7 col-md-offset-4">
-          <h1 class="text-muted text-xxlg">
-              <strong ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TITLE"></strong>
+  <div class="row limited-width no-padding separate-above separate-below-more">
+     <div class="col-xs-12 col-md-2 separate-left-less">
+         <div class="select-about hidden-md hidden-lg" ng-click="about.toggleSidebar()">
+              <span class="" ng-bind="about.selectTitle"></span>
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+         </div>
+        <ul class="sidebar sidebar-about " ng-class="{'sidebar-about__expanded': about.showSidebar}">
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+               <a ui-sref="about.mission" ng-click="about.changeContentCover('about.mission'); about.toggleSidebar()">
+                    <span ng-bind="::about.strings.WIDGET_MISSION_COPY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                    <a  ui-sref="about.culture" ng-click="about.changeContentCover('about.culture'); about.toggleSidebar()">
+                        <span ng-bind="::about.strings.WIDGET_CULTURE_COPY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                    <a  ui-sref="about.team" ng-click="about.changeContentCover('about.team'); about.toggleSidebar()">
+                        <span ng-bind="::about.strings.WIDGET_TEAM_COPY"></span>
+                </a>
+            </li>
+            
+        </ul>
+        
+      </div>
+      <div class="col-xs-12 limited-width-about">
+          <h1 class="text-blue-dark text-xlg font-bold"ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TITLE">
           </h1>
 
-          <p ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_1"></p>
+          <p class="text-standout text-blue-dark font-regular" ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_1"></p>
 
-          <p ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_2"></p>
+          <p class="text-standout text-blue-dark font-regular" ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_2"></p>
 
-          <p class="font-bold" ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_3"></p>
+          <p class="text-standout text-blue-dark font-semibold" ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_3"></p>
           <img ng-src="{{about.getAmazonUrl('static/img/about/mission_2.jpg')}}" alt=""
               class="img-responsive separate-above-medium separate-below-medium">
 
-          <p ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_4"></p>
+          <p class="text-standout text-blue-dark font-regular" ng-bind="::about.strings.MISSION_CONTENT_SECTION_1_TEXT_4"></p>
       </div>
   </div>
 </div>
 <div class="col-xs-12">
-  <div class="row container-muted padding-more">
-      <div class="col-xs-12 col-md-8 col-md-offset-4">
+  <div class="row container-muted padding-regular">
+      <div class="col-xs-12 limited-width">
           <div class="row">
-              <div class="col-xs-12">
-                  <h1 class="text-center text-muted" ng-bind="::about.strings.MISSION_CONTENT_SECTION_2_TITLE"></h1>
+              <div class="col-xs-12 col-md-offset-1">
+                  <h2 class="text-center text-muted font-semibold" ng-bind="::about.strings.MISSION_CONTENT_SECTION_2_TITLE"></h2>
               </div>
           </div>
-          <div class="row separate-above-medium separate-below-medium">
-              <div class="col-xs-12 col-md-5 separate-below-mobile">
-                  <a class="btn btn-multiline btn-success btn-block padding-vertical-regular" ui-sref="search">
-                      <strong ng-bind="::about.strings.MISSION_ACTION_LEARN_1"></strong>
-                      <br>
-                      <span class="font-light" ng-bind="::about.strings.MISSION_ACTION_LEARN_2"></span>
+          <div class="row separate-above">
+              <div class="col-xs-12 col-md-4 col-md-offset-3 separate-below">
+                  <a class="btn  btn-success btn-lg  padding-vertical-regular" ui-sref="search">
+                      <span ng-bind="::about.strings.MISSION_ACTION_LEARN_1"></span>
                   </a>
               </div>
 
-              <div class="col-xs-12 col-md-5 col-md-offset-1">
-                  <a class="btn btn-multiline btn-primary btn-block padding-vertical-regular" ui-sref="organizer-landing">
-                      <strong ng-bind="::about.strings.MISSION_ACTION_PUBLISH_1"></strong>
-                      <br>
-                      <span class="font-light" ng-bind="::about.strings.MISSION_ACTION_PUBLISH_2"></span>
+              <div class="col-xs-12 col-md-4">
+                  <a class="btn btn-lg btn-blue padding-vertical-regular" ui-sref="organizer-landing">
+                      <span ng-bind="::about.strings.MISSION_ACTION_PUBLISH_1"></span>
                   </a>
               </div>
           </div>

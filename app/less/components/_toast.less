@@ -1,2 +1,49 @@
 
 @import 'toastr';
+
+
+.toast-success {
+	background-color: @brand-secondary !important;
+}
+
+.toast-error {
+	background-color: @brand-red !important;
+}
+
+.toast-info {
+	background-color: @brand-warning !important;
+}
+
+.toast-warning {
+	background-color: @brand-yellow !important;
+}
+
+.toast-top-full-width {
+	top: 65px !important;
+}
+#toast-container {
+	position: fixed;
+	z-index: 999999;
+	> div {
+		opacity: 1;
+        font-weight: 600;
+	}
+
+
+	> .toast-info {
+		background-image: none !important;
+	}
+
+	> .toast-error {
+		background-image: none !important;
+	}
+
+	> .toast-success {
+		background-image: none !important;
+	}
+
+	> .toast-warning {
+		background-image: none !important;
+	}
+
+}

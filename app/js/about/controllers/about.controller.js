@@ -12,17 +12,25 @@
         .module('trulii.about.controllers')
         .controller('AboutController', AboutController);
 
-    AboutController.$inject = ['$scope', '$window', 'serverConf'];
+    AboutController.$inject = ['$scope', '$window', '$state', 'serverConf'];
 
-    function AboutController($scope, $window, serverConf) {
+    function AboutController($scope, $window, $state, serverConf) {
         var vm = this;
-
+        var TEAM_STATE = 'about.team',
+            MISSION_STATE = 'about.mission',
+            CULTURE_STATE = 'about.culture';
+             
         angular.extend(vm,{
           scroll: 0,
           widgetOriginalPosition: 0,
           widgetMaxPosition: 0,
           widgetAbsolutePosition: 0,
-          getAmazonUrl: getAmazonUrl
+          getAmazonUrl: getAmazonUrl,
+          changeContentCover: changeContentCover,
+          selectTitle: '',
+          showSidebar: false,
+          toggleSidebar:toggleSidebar
+          
         });
 
         _activate();
@@ -31,6 +39,29 @@
         
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
+        }
+        
+        function changeContentCover(state) {
+            console.log(state);
+            switch (state) {
+                case TEAM_STATE:
+                    vm.selectTitle = vm.strings.WIDGET_TEAM_COPY;
+                    break;
+                case MISSION_STATE:
+                    vm.selectTitle = vm.strings.WIDGET_MISSION_COPY;
+                    break;
+                case CULTURE_STATE:
+                    vm.selectTitle = vm.strings.WIDGET_CULTURE_COPY;
+                    break;    
+                default:
+                    break;
+            }
+            
+           
+        }
+        
+        function toggleSidebar() {
+            vm.showSidebar=!vm.showSidebar;
         }
         
 
@@ -45,11 +76,12 @@
                 // CULTURE
 
                 CULTURE_TITLE: "Comienza el viaje",
-                CULTURE_TITLE_TEXT: "Nuesto deseo es llegar a cada rincón del planeta.",
-
-                CULTURE_SECTION_1_CONTENT_TITLE: "Queremos ser memorables",
-                CULTURE_SECTION_1_CONTENT_TEXT_1: "Es muy común que las empresas que generan un impacto positivo en las vidas de las personas y hacen del mundo un lugar mejor tienen presencia en casi cada rincón del planeta. Para lograrlo hace falta determinación, ganas y muchísima motivación para cecer y consolidarnos como empresa.",
-                CULTURE_SECTION_1_CONTENT_TEXT_2: "Apenas estamos comenzando, pero créenos, estamos más que preparados.",
+                CULTURE_TITLE_TEXT: "Nuestro deseo es llegar a cada rincón del planeta.",
+                SHOW_PRESENTATION_COPY: "Ver presentación",
+                CULTURE_SECTION_1_CONTENT_TITLE: "Aspiramos a mucho más",
+                CULTURE_SECTION_1_CONTENT_TEXT_1: "Trulii = Startup = Crecimiento. Como cualquier startup aspiramos a crecer en cada rincón del planeta para consolidarnos como una empresa lider en el sector y hacer de cada ciudad un lugar con infinitas posibilidades para aprender cosas nuevas.",
+                CULTURE_SECTION_1_CONTENT_TEXT_2: "Aspiramos a ser una empresa global, rentable y próspera donde prima el bienestar y la fecilidad que nuestros usuarios, aliados y trabajadores. Tenems las ganas, la determinación y el corazón para que todo sea posible.",
+                CULTURE_SECTION_1_CONTENT_TEXT_3: "Y aunque apenas estaos comenzando, ya estamos pensando en el mañana. Porque aspiramos a mucho más.", 
 
                 CULTURE_GRAPH_BRANCH_1_HEADER: "Prioridades",
                 CULTURE_GRAPH_BRANCH_1_TEXT_1: "Usuario > Equipo > Trulii",
@@ -70,18 +102,18 @@
                 CULTURE_GRAPH_BRANCH_4_TEXT_1: "Equipo contento",
                 CULTURE_GRAPH_BRANCH_4_TEXT_2: "+ Desempeño",
 
-                CULTURE_COVER_TITLE: "Valores en Trulii",
-                CULTURE_COVER_TEXT: "Los valores que nos mueven como empresa.",
+                CULTURE_COVER_TITLE: "Nuestros valores",
+                CULTURE_COVER_TEXT: "Conoce nuestro código de ética y conducta.",
 
                 CULTURE_SECTION_2_CONTENT_TITLE: "¿Cuáles valores son importantes para nosotros?",
                 CULTURE_SECTION_2_CONTENT_TEXT_1: "Determinamos un conjunto de valores que:",
 
-                CULTURE_DETERMINING_VALUE_1: "Se apliquen en el trabajo.",
+                CULTURE_DETERMINING_VALUE_1: "Se apliquen en el trabajo y puedan extrapolarse a la vida cotidiana.",
                 CULTURE_DETERMINING_VALUE_2: "Optimicen nuestra relación con los usuarios.",
-                CULTURE_DETERMINING_VALUE_3: "Hagan un ambiente inspirador y agradable.",
-                CULTURE_DETERMINING_VALUE_4: "Puedan extrapolarse a la vida cotidiana.",
-                CULTURE_DETERMINING_VALUE_5: "Nos hagan eficientes para deleitar a los usuarios.",
-                CULTURE_DETERMINING_VALUE_6: "Permita discernir candidatos en nuestro proceso de reclutamiento.",
+                CULTURE_DETERMINING_VALUE_3: "Hagan que el ambiente inspirador y agradable.",
+                CULTURE_DETERMINING_VALUE_4: "Nos mantenga en constante aprendizaje.",
+                CULTURE_DETERMINING_VALUE_5: "Aude a deleitar a los usuarios.",
+                CULTURE_DETERMINING_VALUE_6: "Nos permita discernir candidatos en nuestro proceso de reclutamiento.",
 
                 CULTURE_VALUE_1: "Humildad",
                 CULTURE_VALUE_2: "Claridad",
@@ -99,57 +131,37 @@
                 MISSION_TITLE_TEXT: "de encontrar y aprender lo que te apasiona en tu ciudad. Y apenas estamos calentando motores...",
 
                 MISSION_CONTENT_SECTION_1_TITLE: "Nuestra misión",
-                MISSION_CONTENT_SECTION_1_TEXT_1: "La vida es muy corta. Todos lo sabemos y es por ello que debemos tratar de vivirla al máximo; para ello, no hay mejor forma de hacerlo que a través de experiencias que te enseñen. Descubrir una nueva pasión, mejorar tus habilidades profesionales o simplemente aprender algo nuevo no tiene por qué ser una tarea imposible.",
-                MISSION_CONTENT_SECTION_1_TEXT_2: "Cada ciudad es un mundo propio con un sinfín de opciones para aprender cosas que realmente te apasionan y te llenan como persona. ¿Por qué entonces no lo hacemos? En realidad, no había una plataforma digital de calidad, segura e intuitiva que permitiera encontrar lo que quieres aprender cerca de donde vives y que, además, facilitara la posibilidad de inscribirse de manera rápida, fácil y sin costo alguno.",
-                MISSION_CONTENT_SECTION_1_TEXT_3: "En Trulii queremos cambiar esto creando el primer marketplace local de clases y eventos educativos con la misión bonita de cambiar (y mejorar) cómo se conectan las personas que quieren enseñar su pasión con las que quieren aprender. En pocas palabras, queremos abrirte las puertas para aprender algo nuevo, mejorar tu currículo o descubrir una nueva pasión.",
-                MISSION_CONTENT_SECTION_1_TEXT_4: "Somos un equipo pequeño y apasionado conformado por jóvenes programadores, diseñadores y comunicadores reunidos en Colombia para llevar a cabo esta linda tarea. Aunque etamos comenzando nada más en Colombia, no somos egoístas: estamos trabajando día y noche para compartir este sueño en todos los rincones del planeta. Y en este preciso momento, nos enorgullece compartirlo contigo.",
+                MISSION_CONTENT_SECTION_1_TEXT_1: "La vida es muy corta. Quieres hacer y aprender al mismo tiempo miles de cosas que siempre te han apasionado o dado curiosidad, pero el tiempo transcurre y aún no lo haces. Muchas veces por falta de tiempo, otras por pereza o miedo. Las razones pueden ser diversas. Nosotros te entendemos, por eso hemos creado Trulii.",
+                MISSION_CONTENT_SECTION_1_TEXT_2: "En Trulii queremos dejarte sin razones ni excusas. Descubrir una nueva pasión, mejorar tus habilidades profesionales o simplemente aprender algo nuevo no tiene por qué ser una tarea imposible. Ahora tu ciudad podrá ser un lugar con infinitas posibilidades para hacer aquello qie llevas tiempo posponiendo.",
+                MISSION_CONTENT_SECTION_1_TEXT_3: "Trulii es el primer marketplace local de actividades educativas que realmente conecta a personas que quieren enseñar con las que quieren aprender. Suena fácil, pero es un reto. Y muy bonito, por cierto. Trabajamos fuerte para brindarte una plataforma amigable e intuitiva que te permita encontrar todo lo que quieras aprender en tu ciudad y pagar la inscripción de forma fácil, rápida y segura.",
+                MISSION_CONTENT_SECTION_1_TEXT_4: "Hecho en y para Colombia por un equipo de jóvenes desarrolladores, diseñadores y apasionados del marketing. Aunque estamos comenzando este emocionante proyecto en Colombia, no somos egoistas: todos los días le ponemos el alma para compartir este sueño en todos los rincones del planeta. Y en este momento, nos emociona compartirlo contigo.",
 
-                MISSION_CONTENT_SECTION_2_TITLE: "¡Bienvenido a Trulii!",
+                MISSION_CONTENT_SECTION_2_TITLE: "Hecho con amor para ti.",
 
-                MISSION_ACTION_LEARN_1: "¡Hoy es un nuevo dia para aprender!",
-                MISSION_ACTION_LEARN_2: "¡Quiero aprender ahora!",
+                MISSION_ACTION_LEARN_1: "¡Quiero aprender algo nuevo!",
 
-                MISSION_ACTION_PUBLISH_1: "Publicar mi actividad",
-                MISSION_ACTION_PUBLISH_2: "¡Quiero organizar mi actividad!",
+                MISSION_ACTION_PUBLISH_1: "¡Quiero aumentar mis inscripciones!",
 
                 // END MISSION
 
                 // TEAM
 
                 TEAM_TITLE: "Trabajamos para deleitarte",
-                TEAM_TITLE_TEXT: "Poniéndole mucho corazón y talento para alcanzar la excelencia",
+                TEAM_TITLE_TEXT: "Poniéndole corazónpara hacerte feliz y ofrecerte el mejor servicio posible.",
 
-                TEAM_CONTENT_SECTION_1_TITLE: "El equipo",
-                TEAM_CONTENT_SECTION_1_TEXT: "Somos un equipo pequeño conformado en su mayoría por programadores, creativos y diseñadores trabajando con muchísimas ganas para llevar nuestra misión a escala global.",
+                TEAM_CONTENT_SECTION_1_TITLE: "El Equipo",
+                TEAM_CONTENT_SECTION_1_TEXT: "Somos un equipo pequeño conformado en su mayoría por programadores, creativos y diseñadores trabajando con muchísimas ganas para que te enamores de Trulii y llevar nuestra misión a escala global.",
 
                 // END TEAM
             });
         }
 
-        function _initWidget(){
-            angular.element(document).ready(function () {
-                vm.scroll = document.body.scrollTop;
-                vm.widgetOriginalPosition = document.getElementsByClassName('about-container')[0].getBoundingClientRect().top + window.scrollY;
-
-                vm.widgetOriginalPosition = document.getElementsByClassName('navigation-widget')[0].getBoundingClientRect().top + window.scrollY;
-                vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
-                vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
-                $scope.$on('scrolled',
-                  function(scrolled, scroll){
-                    console.log(vm.widgetMaxPosition);
-                    vm.scroll = scroll;
-                    vm.widgetMaxPosition = document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
-                    vm.widgetAbsolutePosition = (document.getElementsByClassName('about-delimiter')[0].getBoundingClientRect().top - document.getElementsByClassName('navigation-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('navigation-widget')[0].offsetHeight - 200;
-                    $scope.$apply();
-                  }
-                );
-            });
-        }
-
+    
 
         function _activate(){
             _setStrings();
-            _initWidget();
+           
+            changeContentCover($state.current.name);
         };
 
     }

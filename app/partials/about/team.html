@@ -1,66 +1,81 @@
+
 <div class="trulii-cover-small">
     <div class="trulii-cover__container">
-        <div class="trulii-cover__content">
+        <div class="trulii-cover__content trulii-cover__content-about limited-width">
             <div class="col-xs-12">
                 <div class="row">
-                    <div class="col-xs-12 col-md-8 col-md-offset-4 padding-vertical-more">
-                        <h1 class="title text-center-mobile title-mobile-no-margin">
-                            <strong ng-bind="::about.strings.TEAM_TITLE"></strong>
+                    <div class="padding-vertical-more">
+                        <h1 class="title text-center-mobile title-mobile-no-margin"  ng-bind="::about.strings.TEAM_TITLE">
                         </h1>
-                        <h3 class="pt-serif no-margin-top text-center-mobile" ng-bind="::about.strings.TEAM_TITLE_TEXT"></h3>
+                        <h3 class="pt-serif subtitle no-margin-top text-center-mobile"  ng-bind="::about.strings.TEAM_TITLE_TEXT"></h3>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/team.jpg')}})'}">
-        </div>
+        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }">
+        </div> 
     </div>
 </div>
-<div class="col-xs-12">
-  <div class="row padding-more">
-      <div class="col-xs-12 col-md-7 col-md-offset-4">
-          <h1 class="text-muted text-xxlg">
-              <strong ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TITLE"></strong>
+
+<div class="col-xs-12 only-fade separate-above separate-below-more">
+  <div class="row limited-width no-padding ">
+   
+     <div class="col-xs-12 col-md-2 separate-left-less">
+         <div class="select-about hidden-md hidden-lg" ng-click="about.toggleSidebar()">
+              <span class="" ng-bind="about.selectTitle"></span>
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+         </div>
+        <ul class="sidebar sidebar-about " ng-class="{'sidebar-about__expanded': about.showSidebar}">
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+               <a ui-sref="about.mission" ng-click="about.changeContentCover('about.mission'); about.toggleSidebar()">
+                    <span ng-bind="::about.strings.WIDGET_MISSION_COPY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                    <a  ui-sref="about.culture" ng-click="about.changeContentCover('about.culture'); about.toggleSidebar()">
+                        <span ng-bind="::about.strings.WIDGET_CULTURE_COPY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                    <a  ui-sref="about.team" ng-click="about.changeContentCover('about.team'); about.toggleSidebar()">
+                        <span ng-bind="::about.strings.WIDGET_TEAM_COPY"></span>
+                </a>
+            </li>
+            
+        </ul>
+        
+      </div>
+      <div class="col-xs-12 limited-width-about">
+          <h1 class="text-blue-dark text-xlg font-bold" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TITLE">
           </h1>
-          <h4 class="font-light text-muted separate-above separate-below-medium text-xlg" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TEXT"></h4>
+          <h4 class="separate-above text-standout text-blue-dark font-regular" ng-bind="::about.strings.TEAM_CONTENT_SECTION_1_TEXT"></h4>
           <div class="row">
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
-                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
                       <div class="team-card__content">
                           <div class="team-card__content-header">
-                              <h5><strong>Levi Velázquez</strong></h5>
-                              <h5>CTO & <strong>Black</strong>end Developer</h5>
+                              <h5><strong>Alejandro Castañeda</strong></h5>
+                              <h5>Growth Marketer</h5>
                           </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
+                          
                           <h5 class="text-ssm">
-                              Python y Django son su biblia. Le gusta gritar los goles del Barca y llorar por los partidos de Argentina (a pesar de ser venezolano...). Fan de Cortázar y poeta clandestino.
+                              Quien vela por el crecimiento de nuestro bebé Trulii. Apasionado del marketing digital y growth hacking. Padre de una niña hermosa de ojos azules como el cielo.
                           </h5>
                           <div class="team-card__content-social">
                               <ul class="list-inline list-unstyled">
                                   <li>
-                                      <a href="https://www.linkedin.com/in/levinvm">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/in.png')}}" alt="" />
+                                      <a href="https://co.linkedin.com/in/alejandrocastanedaweb">
+                                          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
                                       </a>
                                   </li>
                                   <li>
-                                      <a href="http://stackoverflow.com/users/1539655/levi">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/s.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="https://github.com/levivm">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/github.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="https://twitter.com/levisvm">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/twitter.png')}}" alt="" />
+                                      <a href="http://twitter.com/AlejoKudos">
+                                          <i class="fa fa-twitter" aria-hidden="true"></i>
                                       </a>
                                   </li>
                               </ul>
@@ -68,19 +83,267 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
-                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>Andrés de Freitas</strong></h5>
+                              <h5>Chief GIF Officer</h5>
+                          </div>
+                          
+                          <h5 class="text-ssm">
+                              Record Guinness del maquetador más rápido. Especialista en frontend. Adicto a Counter Strike y Star Wars. En su tiempo libre cocina y colecciona GIFs para cada ocasión.
+                          </h5>
+                          <div class="team-card__content-social">
+                              <ul class="list-inline list-unstyled">
+                                  <li>
+                                      <a href="https://ve.linkedin.com/in/adefreitasvz">
+                                          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="http://twitter.com/adefreitasvz">
+                                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>Daniel Pérez</strong></h5>
+                              <h5>Chief Photoshop Officer</h5>
+                          </div>
+                          
+                          <h5 class="text-ssm">
+                              Nuestro UI Designer, el que pone Trulii bonito. Pseudo-hipster y Apple fanboy. Si ves a alguien en el Transmilenio con una manzana, de seguro es él. 
+                          </h5>
+                          <div class="team-card__content-social">
+                              <ul class="list-inline list-unstyled">
+                                  <li>
+                                      <a href="https://www.linkedin.com/in/daniel-pérez-b240572a">
+                                          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="http://thebigdeals.tumblr.com/">
+                                          <i class="fa fa-tumblr" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>Harvey Forero</strong></h5>
+                              <h5>Stand-up Comedy Manager</h5>
+                          </div>
+                         
+                          <h5 class="text-ssm">
+                              Django y iOS . Pelirrojo colombiano “venezolanizado”. Encargado en coordinar los partidos de FIFA en el PlayStation. Amante de los comics y los días festivos.
+                          </h5>
+                          <div class="team-card__content-social">
+                              <ul class="list-inline list-unstyled">
+                                  <li>
+                                      <a href="https://co.linkedin.com/in/harveydf">
+                                           <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="http://twitter.com/harveydf">
+                                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="http://github.com/harveydf">
+                                          <i class="fa fa-github" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>Henry Bravo</strong></h5>
+                              <h5>Mr. Robot</h5>
+                          </div>
+                          
+                          <h5 class="text-ssm">
+                              Frontend Developer. Fanático de Mr. Robot. Como buen tachirense, es hincha del Deportivo Táchira, tanto que no lava la franela del equipo cuando gana… sin comentarios.
+                          </h5>
+                          <div class="team-card__content-social">
+                              <ul class="list-inline list-unstyled">
+                                  <li>
+                                      <a href="https://twitter.com/HenryGBC">
+                                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://ve.linkedin.com/in/henry-gabriel-bravo-casanova-b9315583">
+                                          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://github.com/HenryGBC">
+                                          <i class="fa fa-github" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>Iván Aranaga</strong></h5>
+                              <h5>Copywriter</h5>
+                          </div>
+                          
+                          <h5 class="text-ssm">
+                              Es quien escribe la mayoría de los geniales artículos que tenemos en el blog. Lector incansable y apasionado de los deportes. El terror de la ropa planchada.
+                          </h5>
+                          <div class="team-card__content-social">
+                              <ul class="list-inline list-unstyled">
+                                  <li>
+                                      <a href="https://twitter.com/ivanaranaga">
+                                          <i class="fa fa-twitter" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://www.linkedin.com/in/iv%C3%A1n-aranaga-736b4b72/en ">
+                                          <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>Levi Velázquez</strong></h5>
+                              <h5>CTO & Full <strong>Black</strong> Developer</h5>
+                          </div>
+                          
+                          <h5 class="text-ssm">
+                              Phyton y Django son su Biblia. Le gusta gritar los goles del Barça y llorar por los partidos de Argentina (a pesar de ser venezolano...). Fan de Cortázar y poeta clandestino.
+                          </h5>
+                          <div class="team-card__content-social">
+                              <ul class="list-inline list-unstyled">
+                                  <li>
+                                      <a href="https://www.linkedin.com/in/levinvm">
+                                           <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="http://stackoverflow.com/users/1539655/levi">
+                                         <i class="fa fa-stack-overflow" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://github.com/levivm">
+                                          <i class="fa fa-github" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>María Parra</strong></h5>
+                              <h5>Diseño Gráfico y Ventas</h5>
+                          </div>
+                          <h5 class="text-ssm">
+                              Cuando no está diseñando se encuentra al teléfono buscando clientes. Futura diseñadora de modas. Decoradora de interiores frustrada y compradora compulsiva.
+                          </h5>
+                          <div class="team-card__content-social">
+                              <ul class="list-inline list-unstyled">
+                                  <li>
+                                      <a href="https://www.linkedin.com/in/mariaparrah?trk=nav_responsive_tab_profile_pic">
+                                          <i class="fa fa-linkedin-square" aria-hidden="true"></i>  
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://www.instagram.com/parramariah/">
+                                         <i class="fa fa-instagram" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>Nathaly Díaz</strong></h5>
+                              <h5>People</h5>
+                          </div>
+                          <h5 class="text-ssm">
+                              Nuestra Brienne. El Social Media y el SEO son su religión. Adicta a Game of Thrones y Evangelion. Cree en la existencia de dragones y ve probable un apocalipsis zombie.
+                          </h5>
+                          <div class="team-card__content-social">
+                              <ul class="list-inline list-unstyled">
+                                  <li>
+                                      <a href="https://www.linkedin.com/in/lacommunitymanagerseo">
+                                          <i class="fa fa-linkedin-square" aria-hidden="true"></i>  
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="http://twitter.com/DaererysFire">
+                                         <i class="fa fa-twitter" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                              </ul>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
                       <div class="team-card__content">
                           <div class="team-card__content-header">
                               <h5><strong>Rodrigo Ferreira</strong></h5>
-                              <h5>Chief Email Officer (CEO) & Fundador & Aseo</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
+                              <h5>Chief Email Officer (CEO)</h5>
                           </div>
                           <h5 class="text-ssm">
                               Fundraising, operaciones, marketing y product management. Obsesivo-compulsivo de la limpieza. Nuestro Lobo de Wall Street. Pero sin las drogas. Ni las mujeres. Ni el yate...
@@ -89,7 +352,17 @@
                               <ul class="list-inline list-unstyled">
                                   <li>
                                       <a href="https://twitter.com/VRodrigoFP">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/twitter.png')}}" alt="" />
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://co.linkedin.com/in/roroferreira">
+                                         <i class="fa fa-linkedin-square" aria-hidden="true"></i>  
+                                      </a>
+                                  </li>
+                                  <li>
+                                      <a href="https://medium.com/@VRodrigoFP">
+                                         <i class="fa fa-medium" aria-hidden="true"></i>
                                       </a>
                                   </li>
                               </ul>
@@ -97,209 +370,34 @@
                       </div>
                   </div>
               </div>
-              <div class="col-xs-12 col-md-6">
+              
+              <div class="col-xs-12 col-md-6 clear-spacings">
                   <div class="team-card">
                       <div class="team-card__veil"></div>
-                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
-                      <div class="team-card__content">
-                          <div class="team-card__content-header">
-                              <h5><strong>Fernando De Freitas</strong></h5>
-                              <h5>Developer “de altura”</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
-                          <h5 class="text-ssm">
-                              El Tim Duncan del Frontend y Android. Nuestro IMDB gigante: dos metros de conocimiento de películas y series. El marido perfecto: cocina, plancha y guinda la ropa húmeda.
-                          </h5>
-                          <div class="team-card__content-social">
-                              <ul class="list-inline list-unstyled">
-                                  <li>
-                                      <a href="https://co.linkedin.com/in/fdefreitas">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/in.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="https://twitter.com/fdefreitas">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/twitter.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="https://medium.com/@fdefreitas/ ">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/medium.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="https://github.com/fdefreitas">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/github.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                  <div class="team-card">
-                      <div class="team-card__veil"></div>
-                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
-                      <div class="team-card__content">
-                          <div class="team-card__content-header">
-                              <h5><strong>Daniel Pérez</strong></h5>
-                              <h5>Chief Photoshop Officer</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
-                          <h5 class="text-ssm">
-                              El que pone Trulii bonito. Se califica como pseudo-hipster y Apple fanboy. Si ves a alguien en el Transmilenio con una manzana, de seguro es él. Nómada por obligación.
-                          </h5>
-                          <div class="team-card__content-social">
-                              <ul class="list-inline list-unstyled">
-                                  <li>
-                                      <a href="http://thebigdeals.tumblr.com/">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/tumblr.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="https://www.linkedin.com/in/daniel-pérez-b240572a">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/in.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                  <div class="team-card">
-                      <div class="team-card__veil"></div>
-                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
-                      <div class="team-card__content">
-                          <div class="team-card__content-header">
-                              <h5><strong>Harvey Forero</strong></h5>
-                              <h5>Stand-up Comedy Manager (Ba Dum Tss)</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
-                          <h5 class="text-ssm">
-                              Django y iOS . Pelirrojo colombiano “venezolanizado”. Nombrado en Trulii como “Persona Mejor Vestida”. Encargado en coordinar los partidos de FIFA. Amante de los comics.
-                          </h5>
-                          <div class="team-card__content-social">
-                              <ul class="list-inline list-unstyled">
-                                  <li>
-                                      <a href="https://co.linkedin.com/in/harveydf">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/in.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="http://twitter.com/harveydf">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/twitter.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="http://github.com/harveydf">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/github.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                  <div class="team-card">
-                      <div class="team-card__veil"></div>
-                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
-                      <div class="team-card__content">
-                          <div class="team-card__content-header">
-                              <h5><strong>Andrés De Freitas</strong></h5>
-                              <h5></h5>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
-                          <h5 class="text-ssm">
-
-                          </h5>
-                          <div class="team-card__content-social">
-                              <ul class="list-inline list-unstyled">
-                                  <li>
-                                      <a href="https://twitter.com/adefreitasvz">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/twitter.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="https://www.linkedin.com/in/adefreitasvz">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/in.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                                  <li>
-                                      <a href="https://github.com/adefreitas/">
-                                          <img ng-src="{{about.getAmazonUrl('static/img/about/github.png')}}" alt="" />
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                  <div class="team-card">
-                      <div class="team-card__veil"></div>
-                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
-                      <div class="team-card__content">
-                          <div class="team-card__content-header">
-                              <h5><strong>María Parra</strong></h5>
-                              <h5>Diseño Gráfico & Co-fundadora & Todera</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
-                          </div>
-                          <h5 class="text-ssm">
-                              Cuando no nos deleita con un diseño hermoso, ayuda en todo lo demás. Futura diseñadora de modas. Decoradora de interiores frustrada y compradora compulsiva.
-                          </h5>
-                          <div class="team-card__content-social">
-                              <ul class="list-inline list-unstyled">
-
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              <div class="col-xs-12 col-md-6">
-                  <div class="team-card">
-                      <div class="team-card__veil"></div>
-                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/team.jpg')}})' }"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
                       <div class="team-card__content">
                           <div class="team-card__content-header">
                               <h5><strong>Chipi</strong></h5>
-                              <h5>La Mascota</h5>
-                          </div>
-                          <div class="row">
-                              <div class="col-xs-6">
-                                  <hr>
-                              </div>
+                              <h5>Mascota #1</h5>
                           </div>
                           <h5 class="text-ssm">
-                              El llama la atención. Tienes varios apodos: “El consentido”, “Galán”, “Parce” o “¡¡Bájate de ahí!!”. Increíblemente no le gusta el atún. Es claro que es el que tiene más flow de todos...
+                             El Latin Lover. Tienes varios apodos: “El consentido”, “Galán”, “Parce” o “¡¡Bájate de ahí!!”. No le gusta el atún. Sin duda es el más guapo en Trulii.
                           </h5>
-                          <div class="team-card__content-social">
-                              <ul class="list-inline list-unstyled">
-
-                              </ul>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-xs-12 col-md-6 clear-spacings">
+                  <div class="team-card">
+                      <div class="team-card__veil"></div>
+                      <div class="team-card__background" ng-style="{ 'background-image' : 'url( {{about.getAmazonUrl('static/img/about/equipo.jpg')}})' }"></div>
+                      <div class="team-card__content">
+                          <div class="team-card__content-header">
+                              <h5><strong>Samba</strong></h5>
+                              <h5>Mascota #2</h5>
                           </div>
+                          <h5 class="text-ssm">
+                             La traviesa de la oficina. Juguetona y tremenda hasta más no poder. En la oficina desempeña su papel de aspiradora orgánica. Aún no controla su esfínter.
+                          </h5>
                       </div>
                   </div>
               </div>
