@@ -214,7 +214,7 @@
 
             if(!(_.isEmpty(bankingData))){ 
                 var current_bank_data = _.find(bankingInfo.banks, 
-                                                { 'bank_id': bankingData.bank });
+                                                { 'bank_name': bankingData.bank });
                 vm.bank = current_bank_data.bank_name;
                 vm.accountBank = bankingData.account.substr(bankingData.account.length -4); 
             }

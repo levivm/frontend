@@ -107,8 +107,9 @@
         function _setOrganizerBankingData(){
 
             if(!(_.isEmpty(bankingData))){ 
+                console.log(bankingData);
                 var current_bank_data = _.find(vm.bankingInfo.banks, 
-                                                { 'bank_id': bankingData.bank });
+                                                { 'bank_name': bankingData.bank });
                 vm.bankingData = bankingData; 
                 vm.bankingData.bank = current_bank_data.bank_id;
             }
