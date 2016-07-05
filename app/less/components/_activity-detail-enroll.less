@@ -6,7 +6,7 @@
     z-index: 1000;
     position: relative;
     @media (max-width: 768px){
-        padding: 0 50px 150px;
+        padding: 0 50px 50px;
     }
     &__billing-widget{
         font-family: @font-sans;
@@ -172,7 +172,7 @@
         margin-top: 85px;
     }
     &__header{
-        border: 1px solid @gray-light;
+        border: 1px solid @gray-lighter;
         border-radius: @border-radius-base;
         width: 100%;
         margin-bottom: 25px;
@@ -181,7 +181,7 @@
         background-color: white;
         z-index: 10;
         h5{
-            color: @gray-darker;
+            color: @gray-darkest-brand;
             font-weight: bold;
             display: inline-block;
         }
@@ -192,7 +192,7 @@
             p, .fa{
                 display: inline-block;
                 font-size: 12px;
-                color: @gray-regular;
+                color: @gray-regular-brand;
             }
             p{
                 font-weight: 400;
@@ -205,7 +205,7 @@
             display: inline-block;
             float: right;
             width: 105px;
-            border: 1px solid @gray-darker-brand;
+            border: 1px solid @gray-dark-brand;
             border-radius: 30px;
             height: 35px;
             overflow: hidden;
@@ -238,6 +238,14 @@
         padding-top: 20px;
         background-color: white;
         z-index: 5;
+        &.pse{
+            padding: 50px;
+            > div{
+                &:not(:last-child){
+                    margin-bottom: 15px;
+                }
+            }
+        }
         h5{
             color: @gray-regular;
             font-weight: normal;
@@ -276,25 +284,28 @@
                 display: inline-block;
                 float: none;
                 margin-bottom: 0px;
-                border: 1px solid @gray-light;
+                border: 1px solid @gray-lighter;
                 border-bottom: none;
                 vertical-align: middle;
+                &:first-child{
+                    border-right: none;
+                }
                 a{
                     padding-top: 18px;
                 }
                 &:hover, &:focus, &.active{
-                    background-color: @gray-light-brand;
+                    background-color: @gray-lighter-brand;
                 }
             }
         }
         .enroll-footer{
             &__disclaimer{
                 margin-top: 50px;
-                color: @text-muted;
+                color: @gray-regular-brand;
                 text-align: center;
                 font-weight: 600;
                 a{
-                    color: @text-muted;
+                    color: @gray-regular-brand;
                     text-decoration: underline;
                     &:hover,  &:focus{
                         color: @brand-primary;

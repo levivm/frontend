@@ -2,35 +2,41 @@
     height: 52px;
     box-sizing: content-box;
     border-radius: 12px;
-    input, input:focus {
-        border: 1px solid @gray-lighter;
-        border-bottom: 3px solid @brand-success;
-        border-top-left-radius: @border-radius-base;
-        border-bottom-left-radius: @border-radius-base;
-    }
     input, button {
         height: 100% !important;
     }
     input, input:focus {
+        border: 1px solid @gray-lighter;
+        border-bottom: 3px solid @brand-success;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
         width: 70%;
         height: 55px;
         background-color: white;
         padding: 0 2em;
+        
     }
     input:focus{
-      background-image: linear-gradient(@brand-success, @brand-success), linear-gradient(@input-border, @input-border);
+      background-image: none;
     }
     input {
         background-image: none;
+        @media (max-width: 768px){
+            border-color: @gray-darker;
+            width: 100%;
+            border-radius: 54px !important;
+        }
     }
     button {
         width: 30%;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
+        border-top-left-radius: 0 !important;
+        border-bottom-left-radius: 0 !important;
         font-size: 1em;
-        .before-sm({
-          font-size: 0.75em;
-        });
+        @media (max-width: 768px){
+            margin-top: 15px;
+            width: 100%;
+            border-radius: 54px !important;
+        }
     }
 }
 .referral-share{
@@ -46,12 +52,82 @@
       }
     }
     li.referral-link{
-      input{
-        background-color: white;
-      }
+        margin: 0 0 0 10px;
+        input{
+            background-color: white;
+            border-radius: 0 !important;
+        }
+    }
+    li:first-child{
+        @media (max-width: 768px){
+            margin-bottom: 15px;
+        }
     }
     li:nth-child(n+3){
-      vertical-align: -6px;
+        vertical-align: middle;
+        margin-top: 15px;
+        .share-button{
+            width: 52px;
+            height: 52px;
+            text-align: center;
+            padding-top: 15px;
+            font-weight: bold;
+            transition: all 0.5s;
+            background-color: transparent;
+            display: block;
+            position: relative;
+            border: 1px solid @gray-lighter;
+            &-fb{
+                &:hover{
+                    background-color: @facebook-blue;
+                    border-color: @facebook-blue !important;
+                }
+            }
+            &-twitter{
+                &:hover{
+                    background-color: @twitter-accent;
+                    border-color: @twitter-accent !important;
+                }
+            }
+            @media (max-width: 768px){
+                &-fb{
+                    background-color: @facebook-blue;
+                    border-color: @facebook-blue !important;
+                }
+                &-twitter{
+                    background-color: @twitter-accent;
+                    border-color: @twitter-accent !important;
+                }
+            }
+            .img-on{
+                opacity: 0;
+                @media (max-width: 768px){
+                    opacity: 1;
+                }
+            }
+            .img-off{
+                opacity: 1;
+                @media (max-width: 768px){
+                    opacity: 0;
+                }
+            }
+            .img-on, .img-off{
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 18px;
+                height: 18px;
+                transition: all 0.5s;
+            }
+            &:hover, &:focus{
+                .img-off{
+                    opacity: 0;
+                }
+                .img-on{
+                    opacity: 1;
+                }
+            }
+        }
     }
     
   }
@@ -71,9 +147,11 @@ input[type=text].form-control.referral-link {
     background-image: none;
     padding: 0 2em;
     text-decoration: underline;
-    width: 450px;
+    width: 250px;
+    font-weight: 300;
     .before-sm({
-      width: 100%;
+      width: 200px;
+      margin: 0 auto;
     });
     &:focus {
         border: 1px solid @brand-success;
@@ -81,39 +159,75 @@ input[type=text].form-control.referral-link {
     }
 }
 
+.referral-sent{
+    border-top: 1px solid @gray-lighter;
+    padding-top: 25px;
+}
 .referral-item {
-    padding: 2em 0em;
+    padding: 1em 0em;
     display: inline-block;
     width: 100%;
     &__picture, &__info, &__status {
         padding: 0 0.25em;
         display: inline-block;
         float: left;
-        color: @gray-light;
+        color: @gray-darkest-brand;
         h4 {
             font-size: 1.3em;
         }
     }
     &__info {
         padding-left: 1em;
+        max-width: 400px;
+        h5{
+            line-height: 1.5em;
+            @media (max-width: 768px){
+                text-align: center;
+            }
+        }
     }
     &__picture {
         width: 3.5em;
         margin-top: 10px;
+        @media (max-width: 768px){
+            clear: both;
+            display: block;
+            float: none;
+            margin: 10px auto 0;
+        }
     }
     &__status {
         float: right;
         padding-right: 2em;
+        @media (max-width: 768px){
+            width: 100%;
+        }
         h5 {
             text-align: right;
             padding-top: 1.75em;
+            @media (max-width: 768px){
+                text-align: center;
+                font-size: 1.25em;
+                padding-top: 0;
+            }
         }
         .btn {
             margin-top: 10px;
+            text-transform: capitalize;
+            background-color: @gray-light-brand;
+            color: @gray-darkest-brand;
+            font-size: 12px;
+            @media (max-width: 768px){
+                margin: 0 auto;
+                width: 240px;
+                float: none;
+                display: block;
+                margin-top: 20px;
+                font-size: 1.125em;
+            }
         }
     }
-}
-
-.referral-item:not(:last-child) {
-    border-bottom: 2px solid @gray-light;
+    &:last-child{
+        margin-bottom: 2em;
+    }
 }

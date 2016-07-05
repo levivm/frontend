@@ -65,7 +65,6 @@
             showWidget: true,
             processingPayment: false,
             attendeesOffset: 0,
-
             addAssistant : addAssistant,
             removeAssistant : removeAssistant,
             enroll : enroll,
@@ -204,6 +203,7 @@
                 var bank = vm.pseData.selectedBank ? vm.pseData.selectedBank.pseCode : null;
                 var userType = vm.pseData.selectedUserType ? vm.pseData.selectedUserType.value : null;
                 var idNumber = vm.pseData.idNumber;
+                var idType = vm.pseData.idType;
 
                 var buyer_pse_data = {
                      response_url: Payments.PAYU_RESPONSE_URL,
@@ -719,6 +719,7 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_TO: " a ",
                 COPY_COVER: "Te quieres inscribir en:",
+                COPY_LAST_DATE: "Cierre de ventas -",
                 COPY_SIGN_UP: "¿Quieres inscribirte en esta actividad?",
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
@@ -743,7 +744,7 @@
                 LABEL_APPLY_COUPON: "Aplicar Cupón",
                 LABEL_FREE_CALENDAR: "Actividad Gratis",
                 COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
-                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a CONFIRMAR INSCRIPCIÓN",
+                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a Confirmar Inscripción.",
                 LABEL_CREDIT: "Crédito",
                 LABEL_COUPON: "Cupón",
                 LABEL_CONTACT_US: "Contáctanos",
@@ -751,7 +752,7 @@
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
-                LABEL_ACTIVITY_SESSIONS: "Horario",
+                LABEL_ACTIVITY_SESSIONS: "Horarios",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",
@@ -775,7 +776,7 @@
                 LABEL_USER_TYPE:"Tipo de Persona",
                 OPTION_USER_TYPE_DEFAULT: "Seleccione una opción",
                 LABEL_ID_TYPE:"Tipo de Documento de Identificación",
-                OPTION_ID_TYPE_DEFAULT:"-- Seleccione Tipo de Documento --",
+                OPTION_ID_TYPE_DEFAULT:"Documento de identidad",
 
                 LABEL_PHONE_NUMBER: "Teléfono de uso diario",
                 PLACEHOLDER_PHONE_NUMBER: "Ej. 5723488800",

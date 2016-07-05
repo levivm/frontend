@@ -17,7 +17,7 @@
   */
   function ResetPasswordCtrl($location, $scope, $modal, $stateParams, $state, Authentication, Error) {
     var vm = this;
-
+    vm.errors = {};
     vm.resetPassword = _resetPassword;
     vm.strings = {
       COPY_TITLE: "Restablecer contraseña",
@@ -37,21 +37,13 @@
 
           $state.go('general-message',{'module_name':'authentication',
                                        'template_name':'change_password_success',
-                                       'redirect_state':'home'});
+                                       'redirect_state':'login'});
 
         }
 
         function error(response){
-          console.log(response);
           
-          var responseErrors = response.data[0];
-          if (responseErrors === 'The passwords do not match.') {
-            console.log('error');
-            Error.form.add(vm.reset_password_form, 'Las contraseñas no coinciden');
-          }
-          else if(responseErrors === "This token is not valid."){
-              Error.form.add(vm.reset_password_form, 'Token invalido');
-          }
+          vm.errors.__all__ = response.data;
 
         }
 

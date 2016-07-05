@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager'];
 
     function ActivityDetailController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
                                           
         var visibleReviewListSize = 3;
         var vm = this;
@@ -248,12 +248,19 @@
             }
         }
 
-        function attendeesScrollUp (){
+        function attendeesScrollUp(){
             console.log(vm.attendeesOffset);
             if(vm.attendeesOffset < 0){
                 vm.attendeesOffset++;
                 document.getElementsByClassName('attendees-container__body__attendees-list')[0].style.transform = 'translateY('+ vm.attendeesOffset*60 +'px)';
             }
+        }
+
+        function _setSearchData(){
+            SearchManager.setCategory(activity.category.id);
+            SearchManager.setCity(activity.location.city);
+            vm.searchData = SearchManager.getSearchData();
+            // $state.go('search', vm.searchData);
         }
 
         //--------- Internal Functions ---------//
@@ -581,6 +588,10 @@
             
         }
 
+        function _updateViewCount() {
+            activity.updateViews();
+        }
+
         function _activate(){
             _setStrings();
             _setCurrentState();
@@ -613,6 +624,8 @@
             _setReviews();
             _initWidget();
             _initSignup();
+            _setSearchData();
+            _updateViewCount();
             console.log(vm.calendar_selected);
 
         }

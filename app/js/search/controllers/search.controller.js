@@ -134,9 +134,8 @@
             if (!initializing){
                 vm.searchSubCategory = undefined;
                 SearchManager.setSubCategory(vm.searchSubCategory);
-                if(!_isMobile()){
-                  _search();
-                }
+                _setPage(1);
+                _search();
             }
             Analytics.generalEvents.searchCategory(category.name);
         }
@@ -152,9 +151,8 @@
 
             SearchManager.setCategory(vm.searchCategory);
             SearchManager.setSubCategory(vm.searchSubCategory);
-            if(!_isMobile()){
-              _search();
-            }
+            _setPage(1);
+            _search();
 
             Analytics.generalEvents.searchSubCategory(subcategory.name);
         }
@@ -172,26 +170,21 @@
             SearchManager.setLevel(vm.searchLevel.code);
             Analytics.generalEvents.searchLevel(vm.searchLevel.value);
           }
-
-          if(!_isMobile()){
-            _search();
-          }
+          _setPage(1);
+          _search();
 
         }
 
         function setDate() {
             SearchManager.setDate(vm.searchDate.getTime());
-            if(!_isMobile()){
-              _search();
-            }
+            _setPage(1);
+            _search();
             Analytics.generalEvents.searchDate(vm.searchDate);
         }
 
         function setFree(){
             SearchManager.setFree(vm.isFree);
-            if(!_isMobile()){
-              _search();
-            }
+            _search();
         }
 
         function updateCost(costStart, costEnd) {
@@ -199,10 +192,9 @@
         }
 
         function stopDrag() {
-            if(!_isMobile()){
-                Analytics.generalEvents.searchRange(vm.searchData.cost_start+'-'+vm.searchData.cost_end);
-              _search();
-            }
+            Analytics.generalEvents.searchRange(vm.searchData.cost_start+'-'+vm.searchData.cost_end);
+            _setPage(1);
+            _search();
         }
 
         function setCertification() {
@@ -210,9 +202,8 @@
             SearchManager.setCertification(vm.withCert);
             vm.searchData[SearchManager.KEY_CERTIFICATION] = vm.withCert;
             Analytics.generalEvents.searchCertificate(vm.withCert);
-            if(!_isMobile()){
-              _search();
-            }
+            _setPage(1);
+            _search();
         }
 
         function setWeekends() {
@@ -220,16 +211,13 @@
             SearchManager.setWeekends(vm.onWeekends);
             vm.searchData[SearchManager.KEY_WEEKENDS] = vm.onWeekends;
             Analytics.generalEvents.searchWeekends(vm.onWeekends);
-            if(!_isMobile()){
-              _search();
-            }
+            _setPage(1);
+            _search();
         }
 
         function pageChange() {
             _setPage();
-            if(!_isMobile()){
-              _search();
-            }
+            _search();
         }
 
         function changeOrderBy(predicate) {
@@ -237,9 +225,7 @@
             vm.searchData[SearchManager.KEY_ORDER] = predicate;
             SearchManager.setOrder(predicate);
             _setPage(1);
-            if(!_isMobile()){
-              _search();
-            }
+            _search();
         }
 
         function getLevelClassStyle(level) {
@@ -252,9 +238,6 @@
 
         //--------- Internal Functions ---------//
 
-        function _isMobile(){
-          return $window.innerWidth < 992;
-        }
         function _expandCategory(category) {
             vm.expandedCategory = vm.expandedCategory == category.id ? null : category.id;
         }
@@ -390,19 +373,11 @@
             function watchEndCost() { return vm.searchEndCost; }
         }
 
-        function _scrollToCurrentCategory() {
-            $location.hash(vm.searchData["category_display"]);
-            $anchorScroll();
-        }
-
         function _search() {
             vm.loadingActivities = true;
             SearchManager.setQuery(vm.newSearchQuery);
 
             vm.searchData = SearchManager.getSearchData();
-            SearchManager.getSearchData(vm.searchData);
-            
-            
             
             _getActivities(vm.searchData).then(function () {
                 $state.go('search', vm.searchData,  {notify: false});
@@ -450,9 +425,7 @@
             _setStrings();
             _setGeneralInfo();
             _getSearchParams();
-            _getActivities($stateParams).then(function () {
-                _scrollToCurrentCategory();
-            });
+            _getActivities($stateParams);
             _setCities();
             
 

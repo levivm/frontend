@@ -16,7 +16,13 @@
 }
 
 .container-muted{
-  background-color: @gray-lightest-brand;
+  background-color: @gray-lighter-brand;
+  .container-muted{
+    background-color: @gray-light-brand;
+    a{
+      color: @gray-darkest-brand;
+    }
+  }
   p, h1, h2, h3, h4, h5{
     color: @gray-darkest-brand;
   }
