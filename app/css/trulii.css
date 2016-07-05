@@ -19681,6 +19681,7 @@ button.toast-close-button {
 .trulii-cover-regular__content-landing-categories a {
   color: white;
   margin-right: 1em;
+  text-decoration: none;
 }
 .trulii-cover__content-landing-categories a:hover,
 .trulii-cover-small__content-landing-categories a:hover,
