@@ -8,7 +8,7 @@
             <span class="text-gray-dark" ng-bind="::activities.strings.COPY_CURRENT"></span>
      </div>
     <div class="row" ng-if="activities.current_activities.length > 0">
-        <div class="col-xs-12 flex-cards" >
+        <div class="flex-cards flex-cards__dashboard" >
             <trulii-activity-item data-activity="activity" ng-repeat="activity in activities.current_cards"></trulii-activity-item>
         </div>
     </div>
