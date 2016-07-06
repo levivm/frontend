@@ -11,17 +11,14 @@
                 ui-sref="dash.activities-manage.summary({activity_id: {{pc.activity.id}}})">
                     <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_MANAGE_ACTIVITY"></span>
                 </a>
-                 <button class="btn btn-publish" ng-show="!pc.activity.published" value="{{pc.strings.PUBLISH_ACTIVITY_LABEL}}"
-                        ng-click="pc.publish_activity()">
-                        <span ng-bind="::pc.strings.PUBLISH_ACTIVITY_LABEL"></span>
-                </button>
-                <button ng-show="pc.activity.published" class="btn btn-unpublish"
-                        ng-click="pc.unpublish_activity()">
-                    <span ng-bind="::pc.strings.UNPUBLISH_ACTIVITY_LABEL"></span>
-                </button>
-                 <i ng-show="pc.activity.published" 
-                    class="glyphicon glyphicon-question-sign tooltip-unpublish" 
-                    aria-hidden="true" tooltip-placement="top" tooltip="{{::pc.strings.COPY_UNPUBLISH_ACTIVITY}}"></i>
+                <a  class="btn btn-default btn-preview"
+                    ng-show="pc.areAllStepsCompleted()" 
+                    ng-click="pc.actionNavbarSecondary(pc.strings.COPY_PRE_VIEW_ACTIVITY)" 
+                    ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
+                   <i class="fa fa-eye" aria-hidden="true"></i>
+                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_PRE_VIEW_ACTIVITY"></span>
+                </a>
+                
              </div>
          </div>
          <div class="cover-edit-activity__content-second" ng-show="!pc.areAllStepsCompleted()">
@@ -62,16 +59,24 @@
                       <i class="mandatory-mark mandatory-mark-edit-activity --right" ng-show="step.required && !pc.isSectionCompleted(step.name)"></i>
                 </a>
             </li>
-            
-            <li  class="sidebar__item sidebar__item-preview" ng-show="pc.areAllStepsCompleted()">
-                <a ng-click="pc.actionNavbarSecondary(pc.strings.COPY_PRE_VIEW_ACTIVITY)" ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
-                   <i class="fa fa-eye" aria-hidden="true"></i>
-                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_PRE_VIEW_ACTIVITY"></span>
+             
+            <li  class="sidebar__item sidebar__item-publish"  ng-class="{'sidebar__item-publish-deactivate': !pc.areAllStepsCompleted()}" ng-show="!pc.activity.published">
+                <a ng-show="pc.areAllStepsCompleted()" ng-click="pc.publish_activity()" >
+                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.PUBLISH_ACTIVITY_LABEL"></span>
+                </a>
+                 <a ng-show="!pc.areAllStepsCompleted()">
+                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.PUBLISH_ACTIVITY_LABEL"></span>
                 </a>
             </li>
+             <li  class="sidebar__item sidebar__item-unpublish"  ng-show="pc.activity.published">
+                <a ng-click="pc.unpublish_activity()" >
+                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.UNPUBLISH_ACTIVITY_LABEL"></span>
+                </a>
+            </li>
+            
         </ul>
         
-               
+                
            <!-- 
                <nav class="sidebar  hidden-xs hidden-sm" >
                 <a  ng-repeat="step in pc.steps track by step.name"

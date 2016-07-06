@@ -23,16 +23,49 @@
 	.sidebar__item{
 		border-bottom: 1px solid @gray-lighter;
 		border-top: none; 
-		&-preview{
+		&-publish{
 			margin-top: 20px;
-			border-top: 1px solid @gray-lighter;
-			background: @gray-lighter;
+			background: @brand-info;
 			text-align: center;
 			text-transform: uppercase;
+			border: none;
+			border-radius: 4px;
 			a{
 				padding-left: 0;
-				i{
-					font-size: 1.2em;
+				color: white !important;
+				font-weight: 700;
+				font-size: 0.9em;
+				&:hover{
+					color: white !important;
+				}
+			}
+			
+			&-deactivate{
+				background: @gray-lighter;
+				
+				a{
+					color: @gray-regular !important;
+					cursor: auto;
+					&:hover{
+						color: @gray-regular !important;
+					}
+				}
+			}
+		}
+		&-unpublish{
+			margin-top: 20px;
+			background: @brand-yellow;
+			text-align: center;
+			text-transform: uppercase;
+			border: none;
+			border-radius: 4px;
+			a{
+				padding-left: 0;
+				color: @gray-darker !important;
+				font-weight: 700;
+				font-size: 0.9em;
+				&:hover{
+					color: @gray-darker !important;
 				}
 			}
 		}

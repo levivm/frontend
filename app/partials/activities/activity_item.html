@@ -17,16 +17,15 @@
             <span class="trulii-activity-card__header__menu__item__icon mdi-action-favorite-outline" ng-class="{'mdi-action-favorite': activity.wish_list}" title="{{strings.ADD_TO_WISHLIST}}"></span>
           </div>
       </span>
-      <span ng-if="organizer" class="trulii-activity-card__header__menu">
+      <div ng-if="organizer" class="trulii-activity-card__header__menu">
         <div ng-repeat="action in actions track by $index"
             class="trulii-activity-card__header__menu__item"
-            ui-sref="{{::action.state}}"
-            ng-click="clickAction(action.name)"
+            ng-click="clickAction(action.name); goToAction(action.name, $event)"
             ng-class="{'hidden-xs': action.name===strings.LABEL_EDIT}"
             data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
           <span class="trulii-activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
         </div>
-      </span>
+      </div>
     </div>
     <div class="trulii-activity-card__category">
       <div class="trulii-activity-card__category__label" style="background-color: {{activity.category.color}}"
