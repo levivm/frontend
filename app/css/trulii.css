@@ -20803,7 +20803,7 @@ blockquote {
 .trulii-activity-card {
   position: relative;
   height: 350px;
-  width: 250px;
+  width: 245px;
   margin: 0 auto;
   border-radius: 6px;
   overflow: hidden;
@@ -24262,18 +24262,112 @@ blockquote {
 .flex-cards {
   display: -webkit-flex;
   display: flex;
-  -webkit-justify-content: space-between;
-  justify-content: space-between;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+  width: 100% ;
+  margin: 0 auto;
 }
-@media screen and (max-width: 1290px) {
+@media (max-width: 600px) {
   .flex-cards {
-    -webkit-justify-content: space-around;
-    justify-content: space-around;
+    -webkit-justify-content: center;
+    justify-content: center;
+  }
+}
+@media (max-width: 1299px) {
+  .flex-cards {
+    max-width: 1100px;
+    padding: 0 0px 0px 15px;
+  }
+}
+@media (min-width: 1300px) {
+  .flex-cards {
+    max-width: 1100px;
+  }
+}
+@media (max-width: 950px) {
+  .flex-cards {
+    padding: 0px;
+  }
+}
+@media (max-width: 940px) {
+  .flex-cards {
+    width: 85%;
+  }
+}
+@media (max-width: 768px) {
+  .flex-cards {
+    width: 80% ;
+  }
+}
+.flex-cards data-trulii-activity-item {
+  display: block;
+  width: 25%;
+}
+@media (max-width: 1299px) {
+  .flex-cards data-trulii-activity-item {
+    width: 33%;
+  }
+}
+@media (max-width: 950px) {
+  .flex-cards data-trulii-activity-item {
+    width: 50%;
+  }
+}
+@media (max-width: 610px) {
+  .flex-cards data-trulii-activity-item {
+    width: 260px;
+  }
+}
+@media (max-width: 950px) {
+  .flex-cards__dashboard {
+    width: 100%;
+  }
+}
+.flex-cards__dashboard data-trulii-activity-item {
+  width: 33%;
+}
+@media (max-width: 770px) {
+  .flex-cards__dashboard data-trulii-activity-item {
+    width: 50%;
+  }
+}
+@media (max-width: 610px) {
+  .flex-cards__dashboard data-trulii-activity-item {
+    width: 260px;
+  }
+}
+@media (max-width: 970px) {
+  .flex-cards__search {
+    width: 100%;
+    padding-left: 10px;
+  }
+}
+.flex-cards__search data-trulii-activity-item {
+  width: 33%;
+}
+@media (max-width: 1080px) {
+  .flex-cards__search data-trulii-activity-item {
+    width: 50%;
+  }
+}
+@media (max-width: 970px) {
+  .flex-cards__search data-trulii-activity-item {
+    width: 33%;
+  }
+}
+@media (max-width: 810px) {
+  .flex-cards__search data-trulii-activity-item {
+    width: 50%;
+  }
+}
+@media (max-width: 610px) {
+  .flex-cards__search data-trulii-activity-item {
+    width: 260px;
   }
 }
 .review-student {
