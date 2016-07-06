@@ -30,19 +30,20 @@
                         </div>
                     </div>
                     <!-- Stock de covers -->
+                    <span class="separate-left-less"  ng-bind="::gallery.strings.COPY_MAX_WIDTH_COVER"></span>
                     <div class="gallery-grid gallery-grid--fixed">
                         <div ng-repeat="cover in gallery.covers track by cover.id"
                              class="gallery-grid__photo --small --selectable"
                              ng-class="{'--unselected': cover !== gallery.selectedCover, '--small-less': !gallery.activityCover}"
                              ng-style="{'background-image': 'url({{cover.photo}})'}"
                              ng-click="gallery.setCoverPreview(cover)">
-                             <span ng-if="$first && cover === gallery.selectedCover" class="glyphicon glyphicon-ok check-photo" aria-hidden="true"></span>
+                             <span ng-if="$first && gallery.covers.length==6" class="glyphicon glyphicon-ok check-photo" aria-hidden="true"></span>
                         </div>
                     </div>
 
                     <trulii-preloader loader-control="gallery.isLoadingCover"></trulii-preloader>
 
-                    <div class="drop-box" ng-show="!gallery.isLoadingCover"
+                    <div class="col-md-2 clear-spacings drop-box" ng-show="!gallery.isLoadingCover"
                          ng-model="gallery.coverToUpload" ng-file-drop="" ng-file-select="" ng-multiple="false"
                          drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
                          ng-file-change="gallery.uploadActivityCover(gallery.coverToUpload)"
@@ -60,6 +61,7 @@
                 <span ng-bind="::gallery.strings.COPY_GALLERY"></span>
             </div>
             <div class="row separate-below-more">
+                <span class="separate-left-less" ng-bind="::gallery.strings.COPY_MAX_WIDTH_GALLERY"></span>
                 <div class="col-xs-12 separate-right">
                     <div class="gallery-grid--fixed">
                         <div class="gallery-grid__photo img-actionable img-actionable--small"

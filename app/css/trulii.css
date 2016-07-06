@@ -15507,18 +15507,49 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-bottom: 1px solid #ededed;
   border-top: none;
 }
-.sidebar-edit-activity .sidebar__item-preview {
+.sidebar-edit-activity .sidebar__item-publish {
   margin-top: 20px;
-  border-top: 1px solid #ededed;
-  background: #ededed;
+  background: #51dde9;
   text-align: center;
   text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
 }
-.sidebar-edit-activity .sidebar__item-preview a {
+.sidebar-edit-activity .sidebar__item-publish a {
   padding-left: 0;
+  color: white !important;
+  font-weight: 700;
+  font-size: 0.9em;
 }
-.sidebar-edit-activity .sidebar__item-preview a i {
-  font-size: 1.2em;
+.sidebar-edit-activity .sidebar__item-publish a:hover {
+  color: white !important;
+}
+.sidebar-edit-activity .sidebar__item-publish-deactivate {
+  background: #ededed;
+}
+.sidebar-edit-activity .sidebar__item-publish-deactivate a {
+  color: #9b9b9b !important;
+  cursor: auto;
+}
+.sidebar-edit-activity .sidebar__item-publish-deactivate a:hover {
+  color: #9b9b9b !important;
+}
+.sidebar-edit-activity .sidebar__item-unpublish {
+  margin-top: 20px;
+  background: #f4d352;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+}
+.sidebar-edit-activity .sidebar__item-unpublish a {
+  padding-left: 0;
+  color: #222328 !important;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+.sidebar-edit-activity .sidebar__item-unpublish a:hover {
+  color: #222328 !important;
 }
 .sidebar-edit-activity .sidebar__item:first-child {
   border-top: 1px solid #ededed;
@@ -19292,12 +19323,13 @@ button.toast-close-button {
   background-color: #e4e7ef;
   margin-right: 1em;
 }
-.cover-edit-activity__content-buttons .btn-publish {
-  background-color: #51dde9;
-  color: white;
+.cover-edit-activity__content-buttons .btn-preview {
+  background-color: #b9bed1;
+  border-color: #b9bed1;
 }
-.cover-edit-activity__content-buttons .btn-unpublish {
-  background-color: #f4d352;
+.cover-edit-activity__content-buttons .btn-preview i {
+  font-size: 1.3em;
+  margin-right: 3px;
 }
 .cover-edit-activity__content-steps {
   color: white;

@@ -47,6 +47,7 @@
                     hideMenu : hideMenu,
                     viewActivity:viewActivity,
                     goToOrganizer: goToOrganizer,
+                    goToAction:goToAction,
                     clickAction: clickAction,
                     isStudent: false,
                     like:like,
@@ -96,15 +97,35 @@
                     $event.stopPropagation();
                     $state.go('organizer-profile', {organizer_id: scope.activity.organizer.id});
                 }
+                
+                 function goToAction(name, $event){
+                   
+                    $event.preventDefault();
+                    $event.stopPropagation();
+                     switch(name){
+                        case scope.strings.LABEL_EDIT:
+                            $state.go('dash.activities-edit.general', {activity_id: scope.activity.id});
+                            break;
+                        case scope.strings.LABEL_MANAGE:
+                            $state.go('dash.activities-manage.summary', {activity_id: scope.activity.id});
+                            break;
+                        case scope.strings.LABEL_CONTACT:
+                            $state.go('contact-us',JSON.stringify(scope.current_state));
+                            break;
+                        case scope.strings.LABEL_REPUBLISH:
+                            $state.go('dash.activities-edit.calendars', {activity_id: scope.activity.id});
+                            break;
+                        case scope.strings.LABEL_DELETE:
+                            __deleteActivity();
+                            break;
+                        default:
+                            return null;
+                      }
+                }
 
 
                 function clickAction(action){
                     Analytics.generalEvents.actionCard(action);
-                    console.log(action);
-                    if(action===scope.strings.LABEL_DELETE){
-                        __deleteActivity();
-                        
-                    }
                 }
 
                 //--------- Internal Functions ---------//
