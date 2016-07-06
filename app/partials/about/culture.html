@@ -70,97 +70,14 @@
         
       </div>
     <div class="col-xs-12 limited-width-about">
-        <h1 class="text-blue-dark text-xlg font-bold" ng-bind="::about.strings.CULTURE_SECTION_1_CONTENT_TITLE"></h1>
+       <h1 class="text-blue-dark text-xlg font-bold" ng-bind="::about.strings.CULTURE_SECTION_1_CONTENT_TITLE"></h1>
 
       <p class="text-standout text-blue-dark font-regular" ng-bind="::about.strings.CULTURE_SECTION_1_CONTENT_TEXT_1"></p>
       <p class="text-standout text-blue-dark font-regular" ng-bind="::about.strings.CULTURE_SECTION_1_CONTENT_TEXT_2"></p>
       <p class="text-standout text-blue-dark font-regular" ng-bind="::about.strings.CULTURE_SECTION_1_CONTENT_TEXT_3"></p>
-      <div class="hidden-md hidden-lg">
-        <div class="row">
-          <div class="col-xs-6">
-            <h4 class="text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_HEADER"></h4>
-            <h5 class="text-md text-center font-light text-muted" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_TEXT_1"></h5>
-          </div>
-          <div class="col-xs-6">
-            <h4 class="text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_HEADER"></h4>
-            <h4 class="text-md text-center font-light text-muted">
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_1"></span>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_2"></span>
-            </h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-xs-6">
-            <h4 class="text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_HEADER"></h4>
-            <h4 class="text-md text-center font-light text-muted">
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_1"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_2"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_3"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_4"></span>
-            </h4>
-          </div>
-          <div class="col-xs-6">
-            <h4 class="text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_HEADER"></h4>
-            <h4 class="text-md text-center font-light text-muted">
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_1"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_2"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_3"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_4"></span>
-            </h4>
-          </div>
-        </div>
-      </div>
-      <div class="hidden-xs hidden-sm">
-        <img ng-src="{{about.getAmazonUrl('static/img/about/growth_2.png')}}" alt="" class="img-responsive center-block separate-above-medium separate-below-medium">
-        <img ng-src="{{about.getAmazonUrl('static/img/about/bul.png')}}" alt="" class="img-responsive center-block separate-below">
-        <div class="row">
-          <div class="col-xs-3">
-            <h4 class="text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_HEADER"></h4>
-            <img ng-src="{{about.getAmazonUrl('static/img/about/priorities.png')}}" alt="" class="img-responsive center-block separate-above separate-below">
-            <h5 class="text-md text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_1_TEXT_1"></h5>
-          </div>
-          <div class="col-xs-3">
-            <h4 class="text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_HEADER"></h4>
-            <img ng-src="{{about.getAmazonUrl('static/img/about/strategy.png')}}" alt="" class="img-responsive center-block separate-above separate-below">
-            <h4 class="text-md text-center font-light">
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_1"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_2"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_3"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_2_TEXT_4"></span>
-            </h4>
-          </div>
-          <div class="col-xs-3">
-            <h4 class="text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_HEADER"></h4>
-            <img ng-src="{{about.getAmazonUrl('static/img/about/transparency.png')}}" alt="" class="img-responsive center-block separate-above separate-below">
-            <h4 class="text-md text-center font-light">
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_1"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_2"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_3"></span>
-              <br>
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_3_TEXT_4"></span>
-            </h4>
-          </div>
-          <div class="col-xs-3">
-            <h4 class="text-center font-light" ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_HEADER"></h4>
-            <img ng-src="{{about.getAmazonUrl('static/img/about/balance.png')}}" alt="" class="img-responsive center-block separate-above separate-below">
-            <h4 class="text-md text-center font-light">
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_1"></span>
-              <img ng-src="{{about.getAmazonUrl('static/img/about/arrow.png')}}" alt="" class="img-responsive center-block separate-above-less separate-below-less">
-              <span ng-bind="::about.strings.CULTURE_GRAPH_BRANCH_4_TEXT_2"></span>
-            </h4>
-          </div>
-        </div>
+      <div class="separate-above">
+       <img ng-src="{{about.getAmazonUrl('static/img/about/aspira_mobile.png')}}" alt="" class="img-responsive center-block separate-below-medium hidden-md hidden-lg">
+        <img ng-src="{{about.getAmazonUrl('static/img/about/aspira_desktop.png')}}" alt="" class="img-responsive center-block separate-below hidden-xs hidden-sm">
       </div>
     </div>
   </div>
@@ -182,7 +99,7 @@
               <i class="fa fa-play" aria-hidden="true"></i>
               <span class="separate-left-less" ng-bind="::about.strings.SHOW_PRESENTATION_COPY"></span>
             </a>
-            <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/values.jpg')}})'}"> </div>
+            <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{about.getAmazonUrl('static/img/about/nuestros_valores.jpg')}})'}"> </div>
     </div>
 </div>
 <div class="col-xs-12">
@@ -217,7 +134,7 @@
         </ul>
       </blockquote>
       <div class="values-container">
-        <img ng-src="{{about.getAmazonUrl('static/img/about/values.png')}}" alt="" class="img-responsive center-block separate-above-more separate-below-less">
+        <img ng-src="{{about.getAmazonUrl('static/img/about/logo_valores.png')}}" alt="" class="img-responsive center-block separate-above-more separate-below-less">
         <p class="text-uppercase text-blue-dark font-regular values-container__humility " ng-bind="::about.strings.CULTURE_VALUE_1">
         </p>
         <p class="text-uppercase text-blue-dark font-regular values-container__clarity" ng-bind="::about.strings.CULTURE_VALUE_2">
