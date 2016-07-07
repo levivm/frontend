@@ -42,7 +42,6 @@
         }
         
         function changeContentCover(state) {
-            console.log(state);
             switch (state) {
                 case TEAM_STATE:
                     vm.selectTitle = vm.strings.WIDGET_TEAM_COPY;
@@ -68,6 +67,9 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
+                
+                TERMS_TITLE:"Términos y condiciones",
+                PRIVACY_TITLE: "Política de privacidad",
                 WIDGET_MISSION_COPY: "Misión",
                 WIDGET_CULTURE_COPY: "Cultura",
                 WIDGET_TEAM_COPY: "Equipo",
