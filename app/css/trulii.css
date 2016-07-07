@@ -20498,6 +20498,13 @@ button.toast-close-button {
     min-height: 45vh;
   }
 }
+.trulii-cover-small__about {
+  margin-top: -70px;
+}
+.trulii-cover-small__terms {
+  min-height: 300px;
+  margin-top: -70px;
+}
 @media (min-height: 1081px) {
   .trulii-cover-small {
     min-height: 400px;
