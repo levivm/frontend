@@ -44,6 +44,10 @@
                 },
                 resolve:{
                     cities: getAvailableCities
+                },
+                data:{
+                    pageTitle:'Sé Organizador y Publica Tus Cursos| Trulii',
+                    pageDescription: 'Conviértete en organizador y publica tus cursos, talleres, clases o diplomados de manera sencilla y rápida. Publicar es GRATIS. Más información aquí.'
                 }
             })
             .state('organizer-profile', {

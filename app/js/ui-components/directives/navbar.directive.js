@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager', 'TruliiSEO'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager, TruliiSEO) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -26,7 +26,7 @@
                 var transitionOptions = {location : true, inherit : false, reload : false};
                 var STATE_HOW_TO_WORK_HOME = 'home';
                 var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
-
+                
                 angular.extend(scope, {
                     state: null,
                     isSearchVisible : isSearchVisible,
@@ -334,6 +334,20 @@
                         }
                     );
                 }
+                
+                function _changePageTitle(state) {
+                    
+                    
+                   if(state.hasOwnProperty('data') && state.data.hasOwnProperty('pageTitle') && state.data.hasOwnProperty('pageDescription')){
+                        TruliiSEO.setPageContent(state.data.pageTitle, state.data.pageDescription);
+                    }else{
+                         TruliiSEO.setPageContent();
+                    }
+                    if(state.name == 'search'){
+                       var searchPageTitle = 'Trulii | '+LocationManager.getSearchCity().name
+                       TruliiSEO.setPageContent(searchPageTitle);
+                    }
+                }
 
                 function _activate() {
                     _setStrings();
@@ -346,6 +360,7 @@
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');
+                         _changePageTitle(toState)
                         Analytics.sendPageView();
                     });
 
@@ -354,7 +369,7 @@
                         _getUser();
                     });
                     
-
+                    
                     scope.$on('$destroy', _cleanUp);
                 }
             }

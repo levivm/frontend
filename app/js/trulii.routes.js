@@ -50,6 +50,10 @@
                 resolve: {
                      activities: getRecommendedActivities,
                      generalInfo: getPresaveActivityInfo
+                },
+                data:{
+                    pageTitle:'Trulii: Cursos, Clases, Talleres y Actividades en Colombia',
+                    pageDescription: 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!'
                 }
             })
             .state('contact-us', {
@@ -64,6 +68,10 @@
                         'state' : 'home',
                         'params' : {}
                     }
+                },
+                data:{
+                    pageTitle:'Contáctanos | Trulii',
+                    pageDescription: '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!'
                 }
             })
             .state('modal-dialog', {
