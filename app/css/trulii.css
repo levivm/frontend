@@ -19870,8 +19870,9 @@ button.toast-close-button {
   text-align: center;
   font-size: 1em;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
+  z-index: 1000000;
 }
 .trulii-cover__content-landing-categories a,
 .trulii-cover-small__content-landing-categories a,
