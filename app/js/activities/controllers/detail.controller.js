@@ -348,16 +348,16 @@
                 EMAIL_SHARE_TEXT: '¡Hey!, échale un vistazo a esta actividad en Trulii a la que planeo asistir dentro de poco. Avísame si te interesa y vamos juntos. ¡Sé que te encantará!'
             });
 
-            Facebook.api({
-                    method: 'links.getStats',
-                    urls: current_url.toString()
-                },
-                function (response) {
-                    if(response.length > 0){
-                        vm.facebookShares = response[0].share_count;
-                        console.log(response[0].share_count);
-                    }
-            });
+            // Facebook.api({
+            //         method: 'links.getStats',
+            //         urls: current_url.toString()
+            //     },
+            //     function (response) {
+            //         if(response.length > 0){
+            //             vm.facebookShares = response[0].share_count;
+            //             console.log(response[0].share_count);
+            //         }
+            // });
 
         }
 
@@ -496,7 +496,10 @@
         }
 
         function _updateViewCount() {
-            activity.updateViews();
+            activity.updateViewsCounter();
+            activity.getViewsCounter().then(function(data){
+                vm.facebookShares = data;
+            });
         }
 
         function _activate(){
