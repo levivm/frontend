@@ -161,7 +161,7 @@
             </div>
             <div class="referral-item__status">
                 <!--  Boton de reenvio de invitacion-->
-                <button class="btn btn-default" ng-bind="::referrals.strings.ACTION_RESEND_INVITE">
+                <button class="btn btn-default" ng-bind="::referrals.strings.ACTION_RESEND_INVITE" ng-click="referrals.resendInvite('roroferreira88@hotmail.com')">
                 </button>
             </div>
         </div>
@@ -172,22 +172,28 @@
           <div class="row">
               <div class="col-xs-12 col-md-4">
                   <div class="container-fluid separate-above-less">
-                      <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/truliimania.png')}}" alt=""
-                          class="img-responsive center-block separate-above">
+                      <div class="referral-icon referral-icon-1 separate-above">
+                          <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/share.png')}}" alt=""
+                            class="img-responsive center-block">
+                      </div>
                       <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_MANIA_TEXT"></p>
                   </div>
               </div>
               <div class="col-xs-12 col-md-4">
                   <div class="container-fluid separate-above-less">
-                      <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/invited.png')}}" alt=""
-                        class="img-responsive center-block separate-above">
+                      <div class="referral-icon referral-icon-2 separate-above">
+                          <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/invited.png')}}" alt=""
+                            class="img-responsive center-block">
+                      </div>
                       <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_INVITED_TEXT"></p>
                   </div>
               </div>
               <div class="col-xs-12 col-md-4">
                   <div class="container-fluid separate-above-less">
-                      <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/coupon.png')}}" alt=""
-                        class="img-responsive center-block separate-above">
+                      <div class="referral-icon referral-icon-3 separate-above">
+                        <img ng-src="{{referrals.getAmazonUrl('static/img/referrals/recieve.png')}}" alt=""
+                            class="img-responsive center-block">
+                      </div>
                       <p class="text-center separate-above" ng-bind="::referrals.strings.TRULII_COUPON_TEXT"></p>
                   </div>
               </div>

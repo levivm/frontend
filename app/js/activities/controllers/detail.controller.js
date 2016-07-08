@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', '$ngSilentLocation', 'moment', 'Elevator',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
         'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $filter, $location, $ngSilentLocation, moment, Elevator,
+    function ActivityDetailController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
                                           
@@ -483,8 +483,9 @@
             var params = [activity.id, title];
             var stateUrl = "/activities/";
             var newLocation = stateUrl.concat(params.join('/'));
-            
-            $ngSilentLocation.silent(newLocation);
+            // var location = $location.url(newLocation);
+            // location.replace();
+            // $ngSilentLocation.silent(newLocation);
         }
         
         function _mapTemplates(){

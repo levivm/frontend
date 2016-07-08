@@ -25304,7 +25304,7 @@ blockquote {
   width: 30%;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
-  font-size: 1em;
+  font-size: 0.8em;
 }
 @media (max-width: 768px) {
   .referral-input button {
@@ -25313,9 +25313,26 @@ blockquote {
     border-radius: 54px !important;
   }
 }
+.referral-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  border-radius: 60px;
+  padding-top: 16px;
+}
+.referral-icon-1 {
+  background-color: #1F5DEA;
+}
+.referral-icon-2 {
+  background-color: #32CDDA;
+}
+.referral-icon-3 {
+  background-color: #00e2aa;
+}
 .referral-share.list-inline li {
   padding-left: 2px;
   padding-right: 2px;
+  vertical-align: middle;
 }
 .referral-share.list-inline li a {
   color: white;
@@ -25337,7 +25354,6 @@ blockquote {
 }
 .referral-share.list-inline li:nth-child(n+3) {
   vertical-align: middle;
-  margin-top: 15px;
 }
 .referral-share.list-inline li:nth-child(n+3) .share-button {
   width: 52px;
