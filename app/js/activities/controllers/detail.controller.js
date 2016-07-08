@@ -269,7 +269,8 @@
             return activity;
 
             function removePastCalendars(calendar){
-                var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day') || moment(calendar.initial_date).isSame(moment().valueOf() , 'day');
+                // var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day') || moment(calendar.initial_date).isSame(moment().valueOf() , 'day');
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day');
                 return !passed;
             }
 
@@ -480,9 +481,9 @@
             });
             
             // Updating the URL
-            var params = [activity.id, title];
-            var stateUrl = "/activities/";
-            var newLocation = stateUrl.concat(params.join('/'));
+            // var params = [activity.id, title];
+            // var stateUrl = "/activities/";
+            // var newLocation = stateUrl.concat(params.join('/'));
             // var location = $location.url(newLocation);
             // location.replace();
             // $ngSilentLocation.silent(newLocation);
