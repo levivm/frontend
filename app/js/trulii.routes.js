@@ -54,7 +54,12 @@
                 data:{
                     pageTitle:'Trulii: Cursos, Clases, Talleres y Actividades en Colombia',
                     pageDescription: 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!'
+                },
+                truliiMetaTags:{
+                    title: 'Trulii: Cursos, Clases, Talleres y Actividades en Colombia',
+                    description: 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!'
                 }
+                
             })
             .state('contact-us', {
                 url:'/contact/us',

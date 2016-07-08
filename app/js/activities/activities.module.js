@@ -400,12 +400,12 @@
          * @requires trulii.activities.services.ActivitiesManager
          * @methodOf trulii.activities.config
          */
-        getActivity.$inject = ['$stateParams', '$rootScope', 'ActivitiesManager', 'TruliiSEO'];
-        function getActivity($stateParams,$rootScope, ActivitiesManager, TruliiSEO){
+        getActivity.$inject = ['$stateParams', '$rootScope', 'ActivitiesManager'];
+        function getActivity($stateParams,$rootScope, ActivitiesManager){
             return ActivitiesManager.getActivity($stateParams.activity_id).then(success, error);
             
             function success(activity){
-                TruliiSEO.setPageContent(activity.title, activity.short_description);
+                T//ruliiSEO.setPageContent(activity.title, activity.short_description);
                 return activity;
             }
             function error(response){

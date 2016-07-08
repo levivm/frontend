@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager', 'TruliiSEO'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager, TruliiSEO) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -344,19 +344,20 @@
                     );
                 }
                 
-                function _changePageTitle(state) {
+                /*function _changePageTitle(state) {
                     
                     
                    if(state.hasOwnProperty('data') && state.data.hasOwnProperty('pageTitle') && state.data.hasOwnProperty('pageDescription')){
-                        TruliiSEO.setPageContent(state.data.pageTitle, state.data.pageDescription);
+                        //TruliiSEO.setPageContent(state.data.pageTitle, state.data.pageDescription);
+                        TruliiSEO.setTitle(state.data.pageTitle);
                     }else{
-                         TruliiSEO.setPageContent();
+                         //TruliiSEO.setPageContent();
                     }
                     if(state.name == 'search'){
                        var searchPageTitle = 'Trulii | '+LocationManager.getSearchCity().name
-                       TruliiSEO.setPageContent(searchPageTitle);
-                    }
-                }
+                       //TruliiSEO.setPageContent(searchPageTitle);
+                    } 
+                }*/
 
                 function _activate() {
                     _setStrings();
@@ -369,7 +370,8 @@
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');
-                         _changePageTitle(toState)
+                        console.log(toState);
+                         //_changePageTitle(toState)
                         Analytics.sendPageView();
                     });
 

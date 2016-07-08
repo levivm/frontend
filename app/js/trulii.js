@@ -29,13 +29,14 @@
             'trulii.referrals',
             'trulii.about',
             'trulii.help',
-            'ngVideo',
+            'ngVideo', 
             'templates',
             'nvd3',
             'ui.select',
             'textAngular',
-            'uiGmapgoogle-maps'
-        ]);
+            'uiGmapgoogle-maps',
+            'truliiMetaTags'
+        ]);  
 
     angular
         .module('trulii.config', ['facebook','720kb.socialshare']);
