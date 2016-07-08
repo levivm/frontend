@@ -19398,7 +19398,7 @@ button.toast-close-button {
   .trulii-cover-small__detail,
   .trulii-cover-medium__detail,
   .trulii-cover-regular__detail {
-    min-height: 765px !important;
+    min-height: 550px !important;
   }
 }
 .trulii-cover .row,
@@ -21208,14 +21208,11 @@ blockquote {
 .activity-detail__enroll-widget__content {
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
   width: 250px;
-  height: 355px;
+  height: auto;
   border: 1px solid #ededed;
   padding: 20px;
   transition: all 0.5s;
   color: #4E546C;
-}
-.activity-detail__enroll-widget__content-free {
-  height: 380px;
 }
 .activity-detail__enroll-widget__content hr {
   margin-top: 5px;
@@ -21342,6 +21339,7 @@ blockquote {
   word-break: break-word;
   margin-bottom: 0px;
   font-size: 1.1em;
+  color: #767676 !important;
 }
 @media screen and (max-width: 768px) {
   .activity-detail p {
@@ -21854,7 +21852,7 @@ blockquote {
 }
 .gallery {
   width: 100%;
-  height: 32em;
+  height: 400px;
   text-align: center;
   position: relative;
   margin-left: auto;
@@ -22129,6 +22127,10 @@ blockquote {
 .sign-up-container a {
   text-decoration: none;
 }
+.sign-up-container .btn {
+  font-size: 1em;
+  padding: 0.5em 1em;
+}
 .sign-up-container .btn [class^="mdi-"],
 .sign-up-container .btn [class*="mdi-"] {
   vertical-align: middle;
@@ -22157,6 +22159,7 @@ blockquote {
   line-height: 1.35em;
   margin: 1.5em 0em;
   color: #4E546C;
+  text-transform: capitalize;
 }
 .sign-up-container .calendars-container {
   padding: 0 20px;
@@ -22233,9 +22236,10 @@ blockquote {
 .sign-up-container .calendars-container .table tbody tr td,
 .sign-up-container .calendars-container .table tfoot tr td {
   cursor: pointer;
-  font-weight: regular;
+  font-weight: 400;
   padding: 15px 1.5em;
   line-height: 2em;
+  text-transform: capitalize;
 }
 @media screen and (max-width: 768px) {
   .sign-up-container .calendars-container .table thead tr td:first-child,

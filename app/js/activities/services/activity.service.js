@@ -805,5 +805,6 @@
         function updateViews(){
             return $http.put(api.viewsCounter(this.id));
         }
+        
     }
 })();
