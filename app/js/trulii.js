@@ -9,7 +9,6 @@
     angular
         .module('trulii', [
             'ngAnimate',
-            'ngSilent',
             'ui.bootstrap',
             'LocalStorageModule',
             'angularMoment',

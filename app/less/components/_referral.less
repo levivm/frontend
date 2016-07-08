@@ -31,7 +31,7 @@
         width: 30%;
         border-top-left-radius: 0 !important;
         border-bottom-left-radius: 0 !important;
-        font-size: 1em;
+        font-size: 0.8em;
         @media (max-width: 768px){
             margin-top: 15px;
             width: 100%;
@@ -39,11 +39,30 @@
         }
     }
 }
+
+.referral-icon{
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    border-radius: 60px;
+    padding-top: 16px;
+    &-1{
+        background-color: @brand-warning;
+    }
+    &-2{
+        background-color: @brand-info-dark;
+    }
+    &-3{
+        background-color: @brand-primary;
+    }
+}
+
 .referral-share{
   &.list-inline{  
     li{
       padding-left: 2px;
       padding-right: 2px;
+      vertical-align: middle;
       a{
           color: white;
           .fa-facebook{
@@ -65,7 +84,6 @@
     }
     li:nth-child(n+3){
         vertical-align: middle;
-        margin-top: 15px;
         .share-button{
             width: 52px;
             height: 52px;
