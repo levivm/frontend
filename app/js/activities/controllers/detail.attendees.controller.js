@@ -36,7 +36,6 @@
         }
         
         function attendeesScrollDown(){
-            console.log(vm.attendeesOffset);
             if(vm.attendeesOffset*-1 <= vm.assistants.length -2){
                 vm.attendeesOffset--;
                 document.getElementsByClassName('attendees-container__body__attendees-list')[0].style.transform = 'translateY('+ vm.attendeesOffset*60 +'px)';
@@ -44,7 +43,6 @@
         }
 
         function attendeesScrollUp (){
-            console.log(vm.attendeesOffset);
             if(vm.attendeesOffset < 0){
                 vm.attendeesOffset++;
                 document.getElementsByClassName('attendees-container__body__attendees-list')[0].style.transform = 'translateY('+ vm.attendeesOffset*60 +'px)';
@@ -54,23 +52,12 @@
         
         function _getAssistants() {
             var assistants = [];
-            //console.log('calendars',vm.calendars);
             _.forEach(vm.calendars, function (calendar) {
                 assistants.push(calendar.assistants);
             });
-            //console.log('assistants pre flatten',assistants);
 
             assistants = _.flatten(assistants, true);
-            //console.log('assistants post flatten',assistants);
 
-            // TODO for testing purposes
-            //assistants = [
-            //    {'first_name': "Fernando", "email": "fer@trulii.com", id: 1},
-            //    {'first_name': "Daniel", "email": "daniel@trulii.com", id: 2},
-            //    {'first_name': "Rodrigo", "email": "ror@trulii.com", id: 3},
-            //    {'first_name': "Levi", "email": "levi@trulii.com", id: 4},
-            //    {'first_name': "Harvey", "email": "harvey@trulii.com", id: 5},
-            //    {'first_name': "Maria", "email": "maria@trulii.com", id: 6}];
             _.forEach(assistants, function(assistant){
                 if(assistant.hasOwnProperty('student') && assistant.student.photo){
                     assistant.photo = assistant.student.photo;

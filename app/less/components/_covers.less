@@ -169,6 +169,10 @@
   clear: both;
   &__home, &__detail{
     margin-top: -110px;
+    min-height: 90vh !important;
+    .after-width(1600px, {
+      min-height: 550px !important;
+    });
   }
   .row{
     min-width:100%;

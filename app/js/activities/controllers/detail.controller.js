@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', '$ngSilentLocation', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
         'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
+    function ActivityDetailController($scope, $state, $stateParams, $filter, $location, $ngSilentLocation, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
                                           
@@ -57,7 +57,6 @@
             showEmail: false,
             showSessions: false,
             hasMoreReviews: true,
-            attendeesOffset: 0,
             changeSelectedCalendar : changeSelectedCalendar,
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
@@ -81,14 +80,10 @@
             wishList:wishList,
             verifyWishList:verifyWishList,
             getAmazonUrl: getAmazonUrl,
-            attendeesScrollDown: attendeesScrollDown,
-            attendeesScrollUp: attendeesScrollUp,
             facebookShares: 0
         });
 
         _activate();
-
-        // console.log('currentUser:', currentUser);
 
         //--------- Exposed Functions ---------//
 
@@ -112,7 +107,7 @@
             }
         }
 
-        function changeSelectedCalendar(calendar) {console.log(calendar); vm.calendar_selected = calendar; }
+        function changeSelectedCalendar(calendar) { vm.calendar_selected = calendar; }
 
         function signUp(activity_id, calendar_id){
             var enrollParams = {
@@ -194,20 +189,16 @@
             if(visibleReviewListSize < reviews.length){
                 visibleReviewListSize += 3;
                 vm.reviews = reviews.slice(0, visibleReviewListSize);
-                console.log(vm.reviews);
             } else {
                 vm.hasMoreReviews = false;
-                console.log(vm.reviews);
             }
         }
 
         function viewMoreCalendars(){
             Elevator.toElement('more_calendars_section');
-            console.log('??');
         }
 
         function toggleEmailShow(){
-            console.log("showing email");
             vm.showEmail = !vm.showEmail;
             vm.formData.message = vm.social.EMAIL_SHARE_TEXT;
         }
@@ -217,7 +208,6 @@
         }
 
         function shareEmailForm(){
-            console.log('??');
             if(!vm.formData.emails){
                 Toast.warning(vm.strings.COPY_EMPTY_EMAIL);
                 return;
@@ -237,22 +227,6 @@
             function error(error){
                 Toast.error(vm.strings.COPY_SHARE_ERROR);
                 console.log('Error sharing activity', error);
-            }
-        }
-
-        function attendeesScrollDown(){
-            console.log(vm.attendeesOffset);
-            if(vm.attendeesOffset*-1 <= vm.calendar_selected.assistants.length -2){
-                vm.attendeesOffset--;
-                document.getElementsByClassName('attendees-container__body__attendees-list')[0].style.transform = 'translateY('+ vm.attendeesOffset*60 +'px)';
-            }
-        }
-
-        function attendeesScrollUp(){
-            console.log(vm.attendeesOffset);
-            if(vm.attendeesOffset < 0){
-                vm.attendeesOffset++;
-                document.getElementsByClassName('attendees-container__body__attendees-list')[0].style.transform = 'translateY('+ vm.attendeesOffset*60 +'px)';
             }
         }
 
@@ -295,7 +269,7 @@
             return activity;
 
             function removePastCalendars(calendar){
-                var passed = moment(calendar.initial_date).isBefore(moment().valueOf(), 'day');
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day') || moment(calendar.initial_date).isSame(moment().valueOf() , 'day');
                 return !passed;
             }
 
@@ -320,20 +294,9 @@
             if(activity.location && activity.location.city){
                 activity.location.name = LocationManager.getCityById(activity.location.city).name;
             }
-
             vm.map = LocationManager.getMap(activity.location, false);
-
-
             vm.marker = LocationManager.getMarker(activity.location);
             vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
-
-            //uiGmapIsReady.promise(1).then(function (instances) {
-            //    instances.forEach(function (inst) {
-            //        var map = inst.map;
-            //        google.maps.event.trigger(map, 'resize');
-            //        vm.map.control.refresh(vm.map.center);
-            //    });
-            //});
         }
 
         function _setCurrentState(){
@@ -401,46 +364,16 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                ACTION_VIEW_PROFILE: "Ver Perfil",
-                ACTION_CONTACT: "Contactar",
                 ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
-                ACTION_SELECT_CALENDAR: "Ver Detalle",
                 ACTION_VIEW_OTHER_DATES: "Ver más fechas de inicio",
-                ACTION_ADD_TO_WISHLIST: "Agregar a mis favoritos",
-                ACTION_REMOVE_FROM_WISHLIST: "Quitar de mis favoritos",
-                ACTIVITY_DISABLED : "Esta actividad se encuentra inactiva",
-                ACTIVITY_SOLD_OUT: "Agotado",
-                COPY_SOCIAL_BUTTONS: "¿Te gustó? Compártelo con tus amigos",
-                COPY_SOCIAL_SHARE_FACEBOOK: "Compartir en Facebook",
-                COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
-                COPY_SOCIAL_SHARE_EMAIL: "Compartir por Email",
-                COPY_SHARE_WIDGET: "¡Compártelo con tus amigos!",
-                COPY_NO_RATINGS: "Sin Comentarios",
-                COPY_RATING: "Comentario",
-                COPY_RATINGS: "Comentarios",
-                COPY_WAIT_NEW_DATES: "Espere nuevas fechas",
-                COPY_ONE_CALENDAR_AVAILABLE: "Esta actividad se realizará en otra oportunidad ",
-                COPY_MORE_CALENDARS_AVAILABLE: "Esta actividad se realizara en otras ",
-                COPY_NO_CALENDARS_AVAILABLE: "Actualmente no hay otros calendarios disponibles",
-                COPY_OPPORTUNITIES: " oportunidades",
-                COPY_EMPTY_SECTION: "El Organizador no ha completado la información de esta sección aún ¡Regresa pronto!",
                 COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
-                COPY_TODAY: "Hoy",
-                COPY_DAY: "día ",
-                COPY_DAYS: "días ",
-                COPY_IN: "En ",
                 COPY_TO: " a ",
-                COPY_OF: " de ",
-                COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_FREE: " Gratis",
                 COPY_VACANCY_SINGULAR: " vacante",
                 COPY_VACANCY: " vacantes",
                 COPY_NO_VACANCY: "Sin vacantes",
-                COPY_ONE_SESSION: "Sesión",
-                COPY_OTHER_OPORTUNITY: "Oportunidad",
-                COPY_OTHER_OPORTUNITIES: "Oportunidades",
                 COPY_ONE_REVIEW: " Evaluación",
                 COPY_OTHER_REVIEWS: " Evaluaciones",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
@@ -448,7 +381,6 @@
                 COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase, agrégala a favoritos y te avisaremos cuando hayan más fechas disponibles.",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
-                COPY_HEADER_REVIEWS: "Evaluaciones de las actividades de:",
                 LABEL_SCHEDULE: "Horario",
                 LABEL_START: "Inicio",
                 LABEL_VACANCY: "Vacantes",
@@ -473,10 +405,11 @@
                 TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",
                 TITLE_INVALID_LIKE_USER: "Sólo estudiantes pueden agregar una actividad a mis favoritos",
                 MSG_INVALID_USER: "Acción no permitida para tipo de usuario",
-                TAB_CALENDARS: "Calendarios",
-                LABEL_ATTENDEES: "Asistentes",
                 VALUE_WITH_CERTIFICATION: "Con Certificado",
                 VALUE_WITHOUT_CERTIFICATION: "Sin Certificado",
+                VALUE_DOESNT_APPLY: "No aplica",
+                VALUE_LEVEL: "Nivel",
+                VALUE_DURATION: "Duración",
                 REASON_NO_COMMISSIONS: "Sin Comisiones",
                 REASON_COPY_NO_COMMISSIONS_1: "Nuestro servicio para ti",
                 REASON_COPY_NO_COMMISSIONS_2: "es totalmente gratuito.",
@@ -500,8 +433,7 @@
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_EMPTY_REVIEWS: "Aun no hay evaluaciones para esta actividad",
                 COPY_NUMBER_OF_LIKES: "personas aman esto",
-                COPY_BE_THE_FIRST: "¡Sé el primero!",
-                COPY_ATTENDEES_LIST: "Hasta ahora estas personas asistirán a esta actividad. ¿Qué esperas para unírteles?"
+                COPY_BE_THE_FIRST: "¡Sé el primero!"
             });
         }
         function _updateWidgetValues(){
@@ -533,11 +465,12 @@
         }
 
         function _updateUrl(){
+
             // Title sanitation
             var title = activity.title;
             title = title.replace(/[`~!¡¿@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
 
-            // Replacing whitespaces with hyphen
+            // Replacing whitespaces with hyphens
             title = title.split(' ').join('-').toLowerCase();
 
             // Replacing most common special characters
@@ -546,37 +479,12 @@
               return dict[char] || char;
             });
             
-
             // Updating the URL
-            $state.go($state.current, {activity_id: activity.id, activity_title: title}, {notify: false});
-        }
-
-        function _getAssistants() {
-            var assistants = [];
-
-            _.forEach(calendars, function (calendar) {
-                assistants.push(calendar.assistants);
-            });
-
-            assistants = _.flatten(assistants, true);
-
-            _.forEach(assistants, function(assistant){
-                if(assistant.hasOwnProperty('student') && assistant.student.photo){
-                    assistant.photo = assistant.student.photo;
-                } else {
-                    assistant.photo = getAmazonUrl('static/img/default_profile_pic.jpg');
-                }
-            });
-            return assistants;
-        }
-
-        function _setReviews(){
-          if(vm.totalReviews !== 1){
-            vm.strings.COPY_TOOLTIP_REVIEWS = vm.strings.COPY_RATINGS;
-          }
-          else{
-            vm.strings.COPY_TOOLTIP_REVIEWS = vm.strings.COPY_RATING;
-          }
+            var params = [activity.id, title];
+            var stateUrl = "/activities/";
+            var newLocation = stateUrl.concat(params.join('/'));
+            
+            $ngSilentLocation.silent(newLocation);
         }
         
         function _mapTemplates(){
@@ -585,7 +493,6 @@
             }
             vm.relatedActivities = vm.relatedActivities.splice(0, 4);
             vm.cards = vm.relatedActivities;
-            
         }
 
         function _updateViewCount() {
@@ -596,15 +503,12 @@
             _setStrings();
             _setCurrentState();
             _updateUrl();
-            //activity.calendars= $filter('orderBy')(activity.calendars, 'initial_date');
             activity.calendars = angular.copy(calendars);
             activity = _mapCalendars(activity);
             activity = _mapPictures(activity);
             activity = _mapInfo(activity);
             _mapTemplates();
-            vm.assistants = _getAssistants();
             _setUpLocation(activity);
-            console.log(reviews);
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
@@ -621,12 +525,10 @@
             }
 
             _setSocialShare();
-            _setReviews();
             _initWidget();
             _initSignup();
             _setSearchData();
             _updateViewCount();
-            console.log(vm.calendar_selected);
 
         }
     }

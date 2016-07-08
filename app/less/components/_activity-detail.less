@@ -219,14 +219,11 @@
         &__content{
             box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
             width: 250px;
-            height: 355px;
+            height: auto;
             border: 1px solid @gray-lighter;
             padding: 20px;
             transition: all 0.5s;
             color: @gray-darker-brand;
-            &-free{
-                height: 380px;
-            }
             hr{
                 margin-top: 5px;
                 margin-bottom: 10px;
@@ -349,17 +346,18 @@
         @media (max-width: 768px){
             opacity: 1;
             border-bottom: 1px solid @gray-regular;
-        }
+        } 
     }
 
     p{
         word-break: break-word;
         margin-bottom: 0px;
         font-size: 1.1em;
+        color: @gray-dark !important;
         .before-sm({
-        word-break: inherit;
-        margin-bottom: 0px;
-        font-size: 0.85em;
+            word-break: inherit;
+            margin-bottom: 0px;
+            font-size: 0.85em;
         });
     }
     .instructor{
@@ -846,7 +844,7 @@
 
 .gallery {
     width: 100%;
-    height: 32em;
+    height: 400px;
     text-align: center;
     position: relative;
     margin-left: auto;
@@ -1131,118 +1129,120 @@
     }
     a{
         text-decoration: none;
-        }
-        .btn{
+    }
+    .btn{
+        font-size: 1em;
+        padding: 0.5em 1em;
         [class^="mdi-"], [class*="mdi-"]{
-          vertical-align: middle;
-          font-size: 2em;
-          margin-right: .25em;
+            vertical-align: middle;
+            font-size: 2em;
+            margin-right: .25em;
         }
         span{
-          vertical-align: middle;
-          font-size: 1.25em;
+            vertical-align: middle;
+            font-size: 1.25em;
         }
 
-        }
+    }
 
-        h1, h2, h3, h4, h5, p, td, th {
-          color: @gray-darker;
-        }
-        h4{
-        margin-bottom: 1.5em;
-        }
-        h5{
-            font-weight: 200;
-            line-height: 1.35em;
-            margin: 1.5em 0em;
-            color: @gray-darker-brand;
-        }
+    h1, h2, h3, h4, h5, p, td, th {
+        color: @gray-darker;
+    }
+    h4{
+    margin-bottom: 1.5em;
+    }
+    h5{
+        font-weight: 200;
+        line-height: 1.35em;
+        margin: 1.5em 0em;
+        color: @gray-darker-brand;
+        text-transform: capitalize;
+    }
 
-        .calendars-container{
+    .calendars-container{
         padding: 0 20px;
         padding-right: 15px;
 
         background-color: white;
 
         .table{
-          thead, tbody, tfoot{
-            tr{
-              padding: 15px 1.5em;
-              .checkbox {
-                display:inline-block;
-                width:19px;
-                height:19px;
-                margin:-1px 4px 0 0;
-                vertical-align:middle;
-                cursor:pointer;
-                border: 5px solid white;
-                background-color: white;
-                box-shadow: 0px 0px 1px darken(@gray-lighter-brand, 50%);
-                border-radius: 100%;
-              }
+            thead, tbody, tfoot{
+                tr{
+                    padding: 15px 1.5em;
+                    .checkbox {
+                        display:inline-block;
+                        width:19px;
+                        height:19px;
+                        margin:-1px 4px 0 0;
+                        vertical-align:middle;
+                        cursor:pointer;
+                        border: 5px solid white;
+                        background-color: white;
+                        box-shadow: 0px 0px 1px darken(@gray-lighter-brand, 50%);
+                        border-radius: 100%;
+                    }
 
-              .checkbox, td{
-                transition: background-color 0.25s linear;
-              }
+                    .checkbox, td{
+                        transition: background-color 0.25s linear;
+                    }
 
-              th, td{
-                vertical-align: middle;
-                border-top: none;
-                text-align: center;
-                @media (max-width: 1280px){
-                    padding: 15px 0.5em !important;
+                    th, td{
+                        vertical-align: middle;
+                        border-top: none;
+                        text-align: center;
+                        @media (max-width: 1280px){
+                            padding: 15px 0.5em !important;
+                        }
+                        @media (max-width: 767px){
+                            font-size: 0.65em;
+                            padding: 1.5em 0px !important;
+                        }
+                    }
+
+                    th{
+                        font-weight: bold;
+                        text-transform: uppercase;
+                        padding: 28px;
+                        text-align: center;
+                    }
+
+                    td{
+                        cursor:pointer;
+                        font-weight: 400;
+                        padding: 15px 1.5em;
+                        line-height: 2em;
+                        text-transform: capitalize;
+                    }
+
+                    td:first-child, th:first-child{
+                        .before-sm({
+                            display: none;
+                        });
+                    }
+
+                    &.active{
+                        .checkbox{
+                            background-color: @brand-info;
+                        }
+
+                        td{
+                            background-color: @gray-lighter-brand;
+
+                        }
+
+                    }
                 }
-                @media (max-width: 767px){
-                    font-size: 0.65em;
-                    padding: 1.5em 0px !important;
+
+                .signup-row{
+                    background-color: @gray-light-brand;
+                    td:first-child{
+                        border-bottom-left-radius: @border-radius-base;
+                    }
+                    td:last-child{
+                        border-bottom-right-radius: @border-radius-base;
+                    }
                 }
-              }
-
-              th{
-                font-weight: bold;
-                text-transform: uppercase;
-                padding: 28px;
-                text-align: center;
-              }
-
-              td{
-                cursor:pointer;
-                font-weight: regular;
-                padding: 15px 1.5em;
-                line-height: 2em;
-              }
-
-              td:first-child, th:first-child{
-                .before-sm({
-                  display: none;
-                });
-              }
-
-              &.active{
-                .checkbox{
-                  background-color: @brand-info;
-                }
-
-                td{
-                  background-color: @gray-lighter-brand;
-
-                }
-
-              }
-
             }
-
-            .signup-row{
-              background-color: @gray-light-brand;
-              td:first-child{
-                  border-bottom-left-radius: @border-radius-base;
-              }
-              td:last-child{
-                  border-bottom-right-radius: @border-radius-base;
-              }
-            }
-          }
-
         }
 
     }
