@@ -26,6 +26,15 @@
                 var transitionOptions = {location : true, inherit : false, reload : false};
                 var STATE_HOW_TO_WORK_HOME = 'home';
                 var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
+                var statesValids = ['home', 
+                                    'activities-detail' , 
+                                    'activities-enroll', 
+                                    'organizer-profile', 
+                                    'about.terms', 
+                                    'about.privacy-policy',
+                                    'about.mission',
+                                    'about.culture',
+                                    'about.team']; //States valdies for Navbar transparent
                 
                 angular.extend(scope, {
                     state: null,
@@ -45,7 +54,7 @@
                     createActivity:createActivity,
                     clickLogo:clickLogo,
                     updateSearchCity:updateSearchCity,
-                    isLandingState:isLandingState,
+                    isNavBarTransparent:isNavBarTransparent,
                     getAmazonUrl: getAmazonUrl,
                     howToWorkStudent: howToWorkStudent,
                     howToWorkOrganizer: howToWorkOrganizer,
@@ -124,8 +133,8 @@
                     _setCurrentCity();
                     scope.showCities=false;
                 }
-                function isLandingState(){
-                    return (($state.current.name==='home' || $state.current.name==='activities-detail' || $state.current.name==='activities-enroll' || $state.current.name==='organizer-profile') && scope.scroll<100);
+                function isNavBarTransparent(){
+                    return ((_.indexOf(statesValids, $state.current.name) > -1) && scope.scroll<100);
                 }
                 function isSearchVisible(){
                      return (!($state.current.name==='search') && scope.scroll<100);
@@ -368,6 +377,7 @@
                         console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         _getUser();
                     });
+                    console.log($state.current.name);
                     
                     
                     scope.$on('$destroy', _cleanUp);

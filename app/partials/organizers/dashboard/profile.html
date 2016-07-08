@@ -21,17 +21,22 @@
                                              ng-hide="profile.photo_loading"/>-->
                                         <trulii-avatar user="profile.organizer" size="100" avatar-class="big" ></trulii-avatar>
                                         <trulii-preloader loader-control="profile.photo_loading"></trulii-preloader>
-                                        <div class="separate-left separate-above-less" ng-model="profile.organizer.photo_url" ng-file-drop=""
-                                             ng-file-select=""  
-                                             ng-multiple="false"
-                                             data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-                                             ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
-                                             data-allow-dir="true" data-accept="image/*">
+                                        <div class="separate-left separate-above-less"  >
                                              <h3 ng-bind="profile.organizer.name"></h3>
-                                            <button class="btn btn-default profile-photo-input__action font-regular"
+                                            <button ng-model="profile.organizer.photo_url" 
+                                                    ng-file-drop=""
+                                                    ng-file-select=""  
+                                                    ng-multiple="false"
+                                                    data-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                                                    ng-file-change="profile.uploadPicture(profile.organizer.photo_url)"
+                                                    data-allow-dir="true" data-accept="image/*"
+                                                    class="btn btn-default profile-photo-input__action font-regular"
                                                     aria-label="{{::profile.strings.ACTION_UPDATE_PICTURE}}">
                                                 <span ng-bind="::profile.strings.ACTION_UPDATE_PICTURE"></span>
                                             </button>
+                                            <a ui-sref="organizer-profile({organizer_id: {{::profile.organizer.id}} })" class="btn btn-default btn-gray-light">
+                                                <span ng-bind="::profile.strings.ACTION_VIEW_PROFILE"></span>
+                                            </a>
                                         </div>
                                     </div>
                                     <!--<a class="btn btn-primary separate-left-less font-regular"
