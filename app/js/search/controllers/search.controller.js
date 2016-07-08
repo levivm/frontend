@@ -86,7 +86,6 @@
             toggleExpandedSort: toggleExpandedSort,
             cities: [],
             searchCity: null,
-            triggerSearch: triggerSearch,
             updateCity: updateCity,
             setFree: setFree
         });
@@ -182,8 +181,14 @@
             Analytics.generalEvents.searchDate(vm.searchDate);
         }
 
-        function setFree(){
-            SearchManager.setFree(vm.isFree);
+        function setFree(free){
+            free = !free;
+            if(free){
+                SearchManager.setFree("true");
+            }
+            else{
+                SearchManager.setFree("false");
+            }
             _search();
         }
 
@@ -197,20 +202,28 @@
             _search();
         }
 
-        function setCertification() {
-            vm.withCert = !vm.withCert;
-            SearchManager.setCertification(vm.withCert);
-            vm.searchData[SearchManager.KEY_CERTIFICATION] = vm.withCert;
-            Analytics.generalEvents.searchCertificate(vm.withCert);
+        function setCertification(cert) {
+            cert = !cert;
+            if(cert){
+                SearchManager.setCertification("true");
+            }
+            else{
+                SearchManager.setCertification("false");
+            }
+            Analytics.generalEvents.searchCertificate(cert);
             _setPage(1);
             _search();
         }
 
-        function setWeekends() {
-            vm.onWeekends = !vm.onWeekends;
-            SearchManager.setWeekends(vm.onWeekends);
-            vm.searchData[SearchManager.KEY_WEEKENDS] = vm.onWeekends;
-            Analytics.generalEvents.searchWeekends(vm.onWeekends);
+        function setWeekends(weekends) {
+            weekends = !weekends;
+            if(weekends){
+                SearchManager.setWeekends("true");
+            }
+            else{
+                SearchManager.setWeekends("false");
+            }
+            Analytics.generalEvents.searchWeekends(weekends);
             _setPage(1);
             _search();
         }
@@ -222,7 +235,6 @@
 
         function changeOrderBy(predicate) {
             vm.activitiesPaginationOpts.pageNumber = 1;
-            vm.searchData[SearchManager.KEY_ORDER] = predicate;
             SearchManager.setOrder(predicate);
             _setPage(1);
             _search();
@@ -230,10 +242,6 @@
 
         function getLevelClassStyle(level) {
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
-        }
-
-        function triggerSearch(){
-          _search();
         }
 
         //--------- Internal Functions ---------//
@@ -275,7 +283,11 @@
             var sm = SearchManager;
             var deferred = $q.defer();
             sm.setPageSize(vm.activitiesPaginationOpts.itemsPerPage);
-            vm.searchData = sm.getSearchData($stateParams);
+
+            var searchData = angular.copy($stateParams);
+            console.log($stateParams);
+            vm.searchData = sm.getSearchData(searchData);
+            console.log(vm.searchData);
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
@@ -306,7 +318,7 @@
                 vm.searchEndCost = vm.searchData[sm.KEY_COST_END];
             }
 
-            if (vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION]) {
+            if (vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION])  {
                 vm.withCert = vm.searchData[sm.KEY_CERTIFICATION];
             }
 
@@ -323,7 +335,6 @@
                     setCategory(category, true);
                     if (category) {
                         vm.searchData["category_display"] = category.name;
-                        console.log(category.name);
                         if (vm.searchData.hasOwnProperty(sm.KEY_SUBCATEGORY)) {
                             var subcategory = category.subcategories.filter(subCategoryFilter)[0];
                             vm.searchSubCategory = vm.searchData[sm.KEY_SUBCATEGORY];
@@ -378,9 +389,9 @@
             SearchManager.setQuery(vm.newSearchQuery);
 
             vm.searchData = SearchManager.getSearchData();
-            
+            console.log('vm.searchData ', vm.searchData);
             _getActivities(vm.searchData).then(function () {
-                $state.go('search', vm.searchData,  {notify: false});
+                $state.go('search', vm.searchData,  {notify: false}); 
             });
         
         }

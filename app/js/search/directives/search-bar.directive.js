@@ -116,6 +116,10 @@
                     search();
                 }
 
+                function _getQuery(){
+                    scope.q = SearchManager.getQuery();
+                }
+
                 function _cleanUp() {
                     unsuscribeCityModified();
                 }
@@ -124,6 +128,7 @@
                     _setStrings();
                     _setCurrentCity();
                     _getCities();
+                    _getQuery();
 
                     if($stateParams.q){ scope.q = $stateParams.q; }
 
@@ -133,6 +138,9 @@
 
                     scope.$on('$destroy', _cleanUp);
                     scope.$on(SearchManager.EVENT_EXPLORE, _explore);
+                    $rootScope.$on(SearchManager.EVENT_QUERY_MODIFIED, function(){
+                        _getQuery();
+                    })
                 }
             }
         }
