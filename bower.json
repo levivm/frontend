@@ -50,7 +50,7 @@
     "angular-socialshare": "angularjs-socialshare#^2.1.10",
     "angular-moment": "^0.10.3",
     "moment": "^2.14.1",
-    "ngSilent": "*"
+    "ngSilent": "git@github.com:garakh/ngSilent.git#a03fc023be4e154de9a1b4351e722e971e90384d"
   },
   "resolutions": {
     "lodash": "~3.6.0",
