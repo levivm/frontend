@@ -22,12 +22,12 @@
      * @requires ui.router.router.$urlRouterProvider
      * @requires ui.router.util.$urlMatcherFactoryProvider
      */
-    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'TruliiMetaTagsProvider'];
-    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, TruliiMetaTagsProvider) {
+    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'MetaTagsProvider'];
+    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, MetaTagsProvider) {
        
-       TruliiMetaTagsProvider.setDefaultTitle('Trulii: Cursos, Clases, Talleres y Actividades en Colombia');
-       TruliiMetaTagsProvider.setDefaultDescription('Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!');
-       console.log(TruliiMetaTagsProvider);
+       MetaTagsProvider.setDefaultTitle('Trulii: Cursos, Clases, Talleres y Actividades en Colombia');
+       MetaTagsProvider.setDefaultDescription('Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!');
+       console.log(MetaTagsProvider);
             //.setDefaultDescription('Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!');
             
         $urlMatcherFactoryProvider.strictMode(false);
@@ -56,7 +56,7 @@
                      activities: getRecommendedActivities,
                      generalInfo: getPresaveActivityInfo
                 },
-                truliiMetaTags:{
+                metaTags:{
                     title: 'Trulii: Cursos, Clases, Talleres y Actividades en Colombia',
                     description: 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!'
                 }
