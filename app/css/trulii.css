@@ -19365,7 +19365,7 @@ button.toast-close-button {
   font-size: 1.4em;
 }
 .trulii-cover__detail {
-  margin-top: -110px;
+  margin-top: -80px;
 }
 .trulii-cover,
 .trulii-cover-small,
@@ -19386,7 +19386,7 @@ button.toast-close-button {
 .trulii-cover-small__detail,
 .trulii-cover-medium__detail,
 .trulii-cover-regular__detail {
-  margin-top: -110px;
+  margin-top: -80px;
   min-height: 90vh !important;
 }
 @media screen and (min-width: 1600px) {
@@ -19398,7 +19398,7 @@ button.toast-close-button {
   .trulii-cover-small__detail,
   .trulii-cover-medium__detail,
   .trulii-cover-regular__detail {
-    min-height: 550px !important;
+    min-height: 600px !important;
   }
 }
 .trulii-cover .row,
@@ -20519,7 +20519,7 @@ button.toast-close-button {
 }
 @media (min-height: 1081px) {
   .trulii-cover-medium {
-    min-height: 550px;
+    min-height: -80px;
   }
 }
 .detail-organizer {

@@ -7,7 +7,7 @@
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
             <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true" class="navbar-search-bar" ng-class="{'navbar-search-bar-hidden': isSearchVisible() }"></trulii-search-bar>
             <div class="buttons buttons-login float-right" ng-if="!user">
-                <a ui-sref="register" class=" font-regular  margin-horizontal-less" ng-class="{'text-dark': scroll > 80 || !isLandingState() }" ng-bind="::strings.ACTION_REGISTER"></a>
+                <a ui-sref="register" class=" font-regular  margin-horizontal-less" ng-class="{'text-dark': scroll > 80 || !isNavBarTransparent() }" ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
             <div class="buttons buttons-login float-right" ng-if="!user">
                 <a ui-sref="login" class=" font-regular  margin-horizontal-less " ng-bind="::strings.ACTION_LOGIN"></a>
@@ -22,10 +22,10 @@
                 <!--<img ng-if="user" ng-src="{{user.photo}}" class="user-picture hidden-xs hidden-sm" alt="{{user.user.full_name}}"/>-->
                 <trulii-avatar user="user" size="40" avatar-class="small" ng-class="{'avatar-landing': !user.photo}"></trulii-avatar>
                 <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.first_name"></span>
-                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isLandingState(), 'text-gray': !isLandingState()}" aria-hidden="true"></i>
+                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
             </a>
             <a class="navbar__option navbar__option--right  hidden-md hidden-lg" ng-click="toggleSideBar()">
-                 <i class="fa fa-bars " ng-class="{'text-gray-lighter': isLandingState(), 'text-gray': !isLandingState()}" aria-hidden="true"></i>
+                 <i class="fa fa-bars " ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
             </a>
         </div>
         
