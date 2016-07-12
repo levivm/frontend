@@ -71,7 +71,8 @@
                     <span ng-bind="enroll.strings.LABEL_SEATS_X"></span><span ng-bind="enroll.assistants.length"></span>
                 </div>
                 <div class="col-xs-12 col-md-6 value">
-                    <span ng-bind="enroll.amount | currency"></span>
+                    <span ng-if="!enroll.calendar.is_free" ng-bind="enroll.amount | currency"></span>
+                    <span ng-if="enroll.calendar.is_free" class="text-uppercase" ng-bind="::enroll.strings.LABEL_FREE_CALENDAR"></span>
                 </div>
             </div>
             <hr>
@@ -80,7 +81,8 @@
                     <span ng-bind="assistant.first_name"></span> <span ng-bind="assistant.last_name"></span>
                 </div>
                 <div class="col-xs-12 col-md-6 sub-value">
-                    <span ng-bind="enroll.calendar.session_price | currency"></span>
+                    <span ng-if="!enroll.calendar.is_free" ng-bind="enroll.calendar.session_price | currency"></span>
+                    <span ng-if="enroll.calendar.is_free" ng-bind="0 | currency"></span>
                 </div>
             </div>
             <hr>
@@ -90,7 +92,8 @@
                     <span ng-bind="::enroll.strings.LABEL_FREE_CALENDAR"></span>
                 </div>
                 <div class="col-xs-12 col-md-6 value">
-                    <span ng-bind="- enroll.calendar.session_price | currency"></span>
+                    <span ng-if="!enroll.calendar.is_free" ng-bind="enroll.calendar.session_price | currency"></span>
+                    <span ng-if="enroll.calendar.is_free" ng-bind="0 | currency"></span>
                 </div>
             </div>
             <!--Coupons-->
@@ -449,7 +452,7 @@
                                                                 <div class="select-forms">
                                                                     <label>
                                                                         <select name="" id="" class="form-control"
-                                                                            ng-options="document.id as document.name for document in enroll.pseFormData.idTypes"
+                                                                            ng-options="document.id as document.description for document in enroll.pseFormData.idTypes track by document.value"
                                                                             ng-model="enroll.pseData.idType">
                                                                             <option value="" ng-hide="enroll.pseData.idType" ng-bind="enroll.strings.OPTION_ID_TYPE_DEFAULT"></option>
                                                                         </select>

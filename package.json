@@ -3,7 +3,9 @@
   "version": "0.1.2",
   "description": "We are going to use Docker :P ",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-uglify": "^1.5.4"
+  },
   "engines": {
     "node": "0.10.x"
   },
@@ -42,8 +44,7 @@
     "gulp-plumber": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sourcemaps": "^1.5.2",
-    "gulp-uglify": "^1.5.1",
-    "gulp-useref": "^3.0.5",
+    "gulp-useref": "^3.1.0",
     "gulp-util": "^3.0.4",
     "gulp-watch": "^4.2.4",
     "jshint-stylish": "^1.0.1",

@@ -742,7 +742,7 @@
                 COPY_SLIDEBAR_REIMBURSEMENT_BODY: "No hay politicas de reembolso",
                 COPY_INVALID_COUPON: "Número de Cupón Inválido",
                 LABEL_APPLY_COUPON: "Aplicar Cupón",
-                LABEL_FREE_CALENDAR: "Actividad Gratis",
+                LABEL_FREE_CALENDAR: "Gratis",
                 COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
                 COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a Confirmar Inscripción.",
                 LABEL_CREDIT: "Crédito",
