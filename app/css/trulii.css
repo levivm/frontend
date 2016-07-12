@@ -22578,9 +22578,11 @@ blockquote {
 .activity-enroll__billing-widget .total .item {
   font-weight: 600;
   padding-top: 0.2rem;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 .activity-enroll__billing-widget .total .value {
-  font-size: 1.2em;
+  font-size: 12px;
   margin-top: 3px;
 }
 .activity-enroll__billing-widget .discount-button {
