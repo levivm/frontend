@@ -230,6 +230,14 @@
                     calendars: getCalendars,
                     organizer: getActivityOrganizer,
                     relatedActivities: getOrganizerActivities
+                },
+                truliiMetaTags:{
+                    title: function(activity){
+                        return activity.title;
+                    },
+                    description: function(activity){
+                        return activity.short_description
+                    }
                 }
             })
             .state('activities-enroll', {
@@ -402,17 +410,7 @@
          */
         getActivity.$inject = ['$stateParams', '$rootScope', 'ActivitiesManager'];
         function getActivity($stateParams,$rootScope, ActivitiesManager){
-            return ActivitiesManager.getActivity($stateParams.activity_id).then(success, error);
-            
-            function success(activity){
-                T//ruliiSEO.setPageContent(activity.title, activity.short_description);
-                return activity;
-            }
-            function error(response){
-                return [];
-            }
-            
-            
+            return ActivitiesManager.getActivity($stateParams.activity_id);
         }
 
         /**

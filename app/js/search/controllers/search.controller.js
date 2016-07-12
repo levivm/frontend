@@ -14,11 +14,11 @@
 
     SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
             , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
-            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf'];
+            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf', 'TruliiMetaTagService'];
 
     function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state
             , $window, $stateParams , generalInfo, ActivitiesManager, LocationManager, SearchManager
-            , datepickerConfig, datepickerPopupConfig, Analytics, serverConf) {
+            , datepickerConfig, datepickerPopupConfig, Analytics, serverConf, TruliiMetaTagService) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var transitionOptions = {location : true, inherit : false, reload : false};
@@ -427,8 +427,6 @@
             _getSearchParams();
             _getActivities($stateParams);
             _setCities();
-            
-
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
                     vm.searchData = SearchManager.getSearchData();
 

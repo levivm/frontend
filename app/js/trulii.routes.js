@@ -22,9 +22,14 @@
      * @requires ui.router.router.$urlRouterProvider
      * @requires ui.router.util.$urlMatcherFactoryProvider
      */
-    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider'];
-    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider) {
-
+    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'TruliiMetaTagsProvider'];
+    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, TruliiMetaTagsProvider) {
+       
+       TruliiMetaTagsProvider.setDefaultTitle('Trulii: Cursos, Clases, Talleres y Actividades en Colombia');
+       TruliiMetaTagsProvider.setDefaultDescription('Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!');
+       console.log(TruliiMetaTagsProvider);
+            //.setDefaultDescription('Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!');
+            
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/404');
 
@@ -50,10 +55,6 @@
                 resolve: {
                      activities: getRecommendedActivities,
                      generalInfo: getPresaveActivityInfo
-                },
-                data:{
-                    pageTitle:'Trulii: Cursos, Clases, Talleres y Actividades en Colombia',
-                    pageDescription: 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!'
                 },
                 truliiMetaTags:{
                     title: 'Trulii: Cursos, Clases, Talleres y Actividades en Colombia',

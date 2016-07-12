@@ -42,7 +42,7 @@
         .module('trulii.config', ['facebook','720kb.socialshare']);
 
     angular
-        .module('trulii.routes', ['ui.router', 'trulii.routes.config']);
+        .module('trulii.routes', ['ui.router', 'trulii.routes.config', 'truliiMetaTags']);
 
     angular
         .module('trulii')

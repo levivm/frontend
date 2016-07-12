@@ -748,7 +748,7 @@
             if(!page)
               page = defaultPage;
             if(!pageSize)
-              pageSize: defaultPageSize;
+              pageSize= defaultPageSize;
 
             return $http.get(api.messages(),
                 {params: {
