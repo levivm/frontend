@@ -24418,7 +24418,7 @@ blockquote {
 }
 .review-student {
   display: flex;
-  height: 310px;
+  height: 340px;
   overflow: hidden;
   box-shadow: #DCDDE2 0px 0px 0px 0px;
   transition: all 0.33s;
@@ -24479,7 +24479,7 @@ blockquote {
   position: absolute;
   width: 60%;
   left: 34%;
-  top: 8em;
+  top: 7em;
   padding-top: 2em;
   border-top: 1px solid #ededed;
 }
@@ -25077,6 +25077,12 @@ blockquote {
     left: 40px;
     top: 48px;
     display: block;
+  }
+  .order-mobile {
+    display: none !important;
+  }
+  .table-order {
+    display: block !important;
   }
   .order-description {
     background-color: #ededed;

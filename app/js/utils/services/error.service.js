@@ -109,7 +109,6 @@
 
                 // Error is unrelated to form fields
                 if (field === NON_FIELD_ERRORS) return;
-
                 // Process remaining form field errors
                 if (field in form){
                     console.log(message, fieldErrors, field);                    
