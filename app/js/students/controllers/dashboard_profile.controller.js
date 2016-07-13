@@ -54,7 +54,7 @@
 
         function updateProfile(){
 
-            console.log("updateProfile.Form:", vm.profile_form);
+            //console.log("updateProfile.Form:", vm.profile_form);
 
             if(vm.student.birth_date){
                 Error.form.clear(vm.profile_form);
@@ -66,7 +66,7 @@
                         form_errors: {}
                     }
                 };
-                errorResponse.data.form_errors[Error.FORM_FIELD_ALL] = [vm.strings.MESSAGE_INVALID_BIRTH_DATE];
+                errorResponse.data['birth_date'] = [vm.strings.MESSAGE_INVALID_BIRTH_DATE];
                 error(errorResponse);
             }
 
