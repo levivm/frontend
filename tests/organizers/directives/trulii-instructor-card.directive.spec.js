@@ -46,11 +46,10 @@ xdescribe('Directive: truliiInstructorCard', function(){
         it('Should successfully create instructor ', function(){
             $scope.instructor = {
                 'full_name': 'Henry Bravo',
-                'website': 'http://henrygbc.com',
                 'bio': 'Web developer'
             }
             var isolatedScope = el.isolateScope();
-           
+           console.log(isolatedScope);
             isolatedScope.instructorEditable =  $scope.instructor;
             isolatedScope.saveInstructor();
             $httpBackend

@@ -55,7 +55,7 @@ xdescribe('Controller: ActivityCalendarController', function(){
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
 
         ActivitiesManager.getActivity(4)
@@ -112,6 +112,7 @@ xdescribe('Controller: ActivityCalendarController', function(){
 
        }));
         it('should successfully create', function() {
+            CalendarsManager.calendars['4'] = [];
             ActivityCalendarController.isSaving = true;
             ActivityCalendarController.activity_calendar_form = $scope.calendar.activity_calendar_form;
             ActivityCalendarController.calendar = calendar;
