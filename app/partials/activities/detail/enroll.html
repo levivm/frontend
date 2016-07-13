@@ -321,16 +321,16 @@
                                                         <div class="form-group" trulii-input-errors-control="cardMonth">
                                                             <label for="cardMonth" ng-bind="::enroll.strings.LABEL_MONTH"></label>
                                                             <div class="select-forms hidden-sm hidden-md hidden-lg">
-                                                                    <label>
-                                                                        <select class="form-control hidden-sm hidden-md hidden-lg " name="monthSelect" id="levelSelect"
-                                                                            ng-model="enroll.monthSelected"
-                                                                            ng-change="enroll.changeMonth()"
-                                                                            ng-options="month as month for month in enroll.months">
-                                                                            <option  ng-hide="enroll.monthSelected" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_MONTH"></option>
-                                                                        </select>
-                                                                    </label>
-                                                                </div>
-                                                            
+                                                                <label>
+                                                                    <select class="form-control hidden-sm hidden-md hidden-lg " name="monthSelect" id="levelSelect"
+                                                                        ng-model="enroll.monthSelected"
+                                                                        ng-change="enroll.changeMonth()"
+                                                                        ng-options="month as month for month in enroll.months">
+                                                                        <option  ng-hide="enroll.monthSelected" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_MONTH"></option>
+                                                                    </select>
+                                                                </label>
+                                                            </div>
+                                                        
                                                             <input type="number" name="cardMonth" min=1 max=12 class="form-control hidden-xs" id="cardMonth"
                                                                     ng-model="enroll.cardData.exp_month"
                                                                     ng-blur="enroll.checkCardExpiry()"
