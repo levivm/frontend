@@ -55,6 +55,10 @@
                 if(responseErrors){
                     Error.form.add(vm.account_form_banking_info, responseErrors);
                 }
+                
+                if(vm.bankingData.id){
+                    Toast.error(vm.strings.TOAST_ERROR_PUT);
+                }
             }
         }
 
@@ -107,7 +111,6 @@
         function _setOrganizerBankingData(){
 
             if(!(_.isEmpty(bankingData))){ 
-                console.log(bankingData);
                 var current_bank_data = _.find(vm.bankingInfo.banks, 
                                                 { 'bank_name': bankingData.bank });
                 vm.bankingData = bankingData; 
@@ -148,7 +151,8 @@
                 SUB_SECTION_PASSWORD: "Contraseña",
                 OPTION_DEFAULT_SELECT_BANK: "Seleccione un banco",
                 OPTION_DEFAULT_SELECT_DOCUMENT_TYPE: "Tipo de Documento",
-                OPTION_DEFAULT_SELECT_ACCOUNT_TYPE: "Tipo de Cuenta"
+                OPTION_DEFAULT_SELECT_ACCOUNT_TYPE: "Tipo de Cuenta",
+                TOAST_ERROR_PUT: "Por seguridad no puedes modificar los datos bancarios, comunicate con nosotros."
             });
         }
 
