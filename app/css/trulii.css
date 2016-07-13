@@ -24494,6 +24494,9 @@ blockquote {
   top: 40px;
   color: #9b9b9b;
 }
+.review-detail {
+  margin: 0 0 50px 0;
+}
 .review-detail__student {
   position: absolute;
   width: 60%;
