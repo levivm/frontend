@@ -238,16 +238,16 @@
                 delete searchData[KEY_COST_END];
             }
 
-            if(data.hasOwnProperty(KEY_CERTIFICATION) && (data[KEY_CERTIFICATION] === "true")){
+            if(data.hasOwnProperty(KEY_CERTIFICATION) && (data[KEY_CERTIFICATION] === true || data[KEY_CERTIFICATION] === "true")){
                 searchData[KEY_CERTIFICATION] = true;
             } else {
-                searchData[KEY_CERTIFICATION] = false;
+                delete searchData[KEY_CERTIFICATION];
             }
 
-            if(data.hasOwnProperty(KEY_WEEKENDS) && (data[KEY_WEEKENDS] === "true")){
+            if(data.hasOwnProperty(KEY_WEEKENDS) && (data[KEY_WEEKENDS] === true || data[KEY_WEEKENDS] === "true")){
                 searchData[KEY_WEEKENDS] = true;
             } else {
-                searchData[KEY_WEEKENDS] = false;
+                delete searchData[KEY_WEEKENDS];
             }
 
             if(data.hasOwnProperty(KEY_ORDER) && data[KEY_ORDER]){
@@ -256,10 +256,10 @@
                 delete searchData[KEY_ORDER];
             }
 
-            if(data.hasOwnProperty(KEY_FREE) && (data[KEY_FREE] === "true" )){
+            if(data.hasOwnProperty(KEY_FREE) && (data[KEY_FREE] === true || data[KEY_FREE] === "true")){
                 searchData[KEY_FREE] = true;
             } else {
-                searchData[KEY_FREE] = false;
+                delete  searchData[KEY_FREE];
             }
 
             if(data.hasOwnProperty(KEY_CITY) && data[KEY_CITY]){
@@ -315,6 +315,7 @@
         }
 
         function setWeekends(withWeekends){
+            console.log('set weekend to ', withWeekends);
             searchData[KEY_WEEKENDS] = withWeekends;
         }
 
@@ -331,7 +332,15 @@
         }
 
         function setQuery(predicate){
-            searchData[KEY_QUERY] = predicate;
+            if(predicate){
+                searchData[KEY_QUERY] = predicate;
+                if(predicate.length === 0){
+                    delete searchData[KEY_QUERY];
+                }
+            }
+            else{
+                delete searchData[KEY_QUERY];
+            }
         }
 
     }

@@ -14921,7 +14921,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-top: 10px;
   margin-left: 20px;
   background: white;
-  border-radius: 0;
+  border-radius: 45px;
   display: inline-block;
   position: relative;
   background-color: transparent;
@@ -15082,6 +15082,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-bar__navbar button:focus {
   outline: 0 !important;
+  border-color: #e3e3e3;
 }
 .search-container {
   margin-top: 75px;
@@ -15326,7 +15327,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-container .search-sidebar__element .subcategories {
   font-weight: 600;
-  font-size: 0.8em;
+  font-size: 0.9em;
   letter-spacing: 1px;
   margin: 0 -15px;
   text-transform: capitalize;
@@ -24496,6 +24497,9 @@ blockquote {
   top: 40px;
   color: #9b9b9b;
 }
+.review-detail {
+  margin: 0 0 50px 0;
+}
 .review-detail__student {
   position: absolute;
   width: 60%;
@@ -24660,7 +24664,7 @@ blockquote {
 }
 .profile-cover {
   margin-top: -80px;
-  min-height: 88vh;
+  min-height: 600px;
   width: 100%;
   position: relative;
 }
@@ -24668,7 +24672,7 @@ blockquote {
   min-width: 100vw;
 }
 .profile-cover__container {
-  min-height: 88vh;
+  min-height: 600px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -24756,7 +24760,6 @@ blockquote {
 }
 .profile-biography {
   background-color: white;
-  padding: 5rem 0 10rem 0;
 }
 .profile-biography .profile-biography--content {
   padding: 5rem 0;
@@ -24772,7 +24775,7 @@ blockquote {
 }
 .profile-location .map {
   width: 100%;
-  height: 40em;
+  height: 35em;
 }
 @media screen and (max-width: 480px) {
   .profile-location .map {
@@ -24781,12 +24784,6 @@ blockquote {
 }
 .profile-comments {
   background-color: white;
-  padding: 5rem;
-}
-@media screen and (max-width: 768px) {
-  .profile-comments {
-    padding: 3rem;
-  }
 }
 .profile-comments .comment {
   padding: 1rem;
@@ -24870,6 +24867,15 @@ blockquote {
 }
 .organizer-signup .form-group:not(:first-child) {
   margin-top: 30px;
+}
+.organizer-signup .form-group:not(:first-child) .select-forms {
+  width: 40%;
+  display: inline-block;
+  float: left;
+}
+.organizer-signup .form-group:not(:first-child) .select-forms select.form-control {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
 }
 .organizer-signup h1.title {
   font-weight: 800;

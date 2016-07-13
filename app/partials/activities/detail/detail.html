@@ -464,12 +464,12 @@
                     </a>
                   </td>-->
                 </tr>
-                <tr ng-repeat-end class="signup-row hidden-xs hidden-sm" ng-show="detail.selectedActivity === $index">
+                <tr ng-repeat-end class="signup-row hidden-xs hidden-sm" ng-show="detail.selectedActivity === $index && calendar.available_capacity > 0">
                   <td colspan=1>
                   </td>
                   <td colspan=4>
                     <div class="text-left">
-                      <span ng-bind="detail.activity.note"></span>
+                      <span ng-bind="calendar.note"></span>
                     </div>
                   </td>
                   <td colspan=1>
