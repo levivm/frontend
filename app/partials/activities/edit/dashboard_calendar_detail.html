@@ -1,5 +1,5 @@
 
-<div class="row limited-width-dashboard  limited-width-dashboard__calendar">
+<div class="row limited-width-dashboard limited-width-dashboard__calendar">
     <form class="" id="activity_calendar_form" name='calendar.activity_calendar_form' ng-submit="calendar.save_calendar()" novalidate>
 
     <div>
@@ -7,7 +7,7 @@
                 <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_CALENDAR_TITLE"></span>
                 <span  class="separate-left-less" ng-bind="::calendar.strings.COPY_CALENDAR_INFO"></span>
         </div>
-        <div>
+        <div> 
             <div class="row"> 
                 <alert type="danger" ng-show="calendar.errors.non_field_errors">
                     {{calendar.errors.non_field_errors}}

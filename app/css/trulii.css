@@ -12706,7 +12706,7 @@ hr.on-light {
 }
 .limited-width-dashboard__calendar {
   margin-left: 0px;
-  margin-top: 0em;
+  margin-top: 0px;
 }
 @media screen and (max-width: 992px) {
   .limited-width-dashboard {
@@ -12714,6 +12714,9 @@ hr.on-light {
     margin: auto;
     margin-left: auto;
   }
+}
+.limited-width-dashboard__edit-activity {
+  margin-top: 20px;
 }
 .limited-width-about {
   width: 75%;
