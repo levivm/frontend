@@ -67,8 +67,9 @@
           
             if (responseErrors) {
               if (responseErrors['sessions'] && !responseErrors['number_of_sessions']){
-                    Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
-                    Toast.error(vm.strings.TOAST_SESSIONS_ERROR);
+                   console.log(responseErrors);
+                    //Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
+                    Toast.error(responseErrors['sessions'][0]);
                     delete responseErrors['sessions'];
                 }
 
