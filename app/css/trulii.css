@@ -24865,6 +24865,15 @@ blockquote {
 .organizer-signup .form-group:not(:first-child) {
   margin-top: 30px;
 }
+.organizer-signup .form-group:not(:first-child) .select-forms {
+  width: 40%;
+  display: inline-block;
+  float: left;
+}
+.organizer-signup .form-group:not(:first-child) .select-forms select.form-control {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
+}
 .organizer-signup h1.title {
   font-weight: 800;
   font-size: 2.5em;
