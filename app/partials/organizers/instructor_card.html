@@ -30,8 +30,8 @@
         </div>-->
         <!--If on Edit Mode-->
         <div ng-if="editMode">
-            <form ng-submit="saveInstructor()">
-                <div class="form-group" trulii-input-errors-control="full_name">
+            <form name='instructor_form' ng-submit="saveInstructor()">
+                <div class="form-group" >
                     <label for="full_name" class="control-label" ng-bind="strings.LABEL_FULL_NAME"></label>
                     <input type="text" id="full_name" name="full_name"
                            ng-model="instructorEditable.full_name"
@@ -41,13 +41,13 @@
                            typeahead-on-select="selectInstructor($item, $model, $label)"
                            typeahead-focus-first="false">
                 </div>
-                <div class="form-group separate-above" trulii-input-errors-control="bio">
+                <div class="form-group separate-above">
                     <label for="bio" class="control-label" ng-bind="strings.LABEL_BIO"></label>
                 <textarea id="bio" class="form-control" name="bio"
                           rows="4" style="resize: none;"
                           placeholder="{{strings.PLACEHOLDER_BIO}}"
                           ng-model="instructorEditable.bio">
-                </textarea>
+                </textarea> 
                 </div>
 
                 <!--TODO poner absoluto al fondo de la tarjeta-->
@@ -62,7 +62,7 @@
         <div ng-if="!editMode" class="view-mode" >
             
             <div class="row ">
-                <div class="col-md-12" trulii-input-errors-control="bio">
+                <div class="col-md-12" >
                     <div ng-bind="instructor.bio" style="max-height: 100px; word-wrap: break-word;"></div>
                 </div>
             </div>
