@@ -39,14 +39,13 @@
         </div>
     </div>
 </div>
-<div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width separate-below-more">
+<div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width">
   <div class="row">
-    <div class="profile-biography">
-      <div class="col-xs-12">
+    <div class="col-xs-12 profile-biography separate-below separate-above-more">
         <h1 class="text-gray-brand text-center font-extrabold" ng-bind="::profile.strings.LABEL_BIO">
         </h1>
         <div class="profile-biography--content">
-          <p class="text-dark" ng-bind="::profile.organizer.bio"></p>
+            <p class="text-dark" ng-bind="::profile.organizer.bio"></p>
         </div>
         <div class="row">
             <div class="col-xs-12 col-md-10 col-md-offset-1">
@@ -55,12 +54,11 @@
                 </div>
             </div>
         </div>
-      </div>
     </div>
   </div>
 </div>
 <div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width separate-above" ng-if="profile.activities.length > 0">
-    <h1 class="text-gray-brand text-center font-extrabold separate-above-more separate-below">
+    <h1 class="text-gray-brand text-center font-extrabold separate-above-more separate-below-more">
         <span ng-if="profile.activities.length>0">
             <span ng-bind="::profile.strings.LABEL_PUBLISHED_ACTIVITIES"></span>
             <span ng-bind="::profile.organizer.name"></span>
@@ -70,7 +68,7 @@
             <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span>
         </span>
     </h1>
-    <div class="flex-cards separate-below-more separate-above-medium" >
+    <div class="flex-cards separate-below separate-above-medium" >
         <trulii-activity-item data-activity="activity" ng-repeat="activity in profile.cards"></trulii-activity-item>
     </div>
     <div class="col-xs-12 separate-below-more">
@@ -109,10 +107,10 @@
     </div>
 </div>
 <!-- Comments -->
-<div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width profile-comments separate-below-more" ng-if="profile.reviews.length > 0">
-    <div class="row">
+<div class="col-xs-10 col-xs-offset-1 col-md-12 limited-width profile-comments separate-below-more">
+    <div class="row" ng-if="profile.reviews.length > 0">
         <div class="col-xs-12">
-            <h1 class="text-gray-brand text-center font-extrabold" ng-bind="::profile.strings.LABEL_REVIEWS"></h1>
+            <h1 class="text-gray-brand text-center font-extrabold separate-below" ng-bind="::profile.strings.LABEL_REVIEWS"></h1>
             <h3 class="text-gray-brand text-center text-muted">
                 <span class="text-uppercase text-muted font-regular">
                     <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"

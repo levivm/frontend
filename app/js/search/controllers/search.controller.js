@@ -12,12 +12,12 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
-            , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
+    SearchController.$inject = ['$rootScope', '$scope', '$q', '$state', '$stateParams'
+            , 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
             , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf'];
 
-    function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state
-            , $window, $stateParams , generalInfo, ActivitiesManager, LocationManager, SearchManager
+    function SearchController($rootScope, $scope, $q, $state, $stateParams
+            , generalInfo, ActivitiesManager, LocationManager, SearchManager
             , datepickerConfig, datepickerPopupConfig, Analytics, serverConf) {
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -38,9 +38,6 @@
             searchDate : null,
             searchStartCost : 50000,
             searchEndCost : 250000,
-            withCert : false,
-            onWeekends : false,
-            isFree: false,
             categories : [],
             format : FORMATS[0],
             minStartDate : new Date(),
@@ -87,7 +84,12 @@
             cities: [],
             searchCity: null,
             updateCity: updateCity,
-            setFree: setFree
+            setFree: setFree,
+            checkboxFilters: {
+                withCert : false,
+                onWeekends : false,
+                isFree: false,
+            }
         });
 
         _activate();
@@ -181,17 +183,6 @@
             Analytics.generalEvents.searchDate(vm.searchDate);
         }
 
-        function setFree(free){
-            free = !free;
-            if(free){
-                SearchManager.setFree("true");
-            }
-            else{
-                SearchManager.setFree("false");
-            }
-            _search();
-        }
-
         function updateCost(costStart, costEnd) {
             SearchManager.setCosts(costStart, costEnd);
         }
@@ -202,28 +193,37 @@
             _search();
         }
 
-        function setCertification(cert) {
-            cert = !cert;
-            if(cert){
-                SearchManager.setCertification("true");
+        function setFree(){
+            if(vm.checkboxFilters.isFree){
+                SearchManager.setFree(true);
             }
             else{
-                SearchManager.setCertification("false");
+                SearchManager.setFree(false);
             }
-            Analytics.generalEvents.searchCertificate(cert);
             _setPage(1);
             _search();
         }
 
-        function setWeekends(weekends) {
-            weekends = !weekends;
-            if(weekends){
-                SearchManager.setWeekends("true");
+        function setCertification() {
+            if(vm.checkboxFilters.withCert){
+                SearchManager.setCertification(true);
             }
             else{
-                SearchManager.setWeekends("false");
+                SearchManager.setCertification(false);
             }
-            Analytics.generalEvents.searchWeekends(weekends);
+            Analytics.generalEvents.searchCertificate(vm.checkboxFilters.withCert);
+            _setPage(1);
+            _search();
+        }
+
+        function setWeekends() {
+            if(vm.checkboxFilters.onWeekends){
+                SearchManager.setWeekends(true);
+            }
+            else{
+                SearchManager.setWeekends(false);
+            }
+            Analytics.generalEvents.searchWeekends(vm.checkboxFilters.onWeekends);
             _setPage(1);
             _search();
         }
@@ -285,9 +285,7 @@
             sm.setPageSize(vm.activitiesPaginationOpts.itemsPerPage);
 
             var searchData = angular.copy($stateParams);
-            console.log($stateParams);
             vm.searchData = sm.getSearchData(searchData);
-            console.log(vm.searchData);
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
@@ -318,15 +316,20 @@
                 vm.searchEndCost = vm.searchData[sm.KEY_COST_END];
             }
 
+            if (vm.searchData.hasOwnProperty(sm.KEY_QUERY)) {
+                vm.searchQuery = vm.searchData[sm.KEY_QUERY];
+            }
+
             if (vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION])  {
-                vm.withCert = vm.searchData[sm.KEY_CERTIFICATION];
+                vm.checkboxFilters.withCert = vm.searchData[sm.KEY_CERTIFICATION] === true;
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_WEEKENDS) && vm.searchData[sm.KEY_WEEKENDS]) {
-                vm.onWeekends = vm.searchData[sm.KEY_WEEKENDS];
+                vm.checkboxFilters.onWeekends = vm.searchData[sm.KEY_WEEKENDS] === true;
             }
+
             if (vm.searchData.hasOwnProperty(sm.KEY_FREE) && vm.searchData[sm.KEY_FREE]) {
-                vm.isFree = vm.searchData[sm.KEY_FREE];
+                vm.checkboxFilters.isFree = vm.searchData[sm.KEY_FREE] === true;
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)) {
@@ -389,9 +392,8 @@
             SearchManager.setQuery(vm.newSearchQuery);
 
             vm.searchData = SearchManager.getSearchData();
-            console.log('vm.searchData ', vm.searchData);
             _getActivities(vm.searchData).then(function () {
-                $state.go('search', vm.searchData,  {notify: false}); 
+                $state.go('search', vm.searchData,  {notify:false, reload:false, inherit:false}); 
             });
         
         }
@@ -442,13 +444,18 @@
 
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
                     vm.searchData = SearchManager.getSearchData();
+                    console.log('modified!');
 
                     _getActivities(vm.searchData).then(function () {
-                        $state.go('search', vm.searchData,  {notify: false});
+                        $state.go('search', vm.searchData,  {notify:false, reload:false, inherit:false}); 
                     });
                 }
             );
 
+            $rootScope.$on(SearchManager.EVENT_QUERY_MODIFIED, function(){
+                vm.searchQuery = SearchManager.getQuery();
+                vm.newSearchQuery = SearchManager.getQuery();
+            })
 
             $scope.$on('$destroy', _cleanUp);
         }
