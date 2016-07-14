@@ -1,4 +1,4 @@
-describe('Controller: ActivityDBReturnPDashboard', function(){
+xdescribe('Controller: ActivityDBReturnPDashboard', function(){
     var ActivityDBReturnPDashboard,
         ActivitiesManager,
         rootScope,

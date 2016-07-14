@@ -44,7 +44,7 @@ xdescribe('Controller: SearchController', function(){
               .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
               .respond(readJSON('tests/mock/activities.json'));
          $httpBackend
-              .when('GET', 'http://localhost:8000/api/activities/search/?city=1&page=1&q=sesiones+de+derecho')
+              .when('GET', 'http://localhost:8000/api/activities/search/?certification=false&city=1&is_free=false&page=1&q=sesiones+de+derecho&weekends=false')
               .respond(readJSON('tests/mock/searchActivities.json'));
 
 
@@ -57,7 +57,7 @@ xdescribe('Controller: SearchController', function(){
               .respond(readJSON('tests/mock/cities.json'));
 
          httpBackend
-            .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+            .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
             .respond(readJSON('tests/mock/ipinfo.json'));
 
 

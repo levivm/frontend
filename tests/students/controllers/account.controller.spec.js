@@ -32,10 +32,10 @@ xdescribe('Controller: StudentAccountCtrl', function(){
             .when('GET', 'http://localhost:8000/api/activities/info')
             .respond(readJSON('tests/mock/generalinfo.json'));
         $httpBackend
-            .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+            .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
             .respond(readJSON('tests/mock/ipinfo.json'));
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/students/4/orders/?page=1&page_size=10')
+            .when('GET', 'http://localhost:8000/api/students/4/orders/?page=1&pageSize=10')
             .respond(200, {});
         $httpBackend
             .when('GET', 'http://localhost:8000/api/users/current/')
