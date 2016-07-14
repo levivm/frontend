@@ -227,7 +227,7 @@
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                             .finally(_finishProccesingPayment);
 
-                function _enrollSuccess(data) {
+                function _enrollSuccess(response) {
                     Analytics.studentEvents.enrollPayPse();
                     vm.success = true;
                     var bank_url = response.bank_url;
