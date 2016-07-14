@@ -363,15 +363,7 @@
              * @description Update the number of views on an activity
              * @methodOf trulii.activities.services.Activity
              */
-            updateViewsCounter: updateViewsCounter,
-
-            /**
-            * @ngdoc function
-            * @name .#getViews
-            * @description Get the number of views on an activity
-            * @methodOf trulii.activities.services.Activity
-            */
-            getViewsCounter: getViewsCounter
+            updateViewsCounter: updateViewsCounter
 
         };
 
@@ -813,10 +805,6 @@
 
         function updateViewsCounter(){
             return $http.put(api.viewsCounter(this.id));
-        }
-
-        function getViewsCounter(){
-            return $http.get(api.viewsCounter(this.id));
         }
         
     }

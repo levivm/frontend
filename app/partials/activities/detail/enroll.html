@@ -432,11 +432,11 @@
                                                             <label for="userType" ng-bind="::enroll.strings.LABEL_USER_TYPE"></label>
                                                             <div class="select-forms">
                                                                     <label>
-                                                                        <select  class="form-control input-lg" name="userType" id="userType"
+                                                                        <select class="form-control input-lg" name="userType" id="userType"
                                                                             ng-model="enroll.pseData.selectedUserType"
                                                                             ng-options="type  as type.description for (index,type) in enroll.pseFormData.userTypes">
                                                                             <option value="" ng-show="!enroll.pseData.selectedBank"
-                                                                                    ng-bind="::enroll.strings.OPTION_USER_TYPE_DEFAULT" selected>
+                                                                                ng-bind="::enroll.strings.OPTION_USER_TYPE_DEFAULT" selected>
                                                                             </option>
                                                                         </select>
                                                                 </label>
@@ -451,10 +451,12 @@
                                                             <div class="input-group">
                                                                 <div class="select-forms">
                                                                     <label>
-                                                                        <select name="" id="" class="form-control"
-                                                                            ng-options="document.id as document.description for document in enroll.pseFormData.idTypes track by document.value"
-                                                                            ng-model="enroll.pseData.idType">
-                                                                            <option value="" ng-hide="enroll.pseData.idType" ng-bind="enroll.strings.OPTION_ID_TYPE_DEFAULT"></option>
+                                                                        <select class="form-control" name="userId" id="userId" 
+                                                                            ng-model="enroll.pseData.idType"
+                                                                            ng-options="document as document.description for document in enroll.pseFormData.idTypes track by document.value">
+                                                                            <option value="" ng-show="!enroll.pseData.idType"
+                                                                                ng-bind="enroll.strings.OPTION_ID_TYPE_DEFAULT" selected>
+                                                                            </option>
                                                                         </select>
                                                                     </label>
                                                                 </div>
