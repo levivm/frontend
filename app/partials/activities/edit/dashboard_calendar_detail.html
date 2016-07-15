@@ -58,18 +58,14 @@
                 </div>
             </div>
              <div class="row">
-                <div class="form-group col-xs-12 separate-above" trulii-input-errors-control="note">
-                      <label for="short_description" class="control-label">
-                           <span  ng-bind="::calendar.strings.LABEL_NOTES"></span>
-                      </label>
-                      <textarea id="short_description" class="form-control"
-                                name="short_description"
-                                ng-model="calendar.calendar.note"
+                   <div class="form-group col-xs-12 separate-above" trulii-input-errors-control="note" >
+                        <label for="short_description" class="control-label">
+                            <span  ng-bind="::calendar.strings.LABEL_NOTES"></span>
+                        </label>
+                        <input type="text" id="short_description"  class="form-control" name="short_description"
                                 placeholder="{{::calendar.strings.PLACEHOLDER_NOTES}}"
-                                maxlength="{{ calendar.maxLengthNote }}"
-                                ></textarea>
-                       <span class="text-muted pull-right" ng-bind="calendar.maxLengthNote  - calendar.calendar.note.length"></span>
-                  </div>
+                                ng-model="calendar.calendar.note">
+                    </div>
             </div>
 
         </div>

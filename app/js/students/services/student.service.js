@@ -63,7 +63,7 @@
                         'first_name': scope.user.first_name,
                         'last_name': scope.user.last_name,
                     },
-                    'birth_date': scope.birth_date.valueOf(),
+                    'birth_date': scope.birth_date ? scope.birth_date.valueOf(): undefined,
                     'gender': scope.gender,
                     'bio' : scope.bio,
                     'city' : scope.city,
