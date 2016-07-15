@@ -21,11 +21,11 @@
 
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager', '$ngSilentLocation'];
 
     function ActivityDetailController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager, $ngSilentLocation) {
                                           
         var visibleReviewListSize = 3;
         var vm = this;
@@ -480,12 +480,10 @@
             });
             
             // Updating the URL
-            // var params = [activity.id, title];
-            // var stateUrl = "/activities/";
-            // var newLocation = stateUrl.concat(params.join('/'));
-            // var location = $location.url(newLocation);
-            // location.replace();
-            // $ngSilentLocation.silent(newLocation);
+            var params = [activity.id, title];
+            var stateUrl = "/activities/";
+            var newLocation = stateUrl.concat(params.join('/'));
+            $ngSilentLocation.silent(newLocation);
         }
         
         function _mapTemplates(){

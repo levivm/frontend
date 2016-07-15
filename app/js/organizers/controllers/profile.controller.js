@@ -6,10 +6,10 @@
         .controller('OrganizerProfileController', OrganizerProfileController);
 
     OrganizerProfileController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'LocationManager', 'organizer', 'activities'
-        , 'ActivitiesManager', 'reviews', 'serverConf'];
+        , 'ActivitiesManager', 'reviews', 'serverConf', '$ngSilentLocation'];
 
     function OrganizerProfileController($state, $stateParams, uiGmapGoogleMapApi, LocationManager, organizer, activities
-        , ActivitiesManager, reviews, serverConf) {
+        , ActivitiesManager, reviews, serverConf, $ngSilentLocation) {
 
         var REVIEW_STEP = 3;
         var visibleReviewListSize = REVIEW_STEP;
@@ -163,7 +163,12 @@
             });
 
             // Updating the URL
-            $state.go($state.current, {organizer_id: organizer.id, organizer_name: name}, {notify: false, reload: $state.current, location: 'replace'});
+
+            var params = [organizer.id, name];
+            var stateUrl = "/organizers/";
+            var newLocation = stateUrl.concat(params.join('/'));
+            $ngSilentLocation.silent(newLocation);
+
         }
 
         function _activate(){
