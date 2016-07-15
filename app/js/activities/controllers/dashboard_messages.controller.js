@@ -53,7 +53,6 @@
 
 
         function submitMessage(){
-            console.log('hola');
            Error.form.clear(vm.message_form);
            if(!vm.message.calendar){
                 vm.message.calendar={
