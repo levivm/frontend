@@ -40,8 +40,8 @@
 
         function _readMessage(){
           student.readMessage(vm.message.id)
-            .then(function(){
-              //Toast.success("Mensaje marcado como leido");
+            .then(function(data){
+              vm.message.is_read = true;
               console.log("Mensaje marcado como leido");
               $rootScope.$broadcast('update_notifications');
               //$state.go('student-dashboard.notifications', {reload: true});
@@ -61,6 +61,7 @@
 
         function activate() {
             _setStrings();
+            
             if(!vm.message.is_read)
                 _readMessage()
         }
