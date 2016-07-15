@@ -64,7 +64,7 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
             .respond(readJSON('tests/mock/calendar.json'));
 
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
         ActivitiesManager.getActivity(4)
             .then(function(data){
