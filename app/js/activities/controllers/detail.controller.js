@@ -292,6 +292,7 @@
 
         function _setUpLocation(activity){
             if(activity.location && activity.location.city){
+                activity.location.city = activity.location.city.id ? activity.location.city.id: activity.location.city;
                 activity.location.name = LocationManager.getCityById(activity.location.city).name;
             }
             vm.map = LocationManager.getMap(activity.location, false);

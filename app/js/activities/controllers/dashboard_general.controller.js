@@ -190,6 +190,7 @@
                 COPY_SELECT_ACTIVITY_TITLE: "¿Como titularías esta actividad?",
                 COPY_CERTIFICATION: "¿Entregarás certificación?",
                 COPY_DESCRIPTION_TOOLTIP: "Describe tu actividad de forma atractiva, especifica y díficil de olvidar.",
+                COPY_TAGS_TOOLTIP: "Estas palabras claves facilitarán que tu actividad sea encontrada en la búsqueda.",
                 ACTION_CONTINUE: "Continuar",
                 ACTION_SAVE: "Guardar",
                 OPTION_WITHOUT_CERTIFICATION: "Sin certificación",
