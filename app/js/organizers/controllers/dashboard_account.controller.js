@@ -39,13 +39,11 @@
         function updateBankingInfo(){
             vm.isSaving = true;
             vm.bankingData.organizer = organizer.id;
-            console.log(vm.bankingData);
             Error.form.clear(vm.account_form_banking_info);
             organizer.saveBankingInfo(vm.bankingData).then(success, error);
 
             function success(bankingData){
                 vm.isSaving = false;
-                console.log('bankingData response', bankingData);
                 Toast.generics.weSaved();
             }
 
@@ -109,7 +107,6 @@
         //--------- Internal Functions ---------//
 
         function _setOrganizerBankingData(){
-
             if(!(_.isEmpty(bankingData))){ 
                 var current_bank_data = _.find(vm.bankingInfo.banks, 
                                                 { 'bank_name': bankingData.bank });

@@ -1,0 +1,45 @@
+{
+	"id": 3,
+	"user": {
+		"first_name": "Benedict",
+		"last_name": "Hane",
+		"email": "kschmeler@steuber.com"
+	},
+	"name": "Treutel, Corkery and Weimann",
+	"bio": "enhance viral info-mediaries",
+	"headline": "Intuitive contextually-based flexibility",
+	"website": "http://www.bruen.info/",
+	"youtube_video_url": "http://www.renner.com/",
+	"telephone": "(498)226-3075x955",
+	"photo": null,
+	"user_type": "O",
+	"created_at": 1466034834000.0,
+	"instructors": [{
+		"full_name": "Ethen Gislason Jr.",
+		"id": 12,
+		"bio": "Aut sunt neque placeat provident. Earum distinctio reiciendis est rerum. At tempore ullam autem asperiores. Ex accusantium adipisci vel.",
+		"organizer": 3,
+		"website": "http://prohaska.com/"
+	}, {
+		"full_name": "Dr. Markus Sawayn DDS",
+		"id": 11,
+		"bio": "Repellendus et rerum accusantium doloremque quo quia officiis. Et quia id et natus reprehenderit voluptatem repellendus. Doloribus est laborum autem officiis officia natus.",
+		"organizer": 3,
+		"website": "http://www.veum.net/"
+	}, {
+		"full_name": "Wayland Ledner",
+		"id": 10,
+		"bio": "Atque quaerat autem repellendus iure et et nam. Eaque atque sunt nisi maiores et incidunt praesentium sint. Aut nam rerum saepe minima voluptatem voluptates. Adipisci et eaque voluptatibus voluptatem cupiditate aut nihil.",
+		"organizer": 3,
+		"website": "http://spencer.com/"
+	}, {
+		"full_name": "Jerel Kessler",
+		"id": 9,
+		"bio": "Adipisci expedita perspiciatis quos ut necessitatibus iusto nulla nostrum. Sit vero dolore cumque et. Qui doloremque ut qui et veritatis aut dolorem non. Ab maiores et culpa in quisquam minus laborum.",
+		"organizer": 3,
+		"website": "http://www.kulas.com/"
+	}],
+	"locations": [],
+	"rating": 0.0,
+	"verified_email": true
+}

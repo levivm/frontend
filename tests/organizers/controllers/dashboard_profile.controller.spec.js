@@ -1,5 +1,5 @@
-xdescribe('Controller: StudentActivitiesCtrl', function(){
-    var StudentActivitiesCtrl,
+xdescribe('Controller: OrganizerProfileCtrl', function(){
+    var OrganizerProfileCtrl,
         $scope = {};
 
     beforeEach(function(){
@@ -8,7 +8,7 @@ xdescribe('Controller: StudentActivitiesCtrl', function(){
             $httpBackend = $injector.get('$httpBackend');
             Authentication = $injector.get('Authentication');
             $compile = $injector.get('$compile');
-            Student = $injector.get('Student');
+            Organizer = $injector.get('Organizer');
          })
     });
     beforeEach(inject(function($controller, _$rootScope_, $http, $httpBackend) {
@@ -18,7 +18,7 @@ xdescribe('Controller: StudentActivitiesCtrl', function(){
                 'params' : {}
             }
         }
-        var template, element, regForm, student, cities, reviews, orders, activityList, currentActivities, nextActivities, pastActivities;
+        var template, element, regForm, organizer, cities, messages;
 
 
         $httpBackend
@@ -36,47 +36,54 @@ xdescribe('Controller: StudentActivitiesCtrl', function(){
             .respond(readJSON('tests/mock/ipinfo.json'));
         $httpBackend
             .when('GET', 'http://localhost:8000/api/students/4/orders/?page=1&pageSize=10')
-            .respond(readJSON('tests/mock/orders.json'));
+            .respond(200, {});
         $httpBackend
             .when('GET', 'http://localhost:8000/api/users/current/')
-            .respond(readJSON('tests/mock/currentUser.json'));
+            .respond(readJSON('tests/mock/currentOrgUser.json'));
         $scope =  _$rootScope_;
         
 
-        student = new Student(readJSON('tests/mock/currentUser.json'));
+        organizer = new Organizer(readJSON('tests/mock/currentOrgUser.json'));
         cities = readJSON('tests/mock/cities.json');
-        reviews = [];
-        
-        student.getOrders().then(function (data) {
-            orders = data;
-        }, function (err) {
-            console.log(err);
-        })
-        
+        messages = [];
         $httpBackend.flush();
-        currentActivities = readJSON('tests/mock/activities.json');
-        nextActivities = readJSON('tests/mock/activities.json');
-        pastActivities = readJSON('tests/mock/activities.json');
-        
-        
-        StudentActivitiesCtrl =  $controller('StudentActivitiesCtrl', { 
-                                            'student': student, 
-                                            'cities': cities, 
-                                            'reviews': reviews, 
-                                            'orders': orders, 
-                                            'currentActivities':currentActivities,
-                                            'nextActivities': nextActivities,
-                                            'pastActivities': pastActivities,
-                                             '$stateParams':stateParams});
+
+         console.log(organizer);
+
+        OrganizerProfileCtrl =  $controller('OrganizerProfileCtrl', { 'organizer': organizer, 'cities': cities});
     }));
 
     describe("Initializacion ", function(){
         it('should have controller defined and strings is object defined', function() {
            
-            console.log(StudentActivitiesCtrl);
-            expect(StudentActivitiesCtrl).toBeDefined();
-            expect(StudentActivitiesCtrl.strings).toBeDefined();
+            console.log(OrganizerProfileCtrl);
+            expect(OrganizerProfileCtrl).toBeDefined();
+            expect(OrganizerProfileCtrl.strings).toBeDefined();
          });
     });
     
+    describe("Update", function(){
+        var template, element, regForm;
+        beforeEach(inject(function ($templateCache, $compile) {
+           template = '<form class="separate-above col-xs-12 col-md-12" name="profile.profile_form_info" ng-submit="profile.submitInfo()"></form>'
+           element = angular.element(template);
+           $compile(element)($scope);
+
+       }));
+        it('should successfully update form info', function() {
+            OrganizerProfileCtrl.is_saving= true;
+            
+            OrganizerProfileCtrl.profile_form_info = $scope.profile.profile_form_info;
+            OrganizerProfileCtrl.submitInfo();
+            $httpBackend
+                 .when('PUT', 'http://localhost:8000/api/organizers/4')
+                 .respond(200, {});
+
+            $httpBackend.flush();
+            expect(OrganizerProfileCtrl.isSaving).toBe(false);
+         });
+    });
+
+
+
 })
