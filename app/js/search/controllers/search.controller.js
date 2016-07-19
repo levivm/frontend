@@ -12,11 +12,11 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope', '$q', '$state', '$stateParams'
+    SearchController.$inject = ['$rootScope', '$scope', '$q', '$state', '$stateParams', '$timeout'
             , 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
             , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf'];
 
-    function SearchController($rootScope, $scope, $q, $state, $stateParams
+    function SearchController($rootScope, $scope, $q, $state, $stateParams, $timeout
             , generalInfo, ActivitiesManager, LocationManager, SearchManager
             , datepickerConfig, datepickerPopupConfig, Analytics, serverConf) {
 
@@ -85,6 +85,7 @@
             searchCity: null,
             updateCity: updateCity,
             setFree: setFree,
+            freeOptions: freeOptions,
             checkboxFilters: {
                 withCert : false,
                 onWeekends : false,
@@ -196,9 +197,11 @@
         function setFree(){
             if(vm.checkboxFilters.isFree){
                 SearchManager.setFree(true);
+                document.getElementById('slider-anchor').setAttribute('disabled', true);
             }
             else{
                 SearchManager.setFree(false);
+                document.getElementById('slider-anchor').removeAttribute('disabled');
             }
             _setPage(1);
             _search();
@@ -244,6 +247,9 @@
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
 
+        function freeOptions(option){
+            return ! ((option.predicate === 'min_price' || option.predicate === 'max_price')  && vm.checkboxFilters.isFree);
+        }
         //--------- Internal Functions ---------//
 
         function _expandCategory(category) {
@@ -457,6 +463,16 @@
                 vm.newSearchQuery = SearchManager.getQuery();
             })
 
+            angular.element(document).ready(function () {
+                
+                    $timeout(function(){
+                        if(vm.checkboxFilters.isFree === true){
+                            document.getElementById('slider-anchor').setAttribute('disabled', true);
+                        }
+                    });
+                
+            });
+            
             $scope.$on('$destroy', _cleanUp);
         }
     }

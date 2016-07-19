@@ -44,6 +44,8 @@
              */
             getActivities : getActivities,
 
+            getCategoryActivities: getCategoryActivities,
+            
             /**
              * @ngdoc method
              * @name .#getRecommendedActivities
@@ -101,6 +103,9 @@
              * @methodOf trulii.activities.services.ActivitiesManager
              */
             loadGeneralInfo : loadGeneralInfo,
+
+
+            getCategory: getCategory,
 
             /**
              * @ngdoc method
@@ -184,6 +189,22 @@
                 }
             };
             console.log(config);
+            return $http.get(api.search(), config).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                $q.reject(response.data);
+            }
+        }
+
+        function getCategoryActivities(category){
+            var config = {
+                'params': {
+                    'category': category
+                }
+            };
             return $http.get(api.search(), config).then(success, error);
 
             function success(response){
@@ -288,6 +309,13 @@
                 });
             }
             return deferred.promise;
+        }
+
+        function getCategory(categoryId){
+            return $http.get(api.categories(categoryId)).then(function (response) {
+                return response;
+            });
+        
         }
 
         function getCategories(){

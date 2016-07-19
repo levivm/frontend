@@ -19,13 +19,13 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
-        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager', '$ngSilentLocation'];
+        'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
+    function ActivityDetailController($scope, $state, $stateParams, $filter, $timeout, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
-                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager, $ngSilentLocation) {
+                                      defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
                                           
         var visibleReviewListSize = 3;
         var vm = this;
@@ -80,7 +80,7 @@
             wishList:wishList,
             verifyWishList:verifyWishList,
             getAmazonUrl: getAmazonUrl,
-            facebookShares: 0
+            facebookShares: 0,
         });
 
         _activate();
@@ -479,11 +479,8 @@
               return dict[char] || char;
             });
             
-            // Updating the URL
-            var params = [activity.id, title];
-            var stateUrl = "/activities/";
-            var newLocation = stateUrl.concat(params.join('/'));
-            $ngSilentLocation.silent(newLocation);
+            $state.go('activities-detail', {activity_id: activity.id, activity_title: title} ,{location: "replace", notify: false, reload: true});
+            
         }
         
         function _mapTemplates(){
@@ -499,7 +496,9 @@
 
         }
 
+
         function _activate(){
+            console.log('activating');
             _setStrings();
             _setCurrentState();
             _updateUrl();

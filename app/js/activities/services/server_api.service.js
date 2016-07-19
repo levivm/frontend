@@ -233,8 +233,11 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'categories' : function () {
-                return renderUrl('activities/', ['categories']);
+            'categories' : function (idCategory) {
+                if(idCategory)
+                    return renderUrl('activities/', ['categories', idCategory]);
+                else
+                    return renderUrl('activities/', ['categories']);
             },
 
             /**

@@ -2,39 +2,28 @@
     'use strict';
 
     angular
-        .module('trulii.activities', [
-            'uiGmapgoogle-maps',
-            'youtube-embed',
-            'angular-md5',
-            'trulii.activities.config',
-            'trulii.activities.controllers',
-            'trulii.activities.services',
-            'trulii.activities.directives'
+        .module('trulii.categories', [
+            'trulii.categories.controllers',
+            'trulii.categories.services'
 
         ])
-        .constant('ActivitiesTemplatesPath', "partials/activities/")
+        .constant('CategoriesTemplatesPath', "partials/activities/")
         .constant('angularMomentConfig', {
             timezone: 'America/Bogota'
         })
         .config(config);
 
     angular
-        .module('trulii.activities.config', []);
+        .module('trulii.categories.controllers', ['ngTagsInput']);
 
     angular
-        .module('trulii.activities.controllers', ['ngTagsInput']);
-
-    angular
-        .module('trulii.activities.services', ['ngCookies']);
-
-    angular
-        .module('trulii.activities.directives', []);
+        .module('trulii.categories.services', ['ngCookies']);
 
     //noinspection JSValidateJSDoc
     /**
      * @ngdoc object
-     * @name trulii.activities.config
-     * @description Activities Module Config function
+     * @name trulii.categories.config
+     * @description Categories Module Config function
      * @requires ui.router.state.$stateProvider
      */
     config.$inject = ['$stateProvider'];
@@ -42,181 +31,8 @@
 
 
         $stateProvider
-            .state('dash', {
-                    template: '<div ui-view></div>'
-                })
-            .state('dash.activities-new', {
-                abstract: true,
-                url: '/activities/new',
-                data: {
-                    requiredAuthentication : true
-                },
-                resolve: {
-                    presaveInfo: getPresaveActivityInfo,
-                    activity: getActivity,
-                    organizer : getCurrentOrganizer,
-                    // categories: getCategories
-                },
-                templateUrl: 'partials/activities/create.html'
-            })
-            .state('dash.activities-new.general', {
-                url:'',
-                controller: 'ActivityGeneralController',
-                controllerAs: 'vm',
-                templateUrl: 'partials/activities/edit/dashboard_general.html'
-            })
-            .state('dash.activities-edit', {
-                abstract:true,
-                url:'/activities/edit/{activity_id:int}/',
-                controller: 'ActivityDashboardCtrl',
-                data: {
-                    requiredAuthentication : true
-                },
-                resolve: {
-                    presaveInfo: getPresaveActivityInfo,
-                    activity: getActivity,
-                    organizer : getCurrentOrganizer,
-                    isOwner: isActivityOwner
-                },
-                controllerAs: 'pc',
-                templateUrl: 'partials/activities/edit/edit.html'
-            })
-            .state('dash.activities-edit.general', {
-                url:'',
-                controller: 'ActivityGeneralController',
-                controllerAs: 'vm',
-                templateUrl: 'partials/activities/edit/dashboard_general.html'
-            })
-            .state('dash.activities-edit.detail', {
-                url:'detail',
-                controller: 'ActivityDBDetailController',
-                controllerAs: 'detail',
-                templateUrl: 'partials/activities/edit/dashboard_detail.html'
-            })
-            .state('dash.activities-edit.calendars', {
-                url:'calendars',
-                controller: 'ActivityCalendarsController',
-                controllerAs: 'calendars',
-                templateUrl: 'partials/activities/edit/dashboard_calendars.html',
-                resolve:{
-                    calendars:getCalendars
-                },
-                params: {
-                    republish: null
-                }
-            })
-            .state('dash.activities-edit.calendars.detail', {
-                url:'/:calendar_id',
-                controller: 'ActivityCalendarController',
-                controllerAs: 'calendar',
-                templateUrl: 'partials/activities/edit/dashboard_calendar_detail.html',
-                resolve: {
-                    calendar: getCalendar
-                }
-            })
-            .state('dash.activities-edit.location', {
-                url:'location',
-                controller: 'ActivityDBLocationController',
-                resolve:{
-                    cities: getAvailableCities,
-                    organizer : getCurrentOrganizer
-                },
-                controllerAs: 'location',
-                templateUrl: 'partials/activities/edit/dashboard_location.html'
-            })
-            .state('dash.activities-edit.instructors', {
-                url:'instructors',
-                controller: 'ActivityDBInstructorsController as instructors',
-                templateUrl: 'partials/activities/edit/dashboard_instructors.html'
-            })
-            .state('dash.activities-edit.gallery', {
-                url:'gallery',
-                controller: 'ActivityDBGalleryController as gallery',
-                templateUrl: 'partials/activities/edit/dashboard_gallery.html'
-            })
-            .state('dash.activities-edit.return-policy', {
-                url:'return-policy',
-                controller: 'ActivityDBReturnPDashboard',
-                controllerAs: 'returnPolicy',
-                templateUrl: 'partials/activities/edit/dashboard_return_policy.html'
-            })
-            .state('dash.activities-manage', {
-                url:'/activities/manage/{activity_id:int}/',
-                abstract: true,
-                controller: 'ActivitiesManageCtrl as manage',
-                resolve: {
-                    activity: getActivity,
-                    organizer : getCurrentOrganizer
-                },
-                templateUrl: 'partials/activities/manage/manage.html'
-            })
-            .state('dash.activities-manage.orders', {
-                url:'orders',
-                templateUrl: 'partials/activities/manage/manage_orders.html'
-            })
-            .state('dash.activities-manage.orders.order', {
-                url:'/:orderId',
-                controller: 'ActivityOrderCtrl as order',
-                templateUrl: 'partials/commons/order.html',
-                params:{
-                    'previousState': {
-                        'state': null,
-                        'params': {}
-                    }
-                },
-                resolve: {
-                    order: getOrder
-                }
-            })
-            .state('dash.activities-manage.assistants', {
-                url:'assistants',
-                templateUrl: 'partials/activities/manage/manage_assistants.html'
-            })
-            .state('dash.activities-manage.assistants-list', {
-                url:'list/:calendar_id',
-                controller: 'ActivitiesManageListCtrl as print',
-                templateUrl: 'partials/activities/manage/manage_assistants_list.html',
-                resolve: {
-                    calendar: fetchCalendar,
-                    orders: getOrders
-                }
-            })
-            .state('dash.activities-manage.messages', {
-              url: 'messages',
-              controller: 'ActivityMessagesCtrl as messages',
-              templateUrl: 'partials/activities/manage/manage_messages.html',
-               resolve: {
-                    messages: getMessages
-                }
-            })
-            .state('dash.activities-manage.messages-detail', {
-                url:'messages/:messageId',
-                controller: 'ActivityMessageDetailCtrl as detail',
-                templateUrl: 'partials/activities/manage/manage_message_detail.html',
-                resolve: {
-                  message: getMessage
-                }
-            })
-            .state('dash.activities-manage.summary', {
-              url: 'summary',
-              controller: 'ActivitySummaryCtrl as summary',
-              templateUrl: 'partials/activities/manage/manage_summary.html',
-              resolve: {
-                stats: getStats
-              }
-            })
             .state('category', {
-                url: '/:category_name',
-                templateUrl: 'partials/activities/category.html',
-                controller: 'CategoryController as category',
-                resolve: {
-                    category: getCategory,
-                    categoryActivities: getCategoryActivities
-                }
-            })
-
-            .state('activities-detail', {
-                url:'/activities/{activity_id:int}/:activity_title',
+                url:'/{category_name}',
                 params: {
                   activity_title: {value: null, squash: true}
                 },
@@ -240,54 +56,6 @@
                     calendars: getCalendars,
                     organizer: getActivityOrganizer,
                     relatedActivities: getOrganizerActivities
-                }
-            })
-            .state('activities-enroll', {
-                url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
-                controller: 'ActivityDetailEnrollController as enroll',
-                templateUrl: 'partials/activities/detail/enroll.html',
-                resolve: {
-                    activity: getActivity,
-                    calendar: fetchCalendar,
-                    currentUser: getAuthenticatedUser,
-                    isStudent: isStudent,
-                    isActive: isActive,
-                    deviceSessionId:getDeviceSessionId
-                }
-            })
-            .state('activities-enroll.pse-response', {
-                url: '/pse/response?referenceCode&transactionId&state&cus&pseBank' +
-                '&TX_VALUE&currency&description&pseReference1&merchant_name'+
-                '&merchant_address&telephone&pseReference3',
-                controller: 'ActivityEnrollPSEResponseController as pseResponse',
-                templateUrl: 'partials/activities/detail/enroll.pse.response.html',
-                params:{
-                    pseResponseData: null
-                }
-            })
-            .state('activities-enroll-success', {
-                url: '/activities/{activity_id:int}/enroll/{calendar_id:int}/success',
-                views:{
-                    '@': {
-                        controller: 'ActivityEnrollSuccessController as success',
-                        templateUrl: 'partials/activities/detail/enroll.success.html',
-                    },
-                    'attendees@activities-enroll-success': {
-                        controller: 'ActivityDetailAttendeesController as attendees',
-                        templateUrl: 'partials/activities/detail/attendees.html'
-                    }
-                },
-                resolve: {
-                    activity: getActivity,
-                    calendar: fetchCalendar,
-                    calendars: fetchCalendarArray,
-                    currentUser: getAuthenticatedUser,
-                    deviceSessionId: getDeviceSessionId,
-                    organizer: getActivityOrganizer,
-                    organizerActivities: getOrganizerActivities
-                },
-                params:{
-                    order_id: null
                 }
             });
 
@@ -634,23 +402,6 @@
         }
 
         // api/activities/<id>/views_counter
-
-
-        getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
-        function getOrganizerActivities(ActivitiesManager, organizer){
-            return ActivitiesManager.loadOrganizerActivities(organizer.id);
-        }
-
-
-        getCategory.$inject = ['ActivitiesManager', '$stateParams'];
-        function getCategory(ActivitiesManager, $stateParams){
-            return ActivitiesManager.getCategory($stateParams.category_name);
-        }
-
-        getCategoryActivities.$inject = ['ActivitiesManager', '$stateParams'];
-        function getCategoryActivities(ActivitiesManager, $stateParams){
-            return ActivitiesManager.getCategoryActivities($stateParams.category_name);
-        }
 
     }
 

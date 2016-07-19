@@ -1,4 +1,4 @@
-xdescribe('Controller: ActivityDetailController', function(){
+describe('Controller: ActivityDetailController', function(){
     var ActivityDetailController,
         generalInfo,
         ActivitiesManager,

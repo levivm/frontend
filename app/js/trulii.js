@@ -8,7 +8,6 @@
      */
     angular
         .module('trulii', [
-            'ngSilent',
             'ngAnimate',
             'ui.bootstrap',
             'LocalStorageModule',

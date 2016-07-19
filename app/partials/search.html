@@ -162,7 +162,7 @@
                                 <label>
                                     <select class="form-control" name="sortSelect" id="sortSelect"
                                             ng-model="search.orderByPredicate" ng-change="search.changeOrderBy(search.orderByPredicate)"
-                                            ng-options="option.predicate as option.name for option in search.orderByOptions">
+                                            ng-options="option.predicate as option.name for option in search.orderByOptions | filter: search.freeOptions">
                                             <option ng-hide="search.orderByPredicate" selected
                                             ng-bind="search.strings.LABEL_SORT_BY"></option>
                                     </select>    

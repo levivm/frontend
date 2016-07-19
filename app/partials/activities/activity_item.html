@@ -29,7 +29,7 @@
     </div>
     <div class="trulii-activity-card__category">
       <div class="trulii-activity-card__category__label" style="background-color: {{activity.category.color}}"
-        ng-bind="::activity.category.name"></div>
+        ng-bind="::activity.category.name" ng-click="activity.goToCategory()"></div>
     </div>
     <div class="trulii-activity-card__body">
       <div class="trulii-activity-card__body__content">
@@ -49,7 +49,7 @@
           readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
         </span>
         <br>
-        <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar">
+        <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free}" ng-if="activity.days_to_closest >= 0">
           <strong ng-show="activity.closest_calendar.is_free">
             <span ng-bind="::strings.COPY_FREE"></span>
             <br>

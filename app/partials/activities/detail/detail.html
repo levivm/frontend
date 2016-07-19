@@ -60,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="next-date">
+            <div class="next-date" ng-show="!detail.isSelectedCalendarFull()">
                 <div class="next-date__copy" ng-bind="::detail.strings.LABEL_NEXT_DATE">
                 </div>
                 <div class="next-date__date" ng-bind="detail.calendar_selected.initial_date | date:'d MMM y'">

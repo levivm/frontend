@@ -62,6 +62,14 @@
                   </div>
                   <div class="row">
                     <div class="text-center separate-vertical" id="anchor">
+                        <span class="fit-in-xs" ng-bind="vm.strings.ALREADY_HAVE_AN_ACCOUNT_COPY"></span>
+                        <a ng-click="vm.toLoginState()">
+                            <strong ng-bind="::vm.strings.LOGIN_LABEL"></strong>
+                        </a>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="text-center separate-below" id="anchor">
                         <a ui-sref="organizer-landing" class="text-underline font-regular text-warning" ng-bind="::vm.strings.REGISTER_ORGANIZER_LABEL">
                         </a>
                     </div>

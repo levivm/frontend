@@ -48,6 +48,7 @@
                     viewActivity:viewActivity,
                     goToOrganizer: goToOrganizer,
                     goToAction:goToAction,
+                    goToCategory: goToCategory,
                     clickAction: clickAction,
                     isStudent: false,
                     like:like,
@@ -92,12 +93,17 @@
                 }
 
                 function goToOrganizer($event){
-                    console.log('??');
                     $event.preventDefault();
                     $event.stopPropagation();
                     $state.go('organizer-profile', {organizer_id: scope.activity.organizer.id});
                 }
                 
+                function goToCategory($event){
+                    $event.preventDefault();
+                    $event.stopPropagation();
+                    $state.go('category', {category_name: scope.activity.category.name});
+                }
+
                  function goToAction(name, $event){
                    
                     $event.preventDefault();
