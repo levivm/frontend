@@ -22,8 +22,13 @@
      * @requires ui.router.router.$urlRouterProvider
      * @requires ui.router.util.$urlMatcherFactoryProvider
      */
-    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider'];
-    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider) {
+    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'MetaTagsProvider'];
+    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, MetaTagsProvider) {
+        var DEFAULT_TITLE='Trulii: Cursos, Clases, Talleres y Actividades en Colombia';
+        var DEFAULT_DESCRIPTION = 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!';
+        MetaTagsProvider.setDefaultTitle(DEFAULT_TITLE);
+        MetaTagsProvider.setDefaultDescription(DEFAULT_DESCRIPTION);
+
 
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/404');
@@ -50,7 +55,12 @@
                 resolve: {
                      activities: getRecommendedActivities,
                      generalInfo: getPresaveActivityInfo
+                },
+                metaTags:{
+                    title: DEFAULT_TITLE,
+                    description: DEFAULT_DESCRIPTION
                 }
+                
             })
             .state('contact-us', {
                 url:'/contact/us',
@@ -64,6 +74,10 @@
                         'state' : 'home',
                         'params' : {}
                     }
+                },
+                metaTags:{
+                    title:'Contáctanos | Trulii',
+                    description: '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!'
                 }
             })
             .state('modal-dialog', {

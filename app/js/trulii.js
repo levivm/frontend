@@ -29,19 +29,20 @@
             'trulii.referrals',
             'trulii.about',
             'trulii.help',
-            'ngVideo',
+            'ngVideo', 
             'templates',
             'nvd3',
             'ui.select',
             'textAngular',
-            'uiGmapgoogle-maps'
-        ]);
+            'uiGmapgoogle-maps',
+            'metaTags'
+        ]);  
 
     angular
         .module('trulii.config', ['facebook','720kb.socialshare']);
 
     angular
-        .module('trulii.routes', ['ui.router', 'trulii.routes.config']);
+        .module('trulii.routes', ['ui.router', 'trulii.routes.config', 'metaTags']);
 
     angular
         .module('trulii')

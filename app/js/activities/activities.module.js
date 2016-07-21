@@ -230,6 +230,14 @@
                     calendars: getCalendars,
                     organizer: getActivityOrganizer,
                     relatedActivities: getOrganizerActivities
+                },
+                metaTags:{
+                    title: function(activity){
+                        return activity.title;
+                    },
+                    description: function(activity){
+                        return activity.short_description
+                    }
                 }
             })
             .state('activities-enroll', {
@@ -400,8 +408,8 @@
          * @requires trulii.activities.services.ActivitiesManager
          * @methodOf trulii.activities.config
          */
-        getActivity.$inject = ['$stateParams','ActivitiesManager'];
-        function getActivity($stateParams,ActivitiesManager){
+        getActivity.$inject = ['$stateParams', '$rootScope', 'ActivitiesManager'];
+        function getActivity($stateParams,$rootScope, ActivitiesManager){
             return ActivitiesManager.getActivity($stateParams.activity_id);
         }
 

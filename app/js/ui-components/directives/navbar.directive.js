@@ -343,6 +343,7 @@
                         }
                     );
                 }
+                
 
                 function _activate() {
                     _setStrings();
@@ -364,7 +365,7 @@
                     });
                     console.log($state.current.name);
                     
-
+                    
                     scope.$on('$destroy', _cleanUp);
                 }
             }
