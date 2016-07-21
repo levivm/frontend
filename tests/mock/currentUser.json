@@ -8,8 +8,9 @@
 	},
 	"gender": 2,
 	"user_type": "S",
-	"birth_date": null,
-	"telephone": "",
-	"city": null,
-	"referrer_code": "henryb1"
+	"birth_date": 1466818200000.0,
+	"telephone": 23132322,
+	"city": 1,
+	"referrer_code": "henryb1",
+	"verified_email":false
 }

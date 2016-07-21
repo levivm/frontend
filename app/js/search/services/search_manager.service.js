@@ -12,9 +12,9 @@
         .module('trulii.search.services')
         .factory('SearchManager', SearchManager);
 
-    SearchManager.$inject = ['$http', '$q', 'ActivityServerApi'];
+    SearchManager.$inject = ['$http', '$q', '$rootScope', 'ActivityServerApi'];
 
-    function SearchManager($http, $q, ActivityServerApi) {
+    function SearchManager($http, $q, $rootScope, ActivityServerApi) {
 
         var KEY_QUERY = 'q';
         var KEY_CITY = 'city';
@@ -32,6 +32,7 @@
         var KEY_PAGE_SIZE = 'page_size';
         var EVENT_SEARCH_MODIFIED = "truliiSearchModified";
         var EVENT_EXPLORE = "explore";
+        var EVENT_QUERY_MODIFIED = 'queryModified';
 
         var orderingOptions = [
             {
@@ -54,6 +55,12 @@
 
         var api = ActivityServerApi;
         var searchData = {};
+
+        $rootScope.$watch(function(){
+            return searchData[KEY_QUERY]
+        }, function(){
+            $rootScope.$emit(EVENT_QUERY_MODIFIED);
+        });
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
@@ -93,6 +100,7 @@
              * @methodOf trulii.search.services.SearchManager
              */
             clearData: clearData,
+
             /**
              * @ngdoc method
              * @name .#getSuggestions
@@ -101,6 +109,14 @@
              * @methodOf trulii.search.services.SearchManager
              */
             getSuggestions: getSuggestions,
+
+            /**
+             * @ngdoc method
+             * @name .#getQuery
+             * @description Returns the query string
+             * @methodOf trulii.search.services.SearchManager
+             */
+            getQuery: getQuery,
 
             setCategory: setCategory,
             setSubCategory: setSubCategory,
@@ -131,7 +147,8 @@
             KEY_ORDER: KEY_ORDER,
             KEY_PAGE: KEY_PAGE,
             KEY_PAGE_SIZE: KEY_PAGE_SIZE,
-            EVENT_SEARCH_MODIFIED: EVENT_SEARCH_MODIFIED
+            EVENT_SEARCH_MODIFIED: EVENT_SEARCH_MODIFIED,
+            EVENT_QUERY_MODIFIED: EVENT_QUERY_MODIFIED
         };
 
         return service;
@@ -139,13 +156,15 @@
         function getSearchData(data){
             if(data){ setSearchData(data); }
 
-            //if(!searchData[KEY_WEEKENDS]){ delete searchData[KEY_WEEKENDS];}
-            console.log(searchData);
             return searchData;
         }
 
         function getSuggestions(keyword){
             return $http.get(api.autocomplete(),{params:{q: keyword}});
+        }
+
+        function getQuery(predicate){
+            return searchData[KEY_QUERY];
         }
 
         function searchActivities(data){
@@ -173,6 +192,7 @@
                 activitiesData.activities = response.data.results;
                 deferred.resolve(activitiesData);
             }
+
             function error(response){ deferred.reject(response); }
         }
 
@@ -218,14 +238,14 @@
                 delete searchData[KEY_COST_END];
             }
 
-            if(data.hasOwnProperty(KEY_CERTIFICATION) && (data[KEY_CERTIFICATION] === true)){
-                searchData[KEY_CERTIFICATION] = (data[KEY_CERTIFICATION] === true);
+            if(data.hasOwnProperty(KEY_CERTIFICATION) && (data[KEY_CERTIFICATION] === true || data[KEY_CERTIFICATION] === "true")){
+                searchData[KEY_CERTIFICATION] = true;
             } else {
                 delete searchData[KEY_CERTIFICATION];
             }
 
-            if(data.hasOwnProperty(KEY_WEEKENDS) && (data[KEY_WEEKENDS] === true)){
-                searchData[KEY_WEEKENDS] = (data[KEY_WEEKENDS] === true);
+            if(data.hasOwnProperty(KEY_WEEKENDS) && (data[KEY_WEEKENDS] === true || data[KEY_WEEKENDS] === "true")){
+                searchData[KEY_WEEKENDS] = true;
             } else {
                 delete searchData[KEY_WEEKENDS];
             }
@@ -236,10 +256,10 @@
                 delete searchData[KEY_ORDER];
             }
 
-            if(data.hasOwnProperty(KEY_FREE) && (data[KEY_FREE] === true)){
-                searchData[KEY_FREE] = (data[KEY_FREE] === true);
+            if(data.hasOwnProperty(KEY_FREE) && (data[KEY_FREE] === true || data[KEY_FREE] === "true")){
+                searchData[KEY_FREE] = true;
             } else {
-                delete searchData[KEY_FREE];
+                delete  searchData[KEY_FREE];
             }
 
             if(data.hasOwnProperty(KEY_CITY) && data[KEY_CITY]){
@@ -254,8 +274,7 @@
 
             if(data.hasOwnProperty(KEY_PAGE) && data[KEY_PAGE]){
                 searchData[KEY_PAGE] = data[KEY_PAGE];
-            } 
-             else {
+            } else {
                 searchData[KEY_PAGE] = "1";
             }
 
@@ -264,7 +283,6 @@
 
         function setCategory(category){
             searchData[KEY_CATEGORY] = category;
-
         }
         
         function setCity(city){
@@ -273,7 +291,6 @@
 
         function setSubCategory(subcategory){
             searchData[KEY_SUBCATEGORY] = subcategory;
-
         }
 
         function setDate(date){
@@ -282,7 +299,6 @@
 
         function setLevel(level){
            searchData[KEY_LEVEL] = level;
-
         }
 
         function setCosts(start, end){
@@ -299,6 +315,7 @@
         }
 
         function setWeekends(withWeekends){
+            console.log('set weekend to ', withWeekends);
             searchData[KEY_WEEKENDS] = withWeekends;
         }
 
@@ -315,8 +332,16 @@
         }
 
         function setQuery(predicate){
-            console.log('predicate: ', predicate);
-            searchData[KEY_QUERY] = predicate;
+            if(predicate){
+                searchData[KEY_QUERY] = predicate;
+                if(predicate.length === 0){
+                    delete searchData[KEY_QUERY];
+                }
+            }
+            else{
+                delete searchData[KEY_QUERY];
+            }
         }
+
     }
 })();

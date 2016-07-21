@@ -1,0 +1,16 @@
+{
+    "id":3,
+    "subject":"sdaasd",
+    "message":"sdadasasd",
+    "created_at":"2016-06-22T23:16:17.801465Z",
+    "organizer":
+        {
+            "photo":null,
+            "name":"VonRueden, Nitzsche and Moen",
+            "id":1
+        },
+    "calendar":2,
+    "activity":"Clase de Bailes de Salón",
+    "initial_date":"2016-06-24T00:58:41.401846Z",
+    "is_read":false
+    }

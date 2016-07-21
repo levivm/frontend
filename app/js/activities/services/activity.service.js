@@ -359,11 +359,12 @@
 
             /**
              * @ngdoc function
-             * @name .#updateViews
-             * @description Update the number of views
+             * @name .#updateViewsCounter
+             * @description Update the number of views on an activity
              * @methodOf trulii.activities.services.Activity
              */
-            updateViews: updateViews
+            updateViewsCounter: updateViewsCounter
+
         };
 
         return Activity;
@@ -802,8 +803,9 @@
                 });
         }
 
-        function updateViews(){
+        function updateViewsCounter(){
             return $http.put(api.viewsCounter(this.id));
         }
+        
     }
 })();

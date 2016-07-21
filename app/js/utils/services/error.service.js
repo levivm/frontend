@@ -23,7 +23,7 @@
          */
         var NON_FIELD_ERRORS = "non_field_errors";
         var SESSIONS_PREFIX  = "sessions";
-        var FORM_FIELD_ALL   = "__all__";
+        var FORM_FIELD_ALL   = "__all__"; 
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
@@ -109,7 +109,6 @@
 
                 // Error is unrelated to form fields
                 if (field === NON_FIELD_ERRORS) return;
-
                 // Process remaining form field errors
                 if (field in form){
                     console.log(message, fieldErrors, field);                    

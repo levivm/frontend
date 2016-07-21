@@ -12,8 +12,8 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerReviewsCtrl', OrganizerReviewsCtrl);
 
-    OrganizerReviewsCtrl.$inject = ['$q', 'unreadReviewObjects', 'readReviewObjects', 'Toast', 'unreadReviewsCount', 'organizer', 'ActivitiesManager'];
-    function OrganizerReviewsCtrl($q, unreadReviewObjects, readReviewObjects, Toast, unreadReviewsCount, organizer, ActivitiesManager) {
+    OrganizerReviewsCtrl.$inject = ['$q', 'unreadReviewObjects', 'readReviewObjects', 'Toast', 'organizer', 'ActivitiesManager'];
+    function OrganizerReviewsCtrl($q, unreadReviewObjects, readReviewObjects, Toast, organizer, ActivitiesManager) {
 
         var vm = this;
         angular.extend(vm, {
@@ -87,7 +87,7 @@
               console.log(response);
               vm.unread_reviews = response.results.map(mapActivityToReview);
               vm.unreadPaginationOpts.totalItems = response.count;
-              unreadReviewsCount = response.count;
+              //unreadReviewsCount = response.count;
           });
             
           Toast.success(vm.strings.COPY_REVIEW_READ);

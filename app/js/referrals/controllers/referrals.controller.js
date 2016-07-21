@@ -23,6 +23,7 @@
             referrerUrl: referrerUrl,
             toggleVideoShow: toggleVideoShow,
             postInvite: postInvite,
+            resendInvite: resendInvite,
             getAmazonUrl: getAmazonUrl
         });
 
@@ -54,6 +55,20 @@
             }
         }
 
+        function resendInvite(email){
+            Referrals.postInvite(email).then(success, error);
+
+            function success(response){
+                console.log('success invite:', response);
+                Analytics.studentEvents.sendReferral();
+                Toast.success("Invitaciones enviadas exitosamente");
+            }
+
+            function error(response){
+                Toast.warning("Ocurrio un error al reenviar la invitación");
+            }
+         
+        }
         //--------- Internal Functions ---------//
 
         function _setSocialShare(){

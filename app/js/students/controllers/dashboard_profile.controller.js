@@ -54,21 +54,9 @@
 
         function updateProfile(){
 
-            console.log("updateProfile.Form:", vm.profile_form);
-
-            if(vm.student.birth_date){
-                Error.form.clear(vm.profile_form);
-                vm.student.update_profile().then(success, error);
-            } else {
-                console.log('Student Birth Date undefined');
-                var errorResponse = {
-                    data: {
-                        form_errors: {}
-                    }
-                };
-                errorResponse.data.form_errors[Error.FORM_FIELD_ALL] = [vm.strings.MESSAGE_INVALID_BIRTH_DATE];
-                error(errorResponse);
-            }
+            //console.log("updateProfile.Form:", vm.profile_form);
+           Error.form.clear(vm.profile_form);
+            vm.student.update_profile().then(success, error);
 
             function success(){
                 Toast.generics.weSaved();

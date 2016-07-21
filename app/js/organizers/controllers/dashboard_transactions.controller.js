@@ -193,7 +193,6 @@
         }
         function _mapWithdraws(){
           vm.withdrawals = vm.withdrawals.map(mapStatus);
-
           function mapStatus(withdraw){
             switch (withdraw.status) {
               case STATUS_PENDING_BACK:

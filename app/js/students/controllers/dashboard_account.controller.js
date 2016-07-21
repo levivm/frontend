@@ -130,7 +130,6 @@
         function activate() {
             _setStrings();
             _getOrders();
-            console.log(vm.student);
         }
 
     }

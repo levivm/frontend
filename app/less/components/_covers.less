@@ -158,7 +158,7 @@
 
 }
 .trulii-cover__detail{
-    margin-top: -110px;
+    margin-top: -80px;
   }
 .trulii-cover, .trulii-cover-small, .trulii-cover-medium, .trulii-cover-regular{
 
@@ -169,10 +169,10 @@
   display: block;
   clear: both;
   &__home, &__detail{
-    margin-top: -110px;
+    margin-top: -80px;
     min-height: 90vh !important;
     .after-width(1600px, {
-      min-height: 765px !important;
+      min-height: 600px !important;
     });
   }
   
@@ -474,8 +474,9 @@
         text-align: center;
         font-size: 1em;
         color: white;
-        font-weight: 600;
+        font-weight: 500;
         text-transform: uppercase;
+        z-index: 1000000;
         
         a{
           color: white;
@@ -872,7 +873,7 @@
     min-height: @trulii-cover-height-medium/2;
   }
   @media (min-height: 1081px){
-    min-height: 550px;;
+    min-height: -80px;;
   }
 }
 

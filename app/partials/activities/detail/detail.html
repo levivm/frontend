@@ -201,7 +201,10 @@
         <div class="info separate-above hidden-xs hidden-sm">
           <div class="info__content">
               <div class="col-xs-4">
-                <p class="text-center" ng-bind="detail.activity.level_display"></p>
+                <p class="text-center">
+                  <span ng-bind="::detail.strings.VALUE_LEVEL"></span>
+                  <span ng-bind="::detail.activity.level_display"></span>
+                </p>
               </div>
               <div class="col-xs-4">
                 <p ng-if="detail.activity.certification" class="text-center"
@@ -210,7 +213,12 @@
                    ng-bind="::detail.strings.VALUE_WITHOUT_CERTIFICATION"></p>
               </div>
               <div class="col-xs-4">
-                <p class="text-center" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></p>
+                <p class="text-center" ></p>
+                <p class="text-center">
+                  <span ng-bind="::detail.strings.VALUE_DURATION"></span>
+                  <span ng-if="detail.calendar_selected" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></span>
+                  <span ng-if="!detail.calendar_selected" ng-bind="::detail.strings.VALUE_DOESNT_APPLY"></span>
+                </p>
               </div>
           </div>
         </div>
@@ -329,7 +337,7 @@
           </div>
       </div>
       <div class="calendars-mobile hidden-md hidden-lg">
-
+        <p ng-bind="::detail.strings.COPY_SIGN_UP_NO_DATES" ng-if="detail.activity.upcoming_calendars.length === 0"></p>
         <div class="calendar-mobile" ng-repeat="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id"
         ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index;">
           <div class="row">
@@ -403,7 +411,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row" ng-if="detail.activity.upcoming_calendars.length > 0">
         <div class="col-xs-12">
           <div class="row flex-wrap">
 
@@ -456,12 +464,12 @@
                     </a>
                   </td>-->
                 </tr>
-                <tr ng-repeat-end class="signup-row hidden-xs hidden-sm" ng-show="detail.selectedActivity === $index">
+                <tr ng-repeat-end class="signup-row hidden-xs hidden-sm" ng-show="detail.selectedActivity === $index && calendar.available_capacity > 0">
                   <td colspan=1>
                   </td>
                   <td colspan=4>
                     <div class="text-left">
-                      <span ng-bind="detail.activity.note"></span>
+                      <span ng-bind="calendar.note"></span>
                     </div>
                   </td>
                   <td colspan=1>

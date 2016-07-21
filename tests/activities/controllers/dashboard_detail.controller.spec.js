@@ -22,7 +22,7 @@ xdescribe('Controller: ActivityDBDetailController', function(){
     });
     beforeEach(inject(function($controller,  _$rootScope_, $http, $httpBackend) {
 
-        /*
+        /* 
             Resolves for detail.controller
         */
         $scope =  _$rootScope_;
@@ -53,7 +53,7 @@ xdescribe('Controller: ActivityDBDetailController', function(){
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
 
         ActivitiesManager.getActivity(4)

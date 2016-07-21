@@ -31,14 +31,13 @@
     </div>
 </div>
     <div class="col-xs-12 only-fade separate-below-more  fade-in" ng-show="vm.weHaveTitle"> <!-- col-lg-offset-2 col-md-offset-1 -->
-        <div class="row limited-width-dashboard"  ng-class="{ 'margin-auto': vm.creating}">
+        <div class="row limited-width-dashboard limited-width-dashboard__edit-activity"  ng-class="{ 'margin-auto': vm.creating}">
             <div class="panel-default panel-default__dashboard ">
                 <h4 class="panel-default__dashboard-title" ng-bind="::vm.strings.SECTION_GENERAL"></h4>
             </div>
             <form name='vm.activity_create_form'
                   ng-submit="vm.save_activity()">
                 <fieldset>
-                  <div></div>
                   <div class="form-group col-xs-12 separate-above separate-below-less" trulii-input-errors-control="title" >
                     <label  class="control-label " for="editable_activity_title">Título</label>
                     <input type="text" id="editable_activity_title" class="form-control" name="title"
@@ -61,7 +60,7 @@
                                 </div>
                           </div>
                       </div>
-                      <div class="form-group col-md-6">
+                      <div class="col-md-6">
                           <label class="control-label" ng-bind="::vm.strings.COPY_CERTIFICATION"></label>
                           <div  trulii-input-errors-control="certification">
                               <div class="select-forms">
@@ -94,7 +93,7 @@
                                 </div>
                           </div>
                       </div>
-                      <div class="form-group  col-md-6">
+                      <div class="col-md-6">
                           <label class="control-label" ng-bind="::vm.strings.LABEL_SUB_CATEGORY"></label>
                           <div trulii-input-errors-control="sub_category">
                               <div class="select-forms">
@@ -123,7 +122,10 @@
                                 <span class="text-muted pull-right" ng-bind="vm.MAX_LENGTH_SHORT_DESC - vm.activity.short_description.length"></span>
                   </div>
                   <div class="form-group col-xs-12 separate-above-less">
-                      <label class="control-label" ng-bind="::vm.strings.LABEL_TAGS"></label>
+                      <label class="control-label">
+                          <span ng-bind="::vm.strings.LABEL_TAGS"></span>
+                          <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top" tooltip="{{::vm.strings.COPY_TAGS_TOOLTIP}}"></i>
+                      </label>
                       <tags-input placeholder="Agrega un tag" display-property="name"
                                   ng-model="vm.activity_tags">
                           <auto-complete source="vm.loadAutocompleteTags()"></auto-complete>

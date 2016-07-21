@@ -65,8 +65,8 @@
                             end="search.searchEndCost" update="search.updateCost(start, end)" stop-drag="search.stopDrag()"></trulii-slider>    
                     </li>
                     <li class="search-sidebar__element__price-free">
-                         <div class="trulii-checkbox" ng-click="search.setFree()">
-                            <input type="checkbox" id="free" ng-model="search.isFree">
+                         <div class="trulii-checkbox">
+                            <input type="checkbox" id="free" ng-model="search.checkboxFilters.isFree" ng-change="search.setFree()">
                             <label for="free"><span></span>{{search.strings.LABEL_FREE}}</label>
                         </div>
                     </li>
@@ -119,12 +119,12 @@
                     </li>
                     <li>
                         <div class="trulii-checkbox">
-                            <input type="checkbox" id="cert" ng-model="search.withCert" ng-click="search.setCertification()">
+                            <input type="checkbox" id="cert" ng-model="search.checkboxFilters.withCert" ng-click="search.setCertification()">
                             <label for="cert"><span></span>{{search.strings.LABEL_WITH_CERTIFICATE}}</label>
                         </div>
                         
                         <div class="trulii-checkbox">
-                            <input type="checkbox" id="weekend" ng-model="search.onWeekends" ng-click="search.setWeekends()">
+                            <input type="checkbox" id="weekend" ng-model="search.checkboxFilters.onWeekends" ng-click="search.setWeekends()">
                             <label for="weekend"><span></span>{{search.strings.LABEL_WEEKENDS}}</label>
                         </div>
                     </li>
@@ -144,7 +144,7 @@
                                 <span ng-bind="::search.strings.COPY_FOR"></span>
                                 <span> </span>
                                 <strong>
-                                    <span ng-bind="::search.searchQuery"></span>
+                                    <span ng-bind="search.searchQuery"></span>
                                 </strong>
                             </span>
                             <span ng-if="search.searchCategory">
@@ -170,13 +170,13 @@
                             </div>
                             
                             <div class="trulii-checkbox">
-                                <input type="checkbox" id="cert" ng-checked="search.withCert"  ng-model="search.withCert" >
-                                <label for="cert" ng-click="search.setCertification()"><span></span>{{search.strings.LABEL_WITH_CERTIFICATE}}</label>
+                                <input type="checkbox" id="cert" ng-model="search.checkboxFilters.withCert" ng-change="search.setCertification(search.checkboxFilters.withCert)" >
+                                <label for="cert"><span></span>{{search.strings.LABEL_WITH_CERTIFICATE}}</label>
                             </div>
                             
                             <div class="trulii-checkbox">
-                                <input type="checkbox" id="weekend" ng-checked="search.onWeekends" ng-model="search.onWeekends" >
-                                <label for="weekend" ng-click="search.setWeekends()"><span></span>{{search.strings.LABEL_WEEKENDS}}</label>
+                                <input type="checkbox" id="weekend" ng-model="search.checkboxFilters.onWeekends" ng-change="search.setWeekends(search.checkboxFilters.onWeekends)">
+                                <label for="weekend"><span></span>{{search.strings.LABEL_WEEKENDS}}</label>
                             </div>
                         </div>
                     </div>

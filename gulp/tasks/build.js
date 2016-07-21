@@ -10,6 +10,7 @@ var minifyCss = require('gulp-minify-css');
 var runSequence = require('run-sequence');
 var uglify = require('gulp-uglify');
 var useref = require('gulp-useref');
+var gutil = require('gulp-util');
 
 var config = require('../config');
 var dist = require('../config').dist;
@@ -44,7 +45,9 @@ gulp.task('build-useref', function() {
     var uglyVendorOptions = { 'mangle': false };
     return gulp.src(config.source.html.index)
         .pipe(useref())
-        .pipe(gulpif('*.js', uglify(uglyVendorOptions)))
+        .pipe(gulpif('*.js', uglify(uglyVendorOptions).on('error', function(e){
+            console.log(e);
+        })))
         .pipe(gulpif('*.css', minifyCss()))
         .pipe(gulp.dest(config.dist.all));
 });

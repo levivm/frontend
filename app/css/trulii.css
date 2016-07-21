@@ -12706,7 +12706,7 @@ hr.on-light {
 }
 .limited-width-dashboard__calendar {
   margin-left: 0px;
-  margin-top: 0em;
+  margin-top: 0px;
 }
 @media screen and (max-width: 992px) {
   .limited-width-dashboard {
@@ -12714,6 +12714,9 @@ hr.on-light {
     margin: auto;
     margin-left: auto;
   }
+}
+.limited-width-dashboard__edit-activity {
+  margin-top: 20px;
 }
 .limited-width-about {
   width: 75%;
@@ -14918,7 +14921,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   margin-top: 10px;
   margin-left: 20px;
   background: white;
-  border-radius: 0;
+  border-radius: 45px;
   display: inline-block;
   position: relative;
   background-color: transparent;
@@ -15079,6 +15082,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-bar__navbar button:focus {
   outline: 0 !important;
+  border-color: #e3e3e3;
 }
 .search-container {
   margin-top: 75px;
@@ -15323,7 +15327,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .search-container .search-sidebar__element .subcategories {
   font-weight: 600;
-  font-size: 0.8em;
+  font-size: 0.9em;
   letter-spacing: 1px;
   margin: 0 -15px;
   text-transform: capitalize;
@@ -18971,7 +18975,7 @@ button.toast-close-button {
   background-color: #f4d352 !important;
 }
 .toast-top-full-width {
-  top: 65px !important;
+  top: 70px !important;
 }
 #toast-container {
   position: fixed;
@@ -19365,7 +19369,7 @@ button.toast-close-button {
   font-size: 1.4em;
 }
 .trulii-cover__detail {
-  margin-top: -110px;
+  margin-top: -80px;
 }
 .trulii-cover,
 .trulii-cover-small,
@@ -19386,7 +19390,7 @@ button.toast-close-button {
 .trulii-cover-small__detail,
 .trulii-cover-medium__detail,
 .trulii-cover-regular__detail {
-  margin-top: -110px;
+  margin-top: -80px;
   min-height: 90vh !important;
 }
 @media screen and (min-width: 1600px) {
@@ -19398,7 +19402,7 @@ button.toast-close-button {
   .trulii-cover-small__detail,
   .trulii-cover-medium__detail,
   .trulii-cover-regular__detail {
-    min-height: 765px !important;
+    min-height: 600px !important;
   }
 }
 .trulii-cover .row,
@@ -19870,8 +19874,9 @@ button.toast-close-button {
   text-align: center;
   font-size: 1em;
   color: white;
-  font-weight: 600;
+  font-weight: 500;
   text-transform: uppercase;
+  z-index: 1000000;
 }
 .trulii-cover__content-landing-categories a,
 .trulii-cover-small__content-landing-categories a,
@@ -20518,7 +20523,7 @@ button.toast-close-button {
 }
 @media (min-height: 1081px) {
   .trulii-cover-medium {
-    min-height: 550px;
+    min-height: -80px;
   }
 }
 .detail-organizer {
@@ -21208,14 +21213,11 @@ blockquote {
 .activity-detail__enroll-widget__content {
   box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.25);
   width: 250px;
-  height: 355px;
+  height: auto;
   border: 1px solid #ededed;
   padding: 20px;
   transition: all 0.5s;
   color: #4E546C;
-}
-.activity-detail__enroll-widget__content-free {
-  height: 380px;
 }
 .activity-detail__enroll-widget__content hr {
   margin-top: 5px;
@@ -21342,6 +21344,7 @@ blockquote {
   word-break: break-word;
   margin-bottom: 0px;
   font-size: 1.1em;
+  color: #767676 !important;
 }
 @media screen and (max-width: 768px) {
   .activity-detail p {
@@ -21854,7 +21857,7 @@ blockquote {
 }
 .gallery {
   width: 100%;
-  height: 32em;
+  height: 400px;
   text-align: center;
   position: relative;
   margin-left: auto;
@@ -22129,6 +22132,10 @@ blockquote {
 .sign-up-container a {
   text-decoration: none;
 }
+.sign-up-container .btn {
+  font-size: 1em;
+  padding: 0.5em 1em;
+}
 .sign-up-container .btn [class^="mdi-"],
 .sign-up-container .btn [class*="mdi-"] {
   vertical-align: middle;
@@ -22157,6 +22164,7 @@ blockquote {
   line-height: 1.35em;
   margin: 1.5em 0em;
   color: #4E546C;
+  text-transform: capitalize;
 }
 .sign-up-container .calendars-container {
   padding: 0 20px;
@@ -22233,9 +22241,10 @@ blockquote {
 .sign-up-container .calendars-container .table tbody tr td,
 .sign-up-container .calendars-container .table tfoot tr td {
   cursor: pointer;
-  font-weight: regular;
+  font-weight: 400;
   padding: 15px 1.5em;
   line-height: 2em;
+  text-transform: capitalize;
 }
 @media screen and (max-width: 768px) {
   .sign-up-container .calendars-container .table thead tr td:first-child,
@@ -22573,9 +22582,11 @@ blockquote {
 .activity-enroll__billing-widget .total .item {
   font-weight: 600;
   padding-top: 0.2rem;
+  text-transform: uppercase;
+  font-size: 12px;
 }
 .activity-enroll__billing-widget .total .value {
-  font-size: 1.2em;
+  font-size: 12px;
   margin-top: 3px;
 }
 .activity-enroll__billing-widget .discount-button {
@@ -24411,7 +24422,7 @@ blockquote {
 }
 .review-student {
   display: flex;
-  height: 310px;
+  height: 340px;
   overflow: hidden;
   box-shadow: #DCDDE2 0px 0px 0px 0px;
   transition: all 0.33s;
@@ -24472,7 +24483,7 @@ blockquote {
   position: absolute;
   width: 60%;
   left: 34%;
-  top: 8em;
+  top: 7em;
   padding-top: 2em;
   border-top: 1px solid #ededed;
 }
@@ -24485,6 +24496,9 @@ blockquote {
   right: 55px;
   top: 40px;
   color: #9b9b9b;
+}
+.review-detail {
+  margin: 0 0 50px 0;
 }
 .review-detail__student {
   position: absolute;
@@ -24650,7 +24664,7 @@ blockquote {
 }
 .profile-cover {
   margin-top: -80px;
-  min-height: 88vh;
+  min-height: 600px;
   width: 100%;
   position: relative;
 }
@@ -24658,7 +24672,7 @@ blockquote {
   min-width: 100vw;
 }
 .profile-cover__container {
-  min-height: 88vh;
+  min-height: 600px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -24746,7 +24760,6 @@ blockquote {
 }
 .profile-biography {
   background-color: white;
-  padding: 5rem 0 10rem 0;
 }
 .profile-biography .profile-biography--content {
   padding: 5rem 0;
@@ -24762,7 +24775,7 @@ blockquote {
 }
 .profile-location .map {
   width: 100%;
-  height: 40em;
+  height: 35em;
 }
 @media screen and (max-width: 480px) {
   .profile-location .map {
@@ -24771,12 +24784,6 @@ blockquote {
 }
 .profile-comments {
   background-color: white;
-  padding: 5rem;
-}
-@media screen and (max-width: 768px) {
-  .profile-comments {
-    padding: 3rem;
-  }
 }
 .profile-comments .comment {
   padding: 1rem;
@@ -24860,6 +24867,15 @@ blockquote {
 }
 .organizer-signup .form-group:not(:first-child) {
   margin-top: 30px;
+}
+.organizer-signup .form-group:not(:first-child) .select-forms {
+  width: 40%;
+  display: inline-block;
+  float: left;
+}
+.organizer-signup .form-group:not(:first-child) .select-forms select.form-control {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
 }
 .organizer-signup h1.title {
   font-weight: 800;
@@ -25070,6 +25086,12 @@ blockquote {
     left: 40px;
     top: 48px;
     display: block;
+  }
+  .order-mobile {
+    display: none !important;
+  }
+  .table-order {
+    display: block !important;
   }
   .order-description {
     background-color: #ededed;
@@ -25299,7 +25321,7 @@ blockquote {
   width: 30%;
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
-  font-size: 1em;
+  font-size: 0.8em;
 }
 @media (max-width: 768px) {
   .referral-input button {
@@ -25308,9 +25330,26 @@ blockquote {
     border-radius: 54px !important;
   }
 }
+.referral-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto;
+  border-radius: 60px;
+  padding-top: 16px;
+}
+.referral-icon-1 {
+  background-color: #1F5DEA;
+}
+.referral-icon-2 {
+  background-color: #32CDDA;
+}
+.referral-icon-3 {
+  background-color: #00e2aa;
+}
 .referral-share.list-inline li {
   padding-left: 2px;
   padding-right: 2px;
+  vertical-align: middle;
 }
 .referral-share.list-inline li a {
   color: white;
@@ -25332,7 +25371,6 @@ blockquote {
 }
 .referral-share.list-inline li:nth-child(n+3) {
   vertical-align: middle;
-  margin-top: 15px;
 }
 .referral-share.list-inline li:nth-child(n+3) .share-button {
   width: 52px;

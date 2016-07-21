@@ -1,0 +1,9 @@
+{
+    "id":1,
+    "date":"2016-07-19T01:57:56.639194Z",
+    "amount":350000.0,
+    "status":"pending",
+    "organizer":1,
+    "logs":[1,2,3,4,5,6],
+    "new_available_amount":0
+}

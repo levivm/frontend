@@ -71,7 +71,8 @@
                     <span ng-bind="enroll.strings.LABEL_SEATS_X"></span><span ng-bind="enroll.assistants.length"></span>
                 </div>
                 <div class="col-xs-12 col-md-6 value">
-                    <span ng-bind="enroll.amount | currency"></span>
+                    <span ng-if="!enroll.calendar.is_free" ng-bind="enroll.amount | currency"></span>
+                    <span ng-if="enroll.calendar.is_free" class="text-uppercase" ng-bind="::enroll.strings.LABEL_FREE_CALENDAR"></span>
                 </div>
             </div>
             <hr>
@@ -80,7 +81,8 @@
                     <span ng-bind="assistant.first_name"></span> <span ng-bind="assistant.last_name"></span>
                 </div>
                 <div class="col-xs-12 col-md-6 sub-value">
-                    <span ng-bind="enroll.calendar.session_price | currency"></span>
+                    <span ng-if="!enroll.calendar.is_free" ng-bind="enroll.calendar.session_price | currency"></span>
+                    <span ng-if="enroll.calendar.is_free" ng-bind="0 | currency"></span>
                 </div>
             </div>
             <hr>
@@ -90,7 +92,8 @@
                     <span ng-bind="::enroll.strings.LABEL_FREE_CALENDAR"></span>
                 </div>
                 <div class="col-xs-12 col-md-6 value">
-                    <span ng-bind="- enroll.calendar.session_price | currency"></span>
+                    <span ng-if="!enroll.calendar.is_free" ng-bind="enroll.calendar.session_price | currency"></span>
+                    <span ng-if="enroll.calendar.is_free" ng-bind="0 | currency"></span>
                 </div>
             </div>
             <!--Coupons-->
@@ -318,16 +321,16 @@
                                                         <div class="form-group" trulii-input-errors-control="cardMonth">
                                                             <label for="cardMonth" ng-bind="::enroll.strings.LABEL_MONTH"></label>
                                                             <div class="select-forms hidden-sm hidden-md hidden-lg">
-                                                                    <label>
-                                                                        <select class="form-control hidden-sm hidden-md hidden-lg " name="monthSelect" id="levelSelect"
-                                                                            ng-model="enroll.monthSelected"
-                                                                            ng-change="enroll.changeMonth()"
-                                                                            ng-options="month as month for month in enroll.months">
-                                                                            <option  ng-hide="enroll.monthSelected" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_MONTH"></option>
-                                                                        </select>
-                                                                    </label>
-                                                                </div>
-                                                            
+                                                                <label>
+                                                                    <select class="form-control hidden-sm hidden-md hidden-lg " name="monthSelect" id="levelSelect"
+                                                                        ng-model="enroll.monthSelected"
+                                                                        ng-change="enroll.changeMonth()"
+                                                                        ng-options="month as month for month in enroll.months">
+                                                                        <option  ng-hide="enroll.monthSelected" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_MONTH"></option>
+                                                                    </select>
+                                                                </label>
+                                                            </div>
+                                                        
                                                             <input type="number" name="cardMonth" min=1 max=12 class="form-control hidden-xs" id="cardMonth"
                                                                     ng-model="enroll.cardData.exp_month"
                                                                     ng-blur="enroll.checkCardExpiry()"
@@ -429,11 +432,11 @@
                                                             <label for="userType" ng-bind="::enroll.strings.LABEL_USER_TYPE"></label>
                                                             <div class="select-forms">
                                                                     <label>
-                                                                        <select  class="form-control input-lg" name="userType" id="userType"
+                                                                        <select class="form-control input-lg" name="userType" id="userType"
                                                                             ng-model="enroll.pseData.selectedUserType"
                                                                             ng-options="type  as type.description for (index,type) in enroll.pseFormData.userTypes">
                                                                             <option value="" ng-show="!enroll.pseData.selectedBank"
-                                                                                    ng-bind="::enroll.strings.OPTION_USER_TYPE_DEFAULT" selected>
+                                                                                ng-bind="::enroll.strings.OPTION_USER_TYPE_DEFAULT" selected>
                                                                             </option>
                                                                         </select>
                                                                 </label>
@@ -448,10 +451,12 @@
                                                             <div class="input-group">
                                                                 <div class="select-forms">
                                                                     <label>
-                                                                        <select name="" id="" class="form-control"
-                                                                            ng-options="document.id as document.name for document in enroll.pseFormData.idTypes"
-                                                                            ng-model="enroll.pseData.idType">
-                                                                            <option value="" ng-hide="enroll.pseData.idType" ng-bind="enroll.strings.OPTION_ID_TYPE_DEFAULT"></option>
+                                                                        <select class="form-control" name="userId" id="userId" 
+                                                                            ng-model="enroll.pseData.idType"
+                                                                            ng-options="document as document.description for document in enroll.pseFormData.idTypes track by document.value">
+                                                                            <option value="" ng-show="!enroll.pseData.idType"
+                                                                                ng-bind="enroll.strings.OPTION_ID_TYPE_DEFAULT" selected>
+                                                                            </option>
                                                                         </select>
                                                                     </label>
                                                                 </div>

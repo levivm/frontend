@@ -8,7 +8,14 @@
     },
     "production": {
         "serverConf": {
-            "url": "https://api.trulii.com",
+            "url": "https://dockerb.trulii.com",
+            "FACEBOOK_APP_KEY":"1698391543708239",
+            "s3URL":"https://s3-us-west-2.amazonaws.com/trulii-dev"
+        }
+    },
+    "staging": {
+        "serverConf": {
+            "url": "https://staging-backend.trulii.com",
             "FACEBOOK_APP_KEY":"1698391543708239",
             "s3URL":"https://s3-us-west-2.amazonaws.com/trulii-dev"
         }
