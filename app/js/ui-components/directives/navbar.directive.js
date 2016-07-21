@@ -344,20 +344,6 @@
                     );
                 }
                 
-                /*function _changePageTitle(state) {
-                    
-                    
-                   if(state.hasOwnProperty('data') && state.data.hasOwnProperty('pageTitle') && state.data.hasOwnProperty('pageDescription')){
-                        //TruliiSEO.setPageContent(state.data.pageTitle, state.data.pageDescription);
-                        TruliiSEO.setTitle(state.data.pageTitle);
-                    }else{
-                         //TruliiSEO.setPageContent();
-                    }
-                    if(state.name == 'search'){
-                       var searchPageTitle = 'Trulii | '+LocationManager.getSearchCity().name
-                       //TruliiSEO.setPageContent(searchPageTitle);
-                    } 
-                }*/
 
                 function _activate() {
                     _setStrings();
@@ -370,8 +356,6 @@
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');
-                        console.log(toState);
-                         //_changePageTitle(toState)
                         Analytics.sendPageView();
                     });
 

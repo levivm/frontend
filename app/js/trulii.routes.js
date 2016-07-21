@@ -24,12 +24,12 @@
      */
     config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'MetaTagsProvider'];
     function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, MetaTagsProvider) {
-       
-       MetaTagsProvider.setDefaultTitle('Trulii: Cursos, Clases, Talleres y Actividades en Colombia');
-       MetaTagsProvider.setDefaultDescription('Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!');
-       console.log(MetaTagsProvider);
-            //.setDefaultDescription('Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!');
-            
+        var DEFAULT_TITLE='Trulii: Cursos, Clases, Talleres y Actividades en Colombia';
+        var DEFAULT_DESCRIPTION = 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!';
+        MetaTagsProvider.setDefaultTitle(DEFAULT_TITLE);
+        MetaTagsProvider.setDefaultDescription(DEFAULT_DESCRIPTION);
+
+
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/404');
 
@@ -57,8 +57,8 @@
                      generalInfo: getPresaveActivityInfo
                 },
                 metaTags:{
-                    title: 'Trulii: Cursos, Clases, Talleres y Actividades en Colombia',
-                    description: 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!'
+                    title: DEFAULT_TITLE,
+                    description: DEFAULT_DESCRIPTION
                 }
                 
             })
@@ -75,9 +75,9 @@
                         'params' : {}
                     }
                 },
-                data:{
-                    pageTitle:'Contáctanos | Trulii',
-                    pageDescription: '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!'
+                metaTags:{
+                    title:'Contáctanos | Trulii',
+                    description: '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!'
                 }
             })
             .state('modal-dialog', {

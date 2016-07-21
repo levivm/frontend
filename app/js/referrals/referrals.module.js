@@ -34,9 +34,9 @@
                 url: '/referrals',
                 abstract: true,
                 template: '<ui-view />',
-                data:{
-                    pageTitle:'Invita a un amigo a Aprender | Trulii',
-                    pageDescription: 'Comparte con tu amigo, familiar o conocido ese curso, taller, clase o diplomado que te gustó en Trulii y recibe grandes beneficios para ti. ¡Anímate!'
+                metaTags:{
+                    title:'Invita a un amigo a Aprender | Trulii',
+                    description: 'Comparte con tu amigo, familiar o conocido ese curso, taller, clase o diplomado que te gustó en Trulii y recibe grandes beneficios para ti. ¡Anímate!'
                 }
             })
             .state('referrals.home', {

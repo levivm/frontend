@@ -18,9 +18,9 @@
                 url: '/about/',
                 controller: 'AboutController as about',
                 templateUrl: 'partials/about/about.html',
-                data:{
-                    pageTitle:'¡Conócenos! | Trulii',
-                    pageDescription: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!'
+                metaTags:{
+                    title:'¡Conócenos! | Trulii',
+                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!'
                 }
             })
             .state('about.mission', {

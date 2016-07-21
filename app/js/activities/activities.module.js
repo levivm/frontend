@@ -231,7 +231,7 @@
                     organizer: getActivityOrganizer,
                     relatedActivities: getOrganizerActivities
                 },
-                truliiMetaTags:{
+                metaTags:{
                     title: function(activity){
                         return activity.title;
                     },
