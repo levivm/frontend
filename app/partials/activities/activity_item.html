@@ -1,4 +1,4 @@
-<a ui-sref="activities-detail({activity_id: {{::activity.id}} })" class="trulii-activity-card-anchor">
+<a ui-sref="activities-detail({category_slug: {{activity.category.slug}}, activity_id: {{::activity.id}}, activity_title: titleSlug})" class="trulii-activity-card-anchor">
   <div class="trulii-activity-card" ng-class="{'trulii-activity-card-non-organizer': !organizer, 'trulii-activity-card-organizer': organizer}">
     <div class="trulii-activity-card__header" style="background-image: url('{{activity.main_photo}}') ">
       <span ng-if="!organizer" class="trulii-activity-card__header__menu">
@@ -33,6 +33,7 @@
     </div>
     <div class="trulii-activity-card__body">
       <div class="trulii-activity-card__body__content">
+        {{activity.category.slug}}
         <div class="trulii-activity-card__body__content__title text-center" ng-class="{'text-left': organizer}" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })" ng-bind="::activity.title | limitTo : titleSize">
         </div>
         <br>
@@ -66,5 +67,4 @@
       </div>
     </div>
   </div>
-
 </a>

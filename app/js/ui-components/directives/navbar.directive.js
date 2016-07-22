@@ -27,6 +27,7 @@
                 var STATE_HOW_TO_WORK_HOME = 'home';
                 var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
                 var statesValids = ['home', 
+                                    'category',
                                     'activities-detail' , 
                                     'activities-enroll', 
                                     'organizer-profile', 

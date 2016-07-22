@@ -19405,6 +19405,21 @@ button.toast-close-button {
     min-height: 600px !important;
   }
 }
+.trulii-cover__category,
+.trulii-cover-small__category,
+.trulii-cover-medium__category,
+.trulii-cover-regular__category {
+  margin-top: -80px;
+  min-height: 50vh !important;
+}
+@media screen and (min-width: 1600px) {
+  .trulii-cover__category,
+  .trulii-cover-small__category,
+  .trulii-cover-medium__category,
+  .trulii-cover-regular__category {
+    min-height: 350px !important;
+  }
+}
 .trulii-cover .row,
 .trulii-cover-small .row,
 .trulii-cover-medium .row,

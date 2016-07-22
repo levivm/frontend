@@ -554,11 +554,6 @@
           <span class="rating" ng-bind="::(detail.organizer.rating | number: 1)+ '/5'"></span>
         </span>
       </p>
-      <p class="reviews-container--reviews-empty" ng-if="detail.reviews.length==0" >
-        <span ng-bind="::detail.strings.COPY_EMPTY_REVIEWS">
-        </span>
-      </p>
-
       <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1" ng-repeat="review in detail.reviews track by review.id">
           <trulii-activity-review data-review="review"

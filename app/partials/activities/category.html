@@ -1,0 +1,49 @@
+<div class="trulii-cover-regular trulii-cover__category">
+  <div class="trulii-cover__container">
+    <div class="trulii-cover__content">
+      <div class="col-xs-12 col-md-offset-1 col-md-10 limited-width padding-vertical-regular">
+        <div class="row ">
+          <div class="col-xs-12 ">
+            <h1 class="title text-center font-light separate-above-less" ng-bind="::category.category.name"></h1>
+            <h5 class="organizer text-center" ng-bind="::category.category.description"></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="trulii-cover__background" style="background-image: url({{category.getAmazonUrl('static/img/organizer-profile/organizer_profile_bg.png')}});">
+    </div>
+  </div>
+</div>
+<div class="col-xs-12 limited-width separate-above-more separate-below-more">
+    <div class="row">
+        <div class="col-xs-12 col-lg-6">
+            <img ng-src="{{category.getAmazonUrl(category.category.cover)}}" alt="" class="img-responsive center-block">
+        </div>
+        <div class="col-xs-12 col-lg-6">
+            <h2 class="text-gray-brand">
+                <strong>Título</strong>
+            </h2>
+            <p class="separate-above">
+                I am getting rid of this thing. It has caused me nothing but pride and self-respect. Hey, maybe you could pop a tent outside with your cousin Maeby… it'd be a good chance to rub off on her. Uncle Gob… was Aunt Lindsay ever pregnant? Yeah, sure, dozens of times. Saw this on the highway and almost blue myself. Hop on? I didn't mean who… I meant… her?
+                
+                <br>
+                <br>
+
+                What's gotten into you? Have you been eating cheese? Hahahahah! Sweet old thing. Only two of those words describe Mom, so I know you're lying to me. You want to have some guy reach around you in the middle of the night, start messing with your junk?
+            </p>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 hidden-xs hidden-sm separate-below-more" ng-if="category.categoryActivities.length > 0">
+  <div class="row">
+      <div class="flex-cards separate-above-more" >
+           <trulii-activity-item data-activity="activity" ng-repeat="activity in category.cards"></trulii-activity-item>
+      </div>
+      <div class="col-xs-12 limited-width">
+        <a class="btn btn-lg btn-block btn-blue-dark" ui-sref="search(category.searchData)" ng-bind="category.strings.COPY_MORE_SIMILAR_ACTIVITIES"></a>
+      </div>
+  </div>
+</div>
+
+<trulii-footer>
+</trulii-footer>

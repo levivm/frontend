@@ -206,7 +206,7 @@
               }
             })
             .state('category', {
-                url: '/:category_name',
+                url: '/actividades/:category_name',
                 templateUrl: 'partials/activities/category.html',
                 controller: 'CategoryController as category',
                 resolve: {
@@ -216,9 +216,11 @@
             })
 
             .state('activities-detail', {
-                url:'/activities/{activity_id:int}/:activity_title',
+
+                url:'/actividades/:category_slug/:activity_title/{activity_id:int}',
                 params: {
-                  activity_title: {value: null, squash: true}
+                  activity_title: {value: null, squash: false},
+                  category_slug: {value: null, squash: false}
                 },
                 views:{
                     '@': {
@@ -647,9 +649,9 @@
             return ActivitiesManager.getCategory($stateParams.category_name);
         }
 
-        getCategoryActivities.$inject = ['ActivitiesManager', '$stateParams'];
-        function getCategoryActivities(ActivitiesManager, $stateParams){
-            return ActivitiesManager.getCategoryActivities($stateParams.category_name);
+        getCategoryActivities.$inject = ['ActivitiesManager', 'category'];
+        function getCategoryActivities(ActivitiesManager, category){
+            return ActivitiesManager.getCategoryActivities(category.data.id);
         }
 
     }

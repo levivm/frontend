@@ -146,7 +146,7 @@
           vm.options = {
             
             chart: {
-                type: 'lineChart',
+                type: 'cumulativeLineChart',
                 height: 450,
                 margin : {
                     top: 20,

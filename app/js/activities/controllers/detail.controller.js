@@ -431,7 +431,6 @@
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
-                COPY_EMPTY_REVIEWS: "Aun no hay evaluaciones para esta actividad",
                 COPY_NUMBER_OF_LIKES: "personas aman esto",
                 COPY_BE_THE_FIRST: "¡Sé el primero!"
             });
@@ -479,7 +478,7 @@
               return dict[char] || char;
             });
             
-            $state.go('activities-detail', {activity_id: activity.id, activity_title: title} ,{location: "replace", notify: false, reload: true});
+            $state.go('activities-detail', {activity_id: activity.id, activity_title: title, category_slug: activity.category.slug} ,{location: "replace", notify: false, reload: true});
             
         }
         

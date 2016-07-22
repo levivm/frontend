@@ -20,15 +20,19 @@
         .controller('CategoryController', CategoryController);
 
     CategoryController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
-        'Toast', 'serverConf', 'Scroll', 'Facebook', 'Analytics'];
+        'Toast', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'SearchManager', 'LocationManager', 'category', 'categoryActivities'];
 
     function CategoryController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
-                                      Toast, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
+                                      Toast, serverConf, Scroll, Facebook, Analytics, SearchManager, LocationManager, category, categoryActivities) {
                                           
         var vm = this;
 
         angular.extend(vm, {
             getAmazonUrl: getAmazonUrl,
+            category: category.data,
+            categoryActivities: categoryActivities.results,
+            cards: [],
+            searchData: {}
         });
 
         _activate();
@@ -40,6 +44,22 @@
         }
 
         //--------- Internal Functions ---------//
+
+        function _mapTemplates(){
+            for(var i = 0; i < vm.categoryActivities.length; i++){
+                vm.categoryActivities[i].template = "partials/activities/dynamic_layout_item.html";
+            }
+            vm.categoryActivities = vm.categoryActivities.splice(0, 8);
+            vm.cards = vm.categoryActivities;
+        }
+
+        function _setSearchData(){
+            SearchManager.setCategory(vm.category.id);
+            vm.currentCity = LocationManager.getCurrentCity();
+            console.log(vm.currentCity);
+            SearchManager.setCity(vm.currentCity.id);
+            vm.searchData = SearchManager.getSearchData();
+        }
 
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
@@ -120,6 +140,10 @@
 
         function _activate(){
             _setStrings();
+            _setSearchData();
+            _mapTemplates();
+            console.log(category);
+            console.log(categoryActivities);
         }
     }
 })();
