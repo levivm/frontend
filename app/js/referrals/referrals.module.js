@@ -31,7 +31,7 @@
     function config($stateProvider) {
         $stateProvider
             .state('referrals', {
-                url: '/referrals',
+                url: '/referir',
                 abstract: true,
                 template: '<ui-view />',
                 metaTags:{
@@ -58,7 +58,7 @@
                 }
             })
             .state('referrals.invitation', {
-                url: '/invitation/:idReferrer',
+                url: '/invitacion/:idReferrer',
                 controller: 'ReferralsInvitationCtrl as referrals',
                 templateUrl: 'partials/students/referrals/invitation.html',
                 resolve: {
