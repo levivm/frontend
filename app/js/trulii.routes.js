@@ -22,20 +22,20 @@
      * @requires ui.router.router.$urlRouterProvider
      * @requires ui.router.util.$urlMatcherFactoryProvider
      */
-    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'MetaTagsProvider'];
-    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, MetaTagsProvider) {
+    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'UIRouterMetatagsProvider'];
+    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, UIRouterMetatagsProvider) {
         var DEFAULT_TITLE='Trulii: Cursos, Clases, Talleres y Actividades en Colombia';
         var DEFAULT_DESCRIPTION = 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!';
-        MetaTagsProvider.setDefaultTitle(DEFAULT_TITLE);
-        MetaTagsProvider.setDefaultDescription(DEFAULT_DESCRIPTION);
-
+        UIRouterMetatagsProvider.setDefaultTitle(DEFAULT_TITLE);
+        UIRouterMetatagsProvider.setDefaultDescription(DEFAULT_DESCRIPTION);
+        
 
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/404');
 
         $stateProvider
             .state('search', {
-                url: '/search?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends&page&is_free&o',
+                url: '/buscar?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends&page&is_free&o',
                 controller:'SearchController as search',
                 templateUrl: 'partials/search.html',
                 resolve:{
@@ -63,7 +63,7 @@
                 
             })
             .state('contact-us', {
-                url:'/contact/us',
+                url:'/contactanos',
                 controller:'ContactController as contact',
                 resolve:{
                     cities:getAvailableCities
@@ -86,7 +86,7 @@
                 controllerAs: 'vm'
             })
             .state('modal-dialog.password-forgot', {
-                url:'password/forgot/',
+                url:'password/recordar/',
                 parent: 'modal-dialog',
                 views:{
                     'modal@':{

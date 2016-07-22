@@ -35,14 +35,14 @@
             'ui.select',
             'textAngular',
             'uiGmapgoogle-maps',
-            'metaTags'
+            'ui.router.metatags'
         ]);  
 
     angular
         .module('trulii.config', ['facebook','720kb.socialshare']);
 
     angular
-        .module('trulii.routes', ['ui.router', 'trulii.routes.config', 'metaTags']);
+        .module('trulii.routes', ['ui.router', 'trulii.routes.config', 'ui.router.metatags']);
 
     angular
         .module('trulii')

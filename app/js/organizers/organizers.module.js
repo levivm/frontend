@@ -36,7 +36,7 @@
     function config($stateProvider) {
         $stateProvider
             .state('organizer-landing', {
-                url:'/organizers/landing/',
+                url:'/se-organizador/',
                 controller: 'OrganizerLandingCtrl as landing',
                 templateUrl: 'partials/organizers/landing.html',
                 params: {
@@ -51,7 +51,7 @@
                 }
             })
             .state('organizer-profile', {
-                url: '/organizers/{organizer_id:int}/:organizer_name',
+                url: '/organizador/{organizer_id:int}/:organizer_name',
                 params: {
                   organizer_name: {value: null, squash: true}
                 },
@@ -66,7 +66,7 @@
             })
             .state('organizer-dashboard', {
                 abstract:true,
-                url:'/organizer/dashboard/',
+                url:'/organizador/dashboard/',
                 controller: 'OrganizerDashboardCtrl as dash',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
@@ -81,7 +81,7 @@
                 }
             })
             .state('organizer-dashboard.account', {
-                url:'account/',
+                url:'cuenta/',
                 controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard/account.html',
                 resolve: {
@@ -90,15 +90,15 @@
                 }
             })
             .state('organizer-dashboard.account.settings', {
-                url:'settings',
+                url:'ajustes',
                 templateUrl: 'partials/organizers/dashboard/account_settings.html'
             })
             .state('organizer-dashboard.account.banking', {
-                url:'banking',
+                url:'banco',
                 templateUrl: 'partials/organizers/dashboard/account_banking.html'
             })
             .state('organizer-dashboard.activities', {
-                url:'activities/',
+                url:'actividades/',
                 controller: 'OrganizerActivitiesCtrl as activities',
                 templateUrl: 'partials/organizers/dashboard/activities.html',
                 resolve: {
@@ -108,24 +108,24 @@
                 }
             })
             .state('organizer-dashboard.activities.open', {
-                url:'open',
+                url:'abiertas',
                 templateUrl: 'partials/organizers/dashboard/activities_open.html'
             })
             .state('organizer-dashboard.activities.closed', {
-                url:'closed',
+                url:'cerradas',
                 templateUrl: 'partials/organizers/dashboard/activities_closed.html'
             })
             .state('organizer-dashboard.activities.inactive', {
-                url:'inactive',
+                url:'inactivas',
                 templateUrl: 'partials/organizers/dashboard/activities_inactive.html'
             })
             .state('organizer-dashboard.instructors', {
-                url:'instructors/',
+                url:'instructores/',
                 controller: 'OrganizerInstructorsCtrl as instructors',
                 templateUrl: 'partials/organizers/dashboard/instructors.html'
             })
             .state('organizer-dashboard.transactions', {
-                url:'transactions/',
+                url:'transacciones/',
                 controller: 'OrganizerTransactionsCtrl as transactions',
                 templateUrl: 'partials/organizers/dashboard/transactions.html',
                 resolve: {
@@ -138,7 +138,7 @@
                 }
             })
             .state('organizer-dashboard.transactions.sales', {
-                url:'sales',
+                url:'ventas',
                 templateUrl: 'partials/organizers/dashboard/transactions_sales.html'
             })
             .state('organizer-dashboard.transactions.balance', {
@@ -146,16 +146,16 @@
                 templateUrl: 'partials/organizers/dashboard/transactions_balance.html'
             })
             .state('organizer-dashboard.transactions.withdrawals', {
-                url:'withdrawals',
+                url:'retiros',
                 templateUrl: 'partials/organizers/dashboard/transactions_withdrawals.html'
             })
             .state('organizer-dashboard.profile', {
-                url:'profile',
+                url:'perfil',
                 controller: 'OrganizerProfileCtrl as profile',
                 templateUrl: 'partials/organizers/dashboard/profile.html'
             })
             .state('organizer-dashboard.reviews', {
-                url:'reviews/',
+                url:'comentarios/',
                 controller: 'OrganizerReviewsCtrl as reviews',
                 templateUrl: 'partials/organizers/dashboard/reviews.html',
                 resolve: {
@@ -167,11 +167,11 @@
                 }
             })
             .state('organizer-dashboard.reviews.done', {
-                url:'done',
+                url:'revisados',
                 templateUrl: 'partials/organizers/dashboard/reviews_done.html'
             })
             .state('organizer-dashboard.reviews.pending', {
-                url:'pending',
+                url:'pendientes',
                 templateUrl: 'partials/organizers/dashboard/reviews_pending.html'
             });
 
