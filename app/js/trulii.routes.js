@@ -22,15 +22,20 @@
      * @requires ui.router.router.$urlRouterProvider
      * @requires ui.router.util.$urlMatcherFactoryProvider
      */
-    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider'];
-    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider) {
+    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'UIRouterMetatagsProvider'];
+    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, UIRouterMetatagsProvider) {
+        var DEFAULT_TITLE='Trulii: Cursos, Clases, Talleres y Actividades en Colombia';
+        var DEFAULT_DESCRIPTION = 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!';
+        UIRouterMetatagsProvider.setDefaultTitle(DEFAULT_TITLE);
+        UIRouterMetatagsProvider.setDefaultDescription(DEFAULT_DESCRIPTION);
+        
 
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/404');
 
         $stateProvider
             .state('search', {
-                url: '/search?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends&page&is_free&o',
+                url: '/buscar?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends&page&is_free&o',
                 controller:'SearchController as search',
                 templateUrl: 'partials/search.html',
                 resolve:{
@@ -50,10 +55,15 @@
                 resolve: {
                      activities: getRecommendedActivities,
                      generalInfo: getPresaveActivityInfo
+                },
+                metaTags:{
+                    title: DEFAULT_TITLE,
+                    description: DEFAULT_DESCRIPTION
                 }
+                
             })
             .state('contact-us', {
-                url:'/contact/us',
+                url:'/contactanos',
                 controller:'ContactController as contact',
                 resolve:{
                     cities:getAvailableCities
@@ -64,6 +74,10 @@
                         'state' : 'home',
                         'params' : {}
                     }
+                },
+                metaTags:{
+                    title:'Contáctanos | Trulii',
+                    description: '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!'
                 }
             })
             .state('modal-dialog', {
@@ -72,7 +86,7 @@
                 controllerAs: 'vm'
             })
             .state('modal-dialog.password-forgot', {
-                url:'password/forgot/',
+                url:'password/recordar/',
                 parent: 'modal-dialog',
                 views:{
                     'modal@':{

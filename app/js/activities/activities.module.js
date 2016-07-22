@@ -47,7 +47,7 @@
                 })
             .state('dash.activities-new', {
                 abstract: true,
-                url: '/activities/new',
+                url: '/actividades/nueva',
                 data: {
                     requiredAuthentication : true
                 },
@@ -67,7 +67,7 @@
             })
             .state('dash.activities-edit', {
                 abstract:true,
-                url:'/activities/edit/{activity_id:int}/',
+                url:'/actividades/editar/{activity_id:int}/',
                 controller: 'ActivityDashboardCtrl',
                 data: {
                     requiredAuthentication : true
@@ -88,13 +88,13 @@
                 templateUrl: 'partials/activities/edit/dashboard_general.html'
             })
             .state('dash.activities-edit.detail', {
-                url:'detail',
+                url:'detalles',
                 controller: 'ActivityDBDetailController',
                 controllerAs: 'detail',
                 templateUrl: 'partials/activities/edit/dashboard_detail.html'
             })
             .state('dash.activities-edit.calendars', {
-                url:'calendars',
+                url:'calendarios',
                 controller: 'ActivityCalendarsController',
                 controllerAs: 'calendars',
                 templateUrl: 'partials/activities/edit/dashboard_calendars.html',
@@ -115,7 +115,7 @@
                 }
             })
             .state('dash.activities-edit.location', {
-                url:'location',
+                url:'ubicacion',
                 controller: 'ActivityDBLocationController',
                 resolve:{
                     cities: getAvailableCities,
@@ -125,23 +125,23 @@
                 templateUrl: 'partials/activities/edit/dashboard_location.html'
             })
             .state('dash.activities-edit.instructors', {
-                url:'instructors',
+                url:'instructores',
                 controller: 'ActivityDBInstructorsController as instructors',
                 templateUrl: 'partials/activities/edit/dashboard_instructors.html'
             })
             .state('dash.activities-edit.gallery', {
-                url:'gallery',
+                url:'galeria',
                 controller: 'ActivityDBGalleryController as gallery',
                 templateUrl: 'partials/activities/edit/dashboard_gallery.html'
             })
             .state('dash.activities-edit.return-policy', {
-                url:'return-policy',
+                url:'politicas',
                 controller: 'ActivityDBReturnPDashboard',
                 controllerAs: 'returnPolicy',
                 templateUrl: 'partials/activities/edit/dashboard_return_policy.html'
             })
             .state('dash.activities-manage', {
-                url:'/activities/manage/{activity_id:int}/',
+                url:'/actividades/gestionar/{activity_id:int}/',
                 abstract: true,
                 controller: 'ActivitiesManageCtrl as manage',
                 resolve: {
@@ -151,7 +151,7 @@
                 templateUrl: 'partials/activities/manage/manage.html'
             })
             .state('dash.activities-manage.orders', {
-                url:'orders',
+                url:'ordenes',
                 templateUrl: 'partials/activities/manage/manage_orders.html'
             })
             .state('dash.activities-manage.orders.order', {
@@ -169,11 +169,11 @@
                 }
             })
             .state('dash.activities-manage.assistants', {
-                url:'assistants',
+                url:'asistentes',
                 templateUrl: 'partials/activities/manage/manage_assistants.html'
             })
             .state('dash.activities-manage.assistants-list', {
-                url:'list/:calendar_id',
+                url:'lista/:calendar_id',
                 controller: 'ActivitiesManageListCtrl as print',
                 templateUrl: 'partials/activities/manage/manage_assistants_list.html',
                 resolve: {
@@ -182,7 +182,7 @@
                 }
             })
             .state('dash.activities-manage.messages', {
-              url: 'messages',
+              url: 'mensajes',
               controller: 'ActivityMessagesCtrl as messages',
               templateUrl: 'partials/activities/manage/manage_messages.html',
                resolve: {
@@ -190,7 +190,7 @@
                 }
             })
             .state('dash.activities-manage.messages-detail', {
-                url:'messages/:messageId',
+                url:'mensajes/:messageId',
                 controller: 'ActivityMessageDetailCtrl as detail',
                 templateUrl: 'partials/activities/manage/manage_message_detail.html',
                 resolve: {
@@ -198,7 +198,7 @@
                 }
             })
             .state('dash.activities-manage.summary', {
-              url: 'summary',
+              url: 'resumen',
               controller: 'ActivitySummaryCtrl as summary',
               templateUrl: 'partials/activities/manage/manage_summary.html',
               resolve: {
@@ -216,7 +216,6 @@
             })
 
             .state('activities-detail', {
-
                 url:'/actividades/:category_slug/:activity_title/{activity_id:int}',
                 params: {
                   activity_title: {value: null, squash: false},
@@ -242,10 +241,18 @@
                     calendars: getCalendars,
                     organizer: getActivityOrganizer,
                     relatedActivities: getOrganizerActivities
+                },
+                metaTags:{
+                    title: function(activity){
+                        return activity.title;
+                    },
+                    description: function(activity){
+                        return activity.short_description
+                    }
                 }
             })
             .state('activities-enroll', {
-                url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
+                url: '/actividades/{activity_id:int}/inscribirse/{calendar_id:int}',
                 controller: 'ActivityDetailEnrollController as enroll',
                 templateUrl: 'partials/activities/detail/enroll.html',
                 resolve: {
@@ -268,7 +275,7 @@
                 }
             })
             .state('activities-enroll-success', {
-                url: '/activities/{activity_id:int}/enroll/{calendar_id:int}/success',
+                url: '/actividades/{activity_id:int}/inscribirse/{calendar_id:int}/exitoso',
                 views:{
                     '@': {
                         controller: 'ActivityEnrollSuccessController as success',
@@ -412,8 +419,8 @@
          * @requires trulii.activities.services.ActivitiesManager
          * @methodOf trulii.activities.config
          */
-        getActivity.$inject = ['$stateParams','ActivitiesManager'];
-        function getActivity($stateParams,ActivitiesManager){
+        getActivity.$inject = ['$stateParams', '$rootScope', 'ActivitiesManager'];
+        function getActivity($stateParams,$rootScope, ActivitiesManager){
             return ActivitiesManager.getActivity($stateParams.activity_id);
         }
 

@@ -15,28 +15,40 @@
         $stateProvider
             .state('about', {
                 abstract: true,
-                url: '/about/',
+                url: '/conocenos/',
                 controller: 'AboutController as about',
                 templateUrl: 'partials/about/about.html'
             })
             .state('about.mission', {
-                url: 'mission',
-                templateUrl: 'partials/about/mission.html'
-            })
+                url: 'mision',
+                templateUrl: 'partials/about/mission.html',
+                metaTags:{
+                    title:'¡Conócenos! | Trulii',
+                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!'
+                }
+            }) 
             .state('about.culture', {
-                url: 'culture',
-                templateUrl: 'partials/about/culture.html'
+                url: 'cultura',
+                templateUrl: 'partials/about/culture.html',
+                metaTags:{
+                    title:'¡Conócenos! | Trulii',
+                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!'
+                }
             })
             .state('about.team', {
-                url: 'team',
-                templateUrl: 'partials/about/team.html'
+                url: 'equipo',
+                templateUrl: 'partials/about/team.html',
+                metaTags:{
+                    title:'¡Conócenos! | Trulii',
+                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!'
+                }
             })
             .state('about.terms', {
-                url: 'terms',
+                url: 'terminos',
                 templateUrl: 'partials/about/terms.html'
             })
             .state('about.privacy-policy', {
-                url:'privacy-policy',
+                url:'politicas',
                 templateUrl: 'partials/about/privacy.html'
             });
     }

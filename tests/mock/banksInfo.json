@@ -1,0 +1,83 @@
+{
+	"banks": [{
+		"bank_name": "BANCO AGRARIO",
+		"bank_id": "agrario"
+	}, {
+		"bank_name": "BANCO AV VILLAS",
+		"bank_id": "av_villas"
+	}, {
+		"bank_name": "BANCO BBVA S.A.",
+		"bank_id": "bbva_colombia"
+	}, {
+		"bank_name": "BANCO CAJA SOCIAL",
+		"bank_id": "caja_social"
+	}, {
+		"bank_name": "BANCO COLPATRIA",
+		"bank_id": "colpatria"
+	}, {
+		"bank_name": "BANCO COOPERATIVO COOPCENTRAL",
+		"bank_id": "cooperativo_coopcentral"
+	}, {
+		"bank_name": "BANCO CORPBANCA S.A.",
+		"bank_id": "corpbanca"
+	}, {
+		"bank_name": "BANCO DAVIVIENDA",
+		"bank_id": "davivienda"
+	}, {
+		"bank_name": "BANCO DE BOGOTÁ",
+		"bank_id": "bogota"
+	}, {
+		"bank_name": "BANCO DE OCCIDENTE",
+		"bank_id": "occidente"
+	}, {
+		"bank_name": "BANCO FALABELLA",
+		"bank_id": "falabella"
+	}, {
+		"bank_name": "BANCO GNB SUDAMERIS",
+		"bank_id": "gnb_sudameris"
+	}, {
+		"bank_name": "BANCO PICHINCHA S.A.",
+		"bank_id": "pichincha"
+	}, {
+		"bank_name": "BANCO POPULAR",
+		"bank_id": "popular"
+	}, {
+		"bank_name": "BANCO PROCREDIT",
+		"bank_id": "procredit"
+	}, {
+		"bank_name": "BANCOLOMBIA",
+		"bank_id": "bancolombia"
+	}, {
+		"bank_name": "BANCOOMEVA S.A.",
+		"bank_id": "bancoomeva"
+	}, {
+		"bank_name": "CITIBANK",
+		"bank_id": "citibank"
+	}, {
+		"bank_name": "HELM BANK S.A.",
+		"bank_id": "helmbank"
+	}],
+	"accounts": [{
+		"account_id": "ahorros",
+		"account_name": "Cuenta de ahorros"
+	}, {
+		"account_id": "corriente",
+		"account_name": "Cuenta corriente"
+	}],
+	"documents": [{
+		"document_name": "Cédula de ciudadanía",
+		"document_id": "cc"
+	}, {
+		"document_name": "Cédula de extranjería",
+		"document_id": "ce"
+	}, {
+		"document_name": "NIT",
+		"document_id": "nit"
+	}, {
+		"document_name": "Pasaporte",
+		"document_id": "pp"
+	}, {
+		"document_name": "Documento de identificación extranjero",
+		"document_id": "de"
+	}]
+}

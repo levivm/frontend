@@ -11,11 +11,10 @@
     angular
         .module('trulii.students.controllers')
         .controller('StudentHistoryCtrl', StudentHistoryCtrl);
-    StudentHistoryCtrl.$inject = ['$filter', '$http', 'student', 'titleTruncateSize', 'Analytics', 'StudentServerApi', 'datepickerPopupConfig', 'activityList'];
+    StudentHistoryCtrl.$inject = ['$filter', '$http', 'student', 'titleTruncateSize', 'Analytics', 'datepickerPopupConfig', 'activityList', 'orders'];
 
-    function StudentHistoryCtrl($filter, $http, student, titleTruncateSize, Analytics, StudentServerApi, datepickerPopupConfig, activityList) {
+    function StudentHistoryCtrl($filter, $http, student, titleTruncateSize, Analytics, datepickerPopupConfig, activityList, orders) {
         var vm = this;
-        var api = StudentServerApi;
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 
         angular.extend(vm,{
@@ -59,7 +58,7 @@
 
         activate();
 
-        var orders = [];
+       // var orders = [];
 
         /*      Exposed Functions      */
 
@@ -104,7 +103,7 @@
 
                   if(vm.ordersFilter.query)
                     params.id = vm.ordersFilter.query;
-                  
+                    
                   student.getOrders(params).then(success, error);
                   
                   break;
@@ -120,21 +119,18 @@
 
         function success(ordersResponse){
             vm.search = true;
+            console.log(ordersResponse);
             orders = ordersResponse;
-            orders.results = $filter('orderBy')(orders.results, 'id', true);
-            vm.ordersPaginationOpts.totalItems = orders.count;
-            vm.orders = orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
-            
-
+            _setOrders();
         }
         function error(orders){
             console.log('Error retrieving Student Orders History');
         }
-        function _getOrders(){
-
-            student.getOrders().then(success, error);
-
-
+        
+        function _setOrders() {
+            orders.results = $filter('orderBy')(orders.results, 'id', true);
+            vm.ordersPaginationOpts.totalItems = orders.count;
+            vm.orders = orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
         }
 
 
@@ -175,7 +171,7 @@
 
         function activate() {
             _setStrings();
-            _getOrders();
+           _setOrders();
         }
 
     }

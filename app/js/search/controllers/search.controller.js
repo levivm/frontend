@@ -20,6 +20,7 @@
             , generalInfo, ActivitiesManager, LocationManager, SearchManager
             , datepickerConfig, datepickerPopupConfig, Analytics, serverConf) {
 
+
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var transitionOptions = {location : true, inherit : false, reload : false};
         var unsuscribeSearchModified = null;
@@ -446,8 +447,6 @@
             _getSearchParams();
             _getActivities($stateParams);
             _setCities();
-            
-
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
                     vm.searchData = SearchManager.getSearchData();
                     console.log('modified!');

@@ -31,9 +31,13 @@
     function config($stateProvider) {
         $stateProvider
             .state('referrals', {
-                url: '/referrals',
+                url: '/referir',
                 abstract: true,
-                template: '<ui-view />'
+                template: '<ui-view />',
+                metaTags:{
+                    title:'Invita a un amigo a Aprender | Trulii',
+                    description: 'Comparte con tu amigo, familiar o conocido ese curso, taller, clase o diplomado que te gustó en Trulii y recibe grandes beneficios para ti. ¡Anímate!'
+                }
             })
             .state('referrals.home', {
                 url: '',
@@ -54,7 +58,7 @@
                 }
             })
             .state('referrals.invitation', {
-                url: '/invitation/:idReferrer',
+                url: '/invitacion/:idReferrer',
                 controller: 'ReferralsInvitationCtrl as referrals',
                 templateUrl: 'partials/students/referrals/invitation.html',
                 resolve: {

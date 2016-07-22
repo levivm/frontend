@@ -122,7 +122,10 @@
                                 <span class="text-muted pull-right" ng-bind="vm.MAX_LENGTH_SHORT_DESC - vm.activity.short_description.length"></span>
                   </div>
                   <div class="form-group col-xs-12 separate-above-less">
-                      <label class="control-label" ng-bind="::vm.strings.LABEL_TAGS"></label>
+                      <label class="control-label">
+                          <span ng-bind="::vm.strings.LABEL_TAGS"></span>
+                          <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top" tooltip="{{::vm.strings.COPY_TAGS_TOOLTIP}}"></i>
+                      </label>
                       <tags-input placeholder="Agrega un tag" display-property="name"
                                   ng-model="vm.activity_tags">
                           <auto-complete source="vm.loadAutocompleteTags()"></auto-complete>
