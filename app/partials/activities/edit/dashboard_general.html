@@ -50,28 +50,19 @@
                       <div class="form-group col-md-6">
                           <label class="control-label " ng-bind="::vm.strings.LABEL_LEVEL"></label>
                           <div  trulii-input-errors-control field="vm.activity_create_form.level">
-                                <div class="select-forms">
-                                    <label>
-                                        <select class=" form-control  search-level-select" name="levelSelect" id="levelSelect"
-                                                ng-model="vm.selected_level"
-                                                ng-options="level.value for level in vm.activity_levels track by level.code">
-                                        </select>
-                                    </label>
-                                </div>
+                                <select class=" form-control  search-level-select" name="levelSelect" id="levelSelect"
+                                        ng-model="vm.selected_level"
+                                        ng-options="level.value for level in vm.activity_levels track by level.code">
+                                </select>
                           </div>
                       </div>
                       <div class="col-md-6">
                           <label class="control-label" ng-bind="::vm.strings.COPY_CERTIFICATION"></label>
                           <div  trulii-input-errors-control="certification">
-                              <div class="select-forms">
-                                    <label>
-                                        <select class=" form-control  " name="levelSelect" id="levelSelect"
-                                                    ng-model="vm.activity.certification"
-                                                    ng-options="o.value as o.label for o in vm.optionsCertificate">
-                                            </select>
-                                    </label>
-                                    
-                                </div>
+                                <select class=" form-control  " name="levelSelect" id="levelSelect"
+                                            ng-model="vm.activity.certification"
+                                            ng-options="o.value as o.label for o in vm.optionsCertificate">
+                                    </select>
                           </div>
                       </div>
                   </div>
@@ -79,33 +70,24 @@
                       <div class="form-group  col-md-6">
                           <label class="control-label" ng-bind="::vm.strings.LABEL_CATEGORY"></label>
                           <div trulii-input-errors-control="category">
-                               <div class="select-forms">
-                                    <label>
-                                        <select id="select-category" class="form-control" ng-model="vm.selected_category"
-                                                name="category"
-                                                ng-options="category as category.name for (index,category) in vm.activity_categories | orderBy:'name'"
-                                                ng-change="vm.selectCategory(vm.selected_category)">
-                                                <option value="" ng-show="!vm.selected_category" ng-bind="::vm.strings.LABEL_CATEGORY" selected>
-                                                </option>
-                                        </select>
-                                    </label>
-                                    
-                                </div>
+                                <select id="select-category" class="form-control" ng-model="vm.selected_category"
+                                        name="category"
+                                        ng-options="category as category.name for (index,category) in vm.activity_categories | orderBy:'name'"
+                                        ng-change="vm.selectCategory(vm.selected_category)">
+                                        <option value="" ng-show="!vm.selected_category" ng-bind="::vm.strings.LABEL_CATEGORY" selected>
+                                        </option>
+                                </select>
                           </div>
                       </div>
                       <div class="col-md-6">
                           <label class="control-label" ng-bind="::vm.strings.LABEL_SUB_CATEGORY"></label>
                           <div trulii-input-errors-control="sub_category">
-                              <div class="select-forms">
-                                    <label>
-                                        <select id="sub-category-select" class="form-control" name="sub_category"
-                                                ng-model="vm.selected_sub_category"
-                                                ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories">
-                                                <option value="" ng-show="!vm.selected_sub_category" selected ng-bind="::vm.strings.LABEL_SUB_CATEGORY">
-                                                </option>
-                                        </select>
-                                    </label>
-                                </div>
+                                <select id="sub-category-select" class="form-control" name="sub_category"
+                                        ng-model="vm.selected_sub_category"
+                                        ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories">
+                                        <option value="" ng-show="!vm.selected_sub_category" selected ng-bind="::vm.strings.LABEL_SUB_CATEGORY">
+                                        </option>
+                                </select>
                           </div>
                       </div>
                   </div>
@@ -122,7 +104,10 @@
                                 <span class="text-muted pull-right" ng-bind="vm.MAX_LENGTH_SHORT_DESC - vm.activity.short_description.length"></span>
                   </div>
                   <div class="form-group col-xs-12 separate-above-less">
-                      <label class="control-label" ng-bind="::vm.strings.LABEL_TAGS"></label>
+                      <label class="control-label">
+                          <span ng-bind="::vm.strings.LABEL_TAGS"></span>
+                          <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top" tooltip="{{::vm.strings.COPY_TAGS_TOOLTIP}}"></i>
+                      </label>
                       <tags-input placeholder="Agrega un tag" display-property="name"
                                   ng-model="vm.activity_tags">
                           <auto-complete source="vm.loadAutocompleteTags()"></auto-complete>

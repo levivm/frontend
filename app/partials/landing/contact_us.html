@@ -40,18 +40,13 @@
             <div class="form-group" trulii-input-errors-control="topic">
                 <label for="topic-select" class="sr-only"
                       ng-bind="::contact.strings.LABEL_TOPIC"></label>
-                <div class="select-forms">
-                    <label>
-                        <select id="topic-select" name="topic"
-                              class="form-control" ng-model="contact.selectedTopic"
-                              ng-options="topic as topic.title for topic in contact.topics track by topic.id">
-                          <option value="" ng-hide="contact.selectedTopic"
-                                  ng-bind="::contact.strings.OPTION_TOPIC_DEFAULT" selected>
-                          </option>
-                        </select>
-                    </label>
-                </div>
-                
+                <select id="topic-select" name="topic"
+                      class="form-control" ng-model="contact.selectedTopic"
+                      ng-options="topic as topic.title for topic in contact.topics track by topic.id">
+                  <option value="" ng-hide="contact.selectedTopic"
+                          ng-bind="::contact.strings.OPTION_TOPIC_DEFAULT" selected>
+                  </option>
+                </select>
             </div>
 
             <div class="form-group" trulii-input-errors-control="description">

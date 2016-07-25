@@ -23,10 +23,19 @@ select{
 	height: 52px !important;
     border-radius: 52px !important;
     font-weight: 700;
-    padding: 0em 2em !important;
+    padding: 0em 0px 0 25px !important;
     border: 1px solid  @gray-lighter-brand !important;
     box-shadow: 0 0 !important;
 	background-color: @gray-lighter-brand !important;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	cursor: pointer;
+	background-color: white !important;
+	background-position: 95% 50%;
+	background-repeat: no-repeat;
+	background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
+	background-size: 15px auto;
+	display: inline-block !important;
 	&.input-lg{
 		height: 46px !important;
 		line-height: 46px;
@@ -80,10 +89,12 @@ select{
 	}
 	
 	&__date{
+		
 		label{
 			.datepicker{
 				background-color: @gray-lighter-brand !important;
 				border: 1px solid  @gray-lighter-brand !important;
+				cursor: pointer;
 			}
 			&:after{
 				content: "\f133";   
@@ -148,8 +159,9 @@ select{
 		border: 1px solid @gray-lighter;
 		box-shadow: 0 0;
 		width: 100%;
-		background: @gray-lighter-brand;
+		background-color: @gray-lighter-brand !important;
 		font-weight: 600; 
+		width: 35%;
 		.before-md({
 			width: 100%;
 			border-radius: 1.7em !important;

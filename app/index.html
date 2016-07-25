@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html ng-app='trulii'>
-    <head>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-        <title>Trulii</title>
-
-        <!--Favicon Section-->
-        <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png"/>
-        <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png"/>
-        <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png"/>
-        <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png"/>
-        <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png"/>
-        <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png"/>
-        <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png"/>
-        <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png"/>
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png"/>
-        <link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png"/>
-        <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png"/>
-        <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png"/>
-        <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png"/>
-        <link rel="manifest" href="/icons/manifest.json"/>
-        <meta name="msapplication-TileColor" content="#ffffff"/>
-        <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png"/>
-        <meta name="theme-color" content="#ffffff"/>
-        <!--End Favicon Section-->
-        <!--Esto debe eliminarse luego, es solamente para ver probar el googlebot-->
-        <meta name="google-site-verification" content="L0GSZBNmTtlvemy4mwKVxjVakV-vndq7si8bDy0h6pE" />
+<head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title ng-bind="MetaTags.title">Default title</title>
+    <meta name="description" content="{{MetaTags.description}}">
+    <!--Favicon Section-->
+    <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="manifest" href="/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!--End Favicon Section-->
+    <!--Esto debe eliminarse luego, es solamente para ver probar el googlebot-->
+    <meta name="google-site-verification" content="L0GSZBNmTtlvemy4mwKVxjVakV-vndq7si8bDy0h6pE" />
 
         <!-- Google Analytics -->
         <script>
@@ -128,6 +128,7 @@
         <script src="lib/rangy/rangy-serializer.js"></script>
         <script src="lib/rangy/rangy-textrange.js"></script>
         <script src="lib/angular-socialshare/dist/angular-socialshare.min.js"></script>
+        <script src="lib/ui-router-metatags/dist/ui-router-metatags.js"></script>
         <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
         <script src="lib/angular-input-masks/angular-input-masks-standalone.min.js"></script>
         <script src="lib/angular-moment/angular-moment.js"></script>
@@ -176,8 +177,6 @@
         <script src="js/authentication/services/session_injector.factory.js"></script>
         <script src="js/landing/services/contact.service.js"></script>
         <script src="js/landing/services/server_api.service.js"></script>
-        <script src="js/locations/services/locations_manager.service.js"></script>
-        <script src="js/locations/services/server_api.service.js"></script>
         <script src="js/organizers/services/organizer.service.js"></script>
         <script src="js/organizers/services/organizer_constants.service.js"></script>
         <script src="js/organizers/services/organizer_manager.service.js"></script>
@@ -186,11 +185,12 @@
         <script src="js/payments/services/server_api.service.js"></script>
         <script src="js/referrals/services/referrals.service.js"></script>
         <script src="js/referrals/services/server_api.service.js"></script>
-        <script src="js/search/services/search_manager.service.js"></script>
+        <script src="js/locations/services/locations_manager.service.js"></script>
+        <script src="js/locations/services/server_api.service.js"></script>
         <script src="js/students/services/server_api.service.js"></script>
         <script src="js/students/services/student.service.js"></script>
         <script src="js/students/services/student_manager.service.js"></script>
-        <script src="js/ui-components/services/toast.service.js"></script>
+        <script src="js/search/services/search_manager.service.js"></script>
         <script src="js/utils/services/analytics.service.js"></script>
         <script src="js/utils/services/default_cover.service.js"></script>
         <script src="js/utils/services/default_picture.service.js"></script>
@@ -199,16 +199,12 @@
         <script src="js/utils/services/scroll.service.js"></script>
         <script src="js/utils/services/title_truncate_size.service.js"></script>
         <script src="js/utils/services/upload_file.service.js"></script>
+        <script src="js/ui-components/services/toast.service.js"></script>
         <script src="js/activities/directives/trulii-activity-item.directive.js"></script>
         <script src="js/activities/directives/trulii-activity-review.directive.js"></script>
         <script src="js/authentication/directives/form_modal.directive.js"></script>
         <script src="js/organizers/directives/trulii-instructor-card.directive.js"></script>
         <script src="js/search/directives/search-bar.directive.js"></script>
-        <script src="js/utils/directives/counter.directive.js"></script>
-        <script src="js/utils/directives/datepicker_popup.directive.js"></script>
-        <script src="js/utils/directives/elastic.directive.js"></script>
-        <script src="js/utils/directives/menu-activity.directive.js"></script>
-        <script src="js/utils/directives/saved_message.directive.js"></script>
         <script src="js/ui-components/directives/card-expandable.directive.js"></script>
         <script src="js/ui-components/directives/gallery.directive.js"></script>
         <script src="js/ui-components/directives/input-alert.directive.js"></script>
@@ -223,6 +219,11 @@
         <script src="js/ui-components/directives/trulii-avatar.directive.js"></script>
         <script src="js/ui-components/directives/trulii-dashboard-footer.directive.js"></script>
         <script src="js/ui-components/directives/trulii-footer.directive.js"></script>
+        <script src="js/utils/directives/counter.directive.js"></script>
+        <script src="js/utils/directives/datepicker_popup.directive.js"></script>
+        <script src="js/utils/directives/elastic.directive.js"></script>
+        <script src="js/utils/directives/menu-activity.directive.js"></script>
+        <script src="js/utils/directives/saved_message.directive.js"></script>
         <script src="js/utils/filters/format_duration.filter.js"></script>
         <script src="js/utils/filters/to_trusted_html.filter.js"></script>
         <script src="js/utils/filters/truncate_text.filter.js"></script>

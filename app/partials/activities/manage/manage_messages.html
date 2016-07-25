@@ -1,4 +1,4 @@
-<div class="row fade in limited-width-dashboard">
+<div class="row fade in limited-width-dashboard limited-width-dashboard__edit-activity">
   <div class="col-xs-12">
     <!--<div class="btn btn-default padding-vertical" ng-click="messages.toggleMessageShow()">
               <span ng-bind="::messages.strings.ACTION_NEW_MESSAGE"></span>
@@ -72,17 +72,13 @@
               <div class="" trulii-input-errors-control="calendar">
                   <label for="calendar-select" class="control-label"
                          ng-bind="::messages.strings.LABEL_CALENDAR"></label>
-                  <div class="select-forms">
-                      <label>
-                          <select id="calendar-select" name="calendar"
-                                  class="form-control" ng-model="messages.message.calendar"
-                                  ng-options="calendar as (calendar.initial_date | date: 'dd MMM yyyy') for calendar in messages.calendars | orderBy: 'initial_date' track by calendar.id">
-                                  <option value="" ng-hide="messages.message.calendar"
-                                          ng-bind="::messages.strings.OPTION_CALENDAR_DEFAULT" selected>
-                                  </option>
-                            </select>
-                      </label>
-                  </div>
+                  <select id="calendar-select" name="calendar"
+                          class="form-control" ng-model="messages.message.calendar"
+                          ng-options="calendar as (calendar.initial_date | date: 'dd MMM yyyy') for calendar in messages.calendars | orderBy: 'initial_date' track by calendar.id">
+                          <option value="" ng-hide="messages.message.calendar"
+                                  ng-bind="::messages.strings.OPTION_CALENDAR_DEFAULT" selected>
+                          </option>
+                    </select>
               </div>
               <div class="separate-above-less" trulii-input-errors-control="subject">
                   <label class="control-label" for="subject-input" ng-bind="::messages.strings.SUBJECT_MESSAGE_PLACEHOLDER"></label>
@@ -103,10 +99,10 @@
             <div class="form-group">
               <div class="row">
                 <div class="col-xs-12 text-right">
-                   <button id="submit"
-                        ng-click="messages.toggleMessageShow()"
-                        class="btn btn-lg btn-gray-dark btn-graybtn-block"
-                        ng-bind="::messages.strings.LABEL_CANCEL_MESSAGE">
+                   <button type="button" 
+                            ng-click="messages.toggleMessageShow()"
+                            class="btn btn-lg btn-gray-dark btn-graybtn-block"
+                            ng-bind="::messages.strings.LABEL_CANCEL_MESSAGE">
                     </button>
                   <button type="submit" id="submit"
                     class="btn btn-lg btn-success "

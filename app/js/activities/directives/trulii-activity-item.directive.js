@@ -328,7 +328,26 @@
                   });
                 }
 
+                function _getTitleSlug(){
+                    var title = scope.activity.title;
+                    title = title.replace(/[`~!¡¿@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+
+                    // Replacing whitespaces with hyphens
+                    title = title.split(' ').join('-').toLowerCase();
+
+                    // Replacing most common special characters
+                    var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c", "ñ":"n"};
+
+                    title = title.replace(/[^\w ]/g, function(char) {
+                        return dict[char] || char;
+                    });
+
+                    scope.titleSlug = title;
+            
+                }
+
                 function _activate(){
+                    _getTitleSlug();
                     _setStrings();
                     _setCurrentState();
                     _isStudent();

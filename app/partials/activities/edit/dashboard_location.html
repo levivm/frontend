@@ -10,16 +10,11 @@
                 <fieldset>
                     <div class="form-group" trulii-input-errors-control="city">
                         <label for="city" class="control-label" ng-bind="::location.strings.LABEL_CITY"></label>
-                        
-                        <div class="select-forms">
-                            <label>
-                                <select class="form-control" id="city" ng-model="location.activity.location.city"
-                                        ng-options="city as city.name for city in location.cities track by city.id" name="city">
-                                    <option value="" selected ng-show="!location.activity_location_form.city" ng-bind="::location.strings.LABEL_SELECTED" >
-                                    </option>
-                                </select>
-                            </label>
-                        </div>
+                        <select class="form-control" id="city" ng-model="location.activity.location.city"
+                                ng-options="city as city.name for city in location.cities track by city.id" name="city">
+                            <option value="" selected ng-show="!location.activity_location_form.city" ng-bind="::location.strings.LABEL_SELECTED" >
+                            </option>
+                        </select>
                     </div>
                     <div class="form-group" trulii-input-errors-control="address">
                         <label for="address" class="control-label" ng-bind="::location.strings.LABEL_ADDRESS"></label>

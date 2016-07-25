@@ -320,17 +320,13 @@
                                                     <div class="col-xs-12 col-md-3">
                                                         <div class="form-group" trulii-input-errors-control="cardMonth">
                                                             <label for="cardMonth" ng-bind="::enroll.strings.LABEL_MONTH"></label>
-                                                            <div class="select-forms hidden-sm hidden-md hidden-lg">
-                                                                <label>
-                                                                    <select class="form-control hidden-sm hidden-md hidden-lg " name="monthSelect" id="levelSelect"
-                                                                        ng-model="enroll.monthSelected"
-                                                                        ng-change="enroll.changeMonth()"
-                                                                        ng-options="month as month for month in enroll.months">
-                                                                        <option  ng-hide="enroll.monthSelected" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_MONTH"></option>
-                                                                    </select>
-                                                                </label>
-                                                            </div>
-                                                        
+                                                            <select class="form-control hidden-sm hidden-md hidden-lg " name="monthSelect" id="levelSelect"
+                                                                ng-model="enroll.monthSelected"
+                                                                ng-change="enroll.changeMonth()"
+                                                                ng-options="month as month for month in enroll.months">
+                                                                <option  ng-hide="enroll.monthSelected" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_MONTH"></option>
+                                                            </select>
+                                                
                                                             <input type="number" name="cardMonth" min=1 max=12 class="form-control hidden-xs" id="cardMonth"
                                                                     ng-model="enroll.cardData.exp_month"
                                                                     ng-blur="enroll.checkCardExpiry()"
@@ -340,16 +336,11 @@
                                                     <div class="col-xs-12 col-md-3">
                                                         <div class="form-group" trulii-input-errors-control="cardYear">
                                                             <label for="cardYear" ng-bind="::enroll.strings.LABEL_YEAR"></label>
-                                                            <div class="select-forms hidden-sm hidden-md hidden-lg">
-                                                                    <label>
-                                                                        <select class=" form-control hidden-sm hidden-md hidden-lg " name="yearSelect" id="levelSelect"
-                                                                            ng-model="enroll.cardData.exp_year"
-                                                                            ng-options="year as year for year in enroll.years">
-                                                                            <option  ng-hide="enroll.cardData.exp_year" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_YEAR"></option>
-                                                                        </select>
-                                                                    </label>
-                                                                </div>
-                                                            
+                                                            <select class=" form-control hidden-sm hidden-md hidden-lg " name="yearSelect" id="levelSelect"
+                                                                ng-model="enroll.cardData.exp_year"
+                                                                ng-options="year as year for year in enroll.years">
+                                                                <option  ng-hide="enroll.cardData.exp_year" selected  ng-bind="enroll.strings.PLACEHOLDER_SELECT_YEAR"></option>
+                                                            </select>
                                                             <input type="number" name="cardYear" class="form-control hidden-xs" id="cardYear"
                                                                     ng-model="enroll.cardData.exp_year"
                                                                     ng-blur="enroll.checkCardExpiry()"
@@ -413,34 +404,26 @@
                                                     <div class="col-xs-12 col-md-6">
                                                         <div class="form-group" trulii-input-errors-control="bank">
                                                             <label for="bank" ng-bind="::enroll.strings.LABEL_BANK"></label>
-                                                            <div class="select-forms">
-                                                                    <label>
-                                                                        <select  class="form-control input-lg" name="bank" id="bank"
-                                                                            ng-model="enroll.pseData.selectedBank"
-                                                                            ng-options="bank as bank.description for (index,bank) in enroll.pseFormData.banksList">
-                                                                            <option value="" ng-show="!enroll.pseData.selectedBank"
-                                                                                    ng-bind="::enroll.strings.OPTION_BANK_DEFAULT" selected>
+                                                            <select  class="form-control input-lg" name="bank" id="bank"
+                                                                ng-model="enroll.pseData.selectedBank"
+                                                                ng-options="bank as bank.description for (index,bank) in enroll.pseFormData.banksList">
+                                                                <option value="" ng-show="!enroll.pseData.selectedBank"
+                                                                        ng-bind="::enroll.strings.OPTION_BANK_DEFAULT" selected>
 
-                                                                            </option>
-                                                                        </select>
-                                                                </label>
-                                                            </div>
+                                                                </option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="col-xs-12 col-md-6">
                                                         <div class="form-group" trulii-input-errors-control="userType">
                                                             <label for="userType" ng-bind="::enroll.strings.LABEL_USER_TYPE"></label>
-                                                            <div class="select-forms">
-                                                                    <label>
-                                                                        <select class="form-control input-lg" name="userType" id="userType"
-                                                                            ng-model="enroll.pseData.selectedUserType"
-                                                                            ng-options="type  as type.description for (index,type) in enroll.pseFormData.userTypes">
-                                                                            <option value="" ng-show="!enroll.pseData.selectedBank"
-                                                                                ng-bind="::enroll.strings.OPTION_USER_TYPE_DEFAULT" selected>
-                                                                            </option>
-                                                                        </select>
-                                                                </label>
-                                                            </div>
+                                                            <select class="form-control input-lg" name="userType" id="userType"
+                                                                ng-model="enroll.pseData.selectedUserType"
+                                                                ng-options="type  as type.description for (index,type) in enroll.pseFormData.userTypes">
+                                                                <option value="" ng-show="!enroll.pseData.selectedBank"
+                                                                    ng-bind="::enroll.strings.OPTION_USER_TYPE_DEFAULT" selected>
+                                                                </option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -449,17 +432,13 @@
                                                         <div class="form-group" trulii-input-errors-control="idNumber">
                                                             <label for="idNumber" ng-bind="::enroll.strings.LABEL_ID_NUMBER"></label>
                                                             <div class="input-group">
-                                                                <div class="select-forms">
-                                                                    <label>
-                                                                        <select class="form-control" name="userId" id="userId" 
-                                                                            ng-model="enroll.pseData.idType"
-                                                                            ng-options="document as document.description for document in enroll.pseFormData.idTypes track by document.value">
-                                                                            <option value="" ng-show="!enroll.pseData.idType"
-                                                                                ng-bind="enroll.strings.OPTION_ID_TYPE_DEFAULT" selected>
-                                                                            </option>
-                                                                        </select>
-                                                                    </label>
-                                                                </div>
+                                                                <select class="form-control" name="userId" id="userId" 
+                                                                    ng-model="enroll.pseData.idType"
+                                                                    ng-options="document as document.description for document in enroll.pseFormData.idTypes track by document.value">
+                                                                    <option value="" ng-show="!enroll.pseData.idType"
+                                                                        ng-bind="enroll.strings.OPTION_ID_TYPE_DEFAULT" selected>
+                                                                    </option>
+                                                                </select>
                                                                 <input type="text" name="idNumber" id="idNumber" class="form-control" placeholder="{{enroll.strings.PLACEHOLDER_ID_NUMBER}}"
                                                                     ng-model="enroll.pseData.idNumber">
                                                             </div>
