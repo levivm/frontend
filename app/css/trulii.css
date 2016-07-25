@@ -12275,6 +12275,8 @@ hr.on-light {
 }
 .dashboard-filters__activity select {
   width: 87% !important;
+  background-position: 95% 52%;
+  background-size: 13px auto;
 }
 .dashboard-filters__selects {
   display: flex;
@@ -12586,10 +12588,8 @@ hr.on-light {
 .ta-scroll-window > .ta-bind::before {
   color: #9E9E9E !important;
   display: block;
-  width: 70%;
-  text-align: center;
-  margin: 0 auto;
-  margin-top: 30px;
+  width: 100%;
+  text-align: left;
 }
 .ta-scroll-window > .ta-bind p {
   color: #3A405B !important;
@@ -15000,11 +15000,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border: 1px solid #e3e3e3;
   float: left;
   color: #9b9b9b;
-  background-size: 15px auto;
-  background-position: 93% 50%;
-  background-repeat: no-repeat;
-  background-color: white;
-  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
   border-left: none;
   border-right: none;
 }
@@ -16141,10 +16136,19 @@ select {
   height: 52px !important;
   border-radius: 52px !important;
   font-weight: 700;
-  padding: 0em 2em !important;
+  padding: 0em 0px 0 25px !important;
   border: 1px solid #f0f2f7 !important;
   box-shadow: 0 0 !important;
   background-color: #f0f2f7 !important;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  background-color: white !important;
+  background-position: 95% 50%;
+  background-repeat: no-repeat;
+  background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
+  background-size: 15px auto;
+  display: inline-block !important;
 }
 select.input-lg {
   height: 46px !important;
@@ -16197,6 +16201,7 @@ select.input-lg {
 .select-forms__date label .datepicker {
   background-color: #f0f2f7 !important;
   border: 1px solid #f0f2f7 !important;
+  cursor: pointer;
 }
 .select-forms__date label:after {
   content: "\f133";
@@ -16253,8 +16258,9 @@ select.input-lg {
   border: 1px solid #ededed;
   box-shadow: 0 0;
   width: 100%;
-  background: #f0f2f7;
+  background-color: #f0f2f7 !important;
   font-weight: 600;
+  width: 35%;
 }
 @media screen and (max-width: 992px) {
   .location-dashboard select,
@@ -18794,7 +18800,6 @@ ul.dropdown-menu:after {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
-  line-height: 1;
 }
 .toast-close-button:hover,
 .toast-close-button:focus {
@@ -18804,11 +18809,6 @@ ul.dropdown-menu:after {
   opacity: 0.4;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
-}
-.rtl .toast-close-button {
-  left: -0.3em;
-  float: left;
-  right: 0.3em;
 }
 /*Additional properties for button version
  iOS requires the button element instead of an anchor tag.
@@ -18887,12 +18887,7 @@ button.toast-close-button {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
 }
-#toast-container > div.rtl {
-  direction: rtl;
-  padding: 15px 50px 15px 15px;
-  background-position: right 15px center;
-}
-#toast-container > div:hover {
+#toast-container > :hover {
   -moz-box-shadow: 0 0 12px #000000;
   -webkit-box-shadow: 0 0 12px #000000;
   box-shadow: 0 0 12px #000000;
@@ -18956,16 +18951,9 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 11em;
   }
-  #toast-container > div.rtl {
-    padding: 8px 50px 8px 8px;
-  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
-  }
-  #toast-container .rtl .toast-close-button {
-    left: -0.2em;
-    right: 0.2em;
   }
 }
 @media all and (min-width: 241px) and (max-width: 480px) {
@@ -18973,25 +18961,15 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 18em;
   }
-  #toast-container > div.rtl {
-    padding: 8px 50px 8px 8px;
-  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
-  }
-  #toast-container .rtl .toast-close-button {
-    left: -0.2em;
-    right: 0.2em;
   }
 }
 @media all and (min-width: 481px) and (max-width: 768px) {
   #toast-container > div {
     padding: 15px 15px 15px 50px;
     width: 25em;
-  }
-  #toast-container > div.rtl {
-    padding: 15px 50px 15px 15px;
   }
 }
 .toast-success {
@@ -24232,17 +24210,12 @@ blockquote {
 .pse-payment .input-group {
   width: 100%;
 }
-.pse-payment .input-group .select-forms {
+.pse-payment .input-group select {
   width: 50%;
   display: inline-block;
   float: left;
-}
-.pse-payment .input-group .select-forms label select {
   border-radius: 52px;
   height: 52px !important;
-}
-.pse-payment .input-group .select-forms label:after {
-  top: 10px;
 }
 .pse-payment .input-group input {
   width: 50%;
@@ -24915,14 +24888,12 @@ blockquote {
 .organizer-signup .form-group:not(:first-child) {
   margin-top: 30px;
 }
-.organizer-signup .form-group:not(:first-child) .select-forms {
+.organizer-signup .form-group:not(:first-child) select.form-control {
+  -webkit-appearance: none;
+  -webkit-border-radius: 0px;
   width: 40%;
   display: inline-block;
   float: left;
-}
-.organizer-signup .form-group:not(:first-child) .select-forms select.form-control {
-  -webkit-appearance: none;
-  -webkit-border-radius: 0px;
 }
 .organizer-signup h1.title {
   font-weight: 800;
