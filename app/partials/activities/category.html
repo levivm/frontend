@@ -5,12 +5,11 @@
         <div class="row ">
           <div class="col-xs-12 ">
             <h1 class="title text-center font-light separate-above-less" ng-bind="::category.category.name"></h1>
-            <h5 class="organizer text-center" ng-bind="::category.category.description"></h5>
           </div>
         </div>
       </div>
     </div>
-    <div class="trulii-cover__background" style="background-image: url({{category.getAmazonUrl('static/img/organizer-profile/organizer_profile_bg.png')}});">
+    <div class="trulii-cover__background" style="background-image: url({{category.getAmazonUrl(category.category.cover_photo)}});">
     </div>
   </div>
 </div>
@@ -20,17 +19,7 @@
             <img ng-src="{{category.getAmazonUrl(category.category.cover)}}" alt="" class="img-responsive center-block">
         </div>
         <div class="col-xs-12 col-lg-6">
-            <h2 class="text-gray-brand">
-                <strong>Título</strong>
-            </h2>
-            <p class="separate-above">
-                I am getting rid of this thing. It has caused me nothing but pride and self-respect. Hey, maybe you could pop a tent outside with your cousin Maeby… it'd be a good chance to rub off on her. Uncle Gob… was Aunt Lindsay ever pregnant? Yeah, sure, dozens of times. Saw this on the highway and almost blue myself. Hop on? I didn't mean who… I meant… her?
-                
-                <br>
-                <br>
-
-                What's gotten into you? Have you been eating cheese? Hahahahah! Sweet old thing. Only two of those words describe Mom, so I know you're lying to me. You want to have some guy reach around you in the middle of the night, start messing with your junk?
-            </p>
+            <p ng-bind="::category.category.description"></p>
         </div>
     </div>
 </div>
@@ -44,6 +33,5 @@
       </div>
   </div>
 </div>
-
 <trulii-footer>
 </trulii-footer>
