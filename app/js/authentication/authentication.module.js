@@ -85,13 +85,13 @@
                 templateUrl: 'partials/authentication/forgot_password.html'
             })
             .state("password-reset", {
-                url:'/password/reset/key/:reset_key',
+                url:'/password/restablecer/key/:reset_key',
                 controller: 'ResetPasswordCtrl',
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/reset_password.html'
             })
             .state('email-confirm', {
-                url:'/email/confirm/:key',
+                url:'/email/confirmar/:key',
                 controller: 'EmailConfirmCtrl',
                 controllerAs: 'vm',
             });

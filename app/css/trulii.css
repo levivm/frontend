@@ -19802,6 +19802,7 @@ button.toast-close-button {
   color: white;
   border: 2px solid transparent;
   transform: translateX(-50%);
+  text-decoration: none;
 }
 .trulii-cover__content .organizer,
 .trulii-cover-small__content .organizer,

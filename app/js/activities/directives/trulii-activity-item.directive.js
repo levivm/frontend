@@ -101,7 +101,7 @@
                 function goToCategory($event){
                     $event.preventDefault();
                     $event.stopPropagation();
-                    $state.go('category', {category_name: scope.activity.category.name});
+                    $state.go('category', {category_name: scope.activity.category.slug});
                 }
 
                  function goToAction(name, $event){

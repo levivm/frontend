@@ -4,8 +4,10 @@
       <div class="col-xs-12 col-md-offset-1 col-md-10 limited-width padding-vertical-regular">
         <div class="row ">
           <div class="col-xs-12 separate-below-more">
-            <span class="label" ng-bind="::detail.activity.category.name"
-              ng-style="{'background-color': '{{detail.activity.category.color}}'}"></span>
+            <a class="label" ng-bind="::detail.activity.category.name"
+              ng-style="{'background-color': '{{detail.activity.category.color}}'}"
+              ui-sref="category({category_name: detail.activity.category.slug})"
+              target="_blank"></a>
             <h1 class="title text-center font-light separate-above-less" ng-bind="::detail.activity.title"></h1>
             <h5 class="organizer" ng-bind="::detail.organizer.name"></h5>
             <div class="rating">
