@@ -105,36 +105,28 @@
                             <div class="col-xs-12 col-md-6 ">
                                 <div class="form-group">
                                     <label class="form-label" for="gender" ng-bind="::profile.strings.LABEL_GENDER"></label>
-                                    <div class="select-forms">
-                                        <label>
-                                            <select id="gender" class="form-control" ng-model="profile.selected_gender"
-                                                    name="gender"
-                                                    ng-options="gender as gender.name for gender in profile.genders track by gender.name"
-                                                    ng-change="profile.selectGender(profile.selected_gender)">
-                                                <option value="" ng-show="!profile.student.gender"
-                                                        ng-bind="::profile.strings.OPTION_SELECT" selected>
-                                                </option>
-                                            </select>
-                                        </label>
-                                    </div>
+                                    <select id="gender" class="form-control" ng-model="profile.selected_gender"
+                                            name="gender"
+                                            ng-options="gender as gender.name for gender in profile.genders track by gender.name"
+                                            ng-change="profile.selectGender(profile.selected_gender)">
+                                        <option value="" ng-show="!profile.student.gender"
+                                                ng-bind="::profile.strings.OPTION_SELECT" selected>
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-xs-12 col-md-6 ">
                                 
                                 <div class="form-group">
                                     <label class="form-label" for="city" ng-bind="::profile.strings.LABEL_CITY"></label>
-                                    <div class="select-forms">
-                                        <label>
-                                            <select id="city" class="form-control" name="city"
-                                                    ng-model="profile.selected_city"
-                                                    ng-options="city as city.name for city in profile.cities track by city.id"
-                                                    ng-change="profile.selectCity(profile.selected_city)">
-                                                <option value="" ng-hide="profile.selected_city"
-                                                        ng-bind="::profile.strings.OPTION_SELECT" selected>
-                                                </option>
-                                            </select>
-                                        </label>
-                                    </div>
+                                    <select id="city" class="form-control" name="city"
+                                            ng-model="profile.selected_city"
+                                            ng-options="city as city.name for city in profile.cities track by city.id"
+                                            ng-change="profile.selectCity(profile.selected_city)">
+                                        <option value="" ng-hide="profile.selected_city"
+                                                ng-bind="::profile.strings.OPTION_SELECT" selected>
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>

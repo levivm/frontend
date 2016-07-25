@@ -310,14 +310,10 @@
             <div class="form-group" trulii-input-errors-control="document">
               <label for="document_type" ng-bind="::landing.strings.LABEL_DOCUMENT_TYPE"></label>
               <div class="input-group">
-                <div class="select-forms">
-                    <label>
-                        <select id="document_type" class="form-control" name="document_type"
-                          ng-model="landing.request.document_type"
-                          ng-options="document.id as document.name for document in landing.documentTypes">
-                        </select>
-                    </label>
-                </div>
+                <select id="document_type" class="form-control" name="document_type"
+                  ng-model="landing.request.document_type"
+                  ng-options="document.id as document.name for document in landing.documentTypes">
+                </select>
                 <input name="document" class="form-control" id="document" type="text"
                   placeholder="{{::landing.strings.PLACEHOLDER_DOCUMENT}}"
                   ng-model="landing.request.document" value="" style="width: 60%">

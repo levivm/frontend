@@ -53,8 +53,7 @@
                                                     
                                         </label>
                                     </div>
-                                    <div class="input-group filter-group select-forms dashboard-filters__activity ">
-                                        <label>
+                                    <div class="input-group filter-group dashboard-filters__activity ">
                                             <select name="activity"
                                                         id="" class="form-control"
                                                         ng-model="history.ordersFilter.activity"
@@ -63,23 +62,19 @@
                                                         ng-options="activity.id as activity.title for activity in history.activityList">
                                                         <option value="">Actividad</option>
                                             </select>
-                                        </label>
                                                             
                                     </div>
-                                    <div class="input-group filter-group select-forms">
-                                        <label>
-                                            <select name="status"
-                                                    id="" class="form-control"
-                                                     ng-change="history.updateByQuery(history.TYPE_ORDER)"
-                                                    ng-model="history.ordersFilter.status">
-                                                    <option value="">Estatus</option>
-                                                    <option value="approved">Aprobadas</option>
-                                                    <option value="pending">Pendientes</option>
-                                                    <option value="cancelled">Canceladas</option>
-                                                    <option value="declined">Rechazadas</option>
-                                                </select>
-                                        </label>
-                                        
+                                    <div class="input-group filter-group dashboard-filters__activity">
+                                        <select name="status"
+                                                id="" class="form-control"
+                                                    ng-change="history.updateByQuery(history.TYPE_ORDER)"
+                                                ng-model="history.ordersFilter.status">
+                                                <option value="">Estatus</option>
+                                                <option value="approved">Aprobadas</option>
+                                                <option value="pending">Pendientes</option>
+                                                <option value="cancelled">Canceladas</option>
+                                                <option value="declined">Rechazadas</option>
+                                            </select>
                                     </div>
                                 </div>
                                 
