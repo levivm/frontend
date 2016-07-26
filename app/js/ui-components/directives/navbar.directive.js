@@ -295,7 +295,7 @@
                         LABEL_STUDENT_INVITE: 'Invitar Amigos',
                         LABEL_STUDENT_PROFILE: 'Perfil',
                         LABEL_STUDENT_ACCOUNT: 'Cuenta',
-                        LABEL_STUDENT_PURCHASES: 'Compras',
+                        LABEL_STUDENT_PURCHASES: 'Transacciones',
                         LABEL_STUDENT_NOTIFICATIONS: 'Notificaciones',
                         PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
                         LABEL_CITY_MENU:'Elige tu ciudad',

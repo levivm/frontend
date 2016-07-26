@@ -12252,7 +12252,7 @@ hr.on-light {
 }
 .dashboard-filters {
   display: flex !important;
-  justify-content: space-around;
+  justify-content: space-between;
   width: 100%;
   align-items: center;
 }
@@ -12346,7 +12346,7 @@ hr.on-light {
 }
 .dashboard-messages {
   border: 1px solid #ededed;
-  min-height: 16vh;
+  min-height: 132px;
   max-height: 90vh;
   overflow-y: auto;
   padding: 0;
@@ -12382,7 +12382,7 @@ hr.on-light {
   margin-right: 1em;
 }
 .dashboard-messages__avatar .trulii-avatar {
-  margin-top: 1em;
+  margin-top: 0.7em;
 }
 @media screen and (max-width: 992px) {
   .dashboard-messages .dashboard-messages__date {
@@ -12461,10 +12461,10 @@ hr.on-light {
   width: 100%;
   text-align: inherit;
   text-overflow: inherit;
-  line-height: 1.5em;
+  line-height: 1em;
   word-wrap: normal;
   white-space: normal;
-  margin-top: 1.2em;
+  margin-top: 0.8em;
 }
 @media screen and (max-width: 992px) {
   .dashboard-messages-detail .content-message p {
@@ -13003,6 +13003,9 @@ hr.on-light {
 }
 .text-md {
   font-size: .9em;
+}
+.text-normal {
+  font-size: 1em;
 }
 .text-lg {
   font-size: 1.2em !important;
@@ -17301,6 +17304,7 @@ td {
   font-weight: 600;
   margin: 0;
   color: #767676;
+  margin-right: 0.3em;
 }
 .panel-default__dashboard-sub {
   margin-bottom: 0;
@@ -17314,6 +17318,9 @@ td {
 }
 .panel-default__dashboard-sub-second .btn-message {
   margin-left: 5em;
+}
+.panel-default__dashboard-filters {
+  padding: 0em 1em 0em 2em;
 }
 .panel-default__dashboard__search {
   padding: 1.5em 2em;
@@ -17329,9 +17336,9 @@ td {
 }
 .panel-default__dashboard-search i {
   float: right;
-  margin-top: -28px;
+  margin-top: -30px;
   font-size: 1.2em;
-  margin-right: 0.4em;
+  margin-right: 0.5em;
   color: gray;
 }
 .panel-default__dashboard .btn-panel {
@@ -18804,7 +18811,6 @@ ul.dropdown-menu:after {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
-  line-height: 1;
 }
 .toast-close-button:hover,
 .toast-close-button:focus {
@@ -18814,11 +18820,6 @@ ul.dropdown-menu:after {
   opacity: 0.4;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
-}
-.rtl .toast-close-button {
-  left: -0.3em;
-  float: left;
-  right: 0.3em;
 }
 /*Additional properties for button version
  iOS requires the button element instead of an anchor tag.
@@ -18897,12 +18898,7 @@ button.toast-close-button {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
 }
-#toast-container > div.rtl {
-  direction: rtl;
-  padding: 15px 50px 15px 15px;
-  background-position: right 15px center;
-}
-#toast-container > div:hover {
+#toast-container > :hover {
   -moz-box-shadow: 0 0 12px #000000;
   -webkit-box-shadow: 0 0 12px #000000;
   box-shadow: 0 0 12px #000000;
@@ -18966,16 +18962,9 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 11em;
   }
-  #toast-container > div.rtl {
-    padding: 8px 50px 8px 8px;
-  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
-  }
-  #toast-container .rtl .toast-close-button {
-    left: -0.2em;
-    right: 0.2em;
   }
 }
 @media all and (min-width: 241px) and (max-width: 480px) {
@@ -18983,25 +18972,15 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 18em;
   }
-  #toast-container > div.rtl {
-    padding: 8px 50px 8px 8px;
-  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
-  }
-  #toast-container .rtl .toast-close-button {
-    left: -0.2em;
-    right: 0.2em;
   }
 }
 @media all and (min-width: 481px) and (max-width: 768px) {
   #toast-container > div {
     padding: 15px 15px 15px 50px;
     width: 25em;
-  }
-  #toast-container > div.rtl {
-    padding: 15px 50px 15px 15px;
   }
 }
 .toast-success {
@@ -24498,6 +24477,8 @@ blockquote {
   color: white;
   position: absolute;
   margin: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 .review-student__header {
   padding: 1em 2em;
