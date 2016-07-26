@@ -48,6 +48,7 @@
 
         function _updateCalendar() {
             _clearCalendarForm();
+            Error.form.clear(vm.activity_calendar_form);
             vm.calendar.update()
                 .then(success, _errored);
 
@@ -67,19 +68,24 @@
           
             if (responseErrors) {
               if (responseErrors['sessions'] && !responseErrors['number_of_sessions']){
-                   console.log(responseErrors);
-                    //Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
-                    Toast.error(responseErrors['sessions'][0]);
+                   
+                    Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
+                    _.each(responseErrors['sessions'], function (error_dict, index) { 
+                        if(!_.isEmpty(error_dict)){
+                            Elevator.toElement('calendar-'+index);
+                        }
+                    });
+                     
                     delete responseErrors['sessions'];
                 }
 
                 if (responseErrors['number_of_sessions']){
-                  Toast.error(vm.strings.TOAST_SESSIONS_NUMBER_ERROR);
-                  delete responseErrors['number_of_sessions'];
+                    Toast.error(vm.strings.TOAST_SESSIONS_NUMBER_ERROR);
+                    delete responseErrors['number_of_sessions'];
                 }
                 if (!_.isEmpty(responseErrors)){
-                    Elevator.toElement('activity_calendar_form');
                     Error.form.add(vm.activity_calendar_form, responseErrors);
+                    Elevator.toElement('activity_calendar_form');
                 }
 
             }

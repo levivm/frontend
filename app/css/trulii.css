@@ -16850,13 +16850,26 @@ tags-input input {
   font-weight: 200;
   color: rgba(102, 102, 102, 0.74);
 }
+.input-error,
+.input-error p {
+  color: #BD362F;
+  font-weight: 500;
+  margin-left: 25px;
+}
 .form-group .input-error,
 .form-group .input-error p {
   color: #BD362F;
   font-weight: 500;
+  margin-left: 25px;
 }
 .form-group .form-label {
   margin-left: 2em;
+}
+.time-picker .input-error,
+.time-picker .input-error p {
+  color: #BD362F;
+  font-weight: 500;
+  margin-left: 0px;
 }
 .form-classic input,
 .form-classic select,
@@ -19333,7 +19346,7 @@ button.toast-close-button {
 .cover-edit-activity__content-title h5 {
   color: white;
   font-size: 1.3em;
-  font-weight: 400;
+  font-weight: 300;
 }
 .cover-edit-activity__content-first {
   display: flex;

@@ -13,7 +13,7 @@
                     {{calendar.errors.non_field_errors}}
                 </alert>
                 <div class="col-md-6">
-                    <div class="form-group " trulii-input-errors-control="closing_sale">
+                    <div class="form-group "   trulii-input-errors-control="closing_sale">
                         
                         <label class="control-label"  >
                             <span ng-bind="::calendar.strings.LABEL_CLOSE_SALES"></span>
@@ -21,7 +21,7 @@
                         </label>
                         <div class="select-forms select-forms__date">
                             <label>
-                                    <input id="closing_sale" type="text" class="datepicker form-control " name="closing_sale"
+                                    <input type="text" class="datepicker form-control " name="closing_sale"
                                         ng-model="calendar.calendar.closing_sale" ng-change="calendar.calendar.changeCloseDate()"
                                         datepicker-popup="{{calendar.format}}" is-open="calendar.calendar.endOpened"
                                         min-date="calendar.calendar.minStartDate" datepicker-options="calendar.dateOptions"
@@ -44,9 +44,9 @@
            
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group " trulii-input-errors-control="session_price">
+                    <div class="form-group "  trulii-input-errors-control="session_price">
                         <label class="control-label" for="session_price" ng-bind="::calendar.strings.LABEL_SESSION_PRICE"></label>
-                        <input id="session_price" class="form-control " ng-class="{'text-strike':calendar.calendar.is_free}" type="text" ui-number-mask="0" name="session_price"
+                        <input  class="form-control " ng-class="{'text-strike':calendar.calendar.is_free}" type="text" ui-number-mask="0" name="session_price"
                                 placeholder="{{::calendar.strings.PLACEHOLDER_SESSION_PRICE}}"
                                 ng-model="calendar.calendar.session_price" min="0" ng-disabled="calendar.calendar.is_free"/>
                         <div class="separate-above-less separate-below-less separate-left">
@@ -98,7 +98,7 @@
                 <div class="row separate-above-less">
 
                 <div class="col-md-5">
-                    <div class="form-group" trulii-input-errors-control="date_{{$index}}">
+                    <div class="form-group" id="date_{{$index}}" trulii-input-errors-control="date_{{$index}}">
                         <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_DAY"></label>
                          <div class="select-forms select-forms__date">
                             <label>
@@ -116,14 +116,14 @@
                 <div class="col-md-6 col-md-offset-1">
                     <div class="row">
 
-                        <div class="form-group col-md-6" trulii-input-errors-control="start_time_{{$index}}">
+                        <div class="form-group col-md-6 time-picker" id="start_time_{{$index}}" trulii-input-errors-control="start_time_{{$index}}">
                             <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_START_TIME"></label>
                             <timepicker name="start_time_{{$index}}"  class="timepicker" ng-model="session.start_time" ng-change="calendar.calendar.changeStartTime(session)"
                                         hour-step="calendar.hstep" minute-step="calendar.mstep" show-meridian="calendar.ismeridian">
                             </timepicker>
 
                         </div>
-                        <div class="col-md-6" trulii-input-errors-control="end_time_{{$index}}">
+                        <div class="col-md-6 time-picker" id="end_time_{{$index}}" trulii-input-errors-control="end_time_{{$index}}">
                             <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_END_TIME" ></label>
                             <timepicker class="timepicker" name="end_time_{{$index}}" ng-model="session.end_time" ng-change="calendar.calendar.changeEndTime(session)"
                                         hour-step="calendar.hstep" minute-step="calendar.mstep" show-meridian="calendar.ismeridian">
