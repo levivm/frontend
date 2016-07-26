@@ -12,16 +12,15 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryOrderCtrl', StudentHistoryOrderCtrl);
 
-    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order', 'Analytics', 'serverConf'];
+    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$state', '$stateParams', 'Toast','student', 'order', 'Analytics', 'serverConf'];
 
-    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order, Analytics, serverConf) {
+    function StudentHistoryOrderCtrl($modal, $window, $state, $stateParams, Toast, student, order, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm,{
             student: student,
             order: order,
             isStudent:true,
-            previousState:null,
             printOrder: printOrder,
             salesPaginationOpts: {
                 totalItems: 0,
@@ -29,7 +28,8 @@
                 maxPagesSize:10,
                 pageNumber: 1
             },
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            goBack:goBack
         });
 
         _activate();
@@ -44,6 +44,10 @@
             $window.print();
         }
 
+        function goBack() {
+            var previousState =  $state.previous.name ? $state.previous.name:$state.previous.url ;
+            $state.go(previousState, {});
+        }
 
 
 
@@ -84,10 +88,8 @@
         }
 
         function _activate() {
-            vm.previousState = $stateParams.previousState;
             _setStrings();
             _mapAssistants();
-            console.log('order',order);
         }
     }
 })();

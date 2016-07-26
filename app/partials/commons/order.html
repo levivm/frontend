@@ -3,7 +3,7 @@
     <div class="order-container tab-content">
         <div class="col-xs-12 panel-default panel-default__dashboard ">
             <a class="btn btn-default separate-right-less hidden-sm hidden-xs"
-                ui-sref="{{order.previousState.state}}({{order.previousState.params}})">
+                ng-click="order.goBack()">
                 <span ng-bind="::order.strings.ACTION_GO_BACK"></span>
             </a>
             <span class="panel-default__dashboard-title" ng-bind="::order.strings.TAB_ORDER"></span>
