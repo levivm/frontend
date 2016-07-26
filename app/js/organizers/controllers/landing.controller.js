@@ -97,7 +97,7 @@
                 HEADER_ACTION_START_NOW: "Registrate gratis",
                 PUBLISH_TITLE_COPY: "¿Por qué publicar tu actividad en Trulii?",
                 PUBLISH_TEXT_COPY_1: "Somos la única plataforma para organizadores de clases que realmente busca aumentar tus",
-                PUBLISH_TEXT_COPY_2: "inscripciones, ya que sóli hacemos dinero cuando tú lo haces, sino sería injusto, ¿no?",
+                PUBLISH_TEXT_COPY_2: "inscripciones, ya que sólo hacemos dinero cuando tú lo haces, sino sería injusto, ¿no?",
                 PUBLISH_1_TITLE: "Aumenta tus ingresos",
                 PUBLISH_1_TEXT: "Sabemos cómo aumentar tus ventas porque el marketing es lo nuestro.",
                 PUBLISH_2_TITLE: "Expande tu alcance",
