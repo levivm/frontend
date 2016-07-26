@@ -9,7 +9,11 @@
               ui-sref="category({category_name: detail.activity.category.slug})"
               target="_blank"></a>
             <h1 class="title text-center font-light separate-above-less" ng-bind="::detail.activity.title"></h1>
-            <h5 class="organizer" ng-bind="::detail.organizer.name"></h5>
+            <a href="" class="organizer" ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})"
+              target="_blank">
+              <h5 ng-bind="::detail.organizer.name">
+              </h5>
+            </a>
             <div class="rating">
               <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                       readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating> 
