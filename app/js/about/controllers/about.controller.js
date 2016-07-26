@@ -82,8 +82,8 @@
                 SHOW_PRESENTATION_COPY: "Ver presentación",
                 CULTURE_SECTION_1_CONTENT_TITLE: "Aspiramos a mucho más",
                 CULTURE_SECTION_1_CONTENT_TEXT_1: "Trulii = Startup = Crecimiento. Como cualquier startup aspiramos a crecer en cada rincón del planeta para consolidarnos como una empresa lider en el sector y hacer de cada ciudad un lugar con infinitas posibilidades para aprender cosas nuevas.",
-                CULTURE_SECTION_1_CONTENT_TEXT_2: "Aspiramos a ser una empresa global, rentable y próspera donde prima el bienestar y la fecilidad que nuestros usuarios, aliados y trabajadores. Tenems las ganas, la determinación y el corazón para que todo sea posible.",
-                CULTURE_SECTION_1_CONTENT_TEXT_3: "Y aunque apenas estaos comenzando, ya estamos pensando en el mañana. Porque aspiramos a mucho más.", 
+                CULTURE_SECTION_1_CONTENT_TEXT_2: "Aspiramos a ser una empresa global, rentable y próspera donde prima el bienestar y la fecilidad que nuestros usuarios, aliados y trabajadores. Tenemos las ganas, la determinación y el corazón para que todo sea posible.",
+                CULTURE_SECTION_1_CONTENT_TEXT_3: "Y aunque apenas estamos comenzando, ya estamos pensando en el mañana. Porque aspiramos a mucho más.", 
 
                 CULTURE_GRAPH_BRANCH_1_HEADER: "Priorizar",
                 CULTURE_GRAPH_BRANCH_1_TEXT_1: "Trulii",
