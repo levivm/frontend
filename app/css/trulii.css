@@ -12262,13 +12262,16 @@ hr.on-light {
   }
 }
 .dashboard-filters__searchbox {
-  width: 11em;
+  width: 14em;
 }
 @media screen and (max-width: 768px) {
   .dashboard-filters__searchbox {
     width: 100%;
     margin-left: 0;
   }
+}
+.dashboard-filters__searchbox input[type="text"] {
+  height: 32px !important;
 }
 .dashboard-filters__activity {
   width: 10em !important;
@@ -12295,23 +12298,25 @@ hr.on-light {
   }
 }
 .dashboard-filters__selects .input-group input[type="text"] {
-  font-size: 0.8em;
+  font-size: 1em;
   border: none;
   border: none !important;
   border-radius: 0 !important;
 }
 .dashboard-filters__selects .input-group select {
-  font-size: 0.8em;
+  font-size: 0.9em;
   background-color: transparent !important;
   border: none !important;
   color: #767676 !important;
+  font-weight: 600;
 }
 .dashboard-filters__selects .input-group label {
   margin-bottom: 0px !important;
 }
 .dashboard-filters__selects .input-group label:after {
-  font-size: 20px;
+  font-size: 21px;
   top: 12px;
+  color: rgba(161, 166, 187, 0.57);
 }
 .dashboard-filters__selects ::-webkit-input-placeholder {
   font-weight: 600;
@@ -12485,12 +12490,11 @@ hr.on-light {
   display: flex;
   justify-content: flex-start;
   padding: 2em 0em 0em 1em;
-  border-bottom: 1px solid #cbcbcb;
   align-items: center;
 }
 .balance__mount-available-title h4 {
   font-size: 1em;
-  font-weight: 700;
+  font-weight: 600;
   color: #222328;
 }
 .balance__mount-available-title h5 {
@@ -19535,7 +19539,7 @@ button.toast-close-button {
   color: white;
   font-size: 1.4em;
   line-height: 1.6em;
-  font-weight: 600;
+  font-weight: 400;
 }
 @media screen and (max-width: 768px) {
   .trulii-cover__video-text,
