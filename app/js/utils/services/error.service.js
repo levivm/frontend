@@ -104,14 +104,15 @@
 
         function addErrors(form, responseErrors) {
             //form.$valid = false;
+            console.log(responseErrors);
             angular.forEach(responseErrors, function (fieldErrors, field) {
                 var message = fieldErrors[0];
-
+                
                 // Error is unrelated to form fields
                 if (field === NON_FIELD_ERRORS) return;
                 // Process remaining form field errors
                 if (field in form){
-                    console.log(message, fieldErrors, field);                    
+                                     
                     console.log(form[field]);                    
                     form[field].error_message = message;
                     form[field].$setValidity(field, false);
