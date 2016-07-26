@@ -82,12 +82,12 @@
                 COPY_IS_STUDENT_DISCOVER: "Te invitamos a descubrir nuevas actividades de tu interés",
                 HEADER_TITLE_COPY_1: "te dio COP",
                 HEADER_TITLE_COPY_2: "de cupón",
-                HEADER_TEXT_COPY: "Trulii es la mejor forma de encontrar e inscribirte en lo que quieres aprender en tu ciudad.",
+                HEADER_TEXT_COPY: "Trulii es la mejor forma de encontrar e inscribirte en lo que quieres aprender en tu ciudad. Utiliza este cupón para inscribirte a cualquier actividad.",
                 ACTION_REGISTER: "Regístrate",
                 ACTION_LOGIN: "Inicia Sesión",
                 ACTION_SEARCH_ACTIVITIES: "Buscar Actividades",
-                COPY_TO_CLAIM_COUPON: "Ya te falta solo un paso para reclamar tu cupón",
-                ACTION_REDEEM: "Registrarme para reclamar mi cupón",
+                ACTION_REDEEM: "Registrarte para reclamar tu cupón",
+                BENEFITS_TITLE: 'Beneficios',
                 REASON_NO_COMMISSIONS: "Sin comisiones",
                 REASON_COPY_NO_COMMISSIONS: "En serio ¡Te lo prometemos!",
                 REASON_REFUND: "Devolución Garantizada",
@@ -95,6 +95,9 @@
                 REASON_SECURE: "Pago seguro",
                 REASON_COPY_SECURE: "Inscríbete con tranquilidad",
                 VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
+                VIDEO_TEXT: "Somos una plataforma que facilitará tu aprendizaje, te permitirá aprovechar tu tiempo libre y mejorarará tu currículum. " +
+                             "Puedes aprender desde finanzas hasta yoga. Encuentra e inscríbite en las mejores clases y cursos de tu ciudad, todo en un sólo sitio. "+
+                             " ¡Conoce más sobre nosotros en este video!",
                 CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
                 HOW_TITLE_COPY: "¿Cómo funciona?",
@@ -105,6 +108,8 @@
                 HOW_SIGN_UP_TEXT: "Tu pago está en buenas manos con nosotros",
                 HOW_LEARN_COPY: "Aprende",
                 HOW_LEARN_TEXT: "La vida es corta. ¡Aprende todo lo que puedas!",
+                HOW_REVIEW_COPY: "Evalúa",
+                HOW_REVIEW_TEXT: "La actividad para que otros tengan una referencia.",
                 LEARN_MORE: "Aprende más sobre cómo funciona nuestro sistema de invitaciones"
 
             });
@@ -114,6 +119,7 @@
             _setStrings();
             vm.categories = generalInfo.categories;
             console.log(student);
+            console.log(vm.referrer);
         }
 
     }

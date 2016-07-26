@@ -18824,6 +18824,7 @@ ul.dropdown-menu:after {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  line-height: 1;
 }
 .toast-close-button:hover,
 .toast-close-button:focus {
@@ -18833,6 +18834,11 @@ ul.dropdown-menu:after {
   opacity: 0.4;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
+}
+.rtl .toast-close-button {
+  left: -0.3em;
+  float: left;
+  right: 0.3em;
 }
 /*Additional properties for button version
  iOS requires the button element instead of an anchor tag.
@@ -18911,7 +18917,12 @@ button.toast-close-button {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
 }
-#toast-container > :hover {
+#toast-container > div.rtl {
+  direction: rtl;
+  padding: 15px 50px 15px 15px;
+  background-position: right 15px center;
+}
+#toast-container > div:hover {
   -moz-box-shadow: 0 0 12px #000000;
   -webkit-box-shadow: 0 0 12px #000000;
   box-shadow: 0 0 12px #000000;
@@ -18975,9 +18986,16 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 11em;
   }
+  #toast-container > div.rtl {
+    padding: 8px 50px 8px 8px;
+  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
+  }
+  #toast-container .rtl .toast-close-button {
+    left: -0.2em;
+    right: 0.2em;
   }
 }
 @media all and (min-width: 241px) and (max-width: 480px) {
@@ -18985,15 +19003,25 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 18em;
   }
+  #toast-container > div.rtl {
+    padding: 8px 50px 8px 8px;
+  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
+  }
+  #toast-container .rtl .toast-close-button {
+    left: -0.2em;
+    right: 0.2em;
   }
 }
 @media all and (min-width: 481px) and (max-width: 768px) {
   #toast-container > div {
     padding: 15px 15px 15px 50px;
     width: 25em;
+  }
+  #toast-container > div.rtl {
+    padding: 15px 50px 15px 15px;
   }
 }
 .toast-success {
@@ -19834,6 +19862,13 @@ button.toast-close-button {
   font-weight: 500;
   margin-top: 0;
   margin-bottom: 0;
+  text-decoration: none;
+}
+.trulii-cover__content .organizer h5,
+.trulii-cover-small__content .organizer h5,
+.trulii-cover-medium__content .organizer h5,
+.trulii-cover-regular__content .organizer h5 {
+  font-weight: 500;
 }
 .trulii-cover__content .rating,
 .trulii-cover-small__content .rating,
@@ -20073,8 +20108,6 @@ button.toast-close-button {
 .trulii-cover-small__content .btn-lg,
 .trulii-cover-medium__content .btn-lg,
 .trulii-cover-regular__content .btn-lg {
-  font-size: 1.1em;
-  padding: 0.7em 1.5em;
   margin: 0 auto;
 }
 @media screen and (max-width: 992px) {
