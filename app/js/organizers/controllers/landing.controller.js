@@ -16,8 +16,8 @@
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
 
-    OrganizerLandingCtrl.$inject = ['LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$sce', '$stateParams'];
-    function OrganizerLandingCtrl(LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $sce, $stateParams) {
+    OrganizerLandingCtrl.$inject = ['$scope', 'LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$sce', '$stateParams'];
+    function OrganizerLandingCtrl($scope, LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $sce, $stateParams) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -154,6 +154,7 @@
         function _activate() {
             _setStrings();
             _fromBurgerMenu();
+            $scope.htmlReady();
         }
     }
 })();

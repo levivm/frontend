@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html ng-app='trulii'>
 <head>
+    <meta name="fragment" content="!" />
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title ng-bind="MetaTags.title">Default title</title>
+    <title ng-bind="MetaTags.title">Trulii: Cursos, Clases, Talleres y Actividades en Colombia</title>
     <meta name="description" content="{{MetaTags.description}}">
     <!--Favicon Section-->
     <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
@@ -129,6 +130,7 @@
         <script src="lib/rangy/rangy-textrange.js"></script>
         <script src="lib/angular-socialshare/dist/angular-socialshare.min.js"></script>
         <script src="lib/ui-router-metatags/dist/ui-router-metatags.js"></script>
+        <script src="lib/angular-seo/angular-seo.js"></script>
         <script src="lib/angular-google-maps/dist/angular-google-maps.js"></script>
         <script src="lib/angular-input-masks/angular-input-masks-standalone.min.js"></script>
         <script src="lib/angular-moment/angular-moment.js"></script>
@@ -166,12 +168,6 @@
         <script src="js/ui-components/ui-components.module.js"></script>
         <script src="js/utils/utils.module.js"></script>
         <script src="js/activities/activities.config.js"></script>
-        <script src="js/activities/services/activities_manager.service.js"></script>
-        <script src="js/activities/services/activity.service.js"></script>
-        <script src="js/activities/services/activity_steps.service.js"></script>
-        <script src="js/activities/services/calendar.service.js"></script>
-        <script src="js/activities/services/calendars_manager.service.js"></script>
-        <script src="js/activities/services/server_api.service.js"></script>
         <script src="js/authentication/services/authentication.service.js"></script>
         <script src="js/authentication/services/server_api.service.js"></script>
         <script src="js/authentication/services/session_injector.factory.js"></script>
@@ -179,6 +175,12 @@
         <script src="js/landing/services/server_api.service.js"></script>
         <script src="js/locations/services/locations_manager.service.js"></script>
         <script src="js/locations/services/server_api.service.js"></script>
+        <script src="js/activities/services/activities_manager.service.js"></script>
+        <script src="js/activities/services/activity.service.js"></script>
+        <script src="js/activities/services/activity_steps.service.js"></script>
+        <script src="js/activities/services/calendar.service.js"></script>
+        <script src="js/activities/services/calendars_manager.service.js"></script>
+        <script src="js/activities/services/server_api.service.js"></script>
         <script src="js/organizers/services/organizer.service.js"></script>
         <script src="js/organizers/services/organizer_constants.service.js"></script>
         <script src="js/organizers/services/organizer_manager.service.js"></script>
@@ -228,13 +230,6 @@
         <script src="js/utils/filters/to_trusted_html.filter.js"></script>
         <script src="js/utils/filters/truncate_text.filter.js"></script>
         <script src="js/about/controllers/about.controller.js"></script>
-        <script src="js/authentication/controllers/email_confirm.controller.js"></script>
-        <script src="js/authentication/controllers/forgot_password.controller.js"></script>
-        <script src="js/authentication/controllers/login.controller.js"></script>
-        <script src="js/authentication/controllers/logout.controller.js"></script>
-        <script src="js/authentication/controllers/register.controller.js"></script>
-        <script src="js/authentication/controllers/reset_password.controller.js"></script>
-        <script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
         <script src="js/activities/controllers/category.controller.js"></script>
         <script src="js/activities/controllers/dashboard.controller.js"></script>
         <script src="js/activities/controllers/dashboard_calendar_detail.controller.js"></script>
@@ -256,6 +251,13 @@
         <script src="js/activities/controllers/manage.controller.js"></script>
         <script src="js/activities/controllers/manage.orders.order.controller.js"></script>
         <script src="js/activities/controllers/manage_list.controller.js"></script>
+        <script src="js/authentication/controllers/email_confirm.controller.js"></script>
+        <script src="js/authentication/controllers/forgot_password.controller.js"></script>
+        <script src="js/authentication/controllers/login.controller.js"></script>
+        <script src="js/authentication/controllers/logout.controller.js"></script>
+        <script src="js/authentication/controllers/register.controller.js"></script>
+        <script src="js/authentication/controllers/reset_password.controller.js"></script>
+        <script src="js/authentication/controllers/social_login_cancelled.controller.js"></script>
         <script src="js/help/controllers/help.controller.js"></script>
         <script src="js/landing/controllers/contact.controller.js"></script>
         <script src="js/landing/controllers/home.controller.js"></script>

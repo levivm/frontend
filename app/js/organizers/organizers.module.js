@@ -36,7 +36,7 @@
     function config($stateProvider) {
         $stateProvider
             .state('organizer-landing', {
-                url:'/se-organizador/',
+                url:'/se-organizador',
                 controller: 'OrganizerLandingCtrl as landing',
                 templateUrl: 'partials/organizers/landing.html',
                 params: {

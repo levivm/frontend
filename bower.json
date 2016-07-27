@@ -49,7 +49,8 @@
     "textAngular": "~1.5.0",
     "font-awesome": "fontawesome#~4.6.1",
     "angular-socialshare": "angularjs-socialshare#^2.1.10",
-    "ui-router-metatags": "~1.0.3"
+    "ui-router-metatags": "~1.0.3",
+    "angular-seo": "https://github.com/steeve/angular-seo.git"
   },
   "resolutions": {
     "lodash": "~3.6.0",
