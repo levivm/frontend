@@ -167,6 +167,7 @@
             _setStrings();
            
             changeContentCover($state.current.name);
+            $scope.htmlReady();
         };
 
     }
