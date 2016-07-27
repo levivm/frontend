@@ -60,7 +60,7 @@
           </span>
         </span>
         <div ng-if="organizer" 
-          ui-sref="dash.activities-manage.assistants({activity_id: {{::activity.id}} })" 
+          ng-click="goToAssistants($event)"
           class="trulii-activity-card__body__content__attendes" 
           ng-bind="::strings.COPY_ATTENDES"></div>
       </div>

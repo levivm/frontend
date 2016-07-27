@@ -108,7 +108,7 @@
                 CONTACT_SUCCESS_COVER_TEXT: "¡Pendiente! Dentro de muy poco contactaremos para conocerte y validar tu solicitud",
                 COPY_ALL_FIELDS_REQUIRED: "Por favor llene todos los campos",
                 COPY_SUCCESS_SENDING_FORM: "Tu solicitud fue enviada con éxito. Pronto nos pondremos en contacto contigo",
-                COPY_ERROR_SENDING_FORM: "Hubo un error enviando tu solicitud. Por faovr intenta de nuevo",
+                COPY_ERROR_SENDING_FORM: "Hubo un error enviando tu solicitud. Por favor intenta de nuevo",
                 LABEL_CONTACT_US: "Contáctanos",
                 LABEL_TOPIC: "Tópico",
                 LABEL_SUB_TOPIC: "Sub-Tópico",

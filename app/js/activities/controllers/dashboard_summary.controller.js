@@ -157,6 +157,7 @@
                 x: function(d){ return d3.round(d.x, 4); },
                 y: function(d){ return d.y; },
                 useInteractiveGuideline: true,
+                clipVoronoi: false,
                 yAxis: {
                     axisLabel: 'GANANCIAS',
                     tickFormat: function(d){
@@ -269,6 +270,7 @@
             _setOptions(vm.TAB_MONTHLY);
             _parseData();
             console.log(vm.stats);
+            console.log(vm.data);
         }
 
     }
