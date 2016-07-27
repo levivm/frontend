@@ -269,7 +269,7 @@
             return activity;
 
             function removePastCalendars(calendar){
-                var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day') || moment(calendar.initial_date).isSame(moment().valueOf() , 'day');
+                var passed = moment(calendar.closing_sale).isBefore(moment().valueOf() , 'day');
                 return !passed;
             }
 

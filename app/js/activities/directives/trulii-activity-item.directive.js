@@ -49,6 +49,7 @@
                     goToOrganizer: goToOrganizer,
                     goToAction:goToAction,
                     goToCategory: goToCategory,
+                    goToAssistants: goToAssistants,
                     clickAction: clickAction,
                     isStudent: false,
                     like:like,
@@ -95,13 +96,22 @@
                 function goToOrganizer($event){
                     $event.preventDefault();
                     $event.stopPropagation();
-                    $state.go('organizer-profile', {organizer_id: scope.activity.organizer.id});
+                    var url = $state.href('organizer-profile', {organizer_id: scope.activity.organizer.id});
+                    window.open(url,'_blank');
                 }
                 
                 function goToCategory($event){
                     $event.preventDefault();
                     $event.stopPropagation();
-                    $state.go('category', {category_name: scope.activity.category.slug});
+                    var url = $state.href('category', {category_name: scope.activity.category.slug});
+                    window.open(url,'_blank');
+                }
+
+                function goToAssistants($event){
+                    $event.preventDefault();
+                    $event.stopPropagation();
+                    var url = $state.href('dash.activities-manage.assistants', {activity_id: scope.activity.id});
+                    window.open(url,'_blank');
                 }
 
                  function goToAction(name, $event){

@@ -15416,14 +15416,19 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .search-container .search-content__result-info {
-  padding: 0;
+  padding: 0 10px;
+}
+@media (max-width: 1280px) {
+  .search-container .search-content__result-info {
+    padding: 0 30px;
+  }
 }
 .search-container .search-content__filters {
   float: right;
 }
 .search-container .search-content__filters .search-select select {
   height: 25px !important;
-  width: 125px;
+  width: 140px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -25030,7 +25035,6 @@ blockquote {
 }
 .order-detail .order-info {
   background-color: white;
-  padding: 0px 35px 0px 20px ;
 }
 @media screen and (max-width: 992px) {
   .order-detail .order-info .table-responsive .table tbody tr th,
@@ -25124,6 +25128,9 @@ blockquote {
   .order-container.tab-content {
     padding: 0;
   }
+}
+.table-hover > tbody > tr.order-mounts:hover {
+  background-color: transparent;
 }
 .print-visible {
   display: none;
@@ -25380,6 +25387,11 @@ blockquote {
     margin-top: 15px;
     width: 100%;
     border-radius: 54px !important;
+  }
+}
+@media (max-width: 1366px) {
+  .referral-input button {
+    font-size: 0.68em;
   }
 }
 .referral-icon {

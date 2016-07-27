@@ -692,14 +692,17 @@
         }
         
         &__result-info{
-            padding: 0;
+            padding: 0 10px;
+            @media (max-width: 1280px){
+                padding: 0 30px;
+            }
         }
         &__filters{
             float: right;
             .search-select{
                 select{
                     height: 25px !important;
-                    width: 125px;
+                    width: 140px;
                     -webkit-appearance: none;
                     -moz-appearance: none;
                     appearance: none;
