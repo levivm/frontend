@@ -65,6 +65,8 @@ module.exports = function(config) {
         'app/lib/textAngular/dist/textAngularSetup.js',
         'app/lib/moment/locale/es.js',
         'app/lib/angular-i18n/angular-locale_es-co.js',
+        'app/lib/angular-seo/angular-seo.js',
+        'app/lib/ui-router-metatags/dist/ui-router-metatags.js',
         'app/trulii.analytics.js',
         'app/js/trulii.js',
         'app/js/trulii.config.js',

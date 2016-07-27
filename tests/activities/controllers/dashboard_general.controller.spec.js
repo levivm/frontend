@@ -1,4 +1,4 @@
-xdescribe('Controller: ActivityGeneralController', function(){
+describe('Controller: ActivityGeneralController', function(){
     var ActivityGeneralController,
         ActivitiesManager,
         rootScope,
@@ -52,6 +52,7 @@ xdescribe('Controller: ActivityGeneralController', function(){
         $httpBackend
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
+       
         $httpBackend
            .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
