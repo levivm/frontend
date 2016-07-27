@@ -35,7 +35,9 @@
             'ui.select',
             'textAngular',
             'uiGmapgoogle-maps',
-            'ui.router.metatags'
+            'ui.router.metatags',
+            'ng',
+            'seo'
         ]);  
 
     angular
