@@ -1,4 +1,4 @@
-describe('Controller: ActivityGeneralController', function(){
+xdescribe('Controller: ActivityGeneralController', function(){
     var ActivityGeneralController,
         ActivitiesManager,
         rootScope,
@@ -78,14 +78,14 @@ describe('Controller: ActivityGeneralController', function(){
         currentUser = readJSON('tests/mock/currentUser.json');
         //End calls
         $httpBackend.flush();
-
+        
         ActivityGeneralController =  $controller('ActivityGeneralController', {
             'activity': activity,
             'organizer': organizer,
             'presaveInfo': presaveInfo,
             'isOwner':true});
 
-
+            
 
     }));
 
@@ -94,6 +94,12 @@ describe('Controller: ActivityGeneralController', function(){
             expect(ActivityGeneralController).toBeDefined();
             expect(ActivityGeneralController.strings).toBeDefined();
          });
+         
+          it('_setUpdate() if tags length is 2', function() {
+            expect(ActivityGeneralController.activity_tags.length).toEqual(2);
+         });
+        
+         
     });
 
     describe("Update", function(){
@@ -115,10 +121,12 @@ describe('Controller: ActivityGeneralController', function(){
             $httpBackend.flush();
             expect(ActivityGeneralController.isSaving).toBe(false);
          });
+         
+         it('_onSectionUpdated general is true', function() {
+            expect(ActivityGeneralController.activity.completed_steps['general']).toBe(true);
+         });
     });
-
-
-
+    
 
 
 })
