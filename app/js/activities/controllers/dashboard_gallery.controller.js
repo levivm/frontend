@@ -169,7 +169,6 @@
             vm.isLoadingCover = false;
             _.remove(vm.activity.pictures, 'main_photo', true);
             vm.activity.pictures.push(response.data.picture);
-
             angular.extend(activity, vm.activity);
 
             _initializePictures();
