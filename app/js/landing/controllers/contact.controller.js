@@ -14,9 +14,9 @@
         .module('trulii.landing.controllers')
         .controller('ContactController', ContactController);
 
-    ContactController.$inject = ['$state', '$stateParams', 'cities', 'Contact', 'Toast', 'Analytics', 'serverConf'];
+    ContactController.$inject = ['$state', '$scope', '$stateParams', 'cities', 'Contact', 'Toast', 'Analytics', 'serverConf'];
 
-    function ContactController($state, $stateParams, cities, Contact, Toast, Analytics, serverConf) {
+    function ContactController($state, $scope, $stateParams, cities, Contact, Toast, Analytics, serverConf) {
         var vm = this;
 
         angular.extend(vm, {
@@ -129,7 +129,7 @@
             _getTopics();
             toState = $stateParams.toState;
             console.log('toState:', toState);
-
+            $scope.htmlReady();
         }
 
     }

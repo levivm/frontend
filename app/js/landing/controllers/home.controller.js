@@ -200,6 +200,7 @@
             _mapTemplates();
             _setTrendingCategories();
             //Analytics.generalEvents.landing();
+            $scope.htmlReady();
         }
 
     }
