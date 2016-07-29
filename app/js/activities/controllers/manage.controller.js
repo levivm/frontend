@@ -281,6 +281,8 @@
             _getCalendars(activity);
             console.log($state);
             //console.log("reloadin",assistants);
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

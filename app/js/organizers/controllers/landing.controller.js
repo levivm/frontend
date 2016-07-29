@@ -155,6 +155,9 @@
             _setStrings();
             _fromBurgerMenu();
             $scope.htmlReady();
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

@@ -37,8 +37,8 @@
      * @description Activities Module Config function
      * @requires ui.router.state.$stateProvider
      */
-    config.$inject = ['$stateProvider'];
-    function config($stateProvider) {
+    config.$inject = ['$stateProvider', 'serverConf'];
+    function config($stateProvider, serverConf) {
 
 
         $stateProvider
@@ -244,10 +244,30 @@
                 },
                 metaTags:{
                     title: function(activity){
+                        console.log(activity);
                         return activity.title;
                     },
                     description: function(activity){
                         return activity.short_description
+                    },
+                    properties: {
+                        'og:title':  function(activity){return activity.title;},
+                        'og:description': function(activity){ return activity.short_description},
+                        'og:image': function(activity){
+                                    if(activity.hasOwnProperty('pictures') && activity.pictures.length > 0){
+                                        angular.forEach(activity.pictures, function(picture){
+                                            if(picture.main_photo){
+                                                activity.main_photo = picture.photo;
+                                            }
+                                        });
+                                    }
+
+                                    if(!activity.main_photo){
+                                        activity.main_photo = serverConf.s3URL + '/static/img/nocover.jpg';
+                                    }
+                                    
+                                    return activity.main_photo;
+                        }
                     }
                 }
             })

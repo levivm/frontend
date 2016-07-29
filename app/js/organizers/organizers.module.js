@@ -32,8 +32,8 @@
      * @description Organizers Module Config function
      * @requires ui.router.state.$stateProvider
      */
-    config.$inject = ['$stateProvider'];
-    function config($stateProvider) {
+    config.$inject = ['$stateProvider', 'serverConf'];
+    function config($stateProvider, serverConf) {
         $stateProvider
             .state('organizer-landing', {
                 url:'/se-organizador',
@@ -47,7 +47,12 @@
                 },
                 metaTags:{
                     title:'Sé Organizador y Publica Tus Cursos| Trulii',
-                    description: 'Conviértete en organizador y publica tus cursos, talleres, clases o diplomados de manera sencilla y rápida. Publicar es GRATIS. Más información aquí.'
+                    description: 'Conviértete en organizador y publica tus cursos, talleres, clases o diplomados de manera sencilla y rápida. Publicar es GRATIS. Más información aquí.',
+                    properties: {
+                        'og:title': 'Sé Organizador y Publica Tus Cursos| Trulii',
+                        'og:description': 'Conviértete en organizador y publica tus cursos, talleres, clases o diplomados de manera sencilla y rápida. Publicar es GRATIS. Más información aquí.',
+                        'og:image': serverConf.s3URL + '/' + 'static/img/organizer-landing/banner.jpg'
+                    }
                 }
             })
             .state('organizer-profile', {
@@ -62,6 +67,19 @@
                     activities: getOrganizerProfileActivities,
                     reviews: getOrganizerReviews,
                     reviewObjects: getReviewObjects
+                },
+                metaTags:{
+                     title: function(organizer){
+                        return 'Trulii | '+organizer.user.first_name;
+                    },
+                    description: function(organizer){
+                        return organizer.headLine;
+                    },
+                    properties: {
+                        'og:title':  function(organizer){return  'Trulii | '+organizer.user.first_name;},
+                        'og:description': function(organizer){ return organizer.headLine;},
+                        'og:image': function(organizer){return organizer.photo; }
+                    }
                 }
             })
             .state('organizer-dashboard', {

@@ -125,6 +125,9 @@
              vm.subItems ={
                 activities: false
             }
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 

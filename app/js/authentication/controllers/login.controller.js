@@ -14,9 +14,9 @@
         .module('trulii.authentication.controllers')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state', '$stateParams', '$q', 'Authentication', 'Error', 'Analytics'];
+    LoginController.$inject = ['$state', '$scope', '$stateParams', '$q', 'Authentication', 'Error', 'Analytics'];
 
-    function LoginController($state, $stateParams, $q, Authentication, Error, Analytics) {
+    function LoginController($state, $scope, $stateParams, $q, Authentication, Error, Analytics) {
 
         var vm = this;
         angular.extend(vm, {
@@ -100,6 +100,8 @@
 
             toState = $stateParams.toState;
             _setStrings();
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

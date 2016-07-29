@@ -529,7 +529,8 @@
             _updateViewCount();
 
             console.log(vm.organizer);
-
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

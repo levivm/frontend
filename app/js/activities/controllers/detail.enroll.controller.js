@@ -866,7 +866,8 @@
                 vm.pseData.payerEmail = currentUser.user.email;
                 _setAssistants();
             }
-
+            //Function for angularSeo
+            $scope.htmlReady();
 
 
         }
