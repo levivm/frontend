@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
+    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -44,6 +44,9 @@
                     showMenu:false,
                     showDropMenu: showDropMenu,
                     hideDropMenu: hideDropMenu,
+                    showCategories:false,
+                    showCategoriesMenu: showCategoriesMenu,
+                    hideCategoriesMenu: hideCategoriesMenu,
                     showCities: false,
                     search_city : null,
                     toggleBurger: toggleBurger,
@@ -66,7 +69,8 @@
                     subItems: {},
                     showSubItems: showSubItems,
                     isActive:isActive,
-                    hideSubItems:hideSubItems
+                    hideSubItems:hideSubItems,
+                    categories: []
                 });
 
                 _activate();
@@ -89,6 +93,12 @@
                 }
                  function hideDropMenu() {
                     scope.showMenu=false;
+                }
+                function showCategoriesMenu() {
+                    scope.showCategories=true;
+                }
+                 function hideCategoriesMenu() {
+                    scope.showCategories=false;
                 }
                 function goToProfile() {
                    $state.go((scope.user.is_organizer) ? 'organizer-dashboard.profile': 'student-dashboard.profile')
@@ -297,6 +307,7 @@
                         LABEL_STUDENT_ACCOUNT: 'Cuenta',
                         LABEL_STUDENT_PURCHASES: 'Transacciones',
                         LABEL_STUDENT_NOTIFICATIONS: 'Notificaciones',
+                        LABEL_CATEGORIES: 'Categorías',
                         PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
                         LABEL_CITY_MENU:'Elige tu ciudad',
                         SUBITEM_ACTIVITIES: 'activities',
@@ -344,6 +355,14 @@
                         }
                     );
                 }
+
+                function _getCategories(){
+                    ActivitiesManager.getCategories().then(
+                        function(data){
+                            scope.categories = data;
+                        }
+                    )
+                }
                 
 
                 function _activate() {
@@ -353,6 +372,7 @@
                     _setUserChangedWatch();
                     _initReviewsWatch();
                     _initNotificationWatch();
+                    _getCategories();
                     
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;

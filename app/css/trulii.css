@@ -1173,7 +1173,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2603,7 +2602,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3094,7 +3092,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -14275,7 +14272,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 60px;
-  width: calc(100% - 440px);
+  width: calc(100% - 560px);
   margin: 0.2em 1em;
 }
 .navbar__left-wrapper .buttons {
@@ -14292,7 +14289,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   text-decoration: none;
 }
 .navbar__left-wrapper.long {
-  width: calc(100% - 400px);
+  width: calc(100% - 300px);
 }
 @media screen and (max-width: 992px) {
   .navbar__left-wrapper {
@@ -14347,11 +14344,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 }
 .navbar__option--right {
   text-decoration: none;
-  padding: 5px 1em 5px 0em;
+  padding: 5px 2em 5px 0em;
   text-align: left;
   cursor: pointer;
   display: flex;
   align-items: center;
+  float: left;
 }
 .navbar__option--right span {
   text-transform: capitalize;
@@ -14630,7 +14628,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .drop-menu {
   position: fixed;
   width: 17em;
-  right: 1.35em;
+  right: 2.35em;
   top: 70px;
   z-index: 10000;
   background: white;
@@ -14638,6 +14636,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-top: none;
   box-shadow: rgba(68, 68, 68, 0.31) 0px 2px 31px 1px;
   border-radius: 5px;
+}
+.drop-menu-categories {
+  right: 12.35em;
 }
 .drop-menu.short {
   top: 68px;
@@ -18829,6 +18830,7 @@ ul.dropdown-menu:after {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  line-height: 1;
 }
 .toast-close-button:hover,
 .toast-close-button:focus {
@@ -18838,6 +18840,11 @@ ul.dropdown-menu:after {
   opacity: 0.4;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
+}
+.rtl .toast-close-button {
+  left: -0.3em;
+  float: left;
+  right: 0.3em;
 }
 /*Additional properties for button version
  iOS requires the button element instead of an anchor tag.
@@ -18916,7 +18923,12 @@ button.toast-close-button {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
 }
-#toast-container > :hover {
+#toast-container > div.rtl {
+  direction: rtl;
+  padding: 15px 50px 15px 15px;
+  background-position: right 15px center;
+}
+#toast-container > div:hover {
   -moz-box-shadow: 0 0 12px #000000;
   -webkit-box-shadow: 0 0 12px #000000;
   box-shadow: 0 0 12px #000000;
@@ -18980,9 +18992,16 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 11em;
   }
+  #toast-container > div.rtl {
+    padding: 8px 50px 8px 8px;
+  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
+  }
+  #toast-container .rtl .toast-close-button {
+    left: -0.2em;
+    right: 0.2em;
   }
 }
 @media all and (min-width: 241px) and (max-width: 480px) {
@@ -18990,15 +19009,25 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 18em;
   }
+  #toast-container > div.rtl {
+    padding: 8px 50px 8px 8px;
+  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
+  }
+  #toast-container .rtl .toast-close-button {
+    left: -0.2em;
+    right: 0.2em;
   }
 }
 @media all and (min-width: 481px) and (max-width: 768px) {
   #toast-container > div {
     padding: 15px 15px 15px 50px;
     width: 25em;
+  }
+  #toast-container > div.rtl {
+    padding: 15px 50px 15px 15px;
   }
 }
 .toast-success {
@@ -22006,24 +22035,53 @@ blockquote {
   padding-bottom: 30px;
   margin-bottom: 3em;
 }
-.reviews-container--ratings span {
-  font-size: 18px;
+.reviews-container--ratings {
+  padding-bottom: 25px;
+  border-bottom: 1px solid #ededed;
+  margin-bottom: 25px;
+  margin-top: 25px;
 }
-.reviews-container--ratings .title {
+.reviews-container--ratings__avatar {
   display: inline-block;
-  font-weight: bold;
-  padding: 1em 0.5em;
+  width: 65px;
+  height: 65px;
+  border-radius: 65px;
+  margin-right: 25px;
+  float: left;
+}
+.reviews-container--ratings__info {
+  display: inline-block;
+}
+.reviews-container--ratings__info > span,
+.reviews-container--ratings__info a {
+  display: block;
+}
+.reviews-container--ratings__info a {
   color: #4E546C;
-  margin-right: 5px;
+  font-weight: 700;
+  font-size: 18px;
+  margin-top: 8px;
 }
-.reviews-container--ratings .star,
-.reviews-container--ratings .star-empty-off {
-  font-size: 15px;
+.reviews-container--ratings__info .star,
+.reviews-container--ratings__info .star-empty-off {
+  font-size: 14px;
 }
-.reviews-container--ratings .rating {
-  font-size: 16px;
+.reviews-container--ratings__info .rating {
+  font-size: 14px;
   font-weight: 600;
   color: #4E546C;
+}
+.reviews-container--ratings__activities {
+  display: inline-block;
+  float: right;
+}
+.reviews-container--ratings__activities a {
+  color: #4E546C;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.reviews-container--ratings__activities span {
+  font-size: 14px;
 }
 .reviews-container--reviews-empty span {
   color: #767676;
@@ -24649,8 +24707,7 @@ blockquote {
 .review-detail .review-content__name {
   font-size: 1em;
   color: #3A405B;
-  text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 800;
 }
 .review-detail .review-content__text-header {
   font-size: 1em;

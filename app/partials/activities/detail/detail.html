@@ -542,24 +542,26 @@
 <div class="reviews-container col-xs-12 hidden-xs hidden-sm">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1 limited-width">
-      <p class="reviews-container--ratings" ng-if="detail.reviews.length>0" >
-        <span class="title">
-          <ng-pluralize count="detail.totalReviews"
-                        when="{
-              '1': detail.strings.COPY_ONE_REVIEW,
-              'other': detail.strings.COPY_OTHER_REVIEWS
-            }">
-          </ng-pluralize>
+      <div class="reviews-container--ratings">
+        <img class="img-responsive reviews-container--ratings__avatar" ng-src="{{detail.organizer.photo}}" alt="">
+        <span class="reviews-container--ratings__info">
+          <a ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})" ng-bind="detail.organizer.name"></a>
+          <span class="text-uppercase">
+            <rating ng-model="detail.organizer.rating" max="5"
+                    state-on="'glyphicon glyphicon-star star'"
+                    state-off="'glyphicon glyphicon-star star-empty-off'"
+                    readonly="true" aria-labelledby="custom-icons-1"></rating>
+            <span class="rating" ng-bind="::(detail.organizer.rating | number: 1)+ '/5'"></span>
+          </span>
+        </span>
+        <span class="reviews-container--ratings__activities">
+          <a ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})">
+            <span ng-bind="detail.strings.COPY_VIEW_PUBLISHED_ACTIVITIES"></span>
+            <span>45</span>
+          </a>  
         </span>
         <br class="hidden-md hidden-lg">
-        <span class="text-uppercase">
-          <rating ng-model="detail.organizer.rating" max="5"
-                  state-on="'glyphicon glyphicon-star star'"
-                  state-off="'glyphicon glyphicon-star star-empty-off'"
-                  readonly="true" aria-labelledby="custom-icons-1"></rating>
-          <span class="rating" ng-bind="::(detail.organizer.rating | number: 1)+ '/5'"></span>
-        </span>
-      </p>
+      </div>
       <div class="row">
         <div class="col-xs-12 col-md-10 col-md-offset-1" ng-repeat="review in detail.reviews track by review.id">
           <trulii-activity-review data-review="review"
