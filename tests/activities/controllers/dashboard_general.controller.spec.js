@@ -125,6 +125,19 @@ xdescribe('Controller: ActivityGeneralController', function(){
          it('_onSectionUpdated general is true', function() {
             expect(ActivityGeneralController.activity.completed_steps['general']).toBe(true);
          });
+         
+         it('should  error update', function() {
+            ActivityGeneralController.isSaving = true;
+            ActivityGeneralController.activity_create_form = $scope.vm.activity_create_form;
+            ActivityGeneralController.save_activity();
+            $httpBackend
+                 .when('PUT', 'http://localhost:8000/api/activities/4')
+                 .respond(400, {"title":["Este campo no puede estar en blanco."]});
+
+            $httpBackend.flush();
+            expect(ActivityGeneralController.isSaving).toBe(false);
+         });
+         
     });
     
 
