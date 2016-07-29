@@ -375,8 +375,6 @@
                 COPY_VACANCY_SINGULAR: " vacante",
                 COPY_VACANCY: " vacantes",
                 COPY_NO_VACANCY: "Sin vacantes",
-                COPY_ONE_REVIEW: " Evaluación",
-                COPY_OTHER_REVIEWS: " Evaluaciones",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
                 COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase, agrégala a favoritos y te avisaremos cuando hayan más fechas disponibles.",
@@ -433,7 +431,8 @@
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_NUMBER_OF_LIKES: "personas aman esto",
-                COPY_BE_THE_FIRST: "¡Sé el primero!"
+                COPY_BE_THE_FIRST: "¡Sé el primero!",
+                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas: "
             });
         }
         function _updateWidgetValues(){
@@ -528,6 +527,8 @@
             _initSignup();
             _setSearchData();
             _updateViewCount();
+
+            console.log(vm.organizer);
 
         }
     }

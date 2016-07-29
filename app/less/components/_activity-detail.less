@@ -933,26 +933,55 @@
     padding-bottom: 30px;
     margin-bottom: 3em;
     &--ratings{
-        span{
-            font-size: 18px;
-        }
-        .title{
+        padding-bottom: 25px;
+        border-bottom: 1px solid @gray-lighter;
+        margin-bottom: 25px;
+        margin-top: 25px;
+        &__avatar{
             display: inline-block;
-            font-weight: bold;
-            padding: 1em 0.5em;
-            color: @gray-darker-brand;
-            margin-right: 5px;
+            width: 65px;
+            height: 65px;
+            border-radius: 65px;
+            margin-right: 25px;
+            float: left;
         }
+        &__info{
+            display: inline-block;
+            > span, a{
+                display: block;
+            }
+            a{
+                color: @gray-darker-brand;
+                font-weight: 700;
+                font-size: 18px;
+                margin-top: 8px;
+            }
+            .star, .star-empty-off{
+                font-size: 14px;
+            }
 
-        .star, .star-empty-off{
-            font-size: 15px;
+            .rating{
+                font-size: 14px;
+                font-weight: 600;
+                color: @gray-darker-brand;
+            }
         }
-
-        .rating{
-            font-size: 16px;
-            font-weight: 600;
-            color: @gray-darker-brand;
+        &__activities{
+            display: inline-block;
+            float: right;
+            a{
+                color: @gray-darker-brand;
+                font-weight: 600;
+                text-decoration: underline;
+            }
+            span{
+                font-size: 14px;
+            }
         }
+        // span{
+        //     font-size: 18px;
+        // }
+        
 
     }
     &--reviews-empty{
