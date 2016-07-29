@@ -66,7 +66,6 @@
         }
 
         function updateActivity() {
-            console.log(vm.activity);
             Error.form.clear(vm.activity_create_form);
             _updateTags();
             _updateSelectedValues();
@@ -132,6 +131,7 @@
             selectCategory(vm.selected_category);
             vm.selected_sub_category = _.find(vm.activity_sub_categories, { 'id': vm.activity.sub_category});
             vm.activity_tags = vm.activity.tags;
+            
 
         }
 

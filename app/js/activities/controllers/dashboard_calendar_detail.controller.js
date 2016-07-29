@@ -65,7 +65,7 @@
         }
 
         function _errored(responseErrors) {
-          
+            console.log(responseErrors);
             if (responseErrors) {
               if (responseErrors['sessions'] && !responseErrors['number_of_sessions']){
                    
