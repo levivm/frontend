@@ -31,7 +31,7 @@
         UIRouterMetatagsProvider.setStaticProperties({
                 'og:title': DEFAULT_TITLE,
                 'og:description': DEFAULT_DESCRIPTION,
-                'og:image': serverConf.s3URL + '/' + 'static/img/banner_landing.jpg'
+                'og:image': serverConf.s3URL + '/' + 'static/img/share_green.jpg'
             })
         UIRouterMetatagsProvider.setOGURL(true);
 
@@ -86,7 +86,7 @@
                     properties: {
                         'og:title': 'Contáctanos | Trulii',
                         'og:description': '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!',
-                        'og:image': serverConf.s3URL + '/' + 'static/img/banner_landing.jpg'
+                        'og:image': serverConf.s3URL + '/' + 'static/img/share_green.jpg'
                     }
                 }
             })

@@ -51,7 +51,7 @@
                     properties: {
                         'og:title': 'Sé Organizador y Publica Tus Cursos| Trulii',
                         'og:description': 'Conviértete en organizador y publica tus cursos, talleres, clases o diplomados de manera sencilla y rápida. Publicar es GRATIS. Más información aquí.',
-                        'og:image': serverConf.s3URL + '/' + 'static/img/organizer-landing/banner.jpg'
+                        'og:image': serverConf.s3URL + '/' + 'static/img/share_green.jpg'
                     }
                 }
             })
