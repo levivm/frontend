@@ -17,9 +17,11 @@
             </div>
         </div>
         <div class="navbar__right-wrapper" >
-            
+            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm"  ng-if="user" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+                <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
+                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
+            </a>
             <a ng-if="userLogged" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
-                <!--<img ng-if="user" ng-src="{{user.photo}}" class="user-picture hidden-xs hidden-sm" alt="{{user.user.full_name}}"/>-->
                 <trulii-avatar user="user" size="40" avatar-class="small" ng-class="{'avatar-landing': !user.photo}"></trulii-avatar>
                 <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.first_name"></span>
                 <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
@@ -31,7 +33,18 @@
         
     </div>
 </nav>
-<!--Dropdown menu when hiver in profile picture"-->
+
+<div class="drop-menu drop-menu-categories" ng-show="showCategories" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+    <ul class="list-unstyled">
+        <li ng-repeat="category in categories track by category.id">
+            <a ui-sref="category({category_name:category.slug})"
+                ng-click=" hideCategoriesMenu()"
+                ng-bind="::category.name"></a>
+        </li>
+    </ul>
+</div>
+
+<!--Dropdown menu when hover in profile picture"-->
 <div class="drop-menu" ng-show="showMenu" ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()">
     <ul class="list-unstyled" ng-if="user.is_organizer">
         
