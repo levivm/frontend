@@ -31,7 +31,8 @@
         UIRouterMetatagsProvider.setStaticProperties({
                 'og:title': DEFAULT_TITLE,
                 'og:description': DEFAULT_DESCRIPTION,
-                'og:image': serverConf.s3URL + '/' + 'static/img/share_green.jpg'
+                'og:image': serverConf.s3URL + '/' + 'static/img/share_green.jpg',
+                'og:locale': 'es_CO'
             })
         UIRouterMetatagsProvider.setOGURL(true);
 
