@@ -70,7 +70,8 @@
 
             return query.length ? query.substr(0, query.length - 1) : query;
         };
-
+        
+       
         $httpProvider.interceptors.push('sessionInjector');
 
         //Override $http service's default transformRequest

@@ -15,9 +15,9 @@
         .module('trulii.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator', 'Error', 'Referrals', 'Analytics'];
+    RegisterController.$inject = ['$q', '$scope', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator', 'Error', 'Referrals', 'Analytics'];
 
-    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator, Error, Referrals, Analytics) {
+    function RegisterController($q, $scope, Authentication, $state, $stateParams, validatedData, Elevator, Error, Referrals, Analytics) {
 
         var selectedMethod = null;
         var toState = null;
@@ -138,6 +138,9 @@
                 vm.auth.email = validatedData.email;
                 vm.auth.name = validatedData.name;
             }
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

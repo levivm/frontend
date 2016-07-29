@@ -13,9 +13,9 @@
         .module('trulii.referrals.controllers')
         .controller('ReferralsHomeCtrl', ReferralsHomeCtrl);
 
-    ReferralsHomeCtrl.$inject = ['referrerUrl', 'Referrals', 'Toast', 'serverConf', 'student', 'Analytics'];
+    ReferralsHomeCtrl.$inject = ['$scope', 'referrerUrl', 'Referrals', 'Toast', 'serverConf', 'student', 'Analytics'];
 
-    function ReferralsHomeCtrl(referrerUrl, Referrals, Toast, serverConf, student, Analytics) {
+    function ReferralsHomeCtrl($scope, referrerUrl, Referrals, Toast, serverConf, student, Analytics) {
 
         var vm = this;
         angular.extend(vm, {
@@ -131,6 +131,9 @@
         function _activate(){
             _setStrings();
             _setSocialShare();
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
 
     }

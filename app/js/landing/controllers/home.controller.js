@@ -200,6 +200,8 @@
             _mapTemplates();
             _setTrendingCategories();
             //Analytics.generalEvents.landing();
+            
+            //Function for angularSeo
             $scope.htmlReady();
         }
 

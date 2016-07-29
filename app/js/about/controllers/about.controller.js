@@ -167,7 +167,10 @@
             _setStrings();
            
             changeContentCover($state.current.name);
+            //Function for angularSeo
             $scope.htmlReady();
+            
+            
         };
 
     }

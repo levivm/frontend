@@ -10,8 +10,8 @@
     angular
         .module('trulii.about.controllers', []);
 
-    config.$inject = ['$stateProvider'];
-    function config($stateProvider) {
+    config.$inject = ['$stateProvider', 'serverConf'];
+    function config($stateProvider, serverConf) {
         $stateProvider
             .state('about', {
                 abstract: true,
@@ -24,7 +24,12 @@
                 templateUrl: 'partials/about/mission.html',
                 metaTags:{
                     title:'¡Conócenos! | Trulii',
-                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!'
+                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!',
+                    properties: {
+                        'og:title': '¡Conócenos! | Trulii',
+                        'og:description': 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!',
+                        'og:image': serverConf.s3URL + '/' + 'static/img/about/equipo.jpg'
+                    }
                 }
             }) 
             .state('about.culture', {
@@ -32,7 +37,12 @@
                 templateUrl: 'partials/about/culture.html',
                 metaTags:{
                     title:'¡Conócenos! | Trulii',
-                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!'
+                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!',
+                    properties: {
+                        'og:title': '¡Conócenos! | Trulii',
+                        'og:description': 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!',
+                        'og:image': serverConf.s3URL + '/' + 'static/img/about/equipo.jpg'
+                    }
                 }
             })
             .state('about.team', {
@@ -40,7 +50,12 @@
                 templateUrl: 'partials/about/team.html',
                 metaTags:{
                     title:'¡Conócenos! | Trulii',
-                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!'
+                    description: 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!',
+                    properties: {
+                        'og:title': '¡Conócenos! | Trulii',
+                        'og:description': 'Encuentra aquí todo sobre Trulii, cómo funcionamos, qué beneficios te ofrecemos, nuestra historia y todo lo que tenemos para ti. ¡Anímate a conocernos!',
+                        'og:image': serverConf.s3URL + '/' + 'static/img/about/equipo.jpg'
+                    }
                 }
             })
             .state('about.terms', {
