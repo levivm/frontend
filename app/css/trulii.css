@@ -20631,6 +20631,8 @@ button.toast-close-button {
 @media (min-device-width: 768px) {
   .trulii-cover__background-video {
     display: block;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 .list {

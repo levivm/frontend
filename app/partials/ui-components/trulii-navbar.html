@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="navbar__right-wrapper" >
-            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm"  ng-if="user" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm"  ng-class="{'ng-hide': scroll < 80}" ng-if="user" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
                 <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
                 <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
             </a>
