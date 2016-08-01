@@ -9,14 +9,14 @@
         </div>
       </div>
     </div>
-    <div class="trulii-cover__background" style="background-image: url({{category.getAmazonUrl(category.category.cover_photo)}});">
+    <div class="trulii-cover__background" style="background-image: url({{category.category.cover_photo}});">
     </div>
   </div>
 </div>
 <div class="col-xs-12 limited-width separate-above-more separate-below-more">
     <div class="row">
         <div class="col-xs-12 col-lg-6">
-            <img ng-src="{{category.getAmazonUrl(category.category.content_photo)}}" alt="" class="img-responsive center-block">
+            <img ng-src="{{category.category.content_photo}}" alt="{{category.category.name}}" class="img-responsive center-block">
         </div>
         <div class="col-xs-12 col-lg-6">
             <p ng-bind="::category.category.description"></p>
