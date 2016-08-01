@@ -14,9 +14,9 @@
         .module('trulii.referrals.services')
         .factory('Referrals', Referrals);
 
-    Referrals.$inject = ['$q', '$http', '$cookies', 'localStorageService', 'ReferralServerApi'];
+    Referrals.$inject = ['$q', '$http', '$cookies', 'localStorageService', 'ReferralServerApi', 'serverConf'];
 
-    function Referrals($q, $http, $cookies, localStorageService, ReferralServerApi) {
+    function Referrals($q, $http, $cookies, localStorageService, ReferralServerApi, serverConf) {
 
         var api = ReferralServerApi;
         var KEY_REF_HASH = 'refhash';
@@ -113,7 +113,10 @@
             return $http.get(api.referrer(referrerCode)).then(success, error);
 
             function success(response){
-                if(response.data.hasOwnProperty(KEY_REF_HASH)){ $cookies[KEY_REF_HASH] = response.data[KEY_REF_HASH]; }
+                var options = {};
+                options.domain = serverConf.domain;
+                console.log(options);
+                if(response.data.hasOwnProperty(KEY_REF_HASH)){ $cookies.put(KEY_REF_HASH, response.data[KEY_REF_HASH], options); }
                 return response.data;
             }
 

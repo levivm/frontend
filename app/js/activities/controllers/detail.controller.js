@@ -432,7 +432,7 @@
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_NUMBER_OF_LIKES: "personas aman esto",
                 COPY_BE_THE_FIRST: "¡Sé el primero!",
-                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas: "
+                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas"
             });
         }
         function _updateWidgetValues(){
