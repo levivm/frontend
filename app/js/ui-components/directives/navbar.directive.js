@@ -307,7 +307,7 @@
                         LABEL_STUDENT_ACCOUNT: 'Cuenta',
                         LABEL_STUDENT_PURCHASES: 'Transacciones',
                         LABEL_STUDENT_NOTIFICATIONS: 'Notificaciones',
-                        LABEL_CATEGORIES: 'Categorías',
+                        LABEL_CATEGORIES: 'Explorar',
                         PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
                         LABEL_CITY_MENU:'Elige tu ciudad',
                         SUBITEM_ACTIVITIES: 'activities',
