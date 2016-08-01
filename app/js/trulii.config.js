@@ -13,11 +13,11 @@
         .module('trulii.config')
         .config(config);    
 
-    config.$inject = ['$locationProvider','$httpProvider','FacebookProvider','serverConf'];
+    config.$inject = ['$locationProvider','$httpProvider', 'FacebookProvider','serverConf'];
 
-    function config($locationProvider, $httpProvider,FacebookProvider, serverConf) {
+    function config($locationProvider, $httpProvider, FacebookProvider, serverConf) {
         
-
+        
         /* Facebook initialization */
         FacebookProvider.init(serverConf.FACEBOOK_APP_KEY);
         /* Allow to send cookies */
