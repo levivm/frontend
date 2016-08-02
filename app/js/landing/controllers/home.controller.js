@@ -179,7 +179,7 @@
                 {
                     name: 'Fotografía',
                     cover: 'static/img/home/fotografia.jpg',
-                    category: 'Arte',
+                    category: 'Arte y Manualidades',
                     subcategory: 'Fotografía'
                 }, 
             ]
