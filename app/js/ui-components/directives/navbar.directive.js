@@ -70,7 +70,8 @@
                     showSubItems: showSubItems,
                     isActive:isActive,
                     hideSubItems:hideSubItems,
-                    categories: []
+                    categories: [],
+                    exploreLeftPosition: 0
                 });
 
                 _activate();
@@ -363,6 +364,29 @@
                         }
                     )
                 }
+
+                function _updateCategoriesPosition(){
+                    
+                    if(document.getElementsByClassName('navbar__left-wrapper')[0].classList.contains('long')){
+                        scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 450;
+                    }
+                    else{
+                        scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 250;
+                    }
+                    
+                }
+
+                function _initCategoriesPosition(){
+                    angular.element(document).ready(function(){
+                        _updateCategoriesPosition();
+                        scope.$on('scrolled', function(scrolled, scroll){
+                            _updateCategoriesPosition();
+                        });
+                        scope.$on('resize', function(){
+                            updateCategoriesPosition();
+                        });
+                    });
+                }
                 
 
                 function _activate() {
@@ -373,6 +397,7 @@
                     _initReviewsWatch();
                     _initNotificationWatch();
                     _getCategories();
+                    _initCategoriesPosition()
                     
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;

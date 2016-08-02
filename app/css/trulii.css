@@ -14265,8 +14265,13 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 60px;
-  width: calc(100% - 560px);
+  width: calc(100% - 435px);
   margin: 0.2em 1em;
+}
+.navbar__left-wrapper .navbar__option--right {
+  float: right;
+  font-size: 13px;
+  padding-top: 0;
 }
 .navbar__left-wrapper .buttons {
   height: 100%;
@@ -14631,7 +14636,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 5px;
 }
 .drop-menu-categories {
-  right: 12.35em;
+  right: 13.35em;
 }
 .drop-menu.short {
   top: 68px;
