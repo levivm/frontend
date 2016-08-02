@@ -5,10 +5,10 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileController', OrganizerProfileController);
 
-    OrganizerProfileController.$inject = ['$state', '$stateParams', 'uiGmapGoogleMapApi', 'LocationManager', 'organizer', 'activities'
+    OrganizerProfileController.$inject = ['$state', '$scope', '$stateParams', 'uiGmapGoogleMapApi', 'LocationManager', 'organizer', 'activities'
         , 'ActivitiesManager', 'reviews', 'serverConf'];
 
-    function OrganizerProfileController($state, $stateParams, uiGmapGoogleMapApi, LocationManager, organizer, activities
+    function OrganizerProfileController($state, $scope, $stateParams, uiGmapGoogleMapApi, LocationManager, organizer, activities
         , ActivitiesManager, reviews, serverConf) {
 
         var REVIEW_STEP = 3;
@@ -182,6 +182,9 @@
             //  vm.activities = activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
             //console.log('organizer:', organizer);
             //console.log('reviews:', reviews);
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

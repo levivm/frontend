@@ -109,7 +109,7 @@
         display: inline-block;
         vertical-align: top;
         height: @navbar-inner-height;
-        width: ~"calc(100% - 440px)";
+        width: ~"calc(100% - 560px)";
         margin: 0.2em 1em;
 
         .buttons{
@@ -127,7 +127,7 @@
         }
 
         &.long{
-           width: ~"calc(100% - 400px)";
+           width: ~"calc(100% - 300px)";
         }
 
         .before-md({
@@ -185,11 +185,12 @@
 
         &--right {
             text-decoration: none;
-            padding: 5px 1em 5px 0em;
+            padding: 5px 2em 5px 0em;
             text-align: left;
             cursor: pointer;
             display: flex;
             align-items: center;
+            float: left;
             span{
               text-transform: capitalize;
               font-weight: 600;
@@ -484,7 +485,7 @@
 .drop-menu{
   position: fixed;
   width: 17em;
-  right: 1.35em;
+  right: 2.35em;
   top: @navbar-height;
   z-index: 10000;
   background: white;
@@ -492,6 +493,10 @@
   border-top: none;
   box-shadow: rgba(68, 68, 68, 0.31) 0px 2px 31px 1px;
   border-radius: 5px;
+
+  &-categories{
+    right: 12.35em;
+  }
   
   
   &.short{

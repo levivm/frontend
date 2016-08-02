@@ -147,6 +147,9 @@
                 reviews: false,
                 transactions: false
             }
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
 
     }

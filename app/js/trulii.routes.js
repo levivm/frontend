@@ -22,13 +22,19 @@
      * @requires ui.router.router.$urlRouterProvider
      * @requires ui.router.util.$urlMatcherFactoryProvider
      */
-    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'UIRouterMetatagsProvider'];
-    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, UIRouterMetatagsProvider) {
+    config.$inject = ['$urlRouterProvider', '$stateProvider', '$urlMatcherFactoryProvider', 'UIRouterMetatagsProvider', 'serverConf'];
+    function config($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider, UIRouterMetatagsProvider, serverConf) {
         var DEFAULT_TITLE='Trulii: Cursos, Clases, Talleres y Actividades en Colombia';
         var DEFAULT_DESCRIPTION = 'Trulii es la primera plataforma educativa en Colombia. Encuentra cursos, actividades o clases de tu interés. ¡Inscríbete o publica GRATIS tu curso aquí!';
         UIRouterMetatagsProvider.setDefaultTitle(DEFAULT_TITLE);
         UIRouterMetatagsProvider.setDefaultDescription(DEFAULT_DESCRIPTION);
-        
+        UIRouterMetatagsProvider.setStaticProperties({
+                'og:title': DEFAULT_TITLE,
+                'og:description': DEFAULT_DESCRIPTION,
+                'og:image': serverConf.s3URL + '/' + 'static/img/share_green.jpg',
+                'og:locale': 'es_CO'
+            })
+        UIRouterMetatagsProvider.setOGURL(true);
 
         $urlMatcherFactoryProvider.strictMode(false);
         $urlRouterProvider.otherwise('/404');
@@ -77,7 +83,12 @@
                 },
                 metaTags:{
                     title:'Contáctanos | Trulii',
-                    description: '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!'
+                    description: '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!',
+                    properties: {
+                        'og:title': 'Contáctanos | Trulii',
+                        'og:description': '¿Quieres publicar o inscribirte en alguna actividad? ¿Tienes dudas o preguntas? Si necesitas ayuda, no dudes en contactarnos aquí. ¡Ingresa Ya!',
+                        'og:image': serverConf.s3URL + '/' + 'static/img/share_green.jpg'
+                    }
                 }
             })
             .state('modal-dialog', {

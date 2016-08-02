@@ -6,6 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title ng-bind="MetaTags.title">Trulii: Cursos, Clases, Talleres y Actividades en Colombia</title>
     <meta name="description" content="{{MetaTags.description}}">
+    <meta ng-repeat="(key, value) in MetaTags.properties" property="{{key}}" content="{{value}}" >
     <!--Favicon Section-->
     <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png">

@@ -5,10 +5,10 @@
         .module('trulii.activities.controllers')
         .controller('ActivityEnrollSuccessController', ActivityEnrollSuccessController);
 
-    ActivityEnrollSuccessController.$inject = ['$state', '$stateParams', 'LocationManager', 'Toast', 'activity', 'calendar', 'organizerActivities',
+    ActivityEnrollSuccessController.$inject = ['$state','$scope', '$stateParams', 'LocationManager', 'Toast', 'activity', 'calendar', 'organizerActivities',
                                                 'serverConf', 'uiGmapIsReady'];
 
-    function ActivityEnrollSuccessController($state, $stateParams, LocationManager, Toast, activity, calendar, organizerActivities, serverConf, uiGmapIsReady) {
+    function ActivityEnrollSuccessController($state, $scope, $stateParams, LocationManager, Toast, activity, calendar, organizerActivities, serverConf, uiGmapIsReady) {
 
         var vm = this;
         angular.extend(vm, {
@@ -286,6 +286,8 @@
             _setSocialShare();
             _setConfetti();
             _mapTemplates();
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

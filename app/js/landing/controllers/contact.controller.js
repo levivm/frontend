@@ -129,6 +129,7 @@
             _getTopics();
             toState = $stateParams.toState;
             console.log('toState:', toState);
+            //Function for angularSeo
             $scope.htmlReady();
         }
 

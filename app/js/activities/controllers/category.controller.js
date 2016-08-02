@@ -144,6 +144,8 @@
             _mapTemplates();
             console.log(category);
             console.log(categoryActivities);
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();
