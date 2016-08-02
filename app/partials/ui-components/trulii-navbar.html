@@ -6,21 +6,22 @@
         </div>
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
             <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true" class="navbar-search-bar" ng-class="{'navbar-search-bar-hidden': isSearchVisible() }"></trulii-search-bar>
+            
             <div class="buttons buttons-login float-right" ng-if="!user">
                 <a ui-sref="register" class=" font-regular  margin-horizontal-less" ng-class="{'text-dark': scroll > 80 || !isNavBarTransparent() }" ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
             <div class="buttons buttons-login float-right" ng-if="!user">
                 <a ui-sref="login" class=" font-regular  margin-horizontal-less " ng-bind="::strings.ACTION_LOGIN"></a>
             </div>
+            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm explore-categories"  ng-class="{'ng-hide': scroll < 80 && isNavBarTransparent()}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+                <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
+                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
+            </a>
             <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary font-regular" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
         </div>
         <div class="navbar__right-wrapper" >
-            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm"  ng-class="{'ng-hide': scroll < 80 && isNavBarTransparent()}" ng-if="user" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
-                <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
-                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
-            </a>
             <a ng-if="userLogged" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
                 <trulii-avatar user="user" size="40" avatar-class="small" ng-class="{'avatar-landing': !user.photo}"></trulii-avatar>
                 <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.first_name"></span>
@@ -34,7 +35,7 @@
     </div>
 </nav>
 
-<div class="drop-menu drop-menu-categories" ng-show="showCategories" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+<div class="drop-menu drop-menu-categories" ng-show="showCategories" ng-style="{'left': exploreLeftPosition}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
     <ul class="list-unstyled">
         <li ng-repeat="category in categories track by category.id">
             <a ui-sref="category({category_name:category.slug})"
@@ -138,7 +139,7 @@
 <div class="cover-sidebar hidden-md hidden-lg" ng-show="showSideBar"   ng-click="toggleSideBar()"></div>
 
 <div class="sidebar-profile lateral-slide-right hidden-md hidden-lg" ng-show="showSideBar"  >
-    <div class="profile" ng-if="user">
+    <div class="profile">
         <trulii-avatar user="user" size="40" avatar-class="small" class="avatar-landing"></trulii-avatar>
     </div>
     <div class="profile_name">
