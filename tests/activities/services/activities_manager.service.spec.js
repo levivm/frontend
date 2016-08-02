@@ -1,4 +1,4 @@
-describe('Factory: ActivitiesManager', function(){
+xdescribe('Factory: ActivitiesManager', function(){
     var service, httpBackend, topics;
     var rootScope;
     beforeEach(function(){

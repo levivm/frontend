@@ -82,7 +82,6 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
 
         CalendarsManager.fetchCalendar(4, 13)
             .then(function(data){
-                console.log(data);
                 calendar = data;
 
             }, function(response){
