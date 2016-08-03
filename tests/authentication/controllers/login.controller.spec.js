@@ -36,7 +36,7 @@ xdescribe('Controller: LoginController', function(){
         $httpBackend.flush();
         
         $scope =  _$rootScope_;
-        LoginController =  $controller('LoginController', { $stateParams:stateParams});
+        LoginController =  $controller('LoginController', { $stateParams:stateParams, $scope: $scope});
     }));
 
     describe("Initializacion", function(){

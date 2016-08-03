@@ -26,7 +26,7 @@ xdescribe('Controller: ActivityDetailController', function(){
          })
 
     });
-    beforeEach(inject(function($controller, $rootScope, $http, $httpBackend) {
+    beforeEach(inject(function($controller, $rootScope,_$rootScope_,  $http, $httpBackend) {
 
         /*
             Resolves for detail.controller
@@ -64,7 +64,7 @@ xdescribe('Controller: ActivityDetailController', function(){
         $httpBackend
            .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
-
+       
         ActivitiesManager.getActivity(4)
             .then(function(data){
                 activity = data;
@@ -100,6 +100,13 @@ xdescribe('Controller: ActivityDetailController', function(){
 
         currentUser = readJSON('tests/mock/currentUser.json');
         //End calls
+        
+        //spyOn function htmlReady() angular-seo
+        $scope =  _$rootScope_;
+        spyOn($scope, 'htmlReady');
+        $scope.htmlReady();    
+        
+        
         $httpBackend.flush();
 
         ActivityDetailController =  $controller('ActivityDetailController', {
@@ -109,9 +116,9 @@ xdescribe('Controller: ActivityDetailController', function(){
             'relatedActivities': relatedActivities,
             'reviews':reviews,
             'currentUser':currentUser,
-            $scope: scope});
-
-
+            $scope: $scope});
+        
+       
         rootScope = $rootScope;
 
     }));
