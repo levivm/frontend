@@ -16660,6 +16660,14 @@ tags-input input {
 .btn-primary:hover {
   border-color: #03d69a;
 }
+.btn-success:active,
+.btn-primary:active {
+  border-color: #03d69a !important;
+}
+.btn-success:focus,
+.btn-primary:focus {
+  border-color: #03d69a;
+}
 .btn-link {
   color: rgba(0, 0, 0, 0.74);
 }
