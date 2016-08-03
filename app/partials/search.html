@@ -77,19 +77,22 @@
                     <li ng-click="search.setCategory(search.strings.ACTION_ALL_FILTER)">
                         <span ng-bind="::search.strings.ACTION_ALL_FILTER"></span>
                     </li>
-                    <li class="search-sidebar__sub-element" ng-class="{'search-sidebar__sub-element-expanded': category.id === search.expandedCategory}" ng-repeat="category in search.categories | orderBy:'name'">
+                    <li class="search-sidebar__sub-element" 
+                        ng-class="{'search-sidebar__sub-element-expanded': category.id === search.expandedCategory}"
+                        ng-repeat="category in search.categories | orderBy:'name'"
+                        ng-click="search.setCategory(category)">
                         <a href="#" id="{{::category.name}}"></a>
                         <i class="fa fa-chevron-right" ng-hide="category.id === search.expandedCategory" aria-hidden="true"></i>
                         <i class="fa fa-chevron-down" ng-hide="category.id !== search.expandedCategory" aria-hidden="true"></i>
                         <div class="header" ng-class="{'active': search.searchCategory === category.id}">
-                            <div class="header__name" ng-click="search.setCategory(category)">
+                            <div class="header__name">
                                 <span ng-bind="::category.name"></span>
                             </div>
                         </div>
                         <ul class="subcategories" data-toggle="category.id === search.expandedCategory" trulii-expandable-content>
                             <li  class="subcategories__item" ng-repeat="subcategory in category.subcategories"
                                     ng-class="{'active': search.searchSubCategory === subcategory.id}"
-                                    ng-click="search.setSubCategory(subcategory)">
+                                    ng-click="search.setSubCategory(subcategory, $event)">
                                 <span ng-bind="::subcategory.name" ></span>
                             </li>
                         </ul>
@@ -153,7 +156,7 @@
                                 <strong ng-bind="search.searchData.category_display"></strong>
                             </span>
                             <span ng-if="search.searchSubCategory">
-                                <span> </span>
+                                <span><i class="fa fa-chevron-right"></i></span>
                                 <strong ng-bind="search.searchData.subcategory_display"></strong>
                             </span>
                         </div>

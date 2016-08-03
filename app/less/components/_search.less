@@ -685,6 +685,11 @@
         &__results{
             float: left;
             text-transform: uppercase;
+            font-size: .9em;
+            .fa{
+                font-size: 8px;
+                vertical-align: 2px;
+            }
             @media (max-width: 992px){
                 float: none;
                 text-align: center;
@@ -698,6 +703,7 @@
             }
         }
         &__filters{
+            font-size: .9em;
             float: right;
             .search-select{
                 select{
@@ -714,7 +720,7 @@
                     display: inline-block;
                     border-radius: 0 !important; 
                     background-color: transparent !important;        
-                    font-size: 14px;
+                    font-size: 13px;
                     margin-top: -5px;     
                     &:hover, &:focus{
                         height: 30px;
@@ -739,7 +745,7 @@
             > div{
                 float: right;
                 height: 30px;
-                padding: 0 10px;
+                padding: 0 5px;
                 &:not(:first-child){
                     border-right: 1px solid @gray-lighter;
                 }

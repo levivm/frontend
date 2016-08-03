@@ -1173,7 +1173,6 @@ a:focus {
   text-decoration: underline;
 }
 a:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -2603,7 +2602,6 @@ select[size] {
 input[type="file"]:focus,
 input[type="radio"]:focus,
 input[type="checkbox"]:focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -3094,7 +3092,6 @@ select[multiple].input-lg {
 .btn.focus,
 .btn:active.focus,
 .btn.active.focus {
-  outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
@@ -15424,6 +15421,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-container .search-content__results {
   float: left;
   text-transform: uppercase;
+  font-size: .9em;
+}
+.search-container .search-content__results .fa {
+  font-size: 8px;
+  vertical-align: 2px;
 }
 @media (max-width: 992px) {
   .search-container .search-content__results {
@@ -15440,6 +15442,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .search-container .search-content__filters {
+  font-size: .9em;
   float: right;
 }
 .search-container .search-content__filters .search-select select {
@@ -15456,7 +15459,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   border-radius: 0 !important;
   background-color: transparent !important;
-  font-size: 14px;
+  font-size: 13px;
   margin-top: -5px;
 }
 .search-container .search-content__filters .search-select select:hover,
@@ -15480,7 +15483,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-container .search-content__filters > div {
   float: right;
   height: 30px;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 .search-container .search-content__filters > div:not(:first-child) {
   border-right: 1px solid #ededed;
@@ -18838,6 +18841,7 @@ ul.dropdown-menu:after {
   opacity: 0.8;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
+  line-height: 1;
 }
 .toast-close-button:hover,
 .toast-close-button:focus {
@@ -18847,6 +18851,11 @@ ul.dropdown-menu:after {
   opacity: 0.4;
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
   filter: alpha(opacity=40);
+}
+.rtl .toast-close-button {
+  left: -0.3em;
+  float: left;
+  right: 0.3em;
 }
 /*Additional properties for button version
  iOS requires the button element instead of an anchor tag.
@@ -18925,7 +18934,12 @@ button.toast-close-button {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=80);
   filter: alpha(opacity=80);
 }
-#toast-container > :hover {
+#toast-container > div.rtl {
+  direction: rtl;
+  padding: 15px 50px 15px 15px;
+  background-position: right 15px center;
+}
+#toast-container > div:hover {
   -moz-box-shadow: 0 0 12px #000000;
   -webkit-box-shadow: 0 0 12px #000000;
   box-shadow: 0 0 12px #000000;
@@ -18989,9 +19003,16 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 11em;
   }
+  #toast-container > div.rtl {
+    padding: 8px 50px 8px 8px;
+  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
+  }
+  #toast-container .rtl .toast-close-button {
+    left: -0.2em;
+    right: 0.2em;
   }
 }
 @media all and (min-width: 241px) and (max-width: 480px) {
@@ -18999,15 +19020,25 @@ button.toast-close-button {
     padding: 8px 8px 8px 50px;
     width: 18em;
   }
+  #toast-container > div.rtl {
+    padding: 8px 50px 8px 8px;
+  }
   #toast-container .toast-close-button {
     right: -0.2em;
     top: -0.2em;
+  }
+  #toast-container .rtl .toast-close-button {
+    left: -0.2em;
+    right: 0.2em;
   }
 }
 @media all and (min-width: 481px) and (max-width: 768px) {
   #toast-container > div {
     padding: 15px 15px 15px 50px;
     width: 25em;
+  }
+  #toast-container > div.rtl {
+    padding: 15px 50px 15px 15px;
   }
 }
 .toast-success {
@@ -19855,6 +19886,7 @@ button.toast-close-button {
 .trulii-cover-medium__content .organizer h5,
 .trulii-cover-regular__content .organizer h5 {
   font-weight: 500;
+  font-size: 18px;
 }
 .trulii-cover__content .rating,
 .trulii-cover-small__content .rating,
@@ -21962,16 +21994,12 @@ blockquote {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1) 85%);
 }
-.gallery .gallery-slide img {
+.gallery .gallery-slide-picture {
+  width: 100%;
+  height: 400px;
+  background-size: cover;
   z-index: 4;
-  margin-top: auto;
-  margin-bottom: auto;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: 100%;
 }
 .gallery .gallery-previous {
   position: absolute;
@@ -21983,6 +22011,7 @@ blockquote {
   font-size: 30px;
   left: 1em;
   z-index: 7;
+  text-shadow: 2px 2px 8px #222328;
 }
 .gallery .gallery-next {
   position: absolute;
@@ -21994,6 +22023,7 @@ blockquote {
   font-size: 30px;
   right: 1em;
   z-index: 7;
+  text-shadow: -2px 2px 8px #222328;
 }
 .gallery .gallery-info {
   position: absolute;
