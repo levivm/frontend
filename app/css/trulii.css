@@ -12591,6 +12591,7 @@ hr.on-light {
   display: block;
   width: 100%;
   text-align: left;
+  font-weight: 200;
 }
 .ta-scroll-window > .ta-bind p {
   color: #3A405B !important;
@@ -12910,6 +12911,59 @@ hr.on-light {
 .widget-fixed {
   position: fixed !important;
   top: 100px !important;
+}
+.tooltip.top .tooltip-arrow {
+  border-top-color: #e4e7ef;
+}
+.tooltip-inner {
+  background-color: #e4e7ef;
+  color: #222328;
+}
+.modal.in .modal-dialog {
+  -webkit-transform: translate(50%);
+  -ms-transform: translate(50%);
+  -o-transform: translate(50%);
+  transform: translateY(50%);
+}
+.modal-content {
+  border-radius: 7px;
+}
+.modal-content .modal-header {
+  border-bottom: none;
+  padding-top: 14px;
+  padding-right: 24px;
+  padding-bottom: 14px;
+  padding-left: 24px;
+  /* font-size: 10px; */
+  text-align: center;
+  background: #f0f2f7;
+  border-radius: 7px 7px 0px 0px;
+}
+.modal-title {
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #3A405B;
+}
+.modal-content .modal-body {
+  padding-top: 50px;
+  padding-right: 24px;
+  padding-bottom: 50px;
+  padding-left: 24px;
+  text-align: center;
+  font-weight: 400;
+}
+.modal-content .modal-footer {
+  text-align: center;
+  padding-bottom: 45px;
+}
+.modal-content .modal-footer button {
+  width: 110px;
+}
+@media (min-width: 992px) {
+  .modal-lg {
+    width: 700px;
+  }
 }
 .text-left {
   text-align: left;
@@ -14635,7 +14689,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   width: 17em;
   right: 2.35em;
   top: 70px;
-  z-index: 10000;
+  z-index: 100000;
   background: white;
   border: 1px solid #cbcbcb;
   border-top: none;
@@ -16163,11 +16217,10 @@ select {
   padding: 0em 0px 0 25px !important;
   border: 1px solid #f0f2f7 !important;
   box-shadow: 0 0 !important;
-  background-color: #f0f2f7 !important;
   -moz-appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
-  background-color: white !important;
+  background-color: #f0f2f7 !important;
   background-position: 95% 50%;
   background-repeat: no-repeat;
   background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
@@ -16504,9 +16557,9 @@ tags-input .autocomplete .suggestion-list .suggestion-item em {
   color: #03d69a;
 }
 tags-input .tag-item {
-  background: #03d69a;
+  background: #e4e7ef;
   display: inline-block;
-  color: white;
+  color: #3A405B;
   font-weight: bolder;
   margin-right: 5px;
   position: relative;
@@ -16525,10 +16578,10 @@ tags-input .remove-button {
   font-size: 20px;
   line-height: 2px;
   font-weight: 800;
-  color: #02a476;
+  color: #b4bcd3;
 }
 tags-input .remove-button:hover {
-  color: #028b64;
+  color: #a4aec9;
 }
 tags-input input {
   border: 0px;
@@ -16666,6 +16719,14 @@ tags-input input {
 .btn-primary:hover {
   border-color: #03d69a;
 }
+.btn-success:active,
+.btn-primary:active {
+  border-color: #03d69a !important;
+}
+.btn-success:focus,
+.btn-primary:focus {
+  border-color: #03d69a;
+}
 .btn-link {
   color: rgba(0, 0, 0, 0.74);
 }
@@ -16717,6 +16778,9 @@ tags-input input {
 }
 .btn-gray-light {
   background-color: #e4e7ef;
+}
+.btn-gray-lighter {
+  background-color: #ededed;
 }
 .btn-gray-dark {
   background-color: #a1a6bb;
@@ -18320,6 +18384,7 @@ ul.dropdown-menu:after {
 }
 .card__calendar-header-date {
   display: flex;
+  color: black;
 }
 .card__calendar-header-actions {
   color: #767676;
@@ -18349,6 +18414,7 @@ ul.dropdown-menu:after {
 .card__calendar-footer {
   display: flex;
   justify-content: space-between;
+  color: black;
 }
 .card__calendar-footer-sales h3 {
   color: #767676;

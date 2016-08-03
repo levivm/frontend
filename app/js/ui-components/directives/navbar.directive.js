@@ -183,6 +183,7 @@
                     Authentication.getAuthenticatedAccount().then(success, error);
 
                     function success(user) {
+                        console.log(user);
                         if (!user) {
                             scope.user = null;
                             return;

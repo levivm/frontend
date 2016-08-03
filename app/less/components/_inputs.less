@@ -30,7 +30,7 @@ select{
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	cursor: pointer;
-	background-color: white !important;
+	background-color: @gray-lighter-brand !important;
 	background-position: 95% 50%;
 	background-repeat: no-repeat;
 	background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/about/arrow.png') !important;
@@ -362,9 +362,9 @@ tags-input{
 	}
 
 	.tag-item{
-		background: @success;
+		background: @gray-light-brand;
 		display: inline-block;
-		color: white;
+		color: @blue-dark;
 		font-weight: bolder;
 		margin-right: 5px;
 		position: relative;
@@ -374,7 +374,7 @@ tags-input{
 		// Tag Text
 		span{
 			padding-right: 8px;
-		}
+		} 
 	}
 
 	.remove-button{
@@ -385,10 +385,10 @@ tags-input{
 		font-size: 20px;
 		line-height: 2px;
 		font-weight: 800;
-		color: darken(@success, 10%);
+		color: darken(@gray-light-brand, 15%);
 
 		&:hover{
-			color: darken(@success, 15%);
+			color: darken(@gray-light-brand, 20%);
 		}
 	}
 
