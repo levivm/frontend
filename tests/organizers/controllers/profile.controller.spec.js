@@ -63,12 +63,12 @@ xdescribe('Controller: OrganizerProfileController', function(){
         OrganizerProfileController =  $controller('OrganizerProfileController', { 
                                                  'organizer': organizer, 
                                                  'reviews': reviews,
-                                                 'activities': activities});
+                                                 'activities': activities,
+                                                 '$scope': $scope});
     }));
 
     describe("Initializacion ", function(){
         it('should have controller defined and strings is object defined', function() {
-            console.log(OrganizerProfileController);
             expect(OrganizerProfileController).toBeDefined();
             expect(OrganizerProfileController.strings).toBeDefined();
          });

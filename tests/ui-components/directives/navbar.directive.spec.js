@@ -31,7 +31,11 @@ xdescribe('Directive: truliiNavbar', function(){
         $httpBackend
              .when('GET', 'http://localhost:8000/api/locations/cities/')
              .respond(readJSON('tests/mock/cities.json'));
+        $httpBackend
+             .when('GET', 'http://localhost:8000/api/activities/categories')
+             .respond(readJSON('tests/mock/categories.json'));
         $scope.$digest();
+        
     });
 
     it('render navbar ', function(){

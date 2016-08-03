@@ -46,7 +46,7 @@ xdescribe('Controller: OrganizerLandingCtrl', function(){
         //End calls
 
 
-        OrganizerLandingCtrl =  $controller('OrganizerLandingCtrl', {'cities': cities});
+        OrganizerLandingCtrl =  $controller('OrganizerLandingCtrl', {'cities': cities, $scope: $scope});
 
     }));
 
