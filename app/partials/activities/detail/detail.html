@@ -183,14 +183,16 @@
         </div>
       </div>
       <!--Gallery-->
-      <div class="row gallery-container">
+      <div class="row gallery-container" ng-if="detail.activity.gallery.length > 0">
         <div class="col-xs-12">
           <div class="gallery">
             <div class="gallery-gradient"></div>
             <div class="gallery-slide" ng-repeat="picture in detail.activity.gallery track by picture.id" ng-class="{'active': detail.currentGalleryPicture === $index}">
-              <img class=""
+              <!--<img class=""
               src="{{ picture.photo }}" alt=""
-              ng-show="detail.currentGalleryPicture === $index"/>
+              ng-show="detail.currentGalleryPicture === $index"/>-->
+              <div class="gallery-slide-picture" ng-show="detail.currentGalleryPicture === $index" style="background-image: url('{{ picture.photo }}')">
+              </div>
             </div>
 
             <i class="gallery-previous mdi-hardware-keyboard-arrow-left" ng-hide="detail.currentGalleryPicture < 1"

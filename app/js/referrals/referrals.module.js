@@ -50,7 +50,7 @@
                 }
             })
             .state('referrals.home-anon', {
-                url: '/anonymous',
+                url: '/anonimo',
                 controller: 'ReferralsAnonCtrl as referrals',
                 templateUrl: 'partials/students/referrals/home-anonymous.html',
                 resolve: {

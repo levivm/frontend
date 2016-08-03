@@ -15414,6 +15414,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-container .search-content__results {
   float: left;
   text-transform: uppercase;
+  font-size: .9em;
+}
+.search-container .search-content__results .fa {
+  font-size: 8px;
+  vertical-align: 2px;
 }
 @media (max-width: 992px) {
   .search-container .search-content__results {
@@ -15430,6 +15435,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .search-container .search-content__filters {
+  font-size: .9em;
   float: right;
 }
 .search-container .search-content__filters .search-select select {
@@ -15446,7 +15452,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   border-radius: 0 !important;
   background-color: transparent !important;
-  font-size: 14px;
+  font-size: 13px;
   margin-top: -5px;
 }
 .search-container .search-content__filters .search-select select:hover,
@@ -15470,7 +15476,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-container .search-content__filters > div {
   float: right;
   height: 30px;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 .search-container .search-content__filters > div:not(:first-child) {
   border-right: 1px solid #ededed;
@@ -19856,6 +19862,7 @@ button.toast-close-button {
 .trulii-cover-medium__content .organizer h5,
 .trulii-cover-regular__content .organizer h5 {
   font-weight: 500;
+  font-size: 18px;
 }
 .trulii-cover__content .rating,
 .trulii-cover-small__content .rating,
@@ -21955,16 +21962,12 @@ blockquote {
   width: 100%;
   height: 100%;
   background-size: cover;
-  background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1) 85%);
 }
-.gallery .gallery-slide img {
+.gallery .gallery-slide-picture {
+  width: 100%;
+  height: 400px;
+  background-size: cover;
   z-index: 4;
-  margin-top: auto;
-  margin-bottom: auto;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: 100%;
 }
 .gallery .gallery-previous {
   position: absolute;
@@ -21976,6 +21979,7 @@ blockquote {
   font-size: 30px;
   left: 1em;
   z-index: 7;
+  text-shadow: 2px 2px 8px #222328;
 }
 .gallery .gallery-next {
   position: absolute;
@@ -21987,6 +21991,7 @@ blockquote {
   font-size: 30px;
   right: 1em;
   z-index: 7;
+  text-shadow: -2px 2px 8px #222328;
 }
 .gallery .gallery-info {
   position: absolute;

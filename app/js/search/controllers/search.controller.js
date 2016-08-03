@@ -143,7 +143,9 @@
             Analytics.generalEvents.searchCategory(category.name);
         }
 
-        function setSubCategory(subcategory) {
+        function setSubCategory(subcategory, $event) {
+            $event.preventDefault();
+            $event.stopPropagation();
             if (vm.searchSubCategory == subcategory.id) {
                 vm.searchSubCategory = undefined;
             } else {
