@@ -119,8 +119,8 @@
                 LABEL_START: "Fecha de inicio",
                 LABEL_END: "Última sesión",
                 LABEL_FREE: "Gratis",
-                LABEL_EDIT_CALENDAR: "Editar calendario",
-                LABEL_DELETE_CALENDAR: "Eliminar calendario",
+                LABEL_EDIT_CALENDAR: "Editar",
+                LABEL_DELETE_CALENDAR: "Borrar",
                 LABEL_ADD_CALENDAR: "Agregar calendario",
                 COPY_ADD_CALENDAR: "En una misma publicación puedes tener diferentes fechas de inicio, cada una con diferentes " +
                                    "número de sesiones, fechas y horas.",
