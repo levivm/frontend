@@ -70,9 +70,16 @@
                     <span ng-class="{'ng-hide': isStudent}"  class="hidden-xs hidden-sm separate-left-less separate-right-less text-gray-light">|</span>
                     <!-- Score -->
                     <span ng-class="{'ng-hide': isStudent}"  class="review-content__rating hidden-xs hidden-sm">
-                        <rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
+                        <!--<rating ng-model="review.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                                 readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="custom-icons-1">
-                        </rating>
+                        </rating>-->
+                        <span ng-if="review.rating > 0" class="review-content__rating-final">
+                            <i class="glyphicon glyphicon-star star"></i>
+                            <strong ng-bind="review.rating"></strong>
+                            <strong>/</strong>
+                            <strong>5</strong>
+                            
+                        </span>
                     </span>
                     <!-- End score-->
                     <!-- Review mobile -->

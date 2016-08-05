@@ -13,13 +13,13 @@
             <div class="buttons buttons-login float-right" ng-if="!user">
                 <a ui-sref="login" class=" font-regular  margin-horizontal-less " ng-bind="::strings.ACTION_LOGIN"></a>
             </div>
-            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm explore-categories"  ng-class="{'ng-hide': scroll < 80 && isNavBarTransparent()}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
-                <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
-                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
-            </a>
             <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary font-regular" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
+            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm explore-categories"  ng-class="{'ng-hide': scroll < 80 && isHome()}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+                <span class=" font-regular  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
+                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
+            </a>
         </div>
         <div class="navbar__right-wrapper" >
             <a ng-if="userLogged" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
