@@ -127,7 +127,9 @@ xdescribe('Controller: ActivityCalendarController', function(){
             $httpBackend.flush();
             expect(ActivityCalendarController.isSaving).toBe(false);
          }));
-         
+         it('_onSectionUpdated calendars is true', function() {
+            expect(ActivityCalendarController.activity.completed_steps['calendars']).toBe(true);
+         });
          it('should error create', inject(function($state, Elevator) {
             //Update con respuesta 400
             spyOn(Elevator, 'toElement');

@@ -114,6 +114,10 @@ xdescribe('Controller: ActivityDBDetailController', function(){
             $httpBackend.flush();
             expect(ActivityDBDetailController.isSaving).toBe(false);
          });
+         
+         it('_onSectionUpdated detail is true', function() {
+            expect(ActivityDBDetailController.activity.completed_steps['detail']).toBe(true);
+         });
     });
 
 
