@@ -263,7 +263,7 @@
             if(activity.calendars){
                 activity.calendars = activity.calendars.map(mapVacancy);
                 var calendars = angular.copy(activity.calendars);
-                activity.upcoming_calendars = _.remove(calendars, removePastCalendars);
+                activity.upcoming_calendars = angular.copy(_.remove(calendars, removePastCalendars));
             }
 
             return activity;

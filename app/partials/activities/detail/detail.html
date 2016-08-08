@@ -441,8 +441,9 @@
                 </tr>
                 <tr
                   class="text-uppercase"
-                  ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by calendar.id "
-                  ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
+                  ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by 'calendar-' + calendar.id "
+                  ng-class="{'active': detail.selectedActivity === $index}"
+                  ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
                   <td>
                     <span class="checkbox"></span>
                   </td>
@@ -564,7 +565,7 @@
         <br class="hidden-md hidden-lg">
       </div>
       <div class="row">
-        <div class="col-xs-12 col-md-10 col-md-offset-1" ng-repeat="review in detail.reviews track by review.id">
+        <div class="col-xs-12 col-md-11 col-md-offset-1 review-row" ng-repeat="review in detail.reviews track by review.id">
           <trulii-activity-review data-review="review"
               data-activity="detail.activity"
               data-on-dashboard="false" ></trulii-activity-review>

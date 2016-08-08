@@ -49,8 +49,10 @@
           margin-top: 0.5em;
           color: @gray-regular;
           &-stars{
-            font-size: 1.4em;
             vertical-align: sub;
+            font-size: 16px;
+            margin-top: 2px;
+            margin-right: 3px;
           }
           
           &-unrating{
@@ -87,8 +89,14 @@
     }
 }
 
+.review-row{
+  &:not(:first-child){
+      border-top: 1px solid @gray-lighter;
+      padding-top: 40px;
+  }
+}
 .review-detail{
-    margin: 0 0 50px 0;
+    margin: 0 0 50px 0; 
     &__student{
       position: absolute;
       width: 60%;
@@ -119,7 +127,7 @@
     }
     p{
       margin-bottom: 0.5em;
-      font-size: 1.125em;
+      font-size: 1em;
     }
     p.text-sm{
       font-size: .8em;
@@ -191,12 +199,17 @@
       &__name{
         font-size: 1em;
         color: @blue-dark;
-        font-weight: 800;
+        font-weight: 700;
       }
-      
+      &__rating-final{
+          strong{
+            letter-spacing: -3px;
+            color: @gray-regular-dark;
+          }
+      }
       &__text-header{
-        font-size: 1em;
-        font-weight: 600;
+        font-size: 0.8em;
+        font-weight: 700;
         text-transform: uppercase;
         color: @gray-regular-dark;
         

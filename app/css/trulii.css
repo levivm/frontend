@@ -14996,9 +14996,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .search-bar__navbar .dropdown-menu {
   width: 60%;
 }
-@media screen and (max-width: 1210px) {
+@media screen and (max-width: 1260px) {
   .search-bar__navbar {
-    width: 65%;
+    width: 25em;
+    height: 45px;
+    margin-top: 10px;
+    margin-left: -25px;
   }
 }
 @media screen and (max-width: 768px) {
@@ -19562,7 +19565,7 @@ button.toast-close-button {
   .trulii-cover-small__category,
   .trulii-cover-medium__category,
   .trulii-cover-regular__category {
-    min-height: 350px !important;
+    min-height: 300px !important;
   }
 }
 .trulii-cover .row,
@@ -24668,8 +24671,10 @@ blockquote {
   color: #9b9b9b;
 }
 .review-student__header-rating-stars {
-  font-size: 1.4em;
   vertical-align: sub;
+  font-size: 16px;
+  margin-top: 2px;
+  margin-right: 3px;
 }
 .review-student__header-rating-unrating {
   position: absolute;
@@ -24697,6 +24702,10 @@ blockquote {
   right: 55px;
   top: 40px;
   color: #9b9b9b;
+}
+.review-row:not(:first-child) {
+  border-top: 1px solid #ededed;
+  padding-top: 40px;
 }
 .review-detail {
   margin: 0 0 50px 0;
@@ -24726,7 +24735,7 @@ blockquote {
 }
 .review-detail p {
   margin-bottom: 0.5em;
-  font-size: 1.125em;
+  font-size: 1em;
 }
 .review-detail p.text-sm {
   font-size: .8em;
@@ -24793,11 +24802,15 @@ blockquote {
 .review-detail .review-content__name {
   font-size: 1em;
   color: #3A405B;
-  font-weight: 800;
+  font-weight: 700;
+}
+.review-detail .review-content__rating-final strong {
+  letter-spacing: -3px;
+  color: #979797;
 }
 .review-detail .review-content__text-header {
-  font-size: 1em;
-  font-weight: 600;
+  font-size: 0.8em;
+  font-weight: 700;
   text-transform: uppercase;
   color: #979797;
 }
