@@ -84,7 +84,7 @@
                               <div class="col-xs-12 ">
                                   <div class="table-responsive table-fixed table-condensed">
                                       <table class="table table-hover">
-                                          <tr class="text-center">
+                                          <tr class="text-center no-hover-row">
                                               <th><strong ng-bind="::history.strings.HEADER_ORDER"></strong></th>
                                               <th><strong ng-bind="::history.strings.HEADER_ACTIVITY"></strong></th>
                                               <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_PURCHASE_DATE"></strong></th>
@@ -92,7 +92,7 @@
                                               <th class="hidden-xs hidden-sm"><strong ng-bind="::history.strings.HEADER_STATUS"></strong></th>
                                               <th class="hidden-md hidden-lg"></th>
                                           </tr>
-                                          <tr ng-repeat="order in history.orders track by order.id | filter:history.orderQuery">
+                                          <tr ng-repeat="order in history.orders track by order.id">
                                               <td>
                                                   <a ng-click="history.seeOrder(order.id)" ui-sref="student-dashboard.history.orders.order({'orderId': order.id})" ng-bind="::order.id"></a>
                                               </td>

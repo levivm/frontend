@@ -12912,6 +12912,9 @@ hr.on-light {
   position: fixed !important;
   top: 100px !important;
 }
+[tooltip] {
+  color: #e4e7ef;
+}
 .tooltip.top .tooltip-arrow {
   border-top-color: #e4e7ef;
 }
@@ -17332,6 +17335,9 @@ td {
   width: 25%;
   height: 100%;
   z-index: 1;
+}
+.no-hover-row:hover {
+  background-color: transparent !important;
 }
 .table-dark th {
   background-color: #cbcbcb;
@@ -24708,7 +24714,7 @@ blockquote {
   padding-top: 40px;
 }
 .review-detail {
-  margin: 0 0 50px 0;
+  margin: 0 0 20px 0;
 }
 .review-detail__student {
   position: absolute;

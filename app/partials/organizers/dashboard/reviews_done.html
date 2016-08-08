@@ -16,7 +16,7 @@
     </div>
     
 
-    <div class="col-xs-12 review-detail separate-above-medium separate-below-less"
+    <div class="col-xs-12 review-detail separate-below-less"
             ng-repeat="reviewObject in reviews.read_reviews | filter:{$: reviews.searchReadQuery} ">
         <trulii-activity-review data-review="reviewObject" data-activity="reviewObject.activity"
                                 data-on-dashboard="true"></trulii-activity-review>

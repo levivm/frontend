@@ -16,7 +16,7 @@
     </div>
     
 
-    <div class="col-xs-12 review-detail separate-above-medium separate-below-less"
+    <div class="col-xs-12 review-detail separate-below-less"
             ng-repeat="reviewObject in reviews.unread_reviews | filter:{$: reviews.searchUnreadQuery} ">
         <trulii-activity-review data-review="reviewObject" data-activity="reviewObject.activity"
                                 data-on-dashboard="true" change-review-status="reviews.changeReviewStatus()"></trulii-activity-review>
@@ -27,7 +27,7 @@
             ng-change="reviews.changeReviewStatus()"
             data-total-items="reviews.unreadPaginationOpts.totalItems"
             data-items-per-page="reviews.unreadPaginationOpts.itemsPerPage"></pagination>
-    </div>
+    </div> 
     <div ng-if="reviews.unread_reviews.length <= 0"class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 text-center separate-above">
              <p class="separate-below separate-above text-normal"
