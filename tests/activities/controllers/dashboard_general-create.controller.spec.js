@@ -108,17 +108,23 @@ xdescribe('Controller: ActivityGeneralController', function(){
            $compile(element)($scope);
 
        }));
-        it('should successfully create', function() {
+        it('should successfully create', inject(function($state) {
+            
+            spyOn($state, 'go');
+            
             ActivityGeneralController.isSaving = true;
             ActivityGeneralController.activity_create_form = $scope.vm.activity_create_form;
             ActivityGeneralController.save_activity();
             $httpBackend
                  .when('POST', 'http://localhost:8000/api/activities/')
                  .respond(readJSON('tests/mock/activity.json'));
-
+             //$state.go('dash.activities-edit.detail', {activity_id : response.id});    
+            
             $httpBackend.flush();
+            $state.go('dash.activities-edit.detail', {activity_id : '4'});
+            expect($state.go).toHaveBeenCalled();
             expect(ActivityGeneralController.isSaving).toBe(false);
-         });
+         }));
          
     });
 

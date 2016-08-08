@@ -25,7 +25,7 @@
         vm.maxLengthNote = MAX_LENGTH_NOTE;
         vm.activity_calendar_form = {};
         vm.calendar = angular.copy(calendar);
-        
+        vm.activity = angular.copy(activity);
         activate();
 
         function _createCalendar() {

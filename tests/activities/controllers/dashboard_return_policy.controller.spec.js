@@ -114,6 +114,9 @@ xdescribe('Controller: ActivityDBReturnPDashboard', function(){
             $httpBackend.flush();
             expect(ActivityDBReturnPDashboard.isSaving).toBe(false);
          });
+         it('_onSectionUpdated return_policy is true', function() {
+            expect(ActivityDBReturnPDashboard.activity.completed_steps['return_policy']).toBe(true);
+         });
     });
 
 

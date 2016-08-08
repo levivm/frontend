@@ -136,6 +136,10 @@ xdescribe('Controller: ActivityDBLocationController', function(){
             $httpBackend.flush();
             expect(ActivityDBLocationController.isSaving).toBe(false);
          });
+         
+         it('_onSectionUpdated location is true', function() {
+            expect(ActivityDBLocationController.activity.completed_steps['location']).toBe(true);
+         });
     });
 
 
