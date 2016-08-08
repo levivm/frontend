@@ -27,7 +27,7 @@
             STATUS_PENDING_BACK = 'pending';
 
         var MIN_MOUNT = 30000;
-
+        var sales;
         angular.extend(vm, {
             organizer: organizer,
             format : FORMATS[0],
@@ -74,9 +74,8 @@
             filterById: filterById,
             minMount:MIN_MOUNT
         });
-
+        
         _activate();
-        var sales = $filter('orderBy')(orders, 'id', true);
 
         //--------- Exposed Functions ---------//
 
