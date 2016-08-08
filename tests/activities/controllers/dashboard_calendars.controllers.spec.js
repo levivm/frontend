@@ -102,14 +102,20 @@ xdescribe('Controller: ActivityCalendarsController', function(){
 
     describe("Initializacion", function(){
         it('should have controller defined and strings is object defined', function() {
-            console.log(ActivityCalendarsController);
             expect(ActivityCalendarsController).toBeDefined();
             expect(ActivityCalendarsController.strings).toBeDefined();
          });
          
          it('Length calendars should be 4', function() {
-             expect(ActivityCalendarsController.calendars.length).toBe(4);
+             expect(ActivityCalendarsController.calendars.length).toBe(4);1457814763000
          });
+         it('Comparate calendar initial_date', function() {
+             var initial_date = new Date(1457814763000);
+             expect(ActivityCalendarsController.calendars[2].initial_date).toEqual(initial_date);
+         });
+         
+         
+         
     });
     
     describe("Set ", function(){
