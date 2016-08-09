@@ -5,7 +5,7 @@
             <i class="fa fa-angle-right arrow-right" 
                        ng-class="{'rotate-icon': dash.showSidebar}" aria-hidden="true"></i>
         </div>-->
-        <ul class="sidebar sidebar-organizer hidden-xs hidden-sm" ng-class="{'sidebar-expanded': dash.showSidebar, 'sidebar__absolute':  !dash.sideBarFixed, 'sidebar__fixed': dash.sideBarFixed }">
+        <ul class="sidebar sidebar-organizer hidden-xs hidden-sm" >
             <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('organizer-dashboard.profile.*')}">
                 <a  ui-sref=".profile"
                     ng-click="dash.toggleSidebar(); dash.clicItemDash(dash.strings.SECTION_PROFILE); dash.hideSubItems()">

@@ -12609,6 +12609,7 @@ hr.on-light {
   max-width: 400px;
   margin: 0 auto;
   padding: 0 5% !important;
+  margin-top: 110px !important;
 }
 .well-auth.well p,
 .well-auth.well h1,
@@ -12692,14 +12693,14 @@ hr.on-light {
   max-width: 1300px;
   width: 850px;
   margin-left: 30px;
-  margin-top: 38px;
+  margin-top: 108px;
 }
 @media (max-width: 1299px) {
   .limited-width-dashboard {
     max-width: 100%;
     margin: auto;
     margin-left: auto;
-    margin-top: 1.3em;
+    margin-top: 108px;
     margin-left: 15px;
   }
 }
@@ -12715,6 +12716,7 @@ hr.on-light {
     max-width: 100%;
     margin: auto;
     margin-left: auto;
+    margin-top: 70px;
   }
 }
 .limited-width-dashboard__edit-activity {
@@ -13356,6 +13358,7 @@ h5 a {
   .profile-photo-input {
     line-height: 5em;
     margin-top: 1em !important;
+    flex-direction: column;
   }
 }
 @media screen and (max-width: 992px) {
@@ -15153,7 +15156,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-color: #e3e3e3;
 }
 .search-container {
-  margin-top: 75px;
+  margin-top: 110px;
   width: 100%;
   padding: 0 30px;
 }
@@ -19398,7 +19401,6 @@ button.toast-close-button {
 .cover,
 .detail-cover,
 .full-screen-cover {
-  margin-top: -20px;
   position: relative;
   width: 100%;
   height: 100%;
@@ -19416,7 +19418,7 @@ button.toast-close-button {
   background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/banner_edit_activity.png');
   background-size: cover;
   width: 100vw;
-  height: 220px;
+  height: 300px;
   position: relative;
   top: -20px;
 }
@@ -19472,6 +19474,7 @@ button.toast-close-button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-top: 75px;
 }
 .cover-edit-activity__content-second {
   border-top: 1px solid white;
@@ -19522,14 +19525,10 @@ button.toast-close-button {
   vertical-align: sub;
   font-size: 1.4em;
 }
-.trulii-cover__detail {
-  margin-top: -80px;
-}
 .trulii-cover,
 .trulii-cover-small,
 .trulii-cover-medium,
 .trulii-cover-regular {
-  margin-top: -20px;
   min-height: 92vh;
   width: 100%;
   position: relative;
@@ -19544,7 +19543,6 @@ button.toast-close-button {
 .trulii-cover-small__detail,
 .trulii-cover-medium__detail,
 .trulii-cover-regular__detail {
-  margin-top: -80px;
   min-height: 90vh !important;
 }
 @media screen and (min-width: 1600px) {
@@ -19563,7 +19561,6 @@ button.toast-close-button {
 .trulii-cover-small__category,
 .trulii-cover-medium__category,
 .trulii-cover-regular__category {
-  margin-top: -80px;
   min-height: 50vh !important;
 }
 @media screen and (min-width: 1600px) {
@@ -20687,12 +20684,8 @@ button.toast-close-button {
     min-height: 45vh;
   }
 }
-.trulii-cover-small__about {
-  margin-top: -70px;
-}
 .trulii-cover-small__terms {
   min-height: 300px;
-  margin-top: -70px;
 }
 @media (min-height: 1081px) {
   .trulii-cover-small {
