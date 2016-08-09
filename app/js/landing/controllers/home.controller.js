@@ -160,35 +160,17 @@
         }
         
         function _setTrendingCategories() {
-            //_.find(vm.categories, { 'name': 'Idiomas' }),
-           // _.find(this.category.subcategories, { 'name': 'Inglés' });
-            vm.trendingCategories = [
-                {
-                    name: 'Inglés',
-                    cover: 'static/img/home/ingles.jpg',
-                    category: 'Idiomas',
-                    subcategory: 'Inglés'
-                    
-                }, 
-                {
-                    name: 'Salsa',
-                    cover: 'static/img/home/salsa.jpg',
-                    category: 'Danza',
-                    subcategory: 'Latinas'
-                }, 
-                {
-                    name: 'Fotografía',
-                    cover: 'static/img/home/fotografia.jpg',
-                    category: 'Arte',
-                    subcategory: 'Fotografía'
-                }, 
-            ]
-            vm.trendingCategories.map(function(trend){
-                    trend.category = _.find(vm.categories, { 'name': trend.category });
-                    trend.subcategory = _.find(trend.category.subcategories, { 'name': trend.subcategory });
+            var categories = [];
+            angular.forEach(vm.categories, function(category){
+                angular.forEach(category.subcategories, function(subcategory){
+                    if(subcategory.featured){
+                        var sub = angular.copy(subcategory);
+                        sub.category = category;
+                        categories.push(sub);
+                    }
+                });
             });
-            
-            
+            vm.trendingCategories = categories.slice(0, 3);
         }
 
         function _activate(){
