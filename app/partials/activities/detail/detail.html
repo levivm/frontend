@@ -346,7 +346,7 @@
       </div>
       <div class="calendars-mobile hidden-md hidden-lg">
         <p ng-bind="::detail.strings.COPY_SIGN_UP_NO_DATES" ng-if="detail.activity.upcoming_calendars.length === 0"></p>
-        <div class="calendar-mobile" ng-repeat="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by 'calendar-' + calendar.id "
+        <div class="calendar-mobile" ng-repeat="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by 'calendar-mobile-' + $index + '-' + calendar.id "
         ng-class="{'active': detail.selectedActivity === $index}" ng-click="detail.selectedActivity = $index;">
           <div class="row">
             <div class="col-xs-6 text-uppercase calendar-mobile__labels">
@@ -441,7 +441,7 @@
                 </tr>
                 <tr
                   class="text-uppercase"
-                  ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by 'calendar-' + calendar.id "
+                  ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by 'calendar-' + $index + '-' + calendar.id "
                   ng-class="{'active': detail.selectedActivity === $index}"
                   ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
                   <td>
