@@ -14332,7 +14332,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 60px;
-  width: calc(100% - 435px);
+  width: calc(100% - 455px);
   margin: 0.2em 1em;
 }
 .navbar__left-wrapper .navbar__option--right {
@@ -14344,6 +14344,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 100%;
   padding: 1em 0;
   margin-top: 3px;
+  font-size: 13px;
   transition: all 0.25s;
 }
 .navbar__left-wrapper .buttons-login {
@@ -22695,6 +22696,8 @@ blockquote {
 .modal-email .modal-body label {
   font-weight: 700;
   color: #767676 !important;
+  width: 100%;
+  text-align: left;
 }
 .modal-email .modal-body input,
 .modal-email .modal-body textarea {
