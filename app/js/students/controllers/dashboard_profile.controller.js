@@ -152,7 +152,10 @@
         function _setFullName(){
             vm.student.fullName= vm.student.user.first_name+' '+vm.student.user.last_name;
         }
-
+        
+        function _setTelephone(){
+            vm.student.telephone = Number(vm.student.telephone);
+        }
 
         function _setStrings() {
             if (!vm.strings) {
@@ -185,6 +188,7 @@
             _setCity(vm.student.city);
             _setDates();
             _setFullName();
+            _setTelephone();
             datepickerPopupConfig.showButtonBar = false;
         }
 
