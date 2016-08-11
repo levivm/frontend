@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBReturnPDashboard', ActivityDBReturnPDashboard);
 
-    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity', 'Toast', 'Error'];
+    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity', 'Toast', 'Error', 'Elevator'];
 
-    function ActivityDBReturnPDashboard($scope, activity, Toast, Error) {
+    function ActivityDBReturnPDashboard($scope, activity, Toast, Error, Elevator) {
 
         var vm = this;
 
@@ -86,6 +86,7 @@
         }
         function activate() {
             _setStrings();
+            Elevator.toTop();
         }
 
     }

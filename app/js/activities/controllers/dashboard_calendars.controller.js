@@ -15,10 +15,10 @@
         .controller('ActivityCalendarsController', ActivityCalendarsController);
 
     ActivityCalendarsController.$inject = ['$rootScope', '$scope', '$state', '$stateParams', '$filter', '$modal',
-        'CalendarsManager','activity', 'calendars','Toast'];
+        'CalendarsManager','activity', 'calendars','Toast', 'Elevator'];
 
     function ActivityCalendarsController($rootScope, $scope, $state, $stateParams, $filter, $modal,
-                                         CalendarsManager, activity, calendars,Toast) {
+                                         CalendarsManager, activity, calendars,Toast, Elevator) {
 
         var vm = this;
         var DETAIL_STATE = '.detail';
@@ -194,6 +194,7 @@
 
             $scope.$on('$destroy', stateChangeUnbinder);
             console.log('calendars:', calendars);
+            Elevator.toTop();
         }
 
     }
