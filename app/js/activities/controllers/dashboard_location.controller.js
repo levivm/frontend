@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBLocationController', ActivityDBLocationController);
 
-    ActivityDBLocationController.$inject = ['activity', 'cities', 'organizer','LocationManager', 'Toast', 'Elevator', 'Error'];
+    ActivityDBLocationController.$inject = ['activity', 'cities', 'organizer','LocationManager', 'Toast', 'Elevator', 'Error', 'serverConf'];
 
-    function ActivityDBLocationController(activity, cities, organizer, LocationManager, Toast, Elevator, Error) {
+    function ActivityDBLocationController(activity, cities, organizer, LocationManager, Toast, Elevator, Error, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -25,13 +25,16 @@
             isCollapsed: true,
             isSaving: false,
             address_autocomplete: [],
-            save_activity: updateActivity
+            save_activity: updateActivity,
+            getAmazonUrl:getAmazonUrl
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' + file;
+        }
         function updateActivity() {
             vm.isSaving = true;
 
@@ -113,6 +116,7 @@
             _setStrings();
             vm.map = LocationManager.getMap(vm.activity.location, true);
             vm.marker = LocationManager.getMarker(vm.activity.location);
+            vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
             Elevator.toTop();
         }
     }
