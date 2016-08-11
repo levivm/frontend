@@ -21,11 +21,12 @@
 
         var vm = this;
         var MAX_LENGTH_NOTE = 200;
-        
+        var ERROR_STUDENTS = "No se puede cambiar la sessión con estudiantes inscritos.";
         vm.maxLengthNote = MAX_LENGTH_NOTE;
         vm.activity_calendar_form = {};
         vm.calendar = angular.copy(calendar);
         vm.activity = angular.copy(activity);
+        
         activate();
 
         function _createCalendar() {
@@ -65,17 +66,20 @@
         }
 
         function _errored(responseErrors) {
-            console.log(responseErrors);
             if (responseErrors) {
               if (responseErrors['sessions'] && !responseErrors['number_of_sessions']){
                    
-                    Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
-                    _.each(responseErrors['sessions'], function (error_dict, index) { 
-                        if(!_.isEmpty(error_dict)){
-                            Elevator.toElement('calendar-'+index);
-                        }
-                    });
-                     
+                    if(responseErrors['sessions'][0] == ERROR_STUDENTS){
+                         Toast.error(ERROR_STUDENTS);
+                    }else{
+                        Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
+                        _.each(responseErrors['sessions'], function (error_dict, index) { 
+                            if(!_.isEmpty(error_dict)){
+                                Elevator.toElement('calendar-'+index);
+                            }
+                        });
+                    }
+
                     delete responseErrors['sessions'];
                 }
 

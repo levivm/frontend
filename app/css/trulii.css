@@ -12915,7 +12915,7 @@ hr.on-light {
   top: 100px !important;
 }
 [tooltip] {
-  color: #e4e7ef;
+  color: #A1A6BB;
 }
 .tooltip.top .tooltip-arrow {
   border-top-color: #e4e7ef;
@@ -21173,8 +21173,9 @@ blockquote {
 }
 .trulii-activity-card-organizer .trulii-activity-card__category__label {
   top: 10px;
-  left: 7%;
+  left: 10px;
   opacity: 1;
+  transform: translate(0);
 }
 .activity-detail {
   background-color: white;
