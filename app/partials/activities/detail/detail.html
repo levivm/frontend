@@ -236,7 +236,7 @@
       <div class="row separate-above-medium" ng-show="detail.activity.audience">
         <div class="col-xs-12 section">
           <h4 ng-click="detail.showAudience = !detail.showAudience;">
-            <strong ng-bind="::detail.strings.LABEL_AUDIENCE"></strong>
+            <strong class="text-dark" ng-bind="::detail.strings.LABEL_AUDIENCE"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showAudience">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showAudience">
           </h4>
@@ -250,7 +250,7 @@
         <div class="col-xs-12 section">
           <div class="separator separate-vertical"></div>
           <h4 ng-click="detail.showContent = !detail.showContent;">
-            <strong ng-bind="::detail.strings.LABEL_CONTENT"></strong>
+            <strong class="text-dark" ng-bind="::detail.strings.LABEL_CONTENT"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showContent">
           </h4>
@@ -264,7 +264,7 @@
         <div class="col-xs-12 section">
           <div class="separator separate-vertical"></div>
           <h4 ng-click="detail.showGoals = !detail.showGoals;">
-            <strong ng-bind="::detail.strings.LABEL_GOALS"></strong>
+            <strong class="text-dark" ng-bind="::detail.strings.LABEL_GOALS"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showGoals">
           </h4>
@@ -288,7 +288,7 @@
         <div class="col-xs-12 section">
           <div class="separator separate-vertical" ng-if="!detail.activity.youtube_video_url"></div>
           <h4 ng-click="detail.showMethodology = !detail.showMethodology;">
-            <strong ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong>
+            <strong class="text-dark" ng-bind="::detail.strings.LABEL_METHODOLOGY"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showMethodology">
           </h4>
@@ -302,7 +302,7 @@
         <div class="col-xs-12 section">
           <div class="separator separate-vertical"></div>
           <h4 ng-click="detail.showRequirements = !detail.showRequirements;">
-            <strong ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong>
+            <strong class="text-dark" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showRequirements">
           </h4>
@@ -317,7 +317,7 @@
         <div class="col-xs-12 section separate-below">
           <div class="separator separate-vertical"></div>
           <h4 ng-click="detail.showExtra = !detail.showExtra;">
-            <strong ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong>
+            <strong class="text-dark" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showExtra">
           </h4>
@@ -330,7 +330,7 @@
       <div class="row" ng-show="detail.activity.instructors.length">
           <div class="col-xs-12 section separate-below">
               <div class="separator separate-vertical"></div>
-              <h4>
+              <h4 class="text-dark">
                   <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
               </h4>
               <div class="separate-above">
