@@ -8,7 +8,7 @@
             <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true" class="navbar-search-bar" ng-class="{'navbar-search-bar-hidden': isSearchVisible() }"></trulii-search-bar>
             
             <div class="buttons buttons-login float-right" ng-if="!user">
-                <a ui-sref="register" class="font-semibold  margin-horizontal-less" ng-class="{'text-dark': scroll > 80 || !isNavBarTransparent() }" ng-bind="::strings.ACTION_REGISTER"></a>
+                <a ui-sref="register" class="font-semibold  margin-horizontal-less" ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
             <div class="buttons buttons-login float-right" ng-if="!user">
                 <a ui-sref="login" class="font-semibold  margin-horizontal-less " ng-bind="::strings.ACTION_LOGIN"></a>
