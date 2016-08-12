@@ -43,9 +43,6 @@
     </div>
     <div ng-if="messages.messages.length === 0">
       <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 text-center separate-above">
-          <img ng-src="{{manage.getAmazonUrl('static/img/organizer_dashboard_activities_empty.png')}}"
-              alt="{{messages.strings.COPY_NO_MESSAGES}}"
-              class="center-block img-responsive"/>
           <p class="separate-below separate-above text-muted text-normal"
                 ng-bind="::messages.strings.COPY_NO_MESSAGES">
           </p>
