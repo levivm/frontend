@@ -14351,8 +14351,11 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   line-height: 2.5em;
 }
 .navbar__left-wrapper .buttons-login > a {
-  color: #9b9b9b;
+  color: #767676;
   text-decoration: none;
+}
+.navbar__left-wrapper .buttons-login > a:hover {
+  color: #222328;
 }
 .navbar__left-wrapper.long {
   width: calc(100% - 300px);
@@ -15498,16 +15501,20 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .search-container .search-content__result-info {
-  padding: 0 10px;
+  padding: 17px 10px 0;
+  height: 52px;
 }
 @media (max-width: 1280px) {
   .search-container .search-content__result-info {
-    padding: 0 30px;
+    padding: 17px 30px 0;
   }
 }
 .search-container .search-content__filters {
   font-size: .9em;
   float: right;
+}
+.search-container .search-content__filters .search-select {
+  margin-top: -6px;
 }
 .search-container .search-content__filters .search-select select {
   height: 25px !important;
@@ -15524,7 +15531,6 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 0 !important;
   background-color: transparent !important;
   font-size: 13px;
-  margin-top: -5px;
 }
 .search-container .search-content__filters .search-select select:hover,
 .search-container .search-content__filters .search-select select:focus {
@@ -19959,7 +19965,7 @@ button.toast-close-button {
 .trulii-cover-medium__content .organizer h5,
 .trulii-cover-regular__content .organizer h5 {
   font-weight: 500;
-  font-size: 18px;
+  font-size: 24px;
 }
 .trulii-cover__content .rating,
 .trulii-cover-small__content .rating,
@@ -20669,12 +20675,12 @@ button.toast-close-button {
 }
 @media screen and (max-width: 992px) {
   .trulii-cover-regular {
-    min-height: 400px;
+    min-height: 400px !important;
   }
 }
 @media (min-height: 1081px) {
   .trulii-cover-regular {
-    min-height: 700px;
+    min-height: 700px !important;
   }
 }
 .trulii-cover-small {
@@ -21544,6 +21550,8 @@ blockquote {
   display: inline-block;
   width: 100%;
   padding: 0 15px;
+  z-index: 1000;
+  position: relative;
 }
 .activity-detail .info__content {
   font-weight: 800 !important;
@@ -24883,9 +24891,6 @@ blockquote {
   min-height: 600px;
   width: 100%;
   position: relative;
-}
-.profile-cover .row {
-  min-width: 100vw;
 }
 .profile-cover__container {
   min-height: 600px;
