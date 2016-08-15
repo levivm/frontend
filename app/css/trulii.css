@@ -12732,6 +12732,9 @@ hr.on-light {
     margin: 0 auto;
   }
 }
+.limited-width-help {
+  min-height: 600px;
+}
 .center-block {
   float: none;
 }
@@ -15980,7 +15983,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .sidebar-about__expanded {
-  max-height: 300px;
+  max-height: 600px;
 }
 .sidebar-about + * {
   padding-left: 0 !important;
@@ -16009,6 +16012,37 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar__item-edit-activity:hover {
   color: #9b9b9b !important;
   background: #ededed;
+}
+.sidebar__item {
+  border-bottom: 1px solid #ededed;
+  border-top: none;
+}
+.sidebar__item:first-child {
+  border-top: 1px solid #ededed;
+}
+.sidebar__item-help-more {
+  margin-top: 10px;
+  text-align: center;
+  border: none;
+  color: #b9bed1;
+  font-weight: 600;
+}
+.sidebar__item-help-contact {
+  margin-top: 15px;
+  background-color: #b9bed1;
+  text-align: center;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 4px;
+}
+.sidebar__item-help-contact a {
+  padding-left: 0;
+  color: white !important;
+  font-weight: 700;
+  font-size: 0.9em;
+}
+.sidebar__item-help-contact a:hover {
+  color: white !important;
 }
 .sidebar-profile {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;

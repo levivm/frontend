@@ -1,0 +1,75 @@
+<div>
+    
+    <div class="trulii-cover-small trulii-cover-small__about cover-with-sidebar">
+        <div class="trulii-cover__container ">
+            <div class="trulii-cover__content trulii-cover__content-about limited-width">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="padding-vertical-more">
+                            <h1 class="title text-center-mobile title-mobile-no-margin" >
+                                Ayuda
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{help.getAmazonUrl('static/img/cover_help.jpg')}})' }">
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="col-xs-12" >
+        <div  class="row container-fluid limited-width no-padding separate-above separate-below-more">
+            <div class="col-xs-12 col-md-2 separate-left-less">
+                <div class="select-about hidden-md hidden-lg" ng-click="help.toggleSidebar()">
+                    <span class="" ng-bind="help.questionSelected"></span>
+                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                </div>
+                <ul class="sidebar sidebar-about " ng-class="{'sidebar-about__expanded': help.showSidebar}">
+                     <li class="sidebar__item" ng-repeat="item in help.itemQuestions">
+                        <a  ng-click="help.showSubItems(item); ">
+                                <span ng-bind="::item.name"></span>
+                                <i class="fa fa-angle-right arrow-right" 
+                                ng-class="{'rotate-icon': item.showSubs}" aria-hidden="true"></i>
+                            </a>
+                            <ul class="sidebar__item-subitems" 
+                                ng-class="{'sidebar__item-expanded': item.showSubs}" > 
+                                <li ng-repeat="question in item.questions"
+                                    class="sidebar__item-subitem"  
+                                    ng-class="{'sidebar__item-subitem--selected': question.show}">
+                                    <a  ng-click="help.toggleSidebar(); help.showQuestion(item.questions, question); help.hideSubItems(item.name)">
+                                        <span ng-bind="::question.question"></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar__item sidebar__item-help-more hidden-xs hidden-sm">
+                            <span ng-bind="::help.strings.HELP_MORE"></span>
+                        </li>
+                        <li class="sidebar__item sidebar__item-help-contact hidden-xs hidden-sm">
+                            <a ui-sref="contact-us">
+                                <span  ng-bind="::help.strings.CONTACT_ACTION"></span>
+                            </a>
+                            
+                        </li>
+                    
+                </ul>
+                
+            </div>
+            <div class="col-xs-12 limited-width-about limited-width-help">
+                <h1 class="text-blue-dark text-xlg font-bold" ng-bind="help.questionSelected" >
+                </h1>
+                
+                <p ng-bind="help.answerSelected">
+                    
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+<trulii-footer></trulii-footer>

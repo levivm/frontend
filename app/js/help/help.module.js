@@ -14,18 +14,9 @@
     function config($stateProvider) {
         $stateProvider
             .state('help', {
-                abstract: true,
-                url: '/help',
+                url: '/ayuda',
                 controller: 'HelpController as help',
-                templateUrl: '<ui-view/>'
-            })
-            .state('help.organizer', {
-                url: '/organizer',
-                templateUrl: '/partials/help/organizer.html'
-            })
-            .state('help.student', {
-                url: '/student',
-                templateUrl: '/partials/help/student.html'
+                templateUrl: '/partials/help/help.html'
             });
     }
 })();

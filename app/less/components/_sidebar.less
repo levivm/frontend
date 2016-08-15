@@ -52,6 +52,8 @@
 				}
 			}
 		}
+		
+		
 		&-unpublish{
 			margin-top: 20px;
 			background: @brand-yellow;
@@ -77,7 +79,6 @@
 	
 	
   }
-  
  
   &__absolute{
 	position: absolute;
@@ -459,7 +460,7 @@
 		});
 		
 		&__expanded{
-			max-height: 300px;
+			max-height: 600px;
 		}
 		& + *{
 			padding-left: 0 !important;
@@ -493,6 +494,42 @@
 	background: @gray-lighter;
 }
 
+//Sidebar Help 
+.sidebar__item{
+	border-bottom: 1px solid @gray-lighter;
+	border-top: none; 
+	&:first-child{
+		border-top: 1px solid @gray-lighter;
+	}
+	&-help{
+		&-more{
+			margin-top: 10px;
+			text-align: center;
+			border: none;
+			color: @gray-regular-brand;
+			font-weight: 600;
+		}
+		&-contact{
+			margin-top: 15px;
+			background-color: @gray-regular-brand;
+			text-align: center;
+			text-transform: uppercase;
+			border: none;
+			border-radius: 4px;
+			a{
+				padding-left: 0;
+				color: white !important;
+				font-weight: 700;
+				font-size: 0.9em;
+				&:hover{
+					color: white !important;
+				}
+			}
+		}
+	}
+}
+
+ 
 //Principal menu side bar in Mobile
 
 
