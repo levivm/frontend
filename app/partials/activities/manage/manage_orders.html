@@ -6,7 +6,7 @@
   <div class="row" ng-class="{'limited-width-dashboard': manage.isActive('dash.activities-manage.orders.order') }">
       <div ui-view class="lateral-fade">
           <div class="col-xs-12">
-              <div ng-if="manage.orders.length > 0" class="row">
+              <div ng-if="manage.calendars.length > 0" class="row">
                   <div class="col-xs-12">
                       <div class="panel panel-default separate-above-less separate-below-less" style="cursor: pointer;"
                           ng-repeat="calendar in manage.calendars track by calendar.id">
@@ -75,7 +75,7 @@
                                           <th></th>
                                           </th>
                                       </tr>
-                                      <tr ng-repeat="order in manage.orders track by order.id | filter:manage.orderQuery">
+                                      <tr ng-repeat="order in manage.orders">
                                           <td>
                                               <a ui-sref="dash.activities-manage.orders.order({'orderId': order.id})">
                                                 <span>#<span ng-bind="::order.id"></span></span>

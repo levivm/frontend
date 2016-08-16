@@ -86,7 +86,7 @@
             _setStrings();
             _setFeeAmount();
             _setTotalMinusFee();
-            //console.log('order',order);
+            console.log('order',order);
         }
     }
 })();

@@ -25983,6 +25983,7 @@ input[type=text].form-control.referral-link:focus {
   height: auto;
   width: 100vw;
   background-color: #222328;
+  margin-bottom: -70px;
 }
 .summary-container .nvd3-svg {
   overflow: visible;
