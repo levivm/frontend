@@ -16,15 +16,19 @@
 
     function HelpController($scope, serverConf) {
         var vm = this;
+        
+        var truliiQ1= '¿Como cobrar una comisión?';
+        var truliiA1 = 'Trulii es el primer marketplace local de actividades educativas que realmente conecta a personas que quieren enseñar con las que quieren aprender. Suena fácil, pero es un reto. Y muy bonito, por cierto. Trabajamos fuerte para brindarte una plataforma amigable e intuitiva que te permita encontrar todo lo que quieras aprender en tu ciudad y pagar la inscripción de forma fácil, rápida y segura.'
+        
         angular.extend(vm,{
           getAmazonUrl: getAmazonUrl,
-          itemQuestions: [{name: 'Trulii', questions: [{question: 'Pregunta 1', answer: 'Respuesta1', show:true}, {question: 'Pregunta 2',answer: 'Respuesta2', show:false}, {question: 'Pregunta 3', answer: 'Respuesta3', show:false}], showSubs: true},
-                      {name: 'Asistentes', questions: [{question: 'Pregunta 1', answer: 'Respuesta1', show:false}, {question: 'Pregunta 2',answer: 'Respuesta2', show:false}, {question: 'Pregunta 3', answer: 'Respuesta3', show:false}], showSubs: false},
-                      {name: 'Organizadores', questions: [{question: 'Pregunta 1', answer: 'Respuesta1', show:false}, {question: 'Pregunta 2',answer: 'Respuesta3', show:false}, {question: 'Pregunta 3', answer: 'Respuesta3', show:false}], showSubs: false} ],
+          itemQuestions: [{name: 'Trulii', questions: [{question: truliiQ1, answer: truliiA1, show:true}, {question: truliiQ1,answer: truliiA1, show:false}, {question: truliiQ1, answer: truliiA1, show:false}], showSubs: true},
+                      {name: 'Asistentes', questions: [{question: truliiQ1, answer: truliiA1, show:false}, {question: truliiQ1,answer: truliiA1, show:false}, {question: truliiQ1, answer: truliiA1, show:false}], showSubs: false},
+                      {name: 'Organizadores', questions: [{question: truliiQ1, answer: truliiA1, show:false}, {question: truliiQ1,answer: truliiA1, show:false}, {question: truliiQ1, answer: truliiA1, show:false}], showSubs: false} ],
           showSubItems: showSubItems,
           showQuestion:showQuestion,
-          questionSelected: 'Pregunta 1',
-          answerSelected: 'Respuesta1',
+          questionSelected: truliiQ1,
+          answerSelected: truliiA1,
           hideSubItems:hideSubItems,
           showSidebar:false,
           toggleSidebar:toggleSidebar
