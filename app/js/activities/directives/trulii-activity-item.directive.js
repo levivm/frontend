@@ -256,7 +256,7 @@
 
                 function _mapDateMsg(activity){
                     var today = new Date();
-                    //console.log(activity);
+                    console.log(activity);
                     if(!!activity.closest_calendar){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
@@ -277,7 +277,8 @@
                         activity.date_msg = scope.strings.COPY_IN + " "
                             + activity.days_to_closest + " " + scope.strings.COPY_DAYS;
                     } else {
-                        activity.date_msg = $filter('date')(activity.closest_calendar.initial_date, "MMM dd");
+                        activity.date_msg = $filter('date')(activity.closest_calendar.closing_sale, "MMM dd");
+                        activity.date_msg = scope.strings.COPY_UNTIL+": "+activity.date_msg;
                     }
                     return activity;
                 }
@@ -314,6 +315,7 @@
                         COPY_IN: "En ",
                         COPY_THE: "El ",
                         COPY_CURRENT: "En curso",
+                        COPY_UNTIL: "Cierre Ventas",
                         COPY_ATTENDES: "Ver asistentes ",
                         ADD_TO_WISHLIST: "Agregar a favoritos",
                         CURRENCY: "COP",

@@ -38,23 +38,21 @@
         <br>
         <div class="trulii-activity-card__body__content__organizer text-center" ng-click="goToOrganizer($event)" ng-bind="::activity.organizer.name">
         </div>
-        <br>
-        <span class="trulii-activity-card__body__content__date" ng-if="activity.closest_calendar">
-          <span ng-class="{'text-uppercase': activity.days_to_closest > MAX_DAYS}" ng-if="!current" ng-bind="activity.date_msg"></span>
-          <span ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
-          <span ng-if="activity.organizer.rating" ng-bind=" ' - ' "></span>
-        </span>
-        <span class="trulii-activity-card__body__content__rating" ng-if="activity.organizer.rating">
+        <span class="trulii-activity-card__body__content__rating" ng-if="activity.organizer.rating"> 
           <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
           readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
         </span>
+        <span class="trulii-activity-card__body__content__date" ng-if="activity.closest_calendar">
+          <span ng-class="{'text-uppercase': activity.days_to_closest > MAX_DAYS}" ng-if="!current" ng-bind="activity.date_msg"></span>
+          <span ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
+        </span>
         <br>
-        <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free}" ng-if="activity.days_to_closest >= 0">
+        <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free, 'trulii-activity-card__body__content__price-rating': activity.organizer.rating}" ng-if="activity.days_to_closest >= 0">
           <strong ng-show="activity.closest_calendar.is_free">
             <span ng-bind="::strings.COPY_FREE"></span>
             <br>
           </strong>
-          <span ng-class="::{'text-strike': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar">
+          <span ng-class="::{'text-strike': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar && activity.closest_calendar.session_price">
             <span ng-bind="strings.CURRENCY"></span>
             <span ng-bind=" ::activity.closest_calendar.session_price | number"></span>
           </span>

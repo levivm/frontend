@@ -21109,7 +21109,6 @@ blockquote {
   font-weight: 600;
   font-size: 0.9em;
   display: inline-block;
-  padding-bottom: 10px;
 }
 .trulii-activity-card__body__content__organizer:hover {
   text-decoration: underline;
@@ -21117,18 +21116,20 @@ blockquote {
 .trulii-activity-card__body__content__date {
   color: #9b9b9b;
   font-size: 0.8em;
-  font-weight: 700;
+  font-weight: 600;
+  display: block;
+  margin-top: 10px;
 }
 .trulii-activity-card__body__content__rating {
   color: #9b9b9b;
   font-size: 0.9em;
+  display: block;
 }
 .trulii-activity-card__body__content__price {
   color: #222328;
   font-weight: 600;
   font-size: 1em;
   display: inline-block;
-  padding-top: 15px;
 }
 .trulii-activity-card-organizer {
   width: 100%;
