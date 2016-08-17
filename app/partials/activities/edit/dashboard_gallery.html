@@ -17,12 +17,12 @@
                         <div class="img-cover-preview img-actionable"
                              ng-style="{'background-image': gallery.getSelectedCoverUrl()}">
                             <div class="img-actionable__actions">
-                                <span ng-hide="gallery.isCurrentCoverPreview"
+                                <span ng-if="!gallery.isCurrentCoverPreview"
                                       class="img-actionable__actions__action" role="button"
                                       ng-click="gallery.setActivityCover()"
                                       ng-bind="::gallery.strings.ACTION_SET_AS_COVER">
                                 </span>
-                                <span ng-show="gallery.isCurrentCoverPreview"
+                                <span ng-if="gallery.isCurrentCoverPreview"
                                       class="img-actionable__actions__message"
                                       ng-bind="::gallery.strings.COPY_COVER_ALREADY_SET">
                                 </span>

@@ -165,7 +165,6 @@
         //--------- Internal Functions ---------//
 
         function _coverUploadSuccess(response) {
-          console.log(response);
             vm.isLoadingCover = false;
             _.remove(vm.activity.pictures, 'main_photo', true);
             vm.activity.pictures.push(response.data.picture);
@@ -202,6 +201,7 @@
                 if(vm.activityCover){
                     vm.covers.unshift(vm.activityCover);
                     vm.selectedCover = vm.activityCover;
+                    vm.isCurrentCoverPreview = true;
                 }
             }
         }
