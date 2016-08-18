@@ -21193,6 +21193,7 @@ blockquote {
   margin-top: -50px;
   z-index: 1000;
   position: relative;
+  min-height: 515px;
 }
 @media (max-width: 768px) {
   .activity-detail {
