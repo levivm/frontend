@@ -163,7 +163,8 @@
                     });
 
                     function success() {
-                        $rootScope.$broadcast(ActivitiesManager.EVENT_DELETE_ACTIVITY, $state.current.url);
+                        console.log($state);
+                        $rootScope.$broadcast(ActivitiesManager.EVENT_DELETE_ACTIVITY, $state.current.name);
                     }
                     function error(response) {
                         console.log(response);

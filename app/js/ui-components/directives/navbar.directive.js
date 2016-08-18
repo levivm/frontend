@@ -31,11 +31,12 @@
                                     'activities-detail' , 
                                     'activities-enroll', 
                                     'organizer-profile', 
+                                    'organizer-landing',
                                     'about.terms', 
                                     'about.privacy-policy',
                                     'about.mission',
                                     'about.culture',
-                                    'about.team']; //States valdies for Navbar transparent
+                                    'about.team']; //States valids for Navbar transparent
                 
                 angular.extend(scope, {
                     state: null,

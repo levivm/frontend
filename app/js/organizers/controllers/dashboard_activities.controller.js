@@ -17,9 +17,9 @@
     function OrganizerActivitiesCtrl(organizer, ActivitiesManager, openActivities, closedActivities, inactiveActivities, $window, $scope) {
 
         var vm = this;
-        var URL_OPEN= "open",
-            URL_INACTIVE= "inactive",
-            URL_CLOSED= "closed";
+        var URL_OPEN= 'organizer-dashboard.activities.open',
+            URL_INACTIVE= 'organizer-dashboard.activities.inactive',
+            URL_CLOSED= 'organizer-dashboard.activities.closed';
 
         angular.extend(vm, {
             organizer : organizer,
@@ -131,7 +131,6 @@
         }
 
         function _loadActivities(event, urlType){
-
           switch(urlType){
               case URL_OPEN:
                 pageChange(vm.TYPE_OPEN);
@@ -175,7 +174,6 @@
 
         function _activate() {
             _setStrings();
-            console.log('actividades');
             vm.open_activities.map(_mapMainPicture);
             vm.closed_activities.map(_mapMainPicture);
             vm.inactive_activities.map(_mapMainPicture);
