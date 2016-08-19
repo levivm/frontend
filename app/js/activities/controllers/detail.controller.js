@@ -156,6 +156,7 @@
                   case 'S':
                       StudentsManager.postWishList(vm.activity.id).then(function(data){
                           vm.activity.wish_list=!vm.activity.wish_list;
+                          vm.activity.wishlist_count = vm.activity.wish_list ? vm.activity.wishlist_count+1:vm.activity.wishlist_count-1;
                       });
                       break;
                   case 'O':
