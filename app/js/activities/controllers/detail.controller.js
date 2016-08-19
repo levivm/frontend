@@ -111,6 +111,8 @@
 
         function signUp(activity_id, calendar_id){
             var enrollParams = {
+                category_slug: vm.activity.category.slug,
+                activity_title: vm.title,
                 activity_id: vm.activity.id,
                 calendar_id: calendar_id
             };
@@ -120,6 +122,7 @@
                     state: 'activities-enroll',
                     params: {
                         activity_id: activity_id,
+
                         calendar_id: calendar_id
                     }
                 }
@@ -477,7 +480,7 @@
             title = title.replace(/[^\w ]/g, function(char) {
               return dict[char] || char;
             });
-            
+            vm.title = title;
             $state.go('activities-detail', {activity_id: activity.id, activity_title: title, category_slug: activity.category.slug} ,{location: "replace", notify: false, reload: true});
             
         }
@@ -528,8 +531,8 @@
             _setSearchData();
             _updateViewCount();
 
-            console.log(vm.organizer);
-
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

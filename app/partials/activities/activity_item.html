@@ -12,7 +12,7 @@
           </div>
           <div ng-if="isStudent"
               class="trulii-activity-card__header__menu__item"
-              ng-click="like(activity.id)"
+              ng-click="like($event, activity.id)"
               data-toggle="tooltip" data-placement="bottom" data-original-title="{{strings.ADD_TO_WISHLIST}}">
             <span class="trulii-activity-card__header__menu__item__icon mdi-action-favorite-outline" ng-class="{'mdi-action-favorite': activity.wish_list}" title="{{strings.ADD_TO_WISHLIST}}"></span>
           </div>
