@@ -87,13 +87,13 @@
             setPayment: setPayment,
 
             cardData : {
-                "name_card": "APPROVED",
-                "identificationNumber": "32144457",
-                "number": "4111111111111111",
-                exp_month: 1,
-                exp_year: 2016,
-                cvv: null,
-                "method": ""
+                // "name_card": "APPROVED",
+                // "identificationNumber": "32144457",
+                // "number": "4111111111111111",
+                // exp_month: 1,
+                // exp_year: 2016,
+                // cvv: null,
+                // "method": ""
             },
             selectedPayment: 'card',
             pseFormData: {

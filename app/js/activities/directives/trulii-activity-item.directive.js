@@ -80,7 +80,9 @@
                     }
                 }
 
-                function like(activityId){
+                function like($event, activityId){
+                    $event.preventDefault();
+                    $event.stopPropagation();
                     StudentsManager.postWishList(activityId).then(function(data){
                         scope.activity.wish_list=!scope.activity.wish_list;
                         ActivitiesManager.like(scope.activity.id, scope.activity.wish_list);
