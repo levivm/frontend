@@ -259,7 +259,11 @@
 
                 function _mapDateMsg(activity){
                     var today = new Date();
-                    if(!!activity.closest_calendar){
+                    
+                    if(!!activity.closest_calendar && 
+                        !!activity.closest_calendar.session_price && 
+                        !!activity.closest_calendar.closing_sale &&
+                        !!activity.closest_calendar.initial_date){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
                         var duration = moment.duration(end.diff(now));
@@ -319,6 +323,7 @@
                         COPY_CURRENT: "En curso",
                         COPY_UNTIL: "Cierre Ventas",
                         COPY_ATTENDES: "Ver asistentes ",
+                        COPY_NON_CLOSEST: "Clase no disponible",
                         ADD_TO_WISHLIST: "Agregar a favoritos",
                         CURRENCY: "COP",
                         DELETE_ACTIVITY_ERROR: "No puede eliminar esta actividad, tiene estudiantes inscritos, contactanos",
