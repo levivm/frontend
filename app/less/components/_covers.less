@@ -1,7 +1,7 @@
 
 @import url('../_trulii-variables');
 @import url('../mixins/_image_processing');
-@trulii-cover-height: 92vh;
+@trulii-cover-height: 580px;
 @trulii-cover-height-regular: 60vh;
 @trulii-cover-height-medium: 55vh;
 @trulii-cover-height-small: 50vh;
@@ -165,7 +165,6 @@
   display: block;
   clear: both;
   &__home, &__detail{
-    min-height: 90vh !important;
     .after-width(1600px, {
       min-height: 600px !important;
     });
@@ -475,7 +474,13 @@
           display: flex;
           flex-direction: column;
           justify-content: space-around;
-          height: 55vh;
+          height: 480px;
+          .after-width(1600px, {
+            height: 500px;
+          });
+          .before-md({
+            height: auto;
+          });
       }
       &-categories{
         text-align: center;

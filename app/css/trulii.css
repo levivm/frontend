@@ -19539,21 +19539,11 @@ button.toast-close-button {
 .trulii-cover-small,
 .trulii-cover-medium,
 .trulii-cover-regular {
-  min-height: 92vh;
+  min-height: 580px;
   width: 100%;
   position: relative;
   display: block;
   clear: both;
-}
-.trulii-cover__home,
-.trulii-cover-small__home,
-.trulii-cover-medium__home,
-.trulii-cover-regular__home,
-.trulii-cover__detail,
-.trulii-cover-small__detail,
-.trulii-cover-medium__detail,
-.trulii-cover-regular__detail {
-  min-height: 90vh !important;
 }
 @media screen and (min-width: 1600px) {
   .trulii-cover__home,
@@ -20050,7 +20040,23 @@ button.toast-close-button {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 55vh;
+  height: 480px;
+}
+@media screen and (min-width: 1600px) {
+  .trulii-cover__content-landing-content,
+  .trulii-cover-small__content-landing-content,
+  .trulii-cover-medium__content-landing-content,
+  .trulii-cover-regular__content-landing-content {
+    height: 500px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .trulii-cover__content-landing-content,
+  .trulii-cover-small__content-landing-content,
+  .trulii-cover-medium__content-landing-content,
+  .trulii-cover-regular__content-landing-content {
+    height: auto;
+  }
 }
 .trulii-cover__content-landing-categories,
 .trulii-cover-small__content-landing-categories,
