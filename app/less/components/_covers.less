@@ -263,12 +263,19 @@
           background-attachment: initial;
           background-position: center center;
           position: relative;
-          -webkit-box-shadow: -7px 13px 41px -2px rgba(0,0,0,0.75);
-          -moz-box-shadow: -7px 13px 41px -2px rgba(0,0,0,0.75);
-          box-shadow: -7px 13px 41px -2px rgba(0,0,0,0.75);
+          -webkit-box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.20);
+          -moz-box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.20);
+          box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.20);
           &:extend(.flex-center-container);
           border-radius: 5px;
           cursor: pointer;
+          transition: all 0.35s;
+          &:hover{
+            -webkit-box-shadow: -7px 13px 41px -2px rgba(0,0,0,0.75);
+            -moz-box-shadow: -7px 13px 41px -2px rgba(0,0,0,0.75);
+            box-shadow: -7px 13px 41px -2px rgba(0,0,0,0.75);
+            transform: scale(1.03);
+          }
           &:after {
             width: 100%;
             height: 100%;
@@ -282,7 +289,7 @@
           }
           .before-sm({
             width: 80%;
-            text-align: center;
+            text-align: center; 
             margin: 0 auto;
             height: 300px;
           });

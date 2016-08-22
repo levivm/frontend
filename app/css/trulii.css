@@ -19706,11 +19706,21 @@ button.toast-close-button {
   background-attachment: initial;
   background-position: center center;
   position: relative;
+  -webkit-box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.2);
+  box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.35s;
+}
+.trulii-cover__video-play:hover,
+.trulii-cover-small__video-play:hover,
+.trulii-cover-medium__video-play:hover,
+.trulii-cover-regular__video-play:hover {
   -webkit-box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.75);
   box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.75);
-  border-radius: 5px;
-  cursor: pointer;
+  transform: scale(1.03);
 }
 .trulii-cover__video-play:after,
 .trulii-cover-small__video-play:after,
