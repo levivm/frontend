@@ -720,6 +720,7 @@
                 COPY_TO: " a ",
                 COPY_COVER: "Te quieres inscribir en:",
                 COPY_LAST_DATE: "Cierre de ventas -",
+                COPY_AVAILABLE: "Disponibilidad",
                 COPY_SIGN_UP: "¿Quieres inscribirte en esta actividad?",
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
@@ -752,6 +753,7 @@
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
+                LABEL_REPEAT_INFO:"Esta actividad se repite en otras oportunidades",
                 LABEL_ACTIVITY_SESSIONS: "Horarios",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
@@ -765,7 +767,7 @@
                 LABEL_LAST_NAME: "Apellido",
                 LABEL_EMAIL: "Email",
                 PLACEHOLDER_EMAIL: "Email - opcional",
-                LABEL_PAYMENT_INFO: "Información de Pago",
+                LABEL_PAYMENT_INFO: "Pago",
                 LABEL_TOTAL_AMOUNT: "Total a Pagar",
                 LABEL_DROPDOWN_DATE_INIT: "Fecha de inicio: ",
                 LABEL_ID_NUMBER: "Identificación",
@@ -817,8 +819,8 @@
         function _updateWidgetValues(){
             vm.scroll = window.scrollY;
             vm.widgetOriginalPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().top + window.scrollY + 50;
-            vm.widgetMaxPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY - 420 - 70;
-            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - 420 - (document.getElementsByClassName('trulii-cover-regular')[0].getBoundingClientRect().bottom + window.scrollY);
+            vm.widgetMaxPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY - 320;
+            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().bottom + window.scrollY);
             vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().left + 30;
             vm.widgetFixedPositionRight = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().right - 30 - 225;
         }

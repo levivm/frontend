@@ -25,45 +25,36 @@
 
 <!--Cover-->
 <div>
-    <div class="trulii-cover-regular trulii-cover__detail">
-        <div class="trulii-cover__container align-bottom">
-            <div class="trulii-cover__content">
-                <div class="col-xs-12 col-md-offset-1 col-md-10 limited-width padding-vertical-regular">
-                    <div class="row ">
-                        <div class="col-xs-12 separate-below-more">
-                            <h1 class="title text-center font-light separate-above-less" ng-bind="::enroll.activity.title"></h1>
-                            <h5 class="organizer">
-                                <span ng-bind="::enroll.activity.organizer.name">
-                                </span>
-                                <span> - </span>
-                                <strong>
-                                    <span ng-bind="enroll.calendar.vacancy"></span>
-                                    <span>
-                                        <ng-pluralize count="enroll.calendar.vacancy"
-                                            when="{
-                                                '1': enroll.strings.COPY_VACANCY_SINGULAR,
-                                                'other': enroll.strings.COPY_VACANCY
-                                                }">
-                                        </ng-pluralize>
-                                    </span>
-                                </strong>
-                                <span></span>
-                                <span>|</span>
-                                <span ng-bind="::enroll.strings.COPY_LAST_DATE"></span>
-                                <strong ng-bind="enroll.activity.last_date | date:'d MMM y'"></strong>
-                            </h5>
-                        </div>
-                    </div>
+    <div class="cover-blur-small">
+        <div class="cover-blur-small__content">
+            <div class="cover-blur-small__content-first">
+                <div class="cover-blur-small__content-title">
+                    <h1 ng-bind="enroll.activity.title"></h1>
+                    <h5 ng-bind="enroll.activity.organizer.name"></h5>
                 </div>
             </div>
-            <div class="trulii-cover__background" style="background-image: url({{enroll.activity.main_photo}});">
+            <div class="cover-blur-small__content-second" >
+                <span ng-bind="::enroll.strings.COPY_LAST_DATE"></span>
+                <strong ng-bind="enroll.activity.last_date | date:'d MMM y'" class="separate-right"></strong>
+                <span ng-bind="::enroll.strings.COPY_AVAILABLE"></span>
+                <span>:</span>
+                <strong>
+                    <span ng-bind="enroll.calendar.vacancy"></span>
+                    <span>
+                        <ng-pluralize count="enroll.calendar.vacancy"
+                            when="{
+                                '1': enroll.strings.COPY_VACANCY_SINGULAR,
+                                'other': enroll.strings.COPY_VACANCY
+                                }">
+                        </ng-pluralize>
+                    </span>
+                </strong>
             </div>
         </div>
     </div>
-
   <div class="activity-enroll col-xs-12 limited-width">
     <!--Billing-->
-    <div class="activity-enroll__billing-widget" ng-if="enroll.showWidget" ng-class="{'widget-fixed': (enroll.scroll  > enroll.widgetOriginalPosition - 110) && (enroll.scroll  < enroll.widgetMaxPosition)}" ng-style="(enroll.scroll >= enroll.widgetMaxPosition && {'top': enroll.widgetAbsolutePosition}) || ((enroll.scroll  >       enroll.widgetOriginalPosition - 110) && (enroll.scroll  < enroll.widgetMaxPosition) && {'left': enroll.widgetFixedPositionRight})">
+    <div class="activity-enroll__billing-widget" ng-if="enroll.showWidget" ng-class="{'widget-fixed': (enroll.scroll  > enroll.widgetOriginalPosition - 110) && (enroll.scroll  < enroll.widgetMaxPosition)}" ng-style="(enroll.scroll >= enroll.widgetMaxPosition && {'top': 1444}) || ((enroll.scroll  >       enroll.widgetOriginalPosition - 110) && (enroll.scroll  < enroll.widgetMaxPosition) && {'left': enroll.widgetFixedPositionRight})">
         <div class="invoice">
             <h4 class="text-uppercase" ng-bind="::enroll.strings.LABEL_INVOICE"></h4>
             <div class="row seats separate-above separate-below-less">
@@ -156,7 +147,12 @@
           <!--Sessions-->
           <div class="row ">
               <div class="col-xs-12">
-                  <div class="select-calendar col-md-12 separate-left-less">
+                  <div class="enroll-section__header">
+                        <h5>
+                            <span ng-bind="::enroll.strings.LABEL_REPEAT_INFO"></span>
+                        </h5>
+                  </div>
+                  <div class="select-calendar col-md-12 separate-left-less"> 
                     <ui-select ng-model="enroll.calendar" theme="bootstrap" search-enabled="false" >
                       <ui-select-match  >
                         <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
@@ -268,7 +264,7 @@
                                     <option value="card" ng-bind="enroll.strings.LABEL_CARD"></option>
                                     <option value="pse" ng-bind="enroll.strings.LABEL_PSE"></option>
                                 </select>
-                                <ul class="nav nav-tabs nav-tabs-light hidden-xs hiddem-sm" style="margin-bottom: 15px;">
+                                <ul class="nav nav-tabs nav-tabs-light hidden-xs hidden-sm" style="margin-bottom: 15px;">
                                     <li ng-class="{'active': !enroll.paymentWithPse}"
                                         ng-click="enroll.changeCCPaymentMethod()">
                                         <a href="">
@@ -283,12 +279,39 @@
                                         </a>
                                     </li>
                                 </ul>
-
+                                 <div class="col-xs-12 credit-cards-container separate-above separate-below hiddden-xs hidden-sm">
+                                    <div class="row">
+                                        <div class="col-xs-12 text-center">
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'mastercard'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/mastercard_off.png')}}" alt="Mastercard"/>
+                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'mastercard'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/mastercard_on.png')}}" alt="Mastercard"/>
+                                                </li>
+                                                <li>
+                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'visa'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/visa_off.png')}}" alt="Visa"/>
+                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'visa'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/visa_on.png')}}" alt="Visa"/>
+                                                </li>
+                                                <li>
+                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'amex'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/amex_off.png')}}" alt="American Express"/>
+                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'amex'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/amex_on.png')}}" alt="American Express"/>
+                                                </li>
+                                                <li>
+                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'diners'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/diners_off.png')}}" alt="Diners"/>
+                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'diners'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/diners_on.png')}}" alt="Diners"/>
+                                                </li>
+                                                <li>
+                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'discover'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/discover_off.png')}}" alt="Discover"/>
+                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'discover'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/discover_on.png')}}" alt="Discover"/>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div>
                                     <!--Credit Card-->
                                     <div class="fade in" ng-hide="enroll.paymentWithPse">
                                         <div class="row">
-                                            <div class="col-xs-12 col-lg-10 col-lg-offset-1 card-info-container">
+                                            <div class="col-xs-12 col-lg-8 col-lg-offset-2 card-info-container">
                                                 <div class="row separate-above-medium">
                                                     <div class="col-xs-12 col-md-8 card-number">
                                                         <div class="form-group" trulii-input-errors-control="cardNumber">
@@ -365,34 +388,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-xs-12 credit-cards-container separate-above separate-below hiddden-xs hidden-sm">
-                                            <div class="row">
-                                                <div class="col-xs-12 text-center">
-                                                    <ul class="list-unstyled">
-                                                        <li>
-                                                            <img ng-hide="(enroll.cardData.method | lowercase) === 'mastercard'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/mastercard_off.png')}}" alt="Mastercard"/>
-                                                            <img ng-show="(enroll.cardData.method | lowercase) === 'mastercard'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/mastercard_on.png')}}" alt="Mastercard"/>
-                                                        </li>
-                                                        <li>
-                                                            <img ng-hide="(enroll.cardData.method | lowercase) === 'visa'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/visa_off.png')}}" alt="Visa"/>
-                                                            <img ng-show="(enroll.cardData.method | lowercase) === 'visa'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/visa_on.png')}}" alt="Visa"/>
-                                                        </li>
-                                                        <li>
-                                                            <img ng-hide="(enroll.cardData.method | lowercase) === 'amex'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/amex_off.png')}}" alt="American Express"/>
-                                                            <img ng-show="(enroll.cardData.method | lowercase) === 'amex'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/amex_on.png')}}" alt="American Express"/>
-                                                        </li>
-                                                        <li>
-                                                            <img ng-hide="(enroll.cardData.method | lowercase) === 'diners'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/diners_off.png')}}" alt="Diners"/>
-                                                            <img ng-show="(enroll.cardData.method | lowercase) === 'diners'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/diners_on.png')}}" alt="Diners"/>
-                                                        </li>
-                                                        <li>
-                                                            <img ng-hide="(enroll.cardData.method | lowercase) === 'discover'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/discover_off.png')}}" alt="Discover"/>
-                                                            <img ng-show="(enroll.cardData.method | lowercase) === 'discover'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/discover_on.png')}}" alt="Discover"/>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                     <!--PSE-->
                                     

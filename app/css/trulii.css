@@ -18704,7 +18704,12 @@ ul.dropdown-menu:after {
   padding: 0em 1.5em 0em 1.5em;
 }
 .card__instructor .card-list-item .view-mode {
-  padding: 1em 1.5em 4em 1.5em;
+  padding: 1em 0.5em 1em 1.5em;
+}
+.card__instructor .card-list-item .view-mode .text-bio {
+  max-height: 170px;
+  word-wrap: break-word;
+  overflow-y: auto;
 }
 .card__instructor .card-list-item textarea {
   resize: none;
@@ -19423,36 +19428,36 @@ button.toast-close-button {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
 }
-.cover-edit-activity {
+.cover-blur-small {
   background-repeat: no-repeat;
   background-image: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/banner_edit_activity.png');
   background-size: cover;
   width: 100vw;
   height: 300px;
   position: relative;
-  top: -20px;
+  top: 0px;
 }
 @media screen and (max-width: 992px) {
-  .cover-edit-activity {
+  .cover-blur-small {
     padding: 0 1em;
   }
 }
 @media screen and (max-width: 768px) {
-  .cover-edit-activity {
+  .cover-blur-small {
     height: auto;
   }
 }
-.cover-edit-activity .tooltip-unpublish {
+.cover-blur-small .tooltip-unpublish {
   color: #C5C5C5;
   font-size: 1.2em;
   vertical-align: middle;
   margin-left: 0.2em;
 }
-.cover-edit-activity__create {
+.cover-blur-small__create {
   position: relative;
   top: -20px;
 }
-.cover-edit-activity__content {
+.cover-blur-small__content {
   width: 1044px;
   margin: 0 auto;
   height: 100%;
@@ -19461,52 +19466,53 @@ button.toast-close-button {
   flex-direction: column;
 }
 @media (max-width: 1299px) {
-  .cover-edit-activity__content {
+  .cover-blur-small__content {
     max-width: 100%;
     margin: auto;
     margin-left: auto;
+    padding: 50px;
   }
 }
-.cover-edit-activity__content-title {
+.cover-blur-small__content-title {
   padding: 0.2em 0 1em 0;
 }
-.cover-edit-activity__content-title h1 {
+.cover-blur-small__content-title h1 {
   color: white;
   font-weight: 700;
   margin: 0;
 }
-.cover-edit-activity__content-title h5 {
+.cover-blur-small__content-title h5 {
   color: white;
   font-size: 1.3em;
   font-weight: 300;
 }
-.cover-edit-activity__content-first {
+.cover-blur-small__content-first {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 75px;
 }
-.cover-edit-activity__content-second {
+.cover-blur-small__content-second {
   border-top: 1px solid white;
   padding: 1em 0 0.2em 0;
+  color: white;
 }
-.cover-edit-activity__content-buttons .btn-manage {
+.cover-blur-small__content-buttons .btn-manage {
   background-color: #e4e7ef;
   margin-right: 1em;
 }
-.cover-edit-activity__content-buttons .btn-preview {
+.cover-blur-small__content-buttons .btn-preview {
   background-color: #b9bed1;
   border-color: #b9bed1;
 }
-.cover-edit-activity__content-buttons .btn-preview i {
+.cover-blur-small__content-buttons .btn-preview i {
   font-size: 1.3em;
   margin-right: 3px;
 }
-.cover-edit-activity__content-steps {
+.cover-blur-small__content-steps {
   color: white;
   font-weight: 400;
 }
-.cover-edit-activity__content-steps .mandatory-mark {
+.cover-blur-small__content-steps .mandatory-mark {
   width: 8px;
   height: 8px;
   background-color: #a1a6bb;
@@ -22849,7 +22855,7 @@ blockquote {
   border-bottom-left-radius: 30px;
 }
 .activity-enroll .select-calendar {
-  margin-bottom: 50px;
+  margin-bottom: 90px;
 }
 .activity-enroll .select-calendar .ui-select-bootstrap .ui-select-choices-row a {
   font-size: 0.85em;
@@ -22918,10 +22924,8 @@ blockquote {
 .enroll-section__header .description .fa {
   display: inline-block;
   font-size: 12px;
-  color: #b9bed1;
-}
-.enroll-section__header .description p {
-  font-weight: 400;
+  color: #00e2aa;
+  font-weight: 600;
 }
 .enroll-section__header .description .fa {
   padding-left: 5px;
@@ -23005,8 +23009,8 @@ blockquote {
   border-top: none;
 }
 .enroll-section__body .nav-tabs-light li {
-  width: 250px;
-  height: 75px;
+  width: 310px;
+  height: 90px;
   display: inline-block;
   float: none;
   margin-bottom: 0px;
@@ -23040,9 +23044,12 @@ blockquote {
   color: #00e2aa;
 }
 .enroll-section__body .credit-cards-container {
-  border-top: 1px solid #ededed;
-  border-bottom: 1px solid #ededed;
-  padding: 0 50px;
+  padding: 0 140px;
+}
+@media screen and (max-width: 992px) {
+  .enroll-section__body .credit-cards-container {
+    padding: 0 50px;
+  }
 }
 .enroll-section__body .credit-cards-container ul {
   margin-bottom: 0;
@@ -23050,15 +23057,15 @@ blockquote {
   justify-content: space-between;
 }
 .enroll-section__body .credit-cards-container ul li {
-  padding-top: 25px;
-  padding-bottom: 25px;
   flex-basis: 0px;
   line-height: 50px;
 }
+.enroll-section__body .credit-cards-container ul li img {
+  width: 50px;
+}
 .enroll-section__body .card-info-container {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  border: 1px solid #ededed;
+  margin-top: 20px;
+  border: 1px solid #e4e7ef;
   border-radius: 6px;
   padding-left: 20px;
   padding-right: 20px;
@@ -23067,6 +23074,9 @@ blockquote {
   margin-left: 20px;
   font-weight: bold;
   color: #a1a6bb !important;
+}
+.enroll-section__body .card-info-container input[type="number"] {
+  padding: 0em 1.5em !important;
 }
 .enroll-section__body .input-error {
   text-align: center;
@@ -25080,17 +25090,6 @@ blockquote {
 }
 .how-icon-4 {
   border-color: #00F2B6;
-}
-@media (min-width: 769px) {
-  .how-icon-1:after,
-  .how-icon-2:after,
-  .how-icon-3:after {
-    content: '\2192';
-    position: absolute;
-    right: -10px;
-    top: 20%;
-    font-size: 35px;
-  }
 }
 .organizer-publish p,
 .organizer-publish h5 {
