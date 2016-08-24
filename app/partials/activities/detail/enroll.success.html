@@ -102,7 +102,7 @@
           
           <div class="col-xs-12 col-lg-3 flex-container">
             <div class="activity-enroll-success__attendees-widget__contact">
-              <h5 ng-bind="::success.strings.LABEL_QUESTIONS"></h5>
+              <h5  class="text-dark" ng-bind="::success.strings.LABEL_QUESTIONS"></h5>
               <p>
                 <a href="#" ng-bind="::success.strings.ACTION_CONTACT_US"></a>
               </p>
@@ -110,31 +110,28 @@
           </div>
           <div class="hidden-xs hidden-sm" ui-view="attendees"></div>
         </div>
-        <div class="row">
+        <div class="row separate-above">
           <div class="col-xs-12">
-            <h4>
+            <h4 ><strong class="text-dark" ng-bind="::success.strings.LABEL_IMPORTANT"></strong></h4>
+            <p class="separate-below" ng-bind="::success.strings.COPY_IMPORTANT"></p>
+            <p class="content"  ng-bind-html="success.activity.requirements" ng-class="{'content-mobile': !success.showAudience}"></p>
+            <!--<h4>
               <strong>
                 <span ng-bind="success.strings.COPY_VIEW_YOUR_ORDER_1"></span>
-                <a target="_blank" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId})" ng-bind="success.strings.COPY_VIEW_YOUR_ORDER_2">
-              </strong>
-            </a>
-            </h4>
+                
+              </strong> </a> </h4>-->
+            <a target="_blank"
+               class="btn btn-lg btn-info btn-order"
+               ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId})"
+               ng-bind="success.strings.COPY_VIEW_YOUR_ORDER">
           </div>
         </div>
           <!--Audience-->
-          <div class="row separate-above-medium" ng-show="success.activity.audience">
-            <div class="col-xs-12 section">
-              <h4>
-                <strong ng-bind="success.strings.LABEL_REQUIREMENTS"></strong>
-              </h4>
-              <p class="content"  ng-bind-html="success.activity.requirements" ng-class="{'content-mobile': !success.showAudience}"></p>
-            </div>
-          </div>
           <div class="row separate-above-less" ng-show="success.activity.content">
             <div class="col-xs-12 section">
               <div class="separator separate-vertical"></div>
               <h4>
-                <strong ng-bind="::success.strings.LABEL_START_DATE"></strong>
+                <strong class="text-dark" ng-bind="::success.strings.LABEL_START_DATE"></strong>
               </h4>
               <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
                 <span ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')">
@@ -147,18 +144,11 @@
          </div>
          <div class="row separate-above-less" ng-show="success.activity.content">
             <div class="col-xs-12 section">
-              <div class="separator separate-vertical"></div>
               <h4>
-                <strong ng-bind="::success.strings.LABEL_LOCATION"></strong>
+                <strong class="text-dark" ng-bind="::success.strings.LABEL_LOCATION"></strong>
               </h4>
-              <div class="content location" ng-class="{'content-mobile': !success.showAudience}">
-                <div class="address">
-                  <h5>
-                    <strong class="text-uppercase" ng-bind="success.strings.LABEL_ADDRESS"></strong>
-                    <span>:</span>
-                    <span class="text-uppercase" ng-bind="success.activity.location.address"></span>
-                  </h5>
-                </div>
+              <p ng-bind="success.activity.location.address"></p>
+              <div class="content location separate-above" ng-class="{'content-mobile': !success.showAudience}">
                 <ui-gmap-google-map class="map hidden-xs hidden-sm" center='success.map.center' zoom='success.map.zoom'
                   bounds="success.map.bounds" options="success.map.options"
                   events="success.map.events">
@@ -175,7 +165,7 @@
           <div class="row">
            <div class="col-xs-12 section">
              <h4>
-              <strong ng-bind="::success.strings.LABEL_SIMILAR"></strong>
+              <strong  class="text-dark" ng-bind="::success.strings.LABEL_SIMILAR"></strong>
             </h4>
            </div>
             <div class="flex-cards separate-above-more" >

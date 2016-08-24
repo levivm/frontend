@@ -823,6 +823,7 @@
             vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().bottom + window.scrollY);
             vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().left + 30;
             vm.widgetFixedPositionRight = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().right - 30 - 225;
+            
         }
 
         function _initWidget(){

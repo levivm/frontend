@@ -54,7 +54,7 @@
     </div>
   <div class="activity-enroll col-xs-12 limited-width">
     <!--Billing-->
-    <div class="activity-enroll__billing-widget" ng-if="enroll.showWidget" ng-class="{'widget-fixed': (enroll.scroll  > enroll.widgetOriginalPosition - 110) && (enroll.scroll  < enroll.widgetMaxPosition)}" ng-style="(enroll.scroll >= enroll.widgetMaxPosition && {'top': 1444}) || ((enroll.scroll  >       enroll.widgetOriginalPosition - 110) && (enroll.scroll  < enroll.widgetMaxPosition) && {'left': enroll.widgetFixedPositionRight})">
+    <div class="activity-enroll__billing-widget" ng-if="enroll.showWidget" ng-class="{'widget-fixed': (enroll.scroll  > enroll.widgetOriginalPosition - 110) && (enroll.scroll  < enroll.widgetMaxPosition)}" ng-style="(enroll.scroll >= enroll.widgetMaxPosition && {'top': enroll.widgetAbsolutePosition - 330 }) || ((enroll.scroll  >       enroll.widgetOriginalPosition - 110) && (enroll.scroll  < enroll.widgetMaxPosition) && {'left': enroll.widgetFixedPositionRight})">
         <div class="invoice">
             <h4 class="text-uppercase" ng-bind="::enroll.strings.LABEL_INVOICE"></h4>
             <div class="row seats separate-above separate-below-less">

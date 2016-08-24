@@ -21194,7 +21194,7 @@ blockquote {
   padding-top: 50px;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__free {
-  padding-top: 35px;
+  padding-top: 0px;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__attendes {
   color: #767676;
@@ -24460,6 +24460,11 @@ blockquote {
 .activity-enroll-success a {
   text-decoration: underline;
 }
+.activity-enroll-success .btn-order {
+  text-decoration: none;
+  padding: 1em 5em;
+  margin-top: 25px;
+}
 .activity-enroll-success .col-xs-12 {
   z-index: 902;
 }
@@ -24500,7 +24505,8 @@ blockquote {
 .activity-enroll-success p {
   word-break: break-word;
   margin-bottom: 0px;
-  font-size: 1.1em;
+  font-size: 1em;
+  color: #222328;
 }
 @media screen and (max-width: 768px) {
   .activity-enroll-success p {
@@ -25464,7 +25470,7 @@ blockquote {
   margin-bottom: 1em;
 }
 .home-footer__links .link-column .link .icon {
-  width: 20px;
+  width: 28px;
   height: 15px;
   display: inline-block;
 }
