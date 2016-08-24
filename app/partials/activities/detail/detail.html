@@ -3,17 +3,14 @@
     <div class="trulii-cover__content">
       <div class="col-xs-12 col-md-offset-1 col-md-10 limited-width padding-vertical-regular">
         <div class="row ">
-          <div class="col-xs-12 separate-below-more">
-            <a class="label" ng-bind="::detail.activity.category.name"
-              ng-style="{'background-color': '{{detail.activity.category.color}}'}"
-              ui-sref="category({category_name: detail.activity.category.slug})"
-              target="_blank"></a>
-            <h1 class="title text-center font-light separate-above-less" ng-bind="::detail.activity.title"></h1>
-            <a href="" class="organizer" ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})"
-              target="_blank">
+          <div class="col-xs-12">
+            <a class="organizer separate-below" ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})" target="_blank">
+              <img class="organizer-picture" ng-src="{{::detail.organizer.photo}}" alt="">
               <h5 ng-bind="::detail.organizer.name">
               </h5>
             </a>
+            <h1 class="title text-center font-light separate-above-less" ng-bind="::detail.activity.title"></h1>
+            
             <div class="rating">
               <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                       readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating> 
@@ -548,6 +545,8 @@
       <div class="reviews-container--ratings">
         <img class="img-responsive reviews-container--ratings__avatar" ng-src="{{detail.organizer.photo}}" alt="">
         <span class="reviews-container--ratings__info">
+          <span class="header" ng-bind="::detail.strings.LABEL_EVALUATIONS">
+          </span>
           <a ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})" ng-bind="detail.organizer.name"></a>
           <span class="text-uppercase">
             <rating ng-model="detail.organizer.rating" max="5"
@@ -581,6 +580,20 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="related-activities-container col-xs-12 hidden-xs hidden-sm" ng-if="detail.relatedActivities.length > 0">
+  <div class="row">
+      <div class="limited-width">
+        <h3 class="title" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
+      </div>
+      <div class="flex-cards separate-above-more" >
+           <trulii-activity-item data-activity="activity" ng-repeat="activity in detail.cards"></trulii-activity-item>
+      </div>
+      <div class="col-xs-12 limited-width">
+        <a class="btn btn-lg btn-block btn-info" ui-sref="search(detail.searchData)" ng-bind="detail.strings.COPY_MORE_SIMILAR_ACTIVITIES"></a>
+      </div>
   </div>
 </div>
 
@@ -629,19 +642,6 @@
         <a class="text-uppercase" target="_blank" ui-sref="contact-us(detail.current_state)" ng-bind="::detail.strings.ACTION_CONTACT_US"></a>
       </p>
     </div>
-  </div>
-</div>
-<div class="related-activities-container col-xs-12 hidden-xs hidden-sm" ng-if="detail.relatedActivities.length > 0">
-  <div class="row">
-      <div class="limited-width">
-        <h3 class="title" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>
-      </div>
-      <div class="flex-cards separate-above-more" >
-           <trulii-activity-item data-activity="activity" ng-repeat="activity in detail.cards"></trulii-activity-item>
-      </div>
-      <div class="col-xs-12 limited-width">
-        <a class="btn btn-lg btn-block btn-info" ui-sref="search(detail.searchData)" ng-bind="detail.strings.COPY_MORE_SIMILAR_ACTIVITIES"></a>
-      </div>
   </div>
 </div>
 
