@@ -1667,8 +1667,7 @@ pre code {
     width: 1170px;
   }
 }
-.container-fluid,
-.detail-cover {
+.container-fluid {
   margin-right: auto;
   margin-left: auto;
   padding-left: 15px;
@@ -5621,9 +5620,7 @@ a.thumbnail.active {
 .navbar-header:before,
 .navbar-header:after,
 .navbar-collapse:before,
-.navbar-collapse:after,
-.detail-cover:before,
-.detail-cover:after {
+.navbar-collapse:after {
   content: " ";
   display: table;
 }
@@ -5641,8 +5638,7 @@ a.thumbnail.active {
 .modal-footer:after,
 .navbar:after,
 .navbar-header:after,
-.navbar-collapse:after,
-.detail-cover:after {
+.navbar-collapse:after {
   clear: both;
 }
 .center-block {
@@ -14335,7 +14331,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   display: inline-block;
   vertical-align: top;
   height: 60px;
-  width: calc(100% - 455px);
+  width: calc(100% - 465px);
   margin: 0.2em 1em;
 }
 .navbar__left-wrapper .navbar__option--right {
@@ -19414,7 +19410,6 @@ button.toast-close-button {
   border-radius: 2px !important;
 }
 .cover,
-.detail-cover,
 .full-screen-cover {
   position: relative;
   width: 100%;
@@ -19423,7 +19418,6 @@ button.toast-close-button {
   background-size: cover;
 }
 .cover:after,
-.detail-cover:after,
 .full-screen-cover:after {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.2);
@@ -19520,22 +19514,6 @@ button.toast-close-button {
   display: inline-block;
   margin-left: 0.2em;
 }
-.detail-cover:after {
-  height: 420px;
-}
-.detail-cover .text-container {
-  position: absolute;
-  text-align: center;
-  vertical-align: middle;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  padding-top: 5em;
-}
-.detail-cover .text-container * {
-  color: #FFFFFF;
-}
 .icon-explore {
   color: white;
   vertical-align: sub;
@@ -19562,6 +19540,12 @@ button.toast-close-button {
   .trulii-cover-regular__detail {
     min-height: 600px !important;
   }
+}
+.trulii-cover__detail .trulii-cover__content .title,
+.trulii-cover-small__detail .trulii-cover__content .title,
+.trulii-cover-medium__detail .trulii-cover__content .title,
+.trulii-cover-regular__detail .trulii-cover__content .title {
+  margin-bottom: 10px;
 }
 .trulii-cover__category,
 .trulii-cover-small__category,
@@ -19968,13 +19952,24 @@ button.toast-close-button {
   margin-top: 0;
   margin-bottom: 0;
   text-decoration: none;
+  transition: 0.25 all;
 }
 .trulii-cover__content .organizer h5,
 .trulii-cover-small__content .organizer h5,
 .trulii-cover-medium__content .organizer h5,
 .trulii-cover-regular__content .organizer h5 {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 22px;
+}
+.trulii-cover__content .organizer img,
+.trulii-cover-small__content .organizer img,
+.trulii-cover-medium__content .organizer img,
+.trulii-cover-regular__content .organizer img {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  border-radius: 120px;
+  display: block;
 }
 .trulii-cover__content .rating,
 .trulii-cover-small__content .rating,
@@ -20703,6 +20698,11 @@ button.toast-close-button {
     min-height: 400px !important;
   }
 }
+@media (max-width: 1023px) {
+  .trulii-cover-regular {
+    min-height: 600px !important;
+  }
+}
 @media (min-height: 1081px) {
   .trulii-cover-regular {
     min-height: 700px !important;
@@ -20734,25 +20734,6 @@ button.toast-close-button {
   .trulii-cover-medium {
     min-height: -80px;
   }
-}
-.detail-organizer {
-  position: absolute;
-  z-index: 4;
-  left: 25%;
-  text-align: center;
-}
-.detail-organizer .detail-organizer-picture {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  margin-bottom: 4px;
-}
-.detail-organizer div {
-  color: #00e2aa;
-  font-weight: 400;
-}
-.detail-organizer-name {
-  margin-right: 20px;
 }
 /*@media (min-aspect-ratio: 16/9) {
   .trulii-cover__background-video {
@@ -22162,7 +22143,6 @@ blockquote {
 }
 .reviews-container--ratings {
   padding-bottom: 25px;
-  border-bottom: 1px solid #ededed;
   margin-bottom: 25px;
   margin-top: 25px;
 }
@@ -22181,18 +22161,25 @@ blockquote {
 .reviews-container--ratings__info a {
   display: block;
 }
-.reviews-container--ratings__info a {
+.reviews-container--ratings__info .header {
   color: #4E546C;
   font-weight: 700;
   font-size: 18px;
   margin-top: 8px;
 }
+.reviews-container--ratings__info a {
+  color: #4E546C;
+  font-weight: 400;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
 .reviews-container--ratings__info .star,
 .reviews-container--ratings__info .star-empty-off {
-  font-size: 14px;
+  font-size: 16px;
+  margin-right: 2px;
 }
 .reviews-container--ratings__info .rating {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #4E546C;
 }

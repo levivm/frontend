@@ -936,7 +936,6 @@
     margin-bottom: 3em;
     &--ratings{
         padding-bottom: 25px;
-        border-bottom: 1px solid @gray-lighter;
         margin-bottom: 25px;
         margin-top: 25px;
         &__avatar{
@@ -952,18 +951,25 @@
             > span, a{
                 display: block;
             }
-            a{
+            .header{
                 color: @gray-darker-brand;
                 font-weight: 700;
                 font-size: 18px;
                 margin-top: 8px;
             }
+            a{
+                color: @gray-darker-brand;
+                font-weight: 400;
+                font-size: 18px;
+                margin-bottom: 10px;
+            }
             .star, .star-empty-off{
-                font-size: 14px;
+                font-size: 16px;
+                margin-right: 2px;
             }
 
             .rating{
-                font-size: 14px;
+                font-size: 16px;
                 font-weight: 600;
                 color: @gray-darker-brand;
             }
