@@ -26,9 +26,8 @@
         vm.activity_calendar_form = {};
         vm.calendar = angular.copy(calendar);
         vm.activity = angular.copy(activity);
-        
         activate();
-
+        
         function _createCalendar() {
             Error.form.clear(vm.activity_calendar_form);
             vm.calendar.create()
@@ -153,6 +152,7 @@
             }
           }
         }
+        
         function activate() {
 
             _setStrings();
