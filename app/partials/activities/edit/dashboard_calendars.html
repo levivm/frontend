@@ -9,7 +9,11 @@
                              ng-bind="::calendars.strings.LABEL_ADD_CALENDAR"></button>
             </div>
             <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
-                    <span  class="" ng-bind="::calendars.strings.COPY_ADD_CALENDAR"></span>
+                <!--div class="trulii-checkbox">
+                    <input type="checkbox" id="free" ng-model="calendars.activity.isOpen" ng-change="calendars.hideCalendars()">
+                    <label for="free"><span></span>Ocultar horarios de la publicación</label>
+                </div>-->
+                <span class="text-gray-dark " ng-bind="::calendars.strings.COPY_ADD_CALENDAR"></span>
             </div>
                 <div ng-if="calendars.republish" class="alert alert-warning">
                     <h4 ng-bind="::calendars.strings.LABEL_WARNING">Advertencia!</h4>

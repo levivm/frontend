@@ -15,9 +15,9 @@
         .module('trulii.locations.services')
         .factory('LocationManager', LocationManager);
 
-    LocationManager.$inject = ['$rootScope', '$http', '$q', 'localStorageService', 'LocationServerApi'];
+    LocationManager.$inject = ['$rootScope', '$http', '$q', 'localStorageService', 'LocationServerApi', 'serverConf'];
 
-    function LocationManager($rootScope, $http, $q, localStorageService, LocationServerApi) {
+    function LocationManager($rootScope, $http, $q, localStorageService, LocationServerApi, serverConf) {
 
         var api = LocationServerApi;
         var currentCity = null;
@@ -296,7 +296,8 @@
                         marker.options = {
                             draggable: true,
                             labelAnchor: "100 0",
-                            labelClass: "marker-labels"
+                            labelClass: "marker-labels",
+                            icon: serverConf.s3URL + '/static/img/map.png'
                         };
                     }
                 }

@@ -27,11 +27,13 @@
         angular.extend(vm, {
 
             republish: false,
+            activity:activity,
             calendars: calendars,
             createCalendar: createCalendar,
             loadCalendar: loadCalendar,
             setCalendar: setCalendar,
             deleteCalendar: deleteCalendar,
+            hideCalendars:hideCalendars,
             calendar_errors: {}
 
         });
@@ -52,6 +54,16 @@
             });
 
             $state.go("^");
+        }
+        
+        function hideCalendars() {
+            //vm.activity.isOpen=!vm.activity.isOpen;
+            if(vm.activity.isOpen){
+                document.getElementById('slider-anchor').setAttribute('disabled', true);
+            }
+            else{
+                document.getElementById('slider-anchor').removeAttribute('disabled');
+            }
         }
 
         function deleteCalendar(calendar) {
@@ -194,6 +206,8 @@
 
             $scope.$on('$destroy', stateChangeUnbinder);
             console.log('calendars:', calendars);
+            console.log(vm.activity);
+            vm.activity.isOpen=true;
             Elevator.toTop();
         }
 
