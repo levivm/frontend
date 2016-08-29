@@ -241,8 +241,10 @@
                     if (company) {
                         user.full_name = company;
                     } else if (user.full_name) {
+                        user.name = user.first_name.split(" ")[0];
                         //console.log('Full Name already defined');
                     } else if (user.first_name && user.last_name) {
+                        user.name = user.first_name.split(" ")[0];
                         user.full_name = user.first_name;
                     } else {
                         user.full_name = 'User';
