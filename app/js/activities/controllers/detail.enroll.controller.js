@@ -53,6 +53,7 @@
             amount : null,
             showTerms : false,
             showReimbursement : false,
+            enrolling: false,
             coupon: {},
             quantity : 0,
             assistants : [],
@@ -71,6 +72,7 @@
             isAnonymous : isAnonymous,
             appendPayUUniqueId: appendPayUUniqueId,
             checkCardExpiry : checkCardExpiry,
+            checkCvv: checkCvv,
             getCardType: getCardType,
             changePSEPaymentMethod: changePSEPaymentMethod,
             changeCCPaymentMethod: changeCCPaymentMethod,
@@ -87,6 +89,13 @@
             setPayment: setPayment,
 
             cardData : {
+                "name_card": "",
+                "identificationNumber": "",
+                "number": "",
+                exp_month: null,
+                exp_year: null,
+                cvv: "",
+                "method": ""
                 // "name_card": "APPROVED",
                 // "identificationNumber": "32144457",
                 // "number": "4111111111111111",
@@ -232,6 +241,7 @@
                     vm.success = true;
                     var bank_url = response.bank_url;
                     $window.location.href = bank_url;
+                     vm.enrolling = false;
                 }
 
                 function _enrollError(response){
@@ -250,6 +260,7 @@
                         Elevator.toElement(base_selector.concat(error_index));
                         Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                     }
+                    vm.enrolling = false;
 
                 }
 
@@ -275,6 +286,12 @@
             function error(){
                 vm.cardData.method = null;
                 console.log("Couldn't check card type");
+            }
+        }
+        function checkCvv(){
+            Error.form.clear(vm.enrollForm);
+            if(vm.cardData.cvv.lenght !== 3){
+                Error.form.add(vm.enrollForm, {'invalidCvv': ["CVV inválido"]});
             }
         }
 
@@ -361,6 +378,7 @@
 
             function _enrollError(response){
                 var error = response.data;
+                vm.enrolling = false;
                 if (!(error.assistants)){
                     Error.form.add(vm.enrollForm, error);
                 }
@@ -379,13 +397,13 @@
         }
 
         function enroll() {
+            vm.enrolling = true;
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
             if(vm.paymentWithPse){
                 enrollPSE();
             }
             else if (vm.calendar.is_free){
-
                 enrollFree();
             }
              else {
@@ -406,6 +424,7 @@
 
             function getStudentError(response){
                 console.log("Error getting current logged student:", response);
+                vm.enrolling = false;
             }
 
             function successCheckCardExpiry(isValid){
@@ -414,6 +433,7 @@
                 Error.form.clearField(vm.enrollForm,'invalidExpiry');
                 Payments.validateCardType(vm.cardData.number)
                         .then(validateCardTypeSuccess,validateCardTypeError);
+                vm.enrolling = false;
             }
 
             function errorCheckCardExpiry(response){
@@ -421,6 +441,7 @@
                 isValidDate = false;
                 Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
                 _finishProccesingPayment();
+                vm.enrolling = false;
             }
 
             function validateCardTypeSuccess(cardType){
@@ -428,12 +449,14 @@
                 Error.form.clearField(vm.enrollForm,'generalError');
                 var cardData = _.clone(vm.cardData);
                 Payments.getToken(cardData).then(getTokenSuccess, getTokenError).finally(_finishProccesingPayment);
+                vm.enrolling = false;
             }
 
             function validateCardTypeError(){
                 Error.form.add(vm.enrollForm, {'cardMethod': ["Tipo de tarjeta inválido"]});
                 console.log("Couldn't check card type");
                 _finishProccesingPayment();
+                vm.enrolling = false;
             }
 
             function getTokenSuccess(response){
@@ -479,6 +502,7 @@
 
                 function _enrollError(response){
                     var error = response.data;
+                    vm.enrolling = false;
                     if (!(error.assistants)){
                         Error.form.add(vm.enrollForm, error);
                     }
@@ -812,7 +836,8 @@
                 REASON_COPY_SECURE_2: "inscripción están seguros",
                 REASON_COPY_SECURE_3: "con nosotros.",
                 ACTION_CONTACT_US: "Contáctanos",
-                LABEL_PAYMENT_ENCRYPTED: "Pago encriptado"
+                LABEL_PAYMENT_ENCRYPTED: "Pago encriptado",
+                TOOLTIP_CVV: "Los 3 dígitos en la parte trasera de la tarjeta"
             });
         }
 

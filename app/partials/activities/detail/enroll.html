@@ -220,19 +220,19 @@
                                     <div ng-init="enroll.setForm(enroll['assistantForm'+$index]);" id="assistant_card_{{$index}}">
                                         <div class="row">
                                             <div class="col-xs-12 col-lg-4">
-                                                <div class="form-group" trulii-input-errors-control="first_name">
+                                                <div class="form-group required" trulii-input-errors-control="first_name">
                                                     <input class="form-control" name="first_name" type="text"
                                                         ng-model="assistant.first_name" placeholder="{{::enroll.strings.LABEL_FIRST_NAME}}"/>
                                                 </div>
                                             </div>
                                             <div class="col-xs-12 col-lg-4">
-                                                <div class="form-group" trulii-input-errors-control="last_name">
+                                                <div class="form-group required" trulii-input-errors-control="last_name">
                                                     <input class="form-control" name="last_name" type="text"
                                                         ng-model="assistant.last_name" placeholder="{{::enroll.strings.LABEL_LAST_NAME}}"/>
                                                 </div>
                                             </div>
                                              <div class="col-xs-12 col-lg-4">
-                                                <div class="form-group" trulii-input-errors-control="email">
+                                                <div class="form-group required" trulii-input-errors-control="email">
                                                     <input class="form-control" name="email" type="text"
                                                         ng-model="assistant.email" placeholder="{{::enroll.strings.PLACEHOLDER_EMAIL}}"/>
                                                 </div>
@@ -284,24 +284,19 @@
                                         <div class="col-xs-12 text-center">
                                             <ul class="list-unstyled">
                                                 <li>
-                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'mastercard'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/mastercard_off.png')}}" alt="Mastercard"/>
-                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'mastercard'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/mastercard_on.png')}}" alt="Mastercard"/>
+                                                    <img ng-src="{{enroll.getAmazonUrl('static/img/enroll/mastercard_on.png')}}" alt="Mastercard"/>
                                                 </li>
                                                 <li>
-                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'visa'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/visa_off.png')}}" alt="Visa"/>
-                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'visa'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/visa_on.png')}}" alt="Visa"/>
+                                                    <img ng-src="{{enroll.getAmazonUrl('static/img/enroll/visa_on.png')}}" alt="Visa"/>
                                                 </li>
                                                 <li>
-                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'amex'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/amex_off.png')}}" alt="American Express"/>
-                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'amex'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/amex_on.png')}}" alt="American Express"/>
+                                                    <img ng-src="{{enroll.getAmazonUrl('static/img/enroll/amex_on.png')}}" alt="American Express"/>
                                                 </li>
                                                 <li>
-                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'diners'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/diners_off.png')}}" alt="Diners"/>
-                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'diners'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/diners_on.png')}}" alt="Diners"/>
+                                                    <img ng-src="{{enroll.getAmazonUrl('static/img/enroll/diners_on.png')}}" alt="Diners"/>
                                                 </li>
                                                 <li>
-                                                    <img ng-hide="(enroll.cardData.method | lowercase) === 'discover'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/discover_off.png')}}" alt="Discover"/>
-                                                    <img ng-show="(enroll.cardData.method | lowercase) === 'discover'" ng-src="{{enroll.getAmazonUrl('static/img/enroll/discover_on.png')}}" alt="Discover"/>
+                                                    <img ng-src="{{enroll.getAmazonUrl('static/img/enroll/discover_on.png')}}" alt="Discover"/>
                                                 </li>
                                             </ul>
                                         </div>
@@ -329,7 +324,9 @@
                                                         <div class="form-group">
                                                             <label for="cardCvv" ng-bind="::enroll.strings.LABEL_CVV"></label>
                                                             <input type="text" class="form-control" id="cardCvv"
-                                                                    ng-model="enroll.cardData.cvv">
+                                                                    ng-model="enroll.cardData.cvv"
+                                                                    ng-blur="enroll.checkCvv()"
+                                                                    tooltip-placement="top" tooltip="{{enroll.strings.TOOLTIP_CVV}}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -372,13 +369,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-xs-12 col-md-3 separate-above-medium text-center ">
+                                                    <div class="col-xs-12 separate-above-medium text-center ">
                                                         <div class="form-group" trulii-input-errors-control="cardMethod">
                                                             <input type="hidden" ng-model="enroll.cardData.method" name="cardMethod"/>
                                                         </div>
                                                     </div>
                                                 </div>
 
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="form-group" trulii-input-errors-control="invalidCvv">
+                                                                <input type="hidden"  ng-model="enroll.cardData.invalidCvv" name="invalidCvv"/>
+                                                            </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-xs-12">
                                                         <div class="form-group" trulii-input-errors-control="invalidExpiry">
@@ -482,6 +486,7 @@
                                     <div class="col-xs-12">
                                     <button class="center-block btn btn-lg btn-primary separate-above-less text-uppercase"
                                             ng-click="enroll.enroll()"
+                                            ng-disabled="enroll.enrolling"
                                             ng-bind="::enroll.strings.ACTION_ENROLL" ng-show="!enroll.processingPayment"></button>
                                     </div>
                                 </div>

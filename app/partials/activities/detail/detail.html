@@ -26,8 +26,10 @@
 <!--General Info and Sidebar-->
 <div class="col-xs-12 limited-width">
   <div class="row activity-detail">
-    <div class="activity-detail__enroll-widget" ng-class="{'widget-fixed': (detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition)}" ng-style="(detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}) || ((detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition) && {'left': detail.widgetFixedPositionRight})">
-      <div class="activity-detail__enroll-widget__content" ng-class="{'activity-detail__enroll-widget__content-free': detail.calendar_selected.is_free}">
+    <div class="activity-detail__enroll-widget" ng-class="{'widget-fixed': (detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition)}" 
+    ng-style="(detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}) || ((detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition) && {'left': detail.widgetFixedPositionRight})">
+      <div class="activity-detail__enroll-widget__content" 
+      ng-class="{'activity-detail__enroll-widget__content-free': detail.calendar_selected.is_free}">
             <div class="seats" >
                 <div ng-show="!detail.isSelectedCalendarFull()">
                     <span ng-bind="detail.calendar_selected.available_capacity"></span>
@@ -44,14 +46,14 @@
             </div>
             <div class="price" ng-show="!detail.isSelectedCalendarFull()">
                 <div ng-show="!detail.isSelectedCalendarFull()">
-                    <div ng-if="!detail.calendar_selected.is_free">
+                    <div ng-hide="detail.calendar_selected.is_free">
                         <div class="price__number" ng-bind="detail.calendar_selected.session_price | currency:'':0">
                         </div>
                         <div class="price__currency">
                             COP
                         </div>
                     </div>
-                    <div ng-if="detail.calendar_selected.is_free">
+                    <div ng-show="detail.calendar_selected.is_free">
                         <div class="price__number">
                             <s ng-bind="detail.calendar_selected.session_price | currency:'':0"></s>
                         </div>
@@ -59,7 +61,7 @@
                             COP
                         </div>
                         <br>
-                        <h4 class="text-center" ng-bind="::detail.strings.COPY_FREE"></h4>
+                        <h2 class="text-center no-margin" ng-bind="::detail.strings.COPY_FREE"></h2>
                     </div>
                 </div>
             </div>
@@ -440,7 +442,7 @@
                   class="text-uppercase"
                   ng-repeat-start="calendar in detail.activity.upcoming_calendars | orderBy: 'initial_date' track by 'calendar-' + $index + '-' + calendar.id "
                   ng-class="{'active': detail.selectedActivity === $index}"
-                  ng-click="detail.selectedActivity = $index; detail.toggleSessions()">
+                  ng-click="detail.selectedActivity = $index; detail.toggleSessions(); detail.changeSelectedCalendar($index)">
                   <td>
                     <span class="checkbox"></span>
                   </td>

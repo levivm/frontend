@@ -24546,6 +24546,16 @@ blockquote {
 .related-activities-container-enroll {
   padding: 4em 4em;
 }
+.enroll-assistants .required {
+  position: relative;
+}
+.enroll-assistants .required:after {
+  content: '*';
+  display: 'block';
+  position: absolute;
+  right: -15px;
+  top: 18px;
+}
 .flex-cards {
   display: -webkit-flex;
   display: flex;

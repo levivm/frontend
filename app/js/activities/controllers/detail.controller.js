@@ -107,7 +107,7 @@
             }
         }
 
-        function changeSelectedCalendar(calendar) { vm.calendar_selected = calendar; }
+        function changeSelectedCalendar(calendar) { console.log('wut'); vm.calendar_selected = vm.activity.upcoming_calendars[calendar]; console.log('??') }
 
         function signUp(activity_id, calendar_id){
             var enrollParams = {
