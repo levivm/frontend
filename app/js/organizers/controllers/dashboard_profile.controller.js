@@ -18,9 +18,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileCtrl', OrganizerProfileCtrl);
 
-    OrganizerProfileCtrl.$inject = ['$rootScope', 'uiGmapIsReady', 'Authentication', 'LocationManager', 'Toast', 'Error',
+    OrganizerProfileCtrl.$inject = ['$rootScope', 'uiGmapIsReady', 'serverConf', 'Authentication', 'LocationManager', 'Toast', 'Error',
         'organizer', 'cities'];
-    function OrganizerProfileCtrl($rootScope, uiGmapIsReady, Authentication, LocationManager, Toast, Error, organizer, cities) {
+    function OrganizerProfileCtrl($rootScope, uiGmapIsReady, serverConf, Authentication, LocationManager, Toast, Error, organizer, cities) {
 
         var vm = this;
         var SIZE_PICTURE_UP = 2500; //2.5Mb
@@ -43,7 +43,9 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' + file;
+        }
         function uploadPicture(image) {
             if (!image) { return; }
             Error.form.clear(vm.profile_picture_form);
@@ -112,6 +114,7 @@
 
         function _updateFail(response) {
             var errors = response.data;
+            console.log(errors);
             Error.form.add(vm.organizer_location_form, errors);
             Error.form.add(vm.profile_form_info, errors);
             vm.isSaving = false;
@@ -146,7 +149,7 @@
                 COPY_PROFILE: "Esta información aparecerá en tu perfil y lo verán los demás usuarios",
                 COPY_VIDEO: "¿Posee algún video donde describa o presente su organización?",
                 COPY_LOCATION: "¿Donde funciona su organización?",
-                COPY_MAP: "Hazle click al pin rojo del mapa para desplazarlo a la dirección exacta del lugar donde estás establecido.",
+                COPY_MAP: "Hazle click al pin negro del mapa para desplazarlo a la dirección exacta del lugar donde estás establecido.",
                 SUB_SECTION_VIDEO: "Video",
                 SUB_SECTION_LOCATION: "Ubicación",
                 SUB_SECTION_COMMENTS: "Comentarios",
@@ -170,6 +173,7 @@
         function _activate(){
             _setStrings();
             _initialize_map();
+            vm.marker.options = {draggable:true, icon: getAmazonUrl('static/img/map.png') };
             console.log(vm.organizer);
         }
 

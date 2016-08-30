@@ -194,7 +194,7 @@
                 COPY_EMPTY_ACTIVITIES: "Parece ser el momento perfecto para que descubra una nueva pasión,"
                     + " aprenda un nuevo pasatiempo o mejore su currículo",
                 TAB_NEXT: "Actividades / Próximas",
-                COPY_NEXT: "Estas son las actividades que próximamente realizarás. ¡Ya falta poco?",
+                COPY_NEXT: "Estas son las actividades que próximamente realizarás. ¡Ya falta poco!",
                 TAB_LAST: "Actividades / Por revisar",
                 TAB_CURRENT: "Actividades / Actuales",
                 COPY_ORDER_DETAIL: "Detalle de la compra",

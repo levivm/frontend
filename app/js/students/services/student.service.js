@@ -69,6 +69,7 @@
                     'city' : scope.city,
                     'telephone' : scope.telephone ? scope.telephone : '',
                 };
+                
                 return scope.update(profile_data);
             },
             upload_photo : function (image) {
@@ -83,6 +84,8 @@
                     .then(success, error);
 
                 function success(response) {
+                    response.data.telephone = Number(response.data.telephone);
+                    response.data.telephone = response.data.telephone==0 ? '' : response.data.telephone;
                     Authentication.setAuthenticatedAccount(response.data);
                     scope.setData(response.data);
                     return response.data;

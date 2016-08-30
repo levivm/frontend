@@ -155,6 +155,7 @@
         
         function _setTelephone(){
             vm.student.telephone = Number(vm.student.telephone);
+            vm.student.telephone = vm.student.telephone==0 ? undefined : vm.student.telephone;
         }
 
         function _setStrings() {
@@ -175,6 +176,7 @@
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
                 OPTION_SELECT: "Seleccione Ciudad",
+                OPTION_GENDER_SELECT: "Seleccione un Genero",
                 BIRTH_SELECT: "Seleccione una fecha", 
                 SECTION_PROFILE: "Perfil",
                 COPY_PROFILE: "Esta información aparecerá en tu perfil y lo veran los demás usuarios.",
