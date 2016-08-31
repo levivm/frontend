@@ -290,8 +290,14 @@
         }
         function checkCvv(){
             Error.form.clear(vm.enrollForm);
-            if(vm.cardData.cvv.lenght !== 3){
+            
+            if(vm.cardData.cvv.length !== 3){
+                console.log(vm.cardData.cvv);
+                console.log(vm.cardData.cvv.length);
                 Error.form.add(vm.enrollForm, {'invalidCvv': ["CVV inválido"]});
+            }
+            else{
+                Error.form.clearField(vm.enrollForm,'invalidCvv');
             }
         }
 
