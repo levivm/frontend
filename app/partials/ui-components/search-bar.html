@@ -1,4 +1,6 @@
-<form name="search_box" ng-class="{'search-bar__navbar': onNavbar, 'search-bar': !onNavbar, 'search-bar__shadow': onFocus}"  ng-submit="search()">
+<form name="search_box" 
+    ng-class="{'search-bar__navbar': onNavbar, 'search-bar': !onNavbar, 'search-bar__shadow': onFocus}"
+    ng-submit="triggerSearch()">
     <input type="text" 
            class="form-control" 
            typeahead="suggestion for suggestion in getSuggestions($viewValue)" 

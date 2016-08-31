@@ -32,16 +32,16 @@
                     cities : [],
                     onNavbar : !!attrs.onNavbar,
                     updateSearchCity : updateSearchCity,
-                    search : search,
+                    triggerSearch : triggerSearch,
                     getSuggestions:getSuggestions,
                     onFocus: false
                 });
 
                 _activate();
 
-                //--------- Exposed Functions ---------//
+                // //--------- Exposed Functions ---------//
 
-                function search() {
+                function triggerSearch() {
                     /*if(!scope.search_city){
                         Toast.warning("Error", "Can't search without a city. Please specify a city to search on");
                         console.log("Error. Can't search without a city. Please specify a city to search on");
@@ -82,7 +82,7 @@
                     LocationManager.setCurrentCity(scope.search_city);
                 }
 
-                //--------- Internal Functions ---------//
+                // //--------- Internal Functions ---------//
 
                 function _getCities() {
                     LocationManager.getAvailableCities().then(success, error);
@@ -111,6 +111,7 @@
                         LABEL_CITY_DEFAULT: 'Ciudad..'
                     });
                 }
+
                 function _explore(){
                     scope.q="";
                     search();
