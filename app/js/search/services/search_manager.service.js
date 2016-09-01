@@ -55,6 +55,7 @@
 
         var api = ActivityServerApi;
         var searchData = {};
+        var queryChange = '';
 
         $rootScope.$watch(function(){
             return searchData[KEY_QUERY]
@@ -117,6 +118,7 @@
              * @methodOf trulii.search.services.SearchManager
              */
             getQuery: getQuery,
+            getQueryChange:getQueryChange,
 
             setCategory: setCategory,
             setSubCategory: setSubCategory,
@@ -131,6 +133,7 @@
             setCity: setCity,
             setQuery: setQuery,
             setFree: setFree,
+            setQueryChange: setQueryChange,
 
             orderingOptions: orderingOptions,
             KEY_QUERY : KEY_QUERY,
@@ -165,6 +168,10 @@
 
         function getQuery(predicate){
             return searchData[KEY_QUERY];
+        }
+        
+        function getQueryChange(){
+            return queryChange;
         }
 
         function searchActivities(data){
@@ -330,8 +337,11 @@
         function setOrder(predicate){
             searchData[KEY_ORDER] = predicate;
         }
-
+        function setQueryChange(q){
+            queryChange=q;
+        }
         function setQuery(predicate){
+            console.log(predicate);
             if(predicate){
                 searchData[KEY_QUERY] = predicate;
                 if(predicate.length === 0){

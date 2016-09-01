@@ -31,8 +31,10 @@
                     search_city : null,
                     cities : [],
                     onNavbar : !!attrs.onNavbar,
+                    onSearchpage: !!attrs.onSearchpage,
                     updateSearchCity : updateSearchCity,
-                    search : search,
+                    searchBar: searchBar,
+                    changeQuery:changeQuery,
                     getSuggestions:getSuggestions,
                     onFocus: false
                 });
@@ -41,7 +43,7 @@
 
                 //--------- Exposed Functions ---------//
 
-                function search() {
+                function searchBar() {
                     /*if(!scope.search_city){
                         Toast.warning("Error", "Can't search without a city. Please specify a city to search on");
                         console.log("Error. Can't search without a city. Please specify a city to search on");
@@ -63,6 +65,11 @@
                     else
                       $state.go('search', data);
 
+                }
+                
+                function changeQuery(){
+                    var data = {};
+                    SearchManager.setQueryChange(scope.q);
                 }
 
                 function getSuggestions(keyword){
@@ -141,6 +148,7 @@
                     $rootScope.$on(SearchManager.EVENT_QUERY_MODIFIED, function(){
                         _getQuery();
                     })
+                    
                 }
             }
         }

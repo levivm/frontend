@@ -134,11 +134,18 @@
                 </ul>
             </div>
         </div>
+        
+                          
         <div class="search-content separate-below-more">
+            
+          
             <div class="row">
                 <div class="col-xs-12 limited-width-search search-content__result-info">
+                    <!--<trulii-search-bar  data-on-navbar="true"></trulii-search-bar>-->
                     <div class="limited-width-search">
+                        <trulii-search-bar  data-on-searchpage="true"></trulii-search-bar>
                         <div class="search-content__results">
+                            
                             <strong ng-bind="search.activitiesPaginationOpts.totalItems"></strong>
                             <span> </span>
                             <span ng-bind="::search.strings.COPY_RESULTS"></span>
@@ -182,10 +189,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-12 limited-width-search separate-above" ng-hide="search.cards.length > 0">
-                    <h5 class="text-center text-muted separate-above-more padding-horizontal-regular">
+                <div class="col-xs-12 text-center limited-width-search separate-above" ng-hide="search.cards.length > 0">
+                    <div class="search-content__results-empty">
+                            
+                            <strong ng-bind="search.activitiesPaginationOpts.totalItems"></strong>
+                            <span> </span>
+                            <span ng-bind="::search.strings.COPY_RESULTS"></span>
+                            <span> </span>
+                            <span ng-if="search.searchQuery">
+                                <span ng-bind="::search.strings.COPY_FOR"></span>
+                                <span> </span>
+                                <strong>
+                                    <span ng-bind="search.searchQuery"></span>
+                                </strong>
+                            </span>
+                            <span ng-if="search.searchCategory">
+                                <span ng-bind="::search.strings.COPY_IN"></span>
+                                <span> </span>
+                                <strong ng-bind="search.searchData.category_display"></strong>
+                            </span>
+                            <span ng-if="search.searchSubCategory">
+                                <span><i class="fa fa-chevron-right"></i></span>
+                                <strong ng-bind="search.searchData.subcategory_display"></strong>
+                            </span>
+                        </div>
+                    <h5 class="text-center separate-below text-muted padding-horizontal-regular">
                         <strong ng-bind="search.strings.LABEL_EMPTY_SEARCH"></strong>
                     </h5>
+                    <button class="btn btn-md  btn-success"  ng-click="search.searchAll()"
+                            ng-bind="search.strings.ACTION_ALL_ACTIVITIES">
+                    </button>
                 </div>
                 <div class="flex-cards flex-cards__search separate-above-more" ng-show="search.cards.length > 0">
                     <trulii-activity-item data-activity="activity" ng-repeat="activity in search.cards"></trulii-activity-item>
@@ -207,6 +240,8 @@
         </div>
     </div>
 </div>
+
+                 
 <div>
     <trulii-footer></trulii-footer>
 </div>
