@@ -1,14 +1,12 @@
-<form name="search_box" 
-    ng-class="{'search-bar__navbar': onNavbar, 'search-bar': !onNavbar, 'search-bar__shadow': onFocus}"
-    ng-submit="triggerSearch()">
+<form name="search_box" ng-class="{'search-bar__navbar': onNavbar, 'search-bar': !onNavbar, 'search-bar__shadow': onFocusInput, 'search-bar__page': onSearchpage}"  ng-submit="searchBar()">
     <input type="text" 
            class="form-control" 
            typeahead="suggestion for suggestion in getSuggestions($viewValue)" 
            typeahead-min-length="3" 
            typeahead-focus-first="false" 
            ng-model="q" 
-           ng-focus="onFocus=!onFocus"
-           ng-blur="onFocus=!onFocus"
+           ng-focus="onFocus()"
+           ng-blur="onFocus()"
            placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"/>
     <div class="select-city">
       <label for="search-city-selector" class="sr-only">Cities</label>
@@ -18,9 +16,7 @@
 
          <option value="" selected
                  ng-hide="search_box.city" ng-bind="strings.LABEL_CITY"></option>
-
       </select>
-      
     </div>
     <button class="btn btn-primary" type="submit">
         <span class="glyphicon glyphicon-search hidden-xs" aria-hidden="true"></span>

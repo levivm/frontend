@@ -31,17 +31,20 @@
                     search_city : null,
                     cities : [],
                     onNavbar : !!attrs.onNavbar,
+                    onSearchpage: !!attrs.onSearchpage,
+                    onFocusbar: !!attrs.onFocusbar,
                     updateSearchCity : updateSearchCity,
-                    triggerSearch : triggerSearch,
+                    searchBar: searchBar,
                     getSuggestions:getSuggestions,
-                    onFocus: false
+                    onFocus:onFocus,
+                    onFocusInput: false
                 });
 
                 _activate();
 
                 // //--------- Exposed Functions ---------//
 
-                function triggerSearch() {
+                function searchBar() {
                     /*if(!scope.search_city){
                         Toast.warning("Error", "Can't search without a city. Please specify a city to search on");
                         console.log("Error. Can't search without a city. Please specify a city to search on");
@@ -58,13 +61,17 @@
 
                     Analytics.generalEvents.searchQuery(data[KEY_SEARCH_Q]);
 
-                    if ($state.current.name === 'search')
+                    if ($state.current.name === 'search'){
                       $rootScope.$emit(SearchManager.EVENT_SEARCH_MODIFIED);
-                    else
-                      $state.go('search', data);
+                    }
+                    else{
+                       scope.q = '';
+                       $state.go('search', data);
+                    }
+                      
 
                 }
-
+                
                 function getSuggestions(keyword){
                     return SearchManager.getSuggestions(keyword).then(success,error);
 
@@ -80,6 +87,10 @@
                 function updateSearchCity() {
                     LocationManager.setSearchCity(scope.search_city);
                     LocationManager.setCurrentCity(scope.search_city);
+                }
+                
+                function onFocus(){
+                    scope.onFocusInput = scope.onFocusbar ? !scope.onFocusInput: false;
                 }
 
                 // //--------- Internal Functions ---------//
@@ -136,12 +147,19 @@
                     unsuscribeCityModified = $rootScope.$on(LocationManager.CURRENT_CITY_MODIFIED_EVENT, function(){
                         _setCurrentCity();
                     });
+                    
+                    scope.$watch('q', function ( newValue, oldValue ) {
+                          SearchManager.setQueryChange(newValue);
+                        }
+                    );
+
 
                     scope.$on('$destroy', _cleanUp);
                     scope.$on(SearchManager.EVENT_EXPLORE, _explore);
                     $rootScope.$on(SearchManager.EVENT_QUERY_MODIFIED, function(){
-                        _getQuery();
+                         _getQuery();
                     })
+                    
                 }
             }
         }

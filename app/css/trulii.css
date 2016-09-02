@@ -11440,7 +11440,8 @@ hr.on-light {
 }
 @media screen and (max-width: 768px) {
   .show-after-sm,
-  .search-bar__navbar button {
+  .search-bar__navbar button,
+  .search-bar__page button {
     display: none !important;
   }
 }
@@ -15158,6 +15159,176 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   outline: 0 !important;
   border-color: #e3e3e3;
 }
+.search-bar__page {
+  width: 28em;
+  height: 33px;
+  background: white;
+  border-radius: 45px;
+  display: inline-block;
+  position: relative;
+  background-color: transparent;
+}
+.search-bar__page .dropdown-menu {
+  width: 60%;
+}
+@media screen and (max-width: 1260px) {
+  .search-bar__page {
+    width: 25em;
+    height: 33px;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+}
+@media screen and (max-width: 768px) {
+  .search-bar__page {
+    display: none !important;
+  }
+}
+.search-bar__page ::-webkit-input-placeholder {
+  font-weight: 600;
+  color: #cbcbcb;
+}
+.search-bar__page :-moz-placeholder {
+  font-weight: 600;
+  opacity: 1;
+  color: #cbcbcb;
+}
+.search-bar__page ::-moz-placeholder {
+  font-weight: 600;
+  opacity: 1;
+  color: #cbcbcb;
+}
+.search-bar__page :-ms-input-placeholder {
+  font-weight: 600;
+  color: #cbcbcb;
+}
+.search-bar__page input,
+.search-bar__page input:focus {
+  display: block;
+  position: relative;
+  float: left;
+  height: 100% !important;
+  width: 60%;
+  padding-left: 35px;
+  border: 1px solid #e3e3e3;
+  border-right: none;
+  background-image: none;
+  border-radius: 1.5em 0em 0em 1.5em !important;
+  box-shadow: 0 0;
+}
+.search-bar__page input[type="text"] {
+  height: 100% !important;
+  border-radius: 1.5em 0em 0em 1.5em !important;
+  padding: 0em !important;
+  padding-left: 1em !important;
+  border-right-color: transparent;
+  border-right: none !important;
+}
+.search-bar__page input,
+.search-bar__page select,
+.search-bar__page button {
+  background-color: transparent;
+  background-image: none;
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.95em;
+  font-weight: 200;
+  float: left;
+  background-color: white !important;
+}
+.search-bar__page .select-city {
+  width: 28%;
+  height: 33px !important;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  padding: 0;
+  border: 1px solid #e3e3e3;
+  float: left;
+  color: #9b9b9b;
+  border-left: none;
+  border-right: none;
+}
+.search-bar__page .select-city:before {
+  content: "";
+  border-left: 1px solid #e3e3e3;
+  position: absolute;
+  display: block;
+  height: 20px;
+  top: 8px;
+  left: -5px;
+}
+.search-bar__page .select-city:after {
+  content: "";
+  border-left: 1px solid #e3e3e3;
+  position: absolute;
+  display: block;
+  height: 20px;
+  top: 8px;
+  right: -1px;
+}
+.search-bar__page .select-city select,
+.search-bar__page .select-city select:focus {
+  display: inline-block;
+  width: 100%;
+  padding: 0 0.4em !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  height: 100% !important;
+  cursor: pointer;
+  font-weight: 600;
+  color: #9b9b9b !important;
+  border: none !important;
+  box-shadow: 0 0;
+  background-color: transparent !important;
+  font-size: 0.8em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.search-bar__page .select-city select:focus,
+.search-bar__page .select-city select:focus:focus {
+  background-image: none;
+}
+@media screen and (max-width: 768px) {
+  .search-bar__page .select-city {
+    width: 25%;
+  }
+}
+.search-bar__page button {
+  font-size: 8px;
+  width: 10%;
+  text-align: center;
+  height: 100%;
+  display: inline-block;
+  border: 0;
+  border: 1px solid #e3e3e3;
+  background: transparent;
+  border-radius: 0em 1.5em 1.5em 0em !important;
+  border-left: none;
+  padding: 0;
+}
+.search-bar__page button:before {
+  display: inline-block;
+  color: rgba(0, 0, 0, 0.74);
+  font-size: 1.1em;
+}
+.search-bar__page button span {
+  top: 2px;
+  color: white;
+  font-size: 0.9em;
+}
+.search-bar__page button:hover {
+  background: transparent;
+  border-color: #e3e3e3;
+}
+.search-bar__page button:focus {
+  outline: 0 !important;
+  border-color: #e3e3e3;
+}
+.search-bar__page .btn.btn-primary {
+  height: 34px !important;
+  background-color: #00e2aa !important;
+}
 .search-container {
   margin-top: 110px;
   width: 100%;
@@ -15321,7 +15492,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   letter-spacing: 1px;
 }
 .search-container .search-sidebar__element__date {
-  padding: 0px 15px 0px 15px !important;
+  padding: 0px 15px 0px 0px !important;
   margin-bottom: -10px;
   position: relative;
 }
@@ -15335,7 +15506,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   font-size: 1em;
   background-color: transparent;
   box-shadow: 0 0;
+  height: 47px !important;
   border: none !important;
+  padding: 15px !important;
 }
 .search-container .search-sidebar__element__date ::-webkit-input-placeholder {
   font-weight: 700;
@@ -15499,8 +15672,16 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     text-align: center;
   }
 }
+.search-container .search-content__results-empty {
+  text-align: center;
+  font-size: 1.4em;
+  text-transform: uppercase;
+  color: black;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+}
 .search-container .search-content__result-info {
-  padding: 17px 10px 0;
+  padding: 0px 10px 0;
   height: 52px;
 }
 @media (max-width: 1280px) {
@@ -15509,8 +15690,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .search-container .search-content__filters {
-  font-size: .9em;
+  font-size: .8em;
   float: right;
+  display: flex;
+  margin-bottom: 12px;
 }
 .search-container .search-content__filters .search-select {
   margin-top: -6px;
@@ -15554,7 +15737,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   height: 20px;
   padding: 0px 7px;
 }
-.search-container .search-content__filters > div:not(:first-child) {
+.search-container .search-content__filters > div:not(:last-child) {
   border-right: 1px solid #ededed;
 }
 @media (max-width: 992px) {
@@ -15571,9 +15754,18 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     z-index: 900;
   }
 }
+.search-container .limited-width-search {
+  display: flex;
+  align-items: center;
+}
 @media (min-width: 1900px) {
   .search-container .limited-width-search {
     max-width: 850px;
+  }
+}
+@media screen and (max-width: 992px) {
+  .search-container .limited-width-search {
+    display: block;
   }
 }
 .sidebar {

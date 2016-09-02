@@ -154,7 +154,7 @@
                     return $state.current.name === 'home';
                 }
                 function isSearchVisible(){
-                     return (!($state.current.name==='search') && scope.scroll<100);
+                     return ($state.current.name==='search' || scope.scroll<100);
                 }
                 function howToWorkStudent(){
                     _stateGoHowto(STATE_HOW_TO_WORK_HOME);

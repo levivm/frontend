@@ -87,6 +87,7 @@
             updateCity: updateCity,
             setFree: setFree,
             freeOptions: freeOptions,
+            searchAll:searchAll,
             checkboxFilters: {
                 withCert : false,
                 onWeekends : false,
@@ -120,17 +121,33 @@
             $event.stopPropagation();
             vm.opened = true;
         }
-
+        function searchAll(){
+            vm.searchCategory = undefined;
+            vm.newSearchQuery=undefined
+            SearchManager.setQuery(vm.newSearchQuery);
+            SearchManager.setCategory(vm.searchCategory);
+            _setPage(1);
+            _search();
+            _expandCategory(vm.strings.ACTION_ALL_FILTER);
+            
+        }
         function setCategory(category, initializing) {
             if (!category) { return; }
-
-            if (vm.searchCategory === category.id || category === vm.strings.ACTION_ALL_FILTER) {
+            vm.newSearchQuery = SearchManager.getQueryChange();
+            console.log(vm.newSearchQuery);
+            if(!vm.newSearchQuery){
+                console.log('epa');
+                searchAll(); 
+                return;
+            }
+            if (vm.searchCategory === category.id ) {
                 vm.searchCategory = undefined;
             } else {
                 vm.searchCategory = category.id;
                 vm.searchData["category_display"] = category.name;
             }
-
+            
+            
             _expandCategory(category);
             SearchManager.setCategory(vm.searchCategory);
 
@@ -412,6 +429,7 @@
             angular.extend(vm.strings, {
                 ACTION_CLOSE : "Cerrar",
                 ACTION_ALL_FILTER : "Todas",
+                ACTION_ALL_ACTIVITIES: "Ver todas las actividades",
                 COPY_RESULTS : "resultados ",
                 COPY_FOR : "para ",
                 COPY_IN : "en",
@@ -462,6 +480,7 @@
             $rootScope.$on(SearchManager.EVENT_QUERY_MODIFIED, function(){
                 vm.searchQuery = SearchManager.getQuery();
                 vm.newSearchQuery = SearchManager.getQuery();
+                
             })
 
             angular.element(document).ready(function () {

@@ -5,7 +5,11 @@
             <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo "></a>
         </div>
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
-            <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true" class="navbar-search-bar" ng-class="{'navbar-search-bar-hidden': isSearchVisible() }"></trulii-search-bar>
+            <trulii-search-bar ng-if="isSearchVisible"
+                               data-on-navbar="true" 
+                               class="navbar-search-bar" 
+                               ng-class="{'navbar-search-bar-hidden': isSearchVisible() }">
+            </trulii-search-bar>
             
             <div class="buttons buttons-login float-right" ng-if="!user">
                 <a ui-sref="register" class="font-semibold  margin-horizontal-less" ng-bind="::strings.ACTION_REGISTER"></a>
