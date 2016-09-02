@@ -3,7 +3,7 @@
         <span class="panel-default__dashboard-title" ng-bind="::manage.strings.SECTION_ORDERS"></span>
         <span class="separate-left-less" ng-bind="manage.strings.COPY_ORDERS"></span>
     </div>
-  <div class="row" ng-class="{'limited-width-dashboard': manage.isActive('dash.activities-manage.orders.order') }">
+  <div class="row" ng-class="{'separate-left': manage.isActive('dash.activities-manage.orders.order') }">
       <div ui-view class="lateral-fade">
           <div class="col-xs-12">
               <div ng-if="manage.calendars.length > 0" class="row">

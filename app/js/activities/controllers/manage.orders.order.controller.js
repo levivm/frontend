@@ -11,16 +11,17 @@
         .module('trulii.activities.controllers')
         .controller('ActivityOrderCtrl', ActivityOrderCtrl);
 
-    ActivityOrderCtrl.$inject = ['$modal', '$window', '$stateParams','Toast', 'organizer', 'order', 'serverConf'];
+    ActivityOrderCtrl.$inject = ['$modal', '$state', '$window', '$stateParams','Toast', 'organizer', 'order', 'serverConf'];
 
-    function ActivityOrderCtrl($modal, $window, $stateParams, Toast, organizer, order, serverConf) {
+    function ActivityOrderCtrl($modal, $state, $window, $stateParams, Toast, organizer, order, serverConf) {
         var vm = this;
         angular.extend(vm,{
             order: order,
             isOrganizer: true,
             previousState: null,
             printOrder: printOrder,
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            goBack:goBack
         });
 
         _activate();
@@ -35,6 +36,10 @@
             $window.print();
         }
 
+        function goBack() {
+            var previousState =  $state.previous.name ? $state.previous.name:$state.previous.url ;
+            $state.go(previousState, {});
+        }
 
         //--------- Internal Functions ---------//
 
