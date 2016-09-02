@@ -334,10 +334,8 @@
     
    &__page {
 
-        width: 40em;
-        height: 45px;
-        margin-top: 10px;
-        margin-left: 20px;
+        width: 28em;
+        height: 33px;
         background: white;
         border-radius: 45px;;
         display: inline-block;
@@ -349,9 +347,9 @@
 
         @media screen and (max-width:1260px) {            
             width: 25em;
-            height: 45px;
+            height: 33px;
             margin-top: 10px;
-            margin-left: -25px;
+            margin-left: 0;
         }
 
         @media screen and (max-width: @screen-sm ) {
@@ -409,7 +407,7 @@
 
         .select-city{
           width: 28%;
-          height: 100%;
+          height: 33px !important;
           display: inline-block;
           vertical-align: top;
           position: relative;
@@ -424,7 +422,7 @@
             border-left: 1px solid darken(@gray-lighter, 4%);
             position: absolute;
             display: block;
-            height: 31px;
+            height: 20px;
             top: 8px;
             left: -5px;
           }
@@ -433,7 +431,7 @@
             border-left: 1px solid darken(@gray-lighter, 4%);
             position: absolute;
             display: block;
-            height: 31px;
+            height: 20px;
             top: 8px;
             right: -1px;
           }
@@ -441,7 +439,7 @@
           select, select:focus {
             display: inline-block;
             width: 100%;
-            padding: 0 0.5em !important;
+            padding: 0 0.4em !important;
             -webkit-appearance: none;
             -moz-appearance: none;
             height: 100% !important;
@@ -451,6 +449,7 @@
             border: none !important;
             box-shadow: 0 0;
             background-color: transparent !important;  
+            font-size: 0.8em;
             .text-overflow();
 
             &:focus {
@@ -468,7 +467,7 @@
                 font-size: 1.1em;
             }
 
-            font-size: 18px;
+            font-size: 8px;
             width: 10%;
             text-align: center;
             height: 100%;
@@ -482,8 +481,7 @@
             &:extend(.show-after-sm);
             span{
                 top: 2px;
-                
-                color: @gray-dark;
+                color: white;
                 font-size: 0.9em;
             }
             &:hover{
@@ -494,6 +492,10 @@
                 outline: 0 !important;
                 border-color: darken(@gray-lighter, 4%);
             }
+        }
+        .btn.btn-primary{
+           height: 34px !important;
+           background-color:  @brand-primary !important;
         }
 
 
@@ -675,7 +677,7 @@
             }
             
             &__date{
-                padding: 0px 15px 0px 15px !important;
+                padding: 0px 15px 0px 0px !important;
                 margin-bottom: -10px;
                 position: relative;
                 input{
@@ -688,7 +690,10 @@
                     font-size: 1em;
                     background-color: transparent;
                     box-shadow: 0 0;
+                    height: 47px !important;
                     border: none !important;
+                    padding: 15px !important;
+                    
                 }
                 ::-webkit-input-placeholder {
                     font-weight: 700;
@@ -878,15 +883,17 @@
         }
         
         &__result-info{
-            padding: 17px 10px 0;
+            padding: 0px 10px 0;
             height: 52px;
             @media (max-width: 1280px){
                 padding: 17px 30px 0;
             }
         }
         &__filters{
-            font-size: .9em;
+            font-size: .8em;
             float: right;
+            display: flex;
+            margin-bottom: 12px;
             .search-select{
                 margin-top: -6px;
                 select{
@@ -928,7 +935,7 @@
                 float: right;
                 height: 20px;
                 padding: 0px 7px;
-                &:not(:first-child){
+                &:not(:last-child){
                     border-right: 1px solid @gray-lighter;
                 }
             }
@@ -948,8 +955,14 @@
     }
     
     .limited-width-search{
+        display: flex;
+        align-items: center;
         @media (min-width: 1900px) {
             max-width: 850px;
         }
+        
+        .before-md({ 
+            display: block
+        });
     }
 }

@@ -1,13 +1,12 @@
-<form name="search_box" ng-class="{'search-bar__navbar': onNavbar, 'search-bar': !onNavbar, 'search-bar__shadow': onFocus, 'search-bar__page': onSearchpage}"  ng-submit="searchBar()">
+<form name="search_box" ng-class="{'search-bar__navbar': onNavbar, 'search-bar': !onNavbar, 'search-bar__shadow': onFocusInput, 'search-bar__page': onSearchpage}"  ng-submit="searchBar()">
     <input type="text" 
            class="form-control" 
            typeahead="suggestion for suggestion in getSuggestions($viewValue)" 
            typeahead-min-length="3" 
            typeahead-focus-first="false" 
            ng-model="q" 
-           ng-focus="onFocus=!onFocus"
-           ng-blur="onFocus=!onFocus"
-           ng-change="changeQuery()"
+           ng-focus="onFocus()"
+           ng-blur="onFocus()"
            placeholder="{{strings.PLACEHOLDER_WANT_TO_LEARN}}"/>
     <div class="select-city">
       <label for="search-city-selector" class="sr-only">Cities</label>
