@@ -34,8 +34,8 @@
                 </div>
             </div>
             <div class="cover-blur-small__content-second" >
-                <span ng-bind="::enroll.strings.COPY_LAST_DATE"></span>
-                <strong ng-bind="enroll.activity.last_date | date:'d MMM y'" class="separate-right"></strong>
+                <span ng-bind="::enroll.strings.COPY_SCHEDULE_TYPE"></span>
+                <strong ng-bind="::enroll.activity.is_open_display" class="separate-right"></strong>
                 <span ng-bind="::enroll.strings.COPY_AVAILABLE"></span>
                 <span>:</span>
                 <strong>
@@ -170,18 +170,13 @@
                   <div class="enroll-section first">
                       <div class="enroll-section__header">
                         <h5>
-                            <span ng-bind="::enroll.strings.LABEL_ACTIVITY_SESSIONS"></span>
+                            <span ng-bind="::enroll.strings.LABEL_SCHEDULES"></span>
                         </h5>
                       </div>
                       <div class="enroll-section__body">
                           <div class="row">
                               <div class="col-xs-12">
-                                <div class="session" ng-repeat="session in enroll.calendar.sessions">
-                                    <span ng-bind="session.date | date:'EEEE'"></span>
-                                    <span ng-bind="session.date | date:'d MMM y'"></span>
-                                    <span ng-bind="session.start_time | date: 'h:mm a'"></span>
-                                    <span ng-bind="::enroll.strings.COPY_TO"></span>
-                                    <span ng-bind="session.end_time | date: 'h:mm a'"></span>
+                                <div class="text-md session" ng-bind-html="enroll.calendar.schedules">
                                 </div>
                               </div>
                           </div>
@@ -191,7 +186,8 @@
                       <div class="enroll-section">
                         <div class="enroll-section__header">
                             <h5>
-                                <span ng-bind="::enroll.strings.LABEL_ASSISTANTS"></span>
+                                <span ng-bind="::enroll.strings.LABEL_ASSISTANTS"></span> 
+                                <span class="font-light text-gray-dark" ng-bind="::enroll.strings.COPY_ASSISTANTS"></span>
                             </h5>
                             <div class="input-group">
                                 <span class="input-group-btn">
@@ -211,7 +207,18 @@
                         </div>
                         <div class="enroll-section__sub-header">
                             <h5>
-                                <span ng-bind="enroll.strings.COPY_ASSISTANTS"></span>
+                                <span ng-bind="::enroll.strings.COPY_AVAILABLE"></span><span>:</span>
+                                <strong>
+                                    <span ng-bind="enroll.calendar.vacancy"></span>
+                                    <span>
+                                        <ng-pluralize count="enroll.calendar.vacancy"
+                                            when="{
+                                                '1': enroll.strings.COPY_VACANCY_SINGULAR,
+                                                'other': enroll.strings.COPY_VACANCY
+                                                }">
+                                        </ng-pluralize>
+                                    </span>
+                                </strong>
                             </h5>
                         </div>
                         <div class="enroll-section__body">

@@ -262,7 +262,6 @@
                     
                     if(!!activity.closest_calendar && 
                         !!activity.closest_calendar.session_price && 
-                        !!activity.closest_calendar.closing_sale &&
                         !!activity.closest_calendar.initial_date){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
@@ -283,8 +282,8 @@
                         activity.date_msg = scope.strings.COPY_IN + " "
                             + activity.days_to_closest + " " + scope.strings.COPY_DAYS;
                     } else {
-                        activity.date_msg = $filter('date')(activity.closest_calendar.closing_sale, "MMM dd");
-                        activity.date_msg = scope.strings.COPY_UNTIL+": "+activity.date_msg;
+                        activity.date_msg = $filter('date')(activity.closest_calendar.initial_date, "MMM dd");
+                        activity.date_msg = scope.strings.COPY_INIT+": "+activity.date_msg;
                     }
                     return activity;
                 }
@@ -321,7 +320,7 @@
                         COPY_IN: "En ",
                         COPY_THE: "El ",
                         COPY_CURRENT: "En curso",
-                        COPY_UNTIL: "Cierre Ventas",
+                        COPY_INIT: "Inicio",
                         COPY_ATTENDES: "Ver asistentes ",
                         COPY_NON_CLOSEST: "Clase no disponible",
                         ADD_TO_WISHLIST: "Agregar a favoritos",
