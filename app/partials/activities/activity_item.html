@@ -43,7 +43,7 @@
           readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
         </span>
         <span class="trulii-activity-card__body__content__date" ng-if="activity.closest_calendar">
-          <span ng-class="{'text-uppercase': activity.days_to_closest > MAX_DAYS}" ng-if="!current" ng-bind="activity.date_msg"></span>
+          <span  ng-if="!current" ng-bind="activity.date_msg"></span>
           <span ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
         </span>
         <br>

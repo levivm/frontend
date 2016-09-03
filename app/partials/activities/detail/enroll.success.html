@@ -136,8 +136,12 @@
               <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
                 <span ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')">
                 </span>
-                <br>
-                <span ng-bind="::('A las ' + (success.calendar.sessions[0].start_time | date: 'h:mm a'))">
+              </p>
+              <h4>
+                <strong class="text-dark" ng-bind="::success.strings.LABEL_SCHEDULES"></strong>
+              </h4>
+              <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
+                <span ng-bind-html="::success.calendar.schedules">
                 </span>
               </p>
             </div>
