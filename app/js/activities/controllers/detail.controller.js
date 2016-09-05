@@ -57,6 +57,7 @@
             showEmail: false,
             showSessions: false,
             hasMoreReviews: true,
+            showSchedules: false,
             changeSelectedCalendar : changeSelectedCalendar,
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
@@ -65,7 +66,7 @@
             calendarSignUp:calendarSignUp,
             widgetSignup:widgetSignup,
             showMoreReviews: showMoreReviews,
-            viewMoreCalendars: viewMoreCalendars,
+            toggleSchedules: toggleSchedules,
             toggleEmailShow: toggleEmailShow,
             toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm,
@@ -81,6 +82,11 @@
             verifyWishList:verifyWishList,
             getAmazonUrl: getAmazonUrl,
             facebookShares: 0,
+            schedulesScrollUp: schedulesScrollUp,
+            schedulesScrollDown: schedulesScrollDown,
+            schedulesOffset: 0
+
+            
         });
 
         _activate();
@@ -89,6 +95,17 @@
 
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
+        }
+
+        function schedulesScrollUp (){
+            if(vm.schedulesOffset < 0){
+                vm.schedulesOffset++;
+                document.getElementsByClassName('schedules-container__html')[0].style.transform = 'translateY('+ vm.schedulesOffset*60 +'px)';
+            }
+        }
+        function schedulesScrollDown(){
+            vm.schedulesOffset--;
+            document.getElementsByClassName('schedules-container__html')[0].style.transform = 'translateY('+ vm.schedulesOffset*60 +'px)';
         }
 
         function previousGalleryPicture(){
@@ -198,8 +215,8 @@
             }
         }
 
-        function viewMoreCalendars(){
-            Elevator.toElement('more_calendars_section');
+        function toggleSchedules(){
+            vm.showSchedules = !vm.showSchedules;
         }
 
         function toggleEmailShow(){
@@ -371,7 +388,7 @@
             angular.extend(vm.strings, {
                 ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
-                ACTION_VIEW_OTHER_DATES: "Ver más fechas de inicio",
+                ACTION_VIEW_SCHEDULES: "Horarios",
                 COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
                 COPY_TO: " a ",
@@ -437,7 +454,10 @@
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_NUMBER_OF_LIKES: "personas aman esto",
                 COPY_BE_THE_FIRST: "¡Sé el primero!",
-                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas"
+                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas",
+                LABEL_OPEN_CALENDAR: "Horario Abierto",
+                LABEL_CLOSED_CALENDAR: "Horario Fijo",
+                LABEL_STARTS: "Inicios"
             });
         }
         function _updateWidgetValues(){

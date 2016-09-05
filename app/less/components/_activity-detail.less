@@ -225,62 +225,139 @@
             padding: 20px;
             transition: all 0.5s;
             color: @gray-darker-brand;
+            background-color: white;
+            position: relative;
+
+            .schedules-container{
+                padding: 20px;
+                width: 200px;
+                height: 100%;
+                border: 1px solid @gray-lighter;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                background-color: white;
+                border-right: none;
+                border-top-left-radius: 3px;
+                border-bottom-left-radius: 3px;
+                transition: all 0.25s;
+                z-index: -1;
+                opacity: 0;
+                overflow: hidden;
+                
+                &__header{
+                    width: 100%;
+                    height: 60px;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    padding: 20px;
+                    background-color: white;
+                    z-index: 10;
+                    .fa-times{
+                        position: absolute;
+                        right: 30px;
+                        top: 30px;
+                        font-size: 16px;
+                    }
+                }
+                &__html{
+                    padding: 60px 20px 0 20px;
+                    width: 100%;
+                    position: absolute;
+                    z-index: 0;
+                    min-height: 100%;
+                    left: 0;
+                    top: 0;
+                    transition: all 0.25s;
+                }
+                &__footer{
+                    position: absolute;
+                    bottom: 0px;
+                    left: 0px;
+                    width: 100%;
+                    border-top: 1px solid @gray-lighter;
+                    &__prev{
+                        border-right: 1px solid @gray-lighter;
+                        width: 50%;
+                        text-align: center;
+                        display: inline-block;
+                        height: 25px;
+                    }
+                    &__next{
+                        width: 50%;
+                        text-align: center;
+                        display: inline-block;
+                        height: 25px;
+                    }
+                }
+
+                &.expanded{
+                    left: -200px;
+                    opacity: 1;
+                }
+                @media (max-width: 767px){
+                    width: 100%;
+                    border-right: 1px solid @gray-lighter;
+                    &.expanded{
+                        left: 0;
+                        z-index: 20;
+                    }
+                }
+            }
+
             hr{
                 margin-top: 5px;
                 margin-bottom: 10px;
                 border-top: 2px solid @gray-lighter;
+                width: 30px;
             }
             .seats{
                 display: block;
                 width: 190px;
-                height: 20px;
                 margin: 0 auto;
                 text-align: center;
-                font-weight: bold;
                 text-transform: uppercase;
                 background-color: white;
                 position: relative;
-                color: @gray-regular;
-                &:before{
-                    position: absolute;
-                    top: 10px;
-                    border: 1px solid @gray-light;
-                    width: 220px;
-                    z-index: -1;
-                    content: '';
-                    left: -15px;
+                font-size: 12px;
+                font-weight: 600;
+            }
+            select.form-control{
+                text-transform: uppercase;
+                height: 38px !important;
+            }
+            p{
+                color: @gray-darker !important;
+                font-size: 12px !important;
+                font-weight: 600 !important;
+                margin-top: 10px;
+                &:not(:first-child){
+                    margin-bottom: 10px;
                 }
             }
             .price{
                 text-align: center;
-                margin: 20px 0;
+                margin: 10px 0 20px;
                 div{
                     display: inline-block;
                 }
                 &__number{
                     font-size: 36px;
+                    font-weight: 600;
                 }
                 &__currency{
                     font-size: 14px;
                     margin-left: 4px;
+                    font-weight: 500;
                 }
             }
-            .next-date{
-                text-align: center;
-                font-size: 18px;
-                font-weight: 500;
-                &__copy{
 
-                }
-                &__date{
-                    text-transform: uppercase;
-                }
-            }
-            .more-dates{
+            .schedules{
                 margin: 10px 0;
                 a{
                     text-decoration: underline;
-                    color: @gray-darker-brand;
+                    color: @gray-darker;
                     text-transform: uppercase;
                     text-align: center;
                     width: auto;
@@ -290,6 +367,7 @@
                     font-size: 12px;
                 }
             }
+            
             .btn{
                 margin: 20px 0;
             }
@@ -489,6 +567,7 @@
         text-align: center;
         text-transform: uppercase;
     }
+
 
     .widget-card{
         .header {
@@ -920,7 +999,7 @@
     }
 }
 
-.address-assistants-container{
+.address-attendees-container{
     .flex-wrap{
         > div:nth-child(2){
             width: 25%;
@@ -929,10 +1008,23 @@
             }
         }
     }
+    .detail-address{
+        padding: 1px 300px 0px 0px;
+    }
+    .detail-attendees{
+        position: absolute;
+        width: 250px !important;
+        top: 0;
+        right: 30px;
+        padding: 0;
+        .col-lg-3{
+            width: 100% !important;
+            padding: 0;
+        }
+    }
 }
 .reviews-container{
     padding-top: 30px;
-    padding-bottom: 30px;
     margin-bottom: 3em;
     &--ratings{
         padding-bottom: 25px;
