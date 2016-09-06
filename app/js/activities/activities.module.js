@@ -216,10 +216,11 @@
             })
 
             .state('activities-detail', {
-                url:'/actividades/:category_slug/:activity_title/{activity_id:int}?calendar_id',
+                url:'/actividades/:category_slug/:activity_title/{activity_id:int}/',
                 params: {
                   activity_title: {value: null, squash: false},
-                  category_slug: {value: null, squash: false}
+                  category_slug: {value: null, squash: false},
+                  calendar_id: {value: null, squash: false},
                 },
                 views:{
                     '@': {
