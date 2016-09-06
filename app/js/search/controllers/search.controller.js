@@ -30,7 +30,7 @@
             levels : [],
             costs : [],
             orderByPredicate: null,
-            expandedCategory : null,
+            expandedCategories : [],
             searchData : {},
             searchQuery : null,
             searchCategory : null,
@@ -92,7 +92,7 @@
                 withCert : false,
                 onWeekends : false,
                 isFree: false,
-            }
+            },
         });
 
         _activate();
@@ -123,32 +123,32 @@
         }
         function searchAll(){
             vm.searchCategory = undefined;
-            vm.newSearchQuery=undefined
+            vm.searchSubCategory = undefined;
+            vm.newSearchQuery = undefined;
             SearchManager.setQuery(vm.newSearchQuery);
+            SearchManager.setSubCategory(vm.searchSubCategory);
             SearchManager.setCategory(vm.searchCategory);
             _setPage(1);
             _search();
-            _expandCategory(vm.strings.ACTION_ALL_FILTER);
+            _collapseCategories();
+
             
         }
-        function setCategory(category, initializing) {
+        function setCategory(category, initializing, $event) {
+
+            if ($event){$event.preventDefault();$event.stopPropagation();}
             if (!category) { return; }
             vm.newSearchQuery = SearchManager.getQueryChange();
             console.log(vm.newSearchQuery);
-            if(!vm.newSearchQuery){
-                console.log('epa');
-                searchAll(); 
-                return;
-            }
-            if (vm.searchCategory === category.id ) {
-                vm.searchCategory = undefined;
-            } else {
-                vm.searchCategory = category.id;
-                vm.searchData["category_display"] = category.name;
-            }
-            
-            
-            _expandCategory(category);
+            // if(!vm.newSearchQuery){
+            // //     console.log('epa');
+            //     searchAll(); 
+            //     return;
+            // }
+
+            vm.searchCategory = category.id;
+            vm.searchData["category_display"] = category.name;
+
             SearchManager.setCategory(vm.searchCategory);
 
             if (!initializing){
@@ -157,21 +157,25 @@
                 _setPage(1);
                 _search();
             }
+            else{
+                _expandCategory(category);
+            }
             Analytics.generalEvents.searchCategory(category.name);
         }
-
         function setSubCategory(subcategory, $event) {
             $event.preventDefault();
             $event.stopPropagation();
+            vm.newSearchQuery = SearchManager.getQueryChange();
             if (vm.searchSubCategory == subcategory.id) {
                 vm.searchSubCategory = undefined;
             } else {
                 vm.searchSubCategory = subcategory.id;
-                vm.searchCategory = subcategory.category;
+                vm.searchCategory = _.find(vm.categories, { 'id': subcategory.category});
                 vm.searchData["subcategory_display"] = subcategory.name;
+                vm.searchData["category_display"] = vm.searchCategory.name;
             }
-
-            SearchManager.setCategory(vm.searchCategory);
+            // console.log("query", vm.newSearchQuery);
+            SearchManager.setCategory(vm.searchCategory.id);
             SearchManager.setSubCategory(vm.searchSubCategory);
             _setPage(1);
             _search();
@@ -272,8 +276,29 @@
         }
         //--------- Internal Functions ---------//
 
+        function _collapseCategories(){
+            vm.expandedCategories.pop();
+            vm.expandedCategories.pop();
+        }
         function _expandCategory(category) {
-            vm.expandedCategory = vm.expandedCategory == category.id ? null : category.id;
+
+            if (!vm.searchCategory){
+                vm.expandedCategories.pop();
+                vm.expandedCategories.push(category.id);
+                return;
+            }
+
+            // In category is already expanded, contract it.
+            if (_.includes(vm.expandedCategories, category.id)){
+                vm.expandedCategories.splice(0);
+                vm.expandedCategories.push(vm.searchCategory.id);
+                return;
+            }
+
+            vm.expandedCategories.splice(0);
+            vm.expandedCategories.push(category.id);
+            vm.expandedCategories.push(vm.searchCategory.id);
+
         }
 
         function _setPage(page){
@@ -481,7 +506,7 @@
                 vm.searchQuery = SearchManager.getQuery();
                 vm.newSearchQuery = SearchManager.getQuery();
                 
-            })
+            });
 
             angular.element(document).ready(function () {
                 
