@@ -290,8 +290,9 @@
             return activity;
 
             function removePastCalendars(calendar){
-                var passed = moment(calendar.closing_sale).isBefore(moment().valueOf() , 'day');
-                return !passed;
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day');
+                var vacancy = calendar.available_capacity > 0
+                return !passed && vacancy;
             }
 
             function mapVacancy(calendar){
@@ -331,6 +332,11 @@
         }
 
         function _getSelectedCalendar(activity){
+
+            var calendar = _.find(activity.upcoming_calendars, {'id': parseInt($stateParams.calendar_id)})
+            if (calendar)
+                return calendar
+
             if (!activity.closest_calendar){ return; }
 
             if(moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days')){
@@ -398,7 +404,7 @@
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
-                COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase, agrégala a favoritos y te avisaremos cuando hayan más fechas disponibles.",
+                COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase.",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
                 LABEL_EVALUATIONS: "Evaluaciones",
