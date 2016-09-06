@@ -66,12 +66,15 @@
                 </p>
             </div>
             <hr>
-            <p class="text-uppercase text-center" ng-if="!detail.activity.is_open">
+            <p class="text-uppercase text-center" ng-show="!detail.activity.is_open && !detail.isSelectedCalendarFull()">
               <span ng-bind="::detail.strings.LABEL_STARTS"></span>
             </p>
-            <select class="form-control" ng-if="!detail.activity.is_open"
+            <p class="text-uppercase text-center" ng-show="detail.isSelectedCalendarFull()">
+              <span ng-bind="::detail.strings.COPY_SIGN_UP_NO_DATES"></span>
+            </p>
+            <select class="form-control" ng-if="::(!detail.activity.is_open) && !detail.isSelectedCalendarFull()"
               ng-model="detail.calendar_selected" 
-              ng-options="calendar as calendar.initial_date | date:'d MMM y' for calendar in detail.activity.calendars track by calendar.id"
+              ng-options="calendar as calendar.initial_date | date:'d MMM y' for calendar in detail.activity.upcoming_calendars track by calendar.id"
               name="calendars">
             </select>
             <div class="price" ng-show="!detail.isSelectedCalendarFull()">
