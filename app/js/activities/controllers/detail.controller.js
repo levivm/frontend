@@ -57,6 +57,7 @@
             showEmail: false,
             showSessions: false,
             hasMoreReviews: true,
+            showSchedules: false,
             changeSelectedCalendar : changeSelectedCalendar,
             isSelectedCalendarFull : isSelectedCalendarFull,
             previousGalleryPicture: previousGalleryPicture,
@@ -65,7 +66,7 @@
             calendarSignUp:calendarSignUp,
             widgetSignup:widgetSignup,
             showMoreReviews: showMoreReviews,
-            viewMoreCalendars: viewMoreCalendars,
+            toggleSchedules: toggleSchedules,
             toggleEmailShow: toggleEmailShow,
             toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm,
@@ -81,6 +82,11 @@
             verifyWishList:verifyWishList,
             getAmazonUrl: getAmazonUrl,
             facebookShares: 0,
+            schedulesScrollUp: schedulesScrollUp,
+            schedulesScrollDown: schedulesScrollDown,
+            schedulesOffset: 0
+
+            
         });
 
         _activate();
@@ -89,6 +95,17 @@
 
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
+        }
+
+        function schedulesScrollUp (){
+            if(vm.schedulesOffset < 0){
+                vm.schedulesOffset++;
+                document.getElementsByClassName('schedules-container__html')[0].style.transform = 'translateY('+ vm.schedulesOffset*60 +'px)';
+            }
+        }
+        function schedulesScrollDown(){
+            vm.schedulesOffset--;
+            document.getElementsByClassName('schedules-container__html')[0].style.transform = 'translateY('+ vm.schedulesOffset*60 +'px)';
         }
 
         function previousGalleryPicture(){
@@ -198,8 +215,8 @@
             }
         }
 
-        function viewMoreCalendars(){
-            Elevator.toElement('more_calendars_section');
+        function toggleSchedules(){
+            vm.showSchedules = !vm.showSchedules;
         }
 
         function toggleEmailShow(){
@@ -273,8 +290,9 @@
             return activity;
 
             function removePastCalendars(calendar){
-                var passed = moment(calendar.closing_sale).isBefore(moment().valueOf() , 'day');
-                return !passed;
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day');
+                var vacancy = calendar.available_capacity > 0
+                return !passed && vacancy;
             }
 
             function mapVacancy(calendar){
@@ -314,6 +332,11 @@
         }
 
         function _getSelectedCalendar(activity){
+
+            var calendar = _.find(activity.upcoming_calendars, {'id': parseInt($stateParams.calendar_id)})
+            if (calendar)
+                return calendar
+
             if (!activity.closest_calendar){ return; }
 
             if(moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days')){
@@ -371,7 +394,7 @@
             angular.extend(vm.strings, {
                 ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
-                ACTION_VIEW_OTHER_DATES: "Ver más fechas de inicio",
+                ACTION_VIEW_SCHEDULES: "Horarios",
                 COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
                 COPY_TO: " a ",
@@ -381,7 +404,7 @@
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
-                COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase, agrégala a favoritos y te avisaremos cuando hayan más fechas disponibles.",
+                COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase.",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
                 LABEL_EVALUATIONS: "Evaluaciones",
@@ -437,7 +460,10 @@
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_NUMBER_OF_LIKES: "personas aman esto",
                 COPY_BE_THE_FIRST: "¡Sé el primero!",
-                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas"
+                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas",
+                LABEL_OPEN_CALENDAR: "Horario Abierto",
+                LABEL_CLOSED_CALENDAR: "Horario Fijo",
+                LABEL_STARTS: "Inicios"
             });
         }
         function _updateWidgetValues(){

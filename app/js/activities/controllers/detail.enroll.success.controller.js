@@ -134,6 +134,7 @@
                 LABEL_QUESTIONS: "¿Dudas?",
                 LABEL_IMPORTANT: "Importante",
                 LABEL_ANY_DOUBT: "Cualquier pregunta",
+                LABEL_SCHEDULES: "Horarios",
                 LABEL_ADDRESS: "Dirección",
                 COPY_IMPORTANT: "Cada asistente tendrá un código que el organizador les solicitará al comenzar la actividad para poder identificarlos. Revisa en tu factura tu código y el de los asistentes que te acompañarán.",
                 COPY_VIEW_YOUR_ORDER: "Ver mi factura",

@@ -644,7 +644,7 @@
 
         function _mapVacancy(calendar){
             calendar.vacancy = calendar.available_capacity;
-            calendar.total_price = calendar.session_price * calendar.sessions.length;
+            calendar.total_price = calendar.session_price;
             return calendar;
         }
 
@@ -749,7 +749,7 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_TO: " a ",
                 COPY_COVER: "Te quieres inscribir en:",
-                COPY_LAST_DATE: "Cierre de ventas -",
+                COPY_SCHEDULE_TYPE: "Horario:",
                 COPY_AVAILABLE: "Disponibilidad",
                 COPY_SIGN_UP: "¿Quieres inscribirte en esta actividad?",
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
@@ -784,7 +784,7 @@
                 LABEL_SEATS_X: "Cupos X ",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
                 LABEL_REPEAT_INFO:"Esta actividad se repite en otras oportunidades",
-                LABEL_ACTIVITY_SESSIONS: "Horarios",
+                LABEL_SCHEDULES: "Horarios",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",
@@ -792,7 +792,6 @@
                 LABEL_PRICE: "Precio",
                 LABEL_QUANTITY: "Cantidad",
                 LABEL_TOTAL: "Total",
-                LABEL_SCHEDULES: "Cronogramas",
                 LABEL_FIRST_NAME: "Nombre",
                 LABEL_LAST_NAME: "Apellido",
                 LABEL_EMAIL: "Email",
