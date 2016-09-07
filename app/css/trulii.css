@@ -12967,6 +12967,76 @@ hr.on-light {
     width: 700px;
   }
 }
+.content-schedules {
+  width: 670px;
+  margin-bottom: 100px !important;
+}
+.content-schedules .select-schedules {
+  display: flex;
+  width: 75%;
+  margin: 0 auto;
+  margin-top: 5em;
+  justify-content: space-between;
+}
+.content-schedules .select-schedules .schedule {
+  text-align: center;
+  cursor: pointer;
+  color: #b9bed1;
+}
+.content-schedules .select-schedules .schedule i {
+  font-size: 6em;
+}
+.content-schedules .select-schedules .schedule__title {
+  margin-top: 1em;
+  font-weight: 700;
+}
+.content-schedules .select-schedules .schedule__description {
+  margin-top: 1em;
+}
+.content-schedules .select-schedules .active {
+  color: #3A405B;
+}
+.content-schedules button {
+  width: 35%;
+  margin: 0 auto;
+}
+.add-packages {
+  border: 1px solid #3A405B;
+  color: #3A405B;
+  border-radius: 20px;
+  display: flex;
+  width: 101px;
+  padding: 8px 15px;
+  justify-content: space-around;
+  font-weight: 600;
+}
+.add-packages span {
+  cursor: pointer;
+  font-size: 1.3em;
+}
+.switch {
+  background: #9b9b9b;
+  border: 1px solid #9b9b9b;
+  width: 100px;
+}
+.switch.checked {
+  background: #00e2aa;
+  border-color: #00e2aa;
+}
+.switch .on {
+  top: 20%;
+  left: 9%;
+  font-weight: 800;
+}
+.switch.checked small {
+  left: 80px;
+}
+.switch .off {
+  top: 20%;
+  z-index: 0;
+  color: white;
+  font-weight: 800;
+}
 .text-left {
   text-align: left;
 }
@@ -17610,6 +17680,14 @@ td {
   color: #767676;
   margin-right: 0.3em;
 }
+.panel-default__dashboard-title-calendar {
+  font-size: 1em;
+  font-weight: 600;
+  margin: 0;
+  color: #767676;
+  margin-right: 0.3em;
+  margin-left: 26px;
+}
 .panel-default__dashboard-sub {
   margin-bottom: 0;
   border-radius: 5px 5px 0px 0px;
@@ -17622,6 +17700,13 @@ td {
 }
 .panel-default__dashboard-sub-second .btn-message {
   margin-left: 5em;
+}
+.panel-default__dashboard-sub-second-calendar {
+  border-radius: 0px 0px 5px 5px;
+  padding: 1.5em 1em 1.5em 2em;
+}
+.panel-default__dashboard-sub-second-calendar .btn-panel {
+  top: 11px !important;
 }
 .panel-default__dashboard-filters {
   padding: 0em 1em 0em 2em;
@@ -17644,6 +17729,27 @@ td {
   font-size: 1.2em;
   margin-right: 0.5em;
   color: gray;
+}
+.panel-default__dashboard-tabs {
+  display: flex;
+  height: 60px;
+}
+.panel-default__dashboard-tab {
+  font-size: 1.2em;
+  padding: 17px 15px;
+  color: #e4e7ef;
+  font-weight: 600;
+  cursor: pointer;
+}
+.panel-default__dashboard-tab:first-child {
+  border-right: 1px solid #e4e7ef;
+}
+.panel-default__dashboard-tab i {
+  margin-right: 5px;
+}
+.panel-default__dashboard-tab-active {
+  background-color: #e4e7ef;
+  color: #3A405B;
 }
 .panel-default__dashboard .btn-panel {
   position: absolute;
@@ -18629,7 +18735,8 @@ ul.dropdown-menu:after {
 .card__calendar-footer-sales h3 {
   color: #767676;
   font-size: 0.9em;
-  font-weight: 700;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 .card__calendar-footer-sales span {
   font-size: 0.9em;

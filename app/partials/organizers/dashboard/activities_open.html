@@ -8,7 +8,7 @@
     <div ng-if="activities.open_activities.length > 0">
         <div class="row activity-grid-organizer">
             <trulii-activity-item
-                    ng-repeat="activity in activities.open_activities track by activity.id"
+                    ng-repeat="activity in activities.open_activities "
                     data-activity="activity"
                     data-organizer="activities.dashOrganizer"
                     data-options="{{activities.openOptions}}"></trulii-activity-item>

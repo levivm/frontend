@@ -34,6 +34,8 @@
             setCalendar: setCalendar,
             deleteCalendar: deleteCalendar,
             hideCalendars:hideCalendars,
+            changeSchedule: changeSchedule,
+            checkNoMoreCalendars: checkNoMoreCalendars,
             calendar_errors: {}
 
         });
@@ -64,6 +66,18 @@
             else{
                 document.getElementById('slider-anchor').removeAttribute('disabled');
             }
+        }
+        
+        function changeSchedule(value){
+            console.log(vm.calendars);
+            if(vm.calendars.length>0)
+               Toast.error(vm.strings.ERROR_SCHEDULE);
+            else
+                vm.activity.is_open = value;
+        }
+        
+        function checkNoMoreCalendars() {
+            return !(vm.calendars.length>0 && vm.activity.is_open);
         }
 
         function deleteCalendar(calendar) {
@@ -126,7 +140,8 @@
                 DELETE_CALENDAR_ERROR: "No puede eliminar este calendario, tiene estudiantes inscritos, contactanos",
                 LABEL_CALENDARS: "Calendarios",
                 LABEL_START_DATE: "Calendario ",
-                LABEL_CLOSE_SALE: "Cierre de ventas",
+                LABEL_CLOSE_SALE: "Ventas cerradas",
+                LABEL_OPEN_SALE: "Ventas abiertas",
                 LABEL_CALENDAR_SEATS: "Cupos",
                 LABEL_START: "Fecha de inicio",
                 LABEL_END: "Última sesión",
@@ -134,11 +149,11 @@
                 LABEL_EDIT_CALENDAR: "Editar",
                 LABEL_DELETE_CALENDAR: "Borrar",
                 LABEL_ADD_CALENDAR: "Agregar calendario",
-                COPY_ADD_CALENDAR: "En una misma publicación puedes tener diferentes fechas de inicio, cada una con diferentes " +
-                                   "número de sesiones, fechas y horas.",
+                COPY_ADD_CALENDAR: "En una misma publicación puedes...",
                 COPY_REPUBLISH_CALENDAR: "Estás republicando esta actividad. Recuerda que para republicarla exitosamente debes" +
                                          "de agregar por lo menos un nuevo calendario.",
                 LABEL_WARNING: "Advertencia!",
+                ERROR_SCHEDULE: "No puedes cambiar de tipo de horario, mientras tengas calendarios creados."
 
             });
         }
@@ -207,7 +222,6 @@
             $scope.$on('$destroy', stateChangeUnbinder);
             console.log('calendars:', calendars);
             console.log(vm.activity);
-            vm.activity.isOpen=true;
             Elevator.toTop();
         }
 

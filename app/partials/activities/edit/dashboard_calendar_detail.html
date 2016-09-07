@@ -1,158 +1,124 @@
 
 <div class="row limited-width-dashboard limited-width-dashboard__calendar">
-    <form class="" id="activity_calendar_form" name='calendar.activity_calendar_form' ng-submit="calendar.save_calendar()" novalidate>
+  <form class="" id="activity_calendar_form" name='calendar.activity_calendar_form' ng-submit="calendar.save_calendar()" novalidate >
 
     <div>
-        <div class="col-xs-12 panel-default panel-default__dashboard">
+        <div class="col-xs-12 panel-default panel-default__dashboard" ng-if="!calendar.activity.is_open">
                 <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_CALENDAR_TITLE"></span>
                 <span  class="separate-left-less" ng-bind="::calendar.strings.COPY_CALENDAR_INFO"></span>
         </div>
-        <div> 
-            <div class="row"> 
-                <alert type="danger" ng-show="calendar.errors.non_field_errors">
-                    {{calendar.errors.non_field_errors}}
-                </alert>
-                <div class="col-md-6">
-                    <div class="form-group "   trulii-input-errors-control="closing_sale">
-                        
-                        <label class="control-label"  >
-                            <span ng-bind="::calendar.strings.LABEL_CLOSE_SALES"></span>
-                             <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top" tooltip="{{::calendar.strings.TOOLTIP_CLOSE_SALES}}"></i>
-                        </label>
-                        <div class="select-forms select-forms__date">
-                            <label>
-                                    <input type="text" class="datepicker form-control " name="closing_sale"
-                                        ng-model="calendar.calendar.closing_sale" ng-change="calendar.calendar.changeCloseDate()"
-                                        datepicker-popup="{{calendar.format}}" is-open="calendar.calendar.endOpened"
-                                        min-date="calendar.calendar.minStartDate" datepicker-options="calendar.dateOptions"
-                                        max-date="null" close-text="Close"
-                                        ng-click="calendar.calendar.openCloseDate($event)" ng-readonly='true'
-                                        />
-                            </label> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group " trulii-input-errors-control="available_capacity">
-                        <label class="control-label" for="available_capacity" ng-bind="::calendar.strings.LABEL_CALENDAR_SEATS"></label>
-                        <input id="available_capacity" class="form-control " type="number" name="available_capacity"
-                                placeholder="0" min="0"
-                                ng-model="calendar.calendar.available_capacity" />
-                    </div>
-                </div>
-            </div>
-           
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group "  trulii-input-errors-control="session_price">
-                        <label class="control-label" for="session_price" ng-bind="::calendar.strings.LABEL_SESSION_PRICE"></label>
-                        <input  class="form-control " ng-class="{'text-strike':calendar.calendar.is_free}" type="text" ui-number-mask="0" name="session_price"
-                                placeholder="{{::calendar.strings.PLACEHOLDER_SESSION_PRICE}}"
-                                ng-model="calendar.calendar.session_price" min="0" ng-disabled="calendar.calendar.is_free"/>
-                        <div class="separate-above-less separate-below-less separate-left">
-                            <input class="" type="checkbox" id="is_free" ng-model="calendar.calendar.is_free" ng-check />
-                            <label class="separate-left-less" for="is_free" ng-bind="::calendar.strings.LABEL_IS_FREE"></label>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-             <div class="row">
-                   <div class="form-group col-xs-12 separate-above" trulii-input-errors-control="note" >
-                        <label for="short_description" class="control-label">
-                            <span  ng-bind="::calendar.strings.LABEL_NOTES"></span>
-                        </label>
-                        <input type="text" id="short_description"  class="form-control" name="short_description"
-                                placeholder="{{::calendar.strings.PLACEHOLDER_NOTES}}"
-                                ng-model="calendar.calendar.note">
-                    </div>
-            </div>
-
-        </div>
-
-    </div>
-    <div class="separate-above">
-
-        <div class="separate-above" trulii-input-errors-control="number_of_sessions">
-        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
-                <h4 class="panel-default__dashboard-title" ng-bind="::calendar.strings.TITLE_SESSIONS"></h4>
-                
-                <div class="add-sessions hidden-xs hidden-sm">
-                    <div trulii-counter class="counter-input counter-input-lg" form="calendar.activity_calendar_form"
-                            value="calendar.calendar.number_of_sessions" model="calendar.calendar" change="calendar.calendar.changeSessionsN()" min="0"></div>
+            
+         <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub flex-betweent-container" ng-if="calendar.activity.is_open">
+                <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_CALENDAR_TITLE"></span>
+                <div class="add-packages">
+                    <span ng-click="calendar.lessPackage()">-</span>
+                    <span ng-bind="calendar.calendar.packages.length"></span>
+                    <span ng-click="calendar.addPackage()">+</span>
                 </div>
         </div>
-        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
-                <span class="text-gray-dark" ng-bind="::calendar.strings.LABEL_SESSIONS_AMOUNT"></span>
+        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second" ng-if="calendar.activity.is_open">
+               <span  class="" ng-bind="::calendar.strings.COPY_CALENDAR_INFO"></span>
         </div>
-
-
-        <div class="row separate-above">
-
-            <div class="col-md-12 separate-above" ng-repeat="session in calendar.calendar.sessions track by $index" id="calendar-{{$index}}">
-                <div class="card card-list-item card--narrow card--session no-margin-bottom">
-
-                <label class="control-label font-black">Sesión {{$index + 1}}</label >
-
-                <div class="row separate-above-less">
-
-                <div class="col-md-5">
-                    <div class="form-group" id="date_{{$index}}" trulii-input-errors-control="date_{{$index}}">
-                        <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_DAY"></label>
-                         <div class="select-forms select-forms__date">
-                            <label>
-                                <input type="text" class="datepicker form-control" datepicker-popup="{{calendar.format}}"
-                                            ng-model="session.date" is-open="session.openDate" name="date_{{$index}}" min-date="session.minDate"
-                                            max-date="session.maxDate" id="date" datepicker-options="calendar.dateOptions" close-text="Close"
-                                            ng-change="calendar.calendar.changeSessionDate($index,session)"
-                                            ng-click="calendar.calendar.openSessionDate($event,session)" ng-readonly='true'
-                                            />
-                            </label>
-                        </div>
-                    </div>
+        
+        <div class="content-packages" ng-if="calendar.activity.is_open">
+            <div class="row " id="package-{{$index}}" ng-class="{'separate-above': !$first}" ng-repeat="package in calendar.calendar.packages">
+                <div class="col-xs-6" id="quantity_{{$index}}" trulii-input-errors-control="quantity_{{$index}}">
+                     <label class="control-label" for="quantity" ng-bind="::calendar.strings.LABEL_PACKAGE_QUANTITY"></label>
+                    <input  class="form-control "  type="number" name="quantity_{{$index}}"
+                            placeholder="1" min="1"
+                            ng-model="package.quantity" />
+                </div>
+                <div class="col-xs-6" id="price_{{$index}}"  trulii-input-errors-control="price_{{$index}}" >
+                     <label class="control-label" for="price" ng-bind="::calendar.strings.LABEL_PACKAGE_PRICE"></label>
+                    <input class="form-control " type="number" name="price_{{$index}}"
+                            placeholder="30000" min="30000"
+                            ng-model="package.price" />
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="!calendar.activity.is_open"> 
+            <alert type="danger" ng-show="calendar.errors.non_field_errors">
+                {{calendar.errors.non_field_errors}}
+            </alert>
+            <div class="col-md-6">
+                <div class="form-group "   trulii-input-errors-control="closing_sale">
                     
-                </div>
-                <div class="col-md-6 col-md-offset-1">
-                    <div class="row">
-
-                        <div class="form-group col-md-6 time-picker" id="start_time_{{$index}}" trulii-input-errors-control="start_time_{{$index}}">
-                            <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_START_TIME"></label>
-                            <timepicker name="start_time_{{$index}}"  class="timepicker" ng-model="session.start_time" ng-change="calendar.calendar.changeStartTime(session)"
-                                        hour-step="calendar.hstep" minute-step="calendar.mstep" show-meridian="calendar.ismeridian">
-                            </timepicker>
-
-                        </div>
-                        <div class="col-md-6 time-picker" id="end_time_{{$index}}" trulii-input-errors-control="end_time_{{$index}}">
-                            <label class="control-label" ng-bind="::calendar.strings.LABEL_SESSION_END_TIME" ></label>
-                            <timepicker class="timepicker" name="end_time_{{$index}}" ng-model="session.end_time" ng-change="calendar.calendar.changeEndTime(session)"
-                                        hour-step="calendar.hstep" minute-step="calendar.mstep" show-meridian="calendar.ismeridian">
-                            </timepicker>
-                        </div>
+                    <label class="control-label"  >
+                        <span ng-bind="::calendar.strings.LABEL_CLOSE_SALES"></span>
+                            <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top" tooltip="{{::calendar.strings.TOOLTIP_CLOSE_SALES}}"></i>
+                    </label>
+                    <div class="select-forms select-forms__date">
+                        <label>
+                                <input type="text" class="datepicker form-control " name="closing_sale"
+                                    ng-model="calendar.calendar.initial_date" ng-change="calendar.calendar.changeCloseDate()"
+                                    datepicker-popup="{{calendar.format}}" is-open="calendar.calendar.endOpened"
+                                    min-date="calendar.calendar.minStartDate" datepicker-options="calendar.dateOptions"
+                                    max-date="null" close-text="Close"
+                                    ng-click="calendar.calendar.openCloseDate($event)" ng-readonly='true'
+                                    />
+                        </label> 
                     </div>
                 </div>
-                </div>
-                <div class="alert alert-error text-center" ng-show="calendar.errors[{{'sessions_'+$index}}]">
-                    <strong ng-bind="calendar.errors[{{'sessions_'+$index}}]">
-                    <br>
-                    </strong>
-                </div>
-                <!--TODO revisar alert-->
-                <alert type="danger" ng-show="calendar.errors[{{'sessions_'+$index}}]">{{calendar.errors.session_error}}</alert>
-
             </div>
+            <div class="col-md-6">
+                <div class="form-group " trulii-input-errors-control="available_capacity">
+                    <label class="control-label" for="available_capacity" ng-bind="::calendar.strings.LABEL_CALENDAR_SEATS"></label>
+                    <input id="available_capacity" class="form-control " type="number" name="available_capacity"
+                            placeholder="0" min="0"
+                            ng-model="calendar.calendar.available_capacity" />
+                </div>
             </div>
         </div>
+        
+        <div class="row" ng-if="!calendar.activity.is_open">
+            <div class="col-md-6">
+                <div class="form-group "  trulii-input-errors-control="session_price">
+                    <label class="control-label" for="session_price" ng-bind="::calendar.strings.LABEL_SESSION_PRICE"></label>
+                    <input  class="form-control " ng-class="{'text-strike':calendar.calendar.is_free}" type="text" ui-number-mask="0" name="session_price"
+                            placeholder="{{::calendar.strings.PLACEHOLDER_SESSION_PRICE}}"
+                            ng-model="calendar.calendar.session_price" min="0" ng-disabled="calendar.calendar.is_free"/>
+                    <div class="separate-above-less separate-below-less separate-left">
+                        <input class="" type="checkbox" id="is_free" ng-model="calendar.calendar.is_free" ng-check />
+                        <label class="separate-left-less" for="is_free" ng-bind="::calendar.strings.LABEL_IS_FREE"></label>
+                    </div>
+                </div>
 
-
-        <div class="separate-above" >
+            </div>
+            
+            <div class="col-md-6 separate-above-less">
+                <label class="control-label" for="enroll_close" ng-bind="::calendar.strings.LABEL_SALES"></label>
+                <div class="separate-left-less">
+                    <switch id="enroll_close" name="enroll_close" ng-model="calendar.calendar.enroll_open" on="Abiertas" off="Cerradas" class="green"></switch>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                <div class="form-group col-xs-12 separate-above" trulii-input-errors-control="note" >
+                    <label for="short_description" class="control-label">
+                        <span  ng-bind="::calendar.strings.LABEL_NOTES"></span>
+                    </label>
+                    <input type="text" id="short_description"  class="form-control" name="short_description"
+                            placeholder="{{::calendar.strings.PLACEHOLDER_NOTES}}"
+                            ng-model="calendar.calendar.note">
+                </div>
+        </div>
+        
+        <div class="row clear-spacings">
+            <div class="col-xs-12 panel-default panel-default__dashboard separate-above">
+                <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_SCHEDULES"></span>
+                <span  class="separate-left-less" ng-bind="::calendar.strings.COPY_SCHEDULES"></span>
+            </div>
+            <div class="form-group col-xs-12 separate-below-more" trulii-input-errors-control="schedules">
+                    <text-angular name="schedules"
+                        placeholder="{{::calendar.strings.PLACEHOLDER_SCHEDULES}}"
+                        ng-model="calendar.calendar.schedules"></text-angular>
+            </div>
+        </div>
+        <div class="separate-above separate-below" >
             <trulii-submit-controls is-saving="calendar.isSaving" cancel-active="true" value="Guardar"></trulii-submit-controls>
+        </div> 
 
-        </div>
-
-        </div>
-
-
-
-    </form>
+   </div>
+ </form>
 
 </div>
