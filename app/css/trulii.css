@@ -18705,6 +18705,7 @@ ul.dropdown-menu:after {
 .card__calendar-header-actions {
   color: #767676;
   font-size: 1.3em;
+  z-index: 0;
 }
 .card__calendar-header-actions i {
   z-index: 10000;

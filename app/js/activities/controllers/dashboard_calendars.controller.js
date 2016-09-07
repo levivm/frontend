@@ -70,10 +70,24 @@
         
         function changeSchedule(value){
             console.log(vm.calendars);
-            if(vm.calendars.length>0)
-               Toast.error(vm.strings.ERROR_SCHEDULE);
-            else
+            if(vm.calendars.length>0){
+                Toast.error(vm.strings.ERROR_SCHEDULE);
+            }
+            else{
                 vm.activity.is_open = value;
+                vm.activity.update()
+                    .then(updateSuccess, _errored);
+            }
+            function updateSuccess(response) {
+                console.log("response ",response);
+                angular.extend(activity, vm.activity);
+            }
+            
+            function _errored(response) {
+                console.log(response);
+            }
+                
+                
         }
         
         function checkNoMoreCalendars() {
@@ -220,8 +234,6 @@
             );
 
             $scope.$on('$destroy', stateChangeUnbinder);
-            console.log('calendars:', calendars);
-            console.log(vm.activity);
             Elevator.toTop();
         }
 

@@ -37,10 +37,14 @@
         
         function _createCalendar() {
             Error.form.clear(vm.activity_calendar_form);
-            vm.calendar.create()
-                .then(success, _errored);
-                
-                
+            if(_checkIfPackages()){
+                Toast.error(vm.strings.ERROR_NON_PACKAGES);
+                vm.isSaving = false;
+            }else{
+                vm.calendar.create()
+                    .then(success, _errored);
+            }
+            
             function success(calendar){
                 vm.save_calendar = _updateCalendar;
                 CalendarsManager.setCalendar(calendar);
@@ -67,22 +71,29 @@
 
         function _updateCalendar() {
             _clearCalendarForm();
+            console.log(vm.activity.is_open);
+            if(_checkIfPackages()){
+                Toast.error(vm.strings.ERROR_NON_PACKAGES);
+                vm.isSaving = false;
+            }else{
+                vm.calendar.update()
+                    .then(success, _errored);
+            }
             Error.form.clear(vm.activity_calendar_form);
-            vm.calendar.update()
-                .then(success, _errored);
+            function success(updatedCalendarData){
 
-                function success(updatedCalendarData){
+                vm.isCollapsed = false;
+                angular.extend(calendar,vm.calendar);
+                CalendarsManager.setCalendar(updatedCalendarData);
+                _onSectionUpdated();
 
-                    vm.isCollapsed = false;
-                    angular.extend(calendar,vm.calendar);
-                    CalendarsManager.setCalendar(updatedCalendarData);
-                    _onSectionUpdated();
+                vm.isSaving = false;
 
-                    vm.isSaving = false;
-
-                }
+            }
         }
-
+        function _checkIfPackages(){
+            return vm.activity.is_open && vm.calendar.packages.length<1;
+        }
         function _errored(responseErrors) {
             console.log(vm.calendar);
             console.log(responseErrors);
@@ -160,6 +171,7 @@
                 LABEL_SESSION_END_TIME: "Hora de fin:",
                 TOAST_SESSIONS_ERROR: "Existe un error en las sesiones",
                 TOAST_SESSIONS_NUMBER_ERROR: "Deber haber mínimo una sesión",
+                ERROR_NON_PACKAGES: "Debes por lo menos agregar un paquete."
                 
 
             });
@@ -214,7 +226,6 @@
             if(!vm.calendar.packages){
                 vm.calendar.packages = [];
             }
-            console.log(vm.calendar);
             
             $scope.$watch(
               function(scope){
