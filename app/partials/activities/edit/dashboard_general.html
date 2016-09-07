@@ -22,6 +22,7 @@
       </div>
     </div>
   </div>
+ 
   <div class="cover-blur-small" ng-show="vm.weHaveTitle && vm.creating" ng-class="{ 'cover-blur-small__create': vm.creating}">
     <div class="cover-blur-small__content">
          <div class="cover-blur-small__content-title separate-above-more">
@@ -30,7 +31,38 @@
          </div>
     </div>
 </div>
-    <div class="col-xs-12 only-fade separate-below-more  fade-in" ng-show="vm.weHaveTitle"> <!-- col-lg-offset-2 col-md-offset-1 -->
+     <div class="content-schedules" ng-show="vm.weHaveTitle && !vm.weHaveSchedule" ng-class="{ 'margin-auto': vm.creating}">
+        <div class="panel-default panel-default__dashboard separate-above">
+            <span class="panel-default__dashboard-title" >Horarios</span>
+            <span  class="separate-left-less" >Especifique la información solicitada para continuar</span>
+        </div>
+        
+        <div class="select-schedules">
+            <div class="schedule" ng-click="vm.activity.is_open=true" ng-class="{'active': vm.activity.is_open}">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                 <div class="schedule__title">
+                     <span>Horario abierto</span>
+                 </div>
+                 <div  class="schedule__description">
+                     Especifique la información solictada para continuar.
+                 </div>
+            </div> 
+            <div class="schedule" ng-click="vm.activity.is_open=false" ng-class="{'active': !vm.activity.is_open}">
+                <i class="fa fa-calendar" aria-hidden="true"></i>
+                 <div class="schedule__title">
+                     <span>Horario fijo</span>
+                 </div>
+                 <div  class="schedule__description">
+                     Especifique la información solictada para continuar.
+                 </div>
+            </div>
+        </div>
+        
+        <button type="button" class="separate-above-medium btn btn-success btn-lg btn-block"
+                    ng-click="vm.selectSchedule()" ng-bind="::vm.strings.ACTION_CONTINUE"></button>
+        
+    </div>
+    <div class="col-xs-12 only-fade separate-below-more  fade-in" ng-show="vm.weHaveSchedule"> <!-- col-lg-offset-2 col-md-offset-1 -->
         <div class="row limited-width-dashboard limited-width-dashboard__edit-activity"  ng-class="{ 'margin-auto': vm.creating}">
             <div class="panel-default panel-default__dashboard ">
                 <h4 class="panel-default__dashboard-title" ng-bind="::vm.strings.SECTION_GENERAL"></h4>

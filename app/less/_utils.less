@@ -1458,3 +1458,94 @@
 		width: 700px;
 	}
 }
+
+
+//Schdeules Create Acitivity
+
+.content-schedules{
+	width: 670px;
+    margin-bottom: 100px !important;
+	.select-schedules{
+		display: flex;
+		width: 75%;
+		margin: 0 auto;
+		margin-top: 5em;
+		justify-content: space-between;
+		
+		.schedule{
+			text-align: center;
+			cursor: pointer;
+			color: @gray-regular-brand;
+			
+			i{
+				font-size: 6em;
+			}
+			&__title{
+				margin-top: 1em;
+				font-weight: 700;
+			}
+			
+			&__description{
+				margin-top: 1em;
+			}
+			
+		}
+		
+		.active{
+			color: @blue-dark;
+		}
+	}
+	
+	button{
+		width: 35%;
+		margin: 0 auto;
+	}
+}
+
+
+.add-packages{
+	border: 1px solid  @blue-dark;
+    color:  @blue-dark;
+    border-radius: 20px;
+    display: flex;
+    width: 101px;
+    padding: 8px 15px;
+    justify-content: space-around;
+    font-weight: 600;
+	
+	span{
+		cursor: pointer;
+   		font-size: 1.3em;
+	}
+}
+
+//Switch uiSwitch styles
+
+.switch {
+	background: #9b9b9b;
+    border: 1px solid #9b9b9b;
+    width: 100px;
+}
+
+.switch.checked {
+    background: @brand-primary;
+    border-color: @brand-primary;
+}
+
+.switch .on {
+    top: 20%;
+    left: 9%;
+    font-weight: 800;
+}
+
+.switch.checked small {
+    left: 80px;
+}
+
+.switch .off {
+    top: 20%;
+    z-index: 0;
+    color: white;
+    font-weight: 800;
+}
+

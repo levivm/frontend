@@ -50,13 +50,23 @@
             margin: 0;
             color: @gray-dark;
             margin-right: 0.3em; 
+            
+           
         }
-         
+        &-title-calendar{
+            font-size: 1em;
+            font-weight: 600;
+            margin: 0;
+            color: @gray-dark;
+            margin-right: 0.3em; 
+            margin-left: 26px;
+        }
         &-sub{
             margin-bottom: 0;
             border-radius: 5px 5px 0px 0px;
             border-bottom: none;
             padding: 1.5em 2em;
+            
         }
         
         &-sub-second{ 
@@ -66,7 +76,20 @@
             .btn-message{
                 margin-left: 5em;
             }
+            
+            
         }
+        
+        &-sub-second-calendar{
+            border-radius: 0px 0px 5px 5px;
+            padding: 1.5em 1em 1.5em 2em;
+            
+            .btn-panel{
+                top: 11px !important;
+            }
+        }
+        
+        
         &-filters{
             padding: 0em 1em 0em 2em;
         }
@@ -87,6 +110,31 @@
                 font-size: 1.2em;
                 margin-right: 0.5em;
                 color: gray;
+            }
+        }
+        
+        &-tabs{
+            display: flex;   
+            height: 60px;
+        } 
+        
+        &-tab{
+            font-size: 1.2em;
+            padding: 17px 15px;
+            color: @gray-light-brand;
+            font-weight: 600;
+            cursor: pointer;
+            
+            &:first-child{
+               border-right: 1px solid @gray-light-brand;
+            }
+            i{
+                margin-right: 5px;
+            }
+            
+            &-active{
+                background-color: @gray-light-brand;
+                color: @blue-dark;
             }
         }
         

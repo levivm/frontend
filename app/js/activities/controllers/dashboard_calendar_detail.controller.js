@@ -22,10 +22,17 @@
         var vm = this;
         var MAX_LENGTH_NOTE = 200;
         var ERROR_STUDENTS = "No se puede cambiar la sessión con estudiantes inscritos.";
-        vm.maxLengthNote = MAX_LENGTH_NOTE;
-        vm.activity_calendar_form = {};
-        vm.calendar = angular.copy(calendar);
-        vm.activity = angular.copy(activity);
+        
+        
+        angular.extend(vm, {
+            maxLengthNote: MAX_LENGTH_NOTE,
+            calendar:  angular.copy(calendar),
+            activity: angular.copy(activity),
+            countPackages: 0,
+            addPackage: addPackage,
+            lessPackage: lessPackage,
+
+        });
         activate();
         
         function _createCalendar() {
@@ -44,6 +51,18 @@
 
             }
 
+        }
+        
+        function addPackage() {
+            var packageEmpty = {
+                quantity: 1,
+                price: 30000
+            }
+            vm.calendar.packages.push(packageEmpty);
+        }
+        
+        function lessPackage() {
+            vm.calendar.packages.pop();
         }
 
         function _updateCalendar() {
@@ -65,34 +84,38 @@
         }
 
         function _errored(responseErrors) {
+            console.log(vm.calendar);
+            console.log(responseErrors);
+            var packagesErrors = [];
+            var packageError ={};
             if (responseErrors) {
-              if (responseErrors['sessions'] && !responseErrors['number_of_sessions']){
-                   
-                    if(responseErrors['sessions'][0] == ERROR_STUDENTS){
-                         Toast.error(ERROR_STUDENTS);
-                    }else{
-                        Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
-                        _.each(responseErrors['sessions'], function (error_dict, index) { 
+                
+                if(responseErrors['packages'] && !responseErrors['schedules']){
+                     _.each(responseErrors['packages'], function (error_dict, index) { 
                             if(!_.isEmpty(error_dict)){
-                                Elevator.toElement('calendar-'+index);
+                                if(error_dict['quantity'])
+                                    packageError['quantity_'+index] = error_dict['quantity'];
+                                if(error_dict['price'])
+                                    packageError['price_'+index] = error_dict['price'];
+                                    
+                                packagesErrors.push(packageError);
+                                Elevator.toElement('package-'+index);
+
                             }
+                            
                         });
-                    }
-
-                    delete responseErrors['sessions'];
-                }
-
-                if (responseErrors['number_of_sessions']){
-                    Toast.error(vm.strings.TOAST_SESSIONS_NUMBER_ERROR);
-                    delete responseErrors['number_of_sessions'];
-                }
-                if (!_.isEmpty(responseErrors)){
+                      Error.form.addArrayErrors(vm.activity_calendar_form, packagesErrors);
+                      delete responseErrors['packages'];
+                      delete packagesErrors['packages'];
+                      
+                }else{
                     Error.form.add(vm.activity_calendar_form, responseErrors);
-                    Elevator.toElement('activity_calendar_form');
+                    if (!responseErrors['schedules']){
+                        Elevator.toElement('activity_calendar_form');
+                    }
                 }
-
+                
             }
-
             vm.isSaving = false;
         }
 
@@ -124,15 +147,20 @@
                 LABEL_CALENDAR_SEATS: "Cupos disponibles",
                 LABEL_SESSION_PRICE: "Precio (COP)",
                 LABEL_NOTES: "Notas",
-                PLACEHOLDER_NOTES: "Explica con pocas palabras en que se distinque esta fecha de inicio entre las demás",
-                PLACEHOLDER_SESSION_PRICE: "Precio Mínimo COP 30.000",
+                LABEL_SALES: "Ventas",
+                LABEL_SCHEDULES: "Horarios",
+                LABEL_PACKAGE_PRICE: "Precio del paquete de clases",
+                LABEL_PACKAGE_QUANTITY: "Número de Clases",
+                COPY_SCHEDULES:"En una misma publicación puedes tener diferentes fechas de inicio.",
+                PLACEHOLDER_SCHEDULES:"Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
                 TITLE_SESSIONS: "Sesiones",
                 LABEL_SESSIONS_AMOUNT: "En una misma publicación puedes tener diferentes fechas de inicio, cada una con diferentes número de sesiones, fechas y horas.",
                 LABEL_SESSION_DAY: "Día de la sesión",
                 LABEL_SESSION_START_TIME: "Hora de inicio:",
                 LABEL_SESSION_END_TIME: "Hora de fin:",
                 TOAST_SESSIONS_ERROR: "Existe un error en las sesiones",
-                TOAST_SESSIONS_NUMBER_ERROR: "Deber haber mínimo una sesión"
+                TOAST_SESSIONS_NUMBER_ERROR: "Deber haber mínimo una sesión",
+                
 
             });
         }
@@ -182,7 +210,12 @@
             else
                 vm.save_calendar = _createCalendar;
             
+            
+            if(!vm.calendar.packages){
+                vm.calendar.packages = [];
+            }
             console.log(vm.calendar);
+            
             $scope.$watch(
               function(scope){
                 return scope.calendar.number_of_sessions;

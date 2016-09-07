@@ -32,10 +32,13 @@
             MAX_LENGTH_SHORT_DESC: MAX_LENGTH_SHORT_DESC,
             selectCategory: selectCategory,
             checkValidTitle: checkValidTitle,
+            selectSchedule:selectSchedule,
             getSubmitButtonText: getSubmitButtonText,
             loadAutocompleteTags: loadAutocompleteTags,
             getAmazonUrl: getAmazonUrl,
             organizer:organizer,
+            schedulueFixed: true,
+            schedulueOpen:false,
             optionsCertificate : [ {value: false, label: 'Sin certificación'},
                                     {value: true, label: 'Con certificación'}]
         });
@@ -117,13 +120,17 @@
             }
 
         }
+        
+        function selectSchedule(){
+            vm.weHaveSchedule = true;
+        }
         /*****************SETTERS********************/
 
         function _setUpdate() {
             vm.save_activity = updateActivity;
             vm.creating = false;
             vm.weHaveTitle = false;
-
+            vm.weHaveSchedule = false;
             _setPreSaveData();
 
             vm.selected_level = _.find(vm.activity_levels, { 'code': vm.activity.level});
@@ -139,6 +146,8 @@
             vm.save_activity = createActivity;
             vm.creating = true;
             vm.activity.certification = true;
+            vm.activity.is_open=false;
+            vm.weHaveSchedule = false;
             _setPreSaveData(presaveInfo);
             vm.selected_level = vm.activity_levels[0];
         }
