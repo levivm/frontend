@@ -324,6 +324,7 @@
                         COPY_ATTENDES: "Ver asistentes ",
                         COPY_NON_CLOSEST: "Clase no disponible",
                         ADD_TO_WISHLIST: "Agregar a favoritos",
+                        COPY_OPEN_SCHEDULE: "Horario abierto",
                         CURRENCY: "COP",
                         DELETE_ACTIVITY_ERROR: "No puede eliminar esta actividad, tiene estudiantes inscritos, contactanos",
                     });

@@ -42,19 +42,24 @@
           <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
           readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
         </span>
-        <span class="trulii-activity-card__body__content__date" ng-if="activity.closest_calendar">
-          <span  ng-if="!current" ng-bind="activity.date_msg"></span>
-          <span ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
+        <span class="trulii-activity-card__body__content__date" ng-if="::activity.is_open" ng-bind="strings.COPY_OPEN_SCHEDULE">
+        </span>
+        <span ng-if="::!activity.is_open">
+          <span class="trulii-activity-card__body__content__date" ng-if="activity.closest_calendar">
+            <span  ng-if="!current" ng-bind="activity.date_msg"></span>
+            <span ng-if="current" ng-bind="strings.COPY_CURRENT"></span>
+          </span>
         </span>
         <br>
-        <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free, 'trulii-activity-card__body__content__price-rating': activity.organizer.rating}" ng-if="activity.days_to_closest >= 0">
+        <span class="trulii-activity-card__body__content__price" ng-class="{'trulii-activity-card__body__content__free': activity.closest_calendar.is_free, 'trulii-activity-card__body__content__price-rating': activity.organizer.rating}" ng-if="activity.days_to_closest >= 0 || activity.closest_calendar.packages">
           <strong ng-show="activity.closest_calendar.is_free">
             <span ng-bind="::strings.COPY_FREE"></span>
             <br>
           </strong>
-          <span ng-class="::{'text-strike': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar && activity.closest_calendar.session_price">
+          <span ng-class="::{'text-strike': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar && (activity.closest_calendar.session_price || activity.closest_calendar.packages.length > 0 )">
             <span ng-bind="strings.CURRENCY"></span>
-            <span ng-bind=" ::activity.closest_calendar.session_price | number"></span>
+            <span ng-bind=" ::activity.closest_calendar.packages[0].price | number"></span>
+            <span ng-bind="::activity.closest_calendar.session_price | number"></span>
           </span>
         </span>
         <div ng-if="organizer" 
