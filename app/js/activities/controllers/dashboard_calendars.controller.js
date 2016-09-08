@@ -177,7 +177,7 @@
             vm.republish = $stateParams.republish;
             vm.calendar_errors = {};
             _onSectionUpdated();
-
+            console.log(vm.calendars);
             stateChangeUnbinder = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
                     console.group('validation:');

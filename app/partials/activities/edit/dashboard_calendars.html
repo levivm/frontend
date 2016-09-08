@@ -69,7 +69,7 @@
                                     <div class="card__calendar-footer-price" ng-if="calendars.activity.is_open">
                                         <span ng-class="{'text-strike': calendar.is_free}">
                                             <span>COP</span>
-                                            <span ng-bind="::calendar.session_price | currency: '':0"></span>
+                                            <span ng-bind="::calendar.packages[0].price | currency: '':0"></span>
                                         </span>
                                         
                                     </div>
