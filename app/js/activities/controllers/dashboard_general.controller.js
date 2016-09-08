@@ -130,7 +130,7 @@
             vm.save_activity = updateActivity;
             vm.creating = false;
             vm.weHaveTitle = false;
-            vm.weHaveSchedule = false;
+            vm.weHaveSchedule = true;
             _setPreSaveData();
 
             vm.selected_level = _.find(vm.activity_levels, { 'code': vm.activity.level});
