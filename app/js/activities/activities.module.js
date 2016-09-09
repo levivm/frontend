@@ -407,10 +407,12 @@
                organizer.photo = defaultPicture;
             }
 
-            if(!!organizer.locations[0]){
+            /*if(!!organizer.locations[0]){
+                console.log(organizer);
                 var city_id = organizer.locations[0].city;
+                console.log(LocationManager.getCityById(city_id));
                 organizer.city = LocationManager.getCityById(city_id).name;
-            }
+            }*/
 
             deferred.resolve(organizer);
 

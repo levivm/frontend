@@ -265,8 +265,10 @@
                         !!activity.closest_calendar.initial_date){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
+                        // moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day')
                         var duration = moment.duration(end.diff(now));
-                        activity.days_to_closest = Math.ceil(duration.asDays());
+                        activity.days_to_closest = duration.asDays() >= 0 ? Math.ceil(duration.asDays()):
+                                                                           Math.floor(duration.asDays());
                     } else {
                         activity.days_to_closest = -1;
                     }
@@ -324,6 +326,7 @@
                         COPY_ATTENDES: "Ver asistentes ",
                         COPY_NON_CLOSEST: "Clase no disponible",
                         ADD_TO_WISHLIST: "Agregar a favoritos",
+                        COPY_OPEN_SCHEDULE: "Horario abierto",
                         CURRENCY: "COP",
                         DELETE_ACTIVITY_ERROR: "No puede eliminar esta actividad, tiene estudiantes inscritos, contactanos",
                     });
