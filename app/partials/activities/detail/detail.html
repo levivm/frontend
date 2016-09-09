@@ -51,8 +51,8 @@
             </div>
             <div class="seats" >
                 <p ng-show="detail.activity.is_open" ng-bind="detail.strings.LABEL_OPEN_CALENDAR"></p>
-                <p ng-show="!detail.LABEL_STARTS.is_open" ng-bind="detail.strings.LABEL_CLOSED_CALENDAR"></p>
-                <p ng-show="!detail.isSelectedCalendarFull() && !detail.LABEL_STARTS.is_open">
+                <p ng-show="!detail.activity.is_open" ng-bind="detail.strings.LABEL_CLOSED_CALENDAR"></p>
+                <p ng-show="!detail.isSelectedCalendarFull() && !detail.activity.is_open">
                     <span ng-bind="detail.calendar_selected.available_capacity"></span>
                     <ng-pluralize count="detail.calendar_selected.available_capacity"
                         when="{
@@ -61,7 +61,7 @@
                         }">
                     </ng-pluralize>
                 </p>
-                <p ng-show="detail.isSelectedCalendarFull()">
+                <p ng-show="detail.isSelectedCalendarFull() && !detail.activity.is_open">
                     <span ng-bind="detail.strings.COPY_NO_VACANCY"></span>
                 </p>
             </div>
@@ -72,13 +72,29 @@
             <p class="text-uppercase text-center" ng-show="detail.isSelectedCalendarFull()">
               <span ng-bind="::detail.strings.COPY_SIGN_UP_NO_DATES"></span>
             </p>
-            <select class="form-control" ng-if="::(!detail.activity.is_open) && !detail.isSelectedCalendarFull()"
+            <select class="form-control"
+              ng-if="::(!detail.activity.is_open) && !detail.isSelectedCalendarFull()"
               ng-model="detail.calendar_selected" 
               ng-options="calendar as calendar.initial_date | date:'d MMM y' for calendar in detail.activity.upcoming_calendars track by calendar.id"
               name="calendars">
             </select>
+            <select class="form-control" 
+              ng-if="::(detail.activity.is_open) && !detail.isSelectedCalendarFull()"
+              ng-model="detail.selectedPackage"
+              name="calendars"
+              ng-change="detail.changePackage(detail.selectedPackage)">
+              <option
+                value="{{package.id}}"
+                ng-repeat="package in detail.activity.calendars[0].packages track by package.id"
+                ng-pluralize count="package.quantity"
+                when="{
+                '1': package.quantity + detail.strings.COPY_CLASSES_SINGULAR,
+                'other': package.quantity + detail.strings.COPY_CLASSES
+                }">
+              </option>
+            </select>
             <div class="price" ng-show="!detail.isSelectedCalendarFull()">
-                <div ng-show="!detail.isSelectedCalendarFull()">
+                <div ng-show="!detail.isSelectedCalendarFull() && !detail.activity.is_open">
                     <div ng-hide="detail.calendar_selected.is_free">
                         <div class="price__number" ng-bind="detail.calendar_selected.session_price | currency:'':0">
                         </div>
@@ -97,12 +113,26 @@
                         <h2 class="text-center no-margin" ng-bind="::detail.strings.COPY_FREE"></h2>
                     </div>
                 </div>
+                <div ng-show="detail.activity.is_open">
+                  <div class="price__number" ng-bind="detail.package_selected.price | currency:'':0">
+                      </div>
+                      <div class="price__currency">
+                          COP
+                      </div>
+                </div>
             </div>
             <button class="btn btn-success btn-lg btn-rounded btn-block"
                 ng-bind="::detail.strings.ACTION_SIGN_UP"
                 ng-disabled="detail.isSelectedCalendarFull()"
                 ng-hide="detail.isSelectedCalendarFull()"
+                ng-if="!detail.activity.is_open"
                 ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id); detail.widgetSignup()">
+            </button>
+            <button class="btn btn-success btn-lg btn-rounded btn-block"
+              ng-bind="::detail.strings.ACTION_SIGN_UP"
+              ng-if="detail.activity.is_open"
+              ng-click="detail.signUp(detail.activity.id, detail.calendar_selected.id); detail.widgetSignup()"
+             >
             </button>
             <div class="row">
               <div class="col-xs-4 col-xs-offset-4">

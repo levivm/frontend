@@ -147,12 +147,12 @@
           <!--Sessions-->
           <div class="row ">
               <div class="col-xs-12">
-                  <div class="enroll-section__header">
+                  <div class="enroll-section__header" ng-if="!enroll.activity.is_open">
                         <h5>
                             <span ng-bind="::enroll.strings.LABEL_REPEAT_INFO"></span>
                         </h5>
                   </div>
-                  <div class="select-calendar col-md-12 separate-left-less"> 
+                  <div class="select-calendar col-md-12 separate-left-less" ng-if="!enroll.activity.is_open"> 
                     <ui-select ng-model="enroll.calendar" theme="bootstrap" search-enabled="false" >
                       <ui-select-match  >
                         <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
@@ -162,6 +162,27 @@
                         <div class="" ng-click="enroll.changeCalendar(upcoming_calendar)">
                           <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
                           <span class="" ng-bind="upcoming_calendar.initial_date | date:'d MMM y'"></span>
+                        </div>
+                      </ui-select-choices>
+                    </ui-select>
+                    <img class="select-calendar__arrow" ng-src="{{enroll.getAmazonUrl('static/img/about/arrow.png')}}" alt="" />
+                  </div>
+                  <div class="select-calendar col-md-12 separate-left-less" ng-if="enroll.activity.is_open"> 
+                    <ui-select ng-model="enroll.package" theme="bootstrap" search-enabled="false" >
+                      <ui-select-match>
+                        <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_PACKAGE"></span>
+                        <span class="" ng-bind="$select.selected.quantity"></span>
+                      </ui-select-match>
+                      <ui-select-choices repeat="package in enroll.activity.calendars[0].packages">
+                        <div class="" ng-click="enroll.changePackage(package)">
+                          <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_PACKAGE"></span>
+                          <span class="" ng-bind="package.quantity"></span>
+                          <span ng-pluralize count="package.quantity"
+                            when="{
+                            '1': package.quantity + enroll.strings.COPY_CLASSES_SINGULAR,
+                            'other': package.quantity + detaenrollil.strings.COPY_CLASSES
+                            }">
+                          </span>
                         </div>
                       </ui-select-choices>
                     </ui-select>
