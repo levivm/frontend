@@ -13,21 +13,51 @@
             <fieldset>
                 <div class="row separate-below-more separate-left-less">
                     <div class="col-xs-12 separate-above">
-                            <div class="row">
-                                <div class="col-xs-12 col-md-6 form-group" trulii-input-errors-control="beneficiary">
-                                    <label for="beneficiary" class="form-label" ng-bind="::account.strings.LABEL_BENEFICIARY"></label>
-                                    <input id="beneficiary" class="form-control" name="beneficiary"
-                                        ng-model="account.bankingData.beneficiary"
-                                        type="text">
-                                </div>
-                                <div class="col-xs-12 col-md-6 " trulii-input-errors-control="bank">
-                                    <label for="bank" class="form-label" ng-bind="::account.strings.LABEL_BANK"></label>
-                                        <select id="bank" class="form-control" name="bank" ng-model="account.bankingData.bank"
-                                            ng-options="bank.bank_id as bank.bank_name for bank in account.bankingInfo.banks">
-                                            <option value="" ng-bind="::account.strings.OPTION_DEFAULT_SELECT_BANK"></option>
-                                        </select>
-                                </div>
+                       <div class="row separate-below">
+                            <div class="col-xs-12 col-md-6 form-group" trulii-input-errors-control="type_person">
+                                <label for="person" class="form-label" ng-bind="::account.strings.LABEL_TYPE_PERSON"></label>
+                                    <select id="person" class="form-control" name="person"ng-change="account.checkTypePerson()" ng-model="account.bankingData.person_type"
+                                        ng-options="person.type_id as person.type_name for person in account.bankingInfo.person_type">
+                                        <option value="" ng-bind="::account.strings.OPTION_DEFAULT_SELECT_TYPE"></option>
+                                    </select>
                             </div>
+                            <div class="col-xs-12 col-md-6 " ng-if="account.showLegal" trulii-input-errors-control="regimen">
+                                <label for="regimen" class="form-label" ng-bind="::account.strings.LABEL_REGIMEN"></label>
+                                    <select id="regimen" class="form-control" name="regimen" ng-model="account.bankingData.regimen"
+                                        ng-options="regimen.regimen_id as regimen.regimen_name for regimen in account.bankingInfo.regimen">
+                                        <option value="" ng-bind="::account.strings.OPTION_DEFAULT_SELECT_REGIMEN"></option>
+                                    </select>
+                            </div>
+                        </div>
+                        <div class="row separate-below" ng-if="account.showLegal">
+                            <div class="col-xs-12 col-md-6 form-group" trulii-input-errors-control="fiscal_address">
+                                <label for="fiscal_address" class="form-label" ng-bind="::account.strings.LABEL_FISCAL_ADDRESS"></label>
+                                <input id="fiscal_address" class="form-control" name="fiscal_address"
+                                    ng-model="account.bankingData.fiscal_address"
+                                    type="text">
+                            </div>
+                            <div class="col-xs-12 col-md-6 " trulii-input-errors-control="billing_telephone">
+                                <label for="billing_telephone" class="form-label" ng-bind="::account.strings.LABEL_FISCAL_PHONE"></label>
+                                <input id="billing_telephone" class="form-control" name="billing_telephone"
+                                    ng-model="account.bankingData.billing_telephone"
+                                    type="text">
+                            </div> 
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6 form-group" trulii-input-errors-control="beneficiary">
+                                <label for="beneficiary" class="form-label" ng-bind="::account.strings.LABEL_BENEFICIARY"></label>
+                                <input id="beneficiary" class="form-control" name="beneficiary"
+                                    ng-model="account.bankingData.beneficiary"
+                                    type="text">
+                            </div>
+                            <div class="col-xs-12 col-md-6 " trulii-input-errors-control="bank">
+                                <label for="bank" class="form-label" ng-bind="::account.strings.LABEL_BANK"></label>
+                                    <select id="bank" class="form-control" name="bank" ng-model="account.bankingData.bank"
+                                        ng-options="bank.bank_id as bank.bank_name for bank in account.bankingInfo.banks">
+                                        <option value="" ng-bind="::account.strings.OPTION_DEFAULT_SELECT_BANK"></option>
+                                    </select>
+                            </div>
+                        </div>
                          <div class="row ">
                             <div class="col-xs-12 separate-above form-group">
                                 <label class="form-label"  ng-bind="::account.strings.LABEL_DOCUMENT"></label>
