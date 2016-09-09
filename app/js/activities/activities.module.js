@@ -272,7 +272,7 @@
                 }
             })
             .state('activities-enroll', {
-                url: '/actividades/:category_slug/:activity_title/{activity_id:int}/inscribirse/{calendar_id:int}',
+                url: '/actividades/:category_slug/:activity_title/{activity_id:int}/inscribirse/{calendar_id:int}?package_id',
                 controller: 'ActivityDetailEnrollController as enroll',
                 templateUrl: 'partials/activities/detail/enroll.html',
                 resolve: {

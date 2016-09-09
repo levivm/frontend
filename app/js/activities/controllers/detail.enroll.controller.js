@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf', '$filter', 'moment'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf', '$filter', 'moment', '$stateParams'];
 
     function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf, $filter, moment) {
+                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf, $filter, moment, $stateParams) {
 
         var vm = this;
         var isValidDate = false;
@@ -55,6 +55,7 @@
             showReimbursement : false,
             enrolling: false,
             coupon: {},
+            package: null,
             quantity : 0,
             assistants : [],
             assistantsForms:[],
@@ -84,6 +85,7 @@
             removeCoupon: removeCoupon,
             getAmazonUrl: getAmazonUrl,
             changeCalendar:changeCalendar,
+            changePackage: changePackage,
             attendeesScrollDown: attendeesScrollDown,
             attendeesScrollUp: attendeesScrollUp,
             setPayment: setPayment,
@@ -148,6 +150,11 @@
           console.log(vm.calendar);
           vm.capacity = vm.calendar.capacity;
           vm.amount = vm.calendar.session_price;
+          _setTotalCost();
+
+        }
+        function changePackage(calendar){
+          vm.amount = vm.package._price;
           _setTotalCost();
 
         }
@@ -232,6 +239,9 @@
                     payment_method: Payments.KEY_PSE_PAYMENT_METHOD,
 
                 };
+                if(activity.is_open){
+                    data.package_id = vm.package;
+                }
                 _startProccesingPayment();
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                             .finally(_finishProccesingPayment);
@@ -369,6 +379,9 @@
                 assistants: vm.assistants,
             };
 
+            if(activity.is_open){
+                data.package_id = vm.package;
+            }
             ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                               .finally(_finishProccesingPayment);
 
@@ -574,9 +587,7 @@
         }
 
         function addAssistant() {
-          console.log(vm.calendar.available_capacity);
-            if (vm.quantity  < vm.calendar.available_capacity) {
-
+            if ((vm.quantity  < vm.calendar.available_capacity && !vm.activity.is_open) || vm.activity.is_open) {
                 vm.quantity += 1;
                 vm.assistants.push({});
                 _calculateAmount();
@@ -622,7 +633,10 @@
         }
 
         function _isAllBooked(){
-            return vm.calendar.available_capacity <= 0;
+            if(!activity.is_open){
+                return vm.calendar.available_capacity <= 0;
+            }
+            return false;
         }
 
         function _mapMainPicture(activity){
@@ -643,15 +657,25 @@
         }
 
         function _mapVacancy(calendar){
-            calendar.vacancy = calendar.available_capacity;
-            calendar.total_price = calendar.session_price;
-            return calendar;
+            if(!activity.is_open){
+                calendar.vacancy = calendar.available_capacity;
+                calendar.total_price = calendar.session_price;
+                return calendar;
+            }
         }
 
         function _setTotalCost(){
-            if(vm.calendar.is_free) {
-             vm.totalCost = 0;
-            } else {
+            if(!activity.is_open){
+                if(vm.calendar.is_free) {
+                    vm.totalCost = 0;
+                } else {
+                    vm.totalCost = vm.amount;
+                    if(vm.coupon.amount){
+                        vm.totalCost = vm.amount - vm.coupon.amount;
+                    }
+                }
+            }
+            if(activity.is_open){
                 vm.totalCost = vm.amount;
                 if(vm.coupon.amount){
                     vm.totalCost = vm.amount - vm.coupon.amount;
@@ -660,18 +684,20 @@
         }
 
         function _setAssistants() {
-            if(_isAllBooked()) {
-                vm.quantity = 0;
-                vm.assistants = [];
-            } else {
-                vm.quantity = 1;
-                if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
-                    vm.assistants = [{}];
+            if(!activity.is_open){
+                if(_isAllBooked()) {
+                    vm.quantity = 0;
+                    vm.assistants = [];
                 } else {
-                    vm.assistants = [angular.extend({}, currentUser.user)];
+                    vm.quantity = 1;
+                    if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
+                        vm.assistants = [{}];
+                    } else {
+                        vm.assistants = [angular.extend({}, currentUser.user)];
+                    }
                 }
             }
-        }
+       }
 
         function _setOrganizer(){
             if(!activity.organizer.photo){
@@ -799,6 +825,7 @@
                 LABEL_PAYMENT_INFO: "Pago",
                 LABEL_TOTAL_AMOUNT: "Total a Pagar",
                 LABEL_DROPDOWN_DATE_INIT: "Fecha de inicio: ",
+                LABEL_DROPDOWN_PACKAGE: "Paquete: ",
                 LABEL_ID_NUMBER: "Identificación",
                 PLACEHOLDER_ID_NUMBER: "Ej. 18.345.995",
                 LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
@@ -842,7 +869,9 @@
                 REASON_COPY_SECURE_3: "con nosotros.",
                 ACTION_CONTACT_US: "Contáctanos",
                 LABEL_PAYMENT_ENCRYPTED: "Pago encriptado",
-                TOOLTIP_CVV: "Los 3 dígitos en la parte trasera de la tarjeta"
+                TOOLTIP_CVV: "Los 3 dígitos en la parte trasera de la tarjeta",
+                COPY_CLASSES_SINGULAR: " Clase",
+                COPY_CLASSES: " Clases"
             });
         }
 
@@ -872,6 +901,12 @@
             });
         }
 
+        function _getSelectedPackage(){
+            var pack = _.find(activity.calendars[0].packages, {'id': parseInt($stateParams.package_id)})
+            if (pack)
+                vm.package = pack;
+        }
+
         function _activate(){
             _setStrings();
             _setOrganizer();
@@ -899,6 +934,7 @@
                 vm.pseData.payerEmail = currentUser.user.email;
                 _setAssistants();
             }
+            _getSelectedPackage();
             //Function for angularSeo
             $scope.htmlReady();
 
