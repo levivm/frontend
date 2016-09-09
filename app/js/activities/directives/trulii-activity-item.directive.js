@@ -273,8 +273,6 @@
                         activity.days_to_closest = -1;
                     }
 
-                    console.log('activity', activity.title);
-                    console.log('activity days to go', activity.days_to_closest);
                     if(activity.days_to_closest < 0){
                         activity.date_msg = scope.strings.COPY_WAIT_NEW_DATES;
                     } else if(activity.days_to_closest === 0){
