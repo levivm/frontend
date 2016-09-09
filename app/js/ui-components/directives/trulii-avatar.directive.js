@@ -46,7 +46,7 @@
                     var name='';
                     if(scope.user){
                        if(!scope.user.photo){
-                            if(!scope.user.user ){
+                            if(!scope.user.user || scope.user.is_organizer){
                                 name= scope.user.name;
                             }else{
                                 name = scope.user.user.first_name;
