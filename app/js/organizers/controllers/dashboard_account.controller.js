@@ -29,7 +29,8 @@
             reimbursements : [],
             changeEmail : changeEmail,
             changePassword : changePassword,
-            updateBankingInfo: updateBankingInfo
+            updateBankingInfo: updateBankingInfo,
+            checkTypePerson: _checkTypePerson
         });
 
         _activate();
@@ -44,6 +45,7 @@
 
             function success(bankingData){
                 vm.isSaving = false;
+                angular.extend(vm.bankingData, bankingData);
                 Toast.generics.weSaved();
             }
 
@@ -103,16 +105,28 @@
                 }
             }
         }
+        
+        function _checkTypePerson(){
+            vm.showLegal =  vm.bankingData.person_type==2 ? true:false;
+            console.log(vm.showLegal);
+        }
 
         //--------- Internal Functions ---------//
 
         function _setOrganizerBankingData(){
+            console.log(vm.bankingInfo);
             if(!(_.isEmpty(bankingData))){ 
                 var current_bank_data = _.find(vm.bankingInfo.banks, 
                                                 { 'bank_name': bankingData.bank });
                 vm.bankingData = bankingData; 
                 vm.bankingData.bank = current_bank_data.bank_id;
             }
+        }
+        
+        function _setLegalData(){ 
+            vm.bankingData.regimen = vm.bankingData.regimen ? vm.bankingData.regimen:"";
+            vm.bankingData.fiscal_address = vm.bankingData.fiscal_address ? vm.bankingData.fiscal_address:"";
+            vm.bankingData.billing_telephone = vm.bankingData.billing_telephone ? vm.bankingData.billing_telephone:"";
         }
 
         function _setStrings() {
@@ -136,6 +150,10 @@
                 LABEL_REPEAT_PASSWORD: "Repetir Nueva Contraseña",
                 LABEL_EMAIL: "Correo Electrónico",
                 LABEL_BANK: "Banco",
+                LABEL_TYPE_PERSON: "Tipo de persona",
+                LABEL_REGIMEN:"Regimen",
+                LABEL_FISCAL_ADDRESS: "Dirección fiscal",
+                LABEL_FISCAL_PHONE: "Teléfono fiscal",
                 LABEL_DOCUMENT: "Documento",
                 LABEL_DOCUMENT_TYPE: "Tipo de Documento",
                 LABEL_DOCUMENT_NUMBER: "Número de Documento",
@@ -147,6 +165,8 @@
                 SUB_SECTION_EMAIL: "Correo Electrónico",
                 SUB_SECTION_PASSWORD: "Contraseña",
                 OPTION_DEFAULT_SELECT_BANK: "Seleccione un banco",
+                OPTION_DEFAULT_SELECT_TYPE: "Seleccione un tipo de persona",
+                OPTION_DEFAULT_SELECT_REGIMEN: "Seleccione un regimen",
                 OPTION_DEFAULT_SELECT_DOCUMENT_TYPE: "Tipo de Documento",
                 OPTION_DEFAULT_SELECT_ACCOUNT_TYPE: "Tipo de Cuenta",
                 TOAST_ERROR_PUT: "Por seguridad no puedes modificar los datos bancarios, comunicate con nosotros."
@@ -156,6 +176,10 @@
         function _activate() {
             _setStrings();
             _setOrganizerBankingData();
+            vm.showLegal = false;
+            _checkTypePerson();
+            _setLegalData();
+            
         }
 
     }

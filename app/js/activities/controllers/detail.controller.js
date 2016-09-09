@@ -40,6 +40,8 @@
             activity : null,
             organizer : organizer,
             calendar_selected : null,
+            package_selected: 1,
+            selectedPackage: 0,
             selectedActivity: 0,
             currentGalleryPicture: 0,
             galleryOptions: {
@@ -84,7 +86,8 @@
             facebookShares: 0,
             schedulesScrollUp: schedulesScrollUp,
             schedulesScrollDown: schedulesScrollDown,
-            schedulesOffset: 0
+            schedulesOffset: 0,
+            changePackage: changePackage
 
             
         });
@@ -92,6 +95,12 @@
         _activate();
 
         //--------- Exposed Functions ---------//
+
+        function changePackage(pack){
+            console.log(pack);
+            vm.package_selected = _.find(vm.activity.calendars[0].packages, {'id': parseInt(pack)});
+            console.log(vm.package_selected);
+        }
 
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
@@ -134,6 +143,9 @@
                 calendar_id: calendar_id
             };
 
+            if(vm.activity.is_open){
+                enrollParams.package_id = vm.selectedPackage;
+            }
             var registerParams = {
                 toState: {
                     state: 'activities-enroll',
@@ -346,6 +358,14 @@
             }
         }
 
+        function _getSelectedPackage(activity){
+            if(activity.is_open){
+                console.log(activity.calendars[0].packages[0]);
+                vm.selectedPackage = activity.calendars[0].packages[0].id.toString();
+                vm.package_selected = activity.calendars[0].packages[0];
+            }
+        }
+
         function _setSocialShare(){
             var current_url = $state.href($state.current.name, $state.params, {absolute: true});
             vm.social = {};
@@ -463,7 +483,9 @@
                 COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas",
                 LABEL_OPEN_CALENDAR: "Horario Abierto",
                 LABEL_CLOSED_CALENDAR: "Horario Fijo",
-                LABEL_STARTS: "Inicios"
+                LABEL_STARTS: "Inicios",
+                COPY_CLASSES_SINGULAR: " Clase",
+                COPY_CLASSES: " Clases"
             });
         }
         function _updateWidgetValues(){
@@ -526,7 +548,6 @@
 
         }
 
-
         function _activate(){
             console.log('activating');
             _setStrings();
@@ -544,7 +565,8 @@
                 reviews : reviews.results,
                 totalReviews: reviews.results.length,
                 hasMoreReviews: reviews.results.length > 3,
-                calendar_selected : _getSelectedCalendar(activity)
+                calendar_selected : _getSelectedCalendar(activity),
+                package_selected: _getSelectedPackage(activity)
             });
 
 
