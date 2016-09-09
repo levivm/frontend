@@ -265,12 +265,16 @@
                         !!activity.closest_calendar.initial_date){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
+                        // moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day')
                         var duration = moment.duration(end.diff(now));
-                        activity.days_to_closest = Math.ceil(duration.asDays());
+                        activity.days_to_closest = duration.asDays() >= 0 ? Math.ceil(duration.asDays()):
+                                                                           Math.floor(duration.asDays());
                     } else {
                         activity.days_to_closest = -1;
                     }
 
+                    console.log('activity', activity.title);
+                    console.log('activity days to go', activity.days_to_closest);
                     if(activity.days_to_closest < 0){
                         activity.date_msg = scope.strings.COPY_WAIT_NEW_DATES;
                     } else if(activity.days_to_closest === 0){

@@ -118,7 +118,7 @@
 
         function isSelectedCalendarFull(){
             if(vm.calendar_selected){
-                return vm.calendar_selected.available_capacity <= 0 || moment(vm.calendar_selected.closing_sale).isBefore(moment().valueOf() , 'day');
+                return vm.calendar_selected.available_capacity <= 0 || moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day');
             } else {
                 return true;
             }
