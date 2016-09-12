@@ -3,9 +3,8 @@
   <form class="" id="activity_calendar_form" name='calendar.activity_calendar_form' ng-submit="calendar.save_calendar()" novalidate >
 
     <div>
-        <div class="col-xs-12 panel-default panel-default__dashboard" ng-if="!calendar.activity.is_open">
+        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub" ng-if="!calendar.activity.is_open">
                 <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_CALENDAR_TITLE"></span>
-                <span  class="separate-left-less" ng-bind="::calendar.strings.COPY_CALENDAR_INFO"></span>
         </div>
             
          <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub flex-betweent-container" ng-if="calendar.activity.is_open">
@@ -16,8 +15,12 @@
                     <span ng-click="calendar.addPackage()">+</span>
                 </div>
         </div>
-        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second" ng-if="calendar.activity.is_open">
+        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second flex-betweent-container" >
                <span  class="" ng-bind="::calendar.strings.COPY_CALENDAR_INFO"></span>
+                <div class="flex-betweent-container">
+                    <span class="sales-label" for="enroll_close" ng-bind="::calendar.strings.LABEL_SALES"></span>
+                    <switch id="enroll_close" name="enroll_close" ng-model="calendar.calendar.enroll_open" on="Abiertas" off="Cerradas" class="green"></switch>
+                </div>
         </div>
         
         <div class="content-packages" ng-if="calendar.activity.is_open">
@@ -84,13 +87,6 @@
                 </div>
 
             </div>
-            
-            <div class="col-md-6 separate-above-less">
-                <label class="control-label" for="enroll_close" ng-bind="::calendar.strings.LABEL_SALES"></label>
-                <div class="separate-left-less">
-                    <switch id="enroll_close" name="enroll_close" ng-model="calendar.calendar.enroll_open" on="Abiertas" off="Cerradas" class="green"></switch>
-                </div>
-            </div>
         </div>
             <div class="row">
                 <div class="form-group col-xs-12 separate-above" trulii-input-errors-control="note" >
@@ -108,10 +104,15 @@
                 <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_SCHEDULES"></span>
                 <span  class="separate-left-less" ng-bind="::calendar.strings.COPY_SCHEDULES"></span>
             </div>
-            <div class="form-group col-xs-12 separate-below-more" trulii-input-errors-control="schedules">
+            <div class="form-group col-xs-12 separate-below" trulii-input-errors-control="schedules">
                     <text-angular name="schedules"
                         placeholder="{{::calendar.strings.PLACEHOLDER_SCHEDULES}}"
                         ng-model="calendar.calendar.schedules"></text-angular>
+            </div>
+            
+             <div class="trulii-checkbox separate-left-less">
+                <input type="checkbox" id="cert" ng-model="calendar.calendar.is_weekend" ng-click="search.setCertification()">
+                 <label  class="text-regular" for="cert"><span></span>{{calendar.strings.LABEL_WEEKEND}}</label>
             </div>
         </div>
         <div class="separate-above separate-below" >

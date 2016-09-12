@@ -37,6 +37,7 @@
         
         function _createCalendar() {
             Error.form.clear(vm.activity_calendar_form);
+            console.log(vm.calendar);
             if(_checkIfPackages()){
                 Toast.error(vm.strings.ERROR_NON_PACKAGES);
                 vm.isSaving = false;
@@ -68,6 +69,8 @@
         function lessPackage() {
             vm.calendar.packages.pop();
         }
+        
+
 
         function _updateCalendar() {
             _clearCalendarForm();
@@ -162,6 +165,7 @@
                 LABEL_SCHEDULES: "Horarios",
                 LABEL_PACKAGE_PRICE: "Precio del paquete de clases",
                 LABEL_PACKAGE_QUANTITY: "Número de Clases",
+                LABEL_WEEKEND: "Tu actividad se realizará los fines de semana",
                 COPY_SCHEDULES:"En una misma publicación puedes tener diferentes fechas de inicio.",
                 PLACEHOLDER_SCHEDULES:"Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
                 TITLE_SESSIONS: "Sesiones",
@@ -217,16 +221,20 @@
 
             vm.isSaving = false;
 
-            if (vm.calendar.id)
-                vm.save_calendar = _updateCalendar;
-            else
+            if (vm.calendar.id){
+                vm.save_calendar = _updateCalendar; 
+            }
+            else{
                 vm.save_calendar = _createCalendar;
+                vm.calendar.enroll_open=true;
+            }
+                
             
             
             if(!vm.calendar.packages){
                 vm.calendar.packages = [];
             }
-            
+            console.log(vm.calendar);
             $scope.$watch(
               function(scope){
                 return scope.calendar.number_of_sessions;
