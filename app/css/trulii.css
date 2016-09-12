@@ -12844,6 +12844,9 @@ hr.on-light {
   border-radius: 4px;
   margin-right: 10px;
 }
+.trulii-checkbox .text-regular {
+  font-weight: 400 !important;
+}
 .trulii-checkbox input[type="checkbox"] + label span:before {
   position: absolute;
   left: 2px;
@@ -13029,7 +13032,7 @@ hr.on-light {
   font-weight: 800;
 }
 .switch.checked small {
-  left: 80px;
+  left: 70px;
 }
 .switch .off {
   top: 20%;
@@ -17756,6 +17759,13 @@ td {
   right: 20px;
   top: 9px;
 }
+.panel-default__dashboard .sales-label {
+  font-weight: 600;
+  color: #979797 !important;
+  font-size: 1em;
+  text-transform: uppercase;
+  margin-right: 1rem;
+}
 .panel-default .panel-date {
   font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 10em;
@@ -18726,7 +18736,6 @@ ul.dropdown-menu:after {
 }
 .card__calendar-date:last-child {
   border-right: none;
-  padding-left: 1em;
 }
 .card__calendar-footer {
   display: flex;
