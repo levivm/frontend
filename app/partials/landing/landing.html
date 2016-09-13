@@ -194,7 +194,7 @@
         <div class="trulii-cover__video limited-width"  >
           <div class="trulii-cover__video-text">
             <h2 class="title " ng-bind="::home.strings.VIDEO_COPY"></h2>
-            <p ng-bind="::home.strings.VIDEO_TEXT"></p>
+            <p ng-bind-html="::home.strings.VIDEO_TEXT"></p>
           </div>
           
           <div class="trulii-cover__video-play " ng-click="truliiVideo.playVideo(); home.toggleVideoShow()">

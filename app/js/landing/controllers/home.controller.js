@@ -92,22 +92,22 @@
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 HEADER_TITLE_COPY: "¡Hoy es un nuevo día para aprender!",
-                HEADER_TEXT_COPY: "Encuentra e inscríbete en las mejores clases y cursos de tu ciudad.",
+                HEADER_TEXT_COPY: "Encuentra e inscríbete en las mejores clases y cursos en Bogotá.",
                 HEADER_SEARCH_PLACEHOLDER: "¿Qué quieres aprender hoy?",
                 HEADER_CITY_PLACEHOLDER: "Elige tu ciudad",
-                REASON_NO_COMMISSIONS: "Sin comisiones",
-                REASON_COPY_NO_COMMISSIONS: "Nuestro servicio para ti es totalmente gratuito.",
+                REASON_NO_COMMISSIONS: "Servicio gratuito",
+                REASON_COPY_NO_COMMISSIONS: "Sólo paga por el valor de la clase. No cobramos comisiones.",
                 REASON_REFUND: "Devolución garantizada",
-                REASON_COPY_REFUND: "Protegemos tu pago hasta que se efectue la clase.",
-                REASON_SECURE: "Pago seguro",
-                REASON_COPY_SECURE: "Los datos del pago de tu inscripción están seguros con nosotros.",
+                REASON_COPY_REFUND: "Te devolvemos tu dinero en caso de no realizarse la actividad.",
+                REASON_SECURE: "Paga seguro",
+                REASON_COPY_SECURE: "Los datos de tu pago están encriptados y seguros con nosotros.",
                 ACTIVITIES_TITLE_COPY: "Actividades populares",
                 ACTIVITIES_TEXT_COPY: "Hacemos de tu ciudad un sitio con infinitas posibilidades para aprender algo nuevo.",
                 ACTIVITIES_BUTTON_COPY: "Ver más actividades similares",
                 VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
-                VIDEO_TEXT: "Somos una plataforma que facilitará tu aprendizaje, te permitirá aprovechar tu tiempo libre y mejorarará tu currículum. " +
-                             "Puedes aprender desde finanzas hasta yoga. Encuentra e inscríbite en las mejores clases y cursos de tu ciudad, todo en un sólo sitio. "+
-                             " ¡Conoce más sobre nosotros en este video!",
+                VIDEO_TEXT: "Queremos abrirte las puertas del conocimiento en tu ciudad, facilitar tu aprendizaje, ayudarte a mejorar tu currículum y ayudarte a aprovechar tu tiempo libre. " +
+                             "Encuentra en un solo sitio e inscríbete en línea en cualquier clase, curso, taller o diplomado de tu ciudad, desde clases de yoga hasta diplomados de finanzas. "+
+                             "<br>¡Ve nuestro video para que nos conozcas un poquito más!",
                 CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
                 HOW_TITLE_COPY: "¿Cómo funciona?",
@@ -117,7 +117,7 @@
                 HOW_SIGN_UP_COPY: "Inscríbete",
                 HOW_SIGN_UP_TEXT: "En la actividad que más te llame la atención.",
                 HOW_LEARN_COPY: "Aprende",
-                HOW_LEARN_TEXT: "¡Disfruta y parende todo lo que puedas!",
+                HOW_LEARN_TEXT: "¡Disfruta y aprende todo lo que puedas!",
                 HOW_REVIEW_COPY: "Evalúa",
                 HOW_REVIEW_TEXT: "La actividad para que otros tengan una referencia.",
                 ORGANIZERS_TITLE: "Algunos de nuestros organizadores",

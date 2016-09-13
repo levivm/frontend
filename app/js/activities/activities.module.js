@@ -240,7 +240,7 @@
                     reviews: getReviews,
                     calendars: getCalendars,
                     organizer: getActivityOrganizer,
-                    relatedActivities: getOrganizerActivities
+                    relatedActivities: getRelatedActivities
                 },
                 metaTags:{
                     title: function(activity){
@@ -682,6 +682,13 @@
         function getCategoryActivities(ActivitiesManager, category){
             return ActivitiesManager.getCategoryActivities(category.data.id);
         }
+        
+        
+        getRelatedActivities.$inject = ['ActivitiesManager','activity'];
+        function getRelatedActivities(ActivitiesManager, activity){
+            return ActivitiesManager.getCategoryActivities(activity.category.id);
+        }
+
 
     }
 
