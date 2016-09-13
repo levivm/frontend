@@ -102,8 +102,7 @@
 
         function _setAddressAutoComplete(){
             if(!vm.activity.location && vm.organizer.location)
-                vm.address_autocomplete = angular.isUndefined(vm.organizer.location.address)?
-                                                []:[vm.organizer.location.address];
+                vm.address_autocomplete = !vm.organizer.location.address? []:[vm.organizer.location.address]; 
         }
 
         function _onSectionUpdated() {
@@ -116,7 +115,6 @@
             _setStrings();
             vm.map = LocationManager.getMap(vm.activity.location, true);
             vm.marker = LocationManager.getMarker(vm.activity.location);
-            console.log(vm.activity.location);
             vm.marker.options = {draggable:true, icon: getAmazonUrl('static/img/map.png') };
             Elevator.toTop();
         }
