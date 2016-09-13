@@ -145,22 +145,18 @@
         }
 
         function changeCalendar(calendar){
-          console.log(vm.activity);
           vm.calendar = _mapVacancy(calendar);
-          console.log(vm.calendar);
           vm.capacity = vm.calendar.capacity;
-          vm.amount = vm.calendar.session_price;
-          _setTotalCost();
+          _calculateAmount();
 
         }
-        function changePackage(calendar){
-          vm.amount = vm.package._price;
-          _setTotalCost();
-
+        function changePackage(_package){
+          vm.package = _package;
+          _calculateAmount();
         }
 
         function changeMonth(){
-          var numberMonth = moment().month(vm.monthSelected).format("M")
+          var numberMonth = moment().month(vm.monthSelected).format("M");
           vm.cardData.exp_month =  Number(numberMonth);
         }
 
@@ -387,7 +383,6 @@
 
 
             function _enrollSuccess(order) {
-                console.log('enrollSuccessFree');
                 Analytics.studentEvents.enrollSuccessFree();
                 vm.calendar.addAssistants(order.assistants);
                 vm.success = true;
@@ -407,7 +402,6 @@
                         return (!(_.isEmpty(error_dict)));
                     });
                     var base_selector = 'assistant_card_';
-                    // console.log('selector',base_selector.concat(error_index));
                     Elevator.toElement(base_selector.concat(error_index));
                     Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                 }
@@ -448,7 +442,6 @@
 
             function successCheckCardExpiry(isValid){
                 isValidDate = true;
-                // vm.cardData.invalidExpiry = true;
                 Error.form.clearField(vm.enrollForm,'invalidExpiry');
                 Payments.validateCardType(vm.cardData.number)
                         .then(validateCardTypeSuccess,validateCardTypeError);
@@ -496,7 +489,8 @@
                     buyer: buyer,
                     last_four_digits: last_four_digits,
                     deviceSessionId : deviceSessionId,
-                    payment_method: Payments.KEY_CC_PAYMENT_METHOD
+                    payment_method: Payments.KEY_CC_PAYMENT_METHOD,
+                    package: vm.package ? vm.package.id : null
                 };
 
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
@@ -628,7 +622,7 @@
         //--------- Internal Functions ---------//
 
         function _calculateAmount() {
-            vm.amount = vm.quantity * vm.calendar.session_price;
+            vm.amount = vm.quantity * _getSelectedCalendarPrice();
             _setTotalCost();
         }
 
@@ -662,6 +656,16 @@
                 calendar.total_price = calendar.session_price;
                 return calendar;
             }
+            return calendar;
+        }
+
+        function _getPrice(calendar){
+            console.log(activity.is_open);
+            console.log("packete ---", vm.package);
+            if (activity.is_open && vm.package)
+                return vm.package.price;
+
+            return calendar.session_price;
         }
 
         function _setTotalCost(){
@@ -695,6 +699,14 @@
                     } else {
                         vm.assistants = [angular.extend({}, currentUser.user)];
                     }
+                }
+            }
+            else{
+                vm.quantity = 1;
+                if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
+                    vm.assistants = [{}];
+                } else {
+                    vm.assistants = [angular.extend({}, currentUser.user)];
                 }
             }
        }
@@ -901,7 +913,14 @@
             });
         }
 
-        function _getSelectedPackage(){
+        function _getSelectedCalendarPrice(){
+            if (activity.is_open && vm.package)
+                return vm.package.price;
+
+            return vm.calendar.session_price;
+        }
+
+        function _setSelectedPackage(){
             var pack = _.find(activity.calendars[0].packages, {'id': parseInt($stateParams.package_id)})
             if (pack)
                 vm.package = pack;
@@ -912,6 +931,7 @@
             _setOrganizer();
             _showWidget();
             _initWidget();
+            _setSelectedPackage();
             vm.stateInfo = {
                 toState: {
                     state : $state.current.name,
@@ -921,7 +941,7 @@
 
             vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
             vm.calendar = _mapVacancy(calendar);
-            vm.amount = calendar.session_price;
+            vm.amount = _getPrice(calendar);
             activity.calendars= $filter('orderBy')(activity.calendars, 'initial_date');
             activity = _mapCalendars(activity);
             vm.activity = activity;
@@ -934,7 +954,7 @@
                 vm.pseData.payerEmail = currentUser.user.email;
                 _setAssistants();
             }
-            _getSelectedPackage();
+            
             //Function for angularSeo
             $scope.htmlReady();
 
