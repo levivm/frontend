@@ -84,7 +84,6 @@
           
           organizer.getReviews(vm.unreadPaginationOpts.pageNumber, vm.unreadPaginationOpts.itemsPerPage, vm.TYPE_UNREAD)
           .then(function(response){
-              console.log(response);
               vm.unread_reviews = response.results.map(mapActivityToReview);
               vm.unreadPaginationOpts.totalItems = response.count;
               //unreadReviewsCount = response.count;

@@ -57,7 +57,6 @@
                value.showMobile= false;
                return value; 
             });
-            console.log(vm.order.assistants);
         }
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }

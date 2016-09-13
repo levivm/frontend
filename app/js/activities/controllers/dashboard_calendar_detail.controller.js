@@ -37,7 +37,6 @@
         
         function _createCalendar() {
             Error.form.clear(vm.activity_calendar_form);
-            console.log(vm.calendar);
             if(_checkIfPackages()){
                 Toast.error(vm.strings.ERROR_NON_PACKAGES);
                 vm.isSaving = false;
@@ -74,7 +73,6 @@
 
         function _updateCalendar() {
             _clearCalendarForm();
-            console.log(vm.activity.is_open);
             if(_checkIfPackages()){
                 Toast.error(vm.strings.ERROR_NON_PACKAGES);
                 vm.isSaving = false;
@@ -98,8 +96,6 @@
             return vm.activity.is_open && vm.calendar.packages.length<1;
         }
         function _errored(responseErrors) {
-            console.log(vm.calendar);
-            console.log(responseErrors);
             var packagesErrors = [];
             var packageError ={};
             if (responseErrors) {
@@ -234,7 +230,6 @@
             if(!vm.calendar.packages){
                 vm.calendar.packages = [];
             }
-            console.log(vm.calendar);
             $scope.$watch(
               function(scope){
                 return scope.calendar.number_of_sessions;

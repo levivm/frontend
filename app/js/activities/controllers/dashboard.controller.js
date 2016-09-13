@@ -185,7 +185,6 @@
             activity.updateAllSections();
 
             match_required_steps(pc.steps, pc.activity.required_steps);
-            console.log(pc.activity);
             function match_required_steps(steps, required_steps){
                 _.each(steps, function(step){
 

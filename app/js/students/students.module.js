@@ -166,11 +166,11 @@
             }
 
             function error(response){
-                if(response === null){
+               /* if(response === null){
                     console.error("getCurrentStudent. There is no Authenticated User");
                 } else {
                     console.warn("getCurrentStudent. The Authenticated User is not a Student");
-                }
+                }*/
                 return $q.reject();
             }
         }
@@ -292,7 +292,6 @@
             }
 
             function error(response){
-                console.log('Error retrieving Student Reviews', response);
                 return [];
             }
         }

@@ -76,8 +76,6 @@
                 .then(updateSuccess, _errored);
 
             function updateSuccess(response) {
-                console.log("response ",response);
-
                 vm.isCollapsed = false;
                 vm.isSaving = false;
                 angular.extend(activity, vm.activity);
@@ -225,7 +223,6 @@
                 _setCreate();
 
             vm.checkValidTitle(true);
-            console.log(organizer);
 
             _onSectionUpdated();
         }

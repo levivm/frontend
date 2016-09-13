@@ -79,7 +79,6 @@
 
             vm.nextPaginationOpts.totalItems = wishListActivities.count;
             vm.activities = wishListActivities.results;
-            console.log(vm.activities);
 
         }
         

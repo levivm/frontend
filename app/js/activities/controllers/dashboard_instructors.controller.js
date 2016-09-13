@@ -49,7 +49,6 @@
             }, 0);
 
             function result(){
-                console.log('onChange.vm.instructors:', activity);
                  vm.activity = angular.copy(activity);
                 if(vm.countInstructors>0){
                     vm.countInstructors--;
@@ -137,11 +136,6 @@
             _setStrings();
             Elevator.toTop();
             _setInstructors();
-            console.log(organizer);
-            activity.getInstructors().then(function(instructors){
-                console.log('activity.getInstructors:', instructors);
-            });
-
         }
 
     }

@@ -51,7 +51,6 @@
 
             function error(responseErrors){
                 vm.isSaving = false;
-                console.log('Error updating bankingData', responseErrors);
                 if(responseErrors){
                     Error.form.add(vm.account_form_banking_info, responseErrors);
                 }
@@ -108,13 +107,11 @@
         
         function _checkTypePerson(){
             vm.showLegal =  vm.bankingData.person_type==2 ? true:false;
-            console.log(vm.showLegal);
         }
 
         //--------- Internal Functions ---------//
 
         function _setOrganizerBankingData(){
-            console.log(vm.bankingInfo);
             if(!(_.isEmpty(bankingData))){ 
                 var current_bank_data = _.find(vm.bankingInfo.banks, 
                                                 { 'bank_name': bankingData.bank });

@@ -158,7 +158,16 @@
           <div class="copy">
             <!--12 personas aman esta actividad-->
             <span ng-bind="detail.activity.wishlist_count"></span>
-            <span ng-bind="::detail.strings.COPY_NUMBER_OF_LIKES"></span>
+            <span>
+              <ng-pluralize count="detail.activity.wishlist_count"
+                        when="{
+                        '0': detail.strings.COPY_NUMBER_OF_LIKES,
+                        '1': detail.strings.COPY_SINGULAR_NUMBER_OF_LIKES,
+                        'other': detail.strings.COPY_NUMBER_OF_LIKES
+                        }">
+              </ng-pluralize>
+            </span>
+            
             <!--<span ng-if="detail.activity.wishlist_count === 0" ng-bind="::detail.strings.COPY_BE_THE_FIRST"></span>-->
           </div>
         </div>

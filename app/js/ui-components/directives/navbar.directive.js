@@ -188,7 +188,6 @@
                     Authentication.getAuthenticatedAccount().then(success, error);
 
                     function success(user) {
-                        console.log(user);
                         if (!user) {
                             scope.user = null;
                             return;
@@ -219,7 +218,6 @@
                     }
                     
                     function error() {
-                        console.error("navbar.getUser. Couldn't get user");
                         scope.user = null;
                         _setUserChangedWatch();
                     }
@@ -329,7 +327,6 @@
                 function _setUserChangedWatch(){
                     unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
                         event.preventDefault();
-                        console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
                         _getUser();
                         unsubscribeUserChanged();
                     });
@@ -418,10 +415,8 @@
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
-                        console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         _getUser();
                     });
-                    console.log($state.current.name);
                     
                     
                     scope.$on('$destroy', _cleanUp);

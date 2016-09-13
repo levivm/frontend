@@ -80,19 +80,16 @@
         //--------- Exposed Functions ---------//
 
         function openDatePicker($event, date){
-          console.log('openDatePicker');
           $event.preventDefault();
           $event.stopPropagation();
 
           if(date === 'sales_from_date'){
             vm.salesFilter.from_date_opened = true;
             vm.salesFilter.until_date_opened = false;
-            console.log('sales_from_date');
           }
           if(date === 'sales_until_date'){
             vm.salesFilter.until_date_opened = true;
             vm.salesFilter.from_date_opened = false;
-            console.log('sales_until_date');
           }
           
           //updateByQuery(vm.TYPE_SALES);
@@ -165,7 +162,6 @@
         function changePageWithdraws(){
             organizer.getWithDraw(vm.withDrawsPaginationOpts.pageNumber, vm.withDrawsPaginationOpts.itemsPerPage)
                      .then(function (response) {
-                       console.log(response);
                        vm.withdrawals = response.results;
                        vm.withDrawsPaginationOpts.totalItems = response.count;
                        vm.withdrawals = response.results.slice(0, vm.withDrawsPaginationOpts.itemsPerPage);

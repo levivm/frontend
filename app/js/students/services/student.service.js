@@ -234,7 +234,6 @@
                 }
 
                 function error(response) {
-                    console.log("Error getting student reviews: ", response.data);
                     deferred.reject(reviews);
                 }
             }

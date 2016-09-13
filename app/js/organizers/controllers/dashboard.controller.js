@@ -127,7 +127,6 @@
           $scope.$on('update_reviews',
             function(){
               organizer.getReviews(1, 6, 'unread').then(function(data){
-                console.log('data', data);
                 vm.unreadReviewsCount = data.count;
               });
             }

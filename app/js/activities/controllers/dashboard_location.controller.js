@@ -67,7 +67,6 @@
 
         function _setLocation(){
             if (!vm.activity.location){
-                console.log('Activity location',vm.activity.location);
                 if (vm.organizer.location){
                     vm.activity.location = angular.copy(vm.organizer.location);
                     vm.activity.location.address = null;
@@ -80,7 +79,6 @@
             } else {
                 var city_id = angular.isUndefined(vm.activity.location.city.id)?
                                         vm.activity.location.city:vm.activity.location.city.id;
-                console.log('Activity location',vm.activity.location.city);
                 vm.activity.location.city = LocationManager.getCityById(city_id);
             }
         }
