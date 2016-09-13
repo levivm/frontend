@@ -63,7 +63,6 @@
         /*      Exposed Functions      */
 
         function openDatePicker($event, date){
-          console.log('openDatePicker');
           $event.preventDefault();
           $event.stopPropagation();
 
@@ -119,12 +118,11 @@
 
         function success(ordersResponse){
             vm.search = true;
-            console.log(ordersResponse);
             orders = ordersResponse;
             _setOrders();
         }
         function error(orders){
-            console.log('Error retrieving Student Orders History');
+            //console.log('Error retrieving Student Orders History');
         }
         
         function _setOrders() {

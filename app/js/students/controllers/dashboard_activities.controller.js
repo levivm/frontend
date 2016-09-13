@@ -77,7 +77,6 @@
                   });
                   break;
                 case vm.TYPE_CURRENT:
-                  console.log(vm.currentPaginationOpts);
                   ActivitiesManager.getStudentActivities(student.id, vm.TYPE_CURRENT, vm.currentPaginationOpts.pageNumber, vm.currentPaginationOpts.itemsPerPage)
                   .then(function(response){
                     vm.current_activities = response.results;
@@ -106,48 +105,6 @@
         }
 
         //--------- Internal Functions ---------//
-
-        //function _classifyActivities(){
-        //    vm.future_activities = [];
-        //    vm.past_activities = [];
-        //    angular.forEach(activities, filterActivity);
-        //
-        //    function filterActivity(activity){
-        //        var deferred = $q.defer();
-        //        if(activity.last_date < Date.now()){
-        //            vm.past_activities.push(activity);
-        //        } else {
-        //            vm.future_activities.push(activity);
-        //        }
-        //        deferred.resolve();
-        //        return deferred.promise;
-        //    }
-        //}
-
-        //function _mapReviews(reviews){
-        //    console.log('reviews', reviews);
-        //    var deferred = $q.defer();
-        //    var promiseArray = [];
-        //    activities.map(function(activity){
-        //        promiseArray.push(mapReview(activity));
-        //    });
-        //
-        //    $q.all(promiseArray).then(function(){
-        //        deferred.resolve();
-        //    });
-        //
-        //    return deferred.promise;
-        //
-        //    function mapReview(activity){
-        //        var review = reviews.filter(filterReview)[0];
-        //        if(!review){ review = {}; }
-        //        activity.review = review;
-        //
-        //        function filterReview(review){
-        //            return review.activity === activity.id;
-        //        }
-        //    }
-        //}
 
         function _mapOrders(activities, orders){
             angular.forEach(activities, mapOrders);

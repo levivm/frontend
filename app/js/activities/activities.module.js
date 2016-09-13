@@ -244,7 +244,6 @@
                 },
                 metaTags:{
                     title: function(activity){
-                        console.log(activity);
                         return activity.title;
                     },
                     description: function(activity){
@@ -358,11 +357,11 @@
             }
 
             function error(response){
-                if(response === null){
+               /* if(response === null){
                     console.log("getCurrentOrganizer. There is no Authenticated User");
                 } else {
                     console.log("getCurrentOrganizer. The Authenticated User is not a Organizer");
-                }
+                }*/
                 return $q.reject();
             }
         }
@@ -407,12 +406,6 @@
                organizer.photo = defaultPicture;
             }
 
-            /*if(!!organizer.locations[0]){
-                console.log(organizer);
-                var city_id = organizer.locations[0].city;
-                console.log(LocationManager.getCityById(city_id));
-                organizer.city = LocationManager.getCityById(city_id).name;
-            }*/
 
             deferred.resolve(organizer);
 

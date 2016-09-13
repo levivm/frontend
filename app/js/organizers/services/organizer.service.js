@@ -61,8 +61,6 @@
             load : function () {
                 var scope = this;
                 return $http.get(api.organizer(scope.id)).success(function (organizerData) {
-                    console.log('response');
-                    console.log(organizerData);
                     scope.setData(organizerData);
                 });
             },
@@ -120,7 +118,6 @@
                     .then(success, error);
 
                 function success(response) {
-                    console.log("CHANGE EMAIL RESPONSE");
                     Authentication.getAuthenticatedAccount(true).then(function (response) {
                         scope.setData(response);
                     });
@@ -182,7 +179,7 @@
                     return response.data
                   }
                   function error(response){
-                    console.log(response);
+                    //console.log(response);
                   }
 
             },
@@ -204,7 +201,7 @@
                     return response.data
                   }
                   function error(response){
-                    console.log(response);
+                    //console.log(response);
                   }
 
             },
@@ -214,11 +211,10 @@
                           .then(success, error);
 
                   function success(response){
-                    console.log(response);
                     return response.data
                   }
                   function error(response){
-                    console.log(response);
+                    //console.log(response);
                   }
 
             },
@@ -308,7 +304,7 @@
                 };
 
                 function error(response){
-                  console.log("Error getting organizer reviews: ", response.data);
+                  //console.log("Error getting organizer reviews: ", response.data);
                 }
         }
 
@@ -320,7 +316,6 @@
                 return response.data;
             }
             function error(response){
-                console.log('organizer.get instructors error:', response.data);
                 return response.data;
             }
         }
@@ -330,11 +325,9 @@
             return $http.post(api.instructors(that.id), instructor).then(success, error);
 
             function success(response){
-                console.log('organizer.create instructor success:', response);
                 return response.data;
             }
             function error(response){
-                console.log('organizer.create instructor error:', response);
                 return response.data;
             }
         }
@@ -343,11 +336,9 @@
             return $http.put(api.instructor(instructor.id), instructor).then(success, error);
 
             function success(response){
-                console.log('organizer.update instructor success:', response);
                 return response.data;
             }
             function error(response){
-                console.log('organizer.update instructor error:', response);
                 return response.data;
             }
         }
@@ -356,11 +347,9 @@
             return $http.delete(api.instructor(instructor.id)).then(success, error);
 
             function success(response){
-                console.log('organizer.delete instructor success:', response);
                 return response.data;
             }
             function error(response){
-                console.log('organizer.delete instructor error:', response);
                 return response.data;
             }
         }
@@ -372,7 +361,7 @@
                 return response.data;
             }
             function error(response){
-                console.log("Error retrieving Organizer's Banking Info:", response.data);
+                //console.log("Error retrieving Organizer's Banking Info:", response.data);
             }
         }
 
@@ -387,7 +376,6 @@
                 return response.data;
             }
             function error(response){
-                console.log("Error updating Organizer's Banking Info:", response.data);
                 return $q.reject(response.data);
             }
         }

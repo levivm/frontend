@@ -628,7 +628,6 @@
                 return response.data;
             }
             function error(response){
-                console.log('activity.get instructors error:', response.data);
                 return response.data;
             }
         }
@@ -638,12 +637,10 @@
             return $http.post(api.instructors(that.id), instructor).then(success, error);
 
             function success(response){
-                console.log('activity.create instructor success:', response.data);
                 // that.load();
                 return response.data;
             }
             function error(response){
-                console.log('activity.create instructor error:', response);
                 return response.data;
             }
         }
@@ -653,14 +650,12 @@
             return $http.put(api.instructor(that.id, instructor.id), instructor).then(success, error);
 
             function success(response){
-                console.log('activity.update instructor success:', response.data);
                 // that.setData(response.data);
                 // that.load();
 
                 return response.data;
             }
             function error(response){
-                console.log('activity.update instructor error:', response);
                 return response.data;
             }
         }
@@ -670,11 +665,9 @@
             return $http.delete(api.instructor(that.id, instructor.id)).then(success, error);
 
             function success(response){
-                console.log('activity.delete instructor success:', response.data);
                 return response.data;
             }
             function error(response){
-                console.log('activity.delete instructor error:', response);
                 return response.data;
             }
         }
@@ -688,7 +681,6 @@
             }
 
             function success(response){
-                console.log("Review Posted successfully.", response.data);
                 return response.data;
             }
             function error(response){
@@ -700,7 +692,6 @@
             return $http.put(api.review(review.id), review).then(success, error);
 
             function success(response){
-                console.log("Review reply posted successfully.", response.data);
                 return response.data;
             }
             function error(response){
@@ -712,7 +703,6 @@
             return $http.post(api.report(review.id), review).then(success, error);
 
             function success(response){
-                console.log("Review reported successfully.", response.data);
                 return response.data;
             }
             function error(response){
@@ -724,7 +714,6 @@
             return $http.put(api.read(review.id), review).then(success, error);
 
             function success(response){
-                console.log("Review reported successfully.", response.data);
                 return response.data;
             }
             function error(response){
@@ -737,7 +726,6 @@
             return $http.post(api.share(that.id), shareInfo).then(success, error);
 
             function success(response){
-                console.log("Shared successfully.", response.data);
                 return response.data;
             }
             function error(response){

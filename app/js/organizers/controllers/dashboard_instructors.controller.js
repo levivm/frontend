@@ -40,7 +40,6 @@
             }, 0);
 
             function result(){
-                console.log('onChange.vm.instructors:', vm.instructors);
                 if(vm.countInstructors>0){
                     vm.countInstructors--;
                 }
@@ -88,8 +87,6 @@
              
 
                 vm.instructors.sort(compare);
-
-                console.log('vm.instructors:', vm.instructors);
             }, 0);
 
             function hasEmptySlot(instructor){

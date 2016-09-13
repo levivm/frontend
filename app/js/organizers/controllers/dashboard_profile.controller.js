@@ -114,7 +114,6 @@
 
         function _updateFail(response) {
             var errors = response.data;
-            console.log(errors);
             Error.form.add(vm.organizer_location_form, errors);
             Error.form.add(vm.profile_form_info, errors);
             vm.isSaving = false;
@@ -174,7 +173,6 @@
             _setStrings();
             _initialize_map();
             vm.marker.options = {draggable:true, icon: getAmazonUrl('static/img/map.png') };
-            console.log(vm.organizer);
         }
 
     }

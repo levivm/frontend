@@ -50,11 +50,9 @@
         }
 
         function uploadActivityCover(pictures) {
-            console.log("uploadActivityCover. pictures:", pictures);
             if (!pictures) { return; }
 
             var pictureToUpload = pictures.pop();
-            console.log(pictureToUpload);
             if (pictureToUpload){
                 if(_verifySizePicture(pictureToUpload)){
                   var extra_data = { 'main_photo': true };
@@ -64,18 +62,16 @@
                   Toast.error(vm.strings.TOAST_COVER_UPLOAD_ERROR);
                 }
             } else {
-                console.log('uploadActivityCover. No picture selected');
+                //console.log('uploadActivityCover. No picture selected');
             }
         }
 
         function setActivityCover(){
-            console.log('cover:', vm.selectedCover);
             if (!vm.selectedCover) { return; }
             vm.activity.setStockCover(vm.selectedCover).then(_coverUploadSuccess, _uploadError, _coverUploadProgress);
         }
 
         function addGalleryPicture(pictures){
-            console.log("_addPicture. pictures:", pictures);
             if (!pictures) { return; }
 
             var pictureToUpload = pictures.pop();
@@ -89,7 +85,7 @@
                   Toast.error(vm.strings.TOAST_GALLERY_UPLOAD_ERROR_SIZE);
                 }
             } else {
-                console.log('addGalleryPicture. No picture specified');
+               // console.log('addGalleryPicture. No picture specified');
             }
 
             function uploadSuccess(response) {
@@ -109,7 +105,6 @@
             function uploadError(response) {
                 vm.isLoadingGalleryPicture = false;
                 vm.isLoadingCover = false;
-                console.log('Error uploading gallery picture.', response.data);
                 Toast.error(vm.strings.TOAST_GALLERY_UPLOAD_ERROR);
             }
         }
@@ -140,7 +135,6 @@
             }
 
             function error(response) {
-                console.log('Error deleting gallery picture.', response.data);
                 Toast.error(vm.strings.TOAST_GALLERY_DELETE_ERROR);
             }
         }
@@ -183,7 +177,6 @@
         function _uploadError(response) {
             vm.isLoadingGalleryPicture = false;
             vm.isLoadingCover = false;
-            console.log('Error uploading picture.', response.data);
             Toast.error(vm.strings.TOAST_COVER_SET_ERROR);
         }
 
@@ -197,7 +190,6 @@
             _getSubcategoryCoverPool().then(success);
 
             function success(){
-                console.log(vm.activityCover);
                 if(vm.activityCover){
                     vm.covers.unshift(vm.activityCover);
                     vm.selectedCover = vm.activityCover;
@@ -217,7 +209,6 @@
                 deferred.resolve();
             }
             function error(){
-                console.log("Couldn't retrieve covers for activity subcategory");
                 deferred.reject();
             }
         }
@@ -265,7 +256,6 @@
         function _activate() {
             _setStrings();
             _initializePictures();
-            console.log("Activity",vm.activity);
             vm.errors = {};
             vm.isCollapsed = true;
             vm.isLoadingGalleryPicture = false;

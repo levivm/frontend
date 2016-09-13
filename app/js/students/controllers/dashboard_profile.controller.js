@@ -54,7 +54,6 @@
 
         function updateProfile(){
 
-            //console.log("updateProfile.Form:", vm.profile_form);
            Error.form.clear(vm.profile_form);
             vm.student.update_profile().then(success, error);
 
@@ -95,9 +94,7 @@
             }
 
             function error(response) {
-                console.log('StudentProfileCtrl.uploadPicture. Error uploading profile picture');
                 var responseErrors = response['errors'];
-                console.log('responseErrors:', responseErrors);
                 vm.photo_loading = false;
                 if (responseErrors) {
                     vm.photo_invalid = true;
@@ -107,7 +104,6 @@
         }
 
         function openDatePicker($event){
-            console.log('openDatePicker');
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -115,7 +111,6 @@
         }
 
         function selectCity(city){
-            console.log('selectCity. city:', city);
             vm.student.city = city? city.id : null;
             LocationManager.setCurrentCity(city);
         }

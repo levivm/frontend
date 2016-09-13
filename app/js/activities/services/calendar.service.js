@@ -43,7 +43,6 @@
         Calendar.prototype = {
             setData : function (calendarData) {
 
-                console.log(calendarData);
                 var that = this;
                 var sessions = angular.copy(calendarData.sessions);
                 angular.extend(this, calendarData);
@@ -118,7 +117,6 @@
 
                 var activity_id = this.activity;
                 var calendar_copy = angular.copy(this);
-                console.log(calendar_copy);
                 calendar_copy.setToSave();
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'+this.id
@@ -305,9 +303,7 @@
                 this.assistants = this.assistants.concat(assistants);
             },
             hasAssistantByEmail: function (email){
-                console.log(email, this.assistants);
                 return this.assistants.some(function(assistant){
-                    console.log('assistant email', assistant.email === email, assistant.email);
                     return assistant.email === email;
                 });
             }

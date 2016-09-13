@@ -80,7 +80,6 @@
         }
 
         function _changeSuccess(response) {
-            console.log(response);
             Authentication.getAuthenticatedAccount(true);
             vm.isSaving = false;
             Toast.info(vm.strings.COPY_TOAST_EMAIL_CHANGED_INFO,
@@ -101,7 +100,7 @@
                 vm.orders = orders;
             }
             function error(orders){
-                console.log('Error retrieving Student Orders History');
+                //console.log('Error retrieving Student Orders History');
             }
         }
 

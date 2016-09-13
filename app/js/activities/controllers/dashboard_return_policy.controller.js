@@ -33,7 +33,6 @@
         /******************ACTIONS**************/
 
         function _updateActivity() {
-            console.log(vm.activity);
             Error.form.clear(vm.activity_return_policy_form);
             vm.activity.update()
                 .then(_updateSuccess, _errored);

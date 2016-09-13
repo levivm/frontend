@@ -218,11 +218,11 @@
             }
 
             function error(response){
-                if(response === null){
+                /*if(response === null){
                     console.log("getCurrentOrganizer. There is no Authenticated User");
                 } else {
                     console.log("getCurrentOrganizer. The Authenticated User is not a Organizer");
-                }
+                }*/
                 return $q.reject();
             }
         }
@@ -468,7 +468,6 @@
          */
         getUnreadOrganizerReviewsCount.$inject = ['unreadReviews'];
         function getUnreadOrganizerReviewsCount(unreadReviews){
-            console.log(unreadReviews.count);
             return unreadReviews.count;
         }
 
@@ -482,7 +481,6 @@
          */
         getUnreadReviewsCount.$inject = ['$q', 'reviews'];
         function getUnreadReviewsCount($q, reviews){
-          console.log(reviews.count.length);
             return {
                 'count':reviews.count.length
             };
