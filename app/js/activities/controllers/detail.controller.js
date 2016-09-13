@@ -97,9 +97,7 @@
         //--------- Exposed Functions ---------//
 
         function changePackage(pack){
-            console.log(pack);
             vm.package_selected = _.find(vm.activity.calendars[0].packages, {'id': parseInt(pack)});
-            console.log(vm.package_selected);
         }
 
         function getAmazonUrl(file){
@@ -127,13 +125,23 @@
 
         function isSelectedCalendarFull(){
             if(vm.calendar_selected){
-                return vm.calendar_selected.available_capacity <= 0 || moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day');
+                return vm.calendar_selected.available_capacity <= 0 || 
+                       moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day') || 
+                       !vm.calendar_selected.enroll_open;
             } else {
                 return true;
             }
         }
 
-        function changeSelectedCalendar(calendar) { console.log('wut'); vm.calendar_selected = vm.activity.upcoming_calendars[calendar]; console.log('??') }
+        function isSelectedPackageFull(){
+            if(vm.package_selected)
+                return vm.activity.calendars[0].available_capacity <= 0 || !vm.activity.calendars[0].enroll_open ;
+
+            return true;
+
+        }
+
+        function changeSelectedCalendar(calendar) { vm.calendar_selected = vm.activity.upcoming_calendars[calendar]; }
 
         function signUp(activity_id, calendar_id){
             var enrollParams = {
@@ -293,17 +301,27 @@
 
         function _mapCalendars(activity){
             activity.upcoming_calendars = [];
-            if(activity.calendars){
+            var calendars;
+            if (activity.is_open && activity.calendars){
+                calendars = angular.copy(activity.calendars);
+                activity.upcoming_calendars = angular.copy(_.remove(calendars, removePastCalendarOpenActivity));
+                
+            }
+            else if(!activity.is_open && activity.calendars){
                 activity.calendars = activity.calendars.map(mapVacancy);
-                var calendars = angular.copy(activity.calendars);
+                calendars = angular.copy(activity.calendars);
                 activity.upcoming_calendars = angular.copy(_.remove(calendars, removePastCalendars));
             }
 
             return activity;
 
+            function removePastCalendarOpenActivity(calendar){
+                return true;
+            }
+
             function removePastCalendars(calendar){
                 var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day');
-                var vacancy = calendar.available_capacity > 0
+                var vacancy = calendar.available_capacity > 0;
                 return !passed && vacancy;
             }
 
@@ -345,9 +363,9 @@
 
         function _getSelectedCalendar(activity){
 
-            var calendar = _.find(activity.upcoming_calendars, {'id': parseInt($stateParams.calendar_id)})
+            var calendar = _.find(activity.upcoming_calendars, {'id': parseInt($stateParams.calendar_id)});
             if (calendar)
-                return calendar
+                return calendar;
 
             if (!activity.closest_calendar){ return; }
 
@@ -360,9 +378,9 @@
 
         function _getSelectedPackage(activity){
             if(activity.is_open){
-                console.log(activity.calendars[0].packages[0]);
+                
                 vm.selectedPackage = activity.calendars[0].packages[0].id.toString();
-                vm.package_selected = activity.calendars[0].packages[0];
+                return activity.calendars[0].packages[0];
             }
         }
 
@@ -425,6 +443,7 @@
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
                 COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase.",
+                COPY_ENROLL_CLOSED: "Por ahora las inscripciones están deshabilitadas.",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
                 LABEL_EVALUATIONS: "Evaluaciones",
@@ -484,6 +503,7 @@
                 LABEL_OPEN_CALENDAR: "Horario Abierto",
                 LABEL_CLOSED_CALENDAR: "Horario Fijo",
                 LABEL_STARTS: "Inicios",
+                LABEL_PACKAGES: "Paquetes",
                 COPY_CLASSES_SINGULAR: " Clase",
                 COPY_CLASSES: " Clases"
             });
@@ -498,15 +518,15 @@
         }
         function _initWidget(){
             angular.element(document).ready(function () {
-                _updateWidgetValues()
+                _updateWidgetValues();
                 $scope.$on('scrolled',
                   function(scrolled, scroll){
-                    _updateWidgetValues()
+                    _updateWidgetValues();
                     $scope.$apply();
                   }
                 );
                 $scope.$on('resized', function(){
-                    _updateWidgetValues()
+                    _updateWidgetValues();
                     $scope.$apply();
                 });
             });
