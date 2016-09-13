@@ -16,13 +16,13 @@
                             </option>
                         </select>
                     </div>
-                    <div class="form-group" trulii-input-errors-control="location">
+                    <div class="form-group" trulii-input-errors-control="address">
                         <label for="address" class="control-label" ng-bind="::location.strings.LABEL_ADDRESS"></label>
                             <input type="text" 
-                                   id="location"
+                                   id="address" 
                                    class="form-control"
                                    ng-model='location.activity.location.address'
-                                   name="location"
+                                   name="address"
                                    typeahead="address for address in location.address_autocomplete " typeahead-focus-first="false"/>
                     </div>
                     <div class="text-center separate-above separate-below-less">
