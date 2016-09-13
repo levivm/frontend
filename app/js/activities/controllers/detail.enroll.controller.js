@@ -510,7 +510,7 @@
                     vm.calendar.addAssistants(order.assistants);
                     vm.success = true;
                     $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':vm.calendar.id,
-                                        'order_id':order.id});
+                                        'order_id':order.id, 'package_quantity': vm.package ? vm.package.quantity : null});
                 }
 
                 function _enrollError(response){
