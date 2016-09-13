@@ -69,8 +69,13 @@
             <p class="text-uppercase text-center" ng-show="!detail.activity.is_open && !detail.isSelectedCalendarFull()">
               <span ng-bind="::detail.strings.LABEL_STARTS"></span>
             </p>
-            <p class="text-uppercase text-center" ng-show="detail.isSelectedCalendarFull()">
-              <span ng-bind="::detail.strings.COPY_SIGN_UP_NO_DATES"></span>
+            <p class="text-uppercase text-center" ng-show="detail.activity.is_open && !detail.isSelectedPackageFull()">
+              <span ng-bind="::detail.strings.LABEL_PACKAGES"></span>
+            </p>
+            <p class="text-uppercase text-center" ng-show="(detail.isSelectedCalendarFull() && !detail.activity.is_open) || (detail.isSelectedPackageFull() && detail.activity.is_open)">
+
+              <span ng-bind="::detail.strings.COPY_ENROLL_CLOSED" ng-show="::!vm.calendar_selected.enroll_open"></span>
+              <span ng-bind="::detail.strings.COPY_SIGN_UP_NO_DATES" ng-show="::vm.calendar_selected.enroll_open"></span>
             </p>
             <select class="form-control"
               ng-if="::(!detail.activity.is_open) && !detail.isSelectedCalendarFull()"
@@ -79,7 +84,7 @@
               name="calendars">
             </select>
             <select class="form-control" 
-              ng-if="::(detail.activity.is_open) && !detail.isSelectedCalendarFull()"
+              ng-if="::(detail.activity.is_open) && !detail.isSelectedPackageFull()"
               ng-model="detail.selectedPackage"
               name="calendars"
               ng-change="detail.changePackage(detail.selectedPackage)">
@@ -93,8 +98,8 @@
                 }">
               </option>
             </select>
-            <div class="price" ng-show="!detail.isSelectedCalendarFull()">
-                <div ng-show="!detail.isSelectedCalendarFull() && !detail.activity.is_open">
+            <div class="price" ng-show="(!detail.isSelectedCalendarFull() && !detail.activity.is_open) || (!detail.isSelectedPackageFull() && detail.activity.is_open)">
+                <div ng-show="::!detail.activity.is_open">
                     <div ng-hide="detail.calendar_selected.is_free">
                         <div class="price__number" ng-bind="detail.calendar_selected.session_price | currency:'':0">
                         </div>
@@ -113,7 +118,7 @@
                         <h2 class="text-center no-margin" ng-bind="::detail.strings.COPY_FREE"></h2>
                     </div>
                 </div>
-                <div ng-show="detail.activity.is_open">
+                <div ng-show="::detail.activity.is_open">
                   <div class="price__number" ng-bind="detail.package_selected.price | currency:'':0">
                       </div>
                       <div class="price__currency">
