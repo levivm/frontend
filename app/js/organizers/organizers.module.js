@@ -76,7 +76,7 @@
                         return organizer.headLine;
                     },
                     properties: {
-                        'og:title':  function(organizer){return  'Trulii | '+organizer.user.first_name;},
+                        'og:title':  function(organizer){return  'Trulii | '+organizer.name;},
                         'og:description': function(organizer){ return organizer.headLine;},
                         'og:image': function(organizer){return organizer.photo; }
                     }

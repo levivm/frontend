@@ -455,7 +455,7 @@
                     state-on="'glyphicon glyphicon-star star'"
                     state-off="'glyphicon glyphicon-star star-empty-off'"
                     readonly="true" aria-labelledby="custom-icons-1"></rating>
-            <span class="rating" ng-bind="::(detail.organizer.rating | number: 1)+ '/5'"></span>
+            <span class="rating" ng-bind="::detail.organizerRating + '/5'"></span>
           </span>
         </span>
         <span class="reviews-container--ratings__activities">

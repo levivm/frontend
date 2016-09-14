@@ -87,7 +87,8 @@
             schedulesScrollUp: schedulesScrollUp,
             schedulesScrollDown: schedulesScrollDown,
             schedulesOffset: 0,
-            changePackage: changePackage
+            changePackage: changePackage,
+            organizerRating: 0
 
             
         });
@@ -153,6 +154,7 @@
 
             if(vm.activity.is_open){
                 enrollParams.package_id = vm.selectedPackage;
+                console.log('??');
             }
             var registerParams = {
                 toState: {
@@ -567,9 +569,12 @@
             activity.updateViewsCounter();
 
         }
+        
+        function _setOrganizerRating(){
+            vm.organizerRating = organizer.rating.toString().replace(',', '.');
+        }
 
         function _activate(){
-            console.log('activating');
             _setStrings();
             _setCurrentState();
             _updateUrl();
@@ -600,6 +605,7 @@
             _initSignup();
             _setSearchData();
             _updateViewCount();
+            _setOrganizerRating()
             //Function for angularSeo
             $scope.htmlReady();
         }
