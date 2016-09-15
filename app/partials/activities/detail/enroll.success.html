@@ -138,6 +138,15 @@
                 </span>
               </p>
               <h4>
+                <strong class="text-dark" ng-show="::success.packageQuantity" ng-bind="::success.strings.LABEL_PACKAGE"></strong>
+              </h4>
+              <p class="text-capitalize content" ng-show="::success.packageQuantity" ng-class="{'content-mobile': !success.showAudience}">
+                <span ng-bind="::success.packageQuantity">
+                </span>
+                <span ng-bind="::success.strings.LABEL_CLASES">
+                </span>
+              </p>
+              <h4>
                 <strong class="text-dark" ng-bind="::success.strings.LABEL_SCHEDULES"></strong>
               </h4>
               <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">

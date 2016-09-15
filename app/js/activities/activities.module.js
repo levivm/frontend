@@ -290,7 +290,8 @@
                 controller: 'ActivityEnrollPSEResponseController as pseResponse',
                 templateUrl: 'partials/activities/detail/enroll.pse.response.html',
                 params:{
-                    pseResponseData: null
+                    pseResponseData: null,
+                    package_quantity: null
                 }
             })
             .state('activities-enroll-success', {
@@ -315,7 +316,8 @@
                     organizerActivities: getOrganizerActivities
                 },
                 params:{
-                    order_id: null
+                    order_id: null,
+                    package_quantity: null
                 }
             });
 

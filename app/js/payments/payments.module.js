@@ -61,6 +61,7 @@
             var reference_data = parameters.referenceCode.split("-");
             var calendar_id  = parseInt(reference_data.pop());
             var activity_id = parseInt(reference_data.pop());
+            var package_quantity = parseInt(reference_data.pop());
             var package_id = parseInt(reference_data.pop());
             var state;
 
@@ -86,9 +87,10 @@
             }
 
             var state_params = {
-                activity_id:activity_id,
-                calendar_id:calendar_id,
-                package_id: package_id,
+                activity_id: activity_id,
+                calendar_id: calendar_id,
+                package_quantity: package_quantity ? package_quantity : null,
+                package_id: package_id ? package_id : null,
                 state: state
             };
 
