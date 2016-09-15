@@ -23174,12 +23174,8 @@ blockquote {
 }
 .activity-enroll__billing-widget .sub-item {
   text-transform: capitalize;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  max-width: 50%;
   float: left;
-  font-size: 14px;
+  max-width: 50%;
   font-size: 0.9em;
 }
 .activity-enroll__billing-widget .value {

@@ -346,6 +346,8 @@
             return deferred.promise;
 
             function isValidType(card){
+                console.log(card);
+                console.log(methodType);
                 return methodType.toUpperCase() === card;
             }
         }

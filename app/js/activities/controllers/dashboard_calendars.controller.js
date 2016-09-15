@@ -69,7 +69,6 @@
         }
         
         function changeSchedule(value){
-            console.log(vm.calendars);
             if(vm.calendars.length>0){
                 Toast.error(vm.strings.ERROR_SCHEDULE);
             }
@@ -180,13 +179,6 @@
             console.log(vm.calendars);
             stateChangeUnbinder = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
-                    console.group('validation:');
-                    console.log('isCreatingCalendar:', isCreatingCalendar());
-                    console.log('vm.republish:', vm.republish);
-                    console.log('toState:', toState.name);
-                    console.log('fromState:', fromState.name);
-                    console.log('fromVal:', fromState.name + DETAIL_STATE);
-                    console.groupEnd();
                     if(isCreatingCalendar()){
                         console.log('Creating New Calendar');
                         CalendarsManager.loadCalendars(activity.id).then(function(dataCalendars){
@@ -197,7 +189,6 @@
 
                             event.preventDefault();
                             if(_hasNewCalendar()){
-                                console.log('Republish exiting. User set a valid calendar to republish');
                                 doTransition();
                             } else {
                                 var modalInstance = $modal.open({
@@ -213,7 +204,6 @@
 
                     // success function for Republish Exit Modal Ok/COntinue Button
                     function success(response) {
-                        console.log('Republish exiting. User chose to exit from republish');
                         doTransition();
                     }
 
