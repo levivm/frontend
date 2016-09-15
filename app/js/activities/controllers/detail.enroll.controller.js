@@ -716,10 +716,6 @@
                 activity.organizer.photo = defaultPicture;
             }
 
-            if (activity.organizer.locations[0]){
-                var city_id = activity.organizer.locations[0].city;
-                activity.organizer.city = LocationManager.getCityById(city_id).name;
-            }
         }
 
         function _showWidget(){
