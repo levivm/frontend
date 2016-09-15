@@ -17766,8 +17766,22 @@ td {
   text-transform: uppercase;
   margin-right: 1rem;
 }
+.panel-default .panel-open {
+  width: 20em;
+  float: left;
+  padding: 0.9em 1em;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.panel-default .panel-open-counter {
+  width: 12em;
+  float: right;
+  padding: 1.25em 0;
+  font-size: 0.75em;
+  text-transform: uppercase;
+  color: #767676;
+}
 .panel-default .panel-date {
-  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 10em;
   float: left;
   padding: 0.1em 1em;
@@ -21232,16 +21246,6 @@ button.toast-close-button {
 .container-organizers {
   display: flex;
   justify-content: space-between;
-}
-.container-organizers img {
-  width: 150px;
-  height: 160px;
-}
-@media screen and (max-width: 768px) {
-  .container-organizers img {
-    width: 200px;
-    height: 200px;
-  }
 }
 .container-success {
   background-color: #22c7b5;

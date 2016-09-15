@@ -408,7 +408,6 @@
                organizer.photo = defaultPicture;
             }
 
-
             deferred.resolve(organizer);
 
             return deferred.promise;

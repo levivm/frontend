@@ -260,7 +260,10 @@
                 LABEL_FINAL_TOTAL: "Ventas netas:", 
                 LABEL_TOTAL: "Ventas brutas:",
                 LABEL_FEE: "Comisión Trulii:",
-                COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades"
+                COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades",
+                LABEL_OPEN_ACTIVITY: "Horario abierto",
+                LABEL_ATTENDEES: "Asistentes",
+                LABEL_ATTENDEE: "Asistente"
             });
         }
         function _initScroll(){
@@ -279,7 +282,7 @@
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
-            console.log($state);
+            console.log(activity);
             //console.log("reloadin",assistants);
             //Function for angularSeo
             $scope.htmlReady();

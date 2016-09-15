@@ -54,6 +54,14 @@
                            </text-angular>
 
                    </div>
+                   <div class="form-group" trulii-input-errors-control="extra_info">
+                       <label class="control-label" for="extra_info" ng-bind="::detail.strings.PLACEHOLDER_POST_ENROLL"></label>
+
+                           <text-angular name="{{::detail.strings.PLACEHOLDER_POST_ENROLL}}"  placeholder="{{::detail.strings.COPY_POST_ENROLL}}"
+                                         ng-model="detail.activity.post_enroll_message">
+                           </text-angular>
+
+                   </div>
                    <trulii-submit-controls class="separate-above" edit-activity="true" is-saving="detail.isSaving" value="{{::detail.strings.ACTION_SAVE}}"></trulii-submit-controls>
 
                </fieldset>

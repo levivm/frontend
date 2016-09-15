@@ -278,25 +278,17 @@
       <div class="row">
         <div class="info separate-above hidden-xs hidden-sm">
           <div class="info__content">
-              <div class="col-xs-4">
+              <div ng-class="{'col-xs-6': detail.activity.level_display, 'ng-hide': !!!detail.activity.level_display}">
                 <p class="text-center">
                   <span ng-bind="::detail.strings.VALUE_LEVEL"></span>
                   <span ng-bind="::detail.activity.level_display"></span>
                 </p>
               </div>
-              <div class="col-xs-4">
+              <div ng-class="{'col-xs-6': detail.activity.level_display, 'col-xs-12': !!!detail.activity.level_display}">
                 <p ng-if="detail.activity.certification" class="text-center"
                    ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></p>
                 <p ng-if="!detail.activity.certification" class="text-center"
                    ng-bind="::detail.strings.VALUE_WITHOUT_CERTIFICATION"></p>
-              </div>
-              <div class="col-xs-4">
-                <p class="text-center" ></p>
-                <p class="text-center">
-                  <span ng-bind="::detail.strings.VALUE_DURATION"></span>
-                  <span ng-if="detail.calendar_selected" ng-bind="detail.calendar_selected.duration | formatDuration: 'seconds' "></span>
-                  <span ng-if="!detail.calendar_selected" ng-bind="::detail.strings.VALUE_DOESNT_APPLY"></span>
-                </p>
               </div>
           </div>
         </div>
@@ -464,7 +456,7 @@
                     state-on="'glyphicon glyphicon-star star'"
                     state-off="'glyphicon glyphicon-star star-empty-off'"
                     readonly="true" aria-labelledby="custom-icons-1"></rating>
-            <span class="rating" ng-bind="::(detail.organizer.rating | number: 1)+ '/5'"></span>
+            <span class="rating" ng-bind="::detail.organizerRating + '/5'"></span>
           </span>
         </span>
         <span class="reviews-container--ratings__activities">

@@ -42,7 +42,6 @@
 
         Calendar.prototype = {
             setData : function (calendarData) {
-
                 var that = this;
                 var sessions = angular.copy(calendarData.sessions);
                 angular.extend(this, calendarData);
@@ -117,6 +116,7 @@
 
                 var activity_id = this.activity;
                 var calendar_copy = angular.copy(this);
+                console.log(calendar_copy);
                 calendar_copy.setToSave();
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'+this.id
