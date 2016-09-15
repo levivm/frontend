@@ -21247,16 +21247,6 @@ button.toast-close-button {
   display: flex;
   justify-content: space-between;
 }
-.container-organizers img {
-  width: 150px;
-  height: 160px;
-}
-@media screen and (max-width: 768px) {
-  .container-organizers img {
-    width: 200px;
-    height: 200px;
-  }
-}
 .container-success {
   background-color: #22c7b5;
 }

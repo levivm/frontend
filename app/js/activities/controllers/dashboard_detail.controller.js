@@ -87,6 +87,8 @@
                 LABEL_METHODOLOGY: "Metodología",
                 LABEL_REQUIREMENTS: "Requerimientos",
                 LABEL_EXTRA_INFO: "Información Extra",
+                COPY_POST_ENROLL: "Mensaje que se le mostrará al usuario una vez se inscriba en la actividad",
+                PLACEHOLDER_POST_ENROLL: "Mensaje post inscripción",
                 ACTION_SAVE: "Guardar",
                 COPY_HELP_TEXT_EXTRA_INFO: "¿Alguna otra información adicional que quieras comunicar "+
                                             "a tus posibles participantes?",

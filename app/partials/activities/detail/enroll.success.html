@@ -112,6 +112,7 @@
         </div>
         <div class="row separate-above">
           <div class="col-xs-12">
+            <p class="content separate-below" ng-if="success.activity.post_enroll_message" ng-bind-html="success.activity.post_enroll_message"></p>
             <h4 ><strong class="text-dark" ng-bind="::success.strings.LABEL_IMPORTANT"></strong></h4>
             <p class="separate-below" ng-bind="::success.strings.COPY_IMPORTANT"></p>
             <p class="content"  ng-bind-html="success.activity.requirements" ng-class="{'content-mobile': !success.showAudience}"></p>
