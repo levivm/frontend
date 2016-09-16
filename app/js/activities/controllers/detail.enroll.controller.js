@@ -273,7 +273,6 @@
             }
 
             function getStudentError(response){
-                console.log("Error getting current logged student:", response);
             }
         }
 
@@ -284,22 +283,18 @@
 
             function success(cardType){
                 Error.form.clearField(vm.enrollForm,'cardMethod');
-                console.log("card type:", cardType);
                 vm.cardData.method = cardType;
 
             }
 
             function error(){
                 vm.cardData.method = null;
-                console.log("Couldn't check card type");
             }
         }
         function checkCvv(){
             Error.form.clear(vm.enrollForm);
             
             if(vm.cardData.cvv.length !== 3){
-                console.log(vm.cardData.cvv);
-                console.log(vm.cardData.cvv.length);
                 Error.form.add(vm.enrollForm, {'invalidCvv': ["CVV inválido"]});
             }
             else{
@@ -317,7 +312,6 @@
             }
 
             function success(isValid){
-                console.log("checkCardExpiry. isValid:", isValid);
                 if(isValid){
                     isValidDate = true;
                     Error.form.clearField(vm.enrollForm,'invalidExpiry');
@@ -328,7 +322,6 @@
             }
 
             function error(){
-                console.log("Couldn't validate card expiry date");
                 isValidDate = false;
                 Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
             }
@@ -339,7 +332,6 @@
             Referrals.getCoupon(vm.coupon.code).then(success, error);
 
             function success(coupon){
-                console.log('coupon response', coupon);
                 if(coupon){
                     vm.hasCouponApplied = true;
                     vm.invalidCoupon = false;

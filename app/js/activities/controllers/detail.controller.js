@@ -87,7 +87,8 @@
             schedulesScrollUp: schedulesScrollUp,
             schedulesScrollDown: schedulesScrollDown,
             schedulesOffset: 0,
-            changePackage: changePackage
+            changePackage: changePackage,
+            organizerRating: 0
 
             
         });
@@ -267,7 +268,6 @@
             }
             function error(error){
                 Toast.error(vm.strings.COPY_SHARE_ERROR);
-                console.log('Error sharing activity', error);
             }
         }
 
@@ -421,7 +421,6 @@
                 function (response) {
                     if(response.length > 0){
                         vm.facebookShares = response[0].share_count;
-                        console.log(response[0].share_count);
                     }
             });
 
@@ -568,9 +567,12 @@
             activity.updateViewsCounter();
 
         }
+        
+        function _setOrganizerRating(){
+            vm.organizerRating = organizer.rating.toString().replace(',', '.');
+        }
 
         function _activate(){
-            console.log('activating');
             _setStrings();
             _setCurrentState();
             _updateUrl();
@@ -601,6 +603,7 @@
             _initSignup();
             _setSearchData();
             _updateViewCount();
+            _setOrganizerRating()
             //Function for angularSeo
             $scope.htmlReady();
         }

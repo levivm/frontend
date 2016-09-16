@@ -31,6 +31,7 @@
             },
             activities : [],
             reviews : [],
+            organizerRating: 0,
             totalReviews: 0,
             hasMoreReviews: true,
             showMoreReviews: showMoreReviews,
@@ -163,6 +164,9 @@
             $state.go('organizer-profile', {organizer_id: organizer.id, organizer_name: name} ,{location: "replace", notify: false, reload: true});
 
         }
+        function _setOrganizerRating(){
+            vm.organizerRating = organizer.rating.toString().replace(',', '.');
+        }
 
         function _activate(){
             _updateUrl();
@@ -171,7 +175,7 @@
             _setCurrentState();
             _setActivities();
             _setReviews();
-
+            _setOrganizerRating();
             //Function for angularSeo
             $scope.htmlReady();
         }
