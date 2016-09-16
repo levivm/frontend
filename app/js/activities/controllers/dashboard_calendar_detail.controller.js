@@ -15,9 +15,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope','$state', '$document', '$timeout', 'activity', 'CalendarsManager', 'calendar', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast' ];
+    ActivityCalendarController.$inject = ['$scope','$state', '$document', '$timeout', 'activity', 'CalendarsManager', 'calendar', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast',  'presaveInfo' ];
 
-    function ActivityCalendarController($scope, $state, $document , $timeout, activity, CalendarsManager, calendar, Elevator, Error, datepickerPopupConfig, Toast) {
+    function ActivityCalendarController($scope, $state, $document , $timeout, activity, CalendarsManager, calendar, Elevator, Error, datepickerPopupConfig, Toast,  presaveInfo) {
 
         var vm = this;
         var MAX_LENGTH_NOTE = 200;
@@ -31,7 +31,7 @@
             countPackages: 0,
             addPackage: addPackage,
             lessPackage: lessPackage,
-            packagesName: [{pname_id: "1", pname_name: 'Clase(s)'}, {pname_id: "2", pname_name: 'Mes(es)'} ]
+            presaveInfo: presaveInfo
 
         });
         activate();
@@ -160,7 +160,7 @@
                 LABEL_NOTES: "Notas",
                 LABEL_SALES: "Ventas",
                 LABEL_SCHEDULES: "Horarios",
-                LABEL_PACKAGE_PRICE: "Precio del paquete de clases",
+                LABEL_PACKAGE_PRICE: "Precio del paquete",
                 LABEL_PACKAGE_NAME: "Tipo",
                 LABEL_PACKAGE_QUANTITY: "Número",
                 LABEL_WEEKEND: "Tu actividad se realizará los fines de semana",
@@ -226,8 +226,6 @@
                 vm.calendar.enroll_open=true;
             }
                 
-            
-            
             if(!vm.calendar.packages){
                 vm.calendar.packages = [];
             }
