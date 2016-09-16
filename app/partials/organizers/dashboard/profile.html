@@ -103,16 +103,19 @@
                     <fieldset>
                         <div class="row">
                             <div class="col-xs-12  separate-below separate-above">
-                                <div class="form-group location-dashboard" trulii-input-errors-control="city">
-                                    <select id="city" name="city" class="form-control"
+                                <div class="form-group location-dashboard" trulii-input-errors-control="city" >
+                                    <select id="city" name="city" class="form-control" 
                                             ng-model="profile.organizer.location.city"
                                             ng-options="city as city.name for city in profile.cities track by city.id">
                                         <option value="" ng-show="!profile.organizer.location.city"
                                                 ng-bind="::profile.strings.OPTION_SELECT" selected>
                                         </option>
                                     </select>
-                                    <input type="text"  trulii-input-errors-control="address" class="form-control" placeholder="{{::profile.strings.PLACEHOLDER_LOCATION}}" ng-model='profile.organizer.location.address'
-                                   name="name" id="name">
+                                    <div class="w-100" trulii-input-errors-control="address">
+                                        <input type="text"  
+                                     class="form-control" placeholder="{{::profile.strings.PLACEHOLDER_LOCATION}}" ng-model='profile.organizer.location.address'
+                                   name="address" id="address">
+                                    </div>
                                 </div>
                             </div>
                         </div>
