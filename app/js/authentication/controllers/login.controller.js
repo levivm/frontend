@@ -14,9 +14,9 @@
         .module('trulii.authentication.controllers')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$state', '$scope', '$stateParams', '$q', 'Authentication', 'Error', 'Analytics'];
+    LoginController.$inject = ['$state', '$scope', '$stateParams', '$q', 'Authentication', 'Error', 'Analytics', 'Toast'];
 
-    function LoginController($state, $scope, $stateParams, $q, Authentication, Error, Analytics) {
+    function LoginController($state, $scope, $stateParams, $q, Authentication, Error, Analytics, Toast) {
 
         var vm = this;
         angular.extend(vm, {
@@ -43,8 +43,11 @@
                 .then(_loginSuccess,error);
 
             function error(response) {
-                if (response.data) { Error.form.add(vm.login_form, response.data); }
-                vm.errors.__all__ = response.data['non_field_errors'];
+                if (response.data) { 
+                    Toast.error(vm.strings.ERROR_REQUIRED_FIELDS);
+                    Error.form.add(vm.login_form, response.data);
+                }
+                if(response.data['non_field_errors']) { Toast.error(response.data['non_field_errors']);}
                 return $q.reject(response);
             }
         }
@@ -92,7 +95,8 @@
                 LOGIN_WITH_FACEBOOK_MSG : "Facebook",
                 FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook",
                 NO_ACCOUNT_COPY: "¿No tienes cuenta?",
-                REGISTER_COPY: "Regístrate"
+                REGISTER_COPY: "Regístrate",
+                ERROR_REQUIRED_FIELDS: "Ambos campos son requeridos"
             });
         }
 
