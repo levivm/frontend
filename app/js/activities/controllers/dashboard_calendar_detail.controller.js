@@ -31,6 +31,7 @@
             countPackages: 0,
             addPackage: addPackage,
             lessPackage: lessPackage,
+            packagesName: [{pname_id: "1", pname_name: 'Clase(s)'}, {pname_id: "2", pname_name: 'Mes(es)'} ]
 
         });
         activate();
@@ -160,7 +161,8 @@
                 LABEL_SALES: "Ventas",
                 LABEL_SCHEDULES: "Horarios",
                 LABEL_PACKAGE_PRICE: "Precio del paquete de clases",
-                LABEL_PACKAGE_QUANTITY: "Número de Clases",
+                LABEL_PACKAGE_NAME: "Tipo",
+                LABEL_PACKAGE_QUANTITY: "Número",
                 LABEL_WEEKEND: "Tu actividad se realizará los fines de semana",
                 COPY_SCHEDULES:"En una misma publicación puedes tener diferentes fechas de inicio.",
                 PLACEHOLDER_SCHEDULES:"Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
@@ -171,9 +173,8 @@
                 LABEL_SESSION_END_TIME: "Hora de fin:",
                 TOAST_SESSIONS_ERROR: "Existe un error en las sesiones",
                 TOAST_SESSIONS_NUMBER_ERROR: "Deber haber mínimo una sesión",
-                ERROR_NON_PACKAGES: "Debes por lo menos agregar un paquete."
-                
-
+                ERROR_NON_PACKAGES: "Debes por lo menos agregar un paquete.",
+                OPTION_SELECT_PNAME:"Seleccione un tipo"
             });
         }
 

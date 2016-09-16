@@ -25,17 +25,26 @@
         
         <div class="content-packages" ng-if="calendar.activity.is_open">
             <div class="row " id="package-{{$index}}" ng-class="{'separate-above': !$first}" ng-repeat="package in calendar.calendar.packages">
-                <div class="col-xs-6" id="quantity_{{$index}}" trulii-input-errors-control="quantity_{{$index}}">
+                <div class="col-xs-4" id="price_{{$index}}"  trulii-input-errors-control="price_{{$index}}" >
+                     <label class="control-label" for="price" ng-bind="::calendar.strings.LABEL_PACKAGE_PRICE"></label>
+                    <input class="form-control " type="number" name="price_{{$index}}"
+                            placeholder="30000" min="30000"
+                            ng-model="package.price" />
+                </div>
+                <div class="col-xs-4" id="quantity_{{$index}}" trulii-input-errors-control="quantity_{{$index}}">
                      <label class="control-label" for="quantity" ng-bind="::calendar.strings.LABEL_PACKAGE_QUANTITY"></label>
                     <input  class="form-control "  type="number" name="quantity_{{$index}}"
                             placeholder="1" min="1"
                             ng-model="package.quantity" />
                 </div>
-                <div class="col-xs-6" id="price_{{$index}}"  trulii-input-errors-control="price_{{$index}}" >
-                     <label class="control-label" for="price" ng-bind="::calendar.strings.LABEL_PACKAGE_PRICE"></label>
-                    <input class="form-control " type="number" name="price_{{$index}}"
-                            placeholder="30000" min="30000"
-                            ng-model="package.price" />
+                
+                <div class="col-xs-4" id="name_{{$index}}" trulii-input-errors-control="name_{{$index}}">
+                    <label class="control-label" for="name" ng-bind="::calendar.strings.LABEL_PACKAGE_NAME"></label>
+                    <select  class="form-control" name="name_{{$index}}" ng-model="package.name"
+                        ng-options="packageName.pname_id as packageName.pname_name for packageName in calendar.packagesName">
+                        <option ng-hide="package.name" value="" ng-bind="::calendar.strings.OPTION_SELECT_PNAME"></option>
+                    </select>
+                     
                 </div>
             </div>
         </div>

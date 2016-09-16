@@ -112,6 +112,7 @@
         //--------- Internal Functions ---------//
 
         function _setOrganizerBankingData(){
+            console.log(vm.bankingInfo);
             if(!(_.isEmpty(bankingData))){ 
                 var current_bank_data = _.find(vm.bankingInfo.banks, 
                                                 { 'bank_name': bankingData.bank });
