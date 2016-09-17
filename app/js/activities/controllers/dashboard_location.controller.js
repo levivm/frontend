@@ -54,6 +54,9 @@
             function error(errors) {
                 Error.form.add(vm.activity_location_form, errors);
                 vm.isSaving = false;
+                if(errors.location)
+                    Toast.error(errors.location);
+
             }
         }
 

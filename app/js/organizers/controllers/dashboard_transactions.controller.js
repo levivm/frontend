@@ -96,14 +96,17 @@
         }
         
         function filterById() {
-            setTimeout(function(){ updateByQuery(vm.TYPE_SALES) }, 1000);
+            setTimeout(function(){ updateByQuery(vm.TYPE_SALES); }, 1000);
         }
 
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_SALES:
 
-                  var params = {};
+                  var params = {
+                    page: vm.salesPaginationOpts.pageNumber,
+                    pageSize: vm.salesPaginationOpts.itemsPerPage
+                  };
 
                   if(vm.salesFilter.activity)
                     params.activity = vm.salesFilter.activity;
