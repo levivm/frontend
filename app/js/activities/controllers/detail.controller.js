@@ -377,9 +377,14 @@
         }
 
         function _getSelectedPackage(activity){
-            if(activity.is_open && $stateParams.package_id){
+            if(activity.is_open){
                 var calendar = _getSelectedCalendar(activity);
-                var _package = _.find(calendar.packages, {'id': parseInt($stateParams.package_id)});
+                if (!calendar)
+                    return
+                var _package = calendar.packages[0]
+                if ($stateParams.package_id)
+                     _package = _.find(calendar.packages, {'id': parseInt($stateParams.package_id)});
+
                 vm.selectedPackage = _package.id.toString();
                 return _package;
             }

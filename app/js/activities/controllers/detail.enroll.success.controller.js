@@ -19,6 +19,7 @@
             organizerActivities : [],
             orderId: $stateParams.order_id,
             packageQuantity: $stateParams.package_quantity,
+            packageType: $stateParams.package_type,
             showEmail: false,
             toggleEmailShow: toggleEmailShow,
             shareEmailForm: shareEmailForm,

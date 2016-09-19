@@ -291,7 +291,8 @@
                 templateUrl: 'partials/activities/detail/enroll.pse.response.html',
                 params:{
                     pseResponseData: null,
-                    package_quantity: null
+                    package_quantity: null,
+                    package_type: null,
                 }
             })
             .state('activities-enroll-success', {
@@ -317,7 +318,8 @@
                 },
                 params:{
                     order_id: null,
-                    package_quantity: null
+                    package_quantity: null,
+                    package_type: null
                 }
             });
 

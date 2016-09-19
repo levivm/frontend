@@ -30,6 +30,7 @@
             retryPayment : retryPayment,
             finishPayment : finishPayment,
             packageQuantity : $stateParams.package_quantity ? $stateParams.package_quantity : null,
+            packageType : $stateParams.package_type ? $stateParams.package_type : null,
             packageID : $stateParams.package_id ? $stateParams.package_id : null,
             getAmazonUrl: getAmazonUrl
         });
@@ -47,7 +48,8 @@
         }
 
         function finishPayment(){
-            $state.go('activities-enroll-success',{ activity_id: vm.activity.id, calendar_id: calendar.id, package_quantity: vm.packageQuantity }, { reload: true });
+            $state.go('activities-enroll-success',{ activity_id: vm.activity.id, calendar_id: calendar.id, 
+                                                    package_quantity: vm.packageQuantity, package_type: vm.packageType }, { reload: true });
         }
 
         function _checkPreviousState(){

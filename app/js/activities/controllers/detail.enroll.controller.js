@@ -247,7 +247,7 @@
                     vm.success = true;
                     var bank_url = response.bank_url;
                     $window.location.href = bank_url;
-                     vm.enrolling = false;
+                    vm.enrolling = false;
                 }
 
                 function _enrollError(response){
@@ -502,7 +502,8 @@
                     vm.calendar.addAssistants(order.assistants);
                     vm.success = true;
                     $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':vm.calendar.id,
-                                        'order_id':order.id, 'package_quantity': vm.package ? vm.package.quantity : null});
+                                        'order_id':order.id, 'package_quantity': vm.package ? vm.package.quantity : null,
+                                        'package_type': vm.package ? vm.package.type_name : null});
                 }
 
                 function _enrollError(response){
