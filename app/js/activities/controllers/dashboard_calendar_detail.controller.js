@@ -62,7 +62,7 @@
             var packageEmpty = {
                 quantity: 1,
                 price: 30000
-            }
+            };
             vm.calendar.packages.push(packageEmpty);
         }
         

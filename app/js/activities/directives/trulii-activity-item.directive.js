@@ -337,7 +337,7 @@
                         scope.isStudent = data;
                     }, function(err){
                         console.log(err);
-                    })
+                    });
 
                 }
 

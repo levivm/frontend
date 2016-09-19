@@ -176,16 +176,14 @@
                       <ui-select-match>
                         <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_PACKAGE"></span>
                         <span class="" ng-bind="$select.selected.quantity"></span>
-                        <span class="" ng-bind="::enroll.strings.COPY_CLASSES"></span>
+                        <span class="" ng-bind="$select.selected.type_name"></span>
                       </ui-select-match>
                       <ui-select-choices repeat="package in enroll.activity.calendars[0].packages">
                         <div class="" ng-click="enroll.changePackage(package)">
                           <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_PACKAGE"></span>
-                          <span ng-pluralize count="package.quantity"
-                            when="{
-                            '1': package.quantity.toString() + enroll.strings.COPY_CLASSES_SINGULAR,
-                            'other': package.quantity.toString() + detaenrollil.strings.COPY_CLASSES
-                            }">
+                          <span ng-bind="package.quantity">
+                          </span>
+                          <span ng-bind="package.type_name">
                           </span>
                         </div>
                       </ui-select-choices>

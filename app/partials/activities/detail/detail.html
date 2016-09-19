@@ -93,8 +93,8 @@
                 ng-repeat="package in detail.activity.calendars[0].packages track by package.id"
                 ng-pluralize count="package.quantity"
                 when="{
-                '1': package.quantity + detail.strings.COPY_CLASSES_SINGULAR,
-                'other': package.quantity + detail.strings.COPY_CLASSES
+                '1': package.quantity +' '+ package.type_name,
+                'other': package.quantity +' '+  package.type_name
                 }">
               </option>
             </select>

@@ -1,4 +1,4 @@
-<a ui-sref="activities-detail({category_slug: activity.category.slug, activity_id: {{::activity.id}}, activity_title: titleSlug, calendar_id: activity.closest_calendar.id})" class="trulii-activity-card-anchor">
+<a ui-sref="activities-detail({category_slug: activity.category.slug, activity_id: {{::activity.id}}, activity_title: titleSlug, calendar_id: activity.closest_calendar.id, package_id: activity.cloest_calendar_package.id})" class="trulii-activity-card-anchor">
   <div class="trulii-activity-card" ng-class="{'trulii-activity-card-non-organizer': !organizer, 'trulii-activity-card-organizer': organizer}">
     <div class="trulii-activity-card__header" style="background-image: url('{{activity.main_photo}}') ">
       <span ng-if="!organizer" class="trulii-activity-card__header__menu">
@@ -56,9 +56,9 @@
             <span ng-bind="::strings.COPY_FREE"></span>
             <br>
           </strong>
-          <span ng-class="::{'text-strike': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar && (activity.closest_calendar.session_price || activity.closest_calendar.packages.length > 0 )">
+          <span ng-class="::{'text-strike': activity.closest_calendar.is_free}" ng-if="activity.closest_calendar && (activity.closest_calendar.session_price || activity.cloest_calendar_package )">
             <span ng-bind="strings.CURRENCY"></span>
-            <span ng-bind=" ::activity.closest_calendar.packages[0].price | number"></span>
+            <span ng-bind=" ::activity.cloest_calendar_package.price | number"></span>
             <span ng-bind="::activity.closest_calendar.session_price | number"></span>
           </span>
         </span>

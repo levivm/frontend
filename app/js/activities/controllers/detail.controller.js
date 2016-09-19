@@ -377,10 +377,11 @@
         }
 
         function _getSelectedPackage(activity){
-            if(activity.is_open){
-                
-                vm.selectedPackage = activity.calendars[0].packages[0].id.toString();
-                return activity.calendars[0].packages[0];
+            if(activity.is_open && $stateParams.package_id){
+                var calendar = _getSelectedCalendar(activity);
+                var _package = _.find(calendar.packages, {'id': parseInt($stateParams.package_id)});
+                vm.selectedPackage = _package.id.toString();
+                return _package;
             }
         }
 
@@ -603,7 +604,7 @@
             _initSignup();
             _setSearchData();
             _updateViewCount();
-            _setOrganizerRating()
+            _setOrganizerRating();
             //Function for angularSeo
             $scope.htmlReady();
         }
