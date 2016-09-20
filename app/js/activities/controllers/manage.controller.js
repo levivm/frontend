@@ -193,7 +193,6 @@
 
         function _mapDateMsg(calendar){
             calendar.fromDate = $filter('date')(calendar.initial_date, 'dd MMM yy');
-            calendar.toDate = $filter('date')(calendar.closing_sale, 'dd MMM yy');
             return calendar;
         }
          

@@ -177,7 +177,7 @@
                     if(activity.pictures.length > 0){
                         angular.forEach(activity.pictures, function(picture, index, array){
                             if(picture.main_photo){
-                                activity.main_photo = picture.photo;
+                                activity.main_photo = picture.thumbnail;
                             }
 
                             if( index === (array.length - 1) && !activity.main_photo){

@@ -36,10 +36,15 @@
                             <div class="card card__calendar">
                                 <div class="card__calendar-header">
                                     <div class="card__calendar-header-date">
-                                        <div class="card__calendar-date date-init">
+                                        <div class="card__calendar-date date-init" ng-if="!calendars.activity.is_open">
                                             <h5 ng-bind="::calendars.strings.LABEL_START"></h5>
                                             <span class="text-capitalize text-md"
                                                   ng-bind="calendar.initial_date | date: 'dd MMM yyyy'"></span>
+                                        </div>
+                                        <div class="card__calendar-date date-init" ng-if="calendars.activity.is_open">
+                                            <h5 ng-bind="::calendars.strings.LABEL_PACKAGES"></h5>
+                                            <span class="text-md" ng-bind="::calendars.strings.LABEL_PACKAGES_PLAN"></span>
+                                            <span class="text-capitalize text-md" ng-bind="calendar.packages.length"></span>
                                         </div>
                                     </div>
                                     <div class="card__calendar-header-actions">
