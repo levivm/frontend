@@ -184,40 +184,61 @@
 //   width: 100%;
 // }
 
-.print-visible {
+.print-container {
   display: none;
 }
 
 @media print {
+  
+  .order-container{
+    display: none;
+  }
   .print-visible {
     display: block;
   }
+  
+  .logo{
+    padding: 10px 25px !important;
+    img{
+      width: 125px;
+    }
+  }
+  
+  .cover-blur-small{
+    display: none;
+  }
+  .info-order{
+    padding: 10px 25px !important;
+    font-size: 8.5pt;
+  }
+  .order-description{
+    background-color: #f0f2f7 !important;
+    -webkit-print-color-adjust: exact; 
+    padding: 10px 25px !important;
+    span{
+      color: #3A405B !important;
+      -webkit-print-color-adjust: exact; 
+    }
+  }
+  .text-sm-print{
+    font-size: 8pt;
+  }
+  .text-md-print{
+    font-size: 10pt;
+  }
   .print-container{
-    width: 100%;
-    position: fixed;
-    left: 40px;
-    top: 48px;
+    width: 90%;
+    position: absolute;
+    top: 0px;
+    left: 5%;
     display: block;
   }
-  .order-mobile{
-    display: none !important;
+  .border-print{
+    border-bottom: 1px solid @gray-lighter;
+    border-top: 1px solid @gray-lighter;
   }
-  .table-order{
-    display: block !important;
-  }
-  .order-container{
-    //position: fixed;
-    //top: 0;
-    //left: 0;
-    //display: block;
-  }
-  .order-description {
-    background-color: @gray-lighter;
-    a {
-      display: inline-block;
-      text-decoration: none;
-      color: @gray-regular !important;
-    }
+  .padding-print{
+    padding: 10px 25px !important;
   }
   .order-tooltip, .order-tooltip:before, .order-tooltip:after {
     display: none;
@@ -225,13 +246,27 @@
   .order-info{
     width: 100%;
   }
+  .footer-print{
+    border: 1px solid @gray-lighter;
+    div{
+      padding: 35px 0px 5px 15px;
+      border-right: 1px solid @gray-lighter;
+    }
+  }
+  .table tbody tr td{
+    padding: 5px 1em;
+  }
+  .table tbody tr th{
+    padding: 10px 1em;
+    font-size: 12px !important;
+  }
   button, .btn, a.btn {
     display: none !important;
   }
   .glyphicon, .column-button{
     display: none;
   }
-  .home-footer__links {
+  .home-footer {
     display: none;
   }
 }

@@ -17795,9 +17795,6 @@ td {
     width: 8em;
   }
 }
-.panel-default .panel-date:nth-child(1) {
-  border-right: 1px solid #cbcbcb;
-}
 .panel-default .panel-counter {
   width: 25em;
   float: right;
@@ -21488,10 +21485,10 @@ blockquote {
   width: 65%;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__price {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__free {
-  padding-top: 0px;
+  padding-top: 5px;
 }
 .trulii-activity-card-organizer .trulii-activity-card__body__content__attendes {
   color: #767676;
@@ -25718,33 +25715,57 @@ blockquote {
 .table-hover > tbody > tr.order-mounts:hover {
   background-color: transparent;
 }
-.print-visible {
+.print-container {
   display: none;
 }
 @media print {
+  .order-container {
+    display: none;
+  }
   .print-visible {
     display: block;
   }
-  .print-container {
-    width: 100%;
-    position: fixed;
-    left: 40px;
-    top: 48px;
-    display: block;
+  .logo {
+    padding: 10px 25px !important;
   }
-  .order-mobile {
-    display: none !important;
+  .logo img {
+    width: 125px;
   }
-  .table-order {
-    display: block !important;
+  .cover-blur-small {
+    display: none;
+  }
+  .info-order {
+    padding: 10px 25px !important;
+    font-size: 8.5pt;
   }
   .order-description {
-    background-color: #ededed;
+    background-color: #f0f2f7 !important;
+    -webkit-print-color-adjust: exact;
+    padding: 10px 25px !important;
   }
-  .order-description a {
-    display: inline-block;
-    text-decoration: none;
-    color: #9b9b9b !important;
+  .order-description span {
+    color: #3A405B !important;
+    -webkit-print-color-adjust: exact;
+  }
+  .text-sm-print {
+    font-size: 8pt;
+  }
+  .text-md-print {
+    font-size: 10pt;
+  }
+  .print-container {
+    width: 90%;
+    position: absolute;
+    top: 0px;
+    left: 5%;
+    display: block;
+  }
+  .border-print {
+    border-bottom: 1px solid #ededed;
+    border-top: 1px solid #ededed;
+  }
+  .padding-print {
+    padding: 10px 25px !important;
   }
   .order-tooltip,
   .order-tooltip:before,
@@ -25753,6 +25774,20 @@ blockquote {
   }
   .order-info {
     width: 100%;
+  }
+  .footer-print {
+    border: 1px solid #ededed;
+  }
+  .footer-print div {
+    padding: 35px 0px 5px 15px;
+    border-right: 1px solid #ededed;
+  }
+  .table tbody tr td {
+    padding: 5px 1em;
+  }
+  .table tbody tr th {
+    padding: 10px 1em;
+    font-size: 12px !important;
   }
   button,
   .btn,
@@ -25763,7 +25798,7 @@ blockquote {
   .column-button {
     display: none;
   }
-  .home-footer__links {
+  .home-footer {
     display: none;
   }
 }

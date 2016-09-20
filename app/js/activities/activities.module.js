@@ -165,7 +165,8 @@
                     }
                 },
                 resolve: {
-                    order: getOrder
+                    order: getOrder,
+                    bankingData: getBankingData
                 }
             })
             .state('dash.activities-manage.assistants', {
@@ -681,6 +682,11 @@
         getRelatedActivities.$inject = ['ActivitiesManager','activity'];
         function getRelatedActivities(ActivitiesManager, activity){
             return ActivitiesManager.getCategoryActivities(activity.category.id);
+        }
+        
+        getBankingData.$inject = ['organizer']
+        function getBankingData(organizer){
+            return  organizer.getBankingInfo();
         }
 
 
