@@ -94,7 +94,7 @@
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_PUBLISH_ACTIVITY: "Publica tu Actividad",
                 LABEL_OPEN_ACTIVITY: "Horario abierto",
-                LABEL_PACKAGE: "Paquete",
+                LABEL_PACKAGE: "Plan",
                 LABEL_CLASSES: "Clases",
                 LABEL_SCHEDULES: "Horarios",
             });

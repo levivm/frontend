@@ -40,8 +40,8 @@
                 SECTION_MESSAGES: "Mensajes > Detalle",
                 ACTION_GO_BACK: "Regresar",
                 SEARCH_PLACEHOLDER: "Buscar",
-                OPTION_ACTIVITY_DEFAULT: "Seleccione una actividad",
-                OPTION_CALENDAR_DEFAULT: "Seleccione una fecha de inicio",
+                OPTION_ACTIVITY_DEFAULT: "Elige una actividad",
+                OPTION_CALENDAR_DEFAULT: "Elige una fecha de inicio",
                 LABEL_SEND_MESSAGE: "Enviar",
                 SUBJECT_MESSAGE_PLACEHOLDER:"Asunto",
                 MODAL_MESSAGE_PLACEHOLDER:"Este mensaje llegará a todos los usuarios inscritos en esta actividad"

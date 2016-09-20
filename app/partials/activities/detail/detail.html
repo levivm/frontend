@@ -49,9 +49,7 @@
                 </div>
               </div>
             </div>
-            <div class="seats" >
-                <p ng-show="detail.activity.is_open" ng-bind="detail.strings.LABEL_OPEN_CALENDAR"></p>
-                <p ng-show="!detail.activity.is_open" ng-bind="detail.strings.LABEL_CLOSED_CALENDAR"></p>
+            <div class="seats">
                 <p ng-show="!detail.isSelectedCalendarFull() && !detail.activity.is_open">
                     <span ng-bind="detail.calendar_selected.available_capacity"></span>
                     <ng-pluralize count="detail.calendar_selected.available_capacity"
@@ -167,7 +165,9 @@
                         }">
               </ng-pluralize>
             </span>
-            
+            <br>
+            <span class="text-center" ng-show="!detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_ADD_TO_WISHLIST"></span>
+            <span class="text-center" ng-show="detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_REMOVE_FROM_WISHLIST"></span>
             <!--<span ng-if="detail.activity.wishlist_count === 0" ng-bind="::detail.strings.COPY_BE_THE_FIRST"></span>-->
           </div>
         </div>
@@ -581,14 +581,14 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-xs-12 col-md-4 col-md-offset-4 col-lg-3 col-lg-offset-6">
+                <div class="col-xs-12 col-md-6 col-lg-4 col-lg-offset-4">
                   <button type="button" id="button"
                     class="btn btn-cancel btn-md btn-block"
                     ng-bind="::detail.strings.EMAIL_MODAL_DISMISS"
                     ng-click="detail.toggleEmailShow()">
                   </button>
                 </div>
-                <div class="col-xs-12 col-md-4 col-lg-3">
+                <div class="col-xs-12 col-md-6 col-lg-4">
                   <button type="submit" id="submit"
                     class="btn btn-success btn-md btn-block"
                     ng-bind="::detail.strings.EMAIL_MODAL_SEND">

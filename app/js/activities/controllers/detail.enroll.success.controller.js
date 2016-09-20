@@ -139,7 +139,7 @@
                 LABEL_SCHEDULES: "Horarios",
                 LABEL_ADDRESS: "Dirección",
                 LABEL_CLASES: "Clases",
-                LABEL_PACKAGE: "Paquete",
+                LABEL_PACKAGE: "Plan",
                 COPY_IMPORTANT: "Cada asistente tendrá un código que el organizador les solicitará al comenzar la actividad para poder identificarlos. Revisa en tu factura tu código y el de los asistentes que te acompañarán.",
                 COPY_VIEW_YOUR_ORDER: "Ver mi factura",
                 COPY_VIEW_YOUR_ORDER_2: "orden de compra",
