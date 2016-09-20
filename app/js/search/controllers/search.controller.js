@@ -139,12 +139,6 @@
             if ($event){$event.preventDefault();$event.stopPropagation();}
             if (!category) { return; }
             vm.newSearchQuery = SearchManager.getQueryChange();
-            console.log(vm.newSearchQuery);
-            // if(!vm.newSearchQuery){
-            // //     console.log('epa');
-            //     searchAll(); 
-            //     return;
-            // }
 
             vm.searchCategory = category.id;
             vm.searchData["category_display"] = category.name;
@@ -174,7 +168,6 @@
                 vm.searchData["subcategory_display"] = subcategory.name;
                 vm.searchData["category_display"] = vm.searchCategory.name;
             }
-            // console.log("query", vm.newSearchQuery);
             SearchManager.setCategory(vm.searchCategory.id);
             SearchManager.setSubCategory(vm.searchSubCategory);
             _setPage(1);
@@ -302,7 +295,11 @@
         }
 
         function _setPage(page){
-            if(!page){ page = vm.activitiesPaginationOpts.pageNumber; }
+            if(!page)
+                page = vm.activitiesPaginationOpts.pageNumber; 
+            else
+                vm.activitiesPaginationOpts.pageNumber = page;
+
             page = page.toString();
             SearchManager.setPage(page);
             vm.searchData[SearchManager.KEY_PAGE] = page;
@@ -324,7 +321,6 @@
             }
 
             function error(error) {
-              console.log(error);
                 console.log('_getActivities. Error obtaining Activities from ActivitiesManager');
 
             }
@@ -494,8 +490,7 @@
             _setCities();
             unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
                     vm.searchData = SearchManager.getSearchData();
-                    console.log('modified!');
-
+                    _setPage(1);
                     _getActivities(vm.searchData).then(function () {
                         $state.go('search', vm.searchData,  {notify:false, reload:false, inherit:false}); 
                     });

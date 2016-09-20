@@ -63,6 +63,8 @@
             var activity_id = parseInt(reference_data.pop());
             var package_quantity = parseInt(reference_data.pop());
             var package_id = parseInt(reference_data.pop());
+            var package_type = reference_data.pop();
+            console.log("PACHAGE ASDASDASDASD", package_type)
             var state;
 
             if (pol_transaction_state == Payments.KEY_PSE_STATE_POL_CODE_4 &&
@@ -91,6 +93,7 @@
                 calendar_id: calendar_id,
                 package_quantity: package_quantity ? package_quantity : null,
                 package_id: package_id ? package_id : null,
+                package_type: package_type ? package_type : null,
                 state: state
             };
 

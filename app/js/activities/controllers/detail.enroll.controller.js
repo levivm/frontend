@@ -247,7 +247,7 @@
                     vm.success = true;
                     var bank_url = response.bank_url;
                     $window.location.href = bank_url;
-                     vm.enrolling = false;
+                    vm.enrolling = false;
                 }
 
                 function _enrollError(response){
@@ -502,7 +502,8 @@
                     vm.calendar.addAssistants(order.assistants);
                     vm.success = true;
                     $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':vm.calendar.id,
-                                        'order_id':order.id, 'package_quantity': vm.package ? vm.package.quantity : null});
+                                        'order_id':order.id, 'package_quantity': vm.package ? vm.package.quantity : null,
+                                        'package_type': vm.package ? vm.package.type_name : null});
                 }
 
                 function _enrollError(response){
@@ -801,7 +802,7 @@
                 LABEL_APPLY_COUPON: "Aplicar Cupón",
                 LABEL_FREE_CALENDAR: "Gratis",
                 COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
-                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a Confirmar Inscripción.",
+                COPY_FREE_CALENDAR_2: "Esta actividad es totalmente GRATUITA. ¡Sólo tienes que confirmar tu inscripción y listo!.",
                 LABEL_CREDIT: "Crédito",
                 LABEL_COUPON: "Cupón",
                 LABEL_CONTACT_US: "Contáctanos",
@@ -825,16 +826,16 @@
                 LABEL_PAYMENT_INFO: "Pago",
                 LABEL_TOTAL_AMOUNT: "Total a Pagar",
                 LABEL_DROPDOWN_DATE_INIT: "Fecha de inicio: ",
-                LABEL_DROPDOWN_PACKAGE: "Paquete: ",
+                LABEL_DROPDOWN_PACKAGE: "Plan: ",
                 LABEL_ID_NUMBER: "Identificación",
                 PLACEHOLDER_ID_NUMBER: "Ej. 18.345.995",
                 LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
-                LABEL_BANK: "Seleccione un banco",
-                OPTION_BANK_DEFAULT: "Seleccione un banco",
+                LABEL_BANK: "Elige un banco",
+                OPTION_BANK_DEFAULT: "Elige un banco",
                 LABEL_USER_TYPE:"Tipo de Persona",
-                OPTION_USER_TYPE_DEFAULT: "Seleccione una opción",
+                OPTION_USER_TYPE_DEFAULT: "Elige una opción",
                 LABEL_ID_TYPE:"Tipo de Documento de Identificación",
-                OPTION_ID_TYPE_DEFAULT:"Documento de identidad",
+                OPTION_ID_TYPE_DEFAULT:"Elige un documento de identidad",
 
                 LABEL_PHONE_NUMBER: "Teléfono de uso diario",
                 PLACEHOLDER_PHONE_NUMBER: "Ej. 5723488800",
@@ -846,8 +847,8 @@
                 LABEL_EXPIRY_DATE : "Fecha de Expiración",
                 LABEL_MONTH: "Mes",
                 PLACEHOLDER_MONTH: "MM",
-                PLACEHOLDER_SELECT_MONTH: "Seleccione el mes",
-                PLACEHOLDER_SELECT_YEAR: "Seleccione el año",
+                PLACEHOLDER_SELECT_MONTH: "Elige el mes",
+                PLACEHOLDER_SELECT_YEAR: "Elige el año",
                 LABEL_YEAR: "Año",
                 PLACEHOLDER_YEAR: "YYYY",
                 LABEL_CVV:"CVV",

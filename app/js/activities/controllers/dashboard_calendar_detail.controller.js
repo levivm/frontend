@@ -160,7 +160,7 @@
                 LABEL_NOTES: "Notas",
                 LABEL_SALES: "Ventas",
                 LABEL_SCHEDULES: "Horarios",
-                LABEL_PACKAGE_PRICE: "Precio del paquete",
+                LABEL_PACKAGE_PRICE: "Precio del plan",
                 LABEL_PACKAGE_NAME: "Tipo",
                 LABEL_PACKAGE_QUANTITY: "Número",
                 LABEL_WEEKEND: "Tu actividad se realizará los fines de semana",
@@ -173,8 +173,8 @@
                 LABEL_SESSION_END_TIME: "Hora de fin:",
                 TOAST_SESSIONS_ERROR: "Existe un error en las sesiones",
                 TOAST_SESSIONS_NUMBER_ERROR: "Deber haber mínimo una sesión",
-                ERROR_NON_PACKAGES: "Debes por lo menos agregar un paquete.",
-                OPTION_SELECT_PNAME:"Seleccione un tipo"
+                ERROR_NON_PACKAGES: "Debes por lo menos agregar un plan.",
+                OPTION_SELECT_PNAME:"Elige un tipo"
             });
         }
 

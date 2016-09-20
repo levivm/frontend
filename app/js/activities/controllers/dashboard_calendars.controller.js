@@ -59,7 +59,6 @@
         }
         
         function hideCalendars() {
-            //vm.activity.isOpen=!vm.activity.isOpen;
             if(vm.activity.isOpen){
                 document.getElementById('slider-anchor').setAttribute('disabled', true);
             }
@@ -78,7 +77,6 @@
                     .then(updateSuccess, _errored);
             }
             function updateSuccess(response) {
-                console.log("response ",response);
                 angular.extend(activity, vm.activity);
             }
             
@@ -156,6 +154,8 @@
                 LABEL_CLOSE_SALE: "Ventas cerradas",
                 LABEL_OPEN_SALE: "Ventas abiertas",
                 LABEL_CALENDAR_SEATS: "Cupos",
+                LABEL_PACKAGES: "Paquetes",
+                LABEL_PACKAGES_PLAN: "Número de planes",
                 LABEL_START: "Fecha de inicio",
                 LABEL_END: "Última sesión",
                 LABEL_FREE: "Gratis",
@@ -176,11 +176,9 @@
             vm.republish = $stateParams.republish;
             vm.calendar_errors = {};
             _onSectionUpdated();
-            console.log(vm.calendars);
             stateChangeUnbinder = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
                     if(isCreatingCalendar()){
-                        console.log('Creating New Calendar');
                         CalendarsManager.loadCalendars(activity.id).then(function(dataCalendars){
                           vm.calendars= dataCalendars;
                         });
