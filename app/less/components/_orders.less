@@ -187,7 +187,9 @@
 .print-container {
   display: none;
 }
-
+.print-visible {
+    display: none;
+  }
 @media print {
   
   .order-container{
@@ -232,6 +234,23 @@
     top: 0px;
     left: 5%;
     display: block;
+  }
+  .print-container-student{
+    width: 100%;
+    position: fixed;
+    left: 40px;
+    top: 48px;
+    display: block;
+  }
+  .order-mobile{
+    display: none !important;
+  }
+  
+  .panel-default{
+    display: none;
+  }
+  .table-order{
+    display: block !important;
   }
   .border-print{
     border-bottom: 1px solid @gray-lighter;

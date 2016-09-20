@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row" ng-class="{'print-container-student': order.isStudent}">
     
-    <div class="order-container tab-content">
+    <div class="tab-content" ng-class="{'order-container': !order.isStudent}">
         <div class="col-xs-12 panel-default panel-default__dashboard ">
             <a class="btn btn-default separate-right-less hidden-sm hidden-xs"
                 ng-click="order.goBack()">
@@ -12,6 +12,11 @@
         <div class="card-body tab-content">
             <div class="tab-pane active fade in">
                 <div>
+                    <div class="row " ng-class="{'hide': !order.isStudent, 'print-visible': order.isStudent}">
+                        <div class="col-xs-4 separate-below logo">
+                            <img class="img-responsive" ng-src="{{order.getAmazonUrl('static/img/logo-green.png')}}" alt="">
+                        </div>
+                    </div>
                     
                     <div class="row order-detail">
                         <div class="col-xs-12 order-description">
@@ -201,7 +206,7 @@
         </div>
     </div>
 </div>
-<div class="print-container">
+<div  ng-class="{'print-container': !order.isStudent, 'hide': order.isStudent}">
     <div class="separate-below logo">
         <img class="img-responsive" ng-src="{{order.getAmazonUrl('static/img/logo-green.png')}}" alt="">
     </div>
