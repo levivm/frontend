@@ -434,7 +434,7 @@
             angular.extend(vm.strings, {
                 ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
-                ACTION_VIEW_SCHEDULES: "Horarios",
+                ACTION_VIEW_SCHEDULES: "Ver horarios",
                 COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
                 COPY_TO: " a ",
@@ -505,9 +505,11 @@
                 LABEL_OPEN_CALENDAR: "Horario Abierto",
                 LABEL_CLOSED_CALENDAR: "Horario Fijo",
                 LABEL_STARTS: "Inicios",
-                LABEL_PACKAGES: "Paquetes",
+                LABEL_PACKAGES: "Planes",
                 COPY_CLASSES_SINGULAR: " Clase",
-                COPY_CLASSES: " Clases"
+                COPY_CLASSES: " Clases",
+                COPY_ADD_TO_WISHLIST: "Agregar a favoritos",
+                COPY_REMOVE_FROM_WISHLIST: "Quitar de favoritos"
             });
         }
         function _updateWidgetValues(){

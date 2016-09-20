@@ -118,8 +118,8 @@
                 LABEL_PHONE: "Teléfono (Opcional)",
                 LABEL_CITY: "Ciudad",
                 OPTION_TOPIC_DEFAULT: "Tema",
-                OPTION_SUBTOPIC_DEFAULT: "Seleccione un sub-tópico",
-                OPTION_CITY_DEFAULT: "Seleccione ciudad",
+                OPTION_SUBTOPIC_DEFAULT: "Elige un sub-tópico",
+                OPTION_CITY_DEFAULT: "Elige ciudad",
                 PLACEHOLDER_DESCRIPTION: "Cuéntanos, ¿en qué podemos colaborarte?"
             });
         }

@@ -93,7 +93,7 @@
                 COPY_MAP_2: "el indicador",
                 COPY_MAP_3: "en el mapa hasta el lugar donde se llevará a cabo su actividad.",
                 LABEL_CITY: "Ciudad",
-                LABEL_SELECT: "Seleccione...",
+                LABEL_SELECT: "Elige...",
                 LABEL_ADDRESS: "Dirección exacta",
                 LABEL_LOCATION: "Ubicación",
                 ACTION_SAVE: "Guardar"
