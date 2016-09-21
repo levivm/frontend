@@ -438,6 +438,7 @@
                 ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
                 ACTION_VIEW_SCHEDULES: "Ver horarios",
+                ACTIVITY_DISABLED:"Así está quedando tu publicación. Regresa a editar en caso que quieras hacer algún cambio",
                 COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
                 COPY_TO: " a ",
@@ -602,8 +603,7 @@
 
 
             if(!(vm.activity.published)){
-                Toast.setPosition("toast-top-center");
-                Toast.error(vm.strings.ACTIVITY_DISABLED);
+                Toast.success(vm.strings.ACTIVITY_DISABLED);
             }
 
             _setSocialShare();

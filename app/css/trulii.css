@@ -21778,6 +21778,7 @@ blockquote {
   left: 0px;
   width: 100%;
   border-top: 1px solid #ededed;
+  background-color: white;
 }
 .activity-detail__enroll-widget__content .schedules-container__footer__prev {
   border-right: 1px solid #ededed;
