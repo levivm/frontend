@@ -283,6 +283,9 @@
             _getCalendars(activity);
             //console.log("reloadin",assistants);
             //Function for angularSeo
+            
+            vm.activeCalendar = activity.is_open ? vm.calendars[0]:null;
+            
             $scope.htmlReady();
         }
     }
