@@ -281,7 +281,6 @@
             vm.activity = _mapMainPicture(activity);
             _getOrders(activity.id);
             _getCalendars(activity);
-            console.log(activity);
             //console.log("reloadin",assistants);
             //Function for angularSeo
             $scope.htmlReady();
