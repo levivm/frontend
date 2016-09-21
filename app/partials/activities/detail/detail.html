@@ -33,12 +33,14 @@
             <div class="schedules-container" ng-class="{'expanded': detail.showSchedules}">
               <div class="schedules-container__header">
                 <p class="text-uppercase">
-                  Horarios
+                  <strong>Horarios</strong>
                   <i class="fa fa-times" aria-hidden="true" ng-click="detail.toggleSchedules()"></i>
                 </p>
               </div>
               <div class="schedules-container__html">
                 <div ng-bind-html="detail.calendar_selected.schedules"></div>
+                <div ng-if="detail.calendar_selected.note" class="text-uppercase separate-above"><p><strong>Nota</strong></p></div>
+                <div ng-if="detail.calendar_selected.note" ng-bind-html="detail.calendar_selected.note"></div>
               </div>
               <div class="schedules-container__footer">
                 <div class="schedules-container__footer__prev" ng-click="detail.schedulesScrollUp()">
@@ -155,6 +157,8 @@
           </div>
           <div class="copy">
             <!--12 personas aman esta actividad-->
+            <span class="text-center" ng-show="!detail.detail.verifyWishList()" ><strong ng-bind="::detail.strings.COPY_ADD_TO_WISHLIST"></strong></span>
+            <span class="text-center" ng-show="detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_REMOVE_FROM_WISHLIST"></span><br>
             <span ng-bind="detail.activity.wishlist_count"></span>
             <span>
               <ng-pluralize count="detail.activity.wishlist_count"
@@ -165,9 +169,9 @@
                         }">
               </ng-pluralize>
             </span>
-            <br>
-            <span class="text-center" ng-show="!detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_ADD_TO_WISHLIST"></span>
-            <span class="text-center" ng-show="detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_REMOVE_FROM_WISHLIST"></span>
+            
+            
+            
             <!--<span ng-if="detail.activity.wishlist_count === 0" ng-bind="::detail.strings.COPY_BE_THE_FIRST"></span>-->
           </div>
         </div>
@@ -278,13 +282,19 @@
       <div class="row">
         <div class="info separate-above hidden-xs hidden-sm">
           <div class="info__content">
-              <div ng-class="{'col-xs-6': detail.activity.level_display, 'ng-hide': !!!detail.activity.level_display}">
+            <div ng-class="{'col-xs-4': detail.activity.level_display, 'ng-hide': !!!detail.activity.level_display}">
+                <p class="text-center">
+                  <span ng-bind="detail.calendar_selected.assistants.length"></span>
+                  <span >Asistente</span>
+                </p>
+              </div>
+              <div ng-class="{'col-xs-4': detail.activity.level_display, 'ng-hide': !!!detail.activity.level_display}">
                 <p class="text-center">
                   <span ng-bind="::detail.strings.VALUE_LEVEL"></span>
                   <span ng-bind="::detail.activity.level_display"></span>
                 </p>
               </div>
-              <div ng-class="{'col-xs-6': detail.activity.level_display, 'col-xs-12': !!!detail.activity.level_display}">
+              <div ng-class="{'col-xs-4': detail.activity.level_display, 'col-xs-12': !!!detail.activity.level_display}">
                 <p ng-if="detail.activity.certification" class="text-center"
                    ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></p>
                 <p ng-if="!detail.activity.certification" class="text-center"
@@ -435,7 +445,7 @@
             </div>
           </div>
         </div>
-        <div class="hidden-xs hidden-sm detail-attendees" ui-view="attendees"></div>
+        <!--<div class="hidden-xs hidden-sm detail-attendees" ui-view="attendees"></div>-->
       </div>
     </div>
   </div>
