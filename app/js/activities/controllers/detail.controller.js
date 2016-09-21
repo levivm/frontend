@@ -380,12 +380,12 @@
             if(activity.is_open){
                 var calendar = _getSelectedCalendar(activity);
                 if (!calendar)
-                    return
-                var _package = calendar.packages[0]
+                    return;
+                var _package = calendar.packages[0];
                 if ($stateParams.package_id)
                      _package = _.find(calendar.packages, {'id': parseInt($stateParams.package_id)});
 
-                vm.selectedPackage = _package.id.toString();
+                vm.selectedPackage = _package ? _package.id.toString(): null;
                 return _package;
             }
         }

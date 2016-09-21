@@ -106,7 +106,7 @@
                 <span ng-bind="::(order.amount | currency:$:0)"></span>
               </td>
               <td class="hidden-xs hidden-sm">
-                <span ng-bind="::(order.amount - order.amount*order.fee | currency:$:0)"></span>
+                <span ng-bind="::(order.fee_detail.final_total | currency:$:0)"></span>
               </td>
               <!--<td class="column-button">
                 <a ui-sref="dash.activities-manage.orders.order({'activity_id':order.activity.id,'orderId': order.id, 'previousState':{'state':'organizer-dashboard.transactions.sales'} })">

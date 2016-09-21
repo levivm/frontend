@@ -127,9 +127,6 @@
 
         function getAvailableCities() {
             var deferred = $q.defer();
-            if (!availableCities) {
-                availableCities = localStorageService.get(KEY_AVAILABLE_CITIES);
-            }
             if (availableCities) {
                 deferred.resolve(availableCities);
                 return deferred.promise;
