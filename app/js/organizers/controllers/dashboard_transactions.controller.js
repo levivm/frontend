@@ -69,6 +69,7 @@
             updateByQuery:updateByQuery,
             openDatePicker: openDatePicker,
             TYPE_SALES: 'sales',
+            ORGANIZER_SPECIAL_TYPE: 'Especial',
             withDraw: withDraw,
             changePageWithdraws:changePageWithdraws,
             filterById: filterById,
@@ -147,7 +148,7 @@
 
           modalInstance.result.then(function () {
              organizer.postWithDraw()
-                      .then(success, error)
+                      .then(success, error);
           });
 
           function success(data) {
@@ -241,6 +242,7 @@
                 TAB_BALANCE: "Transacciones > Balance",
                 TAB_SALES: "Transacciones > Ventas",
                 TAB_WITHDRAWALS: "Transacciones > Historial de retiros",
+                COPY_SPECIAL_WITHDRAWALS: "Tú dinero disponible se transferirá a tu cuenta cada fin de mes.",
                 COPY_WITHDRAWALS: "Revisa todos los retiros que has solicitado en la plataforma desde el mas reciente hasta el primero.",
                 COPY_NO_WITHDRAWALS: "Hasta ahora no has solicitado ningún retiro a tu cuenta bancaria. Recuerads que puedes solicitar el monto disponible cuando desees.",
                 COPY_BALANCE: "Revisa la cantidad de dinero que tienes disponible para solicitar la transferencia a tu cuenta. Solicita el retiro cuando quieras.",
