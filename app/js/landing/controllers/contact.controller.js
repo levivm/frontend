@@ -41,7 +41,7 @@
         _activate();
 
         //--------- Functions Implementation ---------//
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
@@ -103,19 +103,19 @@
                 ACTION_SEND: "Enviar ahora",
                 CONTACT_COVER_TITLE_1: "Encuéntranos literalmente",
                 CONTACT_COVER_TITLE_2: "en donde sea",
-                CONTACT_COVER_TEXT: "Para dudas o simplemente conversar con nosotros escribenos por aquí o en cualquiera de nuestros canales.",
+                CONTACT_COVER_TEXT: "Para dudas o simplemente conversar con nosotros escríbenos por aquí o en cualquiera de nuestros canales.",
                 CONTACT_SUCCESS_COVER_TITLE: "¡Excelente!",
                 CONTACT_SUCCESS_COVER_TEXT: "¡Pendiente! Dentro de muy poco contactaremos para conocerte y validar tu solicitud",
-                COPY_ALL_FIELDS_REQUIRED: "Por favor llene todos los campos",
-                COPY_SUCCESS_SENDING_FORM: "Tu solicitud fue enviada con éxito. Pronto nos pondremos en contacto contigo",
+                COPY_ALL_FIELDS_REQUIRED: "¡Yuujuuuu, despistad@@@@! Recuerda llenar todos los campos antes de enviar.",
+                COPY_SUCCESS_SENDING_FORM: "¡Pendiente! Dentro de muy poco te contactaremos para ayudarte. Nuestro trabajo es hacerte feliz.",
                 COPY_ERROR_SENDING_FORM: "Hubo un error enviando tu solicitud. Por favor intenta de nuevo",
                 LABEL_CONTACT_US: "Contáctanos",
                 LABEL_TOPIC: "Tópico",
                 LABEL_SUB_TOPIC: "Sub-Tópico",
                 LABEL_DESCRIPTION: "Descripción",
                 LABEL_NAME: "Nombre",
-                LABEL_EMAIL: "Email",
-                LABEL_PHONE: "Teléfono (Opcional)",
+                LABEL_EMAIL: "Correo electrónico",
+                LABEL_PHONE: "Número de teléfono",
                 LABEL_CITY: "Ciudad",
                 OPTION_TOPIC_DEFAULT: "Tema",
                 OPTION_SUBTOPIC_DEFAULT: "Elige un sub-tópico",

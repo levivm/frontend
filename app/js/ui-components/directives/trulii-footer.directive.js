@@ -23,9 +23,9 @@
                     toggleFooter: toggleFooter,
                     showFooter: {}
                 });
-                
+
                 _activate();
-                
+
 
                 scope.getAmazonUrl = function(file){
                   return  serverConf.s3URL + '/' +  file;
@@ -77,12 +77,12 @@
                         FOOTER_LINKS_ORGANIZER_FEEDBACK: "Danos tu feedback",
                         FOOTER_LINKS_ORGANIZER_HELP: "Ayuda",
                         FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
-                        FOOTER_LINKS_SOCIAL_HEADER: "¡Sé nuestro amigo!",
+                        FOOTER_LINKS_SOCIAL_HEADER: "¡SEAMOS AMIGOS!!",
                         FOOTER_SHOW_ABOUT: 'about',
                         FOOTER_SHOW_STUDENT: 'student',
                         FOOTER_SHOW_ORGANIZER: 'organizer',
                         FOOTER_SHOW_SOCIAL: 'social'
-                        
+
                     });
 
                 }
@@ -93,7 +93,7 @@
                         organizer: !_isMobile(),
                         social: !_isMobile()
                     }
-                    
+
                 }
                 function _isMobile(){
                     return $window.innerWidth < 768;
