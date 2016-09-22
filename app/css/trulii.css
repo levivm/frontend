@@ -12828,7 +12828,7 @@ hr.on-light {
   color: #767676 !important;
   font-weight: 700;
   font-size: 1em;
-  text-transform: capitalize;
+  text-transform: initial;
 }
 .trulii-checkbox input[type="checkbox"] + label span {
   position: relative;
@@ -12976,7 +12976,7 @@ hr.on-light {
 }
 .content-schedules .select-schedules {
   display: flex;
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 5em;
   justify-content: space-between;
@@ -12995,6 +12995,7 @@ hr.on-light {
 }
 .content-schedules .select-schedules .schedule__description {
   margin-top: 1em;
+  width: 335px;
 }
 .content-schedules .select-schedules .active {
   color: #3A405B;
@@ -17711,6 +17712,10 @@ td {
   border-radius: 0px 0px 5px 5px;
   padding: 1.5em 1em 1.5em 2em;
 }
+.panel-default__dashboard-sub-second-calendar span {
+  display: block;
+  width: 75%;
+}
 .panel-default__dashboard-sub-second-calendar .btn-panel {
   top: 11px !important;
 }
@@ -20316,6 +20321,7 @@ button.toast-close-button {
   width: 45em;
   margin: 0 auto;
   height: 30em;
+  margin-top: 10em;
 }
 .trulii-cover__content-create-title,
 .trulii-cover-small__content-create-title,

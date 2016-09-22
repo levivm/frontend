@@ -8,6 +8,7 @@
             </div>
             <div class="trulii-cover__content-create-subtitle">
                 <h5 class="text-blue-dark " ng-bind="::vm.strings.COPY_SELECT_ACTIVITY_TITLE"> </h5>
+                <h5 class="text-blue-dark separate-above" ng-bind="::vm.strings.COPY_SELECT_ACTIVITY_TITLE_2"> </h5>
             </div>
              <div class="trulii-cover__content-create-input">
                 <input id="activity_title" type="text" class="form-control input-lg text-center text-capi text-lg-2" name="title"
@@ -41,19 +42,19 @@
             <div class="schedule" ng-click="vm.activity.is_open=true" ng-class="{'active': vm.activity.is_open}">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                  <div class="schedule__title">
-                     <span>Horario abierto</span>
+                     <span ng-bind="::vm.strings.TITLE_CALENDAR_OPEN"></span>
                  </div>
                  <div  class="schedule__description">
-                     Especifique la información solictada para continuar.
+                     <span ng-bind="::vm.strings.COPY_CALENDAR_OPEN"></span>
                  </div>
             </div> 
             <div class="schedule" ng-click="vm.activity.is_open=false" ng-class="{'active': !vm.activity.is_open}">
                 <i class="fa fa-calendar" aria-hidden="true"></i>
                  <div class="schedule__title">
-                     <span>Horario fijo</span>
+                     <span ng-bind="::vm.strings.TITLE_CALENDAR_CLOSED"></span>
                  </div>
                  <div  class="schedule__description">
-                     Especifique la información solictada para continuar.
+                     <span ng-bind="::vm.strings.COPY_CALENDAR_CLOSED"></span>
                  </div>
             </div>
         </div>
