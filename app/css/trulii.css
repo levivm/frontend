@@ -21778,6 +21778,7 @@ blockquote {
   left: 0px;
   width: 100%;
   border-top: 1px solid #ededed;
+  background-color: white;
 }
 .activity-detail__enroll-widget__content .schedules-container__footer__prev {
   border-right: 1px solid #ededed;
@@ -21877,6 +21878,7 @@ blockquote {
   border: 1px solid #ededed;
   transition: all 0.5s;
   color: #4E546C;
+  font-size: 0.9em;
 }
 .activity-detail__enroll-widget__likes .heart {
   width: 60px;
@@ -21894,7 +21896,7 @@ blockquote {
   float: left;
   width: 160px;
   display: inline-block;
-  margin-top: 2px;
+  margin-top: -5px;
 }
 .activity-detail:before {
   position: absolute;
@@ -21966,6 +21968,9 @@ blockquote {
   font-weight: bold;
 }
 .activity-detail .info__content div:nth-child(2) {
+  border-left: 1px solid #767676;
+}
+.activity-detail .info__content div:nth-child(3) {
   border-left: 1px solid #767676;
 }
 .activity-detail ol {

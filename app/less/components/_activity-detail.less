@@ -277,6 +277,7 @@
                     left: 0px;
                     width: 100%;
                     border-top: 1px solid @gray-lighter;
+                    background-color: white;
                     &__prev{
                         border-right: 1px solid @gray-lighter;
                         width: 50%;
@@ -380,6 +381,7 @@
             border: 1px solid @gray-lighter;
             transition: all 0.5s;
             color: @gray-darker-brand;
+            font-size: 0.9em;
             .heart{
                 width: 60px;
                 display: inline-block;
@@ -396,7 +398,7 @@
                 float: left;
                 width: 160px;
                 display: inline-block;
-                margin-top: 2px;
+                margin-top: -5px;
             }
         }
     }
@@ -468,6 +470,9 @@
               font-weight: bold;
           }
           div:nth-child(2){
+              border-left: 1px solid @gray-dark;
+          }
+          div:nth-child(3){
               border-left: 1px solid @gray-dark;
           }
       }

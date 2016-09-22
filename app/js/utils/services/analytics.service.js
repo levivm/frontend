@@ -149,7 +149,7 @@
 
             var userId = Authentication.isAuthenticated() ? true:false;
             $window.ga('create', {
-                trackingId: 'UA-67305468-1',
+                trackingId: 'UA-67305468-4',
                 cookieDomain: 'auto',
                 name: 'myTracker',
             });

@@ -85,12 +85,22 @@
                 COPY_PRINT_EMAIL: "alo@trulii.com",
                 COPY_PRINT_ORDER_NUM: "Factura de Venta N°",
                 COPY_PRINT_INFO1: "No somos grandes contribuyentes",
-                COPY_PRINT_INFO2: "No somos autoretenedores",
+                COPY_PRINT_INFO2: "No somos autorretenedores",
                 COPY_PRINT_INFO3: "Actividad economica 4791 tarifa ICA 11.01 por Mil",
                 LABEL_PRINT_CANT: "Cantidad",
                 LABEL_PRINT_DETAIL: "Detalle y/o Concepto del Servicio",
                 LABEL_PRINT_PRICE_UN: "Costo Unitario COP $",
-                LABEL_PRICE_TOTAL: "Costo Total COP $"
+                LABEL_PRICE_TOTAL: "Costo Total COP $",
+                LABEL_SRS: "Señores: ",
+                LABEL_ADDRESS_INFO: "Dirección, Telefono y Ciudad",
+                LABEL_DATE_EXP: "Fecha de expedición",
+                LABEL_TOTAL_RECIVED: "Total ingresos recibidos para terceros",
+                LABEL_COMISSION_TRULII: "Comisión Trulii",
+                LABEL_COMISSION_TRULII_FEE: "Comisión Trulii 3.5%",
+                LABEL_COMISSION_TRULII_FEE_TAX: "IVA Sobre Comisión",
+                LABEL_RETEIVA: "Reteiva",
+                LABEL_RETEICA: "Reteica",
+                LABEL_TOTAL_COMISSION: "Total Comisión Trulii"
             });
         }
 

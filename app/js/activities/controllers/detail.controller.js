@@ -438,6 +438,7 @@
                 ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
                 ACTION_VIEW_SCHEDULES: "Ver horarios",
+                ACTIVITY_DISABLED:"Así está quedando tu publicación. Regresa a editar en caso que quieras hacer algún cambio",
                 COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
                 COPY_TO: " a ",
@@ -519,8 +520,8 @@
         function _updateWidgetValues(){
             vm.scroll = window.scrollY;
             vm.widgetOriginalPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().top + window.scrollY + 50;
-            vm.widgetMaxPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY - 420 - 70;
-            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY) - 420 - (document.getElementsByClassName('trulii-cover-regular')[0].getBoundingClientRect().bottom + window.scrollY);
+            vm.widgetMaxPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY ;
+            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('trulii-cover-regular')[0].getBoundingClientRect().bottom + window.scrollY) +100;
             vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().left + 30;
             vm.widgetFixedPositionRight = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().right - 30 - 250;
         }
@@ -602,8 +603,7 @@
 
 
             if(!(vm.activity.published)){
-                Toast.setPosition("toast-top-center");
-                Toast.error(vm.strings.ACTIVITY_DISABLED);
+                Toast.success(vm.strings.ACTIVITY_DISABLED);
             }
 
             _setSocialShare();
