@@ -20,13 +20,18 @@
                         <span ng-bind="transactions.balances.available | number"></span></h5>
                 </div>
                 
-                <div class="btn btn-gray-dark " ng-class="{'btn-info': transactions.balances.available > transactions.minMount}" ng-click="transactions.withDraw()">
+                <div ng-if="::(transactions.organizer.type == transactions.ORGANIZER_SPECIAL_TYPE)" class="btn btn-gray-dark " ng-class="{'btn-info': transactions.balances.available > transactions.minMount}" ng-click="transactions.withDraw()">
                           <span ng-bind="::transactions.strings.ACTION_BALANCE_WITHDRAW"></span>
                 </div>
+
+                
                 
             </div>
-            
+
             <div class="balance__note">
+              <div ng-if="::!(transactions.organizer.type == transactions.ORGANIZER_SPECIAL_TYPE)">
+                <span ng-bind="::transactions.strings.COPY_SPECIAL_WITHDRAWALS"></span>
+              </div>
               <div class="balance__note-title">
                 <span ng-bind="::transactions.strings.LABEL_DESCRIPTION"></span>
               </div>
