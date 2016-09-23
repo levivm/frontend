@@ -62,6 +62,7 @@
             showSchedules: false,
             changeSelectedCalendar : changeSelectedCalendar,
             isSelectedCalendarFull : isSelectedCalendarFull,
+            isSelectedPackageFull : isSelectedPackageFull,
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
             signUp: signUp,
@@ -368,7 +369,6 @@
                 return calendar;
 
             if (!activity.closest_calendar){ return; }
-
             if(moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days')){
                 return null;
             } else {

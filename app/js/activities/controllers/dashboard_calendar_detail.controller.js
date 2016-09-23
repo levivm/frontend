@@ -141,7 +141,7 @@
 
         function _setStrings(){
 
-            var LABEL_CALENDAR_TITLE = "Nuevo Calendario";
+            var LABEL_CALENDAR_TITLE = "Nuevo calendario";
             if (vm.calendar.id)
                 LABEL_CALENDAR_TITLE = "Calendario > Editar";
 
@@ -151,21 +151,22 @@
                 LABEL_CALENDARS: "Calendarios",
                 LABEL_CALENDAR_TITLE: LABEL_CALENDAR_TITLE,
                 COPY_CALENDAR_INFO: "Especifique la información solicitada para continuar.",
-                LABEL_IS_FREE: "Habilitar inscripción gratuita",
+                LABEL_IS_FREE: "Marca aquí si la actividad es gratuita.",
                 LABEL_START_DATE: "Fecha de inicio",
                 LABEL_CLOSE_SALES: "Cierre de ventas",
-                TOOLTIP_CLOSE_SALES: "El cierre de ventas debe ser menor a la primera sesión.",
+                TOOLTIP_NOTES: "Escribe información relevante sobre el precio de esta actividad. Ejemplo: el precio incluye los equipos de trabajo",
                 LABEL_CALENDAR_SEATS: "Cupos disponibles",
                 LABEL_SESSION_PRICE: "Precio (COP)",
-                LABEL_NOTES: "Notas",
+                LABEL_NOTES: "Nota",
                 LABEL_SALES: "Ventas",
                 LABEL_SCHEDULES: "Horarios",
                 LABEL_PACKAGE_PRICE: "Precio del plan",
                 LABEL_PACKAGE_NAME: "Tipo",
                 LABEL_PACKAGE_QUANTITY: "Número",
-                LABEL_WEEKEND: "Tu actividad se realizará los fines de semana",
-                COPY_SCHEDULES:"En una misma publicación puedes tener diferentes fechas de inicio.",
+                LABEL_WEEKEND: "Mi actividad sólo se imparte los fines de semana.",
+                COPY_SCHEDULES:"Escribe las fechas, días y horas en las que se realizarán las clases.",
                 PLACEHOLDER_SCHEDULES:"Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
+                PLACEHOLDER_NOTES: "Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
                 TITLE_SESSIONS: "Sesiones",
                 LABEL_SESSIONS_AMOUNT: "En una misma publicación puedes tener diferentes fechas de inicio, cada una con diferentes número de sesiones, fechas y horas.",
                 LABEL_SESSION_DAY: "Día de la sesión",
