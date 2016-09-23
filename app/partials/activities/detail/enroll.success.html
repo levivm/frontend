@@ -106,15 +106,43 @@
               <p>
                 <a href="#" ng-bind="::success.strings.ACTION_CONTACT_US"></a>
               </p>
+              <!--Audience-->
+              <div class="separate-above">
+                  <h4>
+                    <strong class="text-dark" ng-bind="::success.strings.LABEL_START_DATE"></strong>
+                  </h4>
+                  <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
+                    <span ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')">
+                    </span>
+                  </p>
+                  <h4>
+                    <strong class="text-dark" ng-show="::success.packageQuantity" ng-bind="::success.strings.LABEL_PACKAGE"></strong>
+                  </h4>
+                  <p class="text-capitalize content" ng-show="::success.packageQuantity" ng-class="{'content-mobile': !success.showAudience}">
+                    <span ng-bind="::success.packageQuantity">
+                    </span>
+                    <span ng-bind="::success.packageType">
+                    </span>
+                  </p>
+                  <h4>
+                    <strong class="text-dark" ng-bind="::success.strings.LABEL_SCHEDULES"></strong>
+                  </h4>
+                  <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
+                    <span ng-bind-html="::success.calendar.schedules">
+                    </span>
+                  </p>
+              </div>
             </div>
+            
           </div>
-          <div class="hidden-xs hidden-sm" ui-view="attendees"></div>
+          
+          <!--<div class="hidden-xs hidden-sm" ui-view="attendees"></div>-->
         </div>
         <div class="row separate-above">
           <div class="col-xs-12">
-            <p class="content separate-below" ng-if="success.activity.post_enroll_message" ng-bind-html="success.activity.post_enroll_message"></p>
+            <p class="content separate-below font-semibold " ng-if="success.activity.post_enroll_message" ng-bind-html="success.activity.post_enroll_message"></p>
             <h4 ><strong class="text-dark" ng-bind="::success.strings.LABEL_IMPORTANT"></strong></h4>
-            <p class="separate-below" ng-bind="::success.strings.COPY_IMPORTANT"></p>
+            <p class="separate-below font-semibold " ng-bind="::success.strings.COPY_IMPORTANT"></p>
             <p class="content"  ng-bind-html="success.activity.requirements" ng-class="{'content-mobile': !success.showAudience}"></p>
             <!--<h4>
               <strong>
@@ -127,37 +155,11 @@
                ng-bind="success.strings.COPY_VIEW_YOUR_ORDER">
           </div>
         </div>
-          <!--Audience-->
-          <div class="row separate-above-less" >
-            <div class="col-xs-12 section">
-              <div class="separator separate-vertical"></div>
-              <h4>
-                <strong class="text-dark" ng-bind="::success.strings.LABEL_START_DATE"></strong>
-              </h4>
-              <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
-                <span ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')">
-                </span>
-              </p>
-              <h4>
-                <strong class="text-dark" ng-show="::success.packageQuantity" ng-bind="::success.strings.LABEL_PACKAGE"></strong>
-              </h4>
-              <p class="text-capitalize content" ng-show="::success.packageQuantity" ng-class="{'content-mobile': !success.showAudience}">
-                <span ng-bind="::success.packageQuantity">
-                </span>
-                <span ng-bind="::success.packageType">
-                </span>
-              </p>
-              <h4>
-                <strong class="text-dark" ng-bind="::success.strings.LABEL_SCHEDULES"></strong>
-              </h4>
-              <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
-                <span ng-bind-html="::success.calendar.schedules">
-                </span>
-              </p>
-            </div>
-         </div>
-         <div class="row separate-above-less" >
-            <div class="col-xs-12 section">
+          
+         
+      </div>
+      <div class="row separate-above-more" >
+            <div class="col-xs-12 section text-center">
               <h4>
                 <strong class="text-dark" ng-bind="::success.strings.LABEL_LOCATION"></strong>
               </h4>
@@ -173,7 +175,6 @@
               </div>
             </div>
          </div>
-      </div>
       <div class="row hidden-xs hidden-sm">
         <div class="related-activities-container-enroll col-xs-12" ng-if="success.organizerActivities.length > 0">
           <div class="row">

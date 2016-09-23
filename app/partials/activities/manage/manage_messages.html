@@ -63,7 +63,7 @@
       <div class="modal-body">
         <form name='messages.message_form' ng-submit="messages.submitMessage()" class="separate-above separate-below-less form-classic">
           <fieldset>
-              <div class="" trulii-input-errors-control="calendar">
+              <div class="" trulii-input-errors-control="calendar" ng-if="!messages.activity.is_open">
                   <label for="calendar-select" class="control-label"
                          ng-bind="::messages.strings.LABEL_CALENDAR"></label>
                   <select id="calendar-select" name="calendar"

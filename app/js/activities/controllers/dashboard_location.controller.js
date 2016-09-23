@@ -90,9 +90,9 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 COPY_CITY: "Especifica en qué lugar se desarrollará tu actividad.",
-                COPY_MAP_1: "Arrastre",
+                COPY_MAP_1: "Arrastra",
                 COPY_MAP_2: "el indicador",
-                COPY_MAP_3: "en el mapa hasta el lugar donde se llevará a cabo su actividad.",
+                COPY_MAP_3: " en el mapa hasta el lugar donde se realizará la actividad.",
                 LABEL_CITY: "Ciudad",
                 LABEL_SELECT: "Elige...",
                 LABEL_ADDRESS: "Dirección exacta",

@@ -16,7 +16,7 @@
                 </div>
         </div>
         <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second flex-betweent-container" >
-               <span  class="" ng-bind="::calendar.strings.COPY_CALENDAR_INFO"></span>
+               <span  class="" ></span>
                 <div class="flex-betweent-container">
                     <span class="sales-label" for="enroll_close" ng-bind="::calendar.strings.LABEL_SALES"></span>
                     <switch id="enroll_close" name="enroll_close" ng-model="calendar.calendar.enroll_open" on="Abiertas" off="Cerradas" class="green"></switch>
@@ -54,7 +54,7 @@
             </alert>
             <div class="col-md-6">
                 <div class="form-group "   trulii-input-errors-control="closing_sale">
-                    
+                      </label>
                     <label class="control-label"  >
                         <span ng-bind="::calendar.strings.LABEL_START_DATE"></span>
                     </label>
@@ -100,6 +100,7 @@
                 <div class="form-group col-xs-12 separate-above" trulii-input-errors-control="note" >
                     <label for="short_description" class="control-label">
                         <span  ng-bind="::calendar.strings.LABEL_NOTES"></span>
+                        <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top" tooltip="{{::calendar.strings.TOOLTIP_NOTES}}"></i>
                     </label>
                     <input type="text" id="short_description"  class="form-control" name="short_description"
                             placeholder="{{::calendar.strings.PLACEHOLDER_NOTES}}"

@@ -150,6 +150,8 @@
             angular.extend(vm.strings, {
                 DELETE_CALENDAR_ERROR: "No puede eliminar este calendario, tiene estudiantes inscritos, contactanos",
                 LABEL_CALENDARS: "Calendarios",
+                LABEL_CALENDAR_OPEN: "Calendario abierto",
+                LABEL_CALENDAR_CLOSED: "Calendario fijo",
                 LABEL_START_DATE: "Calendario ",
                 LABEL_CLOSE_SALE: "Ventas cerradas",
                 LABEL_OPEN_SALE: "Ventas abiertas",
@@ -162,12 +164,12 @@
                 LABEL_EDIT_CALENDAR: "Editar",
                 LABEL_DELETE_CALENDAR: "Borrar",
                 LABEL_ADD_CALENDAR: "Agregar calendario",
-                COPY_ADD_CALENDAR: "En una misma publicación puedes...",
+                COPY_ADD_CALENDAR_CLOSE: "Tu actividad tiene una fecha de inicio específica y la persona no podrá inscribirse una vez esta comience.",
+                COPY_ADD_CALENDAR_OPEN: "Tu actividad es recurrente durante todas las semanas, sin tener fecha de inicio específica.",
                 COPY_REPUBLISH_CALENDAR: "Estás republicando esta actividad. Recuerda que para republicarla exitosamente debes" +
                                          "de agregar por lo menos un nuevo calendario.",
                 LABEL_WARNING: "Advertencia!",
-                ERROR_SCHEDULE: "No puedes cambiar de tipo de horario, mientras tengas calendarios creados."
-
+                ERROR_SCHEDULE: "No puedes cambiar a otro tipo de calendario en esta publicación mientras tengas creados calendarios del otro tipo."
             });
         }
 

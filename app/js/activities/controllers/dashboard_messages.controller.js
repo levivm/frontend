@@ -72,6 +72,7 @@
             .then(
               function(response){
                 vm.calendars = response.calendars;
+                vm.message.calendar = vm.activity.is_open ? vm.calendars[0]:null;
               }
             );
         }
