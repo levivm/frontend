@@ -211,8 +211,10 @@
                 LABEL_TAGS: "Tags / Etiquetas",
                 TOAST_TITLE_ERROR: "El título es obligatiorio.",
                 SECTION_GENERAL: "General",
+                TITLE_SCHEDULES: "Horarios",
                 TITLE_CALENDAR_CLOSED: "Calendario fijo",
                 TITLE_CALENDAR_OPEN: "Calendario abierto",
+                COPY_SCHEDULES: "Elige el tipo de calendario que más se ajusta a tu actividad.",
                 COPY_CALENDAR_CLOSED: "Tu actividad tiene una fecha de inicio específica y el día y hora de las clases son definidas por el organizador. Ideal para cursos y diplomado",
                 COPY_CALENDAR_OPEN: "Tu actividad es recurrente durante todas las semanas, sin tener fecha de inicio específica. Ideal para actividades donde el asistente puede elegir qué día y/o hora más le conviene, como clases de yoga, de dibujo o de salsa, por ejemplo."
             });

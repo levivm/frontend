@@ -17716,6 +17716,9 @@ td {
 .panel-default__dashboard-sub-second .btn-message {
   margin-left: 5em;
 }
+.panel-default__dashboard .btn-back {
+  text-transform: capitalize !important;
+}
 .panel-default__dashboard-sub-second-calendar {
   border-radius: 0px 0px 5px 5px;
   padding: 1.5em 1em 1.5em 2em;

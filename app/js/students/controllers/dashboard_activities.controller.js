@@ -144,10 +144,11 @@
             angular.extend(vm.strings, {
                 ACTION_SEARCH_ACTIVITIES: "A ver qué encuentro",
                 COPY_CURRENT: "Estas son las actividades que estás cursando en este momento. Recuerda evaluarlas al terminar.",
-                COPY_LAST: "Estas actividades son las que ya culminaron. Guárdalas en favoritos para que sepas cando vuelven a darse.",
+                COPY_LAST: "Estas son las actividades que tienes que evaluar. Tu evaluación es importante para la comunidad. Sé sincero y respetuoso(a).",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                LABEL_EMPTY_ACTIVITIES: "Hasta ahora no ha terminado ninguna actividad",
-                LABEL_EMPTY_CURRENT_ACTIVITIES: "En este mommento no estás realizando ninguna actividad. ¿Qué estás esperando? ¡Anímate!",
+                LABEL_EMPTY_ACTIVITIES: "En este momento no estás cursando ninguna actividad. ¿Qué esperas para aprender algo nuevo? ¡Anímate, pues!",
+                LABEL_EMPTY_CURRENT_ACTIVITIES: "No tienes ninguna actividad próxima a realizar. ¿Qué estás esperando? ¡Venga, pues!",
+                LABEL_EMPTY_LAST_ACTIVITIES:"Por los momentos no tienes ninguna actividad para evaluar. ¿Qué tal si pruebas buscando algo? Quizá encuentres algo interesante.", 
                 COPY_EMPTY_ACTIVITIES: "Parece ser el momento perfecto para que descubra una nueva pasión,"
                     + " aprenda un nuevo pasatiempo o mejore su currículo",
                 TAB_NEXT: "Actividades / Próximas",

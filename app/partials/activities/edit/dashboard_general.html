@@ -34,8 +34,8 @@
 </div>
      <div class="content-schedules" ng-show="vm.weHaveTitle && !vm.weHaveSchedule" ng-class="{ 'margin-auto': vm.creating}">
         <div class="panel-default panel-default__dashboard separate-above">
-            <span class="panel-default__dashboard-title" >Horarios</span>
-            <span  class="separate-left-less" >Especifique la información solicitada para continuar</span>
+            <span class="panel-default__dashboard-title" ng-bind="::vm.strings.TITLE_SCHEDULES"></span>
+            <span  class="separate-left-less" ng-bind="::vm.strings.COPY_SCHEDULES"></span>
         </div>
         
         <div class="select-schedules">

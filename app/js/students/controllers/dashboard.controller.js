@@ -73,9 +73,9 @@
             }
             angular.extend(vm.strings, {
                 SECTION_ACTIVITIES: "Actividades",
-                SECTION_ACTIVITIES_CURRENT: "Actuales",
+                SECTION_ACTIVITIES_CURRENT: "Iniciadas",
                 SECTION_ACTIVITIES_NEXT: "Próximas",
-                SECTION_ACTIVITIES_LAST: "Por revisar",
+                SECTION_ACTIVITIES_LAST: "Por evaluar",
                 SECTION_ACCOUNT: "Cuenta",
                 SECTION_PROFILE: "Perfil",
                 SECTION_HISTORY: "Transacciones",
