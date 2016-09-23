@@ -13272,6 +13272,7 @@ h2.title {
   }
 }
 h3.title {
+  font-size: 2.75em;
   font-weight: 400;
 }
 .title strong {
@@ -26151,13 +26152,17 @@ blockquote {
   height: 18px;
   transition: all 0.5s;
 }
-.referral-share.list-inline li:nth-child(n+3) .share-button:hover .img-off,
-.referral-share.list-inline li:nth-child(n+3) .share-button:focus .img-off {
+.referral-share.list-inline li:nth-child(n+3) .share-button:hover .img-off {
   opacity: 0;
 }
-.referral-share.list-inline li:nth-child(n+3) .share-button:hover .img-on,
-.referral-share.list-inline li:nth-child(n+3) .share-button:focus .img-on {
+.referral-share.list-inline li:nth-child(n+3) .share-button:hover .img-on {
   opacity: 1;
+}
+.referral-share.list-inline li:nth-child(n+3) .share-button:focus .img-off {
+  opacity: 1;
+}
+.referral-share.list-inline li:nth-child(n+3) .share-button:focus .img-on {
+  opacity: 0;
 }
 @media screen and (max-width: 768px) {
   .referral-share li.referral-link {

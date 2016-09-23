@@ -43,11 +43,11 @@
         _activate();
 
         //--------- Functions Implementation ---------//
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-        
+
         function pageChange(){
           ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', vm.activitiesPaginationOpts.pageNumber,  vm.activitiesPaginationOpts.itemsPerPage)
           .then(function (response) {
@@ -58,7 +58,7 @@
             for(var i = 0; i < vm.activities.length; i++){
                 vm.activities[i].template = "partials/activities/dynamic_layout_item.html";
             }
-        
+
             vm.cards = vm.activities;
           });
         }
@@ -82,12 +82,12 @@
                 activities.results[i].template = "partials/activities/dynamic_layout_item.html";
             }
             vm.cards = activities.results;
-            
+
         }
 
         function _setOrganizerCity(){
             LocationManager.getAvailableCities().then(successCities);
-            
+
             vm.map = LocationManager.getMap(organizer.location, false)
             vm.marker = LocationManager.getMarker(organizer.location)
             vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
@@ -131,7 +131,7 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 LABEL_PUBLISHED_ACTIVITIES: "Actividades de ",
-                LABEL_UNPUBLISHED_ACTIVITIES: "no tiene actividades",
+                LABEL_UNPUBLISHED_ACTIVITIES: "Este organizador aún no ha publicado ninguna actividad.",
                 LABEL_BIO: "Biografía",
                 LABEL_CONTACT: "Contactar",
                 LABEL_REVIEWS: "Evaluaciones",

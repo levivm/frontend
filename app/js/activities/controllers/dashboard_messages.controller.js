@@ -57,9 +57,9 @@
            if(!vm.message.calendar){
                 vm.message.calendar={
                     id: undefined
-                }
+                };
            }
-           activity.sendMessage(vm.message).then(_success, _error)
+           activity.sendMessage(vm.message).then(_success, _error);
            
         }
 
@@ -68,7 +68,11 @@
 
 
         function _loadCalendars(){
-          ActivitiesManager.getActivity(activity.id)
+
+            if (!_.isEmpty(vm.calendars))
+                return vm.calendars;
+
+            ActivitiesManager.getActivity(activity.id)
             .then(
               function(response){
                 vm.calendars = response.calendars;
@@ -86,7 +90,8 @@
           vm.toggleMessageShow();
           Toast.success("Su mensaje ha sido enviado");
           vm.pageChange();
-          vm.message = {};
+          vm.message.detail = null;
+          vm.message.subject = null;
         }
 
         function _setStrings() {

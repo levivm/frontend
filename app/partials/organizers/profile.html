@@ -22,7 +22,7 @@
                     <div class="col-xs-12">
                         <div class="rating">
                             <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                                    readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating> 
+                                    readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
                         </div>
                     </div>
                 </div>
@@ -64,7 +64,6 @@
             <span ng-bind="::profile.organizer.name"></span>
         </span>
         <span ng-if="profile.activities.length==0">
-            <span ng-bind="::profile.organizer.name"></span>
             <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span>
         </span>
     </h1>
@@ -125,7 +124,7 @@
                 <span ng-bind="::profile.strings.COPY_TOTAL_REVIEWS"></span>
             </p>
             <p class="text-center text-dark separate-above-more" ng-if="profile.totalReviews === 0" ng-bind="::profile.strings.COPY_NO_REVIEWS"></p>
-            
+
         </div>
         <div class="col-xs-12" ng-if="profile.totalReviews > 0">
             <h3 class="separate-below separate-above-medium">
