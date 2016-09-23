@@ -11889,6 +11889,7 @@ hr.on-light {
 }
 .flex-center-container,
 .circular-image-container,
+.accept-terms,
 .trulii-cover__container,
 .trulii-cover-small__container,
 .trulii-cover-medium__container,
@@ -13040,6 +13041,12 @@ hr.on-light {
   z-index: 0;
   color: white;
   font-weight: 800;
+}
+.accept-terms {
+  width: 90%;
+}
+.accept-terms .trulii-checkbox {
+  margin-left: 25px;
 }
 .text-left {
   text-align: left;
