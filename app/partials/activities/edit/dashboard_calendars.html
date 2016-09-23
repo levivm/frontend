@@ -6,11 +6,11 @@
                    <div class="panel-default__dashboard-tabs">
                        <div class="panel-default__dashboard-tab" ng-click="calendars.changeSchedule(true)" ng-class="{'panel-default__dashboard-tab-active': calendars.activity.is_open}">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <span>Horario abierto</span>
+                            <span ng-bind="::calendars.strings.LABEL_CALENDAR_OPEN"></span>
                        </div>
                        <div class="panel-default__dashboard-tab" ng-click="calendars.changeSchedule(false)"  ng-class="{'panel-default__dashboard-tab-active': !calendars.activity.is_open}">
                             <i class="fa fa-calendar" aria-hidden="true"></i>
-                            <span>Horario fijo</span>
+                            <span ng-bind="::calendars.strings.LABEL_CALENDAR_CLOSED"></span>
                        </div>
                    </div>
             </div>
@@ -19,7 +19,8 @@
                     <input type="checkbox" id="free" ng-model="calendars.activity.isOpen" ng-change="calendars.hideCalendars()">
                     <label for="free"><span></span>Ocultar horarios de la publicación</label>
                 </div>-->
-                <span class="text-gray-dark " ng-bind="::calendars.strings.COPY_ADD_CALENDAR"></span>
+                <span class="text-gray-dark " ng-if="calendars.activity.is_open" ng-bind="::calendars.strings.COPY_ADD_CALENDAR_OPEN"></span>
+                <span class="text-gray-dark " ng-if="!calendars.activity.is_open" ng-bind="::calendars.strings.COPY_ADD_CALENDAR_CLOSE"></span>
                  <button class="btn btn-sm btn-info btn-panel"
                             ng-show="calendars.checkNoMoreCalendars()"  
                             ng-click="calendars.createCalendar()"

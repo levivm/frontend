@@ -1295,7 +1295,7 @@
 			color: @gray-dark !important;
 			font-weight: 700;
 			font-size: 1em;
-			text-transform: capitalize;
+			text-transform: initial;
 	}
 	input[type="checkbox"] + label span {
 			position: relative;
@@ -1471,7 +1471,7 @@
     margin-bottom: 100px !important;
 	.select-schedules{
 		display: flex;
-		width: 75%;
+		width: 100%;
 		margin: 0 auto;
 		margin-top: 5em;
 		justify-content: space-between;
@@ -1491,6 +1491,7 @@
 			
 			&__description{
 				margin-top: 1em;
+				width: 335px;
 			}
 			
 		}
@@ -1553,3 +1554,10 @@
     font-weight: 800;
 }
 
+.accept-terms{
+	&:extend(.flex-center-container);
+	width: 90%;
+	.trulii-checkbox{
+		margin-left: 25px;
+	}
+}

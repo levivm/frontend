@@ -193,8 +193,9 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                COPY_START_ACTIVITY_CREATION: "¡Comienza a crear tu actividad!",
-                COPY_SELECT_ACTIVITY_TITLE: "¿Como titularías esta actividad?",
+                COPY_START_ACTIVITY_CREATION: "¡Genial!",
+                COPY_SELECT_ACTIVITY_TITLE: "Es hora de crear tu actividad. No te preocupes, nosotros estaremos ayudándote durante todo el proceso.",
+                COPY_SELECT_ACTIVITY_TITLE_2: "¿Qué título le pondrías a tu actividad?",
                 COPY_CERTIFICATION: "¿Entregarás certificación?",
                 COPY_DESCRIPTION_TOOLTIP: "Describe tu actividad de forma atractiva, especifica y díficil de olvidar.",
                 COPY_TAGS_TOOLTIP: "Estas palabras claves facilitarán que tu actividad sea encontrada en la búsqueda.",
@@ -209,7 +210,13 @@
                 LABEL_SHOT_DESCRIPTION: "Descripción corta",
                 LABEL_TAGS: "Tags / Etiquetas",
                 TOAST_TITLE_ERROR: "El título es obligatiorio.",
-                SECTION_GENERAL: "General"
+                SECTION_GENERAL: "General",
+                TITLE_SCHEDULES: "Horarios",
+                TITLE_CALENDAR_CLOSED: "Calendario fijo",
+                TITLE_CALENDAR_OPEN: "Calendario abierto",
+                COPY_SCHEDULES: "Elige el tipo de calendario que más se ajusta a tu actividad.",
+                COPY_CALENDAR_CLOSED: "Tu actividad tiene una fecha de inicio específica y el día y hora de las clases son definidas por el organizador. Ideal para cursos y diplomado",
+                COPY_CALENDAR_OPEN: "Tu actividad es recurrente durante todas las semanas, sin tener fecha de inicio específica. Ideal para actividades donde el asistente puede elegir qué día y/o hora más le conviene, como clases de yoga, de dibujo o de salsa, por ejemplo."
             });
         }
 

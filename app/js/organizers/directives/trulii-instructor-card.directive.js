@@ -107,7 +107,6 @@
                         }
 
                     } else {
-                        Toast.setPosition("toast-top-center");
                         Toast.error(scope.strings.MSG_MISSING_REQUIRED_FIELDS);
                     }
 
@@ -221,8 +220,7 @@
                         PLACEHOLDER_WEBSITE: "Ingrese URL de website",
                         LABEL_BIO: "Bio",
                         PLACEHOLDER_BIO: "Escriba una biografía corta del de instructor",
-                        MSG_MISSING_REQUIRED_FIELDS : "Por favor asegurese de verificar todos los campos obligatorios" +
-                            " para la creación del instructor",
+                        MSG_MISSING_REQUIRED_FIELDS : "Para guardar el instructor debes llenar toda la información solicitada, querid@.",
                         MSG_DELETE_SUCCESS: "Instructor eliminado exitosamente.",
                         MSG_DELETE_ERROR: "Error eliminando el instructor. Por favor intente de nuevo.",
                         VALUE_UNSPECIFIED: "No Especificado"

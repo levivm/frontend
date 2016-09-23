@@ -63,7 +63,7 @@
             angular.extend(vm.strings, {
                 ACTION_GO_BACK: "Regresar",
                 ACTION_PRINT: "Imprimir",
-                COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y ayuda a identificar a un asistente",
+                COPY_ASSISTANT_CODE_TOOLTIP: "Este código te pertenece y permite que el organizador pueda identificarte.",
                 SECTION_HISTORY: "Historial de Compras",
                 LABEL_ORDER: "Nro. de Orden",
                 LABEL_FREE: "GRATIS",

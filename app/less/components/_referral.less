@@ -14,7 +14,7 @@
         height: 55px;
         background-color: white;
         padding: 0 2em;
-        
+
     }
     input:focus{
       background-image: none;
@@ -61,7 +61,7 @@
 }
 
 .referral-share{
-  &.list-inline{  
+  &.list-inline{
     li{
       padding-left: 2px;
       padding-right: 2px;
@@ -140,7 +140,7 @@
                 height: 18px;
                 transition: all 0.5s;
             }
-            &:hover, &:focus{
+            &:hover{
                 .img-off{
                     opacity: 0;
                 }
@@ -148,11 +148,19 @@
                     opacity: 1;
                 }
             }
+            &:focus{
+              .img-off{
+                  opacity: 1;
+              }
+              .img-on{
+                  opacity: 0;
+              }
+            }
         }
     }
-    
+
   }
-  
+
   .before-sm({
     li.referral-link{
       display: block;

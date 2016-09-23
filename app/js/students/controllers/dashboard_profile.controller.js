@@ -170,9 +170,9 @@
                 COPY_PRIVATE_DATA_TOOLTIP: "Esta información no la compartiremos con nadie.",
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
-                OPTION_SELECT: "Seleccione Ciudad",
-                OPTION_GENDER_SELECT: "Seleccione un Genero",
-                BIRTH_SELECT: "Seleccione una fecha", 
+                OPTION_SELECT: "Elige una ciudad",
+                OPTION_GENDER_SELECT: "Elige un genero",
+                BIRTH_SELECT: "Elige una fecha", 
                 SECTION_PROFILE: "Perfil",
                 COPY_PROFILE: "Esta información aparecerá en tu perfil y lo veran los demás usuarios.",
                 TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 2.5Mb"

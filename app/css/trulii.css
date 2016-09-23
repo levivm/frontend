@@ -11889,6 +11889,7 @@ hr.on-light {
 }
 .flex-center-container,
 .circular-image-container,
+.accept-terms,
 .trulii-cover__container,
 .trulii-cover-small__container,
 .trulii-cover-medium__container,
@@ -12828,7 +12829,7 @@ hr.on-light {
   color: #767676 !important;
   font-weight: 700;
   font-size: 1em;
-  text-transform: capitalize;
+  text-transform: initial;
 }
 .trulii-checkbox input[type="checkbox"] + label span {
   position: relative;
@@ -12976,7 +12977,7 @@ hr.on-light {
 }
 .content-schedules .select-schedules {
   display: flex;
-  width: 75%;
+  width: 100%;
   margin: 0 auto;
   margin-top: 5em;
   justify-content: space-between;
@@ -12995,6 +12996,7 @@ hr.on-light {
 }
 .content-schedules .select-schedules .schedule__description {
   margin-top: 1em;
+  width: 335px;
 }
 .content-schedules .select-schedules .active {
   color: #3A405B;
@@ -13039,6 +13041,12 @@ hr.on-light {
   z-index: 0;
   color: white;
   font-weight: 800;
+}
+.accept-terms {
+  width: 90%;
+}
+.accept-terms .trulii-checkbox {
+  margin-left: 25px;
 }
 .text-left {
   text-align: left;
@@ -13264,6 +13272,7 @@ h2.title {
   }
 }
 h3.title {
+  font-size: 2.75em;
   font-weight: 400;
 }
 .title strong {
@@ -17707,9 +17716,16 @@ td {
 .panel-default__dashboard-sub-second .btn-message {
   margin-left: 5em;
 }
+.panel-default__dashboard .btn-back {
+  text-transform: capitalize !important;
+}
 .panel-default__dashboard-sub-second-calendar {
   border-radius: 0px 0px 5px 5px;
   padding: 1.5em 1em 1.5em 2em;
+}
+.panel-default__dashboard-sub-second-calendar span {
+  display: block;
+  width: 75%;
 }
 .panel-default__dashboard-sub-second-calendar .btn-panel {
   top: 11px !important;
@@ -20316,6 +20332,7 @@ button.toast-close-button {
   width: 45em;
   margin: 0 auto;
   height: 30em;
+  margin-top: 10em;
 }
 .trulii-cover__content-create-title,
 .trulii-cover-small__content-create-title,
@@ -26138,13 +26155,17 @@ blockquote {
   height: 18px;
   transition: all 0.5s;
 }
-.referral-share.list-inline li:nth-child(n+3) .share-button:hover .img-off,
-.referral-share.list-inline li:nth-child(n+3) .share-button:focus .img-off {
+.referral-share.list-inline li:nth-child(n+3) .share-button:hover .img-off {
   opacity: 0;
 }
-.referral-share.list-inline li:nth-child(n+3) .share-button:hover .img-on,
-.referral-share.list-inline li:nth-child(n+3) .share-button:focus .img-on {
+.referral-share.list-inline li:nth-child(n+3) .share-button:hover .img-on {
   opacity: 1;
+}
+.referral-share.list-inline li:nth-child(n+3) .share-button:focus .img-off {
+  opacity: 1;
+}
+.referral-share.list-inline li:nth-child(n+3) .share-button:focus .img-on {
+  opacity: 0;
 }
 @media screen and (max-width: 768px) {
   .referral-share li.referral-link {

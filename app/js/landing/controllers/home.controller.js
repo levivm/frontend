@@ -125,7 +125,7 @@
                 PUBLISH_TEXT_1: "Trulii es el <strong>mejor espacio</strong> para dar a conocer " +
                 "tu actividad. Bien sea un curso de cocina, una classe de cross-fit, un foro de negocios o un diplomado universitario, nosotros " +
                 "te ayudamos a <strong>aumentar tus ingresos</strong> buscándote nuevos asistentes mientras tú <strong>te enfocas en enseñar</strong> lo que te gusta.",
-                PUBLISH_TEXT_2: "Regístrate sin costo alguno y aprovecha <strong>nuestra prueba gratuita.</strong> <br>¡Te esperamos!",
+                PUBLISH_TEXT_2: "Regístrate sin costo alguno y comienza a llenar tus cupos. ¡Trabajemos juntos!",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
                 PUBLISH_BUTTON_COPY: "Me interesa, ¡Cuéntame más!"
             });
@@ -150,15 +150,15 @@
            });
 
         }
-        
+
         function _mapTemplates(){
             for(var i = 0; i < activities.results.length; i++){
                 activities.results[i].template = "partials/activities/dynamic_layout_item.html";
             }
             vm.cards = activities.results;
-            
+
         }
-        
+
         function _setTrendingCategories() {
             var categories = [];
             angular.forEach(vm.categories, function(category){
@@ -182,7 +182,7 @@
             _mapTemplates();
             _setTrendingCategories();
             //Analytics.generalEvents.landing();
-            
+
             //Function for angularSeo
             $scope.htmlReady();
         }
