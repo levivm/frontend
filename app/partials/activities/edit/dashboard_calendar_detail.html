@@ -38,9 +38,9 @@
                             ng-model="package.quantity" />
                 </div>
                 
-                <div class="col-xs-4" id="name_{{$index}}" trulii-input-errors-control="name_{{$index}}">
-                    <label class="control-label" for="name" ng-bind="::calendar.strings.LABEL_PACKAGE_NAME"></label>
-                    <select  class="form-control" name="name_{{$index}}" ng-model="package.type"
+                <div class="col-xs-4" id="type_{{$index}}" trulii-input-errors-control="type_{{$index}}">
+                    <label class="control-label" for="type" ng-bind="::calendar.strings.LABEL_PACKAGE_NAME"></label>
+                    <select  class="form-control" name="type_{{$index}}" ng-model="package.type"
                         ng-options="type['0'] as type['1'] for type in calendar.presaveInfo.package_options">
                         <option ng-hide="package.type" value="" ng-bind="::calendar.strings.OPTION_SELECT_PNAME"></option>
                     </select>

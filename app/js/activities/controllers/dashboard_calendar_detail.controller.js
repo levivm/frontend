@@ -22,7 +22,7 @@
         var vm = this;
         var MAX_LENGTH_NOTE = 200;
         var ERROR_STUDENTS = "No se puede cambiar la sessión con estudiantes inscritos.";
-        
+        var packagesErrors = [];
         
         angular.extend(vm, {
             maxLengthNote: MAX_LENGTH_NOTE,
@@ -96,18 +96,22 @@
         function _checkIfPackages(){
             return vm.activity.is_open && vm.calendar.packages.length<1;
         }
+        
         function _errored(responseErrors) {
-            var packagesErrors = [];
+            
             var packageError ={};
             if (responseErrors) {
                 
                 if(responseErrors['packages'] && !responseErrors['schedules']){
                      _.each(responseErrors['packages'], function (error_dict, index) { 
                             if(!_.isEmpty(error_dict)){
+                                
                                 if(error_dict['quantity'])
                                     packageError['quantity_'+index] = error_dict['quantity'];
                                 if(error_dict['price'])
                                     packageError['price_'+index] = error_dict['price'];
+                                if(error_dict['type'])
+                                    packageError['type_'+index] = error_dict['type'];
                                     
                                 packagesErrors.push(packageError);
                                 Elevator.toElement('package-'+index);
