@@ -92,10 +92,34 @@
             return activity;
         }
 
+        function _getTitleSlug(){
+            var title = vm.activity.title;
+            title = title.replace(/[`~!¡¿@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+
+            // Replacing whitespaces with hyphens
+            title = title.split(' ').join('-').toLowerCase();
+
+            // Replacing most common special characters
+            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c", "ñ":"n"};
+
+            title = title.replace(/[^\w ]/g, function(char) {
+                return dict[char] || char;
+            });
+
+            vm.activity.titleSlug = title;
+    
+        }
 
         function _setSocialShare(){
-            var current_url = $state.href($state.current.name, $state.params, {absolute: true});
+             _getTitleSlug();
+            var stateActivityParams ={
+                activity_id: vm.activity.id,
+                activity_title: vm.activity.titleSlug,
+                category_slug: vm.activity.category.slug
+            };
+            var current_url = $state.href('activities-detail', stateActivityParams, {absolute: true});
             vm.social = {};
+
 
             angular.extend(vm.social, {
                 FACEBOOK_SOCIAL_PROVIDER: 'facebook',
@@ -288,7 +312,6 @@
             vm.activity = activity;
             vm.organizerActivities = _getOrganizerActivities();
             vm.organizerActivities = vm.organizerActivities.slice(0, 4);
-            console.log('activity:', activity);
             _setSocialShare();
             _setConfetti();
             _mapTemplates();

@@ -25023,6 +25023,10 @@ blockquote {
     width: 80% ;
   }
 }
+.flex-cards .images-organizers {
+  width: 145px;
+  margin-top: 10px;
+}
 .flex-cards data-trulii-activity-item {
   display: block;
   width: 25%;

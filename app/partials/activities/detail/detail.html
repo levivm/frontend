@@ -285,7 +285,16 @@
             <div ng-class="{'col-xs-4': detail.activity.level_display, 'ng-hide': !!!detail.activity.level_display}">
                 <p class="text-center">
                   <span ng-bind="detail.calendar_selected.assistants.length"></span>
-                  <span >Asistente</span>
+                  <span >
+                    <ng-pluralize count="detail.calendar_selected.assistants.length"
+                        when="{
+                        '0': 'Asistentes',
+                        '1': 'Asistente',
+                        'other': 'Asistentes'
+                        }">
+                    </ng-pluralize>
+                  </span>
+                  
                 </p>
               </div>
               <div ng-class="{'col-xs-4': detail.activity.level_display, 'ng-hide': !!!detail.activity.level_display}">
