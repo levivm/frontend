@@ -236,7 +236,7 @@
 
                 };
                 if(activity.is_open){
-                    data.package_id = vm.package;
+                    data.package = vm.package.id;
                 }
                 _startProccesingPayment();
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
@@ -368,7 +368,7 @@
             };
 
             if(activity.is_open){
-                data.package_id = vm.package.id;
+                data.package = vm.package.id;
             }
             ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                               .finally(_finishProccesingPayment);
