@@ -121,7 +121,7 @@
 
         function _setAvailableCities(cities) {
             availableCities = cities;
-            localStorageService.set(KEY_AVAILABLE_CITIES, availableCities);
+            //localStorageService.set(KEY_AVAILABLE_CITIES, availableCities);
 
         }
 
@@ -136,8 +136,10 @@
         }
 
         function getCityById(city_id) {
-            return availableCities.filter(byId)[0];
-
+            getAvailableCities().then(function(cities){
+               availableCities = cities;
+               return availableCities.filter(byId)[0];
+            });
             function byId(city) {
                 return city.id === city_id;
             }
