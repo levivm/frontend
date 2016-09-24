@@ -99,30 +99,21 @@
         
         function _errored(responseErrors) {
             
-            var packageError ={};
+            
             if (responseErrors) {
-                
                 if(responseErrors['packages'] && !responseErrors['schedules']){
                      _.each(responseErrors['packages'], function (error_dict, index) { 
+                            var packageError ={};
                             if(!_.isEmpty(error_dict)){
-                                
-                                if(error_dict['quantity'])
-                                    packageError['quantity_'+index] = error_dict['quantity'];
-                                if(error_dict['price'])
-                                    packageError['price_'+index] = error_dict['price'];
-                                if(error_dict['type'])
-                                    packageError['type_'+index] = error_dict['type'];
-                                    
+                                _.each(Object.keys(error_dict), function(value){
+                                     packageError[value+'_'+index] = error_dict[value];
+                                });
                                 packagesErrors.push(packageError);
                                 Elevator.toElement('package-'+index);
-
                             }
-                            
                         });
+                        
                       Error.form.addArrayErrors(vm.activity_calendar_form, packagesErrors);
-                      delete responseErrors['packages'];
-                      delete packagesErrors['packages'];
-                      
                 }else{
                     Error.form.add(vm.activity_calendar_form, responseErrors);
                     if (!responseErrors['schedules']){
