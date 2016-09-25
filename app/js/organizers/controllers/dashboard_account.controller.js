@@ -46,6 +46,9 @@
             function success(bankingData){
                 vm.isSaving = false;
                 angular.extend(vm.bankingData, bankingData);
+                var current_bank_data = _.find(vm.bankingInfo.banks, 
+                                                { 'bank_name': bankingData.bank });
+                vm.bankingData.bank = current_bank_data.bank_id;
                 Toast.generics.weSaved();
             }
 
@@ -122,7 +125,7 @@
         }
         
         function _setLegalData(){ 
-            vm.bankingData.regimen = vm.bankingData.regimen ? vm.bankingData.regimen:"";
+            vm.bankingData.regimen = vm.bankingData.regimen ? vm.bankingData.regimen:null;
             vm.bankingData.fiscal_address = vm.bankingData.fiscal_address ? vm.bankingData.fiscal_address:"";
             vm.bankingData.billing_telephone = vm.bankingData.billing_telephone ? vm.bankingData.billing_telephone:"";
         }

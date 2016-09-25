@@ -90,7 +90,7 @@
 
             vm.map = LocationManager.getMap(organizer.location, false)
             vm.marker = LocationManager.getMarker(organizer.location)
-            vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
+            // vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
 
             function successCities(cities){
                 vm.city = _getCity(cities, organizer);

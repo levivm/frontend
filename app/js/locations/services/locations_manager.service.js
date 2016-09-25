@@ -145,8 +145,6 @@
                 }
             });
             return deferred.promise;
-            
-           
         }
 
         function setCurrentCity(city) {

@@ -139,6 +139,7 @@
 
             update_location : function (location_data_param) {
                 var location_data = angular.copy(location_data_param);
+                console.log(location_data);
                 location_data.city = location_data.city ? location_data.city.id : undefined;
                 return $http.post(api.locations(this.id), location_data);
 
