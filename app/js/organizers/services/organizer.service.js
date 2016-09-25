@@ -89,6 +89,7 @@
             },
             upload_photo : function (image) {
                 var scope = this;
+                console.log(image);
 
                 return UploadFile.upload_user_photo(image,api.organizer(scope.id));
             },

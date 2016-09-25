@@ -47,6 +47,7 @@
             return  serverConf.s3URL + '/' + file;
         }
         function uploadPicture(image) {
+            console.log(image);
             if (!image) { return; }
             Error.form.clear(vm.profile_picture_form);
             if(_verifySizePicture(image[0]))
@@ -92,6 +93,7 @@
         }
 
         function _successUploaded(response) {
+            console.log(response);
             angular.extend(organizer, response.data);
             angular.extend(vm.organizer, organizer);
             vm.photo_path = response.data.photo;

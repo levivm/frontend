@@ -12594,14 +12594,31 @@ hr.on-light {
 .ta-scroll-window > .ta-bind p {
   color: #3A405B !important;
   margin-bottom: 0px;
-  font-weight: 200;
+  font-weight: 400;
+  font-size: 15px !important;
 }
 .ta-scroll-window > .ta-bind ul {
   padding: 0px 0px 0px 40px !important;
 }
-.ta-scroll-window > .ta-bind li {
+.ta-scroll-window > .ta-bind h1,
+.ta-scroll-window > .ta-bind h2,
+.ta-scroll-window > .ta-bind h3,
+.ta-scroll-window > .ta-bind h4,
+.ta-scroll-window > .ta-bind h5,
+.ta-scroll-window > .ta-bind span,
+.ta-scroll-window > .ta-bind li,
+.ta-scroll-window > .ta-bind u,
+.ta-scroll-window > .ta-bind i {
   font-weight: 400;
   color: #3A405B !important;
+  font-size: 15px !important;
+}
+.ta-scroll-window > .ta-bind b {
+  color: #3A405B !important;
+  font-size: 15px !important;
+}
+.ta-scroll-window > .ta-bind a {
+  display: none;
 }
 .well-auth.well {
   max-width: 400px;
@@ -21947,7 +21964,7 @@ blockquote {
 .activity-detail p {
   word-break: break-word;
   margin-bottom: 0px;
-  font-size: 1.1em !important;
+  font-size: 15.5px !important;
   color: #767676 !important;
 }
 @media screen and (max-width: 768px) {
@@ -21990,11 +22007,27 @@ blockquote {
 .activity-detail .info__content div:nth-child(3) {
   border-left: 1px solid #767676;
 }
-.activity-detail ol {
-  font-size: 1.1em !important;
+.activity-detail ol,
+.activity-detail ul,
+.activity-detail li,
+.activity-detail h1,
+.activity-detail h2,
+.activity-detail h3,
+.activity-detail h4,
+.activity-detail h5,
+.activity-detail span,
+.activity-detail u,
+.activity-detail i {
+  font-size: 15.5px !important;
+  font-weight: 500 !important;
+  color: #767676 !important;
 }
-.activity-detail ul {
-  font-size: 1.1em !important;
+.activity-detail b {
+  font-size: 15.5px !important;
+  color: #767676 !important;
+}
+.activity-detail a {
+  display: none;
 }
 .collapse-icon {
   width: 20px;
