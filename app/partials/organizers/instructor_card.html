@@ -43,11 +43,9 @@
                 </div>
                 <div class="form-group separate-above">
                     <label for="bio" class="control-label" ng-bind="strings.LABEL_BIO"></label>
-                <textarea id="bio" class="form-control" name="bio"
-                          rows="4" style="resize: none;"
-                          placeholder="{{strings.PLACEHOLDER_BIO}}"
-                          ng-model="instructorEditable.bio">
-                </textarea> 
+                 <text-angular id="bio"  name="bio"
+                             placeholder="{{strings.PLACEHOLDER_BIO}}"
+                             ng-model="instructorEditable.bio"></text-angular>
                 </div>
 
                 <!--TODO poner absoluto al fondo de la tarjeta-->
@@ -63,7 +61,7 @@
             
             <div class="row ">
                 <div class="col-md-12" >
-                    <div ng-bind="instructor.bio" class="text-bio" ></div>
+                    <div ng-bind-html="instructor.bio" class="text-bio" ></div>
                 </div>
             </div>
         </div>

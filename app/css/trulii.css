@@ -19062,6 +19062,27 @@ ul.dropdown-menu:after {
   max-height: 170px;
   word-wrap: break-word;
   overflow-y: auto;
+  padding-right: 10px;
+}
+.card__instructor .card-list-item .view-mode .text-bio p,
+.card__instructor .card-list-item .view-mode .text-bio ol,
+.card__instructor .card-list-item .view-mode .text-bio ul,
+.card__instructor .card-list-item .view-mode .text-bio li,
+.card__instructor .card-list-item .view-mode .text-bio h1,
+.card__instructor .card-list-item .view-mode .text-bio h2,
+.card__instructor .card-list-item .view-mode .text-bio h3,
+.card__instructor .card-list-item .view-mode .text-bio h4,
+.card__instructor .card-list-item .view-mode .text-bio h5,
+.card__instructor .card-list-item .view-mode .text-bio span,
+.card__instructor .card-list-item .view-mode .text-bio u,
+.card__instructor .card-list-item .view-mode .text-bio i {
+  font-size: 15.5px !important;
+  font-weight: 500 !important;
+  color: #767676 !important;
+}
+.card__instructor .card-list-item .view-mode .text-bio b {
+  font-size: 15.5px !important;
+  color: #767676 !important;
 }
 .card__instructor .card-list-item textarea {
   resize: none;
@@ -25481,6 +25502,29 @@ blockquote {
 .profile-biography .profile-biography--content p {
   margin-bottom: 0 !important;
   text-align: justify;
+}
+.profile-biography .profile-biography--content p,
+.profile-biography .profile-biography--content ol,
+.profile-biography .profile-biography--content ul,
+.profile-biography .profile-biography--content li,
+.profile-biography .profile-biography--content h1,
+.profile-biography .profile-biography--content h2,
+.profile-biography .profile-biography--content h3,
+.profile-biography .profile-biography--content h4,
+.profile-biography .profile-biography--content h5,
+.profile-biography .profile-biography--content span,
+.profile-biography .profile-biography--content u,
+.profile-biography .profile-biography--content i {
+  font-size: 15.5px !important;
+  font-weight: 500 !important;
+  color: #767676 !important;
+}
+.profile-biography .profile-biography--content b {
+  font-size: 15.5px !important;
+  color: #767676 !important;
+}
+.profile-biography .profile-biography--content a {
+  display: none;
 }
 .profile-activities {
   background-color: #F7F7F7;

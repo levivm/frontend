@@ -418,7 +418,7 @@
                   <div class="row instructor" ng-repeat="instructor in detail.activity.instructors track by instructor.id">
                       <div class="col-xs-12">
                           <div class="name" ng-bind="::instructor.full_name"></div>
-                          <p class="bio" ng-bind="::instructor.bio"></p>
+                          <p class="bio" ng-bind-html="::instructor.bio"></p>
                           <hr ng-if="!$last"/>
                       </div>
                   </div>
