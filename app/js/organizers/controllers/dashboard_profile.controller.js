@@ -102,7 +102,10 @@
 
         function _successUpdatedLocation(response) {
             vm.isSaving = false;
-            angular.extend(organizer, vm.organizer);
+            var city = vm.organizer.location.city
+            angular.extend(vm.organizer.location, response.data);
+            vm.organizer.location.city = city;
+            angular.merge(organizer, vm.organizer);
             Toast.generics.weSaved();
         }
 
