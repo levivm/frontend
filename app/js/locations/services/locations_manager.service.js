@@ -136,10 +136,8 @@
         }
 
         function getCityById(city_id) {
-            getAvailableCities().then(function(cities){
-               availableCities = cities;
-               return availableCities.filter(byId)[0];
-            });
+            return availableCities.filter(byId)[0];
+            
             function byId(city) {
                 return city.id === city_id;
             }

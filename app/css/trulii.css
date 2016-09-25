@@ -21947,7 +21947,7 @@ blockquote {
 .activity-detail p {
   word-break: break-word;
   margin-bottom: 0px;
-  font-size: 1.1em;
+  font-size: 1.1em !important;
   color: #767676 !important;
 }
 @media screen and (max-width: 768px) {
@@ -21991,10 +21991,10 @@ blockquote {
   border-left: 1px solid #767676;
 }
 .activity-detail ol {
-  font-size: 1.1em;
+  font-size: 1.1em !important;
 }
 .activity-detail ul {
-  font-size: 1.1em;
+  font-size: 1.1em !important;
 }
 .collapse-icon {
   width: 20px;
