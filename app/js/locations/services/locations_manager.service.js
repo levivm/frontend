@@ -136,8 +136,17 @@
         }
 
         function getCityById(city_id) {
-            return availableCities.filter(byId)[0];
+            if (!availableCities)
+                return getAvailableCities().then(success, error);
+            else
+                return availableCities.filter(byId)[0];
             
+
+            function success(cities){
+                availableCities = cities;
+                return availableCities.filter(byId)[0];
+            }
+
             function byId(city) {
                 return city.id === city_id;
             }
