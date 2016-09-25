@@ -140,7 +140,10 @@
         </div>
         <div class="row separate-above">
           <div class="col-xs-12">
-            <p class="content separate-below font-semibold " ng-if="success.activity.post_enroll_message" ng-bind-html="success.activity.post_enroll_message"></p>
+            
+            <div class="content content-html separate-below font-semibold " ng-if="success.activity.post_enroll_message" >
+              <p ng-bind-html="success.activity.post_enroll_message"></p>
+            </div>
             <h4 ><strong class="text-dark" ng-bind="::success.strings.LABEL_IMPORTANT"></strong></h4>
             <p class="separate-below font-semibold " ng-bind="::success.strings.COPY_IMPORTANT"></p>
             <p class="content"  ng-bind-html="success.activity.requirements" ng-class="{'content-mobile': !success.showAudience}"></p>

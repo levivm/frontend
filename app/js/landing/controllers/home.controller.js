@@ -85,7 +85,6 @@
 
         function _setCategories(){
             vm.categories = angular.copy(generalInfo.categories);
-            console.log(vm.categories);
         }
 
         function _setStrings() {

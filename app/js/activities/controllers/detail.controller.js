@@ -615,7 +615,6 @@
             _updateViewCount();
             _setOrganizerRating();
             //Function for angularSeo
-            console.log($state);
             $scope.htmlReady();
         }
     }

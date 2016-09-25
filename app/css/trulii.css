@@ -21985,8 +21985,8 @@ blockquote {
 .activity-detail p {
   word-break: break-word;
   margin-bottom: 0px;
-  font-size: 15.5px !important;
-  color: #767676 !important;
+  font-size: 1.1em;
+  color: #767676;
 }
 @media screen and (max-width: 768px) {
   .activity-detail p {
@@ -22028,26 +22028,27 @@ blockquote {
 .activity-detail .info__content div:nth-child(3) {
   border-left: 1px solid #767676;
 }
-.activity-detail ol,
-.activity-detail ul,
-.activity-detail li,
-.activity-detail h1,
-.activity-detail h2,
-.activity-detail h3,
-.activity-detail h4,
-.activity-detail h5,
-.activity-detail span,
-.activity-detail u,
-.activity-detail i {
+.content-html p,
+.content-html ol,
+.content-html ul,
+.content-html li,
+.content-html h1,
+.content-html h2,
+.content-html h3,
+.content-html h4,
+.content-html h5,
+.content-html span,
+.content-html u,
+.content-html i {
   font-size: 15.5px !important;
   font-weight: 500 !important;
-  color: #767676 !important;
+  color: #222328 !important;
 }
-.activity-detail b {
+.content-html b {
   font-size: 15.5px !important;
-  color: #767676 !important;
+  color: #222328 !important;
 }
-.activity-detail a {
+.content-html a {
   display: none;
 }
 .collapse-icon {
@@ -24976,6 +24977,29 @@ blockquote {
     font-size: 0.85em;
   }
 }
+.activity-enroll-success .content-html p,
+.activity-enroll-success .content-html ol,
+.activity-enroll-success .content-html ul,
+.activity-enroll-success .content-html li,
+.activity-enroll-success .content-html h1,
+.activity-enroll-success .content-html h2,
+.activity-enroll-success .content-html h3,
+.activity-enroll-success .content-html h4,
+.activity-enroll-success .content-html h5,
+.activity-enroll-success .content-html span,
+.activity-enroll-success .content-html u,
+.activity-enroll-success .content-html i {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #222328 !important;
+}
+.activity-enroll-success .content-html b {
+  font-size: 14px !important;
+  color: #222328 !important;
+}
+.activity-enroll-success .content-html a {
+  display: none;
+}
 .activity-enroll-success__attendees-widget {
   top: 50px;
   right: 30px;
@@ -25517,11 +25541,11 @@ blockquote {
 .profile-biography .profile-biography--content i {
   font-size: 15.5px !important;
   font-weight: 500 !important;
-  color: #767676 !important;
+  color: #222328 !important;
 }
 .profile-biography .profile-biography--content b {
   font-size: 15.5px !important;
-  color: #767676 !important;
+  color: #222328 !important;
 }
 .profile-biography .profile-biography--content a {
   display: none;
