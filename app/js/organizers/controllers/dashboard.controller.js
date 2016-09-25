@@ -72,7 +72,7 @@
                 SECTION_ACCOUNT_SETTINGS: "Ajustes",
                 SECTION_ACCOUNT_BANK: "Información Bancaria",
                 SECTION_ACTIVITIES: "Actividades",
-                SECTION_ACTIVITIES_OPENED: "Abiertas",
+                SECTION_ACTIVITIES_OPENED: "Publicadas",
                 SECTION_ACTIVITIES_CLOSED: "Cerradas",
                 SECTION_ACTIVITIES_INACTIVES: "Inactivas",
                 SECTION_INSTRUCTORS: "Instructores",
