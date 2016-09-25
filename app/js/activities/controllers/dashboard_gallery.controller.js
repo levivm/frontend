@@ -227,7 +227,7 @@
                 COPY_COVER_ALREADY_SET: "Esta es tu portada actual",
                 ACTION_UPLOAD_COVER: "Subir portada",
                 COPY_MAX_WIDTH_COVER: "Medidas: 1100 x 800px con un peso máximo de 2.5Mb por foto",
-                COPY_MAX_WIDTH_GALLERY: "Medidas: 800 x 600x con un peso máximo de 2.5Mb por foto",
+                COPY_MAX_WIDTH_GALLERY: "Medidas: 800 x 400px con un peso máximo de 2.5Mb por foto",
                 COPY_UPLOAD_COVER: "Encuentra y selecciona alguna foto dentro de tus archivos.",
                 LABEL_COVER_FROM_STOCK: "Portada Express",
                 COPY_COVER_FROM_STOCK: "Si no tienes foto de portada, nosotros tenemos un botón mágico para ti ",

@@ -86,7 +86,7 @@
                 LABEL_CONTENT: "Contenido",
                 LABEL_METHODOLOGY: "Metodología",
                 LABEL_REQUIREMENTS: "Requerimientos",
-                LABEL_EXTRA_INFO: "Información Extra",
+                LABEL_EXTRA_INFO: "Información Importante",
                 COPY_POST_ENROLL: "Este mensaje le aparecerá al usuario una vez se haya inscrito a tu actividad."+
                                    "Te recomendamos dejar tu correo electrónico y número de contacto para que pueda contactarte. "+
                                    "Si esta actividad se realiza en varias sedes, deja el numero de contacto de cada sede.",
