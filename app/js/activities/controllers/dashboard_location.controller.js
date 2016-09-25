@@ -82,7 +82,9 @@
             } else {
                 var city_id = angular.isUndefined(vm.activity.location.city.id)?
                                         vm.activity.location.city:vm.activity.location.city.id;
-                vm.activity.location.city = LocationManager.getCityById(city_id);
+                LocationManager.getCityById(city_id).then(function(response){
+                     vm.activity.location.city = response;
+                });
             }
         }
 

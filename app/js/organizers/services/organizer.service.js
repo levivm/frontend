@@ -46,17 +46,22 @@
                 var city_id;
                 var city;
                 var organizer_city;
-
+                var me = this;
                 this.location = (!!this.locations) && (this.locations.length > 0) ? this.locations.pop() : {};
 
                 city_id = this.location ? this.location.city : null;
 
-                if (!(city_id))
+                if (!(city_id)){
                     city = LocationManager.getCurrentCity();
-                else
-                    city = LocationManager.getCityById(city_id);
-
-                this.location.city = city;
+                    this.location.city = city;
+                }else{
+                    LocationManager.getCityById(city_id).then(function(response){
+                        me.location.city = response;
+                    });
+                    
+                }
+                    
+                
             },
             load : function () {
                 var scope = this;

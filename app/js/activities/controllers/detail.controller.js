@@ -346,8 +346,9 @@
         function _setUpLocation(activity){
             if(activity.location && activity.location.city){
                 activity.location.city = activity.location.city.id ? activity.location.city.id: activity.location.city;
-                if(LocationManager.getCityById(activity.location.city))
-                    activity.location.name = LocationManager.getCityById(activity.location.city).name;
+                LocationManager.getCityById(activity.location.city).then(function(response){
+                     activity.location.name = response.name;
+                });
             }
             vm.map = LocationManager.getMap(activity.location, false);
             vm.marker = LocationManager.getMarker(activity.location);

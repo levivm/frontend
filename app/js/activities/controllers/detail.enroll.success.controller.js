@@ -81,7 +81,9 @@
 
         function _setCity(activity){
             if(activity.location && activity.location.city){
-                activity.location.city = LocationManager.getCityById(activity.location.city);
+                LocationManager.getCityById(activity.location.city).then(function(response){
+                     activity.location.city = response;
+                });
             }
 
             vm.map = LocationManager.getMap(activity.location, false);

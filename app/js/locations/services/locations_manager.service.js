@@ -136,11 +136,17 @@
         }
 
         function getCityById(city_id) {
-            return availableCities.filter(byId)[0];
+            var deferred = $q.defer();
+            getAvailableCities().then(function(cities){
+                availableCities = cities;
+                deferred.resolve(availableCities.filter(byId)[0]);
+                function byId(city) {
+                    return city.id === city_id;
+                }
+            });
+            return deferred.promise;
             
-            function byId(city) {
-                return city.id === city_id;
-            }
+           
         }
 
         function setCurrentCity(city) {

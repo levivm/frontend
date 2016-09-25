@@ -339,9 +339,11 @@
             
 
             if ($stateParams.city) {
-                var city = LocationManager.getCityById(parseInt($stateParams.city));
-                LocationManager.setSearchCity(city);
-                vm.searchCity = city;
+                LocationManager.getCityById(parseInt($stateParams.city)).then(function(city){
+                     LocationManager.setSearchCity(city);
+                     vm.searchCity = city;
+                });
+                
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
