@@ -43,9 +43,11 @@
                                                   ng-bind="calendar.initial_date | date: 'dd MMM yyyy'"></span>
                                         </div>
                                         <div class="card__calendar-date date-init" ng-if="calendars.activity.is_open">
-                                            <h5 ng-bind="::calendars.strings.LABEL_PACKAGES"></h5>
-                                            <span class="text-md" ng-bind="::calendars.strings.LABEL_PACKAGES_PLAN"></span>
-                                            <span class="text-capitalize text-md" ng-bind="calendar.packages.length"></span>
+                                            <h5 >
+                                                <strong class="font-bold" ng-bind="::calendars.strings.LABEL_PACKAGES_PLAN"></strong>
+                                                <strong class="font-bold" ng-bind="calendar.packages.length"></strong>
+                                            </h5>
+                                           
                                         </div>
                                     </div>
                                     <div class="card__calendar-header-actions">

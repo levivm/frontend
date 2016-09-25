@@ -37,6 +37,7 @@
                            ng-model="instructorEditable.full_name"
                            placeholder="{{strings.PLACEHOLDER_FULL_NAME}}"
                            class="form-control"
+                           autocomplete="off"
                            typeahead="instructor as instructor.full_name  for instructor in availableInstructors"
                            typeahead-on-select="selectInstructor($item, $model, $label)"
                            typeahead-focus-first="false">
