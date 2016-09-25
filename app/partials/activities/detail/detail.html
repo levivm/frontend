@@ -11,7 +11,7 @@
             </a>
             <h1 class="title text-center font-light separate-above-less" ng-bind="::detail.activity.title"></h1>
             
-            <div class="rating">
+            <div class="rating" ng-if="detail.organizer.rating">
               <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                       readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating> 
             </div>
@@ -470,7 +470,7 @@
           <span class="header" ng-bind="::detail.strings.LABEL_EVALUATIONS">
           </span>
           <a ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})" ng-bind="detail.organizer.name"></a>
-          <span class="text-uppercase">
+          <span g-if="detail.organizer.rating"  class="text-uppercase">
             <rating ng-model="detail.organizer.rating" max="5"
                     state-on="'glyphicon glyphicon-star star'"
                     state-off="'glyphicon glyphicon-star star-empty-off'"
