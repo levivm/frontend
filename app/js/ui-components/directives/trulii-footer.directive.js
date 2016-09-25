@@ -77,7 +77,7 @@
                         FOOTER_LINKS_ORGANIZER_FEEDBACK: "Danos tu feedback",
                         FOOTER_LINKS_ORGANIZER_HELP: "Ayuda",
                         FOOTER_LINKS_ORGANIZER_FAQ: "FAQ",
-                        FOOTER_LINKS_SOCIAL_HEADER: "¡SEAMOS AMIGOS!!",
+                        FOOTER_LINKS_SOCIAL_HEADER: "¡SEAMOS AMIGOS!",
                         FOOTER_SHOW_ABOUT: 'about',
                         FOOTER_SHOW_STUDENT: 'student',
                         FOOTER_SHOW_ORGANIZER: 'organizer',

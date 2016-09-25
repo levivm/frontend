@@ -19,7 +19,7 @@
             activity, presaveInfo, Analytics, serverConf, organizer) {
 
         var vm = this;
-        var MAX_LENGTH_SHORT_DESC = 300;
+        var MAX_LENGTH_SHORT_DESC = 500;
 
         angular.extend(vm, {
             selected_category: {},

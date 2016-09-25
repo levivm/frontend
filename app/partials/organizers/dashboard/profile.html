@@ -66,7 +66,10 @@
                         </div>
                         <div class="form-group separate-below-more">
                             <label class="form-label" for="bio" ng-bind="::profile.strings.LABEL_BIO"></label>
-                                <textarea elastic id="bio" class="form-control" ng-model='profile.organizer.bio' name="bio"  placeholder="{{::profile.strings.HELPER_BIO}}"></textarea>
+                            <text-angular  id="bio" name="bio"   placeholder="{{::profile.strings.HELPER_BIO}}"
+                                            ng-model='profile.organizer.bio' >
+                            </text-angular>
+                        
                         </div>
                         <trulii-submit-controls is-saving="profile.isSaving"
                                                 data-value="{{profile.strings.ACTION_SAVE}}"></trulii-submit-controls>

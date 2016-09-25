@@ -70,7 +70,7 @@
                 },
                 metaTags:{
                      title: function(organizer){
-                        return 'Trulii | '+organizer.user.first_name;
+                        return 'Trulii | '+organizer.name;
                     },
                     description: function(organizer){
                         return organizer.headLine;

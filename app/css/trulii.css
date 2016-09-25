@@ -25445,6 +25445,10 @@ blockquote {
 .profile-biography .profile-biography--content {
   padding: 5rem 0;
 }
+.profile-biography .profile-biography--content p {
+  margin-bottom: 0 !important;
+  text-align: justify;
+}
 .profile-activities {
   background-color: #F7F7F7;
   text-align: center;
