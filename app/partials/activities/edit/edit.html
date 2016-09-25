@@ -6,20 +6,7 @@
                  <h1 ng-bind="pc.activity.title"></h1>
                  <h5 ng-bind="pc.activity.organizer.name"></h5>
              </div>
-             <div class="cover-blur-small__content-buttons" ng-show="pc.areAllStepsCompleted()">
-                <a class="btn btn-default btn-manage " ng-click="pc.actionNavbarSecondary(pc.strings.COPY_MANAGE_ACTIVITY)"
-                ui-sref="dash.activities-manage.summary({activity_id: {{pc.activity.id}}})">
-                    <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_MANAGE_ACTIVITY"></span>
-                </a>
-                <a  class="btn btn-default btn-preview"
-                    ng-show="pc.areAllStepsCompleted()" 
-                    ng-click="pc.actionNavbarSecondary(pc.strings.COPY_PRE_VIEW_ACTIVITY)" 
-                    ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
-                   <i class="fa fa-eye" aria-hidden="true"></i>
-                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_PRE_VIEW_ACTIVITY"></span>
-                </a>
-                
-             </div>
+             
          </div>
          <div class="cover-blur-small__content-second" ng-show="!pc.areAllStepsCompleted()">
              <div class="cover-blur-small__content-steps" >
@@ -43,7 +30,22 @@
                             <span>Obligatorios</span>
                             <i class="mandatory-mark mandatory-mark-edit-activity --right"></i>
              </div>
+             
          </div>
+         <div class="cover-blur-small__content-buttons flex-align-items-center" ng-show="pc.areAllStepsCompleted()">
+                <a class="btn btn-default btn-manage " ng-click="pc.actionNavbarSecondary(pc.strings.COPY_MANAGE_ACTIVITY)"
+                ui-sref="dash.activities-manage.summary({activity_id: {{pc.activity.id}}})">
+                    <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_MANAGE_ACTIVITY"></span>
+                </a>
+                <a  class="btn btn-default btn-preview"
+                    ng-show="pc.areAllStepsCompleted()" 
+                    ng-click="pc.actionNavbarSecondary(pc.strings.COPY_PRE_VIEW_ACTIVITY)" 
+                    ui-sref="activities-detail({activity_id: {{pc.activity.id}}})" target="_blank">
+                   <i class="fa fa-eye" aria-hidden="true"></i>
+                   <span class="hidden-xs hidden-sm" ng-bind="::pc.strings.COPY_PRE_VIEW_ACTIVITY"></span>
+                </a>
+                
+             </div>
     </div>
 </div>
 <div class="container-fluid limited-width-dashboard-container limited-width-dashboard-container-edit-activity">

@@ -20,7 +20,9 @@
     function ActivityDashboardCtrl($state, $scope, Toast, ActivitySteps, activity, Analytics, serverConf) {
 
         var pc = this;
-
+        var positionStyle = 'absolute';
+        var valuePosition = '0px';
+        var ctrlFooter = false;
         angular.extend(pc,{
             steps: angular.copy(ActivitySteps),
             activity: activity,
@@ -115,10 +117,10 @@
                 pc.allow_unpublish = true;
             });
         }
+        
         function _moveWidget(){
-            var ctrlFooter = false;
-            var positionStyle = 'absolute';
-            var valuePosition = '0px';
+            
+            
             var sideBarPosition = (document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top + window.scrollY) ;
             var footerPosition = document.getElementsByClassName('container-fluid')[0].offsetHeight +80 ;
             var coverPosition = (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('cover-blur-small')[0].offsetHeight;
@@ -141,7 +143,7 @@
                     }
                 }  
             }else{
-            if( positionToFixed <= footerPosition && ctrlFooter){
+                if( positionToFixed <= footerPosition && ctrlFooter){
                     positionStyle = 'fixed';
                     valuePosition = '90px';
                 }
