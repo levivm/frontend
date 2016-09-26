@@ -11,11 +11,9 @@
                 <fieldset>
                     <div class="form-group" trulii-input-errors-control="return_policy">
                         <label for="return-policy-textarea" class="sr-only" ng-bind="::returnPolicy.strings.LABEL_RETURN_POLICY"></label>
-                            <textarea elastic id="return-policy-textarea" class="form-control textarea-lg" name="return_policy"
-                                        ng-model='returnPolicy.activity.return_policy'
-                                        ng-mouseover="returnPolicy.setOverElement('return_policy')"
-                                        placeholder="{{::returnPolicy.strings.PLACEHOLDER_RETURN_POLICY}}">
-                            </textarea>
+                        <text-angular name="return_policy" placeholder="{{::returnPolicy.strings.PLACEHOLDER_RETURN_POLICY}}"
+                                      ng-model="returnPolicy.activity.return_policy">
+                        </text-angular>
                     </div>
                     <trulii-submit-controls class="separate-above" edit-activity="true" is-saving="returnPolicy.isSaving" value="{{::returnPolicy.strings.ACTION_SAVE}}"></trulii-submit-controls>
                 </fieldset>

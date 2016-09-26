@@ -1,5 +1,5 @@
 <div class="trulii-cover-regular trulii-cover__detail">
-  <div class="trulii-cover__container align-bottom">
+  <div class="trulii-cover__container ">
     <div class="trulii-cover__content">
       <div class="col-xs-12 col-md-offset-1 col-md-10 limited-width padding-vertical-regular">
         <div class="row ">
@@ -9,11 +9,10 @@
               <h5 ng-bind="::detail.organizer.name">
               </h5>
             </a>
-            <h1 class="title text-center font-light separate-above-less" ng-bind="::detail.activity.title"></h1>
-            
+            <h1 class="title title-detail text-center font-light separate-above-less" ng-bind="::detail.activity.title"></h1>
             <div class="rating" ng-if="detail.organizer.rating">
               <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                      readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating> 
+                      readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
             </div>
           </div>
         </div>
@@ -26,9 +25,9 @@
 <!--General Info and Sidebar-->
 <div class="col-xs-12 limited-width">
   <div class="row activity-detail">
-    <div class="activity-detail__enroll-widget" ng-class="{'widget-fixed': (detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition)}" 
+    <div class="activity-detail__enroll-widget" ng-class="{'widget-fixed': (detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition)}"
       ng-style="(detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}) || ((detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition) && {'left': detail.widgetFixedPositionRight})">
-      <div class="activity-detail__enroll-widget__content" 
+      <div class="activity-detail__enroll-widget__content"
         ng-class="{'activity-detail__enroll-widget__content-free': detail.calendar_selected.is_free}">
             <div class="schedules-container" ng-class="{'expanded': detail.showSchedules}">
               <div class="schedules-container__header">
@@ -79,11 +78,11 @@
             </p>
             <select class="form-control"
               ng-if="::(!detail.activity.is_open) && !detail.isSelectedCalendarFull()"
-              ng-model="detail.calendar_selected" 
+              ng-model="detail.calendar_selected"
               ng-options="calendar as calendar.initial_date | date:'d MMM y' for calendar in detail.activity.upcoming_calendars track by calendar.id"
               name="calendars">
             </select>
-            <select class="form-control" 
+            <select class="form-control"
               ng-if="::(detail.activity.is_open) && !detail.isSelectedPackageFull()"
               ng-model="detail.selectedPackage"
               name="calendars"
@@ -169,9 +168,9 @@
                         }">
               </ng-pluralize>
             </span>
-            
-            
-            
+
+
+
             <!--<span ng-if="detail.activity.wishlist_count === 0" ng-bind="::detail.strings.COPY_BE_THE_FIRST"></span>-->
           </div>
         </div>
@@ -275,14 +274,14 @@
             <i class="gallery-next mdi-hardware-keyboard-arrow-right" ng-hide="detail.currentGalleryPicture >= detail.activity.gallery.length - 1"
               ng-click="detail.nextGalleryPicture()">
             </i>
-            
+
           </div>
         </div>
       </div>
       <div class="row">
         <div class="info separate-above hidden-xs hidden-sm">
           <div class="info__content">
-            <div ng-if="detail.calendar_selected.assistants.length>3" ng-class="{'col-xs-4': detail.calendar_selected.assistants.length>3}">
+            <div ng-if="detail.calendar_selected.assistants.length>3" ng-class="{'col-xs-6': !detail.showLevel,  'col-xs-4': detail.calendar_selected.assistants.length>3 && detail.showLevel}">
                 <p class="text-center">
                   <span ng-bind="detail.calendar_selected.assistants.length"></span>
                   <span >
@@ -294,16 +293,16 @@
                         }">
                     </ng-pluralize>
                   </span>
-                  
+
                 </p>
               </div>
-              <div ng-class="{'col-xs-6': detail.calendar_selected.assistants.length<4 || !detail.calendar_selected, 'col-xs-4': detail.calendar_selected.assistants.length>3}">
+              <div ng-if="detail.showLevel" ng-class="{'col-xs-6': detail.calendar_selected.assistants.length<4 || !detail.calendar_selected, 'col-xs-4': detail.calendar_selected.assistants.length>3}">
                 <p class="text-center">
                   <span ng-bind="::detail.strings.VALUE_LEVEL"></span>
                   <span ng-bind="::detail.activity.level_display"></span>
                 </p>
               </div>
-              <div ng-class="{'col-xs-6': detail.calendar_selected.assistants.length<4 || !detail.calendar_selected, 'col-xs-4': detail.calendar_selected.assistants.length>3}">
+              <div ng-class="{'col-xs-12': !detail.showLevel && detail.calendar_selected.assistants.length<4, 'col-xs-6': detail.calendar_selected.assistants.length<4 || !detail.calendar_selected || !detail.showLevel, 'col-xs-4': detail.calendar_selected.assistants.length>3  && detail.showLevel}">
                 <p ng-if="detail.activity.certification" class="text-center"
                    ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></p>
                 <p ng-if="!detail.activity.certification" class="text-center"
@@ -321,10 +320,9 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showAudience">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showAudience">
           </h4>
-          <div class="content content-html">
-            <p ng-bind-html="::detail.activity.audience" ng-class="{'content-mobile': !detail.showAudience}"></p>
+          <div class="content content-html" ng-show="detail.showAudience"  ng-class="{'content-mobile': !detail.showAudience}">
+            <p ng-bind-html="::detail.activity.audience"></p>
           </div>
-          
         </div>
       </div>
 
@@ -338,10 +336,10 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showContent">
           </h4>
-          <div class="content content-html">
-            <p ng-bind-html="::detail.activity.content" ng-class="{'content-mobile': !detail.showContent}"></p>
+          <div class="content content-html" ng-show="detail.showContent" ng-class="{'content-mobile': !detail.showContent}">
+            <p ng-bind-html="::detail.activity.content" ></p>
           </div>
-          
+
         </div>
       </div>
 
@@ -355,10 +353,10 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showGoals">
           </h4>
-          <div class="content content-html">
-            <p ng-bind-html="::detail.activity.goals" ng-class="{'content-mobile': !detail.showGoals}"></p>
+          <div class="content content-html" ng-show="detail.showGoals" ng-class="{'content-mobile': !detail.showGoals}">
+            <p ng-bind-html="::detail.activity.goals" ></p>
           </div>
-          
+
         </div>
       </div>
 
@@ -382,10 +380,10 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showMethodology">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showMethodology">
           </h4>
-          <div class="content content-html">
-            <p  ng-bind-html="::detail.activity.methodology" ng-class="{'content-mobile': !detail.showMethodology}"></p>
+          <div class="content content-html" ng-show="detail.showMethodology"   ng-class="{'content-mobile': !detail.showMethodology}">
+            <p  ng-bind-html="::detail.activity.methodology"></p>
           </div>
-          
+
         </div>
       </div>
 
@@ -399,10 +397,10 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showRequirements">
           </h4>
-          <div class="content content-html">
-            <p  ng-bind-html="::detail.activity.requirements" ng-class="{'content-mobile': !detail.showRequirements}"></p>
+          <div class="content content-html"  ng-show="detail.showRequirements" ng-class="{'content-mobile': !detail.showRequirements}">
+            <p  ng-bind-html="::detail.activity.requirements"></p>
           </div>
-          
+
         </div>
       </div>
 
@@ -417,10 +415,10 @@
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
             <img ng-src="{{detail.getAmazonUrl('static/img/minus.png')}}" class="collapse-icon" alt="" ng-show="detail.showExtra">
           </h4>
-          <div class="content content-html">
-            <p  ng-bind-html="::detail.activity.extra_info" ng-class="{'content-mobile': !detail.showExtra}"></p>
+          <div class="content content-html" ng-show="detail.showExtra" ng-class="{'content-mobile': !detail.showExtra}">
+            <p  ng-bind-html="::detail.activity.extra_info" ></p>
           </div>
-          
+
         </div>
       </div>
 
@@ -479,6 +477,14 @@
     </div>
   </div>
 </div>
+<div class="col-xs-12 separate-above-more">
+  <div class="row">
+    <div class="col-xs-10 col-xs-offset-1 limited-width">
+      <hr>
+    </div>
+  </div>
+
+</div>
 
 <!--Reviews-->
 <div class="reviews-container col-xs-12 separate-above hidden-xs hidden-sm">
@@ -501,7 +507,7 @@
         <span class="reviews-container--ratings__activities">
           <a ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})">
             <span ng-bind="detail.strings.COPY_VIEW_PUBLISHED_ACTIVITIES"></span>
-          </a>  
+          </a>
         </span>
         <br class="hidden-md hidden-lg">
       </div>
@@ -552,8 +558,7 @@
           alt="{{ ::detail.strings.REASON_NO_COMMISSIONS }}"/>
           <div class="reason-text">
             <div class="reason-title" ng-bind="::detail.strings.REASON_NO_COMMISSIONS"></div>
-            <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_NO_COMMISSIONS_1"></div>
-            <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_NO_COMMISSIONS_2"></div>
+            <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_NO_COMMISSIONS"></div>
           </div>
         </div>
       </div>
@@ -563,8 +568,7 @@
           alt="{{ ::detail.strings.REASON_REFUND }}"/>
           <div class="reason-text">
             <div class="reason-title" ng-bind="::detail.strings.REASON_REFUND"></div>
-            <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_REFUND_1"></div>
-            <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_REFUND_2"></div>
+            <div class="reason-copy" ng-bind="::detail.strings.REASON_COPY_REFUND"></div>
           </div>
         </div>
       </div>
@@ -574,9 +578,7 @@
           alt="{{ ::detail.strings.REASON_SECURE }}"/>
           <div class="reason-text">
             <div class="reason-title" ng-bind="::detail.strings.REASON_SECURE"></div>
-            <div class="reason-copy text-sm" ng-bind="::detail.strings.REASON_COPY_SECURE_1"></div>
-            <div class="reason-copy text-sm" ng-bind="::detail.strings.REASON_COPY_SECURE_2"></div>
-            <div class="reason-copy text-sm" ng-bind="::detail.strings.REASON_COPY_SECURE_3"></div>
+            <div class="reason-copy text-sm" ng-bind="::detail.strings.REASON_COPY_SECURE"></div>
           </div>
         </div>
       </div>

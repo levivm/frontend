@@ -182,6 +182,7 @@
                 function(event, toState, toParams, fromState, fromParams){
                     if(isCreatingCalendar()){
                         CalendarsManager.loadCalendars(activity.id).then(function(dataCalendars){
+                          Elevator.toTop();
                           vm.calendars= dataCalendars;
                         });
                     } else {

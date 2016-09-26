@@ -16,9 +16,9 @@
 
         .directive('truliiInstructorCard', truliiInstructorCard);
 
-    truliiInstructorCard.$inject = ['$modal', 'Toast', 'OrganizersTemplatesPath','ActivitiesTemplatesPath'];
+    truliiInstructorCard.$inject = ['$modal', 'Toast','$rootScope', 'OrganizersTemplatesPath','ActivitiesTemplatesPath'];
 
-    function truliiInstructorCard($modal, Toast, OrganizersTemplatesPath,ActivitiesTemplatesPath){
+    function truliiInstructorCard($modal, Toast, $rootScope, OrganizersTemplatesPath,ActivitiesTemplatesPath){
         return {
             restrict: 'E',
             templateUrl: OrganizersTemplatesPath + "instructor_card.html",
@@ -203,6 +203,8 @@
                     if(!scope.onDashboard){
                         scope.activity.updateSection('instructors');
                     }
+                    $rootScope.$broadcast('changeInstructor');
+                    
                 }
 
                 function _setStrings(){

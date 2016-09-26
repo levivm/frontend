@@ -26,7 +26,7 @@
     function ActivityDetailController($scope, $state, $stateParams, $filter, $timeout, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
-                                          
+
         var visibleReviewListSize = 3;
         var vm = this;
 
@@ -73,13 +73,13 @@
             toggleEmailShow: toggleEmailShow,
             toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm,
-            showAudience: false,
-            showContent: false,
-            showGoals: false,
-            showVideo: false,
-            showMethodology: false,
-            showRequirements: false,
-            showExtra: false,
+            showAudience: true,
+            showContent: true,
+            showGoals: true,
+            showVideo: true,
+            showMethodology: true,
+            showRequirements: true,
+            showExtra: true,
             shareSocialAnalytic:shareSocialAnalytic,
             wishList:wishList,
             verifyWishList:verifyWishList,
@@ -91,7 +91,7 @@
             changePackage: changePackage,
             organizerRating: 0
 
-            
+
         });
 
         _activate();
@@ -127,8 +127,8 @@
 
         function isSelectedCalendarFull(){
             if(vm.calendar_selected){
-                return vm.calendar_selected.available_capacity <= 0 || 
-                       moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day') || 
+                return vm.calendar_selected.available_capacity <= 0 ||
+                       moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day') ||
                        !vm.calendar_selected.enroll_open;
             } else {
                 return true;
@@ -307,7 +307,7 @@
             if (activity.is_open && activity.calendars){
                 calendars = angular.copy(activity.calendars);
                 activity.upcoming_calendars = angular.copy(_.remove(calendars, removePastCalendarOpenActivity));
-                
+
             }
             else if(!activity.is_open && activity.calendars){
                 activity.calendars = activity.calendars.map(mapVacancy);
@@ -353,6 +353,8 @@
             }
             vm.map = LocationManager.getMap(activity.location, false);
             vm.marker = LocationManager.getMarker(activity.location);
+           
+           
         }
 
         function _setCurrentState(){
@@ -484,16 +486,12 @@
                 VALUE_DOESNT_APPLY: "No aplica",
                 VALUE_LEVEL: "Nivel",
                 VALUE_DURATION: "Duración",
-                REASON_NO_COMMISSIONS: "Sin Comisiones",
-                REASON_COPY_NO_COMMISSIONS_1: "Nuestro servicio para ti",
-                REASON_COPY_NO_COMMISSIONS_2: "es totalmente gratuito.",
+                REASON_NO_COMMISSIONS: "Servicio gratuito",
+                REASON_COPY_NO_COMMISSIONS: "Sólo paga por el valor de la clase. No cobramos comisiones.",
                 REASON_REFUND: "Devolución Garantizada",
-                REASON_COPY_REFUND_1: "Protegemos tu pago hasta",
-                REASON_COPY_REFUND_2: "que se efectúe la clase.",
+                REASON_COPY_REFUND: "Te devolvemos tu dinero en caso de no realizarse la actividad.",
                 REASON_SECURE: "Pago Seguro",
-                REASON_COPY_SECURE_1: "Los datos del pago de tu",
-                REASON_COPY_SECURE_2: "inscripción están seguros",
-                REASON_COPY_SECURE_3: "con nosotros.",
+                REASON_COPY_SECURE: "Los datos de tu pago están encriptados y seguros con nosotros.",
                 EMAIL_MODAL_HEADER: "Compartir la actividad correo electrónico",
                 EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
                 EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
@@ -563,9 +561,9 @@
             });
             vm.title = title;
             $state.go('activities-detail', {activity_id: activity.id, activity_title: title, category_slug: activity.category.slug} ,{location: "replace", notify: false, reload: true});
-            
+
         }
-        
+
         function _mapTemplates(){
             for(var i = 0; i < vm.relatedActivities.length; i++){
                 vm.relatedActivities[i].template = "partials/activities/dynamic_layout_item.html";
@@ -578,7 +576,7 @@
             activity.updateViewsCounter();
 
         }
-        
+
         function _setOrganizerRating(){
             vm.organizerRating = organizer.rating.toString().replace(',', '.');
         }
@@ -614,6 +612,8 @@
             _setSearchData();
             _updateViewCount();
             _setOrganizerRating();
+            vm.showLevel = vm.activity.level === "N" ? false:true;
+            console.log(vm.showLevel);
             //Function for angularSeo
             $scope.htmlReady();
         }
