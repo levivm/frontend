@@ -203,6 +203,7 @@
         function enrollPSE(){
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
+            vm.enrolling = true;
 
             StudentsManager.getCurrentStudent().then(getStudentSuccess, getStudentError);
 
@@ -452,7 +453,7 @@
                 Error.form.clearField(vm.enrollForm,'cardMethod');
                 Error.form.clearField(vm.enrollForm,'generalError');
                 var cardData = _.clone(vm.cardData);
-                Payments.getToken(cardData).then(getTokenSuccess, getTokenError).finally(_finishProccesingPayment);
+                Payments.getToken(cardData).then(getTokenSuccess, getTokenError);
                 vm.enrolling = false;
             }
 
@@ -491,11 +492,10 @@
                     data.coupon_code = vm.coupon.code;
                 }
 
-                vm.processingPayment = true;
                 vm.enrolling = true;
-
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                                   .finally(_finishProccesingPayment);
+                                  
 
 
                 function _enrollSuccess(order) {
@@ -519,7 +519,6 @@
                             return (!(_.isEmpty(error_dict)));
                         });
                         var base_selector = 'assistant_card_';
-                        // console.log('selector',base_selector.concat(error_index));
                         Elevator.toElement(base_selector.concat(error_index));
                         Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                     }
