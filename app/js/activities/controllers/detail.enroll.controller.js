@@ -654,8 +654,6 @@
         }
 
         function _getPrice(calendar){
-            console.log(activity.is_open);
-            console.log("packete ---", vm.package);
             if (activity.is_open && vm.package)
                 return vm.package.price;
 
