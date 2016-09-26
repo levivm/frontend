@@ -73,13 +73,13 @@
             toggleEmailShow: toggleEmailShow,
             toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm,
-            showAudience: false,
-            showContent: false,
-            showGoals: false,
-            showVideo: false,
-            showMethodology: false,
-            showRequirements: false,
-            showExtra: false,
+            showAudience: true,
+            showContent: true,
+            showGoals: true,
+            showVideo: true,
+            showMethodology: true,
+            showRequirements: true,
+            showExtra: true,
             shareSocialAnalytic:shareSocialAnalytic,
             wishList:wishList,
             verifyWishList:verifyWishList,
@@ -353,6 +353,8 @@
             }
             vm.map = LocationManager.getMap(activity.location, false);
             vm.marker = LocationManager.getMarker(activity.location);
+           
+           
         }
 
         function _setCurrentState(){
@@ -614,6 +616,8 @@
             _setSearchData();
             _updateViewCount();
             _setOrganizerRating();
+            vm.showLevel = vm.activity.level === "N" ? false:true;
+            console.log(vm.showLevel);
             //Function for angularSeo
             $scope.htmlReady();
         }

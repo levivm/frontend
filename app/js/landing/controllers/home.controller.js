@@ -181,7 +181,7 @@
             _mapTemplates();
             _setTrendingCategories();
             //Analytics.generalEvents.landing();
-
+             vm.currentCity = LocationManager.getCurrentCity();
             //Function for angularSeo
             $scope.htmlReady();
         }

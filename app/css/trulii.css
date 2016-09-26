@@ -20581,6 +20581,13 @@ button.toast-close-button {
     margin-bottom: 0.2em;
   }
 }
+.trulii-cover__content .title-detail,
+.trulii-cover-small__content .title-detail,
+.trulii-cover-medium__content .title-detail,
+.trulii-cover-regular__content .title-detail {
+  font-size: 3em;
+  font-weight: 500;
+}
 .trulii-cover__content p,
 .trulii-cover-small__content p,
 .trulii-cover-medium__content p,
@@ -21612,7 +21619,6 @@ blockquote {
 .activity-detail__share-widget li .img-on,
 .activity-detail__share-widget li .img-off {
   position: absolute;
-  left: 50%;
   transform: translateX(-50%);
   width: 18px;
   height: 18px;
@@ -23115,7 +23121,7 @@ blockquote {
   margin-bottom: 2.5em;
 }
 .related-activities-container {
-  padding: 4em 9.5em;
+  padding: 0em 9.5em 4em 9.5em;
 }
 .related-activities-container .title {
   font-weight: bold;
@@ -25103,8 +25109,13 @@ blockquote {
     width: 80% ;
   }
 }
+.flex-cards .img-lg {
+  width: 200px;
+}
+.flex-cards .img-md {
+  width: 130px;
+}
 .flex-cards .images-organizers {
-  width: 145px;
   margin-top: 10px;
 }
 .flex-cards data-trulii-activity-item {

@@ -101,7 +101,7 @@
       <div class="category-card-container">
         <div class="row limited-width">
           <div class="col-xs-12 col-md-4"  ng-repeat="category in home.trendingCategories ">
-            <a ng-click="home.searchCategory(category)" ui-sref="search({category:category.category.id, subcategory: category.id})" class="category-card ">
+            <a ng-click="home.searchCategory(category)" ui-sref="search({category:category.category.id, subcategory: category.id, city:home.currentCity.id})" class="category-card ">
               <div class="category-card__veil"></div>
               <div class="category-card__background" ng-style="{'background-image': 'url({{::home.getAmazonUrl(category.category.cover)}})'}"></div>
               <h2 class="category-card__title" ng-bind="::category.name"></h2>
@@ -229,11 +229,11 @@
           <img ng-src="{{home.getAmazonUrl('static/img/home/organizers/1.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
               class="img-responsive center-block images-organizers ">
           <img ng-src="{{home.getAmazonUrl('static/img/home/organizers/2.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
-          class="img-responsive center-block images-organizers">
+          class="img-responsive center-block images-organizers img-md">
           <img ng-src="{{home.getAmazonUrl('static/img/home/organizers/3.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
-          class="img-responsive center-block images-organizers">
+          class="img-responsive center-block images-organizers img-md">
           <img ng-src="{{home.getAmazonUrl('static/img/home/organizers/4.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
-          class="img-responsive center-block images-organizers">
+          class="img-responsive center-block images-organizers img-lg">
           <img ng-src="{{home.getAmazonUrl('static/img/home/organizers/5.png')}}" alt="{{ ::home.strings.HOW_LEARN_COPY }}" 
               class="img-responsive center-block images-organizers">
       </div>
