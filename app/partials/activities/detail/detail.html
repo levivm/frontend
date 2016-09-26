@@ -483,14 +483,14 @@
 <!--Reviews-->
 <div class="reviews-container col-xs-12 separate-above hidden-xs hidden-sm">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 limited-width">
+    <div class="col-xs-10 col-xs-offset-1 limited-width" ng-if="detail.organizer.rating">
       <div class="reviews-container--ratings">
         <img class="img-responsive reviews-container--ratings__avatar" ng-src="{{detail.organizer.photo}}" alt="">
         <span class="reviews-container--ratings__info">
           <span class="header" ng-bind="::detail.strings.LABEL_EVALUATIONS">
           </span>
           <a ui-sref="organizer-profile({organizer__name: detail.organizer.name, organizer_id: detail.organizer.id})" ng-bind="detail.organizer.name"></a>
-          <span g-if="detail.organizer.rating"  class="text-uppercase">
+          <span   class="text-uppercase">
             <rating ng-model="detail.organizer.rating" max="5"
                     state-on="'glyphicon glyphicon-star star'"
                     state-off="'glyphicon glyphicon-star star-empty-off'"

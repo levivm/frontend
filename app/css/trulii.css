@@ -11779,7 +11779,7 @@ hr.on-light {
   /* 16:9 */
   padding-top: 25px;
   height: 0;
-  z-index: 100000;
+  z-index: 100;
 }
 .youtube-container iframe {
   position: absolute;
@@ -11806,7 +11806,7 @@ hr.on-light {
   width: 135px;
 }
 .activity-grid-organizer {
-  padding: 11em 2em;
+  padding: 5em 2em;
 }
 .dropdown-mobile {
   padding: 0.8em 2em;
@@ -20559,7 +20559,7 @@ button.toast-close-button {
 .trulii-cover-small__content .title,
 .trulii-cover-medium__content .title,
 .trulii-cover-regular__content .title {
-  font-size: 4.4em;
+  font-size: 4em;
   margin-top: 0.25em !important;
   margin-bottom: 25px;
 }

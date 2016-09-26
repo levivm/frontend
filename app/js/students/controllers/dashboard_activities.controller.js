@@ -30,20 +30,20 @@
             searchActivities: searchActivities,
             nextPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
-                maxPagesSize:12,
+                itemsPerPage: 8,
+                maxPagesSize:8,
                 pageNumber: 1
             },
             pastPaginationOpts: {
               totalItems: 0,
-              itemsPerPage: 12,
-              maxPagesSize:12,
+              itemsPerPage: 8,
+              maxPagesSize:8,
               pageNumber: 1
             },
             currentPaginationOpts: {
               totalItems: 0,
-              itemsPerPage: 12,
-              maxPagesSize:12,
+              itemsPerPage: 8,
+              maxPagesSize:8,
               pageNumber: 1
             },
             updateByQuery:updateByQuery,

@@ -18,7 +18,7 @@
                         <p class="profile-cover__description text-center" ng-bind="::profile.organizer.headline"></p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" ng-if="profile.organizer.rating">
                     <div class="col-xs-12">
                         <div class="rating">
                             <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
@@ -70,9 +70,8 @@
     <div class="flex-cards separate-below separate-above-medium" >
         <trulii-activity-item data-activity="activity" ng-repeat="activity in profile.cards"></trulii-activity-item>
     </div>
-    <div class="col-xs-12 separate-below-more">
-        <div class="text-center"
-            ng-if="profile.activitiesPaginationOpts.totalItems > profile.activitiesPaginationOpts.itemsPerPage">
+    <div class="col-xs-12 separate-below-more" ng-if="profile.activitiesPaginationOpts.totalItems > profile.activitiesPaginationOpts.itemsPerPage">
+        <div class="text-center">
             <pagination class="pagination-sm"
                     ng-class="{'hidden-xs hidden-sm': profile.showFilters}"
                     ng-model="profile.activitiesPaginationOpts.pageNumber"

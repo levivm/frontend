@@ -29,7 +29,7 @@
         var _activities = [];
         var presave_info = null;
         var categories = null;
-        var defaultPageSize = 12;
+        var defaultPageSize = 8;
         var defaultPage = 1;
         var EVENT_DELETE_ACTIVITY='delete-activity';
         //noinspection UnnecessaryLocalVariableJS
@@ -279,7 +279,7 @@
               page = 1;
             }
             if(!pageSize){
-              pageSize = 12;
+              pageSize = 8;
             }
             if(!status){
               status = 'open';

@@ -36,17 +36,17 @@
             },
             openPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             closedPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             inactivePaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             closedOptions : {
