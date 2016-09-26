@@ -153,7 +153,7 @@
                 COPY_PROFILE: "Esta información aparecerá en tu perfil y lo verán los demás usuarios",
                 COPY_VIDEO: "¿Posee algún video donde describa o presente su organización?",
                 COPY_LOCATION: "¿Donde funciona su organización?",
-                COPY_MAP: "Hazle click al pin negro del mapa para desplazarlo a la dirección exacta del lugar donde estás establecido.",
+                COPY_MAP: "Hazle click al pin rojo del mapa para desplazarlo a la dirección exacta del lugar donde estás establecido.",
                 SUB_SECTION_VIDEO: "Video",
                 SUB_SECTION_LOCATION: "Ubicación",
                 SUB_SECTION_COMMENTS: "Comentarios",
@@ -177,7 +177,7 @@
         function _activate(){
             _setStrings();
             _initialize_map();
-            vm.marker.options = {draggable:true, icon: getAmazonUrl('static/img/map.png') };
+            vm.marker.options = {draggable:true};
         }
 
     }

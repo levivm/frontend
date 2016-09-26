@@ -352,7 +352,6 @@
             }
             vm.map = LocationManager.getMap(activity.location, false);
             vm.marker = LocationManager.getMarker(activity.location);
-            vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
         }
 
         function _setCurrentState(){

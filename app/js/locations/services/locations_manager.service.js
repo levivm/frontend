@@ -297,8 +297,7 @@
                         marker.options = {
                             draggable: true,
                             labelAnchor: "100 0",
-                            labelClass: "marker-labels",
-                            icon: serverConf.s3URL + '/static/img/map.png'
+                            labelClass: "marker-labels"
                         };
                     }
                 }

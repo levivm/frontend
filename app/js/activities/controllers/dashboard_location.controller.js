@@ -118,7 +118,7 @@
             _setStrings();
             vm.map = LocationManager.getMap(vm.activity.location, true);
             vm.marker = LocationManager.getMarker(vm.activity.location);
-            vm.marker.options = {draggable:true, icon: getAmazonUrl('static/img/map.png') };
+            vm.marker.options = {draggable:true };
             Elevator.toTop();
         }
     }
