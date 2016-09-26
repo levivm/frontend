@@ -131,12 +131,12 @@
                 ng-disabled="detail.isSelectedCalendarFull()"
                 ng-hide="detail.isSelectedCalendarFull()"
                 ng-if="!detail.activity.is_open"
-                ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id); detail.widgetSignup()">
+                ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id, detail.package_selected.id); detail.widgetSignup()">
             </button>
             <button class="btn btn-success btn-lg btn-rounded btn-block"
               ng-bind="::detail.strings.ACTION_SIGN_UP"
               ng-if="detail.activity.is_open"
-              ng-click="detail.signUp(detail.activity.id, detail.calendar_selected.id); detail.widgetSignup()"
+              ng-click="detail.signUp(detail.activity.id, detail.calendar_selected.id, detail.package_selected.id); detail.widgetSignup()"
              >
             </button>
             <div class="row">
