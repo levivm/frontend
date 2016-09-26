@@ -492,6 +492,7 @@
                 }
 
                 vm.processingPayment = true;
+                vm.enrolling = true;
 
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                                   .finally(_finishProccesingPayment);
