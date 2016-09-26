@@ -20559,9 +20559,10 @@ button.toast-close-button {
 .trulii-cover-small__content .title,
 .trulii-cover-medium__content .title,
 .trulii-cover-regular__content .title {
-  font-size: 4em;
+  font-size: 3.8em;
   margin-top: 0.25em !important;
   margin-bottom: 25px;
+  font-weight: 600;
 }
 @media screen and (max-width: 992px) {
   .trulii-cover__content .title,
