@@ -30,24 +30,26 @@
             searchActivities: searchActivities,
             nextPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
-                maxPagesSize:12,
+                itemsPerPage: 8,
+                maxPagesSize:8,
                 pageNumber: 1
             },
             pastPaginationOpts: {
               totalItems: 0,
-              itemsPerPage: 12,
-              maxPagesSize:12,
+              itemsPerPage: 8,
+              maxPagesSize:8,
               pageNumber: 1
             },
             currentPaginationOpts: {
               totalItems: 0,
-              itemsPerPage: 12,
-              maxPagesSize:12,
+              itemsPerPage: 8,
+              maxPagesSize:8,
               pageNumber: 1
             },
             updateByQuery:updateByQuery,
             TYPE_NEXT: 'next',
+            TYPE_PAST: 'past',
+            TYPE_CURRENT: 'current',
             current_cards: [],
             future_cards: []
         });
@@ -70,6 +72,7 @@
                   ActivitiesManager.getStudentActivities(student.id, vm.TYPE_PAST, vm.pastPaginationOpts.pageNumber, vm.pastPaginationOpts.itemsPerPage)
                   .then(function(response){
                     vm.past_activities = response.results;
+                    _setOrders();
                     vm.pastPaginationOpts.totalItems = response.count;
                   });
                   break;
@@ -103,60 +106,20 @@
 
         //--------- Internal Functions ---------//
 
-        //function _classifyActivities(){
-        //    vm.future_activities = [];
-        //    vm.past_activities = [];
-        //    angular.forEach(activities, filterActivity);
-        //
-        //    function filterActivity(activity){
-        //        var deferred = $q.defer();
-        //        if(activity.last_date < Date.now()){
-        //            vm.past_activities.push(activity);
-        //        } else {
-        //            vm.future_activities.push(activity);
-        //        }
-        //        deferred.resolve();
-        //        return deferred.promise;
-        //    }
-        //}
-
-        //function _mapReviews(reviews){
-        //    console.log('reviews', reviews);
-        //    var deferred = $q.defer();
-        //    var promiseArray = [];
-        //    activities.map(function(activity){
-        //        promiseArray.push(mapReview(activity));
-        //    });
-        //
-        //    $q.all(promiseArray).then(function(){
-        //        deferred.resolve();
-        //    });
-        //
-        //    return deferred.promise;
-        //
-        //    function mapReview(activity){
-        //        var review = reviews.filter(filterReview)[0];
-        //        if(!review){ review = {}; }
-        //        activity.review = review;
-        //
-        //        function filterReview(review){
-        //            return review.activity === activity.id;
-        //        }
-        //    }
-        //}
-
-        //function _mapOrders(activities, orders){
-        //    angular.forEach(activities, mapOrders);
-        //    return activities;
-        //
-        //    function mapOrders(activity){
-        //        activity.orders = orders.filter(filterOrders);
-        //
-        //        function filterOrders(order){
-        //            return order.activity_id === activity.id;
-        //        }
-        //    }
-        //}
+        function _mapOrders(activities, orders){
+            angular.forEach(activities, mapOrders);
+            return activities;
+        
+            function mapOrders(activity){
+                activity.orders = orders.filter(filterOrders);
+                
+                function filterOrders(order){
+                    if(order.activity.id === activity.id){
+                        return order;
+                    }
+                }
+            }
+        }
 
         function _mapReviews(activity, reviews){
             var review = reviews.filter(function(review){
@@ -171,61 +134,35 @@
             activity.review = review;
             return activity;
         }
-
-        function _mapOrders(orders, activities, reviews){
-            var deferred = $q.defer();
-            var promiseArray = [];
-
-            orders.forEach(function(order){
-              promiseArray.push(processOrder(order));
-            });
-
-            $q.all(promiseArray).then(function(){
-              deferred.resolve(orders);
-            });
-
-            return deferred.promise;
-
-            function processOrder(order){
-                order = setOrderActivity(order, activities);
-            }
-
-            function setOrderActivity(order, activities){
-                order.activity = activities.filter(function(activity){
-                  return activity.id == order.activity.id;
-                })[0];
-
-                return order;
-            }
+        function _(params) {
+            
         }
-
         function _setStrings() {
             if (!vm.strings) {
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                ACTION_SEARCH_ACTIVITIES: "Buscar Actividades",
-                COPY_CURRENT: "Revisa las actividades que estás cursando actualmente o que inician próximamente.",
-                COPY_HISTORY: "Revisa las actividades en las que te has inscrito anteriormente.",
+                ACTION_SEARCH_ACTIVITIES: "A ver qué encuentro",
+                COPY_CURRENT: "Estas son las actividades que estás cursando en este momento. Recuerda evaluarlas al terminar.",
+                COPY_LAST: "Estas son las actividades que tienes que evaluar. Tu evaluación es importante para la comunidad. Sé sincero y respetuoso(a).",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                LABEL_EMPTY_ACTIVITIES: "Hasta ahora no ha terminado ninguna actividad",
-                LABEL_EMPTY_CURRENT_ACTIVITIES: "Por los momentos no tiene ninguna actividad en curso",
+                LABEL_EMPTY_ACTIVITIES: "En este momento no estás cursando ninguna actividad. ¿Qué esperas para aprender algo nuevo? ¡Anímate, pues!",
+                LABEL_EMPTY_CURRENT_ACTIVITIES: "No tienes ninguna actividad próxima a realizar. ¿Qué estás esperando? ¡Venga, pues!",
+                LABEL_EMPTY_LAST_ACTIVITIES:"Por los momentos no tienes ninguna actividad para evaluar. ¿Qué tal si pruebas buscando algo? Quizá encuentres algo interesante.", 
                 COPY_EMPTY_ACTIVITIES: "Parece ser el momento perfecto para que descubra una nueva pasión,"
                     + " aprenda un nuevo pasatiempo o mejore su currículo",
-                TAB_OPEN: "Próximas",
-                TAB_CLOSED: "Anteriores",
-                TAB_CURRENT: "Actuales",
+                TAB_NEXT: "Actividades / Próximas",
+                COPY_NEXT: "Estas son las actividades que próximamente realizarás. ¡Ya falta poco!",
+                TAB_LAST: "Actividades / Por revisar",
+                TAB_CURRENT: "Actividades / Actuales",
                 COPY_ORDER_DETAIL: "Detalle de la compra",
                 COPY_BEGINNING_ON: "Iniciado el "
             });
         }
 
         function _setOrders(){
-           var activities = nextActivities.results.concat(pastActivities.results).concat(currentActivities.results);
-            _mapOrders(orders.results, activities, reviews)
-            .then(function(){
-                _mapReviews(vm.past_activities, reviews);
-            });
+            vm.past_activities =  _mapOrders(vm.past_activities, orders.results);
+            _mapReviews(vm.past_activities, reviews);
         }
 
         function _setActivities(){

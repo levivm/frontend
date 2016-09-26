@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBReturnPDashboard', ActivityDBReturnPDashboard);
 
-    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity', 'Toast', 'Error'];
+    ActivityDBReturnPDashboard.$inject = ['$scope', 'activity', 'Toast', 'Error', 'Elevator'];
 
-    function ActivityDBReturnPDashboard($scope, activity, Toast, Error) {
+    function ActivityDBReturnPDashboard($scope, activity, Toast, Error, Elevator) {
 
         var vm = this;
 
@@ -33,7 +33,6 @@
         /******************ACTIONS**************/
 
         function _updateActivity() {
-            console.log(vm.activity);
             Error.form.clear(vm.activity_return_policy_form);
             vm.activity.update()
                 .then(_updateSuccess, _errored);
@@ -76,8 +75,8 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                TITLE_RETURN_POLICY: "Política de Devolución",
-                COPY_RETURN_POLICY: "Especifica bajo qué condiciones aceptas reembolsar pagos",
+                TITLE_RETURN_POLICY: "Políticas de Devolución",
+                COPY_RETURN_POLICY: "Escribe tus condiciones para reembolsar al asistente el pago que hizo por la inscripción. Si no aceptas reembolso también escríbelo.",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 PLACEHOLDER_RETURN_POLICY: "Condiciones para reembolso",
                 ACTION_SAVE: "Guardar",
@@ -85,6 +84,7 @@
         }
         function activate() {
             _setStrings();
+            Elevator.toTop();
         }
 
     }

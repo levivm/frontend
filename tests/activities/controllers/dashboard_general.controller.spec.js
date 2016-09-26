@@ -52,8 +52,9 @@ xdescribe('Controller: ActivityGeneralController', function(){
         $httpBackend
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
+       
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
 
         ActivitiesManager.getActivity(4)
@@ -77,14 +78,14 @@ xdescribe('Controller: ActivityGeneralController', function(){
         currentUser = readJSON('tests/mock/currentUser.json');
         //End calls
         $httpBackend.flush();
-
+        
         ActivityGeneralController =  $controller('ActivityGeneralController', {
             'activity': activity,
             'organizer': organizer,
             'presaveInfo': presaveInfo,
             'isOwner':true});
 
-
+            
 
     }));
 
@@ -93,6 +94,12 @@ xdescribe('Controller: ActivityGeneralController', function(){
             expect(ActivityGeneralController).toBeDefined();
             expect(ActivityGeneralController.strings).toBeDefined();
          });
+         
+          it('_setUpdate() if tags length is 2', function() {
+            expect(ActivityGeneralController.activity_tags.length).toEqual(2);
+         });
+        
+         
     });
 
     describe("Update", function(){
@@ -114,10 +121,25 @@ xdescribe('Controller: ActivityGeneralController', function(){
             $httpBackend.flush();
             expect(ActivityGeneralController.isSaving).toBe(false);
          });
+         
+         it('_onSectionUpdated general is true', function() {
+            expect(ActivityGeneralController.activity.completed_steps['general']).toBe(true);
+         });
+         
+         it('should  error update', function() {
+            ActivityGeneralController.isSaving = true;
+            ActivityGeneralController.activity_create_form = $scope.vm.activity_create_form;
+            ActivityGeneralController.save_activity();
+            $httpBackend
+                 .when('PUT', 'http://localhost:8000/api/activities/4')
+                 .respond(400, {"title":["Este campo no puede estar en blanco."]});
+
+            $httpBackend.flush();
+            expect(ActivityGeneralController.isSaving).toBe(false);
+         });
+         
     });
-
-
-
+    
 
 
 })

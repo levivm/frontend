@@ -11,11 +11,10 @@
     angular
         .module('trulii.students.controllers')
         .controller('StudentHistoryCtrl', StudentHistoryCtrl);
-    StudentHistoryCtrl.$inject = ['$filter', '$http', 'student', 'titleTruncateSize', 'Analytics', 'StudentServerApi', 'datepickerPopupConfig', 'activityList'];
+    StudentHistoryCtrl.$inject = ['$filter', '$http', 'student', 'titleTruncateSize', 'Analytics', 'datepickerPopupConfig', 'activityList', 'orders'];
 
-    function StudentHistoryCtrl($filter, $http, student, titleTruncateSize, Analytics, StudentServerApi, datepickerPopupConfig, activityList) {
+    function StudentHistoryCtrl($filter, $http, student, titleTruncateSize, Analytics, datepickerPopupConfig, activityList, orders) {
         var vm = this;
-        var api = StudentServerApi;
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
 
         angular.extend(vm,{
@@ -47,17 +46,23 @@
               query: null,
               activity: null
             },
+            dateOptions : {
+                formatYear: 'yyyy',
+                startingDay: 1,
+                showWeeks:false,
+            },
             openDatePicker: openDatePicker,
+            filterById: filterById,
+            search:false
         });
 
         activate();
 
-        var orders = [];
+       // var orders = [];
 
         /*      Exposed Functions      */
 
         function openDatePicker($event, date){
-          console.log('openDatePicker');
           $event.preventDefault();
           $event.stopPropagation();
 
@@ -70,7 +75,11 @@
             vm.ordersFilter.from_date_opened = false;
           }
         }
-
+        
+        function filterById() {
+            setTimeout(function(){ updateByQuery(vm.TYPE_ORDER) }, 1000);
+        }
+        
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_ORDER:
@@ -93,7 +102,7 @@
 
                   if(vm.ordersFilter.query)
                     params.id = vm.ordersFilter.query;
-                  
+                    
                   student.getOrders(params).then(success, error);
                   
                   break;
@@ -108,20 +117,18 @@
         /*       Internal Functions      */
 
         function success(ordersResponse){
+            vm.search = true;
             orders = ordersResponse;
+            _setOrders();
+        }
+        function error(orders){
+            //console.log('Error retrieving Student Orders History');
+        }
+        
+        function _setOrders() {
             orders.results = $filter('orderBy')(orders.results, 'id', true);
             vm.ordersPaginationOpts.totalItems = orders.count;
             vm.orders = orders.results.slice(0, vm.ordersPaginationOpts.itemsPerPage);
-
-        }
-        function error(orders){
-            console.log('Error retrieving Student Orders History');
-        }
-        function _getOrders(){
-
-            student.getOrders().then(success, error);
-
-
         }
 
 
@@ -131,16 +138,19 @@
             }
             angular.extend(vm.strings, {
                 ACTION_REIMBURSE: "Solicitar Reembolso",
-                ACTION_FIND_ACTIVITY: "Buscar Actividad",
+                ACTION_FIND_ACTIVITY: "A ver qué encuentro",
                 ACTION_VIEW_DETAIL: "Ver detalle",
                 COPY_SEARCH_ORDERS_HELPER: "Nro de orden",
                 COPY_NOT_AVAILABLE: "No Disponible",
                 COPY_NA : "N/A",
                 COPY_START_DATE: "Fecha inicio: ",
+                TAB_HISTORY: "Transacciones",
+                COPY_HISTORY: "Estas son las transacciones realizadas",
                 LABEL_SEARCH:"Revisa toda la informacion de tu orden de compra. "
                 + "Puedes incluso solicitar el reembolso del monto total de la orden o el monto "
                 + "correspondiente por cada asistente",
-                LABEL_EMPTY_ORDERS: "No te has inscrito en ninguna actividad aún. Eso nos parte el corazón. ¿Por qué no te animas hoy a aprender lo que te apasiona?",
+                LABEL_EMPTY_ORDERS: "No tienes ninguna transacción porque aún no te has inscrito a ninguna actividad. Eso nos destroza el corazón. ¿Qué tal si pruebas buscando alguito?",
+                LABEL_EMPTY_SEARCH_ORDERS: "No hay ninguna orden que cumpla con los párametros de busqueda.",
                 LABEL_EVERYBODY: "Todos",
                 COPY_EMPTY_ORDERS: "Parece ser el momento perfecto para que descubras una nueva pasión, aprendas un nuevo pasatiemo o mejores tu curriculo",
                 TAB_ORDERS: "Compras",
@@ -153,13 +163,14 @@
                 HEADER_STATUS: "Estatus",
                 HEADER_ASSISTANT: "Asistente",
                 HEADER_PURCHASE_DATE: "Fecha de compra",
-                HEADER_TOTAL: "Monto"
+                HEADER_TOTAL: "Monto",
+                STATUS_CANCELLED: "Cancelada"
             });
         }
 
         function activate() {
             _setStrings();
-            _getOrders();
+           _setOrders();
         }
 
     }

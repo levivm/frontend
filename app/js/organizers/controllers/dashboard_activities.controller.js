@@ -17,9 +17,9 @@
     function OrganizerActivitiesCtrl(organizer, ActivitiesManager, openActivities, closedActivities, inactiveActivities, $window, $scope) {
 
         var vm = this;
-        var URL_OPEN= "open",
-            URL_INACTIVE= "inactive",
-            URL_CLOSED= "closed";
+        var URL_OPEN= 'organizer-dashboard.activities.open',
+            URL_INACTIVE= 'organizer-dashboard.activities.inactive',
+            URL_CLOSED= 'organizer-dashboard.activities.closed';
 
         angular.extend(vm, {
             organizer : organizer,
@@ -36,17 +36,17 @@
             },
             openPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             closedPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             inactivePaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             closedOptions : {
@@ -131,7 +131,6 @@
         }
 
         function _loadActivities(event, urlType){
-
           switch(urlType){
               case URL_OPEN:
                 pageChange(vm.TYPE_OPEN);
@@ -153,7 +152,7 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                ACTION_CREATE_ACTIVITY: "Crear Nueva Actividad",
+                ACTION_CREATE_ACTIVITY: "Crear Actividad",
                 ACTION_PUBLISH_ACTIVITY: "Publicar Actividad Existente",
                 ACTION_REPUBLISH_ACTIVITY: "Republicar Actividad",
                 COPY_EMPTY_CLOSED: "Por ahora no tienes ninguna actividad cerrada. ¿Te animas a publicar " +
@@ -164,18 +163,17 @@
                 LABEL_EMPTY_OPEN: "No tienes actividades abiertas",
                 LABEL_EMPTY_INACTIVE: "Actualmente no tienes borradores de actividades.",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                TAB_OPEN: "Abiertas",
-                TAB_CLOSED: "Cerradas",
-                TAB_INACTIVE: "Inactivas",
-                COPY_INACTIVE: "Actividades inactivas son aquellas publicaciones cuyas inscripciones se encuentran en modo borrador",
-                COPY_CLOSED: "Una actividad anterior es aquella que finalizó. Puedes editar su información para re-utilizarla. ¡Así de fácil!",
-                COPY_OPEN: "Actividades abiertas son aquellas publicaciones cuyas inscripciones siguen abiertas"
+                TAB_OPEN: "Actividades > Publicadas",
+                TAB_CLOSED: "Actividades > Cerradas",
+                TAB_INACTIVE: "Actividades > Inactivas",
+                COPY_INACTIVE: "Una actividad inactiva es aquella que se encuentra en modo borrador y no está publicada.",
+                COPY_CLOSED: "Una actividad cerrada es aquella que ya finalizó. Puedes editar parte de su informaciń (como el calendario) para reu-tilizarla.",
+                COPY_OPEN: "Una actividad publicada es aquella cuyas inscripciones siguen abiertas."
             });
         }
 
         function _activate() {
             _setStrings();
-            console.log('actividades');
             vm.open_activities.map(_mapMainPicture);
             vm.closed_activities.map(_mapMainPicture);
             vm.inactive_activities.map(_mapMainPicture);

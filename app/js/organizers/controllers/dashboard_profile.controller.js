@@ -18,9 +18,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileCtrl', OrganizerProfileCtrl);
 
-    OrganizerProfileCtrl.$inject = ['$rootScope', 'uiGmapIsReady', 'Authentication', 'LocationManager', 'Toast', 'Error',
+    OrganizerProfileCtrl.$inject = ['$rootScope', 'uiGmapIsReady', 'serverConf', 'Authentication', 'LocationManager', 'Toast', 'Error',
         'organizer', 'cities'];
-    function OrganizerProfileCtrl($rootScope, uiGmapIsReady, Authentication, LocationManager, Toast, Error, organizer, cities) {
+    function OrganizerProfileCtrl($rootScope, uiGmapIsReady, serverConf, Authentication, LocationManager, Toast, Error, organizer, cities) {
 
         var vm = this;
         var SIZE_PICTURE_UP = 2500; //2.5Mb
@@ -43,8 +43,11 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' + file;
+        }
         function uploadPicture(image) {
+            console.log(image);
             if (!image) { return; }
             Error.form.clear(vm.profile_picture_form);
             if(_verifySizePicture(image[0]))
@@ -90,6 +93,7 @@
         }
 
         function _successUploaded(response) {
+            console.log(response);
             angular.extend(organizer, response.data);
             angular.extend(vm.organizer, organizer);
             vm.photo_path = response.data.photo;
@@ -100,7 +104,10 @@
 
         function _successUpdatedLocation(response) {
             vm.isSaving = false;
-            angular.extend(organizer, vm.organizer);
+            var city = vm.organizer.location.city
+            angular.extend(vm.organizer.location, response.data);
+            vm.organizer.location.city = city;
+            angular.merge(organizer, vm.organizer);
             Toast.generics.weSaved();
         }
 
@@ -140,12 +147,13 @@
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
                 ACTION_DELETE: "Eliminar",
-                ACTION_UPDATE_PICTURE: "Subir Foto",
+                ACTION_UPDATE_PICTURE: "Cambiar imagen",
                 ACTION_VIEW_PROFILE: "Ver Perfil",
                 SECTION_PROFILE: "Perfil",
                 COPY_PROFILE: "Esta información aparecerá en tu perfil y lo verán los demás usuarios",
                 COPY_VIDEO: "¿Posee algún video donde describa o presente su organización?",
                 COPY_LOCATION: "¿Donde funciona su organización?",
+                COPY_MAP: "Hazle click al pin rojo del mapa para desplazarlo a la dirección exacta del lugar donde estás establecido.",
                 SUB_SECTION_VIDEO: "Video",
                 SUB_SECTION_LOCATION: "Ubicación",
                 SUB_SECTION_COMMENTS: "Comentarios",
@@ -157,6 +165,7 @@
                 LABEL_ADDRESS: "Dirección Exacta",
                 OPTION_SELECT: "Seleccione...",
                 PLACEHOLDER_VIDEO: "Ejemplo: www.youtube.com/watch?v=video_id",
+                PLACEHOLDER_LOCATION: "¿En donde está tu oficina o realiza la mayoria de tus actividades?",
                 HELPER_FULL_NAME: "Escribe el nombre de la organización o persona",
                 HELPER_HEADLINE: "Describe tu organización en pocas palabras",
                 HELPER_BIO: "Escribe sobre la historia, reputación y calidad de servicios de tu empresa "
@@ -168,6 +177,7 @@
         function _activate(){
             _setStrings();
             _initialize_map();
+            vm.marker.options = {draggable:true};
         }
 
     }

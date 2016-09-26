@@ -21,6 +21,11 @@
 
     vm.errors = {};
     vm.forgotPassword = forgotPassword;
+    vm.strings = {
+      COPY_TITLE: "¿Olvidaste tu contraseña?",
+      COPY_RESET: "Enviaremos a tu correo electrónico un enlace para que establezcas una nueva contraseña",
+      ACTION_SEND: " Enviar"
+    }
 
 
     function forgotPassword() {

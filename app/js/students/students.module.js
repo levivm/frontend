@@ -32,7 +32,7 @@
         $stateProvider
             .state('student-dashboard', {
                 abstract:true,
-                url:'/students/dashboard/',
+                url:'/estudiante/dashboard/',
                 controller: 'StudentDashboardCtrl as dash',
                 templateUrl: 'partials/students/dashboard.html',
                 resolve:{
@@ -45,7 +45,7 @@
                 }
             })
             .state('student-dashboard.account', {
-                url:'account/',
+                url:'cuenta/',
                 controller: 'StudentAccountCtrl as account',
                 templateUrl: 'partials/students/dashboard/account.html'
             })
@@ -58,12 +58,12 @@
                 templateUrl: 'partials/students/dashboard/account_email.html'
             })
             .state('student-dashboard.profile', {
-                url:'profile',
+                url:'perfil',
                 controller: 'StudentProfileCtrl as profile',
                 templateUrl: 'partials/students/dashboard/profile.html'
             })
             .state('student-dashboard.activities', {
-                url:'activities/',
+                url:'actividades/',
                 controller: 'StudentActivitiesCtrl as activities',
                 templateUrl: 'partials/students/dashboard/activities.html',
                 resolve:{
@@ -75,20 +75,20 @@
                   }
             })
             .state('student-dashboard.activities.open', {
-                url:'open',
+                url:'proximas',
                 templateUrl: 'partials/students/dashboard/activities_open.html'
             })
             .state('student-dashboard.activities.closed', {
-                url:'closed',
+                url:'por-revisar',
                 templateUrl: 'partials/students/dashboard/activities_closed.html'
             })
             .state('student-dashboard.activities.current', {
-                url:'current',
+                url:'actuales',
                 templateUrl: 'partials/students/dashboard/activities_current.html'
             })
             .state('student-dashboard.history', {
                 abstract:true,
-                url:'history',
+                url:'transacciones',
                 controller: 'StudentHistoryCtrl as history',
                 templateUrl: 'partials/students/dashboard/history.html',
                 resolve: {
@@ -97,7 +97,7 @@
                 }
             })
             .state('student-dashboard.history.orders', {
-                url:'/orders',
+                url:'/ordenes',
                 templateUrl: 'partials/students/dashboard/history.orders.html'
             })
             .state('student-dashboard.history.orders.order', {
@@ -116,7 +116,7 @@
             })
 
             .state('student-dashboard.wishlist', {
-                url:'wishlist',
+                url:'favoritos',
                 controller: 'StudentWishlistCtrl as wishlist',
                 templateUrl: 'partials/students/dashboard/wishlist.html',
                 resolve: {
@@ -124,7 +124,7 @@
                 }
             })
             .state('student-dashboard.notifications', {
-                url:'notifications/',
+                url:'notificaciones/',
                 controller: 'StudentMessagesCtrl as messages',
                 templateUrl: 'partials/students/dashboard/messages.html',
                 resolve: {
@@ -132,7 +132,7 @@
                 }
             })
             .state('student-dashboard.messages-detail', {
-                url:'notifications/:messageId',
+                url:'notificaciones/:messageId',
                 controller: 'StudentMessageDetailCtrl as detail',
                 templateUrl: 'partials/students/dashboard/message_detail.html',
                 resolve: {
@@ -166,11 +166,11 @@
             }
 
             function error(response){
-                if(response === null){
+               /* if(response === null){
                     console.error("getCurrentStudent. There is no Authenticated User");
                 } else {
                     console.warn("getCurrentStudent. The Authenticated User is not a Student");
-                }
+                }*/
                 return $q.reject();
             }
         }
@@ -292,7 +292,6 @@
             }
 
             function error(response){
-                console.log('Error retrieving Student Reviews', response);
                 return [];
             }
         }

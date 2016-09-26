@@ -15,22 +15,37 @@
         .module('trulii.activities.controllers')
         .controller('ActivityCalendarController', ActivityCalendarController);
 
-    ActivityCalendarController.$inject = ['$scope','$state', 'activity', 'CalendarsManager', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast', 'calendar', '$document', '$timeout'];
+    ActivityCalendarController.$inject = ['$scope','$state', '$document', '$timeout', 'activity', 'CalendarsManager', 'calendar', 'Elevator', 'Error', 'datepickerPopupConfig', 'Toast',  'presaveInfo' ];
 
-    function ActivityCalendarController($scope, $state, activity, CalendarsManager, Elevator, Error, datepickerPopupConfig, Toast, calendar, $document, $timeout) {
+    function ActivityCalendarController($scope, $state, $document , $timeout, activity, CalendarsManager, calendar, Elevator, Error, datepickerPopupConfig, Toast,  presaveInfo) {
 
         var vm = this;
-        vm.activity_calendar_form = {};
-        vm.calendar = angular.copy(calendar);
+        var MAX_LENGTH_NOTE = 200;
+        var ERROR_STUDENTS = "No se puede cambiar la sessión con estudiantes inscritos.";
+        var packagesErrors = [];
+        
+        angular.extend(vm, {
+            maxLengthNote: MAX_LENGTH_NOTE,
+            calendar:  angular.copy(calendar),
+            activity: angular.copy(activity),
+            countPackages: 0,
+            addPackage: addPackage,
+            lessPackage: lessPackage,
+            presaveInfo: presaveInfo
 
+        });
         activate();
-
+        
         function _createCalendar() {
             Error.form.clear(vm.activity_calendar_form);
-            vm.calendar.create()
-                .then(success, _errored);
-                
-                
+            if(_checkIfPackages()){
+                Toast.error(vm.strings.ERROR_NON_PACKAGES);
+                vm.isSaving = false;
+            }else{
+                vm.calendar.create()
+                    .then(success, _errored);
+            }
+            
             function success(calendar){
                 vm.save_calendar = _updateCalendar;
                 CalendarsManager.setCalendar(calendar);
@@ -42,44 +57,71 @@
             }
 
         }
+        
+        function addPackage() {
+            var packageEmpty = {
+                quantity: 1,
+                price: 30000
+            };
+            vm.calendar.packages.push(packageEmpty);
+        }
+        
+        function lessPackage() {
+            vm.calendar.packages.pop();
+        }
+        
+
 
         function _updateCalendar() {
             _clearCalendarForm();
-            vm.calendar.update()
-                .then(success, _errored);
+            if(_checkIfPackages()){
+                Toast.error(vm.strings.ERROR_NON_PACKAGES);
+                vm.isSaving = false;
+            }else{
+                vm.calendar.update()
+                    .then(success, _errored);
+            }
+            Error.form.clear(vm.activity_calendar_form);
+            function success(updatedCalendarData){
 
-                function success(updatedCalendarData){
+                vm.isCollapsed = false;
+                angular.extend(calendar,vm.calendar);
+                CalendarsManager.setCalendar(updatedCalendarData);
+                _onSectionUpdated();
 
-                    vm.isCollapsed = false;
-                    angular.extend(calendar,vm.calendar);
-                    CalendarsManager.setCalendar(updatedCalendarData);
-                    _onSectionUpdated();
-
-                    vm.isSaving = false;
-
-                }
-        }
-
-        function _errored(responseErrors) {
-          
-            if (responseErrors) {
-              if (responseErrors['sessions'] && !responseErrors['number_of_sessions']){
-                    Error.form.addArrayErrors(vm.activity_calendar_form, responseErrors['sessions']);
-                    Toast.error(vm.strings.TOAST_SESSIONS_ERROR);
-                    delete responseErrors['sessions'];
-                }
-
-                if (responseErrors['number_of_sessions']){
-                  Toast.error(vm.strings.TOAST_SESSIONS_NUMBER_ERROR);
-                  delete responseErrors['number_of_sessions'];
-                }
-                if (!_.isEmpty(responseErrors)){
-                    Elevator.toElement('activity_calendar_form');
-                    Error.form.add(vm.activity_calendar_form, responseErrors);
-                }
+                vm.isSaving = false;
 
             }
-
+        }
+        function _checkIfPackages(){
+            return vm.activity.is_open && vm.calendar.packages.length<1;
+        }
+        
+        function _errored(responseErrors) {
+            
+            
+            if (responseErrors) {
+                if(responseErrors['packages'] && !responseErrors['schedules']){
+                     _.each(responseErrors['packages'], function (error_dict, index) { 
+                            var packageError ={};
+                            if(!_.isEmpty(error_dict)){
+                                _.each(Object.keys(error_dict), function(value){
+                                     packageError[value+'_'+index] = error_dict[value];
+                                });
+                                packagesErrors.push(packageError);
+                                Elevator.toElement('package-'+index);
+                            }
+                        });
+                        
+                      Error.form.addArrayErrors(vm.activity_calendar_form, packagesErrors);
+                }else{
+                    Error.form.add(vm.activity_calendar_form, responseErrors);
+                    if (!responseErrors['schedules']){
+                        Elevator.toElement('activity_calendar_form');
+                    }
+                }
+                
+            }
             vm.isSaving = false;
         }
 
@@ -94,30 +136,41 @@
 
         function _setStrings(){
 
-            var LABEL_CALENDAR_TITLE = "Nuevo Calendario";
+            var LABEL_CALENDAR_TITLE = "Nuevo calendario";
             if (vm.calendar.id)
-                LABEL_CALENDAR_TITLE = "Calendario";
+                LABEL_CALENDAR_TITLE = "Calendario > Editar";
 
 
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 LABEL_CALENDARS: "Calendarios",
                 LABEL_CALENDAR_TITLE: LABEL_CALENDAR_TITLE,
-                COPY_CALENDAR_INFO: "Especifica precio, cupos y  fecha cierre de ventas de la clase.",
-                LABEL_IS_FREE: "Habilitar inscripción gratuita",
+                COPY_CALENDAR_INFO: "Especifique la información solicitada para continuar.",
+                LABEL_IS_FREE: "Marca aquí si la actividad es gratuita.",
                 LABEL_START_DATE: "Fecha de inicio",
                 LABEL_CLOSE_SALES: "Cierre de ventas",
+                TOOLTIP_NOTES: "Escribe información relevante sobre el precio de esta actividad. Ejemplo: el precio incluye los equipos de trabajo",
                 LABEL_CALENDAR_SEATS: "Cupos disponibles",
                 LABEL_SESSION_PRICE: "Precio (COP)",
-                PLACEHOLDER_SESSION_PRICE: "Precio Mínimo COP 30.000",
+                LABEL_NOTES: "Nota",
+                LABEL_SALES: "Ventas",
+                LABEL_SCHEDULES: "Horarios",
+                LABEL_PACKAGE_PRICE: "Precio del plan",
+                LABEL_PACKAGE_NAME: "Tipo",
+                LABEL_PACKAGE_QUANTITY: "Número",
+                LABEL_WEEKEND: "Mi actividad sólo se imparte los fines de semana.",
+                COPY_SCHEDULES:"Escribe las fechas, días y horas en las que se realizarán las clases.",
+                PLACEHOLDER_SCHEDULES:"Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
+                PLACEHOLDER_NOTES: "Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
                 TITLE_SESSIONS: "Sesiones",
-                LABEL_SESSIONS_AMOUNT: "¿Cuántas sesiones o clases se realizarán?",
+                LABEL_SESSIONS_AMOUNT: "En una misma publicación puedes tener diferentes fechas de inicio, cada una con diferentes número de sesiones, fechas y horas.",
                 LABEL_SESSION_DAY: "Día de la sesión",
                 LABEL_SESSION_START_TIME: "Hora de inicio:",
                 LABEL_SESSION_END_TIME: "Hora de fin:",
                 TOAST_SESSIONS_ERROR: "Existe un error en las sesiones",
-                TOAST_SESSIONS_NUMBER_ERROR: "Deber haber mínimo una sesión"
-
+                TOAST_SESSIONS_NUMBER_ERROR: "Deber haber mínimo una sesión",
+                ERROR_NON_PACKAGES: "Debes por lo menos agregar un plan.",
+                OPTION_SELECT_PNAME:"Elige un tipo"
             });
         }
 
@@ -136,6 +189,7 @@
             }
           }
         }
+        
         function activate() {
 
             _setStrings();
@@ -160,20 +214,26 @@
 
             vm.isSaving = false;
 
-            if (vm.calendar.id)
-                vm.save_calendar = _updateCalendar;
-            else
+            if (vm.calendar.id){
+                vm.save_calendar = _updateCalendar; 
+            }
+            else{
                 vm.save_calendar = _createCalendar;
-
+                vm.calendar.enroll_open=true;
+            }
+                
+            if(!vm.calendar.packages){
+                vm.calendar.packages = [];
+            }
             $scope.$watch(
               function(scope){
-                return scope.calendar.calendar.number_of_sessions;
+                return scope.calendar.number_of_sessions;
               },
               function(newValue, oldValue){
                 if(newValue === 1){
                   $timeout(function(){
                     var scrollElement = angular.element(document.getElementById('calendar-0'));
-                    $document.scrollToElementAnimated(scrollElement);
+                    $document.scrollToElementAnimated(scrollElement, -90);
                   });
                 }
               }

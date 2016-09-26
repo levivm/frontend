@@ -5,47 +5,43 @@
                 <div class="row">
                     <div class="col-xs-12 col-md-6 col-md-offset-3">
                         <h1 class="text-center">
-                            <strong ng-bind="::referrals.strings.HEADER_TITLE_COPY"></strong>
+                            <strong ng-bind="::referrals.strings.HEADER_TITLE_COPY_1"></strong>
+                            <br>
+                            <strong ng-bind="::referrals.strings.HEADER_TITLE_COPY_2"></strong>
                         </h1>
                     </div>
                 </div>
-                <div class="row separate-above separate-below" ng-if="!referrals.user.is_organizer">
-                  <div class="col-xs-12 col-md-6 col-md-offset-3">
+                <div class="row separate-above-more separate-below-more" ng-if="!referrals.user.is_organizer">
+                  <div class="col-xs-12">
                     <button class="center-block btn btn-success btn-lg"
                       ng-click="referrals.goToLogin()"
                       ng-bind="::referrals.strings.HEADER_ACTION_LOGIN">
                     </button>
                   </div>
                 </div>
-                <div class="row separate-above-less" ng-if="!referrals.user.is_organizer">
+                <div class="row" ng-if="!referrals.user.is_organizer">
                     <div class="col-xs-10 col-xs-offset-1 col-sm-6 col-sm-offset-3">
-                        <h4 class="text-center sinkin-regular">
-                            <span ng-bind="::referrals.strings.HEADER_TEXT_COPY"></span>
-                            <span><a ui-sref="register(referrals.stateInfo)" ng-bind="::referrals.strings.HEADER_ACTION_REGISTER"></a></span>
+                        <h4 class="text-center font-regular">
+                            <strong ng-bind="::referrals.strings.HEADER_TEXT_COPY"></strong>
+                            <strong><a ui-sref="register(referrals.stateInfo)" ng-bind="::referrals.strings.HEADER_ACTION_REGISTER"></a></strong>
                         </h4>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{referrals.getAmazonUrl('static/img/referrals/referrals.png')}})' }">
+        <div class="trulii-cover__background" ng-style="{ 'background-image' : 'url({{referrals.getAmazonUrl('static/img/referrals/banner.jpg')}})' }">
         </div>
     </div>
 </div>
-<div class="col-xs-12">
+<div class="col-xs-12 container-muted">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2">
-        <h3 class="montserrat-light text-center text-muted separate-above-more separate-below-more">
-            <span ng-bind="::referrals.strings.BODY_TEXT_1"></span>
-            <strong ng-bind="::referrals.strings.BODY_TEXT_2"></strong>
-            <span ng-bind="::referrals.strings.BODY_TEXT_3"></span>
-            <strong ng-bind="::referrals.strings.BODY_TEXT_4"></strong>
-            <span ng-bind="::referrals.strings.BODY_TEXT_5"></span>
-            <strong ng-bind="::referrals.strings.BODY_TEXT_6"></strong>
-            <span ng-bind="::referrals.strings.BODY_TEXT_7"></span>
-        </h3>
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-4 col-md-offset-4">
+        <h4 class="font-light text-center text-muted separate-above-more separate-below-more">
+            <strong ng-bind="::referrals.strings.BODY_TEXT"></strong>
+        </h4>
       </div>
   </div>
-  <div class="row container-muted padding-vertical-less">
+  <div class="row container-muted padding-vertical-regular">
       <div class="col-xs-12">
           <h4 class="text-center text-underline">
               <a ui-sref="about.terms" ng-bind="::referrals.strings.LEARN_MORE"></a>

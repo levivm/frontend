@@ -1,373 +1,169 @@
-@import url('../_trulii-variables');
+@activity-card-height: 350px;
 
-@activity-border-radius: 5px;
-@activity-padding: 1rem;
-@activity-owner-picture-width: 3em;
-@activity-card-date-color: #767676;
-
-.activity-card{
-    width: 19em;
-    max-width: 20%;
-    display: inline-block;
-    border-radius: @activity-border-radius;
-    background-color: white;
-    border: 1px solid @gray-lighter;
-    margin: 0 0.8em 1em;
-    text-align: left;
-    transition: .2s all ease;
-    margin-bottom: 3rem;
-
-    .before-md({
-      max-width: 90%;
-      min-width: 10%;
-    });
-
-    &-non-organizer{
-      min-width: 21em;
-    }
-    &-organizer{
-      max-width: 100%;
-      min-width: 40em;
-      width: 100%;
-      &:extend(.flex-container);
+.trulii-activity-card{
+    position: relative;
+    height: @activity-card-height;
+    width: 245px;
+    margin: 0 auto;
+    border-radius: @border-radius-large;
+    overflow: hidden;
+    margin-bottom: 25px;
+    box-shadow: #DCDDE2 0px 0px 0px 0px;
+    transition: all 0.33s;
+    cursor: pointer;
+    &-anchor{
+        font-weight: 500;
+        &:hover{
+            text-decoration: none;
+        }
     }
     &:hover{
-        box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+        box-shadow: #DCDDE2 5px 10px 25px 4px;
     }
-
     &__header{
-        height: 13em;
+        height: @activity-card-height/2;
         width: 100%;
-        padding: @activity-padding;
-        position: relative;
-        background-color: @gray-lighter;
-
-        // TODO: To mixin
-        -webkit-border-top-left-radius: @activity-border-radius;
-        -webkit-border-top-right-radius: @activity-border-radius;
-        -moz-border-radius-topleft: @activity-border-radius;
-        -moz-border-radius-topright: @activity-border-radius;
-        border-top-left-radius: @activity-border-radius;
-        border-top-right-radius: @activity-border-radius;
-        &-organizer{
-          max-width: 20%;
-          min-width: 30%;
-          height: 12em;
-        }
-        &__cover-container {
-            &:extend(.img-size-cover);
-            &:extend(.img-position-center);
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-top-left-radius: @activity-border-radius;
-            border-top-right-radius: @activity-border-radius;
-
-            &.inactive-cover {
-                &:before {
-                    content: '';
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    background-color: fadeout(white, 50%);
-                    top: 0;
-                    left: 0;
-                }
-            }
-        }
-        &__cover-gradient {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-            &:after{
-                width: 100%;
-                height: 100%;
-                content: "";
-                background-color: rgba(60, 61, 65, 0.4);
-                z-index: 0;
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
-
-        }
-
-        &__btn-more{
-            color: white;
-            background: rgba(255,255,255, 0.3);
-            box-shadow: 0 1px 2px rgba(0,0,0,0.4);
-            position: absolute;
-            padding: @activity-padding/2;
-            right: 0;
-            top: 0;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: .2s all ease;
-            margin: @activity-padding/2;
-
-            &:hover{
-                background: rgba(255,255,255, 0.6);
-            }
-        }
-
+        background-size: cover;
+        background-color: lightgray;
         &__menu{
             position: relative;
             float: right;
-            width: 7em;
-            border-radius: 2.5px;
-            z-index: 10;
             text-align: right;
-
-            &__btn-close{
-                position: absolute;
-                top: 0;
-                right: 0;
-                cursor: pointer;
-            }
-
-            &__item{
-                color: #FFFFFF;
-                font-size: 1.5em;
-                font-family:  @font-sans;
-                text-transform: uppercase;
-                cursor: pointer;
-                margin-left: 0.3em;
-                text-align: center;
-                &:hover{
-                  text-decoration: none;
-                }
-                &__icon{
-                    font-size: 1em;
-                }
-
-                span{
-                    color: @white;
-                }
-
-
-                &:active{
-                    background: @success;
-                    color: white;
-                }
-
-            }
-        }
-
-    }
-    &__content{
-      position: relative;
-      &-organizer{
-        padding: 1.2em 1.5em 0em 1.5em;
-        width: 100%;
-
-        &::before{
-          content: "";
-          color: transparent;
-          position: absolute;
-          left: -9px;
-          border-left: 0px solid transparent;
-          border-right: 10px solid #ffffff;
-          border-bottom: 7px solid transparent;
-          border-top: 7px solid transparent;
-        }
-      }
-    }
-
-    &__body{
-        padding: 1em;
-        display: block;
-        height: 7.5em;
-
-        a {
-            &:hover {
-                color: @lightbg-text;
-            }
-        }
-
-        &-organizer{
-          padding: 0;
-          position: relative;
-          width: 100%;
-          height: 6.5em;
-
-        }
-
-        &:hover .activity-card__body__title{
-            text-decoration: underline;
-        }
-
-        &__menu{
-          &-name{
-            &-organizer{
-              font-size: 0.5em;
-              text-transform: capitalize;
-            }
-          }
-          &-organizer{
-            position: absolute;
-            right: 0;
-            top: -5px;
-
-            a{
-              &:hover{
-                  text-decoration: none;
-              }
-              span{
-                color: @gray-light;
-                vertical-align: middle;
-                font-size: 1.2em;
-              }
-            }
-          }
-        }
-        &__title{
-            font-family: @font-sans-alt;
-            font-weight: bold;
-            font-size: 0.85em;
-            margin-bottom: 0.25em;
-            display: block;
-            overflow: hidden;
-            padding-bottom: .4em;
-            text-transform: capitalize;
-            text-overflow: ellipsis;
-            word-break: normal;
-            max-height: 3em;
-            color: @gray-dark;
-            width: 85%;
-
-            &-organizer{
-              width: 60%;
-              max-height: 7em;
-            }
-
-        }
-
-        &__owner-name{
-            height: 2em;
-            font-family: @font-sans-alt;
-            font-weight: bold;
-            font-size: .75em;
             width: 100%;
-            display: block;
-            padding-bottom: .7em;
-            color: @activity-card-date-color;
-            .text-overflow();
-        }
-
-        &__description{
-            font-family: @font-serif;
-            padding-top: 1em;
-            color: @gray;
-            text-transform: capitalize;
-            overflow: hidden;
-            word-break: break-all;
-            height: 5em;
-            font-size: .9em;
-        }
-
-        &__date{
-            color:@gray-light;
-            font-size: 0.8em;
-            display: inline-block;
-        }
-
-
-    }
-
-    &__owner-picture{
-        border-radius: 50%;
-        width: @activity-owner-picture-width;
-        height: @activity-owner-picture-width;
-        position: absolute;
-        bottom: -(@activity-owner-picture-width)/2;
-        right: @activity-padding;
-        &:extend(.img-size-cover);
-        &:extend(.img-position-center);
-
-    }
-
-    &__bottom{
-        display: block;
-        width: 100%;
-        height: 3.5em;
-        line-height: 3.5em;
-        background: @gray-lighter;
-        color: #6c6c6c;
-        text-align: center;
-        font-weight: bold;
-        font-family: @font-sans-alt;
-        text-decoration: none;
-        border-radius: 0px 0px 5px 5px;
-
-        &:hover{
-            color: @lightbg-text;
-            text-decoration: none;
-        }
-        img{
-            margin-right: 0.25em;
-            vertical-align: text-bottom;
-        }
-
-        &-organizer{
-          background: transparent;
-          text-align: left;
-          height: 4em;
-          line-height: 5em;
-
-          div{
-            display: inline-block !important;
-          }
-          &-assistants{
-            float: right;
-            margin-top: -30px;
-            color: #999999;
-            text-decoration: underline;
-            font-size: 0.8em;
-          }
-        }
-
-
-    }
-
-    &__rating{
-        .sinkin-bold;
-        display: inline-block;
-        color: @activity-card-date-color;
-        font-size: 0.9em;
-
-        &__star{
-            color: @primary;
-            font-size: 1.1em;
-
-            &.--empty{
-                color: @gray-lighter;
+            padding: 8px 10px;
+            font-size: 1em;
+            &__item{
+                cursor: pointer;
+                margin-left: 5px;
+                text-align: right;
+                display: inline-block;
+                &__icon{
+                    color: white;
+                    &.mdi-action-favorite{
+                        color: @brand-heart;
+                    }
+                }
             }
         }
     }
-    &__like{
-        float: right;
-        line-height: 10px;
-        font-size: 2em;
-        color: @brand-red;
-        cursor: pointer;
-
-    }
-
     &__category{
-        &:extend(.label);
-        position: absolute;
-        z-index: 1;
-
+        &__label{
+            &:extend(.label);
+            position: absolute;
+            z-index: 1;
+            padding: 4px 10px;
+            letter-spacing: 1px;
+            font-size: 9px;
+            top: 165px;
+            left: 50%;
+            transform: translate(-50%);
+            opacity: 1;
+        }
     }
-}
-
-.activity-grid {
-    text-align: left;
+    &__body{
+        &:extend(.flex-center-container);
+        height: @activity-card-height/2;
+        background-color: white;
+        text-align: center;
+        &__content{
+            &:extend(.flex-center-item);
+             width: 90%;
+             
+            &__title{
+                color: @gray-darker;
+                font-weight: 700;
+                font-size: 1.1em;
+                display: inline-block;
+                padding-bottom: 5px;
+                width: 100%;
+            }
+            &__organizer{
+                color: @gray-regular;
+                font-weight: 600;
+                font-size: 0.9em;
+                display: inline-block;
+                &:hover{
+                    text-decoration: underline;
+                }
+            }
+            &__date{
+                color: @gray-regular;
+                font-size: 0.8em;
+                font-weight: 600;
+                display: block;
+                margin-top: 10px;
+            }
+            &__rating{
+                color: @gray-regular;
+                font-size: 0.9em;
+                display: block;
+            }
+            &__price{
+                color: @gray-darker;
+                font-weight: 600;
+                font-size: 1em;
+                display: inline-block;
+            }
+        }
+    }
+    &-organizer{
+        width: 100%;
+        &.trulii-activity-card{
+            height: @activity-card-height/2;
+        }
+        .trulii-activity-card{
+            &__header{
+                width: 30%;
+                display: inline-block;
+                float: left;
+                
+                &__menu{
+                    position: absolute;
+                    right: 0;
+                    top: 7px;
+                    &__item{
+                        &__icon{
+                            color: @gray-light;
+                            &:hover{
+                                color: @gray-regular;
+                            }
+                        }
+                    }
+                }
+            }
+            &__body{
+                width: 70%;
+                float: left;
+                text-align: left;
+                &__content{
+                    margin-right: auto;
+                    margin-left: 25px;
+                    height: 85%;
+                    z-index: 1000;
+                    width: 65%;
+                    &__price{
+                        padding-top: 20px;
+                    }
+                    &__free{
+                        padding-top: 5px;
+                    }
+                    &__attendes{
+                        color: @gray-dark;
+                        text-decoration: underline;
+                        position: absolute;
+                        right: 12px;
+                        top: 137px;
+                    }
+                }
+            }
+             &__category{
+                &__label{
+                    top: 10px;
+                    left: 10px;
+                    opacity: 1;
+                    transform: translate(0);
+                }
+            }
+        }
+    }
 }

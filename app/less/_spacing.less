@@ -9,6 +9,10 @@
     margin: 0 !important;
 }
 
+.margin-auto{
+    margin: 0 auto;
+}
+
 .separate-above{
     display: block;
     margin-top: @spacing-standard !important;
@@ -73,9 +77,8 @@
 
 .separate-vertical{
     &:extend(.separate-above);
-    &:extend(.separate-below);
+    &:extend(.separate-below); 
 }
-
 .separate-horizontal{
     .separate-left;
     .separate-right;
@@ -175,6 +178,9 @@
   .before-sm({
     padding: @spacing-standard;
   });
+  .before-xs({
+    padding: @spacing-less;
+  });
 }
 
 .margin-horizontal {
@@ -199,7 +205,9 @@ hr{
         width:100%;
     }
 }
-
+.w-100{
+    width: 100%;
+}
 @media print {
     .print-no-margin {
         margin: 0;

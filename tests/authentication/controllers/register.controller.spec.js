@@ -25,7 +25,7 @@ xdescribe('Controller: RegisterController', function(){
             .when('GET', 'http://localhost:8000/api/activities/info')
             .respond(readJSON('tests/mock/generalinfo.json'));
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
 
         $scope =  _$rootScope_;
@@ -44,8 +44,8 @@ xdescribe('Controller: RegisterController', function(){
                 }
             }
             var template, element, regForm;
-
-            RegisterController =  $controller('RegisterController', { 'validatedData': undefined, $stateParams:stateParams});
+            $scope =  _$rootScope_;
+            RegisterController =  $controller('RegisterController', { 'validatedData': undefined, $stateParams:stateParams, $scope: $scope});
 
         }));
         it('should have controller defined and strings is object defined', function() {
@@ -93,7 +93,7 @@ xdescribe('Controller: RegisterController', function(){
                 validatedData = data;
             });
             $httpBackend.flush();
-            RegisterController =  $controller('RegisterController', { 'validatedData': validatedData, $stateParams:stateParams});
+            RegisterController =  $controller('RegisterController', { 'validatedData': validatedData, $stateParams:stateParams,  $scope: $scope});
 
             RegisterController.auth = {
                  email: validatedData.email,

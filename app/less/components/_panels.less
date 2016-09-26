@@ -6,37 +6,184 @@
 .panel-default{
     box-shadow: none;
     border: 1px solid @gray-lighter;
-    border-radius: 0;
-    color: @gray-lighter;
+    border-radius: 4px;
+    color: @gray-darker;
     font-family: @font-sans;
     .panel-heading{
         border: 0;
-        color: @gray;
-        padding: 1em 1em;
+        padding: 0.7em 1em;
         position: relative;
+        background: white;
     }
     .panel-body{
         padding:3em;
+        border-top: 1px solid @gray-lighter;
         .before-md({
           padding: 20px 0;
         });
-    }
-    .panel-date{
-        font-family: @font-sans-alt;
-        width: 13em;
-        float: left;
-        padding: 0 3%;
         
+        .input-search{
+            
+            input[type="text"]{
+                    height: 40px !important;
+             }
+             i{
+                position: absolute;
+                right: 30px;
+                top: 11px;
+                font-size: 1.4em;
+                color: @gray-regular-brand;
+             }
+        } 
+    }
+    
+    &__dashboard{
+        padding: 0.8em 2em;
+        border-radius: 5px;
+        margin-bottom: 2em;
+        .before-md({
+			margin-bottom: 1em;
+		});
+        &-title{
+            font-size: 1em;
+            font-weight: 600;
+            margin: 0;
+            color: @gray-dark;
+            margin-right: 0.3em; 
+            
+           
+        }
+        &-title-calendar{
+            font-size: 1em;
+            font-weight: 600;
+            margin: 0;
+            color: @gray-dark;
+            margin-right: 0.3em; 
+            margin-left: 26px;
+        }
+        &-sub{
+            margin-bottom: 0;
+            border-radius: 5px 5px 0px 0px;
+            border-bottom: none;
+            padding: 1.5em 2em;
+            
+        }
+        
+        &-sub-second{ 
+            border-radius: 0px 0px 5px 5px;
+            padding: 1em 1em 1em 2em;
+            
+            .btn-message{
+                margin-left: 5em;
+            }
+            
+            
+        }
+        .btn-back{
+             text-transform: capitalize !important;
+        }
+        
+        &-sub-second-calendar{
+            border-radius: 0px 0px 5px 5px;
+            padding: 1.5em 1em 1.5em 2em;
+            span{
+                display: block;
+                width: 75%;
+            }
+            .btn-panel{
+                top: 11px !important;
+            }
+        }
+        
+        
+        &-filters{
+            padding: 0em 1em 0em 2em;
+        }
+        &__search{
+            padding: 1.5em 2em;
+        }
+        &-search{
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            width: 250px;
+            input{
+                height: 37px !important;  
+            }
+            i{
+                float: right;
+                margin-top: -30px;
+                font-size: 1.2em;
+                margin-right: 0.5em;
+                color: gray;
+            }
+        }
+        
+        &-tabs{
+            display: flex;   
+            height: 60px;
+        } 
+        
+        &-tab{
+            font-size: 1.2em;
+            padding: 17px 15px;
+            color: @gray-light-brand;
+            font-weight: 600;
+            cursor: pointer;
+            
+            &:first-child{
+               border-right: 1px solid @gray-light-brand;
+            }
+            i{
+                margin-right: 5px;
+            }
+            
+            &-active{
+                background-color: @gray-light-brand;
+                color: @blue-dark;
+            }
+        }
+        
+        .btn-panel{
+            position: absolute;
+            right: 20px;
+            top: 9px;
+        }
+        .sales-label{
+            font-weight: 600;
+            color: #979797 !important;
+            font-size: 1em;
+            text-transform: uppercase;
+            margin-right: 1rem;
+        }
+        
+    }
+    .panel-open{
+        width: 20em;
+        float: left;
+        padding: 0.9em 1em;
+        font-size: 0.9em;
+        font-weight: bold;
+    }
+    .panel-open-counter{
+        width: 12em;
+        float: right;
+        padding: 1.25em 0;
+        font-size: 0.75em;
+        text-transform: uppercase;
+        color: @gray-dark;
+    }
+    
+    .panel-date{
+        width: 10em;
+        float: left;
+        padding: 0.1em 1em;
+        font-size: 0.9em;
+
         .before-md({
           width: 8em;  
         });
         
-        &:nth-child(1){
-            border-right: 1px solid @gray-light-medium;
-        }
-        &:nth-child(2){
-            padding-left:4%;
-        }
     }
     .panel-counter{
         width: 25em;
@@ -65,30 +212,36 @@
     .expand{
         position: absolute;
         right: 1em;
-        top: 1em;
+        top: 0.7em;
         color: @gray-light;
     }
+    .table tbody tr td.column-button, .table tfoot tr td.column-button {
+       padding-top: 0.7em !important;
+    }
     table{
-        tr{
+        tr{ 
           th{
+             padding: 25px 1em 10px 1em;
+             background-color: white;
             .before-md({
               background-color: white;
             });
           }
           td{
-              padding: 2em 1em;
+              padding: 1em 1em;
               font-size: 1em;
-              color: @gray;
           }
           th, td{
              .before-sm({
                 padding: 1.5em 5px !important;
-                font-size: 0.75em;
+                font-size: 0.7em;
               });
-              
+              .column-button{
+                 padding-top: 0.7em !important;
+              }
               .before-md({
                 padding: 1.5em 2em;
-                font-size: 0.75em;
+                font-size: 0.7em;
               });
           }
         }

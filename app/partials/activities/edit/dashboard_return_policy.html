@@ -1,21 +1,23 @@
-<div class="row">
+<div class="row limited-width-dashboard limited-width-dashboard__edit-activity">
     <div class="col-xs-12">
         <div class="row">
-            <div class="section-title" ng-bind="::returnPolicy.strings.TITLE_RETURN_POLICY">
+            <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+                    <h4 class="panel-default__dashboard-title"  ng-bind="::returnPolicy.strings.TITLE_RETURN_POLICY"></h4>
             </div>
-            <form name='returnPolicy.activity_return_policy_form' class="col-md-10" ng-submit="returnPolicy.save_activity()">
+            <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+                    <span class="text-gray-dark" ng-bind="::returnPolicy.strings.COPY_RETURN_POLICY"></span>
+            </div>
+            <form name='returnPolicy.activity_return_policy_form' class="col-xs-12 clear-spacings" ng-submit="returnPolicy.save_activity()">
                 <fieldset>
-                    <div class="section-description" ng-bind="::returnPolicy.strings.COPY_RETURN_POLICY">
-                    </div>
                     <div class="form-group" trulii-input-errors-control="return_policy">
                         <label for="return-policy-textarea" class="sr-only" ng-bind="::returnPolicy.strings.LABEL_RETURN_POLICY"></label>
-                            <textarea elastic id="return-policy-textarea" class="form-control" name="return_policy"
+                            <textarea elastic id="return-policy-textarea" class="form-control textarea-lg" name="return_policy"
                                         ng-model='returnPolicy.activity.return_policy'
                                         ng-mouseover="returnPolicy.setOverElement('return_policy')"
                                         placeholder="{{::returnPolicy.strings.PLACEHOLDER_RETURN_POLICY}}">
                             </textarea>
                     </div>
-                    <trulii-submit-controls is-saving="returnPolicy.isSaving" value="{{::returnPolicy.strings.ACTION_SAVE}}"></trulii-submit-controls>
+                    <trulii-submit-controls class="separate-above" edit-activity="true" is-saving="returnPolicy.isSaving" value="{{::returnPolicy.strings.ACTION_SAVE}}"></trulii-submit-controls>
                 </fieldset>
             </form>
         </div>

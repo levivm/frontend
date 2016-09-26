@@ -40,11 +40,16 @@
                     deleteInstructor: deleteInstructor,
                     cancelEdition: cancelEdition,
                     toggleEditMode : toggleEditMode,
+                    toggleMobile:toggleMobile,
+                    showBio:false,
                     saveInstructor: saveInstructor,
                     selectedInstructor: null,
                     instructorEditable:null,
                     emptyInstructor: true,
-                    cardHeight: '31em'
+                    showActions: showActions,
+                    hideActions: hideActions,
+                    actions: false,
+                    cardHeight: '25em'
                 });
 
                 var EMPTY_INSTRUCTOR = {
@@ -54,7 +59,6 @@
                 };
 
                 var resource = scope.onDashboard? scope.organizer: scope.activity;
-                console.log(resource)
                 _activate();
 
                 //--------- Exposed Functions ---------//
@@ -62,7 +66,6 @@
                 function selectInstructor($item, $model, $label){
                     _.remove(scope.availableInstructors, { 'id': $item.id});
                     angular.extend(scope.instructorEditable, $item);
-                    console.log('instructorEditable',scope.instructorEditable);
                 }
 
                 function addInstructor(){
@@ -71,16 +74,23 @@
                 }
 
                 function cancelEdition(){
-                    if (!scope.onDashboard && scope.instructorEditable.id)
-                        _pushAutocompleteInstructor(scope.instructorEditable.id);
-
-                    toggleEditMode();
-                    scope.emptyInstructor = !_isValid();
+                    _onChange();
                 }
 
                 function toggleEditMode(){
                     scope.editMode = !scope.editMode;
                     scope.instructorEditable = angular.copy(scope.instructor);
+                }
+                 function toggleMobile(){
+                    scope.showBio = !scope.showBio;
+                }
+                
+                
+                function showActions(){
+                    scope.actions = true;
+                }
+                function hideActions(){
+                    scope.actions = false;
                 }
 
                 function saveInstructor(){
@@ -97,14 +107,12 @@
                         }
 
                     } else {
-                        Toast.setPosition("toast-top-center");
                         Toast.error(scope.strings.MSG_MISSING_REQUIRED_FIELDS);
                     }
 
                     function successCreate(instructor){
                         angular.extend(scope.instructor,instructor);
                         resource.load().then(_onChange, updateError);
-                        console.log('saveInstructor. Instructor created.', instructor);
                     }
 
                     function errorCreate(response){
@@ -114,7 +122,6 @@
                     function successUpdate(instructor){
                         angular.extend(scope.instructor,instructor);
                         resource.load().then(_onChange, updateError);
-                        console.log('saveInstructor. Instructor updated.', instructor);
                     }
 
                     function errorUpdate(response){
@@ -207,13 +214,13 @@
                         ACTION_DELETE: "Eliminar Instructor",
                         LABEL_FULL_NAME: "Nombre Completo",
                         PLACEHOLDER_FULL_NAME: "Ingrese nombre de instructor",
+                        LABEL_HEADER: "Instructor:",
                         LABEL_WEBSITE: "Website",
                         LABEL_OPTIONAL: " (Opcional)",
                         PLACEHOLDER_WEBSITE: "Ingrese URL de website",
                         LABEL_BIO: "Bio",
                         PLACEHOLDER_BIO: "Escriba una biografía corta del de instructor",
-                        MSG_MISSING_REQUIRED_FIELDS : "Por favor asegurese de verificar todos los campos obligatorios" +
-                            " para la creación del instructor",
+                        MSG_MISSING_REQUIRED_FIELDS : "Para guardar el instructor debes llenar toda la información solicitada, querid@.",
                         MSG_DELETE_SUCCESS: "Instructor eliminado exitosamente.",
                         MSG_DELETE_ERROR: "Error eliminando el instructor. Por favor intente de nuevo.",
                         VALUE_UNSPECIFIED: "No Especificado"
@@ -223,14 +230,12 @@
                 function _activate(){
                     _setStrings();
                     _setAvailableInstructors();
-                    if(_isValid()){ scope.emptyInstructor = false; }
-                    console.group('trulii-instructor-card:', scope.instructor.full_name? scope.instructor.full_name : '');
-                    console.log('instructor:', scope.instructor);
-                    console.log('activity:', scope.activity);
-                    console.log('organizer:', scope.organizer);
-                    console.log('onDashboard:', scope.onDashboard);
-                    console.log('emptyInstructor:', scope.emptyInstructor);
-                    console.groupEnd();
+                    scope.instructorEditable = angular.copy(scope.instructor);
+                    if(_isValid()){ 
+                        scope.editMode = false;
+                    }else{
+                        scope.editMode = true;
+                    }
                 }
             }
         }

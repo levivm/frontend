@@ -29,19 +29,23 @@
             'trulii.referrals',
             'trulii.about',
             'trulii.help',
-            'ngVideo',
+            'ngVideo', 
             'templates',
             'nvd3',
             'ui.select',
             'textAngular',
-            'dynamicLayout'
-        ]);
+            'uiGmapgoogle-maps',
+            'ui.router.metatags',
+            'ng',
+            'seo',
+            'uiSwitch'
+        ]);  
 
     angular
         .module('trulii.config', ['facebook','720kb.socialshare']);
 
     angular
-        .module('trulii.routes', ['ui.router', 'trulii.routes.config']);
+        .module('trulii.routes', ['ui.router', 'trulii.routes.config', 'ui.router.metatags']);
 
     angular
         .module('trulii')
@@ -53,13 +57,13 @@
      * @description Update xsrf $http headers to align with Django's defaults
      * @requires ng.$http
      */
-    run.$inject = ['$http', 'LocationManager', 'Analytics', '$location', '$state'];
-    function run($http, LocationManager, Analytics, $rootScope, $location, $state) {
+    run.$inject = ['$http', 'LocationManager', 'Analytics', '$rootScope', '$location'];
+    function run($http, LocationManager, Analytics, $rootScope, $location) {
         $http.defaults.xsrfHeaderName = 'X-CSRFToken';
         $http.defaults.xsrfCookieName = 'csrftoken';
         LocationManager.init();
         Analytics.init();
-
+        
     }
 
 })();

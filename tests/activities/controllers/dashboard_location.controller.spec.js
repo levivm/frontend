@@ -55,13 +55,13 @@ xdescribe('Controller: ActivityDBLocationController', function(){
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
 
         ActivitiesManager.getActivity(4)
             .then(function(data){
                 activity = new Activity(data);
-                var organizerObj = new Organizer(activity.organizer);
+                organizer= new Organizer(activity.organizer);
 
             }, function(response){
                 console.log(response);
@@ -74,18 +74,15 @@ xdescribe('Controller: ActivityDBLocationController', function(){
                 console.log(response);
             });
 
-
-
         ActivitiesManager.loadGeneralInfo()
-              .then(function(data){
-                  presaveInfo=data;
-              }, function(response){
-                  console.log(response);
-              })
+            .then(function(data){
+                presaveInfo=data;
+            }, function(response){
+                console.log(response);
+            })
         currentUser = readJSON('tests/mock/currentUser.json');
         //End calls
         $httpBackend.flush();
-
         ActivityDBLocationController =  $controller('ActivityDBLocationController', {
             'activity': activity,
             'organizer': organizer,
@@ -94,12 +91,30 @@ xdescribe('Controller: ActivityDBLocationController', function(){
 
 
     }));
-
+ 
     describe("Initializacion", function(){
         it('should have controller defined and strings is object defined', function() {
             expect(ActivityDBLocationController).toBeDefined();
             expect(ActivityDBLocationController.strings).toBeDefined();
-         });
+        });
+
+        it('successfully init map', function() {
+            var mapBounds = ActivityDBLocationController.map.hasOwnProperty('bounds');
+            var mapCenter = ActivityDBLocationController.map.hasOwnProperty('center');
+            var mapControl = ActivityDBLocationController.map.hasOwnProperty('control');
+            var mapEvents = ActivityDBLocationController.map.hasOwnProperty('events');
+            var mapOptions = ActivityDBLocationController.map.hasOwnProperty('options');
+            var mapZoom = ActivityDBLocationController.map.hasOwnProperty('zoom');
+            expect(mapBounds && mapCenter && mapEvents && mapOptions & mapControl && mapZoom).toBe(true);
+        });
+
+        it('successfully init marker', function() {
+            expect(ActivityDBLocationController.marker.coords.latitude).toEqual(49.106637);
+        });
+         
+        it('successfully _setLocation() update', function() {
+            expect(ActivityDBLocationController.activity.location.city.id).toEqual(1);
+        });
     });
 
     describe("Update", function(){
@@ -120,6 +135,10 @@ xdescribe('Controller: ActivityDBLocationController', function(){
 
             $httpBackend.flush();
             expect(ActivityDBLocationController.isSaving).toBe(false);
+         });
+         
+         it('_onSectionUpdated location is true', function() {
+            expect(ActivityDBLocationController.activity.completed_steps['location']).toBe(true);
          });
     });
 

@@ -27,7 +27,7 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
          })
 
     });
-    beforeEach(inject(function($controller, $rootScope, $http, $httpBackend) {
+    beforeEach(inject(function($controller, $rootScope, _$rootScope_, $http, $httpBackend) {
 
         /*
             Resolves for detail.enroll.controller
@@ -64,7 +64,7 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
             .respond(readJSON('tests/mock/calendar.json'));
 
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
         ActivitiesManager.getActivity(4)
             .then(function(data){
@@ -82,7 +82,6 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
 
         CalendarsManager.fetchCalendar(4, 13)
             .then(function(data){
-                console.log(data);
                 calendar = data;
 
             }, function(response){
@@ -94,6 +93,12 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
         currentUser = readJSON('tests/mock/currentUser.json');
         deviceSessionId = '5b2254392d68048b4ae0e54a12b1c44b';
         //End calls
+        //spyOn function htmlReady() angular-seo
+        $scope =  _$rootScope_;
+        spyOn($scope, 'htmlReady');
+        $scope.htmlReady();    
+        
+        
         $httpBackend.flush();
         /*
         activity: getActivity,
@@ -111,7 +116,7 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
             'isStudent': isStudent,
             'isActive': isActive,
             'deviceSessionId':deviceSessionId,
-            $scope: scope
+            $scope: $scope
             });
 
 

@@ -1,0 +1,4 @@
+<div class="trulii-avatar text-center">
+	<img ng-if="user.photo" ng-src="{{user.photo}}" class=" " width="{{size}}"/>
+	<span ng-if="!user.photo" class="trulii-avatar text-center  {{avatarClass}}" ng-bind="initial"></span>
+</div>

@@ -29,6 +29,9 @@
             organizerActivities : [],
             retryPayment : retryPayment,
             finishPayment : finishPayment,
+            packageQuantity : $stateParams.package_quantity ? $stateParams.package_quantity : null,
+            packageType : $stateParams.package_type ? $stateParams.package_type : null,
+            packageID : $stateParams.package_id ? $stateParams.package_id : null,
             getAmazonUrl: getAmazonUrl
         });
 
@@ -41,11 +44,12 @@
         }
         
         function retryPayment(){
-            $state.go('^',{ activity_id: vm.activity.id, calendar_id: calendar.id },{ reload: true});
+            $state.go('^',{ activity_id: vm.activity.id, calendar_id: calendar.id, package_id: vm.packageID },{ reload: true});
         }
 
         function finishPayment(){
-            $state.go('activities-enroll-success',{ activity_id: vm.activity.id, calendar_id: calendar.id }, { reload: true });
+            $state.go('activities-enroll-success',{ activity_id: vm.activity.id, calendar_id: calendar.id, 
+                                                    package_quantity: vm.packageQuantity, package_type: vm.packageType }, { reload: true });
         }
 
         function _checkPreviousState(){
@@ -70,7 +74,7 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                COPY_PAYMENT_INFO: "Resultado de transacción de pago",
+                COPY_PAYMENT_INFO: "Información de pago PSE",
                 COPY_PREPARE_TO_ASSIST_TO: "Prepárate para asistir a:",
                 COPY_ASSISTANCE: "Aprender algo nuevo siempre es más divertido si lo compartes con tus amigos. "
                     + "¡Invítalos y disfruta el doble! Ellos también asistirán",
@@ -84,11 +88,15 @@
                 ACTION_VIEW_RECEIPT: "Ver Recibo",
                 ACTION_VIEW_MORE: "Ver Más",
                 ACTION_RETRY_PAYMENT: "Reintentar el pago",
-                ACTION_FINISH_PAYMENT: "Finalizar pago",
+                ACTION_FINISH_PAYMENT: "Continuar",
                 ACTION_PUBLISH: "Publica Ya",
                 LABEL_ORGANIZER: "Organizador",
                 LABEL_ASSISTANTS: "Asistentes",
-                LABEL_PUBLISH_ACTIVITY: "Publica tu Actividad"
+                LABEL_PUBLISH_ACTIVITY: "Publica tu Actividad",
+                LABEL_OPEN_ACTIVITY: "Horario abierto",
+                LABEL_PACKAGE: "Plan",
+                LABEL_CLASSES: "Clases",
+                LABEL_SCHEDULES: "Horarios",
             });
         }
 

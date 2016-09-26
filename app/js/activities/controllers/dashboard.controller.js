@@ -20,7 +20,9 @@
     function ActivityDashboardCtrl($state, $scope, Toast, ActivitySteps, activity, Analytics, serverConf) {
 
         var pc = this;
-
+        var positionStyle = 'absolute';
+        var valuePosition = '0px';
+        var ctrlFooter = false;
         angular.extend(pc,{
             steps: angular.copy(ActivitySteps),
             activity: activity,
@@ -115,43 +117,76 @@
                 pc.allow_unpublish = true;
             });
         }
-
-
-
+        
+        function _moveWidget(){
+            
+            
+            var sideBarPosition = (document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top + window.scrollY) ;
+            var footerPosition = document.getElementsByClassName('container-fluid')[0].offsetHeight +80 ;
+            var coverPosition = (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('cover-blur-small')[0].offsetHeight;
+            var navBarHeight = document.getElementsByClassName('navbar')[0].offsetHeight;
+            var sidebarTop =  document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top - navBarHeight;
+            var positionToFixed = window.scrollY +  document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight;
+            if(sidebarTop <= 20){
+                if(sideBarPosition < coverPosition){
+                    positionStyle = 'absolute';
+                    valuePosition = '0px';
+                    ctrlFooter = false;
+                }else{
+                    if( positionToFixed >= footerPosition ){
+                        positionStyle = 'absolute';
+                        valuePosition = footerPosition-document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight-180+'px';
+                        ctrlFooter = true;
+                    }else{
+                        positionStyle = 'fixed';
+                        valuePosition = '90px';
+                    }
+                }  
+            }else{
+                if( positionToFixed <= footerPosition && ctrlFooter){
+                    positionStyle = 'fixed';
+                    valuePosition = '90px';
+                }
+            
+            }
+            document.getElementsByClassName('sidebar-edit-activity')[0].style.position = positionStyle;
+            document.getElementsByClassName('sidebar-edit-activity')[0].style.top = valuePosition;
+        }
+        function _initWidget(){
+            _moveWidget();
+            angular.element(document).ready(function () {
+                $scope.$on('scrolled',
+                function(scrolled, scroll){
+                    _moveWidget();
+                });
+            });
+        }
+       
         function _setStrings(){
 
             if(!pc.strings){ pc.strings = {}; }
 
             pc.strings.UNPUBLISH_ACTIVITY_LABEL = "Desactivar";
             pc.strings.COPY_UNPUBLISH_ACTIVITY = "Remover publicación de los resultados de búsqueda";
-            pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad saldrá de los motores de búsqueda";
-            pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar";
+            pc.strings.UNPUBLISH_ACTIVITY_WARNING = "Su actividad será ocultada en los resultados de búsqueda";
+            pc.strings.PUBLISH_ACTIVITY_LABEL = "Publicar actividad";
             pc.strings.ACTIVITY_PUBLISHED = "Actividad publicada";
             pc.strings.COPY_VIEW_ACTIVITY = "Ver";
-            pc.strings.COPY_MANAGE_ACTIVITY = "Gestionar actividad";
+            pc.strings.COPY_MANAGE_ACTIVITY = "Gestionar";
             pc.strings.COPY_PRE_VIEW_ACTIVITY = "Previsualizar";
             pc.strings.COPY_VIEW_MY_ACTIVITIES = "Ver mis actividades";
 
         }
 
-        function _initScroll(){
-            $scope.$on('scrolled',
-              function(scrolled, scroll){
-                pc.scroll = scroll;
-                $scope.$apply();
-              }
-            );
-        }
-
+     
 
         function activate() {
             _setStrings();
-            _initScroll();
+            _initWidget();
             // pc.sidebar = true;
             activity.updateAllSections();
 
             match_required_steps(pc.steps, pc.activity.required_steps);
-
             function match_required_steps(steps, required_steps){
                 _.each(steps, function(step){
 
@@ -160,6 +195,9 @@
                     }
                 });
             }
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
 
     }

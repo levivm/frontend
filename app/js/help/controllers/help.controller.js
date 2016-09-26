@@ -30,6 +30,8 @@
 
         function _activate(){
             _setStrings();
+            //Function for angularSeo
+            $scope.htmlReady();
         }
 
     }

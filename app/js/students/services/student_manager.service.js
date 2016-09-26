@@ -21,7 +21,8 @@
 
         var api = StudentServerApi;
         var _pool = {};
-
+        var defaultPage = 1;
+        var defaultPageSize = 10;
         //noinspection UnnecessaryLocalVariableJS
         var service = {
 
@@ -48,7 +49,9 @@
              */
             getCurrentStudent: getCurrentStudent,
 
-            postWishList:postWishList
+            postWishList:postWishList,
+            
+            getMessages: getMessages
         };
 
         return service;
@@ -88,7 +91,6 @@
             }
 
             function errorAuthAccount(){
-                console.log("getCurrentStudent. Couldn't resolve authenticated user");
                 return $q.reject(null);
 
             }
@@ -101,7 +103,21 @@
                         return true;
                     });
         }
+        function getMessages(id, page, pageSize){
+            if(!page)
+              page = defaultPage;
+            if(!pageSize)
+              pageSize = defaultPageSize;
 
+            return $http.get(api.messages(id),
+                {params: {
+                  page: page,
+                  page_size: pageSize
+                }})
+                .then(function (response) {
+                    return response.data;
+                });
+        }
 
         function _retrieveInstance(studentId, studentData) {
             var instance = _pool[studentId];
@@ -126,7 +142,6 @@
 
             function success(response) {
                 var studentData = response.data;
-                //console.log("from back",response.data);
                 var student = _retrieveInstance(studentId, studentData);
                 deferred.resolve(student);
             }

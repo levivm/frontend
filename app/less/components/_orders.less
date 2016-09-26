@@ -4,7 +4,7 @@
 
   font-weight: 300;
   text-decoration: none;
-  background-color: lighten(@gray-base, 85%);;
+  background-color: lighten(@gray-darker, 85%);;
   img{
     height: 20px;
     width: auto;
@@ -14,20 +14,26 @@
 
 .order-detail{
   margin: 0;
-  border: 1px solid @gray-lighter;
   
   .pull-left{
     margin-right: 40px;
   }
   
   a{
-    color: @gray;
+    color: @gray-regular;
     text-decoration: underline;
     &.btn{
       text-decoration: none;
     }
   }
   
+ 
+  &__total{
+    display: flex;
+    justify-content: space-between;
+    width: 680px;
+    margin-left: 1em;
+  }
   .before-md({
     display: block;
     .pull-left{
@@ -39,17 +45,16 @@
     font-family: @font-sans-alt;
   }
   .order-description, .order-info{
-    background-color: @gray-lighter;
+    background-color: @gray-lighter-brand;
     align-items: stretch;
   }
   .order-description{
-    padding: 25px 35px;
+    padding: 0px 35px;
   }
   
   .order-info{
     background-color:white;
-    padding: 0px 35px 25px 35px;
-    
+    // padding: 0px 35px 0px 20px ;
     
     .before-md({
       .table-responsive{
@@ -65,9 +70,102 @@
         }
       }
     });
+    
+    .order-mounts{
+       padding: 0px 10px !important;
+       td{
+         padding: 0px 1em;
+         font-size: 1em;
+       }
+       
+       
+    }
+    
+    .order-mounts-first{
+      padding: 0px 0px !important;
+      border-top: 1px solid #dddddd;
+      td{
+         padding: 15px 1em 0px 1em;
+      }
+    }
+    
+    
+    .order-mobile{
+      &__asisstant{
+        border: 1px solid @gray-lighter;
+        margin-top: 1em;
+        padding-bottom: 1em;
+        max-height: 55px;
+        overflow: hidden;
+        transition: max-height 0.15s ease-out;
+        
+        &-show{
+          max-height: 400px;
+          transition: max-height 0.25s ease-in;
+        }
+        h4{
+          font-size: 1.2em;
+          font-weight: 600;
+          i{
+            font-size: 1.2em;
+            font-weight: 700;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            -o-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+            -webkit-transition: 300ms ease all;
+            -moz-transition: 300ms ease all;
+            -o-transition: 300ms ease all;
+            transition: 300ms ease all;
+          }
+          .rotate-icon{
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            transform: rotate(90deg);
+
+            -webkit-transform-origin: 50% 50%;
+            -moz-transform-origin: 50% 50%;
+            -ms-transform-origin: 50% 50%;
+            -o-transform-origin: 50% 50%;
+            transform-origin: 50% 50%;
+          }
+        }
+        &-header{
+          padding: 0.3em 1em;
+        }
+        
+        &-row{
+          border-bottom: 1px solid @gray-lighter;
+          padding: 0.5em 1em;
+        }
+        
+        &-row:last-child{
+          border-bottom: none;
+        }
+      }
+    }
 
   }
+  
+  
+  
+ 
+}
 
+.btn-print{
+    position: absolute;
+    top: 12px;
+    right: 15px;
+    background: transparent;
+    border: 2px solid @gray-dark-brand;
 }
 
 .order-container{
@@ -78,39 +176,88 @@
   });
 }
 
+.table-hover > tbody > tr.order-mounts:hover{
+  background-color: transparent;
+}
+
 // .print-container {
 //   width: 100%;
 // }
 
-.print-visible {
+.print-container {
   display: none;
 }
-
+.print-visible {
+    display: none;
+  }
 @media print {
+  
+  .order-container{
+    display: none;
+  }
   .print-visible {
     display: block;
   }
+  
+  .logo{
+    padding: 10px 25px !important;
+    img{
+      width: 125px;
+    }
+  }
+  
+  .cover-blur-small{
+    display: none;
+  }
+  .info-order{
+    padding: 10px 25px !important;
+    font-size: 8.5pt;
+  }
+  .order-description{
+    background-color: #f0f2f7 !important;
+    -webkit-print-color-adjust: exact; 
+    padding: 10px 25px !important;
+    span{
+      color: #3A405B !important;
+      -webkit-print-color-adjust: exact; 
+    }
+  }
+  .text-sm-print{
+    font-size: 8pt;
+  }
+  .text-md-print{
+    font-size: 10pt;
+  }
   .print-container{
+    width: 90%;
+    position: absolute;
+    top: 0px;
+    left: 5%;
+    display: block;
+  }
+  .print-container-student{
     width: 100%;
     position: fixed;
     left: 40px;
     top: 48px;
     display: block;
   }
-
-  .order-container{
-    //position: fixed;
-    //top: 0;
-    //left: 0;
-    //display: block;
+  .order-mobile{
+    display: none !important;
   }
-  .order-description {
-    background-color: @gray-lighter;
-    a {
-      display: inline-block;
-      text-decoration: none;
-      color: @gray !important;
-    }
+  
+  .panel-default{
+    display: none;
+  }
+  .table-order{
+    display: block !important;
+  }
+  .border-print{
+    border-bottom: 1px solid @gray-lighter;
+    border-top: 1px solid @gray-lighter;
+  }
+  .padding-print{
+    padding: 10px 25px !important;
   }
   .order-tooltip, .order-tooltip:before, .order-tooltip:after {
     display: none;
@@ -118,10 +265,27 @@
   .order-info{
     width: 100%;
   }
+  .footer-print{
+    border: 1px solid @gray-lighter;
+    div{
+      padding: 35px 0px 5px 15px;
+      border-right: 1px solid @gray-lighter;
+    }
+  }
+  .table tbody tr td{
+    padding: 5px 1em;
+  }
+  .table tbody tr th{
+    padding: 10px 1em;
+    font-size: 12px !important;
+  }
   button, .btn, a.btn {
     display: none !important;
   }
   .glyphicon, .column-button{
+    display: none;
+  }
+  .home-footer {
     display: none;
   }
 }

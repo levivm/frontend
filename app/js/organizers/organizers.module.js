@@ -32,11 +32,11 @@
      * @description Organizers Module Config function
      * @requires ui.router.state.$stateProvider
      */
-    config.$inject = ['$stateProvider'];
-    function config($stateProvider) {
+    config.$inject = ['$stateProvider', 'serverConf'];
+    function config($stateProvider, serverConf) {
         $stateProvider
             .state('organizer-landing', {
-                url:'/organizers/landing/',
+                url:'/se-organizador',
                 controller: 'OrganizerLandingCtrl as landing',
                 templateUrl: 'partials/organizers/landing.html',
                 params: {
@@ -44,10 +44,19 @@
                 },
                 resolve:{
                     cities: getAvailableCities
+                },
+                metaTags:{
+                    title:'Sé Organizador y Publica Tus Cursos| Trulii',
+                    description: 'Conviértete en organizador y publica tus cursos, talleres, clases o diplomados de manera sencilla y rápida. Publicar es GRATIS. Más información aquí.',
+                    properties: {
+                        'og:title': 'Sé Organizador y Publica Tus Cursos| Trulii',
+                        'og:description': 'Conviértete en organizador y publica tus cursos, talleres, clases o diplomados de manera sencilla y rápida. Publicar es GRATIS. Más información aquí.',
+                        'og:image': serverConf.s3URL + '/' + 'static/img/share_green.jpg'
+                    }
                 }
             })
             .state('organizer-profile', {
-                url: '/organizers/{organizer_id:int}/:organizer_name',
+                url: '/organizador/{organizer_id:int}/:organizer_name',
                 params: {
                   organizer_name: {value: null, squash: true}
                 },
@@ -58,11 +67,24 @@
                     activities: getOrganizerProfileActivities,
                     reviews: getOrganizerReviews,
                     reviewObjects: getReviewObjects
+                },
+                metaTags:{
+                     title: function(organizer){
+                        return 'Trulii | '+organizer.name;
+                    },
+                    description: function(organizer){
+                        return organizer.headLine;
+                    },
+                    properties: {
+                        'og:title':  function(organizer){return  'Trulii | '+organizer.name;},
+                        'og:description': function(organizer){ return organizer.headLine;},
+                        'og:image': function(organizer){return organizer.photo; }
+                    }
                 }
             })
             .state('organizer-dashboard', {
                 abstract:true,
-                url:'/organizer/dashboard/',
+                url:'/organizador/dashboard/',
                 controller: 'OrganizerDashboardCtrl as dash',
                 templateUrl: 'partials/organizers/dashboard.html',
                 resolve:{
@@ -77,23 +99,24 @@
                 }
             })
             .state('organizer-dashboard.account', {
-                url:'account/',
+                url:'cuenta/',
                 controller: 'OrganizerAccountCtrl as account',
                 templateUrl: 'partials/organizers/dashboard/account.html',
                 resolve: {
-                    bankingInfo: getBankingInfo
+                    bankingInfo: getBankingInfo,
+                    bankingData: getBankingData
                 }
             })
             .state('organizer-dashboard.account.settings', {
-                url:'settings',
+                url:'ajustes',
                 templateUrl: 'partials/organizers/dashboard/account_settings.html'
             })
             .state('organizer-dashboard.account.banking', {
-                url:'banking',
+                url:'banco',
                 templateUrl: 'partials/organizers/dashboard/account_banking.html'
             })
             .state('organizer-dashboard.activities', {
-                url:'activities/',
+                url:'actividades/',
                 controller: 'OrganizerActivitiesCtrl as activities',
                 templateUrl: 'partials/organizers/dashboard/activities.html',
                 resolve: {
@@ -103,42 +126,54 @@
                 }
             })
             .state('organizer-dashboard.activities.open', {
-                url:'open',
+                url:'abiertas',
                 templateUrl: 'partials/organizers/dashboard/activities_open.html'
             })
             .state('organizer-dashboard.activities.closed', {
-                url:'closed',
+                url:'cerradas',
                 templateUrl: 'partials/organizers/dashboard/activities_closed.html'
             })
             .state('organizer-dashboard.activities.inactive', {
-                url:'inactive',
+                url:'inactivas',
                 templateUrl: 'partials/organizers/dashboard/activities_inactive.html'
             })
             .state('organizer-dashboard.instructors', {
-                url:'instructors/',
+                url:'instructores/',
                 controller: 'OrganizerInstructorsCtrl as instructors',
                 templateUrl: 'partials/organizers/dashboard/instructors.html'
             })
             .state('organizer-dashboard.transactions', {
-                url:'transactions/',
+                url:'transacciones/',
                 controller: 'OrganizerTransactionsCtrl as transactions',
                 templateUrl: 'partials/organizers/dashboard/transactions.html',
                 resolve: {
                     orders: getOrders,
-                    activities: getOrganizerActivityList
+                    balances: getBalances,
+                    withdraws: getWithDraw,
+                    bankingInfo: getBankingInfo,
+                    activities: getOrganizerActivityList,
+                    bankingData: getBankingData
                 }
             })
             .state('organizer-dashboard.transactions.sales', {
-                url:'sales',
+                url:'ventas',
                 templateUrl: 'partials/organizers/dashboard/transactions_sales.html'
             })
+            .state('organizer-dashboard.transactions.balance', {
+                url:'balance',
+                templateUrl: 'partials/organizers/dashboard/transactions_balance.html'
+            })
+            .state('organizer-dashboard.transactions.withdrawals', {
+                url:'retiros',
+                templateUrl: 'partials/organizers/dashboard/transactions_withdrawals.html'
+            })
             .state('organizer-dashboard.profile', {
-                url:'profile',
+                url:'perfil',
                 controller: 'OrganizerProfileCtrl as profile',
                 templateUrl: 'partials/organizers/dashboard/profile.html'
             })
             .state('organizer-dashboard.reviews', {
-                url:'reviews/',
+                url:'comentarios/',
                 controller: 'OrganizerReviewsCtrl as reviews',
                 templateUrl: 'partials/organizers/dashboard/reviews.html',
                 resolve: {
@@ -150,11 +185,11 @@
                 }
             })
             .state('organizer-dashboard.reviews.done', {
-                url:'done',
+                url:'revisados',
                 templateUrl: 'partials/organizers/dashboard/reviews_done.html'
             })
             .state('organizer-dashboard.reviews.pending', {
-                url:'pending',
+                url:'pendientes',
                 templateUrl: 'partials/organizers/dashboard/reviews_pending.html'
             });
 
@@ -183,11 +218,11 @@
             }
 
             function error(response){
-                if(response === null){
+                /*if(response === null){
                     console.log("getCurrentOrganizer. There is no Authenticated User");
                 } else {
                     console.log("getCurrentOrganizer. The Authenticated User is not a Organizer");
-                }
+                }*/
                 return $q.reject();
             }
         }
@@ -232,7 +267,7 @@
          */
         getOrganizerProfileActivities.$inject = ['ActivitiesManager','organizer'];
         function getOrganizerProfileActivities(ActivitiesManager, organizer){
-            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', 1, 4);
+            return ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', 1, 8);
         }
 
 
@@ -274,6 +309,30 @@
         getOrders.$inject = ['organizer'];
         function getOrders(organizer){
             return organizer.getOrders();
+        }
+
+
+        /**
+         * @ngdoc method
+         * @name .#getBalances
+         * @description Retrieves an Organizer's Balances
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getBalances.$inject = ['organizer'];
+        function getBalances(organizer){
+            return organizer.getBalances();
+        }
+        /**
+         * @ngdoc method
+         * @name .#getWithDraws
+         * @description Retrieves an Organizer's withdraws
+         * @requires organizer
+         * @methodOf trulii.organizers.config
+         */
+        getBalances.$inject = ['organizer'];
+        function getWithDraw(organizer){
+            return organizer.getWithDraw();
         }
 
         /**
@@ -409,7 +468,6 @@
          */
         getUnreadOrganizerReviewsCount.$inject = ['unreadReviews'];
         function getUnreadOrganizerReviewsCount(unreadReviews){
-            console.log(unreadReviews.count);
             return unreadReviews.count;
         }
 
@@ -423,7 +481,6 @@
          */
         getUnreadReviewsCount.$inject = ['$q', 'reviews'];
         function getUnreadReviewsCount($q, reviews){
-          console.log(reviews.count.length);
             return {
                 'count':reviews.count.length
             };
@@ -453,6 +510,11 @@
         getBankingInfo.$inject = ['Payments'];
         function getBankingInfo(Payments){
             return Payments.getBankingInfo();
+        }
+        
+        getOrganizerActivityList.$inject = ['organizer'];
+        function getBankingData(organizer){
+            return  organizer.getBankingInfo();
         }
 
         /**

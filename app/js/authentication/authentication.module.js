@@ -29,7 +29,7 @@
     function config($stateProvider) {
         $stateProvider
             .state('register', {
-                url:'/register',
+                url:'/registrarme',
                 controller: 'RegisterController',
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/register.html',
@@ -45,7 +45,7 @@
                 }
             })
             .state('register-organizer', {
-                url:'/organizers/register/:token/',
+                url:'/organizadores/registrarme/:token/',
                 controller: 'RegisterController',
                 controllerAs: 'vm',
                 resolve: {
@@ -79,19 +79,19 @@
                 controller: 'LogOutController'
             })
             .state('password-forgot', {
-                url:'/password/forgot',
+                url:'/password/recordar',
                 controller: 'ForgotPasswordCtrl',
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/forgot_password.html'
             })
             .state("password-reset", {
-                url:'/password/reset/key/:reset_key',
+                url:'/password/restablecer/key/:reset_key',
                 controller: 'ResetPasswordCtrl',
                 controllerAs: 'vm',
                 templateUrl: 'partials/authentication/reset_password.html'
             })
             .state('email-confirm', {
-                url:'/email/confirm/:key',
+                url:'/email/confirmar/:key',
                 controller: 'EmailConfirmCtrl',
                 controllerAs: 'vm',
             });

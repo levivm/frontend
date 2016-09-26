@@ -1,26 +1,22 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2 text-center">
-            <h1 class="text-muted"><strong ng-bind="notFound.strings.TITLE_DOES_NOT_EXISTS"></strong></h1>
-            <h4 class="text-muted" ng-bind="notFound.strings.COPY_DOES_NOT_EXISTS"></h4>
+
+<!--First section-->
+<div class="trulii-cover trulii-cover__notfound ">
+  <div class="trulii-cover__container">
+    <div class="trulii-cover__content limited-width">
+        <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 text-center">
+            <h1 class="text-blue-dark"  ng-bind="notFound.strings.TITLE_404"> </h1>
+            <h2 class="text-blue-dark" ng-bind="notFound.strings.TITLE_DOES_NOT_EXISTS"></h2>
+            <h4 class="text-blue-dark" ng-bind="notFound.strings.COPY_DOES_NOT_EXISTS"></h4>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-            <img ng-src="{{notFound.getAmazonUrl('static/img/404.png')}}" alt="Not Found" class="img-responsive"/>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-8 col-xs-offset-2">
-            <h5 class="text-center separate-below" ng-bind="notFound.strings.COPY_FIND_NEW_ACTIVITIES"></h5>
-        </div>
-    </div>
-    <div class="row not-found-search-bar">
-        <div class="col-xs-12 col-md-6 col-md-offset-3 separate-above separate-below">
+         <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2 separate-above separate-below">
             <trulii-search-bar></trulii-search-bar>
         </div>
     </div>
-    <div class="row">
-        <trulii-footer></trulii-footer>
+    <!--First section background-->
+    <div class="trulii-cover__background trulii-cover__background-notfound background-none" style="background-image:url({{::notFound.getAmazonUrl('static/img/404_fondo.png');}})">
+        <img class="hidden-xs hidden-sm" ng-src="{{::notFound.getAmazonUrl('static/img/404_arbol.png');}}" alt="">
+        <img class="hidden-xs hidden-sm" ng-src="{{::notFound.getAmazonUrl('static/img/404_bici.png');}}" alt="">
     </div>
+  </div>
 </div>
+ <trulii-footer></trulii-footer>

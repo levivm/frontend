@@ -2,16 +2,12 @@
 
 .profile-cover{
   margin-top: -80px;
-  min-height:88vh;
+  min-height: 600px;
   width: 100%;
   position:relative;
 
-  .row{
-    min-width:100vw;
-
-  }
   &__container{
-    min-height: 88vh;
+    min-height: 600px;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -33,19 +29,30 @@
     flex: none;
     width: 100%;
     padding-top: 80px;
+
+    .rating{
+      display: inline-block;
+      margin-left: 50%;
+      margin-top: 15px;
+      transform: translateX(-50%);
+      .glyphicon{
+        padding: 0px 3px;
+        font-size: 18px;
+      }
+    }
+
   }
   h1, h2, h3, h4, p {
     color: white;
     font-family: @font-sans;
   }
   h1{
-    letter-spacing: 5px;
     font-weight: 400;
     margin: 1em 0em;
   }
   p{
-    font-size:0.9em;
-    font-weight: 200;
+    font-size: 1em;
+    font-weight: 500;
   }
   &__description{
     padding: 0px 20px;
@@ -61,12 +68,12 @@
     border: 5px solid white;
   }
   &__verified{
-    width: 200px;
+    width: 270px;
     margin: 0 auto;
     overflow: hidden;
     padding: 20px 0px;
     p{
-      padding: 3px 10px;
+      padding: 12px 0px 5px 10px;
       font-size: 0.95em;
     }
   }
@@ -88,9 +95,24 @@
 }
 .profile-biography{
   background-color: white;
-  padding: @spacing-medium 0 10rem 0;
   .profile-biography--content{
     padding: @spacing-medium 0;
+    p{
+      margin-bottom: 0 !important;
+      text-align: justify;
+    }
+    p, ol, ul, li, h1, h2, h3, h4, h5, span, u, i{
+      font-size: 15.5px !important;
+      font-weight: 500 !important;
+      color: #222328 !important;
+    }
+    b{
+      font-size: 15.5px !important;
+      color: #222328 !important;
+    }
+    a{
+      display: none;
+    }
   }
 }
 
@@ -105,28 +127,24 @@
     margin: 0;
     .map{
         width: 100%;
-        height: 28em;
+        height: 35em;
         .before-xs({
           height: 15em;
         });
     }
-    .address{
-        padding: 1.2em;
-        background-color: @secondary-bg;
-        text-align: center;
-        font-size: 1.5em;
-        font-weight: 400;
-        color: @lightbg-text;
+    // .address{
+    //     padding: 1.2em;
+    //     background-color: @secondary-bg;
+    //     text-align: center;
+    //     font-size: 1.5em;
+    //     font-weight: 400;
+    //     color: @lightbg-text;
 
-    }
+    // }
 }
 
 .profile-comments{
   background-color: white;
-  padding: @spacing-medium;
-  .before-sm({
-    padding: 3rem;
-  });
   .comment{
     padding: @spacing-less;
   }

@@ -13,8 +13,8 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['Elevator', '$state', '$scope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce', '$stateParams'];
-    function HomeController(Elevator, $state, $scope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce, $stateParams) {
+    HomeController.$inject = ['Elevator', '$state', '$scope', '$rootScope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce', '$stateParams'];
+    function HomeController(Elevator, $state, $scope, $rootScope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce, $stateParams) {
 
 
         var ACTIVITIES_STEP = 8;
@@ -26,6 +26,7 @@
             options : {
                 actions: ['view', 'edit', 'contact', 'manage', 'republish']
             },
+            trendingCategories: [],
             showVideo: false,
             activitiesCount: activities.count,
             hasMoreActivities: true,
@@ -84,44 +85,48 @@
 
         function _setCategories(){
             vm.categories = angular.copy(generalInfo.categories);
-
         }
 
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
-
             angular.extend(vm.strings, {
                 HEADER_TITLE_COPY: "¡Hoy es un nuevo día para aprender!",
-                HEADER_TEXT_COPY: "Consigue e inscríbete en las mejores actividades y eventos educativos de tu ciudad.",
+                HEADER_TEXT_COPY: "Encuentra e inscríbete en las mejores clases y cursos en Bogotá.",
                 HEADER_SEARCH_PLACEHOLDER: "¿Qué quieres aprender hoy?",
                 HEADER_CITY_PLACEHOLDER: "Elige tu ciudad",
-                REASON_NO_COMMISSIONS: "Sin comisiones",
-                REASON_COPY_NO_COMMISSIONS: "En serio ¡Te lo prometemos!",
-                REASON_REFUND: "Devolución Garantizada",
-                REASON_COPY_REFUND: "Por si no se realiza la actividad",
-                REASON_SECURE: "Pago seguro",
-                REASON_COPY_SECURE: "Inscríbete con tranquilidad",
-                ACTIVITIES_TITLE_COPY: "Actividades",
-                ACTIVITIES_TEXT_COPY: "Encuentra en tu ciudad talleres, cursos, diplomados y ponencias de cualquier tipo. Tú eliges.",
-                ACTIVITIES_BUTTON_COPY: "Ver más actividades",
+                REASON_NO_COMMISSIONS: "Servicio gratuito",
+                REASON_COPY_NO_COMMISSIONS: "Sólo paga por el valor de la clase. No cobramos comisiones.",
+                REASON_REFUND: "Devolución garantizada",
+                REASON_COPY_REFUND: "Te devolvemos tu dinero en caso de no realizarse la actividad.",
+                REASON_SECURE: "Paga seguro",
+                REASON_COPY_SECURE: "Los datos de tu pago están encriptados y seguros con nosotros.",
+                ACTIVITIES_TITLE_COPY: "Actividades populares",
+                ACTIVITIES_TEXT_COPY: "Hacemos de tu ciudad un sitio con infinitas posibilidades para aprender algo nuevo.",
+                ACTIVITIES_BUTTON_COPY: "Ver más actividades similares",
                 VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
+                VIDEO_TEXT: "Queremos abrirte las puertas del conocimiento en tu ciudad, facilitar tu aprendizaje, ayudarte a mejorar tu currículum y ayudarte a aprovechar tu tiempo libre. " +
+                             "Encuentra en un solo sitio e inscríbete en línea en cualquier clase, curso, taller o diplomado de tu ciudad, desde clases de yoga hasta diplomados de finanzas. "+
+                             "<br>¡Ve nuestro video para que nos conozcas un poquito más!",
                 CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
                 HOW_TITLE_COPY: "¿Cómo funciona?",
                 HOW_TEXT_COPY: "En cada rincón de tu ciudad existe algo nuevo que aprender. Nosotros te lo facilitamos en tres pasos:",
                 HOW_FIND_COPY: "Encuentra",
-                HOW_FIND_TEXT: "Lo que quieras aprender.",
+                HOW_FIND_TEXT: "Clases y cursos de cualquier tipo. ¡Tú eliges!",
                 HOW_SIGN_UP_COPY: "Inscríbete",
-                HOW_SIGN_UP_TEXT: "Tu pago está en buenas manos con nosotros.",
+                HOW_SIGN_UP_TEXT: "En la actividad que más te llame la atención.",
                 HOW_LEARN_COPY: "Aprende",
-                HOW_LEARN_TEXT: "La vida es corta. ¡Aprende todo lo que puedas!",
+                HOW_LEARN_TEXT: "¡Disfruta y aprende todo lo que puedas!",
+                HOW_REVIEW_COPY: "Evalúa",
+                HOW_REVIEW_TEXT: "La actividad para que otros tengan una referencia.",
+                ORGANIZERS_TITLE: "Algunos de nuestros organizadores",
                 PUBLISH_COPY: "¿Quieres publicar una actividad?",
-                PUBLISH_TEXT_1: "Trulii es el mejor espacio para dar a conocer " +
-                "tu actividad. Bien sea un curso de cocina, una classe de crossfit, un foro de negocios o un diplomado universitario, nosotros " +
-                "te abrimos la puerta a nuevos clientes y hacemos el trabajo sucio por ti.",
-                PUBLISH_TEXT_2: "Regístrate sin costo alguno y disfruta de nuestra prueba gratuita en tus primeras tres actividades.",
+                PUBLISH_TEXT_1: "Trulii es el <strong>mejor espacio</strong> para dar a conocer " +
+                "tu actividad. Bien sea un curso de cocina, una classe de cross-fit, un foro de negocios o un diplomado universitario, nosotros " +
+                "te ayudamos a <strong>aumentar tus ingresos</strong> buscándote nuevos asistentes mientras tú <strong>te enfocas en enseñar</strong> lo que te gusta.",
+                PUBLISH_TEXT_2: "Regístrate sin costo alguno y comienza a llenar tus cupos. ¡Trabajemos juntos!",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
-                PUBLISH_BUTTON_COPY: "Ser organizador"
+                PUBLISH_BUTTON_COPY: "Me interesa, ¡Cuéntame más!"
             });
         }
 
@@ -144,13 +149,27 @@
            });
 
         }
-        
+
         function _mapTemplates(){
             for(var i = 0; i < activities.results.length; i++){
                 activities.results[i].template = "partials/activities/dynamic_layout_item.html";
             }
             vm.cards = activities.results;
-            
+
+        }
+
+        function _setTrendingCategories() {
+            var categories = [];
+            angular.forEach(vm.categories, function(category){
+                angular.forEach(category.subcategories, function(subcategory){
+                    if(subcategory.featured){
+                        var sub = angular.copy(subcategory);
+                        sub.category = category;
+                        categories.push(sub);
+                    }
+                });
+            });
+            vm.trendingCategories = categories.slice(0, 3);
         }
 
         function _activate(){
@@ -160,9 +179,11 @@
             _initScroll();
             _fromBurgerMenu();
             _mapTemplates();
-            
+            _setTrendingCategories();
             //Analytics.generalEvents.landing();
 
+            //Function for angularSeo
+            $scope.htmlReady();
         }
 
     }

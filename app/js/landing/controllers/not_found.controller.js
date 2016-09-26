@@ -12,9 +12,9 @@
         .module('trulii.landing.controllers')
         .controller('NotFoundController', NotFoundController);
 
-    NotFoundController.$inject = ['serverConf'];
+    NotFoundController.$inject = ['serverConf', '$scope'];
 
-    function NotFoundController(serverConf) {
+    function NotFoundController(serverConf, $scope) {
         var vm = this;
 
         
@@ -33,14 +33,17 @@
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
-                TITLE_DOES_NOT_EXISTS: "Esta página no existe...",
+                TITLE_404: "404",
+                TITLE_DOES_NOT_EXISTS: "¡Usshh! Esta página no existe...",
                 COPY_DOES_NOT_EXISTS: "Creemos que la culpa es del practicante.",
-                COPY_FIND_NEW_ACTIVITIES: "Ya que estamos acá ¿Quieres buscar más actividades?"
+                COPY_FIND_NEW_ACTIVITIES: "Ya que estamos acá ¿Quieres buscar más actividades?" 
             });
         }
 
         function _activate(){
             _setStrings();
+            //Function for angularSeo
+            $scope.htmlReady();
         }
 
     }

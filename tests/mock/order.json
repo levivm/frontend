@@ -1,0 +1,61 @@
+{
+	"id": 719,
+	"calendar": 115,
+	"student": {
+		"id": 4,
+		"photo": null,
+		"user": {
+			"first_name": "Henry",
+			"last_name": "Bravo",
+			"email": "henry.bravo89@gmail.com"
+		},
+		"gender": 2,
+		"user_type": "S",
+		"birth_date": null,
+		"telephone": null,
+		"city": null,
+		"referrer_code": "henryb1",
+		"verified_email": false
+	},
+	"quantity": 1,
+	"assistants": [{
+		"id": 1796,
+		"first_name": "Henry",
+		"last_name": "Bravo",
+		"full_name": "Henry Bravo",
+		"email": "henry.bravo89@gmail.com",
+		"student": {
+			"id": 4,
+			"photo": null,
+			"user": {
+				"first_name": "Henry",
+				"last_name": "Bravo",
+				"email": "henry.bravo89@gmail.com"
+			},
+			"gender": 2,
+			"user_type": "S",
+			"birth_date": null,
+			"telephone": null,
+			"city": null,
+			"referrer_code": "henryb1",
+			"verified_email": false
+		},
+		"order": 719,
+		"token": "MQUOG"
+	}],
+	"amount": 485654.0,
+	"status": "Aprobada",
+	"activity": {
+		"id": 29,
+		"name": "Sesiones de En pareja"
+	},
+	"created_at": 1470108265000.0,
+	"payment": null,
+	"calendar_initial_date": 1470792203000.0,
+	"activity_id": 29,
+	"fee": null,
+	"is_free": true,
+	"total": 485654.0,
+	"total_without_coupon": 485654.0,
+	"coupon": null
+}

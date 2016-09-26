@@ -163,10 +163,6 @@
             var hostArr = [serverApi, endpoint];
             var result = urlParams? hostArr.concat(urlParams.join('/')) : hostArr;
             result = result.join('');
-            if(debug){
-                console.log('StudentServerApi.renderUrl:');
-                console.log(result);
-            }
             return result;
         }
 

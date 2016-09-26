@@ -37,15 +37,15 @@
                 var scope = this;
 
                 angular.extend(scope, studentData);
-                if(!scope.photo) {
+                /*if(!scope.photo) {
                     scope.photo = defaultPicture;
-                }
+                }*/
                 scope._setDates();
 
             },
             _setDates: function(){
-
-                this.birth_date = new Date(this.birth_date);
+               
+                this.birth_date = this.birth_date ? new Date(this.birth_date): this.birth_date;
 
             },
 
@@ -63,12 +63,13 @@
                         'first_name': scope.user.first_name,
                         'last_name': scope.user.last_name,
                     },
-                    'birth_date': scope.birth_date.valueOf(),
+                    'birth_date': scope.birth_date ? scope.birth_date.valueOf(): undefined,
                     'gender': scope.gender,
                     'bio' : scope.bio,
                     'city' : scope.city,
                     'telephone' : scope.telephone ? scope.telephone : '',
                 };
+                
                 return scope.update(profile_data);
             },
             upload_photo : function (image) {
@@ -83,6 +84,8 @@
                     .then(success, error);
 
                 function success(response) {
+                    response.data.telephone = Number(response.data.telephone);
+                    response.data.telephone = response.data.telephone==0 ? '' : response.data.telephone;
                     Authentication.setAuthenticatedAccount(response.data);
                     scope.setData(response.data);
                     return response.data;
@@ -103,7 +106,7 @@
 
             change_email : function () {
                 var scope = this;
-                return Authentication.change_email(this.email)
+                return Authentication.change_email(this.user.email)
                     .then(success, error);
 
                 function success(response) {
@@ -231,7 +234,6 @@
                 }
 
                 function error(response) {
-                    console.log("Error getting student reviews: ", response.data);
                     deferred.reject(reviews);
                 }
             }

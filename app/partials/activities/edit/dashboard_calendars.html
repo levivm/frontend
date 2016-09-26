@@ -1,83 +1,102 @@
-<div class="row">
-    <div class="col-xs-12 col-md-11 col-md-offset-1 ">
-        <div class="row" ui-view>
-            <div class="section-title" ng-bind="::calendars.strings.LABEL_CALENDARS">
+<div class="row  limited-width-dashboard limited-width-dashboard__edit-activity">
+    <div class="col-xs-12  ">
+        <div class="row" ui-view >
+            <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub flex-betweent-container no-padding" >
+                    <h4 class="panel-default__dashboard-title-calendar separate-left"  ng-bind="::calendars.strings.LABEL_CALENDARS"></h4>
+                   <div class="panel-default__dashboard-tabs">
+                       <div class="panel-default__dashboard-tab" ng-click="calendars.changeSchedule(true)" ng-class="{'panel-default__dashboard-tab-active': calendars.activity.is_open}">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <span ng-bind="::calendars.strings.LABEL_CALENDAR_OPEN"></span>
+                       </div>
+                       <div class="panel-default__dashboard-tab" ng-click="calendars.changeSchedule(false)"  ng-class="{'panel-default__dashboard-tab-active': !calendars.activity.is_open}">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <span ng-bind="::calendars.strings.LABEL_CALENDAR_CLOSED"></span>
+                       </div>
+                   </div>
             </div>
-            <div>
-                <div class="section-description" ng-bind="::calendars.strings.COPY_ADD_CALENDAR"></div>
+            <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second-calendar">
+                <!--div class="trulii-checkbox">
+                    <input type="checkbox" id="free" ng-model="calendars.activity.isOpen" ng-change="calendars.hideCalendars()">
+                    <label for="free"><span></span>Ocultar horarios de la publicación</label>
+                </div>-->
+                <span class="text-gray-dark " ng-if="calendars.activity.is_open" ng-bind="::calendars.strings.COPY_ADD_CALENDAR_OPEN"></span>
+                <span class="text-gray-dark " ng-if="!calendars.activity.is_open" ng-bind="::calendars.strings.COPY_ADD_CALENDAR_CLOSE"></span>
+                 <button class="btn btn-sm btn-info btn-panel"
+                            ng-show="calendars.checkNoMoreCalendars()"  
+                            ng-click="calendars.createCalendar()"
+                             ng-bind="::calendars.strings.LABEL_ADD_CALENDAR"></button>
+            </div>
                 <div ng-if="calendars.republish" class="alert alert-warning">
                     <h4 ng-bind="::calendars.strings.LABEL_WARNING">Advertencia!</h4>
 
                     <p ng-bind="::calendars.strings.COPY_REPUBLISH_CALENDAR"></p>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-10 col-sm-offset-0">
-                        <div class="col-md-6">
-                            <div class="card card-list-item card-list-item--empty" style="height: 21.6em;"
-                                 ng-click="calendars.createCalendar()">
-                                <div>
-                                    <div class="card-list-item__add-icon"></div>
-                                    <br/>
-                                    <span ng-bind="::calendars.strings.LABEL_ADD_CALENDAR"></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6" ng-repeat="calendar in calendars.calendars | orderBy: 'initial_date'">
-                            <div class="card">
-                                <div class="card-list-item">
-                                    <h1 class="no-margin" ng-bind="::calendars.strings.LABEL_START_DATE + ($index+1)"></h1>
-
-                                    <div class="row clearfix separate-vertical">
-                                        <div class="col-md-7">
-                                            <h3 class="text-sm clear-spacings"
-                                                ng-bind="::calendars.strings.LABEL_CLOSE_SALE"></h3>
-                                            <span class="text-capitalize text-sm"
-                                                  ng-bind="calendar.closing_sale | date: 'dd MMM yyyy'"></span>
-                                        </div>
-                                        <div class="col-md-5 text-right">
-                                            <div class="text-muted">
-                                                <strong ng-bind="calendar.available_capacity"></strong> <span
-                                                    ng-bind="::calendars.strings.LABEL_CALENDAR_SEATS"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row clearfix text-center">
-                                        <div class="col-md-6">
+                    <div class="col-xs-12">
+                        <div class="col-xs-12 clear-spacings" ng-repeat="calendar in calendars.calendars | orderBy: 'initial_date'">
+                            <div class="card card__calendar">
+                                <div class="card__calendar-header">
+                                    <div class="card__calendar-header-date">
+                                        <div class="card__calendar-date date-init" ng-if="!calendars.activity.is_open">
                                             <h5 ng-bind="::calendars.strings.LABEL_START"></h5>
                                             <span class="text-capitalize text-md"
                                                   ng-bind="calendar.initial_date | date: 'dd MMM yyyy'"></span>
-                                            <br/>
                                         </div>
-                                        <div class="col-md-6 separator-vertical">
-                                            <h5 ng-bind="::calendars.strings.LABEL_END"></h5>
-                                            <span class="text-capitalize text-md"
-                                                  ng-bind="calendar.sessions[calendar.sessions.length-1].date | date: 'dd MMM yyyy'"></span>
+                                        <div class="card__calendar-date date-init" ng-if="calendars.activity.is_open">
+                                            <h5 >
+                                                <strong class="font-bold" ng-bind="::calendars.strings.LABEL_PACKAGES_PLAN"></strong>
+                                                <strong>:</strong>
+                                                <strong class="font-bold" ng-bind="calendar.packages.length"></strong>
+                                            </h5>
+                                           
                                         </div>
                                     </div>
-                                    <!--TODO revisar este alert-->
-                                    <alert type="danger" ng-show="calendars.calendar_errors[calendar.id]" ng-bind="calendars.calendar_errors[calendar.id]">
-                                    </alert>
-                                    <div class="card-list-item__actions">
+                                    <div class="card__calendar-header-actions">
                                         <i class="glyphicon glyphicon-pencil" ng-click="calendars.loadCalendar(calendar)"
                                            title="{{::calendars.strings.LABEL_EDIT_CALENDAR}}"></i>
-                                        <i class="glyphicon glyphicon-remove" ng-click="calendars.deleteCalendar(calendar)"
+                                        <i class="glyphicon glyphicon-trash" ng-click="calendars.deleteCalendar(calendar)"
                                            title="{{::calendars.strings.LABEL_DELETE_CALENDAR}}"></i>
                                     </div>
                                 </div>
-                                <div class="card-footer">
+                                
+                                <div class="card__calendar-footer">
+                                    <div class="card__calendar-footer-price" ng-if="!calendars.activity.is_open">
+                                        <span ng-bind="calendar.available_capacity"></span>
+                                        <span ng-bind="::calendars.strings.LABEL_CALENDAR_SEATS"></span>
+                                        <span class="price-separator">|</span>
                                         <span ng-class="{'text-strike': calendar.is_free}">
-                                            <strong>$ </strong><strong
-                                                ng-bind="::calendar.session_price | currency: '':0"></strong>
+                                            <span>COP</span>
+                                            <span ng-bind="::calendar.session_price | currency: '':0"></span>
                                         </span>
-                                    <strong ng-show="calendar.is_free" ng-bind="::calendars.strings.LABEL_FREE"></strong>
+                                        
+                                    </div>
+                                    <div class="card__calendar-footer-price" ng-if="calendars.activity.is_open">
+                                        <span ng-class="{'text-strike': calendar.is_free}">
+                                            <span>COP</span>
+                                            <span ng-bind="::calendar.packages[0].price | currency: '':0"></span>
+                                        </span>
+                                        
+                                    </div>
+                                    <div class="card__calendar-footer-sales" ng-if="!calendars.activity.is_open">
+                                        <h3 ng-if="!calendar.enroll_open"
+                                            class="text-sm clear-spacings"
+                                            ng-bind="::calendars.strings.LABEL_CLOSE_SALE"></h3>
+                                        <h3 ng-if="calendar.enroll_open"
+                                            class="text-sm clear-spacings"
+                                            ng-bind="::calendars.strings.LABEL_OPEN_SALE"></h3>
+                                    </div>
+                                    
+                                     <!--TODO revisar este alert-->
+                                    <alert type="danger" ng-show="calendars.calendar_errors[calendar.id]" ng-bind="calendars.calendar_errors[calendar.id]">
+                                    </alert>
                                 </div>
+                                
+                               
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
     </div>
 </div>

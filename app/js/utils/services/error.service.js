@@ -23,7 +23,7 @@
          */
         var NON_FIELD_ERRORS = "non_field_errors";
         var SESSIONS_PREFIX  = "sessions";
-        var FORM_FIELD_ALL   = "__all__";
+        var FORM_FIELD_ALL   = "__all__"; 
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
@@ -92,9 +92,7 @@
 
         function addArrayErrors(form,responseErrors){
             _.each(responseErrors, function (error_dict) {
-                console.log('responseErrors',error_dict);
                 _.each(error_dict, function (message, field) {
-                    console.log('message:',message);
                     form[field].error_message = message.pop();
                     form[field].$setValidity(field, false);
                 });
@@ -107,13 +105,12 @@
             console.log(responseErrors);
             angular.forEach(responseErrors, function (fieldErrors, field) {
                 var message = fieldErrors[0];
-
+                
                 // Error is unrelated to form fields
                 if (field === NON_FIELD_ERRORS) return;
-
                 // Process remaining form field errors
                 if (field in form){
-                    console.log(message, fieldErrors, field);                    
+                                     
                     console.log(form[field]);                    
                     form[field].error_message = message;
                     form[field].$setValidity(field, false);

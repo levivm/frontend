@@ -23,7 +23,8 @@
                        LocationManager, UploadFile, defaultPicture) {
 
         var api = OrganizerServerApi;
-        var defaultPageSize = 25;
+        var defaultPageSize = 10;
+        var defaultPageSizeWithd = 5;
         var reviewsDefaultPageSize = 5;
         var defaultPage = 1;
 
@@ -39,32 +40,32 @@
             setData : function (organizerData) {
                 angular.extend(this, organizerData);
                 this._setCity();
-                if(!this.photo) {
-                    this.photo = defaultPicture;
-                }
             },
 
             _setCity : function () {
                 var city_id;
                 var city;
                 var organizer_city;
-
+                var me = this;
                 this.location = (!!this.locations) && (this.locations.length > 0) ? this.locations.pop() : {};
 
                 city_id = this.location ? this.location.city : null;
 
-                if (!(city_id))
+                if (!(city_id)){
                     city = LocationManager.getCurrentCity();
-                else
-                    city = LocationManager.getCityById(city_id);
-
-                this.location.city = city;
+                    this.location.city = city;
+                }else{
+                    LocationManager.getCityById(city_id).then(function(response){
+                        me.location.city = response;
+                    });
+                    
+                }
+                    
+                
             },
             load : function () {
                 var scope = this;
                 return $http.get(api.organizer(scope.id)).success(function (organizerData) {
-                    console.log('response');
-                    console.log(organizerData);
                     scope.setData(organizerData);
                 });
             },
@@ -88,6 +89,7 @@
             },
             upload_photo : function (image) {
                 var scope = this;
+                console.log(image);
 
                 return UploadFile.upload_user_photo(image,api.organizer(scope.id));
             },
@@ -122,7 +124,6 @@
                     .then(success, error);
 
                 function success(response) {
-                    console.log("CHANGE EMAIL RESPONSE");
                     Authentication.getAuthenticatedAccount(true).then(function (response) {
                         scope.setData(response);
                     });
@@ -139,6 +140,7 @@
 
             update_location : function (location_data_param) {
                 var location_data = angular.copy(location_data_param);
+                console.log(location_data);
                 location_data.city = location_data.city ? location_data.city.id : undefined;
                 return $http.post(api.locations(this.id), location_data);
 
@@ -158,6 +160,7 @@
                     });
             },
 
+
             getOrders : function (params) {
                 if(!params){
                     params = {};
@@ -167,14 +170,62 @@
                     params.page = defaultPage;
                 if(!params.pageSize)
                     params.pageSize = defaultPageSize;
-
                 return $http.get(api.orders(this.id),
                     {params: params})
                     .then(function (response) {
                         return response.data;
                       });
+            },
+
+            getBalances: function (page, pageSize){
+
+              return $http.get(api.balance())
+                          .then(success, error);
+
+                  function success(response){
+                    return response.data
+                  }
+                  function error(response){
+                    //console.log(response);
+                  }
 
             },
+
+            getWithDraw: function (page, pageSize){
+              if(!page)
+                page = defaultPage;
+              if(!pageSize)
+                pageSize= defaultPageSizeWithd;
+
+              var params = {
+                page: page,
+                page_size: pageSize
+              };
+              return $http.get(api.withDraw(), {params: params})
+                          .then(success, error);
+
+                  function success(response){
+                    return response.data
+                  }
+                  function error(response){
+                    //console.log(response);
+                  }
+
+            },
+
+            postWithDraw: function (){
+              return $http.post(api.withDraw(), {data: []})
+                          .then(success, error);
+
+                  function success(response){
+                    return response.data
+                  }
+                  function error(response){
+                    //console.log(response);
+                  }
+
+            },
+
 
             /**
              * @ngdoc function
@@ -260,7 +311,7 @@
                 };
 
                 function error(response){
-                  console.log("Error getting organizer reviews: ", response.data);
+                  //console.log("Error getting organizer reviews: ", response.data);
                 }
         }
 
@@ -272,7 +323,6 @@
                 return response.data;
             }
             function error(response){
-                console.log('organizer.get instructors error:', response.data);
                 return response.data;
             }
         }
@@ -282,11 +332,9 @@
             return $http.post(api.instructors(that.id), instructor).then(success, error);
 
             function success(response){
-                console.log('organizer.create instructor success:', response);
                 return response.data;
             }
             function error(response){
-                console.log('organizer.create instructor error:', response);
                 return response.data;
             }
         }
@@ -295,11 +343,9 @@
             return $http.put(api.instructor(instructor.id), instructor).then(success, error);
 
             function success(response){
-                console.log('organizer.update instructor success:', response);
                 return response.data;
             }
             function error(response){
-                console.log('organizer.update instructor error:', response);
                 return response.data;
             }
         }
@@ -308,11 +354,9 @@
             return $http.delete(api.instructor(instructor.id)).then(success, error);
 
             function success(response){
-                console.log('organizer.delete instructor success:', response);
                 return response.data;
             }
             function error(response){
-                console.log('organizer.delete instructor error:', response);
                 return response.data;
             }
         }
@@ -324,7 +368,7 @@
                 return response.data;
             }
             function error(response){
-                console.log("Error retrieving Organizer's Banking Info:", response.data);
+                //console.log("Error retrieving Organizer's Banking Info:", response.data);
             }
         }
 
@@ -339,11 +383,10 @@
                 return response.data;
             }
             function error(response){
-                console.log("Error updating Organizer's Banking Info:", response.data);
                 return $q.reject(response.data);
             }
         }
-       
+
     }
 
 })();

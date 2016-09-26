@@ -233,8 +233,11 @@
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
-            'categories' : function () {
-                return renderUrl('activities/', ['categories']);
+            'categories' : function (idCategory) {
+                if(idCategory)
+                    return renderUrl('activities/', ['categories', idCategory]);
+                else
+                    return renderUrl('activities/', ['categories']);
             },
 
             /**
@@ -337,15 +340,26 @@
             /**
              * @ngdoc function
              * @name .#stats
-             * @description Renders **`/api/activities/:idActivity/stats`** Activity Instructor URL
+             * @description Renders **`/api/activities/:idActivity/stats`** Activity Stats
              * @param {number} idActivity Activity Id
              * @return {string} Rendered URL
              * @methodOf trulii.activities.services.ActivityServerApi
              */
             'stats' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'stats']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#counter
+             * @description Renders **`/api/activities/:idActivity/views_counter`** Activity Counter
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'viewsCounter' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'views_counter']);
             }
-            
             
         };
 

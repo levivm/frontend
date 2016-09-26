@@ -14,9 +14,9 @@
         .module('trulii.landing.controllers')
         .controller('ContactController', ContactController);
 
-    ContactController.$inject = ['$state', '$stateParams', 'cities', 'Contact', 'Toast', 'Analytics', 'serverConf'];
+    ContactController.$inject = ['$state', '$scope', '$stateParams', 'cities', 'Contact', 'Toast', 'Analytics', 'serverConf'];
 
-    function ContactController($state, $stateParams, cities, Contact, Toast, Analytics, serverConf) {
+    function ContactController($state, $scope, $stateParams, cities, Contact, Toast, Analytics, serverConf) {
         var vm = this;
 
         angular.extend(vm, {
@@ -41,7 +41,7 @@
         _activate();
 
         //--------- Functions Implementation ---------//
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
@@ -66,7 +66,7 @@
                 vm.sent = true;
                 Toast.success(vm.strings.COPY_SUCCESS_SENDING_FORM);
                 Analytics.generalEvents.contactUs('sent contact form')
-                $state.go(toState.state, toState.params);
+                // $state.go(toState.state, toState.params);
             }
             function error(response){
                 console.log('Error Sending Contact Form.', response);
@@ -101,25 +101,25 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_SEND: "Enviar ahora",
-                CONTACT_COVER_TITLE_1: "Puedes encontrarnos",
-                CONTACT_COVER_TITLE_2: "literalmente en donde sea",
-                CONTACT_COVER_TEXT: "Hablamos en serio cuando decimos que nos encantaría saber de ti.",
-                CONTACT_SUCCESS_COVER_TITLE: "¡Cool!",
-                CONTACT_SUCCESS_COVER_TEXT: "Dentro de poco atenderemos tu solictud",
-                COPY_ALL_FIELDS_REQUIRED: "Por favor llene todos los campos",
-                COPY_SUCCESS_SENDING_FORM: "Tu solicitud fue enviada con éxito. Pronto nos pondremos en contacto contigo",
-                COPY_ERROR_SENDING_FORM: "Hubo un error enviando tu solicitud. Por faovr intenta de nuevo",
+                CONTACT_COVER_TITLE_1: "Encuéntranos literalmente",
+                CONTACT_COVER_TITLE_2: "en donde sea",
+                CONTACT_COVER_TEXT: "Para dudas o simplemente conversar con nosotros escríbenos por aquí o en cualquiera de nuestros canales.",
+                CONTACT_SUCCESS_COVER_TITLE: "¡Excelente!",
+                CONTACT_SUCCESS_COVER_TEXT: "¡Pendiente! Dentro de muy poco contactaremos para conocerte y validar tu solicitud",
+                COPY_ALL_FIELDS_REQUIRED: "¡Yuujuuuu, despistad@@@@! Recuerda llenar todos los campos antes de enviar.",
+                COPY_SUCCESS_SENDING_FORM: "¡Pendiente! Dentro de muy poco te contactaremos para ayudarte. Nuestro trabajo es hacerte feliz.",
+                COPY_ERROR_SENDING_FORM: "Hubo un error enviando tu solicitud. Por favor intenta de nuevo",
                 LABEL_CONTACT_US: "Contáctanos",
                 LABEL_TOPIC: "Tópico",
                 LABEL_SUB_TOPIC: "Sub-Tópico",
                 LABEL_DESCRIPTION: "Descripción",
                 LABEL_NAME: "Nombre",
-                LABEL_EMAIL: "Email",
-                LABEL_PHONE: "Teléfono",
+                LABEL_EMAIL: "Correo electrónico",
+                LABEL_PHONE: "Número de teléfono",
                 LABEL_CITY: "Ciudad",
                 OPTION_TOPIC_DEFAULT: "Tema",
-                OPTION_SUBTOPIC_DEFAULT: "Seleccione un sub-tópico",
-                OPTION_CITY_DEFAULT: "Seleccione ciudad",
+                OPTION_SUBTOPIC_DEFAULT: "Elige un sub-tópico",
+                OPTION_CITY_DEFAULT: "Elige ciudad",
                 PLACEHOLDER_DESCRIPTION: "Cuéntanos, ¿en qué podemos colaborarte?"
             });
         }
@@ -129,7 +129,8 @@
             _getTopics();
             toState = $stateParams.toState;
             console.log('toState:', toState);
-
+            //Function for angularSeo
+            $scope.htmlReady();
         }
 
     }

@@ -13,14 +13,11 @@
         .module('trulii.config')
         .config(config);    
 
-    config.$inject = ['$locationProvider','$httpProvider','FacebookProvider','serverConf'];
+    config.$inject = ['$locationProvider','$httpProvider', 'FacebookProvider','serverConf'];
 
-    function config($locationProvider, $httpProvider,FacebookProvider, serverConf) {
-
-
-
-
-
+    function config($locationProvider, $httpProvider, FacebookProvider, serverConf) {
+        
+        
         /* Facebook initialization */
         FacebookProvider.init(serverConf.FACEBOOK_APP_KEY);
         /* Allow to send cookies */
@@ -33,8 +30,6 @@
         $locationProvider.hashPrefix('!');
 
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-
-
 
 
         /**
@@ -75,7 +70,8 @@
 
             return query.length ? query.substr(0, query.length - 1) : query;
         };
-
+        
+       
         $httpProvider.interceptors.push('sessionInjector');
 
         //Override $http service's default transformRequest

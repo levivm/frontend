@@ -10,9 +10,9 @@
     angular
         .module('trulii.students.controllers')
         .controller('StudentMessagesCtrl', StudentMessagesCtrl);
-    StudentMessagesCtrl.$inject = ['student', 'messages', 'titleTruncateSize', 'Analytics'];
+    StudentMessagesCtrl.$inject = ['$state', 'student', 'messages',  'LocationManager', 'titleTruncateSize', 'Analytics'];
 
-    function StudentMessagesCtrl(student, messages, titleTruncateSize, Analytics) {
+    function StudentMessagesCtrl($state, student, messages, LocationManager, titleTruncateSize, Analytics) {
         var vm = this;
 
 
@@ -23,13 +23,17 @@
                 itemsPerPage: 10,
                 pageNumber: 1
             },
-            pageChange: pageChange
+            pageChange: pageChange,
+            searchActivities:searchActivities
         });
 
         activate();
 
         /*      Exposed Functions      */
-
+        function searchActivities(){
+            var searchCity = LocationManager.getSearchCity();
+            $state.go('search', {'city': searchCity.id});
+        }
         function pageChange(){
           student.getMessages(vm.paginationOpts.pageNumber, vm.paginationOpts.itemsPerPage)
           .then(function (response) {
@@ -48,16 +52,18 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
+                ACTION_SEARCH_ACTIVITY: "A ver qué encuentro",
                 SEARCH_PLACEHOLDER: "Buscar",
                 PREVIOUS_TEXT:"Previo",
                 NEXT_TEXT:"Siguiente",
-                COPY_NO_MESSAGES: "No tienes notificaciones por el momento"
+                SECTION_MESSAGES: "Notificaciones",
+                COPY_NO_MESSAGES: "Por los momentos ningún organizador se ha comunicado contigo",
+                COPY_MESSAGES: "El organizador se contactará por esta via para notificarte cualquier novedad sobre la actividad."
             });
         }
 
         function activate() {
             _setStrings();
-            console.log(vm.messages);
         }
 
     }

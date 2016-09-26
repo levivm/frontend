@@ -1,38 +1,90 @@
-<div class="row">
-    <div class="col-md-12">
-        <div class="panel pse-panel">
-            <div class="panel-heading">
-                <h4>
-                    <img ng-src="{{pseResponse.getAmazonUrl('static/img/activity-enroll/logo_PSE.png')}}" alt="PSE Logo"/>
-                    <span ng-bind="::pseResponse.strings.COPY_PAYMENT_INFO"></span>
-                </h4>
+<div class="row separate-above-less">
+    <div class="col-xs-12">
+        <div class="enroll-section">
+            <div class="enroll-section__header">
+                <h5 ng-if="::!pseResponse.packageID">
+                    <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
+                    <span class="" ng-bind="pseResponse.calendar.initial_date | date:'d MMM y'"></span>
+                </h5>
+                <h5 ng-if="::pseResponse.packageID">
+                    <span class="" ng-bind="::pseResponse.strings.LABEL_PACKAGE"></span>
+                    <span class="" ng-bind="::pseResponse.packageQuantity"></span>
+                    <span class="" ng-bind="::pseResponse.packageType"></span>
+                </h5>
             </div>
-            <div class="panel-body">
-                <div>
-                    <div class="table-responsive">
-                        <table class="table table-striped table-hover">
-                            <tr ng-repeat="(index,data) in pseResponse.pseData">
-                                <td>
-                                    <span ng-bind="data.name"></span>
-                                </td>
-                                <td ng-bind="data.value"></td>
-                            </tr>
-                        </table>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="enroll-section">
+            <div class="enroll-section__header">
+                <h5>
+                    <span ng-bind="::enroll.strings.LABEL_SCHEDULES"></span>
+                </h5>
+            </div>
+            <div class="enroll-section__body">
+                <div class="row">
+                    <div class="col-xs-12">
+                    <div class="session" ng-bind-html="pseResponse.calendar.schedules">
+                    </div>
                     </div>
                 </div>
             </div>
-            <div class="panel-footer">
-                <div class="text-right">
-<!--                     <a class="btn btn-link" ui-sref="student-dashboard.activities"
-                       ng-bind="::pseResponse.strings.ACTION_VIEW_RECEIPT"></a>
- -->                    <button  class="btn btn-primary"
-                             ng-show="!pseResponse.paymentDeclined"
-                             ng-click="pseResponse.finishPayment()"
-                             ng-bind="pseResponse.strings.ACTION_FINISH_PAYMENT"></button>
-                    <button  class="btn btn-primary"
-                             ng-show="pseResponse.paymentDeclined"
-                             ng-click="pseResponse.retryPayment()"
-                             ng-bind="pseResponse.strings.ACTION_RETRY_PAYMENT"></button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="enroll-section">
+            <div class="enroll-section__header">
+                <h5>
+                    <span ng-bind="::pseResponse.strings.COPY_PAYMENT_INFO"></span>
+                </h5>
+            </div>
+            <div class="enroll-section__sub-header pse">
+                <div ng-repeat="(index,data) in pseResponse.pseData">
+                    <strong class="text-gray-brand-regular" ng-bind="data.name + ':'">
+                    </strong>
+                    <strong class="text-gray-brand" ng-bind="data.value"></strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="enroll-section">
+            <div class="enroll-section__body">
+                <div class="enroll-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                        <button class="center-block btn btn-lg btn-primary separate-above-less text-uppercase"
+                                ng-click="pseResponse.finishPayment()"
+                                ng-bind="pseResponse.strings.ACTION_FINISH_PAYMENT"
+                                ng-show="!pseResponse.paymentDeclined">
+                        </button>
+                        <button class="center-block btn btn-lg btn-primary separate-above-less text-uppercase"
+                                ng-show="pseResponse.paymentDeclined"
+                                ng-click="pseResponse.retryPayment()"
+                                ng-bind="pseResponse.strings.ACTION_RETRY_PAYMENT">
+                        </button>
+                        </div>
+                    </div>
+                    <div class="enroll-footer__disclaimer">
+                        <span ng-bind="::enroll.strings.COPY_RELEASE_1"></span>
+                        <br>
+                        <span ng-bind="::enroll.strings.COPY_RELEASE_2"></span>
+                        <a ng-click='enroll.toggleReimbursement()' href="#" ng-bind="::enroll.strings.COPY_RELEASE_3"></a>
+                        <span ng-bind="::enroll.strings.COPY_RELEASE_4"></span>
+                        <a ng-click='enroll.toggleTerms()' href="#" ng-bind="::enroll.strings.COPY_RELEASE_5"></a>
+                        <span ng-bind="::enroll.strings.COPY_RELEASE_6"></span>
+                        <br><br>
+                        <span ng-bind="::enroll.strings.COPY_ANY_DOUBT"></span>
+                        <a href="#"  target="_blank" ui-sref="contact-us" ng-bind="::enroll.strings.LABEL_CONTACT_US"></a>
+                    </div>
                 </div>
             </div>
         </div>

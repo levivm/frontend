@@ -22,6 +22,7 @@
 @import '_labels';
 
 @import 'components/_navbar';
+@import 'components/_avatar';
 @import 'components/_search';
 @import 'components/_sidebar';
 @import 'components/_sidebar_category';
@@ -57,8 +58,10 @@
 @import "components/_activity-card";
 @import "components/_activity-detail";
 @import "components/_activity-detail-enroll";
+@import "components/_flex-cards";
 @import "components/_activity-review";
 @import "components/_organizer-profile";
+@import "components/_organizer-landing.less";
 @import "components/_popover";
 @import "components/_orders.less";
 @import "components/_home.less";
@@ -93,9 +96,13 @@ h1, h2, h3, h4, h5, h6{
 
 p{
 	font-family: @font-sans;
-	color: @gray-light;
+	color: @gray-dark;
 	font-size: 1.2em;
 	margin-bottom: 1.5em;
+	.before-md({
+     	font-size: 1em;
+    });
+    
 }
 
 .tab-content{

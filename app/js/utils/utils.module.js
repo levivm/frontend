@@ -23,5 +23,8 @@
 
   angular
    .module('trulii.utils.directives',[]);
+  
+  angular 
+   .module('trulii.metatags',[]);
 
 })();

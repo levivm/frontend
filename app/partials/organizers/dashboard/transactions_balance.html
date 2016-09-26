@@ -1,0 +1,84 @@
+<div class="fade-in">
+    <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+      <h4 class="panel-default__dashboard-title" ng-bind="::transactions.strings.TAB_BALANCE"></h4>
+    </div>
+    <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+      <span class="text-gray-dark" ng-bind="::transactions.strings.COPY_BALANCE"></span>
+    </div>
+    
+    
+    
+     <div class="col-xs-12 ">
+         <div class="balance ">
+            <div class="balance__mount balance__mount-available">
+                <div class="balance__mount-available-title">
+                  <h4>
+                    <span  ng-bind="::transactions.strings.COPY_BALANCE_AVAILABLE"></span>
+                     <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top"  tooltip="{{::transactions.strings. COPY_TOOLTIP_MOUNT_AVAILABLE}}"></i>
+                  </h4>
+                  <h5><span ng-bind="::transactions.strings.LABEL_CURRENCY"></span>
+                        <span ng-bind="transactions.balances.available | number"></span></h5>
+                </div>
+                
+                <div ng-if="::(transactions.organizer.type == transactions.ORGANIZER_SPECIAL_TYPE)" class="btn btn-gray-dark " ng-class="{'btn-info': transactions.balances.available > transactions.minMount}" ng-click="transactions.withDraw()">
+                          <span ng-bind="::transactions.strings.ACTION_BALANCE_WITHDRAW"></span>
+                </div>
+
+                
+                
+            </div>
+
+            <div class="balance__note">
+              <div ng-if="::!(transactions.organizer.type == transactions.ORGANIZER_SPECIAL_TYPE)">
+                <span ng-bind="::transactions.strings.COPY_SPECIAL_WITHDRAWALS"></span>
+              </div>
+              <div class="balance__note-title">
+                <span ng-bind="::transactions.strings.LABEL_DESCRIPTION"></span>
+              </div>
+              <div class="balance__note-copy">
+                <span ng-bind="::transactions.strings.COPY_BALANCE_ACCOUNT"></span>
+                <span ng-bind="transactions.bank"></span>
+                <span> número </span>
+                <strong>******<span ng-bind="transactions.accountBank"></span></strong>
+              </div> 
+            </div>
+            <div class="balance__mount balance__mount-available balance__mount-unavailable">
+                <div class="balance__mount-available-title">
+                  <h4>
+                    <span  ng-bind="::transactions.strings.COPY_BALANCE_UNAVAILABLE"></span>
+                    <i class="glyphicon glyphicon-question-sign" aria-hidden="true" tooltip-placement="top"  tooltip="{{::transactions.strings. COPY_TOOLTIP_MOUNT_UNAVAILABLE}}"></i>
+                  </h4>
+                  <h5><span ng-bind="::transactions.strings.LABEL_CURRENCY"></span>
+                        <span ng-bind="transactions.balances.unavailable | number"></span></h5>
+                </div>
+            </div>
+          </div>
+      </div>
+      <!--<div class="row separate-above">
+          <div class="col-xs-12">
+            <div class="mounts">
+              <div class="mounts-content ">
+                  <div class="">
+                    <h4 class="text-uppercase" ng-bind="::transactions.strings.COPY_TITLE_BALANCE"></h4>
+                  </div>
+                  <div class="separate-above-less">
+                    <h5 class="montserrat-light" ng-bind="::transactions.strings.COPY_BALANCE_AVAILABLE"></h5>
+                    <h4><span ng-bind="::transactions.strings.LABEL_CURRENCY"></span>
+                        <span ng-bind="transactions.balances.available | number"></span></h4>
+                  </div>
+                  <div class="btn btn-success separate-above-less" ng-click="transactions.withDraw()">
+                    <span ng-bind="::transactions.strings.ACTION_BALANCE_WITHDRAW"></span>
+                  </div>
+
+              </div>
+              <div class="mounts-footer">
+                <h5 class="montserrat-light" ng-bind="::transactions.strings.COPY_BALANCE_AVAILABLE"></h5>
+                <h4><span ng-bind="::transactions.strings.LABEL_CURRENCY"></span>
+                    <span ng-bind="transactions.balances.unavailable | number"></span></h4>
+              </div>
+            </div>
+          </div>
+          
+
+      </div>-->
+</div>

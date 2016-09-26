@@ -11,8 +11,8 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager', 'Analytics', 'serverConf'];
-    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager, Analytics, serverConf) {
+    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', '$stateParams', 'activity', 'ActivitiesManager', 'Analytics', 'serverConf'];
+    function ActivitiesManageCtrl($scope, $filter, $state, $stateParams, activity, ActivitiesManager, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -61,8 +61,6 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-
-
         function isActive(stateStr){
             return $state.includes(stateStr);
         }
@@ -92,15 +90,12 @@
                     start = (vm.orderPaginationOpts.pageNumber -1) * offset;
                     end = vm.orderPaginationOpts.pageNumber * offset;
                     vm.orders = orders.slice(start, end);
-                    //console.log('orders:', vm.orders);
                     break;
                 case vm.TYPE_CALENDAR:
                     offset = vm.calendarPaginationOpts.itemsPerPage;
                     start = (vm.calendarPaginationOpts.pageNumber -1) * offset;
                     end = vm.calendarPaginationOpts.pageNumber * offset;
-                    console.log(vm.calendarPaginationOpts.pageNumber, 'slice(' + start + ',' + end + ')');
                     vm.calendars = calendars.slice(start, end);
-                    //console.log('calendars:', vm.calendars);
                     break;
             }
         }
@@ -114,11 +109,11 @@
             switch(type){
                 case vm.TYPE_ASSISTANT:
                     vm.activeCalendar = calendar;
-                    //console.log('assistants',angular.copy(calendar.assistants));
                     assistants = calendar.assistants;
                     vm.assistants = assistants;
                     break;
                 case vm.TYPE_ORDER:
+                    vm.activeCalendar = calendar;
                     vm.orders =  _.filter(orders,orderBelongsToCalendar);
                     vm.total  = _.sum(vm.orders,getTotal);
                     vm.totalWithFee = _.sum(vm.orders,getTotalWithFee);
@@ -136,7 +131,7 @@
             }
 
             function getTotalWithFee(order){
-                return order.is_free ? 0 : order.amount * order.fee;
+                return order.is_free ? 0 : order.fee;
             }
         }
 
@@ -151,7 +146,7 @@
         //End Functions Analytics data
 
         function _getOrders(activityId){
-            ActivitiesManager.getOrders(activityId).then(success, error);
+            return ActivitiesManager.getOrders(activityId).then(success, error);
 
             function success(ordersResponse){
                 orders = $filter('orderBy')(ordersResponse.map(mapOrder), 'id', true);
@@ -190,9 +185,10 @@
 
         function _mapDateMsg(calendar){
             calendar.fromDate = $filter('date')(calendar.initial_date, 'dd MMM yy');
-            calendar.toDate = $filter('date')(calendar.closing_sale, 'dd MMM yy');
             return calendar;
         }
+         
+        
 
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
@@ -203,7 +199,8 @@
                 ACTION_VIEW: "Ver",
                 ACTION_PRINT: "Imprimir",
                 COPY_ORDERS: "Revisa tus órdenes de compra asociadas a esta actividad agrupadas por calendario",
-                COPY_ASSISTANTS: "Consulta los datos de las personas que han inscrito a las diferentes fechas de inicio de esta actividad",
+                SECTION_ASSISTANTS: "Lista de asistentes",
+                SECTION_ORDERS: "Ordenes de compra",
                 COPY_MANAGE: "Gestionar",
                 COPY_SEAT: "Cupo",
                 COPY_SEATS: "Cupos",
@@ -213,15 +210,12 @@
                 COPY_SEARCH_ASSISTANTS: "Buscar nombre, apellido, correo, orden o código",
                 LABEL_MANAGE: "Gestionar",
                 LABEL_ORDER_NUMBER: "Orden N°",
-                LABEL_CALENDAR: "Inicio",
+                LABEL_CALENDAR: "Fecha de inicio",
                 LABEL_SEARCH: "Buscar Ordenes",
                 LABEL_EMPTY_ORDERS: "No hay órdenes de compra",
-                COPY_EMPTY_ORDERS: "Aún no tienes órdenes de compra para esta actividad  ¿No atrae lo suficiente"
-                    + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
-                    + "un vídeo. ¡Ánimo!",
+                COPY_EMPTY_CALENDARS: "Por ahora nadie se ha inscrito a tu actividad. Estamos trabajando para conseguirte más inscripciones.",
                 LABEL_EMPTY_CALENDARS: "No hay calendarios",
-                COPY_EMPTY_CALENDARS: "Aún no tienes calendarios creados para esta actividad. Ve a la sección de "
-                + "Editar Actividad para comenzar a crear calendarios para que tus estudiantes se inscriban. ¡Anímate!",
+                COPY_EMPTY_ORDERS: "Por ahora no tienes ninguna orden de compra para esta actividad. Estamos trabajando pra conseguirte más inscripciones.",
                 LABEL_EMPTY_ASSISTANTS: "No hay asistentes",
                 COPY_EMPTY_ASSISTANTS: "Aún no tienes asistentes registrados en esta actividad¿No atrae lo suficiente"
                 + " la atención de los usuarios? Podrías agregar más fotos, extender la descripción o agregar "
@@ -230,8 +224,9 @@
                 COPY_FINAL_TOTAL_SALES_TOOLTIP: "Este es el monto de ventas total restando la comisión de Trulii",
                 COPY_TOTAL_SALES_TOOLTIP: "Este es el monto total de las ventas sin contar la comisión de Trulii",
                 COPY_TOTAL_FEE_TOOLTIP: "Este es el monto total de la comisión de Trulii",
-                COPY_CLOSING_DATE: "Cierre",
+                COPY_CLOSING_DATE: "Última sesión",
                 COPY_VIEW_DETAIL: "Ver detalle",
+                COPY_EDIT_ACTIVITY: "Editar actividad",
                 SECTION_MANAGE: "Gestionar",
                 TAB_ORDERS: "Ordenes de Compra",
                 TAB_ASSISTANTS: "Lista de Asistentes",
@@ -240,9 +235,9 @@
                 PLURALIZE_ASSISTANT: "{} asistente",
                 PLURALIZE_ASSISTANTS: "{} asistentes",
                 HEADER_ASSISTANT: "Asistente",
-                HEADER_EMAIL: "Correo",
+                HEADER_EMAIL: "Correo Electrónico",
                 HEADER_PRICE: "Precio",
-                HEADER_ORDER: "Orden",
+                HEADER_ORDER: "Nro. Orden",
                 HEADER_FIRST_NAME: "Nombre",
                 HEADER_LAST_NAME: "Apellido",
                 HEADER_FULL_NAME: "Nombre",
@@ -253,10 +248,13 @@
                 HEADER_UNIT_PRICE:"Precio Unitario",
                 HEADER_TOTAL:"Total",
                 HEADER_STATUS:"Estatus",
-                LABEL_FINAL_TOTAL: "Ventas netas:",
+                LABEL_FINAL_TOTAL: "Ventas netas:", 
                 LABEL_TOTAL: "Ventas brutas:",
-                LABEL_FEE: "Comisión Trulii:",
-                COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades"
+                LABEL_FEE: "Comisión Total:",
+                COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades",
+                LABEL_OPEN_ACTIVITY: "Horario abierto",
+                LABEL_ATTENDEES: "Asistentes",
+                LABEL_ATTENDEE: "Asistente"
             });
         }
         function _initScroll(){
@@ -265,16 +263,30 @@
                 vm.scroll = scroll;
                 $scope.$apply();
               }
-            );
+            ); 
+        }
+
+        function _setExpandedCalendar(){
+            var calendar = activity.is_open ? vm.calendars[0]:null;
+            if (!calendar)
+                return;
+
+            if ($state.is("dash.activities-manage.orders"))
+                expandCalendar(calendar, vm.TYPE_ORDER);
+
+            if ($state.is("dash.activities-manage.assistants"))
+                expandCalendar(calendar, vm.TYPE_ASSISTANT);
+
         }
 
         function _activate() {
             _setStrings();
             _initScroll();
             vm.activity = _mapMainPicture(activity);
-            _getOrders(activity.id);
+            _getOrders(activity.id).then(_setExpandedCalendar);
             _getCalendars(activity);
-            //console.log("reloadin",assistants);
+            
+            $scope.htmlReady();
         }
     }
 })();

@@ -1,84 +1,54 @@
-<div class="container-fluid">
-    <div class="row">
-        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': manage.scroll > 80, 'hidden-xs': !manage.showSidebar, 'hidden-sm': !manage.showSidebar}" style="padding-bottom: 48px">
-            <ul>
-                <li>
-                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ASSISTANTS)"
-                       ui-sref=".assistants" ui-sref-opts="{reload: true}" class="sidebar__item"
-                       ui-sref-active="sidebar__item--selected">
-                        <i class="sidebar__item__icon mdi-social-people"></i>
-                        <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
-                    </a>
-                </li>
-                <li>
-                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ORDERS)" ui-sref=".orders" ui-sref-opts="{reload: true}" class="sidebar__item"
-                       ui-sref-active="sidebar__item--selected">
-                        <i class="sidebar__item__icon mdi-maps-local-atm"></i>
-                        <span ng-bind="::manage.strings.TAB_ORDERS"></span>
-                    </a>
-                </li>
-                <li>
-                    <a  ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_MESSAGES)"
-                      ui-sref=".messages" ui-sref-opts="{reload: true}" class="sidebar__item"
-                      ui-sref-active="sidebar__item--selected">
-                        <i class="sidebar__item__icon mdi-communication-email"></i>
-                        <span ng-bind="::manage.strings.TAB_MESSAGES"></span>
-                    </a>
-                </li>
-                <li>
-                    <a ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_SUMMARY)"
-                      ui-sref=".summary" ui-sref-opts="{reload: true}" class="sidebar__item"
-                      ui-sref-active="sidebar__item--selected">
-                        <i class="sidebar__item__icon mdi-action-trending-up"></i>
-                        <span ng-bind="::manage.strings.TAB_SUMMARY"></span>
-                    </a>
-                </li>
-            </ul>
-            <div class="sidebar__bottom-action-container sidebar__bottom-action-container-edit-activity">
-              <div class="sidebar__bottom-action-dark-edit-acitivity">
-                  <ul class="list-inline list-unstyled text-center text-uppercase">
-                      <li>
-                          <a class="text-center text-uppercase" ui-sref="organizer-dashboard.activities.open">
-                              <i class="glyphicon glyphicon-arrow-left icon-edit-activity"></i>
-                              <span ng-bind="::manage.strings.COPY_VIEW_MY_ACTIVITIES"></span>
-                          </a>
-                      </li>
-                  </ul>
-              </div>
-            </div>
-        </div>
-        <div class="col-xs-12 with-footer">
-            <div class="navbar-secondary" ng-class="{'navbar-secondary-short': manage.scroll > 80}">
-                <a class="btn btn-default pull-right"
-                    ng-click="manage.actionNavbarSecondary(manage.strings.ACTION_VIEW)"
-                   ui-sref="activities-detail({activity_id: {{manage.activity.id}}})">
-                    <span class="hidden-xs hidden-sm" ng-bind="manage.strings.ACTION_VIEW"></span>
-                    <i class="mdi-image-remove-red-eye hidden-md hidden-lg sidebar__item__icon text-center"></i>
+
+<div class="cover-blur-small">
+    <div class="cover-blur-small__content">
+         <div class="cover-blur-small__content-first">
+             <div class="cover-blur-small__content-title separate-above-more">
+                 <h1 ng-bind="manage.activity.title"></h1>
+                 <h5 ng-bind="manage.activity.organizer.name"></h5>
+             </div>
+             <div class="cover-blur-small__content-buttons" >
+                <a class="btn btn-info "
+                    ui-sref="dash.activities-edit.general({activity_id: {{manage.activity.id}}})">
+                    <span class="hidden-xs hidden-sm" ng-bind="::manage.strings.COPY_EDIT_ACTIVITY"></span>
                 </a>
-                <a class="btn btn-default pull-right hidden-xs hidden-sm"
-                 ng-click="manage.actionNavbarSecondary('Editar actividad')"
-                 ui-sref="dash.activities-edit.general({activity_id:{{manage.activity.id}}})">
-                    <span class="hidden-xs hidden-sm" ng-bind="'Editar actividad'"></span>
-                    <i class="mdi-content-create hidden-md hidden-lg sidebar__item__icon text-center"></i>
-                </a>
-                <h4 class="sub-title" ng-bind="manage.activity.title"></h4>
-            </div>
-            <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 limited-width-dashboard" ui-view>
-            </div>
-        </div>
-        <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block print-hidden" ng-class="{'short': manage.scroll > 80}"
-            ng-click="manage.toggleSidebar()">
-            <i class="sidebar__item__icon mdi-navigation-menu"></i>
-            <span ng-bind="::manage.strings.TAB_ASSISTANTS"
-                ng-class="{'hidden-xs hidden-sm': !manage.isActive('dash.activities-manage.assistants')}"></span>
-            <span ng-bind="::manage.strings.TAB_ORDERS"
-                ng-class="{'hidden-xs hidden-sm': !manage.isActive('dash.activities-manage.orders')}"></span>
-            <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
-                <img class="img-responsive" ng-src="{{manage.getAmazonUrl('static/img/close_dark.png')}}" alt=""/>
-            </a>
-        </div>
-        <div class="col-xs-12">
-            <trulii-dashboard-footer></trulii-dashboard-footer>
-        </div>
+             </div>
+         </div>
     </div>
 </div>
+<div menu-activity class="container-fluid container-fluid limited-width-dashboard-container limited-width-dashboard-container-edit-activity">
+    <div class="row">
+        <ul class="sidebar sidebar-edit-activity hidden-xs hidden-sm">
+            <li class="sidebar__item"
+               ui-sref-active="sidebar__item--selected">
+                 <a  ui-sref=".summary" ui-sref-opts="{reload: true}" 
+                     ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_SUMMARY)">
+                     <span ng-bind="::manage.strings.TAB_SUMMARY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                ui-sref-active="sidebar__item--selected">
+                 <a  ui-sref=".assistants" ui-sref-opts="{reload: true}" 
+                     ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ASSISTANTS)">
+                     <span ng-bind="::manage.strings.TAB_ASSISTANTS"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+               ui-sref-active="sidebar__item--selected">
+                 <a  ui-sref=".orders" ui-sref-opts="{reload: true}" 
+                     ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_ORDERS)">
+                     <span ng-bind="::manage.strings.TAB_ORDERS"></span>
+                </a>
+            </li>
+            <li class="sidebar__item"
+                 ng-class="{'sidebar__item--selected': manage.isActive('dash.activities-manage.messages'), 'sidebar__item--selected_message': manage.isActive('dash.activities-manage.messages-detail')}">
+                 <a  ui-sref=".messages" ui-sref-opts="{reload: true}"
+                     ng-click="manage.toggleSidebar(); manage.dashboardItem(manage.strings.TAB_MESSAGES)">
+                     <span ng-bind="::manage.strings.TAB_MESSAGES"></span>
+                </a>
+            </li>
+            
+        </ul>
+        <div ui-view class="col-xs-12 with-footer" autoscroll="true"></div>
+    </div>
+</div>
+<trulii-footer></trulii-footer> 

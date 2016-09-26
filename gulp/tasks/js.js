@@ -95,7 +95,7 @@ gulp.task('serverConf-injector', function(){
     var MODULE_NAME = 'trulii.routes.config';
     var options = {
         wrap: true,
-        environment: gutil.env.prod? "production" : "development"
+        environment: gutil.env.staging ? "staging" : gutil.env.prod? "production" : "development"
     };
 
     gutil.log('serverConf-injector. options: ' +  JSON.stringify(options));

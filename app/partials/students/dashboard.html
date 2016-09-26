@@ -1,6 +1,71 @@
-<div class="container-fluid">
-    <div class="row test-class">
-        <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80, 'hidden-xs': !dash.showSidebar, 'hidden-sm': !dash.showSidebar}" >
+<div class="container-fluid limited-width-dashboard-container">
+    <div class="row ">
+        
+        <ul class="sidebar sidebar-organizer hidden-xs hidden-sm">
+            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.profile')}">
+                <a ui-sref=".profile"
+                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_PROFILE); dash.hideSubItems()">
+                    <span ng-bind="::dash.strings.SECTION_PROFILE"></span>
+                </a>
+            </li>
+            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.account')}">
+                <a ui-sref=".account"
+                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACCOUNT); dash.hideSubItems()">
+                    <span ng-bind="::dash.strings.SECTION_ACCOUNT"></span>
+                </a>
+            </li>
+            <li class="sidebar__item" >
+                <a ng-click="dash.showSubItems(dash.strings.ACTIVITIES_ITEMS); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES)">
+                    <span ng-bind="::dash.strings.SECTION_ACTIVITIES"></span>
+                    <i class="fa fa-angle-right arrow-right"
+                       ng-class="{'rotate-icon': dash.isActive('student-dashboard.activities.*') || dash.subItems[dash.strings.ACTIVITIES_ITEMS]}" aria-hidden="true"></i>
+                 </a>
+                 <ul class="sidebar__item-subitems" 
+                    ng-class="{'sidebar__item-expanded': dash.isActive('student-dashboard.activities.*') || dash.subItems[dash.strings.ACTIVITIES_ITEMS]}" > 
+                    <li class="sidebar__item-subitem"  ng-class="{'sidebar__item-subitem--selected': dash.isActive('student-dashboard.activities.current')}">
+                        <a ui-sref=".activities.current"
+                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems(dash.strings.ACTIVITIES_ITEMS)">
+                            <span ng-bind="::dash.strings.SECTION_ACTIVITIES_CURRENT"></span>
+                        </a>
+                    </li>
+                    <li class="sidebar__item-subitem" ng-class="{'sidebar__item-subitem--selected': dash.isActive('student-dashboard.activities.open')}">
+                        <a ui-sref=".activities.open"
+                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems(dash.strings.ACTIVITIES_ITEMS)">
+                            <span ng-bind="::dash.strings.SECTION_ACTIVITIES_NEXT" ></span>
+                        </a>
+                    </li>
+                    <li class="sidebar__item-subitem" ng-class="{'sidebar__item-subitem--selected': dash.isActive('student-dashboard.activities.closed')}">
+                        <a ui-sref=".activities.closed"
+                            ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_ACTIVITIES); dash.hideSubItems(dash.strings.ACTIVITIES_ITEMS)">
+                            <span ng-bind="::dash.strings.SECTION_ACTIVITIES_LAST" ></span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.history.orders')}">
+                <a ui-sref=".history.orders"
+                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_HISTORY); dash.hideSubItems()">
+                    <span ng-bind="::dash.strings.SECTION_HISTORY"></span>
+                </a>
+            </li>
+            <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.wishlist')}">
+                <a ui-sref=".wishlist"
+                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION_WISHLIST); dash.hideSubItems()">
+                    <span ng-bind="::dash.strings.SECTION_WISHLIST"></span>
+                </a>
+            </li>
+             <li class="sidebar__item" ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.notifications')}">
+                <a ui-sref=".notifications"
+                    ng-click="dash.toggleSidebar(); dash.clickItemDash(dash.strings.SECTION__NOTIFICATIONS); dash.hideSubItems()">
+                    <span ng-bind="::dash.strings.SECTION_NOTIFICATIONS"></span>
+                    <span class="label label-notification separate-left-less"
+                            ng-if="dash.unreadNotificationsCount"
+                            ng-bind="dash.unreadNotificationsCount"></span>
+                </a>
+            </li>
+        </ul>
+        <div ui-view class="col-xs-12 with-footer" autoscroll="true"></div>
+        <!-- <div class="sidebar lateral-slide" ng-class="{'sidebar-short': dash.scroll > 80, 'hidden-xs': !dash.showSidebar, 'hidden-sm': !dash.showSidebar}" >
             <a ui-sref=".activities.current"
                class="sidebar__item"
                ng-class="{'sidebar__item--selected': dash.isActive('student-dashboard.activities.*')}"
@@ -38,10 +103,8 @@
                       ng-bind="dash.unreadNotificationsCount"></span>
             </a>
         </div>
-        <div class="col-xs-12 with-footer">
-          <div ui-view>
-          </div>
-        </div>
+         
+        
         <div class="sidebar-mobile-toggle visible-xs-block visible-sm-block" ng-class="{'short': dash.scroll > 80}"
             ng-click="dash.toggleSidebar()">
             <i class="sidebar__item__icon mdi-navigation-menu"></i>
@@ -58,6 +121,8 @@
             <a class="pull-right absolute-container__close hidden-md hidden-lg" ng-click="$event.stopPropagation();" ui-sref="home">
                 <img class="img-responsive" ng-src="{{dash.getAmazonUrl('static/img/close_dark.png')}}" alt=""/>
             </a>
-        </div>
+        </div>-->
     </div>
 </div>
+
+<trulii-footer></trulii-footer>

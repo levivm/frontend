@@ -12,13 +12,14 @@
         .module('trulii.search.controllers')
         .controller('SearchController', SearchController);
 
-    SearchController.$inject = ['$rootScope', '$scope', '$q', '$location', '$anchorScroll', '$state'
-            , '$window', '$stateParams', 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
+    SearchController.$inject = ['$rootScope', '$scope', '$q', '$state', '$stateParams', '$timeout'
+            , 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
             , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf'];
 
-    function SearchController($rootScope, $scope, $q, $location, $anchorScroll, $state
-            , $window, $stateParams , generalInfo, ActivitiesManager, LocationManager, SearchManager
+    function SearchController($rootScope, $scope, $q, $state, $stateParams, $timeout
+            , generalInfo, ActivitiesManager, LocationManager, SearchManager
             , datepickerConfig, datepickerPopupConfig, Analytics, serverConf) {
+
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
         var transitionOptions = {location : true, inherit : false, reload : false};
@@ -29,7 +30,7 @@
             levels : [],
             costs : [],
             orderByPredicate: null,
-            expandedCategory : null,
+            expandedCategories : [],
             searchData : {},
             searchQuery : null,
             searchCategory : null,
@@ -38,13 +39,12 @@
             searchDate : null,
             searchStartCost : 50000,
             searchEndCost : 250000,
-            withCert : false,
-            onWeekends : false,
             categories : [],
             format : FORMATS[0],
             minStartDate : new Date(),
             dateOptions : {
                 formatYear : 'yyyy',
+                formatDayHeader : "EEE",
                 startingDay : 1
             },
             activitiesPaginationOpts : {
@@ -73,32 +73,44 @@
             setWeekends : setWeekends,
             pageChange : pageChange,
             changeOrderBy : changeOrderBy,
-            toggleSidebar: toggleSidebar,
             showSidebar: false,
             toggleFilters: toggleFilters,
             showFilters: false,
             newSearchQuery: '',
-            search: search,
-            collapsedFilters: false,
-            collapseFilters: collapseFilters,
             loadingActivities: true,
             getAmazonUrl: getAmazonUrl,
-            cards: []
+            cards: [],
+            expandedSort: false,
+            toggleExpandedSort: toggleExpandedSort,
+            cities: [],
+            searchCity: null,
+            updateCity: updateCity,
+            setFree: setFree,
+            freeOptions: freeOptions,
+            searchAll:searchAll,
+            checkboxFilters: {
+                withCert : false,
+                onWeekends : false,
+                isFree: false,
+            },
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
+        
+        function updateCity(){
+            LocationManager.setSearchCity(vm.searchCity);
+        }
+        
+        function toggleExpandedSort(){
+            vm.expandedSort = !vm.expandedSort;
+        }
+        
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
 
-        function collapseFilters(){
-          vm.collapsedFilters = !vm.collapsedFilters;
-        }
-        function toggleSidebar(){
-          vm.showSidebar = !vm.showSidebar;
-        }
 
         function toggleFilters(){
           vm.showFilters = !vm.showFilters;
@@ -109,43 +121,57 @@
             $event.stopPropagation();
             vm.opened = true;
         }
+        function searchAll(){
+            vm.searchCategory = undefined;
+            vm.searchSubCategory = undefined;
+            vm.newSearchQuery = undefined;
+            SearchManager.setQuery(vm.newSearchQuery);
+            SearchManager.setSubCategory(vm.searchSubCategory);
+            SearchManager.setCategory(vm.searchCategory);
+            _setPage(1);
+            _search();
+            _collapseCategories();
 
-        function setCategory(category, initializing) {
+            
+        }
+        function setCategory(category, initializing, $event) {
+
+            if ($event){$event.preventDefault();$event.stopPropagation();}
             if (!category) { return; }
+            vm.newSearchQuery = SearchManager.getQueryChange();
 
-            if (vm.searchCategory === category.id || category === vm.strings.ACTION_ALL_FILTER) {
-                vm.searchCategory = undefined;
-            } else {
-                vm.searchCategory = category.id;
+            vm.searchCategory = category.id;
+            vm.searchData["category_display"] = category.name;
 
-            }
-
-            _expandCategory(category);
             SearchManager.setCategory(vm.searchCategory);
 
             if (!initializing){
                 vm.searchSubCategory = undefined;
                 SearchManager.setSubCategory(vm.searchSubCategory);
-                if(!_isMobile()){
-                  _search();
-                }
+                _setPage(1);
+                _search();
+            }
+            else{
+                _expandCategory(category);
             }
             Analytics.generalEvents.searchCategory(category.name);
         }
-
-        function setSubCategory(subcategory) {
+        function setSubCategory(subcategory, $event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            vm.newSearchQuery = SearchManager.getQueryChange();
             if (vm.searchSubCategory == subcategory.id) {
                 vm.searchSubCategory = undefined;
             } else {
                 vm.searchSubCategory = subcategory.id;
-                vm.searchCategory = subcategory.category;
+                vm.searchCategory = _.find(vm.categories, { 'id': subcategory.category});
+                vm.searchData["subcategory_display"] = subcategory.name;
+                vm.searchData["category_display"] = vm.searchCategory.name;
             }
-
-            SearchManager.setCategory(vm.searchCategory);
+            SearchManager.setCategory(vm.searchCategory.id);
             SearchManager.setSubCategory(vm.searchSubCategory);
-            if(!_isMobile()){
-              _search();
-            }
+            _setPage(1);
+            _search();
 
             Analytics.generalEvents.searchSubCategory(subcategory.name);
         }
@@ -163,18 +189,15 @@
             SearchManager.setLevel(vm.searchLevel.code);
             Analytics.generalEvents.searchLevel(vm.searchLevel.value);
           }
-
-          if(!_isMobile()){
-            _search();
-          }
+          _setPage(1);
+          _search();
 
         }
 
         function setDate() {
             SearchManager.setDate(vm.searchDate.getTime());
-            if(!_isMobile()){
-              _search();
-            }
+            _setPage(1);
+            _search();
             Analytics.generalEvents.searchDate(vm.searchDate);
         }
 
@@ -183,77 +206,107 @@
         }
 
         function stopDrag() {
-            if(!_isMobile()){
-                Analytics.generalEvents.searchRange(vm.searchData.cost_start+'-'+vm.searchData.cost_end);
-              _search();
+            Analytics.generalEvents.searchRange(vm.searchData.cost_start+'-'+vm.searchData.cost_end);
+            _setPage(1);
+            _search();
+        }
+
+        function setFree(){
+            if(vm.checkboxFilters.isFree){
+                SearchManager.setFree(true);
+                document.getElementById('slider-anchor').setAttribute('disabled', true);
             }
+            else{
+                SearchManager.setFree(false);
+                document.getElementById('slider-anchor').removeAttribute('disabled');
+            }
+            _setPage(1);
+            _search();
         }
 
         function setCertification() {
-            vm.withCert = !vm.withCert;
-            SearchManager.setCertification(vm.withCert);
-            Analytics.generalEvents.searchCertificate(vm.withCert);
-            if(!_isMobile()){
-              _search();
+            if(vm.checkboxFilters.withCert){
+                SearchManager.setCertification(true);
             }
+            else{
+                SearchManager.setCertification(false);
+            }
+            Analytics.generalEvents.searchCertificate(vm.checkboxFilters.withCert);
+            _setPage(1);
+            _search();
         }
 
         function setWeekends() {
-            vm.onWeekends = !vm.onWeekends;
-            console.log(vm.onWeekends);
-            SearchManager.setWeekends(vm.onWeekends);
-            Analytics.generalEvents.searchWeekends(vm.onWeekends);
-            if(!_isMobile()){
-              _search();
+            if(vm.checkboxFilters.onWeekends){
+                SearchManager.setWeekends(true);
             }
+            else{
+                SearchManager.setWeekends(false);
+            }
+            Analytics.generalEvents.searchWeekends(vm.checkboxFilters.onWeekends);
+            _setPage(1);
+            _search();
         }
 
         function pageChange() {
             _setPage();
-            if(!_isMobile()){
-              _search();
-            }
+            _search();
         }
 
         function changeOrderBy(predicate) {
             vm.activitiesPaginationOpts.pageNumber = 1;
-            vm.searchData[SearchManager.KEY_ORDER] = predicate;
             SearchManager.setOrder(predicate);
             _setPage(1);
-            if(!_isMobile()){
-              _search();
-            }
+            _search();
         }
 
         function getLevelClassStyle(level) {
-            //console.log(level);
-            //console.log(vm.searchLevel);
             return { 'btn-active' : vm.searchLevel ? vm.searchLevel.code === level.code : false };
         }
 
-        function search(){
-          _search();
+        function freeOptions(option){
+            return ! ((option.predicate === 'min_price' || option.predicate === 'max_price')  && vm.checkboxFilters.isFree);
         }
-
         //--------- Internal Functions ---------//
 
-        function _isMobile(){
-          return $window.innerWidth < 992;
+        function _collapseCategories(){
+            vm.expandedCategories.pop();
+            vm.expandedCategories.pop();
         }
         function _expandCategory(category) {
-            vm.expandedCategory = vm.expandedCategory == category.id ? null : category.id;
+
+            if (!vm.searchCategory){
+                vm.expandedCategories.pop();
+                vm.expandedCategories.push(category.id);
+                return;
+            }
+
+            // In category is already expanded, contract it.
+            if (_.includes(vm.expandedCategories, category.id)){
+                vm.expandedCategories.splice(0);
+                vm.expandedCategories.push(vm.searchCategory.id);
+                return;
+            }
+
+            vm.expandedCategories.splice(0);
+            vm.expandedCategories.push(category.id);
+            vm.expandedCategories.push(vm.searchCategory.id);
+
         }
 
         function _setPage(page){
-            if(!page){ page = vm.activitiesPaginationOpts.pageNumber; }
+            if(!page)
+                page = vm.activitiesPaginationOpts.pageNumber; 
+            else
+                vm.activitiesPaginationOpts.pageNumber = page;
+
             page = page.toString();
             SearchManager.setPage(page);
             vm.searchData[SearchManager.KEY_PAGE] = page;
-
         }
 
         function _getActivities(searchData) {
-            return SearchManager.searchActivities(searchData).then(success, error);
+            return SearchManager.searchActivities(SearchManager.getSearchData()).then(success, error);
 
             function success(response) {
                 vm.activities = response.activities;
@@ -268,7 +321,6 @@
             }
 
             function error(error) {
-              console.log(error);
                 console.log('_getActivities. Error obtaining Activities from ActivitiesManager');
 
             }
@@ -278,14 +330,20 @@
             var sm = SearchManager;
             var deferred = $q.defer();
             sm.setPageSize(vm.activitiesPaginationOpts.itemsPerPage);
-            vm.searchData = sm.getSearchData($stateParams);
+
+            var searchData = angular.copy($stateParams);
+            vm.searchData = sm.getSearchData(searchData);
             vm.searchQuery = vm.searchData[sm.KEY_QUERY];
             vm.newSearchQuery = vm.searchData[sm.KEY_QUERY];
             vm.activitiesPaginationOpts.pageNumber = vm.searchData[sm.KEY_PAGE];
+            
 
             if ($stateParams.city) {
-                var city = LocationManager.getCityById(parseInt($stateParams.city));
-                LocationManager.setSearchCity(city);
+                LocationManager.getCityById(parseInt($stateParams.city)).then(function(city){
+                     LocationManager.setSearchCity(city);
+                     vm.searchCity = city;
+                });
+                
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_DATE)) {
@@ -307,12 +365,20 @@
                 vm.searchEndCost = vm.searchData[sm.KEY_COST_END];
             }
 
-            if (vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION]) {
-                vm.withCert = vm.searchData[sm.KEY_CERTIFICATION];
+            if (vm.searchData.hasOwnProperty(sm.KEY_QUERY)) {
+                vm.searchQuery = vm.searchData[sm.KEY_QUERY];
+            }
+
+            if (vm.searchData.hasOwnProperty(sm.KEY_CERTIFICATION) && vm.searchData[sm.KEY_CERTIFICATION])  {
+                vm.checkboxFilters.withCert = vm.searchData[sm.KEY_CERTIFICATION] === true;
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_WEEKENDS) && vm.searchData[sm.KEY_WEEKENDS]) {
-                vm.onWeekends = vm.searchData[sm.KEY_WEEKENDS];
+                vm.checkboxFilters.onWeekends = vm.searchData[sm.KEY_WEEKENDS] === true;
+            }
+
+            if (vm.searchData.hasOwnProperty(sm.KEY_FREE) && vm.searchData[sm.KEY_FREE]) {
+                vm.checkboxFilters.isFree = vm.searchData[sm.KEY_FREE] === true;
             }
 
             if (vm.searchData.hasOwnProperty(sm.KEY_CATEGORY)) {
@@ -370,46 +436,38 @@
             function watchEndCost() { return vm.searchEndCost; }
         }
 
-        function _scrollToCurrentCategory() {
-            $location.hash(vm.searchData["category_display"]);
-            $anchorScroll();
-        }
-
         function _search() {
             vm.loadingActivities = true;
             SearchManager.setQuery(vm.newSearchQuery);
-            var searchData = SearchManager.getSearchData();
-            $state.go('search', vm.searchData,  {notify: false});
-            _getActivities(vm.searchData).then(function () {
-                //_scrollToCurrentCategory();
-            });
 
+            vm.searchData = SearchManager.getSearchData();
+            _getActivities(vm.searchData).then(function () {
+                $state.go('search', vm.searchData,  {notify:false, reload:false, inherit:false}); 
+            });
+        
         }
 
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_CLOSE : "Cerrar",
-                ACTION_SEARCH: "Buscar",
                 ACTION_ALL_FILTER : "Todas",
+                ACTION_ALL_ACTIVITIES: "Ver todas las actividades",
                 COPY_RESULTS : "resultados ",
                 COPY_FOR : "para ",
                 COPY_IN : "en",
-                OPTION_SELECT_LEVEL : "-- Nivel --",
-                PLACEHOLDER_DATE : "A Partir de",
-                COPY_INTERESTS : "¿Qué tema te interesa?",
                 LABEL_SORT_BY: "Ordenar por",
                 LABEL_LEVEL : "Nivel",
                 LABEL_COST : "Precio",
-                LABEL_DATE : "Desde",
-                LABEL_WITH_CERTIFICATE : "Con Certificado",
+                LABEL_DATE : "Fecha de inicio",
+                LABEL_OTHERS: "Otros",
+                LABEL_WITH_CERTIFICATE : "Con certificado",
                 LABEL_WEEKENDS : "Fines de Semana",
-                LABEL_EMPTY_SEARCH : "Houston, tenemos un problema.",
-                COPY_EMPTY_SEARCH : "Puede que no tengamos lo que estés buscando."
+                LABEL_EMPTY_SEARCH : "Houston, tenemos un problema."
+                + " Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
-                PLACEHOLDER_WANT_TO_LEARN: '¿Qué quieres aprender hoy?',
-                SHOW_FILTERS: "Mostrar filtros",
-                COLLAPSE_FILTERS: "Ocultar filtros"
+                LABEL_FILTER_ACTIVITIES: "Filtrar actividades",
+                LABEL_FREE: "Clases gratis"
             });
         }
 
@@ -417,7 +475,12 @@
             unsuscribeSearchModified();
             //unsuscribeExitSearch();
         }
-
+        
+        function _setCities(){
+            LocationManager.getAvailableCities().then(function(data){
+                vm.cities = data;
+            });
+        }
         function _activate() {
             datepickerPopupConfig.showButtonBar = false;
             datepickerConfig.showWeeks = false;
@@ -425,19 +488,37 @@
             _setStrings();
             _setGeneralInfo();
             _getSearchParams();
-            _getActivities($stateParams).then(function () {
-                _scrollToCurrentCategory();
-            });
-
-            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event, data) {
-                    angular.extend(data, SearchManager.getSearchData());
-                    vm.searchData = data;
-                    _search();
+            _getActivities($stateParams);
+            _setCities();
+            unsuscribeSearchModified = $rootScope.$on(SearchManager.EVENT_SEARCH_MODIFIED, function (event) {
+                    vm.searchData = SearchManager.getSearchData();
+                    _setPage(1);
+                    _getActivities(vm.searchData).then(function () {
+                        $state.go('search', vm.searchData,  {notify:false, reload:false, inherit:false}); 
+                    });
                 }
             );
 
+            $rootScope.$on(SearchManager.EVENT_QUERY_MODIFIED, function(){
+                vm.searchQuery = SearchManager.getQuery();
+                vm.newSearchQuery = SearchManager.getQuery();
+                
+            });
 
+            angular.element(document).ready(function () {
+                
+                    $timeout(function(){
+                        if(vm.checkboxFilters.isFree === true){
+                            document.getElementById('slider-anchor').setAttribute('disabled', true);
+                        }
+                    });
+                
+            });
+            
             $scope.$on('$destroy', _cleanUp);
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

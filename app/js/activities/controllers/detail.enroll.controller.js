@@ -29,12 +29,12 @@
 
     ActivityDetailEnrollController.$inject = ['$state', '$window', '$sce','$scope', 'ActivitiesManager',
         'StudentsManager', 'Payments', 'Authentication', 'Toast', 'Error', 'activity', 'calendar', 'currentUser',
-        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf', '$filter', 'moment'];
+        'deviceSessionId', 'defaultPicture', 'defaultCover', 'Elevator', 'LocationManager', 'Referrals', 'Scroll', 'Analytics', 'serverConf', '$filter', 'moment', '$stateParams'];
 
     function ActivityDetailEnrollController($state, $window, $sce, $scope, ActivitiesManager,
                                             StudentsManager, Payments, Authentication, Toast, Error,
                                             activity, calendar, currentUser, deviceSessionId, defaultPicture, defaultCover,
-                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf, $filter, moment) {
+                                            Elevator, LocationManager, Referrals, Scroll, Analytics, serverConf, $filter, moment, $stateParams) {
 
         var vm = this;
         var isValidDate = false;
@@ -53,7 +53,9 @@
             amount : null,
             showTerms : false,
             showReimbursement : false,
+            enrolling: false,
             coupon: {},
+            package: null,
             quantity : 0,
             assistants : [],
             assistantsForms:[],
@@ -64,13 +66,14 @@
             widgetAbsolutePosition: 0,
             showWidget: true,
             processingPayment: false,
-
+            attendeesOffset: 0,
             addAssistant : addAssistant,
             removeAssistant : removeAssistant,
             enroll : enroll,
             isAnonymous : isAnonymous,
             appendPayUUniqueId: appendPayUUniqueId,
             checkCardExpiry : checkCardExpiry,
+            checkCvv: checkCvv,
             getCardType: getCardType,
             changePSEPaymentMethod: changePSEPaymentMethod,
             changeCCPaymentMethod: changeCCPaymentMethod,
@@ -82,16 +85,28 @@
             removeCoupon: removeCoupon,
             getAmazonUrl: getAmazonUrl,
             changeCalendar:changeCalendar,
+            changePackage: changePackage,
+            attendeesScrollDown: attendeesScrollDown,
+            attendeesScrollUp: attendeesScrollUp,
+            setPayment: setPayment,
 
             cardData : {
-                "name_card": "APPROVED",
-                "identificationNumber": "32144457",
-                "number": "4111111111111111",
-                exp_month: 1,
-                exp_year: 2016,
-                cvv: null,
+                "name_card": "",
+                "identificationNumber": "",
+                "number": "",
+                exp_month: null,
+                exp_year: null,
+                cvv: "",
                 "method": ""
+                // "name_card": "APPROVED",
+                // "identificationNumber": "32144457",
+                // "number": "4111111111111111",
+                // exp_month: 1,
+                // exp_year: 2016,
+                // cvv: null,
+                // "method": ""
             },
+            selectedPayment: 'card',
             pseFormData: {
                 "banksList": [],
                 "userTypes":[
@@ -130,21 +145,30 @@
         }
 
         function changeCalendar(calendar){
-          console.log(vm.activity);
           vm.calendar = _mapVacancy(calendar);
-          console.log(vm.calendar);
           vm.capacity = vm.calendar.capacity;
-          vm.amount = vm.calendar.session_price;
-          _setTotalCost();
+          _calculateAmount();
 
+        }
+        function changePackage(_package){
+          vm.package = _package;
+          _calculateAmount();
         }
 
         function changeMonth(){
-          var numberMonth = moment().month(vm.monthSelected).format("M")
+          var numberMonth = moment().month(vm.monthSelected).format("M");
           vm.cardData.exp_month =  Number(numberMonth);
         }
 
 
+        function setPayment(){
+            if(vm.selectedPayment === 'card'){
+                changeCCPaymentMethod();
+            }
+            else{
+                changePSEPaymentMethod();
+            }
+        }
         /** PSE Payments Methods **/
 
         function changePSEPaymentMethod(){
@@ -191,6 +215,7 @@
                 var bank = vm.pseData.selectedBank ? vm.pseData.selectedBank.pseCode : null;
                 var userType = vm.pseData.selectedUserType ? vm.pseData.selectedUserType.value : null;
                 var idNumber = vm.pseData.idNumber;
+                var idType = vm.pseData.idType;
 
                 var buyer_pse_data = {
                      response_url: Payments.PAYU_RESPONSE_URL,
@@ -210,15 +235,19 @@
                     payment_method: Payments.KEY_PSE_PAYMENT_METHOD,
 
                 };
+                if(activity.is_open){
+                    data.package = vm.package.id;
+                }
                 _startProccesingPayment();
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                             .finally(_finishProccesingPayment);
 
-                function _enrollSuccess(data) {
+                function _enrollSuccess(response) {
                     Analytics.studentEvents.enrollPayPse();
                     vm.success = true;
                     var bank_url = response.bank_url;
                     $window.location.href = bank_url;
+                    vm.enrolling = false;
                 }
 
                 function _enrollError(response){
@@ -233,17 +262,17 @@
                             return (!(_.isEmpty(error_dict)));
                         });
                         var base_selector = 'assistant_card_';
-                        // console.log('selector',base_selector.concat(error_index));
+                        console.log('selector',base_selector.concat(error_index));
                         Elevator.toElement(base_selector.concat(error_index));
                         Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                     }
+                    vm.enrolling = false;
 
                 }
 
             }
 
             function getStudentError(response){
-                console.log("Error getting current logged student:", response);
             }
         }
 
@@ -254,14 +283,22 @@
 
             function success(cardType){
                 Error.form.clearField(vm.enrollForm,'cardMethod');
-                console.log("card type:", cardType);
                 vm.cardData.method = cardType;
 
             }
 
             function error(){
                 vm.cardData.method = null;
-                console.log("Couldn't check card type");
+            }
+        }
+        function checkCvv(){
+            Error.form.clear(vm.enrollForm);
+            
+            if(vm.cardData.cvv.length !== 3){
+                Error.form.add(vm.enrollForm, {'invalidCvv': ["CVV inválido"]});
+            }
+            else{
+                Error.form.clearField(vm.enrollForm,'invalidCvv');
             }
         }
 
@@ -275,7 +312,6 @@
             }
 
             function success(isValid){
-                console.log("checkCardExpiry. isValid:", isValid);
                 if(isValid){
                     isValidDate = true;
                     Error.form.clearField(vm.enrollForm,'invalidExpiry');
@@ -286,7 +322,6 @@
             }
 
             function error(){
-                console.log("Couldn't validate card expiry date");
                 isValidDate = false;
                 Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
             }
@@ -297,7 +332,6 @@
             Referrals.getCoupon(vm.coupon.code).then(success, error);
 
             function success(coupon){
-                console.log('coupon response', coupon);
                 if(coupon){
                     vm.hasCouponApplied = true;
                     vm.invalidCoupon = false;
@@ -333,12 +367,14 @@
                 assistants: vm.assistants,
             };
 
+            if(activity.is_open){
+                data.package = vm.package.id;
+            }
             ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                               .finally(_finishProccesingPayment);
 
 
             function _enrollSuccess(order) {
-                console.log('enrollSuccessFree');
                 Analytics.studentEvents.enrollSuccessFree();
                 vm.calendar.addAssistants(order.assistants);
                 vm.success = true;
@@ -348,6 +384,7 @@
 
             function _enrollError(response){
                 var error = response.data;
+                vm.enrolling = false;
                 if (!(error.assistants)){
                     Error.form.add(vm.enrollForm, error);
                 }
@@ -357,7 +394,6 @@
                         return (!(_.isEmpty(error_dict)));
                     });
                     var base_selector = 'assistant_card_';
-                    // console.log('selector',base_selector.concat(error_index));
                     Elevator.toElement(base_selector.concat(error_index));
                     Error.form.addMultipleFormsErrors(vm.assistantsForms, error.assistants);
                 }
@@ -366,13 +402,13 @@
         }
 
         function enroll() {
+            vm.enrolling = true;
             Error.form.clear(vm.enrollForm);
             Error.form.clearField(vm.enrollForm,'generalError');
             if(vm.paymentWithPse){
                 enrollPSE();
             }
             else if (vm.calendar.is_free){
-
                 enrollFree();
             }
              else {
@@ -393,14 +429,15 @@
 
             function getStudentError(response){
                 console.log("Error getting current logged student:", response);
+                vm.enrolling = false;
             }
 
             function successCheckCardExpiry(isValid){
                 isValidDate = true;
-                // vm.cardData.invalidExpiry = true;
                 Error.form.clearField(vm.enrollForm,'invalidExpiry');
                 Payments.validateCardType(vm.cardData.number)
                         .then(validateCardTypeSuccess,validateCardTypeError);
+                vm.enrolling = false;
             }
 
             function errorCheckCardExpiry(response){
@@ -408,6 +445,7 @@
                 isValidDate = false;
                 Error.form.add(vm.enrollForm, {'invalidExpiry': ["Fecha de Vencimiento inválida"]});
                 _finishProccesingPayment();
+                vm.enrolling = false;
             }
 
             function validateCardTypeSuccess(cardType){
@@ -415,12 +453,14 @@
                 Error.form.clearField(vm.enrollForm,'generalError');
                 var cardData = _.clone(vm.cardData);
                 Payments.getToken(cardData).then(getTokenSuccess, getTokenError).finally(_finishProccesingPayment);
+                vm.enrolling = false;
             }
 
             function validateCardTypeError(){
                 Error.form.add(vm.enrollForm, {'cardMethod': ["Tipo de tarjeta inválido"]});
                 console.log("Couldn't check card type");
                 _finishProccesingPayment();
+                vm.enrolling = false;
             }
 
             function getTokenSuccess(response){
@@ -441,7 +481,8 @@
                     buyer: buyer,
                     last_four_digits: last_four_digits,
                     deviceSessionId : deviceSessionId,
-                    payment_method: Payments.KEY_CC_PAYMENT_METHOD
+                    payment_method: Payments.KEY_CC_PAYMENT_METHOD,
+                    package: vm.package ? vm.package.id : null
                 };
 
                 data[Payments.KEY_CARD_ASSOCIATION] = response[Payments.KEY_METHOD];
@@ -461,11 +502,13 @@
                     vm.calendar.addAssistants(order.assistants);
                     vm.success = true;
                     $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':vm.calendar.id,
-                                        'order_id':order.id});
+                                        'order_id':order.id, 'package_quantity': vm.package ? vm.package.quantity : null,
+                                        'package_type': vm.package ? vm.package.type_name : null});
                 }
 
                 function _enrollError(response){
                     var error = response.data;
+                    vm.enrolling = false;
                     if (!(error.assistants)){
                         Error.form.add(vm.enrollForm, error);
                     }
@@ -522,8 +565,8 @@
         function removeAssistant(index) {
             if (vm.quantity > 1) {
                 vm.quantity -= 1;
-                vm.assistants.splice(index, 1);
-                vm.assistantsForms.splice(index, 1);
+                vm.assistants.splice(vm.quantity, 1);
+                vm.assistantsForms.splice(vm.quantity, 1);
                 _calculateAmount();
             } else {
                 Toast.warning('Es necesario al menos un asistente a inscribir');
@@ -531,9 +574,7 @@
         }
 
         function addAssistant() {
-          console.log(vm.calendar.available_capacity);
-            if (vm.quantity  < vm.calendar.available_capacity) {
-
+            if ((vm.quantity  < vm.calendar.available_capacity && !vm.activity.is_open) || vm.activity.is_open) {
                 vm.quantity += 1;
                 vm.assistants.push({});
                 _calculateAmount();
@@ -561,15 +602,28 @@
             vm.showReimbursement = !vm.showReimbursement;
         }
 
+        function attendeesScrollDown(){
+            vm.attendeesOffset--;
+            document.getElementsByClassName('attendees-container__body__attendees-list')[0].css('transform', 'translateY('+ vm.attendeesOffset*45 +')');
+        }
+
+        function attendeesScrollUp(){
+            vm.attendeesOffset++;
+            document.getElementsByClassName('attendees-container__body__attendees-list')[0].css('transform', 'translateY('+ vm.attendeesOffset*45 +')');
+        }
+
         //--------- Internal Functions ---------//
 
         function _calculateAmount() {
-            vm.amount = vm.quantity * vm.calendar.session_price;
+            vm.amount = vm.quantity * _getSelectedCalendarPrice();
             _setTotalCost();
         }
 
         function _isAllBooked(){
-            return vm.calendar.available_capacity <= 0;
+            if(!activity.is_open){
+                return vm.calendar.available_capacity <= 0;
+            }
+            return false;
         }
 
         function _mapMainPicture(activity){
@@ -590,15 +644,35 @@
         }
 
         function _mapVacancy(calendar){
-            calendar.vacancy = calendar.available_capacity;
-            calendar.total_price = calendar.session_price * calendar.sessions.length;
+            if(!activity.is_open){
+                calendar.vacancy = calendar.available_capacity;
+                calendar.total_price = calendar.session_price;
+                return calendar;
+            }
             return calendar;
         }
 
+        function _getPrice(calendar){
+            console.log(activity.is_open);
+            console.log("packete ---", vm.package);
+            if (activity.is_open && vm.package)
+                return vm.package.price;
+
+            return calendar.session_price;
+        }
+
         function _setTotalCost(){
-            if(vm.calendar.is_free) {
-             vm.totalCost = 0;
-            } else {
+            if(!activity.is_open){
+                if(vm.calendar.is_free) {
+                    vm.totalCost = 0;
+                } else {
+                    vm.totalCost = vm.amount;
+                    if(vm.coupon.amount){
+                        vm.totalCost = vm.amount - vm.coupon.amount;
+                    }
+                }
+            }
+            if(activity.is_open){
                 vm.totalCost = vm.amount;
                 if(vm.coupon.amount){
                     vm.totalCost = vm.amount - vm.coupon.amount;
@@ -607,10 +681,20 @@
         }
 
         function _setAssistants() {
-            if(_isAllBooked()) {
-                vm.quantity = 0;
-                vm.assistants = [];
-            } else {
+            if(!activity.is_open){
+                if(_isAllBooked()) {
+                    vm.quantity = 0;
+                    vm.assistants = [];
+                } else {
+                    vm.quantity = 1;
+                    if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
+                        vm.assistants = [{}];
+                    } else {
+                        vm.assistants = [angular.extend({}, currentUser.user)];
+                    }
+                }
+            }
+            else{
                 vm.quantity = 1;
                 if(vm.calendar.hasAssistantByEmail(currentUser.user.email)){
                     vm.assistants = [{}];
@@ -618,17 +702,13 @@
                     vm.assistants = [angular.extend({}, currentUser.user)];
                 }
             }
-        }
+       }
 
         function _setOrganizer(){
             if(!activity.organizer.photo){
                 activity.organizer.photo = defaultPicture;
             }
 
-            if (activity.organizer.locations[0]){
-                var city_id = activity.organizer.locations[0].city;
-                activity.organizer.city = LocationManager.getCityById(city_id).name;
-            }
         }
 
         function _showWidget(){
@@ -696,19 +776,22 @@
                 COPY_VACANCY: " Vacantes",
                 COPY_TO: " a ",
                 COPY_COVER: "Te quieres inscribir en:",
+                COPY_SCHEDULE_TYPE: "Horario:",
+                COPY_AVAILABLE: "Disponibilidad",
                 COPY_SIGN_UP: "¿Quieres inscribirte en esta actividad?",
                 COPY_ONE_MORE_STEP: "¡Estás a un paso! ",
                 COPY_NO_ACCOUNT: "¿No tienes cuenta en Trulii? ¡No hay problema! ",
                 COPY_UNTIL_NOW: "Hasta ahora",
-                COPY_ANY_DOUBT: "¿Alguna duda? ",
+                COPY_ANY_DOUBT: "¿Problemas o dudas en el pago? ",
                 COPY_RELEASE: "Haciendo click en \"Inscribir\" estoy de acuerdo con el monto total a cancelar,"
                 + " el cual incluye la comisión de la plataforma de pago,"
                 + " y con los",
-                COPY_RELEASE_1: "Al confirmar la inscripción, estás de acuerdo con el monto total a cancelar, la ",
-                COPY_RELEASE_2: "Política de reembolso del organizador ",
-                COPY_RELEASE_3: "y con los ",
-                COPY_RELEASE_4: "Términos y condiciones ",
-                COPY_RELEASE_5: "de Trulii",
+                COPY_RELEASE_1: "Al confirmar la inscripción, estás de acuerdo con el monto total a cancelar,",
+                COPY_RELEASE_2: "al ",
+                COPY_RELEASE_3: "Política de reembolso del organizador ",
+                COPY_RELEASE_4: "y con los ",
+                COPY_RELEASE_5: "Términos y condiciones ",
+                COPY_RELEASE_6: "de Trulii",
                 COPY_SLIDEBAR_TERMS_TITLE: "Términos y condiciones",
                 COPY_SLIDEBAR_TERMS_HEADER: "Titulo de terminos y condiciones",
                 COPY_SLIDEBAR_TERMS_BODY: "All work and no play makes Jack a dull boy",
@@ -717,9 +800,9 @@
                 COPY_SLIDEBAR_REIMBURSEMENT_BODY: "No hay politicas de reembolso",
                 COPY_INVALID_COUPON: "Número de Cupón Inválido",
                 LABEL_APPLY_COUPON: "Aplicar Cupón",
-                LABEL_FREE_CALENDAR: "Actividad Gratis",
+                LABEL_FREE_CALENDAR: "Gratis",
                 COPY_FREE_CALENDAR_1: "Hoy es tu día de suerte",
-                COPY_FREE_CALENDAR_2: "No tienes que ingresar ningún pago. Sólo dale click a CONFIRMAR INSCRIPCIÓN",
+                COPY_FREE_CALENDAR_2: "Esta actividad es totalmente GRATUITA. ¡Sólo tienes que confirmar tu inscripción y listo!.",
                 LABEL_CREDIT: "Crédito",
                 LABEL_COUPON: "Cupón",
                 LABEL_CONTACT_US: "Contáctanos",
@@ -727,7 +810,8 @@
                 LABEL_ASSISTANTS: "Asistentes",
                 LABEL_SEATS_X: "Cupos X ",
                 LABEL_ACTIVITY_INFO: "Información de la Actividad",
-                LABEL_ACTIVITY_SESSIONS: "Horario",
+                LABEL_REPEAT_INFO:"Esta actividad se repite en otras oportunidades",
+                LABEL_SCHEDULES: "Horarios",
                 LABEL_START_DATE: "Fecha de Inicio",
                 LABEL_NUMBER_OF_SESSIONS: "Nro. de Sesiones",
                 LABEL_AVAILABLE_SEATS: "Cupos Restantes",
@@ -735,44 +819,108 @@
                 LABEL_PRICE: "Precio",
                 LABEL_QUANTITY: "Cantidad",
                 LABEL_TOTAL: "Total",
-                LABEL_SCHEDULES: "Cronogramas",
                 LABEL_FIRST_NAME: "Nombre",
                 LABEL_LAST_NAME: "Apellido",
                 LABEL_EMAIL: "Email",
-                LABEL_PAYMENT_INFO: "Información de Pago",
+                PLACEHOLDER_EMAIL: "Email (opcional)",
+                LABEL_PAYMENT_INFO: "Pago",
                 LABEL_TOTAL_AMOUNT: "Total a Pagar",
                 LABEL_DROPDOWN_DATE_INIT: "Fecha de inicio: ",
-                LABEL_ID_NUMBER:"Número de identificación",
+                LABEL_DROPDOWN_PACKAGE: "Plan: ",
+                LABEL_ID_NUMBER: "Identificación",
+                PLACEHOLDER_ID_NUMBER: "Ej. 18.345.995",
                 LABEL_CLIENT_NAME_LAST_NAME:"Nombres y Apellidos",
-                LABEL_BANK:"Banco",
-                OPTION_BANK_DEFAULT:"-- Seleccione Banco --",
+                LABEL_BANK: "Elige un banco",
+                OPTION_BANK_DEFAULT: "Elige un banco",
                 LABEL_USER_TYPE:"Tipo de Persona",
-                OPTION_USER_TYPE_DEFAULT:"-- Seleccione --",
+                OPTION_USER_TYPE_DEFAULT: "Elige una opción",
                 LABEL_ID_TYPE:"Tipo de Documento de Identificación",
-                OPTION_ID_TYPE_DEFAULT:"-- Seleccione Tipo de Documento --",
+                OPTION_ID_TYPE_DEFAULT:"Elige un documento de identidad",
 
-                LABEL_PHONE_NUMBER:"Teléfono",
+                LABEL_PHONE_NUMBER: "Teléfono de uso diario",
+                PLACEHOLDER_PHONE_NUMBER: "Ej. 5723488800",
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
-                LABEL_CARD_HOLDER: "Nombre en la tarjeta",
-                PLACEHOLDER_CARD_HOLDER: "Nombre en la tarjeta",
-                LABEL_CARD_NUMBER:"Número de tarjeta",
+                LABEL_CARD_HOLDER: "Nombre del titular",
+                PLACEHOLDER_CARD_HOLDER: "Ej. Daniel Peréz Jimenez",
+                LABEL_CARD_NUMBER:"Número de tarjeta de credito",
                 PLACEHOLDER_CARD_NUMBER: "Número de tarjeta",
                 LABEL_EXPIRY_DATE : "Fecha de Expiración",
                 LABEL_MONTH: "Mes",
                 PLACEHOLDER_MONTH: "MM",
-                PLACEHOLDER_SELECT_MONTH: "Seleccione el mes",
-                PLACEHOLDER_SELECT_YEAR: "Seleccione el año",
+                PLACEHOLDER_SELECT_MONTH: "Elige el mes",
+                PLACEHOLDER_SELECT_YEAR: "Elige el año",
                 LABEL_YEAR: "Año",
                 PLACEHOLDER_YEAR: "YYYY",
                 LABEL_CVV:"CVV",
-                PLACEHOLDER_CVV:"CVV"
+                PLACEHOLDER_CVV:"CVV",
+                LABEL_CARD: "Tarjeta",
+                LABEL_PSE: "PSE",
+
+                COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
+                COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
+                REASON_NO_COMMISSIONS: "Sin Comisiones",
+                REASON_COPY_NO_COMMISSIONS_1: "Nuestro servicio para ti",
+                REASON_COPY_NO_COMMISSIONS_2: "es totalmente gratuito.",
+                REASON_REFUND: "Devolución Garantizada",
+                REASON_COPY_REFUND_1: "Protegemos tu pago hasta",
+                REASON_COPY_REFUND_2: "que se efectúe la clase.",
+                REASON_SECURE: "Pago Seguro",
+                REASON_COPY_SECURE_1: "Los datos del pago de tu",
+                REASON_COPY_SECURE_2: "inscripción están seguros",
+                REASON_COPY_SECURE_3: "con nosotros.",
+                ACTION_CONTACT_US: "Contáctanos",
+                LABEL_PAYMENT_ENCRYPTED: "Pago encriptado",
+                TOOLTIP_CVV: "Los 3 dígitos en la parte trasera de la tarjeta",
+                COPY_CLASSES_SINGULAR: " Clase",
+                COPY_CLASSES: " Clases"
             });
+        }
+
+        function _updateWidgetValues(){
+            vm.scroll = window.scrollY;
+            vm.widgetOriginalPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().top + window.scrollY + 50;
+            vm.widgetMaxPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY - 320;
+            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().bottom + window.scrollY);
+            vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().left + 30;
+            vm.widgetFixedPositionRight = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().right - 30 - 225;
+            
+        }
+
+        function _initWidget(){
+            angular.element(document).ready(function () {
+                _updateWidgetValues()
+                $scope.$on('scrolled',
+                  function(scrolled, scroll){
+                    _updateWidgetValues()
+                    $scope.$apply();
+                  }
+                );
+                $scope.$on('resized', function(){
+                    _updateWidgetValues()
+                    $scope.$apply();
+                });
+            });
+        }
+
+        function _getSelectedCalendarPrice(){
+            if (activity.is_open && vm.package)
+                return vm.package.price;
+
+            return vm.calendar.session_price;
+        }
+
+        function _setSelectedPackage(){
+            var pack = _.find(activity.calendars[0].packages, {'id': parseInt($stateParams.package_id)})
+            if (pack)
+                vm.package = pack;
         }
 
         function _activate(){
             _setStrings();
             _setOrganizer();
             _showWidget();
+            _initWidget();
+            _setSelectedPackage();
             vm.stateInfo = {
                 toState: {
                     state : $state.current.name,
@@ -782,41 +930,22 @@
 
             vm.success =  _.endsWith($state.current.name, 'success') || _.endsWith($state.current.name, 'pse-response');
             vm.calendar = _mapVacancy(calendar);
-            vm.amount = calendar.session_price;
+            vm.amount = _getPrice(calendar);
             activity.calendars= $filter('orderBy')(activity.calendars, 'initial_date');
             activity = _mapCalendars(activity);
             vm.activity = activity;
             _mapMainPicture(vm.activity);
             _setTotalCost();
-            moment().locale('es')
+            moment().locale('es');
             vm.months = moment.months();
             _mapYears();
             if(currentUser) {
                 vm.pseData.payerEmail = currentUser.user.email;
                 _setAssistants();
             }
-            if (vm.showWidget){
-                angular.element(document).ready(function () {
-                  if (!(document.getElementsByClassName('billing-widget')[0])){
-                    return;
-                  }
-                  vm.scroll = window.scrollY;
-                  vm.widgetOriginalPosition = document.getElementsByClassName('billing-widget')[0].getBoundingClientRect().top + window.scrollY;
-
-                  vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
-                  vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
-
-                  $scope.$on('scrolled',
-                    function(scrolled, scroll){
-                        vm.widgetMaxPosition = document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top + window.scrollY - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
-                        vm.widgetAbsolutePosition = (document.getElementsByClassName('img-carpet')[0].getBoundingClientRect().top - document.getElementsByClassName('widget-container')[0].getBoundingClientRect().top) - document.getElementsByClassName('billing-widget')[0].offsetHeight - 150;
-                      vm.scroll = scroll;
-                      $scope.$apply();
-                    }
-                  );
-                });
-            }
-
+            
+            //Function for angularSeo
+            $scope.htmlReady();
 
 
         }

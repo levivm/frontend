@@ -15,9 +15,9 @@
         .module('trulii.authentication.controllers')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$q', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator', 'Error', 'Referrals', 'Analytics'];
+    RegisterController.$inject = ['$q', '$scope', 'Authentication', '$state', '$stateParams', 'validatedData', 'Elevator', 'Error', 'Referrals', 'Analytics', 'Toast'];
 
-    function RegisterController($q, Authentication, $state, $stateParams, validatedData, Elevator, Error, Referrals, Analytics) {
+    function RegisterController($q, $scope, Authentication, $state, $stateParams, validatedData, Elevator, Error, Referrals, Analytics, Toast) {
 
         var selectedMethod = null;
         var toState = null;
@@ -36,7 +36,8 @@
             registerOrganizer: registerOrganizer,
             isSelectedMethod: isSelectedMethod,
             setSelectedMethod: setSelectedMethod,
-            toLoginState: toLoginState
+            toLoginState: toLoginState,
+            acceptTerms:false
         });
 
         _activate();
@@ -48,8 +49,12 @@
         function setSelectedMethod(method){ selectedMethod = method; }
 
         function fbRegister(){
-            Authentication.facebookLogin()
-                .then(_registerSuccess, error);
+            if(vm.acceptTerms){
+                Authentication.facebookLogin()
+                    .then(_registerSuccess, error);
+            }else{
+                Toast.error(vm.strings.ERROR_ACCEPT_TERMS);
+            }
 
             function error(){
                 alert("Couldn't Register with Facebook");
@@ -59,12 +64,17 @@
 
         function register() {
             emailRegister = true;
-            vm.signup_form.$setPristine();
-            Error.form.clear(vm.signup_form);
-            vm.auth.user_type = vm.user_type;
+            if(vm.acceptTerms){
+                vm.signup_form.$setPristine();
+                Error.form.clear(vm.signup_form);
+                vm.auth.user_type = vm.user_type;
 
-            return Authentication.register(vm.auth).then(_registerSuccess, error);
+                return Authentication.register(vm.auth).then(_registerSuccess, error);
 
+            }else{
+                Toast.error(vm.strings.ERROR_ACCEPT_TERMS);
+            }
+           
             function error(response) {
                 var responseErrors = response.data;
                 if (responseErrors){ Error.form.add(vm.signup_form, responseErrors); }
@@ -76,12 +86,17 @@
 
         function registerOrganizer(){
             emailRegister = true;
-            vm.signup_form.$setPristine();
-            Error.form.clear(vm.signup_form);
-            vm.auth.user_type = vm.user_type;
+            if(vm.acceptTerms){
+                vm.signup_form.$setPristine();
+                Error.form.clear(vm.signup_form);
+                vm.auth.user_type = vm.user_type;
 
-            return Authentication.registerOrganizer(vm.auth, $stateParams.token).then(_registerSuccess, error);
+                return Authentication.registerOrganizer(vm.auth, $stateParams.token).then(_registerSuccess, error);
 
+            }else{
+                Toast.error(vm.strings.ERROR_ACCEPT_TERMS);
+            }
+            
             function error(response) {
                 var responseErrors = response.data;
                 if (responseErrors){ Error.form.add(vm.signup_form, responseErrors); }
@@ -107,9 +122,11 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 SIGNUP_LABEL : "Registrarme",
-                SIGNUP_CONFIRMATION_LABEL: "Confirmar registro",
+                SIGNUP_CONFIRMATION_LABEL: "Confirmación de registro",
+                SIGNUP_CONFIRMATION_COPY_1: "!Ya estás aprobado como organizador!",
+                SIGNUP_CONFIRMATION_COPY_2: "Solo falta que coloques tu contraseña para empezar a disfrutar de Trulii.",
                 SIGNUP_SUBMIT: "Enviar",
-                SIGNUP_ALTERNATIVES_LABEL : "Regístrate con",
+                SIGNUP_ALTERNATIVES_LABEL : "Regístrate como asistente con",
                 SIGNUP_EMAIL_LABEL: "o con tu correo electrónico",
                 LOGIN_LABEL : "Iniciar Sesión",
                 EMAIL_LABEL : "Correo electrónico",
@@ -119,12 +136,13 @@
                 REGISTER_WITH_FACEBOOK_MSG : "Facebook",
                 FACEBOOK_ERROR : "No se pudo iniciar sesión con Facebook",
                 ALREADY_HAVE_AN_ACCOUNT_COPY: "¿Ya tienes cuenta en Trulii?",
-                TERMS_AND_CONDITIONS_COPY_1: "Registrándome estoy aceptando las",
+                TERMS_AND_CONDITIONS_COPY_1: "Registrándome estoy aceptando la",
                 LABEL_TERMS: "Términos y Condiciones",
                 TERMS_AND_CONDITIONS_COPY_3: "y los",
                 LABEL_PRIVACY: "Política de Privacidad",
                 TERMS_AND_CONDITIONS_COPY_5: "de Trulii.",
-                REGISTER_ORGANIZER_LABEL: "¿Quieres registrarte como organizador?"
+                REGISTER_ORGANIZER_LABEL: "¿Quieres registrarte como organizador?",
+                ERROR_ACCEPT_TERMS: "Tienes que aceptar la política de privacidad y los términos y condiciones."
             });
         }
 
@@ -136,6 +154,9 @@
                 vm.auth.email = validatedData.email;
                 vm.auth.name = validatedData.name;
             }
+            
+            //Function for angularSeo
+            $scope.htmlReady();
         }
     }
 })();

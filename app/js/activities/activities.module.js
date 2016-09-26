@@ -37,8 +37,8 @@
      * @description Activities Module Config function
      * @requires ui.router.state.$stateProvider
      */
-    config.$inject = ['$stateProvider'];
-    function config($stateProvider) {
+    config.$inject = ['$stateProvider', 'serverConf'];
+    function config($stateProvider, serverConf) {
 
 
         $stateProvider
@@ -47,7 +47,7 @@
                 })
             .state('dash.activities-new', {
                 abstract: true,
-                url: '/activities/new',
+                url: '/actividades/nueva',
                 data: {
                     requiredAuthentication : true
                 },
@@ -67,7 +67,7 @@
             })
             .state('dash.activities-edit', {
                 abstract:true,
-                url:'/activities/edit/{activity_id:int}/',
+                url:'/actividades/editar/{activity_id:int}/',
                 controller: 'ActivityDashboardCtrl',
                 data: {
                     requiredAuthentication : true
@@ -88,13 +88,13 @@
                 templateUrl: 'partials/activities/edit/dashboard_general.html'
             })
             .state('dash.activities-edit.detail', {
-                url:'detail',
+                url:'detalles',
                 controller: 'ActivityDBDetailController',
                 controllerAs: 'detail',
                 templateUrl: 'partials/activities/edit/dashboard_detail.html'
             })
             .state('dash.activities-edit.calendars', {
-                url:'calendars',
+                url:'calendarios',
                 controller: 'ActivityCalendarsController',
                 controllerAs: 'calendars',
                 templateUrl: 'partials/activities/edit/dashboard_calendars.html',
@@ -115,7 +115,7 @@
                 }
             })
             .state('dash.activities-edit.location', {
-                url:'location',
+                url:'ubicacion',
                 controller: 'ActivityDBLocationController',
                 resolve:{
                     cities: getAvailableCities,
@@ -125,23 +125,23 @@
                 templateUrl: 'partials/activities/edit/dashboard_location.html'
             })
             .state('dash.activities-edit.instructors', {
-                url:'instructors',
+                url:'instructores',
                 controller: 'ActivityDBInstructorsController as instructors',
                 templateUrl: 'partials/activities/edit/dashboard_instructors.html'
             })
             .state('dash.activities-edit.gallery', {
-                url:'gallery',
+                url:'galeria',
                 controller: 'ActivityDBGalleryController as gallery',
                 templateUrl: 'partials/activities/edit/dashboard_gallery.html'
             })
             .state('dash.activities-edit.return-policy', {
-                url:'return-policy',
+                url:'politicas',
                 controller: 'ActivityDBReturnPDashboard',
                 controllerAs: 'returnPolicy',
                 templateUrl: 'partials/activities/edit/dashboard_return_policy.html'
             })
             .state('dash.activities-manage', {
-                url:'/activities/manage/{activity_id:int}/',
+                url:'/actividades/gestionar/{activity_id:int}/',
                 abstract: true,
                 controller: 'ActivitiesManageCtrl as manage',
                 resolve: {
@@ -151,7 +151,7 @@
                 templateUrl: 'partials/activities/manage/manage.html'
             })
             .state('dash.activities-manage.orders', {
-                url:'orders',
+                url:'ordenes',
                 templateUrl: 'partials/activities/manage/manage_orders.html'
             })
             .state('dash.activities-manage.orders.order', {
@@ -165,15 +165,16 @@
                     }
                 },
                 resolve: {
-                    order: getOrder
+                    order: getOrder,
+                    bankingData: getBankingData
                 }
             })
             .state('dash.activities-manage.assistants', {
-                url:'assistants',
+                url:'asistentes',
                 templateUrl: 'partials/activities/manage/manage_assistants.html'
             })
             .state('dash.activities-manage.assistants-list', {
-                url:'list/:calendar_id',
+                url:'lista/:calendar_id',
                 controller: 'ActivitiesManageListCtrl as print',
                 templateUrl: 'partials/activities/manage/manage_assistants_list.html',
                 resolve: {
@@ -182,7 +183,7 @@
                 }
             })
             .state('dash.activities-manage.messages', {
-              url: 'messages',
+              url: 'mensajes',
               controller: 'ActivityMessagesCtrl as messages',
               templateUrl: 'partials/activities/manage/manage_messages.html',
                resolve: {
@@ -190,7 +191,7 @@
                 }
             })
             .state('dash.activities-manage.messages-detail', {
-                url:'messages/:messageId',
+                url:'mensajes/:messageId',
                 controller: 'ActivityMessageDetailCtrl as detail',
                 templateUrl: 'partials/activities/manage/manage_message_detail.html',
                 resolve: {
@@ -198,17 +199,28 @@
                 }
             })
             .state('dash.activities-manage.summary', {
-              url: 'summary',
+              url: 'resumen',
               controller: 'ActivitySummaryCtrl as summary',
               templateUrl: 'partials/activities/manage/manage_summary.html',
               resolve: {
                 stats: getStats
               }
             })
+            .state('category', {
+                url: '/actividades/:category_name',
+                templateUrl: 'partials/activities/category.html',
+                controller: 'CategoryController as category',
+                resolve: {
+                    category: getCategory,
+                    categoryActivities: getCategoryActivities
+                }
+            })
+
             .state('activities-detail', {
-                url:'/activities/{activity_id:int}/:activity_title',
+                url:'/actividades/:category_slug/:activity_title/{activity_id:int}?calendar_id&package_id',
                 params: {
-                  activity_title: {value: null, squash: true}
+                  activity_title: {value: null, squash: false},
+                  category_slug: {value: null, squash: false}
                 },
                 views:{
                     '@': {
@@ -229,11 +241,38 @@
                     reviews: getReviews,
                     calendars: getCalendars,
                     organizer: getActivityOrganizer,
-                    relatedActivities: getOrganizerActivities
+                    relatedActivities: getRelatedActivities
+                },
+                metaTags:{
+                    title: function(activity){
+                        return activity.title;
+                    },
+                    description: function(activity){
+                        return activity.short_description
+                    },
+                    properties: {
+                        'og:title':  function(activity){return activity.title;},
+                        'og:description': function(activity){ return activity.short_description},
+                        'og:image': function(activity){
+                                    if(activity.hasOwnProperty('pictures') && activity.pictures.length > 0){
+                                        angular.forEach(activity.pictures, function(picture){
+                                            if(picture.main_photo){
+                                                activity.main_photo = picture.photo;
+                                            }
+                                        });
+                                    }
+
+                                    if(!activity.main_photo){
+                                        activity.main_photo = serverConf.s3URL + '/static/img/nocover.jpg';
+                                    }
+                                    
+                                    return activity.main_photo;
+                        }
+                    }
                 }
             })
             .state('activities-enroll', {
-                url: '/activities/{activity_id:int}/enroll/{calendar_id:int}',
+                url: '/actividades/:category_slug/:activity_title/{activity_id:int}/inscribirse/{calendar_id:int}?package_id',
                 controller: 'ActivityDetailEnrollController as enroll',
                 templateUrl: 'partials/activities/detail/enroll.html',
                 resolve: {
@@ -252,11 +291,13 @@
                 controller: 'ActivityEnrollPSEResponseController as pseResponse',
                 templateUrl: 'partials/activities/detail/enroll.pse.response.html',
                 params:{
-                    pseResponseData: null
+                    pseResponseData: null,
+                    package_quantity: null,
+                    package_type: null,
                 }
             })
             .state('activities-enroll-success', {
-                url: '/activities/{activity_id:int}/enroll/{calendar_id:int}/success',
+                url: '/actividades/{activity_id:int}/inscribirse/{calendar_id:int}/exitoso',
                 views:{
                     '@': {
                         controller: 'ActivityEnrollSuccessController as success',
@@ -277,7 +318,9 @@
                     organizerActivities: getOrganizerActivities
                 },
                 params:{
-                    order_id: null
+                    order_id: null,
+                    package_quantity: null,
+                    package_type: null
                 }
             });
 
@@ -319,11 +362,11 @@
             }
 
             function error(response){
-                if(response === null){
+               /* if(response === null){
                     console.log("getCurrentOrganizer. There is no Authenticated User");
                 } else {
                     console.log("getCurrentOrganizer. The Authenticated User is not a Organizer");
-                }
+                }*/
                 return $q.reject();
             }
         }
@@ -368,11 +411,6 @@
                organizer.photo = defaultPicture;
             }
 
-            if(!!organizer.locations[0]){
-                var city_id = organizer.locations[0].city;
-                organizer.city = LocationManager.getCityById(city_id).name;
-            }
-
             deferred.resolve(organizer);
 
             return deferred.promise;
@@ -400,8 +438,8 @@
          * @requires trulii.activities.services.ActivitiesManager
          * @methodOf trulii.activities.config
          */
-        getActivity.$inject = ['$stateParams','ActivitiesManager'];
-        function getActivity($stateParams,ActivitiesManager){
+        getActivity.$inject = ['$stateParams', '$rootScope', 'ActivitiesManager'];
+        function getActivity($stateParams,$rootScope, ActivitiesManager){
             return ActivitiesManager.getActivity($stateParams.activity_id);
         }
 
@@ -622,6 +660,37 @@
                 $state.go('activities-detail', { activity_id: activity.id });
             }
         }
+
+        // api/activities/<id>/views_counter
+
+
+        getOrganizerActivities.$inject = ['ActivitiesManager','organizer'];
+        function getOrganizerActivities(ActivitiesManager, organizer){
+            return ActivitiesManager.loadOrganizerActivities(organizer.id);
+        }
+
+
+        getCategory.$inject = ['ActivitiesManager', '$stateParams'];
+        function getCategory(ActivitiesManager, $stateParams){
+            return ActivitiesManager.getCategory($stateParams.category_name);
+        }
+
+        getCategoryActivities.$inject = ['ActivitiesManager', 'category'];
+        function getCategoryActivities(ActivitiesManager, category){
+            return ActivitiesManager.getCategoryActivities(category.data.id);
+        }
+        
+        
+        getRelatedActivities.$inject = ['ActivitiesManager','activity'];
+        function getRelatedActivities(ActivitiesManager, activity){
+            return ActivitiesManager.getCategoryActivities(activity.category.id);
+        }
+        
+        getBankingData.$inject = ['organizer']
+        function getBankingData(organizer){
+            return  organizer.getBankingInfo();
+        }
+
 
     }
 

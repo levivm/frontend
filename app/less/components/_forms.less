@@ -2,7 +2,7 @@
 @import "../_trulii-variables";
 
 .form-group:not(:first-child){
-	margin-top: 3.4em;
+	margin-top: 1.5em;
 	&.form-group-sm {
 		margin-top: 1em;
 	}
@@ -12,20 +12,20 @@
 	text-align: right;
 	position: relative;
 	height: 4.5em;
-	.btn{
-		display: inline-block;
-    	min-width: 9em;
-		font-size: 1em;
-		line-height: 1.5em;
-		margin-left: 1em;
-		font-weight: 300;
-    	margin-top: 25px;
+	.copy-edit{
+		float: left;
+		height: 55px;
+		line-height: 55px;
+
 	}
 	.progress{
 		position: absolute;
 		margin-top: 0;
 		top: 50%;
 	}
+	.before-md({
+		text-align: center;
+	});
 }
 
 .material-form{
@@ -37,12 +37,29 @@
 		color: lighten(@lightbg-text, 40%)
 	}
 }
-
+.input-error, .input-error p{
+	color: @danger;
+	font-weight: 500;
+	margin-left: 25px;
+}
 .form-group{
 	.input-error, .input-error p{
 		color: @danger;
 		font-weight: 500;
+		margin-left: 25px;   
 	}
+	
+	.form-label{
+		margin-left: 2em;
+	}
+}
+.time-picker{
+	.input-error, .input-error p{
+		color: @danger;
+		font-weight: 500;
+		margin-left: 0px;   
+	}
+	
 }
 
 .form-classic{
@@ -51,7 +68,7 @@
 		padding: 2em;
 		border-radius: 3px;
 		background-image: none;
-		border: 1px solid @gray-light-medium;
+		border: 1px solid @gray-light;
 		border-radius: @border-radius-base;
 		&.input-sm{
 			padding: 5px 15px;

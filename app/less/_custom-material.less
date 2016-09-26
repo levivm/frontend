@@ -5,6 +5,7 @@
 
 body {
   background-color: @body-bg;
+  color: @gray-dark;
   &.inverse {
     background: #333333;
     &, .form-control {
@@ -35,6 +36,10 @@ h1, h2, h3, h4 {
 h5, h6{
   font-weight: 400;
 }
+p{
+  font-size: 14px;
+  font-weight: 500;
+}
 
 a, a:hover, a:focus {
   color: @brand-success;
@@ -56,7 +61,7 @@ a, a:hover, a:focus {
 @import "_radios.less";
 
 // Text inputs
-@import "_inputs.less";
+//@import "_inputs.less";
 
 legend {
   border-bottom: 0;

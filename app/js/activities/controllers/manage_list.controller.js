@@ -124,10 +124,9 @@
             vm.activity = _mapMainPicture(activity);
             _mapOrders(activity.id);
             _mapPages();
-            console.log('activity:', activity);
-            console.log('calendar:', calendar);
-            console.log(vm.pages);
-
+            console.log("controler");
+            console.log("controler");
+            console.log(vm);
         }
 
     }

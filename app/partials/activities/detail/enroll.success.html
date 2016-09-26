@@ -1,140 +1,199 @@
-<div class="col-xs-12">
-  <div class="row">
-    <div class="col-xs-12">
-      <div class="row padding-vertical-medium limited-width">
-        <div class="col-xs-12 col-md-6 col-md-offset-3 text-center">
-          <h2 class="text-gray success-title" ng-bind="success.strings.COPY_HEADER_TITLE"></h2>
-          <h1 class="text-primary title separate-above-less">
-              <strong ng-bind="::success.activity.title"></strong>
-          </h1>
-          <h3 class="text-gray text-spaced-less montserrat-light separate-above success-info" ng-bind="success.strings.COPY_HEADER_DESCRIPTION"></h3>
-          <a ng-show="::success.orderId" target="_blank" ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId,
-            })" ng-bind="success.strings.COPY_VIEW_YOUR_ORDER"></a>
+<div>
+    <div class="trulii-cover-regular trulii-cover__detail">
+        <div class="trulii-cover__container align-bottom">
+            <div class="trulii-cover__content">
+                <div class="col-xs-12 col-md-offset-1 col-md-10 limited-width padding-vertical-regular separate-above-more">
+                    <div class="row ">
+                        <div class="col-xs-12">
+                            <h2 class="text-center" ng-bind="success.strings.COPY_HEADER_TITLE"></h2>
+                            <h1 class="title text-center font-light separate-above-less" ng-bind="::success.activity.title"></h1>
+                            <div class="row">
+                              <div class="col-xs-12 col-lg-6 col-lg-offset-3">
+                                <h3 class="text-center" ng-bind="::success.strings.COPY_HEADER_DESCRIPTION"></h3>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-4 col-md-1 center-block">
+                                <hr>
+                              </div>
+                            </div>
+                            <h4 class="text-center" ng-bind="::success.strings.COPY_TELL_YOUR_FRIENDS"></h4>
+                        </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <div class="trulii-cover__content__share">
+                          <ul class="list-unstyled">
+                            <li>
+                              <a href="#"
+                                ng-click="success.shareSocialAnalytic(success.social.FACEBOOK_SOCIAL_PROVIDER, success.social.FACEBOOK_SHARE_URL)"
+                                socialshare
+                                socialshare-provider="{{::success.social.FACEBOOK_SOCIAL_PROVIDER}}"
+                                socialshare-type="{{::success.social.FACEBOOK_SHARE_TYPE}}"
+                                socialshare-via="{{::success.social.FACEBOOK_API_KEY}}"
+                                socialshare-redirect-uri="{{::success.social.FACEBOOK_REDIRECT_URI}}"
+                                socialshare-media="{{::success.social.FACEBOOK_SHARE_MEDIA}}"
+                                socialshare-text="{{::success.social.FACEBOOK_SHARE_TEXT}}"
+                                socialshare-caption="{{::success.social.FACEBOOK_SHARE_CAPTION}}"
+                                socialshare-description="{{::success.social.FACEBOOK_SHARE_DESCRIPTION}}"
+                                socialshare-url="{{::success.social.FACEBOOK_SHARE_URL}}">
+                                <img ng-src="{{success.getAmazonUrl('static/img/share/facebook.png')}}" alt="">
+                              </a>
+                            </li>
+                            <li>
+
+                              <a href="#"
+                                ng-click="success.shareSocialAnalytic(success.social.TWITTER_SOCIAL_PROVIDER, success.social.TWITTER_SHARE_URL)"
+                                socialshare
+                                socialshare-provider="{{::success.social.TWITTER_SOCIAL_PROVIDER}}"
+                                socialshare-text="{{::success.social.TWITTER_SHARE_TEXT}}"
+                                socialshare-url="{{::success.social.TWITTER_SHARE_URL}}">
+                                <img ng-src="{{success.getAmazonUrl('static/img/share/twitter.png')}}" alt="">
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#"
+                                ng-click="success.shareSocialAnalytic(success.social.LINKEDIN_SOCIAL_PROVIDER, success.social.LINKEDIN_SHARE_URL)"
+                                socialshare
+                                socialshare-provider="{{::success.social.LINKEDIN_SOCIAL_PROVIDER}}"
+                                socialshare-text="{{::success.social.LINKEDIN_SHARE_TEXT}}"
+                                socialshare-description="{{::success.social.LINKEDIN_SHARE_DESCRIPTION}}"
+                                socialshare-url="{{::success.social.LINKEDIN_SHARE_URL}}">
+                                <img ng-src="{{success.getAmazonUrl('static/img/share/linkedin.png')}}" alt="">
+                              </a>
+                            </li>
+                            <li>
+                              <a href="#"
+                                ng-click="success.toggleEmailShow()">
+                                <img ng-src="{{success.getAmazonUrl('static/img/share/email.png')}}" alt="">
+                              </a>
+                            </li>
+                            <li class="hidden-md hidden-lg">
+                              <a href="#"
+                                socialshare
+                                socialshare-provider="{{::success.social.WHATSAPP_SOCIAL_PROVIDER}}"
+                                socialshare-text="{{::success.social.WHATSAPP_SHARE_TEXT}}"
+                                socialshare-url="{{::success.social.WHATSAPP_SHARE_URL}}">
+                                <img ng-src="{{success.getAmazonUrl('static/img/share/whatsapp.png')}}" alt="">
+                              </a>
+                            </li>
+                            <li class="hidden-md hidden-lg">
+                              <a href="#"
+                                socialshare
+                                socialshare-provider="{{::success.social.MESSENGER_SOCIAL_PROVIDER}}"
+                                socialshare-url="{{::success.social.MESSENGER_SHARE_URL}}">
+                                <img ng-src="{{success.getAmazonUrl('static/img/share/messenger.png')}}" alt="">
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="trulii-cover__background" style="background-image: none; background-color: white;">
+              <canvas id="confetti"></canvas>
+            </div>
         </div>
-      </div>
-      <div class="row container-muted padding-vertical-medium">
-        <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 remember-container text-center limited-width">
-          <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REMEMBER"></h4>
-          <div class="items-container">
-            <div class="item">
-              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_start.png')}}"
-                alt="{{::success.strings.LABEL_START_DATE}}"/>
-              <div class="item-text">
-                <div class="item-title text-spaced text-uppercase"
-                  ng-bind="::success.strings.LABEL_START_DATE"></div>
-                <div class="item-copy text-capitalize"
-                  ng-bind="::(success.calendar.initial_date | date : 'EEEE')"></div>
-                <div class="item-copy text-capitalize"
-                  ng-bind="::(success.calendar.initial_date | date : 'd MMM y')"></div>
-                <div class="item-copy "
-                  ng-bind="::('A las ' + (success.calendar.sessions[0].start_time | date: 'h:mm a'))"></div>
+    </div>
+    <div class="col-xs-12 limited-width">
+      <div class="activity-enroll-success">
+        <div class="activity-enroll-success__attendees-widget">
+          
+          <div class="col-xs-12 col-lg-3 flex-container">
+            <div class="activity-enroll-success__attendees-widget__contact">
+              <h5  class="text-dark" ng-bind="::success.strings.LABEL_QUESTIONS"></h5>
+              <p>
+                <a href="#" ng-bind="::success.strings.ACTION_CONTACT_US"></a>
+              </p>
+              <!--Audience-->
+              <div class="separate-above">
+                  <h4>
+                    <strong class="text-dark" ng-bind="::success.strings.LABEL_START_DATE"></strong>
+                  </h4>
+                  <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
+                    <span ng-bind="::(success.calendar.initial_date | date : 'EEEE d MMM y')">
+                    </span>
+                  </p>
+                  <h4>
+                    <strong class="text-dark" ng-show="::success.packageQuantity" ng-bind="::success.strings.LABEL_PACKAGE"></strong>
+                  </h4>
+                  <p class="text-capitalize content" ng-show="::success.packageQuantity" ng-class="{'content-mobile': !success.showAudience}">
+                    <span ng-bind="::success.packageQuantity">
+                    </span>
+                    <span ng-bind="::success.packageType">
+                    </span>
+                  </p>
+                  <h4>
+                    <strong class="text-dark" ng-bind="::success.strings.LABEL_SCHEDULES"></strong>
+                  </h4>
+                  <p class="text-capitalize content" ng-class="{'content-mobile': !success.showAudience}">
+                    <span ng-bind-html="::success.calendar.schedules">
+                    </span>
+                  </p>
               </div>
             </div>
-            <div class="item">
-              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_location.png')}}"
-                alt="{{::success.strings.LABEL_LOCATION}}"/>
-              <div class="item-text">
-                <div class="item-title text-spaced text-uppercase" ng-bind="::success.strings.LABEL_LOCATION"></div>
-                <div class="item-copy">
-                  <span ng-bind="::success.activity.location.address"></span>
-                  <span>, </span>
-                  <span ng-bind="::success.activity.location.city.name"></span>
-                </div>
+            
+          </div>
+          
+          <!--<div class="hidden-xs hidden-sm" ui-view="attendees"></div>-->
+        </div>
+        <div class="row separate-above">
+          <div class="col-xs-12">
+            
+            <div class="content content-html separate-below font-semibold " ng-if="success.activity.post_enroll_message" >
+              <p ng-bind-html="success.activity.post_enroll_message"></p>
+            </div>
+            <h4 ><strong class="text-dark" ng-bind="::success.strings.LABEL_IMPORTANT"></strong></h4>
+            <p class="separate-below font-semibold " ng-bind="::success.strings.COPY_IMPORTANT"></p>
+            <p class="content"  ng-bind-html="success.activity.requirements" ng-class="{'content-mobile': !success.showAudience}"></p>
+            <!--<h4>
+              <strong>
+                <span ng-bind="success.strings.COPY_VIEW_YOUR_ORDER_1"></span>
+                
+              </strong> </a> </h4>-->
+            <a target="_blank"
+               class="btn btn-lg btn-info btn-order"
+               ui-sref="student-dashboard.history.orders.order({'activity_id':success.activity.id,'orderId': success.orderId})"
+               ng-bind="success.strings.COPY_VIEW_YOUR_ORDER">
+          </div>
+        </div>
+          
+         
+      </div>
+      <div class="row separate-above-more" >
+            <div class="col-xs-12 section text-center">
+              <h4>
+                <strong class="text-dark" ng-bind="::success.strings.LABEL_LOCATION"></strong>
+              </h4>
+              <p ng-bind="success.activity.location.address"></p>
+              <div class="content location separate-above" ng-class="{'content-mobile': !success.showAudience}">
+                <ui-gmap-google-map class="map hidden-xs hidden-sm" center='success.map.center' zoom='success.map.zoom'
+                  bounds="success.map.bounds" options="success.map.options"
+                  events="success.map.events">
+                  <ui-gmap-marker coords="success.marker.coords" options="success.marker.options"
+                      events="success.marker.events"
+                      idkey="success.marker.id"></ui-gmap-marker>
+                </ui-gmap-google-map>
               </div>
             </div>
-            <div class="item">
-              <img class="item-img" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/remember_doubts.png')}}" alt="Doubts"/>
-              <div class="item-text">
-                <div class="item-title text-spaced text-uppercase" ng-bind="success.strings.LABEL_QUESTIONS"></div>
-                <div class="item-copy" ng-bind="success.strings.LABEL_ANY_DOUBT"></div>
-                <div class="item-copy">
-                  <a ui-sref="contact-us({'toState': success.currentState})"
-                    ng-bind="::success.strings.ACTION_CONTACT_US">
-                  </a>
-                </div>
+         </div>
+      <div class="row hidden-xs hidden-sm">
+        <div class="related-activities-container-enroll col-xs-12" ng-if="success.organizerActivities.length > 0">
+          <div class="row">
+           <div class="col-xs-12 section">
+             <h4>
+              <strong  class="text-dark" ng-bind="::success.strings.LABEL_SIMILAR"></strong>
+            </h4>
+           </div>
+            <div class="flex-cards separate-above-more" >
+                  <trulii-activity-item data-activity="activity" ng-repeat="activity in success.cards"></trulii-activity-item>
               </div>
-            </div>
-          </div>
-          <div class="separator"></div>
-        </div>
-        <div class="col-xs-12 col-md-8 col-md-offset-2 text-center separate-above-less limited-width" ng-if="success.activity.requirements">
-          <h4 class="text-gray-alt text-uppercase text-spaced sinkin-semibold separate-below" ng-bind="success.strings.LABEL_REQUIREMENTS"></h4>
-          <p class="text-gray-alt  text-lg-2 sinkin-regular separate-above separate-below success-requirements" ng-bind-html="success.activity.requirements"></p>
-        </div>
-      </div>
-      <!--Attendees-->
-      <div class="row">
-        <div class="col-xs-12 attendees-container limited-width">
-          <h1 class="text-primary title text-center"><strong ng-bind="::success.strings.LABEL_ATTENDEES"></strong></h1>
-          <div ui-view="attendees"></div>
-        </div>
-      </div>
-      <div class="row share-container">
-        <div class="col-xs-12 limited-width">
-          <h1 class="title">
-            <strong ng-bind="success.strings.LABEL_SHARE"></strong>
-          </h1>
-          <h3 class="text-spaced-less montserrat-regular separate-above-less separate-below-medium" ng-bind="success.strings.COPY_SHARE"></h3>
-          <a href="#"
-            socialshare
-            socialshare-provider="{{::success.social.FACEBOOK_SOCIAL_PROVIDER}}"
-            socialshare-type="{{::success.social.FACEBOOK_SHARE_TYPE}}"
-            socialshare-via="{{::success.social.FACEBOOK_API_KEY}}"
-            socialshare-redirect-uri="{{::success.social.FACEBOOK_REDIRECT_URI}}"
-            socialshare-media="{{::success.social.FACEBOOK_SHARE_MEDIA}}"
-            socialshare-text="{{::success.social.FACEBOOK_SHARE_TEXT}}"
-            socialshare-caption="{{::success.social.FACEBOOK_SHARE_CAPTION}}"
-            socialshare-description="{{::success.social.FACEBOOK_SHARE_DESCRIPTION}}"
-            socialshare-url="{{::success.social.FACEBOOK_SHARE_URL}}">
-            <i class="fa fa-facebook share-facebook" aria-hidden="true"></i>
-          </a>
-
-          <a href="#"
-            socialshare
-            socialshare-provider="{{::success.social.TWITTER_SOCIAL_PROVIDER}}"
-            socialshare-via="{{::success.social.TWITTER_SHARE_ACCOUNT}}"
-            socialshare-text="{{::success.social.TWITTER_SHARE_TEXT}}"
-            socialshare-hashtags="{{::success.social.TWITTER_SHARE_HASHTAGS}}"
-            socialshare-url="{{::success.social.TWITTER_SHARE_URL}}">
-            <i class="fa fa-twitter share-twitter" aria-hidden="true"></i>
-          </a>
-          <a href="#"
-            ng-click="success.toggleEmailShow()">
-            <i class="fa fa-envelope share-email" aria-hidden="true"></i>
-          </a>
-        </div>
-      </div>
-
-      <div class="row separate-below">
-        <h2 class="text-center font-normal separate-above-medium separate-below-less" ng-bind="success.strings.LABEL_SIMILAR"></h2>
-        <div class="col-xs-12 col-md-9 col-md-offset-2 limited-width">
-          <div ng-if="success.organizerActivities.length > 0">
-            <div class="col-xs-12 dynamic-layout-wrapper separate-below">
-              <div class="dynamic-layout-container-fluid separate-above-medium">
-                <div class="text-center">
-                    <div dynamic-layout items="success.cards" class="dynamic-layout"></div>
-                </div>
-                </div>
-            </div>
-          </div>
-          <div ng-if="success.organizerActivities.length <= 0"
-            ng-bind="::success.strings.COPY_NO_ACTIVITIES">
-          </div>
-        </div>
-      </div>
-
-      <div class="row navigation-container container-gray-light">
-        <div class="col-xs-12 col-md-6">
-          <a class="btn btn-link" ui-sref="activities-detail({activity_id: success.activity.id})">
-            <i class="fa fa-undo separate-right-less" aria-hidden="true"></i>
-            <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_BACK"></span>
-          </a>
-        </div>
-        <div class="col-xs-12 col-md-6">
-          <a class="btn btn-link pull-right" ui-sref="student-dashboard.activities">
-            <span class="montserrat-light" ng-bind="::success.strings.ACTION_GO_TO_ACTIVITIES"></span>
-            <i class="fa fa-arrow-right separate-left-less" aria-hidden="true"></i>
-          </a>
+             <div class="col-xs-12">
+                <button class="btn btn-lg btn-block btn-info" ng-bind="success.strings.COPY_MORE_SIMILAR_ACTIVITIES"></button>
+              </div>
+         </div>
+          
         </div>
       </div>
     </div>
@@ -144,19 +203,17 @@
 <trulii-footer></trulii-footer>
 
 <div class="absolute-container" ng-show="success.showEmail">
-  <button class="pull-right absolute-container__close" ng-click="success.toggleEmailShow()">
-    <img class="img-responsive" ng-src="{{success.getAmazonUrl('static/img/activity-enroll/close.png')}}" alt=""/>
-  </button>
-  <div class="col-xs-12 col-md-7">
+  <div class="col-xs-12 col-md-5">
     <div class="modal-content modal-email">
       <div class="modal-header">
         <div class="well-title">
-          <h3 class="text-center" ng-bind="::success.strings.EMAIL_MODAL_HEADER">
-          </h3>
+          <h4 ng-bind="::success.strings.EMAIL_MODAL_HEADER">
+          </h4>
         </div>
       </div>
+
       <div class="modal-body">
-        <form name='success.email_form' ng-submit="success.shareEmailForm()" class="separate-above separate-below-less form-classic">
+        <form name='success.email_form' ng-submit="success.shareEmailForm()" class="separate-above separate-below-less">
           <fieldset>
             <div class="form-group" trulii-input-errors-control="name">
                 <label for="emails" ng-bind="success.strings.EMAIL_MODAL_SEND_TO_LABEL">
@@ -178,9 +235,16 @@
 
             <div class="form-group">
               <div class="row">
-                <div class="col-xs-12 col-sm-4 col-sm-offset-4">
+                <div class="col-xs-12 col-md-4 col-md-offset-4 col-lg-3 col-lg-offset-6">
+                  <button type="button" id="button"
+                    class="btn btn-cancel btn-md btn-block"
+                    ng-bind="::success.strings.EMAIL_MODAL_DISMISS"
+                    ng-click="success.toggleEmailShow()">
+                  </button>
+                </div>
+                <div class="col-xs-12 col-md-4 col-lg-3">
                   <button type="submit" id="submit"
-                    class="btn btn-lg btn-success btn-block"
+                    class="btn btn-success btn-md btn-block"
                     ng-bind="::success.strings.EMAIL_MODAL_SEND">
                   </button>
                 </div>
@@ -190,5 +254,7 @@
         </form>
       </div>
     </div>
+  </div>
+  <div class="absolute-container__background"  ng-click="success.toggleEmailShow()">
   </div>
 </div>

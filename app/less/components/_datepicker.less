@@ -1,36 +1,58 @@
 
+
+
 ul.dropdown-menu { // Datepicker elemento raiz
 	padding: 0;
-
+	box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.33);
 	table{
 		background-color: @gray-lighter;
 
-		thead tr:nth-child(1){
-			// Cabezera con el mes y el año
+		thead{
+			tr:nth-child(1){
+				// Cabezera con el mes y el año
 
-			background-color: @success;
+				background-color:white;
 
-			*{
-				color: white;
-			}
-
-			.btn{
-				text-transform: uppercase;
-				padding: 5px 10px;
-				background-color: transparent;
-
-				&:hover{
-					background-color: darken(@success, 10%);
+				th:first-child, th:last-child{
+					font-size: 1em;
+					.btn{
+						color: @gray-regular !important;
+					}
+				}
+				th:nth-child(2){
+					font-size: 1em;
+					.btn{
+						color: @brand-primary !important;
+					}
+				}
+				.btn{
+					border-radius: 0 !important;
+					text-transform: uppercase;
+					padding: 5px 10px;
+					background-color: transparent;
+					&:hover, &:focus{
+						background-color: @gray-lighter;
+					}
 				}
 			}
-
+			tr:not(:first-child){
+				background-color: white;
+			}
+			tr:nth-child(2){
+				th{
+					padding: 15px 0 10px;
+					font-weight: 600;
+				}
+			}
 		}
 
 		.btn{
 			border-width: 0;
-			//width: auto !important;
-			border-radius: @border-radius-base;
 			padding: 2px 5px;
+
+			border-radius: 0 !important;
+			font-weight: 600 !important;
+			box-shadow: none;
 
 			&[disabled]{ // Día no disponible para seleccionar
 				background-color: transparent;
@@ -67,8 +89,8 @@ ul.dropdown-menu { // Datepicker elemento raiz
 		height: 0;
 		border-left: 15px solid transparent;
 		border-right: 15px solid transparent;
-		border-bottom: 15px solid @success;
-		top: -15px;
-		left: 15px;
+		border-bottom: 15px solid white;
+		left: ~"calc(50% - 15px)";
+		top: -15px !important;
 	}
 }

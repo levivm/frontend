@@ -50,7 +50,7 @@
             },
             {
                 sref : '.return-policy',
-                title : 'Política de Devolución',
+                title : 'Política de reembolso',
                 name : 'return_policy',
                 icon : 'mdi-communication-call-missed'
             }

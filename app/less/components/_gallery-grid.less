@@ -6,8 +6,7 @@
 
 .@{component-class}{
   margin-top: 1em;
-  max-width: 720px;
-  margin: 0 auto;
+  max-width: 100%;
   padding-left: 0.3em;
 
     [class*=col-]{
@@ -22,17 +21,18 @@
         border-radius: @border-radius-standard;
         display: inline-block;
         vertical-align: top;
-        margin: 0 4px 6px 0;
+        margin: 0 7px 5px 0;
         padding: 0;
         height: 16em;
         width: 100%;
         position: relative;
-        background-color: @gray-light-medium;
-        width: 12em;
-        height: 12em;
-
+        background-color: @gray-light;
+        width: 11em;
+        height: 10em;
+        transition: all 0.33s;
+       
         &.--small{
-            width: 8.20em;
+            width: 9.50em;
             height: 8.20em;
         }
         &.--small-less{
@@ -43,12 +43,15 @@
 
         &.--selectable{
           cursor: pointer;
-          border: 3px solid @brand-success;
         }
 
         &.--unselected{
           opacity: .5;
           border: none;
+           &:hover{
+                box-shadow: #A9A9A9 5px 10px 25px 4px;
+                opacity: 1;
+           }
         }
 
 
@@ -153,13 +156,12 @@
 
 .check-photo{
     color: white;
-    font-size: 15px;
+    font-size: 10px;
     position: absolute;
-    top: -8px;
-    left: -13px;
+    top: 5px;
+    right: 6px;
     background: #38dbc8;
-    border-radius: 50%;
-    padding: 0.3em 0.37em 0.3em 0.3em;
+    padding: 0.4em 0.37em 0.4em 0.3em;
 }
 @media (max-width: 1640px){
 

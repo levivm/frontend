@@ -18,8 +18,7 @@
 
         angular.extend(vm,{
           message: message,
-          deleteMessage: deleteMessage,
-          readMessage: readMessage
+          deleteMessage: deleteMessage
         });
 
         activate();
@@ -35,31 +34,35 @@
             });
         }
         
-        function readMessage(){
-          student.readMessage(message.id)
-            .then(function(){
-              Toast.success("Mensaje marcado como leido");
-              $rootScope.$broadcast('update_notifications');
-              $state.go('student-dashboard.notifications', {reload: true});
-            });
-        }
+        
 
         /*       Internal Functions      */
 
-
+        function _readMessage(){
+          student.readMessage(vm.message.id)
+            .then(function(data){
+              vm.message.is_read = true;
+              $rootScope.$broadcast('update_notifications');
+              //$state.go('student-dashboard.notifications', {reload: true});
+            });
+        }
 
         function _setStrings() {
             if (!vm.strings) {
-                vm.strings = {
-                  MARK_AS_READ: "Marcar como leído"
-                };
+                vm.strings = {};
             }
             angular.extend(vm.strings, {
+                SECTION_MESSAGES: "Notificaciones",
+                MARK_AS_READ: "Marcar como leído",
+                ACTION_GO_BACK: "Regresar"
             });
         }
 
         function activate() {
             _setStrings();
+            
+            if(!vm.message.is_read)
+                _readMessage()
         }
 
     }

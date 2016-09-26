@@ -12,16 +12,14 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerAccountCtrl', OrganizerAccountCtrl);
 
-    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Toast', 'Error', 'organizer', 'bankingInfo'];
-    function OrganizerAccountCtrl($state, Authentication, Toast, Error, organizer, bankingInfo) {
+    OrganizerAccountCtrl.$inject = ['$state', 'Authentication', 'Toast', 'Error', 'organizer', 'bankingInfo', 'bankingData'];
+    function OrganizerAccountCtrl($state, Authentication, Toast, Error, organizer, bankingInfo, bankingData) {
 
         var vm = this;
         angular.extend(vm, {
             organizer : organizer,
             bankingInfo: bankingInfo,
-            bankingData: {
-                'organizer': organizer.id
-            },
+            bankingData: {},
             password_data : {},
             isCollapsed : true,
             isSaving:false,
@@ -31,7 +29,8 @@
             reimbursements : [],
             changeEmail : changeEmail,
             changePassword : changePassword,
-            updateBankingInfo: updateBankingInfo
+            updateBankingInfo: updateBankingInfo,
+            checkTypePerson: _checkTypePerson
         });
 
         _activate();
@@ -40,20 +39,27 @@
 
         function updateBankingInfo(){
             vm.isSaving = true;
+            vm.bankingData.organizer = organizer.id;
             Error.form.clear(vm.account_form_banking_info);
             organizer.saveBankingInfo(vm.bankingData).then(success, error);
 
             function success(bankingData){
                 vm.isSaving = false;
-                console.log('bankingData response', bankingData);
+                angular.extend(vm.bankingData, bankingData);
+                var current_bank_data = _.find(vm.bankingInfo.banks, 
+                                                { 'bank_name': bankingData.bank });
+                vm.bankingData.bank = current_bank_data.bank_id;
                 Toast.generics.weSaved();
             }
 
             function error(responseErrors){
                 vm.isSaving = false;
-                console.log('Error updating bankingData', responseErrors);
                 if(responseErrors){
                     Error.form.add(vm.account_form_banking_info, responseErrors);
+                }
+                
+                if(vm.bankingData.id){
+                    Toast.error(vm.strings.TOAST_ERROR_PUT);
                 }
             }
         }
@@ -101,16 +107,27 @@
                 }
             }
         }
+        
+        function _checkTypePerson(){
+            vm.showLegal =  vm.bankingData.person_type==2 ? true:false;
+        }
 
         //--------- Internal Functions ---------//
 
-        function _getOrganizerBankingInfo(){
-
-            organizer.getBankingInfo().then(success);
-
-            function success(bankingData){
-                if(bankingData){ vm.bankingData = bankingData; }
+        function _setOrganizerBankingData(){
+            console.log(vm.bankingInfo);
+            if(!(_.isEmpty(bankingData))){ 
+                var current_bank_data = _.find(vm.bankingInfo.banks, 
+                                                { 'bank_name': bankingData.bank });
+                vm.bankingData = bankingData; 
+                vm.bankingData.bank = current_bank_data.bank_id;
             }
+        }
+        
+        function _setLegalData(){ 
+            vm.bankingData.regimen = vm.bankingData.regimen ? vm.bankingData.regimen:null;
+            vm.bankingData.fiscal_address = vm.bankingData.fiscal_address ? vm.bankingData.fiscal_address:"";
+            vm.bankingData.billing_telephone = vm.bankingData.billing_telephone ? vm.bankingData.billing_telephone:"";
         }
 
         function _setStrings() {
@@ -119,12 +136,14 @@
             }
             angular.extend(vm.strings, {
                 ACTION_SAVE: "Guardar",
-                COPY_BANKING: "Coloque los datos de su cuenta bancaria para recibir los pagos de las inscripciones. "
-                    + "Esta información no será compartida con nadie.",
-
+                COPY_BANKING: "Coloca los datos de tu cuenta bancaria para poder transferirte el dinero de las inscripciones que recibas. "
+                    + "Relax, esta información no la compartiremos con nadie.",
+                COPY_SETTINGS: "Cambia tu dirección de correo electrónico cuando quieras. Te enviaremos un correo electornico a tu nueva dirección para que confirmes el cambio.",
                 COPY_PASSWORD: "¿Desea cambiar su contraseña?",
                 COPY_EMAIL: "¿Desea cambiar su correo electrónico?",
                 SECTION_ACCOUNT: "Cuenta",
+                SECTION_ACCOUNT_SETTINGS: "Cuenta > Ajustes",
+                SECTION_ACCOUNT_BANK: "Cuenta > Información Bancaria",
                 TAB_SETTINGS: "Ajustes",
                 TAB_BANKING: "Información Bancaria",
                 LABEL_CURRENT_PASSWORD: "Contraseña Actual",
@@ -132,6 +151,10 @@
                 LABEL_REPEAT_PASSWORD: "Repetir Nueva Contraseña",
                 LABEL_EMAIL: "Correo Electrónico",
                 LABEL_BANK: "Banco",
+                LABEL_TYPE_PERSON: "Tipo de persona",
+                LABEL_REGIMEN:"Regimen",
+                LABEL_FISCAL_ADDRESS: "Dirección fiscal",
+                LABEL_FISCAL_PHONE: "Teléfono fiscal",
                 LABEL_DOCUMENT: "Documento",
                 LABEL_DOCUMENT_TYPE: "Tipo de Documento",
                 LABEL_DOCUMENT_NUMBER: "Número de Documento",
@@ -143,14 +166,21 @@
                 SUB_SECTION_EMAIL: "Correo Electrónico",
                 SUB_SECTION_PASSWORD: "Contraseña",
                 OPTION_DEFAULT_SELECT_BANK: "Seleccione un banco",
+                OPTION_DEFAULT_SELECT_TYPE: "Seleccione un tipo de persona",
+                OPTION_DEFAULT_SELECT_REGIMEN: "Seleccione un regimen",
                 OPTION_DEFAULT_SELECT_DOCUMENT_TYPE: "Tipo de Documento",
-                OPTION_DEFAULT_SELECT_ACCOUNT_TYPE: "Tipo de Cuenta"
+                OPTION_DEFAULT_SELECT_ACCOUNT_TYPE: "Tipo de Cuenta",
+                TOAST_ERROR_PUT: "Por seguridad no puedes modificar los datos bancarios, comunicate con nosotros."
             });
         }
 
         function _activate() {
             _setStrings();
-            _getOrganizerBankingInfo();
+            _setOrganizerBankingData();
+            vm.showLegal = false;
+            _checkTypePerson();
+            _setLegalData();
+            
         }
 
     }

@@ -12,16 +12,15 @@
         .module('trulii.students.controllers')
         .controller('StudentHistoryOrderCtrl', StudentHistoryOrderCtrl);
 
-    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$stateParams', 'Toast','student', 'order', 'Analytics', 'serverConf'];
+    StudentHistoryOrderCtrl.$inject = ['$modal', '$window', '$state', '$stateParams', 'Toast','student', 'order', 'Analytics', 'serverConf'];
 
-    function StudentHistoryOrderCtrl($modal, $window, $stateParams, Toast, student, order, Analytics, serverConf) {
+    function StudentHistoryOrderCtrl($modal, $window, $state, $stateParams, Toast, student, order, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm,{
             student: student,
             order: order,
             isStudent:true,
-            previousState:null,
             printOrder: printOrder,
             salesPaginationOpts: {
                 totalItems: 0,
@@ -29,7 +28,8 @@
                 maxPagesSize:10,
                 pageNumber: 1
             },
-            getAmazonUrl: getAmazonUrl
+            getAmazonUrl: getAmazonUrl,
+            goBack:goBack
         });
 
         _activate();
@@ -44,19 +44,28 @@
             $window.print();
         }
 
+        function goBack() {
+            var previousState =  $state.previous.name ? $state.previous.name:$state.previous.url ;
+            $state.go(previousState, {});
+        }
 
 
 
         //--------- Internal Functions ---------//
-
+        function _mapAssistants() {
+            vm.order.assistants = vm.order.assistants.map(function (value) {
+               value.showMobile= false;
+               return value; 
+            });
+        }
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
             angular.extend(vm.strings, {
                 ACTION_GO_BACK: "Regresar",
                 ACTION_PRINT: "Imprimir",
-                COPY_ASSISTANT_CODE_TOOLTIP: "Este código es único y ayuda a identificar a un asistente",
+                COPY_ASSISTANT_CODE_TOOLTIP: "Este código te pertenece y permite que el organizador pueda identificarte.",
                 SECTION_HISTORY: "Historial de Compras",
-                LABEL_ORDER: "Ordén",
+                LABEL_ORDER: "Nro. de Orden",
                 LABEL_FREE: "GRATIS",
                 LABEL_ACTIVITY: "Actividad",
                 LABEL_BUYER: "Comprador",
@@ -72,14 +81,14 @@
                 HEADER_ORDER: "Orden",
                 HEADER_FIRST_NAME: "Nombre",
                 HEADER_LAST_NAME: "Apellido",
-                HEADER_ASSISTANT_CODE: "Código"
+                HEADER_ASSISTANT_CODE: "Código",
+                TAB_ORDER: "Transacción > Orden de compra"
             });
         }
 
         function _activate() {
-            vm.previousState = $stateParams.previousState;
             _setStrings();
-            console.log('order',order);
+            _mapAssistants();
         }
     }
 })();

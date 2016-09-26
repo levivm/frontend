@@ -21,6 +21,8 @@
 
         var api = OrganizerServerApi;
         var _pool = {};
+        var reviewsDefaultPageSize = 5;
+        var defaultPage = 1;
 
         //noinspection UnnecessaryLocalVariableJS
         var service = {
@@ -47,7 +49,20 @@
              * @return {promise} Student Instance Promise
              * @methodOf trulii.organizers.services.OrganizersManager
              */
-            getCurrentOrganizer: getCurrentOrganizer
+            getCurrentOrganizer: getCurrentOrganizer,
+            
+            /**
+             * @ngdoc function
+             * @name trulii.organizers.services.OrganizersManager#getReviews
+             * @description Fetches a Organizer
+             * @param {number} idOrganizer Organizer Id
+             * @param {number} page Page of Reviews
+             * @param {number} pageSize Page Size
+             * @param {string} status Status Reviews
+             * @return {object} Organizer Reviews
+             * @methodOf trulii.organizers.services.OrganizersManager
+             */
+            getReviews: getReviews,
         };
 
         return service;
@@ -67,7 +82,6 @@
             }
 
             function errorAuthAccount(){
-                console.log("getCurrentOrganizer. Couldn't resolve authenticated user");
                 return $q.reject(null);
             }
 
@@ -91,6 +105,31 @@
             }
 
             return deferred.promise;
+        }
+        
+        function  getReviews(idOrganizer, page, pageSize, status) {
+            if(!page)
+                page = defaultPage;
+            if(!pageSize)
+                pageSize = reviewsDefaultPageSize;
+            if(!status)
+                status = '';
+
+          return $http.get(api.reviews(idOrganizer),
+                {params: {
+                  page: page,
+                  page_size: pageSize,
+                  status: status
+                }})
+                .then(success, error);
+
+                function success(response) {
+                    return response.data;
+                };
+
+                function error(response){
+                 // console.log("Error getting organizer reviews: ", response.data);
+                }
         }
 
         function _retrieveInstance(organizerId, organizerData) {

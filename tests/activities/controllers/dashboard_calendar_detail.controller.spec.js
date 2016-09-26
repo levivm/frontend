@@ -55,7 +55,7 @@ xdescribe('Controller: ActivityCalendarController', function(){
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
 
         ActivitiesManager.getActivity(4)
@@ -106,12 +106,16 @@ xdescribe('Controller: ActivityCalendarController', function(){
      describe("Create Calendar", function(){
         var template, element, regForm;
         beforeEach(inject(function ($templateCache, $compile) {
-           template = '<form  id="activity_calendar_form" name="calendar.activity_calendar_form" ng-submit="calendar.save_calendar()" novalidate></form>';
-           element = angular.element(template);
-           $compile(element)($scope);
+            template = '<form  id="activity_calendar_form" name="calendar.activity_calendar_form" ng-submit="calendar.save_calendar()" novalidate></form>';
+            element = angular.element(template);
+            $compile(element)($scope);
 
-       }));
-        it('should successfully create', function() {
+        }));
+        it('should successfully create', inject(function($state) {
+            //Update con respuesta exitosa
+            spyOn($state, 'go');
+            $state.go("^");
+            CalendarsManager.calendars['4'] = [];
             ActivityCalendarController.isSaving = true;
             ActivityCalendarController.activity_calendar_form = $scope.calendar.activity_calendar_form;
             ActivityCalendarController.calendar = calendar;
@@ -122,7 +126,27 @@ xdescribe('Controller: ActivityCalendarController', function(){
             $scope.calendar.calendar = readJSON('tests/mock/calendar_sessions.json');
             $httpBackend.flush();
             expect(ActivityCalendarController.isSaving).toBe(false);
+         }));
+         it('_onSectionUpdated calendars is true', function() {
+            expect(ActivityCalendarController.activity.completed_steps['calendars']).toBe(true);
          });
+         it('should error create', inject(function($state, Elevator) {
+            //Update con respuesta 400
+            spyOn(Elevator, 'toElement');
+            Elevator.toElement('activity_calendar_form');
+            CalendarsManager.calendars['4'] = [];
+            ActivityCalendarController.isSaving = true;
+            ActivityCalendarController.activity_calendar_form = $scope.calendar.activity_calendar_form;
+            ActivityCalendarController.calendar = calendar;
+            
+            ActivityCalendarController.save_calendar();
+            $httpBackend
+                 .when('POST', 'http://localhost:8000/api/activities/4/calendars')
+                 .respond(400, {"session_price":["El precio no puede ser menor de 30000"]});
+            $scope.calendar.calendar = readJSON('tests/mock/calendar_sessions.json');
+            $httpBackend.flush();
+            expect(ActivityCalendarController.isSaving).toBe(false);
+         }));
     });
 
 

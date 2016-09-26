@@ -68,9 +68,10 @@
                 vm.strings = {};
             }
             angular.extend(vm.strings, {
-                COPY_WISHLIST: "Favoritos",
-                COPY_EMPTY_ACTIVITIES: "No tienes favoritos, comienza a buscar actividades ya",
-                ACTION_SEARCH_ACTIVITY: "Buscar Actividad"
+                TAB_WISHLIST: "Favoritos",
+                COPY_WISHLIST: "Estas son tus actividades favoritas. No te despistes que en cualquiere momento se pueden agotar los cupos. ¿Qué esperas para insicribirte?",
+                COPY_EMPTY_ACTIVITIES: "No estás amando ninguna actividad de Trulii en estos momentos. Ojalá esta situación sea sólo pasajera...",
+                ACTION_SEARCH_ACTIVITY: "A ver qué encuentro"
             });
         }
 
@@ -78,7 +79,6 @@
 
             vm.nextPaginationOpts.totalItems = wishListActivities.count;
             vm.activities = wishListActivities.results;
-            console.log(vm.activities);
 
         }
         

@@ -15,9 +15,9 @@
         .module('trulii.locations.services')
         .factory('LocationManager', LocationManager);
 
-    LocationManager.$inject = ['$rootScope', '$http', '$q', 'localStorageService', 'LocationServerApi'];
+    LocationManager.$inject = ['$rootScope', '$http', '$q', 'localStorageService', 'LocationServerApi', 'serverConf'];
 
-    function LocationManager($rootScope, $http, $q, localStorageService, LocationServerApi) {
+    function LocationManager($rootScope, $http, $q, localStorageService, LocationServerApi, serverConf) {
 
         var api = LocationServerApi;
         var currentCity = null;
@@ -29,8 +29,7 @@
         var KEY_AVAILABLE_CITIES = "availableCities";
         var CURRENT_CITY_MODIFIED_EVENT = "currentCityModified";
         var IP_INFO_DEV ='//ipinfo.io/186.116.176.170?callback=JSON_CALLBACK';
-        var IP_INFO = '//ipinfo.io/?callback=JSON_CALLBACK'
-
+        var IP_INFO = 'https://freegeoip.net/json/?callback=JSON_CALLBACK';
         //noinspection UnnecessaryLocalVariableJS
         var LocationManager = {
 
@@ -122,15 +121,12 @@
 
         function _setAvailableCities(cities) {
             availableCities = cities;
-            localStorageService.set(KEY_AVAILABLE_CITIES, availableCities);
+            //localStorageService.set(KEY_AVAILABLE_CITIES, availableCities);
 
         }
 
         function getAvailableCities() {
             var deferred = $q.defer();
-            if (!availableCities) {
-                availableCities = localStorageService.get(KEY_AVAILABLE_CITIES);
-            }
             if (availableCities) {
                 deferred.resolve(availableCities);
                 return deferred.promise;
@@ -140,11 +136,15 @@
         }
 
         function getCityById(city_id) {
-            return availableCities.filter(byId)[0];
-
-            function byId(city) {
-                return city.id === city_id;
-            }
+            var deferred = $q.defer();
+            getAvailableCities().then(function(cities){
+                availableCities = cities;
+                deferred.resolve(availableCities.filter(byId)[0]);
+                function byId(city) {
+                    return city.id === city_id;
+                }
+            });
+            return deferred.promise;
         }
 
         function setCurrentCity(city) {
@@ -316,7 +316,9 @@
             $http.jsonp(IP_INFO).then(success, error);
 
             function success(response){
-                var latitude = parseFloat(response.data.loc.split(',')[0]).toFixed(2);
+                //console.log(response);
+                //var latitude = parseFloat(response.data.loc.split(',')[0]).toFixed(2);
+                var latitude = response.data.latitude.toFixed(2);
                 angular.forEach( availableCities, function (city, index){
                     calc =  Math.abs(latitude - parseFloat(city.point[0]).toFixed(2));
                     if(calc < minor){

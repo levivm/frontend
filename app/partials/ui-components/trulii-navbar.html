@@ -1,289 +1,330 @@
 <!--suppress HtmlUnknownTarget -->
-<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-short': scroll > 80, 'navbar-landing': isLandingState() }">
+<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-landing': isNavBarTransparent() }">
     <div class="row">
         <div class="navbar__logo-container">
             <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo "></a>
         </div>
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
-            <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true"></trulii-search-bar>
+            <trulii-search-bar ng-if="isSearchVisible"
+                               data-on-navbar="true" 
+                               class="navbar-search-bar" 
+                               ng-class="{'navbar-search-bar-hidden': isSearchVisible() }">
+            </trulii-search-bar>
+            
             <div class="buttons buttons-login float-right" ng-if="!user">
-                <a ui-sref="register" class=" montserrat-regular  margin-horizontal" ng-bind="::strings.ACTION_REGISTER"></a>
+                <a ui-sref="register" class="font-semibold  margin-horizontal-less" ng-bind="::strings.ACTION_REGISTER"></a>
             </div>
             <div class="buttons buttons-login float-right" ng-if="!user">
-                <a ui-sref="login" class=" montserrat-regular  margin-horizontal" ng-bind="::strings.ACTION_LOGIN"></a>
+                <a ui-sref="login" class="font-semibold  margin-horizontal-less " ng-bind="::strings.ACTION_LOGIN"></a>
             </div>
             <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
-                <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary montserrat-regular" ng-bind="::strings.ACTION_CREATE"></a>
+                <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary font-semibold" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
-        </div>
-        <div class="navbar__right-wrapper">
-            <a class="navbar__option navbar__option--right" ng-click="toggleBurger()">
-                <img ng-if="user" ng-src="{{user.photo}}" class="user-picture" alt="{{user.user.full_name}}"/>
-                 <i class="fa fa-bars " ng-class="{'text-gray-lightest': isLandingState(), 'text-gray-light': !isLandingState()}" aria-hidden="true"></i>  
-                <!--<img ng-if="" ng-src="{{getAmazonUrl('static/img/menu.png')}}" alt="Menu" class="menu-icon" ng-class="{'menu-icon-user': user}">
-                <img ng-if="" ng-src="{{getAmazonUrl('static/img/menu-blanco.png')}}"  alt="Menu" class="menu-icon" ng-class="{'menu-icon-user': user}">-->
+            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm explore-categories"  ng-class="{'ng-hide': scroll < 80 && isHome()}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+                <span class="font-semibold  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
+                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
             </a>
         </div>
+        <div class="navbar__right-wrapper" >
+            <a ng-if="userLogged" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
+                <trulii-avatar user="user" size="40" avatar-class="small" ng-class="{'avatar-landing': !user.photo}"></trulii-avatar>
+                <span class="font-semibold  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.name | limitTo : 9"></span>
+                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
+            </a>
+            <a class="navbar__option navbar__option--right  hidden-md hidden-lg" ng-click="toggleSideBar()">
+                 <i class="fa fa-bars " ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
+            </a>
+        </div>
+        
     </div>
 </nav>
-<div class="burger-menu" ng-show="showBurger">
-    <div class="col-xs-12">
-        <div class="row">
-            <div class="col-xs-12 visible-xs-block visible-sm-block">
-                <a ui-sref="home" ng-click="toggleBurger()">
-                    <img ng-src="{{getAmazonUrl('static/img/logo-trulii.png')}}" alt="" class="img-responsive center-block burger-menu__mobile-logo">
-                </a>
-            </div>
-            <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons visible-xs-block visible-sm-block" ng-if="!user">
-                <div class="row">
-                    <div class="col-xs-12 col-md-5">
-                        <a ui-sref="login" ng-click="toggleBurger()">
-                            <button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_LOGIN">
-                            </button>
+
+<div class="drop-menu drop-menu-categories" ng-show="showCategories" ng-style="{'left': exploreLeftPosition}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+    <ul class="list-unstyled">
+        <li ng-repeat="category in categories track by category.id">
+            <a ui-sref="category({category_name:category.slug})"
+                ng-click=" hideCategoriesMenu()"
+                ng-bind="::category.name"></a>
+        </li>
+    </ul>
+</div>
+
+<!--Dropdown menu when hover in profile picture"-->
+<div class="drop-menu" ng-show="showMenu" ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()">
+    <ul class="list-unstyled" ng-if="user.is_organizer">
+        
+        <li>
+            <a ui-sref="organizer-dashboard.profile"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_PROFILE)"
+                ng-bind="::strings.LABEL_ORGANIZER_PROFILE"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.account.settings"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)"
+                ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.activities.open"
+                ng-click="hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
+                ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.instructors"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
+                ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.reviews.pending"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
+                ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
+             <span class="label label-notification separate-left-less"
+                      ng-if="unreadReviewsCount"
+                      ng-bind="unreadReviewsCount"></span>
+        </li>
+        <li>
+            <a ui-sref="organizer-dashboard.transactions.sales"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_ORGANIZER_TRANSACTIONS"></a>
+        </li>
+        <li>
+            <a  ng-click=" hideDropMenu(); logout(); clickItemSidebar(strings.ACTION_EXIT)"
+                ng-bind="::strings.ACTION_EXIT"></a>
+        </li>
+    </ul>
+    <!--Student Sidebar-->
+    <ul class="list-unstyled" ng-if="user.is_student">
+        <li>
+            <a ui-sref="referrals.home"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
+                ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.profile"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
+                ng-bind="::strings.LABEL_STUDENT_PROFILE"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.account.password"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
+                ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.activities.open"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
+                ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.wishlist"
+                ng-click="hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_WISHLIST)"
+                ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
+        </li>
+        <li>
+            <a  ui-sref="student-dashboard.notifications"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_STUDENT_NOTIFICATIONS"></a>
+                <span class="label label-notification separate-left-less"
+                        ng-if="unreadNotificationsCount"
+                        ng-bind="unreadNotificationsCount"></span>
+        </li>
+        <li>
+            <a ui-sref="student-dashboard.history.orders"
+                ng-click=" hideDropMenu(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
+                ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
+        </li>
+        
+        <li>
+            <a  ng-click=" hideDropMenu(); logout(); clickItemSidebar(strings.ACTION_EXIT)"
+                ng-bind="::strings.ACTION_EXIT"></a>
+        </li>
+    </ul>
+</div>
+
+<!-- Menu side bar mobile-->
+<div class="cover-sidebar hidden-md hidden-lg" ng-show="showSideBar"   ng-click="toggleSideBar()"></div>
+
+<div class="sidebar-profile lateral-slide-right hidden-md hidden-lg" ng-show="showSideBar"  >
+    <div class="profile">
+        <trulii-avatar user="user" size="40" avatar-class="small" class="avatar-landing"></trulii-avatar>
+    </div>
+    <div class="profile_name">
+         <span class="font-bold margin-horizontal-less " ng-bind="user.user.full_name"></span>
+    </div>
+    
+    <div class="sign" ng-if="!user">
+        <a ui-sref="login" class=" font-regular  margin-horizontal-less "  ng-click="toggleSideBar();" ng-bind="::strings.ACTION_LOGIN"></a>
+        <a ui-sref="register" class=" font-regular  margin-horizontal-less" ng-click="toggleSideBar();" ng-bind="::strings.ACTION_REGISTER"></a>
+    </div>
+    
+    <!--Organizer Sidebar-->
+    <ul class="sidebar-profile__items list-unstyled" ng-if="user.is_organizer">
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="organizer-dashboard.profile"
+                ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_PROFILE); hideSubItems();"
+                ng-bind="::strings.LABEL_ORGANIZER_PROFILE"></a>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ng-click="showSubItems(strings.SUBITEM_ACCOUNT); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)"
+                ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
+               <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded':isActive('organizer-dashboard.account.*') || subItems[strings.SUBITEM_ACCOUNT]}">
+                   <li class="sidebar-profile__subitems-subitem">
+                       <a  ui-sref="organizer-dashboard.account.settings"
+                           ng-click=" hideSubItems(strings.SUBITEM_ACCOUNT); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)">
+                           <span ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT_SETTINGS"></span>
+                       </a>
+                   </li>
+                   <li class="sidebar-profile__subitems-subitem">
+                       <a ui-sref="organizer-dashboard.account.banking"
+                          ng-click=" hideSubItems(strings.SUBITEM_ACCOUNT); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)">
+                           <span ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT_BANK"></span>
+                       </a>
+                   </li>
+               </ul>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a  ng-click="showSubItems(strings.SUBITEM_ACTIVITIES); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
+                ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
+                
+            <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded': isActive('organizer-dashboard.activities.*') || subItems[strings.SUBITEM_ACTIVITIES]}" > 
+                    <li class="sidebar-profile__subitems-subitem" >
+                        <a ui-sref="organizer-dashboard.activities.open" 
+                            ng-click=" hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_OPEN)">
+                            <span ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES_OPEN"></span>
                         </a>
-                    </div>
-                    <div class="col-xs-12 col-md-5">
-                        <a ui-sref="register" ng-click="toggleBurger()">
-                            <button class="btn btn-block btn-default btn-reg" ng-bind="::strings.ACTION_REGISTER">
-                            </button>
+                    </li>
+                    <li class="sidebar-profile__subitems-subitem" >
+                        <a ui-sref="organizer-dashboard.activities.closed" 
+                            ng-click=" hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_CLOSED)">
+                            <span ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES_CLOSED" ></span>
                         </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__buttons visible-xs-block visible-sm-block" ng-if="user.is_organizer">
-                <div class="row hidden-xs hidden-sm">
-                    <div class="col-xs-12 col-md-5">
-                        <a ui-sref="dash.activities-new.general" ng-click="toggleBurger()">
-                            <button class="btn btn-block btn-default btn-login" ng-bind="::strings.ACTION_CREATE">
-                            </button>
+                    </li>
+                    <li class="sidebar-profile__subitems-subitem">
+                        <a ui-sref="organizer-dashboard.activities.inactive"  
+                             ng-click="hideSubItems(strings.SUBITEM_ACTIVITIES);  toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES_INACTIVE)">
+                            <span ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES_INACTIVES" ></span>
                         </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 hidden-md hidden-lg separate-vertical">
-                <div class="form-classic">
-                    <div class="input-group">
-                        <input type="text" class="form-control" ng-model="newSearchQuery" placeholder="{{::strings.PLACEHOLDER_WANT_TO_LEARN}}">
-                      <span class="input-group-btn">
-                        <button class="btn btn-success" type="button" ng-click="searchActivities()">
-                            <i class="mdi mdi-action-search"></i>
-                        </button>
-                      </span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4 col-md-push-8 burger-menu__column burger-menu__user-links" ng-if="user">
-                <img ng-src="{{user.photo}}" class="burger-menu__user__picture" alt="{{user.user.full_name}}"/>
-                <span class="burger-menu__user__name" ng-bind="user.user.full_name"></span>
-                <!--Organizer Sidebar-->
-                <ul class="list-unstyled" ng-if="user.is_organizer">
-                    <li>
-                        <a ui-sref="organizer-dashboard.activities.open"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_ACTIVITIES)"
-                           ng-bind="::strings.LABEL_ORGANIZER_ACTIVITIES"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="organizer-dashboard.transactions.sales"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
-                           ng-bind="::strings.LABEL_ORGANIZER_SALES"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="organizer-dashboard.profile"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_PROFILE)"
-                           ng-bind="::strings.LABEL_ORGANIZER_PROFILE"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="organizer-dashboard.account.settings"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_ACCOUNT)"
-                           ng-bind="::strings.LABEL_ORGANIZER_ACCOUNT"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="organizer-dashboard.reviews.pending"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
-                           ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="organizer-dashboard.instructors"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
-                           ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="logout"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.ACTION_EXIT)"
-                           ng-bind="::strings.ACTION_EXIT"></a>
                     </li>
                 </ul>
-                <!--Student Sidebar-->
-                <ul class="list-unstyled" ng-if="user.is_student">
-                    <li>
-                        <a ui-sref="student-dashboard.activities.open"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
-                           ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="referrals.home"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
-                           ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="student-dashboard.profile"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
-                           ng-bind="::strings.LABEL_STUDENT_PROFILE"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="student-dashboard.account.password"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
-                           ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="student-dashboard.history.orders"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
-                           ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="student-dashboard.wishlist"
-                           ng-click="toggleBurger()"
-                           ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
-                    </li>
-                    <li>
-                        <a ui-sref="logout"
-                           ng-click="toggleBurger(); clickItemSidebar(strings.ACTION_EXIT)"
-                           ng-bind="::strings.ACTION_EXIT"></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-md-8 burger-menu__column" ng-class="{'col-md-pull-4': user}">
-                <div ng-if="!user">
-                    <div class="row">
-                        <div class="col-xs-12 burger-menu__header-links">
-                            <ul class="list-unstyled list-inline">
-                                <li class="hidden-sm hidden-xs">
-                                    <img ng-src="{{getAmazonUrl('static/img/logo-trulii.png')}}" alt="Trulii" class="img-responsive">
-                                </li>
-                                <li>
-                                    <a ui-sref="organizer-landing"
-                                       ng-click="toggleBurger()"
-                                       ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
-                                </li>
-                                <li ng-if="!user">
-                                    <a ui-sref="referrals.home-anon"
-                                       ng-click="toggleBurger()"
-                                       ng-bind="::strings.COPY_INVITE_FRIEND"></a>
-                                </li>
-                                <li>
-                                    <a href="https://blog.trulii.com"
-                                       target="_blank"
-                                       ng-click="toggleBurger()"
-                                       ng-bind="::strings.LABEL_BLOG"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div ng-if="user">
-                    <!--Student Options-->
-                    <div class="row" ng-if="user.is_student">
-                        <div class="col-xs-12 burger-menu__header-links">
-                            <ul class="list-unstyled list-inline">
-                                <li class="hidden-sm hidden-xs">
-                                    <img ng-src="{{getAmazonUrl('static/img/logo-trulii.png')}}" alt="Trulii" class="img-responsive">
-                                </li>
-                                <li>
-                                    <a ui-sref="organizer-landing"
-                                       ng-click="toggleBurger()"
-                                       ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
-                                </li>
-                                <li>
-                                    <a ui-sref="referrals.home"
-                                       ng-click="toggleBurger()"
-                                       ng-bind="::strings.COPY_INVITE_FRIEND"></a>
-                                </li>
-                                <li>
-                                    <a href="https://blog.trulii.com"
-                                       target="_blank"
-                                       ng-click="toggleBurger()"
-                                       ng-bind="::strings.LABEL_BLOG"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <!--Organizer Options-->
-                    <div class="row" ng-if="user && !user.is_student">
-                        <div class="col-xs-12 burger-menu__header-links">
-                            <ul class="list-unstyled list-inline">
-                                <li class="hidden-sm hidden-xs">
-                                    <img ng-src="{{getAmazonUrl('static/img/logo-trulii.png')}}" alt="Trulii" class="img-responsive">
-                                </li>
-                                <li>
-                                    <a href="https://blog.trulii.com"
-                                       target="_blank"
-                                       ng-click="toggleBurger()"
-                                       ng-bind="::strings.LABEL_BLOG"></a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--About Trulii-->
-                <div class="row burger-menu__links">
-                    <div class="col-xs-12 col-md-10 col-md-offset-1">
-                        <div class="row row-stretch">
-                            <div class="col-xs-12 col-md-6">
-                                <p ng-bind="::strings.LABEL_ABOUT_US"></p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a ui-sref="about.mission" ng-click="toggleBurger()"
-                                           ng-bind="::strings.LABEL_ABOUT_MISSION"></a>
-                                    </li>
-                                    <li>
-                                        <a ui-sref="about.culture" ng-click="toggleBurger()"
-                                           ng-bind="::strings.LABEL_ABOUT_CULTURE"></a>
-                                    </li>
-                                    <li>
-                                        <a ui-sref="about.team" ng-click="toggleBurger()"
-                                           ng-bind="::strings.LABEL_ABOUT_TEAM"></a>
-                                    </li>
-                                    <li>
-                                        <a ui-sref="contact-us" ng-click="toggleBurger()"
-                                           ng-bind="::strings.LABEL_ABOUT_CONTACT_US"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-xs-12 col-md-6">
-                                <p ng-bind="::strings.LABEL_ORGANIZER"></p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a ng-click="howToWorkOrganizer(); toggleBurger()"
-                                           ng-bind="::strings.LABEL_ORGANIZER_HOW"></a>
-                                    </li>
-                                    <li>
-                                        <a ui-sref="help.organizer" ng-click="toggleBurger()"
-                                           ng-bind="::strings.LABEL_ORGANIZER_HELP"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="row row-stretch">
-                            <div class="col-xs-12 col-md-6">
-                                <p ng-bind="::strings.LABEL_STUDENT"></p>
-                                <ul class="list-unstyled">
-                                    <li>
-                                        <a ng-click="howToWorkStudent(); toggleBurger()"
-                                           ng-bind="::strings.LABEL_STUDENT_HOW"></a>
-                                    </li>
-                                    <li>
-                                        <a ui-sef="help.student" ng-click="toggleBurger()"
-                                           ng-bind="::strings.LABEL_STUDENT_HELP"></a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="pull-right burger-menu__close" ng-click="toggleBurger()">
-            <img class="img-responsive" ng-src="{{getAmazonUrl('static/img/activity-enroll/close.png')}}" alt="{{ strings.ACTION_CLOSE }}"/>
-        </button>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="organizer-dashboard.instructors"
+                ng-click=" hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_INSTRUCTORS)"
+                ng-bind="::strings.LABEL_ORGANIZER_INSTRUCTORS"></a>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ng-click="showSubItems(strings.SUBITEM_REVIEWS); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS)"
+                ng-bind="::strings.LABEL_ORGANIZER_REVIEWS"></a>
+             <span class="label label-notification separate-left-less"
+                      ng-if="unreadReviewsCount"
+                      ng-bind="unreadReviewsCount"></span>
+                      
+            <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded': isActive('organizer-dashboard.reviews.*') || subItems[strings.SUBITEM_REVIEWS]}" >
+                   <li class="sidebar-profile__subitems-subitem">
+                       <a  ui-sref="organizer-dashboard.reviews.pending"
+                            ng-click=" hideSubItems(strings.SUBITEM_REVIEWS); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS_UNREAD)">
+                           <span ng-bind="::strings.LABEL_ORGANIZER_REVIEWS_UNREAD"></span>
+                       </a>
+                   </li>
+                   <li class="sidebar-profile__subitems-subitem">
+                       <a ui-sref="organizer-dashboard.reviews.done"
+                            ng-click="hideSubItems(strings.SUBITEM_REVIEWS); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_REVIEWS_DONE)">
+                           <span ng-bind="::strings.LABEL_ORGANIZER_REVIEWS_DONE"></span>
+                       </a>
+                   </li>
+               </ul>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ng-click="showSubItems(strings.SUBITEM_TRANSACTIONS); clickItemSidebar(strings.LABEL_ORGANIZER_TRANSACTIONS)"
+                ng-bind="::strings.LABEL_ORGANIZER_TRANSACTIONS"></a>
+                
+                 <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded': isActive('organizer-dashboard.transactions.*') || subItems[strings.SUBITEM_TRANSACTIONS]}">
+                   <li class="sidebar-profile__subitems-subitem">
+                       <a ui-sref="organizer-dashboard.transactions.sales"
+                        ng-click=" hideSubItems(strings.SUBITEM_TRANSACTIONS); toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_TRANSACTIONS_SALES)">
+                           <span ng-bind="::strings.LABEL_ORGANIZER_TRANSACTIONS_SALES"></span>
+                       </a>
+                   </li>
+               </ul>    
+            </a>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="logout"
+                ng-click=" hideSubItems(); toggleSideBar(); clickItemSidebar(strings.ACTION_EXIT)"
+                ng-bind="::strings.ACTION_EXIT"></a>
+        </li>
+    </ul>
+    <!--Student Sidebar-->
+    <ul class="sidebar-profile__items list-unstyled" ng-if="user.is_student">
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="referrals.home"
+                ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
+                ng-bind="::strings.LABEL_STUDENT_INVITE"></a>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="student-dashboard.profile"
+                ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
+                ng-bind="::strings.LABEL_STUDENT_PROFILE"></a>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="student-dashboard.account.password"
+                ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACCOUNT)"
+                ng-bind="::strings.LABEL_STUDENT_ACCOUNT"></a>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ng-click="showSubItems(strings.SUBITEM_ACTIVITIES); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES)"
+                ng-bind="::strings.LABEL_STUDENT_ACTIVITIES"></a>
+            <ul class="sidebar-profile__subitems list-unstyled" ng-class="{'sidebar-profile__subitems-expanded': isActive('organizer-dashboard.activities.*') || subItems[strings.SUBITEM_ACTIVITIES]}" > 
+                <li class="sidebar-profile__subitems-subitem" >
+                    <a ui-sref="student-dashboard.activities.current" 
+                        ng-click=" hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENTNIZER_ACTIVITIES_CURRENT)">
+                        <span ng-bind="::strings.LABEL_STUDENT_ACTIVITIES_CURRENT"></span>
+                    </a>
+                </li>
+                <li class="sidebar-profile__subitems-subitem" >
+                    <a ui-sref="student-dashboard.activities.open" 
+                        ng-click=" hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENTZER_ACTIVITIES_NEXT)">
+                        <span ng-bind="::strings.LABEL_STUDENT_ACTIVITIES_NEXT" ></span>
+                    </a>
+                </li>
+                <li class="sidebar-profile__subitems-subitem">
+                    <a ui-sref="student-dashboard.activities.closed"  
+                            ng-click="hideSubItems(strings.SUBITEM_ACTIVITIES); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_ACTIVITIES_LAST)">
+                        <span ng-bind="::strings.LABEL_STUDENT_ACTIVITIES_LAST" ></span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="student-dashboard.wishlist"
+                ng-click="toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_WISHLIST)"
+                ng-bind="::strings.LABEL_STUDENT_WISHLIST"></a>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="student-dashboard.notifications"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_ORGANIZER_SALES)"
+                ng-bind="::strings.LABEL_STUDENT_NOTIFICATIONS"></a>
+            <span class="label label-notification separate-left-less"
+                        ng-if="unreadNotificationsCount"
+                        ng-bind="unreadNotificationsCount"></span>
+        </li>
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="student-dashboard.history.orders"
+                ng-click=" toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PURCHASES)"
+                ng-bind="::strings.LABEL_STUDENT_PURCHASES"></a>
+        </li>
+        
+        <li class="sidebar-profile__items-item">
+            <a ui-sref="logout"
+                ng-click="toggleSideBar(); clickItemSidebar(strings.ACTION_EXIT)"
+                ng-bind="::strings.ACTION_EXIT"></a>
+        </li>
+    </ul>
+    
+    <div class="social">
+        <a href="https://twitter.com/trulii_">
+            <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+        <a class="separate-left" href="https://www.facebook.com/truliilatam/">
+            <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
     </div>
 </div>

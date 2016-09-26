@@ -1,20 +1,28 @@
-<div class="navbar-secondary" ng-class="{'navbar-secondary-short': dash.scroll > 80}">
-</div>
+
 <div class="row with-footer">
     <div class="col-xs-10 col-xs-offset-1 col-md-10 col-lg-8 with-footer limited-width-dashboard">
         <div class="row">
             <div class="col-xs-12">
                 <div class="row">
                     <div class="col-xs-12 ">
-                        <div>
-                            <p ng-bind="::instructors.strings.COPY_INSTRUCTORS"></p>
+                        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub">
+                                <h4 class="panel-default__dashboard-title" ng-bind="::instructors.strings.SECTION_INSTRUCTORS"></h4>
+                                
+                                <div class="add-instructors hidden-xs hidden-sm">
+                                    <button class="btn btn-info" ng-click="instructors.addInstructors()">
+                                        <span ng-bind="::instructors.strings.ACTION_ADD_INSTRUCTORS"></span>
+                                    </button>
+                                </div>
+                        </div>
+                        <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub-second">
+                                <span class="text-gray-dark" ng-bind="::instructors.strings.COPY_INSTRUCTORS"></span>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                   <div class="col-xs-12">
                     <form name='instructors.organizer_instructors_forms'>
-                        <div class="col-xs-12 col-sm-12 col-md-6 horizontal-fade" ng-repeat="instructor in instructors.instructors">
+                        <div class="col-xs-12 horizontal-fade" ng-repeat="instructor in instructors.instructors">
                             <trulii-instructor-card instructor="instructor"
                               organizer="instructors.organizer"  on-dashboard="true" available-instructors="{}"
                               on-change="instructors.onChange()" ></trulii-instructor-card>
@@ -26,4 +34,3 @@
         </div>
     </div>
 </div>
-<trulii-dashboard-footer></trulii-dashboard-footer>

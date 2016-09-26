@@ -15,9 +15,9 @@
 
         .directive('truliiActivityReview', truliiActivityReview);
 
-    truliiActivityReview.$inject = ['ActivitiesTemplatesPath', 'Authentication', 'ActivitiesManager', 'Toast', 'defaultPicture', 'Analytics'];
+    truliiActivityReview.$inject = ['ActivitiesTemplatesPath', 'Authentication', 'ActivitiesManager', 'Toast', 'defaultPicture', 'Analytics', '$rootScope'];
 
-    function truliiActivityReview(ActivitiesTemplatesPath, Authentication, ActivitiesManager, Toast, defaultPicture, Analytics){
+    function truliiActivityReview(ActivitiesTemplatesPath, Authentication, ActivitiesManager, Toast, defaultPicture, Analytics, $rootScope){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_review.html",
@@ -25,6 +25,7 @@
                 'review': '=',
                 'activity': '=',
                 'onDashboard': '=',
+                'student': '=',
                 'changeReviewStatus': '&'
             },
             link: function(scope){
@@ -42,7 +43,10 @@
                     confirmReport: confirmReport,
                     cancelReport: cancelReport,
                     markAsRead: markAsRead,
-                    reply: reply
+                    reply: reply,
+                    isStudent: (scope.onDashboard && scope.student),
+                    sizeAvar: 60,
+                    classAvatar: 'medium'
                 });
 
                 var activityInstance = null;
@@ -93,7 +97,7 @@
                     function success(){
                         scope.hasReply = true;
                         if (scope.onDashboard) scope.changeReviewStatus();
-
+                        $rootScope.$broadcast('update_reviews');
                     }
                 }
 
@@ -102,6 +106,7 @@
                     activityInstance.markReviewAsRead(scope.review).then(success);
 
                     function success(){
+                        $rootScope.$broadcast('update_reviews');
                         if (scope.onDashboard) scope.changeReviewStatus();
                     }
                 }
@@ -113,7 +118,22 @@
                         activityInstance = activityInstanceResponse;
                     });
                 }
+                function _getOwnUser() {
+                    Authentication.getAuthenticatedAccount().then(success, error);
 
+                    function success(user) {
+                        if (!user) {
+                            scope.ownUser = null;
+                            return;
+                        }
+                        scope.ownUser = user;
+                    }
+
+                    function error() {
+                        console.error("review getOwnUser. Couldn't get user");
+                        scope.ownUser = null;
+                    }
+                }
                 function _getUser(){
                   if(scope.review){
                     if(!scope.review.author){
@@ -131,11 +151,27 @@
                         user.full_name = 'User';
                     }
 
-                    if(!author.photo){
+                    /*if(!author.photo){
                         author.photo = defaultPicture;
-                    }
+                    }*/
                     scope.user = author;  
                   }
+                }
+                function _mapMainPicture(activity){
+                    if(activity.pictures.length > 0){
+                        angular.forEach(activity.pictures, function(picture, index, array){
+                            if(picture.main_photo){
+                                activity.main_photo = picture.photo;
+                            }
+
+                            if( index === (array.length - 1) && !activity.main_photo){
+                                activity.main_photo = array[0].photo;
+                            }
+                        });
+                    } else {
+                        activity.main_photo = defaultCover;
+                    }
+                    return activity;
                 }
 
                 function _getLoggedUser(){
@@ -147,7 +183,7 @@
                 function _setStrings(){
                     if(!scope.strings){ scope.strings = {}; }
                     angular.extend(scope.strings, {
-                        ACTION_DONE: "Listo",
+                        ACTION_DONE: "Calificar",
                         ACTION_MARK_AS_READ: "Marcar como Leído",
                         COPY_EMPTY_REPLY: "Por favor escriba una respuesta",
                         COPY_REVIEW_REPORTED: "El comentario será revisado por Trulii",
@@ -156,18 +192,22 @@
                         COPY_REPORT_DISCLAIMER: "Al reportar un comentario como inapropiado este será revisado por "
                             + "el equipo de Trulii para ser retirado público. Próximamente la enviaremos un correo "
                             + " con el resultado de nuestra evaluación",
-                        LABEL_RATE_EXPERIENCE: "¿Cómo calificarías la experiencia?",
+                        LABEL_RATE_EXPERIENCE: "¿Cómo calificarías la actividad?",
                         LABEL_REPORT_BUTTON: "Reportar",
                         LABEL_REPLY_BUTTON: "Responder",
                         LABEL_CANCEL_BUTTON: "Cancelar",
                         LABEL_CONTINUE_BUTTON: "Continuar",
-                        PLACEHOLDER_REVIEW_COMMENT: "Deja tu comentario. Esto lo verá el organizador y demás usuarios"
+                        LABEL_COMMENT: "Comentario",
+                        PLACEHOLDER_REVIEW_COMMENT: "Deja tu comentario. Esto lo verá el organizador y demás usuarios",
+                        COPY_ORDER_DETAIL: "Detalle de compra"
 
                     });
                 }
 
                 function _activate(){
                     _getUser();
+                    _getOwnUser();
+                    
                     if(scope.review){
                       scope.hasReply = !!scope.review.reply;
                       if(scope.review.id){
@@ -184,15 +224,14 @@
                       scope.hasReview = false;
                       angular.extend(scope.review, EMPTY_REVIEW);
                     }
-
                     // TODO Might be redundant
                     if(scope.activity){
                         scope.organizer = scope.activity.organizer;
-                        if(!scope.organizer.photo){
-                            scope.organizer.photo = defaultPicture;
-                        }
                     }
                     _getActivityInstance();
+                    if(scope.isStudent)
+                        _mapMainPicture(scope.activity);
+                    
                 }
 
                 scope.$watch('activity', function(){

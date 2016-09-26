@@ -53,7 +53,7 @@ xdescribe('Controller: ActivityDBReturnPDashboard', function(){
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
         $httpBackend
-           .when('JSONP', '//ipinfo.io/?callback=JSON_CALLBACK')
+           .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
            .respond(readJSON('tests/mock/ipinfo.json'));
 
         ActivitiesManager.getActivity(4)
@@ -113,6 +113,9 @@ xdescribe('Controller: ActivityDBReturnPDashboard', function(){
 
             $httpBackend.flush();
             expect(ActivityDBReturnPDashboard.isSaving).toBe(false);
+         });
+         it('_onSectionUpdated return_policy is true', function() {
+            expect(ActivityDBReturnPDashboard.activity.completed_steps['return_policy']).toBe(true);
          });
     });
 

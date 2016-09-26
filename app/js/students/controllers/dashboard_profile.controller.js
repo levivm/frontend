@@ -54,21 +54,8 @@
 
         function updateProfile(){
 
-            console.log("updateProfile.Form:", vm.profile_form);
-
-            if(vm.student.birth_date){
-                Error.form.clear(vm.profile_form);
-                vm.student.update_profile().then(success, error);
-            } else {
-                console.log('Student Birth Date undefined');
-                var errorResponse = {
-                    data: {
-                        form_errors: {}
-                    }
-                };
-                errorResponse.data.form_errors[Error.FORM_FIELD_ALL] = [vm.strings.MESSAGE_INVALID_BIRTH_DATE];
-                error(errorResponse);
-            }
+           Error.form.clear(vm.profile_form);
+            vm.student.update_profile().then(success, error);
 
             function success(){
                 Toast.generics.weSaved();
@@ -107,9 +94,7 @@
             }
 
             function error(response) {
-                console.log('StudentProfileCtrl.uploadPicture. Error uploading profile picture');
                 var responseErrors = response['errors'];
-                console.log('responseErrors:', responseErrors);
                 vm.photo_loading = false;
                 if (responseErrors) {
                     vm.photo_invalid = true;
@@ -119,7 +104,6 @@
         }
 
         function openDatePicker($event){
-            console.log('openDatePicker');
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -127,7 +111,6 @@
         }
 
         function selectCity(city){
-            console.log('selectCity. city:', city);
             vm.student.city = city? city.id : null;
             LocationManager.setCurrentCity(city);
         }
@@ -153,14 +136,22 @@
         }
 
         function _setDates(){
-            vm.student.birth_date = new Date(student.birth_date);
+            vm.student.birth_date = student.birth_date ;
         }
 
         function _verifySizePicture(pictureToUpload){
             var sizeUpload = pictureToUpload.size / 1000;
             return sizeUpload < SIZE_PICTURE_UP;
         }
-
+        
+        function _setFullName(){
+            vm.student.fullName= vm.student.user.first_name+' '+vm.student.user.last_name;
+        }
+        
+        function _setTelephone(){
+            vm.student.telephone = Number(vm.student.telephone);
+            vm.student.telephone = vm.student.telephone==0 ? undefined : vm.student.telephone;
+        }
 
         function _setStrings() {
             if (!vm.strings) {
@@ -174,13 +165,16 @@
                 LABEL_BIRTH_DATE: "Fecha de nacimiento",
                 LABEL_LAST_NAMES: "Apellidos",
                 LABEL_GENDER: "Género",
-                LABEL_CITY: "Ciudad",
+                LABEL_CITY: "¿En qué ciudad vives?",
                 LABEL_TELEPHONE: "Teléfono",
                 COPY_PRIVATE_DATA_TOOLTIP: "Esta información no la compartiremos con nadie.",
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
-                OPTION_SELECT: "Seleccione Ciudad",
-                SECTION_PROFILE: "Mi Perfil",
+                OPTION_SELECT: "Elige una ciudad",
+                OPTION_GENDER_SELECT: "Elige un genero",
+                BIRTH_SELECT: "Elige una fecha", 
+                SECTION_PROFILE: "Perfil",
+                COPY_PROFILE: "Esta información aparecerá en tu perfil y lo veran los demás usuarios.",
                 TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 2.5Mb"
             });
         }
@@ -190,6 +184,8 @@
             _setGender(vm.student.gender);
             _setCity(vm.student.city);
             _setDates();
+            _setFullName();
+            _setTelephone();
             datepickerPopupConfig.showButtonBar = false;
         }
 
