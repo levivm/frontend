@@ -529,8 +529,9 @@
 
             function getTokenError(errors){
                 var isPayUError = !!errors.error;
+                _finishProccesingPayment();
                 if (isPayUError){
-                    Error.form.add(vm.enrollForm, {'generalError':["Error"]});
+                    Error.form.add(vm.enrollForm, {'generalError':["Error al procesar pago, verifique los datos de su tarjeta e intente de nuevo."]});
                     return;
                 }
 
