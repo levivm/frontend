@@ -241,7 +241,6 @@
 
             var emptyFields = getEmptyPaymentData(paymentData);
 
-            console.log(emptyFields, "Empty Fields");
 
             if(!emptyFields.length){
                 try{
@@ -254,8 +253,6 @@
             }
 
             function getDataSuccess(){
-                console.log(paymentData);
-                console.log(payU);
                 var deferred = $q.defer();
                 payU.getPaymentMethods();
                 payU.setCardDetails(paymentData);
@@ -346,8 +343,6 @@
             return deferred.promise;
 
             function isValidType(card){
-                console.log(card);
-                console.log(methodType);
                 return methodType.toUpperCase() === card;
             }
         }
