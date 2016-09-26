@@ -122,7 +122,7 @@
                 ORGANIZERS_TITLE: "Algunos de nuestros organizadores",
                 PUBLISH_COPY: "¿Quieres publicar una actividad?",
                 PUBLISH_TEXT_1: "Trulii es el <strong>mejor espacio</strong> para dar a conocer " +
-                "tu actividad. Bien sea un curso de cocina, una classe de cross-fit, un foro de negocios o un diplomado universitario, nosotros " +
+                "tu actividad. Bien sea un curso de cocina, una clase de cross-fit, un foro de negocios o un diplomado universitario, nosotros " +
                 "te ayudamos a <strong>aumentar tus ingresos</strong> buscándote nuevos asistentes mientras tú <strong>te enfocas en enseñar</strong> lo que te gusta.",
                 PUBLISH_TEXT_2: "Regístrate sin costo alguno y comienza a llenar tus cupos. ¡Trabajemos juntos!",
                 PUBLISH_TEXT_3: "¡Crece con nosotros!",
