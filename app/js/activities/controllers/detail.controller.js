@@ -145,12 +145,13 @@
 
         function changeSelectedCalendar(calendar) { vm.calendar_selected = vm.activity.upcoming_calendars[calendar]; }
 
-        function signUp(activity_id, calendar_id){
+        function signUp(activity_id, calendar_id, package_id){
             var enrollParams = {
                 category_slug: vm.activity.category.slug,
                 activity_title: vm.title,
                 activity_id: vm.activity.id,
-                calendar_id: calendar_id
+                calendar_id: calendar_id,
+                package_id: package_id,
             };
 
             if(vm.activity.is_open){
@@ -161,8 +162,8 @@
                     state: 'activities-enroll',
                     params: {
                         activity_id: activity_id,
-
-                        calendar_id: calendar_id
+                        calendar_id: calendar_id,
+                        package_id: package_id
                     }
                 }
             };
