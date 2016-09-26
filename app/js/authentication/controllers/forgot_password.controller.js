@@ -22,8 +22,8 @@
     vm.errors = {};
     vm.forgotPassword = forgotPassword;
     vm.strings = {
-      COPY_TITLE: "¿Olvidaste tu contraseña?",
-      COPY_RESET: "Enviaremos a tu correo electrónico un enlace para que establezcas una nueva contraseña",
+      COPY_TITLE: "Restablecer contraseña",
+      COPY_RESET: "Enviaremos a tu correo electrónico un enlace para que restablezcas una nueva contraseña",
       ACTION_SEND: " Enviar"
     }
 
@@ -48,7 +48,7 @@
       }
 
       function error(response){
-            
+
         var responseErrors = response.data;
         if (responseErrors) {
             Error.form.add(vm.forgot_password_form, responseErrors);

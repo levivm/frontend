@@ -294,7 +294,7 @@
         }
         function checkCvv(){
             Error.form.clear(vm.enrollForm);
-            
+
             if(vm.cardData.cvv.length !== 3){
                 Error.form.add(vm.enrollForm, {'invalidCvv': ["CVV inválido"]});
             }
@@ -495,7 +495,7 @@
                 vm.enrolling = true;
                 ActivitiesManager.enroll(activity.id, data).then(_enrollSuccess, _enrollError)
                                   .finally(_finishProccesingPayment);
-                                  
+
 
 
                 function _enrollSuccess(order) {
@@ -792,8 +792,8 @@
                 COPY_RELEASE_5: "Términos y condiciones ",
                 COPY_RELEASE_6: "de Trulii",
                 COPY_SLIDEBAR_TERMS_TITLE: "Términos y condiciones",
-                COPY_SLIDEBAR_TERMS_HEADER: "Titulo de terminos y condiciones",
-                COPY_SLIDEBAR_TERMS_BODY: "All work and no play makes Jack a dull boy",
+                COPY_SLIDEBAR_TERMS_HEADER: "",
+                COPY_SLIDEBAR_TERMS_BODY: "",
                 COPY_SLIDEBAR_REIMBURSEMENT_TITLE: "Políticas de Reembolso",
                 COPY_SLIDEBAR_REIMBURSEMENT_HEADER: "Políticas de reembolso",
                 COPY_SLIDEBAR_REIMBURSEMENT_BODY: "No hay politicas de reembolso",
@@ -882,7 +882,7 @@
             vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().bottom + window.scrollY);
             vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().left + 30;
             vm.widgetFixedPositionRight = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().right - 30 - 225;
-            
+
         }
 
         function _initWidget(){
@@ -942,7 +942,7 @@
                 vm.pseData.payerEmail = currentUser.user.email;
                 _setAssistants();
             }
-            
+
             //Function for angularSeo
             $scope.htmlReady();
 
