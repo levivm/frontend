@@ -197,6 +197,7 @@
             }
             
             //Function for angularSeo
+           
             $scope.htmlReady();
         }
 

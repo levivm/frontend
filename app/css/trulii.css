@@ -16789,8 +16789,8 @@ tags-input .tags {
   -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   border: 0px;
-  height: 60px;
   padding: 12px 25px;
+  height: 250px;
 }
 tags-input .tags:focus {
   border-color: #66afe9;
@@ -16875,6 +16875,7 @@ tags-input .tag-item {
   border-radius: 1.7em;
   padding: 0.2em 1.2em;
   font-size: 1.1em;
+  margin-top: 15px;
 }
 tags-input .tag-item span {
   padding-right: 8px;
@@ -17206,9 +17207,9 @@ tags-input input {
   height: 4.5em;
 }
 .form-submit-controls .copy-edit {
-  float: left;
   height: 55px;
   line-height: 55px;
+  margin-right: 30px;
 }
 .form-submit-controls .progress {
   position: absolute;
@@ -17771,11 +17772,11 @@ td {
 }
 .panel-default__dashboard-tabs {
   display: flex;
-  height: 60px;
+  height: 45px;
 }
 .panel-default__dashboard-tab {
-  font-size: 1.2em;
-  padding: 17px 15px;
+  font-size: 1em;
+  padding: 12px 15px;
   color: #e4e7ef;
   font-weight: 600;
   cursor: pointer;
