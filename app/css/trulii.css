@@ -23217,6 +23217,9 @@ blockquote {
   .width-form-80 {
     width: 80%;
   }
+  .content-mobile {
+    display: none;
+  }
 }
 .activity-enroll {
   background-color: white;
