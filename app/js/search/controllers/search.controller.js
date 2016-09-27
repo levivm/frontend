@@ -14,11 +14,11 @@
 
     SearchController.$inject = ['$rootScope', '$scope', '$q', '$state', '$stateParams', '$timeout'
             , 'generalInfo', 'ActivitiesManager', 'LocationManager', 'SearchManager'
-            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf'];
+            , 'datepickerConfig', 'datepickerPopupConfig', 'Analytics', 'serverConf', 'Elevator'];
 
     function SearchController($rootScope, $scope, $q, $state, $stateParams, $timeout
             , generalInfo, ActivitiesManager, LocationManager, SearchManager
-            , datepickerConfig, datepickerPopupConfig, Analytics, serverConf) {
+            , datepickerConfig, datepickerPopupConfig, Analytics, serverConf, Elevator) {
 
 
         var FORMATS = ['dd-MM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate'];
@@ -255,6 +255,7 @@
         function pageChange() {
             _setPage();
             _search();
+            Elevator.toTop();
         }
 
         function changeOrderBy(predicate) {
