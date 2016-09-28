@@ -57,11 +57,11 @@
         }
 
         function loadActivities(){
-            if(activities.results.length > activitiesIndex){
+            if(activities.length > activitiesIndex){
                 var begin = activitiesIndex;
                 var end = activitiesIndex + ACTIVITIES_STEP;
-                if(activities.results.length < end) { end = activities.results.length; }
-                vm.activities = activities.results.slice(begin, end);
+                if(activities.length < end) { end = activities.length; }
+                vm.activities = activities.slice(begin, end);
                 activitiesIndex = end;
             } else {
                 vm.hasMoreActivities = false;
@@ -151,10 +151,10 @@
         }
 
         function _mapTemplates(){
-            for(var i = 0; i < activities.results.length; i++){
-                activities.results[i].template = "partials/activities/dynamic_layout_item.html";
+            for(var i = 0; i < activities.length; i++){
+                activities[i].template = "partials/activities/dynamic_layout_item.html";
             }
-            vm.cards = activities.results;
+            vm.cards = activities;
 
         }
 
