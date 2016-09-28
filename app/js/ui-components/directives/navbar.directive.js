@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$location', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
+    function truliiNavbar($rootScope, $timeout, $state, $location, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -23,6 +23,7 @@
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
                 var unsubscribeStateChange = null;
+                var unsubscribeStateChangeStart = null;
                 var transitionOptions = {location : true, inherit : false, reload : false};
                 var STATE_HOW_TO_WORK_HOME = 'home';
                 var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
@@ -407,7 +408,6 @@
                     _initNotificationWatch();
                     _getCategories();
                     _initCategoriesPosition()
-                    
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');

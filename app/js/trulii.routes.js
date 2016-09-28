@@ -37,8 +37,13 @@
         UIRouterMetatagsProvider.setOGURL(true);
 
         $urlMatcherFactoryProvider.strictMode(false);
-        $urlRouterProvider.otherwise('/404');
-
+        
+        $urlRouterProvider.otherwise(function($injector, $location){
+           var state = $injector.get('$state');
+           state.go('not-found', {fromState: $location.$$url});
+           return $location.path();
+        });
+        //
         $stateProvider
             .state('search', {
                 url: '/buscar?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends&page&is_free&o',
@@ -120,9 +125,7 @@
                     cities: getAvailableCities
                 },
                 params: {
-                    message: null,
                     fromState: null,
-                    fromParams: null
                 }
             });
     }
