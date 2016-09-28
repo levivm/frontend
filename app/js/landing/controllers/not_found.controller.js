@@ -12,9 +12,9 @@
         .module('trulii.landing.controllers')
         .controller('NotFoundController', NotFoundController);
 
-    NotFoundController.$inject = ['serverConf', '$scope'];
+    NotFoundController.$inject = ['serverConf', '$scope', '$state', 'Analytics'];
 
-    function NotFoundController(serverConf, $scope) {
+    function NotFoundController(serverConf, $scope, $state, Analytics) {
         var vm = this;
 
         
@@ -43,6 +43,10 @@
         function _activate(){
             _setStrings();
             //Function for angularSeo
+            if($state.params.fromState)
+                Analytics.generalEvents.notFound($state.params.fromState);
+                
+                
             $scope.htmlReady();
         }
 
