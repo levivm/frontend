@@ -71,7 +71,7 @@
                     title: DEFAULT_TITLE,
                     description: DEFAULT_DESCRIPTION
                 }
-                
+
             })
             .state('contact-us', {
                 url:'/contactanos',
@@ -157,7 +157,7 @@
     function getRecommendedActivities($q, ActivitiesManager, LocationManager){
         var deferred = $q.defer();
         LocationManager.init().then(function(currentCity){
-            ActivitiesManager.getRecommendedActivities().then(success, error);
+            ActivitiesManager.getFeaturedActivities().then(success, error);
         });
         return deferred.promise;
 

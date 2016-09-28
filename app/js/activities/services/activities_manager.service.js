@@ -45,7 +45,7 @@
             getActivities : getActivities,
 
             getCategoryActivities: getCategoryActivities,
-            
+
             /**
              * @ngdoc method
              * @name .#getRecommendedActivities
@@ -55,6 +55,15 @@
              */
             getRecommendedActivities : getRecommendedActivities,
 
+            /**
+             * @ngdoc method
+             * @name .#getFeaturedActivities
+             * @description Gets featured activities
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getFeaturedActivities: getFeaturedActivities,
+            
             /**
              * @ngdoc method
              * @name .#getActivity
@@ -198,6 +207,16 @@
             }
         }
 
+        function getFeaturedActivities(){
+          return $http.get(api.featured()).then(success, error);
+          function success(response){
+              return response.data;
+          }
+          function error(response){
+              $q.reject(response.data);
+          }
+        }
+
         function getCategoryActivities(category){
             var config = {
                 'params': {
@@ -314,7 +333,7 @@
             return $http.get(api.categories(categoryId)).then(function (response) {
                 return response;
             });
-        
+
         }
 
         function getCategories(){
