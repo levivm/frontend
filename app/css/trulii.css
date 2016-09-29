@@ -17061,6 +17061,11 @@ tags-input input {
   padding: 1.125em 4em;
   border-radius: 3em;
 }
+@media (max-width: 1280px) {
+  .btn-lg {
+    padding: 1.125em 3em;
+  }
+}
 .btn-md {
   font-size: 0.9em;
   padding: 0.8em 2.5em;
@@ -21834,6 +21839,7 @@ blockquote {
   left: 0;
   top: 0;
   transition: all 0.25s;
+  font-size: 1em !important;
 }
 .activity-detail__enroll-widget__content .schedules-container__html p,
 .activity-detail__enroll-widget__content .schedules-container__html ol,
