@@ -30,20 +30,20 @@
             searchActivities: searchActivities,
             nextPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
-                maxPagesSize:12,
+                itemsPerPage: 8,
+                maxPagesSize:8,
                 pageNumber: 1
             },
             pastPaginationOpts: {
               totalItems: 0,
-              itemsPerPage: 12,
-              maxPagesSize:12,
+              itemsPerPage: 8,
+              maxPagesSize:8,
               pageNumber: 1
             },
             currentPaginationOpts: {
               totalItems: 0,
-              itemsPerPage: 12,
-              maxPagesSize:12,
+              itemsPerPage: 8,
+              maxPagesSize:8,
               pageNumber: 1
             },
             updateByQuery:updateByQuery,
@@ -77,7 +77,6 @@
                   });
                   break;
                 case vm.TYPE_CURRENT:
-                  console.log(vm.currentPaginationOpts);
                   ActivitiesManager.getStudentActivities(student.id, vm.TYPE_CURRENT, vm.currentPaginationOpts.pageNumber, vm.currentPaginationOpts.itemsPerPage)
                   .then(function(response){
                     vm.current_activities = response.results;
@@ -106,48 +105,6 @@
         }
 
         //--------- Internal Functions ---------//
-
-        //function _classifyActivities(){
-        //    vm.future_activities = [];
-        //    vm.past_activities = [];
-        //    angular.forEach(activities, filterActivity);
-        //
-        //    function filterActivity(activity){
-        //        var deferred = $q.defer();
-        //        if(activity.last_date < Date.now()){
-        //            vm.past_activities.push(activity);
-        //        } else {
-        //            vm.future_activities.push(activity);
-        //        }
-        //        deferred.resolve();
-        //        return deferred.promise;
-        //    }
-        //}
-
-        //function _mapReviews(reviews){
-        //    console.log('reviews', reviews);
-        //    var deferred = $q.defer();
-        //    var promiseArray = [];
-        //    activities.map(function(activity){
-        //        promiseArray.push(mapReview(activity));
-        //    });
-        //
-        //    $q.all(promiseArray).then(function(){
-        //        deferred.resolve();
-        //    });
-        //
-        //    return deferred.promise;
-        //
-        //    function mapReview(activity){
-        //        var review = reviews.filter(filterReview)[0];
-        //        if(!review){ review = {}; }
-        //        activity.review = review;
-        //
-        //        function filterReview(review){
-        //            return review.activity === activity.id;
-        //        }
-        //    }
-        //}
 
         function _mapOrders(activities, orders){
             angular.forEach(activities, mapOrders);
@@ -187,14 +144,15 @@
             angular.extend(vm.strings, {
                 ACTION_SEARCH_ACTIVITIES: "A ver qué encuentro",
                 COPY_CURRENT: "Estas son las actividades que estás cursando en este momento. Recuerda evaluarlas al terminar.",
-                COPY_LAST: "Estas actividades son las que ya culminaron. Guárdalas en favoritos para que sepas cando vuelven a darse.",
+                COPY_LAST: "Estas son las actividades que tienes que evaluar. Tu evaluación es importante para la comunidad. Sé sincero y respetuoso(a).",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                LABEL_EMPTY_ACTIVITIES: "Hasta ahora no ha terminado ninguna actividad",
-                LABEL_EMPTY_CURRENT_ACTIVITIES: "En este mommento no estás realizando ninguna actividad. ¿Qué estás esperando? ¡Anímate!",
+                LABEL_EMPTY_ACTIVITIES: "En este momento no estás cursando ninguna actividad. ¿Qué esperas para aprender algo nuevo? ¡Anímate, pues!",
+                LABEL_EMPTY_CURRENT_ACTIVITIES: "No tienes ninguna actividad próxima a realizar. ¿Qué estás esperando? ¡Venga, pues!",
+                LABEL_EMPTY_LAST_ACTIVITIES:"Por los momentos no tienes ninguna actividad para evaluar. ¿Qué tal si pruebas buscando algo? Quizá encuentres algo interesante.", 
                 COPY_EMPTY_ACTIVITIES: "Parece ser el momento perfecto para que descubra una nueva pasión,"
                     + " aprenda un nuevo pasatiempo o mejore su currículo",
                 TAB_NEXT: "Actividades / Próximas",
-                COPY_NEXT: "Estas son las actividades que próximamente realizarás. ¡Ya falta poco?",
+                COPY_NEXT: "Estas son las actividades que próximamente realizarás. ¡Ya falta poco!",
                 TAB_LAST: "Actividades / Por revisar",
                 TAB_CURRENT: "Actividades / Actuales",
                 COPY_ORDER_DETAIL: "Detalle de la compra",

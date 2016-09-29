@@ -36,7 +36,7 @@
 </div>
 
 <div class="col-xs-12 limited-width organizer-publish separate-vertical">
-  <div class="row padding-more">
+  <div class="row">
     <div class="col-xs-12">
       <h1 class="text-center text-primary">
         <strong ng-bind="::landing.strings.PUBLISH_TITLE_COPY">
@@ -60,7 +60,7 @@
                 alt=""/>
               </div>
             </div>
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <div class="col-xs-12 col-md-9 col-md-offset-1">
               <h5 class="text-uppercase text-center">
                 <span class="font-bold text-spaced-less text-md" ng-bind="::landing.strings.PUBLISH_1_TITLE"></span>
               </h5>
@@ -76,7 +76,7 @@
                 alt=""/>
               </div>
             </div>
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <div class="col-xs-12 col-md-9 col-md-offset-1">
               <h5 class="text-uppercase text-center">
                 <span class="font-bold text-spaced-less text-md" ng-bind="::landing.strings.PUBLISH_2_TITLE"></span>
               </h5>
@@ -94,7 +94,7 @@
                 alt=""/>
               </div>
             </div>
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <div class="col-xs-12 col-md-9 col-md-offset-1">
               <h5 class="text-uppercase text-center">
                   <span class="font-bold text-spaced-less text-md" ng-bind="::landing.strings.PUBLISH_3_TITLE"></span>
               </h5>
@@ -110,7 +110,7 @@
                 alt=""/>
               </div>
             </div>
-            <div class="col-xs-12 col-md-8 col-md-offset-2">
+            <div class="col-xs-12 col-md-9 col-md-offset-1">
               <h5 class="text-uppercase text-center">
                   <span class="font-bold text-spaced-less text-md" ng-bind="::landing.strings.PUBLISH_4_TITLE"></span>
               </h5>
@@ -244,7 +244,7 @@
               </h3>
               <p class="text-center ">
                 <span ng-bind="::landing.strings.MORE_INFO_FAQ_TEXT_1"></span>
-                <a href="#">
+                <a ui-sref="contact-us">
                   <strong ng-bind="::landing.strings.MORE_INFO_FAQ_TEXT_2"></strong>
                 </a>
                 <span ng-bind="::landing.strings.MORE_INFO_FAQ_TEXT_3"></span>
@@ -252,6 +252,31 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-xs-12" >
+  <div class="row container-muted">
+    <div class="col-xs-12 limited-width separate-above-more separate-below-more">
+      <h3 class="text-center title">
+        <strong ng-bind="::landing.strings.ORGANIZERS_BELIEVE_IN_TRULII">
+        </strong>
+      </h3>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 limited-width separate-below">
+      <div class="row separate-above separate-below-more  flex-cards">
+          <img ng-src="{{landing.getAmazonUrl('static/img/home/organizers/1.png')}}" alt="{{ ::landing.strings.HOW_LEARN_COPY }}"
+              class="img-responsive center-block images-organizers">
+          <img ng-src="{{landing.getAmazonUrl('static/img/home/organizers/2.png')}}" alt="{{ ::landing.strings.HOW_LEARN_COPY }}"
+          class="img-responsive center-block images-organizers img-md">
+          <img ng-src="{{landing.getAmazonUrl('static/img/home/organizers/3.png')}}" alt="{{ ::landing.strings.HOW_LEARN_COPY }}"
+          class="img-responsive center-block images-organizers img-md">
+          <img ng-src="{{landing.getAmazonUrl('static/img/home/organizers/4.png')}}" alt="{{ ::landing.strings.HOW_LEARN_COPY }}"
+          class="img-responsive center-block images-organizers img-lg">
+          <img ng-src="{{landing.getAmazonUrl('static/img/home/organizers/5.png')}}" alt="{{ ::landing.strings.HOW_LEARN_COPY }}"
+              class="img-responsive center-block images-organizers">
       </div>
     </div>
   </div>
@@ -283,25 +308,22 @@
           <h4 class="text-center no-margin-top" ng-bind="::landing.strings.SIGN_UP_TEXT"></h4>
       </div>
       <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-        <form class="separate-above-medium separate-below-more"
+        <form class="separate-above-medium separate-below"
           name='landing.pre_signup_form' id="organizer_signup_form" ng-submit="landing.requestSignup()">
           <fieldset>
             <div class="form-group" trulii-input-errors-control="name">
-              <label for="name" ng-bind="::landing.strings.LABEL_NAME"></label>
               <input id="name" class="form-control" name="name" type="text"
                 ng-model="landing.request.name"
-                placeholder="{{::landing.strings.PLACEHOLDER_NAME}}">
+                placeholder="{{::landing.strings.LABEL_NAME}}">
             </div>
             <div class="form-group" trulii-input-errors-control="email">
-              <label for="name" ng-bind="::landing.strings.LABEL_EMAIL"></label>
               <input id="email" class="form-control" name="email" type="text"
                 ng-model="landing.request.email"
-                placeholder="{{::landing.strings.PLACEHOLDER_EMAIL}}">
+                placeholder="{{::landing.strings.LABEL_EMAIL}}">
             </div>
             <div class="form-group" trulii-input-errors-control="telephone">
-              <label for="name" ng-bind="::landing.strings.LABEL_TELEPHONE"></label>
               <input name="telephone" class="form-control" type="tel"
-                placeholder="{{::landing.strings.PLACEHOLDER_TELEPHONE}}"
+                placeholder="{{::landing.strings.LABEL_TELEPHONE}}"
                 ng-model="landing.request.telephone" value="">
             </div>
             <!--<div class="form-group" trulii-input-errors-control="city">
@@ -312,14 +334,13 @@
               </select>
             </div>-->
             <div class="form-group" trulii-input-errors-control="document">
-              <label for="document_type" ng-bind="::landing.strings.LABEL_DOCUMENT_TYPE"></label>
               <div class="input-group">
                 <select id="document_type" class="form-control" name="document_type"
                   ng-model="landing.request.document_type"
                   ng-options="document.id as document.name for document in landing.documentTypes">
                 </select>
-                <input name="document" class="form-control" id="document" type="text"
-                  placeholder="{{::landing.strings.PLACEHOLDER_DOCUMENT}}"
+                <input name="document" class="form-control" id="document" type="number"
+                  placeholder="{{::landing.strings.LABEL_DOCUMENT_TYPE}}"
                   ng-model="landing.request.document" value="" style="width: 60%">
               </div>
             </div>

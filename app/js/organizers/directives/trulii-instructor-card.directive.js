@@ -16,9 +16,9 @@
 
         .directive('truliiInstructorCard', truliiInstructorCard);
 
-    truliiInstructorCard.$inject = ['$modal', 'Toast', 'OrganizersTemplatesPath','ActivitiesTemplatesPath'];
+    truliiInstructorCard.$inject = ['$modal', 'Toast','$rootScope', 'OrganizersTemplatesPath','ActivitiesTemplatesPath'];
 
-    function truliiInstructorCard($modal, Toast, OrganizersTemplatesPath,ActivitiesTemplatesPath){
+    function truliiInstructorCard($modal, Toast, $rootScope, OrganizersTemplatesPath,ActivitiesTemplatesPath){
         return {
             restrict: 'E',
             templateUrl: OrganizersTemplatesPath + "instructor_card.html",
@@ -59,7 +59,6 @@
                 };
 
                 var resource = scope.onDashboard? scope.organizer: scope.activity;
-                console.log(resource)
                 _activate();
 
                 //--------- Exposed Functions ---------//
@@ -67,7 +66,6 @@
                 function selectInstructor($item, $model, $label){
                     _.remove(scope.availableInstructors, { 'id': $item.id});
                     angular.extend(scope.instructorEditable, $item);
-                    console.log('instructorEditable',scope.instructorEditable);
                 }
 
                 function addInstructor(){
@@ -97,7 +95,6 @@
 
                 function saveInstructor(){
                     var instructor = scope.instructorEditable;
-                    console.log(instructor);
                     if(instructor.full_name && instructor.bio){
                         toggleEditMode();
                         if(instructor.id){
@@ -110,14 +107,12 @@
                         }
 
                     } else {
-                        Toast.setPosition("toast-top-center");
                         Toast.error(scope.strings.MSG_MISSING_REQUIRED_FIELDS);
                     }
 
                     function successCreate(instructor){
                         angular.extend(scope.instructor,instructor);
                         resource.load().then(_onChange, updateError);
-                        console.log('saveInstructor. Instructor created.', instructor);
                     }
 
                     function errorCreate(response){
@@ -127,7 +122,6 @@
                     function successUpdate(instructor){
                         angular.extend(scope.instructor,instructor);
                         resource.load().then(_onChange, updateError);
-                        console.log('saveInstructor. Instructor updated.', instructor);
                     }
 
                     function errorUpdate(response){
@@ -209,6 +203,8 @@
                     if(!scope.onDashboard){
                         scope.activity.updateSection('instructors');
                     }
+                    $rootScope.$broadcast('changeInstructor');
+                    
                 }
 
                 function _setStrings(){
@@ -226,8 +222,7 @@
                         PLACEHOLDER_WEBSITE: "Ingrese URL de website",
                         LABEL_BIO: "Bio",
                         PLACEHOLDER_BIO: "Escriba una biografía corta del de instructor",
-                        MSG_MISSING_REQUIRED_FIELDS : "Por favor asegurese de verificar todos los campos obligatorios" +
-                            " para la creación del instructor",
+                        MSG_MISSING_REQUIRED_FIELDS : "Para guardar el instructor debes llenar toda la información solicitada, querid@.",
                         MSG_DELETE_SUCCESS: "Instructor eliminado exitosamente.",
                         MSG_DELETE_ERROR: "Error eliminando el instructor. Por favor intente de nuevo.",
                         VALUE_UNSPECIFIED: "No Especificado"
@@ -238,19 +233,11 @@
                     _setStrings();
                     _setAvailableInstructors();
                     scope.instructorEditable = angular.copy(scope.instructor);
-                    console.log(_isValid());
                     if(_isValid()){ 
                         scope.editMode = false;
                     }else{
                         scope.editMode = true;
                     }
-                    /*console.group('trulii-instructor-card:', scope.instructor.full_name? scope.instructor.full_name : '');
-                    console.log('instructor:', scope.instructor);
-                    console.log('activity:', scope.activity);
-                    console.log('organizer:', scope.organizer);
-                    console.log('onDashboard:', scope.onDashboard);
-                    console.log('emptyInstructor:', scope.emptyInstructor);
-                    console.groupEnd();*/
                 }
             }
         }

@@ -57,9 +57,9 @@
            if(!vm.message.calendar){
                 vm.message.calendar={
                     id: undefined
-                }
+                };
            }
-           activity.sendMessage(vm.message).then(_success, _error)
+           activity.sendMessage(vm.message).then(_success, _error);
            
         }
 
@@ -68,10 +68,15 @@
 
 
         function _loadCalendars(){
-          ActivitiesManager.getActivity(activity.id)
+
+            if (!_.isEmpty(vm.calendars))
+                return vm.calendars;
+
+            ActivitiesManager.getActivity(activity.id)
             .then(
               function(response){
                 vm.calendars = response.calendars;
+                vm.message.calendar = vm.activity.is_open ? vm.calendars[0]:null;
               }
             );
         }
@@ -85,7 +90,8 @@
           vm.toggleMessageShow();
           Toast.success("Su mensaje ha sido enviado");
           vm.pageChange();
-          vm.message = {};
+          vm.message.detail = null;
+          vm.message.subject = null;
         }
 
         function _setStrings() {
@@ -96,8 +102,8 @@
                 ACTION_NEW_MESSAGE: "Nuevo Mensaje",
                 SEARCH_PLACEHOLDER: "Buscar",
                 SECTION_MESSAGES: "Mensajes",
-                OPTION_ACTIVITY_DEFAULT: "Seleccione una actividad",
-                OPTION_CALENDAR_DEFAULT: "Seleccione una fecha de inicio",
+                OPTION_ACTIVITY_DEFAULT: "Elige una actividad",
+                OPTION_CALENDAR_DEFAULT: "Elige una fecha de inicio",
                 LABEL_INITIAL_DATE: "Fecha de inicio: ",
                 LABEL_SEND_MESSAGE: "Enviar",
                 LABEL_CALENDAR: "Calendarios",

@@ -53,8 +53,24 @@
                                     <strong>{{vm.errors.__all__}}</strong>
                                 </div>
                             </div>
-                            <button type="submit" id="submit" class="btn btn-lg btn-primary btn-block"
+                            
+                            
+                            <button type="submit" id="submit" class="btn btn-lg btn-primary btn-block separate-above"
                                     ng-bind="::vm.strings.SIGNUP_SUBMIT"></button>
+                            <div class="accept-terms" >
+                                <div class="trulii-checkbox ">
+                                            <input type="checkbox" id="cert" ng-model="vm.acceptTerms">
+                                            <label  class="text-regular" for="cert"><span></span></label>
+                                </div>
+                                <h5 class="text-md text-center font-dark text-brand-dark">
+                                        <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_1"></span>
+                                        <a ui-sref="about.privacy-policy" class="text-underline font-regular text-brand-dark" ng-bind="vm.strings.LABEL_PRIVACY"></a>
+                                        <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_3"></span>
+                                        <a ui-sref="about.terms" class="text-underline font-regular text-brand-dark" ng-bind="vm.strings.LABEL_TERMS"></a>
+                                        <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_5"></span>
+                                    </h5>
+                                    
+                            </div>
                         </fieldset>
                     </form>
                 </div>

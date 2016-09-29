@@ -69,6 +69,7 @@
             updateByQuery:updateByQuery,
             openDatePicker: openDatePicker,
             TYPE_SALES: 'sales',
+            ORGANIZER_SPECIAL_TYPE: 'Especial',
             withDraw: withDraw,
             changePageWithdraws:changePageWithdraws,
             filterById: filterById,
@@ -80,33 +81,33 @@
         //--------- Exposed Functions ---------//
 
         function openDatePicker($event, date){
-          console.log('openDatePicker');
           $event.preventDefault();
           $event.stopPropagation();
 
           if(date === 'sales_from_date'){
             vm.salesFilter.from_date_opened = true;
             vm.salesFilter.until_date_opened = false;
-            console.log('sales_from_date');
           }
           if(date === 'sales_until_date'){
             vm.salesFilter.until_date_opened = true;
             vm.salesFilter.from_date_opened = false;
-            console.log('sales_until_date');
           }
           
           //updateByQuery(vm.TYPE_SALES);
         }
         
         function filterById() {
-            setTimeout(function(){ updateByQuery(vm.TYPE_SALES) }, 1000);
+            setTimeout(function(){ updateByQuery(vm.TYPE_SALES); }, 1000);
         }
 
         function updateByQuery(type){
             switch(type){
                 case vm.TYPE_SALES:
 
-                  var params = {};
+                  var params = {
+                    page: vm.salesPaginationOpts.pageNumber,
+                    pageSize: vm.salesPaginationOpts.itemsPerPage
+                  };
 
                   if(vm.salesFilter.activity)
                     params.activity = vm.salesFilter.activity;
@@ -147,7 +148,7 @@
 
           modalInstance.result.then(function () {
              organizer.postWithDraw()
-                      .then(success, error)
+                      .then(success, error);
           });
 
           function success(data) {
@@ -165,7 +166,6 @@
         function changePageWithdraws(){
             organizer.getWithDraw(vm.withDrawsPaginationOpts.pageNumber, vm.withDrawsPaginationOpts.itemsPerPage)
                      .then(function (response) {
-                       console.log(response);
                        vm.withdrawals = response.results;
                        vm.withDrawsPaginationOpts.totalItems = response.count;
                        vm.withdrawals = response.results.slice(0, vm.withDrawsPaginationOpts.itemsPerPage);
@@ -242,6 +242,7 @@
                 TAB_BALANCE: "Transacciones > Balance",
                 TAB_SALES: "Transacciones > Ventas",
                 TAB_WITHDRAWALS: "Transacciones > Historial de retiros",
+                COPY_SPECIAL_WITHDRAWALS: "Tú dinero disponible se transferirá a tu cuenta cada fin de mes.",
                 COPY_WITHDRAWALS: "Revisa todos los retiros que has solicitado en la plataforma desde el mas reciente hasta el primero.",
                 COPY_NO_WITHDRAWALS: "Hasta ahora no has solicitado ningún retiro a tu cuenta bancaria. Recuerads que puedes solicitar el monto disponible cuando desees.",
                 COPY_BALANCE: "Revisa la cantidad de dinero que tienes disponible para solicitar la transferencia a tu cuenta. Solicita el retiro cuando quieras.",
@@ -256,9 +257,9 @@
                 LABEL_DETAIL: "Detalle",
                 LABEL_DATE: "Fecha de venta",
                 LABEL_ASSISTANT: "Asistente",
-                LABEL_TOTAL: "Total Ventas",
+                LABEL_TOTAL: "Total Venta",
                 LABEL_EVERYBODY: "Todos",
-                LABEL_FINAL_TOTAL: "Ventas Netas",
+                LABEL_FINAL_TOTAL: "Venta Neta",
                 LABEL_NO_ORDERS: "No hay ordenes en el historial",
                 SEARCH_BALANCE_PLACEHOLDER: "Busca por nro. orden, fecha de retiro o monto solicitado",
                 LABEL_BALANCE_ORDER: "Nro. retiro petición",

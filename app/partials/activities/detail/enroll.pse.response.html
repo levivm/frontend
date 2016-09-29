@@ -2,9 +2,14 @@
     <div class="col-xs-12">
         <div class="enroll-section">
             <div class="enroll-section__header">
-                <h5>
+                <h5 ng-if="::!pseResponse.packageID">
                     <span class="" ng-bind="::enroll.strings.LABEL_DROPDOWN_DATE_INIT"></span>
                     <span class="" ng-bind="pseResponse.calendar.initial_date | date:'d MMM y'"></span>
+                </h5>
+                <h5 ng-if="::pseResponse.packageID">
+                    <span class="" ng-bind="::pseResponse.strings.LABEL_PACKAGE"></span>
+                    <span class="" ng-bind="::pseResponse.packageQuantity"></span>
+                    <span class="" ng-bind="::pseResponse.packageType"></span>
                 </h5>
             </div>
         </div>
@@ -16,18 +21,13 @@
         <div class="enroll-section">
             <div class="enroll-section__header">
                 <h5>
-                    <span ng-bind="::enroll.strings.LABEL_ACTIVITY_SESSIONS"></span>
+                    <span ng-bind="::enroll.strings.LABEL_SCHEDULES"></span>
                 </h5>
             </div>
             <div class="enroll-section__body">
                 <div class="row">
                     <div class="col-xs-12">
-                    <div class="session" ng-repeat="session in pseResponse.calendar.sessions">
-                        <span ng-bind="session.date | date:'EEEE'"></span>
-                        <span ng-bind="session.date | date:'d MMM y'"></span>
-                        <span ng-bind="session.start_time | date: 'h:mm a'"></span>
-                        <span ng-bind="::enroll.strings.COPY_TO"></span>
-                        <span ng-bind="session.end_time | date: 'h:mm a'"></span>
+                    <div class="session" ng-bind-html="pseResponse.calendar.schedules">
                     </div>
                     </div>
                 </div>

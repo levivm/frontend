@@ -3,7 +3,7 @@
         <span class="panel-default__dashboard-title" ng-bind="::manage.strings.SECTION_ORDERS"></span>
         <span class="separate-left-less" ng-bind="manage.strings.COPY_ORDERS"></span>
     </div>
-  <div class="row" ng-class="{'limited-width-dashboard': manage.isActive('dash.activities-manage.orders.order') }">
+  <div class="row" ng-class="{'separate-left': manage.isActive('dash.activities-manage.orders.order') }">
       <div ui-view class="lateral-fade">
           <div class="col-xs-12">
               <div ng-if="manage.calendars.length > 0" class="row">
@@ -12,37 +12,51 @@
                           ng-repeat="calendar in manage.calendars track by calendar.id">
                           <div class="panel-heading" ng-click="manage.expandCalendar(calendar,manage.TYPE_ORDER)">
                               <div class="row">
-                                  <div class="panel-date">
-                                  <span>
-                                      <span>
-                                          <strong ng-bind="::manage.strings.LABEL_CALENDAR"></strong>
-                                      </span>
-                                      <br/>
-                                      <span ng-bind="::calendar.fromDate"></span>
-                                  </span>
+                                    <div class="text-uppercase panel-open" ng-if="manage.activity.is_open">
+                                        <span ng-bind="::manage.strings.LABEL_OPEN_ACTIVITY"></span>
+                                    </div>
+                                    <div class="panel-open-counter" ng-if="manage.activity.is_open">
+                                        <strong class="text-uppercase" ng-bind="calendar.assistants.length"></strong>
+                                        <strong class="text-uppercase">
+                                            <ng-pluralize count="calendar.assistants.length"
+                                                when="{
+                                                '1': manage.strings.LABEL_ATTENDEE,
+                                                'other': manage.strings.LABEL_ATTENDEES
+                                                }">
+                                            </ng-pluralize>
+                                        </strong>
+                                    </div>
+                                  <div class="panel-date" ng-if="!manage.activity.is_open">
+                                    <span>
+                                        <span>
+                                            <strong ng-bind="::manage.strings.LABEL_CALENDAR"></strong>
+                                        </span>
+                                        <br/>
+                                        <span ng-bind="::calendar.fromDate"></span>
+                                    </span>
                                   </div>
-                                  <div class="panel-date">
-                                  <span>
-                                      <span>
-                                          <strong ng-bind="::manage.strings.COPY_CLOSING_DATE"></strong>
-                                      </span>
-                                      <br/>
-                                      <span ng-bind="::calendar.toDate"></span>
-                                  </span>
-                                  </div>
-                                  <div class="panel-counter">
-                                  <span>
-                                      <strong class="numbers"><span ng-bind="calendar.assistants.length"></span>/<span
-                                              ng-bind="(calendar.available_capacity + calendar.assistants.length)"></span></strong> <span
-                                          ng-bind="manage.strings.COPY_SEATS"></span>
-                                      <span class="progress">
-                                          <span class="progress-bar progress-bar-primary" role="progressbar"
-                                                aria-valuenow="{{(calendar.assistants.length/(calendar.available_capacity + calendar.assistants.length))*100}}"
-                                                aria-valuemin="0" aria-valuemax="100"
-                                                style="width: {{(calendar.assistants.length/(calendar.available_capacity + calendar.assistants.length))*100}}%">
-                                          </span>
-                                      </span>
-                                  </span>
+                                  <!--<div class="panel-date" ng-if="!manage.activity.is_open">
+                                    <span>
+                                        <span>
+                                            <strong ng-bind="::manage.strings.COPY_CLOSING_DATE"></strong>
+                                        </span>
+                                        <br/>
+                                        <span ng-bind="::calendar.toDate"></span>
+                                    </span>
+                                  </div>-->
+                                  <div class="panel-counter" ng-if="!manage.activity.is_open">
+                                    <span>
+                                        <strong class="numbers"><span ng-bind="calendar.assistants.length"></span>/<span
+                                                ng-bind="(calendar.available_capacity + calendar.assistants.length)"></span></strong> <span
+                                            ng-bind="manage.strings.COPY_SEATS"></span>
+                                        <span class="progress">
+                                            <span class="progress-bar progress-bar-primary" role="progressbar"
+                                                    aria-valuenow="{{(calendar.assistants.length/(calendar.available_capacity + calendar.assistants.length))*100}}"
+                                                    aria-valuemin="0" aria-valuemax="100"
+                                                    style="width: {{(calendar.assistants.length/(calendar.available_capacity + calendar.assistants.length))*100}}%">
+                                            </span>
+                                        </span>
+                                    </span>
                                   </div>
                                   <i class=" expand mdi-hardware-keyboard-arrow-down"></i>
                               </div>

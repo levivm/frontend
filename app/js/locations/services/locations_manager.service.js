@@ -15,9 +15,9 @@
         .module('trulii.locations.services')
         .factory('LocationManager', LocationManager);
 
-    LocationManager.$inject = ['$rootScope', '$http', '$q', 'localStorageService', 'LocationServerApi'];
+    LocationManager.$inject = ['$rootScope', '$http', '$q', 'localStorageService', 'LocationServerApi', 'serverConf'];
 
-    function LocationManager($rootScope, $http, $q, localStorageService, LocationServerApi) {
+    function LocationManager($rootScope, $http, $q, localStorageService, LocationServerApi, serverConf) {
 
         var api = LocationServerApi;
         var currentCity = null;
@@ -121,15 +121,12 @@
 
         function _setAvailableCities(cities) {
             availableCities = cities;
-            localStorageService.set(KEY_AVAILABLE_CITIES, availableCities);
+            //localStorageService.set(KEY_AVAILABLE_CITIES, availableCities);
 
         }
 
         function getAvailableCities() {
             var deferred = $q.defer();
-            if (!availableCities) {
-                availableCities = localStorageService.get(KEY_AVAILABLE_CITIES);
-            }
             if (availableCities) {
                 deferred.resolve(availableCities);
                 return deferred.promise;
@@ -139,11 +136,15 @@
         }
 
         function getCityById(city_id) {
-            return availableCities.filter(byId)[0];
-
-            function byId(city) {
-                return city.id === city_id;
-            }
+            var deferred = $q.defer();
+            getAvailableCities().then(function(cities){
+                availableCities = cities;
+                deferred.resolve(availableCities.filter(byId)[0]);
+                function byId(city) {
+                    return city.id === city_id;
+                }
+            });
+            return deferred.promise;
         }
 
         function setCurrentCity(city) {

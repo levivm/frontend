@@ -18,11 +18,11 @@
                         <p class="profile-cover__description text-center" ng-bind="::profile.organizer.headline"></p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row" ng-if="profile.organizer.rating">
                     <div class="col-xs-12">
                         <div class="rating">
                             <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
-                                    readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating> 
+                                    readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
                         </div>
                     </div>
                 </div>
@@ -45,10 +45,10 @@
         <h1 class="text-gray-brand text-center font-extrabold" ng-bind="::profile.strings.LABEL_BIO">
         </h1>
         <div class="profile-biography--content">
-            <p class="text-dark" ng-bind="::profile.organizer.bio"></p>
+            <p class="text-dark" ng-bind-html="::profile.organizer.bio"></p>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-md-10 col-md-offset-1">
+            <div class="col-xs-12 col-md-9 col-md-offset-2">
                 <div ng-if="profile.organizer.youtube_video_url"  class="youtube-container">
                     <youtube-video video-url="::profile.organizer.youtube_video_url" player-width="'100%'"></youtube-video>
                 </div>
@@ -64,16 +64,14 @@
             <span ng-bind="::profile.organizer.name"></span>
         </span>
         <span ng-if="profile.activities.length==0">
-            <span ng-bind="::profile.organizer.name"></span>
             <span ng-bind="::profile.strings.LABEL_UNPUBLISHED_ACTIVITIES"></span>
         </span>
     </h1>
     <div class="flex-cards separate-below separate-above-medium" >
         <trulii-activity-item data-activity="activity" ng-repeat="activity in profile.cards"></trulii-activity-item>
     </div>
-    <div class="col-xs-12 separate-below-more">
-        <div class="text-center"
-            ng-if="profile.activitiesPaginationOpts.totalItems > profile.activitiesPaginationOpts.itemsPerPage">
+    <div class="col-xs-12 separate-below-more" ng-if="profile.activitiesPaginationOpts.totalItems > profile.activitiesPaginationOpts.itemsPerPage">
+        <div class="text-center">
             <pagination class="pagination-sm"
                     ng-class="{'hidden-xs hidden-sm': profile.showFilters}"
                     ng-model="profile.activitiesPaginationOpts.pageNumber"
@@ -116,7 +114,7 @@
                     <rating ng-model="profile.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                             readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="custom-icons-1"></rating>
                 </span>
-                <strong ng-bind="::profile.organizer.rating | number: 1"></strong>
+                <strong ng-bind="::profile.organizerRating"></strong>
                 <strong>/</strong>
                 <strong>5</strong>
             </h3>
@@ -125,7 +123,7 @@
                 <span ng-bind="::profile.strings.COPY_TOTAL_REVIEWS"></span>
             </p>
             <p class="text-center text-dark separate-above-more" ng-if="profile.totalReviews === 0" ng-bind="::profile.strings.COPY_NO_REVIEWS"></p>
-            
+
         </div>
         <div class="col-xs-12" ng-if="profile.totalReviews > 0">
             <h3 class="separate-below separate-above-medium">

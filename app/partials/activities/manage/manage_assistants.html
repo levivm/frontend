@@ -9,7 +9,21 @@
                      ng-repeat="calendar in manage.calendars track by calendar.id">
                     <div class="panel-heading " ng-click="manage.expandCalendar(calendar,manage.TYPE_ASSISTANT)">
                         <div class="row">
-                            <div class="panel-date">
+                            <div class="text-uppercase panel-open" ng-if="manage.activity.is_open">
+                                <span ng-bind="::manage.strings.LABEL_OPEN_ACTIVITY"></span>
+                            </div>
+                            <div class="panel-open-counter" ng-if="manage.activity.is_open">
+                                <strong class="text-uppercase" ng-bind="calendar.assistants.length"></strong>
+                                <strong class="text-uppercase">
+                                    <ng-pluralize count="calendar.assistants.length"
+                                        when="{
+                                        '1': manage.strings.LABEL_ATTENDEE,
+                                        'other': manage.strings.LABEL_ATTENDEES
+                                        }">
+                                    </ng-pluralize>
+                                </strong>
+                            </div>
+                            <div ng-if="!manage.activity.is_open"  class="panel-date">
                                 <span>
                                     <span>
                                         <strong ng-bind="::manage.strings.LABEL_CALENDAR"></strong>
@@ -18,16 +32,11 @@
                                     <span ng-bind="::calendar.fromDate"></span>
                                 </span>
                             </div>
-                            <div class="panel-date">
+                           <!-- <div ng-if="!manage.activity.is_open"  class="panel-date">
                                 <span>
-                                    <span>
-                                        <strong ng-bind="::manage.strings.COPY_CLOSING_DATE"></strong>
-                                    </span>
-                                    <br/>
-                                    <span ng-bind="::calendar.toDate"></span>
                                 </span>
-                            </div>
-                            <div class="panel-counter">
+                            </div>-->
+                            <div ng-if="!manage.activity.is_open" class="panel-counter">
                                 <span>
                                     <strong class="numbers text-gray-dark"><span ng-bind="calendar.assistants.length"></span>/<span ng-bind="(calendar.available_capacity + calendar.assistants.length)"></span></strong> <span class="text-gray-dark font-semibold" ng-bind="manage.strings.COPY_SEATS"></span>
                                     <div class="progress">

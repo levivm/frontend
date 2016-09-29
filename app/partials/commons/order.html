@@ -1,8 +1,8 @@
-<div class="row print-container">
-     
-    <div class="order-container tab-content">
+<div class="row" ng-class="{'print-container-student': order.isStudent}">
+    
+    <div class="tab-content" ng-class="{'order-container': !order.isStudent}">
         <div class="col-xs-12 panel-default panel-default__dashboard ">
-            <a class="btn btn-default separate-right-less hidden-sm hidden-xs"
+            <a class="btn btn-default btn-back separate-right-less hidden-sm hidden-xs"
                 ng-click="order.goBack()">
                 <span ng-bind="::order.strings.ACTION_GO_BACK"></span>
             </a>
@@ -12,11 +12,12 @@
         <div class="card-body tab-content">
             <div class="tab-pane active fade in">
                 <div>
-                    <div class="row print-visible">
-                        <div class="col-xs-4 separate-below">
+                    <div class="row " ng-class="{'hide': !order.isStudent, 'print-visible': order.isStudent}">
+                        <div class="col-xs-4 separate-below logo">
                             <img class="img-responsive" ng-src="{{order.getAmazonUrl('static/img/logo-green.png')}}" alt="">
                         </div>
                     </div>
+                    
                     <div class="row order-detail">
                         <div class="col-xs-12 order-description">
                             <h3 class="sinkin-medium separate-below text-blue-dark text-lg font-semibold text-capitalize ">
@@ -139,7 +140,7 @@
                                     <tr class="order-mounts" ng-show="!order.isStudent">
                                         <td>
                                             <h4 class="text-md font-light text-dark font-semibold"
-                                                 ng-bind="order.strings.LABEL_TRULII_FEE + ' ' + (order.order.fee * 100) + '%'"></h4>
+                                                 ng-bind="order.strings.LABEL_TRULII_FEE"></h4>
                                         </td>
                                         
                                         <td>
@@ -147,7 +148,7 @@
                                         </td>
                                         <td>
                                             <h4 class="text-md font-light text-dark font-semibold"
-                                                ng-bind="::('-' + (order.feeAmount | currency:$:0))"></h4>
+                                                ng-bind="::('-' + (order.order.fee_detail.total_fee| currency:$:0))"></h4>
                                         </td>
                                     </tr>
                                      <!--Amount-->
@@ -163,7 +164,7 @@
                                                 ng-bind="::(order.order.total | currency:$:0)"
                                                 ng-class="::{'text-strike':order.order.is_free}"></h4>
                                             <h4 class="text-lg text-dark font-semibold" ng-show="::order.isOrganizer"
-                                                ng-bind="::(order.totalAmount | currency:$:0)"
+                                                ng-bind="::(order.order.fee_detail.final_total | currency:$:0)"
                                                 ng-class="::{'text-strike':order.order.is_free}"></h4>
                                             <h4 class="text-lg text-dark font-semibold" ng-show="::order.order.is_free"
                                                 ng-bind="::order.strings.LABEL_FREE"></h4>
@@ -198,58 +199,170 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--Sub-Total
-                            <div class="row no-margin hidden-xs hidden-sm">
-                                <div class="col-xs-6 col-md-3">
-                                    
-                                </div>
-                                <div class="col-xs-5 col-md-7">
-                                    
-                                </div>
-                            </div>
-                            <!--Coupons
-                            <div class="row no-margin hidden-xs hidden-sm" ng-show="::(order.order.coupon.amount > 0 && order.isStudent)">
-                                <div class="col-xs-6 col-md-3">
-                                    
-                                </div>
-                                <div class="col-xs-5 col-md-7">
-                                    
-                                </div>
-                                <i ng-show="::(order.order.total_without_coupon === 0)"
-                                   class="glyphicon glyphicon-question-sign" aria-hidden="true"
-                                   tooltip-placement="right"
-                                   tooltip="{{::order.strings.COPY_COUPON_NOT_REFUND_TOOLTIP}}"></i>
-                            </div>
-
-                            <!--Fee
-                            <div class="row no-margin hidden-xs hidden-sm" ng-show="::order.isOrganizer">
-                                <div class="col-xs-6 col-md-3">
-                                   
-                                </div>
-                                <div class="col-xs-5 col-md-7">
-                                    
-                                </div>
-                            </div>
-                            <!--Separator
-                            <div class="row no-margin hidden-xs hidden-sm" ng-show="::(order.order.total !== order.order.amount)">
-                                <div class="col-xs-12 no-padding">
-                                    <hr class="complete no-margin"/>
-                                </div>
-                            </div>
-                            <!--Amount
-                            <div class="row no-margin">
-                                <div class="col-xs-6 col-md-3">
-                                    
-                                </div>
-
-                                <div class="col-xs-5 col-md-7">
-                                   
-                                </div>
-                            </div>-->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<div  ng-class="{'print-container': !order.isStudent, 'hide': order.isStudent}">
+    <div class="separate-below separate-above-less logo">
+        <img class="img-responsive" ng-src="{{order.getAmazonUrl('static/img/logo-green.png')}}" alt="">
+    </div>
+    <div class="info-order ">
+        <div class="row">
+           <div class="col-xs-5">
+                <span class="text-uppercase"><strong ng-bind="::order.strings.COPY_PRINT_TRULII_TITLE"></strong></span><br/>
+                <span class="text-uppercase" ng-bind="::order.strings.COPY_PRINT_IVA_TITLE"></span><br/>
+                <span class="text-uppercase" ng-bind="::order.strings.COPY_PRINT_TEL"></span><br/>
+                <span class="text-uppercase" ng-bind="::order.strings.COPY_PRINT_ADDRESS"></span><br/>
+                <span class="text-uppercase" ng-bind="::order.strings.COPY_PRINT_CITY"></span><br/>
+                <span class="text-uppercase" ng-bind="::order.strings.COPY_PRINT_EMAIL"></span><br/>
+                
+            </div>
+            <div class="col-xs-5 col-xs-offset-2">
+                <span class="text-uppercase"><strong  ng-bind="::order.strings.COPY_PRINT_ORDER_NUM"> <span ng-bind="::order.order.id"></span></strong></span><br/>
+                <span class="text-uppercase"  ng-bind="::order.strings.COPY_PRINT_INFO1"></span><br/>
+                <span class="text-uppercase" ng-bind="::order.strings.COPY_PRINT_INFO2"></span><br/>
+                <span class="text-uppercase" ng-bind="::order.strings.COPY_PRINT_INFO3"></span><br/>
+            </div> 
+        </div>
+    </div>
+    
+    <div class="order-description separate-above-less">
+        <div class="row">
+            <div class="col-xs-5">
+                <span><strong ng-bind="::order.strings.LABEL_SRS"><span ng-bind="::order.organizer.name"></span></strong></span><br/>
+                <span class="text-uppercase"><span ng-bind="order.bankingData.document_type"></span> <span ng-bind="order.bankingData.document"></span></span><br/>
+                <br/>
+                <span ng-bind="::order.strings.LABEL_ADDRESS_INFO"></span><br/>
+                <span ng-bind="::order.fullAddress"></span>  <br/>
+                <span ng-bind="::order.organizer.location.city.name"></span><br/>
+                <span ng-bind="::order.addressPhone"></span><br/>            
+            </div>
+            <div class="col-xs-5 col-xs-offset-2">
+                <span ><span class="text-uppercase"  ng-bind="::order.strings.LABEL_PAYMENT_TYPE"></span><span>:</span> <span ng-bind="order.order.payment.payment_type"></span></span><br/>
+                <span ><strong  ng-bind="::order.strings.LABEL_DATE_EXP"><span>: </span></strong></span><br/>
+                <span><strong ng-bind="::order.order.created_at | date:'EEEE d MMM y'"></strong></span><br/>
+            </div>
+        </div>
+         
+    </div>
+    <div class="table-responsive table-fixed table-condensed table-order padding-print">
+            <table class="table table-hover  table-print" valign="middle">
+                <tr class="text-center">
+                    <th>
+                        <strong ng-bind="::order.strings.LABEL_PRINT_CANT"></strong>
+                    </th>
+                    <th >
+                        <strong ng-bind="::order.strings.LABEL_PRINT_DETAIL"></strong>
+                    </th>
+                    <th>
+                        <strong ng-bind="::order.strings.LABEL_PRINT_PRICE_UN"></strong>
+                    </th>
+                    <th >
+                        <strong ng-bind="::order.strings.LABEL_PRICE_TOTAL"></strong>
+                    </th>
+                </tr>
+                <tr ng-repeat="assistant in order.order.assistants track by assistant.id">
+                    <td>
+                        <span >1</span>
+                    </td>
+                    <td>
+                        <span ng-bind="::order.order.activity.name"></span>
+                        <span>/</span>
+                        <span ng-bind="::assistant.first_name"></span>
+                        <span>/</span>
+                        <span ng-bind="::assistant.email"></span>
+                    </td> 
+                    <td>
+                        <span ng-bind="::(order.order.amount / order.order.assistants.length | currency:'')"></span>
+                    </td>
+                    <td>
+                        <span ng-bind="::(order.order.amount / order.order.assistants.length | currency:'')"></span>
+                    </td>
+
+                </tr>
+               
+               
+            </table>
+            
+            <div class="row border-print padding-vertical-less">
+                <div class="col-xs-6 text-left">
+                    <span class="text-uppercase"><strong  ng-bind="::order.strings.LABEL_TOTAL_RECIVED"></strong></span>
+                </div>
+                <div class="col-xs-3 col-xs-offset-2 text-right">
+                    <span><strong ng-bind="order.order.amount"></strong></span>
+                </div>
+            </div>
+            
+            <div class="row border-print padding-vertical-less">
+                <div class="col-xs-6 text-left">
+                    <span ><strong ng-bind="::order.strings.LABEL_COMISSION_TRULII"></strong></span><br/>
+                    <br/>
+                    <span ng-bind="::order.strings.LABEL_COMISSION_TRULII_FEE"></span><br/>
+                    <span  ng-bind="::order.strings.LABEL_COMISSION_TRULII_FEE_TAX" ></span><br/>
+                    <span ng-if="order.bankingData.person_type==2"  ng-bind="::order.strings.LABEL_RETEIVA"></span><br/>
+                    <span ng-if="order.bankingData.person_type==2"  ng-bind="::order.strings.LABEL_RETEICA"></span>
+                    <br/>
+                    <br/>
+                    <span><strong ng-bind="::order.strings.LABEL_TOTAL_COMISSION"></strong></span>
+                </div>
+                <div class="col-xs-3 col-xs-offset-2 text-right">
+                    <span class="text-uppercase"><strong></strong></span><br/>
+                    <br/>
+                    <span>-<span ng-bind="order.order.fee_detail.trulii_fee | currency:''"></span></span><br/>
+                    <span>-<span ng-bind="order.order.fee_detail.trulii_tax_fee | currency:''"></span></span><br/>
+                    <span ng-if="order.bankingData.person_type==2">+<span ng-bind="order.order.fee_detail.reteiva | currency:''" ></span></span><br/>
+                    <span ng-if="order.bankingData.person_type==2">+<span ng-bind="order.order.fee_detail.reteica | currency:''"></span></span>
+                    <br/>
+                    <br/>
+                    <span><strong >-<span ng-bind="order.order.fee_detail.trulii_total_fee | currency:''"></span></strong></span>
+                </div>
+            </div>
+            <div class="row border-print padding-vertical-less">
+                <div class="col-xs-6 text-left">
+                    <span>Comisión Pasarela de Pago</span><br/>
+                    <span>Total Comisión Pasarela de Pago</span><br/>
+                </div>
+                <div class="col-xs-3 col-xs-offset-2 text-right">
+                    <span></span><br/>
+                    <span>-<span ng-bind="order.order.fee_detail.payu_total_fee | currency:''"></span></span><br/>
+                </div>
+            </div>
+            <div class="row border-print padding-vertical-less">
+                <div class="col-xs-4 text-left">
+                </div>
+                <div class="col-xs-5 col-xs-offset-2 text-right">
+                    <span><strong>Total Organizador <span class="separate-left-less" ng-bind="order.order.fee_detail.final_total | currency:''"></span></strong></span>
+                </div>
+            </div>
+             <div class="row border-print padding-vertical-less">
+                <div class="col-xs-8 text-left">
+                    <span><strong>Información de Descuentos Tributarios</strong></span><br/>
+                    <span>Si usted es gran contribuyente y/o autorretenedor, favor tomar en cuenta los siguientes descuentos tributarios:</span><br/>
+                    <span>Estamos acogidos a la ley 1429 de 2010, no se debe hacer retención en la fuente</span>
+                </div>
+                <div class="col-xs-4 text-right">
+                </div>
+            </div>
+            <div class="row border-print padding-vertical-less">
+                <div class="col-xs-12 text-center">
+                    <span><strong>Valore en Letras: <span ng-bind="::order.order.fee_detail.final_total_words"></span></strong></span><br/>
+                    <span class="text-sm-print">Resolución DIAN 80000028340 FECHA 2016/08&05 Numeraci´on ablitada 1 a 20000 Factura impresa por Computador pr software Contable Zue Enterprise V, 04.05.01</span><br/>
+                    <span class="text-sm-print">Esta Factura se asemeja para todos los efectos legales a ua LETRA DE CAMBIO según Articulo 774 del codigo de Comercio y vencido su plazo causará intereses a la tas máxima autorizada</span>
+                </div>
+            </div>
+            
+            
+            <div class="row footer-print">
+                <div class="col-xs-4">
+                    <span class="text-uppercase separate-above-less"><strong>Trulii SAS</strong></span>
+                </div>
+                 <div class="col-xs-8">
+                    <span class="separate-above-less"><strong>Aceptada (Nombre y Firma)</strong></span>
+                </div>
+            </div>
+</div>
 </div>

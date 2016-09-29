@@ -12,9 +12,9 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDBInstructorsController', ActivityDBInstructorsController);
 
-    ActivityDBInstructorsController.$inject = ['$timeout', 'activity', 'organizer', 'Toast', 'Elevator', 'Error' ];
+    ActivityDBInstructorsController.$inject = ['$scope', '$timeout', 'activity', 'organizer', 'Toast', 'Elevator', 'Error' ];
 
-    function ActivityDBInstructorsController($timeout, activity, organizer, Toast, Elevator, Error ) {
+    function ActivityDBInstructorsController( $scope, $timeout, activity, organizer, Toast, Elevator, Error ) {
 
         var MAX_INSTRUCTORS = organizer.max_allowed_instructors;
 
@@ -49,7 +49,6 @@
             }, 0);
 
             function result(){
-                console.log('onChange.vm.instructors:', activity);
                  vm.activity = angular.copy(activity);
                 if(vm.countInstructors>0){
                     vm.countInstructors--;
@@ -137,11 +136,10 @@
             _setStrings();
             Elevator.toTop();
             _setInstructors();
-            console.log(organizer);
-            activity.getInstructors().then(function(instructors){
-                console.log('activity.getInstructors:', instructors);
-            });
-
+            $scope.$on('changeInstructor', function(event){
+                console.log('changeInstructor');
+                Elevator.toTop();
+            })
         }
 
     }

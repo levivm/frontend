@@ -82,7 +82,6 @@
             }
 
             function errorAuthAccount(){
-                console.log("getCurrentOrganizer. Couldn't resolve authenticated user");
                 return $q.reject(null);
             }
 
@@ -129,7 +128,7 @@
                 };
 
                 function error(response){
-                  console.log("Error getting organizer reviews: ", response.data);
+                 // console.log("Error getting organizer reviews: ", response.data);
                 }
         }
 

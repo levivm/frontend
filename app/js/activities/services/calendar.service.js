@@ -42,8 +42,6 @@
 
         Calendar.prototype = {
             setData : function (calendarData) {
-
-
                 var that = this;
                 var sessions = angular.copy(calendarData.sessions);
                 angular.extend(this, calendarData);
@@ -53,7 +51,7 @@
                 this.initial_date = new Date(this.initial_date);
                 this.closing_sale = new Date(this.closing_sale);
                 
-                angular.forEach(this.sessions, function (session, index) {
+               /* angular.forEach(this.sessions, function (session, index) {
 
                     session.date = new Date(session.date);
                     that.changeSessionDate(index, session);
@@ -80,7 +78,7 @@
 
                 });
 
-                this.last_sn = this.number_of_sessions;
+                this.last_sn = this.number_of_sessions;*/
             },
             load : function (activity_id) {
 
@@ -118,6 +116,7 @@
 
                 var activity_id = this.activity;
                 var calendar_copy = angular.copy(this);
+                console.log(calendar_copy);
                 calendar_copy.setToSave();
                 var that = this;
                 // serverConf.url+'/api/activities/'+activity_id+'/calendars/'+this.id
@@ -143,7 +142,7 @@
                 if (!this.session_price && this.is_free)
                     this.session_price = DEFAULT_FREE_VALUE;
 
-                angular.forEach(this.sessions, function (session) {
+               /* angular.forEach(this.sessions, function (session) {
                     session.date = session.date.valueOf();
 
                     var end_time_tz = moment().tz(angularMomentConfig.timezone);
@@ -158,7 +157,7 @@
 
                     session.end_time   =  end_time_tz.valueOf();
                     session.start_time =  start_time_tz.valueOf();
-                });
+                });*/
             },
             changeStartDate : function () {
 
@@ -304,9 +303,7 @@
                 this.assistants = this.assistants.concat(assistants);
             },
             hasAssistantByEmail: function (email){
-                console.log(email, this.assistants);
                 return this.assistants.some(function(assistant){
-                    console.log('assistant email', assistant.email === email, assistant.email);
                     return assistant.email === email;
                 });
             }

@@ -80,7 +80,9 @@
                     }
                 }
 
-                function like(activityId){
+                function like($event, activityId){
+                    $event.preventDefault();
+                    $event.stopPropagation();
                     StudentsManager.postWishList(activityId).then(function(data){
                         scope.activity.wish_list=!scope.activity.wish_list;
                         ActivitiesManager.like(scope.activity.id, scope.activity.wish_list);
@@ -175,7 +177,7 @@
                     if(activity.pictures.length > 0){
                         angular.forEach(activity.pictures, function(picture, index, array){
                             if(picture.main_photo){
-                                activity.main_photo = picture.photo;
+                                activity.main_photo = picture.thumbnail;
                             }
 
                             if( index === (array.length - 1) && !activity.main_photo){
@@ -257,11 +259,16 @@
 
                 function _mapDateMsg(activity){
                     var today = new Date();
-                    if(!!activity.closest_calendar){
+                    
+                    if(!!activity.closest_calendar && 
+                        !!activity.closest_calendar.session_price && 
+                        !!activity.closest_calendar.initial_date){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
-                        var duration = moment.duration(end.diff(now));
-                        activity.days_to_closest = Math.ceil(duration.asDays());
+                        // moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day')
+                        var duration = moment.duration(end.diff(now));                        
+                        activity.days_to_closest = duration.asDays() >= 0 ? Math.floor(duration.asDays()):
+                                                                           Math.ceil(duration.asDays());
                     } else {
                         activity.days_to_closest = -1;
                     }
@@ -277,8 +284,8 @@
                         activity.date_msg = scope.strings.COPY_IN + " "
                             + activity.days_to_closest + " " + scope.strings.COPY_DAYS;
                     } else {
-                        activity.date_msg = $filter('date')(activity.closest_calendar.closing_sale, "MMM dd");
-                        activity.date_msg = scope.strings.COPY_UNTIL+": "+activity.date_msg;
+                        activity.date_msg = $filter('date')(activity.closest_calendar.initial_date, "MMM dd");
+                        activity.date_msg = scope.strings.COPY_INIT+": "+activity.date_msg;
                     }
                     return activity;
                 }
@@ -315,9 +322,11 @@
                         COPY_IN: "En ",
                         COPY_THE: "El ",
                         COPY_CURRENT: "En curso",
-                        COPY_UNTIL: "Cierre Ventas",
+                        COPY_INIT: "Inicio",
                         COPY_ATTENDES: "Ver asistentes ",
+                        COPY_NON_CLOSEST: "Clase no disponible",
                         ADD_TO_WISHLIST: "Agregar a favoritos",
+                        COPY_OPEN_SCHEDULE: "Horario abierto",
                         CURRENCY: "COP",
                         DELETE_ACTIVITY_ERROR: "No puede eliminar esta actividad, tiene estudiantes inscritos, contactanos",
                     });
@@ -328,7 +337,7 @@
                         scope.isStudent = data;
                     }, function(err){
                         console.log(err);
-                    })
+                    });
 
                 }
 

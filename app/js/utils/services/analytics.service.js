@@ -44,6 +44,7 @@
         var EACTION_SIGNUP_FACEBOOK='Facebook Sign up complete';
         var EACTION_BMENU_CLICK='Click item burguer menu ';
         var EACTION_SHARE_SOCIAL='share';
+        var EACTION_NOT_FOUND= '404';
         //Students Actions Labels
 
         var EACTION_ENROLL_CLICK= 'Click Enroll';
@@ -100,7 +101,8 @@
             burguerMenuItemsClicks:burguerMenuItemsClicks,
             actionCard:actionCard,
             logoNavbar:logoNavbar,
-            shareActivity:shareActivity
+            shareActivity:shareActivity,
+            notFound:notFound
         };
 
         var studentEvents = {
@@ -149,7 +151,7 @@
 
             var userId = Authentication.isAuthenticated() ? true:false;
             $window.ga('create', {
-                trackingId: 'UA-67305468-1',
+                trackingId: 'UA-67305468-4',
                 cookieDomain: 'auto',
                 name: 'myTracker',
             });
@@ -230,12 +232,17 @@
             var label = _userType('');
             _reportEvent(CATEGORY_GENERAL, EACTION_CLICK_LOGO_NAVBAR, label);
         }
+        
+        function notFound(url) {
+            _reportSocialEvent(CATEGORY_GENERAL, EACTION_NOT_FOUND, 'from: '+url);
+        }
+
 
         function shareActivity(social, data){
             _reportSocialEvent(social, EACTION_SHARE_SOCIAL, data);
         }
-
-
+        
+        
         //Sudent Events
 
 

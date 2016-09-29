@@ -118,6 +118,17 @@
 
             /**
              * @ngdoc function
+             * @name .#featured
+             * @description Renders **`/api/activities/featured`** Get Featured Activities URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'featured' : function(){
+              return renderUrl( 'activities/featured');
+            },
+
+            /**
+             * @ngdoc function
              * @name .#gallery
              * @description Renders **`/api/activities/:idActivity/gallery{=/auto}`** Activity gallery URL
              * @param {number} idActivity Activity Id
@@ -310,7 +321,7 @@
             'autocomplete' : function () {
                 return renderUrl('activities/', ['autocomplete']);
             },
-            
+
             /**
              * @ngdoc function
              * @name .#messages
@@ -323,7 +334,7 @@
             'messages': function (){
                 return renderUrl('messages/');
             },
-            
+
             /**
              * @ngdoc function
              * @name .#message
@@ -336,7 +347,7 @@
             'message': function(idMessage){
               return renderUrl('messages/', [idMessage]);
             },
-            
+
             /**
              * @ngdoc function
              * @name .#stats
@@ -360,7 +371,7 @@
             'viewsCounter' : function (idActivity) {
                 return renderUrl('activities/', [idActivity, 'views_counter']);
             }
-            
+
         };
 
         /**

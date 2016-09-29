@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <div class="col-xs-12 separate-below">
-      <div class="row"> 
+      <div class="row">
         <div class="col-xs-12">
           <h3 class="text-center text-uppercase separate-below">
             <strong ng-bind="::summary.strings.LABEL_SALES"></strong>
@@ -32,13 +32,19 @@
                 &gt;
               </div>
             </div>
-          </div> 
+          </div>
         </div>
       </div>
       <div class="row ">
         <div class="col-xs-11 col-xs-offset-1 separate-above">
           <div ng-if="summary.hasData()">
-            <nvd3 options="summary.options" data="summary.data" config="{refreshDataOnly: true, deepWatchData: true}" class="with-3d-shadow with-transitions"></nvd3>
+            <!-- <nvd3 options="summary.testoptions" data="summary.testdata"></nvd3> -->
+            <nvd3
+              options="summary.options"
+              data="summary.data"
+              config="{refreshDataOnly: true, deepWatchData: true}"
+              class="with-3d-shadow with-transitions">
+            </nvd3>
           </div>
           <div class="" ng-if="!summary.hasData()">
             <h3 class="separate-above separate-below text-center">No hay datos para la fecha seleccionada</h1>
@@ -111,7 +117,7 @@
       </h3>
       <h4 class="text-center text-uppercase" ng-bind="::summary.activity.title"></h4>
       <h4 class="text-center separate-above"  ng-show="!summary.stats.next_data" ng-bind="::summary.strings.COPY_EMPTY_NEXT_DATE"></h4>
-      <div class="row" ng-if="summary.stats.next_data">
+      <div class="row" ng-if="summary.stats.next_data && !summary.activity.is_open">
         <h4 class="text-center text-uppercase separate-below" ng-bind="summary.stats.next_data.date | date:'d MMM y'"></h4>
         <h4 class="text-center text-uppercase separate-below">
           <strong ng-bind="::summary.strings.COPY_SOLD_SEATS"></strong>
@@ -132,6 +138,14 @@
             <div class="seat-metric-bar__fill" ng-style="{'width': '{{summary.stats.next_data.sold / (summary.stats.next_data.available_capacity + summary.stats.next_data.sold) * 100}}%'}"></div>
           </div>
         </div>
+      </div>
+      <div class="row" ng-if="summary.activity.is_open">
+        <h4 class="text-center">
+          <strong ng-bind="::summary.strings.COPY_TOTAL_SEATS"></strong>
+        </h4>
+        <h5 class="text-center">
+          <strong ng-bind="::summary.stats.next_data.sold"></strong>
+        </h5>
       </div>
     </div>
   </div>

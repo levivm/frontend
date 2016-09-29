@@ -18,9 +18,9 @@
         .module('trulii.organizers.controllers')
         .controller('OrganizerProfileCtrl', OrganizerProfileCtrl);
 
-    OrganizerProfileCtrl.$inject = ['$rootScope', 'uiGmapIsReady', 'Authentication', 'LocationManager', 'Toast', 'Error',
+    OrganizerProfileCtrl.$inject = ['$rootScope', 'uiGmapIsReady', 'serverConf', 'Authentication', 'LocationManager', 'Toast', 'Error',
         'organizer', 'cities'];
-    function OrganizerProfileCtrl($rootScope, uiGmapIsReady, Authentication, LocationManager, Toast, Error, organizer, cities) {
+    function OrganizerProfileCtrl($rootScope, uiGmapIsReady, serverConf, Authentication, LocationManager, Toast, Error, organizer, cities) {
 
         var vm = this;
         var SIZE_PICTURE_UP = 2500; //2.5Mb
@@ -43,8 +43,11 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-
+        function getAmazonUrl(file){
+            return  serverConf.s3URL + '/' + file;
+        }
         function uploadPicture(image) {
+            console.log(image);
             if (!image) { return; }
             Error.form.clear(vm.profile_picture_form);
             if(_verifySizePicture(image[0]))
@@ -90,6 +93,7 @@
         }
 
         function _successUploaded(response) {
+            console.log(response);
             angular.extend(organizer, response.data);
             angular.extend(vm.organizer, organizer);
             vm.photo_path = response.data.photo;
@@ -100,7 +104,10 @@
 
         function _successUpdatedLocation(response) {
             vm.isSaving = false;
-            angular.extend(organizer, vm.organizer);
+            var city = vm.organizer.location.city
+            angular.extend(vm.organizer.location, response.data);
+            vm.organizer.location.city = city;
+            angular.merge(organizer, vm.organizer);
             Toast.generics.weSaved();
         }
 
@@ -170,7 +177,7 @@
         function _activate(){
             _setStrings();
             _initialize_map();
-            console.log(vm.organizer);
+            vm.marker.options = {draggable:true};
         }
 
     }

@@ -29,7 +29,7 @@
         var _activities = [];
         var presave_info = null;
         var categories = null;
-        var defaultPageSize = 12;
+        var defaultPageSize = 8;
         var defaultPage = 1;
         var EVENT_DELETE_ACTIVITY='delete-activity';
         //noinspection UnnecessaryLocalVariableJS
@@ -45,7 +45,7 @@
             getActivities : getActivities,
 
             getCategoryActivities: getCategoryActivities,
-            
+
             /**
              * @ngdoc method
              * @name .#getRecommendedActivities
@@ -55,6 +55,15 @@
              */
             getRecommendedActivities : getRecommendedActivities,
 
+            /**
+             * @ngdoc method
+             * @name .#getFeaturedActivities
+             * @description Gets featured activities
+             * @return {promise} Activity Promise
+             * @methodOf trulii.activities.services.ActivitiesManager
+             */
+            getFeaturedActivities: getFeaturedActivities,
+            
             /**
              * @ngdoc method
              * @name .#getActivity
@@ -188,7 +197,6 @@
                     'page_size': RECOMMENDED_QTY
                 }
             };
-            console.log(config);
             return $http.get(api.search(), config).then(success, error);
 
             function success(response){
@@ -197,6 +205,16 @@
             function error(response){
                 $q.reject(response.data);
             }
+        }
+
+        function getFeaturedActivities(){
+          return $http.get(api.featured()).then(success, error);
+          function success(response){
+              return response.data;
+          }
+          function error(response){
+              $q.reject(response.data);
+          }
         }
 
         function getCategoryActivities(category){
@@ -280,7 +298,7 @@
               page = 1;
             }
             if(!pageSize){
-              pageSize = 12;
+              pageSize = 8;
             }
             if(!status){
               status = 'open';
@@ -315,7 +333,7 @@
             return $http.get(api.categories(categoryId)).then(function (response) {
                 return response;
             });
-        
+
         }
 
         function getCategories(){
@@ -334,7 +352,6 @@
 
         function getSubcategoryCovers(subcategoryId){
             if(subcategoryId === null){
-                console.log('ActivitiesManager.getSubcategoryCovers. subcategoryId not valid:');
                 return [];
             }
             return $http.get(api.subcategoryCovers(subcategoryId)).then(success, error);
@@ -343,7 +360,6 @@
                 return response.data.pictures;
             }
             function error(response){
-                console.log('Error retrieving Cover Pool for subcategory:', subcategoryId, '.', response);
                 return [];
             }
         }

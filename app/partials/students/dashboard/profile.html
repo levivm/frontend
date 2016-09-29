@@ -109,8 +109,8 @@
                                             name="gender"
                                             ng-options="gender as gender.name for gender in profile.genders track by gender.name"
                                             ng-change="profile.selectGender(profile.selected_gender)">
-                                        <option value="" ng-show="!profile.student.gender"
-                                                ng-bind="::profile.strings.OPTION_SELECT" selected>
+                                        <option value="" ng-hide="profile.selected_gender"
+                                                ng-bind="::profile.strings.OPTION_GENDER_SELECT" selected>
                                         </option>
                                     </select>
                                 </div>

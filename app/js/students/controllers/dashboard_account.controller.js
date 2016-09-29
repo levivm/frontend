@@ -80,7 +80,6 @@
         }
 
         function _changeSuccess(response) {
-            console.log(response);
             Authentication.getAuthenticatedAccount(true);
             vm.isSaving = false;
             Toast.info(vm.strings.COPY_TOAST_EMAIL_CHANGED_INFO,
@@ -101,7 +100,7 @@
                 vm.orders = orders;
             }
             function error(orders){
-                console.log('Error retrieving Student Orders History');
+                //console.log('Error retrieving Student Orders History');
             }
         }
 
@@ -116,7 +115,7 @@
                 LABEL_CONFIRM_PASSWORD: "Confirmar nueva contraseña",
                 LABEL_EMAIL: "Correo electrónico",
                 SECTION_ACCOUNT: "Cuenta",
-                COPY_ACCOUNT: "Cambia tu dirección de correo electrónico cuando quieras. Te enviaremos un correo electrónico a tu nueva dirección para que confirmes el cambio",
+                COPY_ACCOUNT: "Cambia tu dirección de correo electrónico y contraseña cuando quieras.",
                 TAB_PASSWORD: "Cambiar contraseña",
                 TAB_EMAIL: "Correo electrónico",
                 COPY_TOAST_EMAIL_CHANGED: "Correo cambiado",

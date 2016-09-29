@@ -16,17 +16,17 @@
                             </option>
                         </select>
                     </div>
-                    <div class="form-group" trulii-input-errors-control="location">
+                    <div class="form-group" trulii-input-errors-control="address">
                         <label for="address" class="control-label" ng-bind="::location.strings.LABEL_ADDRESS"></label>
                             <input type="text" 
-                                   id="location"
+                                   id="address" 
                                    class="form-control"
                                    ng-model='location.activity.location.address'
-                                   name="location"
+                                   name="address"
                                    typeahead="address for address in location.address_autocomplete " typeahead-focus-first="false"/>
                     </div>
                     <div class="text-center separate-above separate-below-less">
-                        <strong><span ng-bind="::location.strings.COPY_MAP_1"></span></strong> <span ng-bind="::location.strings.COPY_MAP_2"></span>(<span><img ng-src="{{location.getAmazonUrl('static/img/map.png')}}" width="50" height="50" alt=""></span>)<span ng-bind="::location.strings.COPY_MAP_3"></span>
+                        <strong><span ng-bind="::location.strings.COPY_MAP_1"></span></strong> <span ng-bind="::location.strings.COPY_MAP_2"></span >( <span><i class="fa fa-map-marker text-color-red text-lg-2" aria-hidden="true"></i></span> ) <span ng-bind="::location.strings.COPY_MAP_3"></span>
                     </div>
                     <div>
                         <ui-gmap-google-map center='location.map.center' zoom='location.map.zoom' bounds="location.map.bounds"

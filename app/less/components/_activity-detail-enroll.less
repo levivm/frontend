@@ -39,7 +39,9 @@
         }
 
         .sub-item {
-            .item;
+            text-transform: capitalize;
+            float: left;
+            max-width: 50%;
             font-size: 0.9em;
         }
 
@@ -114,7 +116,7 @@
     }
 
     .select-calendar{
-        margin-bottom: 50px;
+        margin-bottom: 90px;
         .ui-select-bootstrap{
             .ui-select-choices-row{
                 a{
@@ -194,10 +196,8 @@
             p, .fa{
                 display: inline-block;
                 font-size: 12px;
-                color: @gray-regular-brand;
-            }
-            p{
-                font-weight: 400;
+                color: @brand-primary;
+                font-weight: 600;
             }
             .fa{
                 padding-left: 5px;
@@ -281,8 +281,8 @@
             text-align: center;
             border-top: none;
             li{
-                width: 250px;
-                height: 75px;
+                width: 310px;
+                height: 90px;
                 display: inline-block;
                 float: none;
                 margin-bottom: 0px;
@@ -316,25 +316,27 @@
             }
         }
         .credit-cards-container{
-            border-top: 1px solid @gray-lighter;
-            border-bottom: 1px solid @gray-lighter;
-            padding: 0 50px;
+            padding: 0 140px;
+            .before-md({
+                padding: 0 50px;
+            });
+
             ul{
                 margin-bottom: 0;
                 display: flex;
                 justify-content: space-between;
                 li{
-                    padding-top: 25px;
-                    padding-bottom: 25px;
                     flex-basis: 0px;
                     line-height: 50px;
+                    img{
+                        width: 50px;
+                    }
                 }
             }
         }
         .card-info-container{
-            margin-top: 50px;
-            margin-bottom: 50px;
-            border: 1px solid @gray-lighter;
+            margin-top: 20px;
+            border: 1px solid @gray-light-brand;
             border-radius: 6px;
             padding-left: 20px;
             padding-right: 20px;
@@ -343,6 +345,11 @@
                 font-weight: bold;
                 color: @gray-dark-brand !important;
             }
+            input[type="number"]{
+                padding: 0em 1.5em !important;
+            }
+            
+                
         }
         .input-error{
             text-align: center;
@@ -759,6 +766,11 @@
     a{
         text-decoration: underline;
     }
+    .btn-order{
+        text-decoration: none;
+        padding: 1em 5em;
+        margin-top: 25px;
+    }
     .col-xs-12{
         z-index: 902;
     }
@@ -799,12 +811,27 @@
     p{
         word-break: break-word;
         margin-bottom: 0px;
-        font-size: 1.1em;
+        font-size: 1em;
+        color: @gray-darker;
         .before-sm({
-        word-break: inherit;
-        margin-bottom: 0px;
-        font-size: 0.85em;
+            word-break: inherit;
+            margin-bottom: 0px;
+            font-size: 0.85em;
         });
+    }
+    .content-html{
+        p, ol, ul, li, h1, h2, h3, h4, h5, span, u, i{
+            font-size: 14px !important;
+            font-weight: 500 !important;
+            color: #222328 !important;
+        }
+        b{
+            font-size: 14px !important;
+            color: #222328 !important;
+        }
+        a{
+            display: none;
+        }
     }
     &__attendees-widget{
         top: 50px;
@@ -832,6 +859,8 @@
             border-radius: 3px;
             margin-bottom: 25px;
             padding: 20px 20px;
+            max-height: 350px;
+            overflow-y: auto;
             h5{
                 font-weight: bold;
                 text-transform: uppercase;
@@ -847,4 +876,17 @@
 
 .related-activities-container-enroll{
     padding: 4em 4em;
+}
+
+.enroll-assistants{
+    .required{
+        position: relative;
+        &:after{
+            content: '*';
+            display: 'block';
+            position: absolute;
+            right: -15px;
+            top: 18px;
+        }
+    }
 }

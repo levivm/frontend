@@ -9,8 +9,8 @@
                <fieldset>
                    <div class="form-group" trulii-input-errors-control="audience">
                        <label class="control-label" for="audience" ng-bind="::detail.strings.LABEL_AUDIENCE"></label>
-
-                           <text-angular placeholder="{{::detail.strings.COPY_HELP_TEXT_AUDIENCE}}"
+                            
+                           <text-angular name="{{::detail.strings.LABEL_AUDIENCE}}" placeholder="{{::detail.strings.COPY_HELP_TEXT_AUDIENCE}}"
                                          ng-model="detail.activity.audience">
                            </text-angular>
 
@@ -18,7 +18,7 @@
                    <div class="form-group" trulii-input-errors-control="goals">
                        <label class="control-label" for="goals" ng-bind="::detail.strings.LABEL_GOALS"></label>
 
-                           <text-angular placeholder="{{::detail.strings.COPY_HELP_TEXT_GOALS}}"
+                           <text-angular name="{{::detail.strings.LABEL_GOALS}}" placeholder="{{::detail.strings.COPY_HELP_TEXT_GOALS}}"
                                          ng-model="detail.activity.goals">
                            </text-angular>
 
@@ -26,7 +26,7 @@
                    <div class="form-group" trulii-input-errors-control="content">
                        <label class="control-label" for="content" ng-bind="::detail.strings.LABEL_CONTENT"></label>
 
-                            <text-angular placeholder="{{::detail.strings.COPY_HELP_TEXT_CONTENT}}"
+                            <text-angular name="{{::detail.strings.LABEL_CONTENT}}" placeholder="{{::detail.strings.COPY_HELP_TEXT_CONTENT}}"
                                           ng-model="detail.activity.content">
                             </text-angular>
 
@@ -34,7 +34,7 @@
 
                    <div class="form-group" trulii-input-errors-control="methodology">
                        <label class="control-label" for="methodology" ng-bind="::detail.strings.LABEL_METHODOLOGY"></label>
-                           <text-angular placeholder="{{::detail.strings.COPY_HELP_TEXT_METHODOLOGY}}"
+                           <text-angular name="{{::detail.strings.LABEL_METHODOLOGY}}" placeholder="{{::detail.strings.COPY_HELP_TEXT_METHODOLOGY}}"
                                          ng-model="detail.activity.methodology">
                            </text-angular>
 
@@ -42,15 +42,23 @@
                    <div class="form-group" trulii-input-errors-control="requirements">
                        <label class="control-label" for="requirements" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></label>
 
-                           <text-angular
+                           <text-angular name="{{::detail.strings.LABEL_REQUIREMENTS}}"
                              placeholder="{{::detail.strings.COPY_HELP_TEXT_REQUIREMETS}}"
                              ng-model="detail.activity.requirements"></text-angular>
                    </div>
                    <div class="form-group" trulii-input-errors-control="extra_info">
                        <label class="control-label" for="extra_info" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></label>
 
-                           <text-angular placeholder="{{::detail.strings.COPY_HELP_TEXT_EXTRA_INFO}}"
+                           <text-angular name="{{::detail.strings.LABEL_EXTRA_INFO}}"  placeholder="{{::detail.strings.COPY_HELP_TEXT_EXTRA_INFO}}"
                                          ng-model="detail.activity.extra_info">
+                           </text-angular>
+
+                   </div>
+                   <div class="form-group" trulii-input-errors-control="extra_info">
+                       <label class="control-label" for="extra_info" ng-bind="::detail.strings.PLACEHOLDER_POST_ENROLL"></label>
+
+                           <text-angular name="{{::detail.strings.PLACEHOLDER_POST_ENROLL}}"  placeholder="{{::detail.strings.COPY_POST_ENROLL}}"
+                                         ng-model="detail.activity.post_enroll_message">
                            </text-angular>
 
                    </div>

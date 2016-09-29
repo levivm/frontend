@@ -26,7 +26,7 @@
     function ActivityDetailController($scope, $state, $stateParams, $filter, $timeout, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
-                                          
+
         var visibleReviewListSize = 3;
         var vm = this;
 
@@ -40,6 +40,8 @@
             activity : null,
             organizer : organizer,
             calendar_selected : null,
+            package_selected: 1,
+            selectedPackage: 0,
             selectedActivity: 0,
             currentGalleryPicture: 0,
             galleryOptions: {
@@ -57,38 +59,62 @@
             showEmail: false,
             showSessions: false,
             hasMoreReviews: true,
+            showSchedules: false,
             changeSelectedCalendar : changeSelectedCalendar,
             isSelectedCalendarFull : isSelectedCalendarFull,
+            isSelectedPackageFull : isSelectedPackageFull,
             previousGalleryPicture: previousGalleryPicture,
             nextGalleryPicture: nextGalleryPicture,
             signUp: signUp,
             calendarSignUp:calendarSignUp,
             widgetSignup:widgetSignup,
             showMoreReviews: showMoreReviews,
-            viewMoreCalendars: viewMoreCalendars,
+            toggleSchedules: toggleSchedules,
             toggleEmailShow: toggleEmailShow,
             toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm,
-            showAudience: false,
-            showContent: false,
-            showGoals: false,
-            showVideo: false,
-            showMethodology: false,
-            showRequirements: false,
-            showExtra: false,
+            showAudience: true,
+            showContent: true,
+            showGoals: true,
+            showVideo: true,
+            showMethodology: true,
+            showRequirements: true,
+            showExtra: true,
             shareSocialAnalytic:shareSocialAnalytic,
             wishList:wishList,
             verifyWishList:verifyWishList,
             getAmazonUrl: getAmazonUrl,
             facebookShares: 0,
+            schedulesScrollUp: schedulesScrollUp,
+            schedulesScrollDown: schedulesScrollDown,
+            schedulesOffset: 0,
+            changePackage: changePackage,
+            organizerRating: 0
+
+
         });
 
         _activate();
 
         //--------- Exposed Functions ---------//
 
+        function changePackage(pack){
+            vm.package_selected = _.find(vm.activity.calendars[0].packages, {'id': parseInt(pack)});
+        }
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
+        }
+
+        function schedulesScrollUp (){
+            if(vm.schedulesOffset < 0){
+                vm.schedulesOffset++;
+                document.getElementsByClassName('schedules-container__html')[0].style.transform = 'translateY('+ vm.schedulesOffset*60 +'px)';
+            }
+        }
+        function schedulesScrollDown(){
+            vm.schedulesOffset--;
+            document.getElementsByClassName('schedules-container__html')[0].style.transform = 'translateY('+ vm.schedulesOffset*60 +'px)';
         }
 
         function previousGalleryPicture(){
@@ -101,26 +127,43 @@
 
         function isSelectedCalendarFull(){
             if(vm.calendar_selected){
-                return vm.calendar_selected.available_capacity <= 0 || moment(vm.calendar_selected.closing_sale).isBefore(moment().valueOf() , 'day');
+                return vm.calendar_selected.available_capacity <= 0 ||
+                       moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day') ||
+                       !vm.calendar_selected.enroll_open;
             } else {
                 return true;
             }
         }
 
-        function changeSelectedCalendar(calendar) { vm.calendar_selected = calendar; }
+        function isSelectedPackageFull(){
+            if(vm.package_selected)
+                return vm.activity.calendars[0].available_capacity <= 0 || !vm.activity.calendars[0].enroll_open ;
 
-        function signUp(activity_id, calendar_id){
+            return true;
+
+        }
+
+        function changeSelectedCalendar(calendar) { vm.calendar_selected = vm.activity.upcoming_calendars[calendar]; }
+
+        function signUp(activity_id, calendar_id, package_id){
             var enrollParams = {
+                category_slug: vm.activity.category.slug,
+                activity_title: vm.title,
                 activity_id: vm.activity.id,
-                calendar_id: calendar_id
+                calendar_id: calendar_id,
+                package_id: package_id,
             };
 
+            if(vm.activity.is_open){
+                enrollParams.package_id = vm.selectedPackage;
+            }
             var registerParams = {
                 toState: {
                     state: 'activities-enroll',
                     params: {
                         activity_id: activity_id,
-                        calendar_id: calendar_id
+                        calendar_id: calendar_id,
+                        package_id: package_id
                     }
                 }
             };
@@ -156,6 +199,7 @@
                   case 'S':
                       StudentsManager.postWishList(vm.activity.id).then(function(data){
                           vm.activity.wish_list=!vm.activity.wish_list;
+                          vm.activity.wishlist_count = vm.activity.wish_list ? vm.activity.wishlist_count+1:vm.activity.wishlist_count-1;
                       });
                       break;
                   case 'O':
@@ -194,8 +238,8 @@
             }
         }
 
-        function viewMoreCalendars(){
-            Elevator.toElement('more_calendars_section');
+        function toggleSchedules(){
+            vm.showSchedules = !vm.showSchedules;
         }
 
         function toggleEmailShow(){
@@ -226,7 +270,6 @@
             }
             function error(error){
                 Toast.error(vm.strings.COPY_SHARE_ERROR);
-                console.log('Error sharing activity', error);
             }
         }
 
@@ -260,17 +303,28 @@
 
         function _mapCalendars(activity){
             activity.upcoming_calendars = [];
-            if(activity.calendars){
+            var calendars;
+            if (activity.is_open && activity.calendars){
+                calendars = angular.copy(activity.calendars);
+                activity.upcoming_calendars = angular.copy(_.remove(calendars, removePastCalendarOpenActivity));
+
+            }
+            else if(!activity.is_open && activity.calendars){
                 activity.calendars = activity.calendars.map(mapVacancy);
-                var calendars = angular.copy(activity.calendars);
+                calendars = angular.copy(activity.calendars);
                 activity.upcoming_calendars = angular.copy(_.remove(calendars, removePastCalendars));
             }
 
             return activity;
 
+            function removePastCalendarOpenActivity(calendar){
+                return true;
+            }
+
             function removePastCalendars(calendar){
-                var passed = moment(calendar.closing_sale).isBefore(moment().valueOf() , 'day');
-                return !passed;
+                var passed = moment(calendar.initial_date).isBefore(moment().valueOf() , 'day');
+                var vacancy = calendar.available_capacity > 0;
+                return !passed && vacancy;
             }
 
             function mapVacancy(calendar){
@@ -293,11 +347,14 @@
         function _setUpLocation(activity){
             if(activity.location && activity.location.city){
                 activity.location.city = activity.location.city.id ? activity.location.city.id: activity.location.city;
-                activity.location.name = LocationManager.getCityById(activity.location.city).name;
+                LocationManager.getCityById(activity.location.city).then(function(response){
+                     activity.location.name = response.name;
+                });
             }
             vm.map = LocationManager.getMap(activity.location, false);
             vm.marker = LocationManager.getMarker(activity.location);
-            vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
+           
+           
         }
 
         function _setCurrentState(){
@@ -310,12 +367,30 @@
         }
 
         function _getSelectedCalendar(activity){
-            if (!activity.closest_calendar){ return; }
 
+            var calendar = _.find(activity.upcoming_calendars, {'id': parseInt($stateParams.calendar_id)});
+            if (calendar)
+                return calendar;
+
+            if (!activity.closest_calendar){ return; }
             if(moment(activity.closest_calendar.initial_date).isBefore(moment().valueOf(),'days')){
                 return null;
             } else {
                 return activity.closest_calendar;
+            }
+        }
+
+        function _getSelectedPackage(activity){
+            if(activity.is_open){
+                var calendar = _getSelectedCalendar(activity);
+                if (!calendar)
+                    return;
+                var _package = calendar.packages[0];
+                if ($stateParams.package_id)
+                     _package = _.find(calendar.packages, {'id': parseInt($stateParams.package_id)});
+
+                vm.selectedPackage = _package ? _package.id.toString(): null;
+                return _package;
             }
         }
 
@@ -356,7 +431,6 @@
                 function (response) {
                     if(response.length > 0){
                         vm.facebookShares = response[0].share_count;
-                        console.log(response[0].share_count);
                     }
             });
 
@@ -367,7 +441,8 @@
             angular.extend(vm.strings, {
                 ACTION_CONTACT_US: "Contáctanos",
                 ACTION_SIGN_UP: "Inscribirme",
-                ACTION_VIEW_OTHER_DATES: "Ver más fechas de inicio",
+                ACTION_VIEW_SCHEDULES: "Ver horarios",
+                ACTIVITY_DISABLED:"Así está quedando tu publicación. Regresa a editar en caso que quieras hacer algún cambio",
                 COPY_SIMILAR_ACTIVITIES: "Actividades Similares",
                 COPY_MORE_SIMILAR_ACTIVITIES: "Ver más actividades similares",
                 COPY_TO: " a ",
@@ -377,9 +452,11 @@
                 COPY_NO_VACANCY: "Sin vacantes",
                 COPY_HEADER_SIGN_UP: "¿Todo listo para aprender?",
                 COPY_SIGN_UP: "Inscribirse es más rápido que Flash, más seguro que Islandia y más fácil que la tabla del 1. ¡En serio!",
-                COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase, agrégala a favoritos y te avisaremos cuando hayan más fechas disponibles.",
+                COPY_SIGN_UP_NO_DATES: "Por ahora no hay fechas disponibles para la clase.",
+                COPY_ENROLL_CLOSED: "Por ahora las inscripciones están deshabilitadas.",
                 COPY_HEADER_REASONS_TO_USE: "¿Por qué inscribirte con Trulii?",
                 COPY_DOUBTS:"¿Alguna duda? Estamos a tu orden todos los días",
+                LABEL_EVALUATIONS: "Evaluaciones",
                 LABEL_SCHEDULE: "Horario",
                 LABEL_START: "Inicio",
                 LABEL_VACANCY: "Vacantes",
@@ -398,7 +475,7 @@
                 LABEL_INSTRUCTORS: "Instructores",
                 LABEL_REQUIREMENTS: "Requisitos",
                 LABEL_METHODOLOGY: "Metodología",
-                LABEL_EXTRA_INFO: "Info Extra",
+                LABEL_EXTRA_INFO: "Información importante",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
                 TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",
@@ -409,16 +486,12 @@
                 VALUE_DOESNT_APPLY: "No aplica",
                 VALUE_LEVEL: "Nivel",
                 VALUE_DURATION: "Duración",
-                REASON_NO_COMMISSIONS: "Sin Comisiones",
-                REASON_COPY_NO_COMMISSIONS_1: "Nuestro servicio para ti",
-                REASON_COPY_NO_COMMISSIONS_2: "es totalmente gratuito.",
+                REASON_NO_COMMISSIONS: "Servicio gratuito",
+                REASON_COPY_NO_COMMISSIONS: "Sólo paga por el valor de la clase. No cobramos comisiones.",
                 REASON_REFUND: "Devolución Garantizada",
-                REASON_COPY_REFUND_1: "Protegemos tu pago hasta",
-                REASON_COPY_REFUND_2: "que se efectúe la clase.",
+                REASON_COPY_REFUND: "Te devolvemos tu dinero en caso de no realizarse la actividad.",
                 REASON_SECURE: "Pago Seguro",
-                REASON_COPY_SECURE_1: "Los datos del pago de tu",
-                REASON_COPY_SECURE_2: "inscripción están seguros",
-                REASON_COPY_SECURE_3: "con nosotros.",
+                REASON_COPY_SECURE: "Los datos de tu pago están encriptados y seguros con nosotros.",
                 EMAIL_MODAL_HEADER: "Compartir la actividad correo electrónico",
                 EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
                 EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
@@ -431,29 +504,38 @@
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
                 COPY_EMPTY_MESSAGE: "Por favor agrega un mensaje",
                 COPY_NUMBER_OF_LIKES: "personas aman esto",
+                COPY_SINGULAR_NUMBER_OF_LIKES: "persona ama esto",
                 COPY_BE_THE_FIRST: "¡Sé el primero!",
-                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas"
+                COPY_VIEW_PUBLISHED_ACTIVITIES: "Ver actividades publicadas",
+                LABEL_OPEN_CALENDAR: "Horario Abierto",
+                LABEL_CLOSED_CALENDAR: "Horario Fijo",
+                LABEL_STARTS: "Inicios",
+                LABEL_PACKAGES: "Planes",
+                COPY_CLASSES_SINGULAR: " Clase",
+                COPY_CLASSES: " Clases",
+                COPY_ADD_TO_WISHLIST: "Agregar a favoritos",
+                COPY_REMOVE_FROM_WISHLIST: "Quitar de favoritos"
             });
         }
         function _updateWidgetValues(){
             vm.scroll = window.scrollY;
             vm.widgetOriginalPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().top + window.scrollY + 50;
-            vm.widgetMaxPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY - 420 - 70;
-            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY) - 420 - (document.getElementsByClassName('trulii-cover-regular')[0].getBoundingClientRect().bottom + window.scrollY);
+            vm.widgetMaxPosition = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY ;
+            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('trulii-cover-regular')[0].getBoundingClientRect().bottom + window.scrollY) +100;
             vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().left + 30;
             vm.widgetFixedPositionRight = document.getElementsByClassName('activity-detail')[0].getBoundingClientRect().right - 30 - 250;
         }
         function _initWidget(){
             angular.element(document).ready(function () {
-                _updateWidgetValues()
+                _updateWidgetValues();
                 $scope.$on('scrolled',
                   function(scrolled, scroll){
-                    _updateWidgetValues()
+                    _updateWidgetValues();
                     $scope.$apply();
                   }
                 );
                 $scope.$on('resized', function(){
-                    _updateWidgetValues()
+                    _updateWidgetValues();
                     $scope.$apply();
                 });
             });
@@ -477,11 +559,11 @@
             title = title.replace(/[^\w ]/g, function(char) {
               return dict[char] || char;
             });
-            
+            vm.title = title;
             $state.go('activities-detail', {activity_id: activity.id, activity_title: title, category_slug: activity.category.slug} ,{location: "replace", notify: false, reload: true});
-            
+
         }
-        
+
         function _mapTemplates(){
             for(var i = 0; i < vm.relatedActivities.length; i++){
                 vm.relatedActivities[i].template = "partials/activities/dynamic_layout_item.html";
@@ -495,9 +577,11 @@
 
         }
 
+        function _setOrganizerRating(){
+            vm.organizerRating = organizer.rating.toString().replace(',', '.');
+        }
 
         function _activate(){
-            console.log('activating');
             _setStrings();
             _setCurrentState();
             _updateUrl();
@@ -513,13 +597,13 @@
                 reviews : reviews.results,
                 totalReviews: reviews.results.length,
                 hasMoreReviews: reviews.results.length > 3,
-                calendar_selected : _getSelectedCalendar(activity)
+                calendar_selected : _getSelectedCalendar(activity),
+                package_selected: _getSelectedPackage(activity)
             });
 
 
             if(!(vm.activity.published)){
-                Toast.setPosition("toast-top-center");
-                Toast.error(vm.strings.ACTIVITY_DISABLED);
+                Toast.success(vm.strings.ACTIVITY_DISABLED);
             }
 
             _setSocialShare();
@@ -527,8 +611,9 @@
             _initSignup();
             _setSearchData();
             _updateViewCount();
-
-            console.log(vm.organizer);
+            _setOrganizerRating();
+            vm.showLevel = vm.activity.level === "N" ? false:true;
+            console.log(vm.showLevel);
             //Function for angularSeo
             $scope.htmlReady();
         }

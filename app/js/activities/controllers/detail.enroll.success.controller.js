@@ -18,6 +18,8 @@
             organizer : activity.organizer,
             organizerActivities : [],
             orderId: $stateParams.order_id,
+            packageQuantity: $stateParams.package_quantity,
+            packageType: $stateParams.package_type,
             showEmail: false,
             toggleEmailShow: toggleEmailShow,
             shareEmailForm: shareEmailForm,
@@ -79,21 +81,46 @@
 
         function _setCity(activity){
             if(activity.location && activity.location.city){
-                activity.location.city = LocationManager.getCityById(activity.location.city);
+                LocationManager.getCityById(activity.location.city).then(function(response){
+                     activity.location.city = response;
+                });
             }
 
             vm.map = LocationManager.getMap(activity.location, false);
 
             vm.marker = LocationManager.getMarker(activity.location);
-            vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
 
             return activity;
         }
 
+        function _getTitleSlug(){
+            var title = vm.activity.title;
+            title = title.replace(/[`~!¡¿@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '');
+
+            // Replacing whitespaces with hyphens
+            title = title.split(' ').join('-').toLowerCase();
+
+            // Replacing most common special characters
+            var dict = {"á":"a", "é":"e", "í":"i", "ó":"o", "ú":"u", "ç":"c", "ñ":"n"};
+
+            title = title.replace(/[^\w ]/g, function(char) {
+                return dict[char] || char;
+            });
+
+            vm.activity.titleSlug = title;
+    
+        }
 
         function _setSocialShare(){
-            var current_url = $state.href($state.current.name, $state.params, {absolute: true});
+             _getTitleSlug();
+            var stateActivityParams ={
+                activity_id: vm.activity.id,
+                activity_title: vm.activity.titleSlug,
+                category_slug: vm.activity.category.slug
+            };
+            var current_url = $state.href('activities-detail', stateActivityParams, {absolute: true});
             vm.social = {};
+
 
             angular.extend(vm.social, {
                 FACEBOOK_SOCIAL_PROVIDER: 'facebook',
@@ -132,10 +159,14 @@
                 LABEL_START_DATE: "Inicio",
                 LABEL_LOCATION: "Ubicación",
                 LABEL_QUESTIONS: "¿Dudas?",
-                LABEL_REQUIREMENTS: "¿Qué debo llevar?",
+                LABEL_IMPORTANT: "Importante",
                 LABEL_ANY_DOUBT: "Cualquier pregunta",
+                LABEL_SCHEDULES: "Horarios",
                 LABEL_ADDRESS: "Dirección",
-                COPY_VIEW_YOUR_ORDER_1: "Revisa tu",
+                LABEL_CLASES: "Clases",
+                LABEL_PACKAGE: "Plan",
+                COPY_IMPORTANT: "Cada asistente tendrá un código que el organizador les solicitará al comenzar la actividad para poder identificarlos. Revisa en tu factura tu código y el de los asistentes que te acompañarán.",
+                COPY_VIEW_YOUR_ORDER: "Ver mi factura",
                 COPY_VIEW_YOUR_ORDER_2: "orden de compra",
                 LABEL_ATTENDEES: "Asistentes",
                 COPY_ASSISTANTS: "Estos son algunos de los asistentes a esta actividad. ¡Falta poco para conocerlos!",
@@ -282,7 +313,6 @@
             vm.activity = activity;
             vm.organizerActivities = _getOrganizerActivities();
             vm.organizerActivities = vm.organizerActivities.slice(0, 4);
-            console.log('activity:', activity);
             _setSocialShare();
             _setConfetti();
             _mapTemplates();

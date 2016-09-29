@@ -20,12 +20,12 @@
                     function(scrolled, scroll){
                         var sideBarPosition = (document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top + window.scrollY) ;
                         var footerPosition = document.getElementsByClassName('container-fluid')[0].offsetHeight +80 ;
-                        var coverPosition = (document.getElementsByClassName('cover-edit-activity')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('cover-edit-activity')[0].offsetHeight;
+                        var coverPosition = (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('cover-blur-small')[0].offsetHeight;
                         var navBarHeight = document.getElementsByClassName('navbar')[0].offsetHeight;
                         var sidebarTop =  document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top - navBarHeight;
                         var positionToFixed = window.scrollY +  document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight;
                         if(sidebarTop <= 20){
-                            if(sideBarPosition <= coverPosition){
+                            if(sideBarPosition < coverPosition){
                                 positionStyle = 'absolute';
                                 valuePosition = '0px';
                                 ctrlFooter = false;

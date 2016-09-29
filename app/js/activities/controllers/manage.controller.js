@@ -11,8 +11,8 @@
         .module('trulii.organizers.controllers')
         .controller('ActivitiesManageCtrl', ActivitiesManageCtrl);
 
-    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', 'activity', 'ActivitiesManager', 'Analytics', 'serverConf'];
-    function ActivitiesManageCtrl($scope, $filter, $state, activity, ActivitiesManager, Analytics, serverConf) {
+    ActivitiesManageCtrl.$inject = ['$scope', '$filter', '$state', '$stateParams', 'activity', 'ActivitiesManager', 'Analytics', 'serverConf'];
+    function ActivitiesManageCtrl($scope, $filter, $state, $stateParams, activity, ActivitiesManager, Analytics, serverConf) {
 
         var vm = this;
         angular.extend(vm, {
@@ -61,11 +61,6 @@
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-        function isActive(){
-            return $state.includes(stateStr);
-        }
-
-
         function isActive(stateStr){
             return $state.includes(stateStr);
         }
@@ -95,15 +90,12 @@
                     start = (vm.orderPaginationOpts.pageNumber -1) * offset;
                     end = vm.orderPaginationOpts.pageNumber * offset;
                     vm.orders = orders.slice(start, end);
-                    //console.log('orders:', vm.orders);
                     break;
                 case vm.TYPE_CALENDAR:
                     offset = vm.calendarPaginationOpts.itemsPerPage;
                     start = (vm.calendarPaginationOpts.pageNumber -1) * offset;
                     end = vm.calendarPaginationOpts.pageNumber * offset;
-                    console.log(vm.calendarPaginationOpts.pageNumber, 'slice(' + start + ',' + end + ')');
                     vm.calendars = calendars.slice(start, end);
-                    //console.log('calendars:', vm.calendars);
                     break;
             }
         }
@@ -117,11 +109,11 @@
             switch(type){
                 case vm.TYPE_ASSISTANT:
                     vm.activeCalendar = calendar;
-                    //console.log('assistants',angular.copy(calendar.assistants));
                     assistants = calendar.assistants;
                     vm.assistants = assistants;
                     break;
                 case vm.TYPE_ORDER:
+                    vm.activeCalendar = calendar;
                     vm.orders =  _.filter(orders,orderBelongsToCalendar);
                     vm.total  = _.sum(vm.orders,getTotal);
                     vm.totalWithFee = _.sum(vm.orders,getTotalWithFee);
@@ -139,7 +131,7 @@
             }
 
             function getTotalWithFee(order){
-                return order.is_free ? 0 : order.amount * order.fee;
+                return order.is_free ? 0 : order.fee;
             }
         }
 
@@ -154,7 +146,7 @@
         //End Functions Analytics data
 
         function _getOrders(activityId){
-            ActivitiesManager.getOrders(activityId).then(success, error);
+            return ActivitiesManager.getOrders(activityId).then(success, error);
 
             function success(ordersResponse){
                 orders = $filter('orderBy')(ordersResponse.map(mapOrder), 'id', true);
@@ -193,7 +185,6 @@
 
         function _mapDateMsg(calendar){
             calendar.fromDate = $filter('date')(calendar.initial_date, 'dd MMM yy');
-            calendar.toDate = $filter('date')(calendar.closing_sale, 'dd MMM yy');
             return calendar;
         }
          
@@ -259,8 +250,11 @@
                 HEADER_STATUS:"Estatus",
                 LABEL_FINAL_TOTAL: "Ventas netas:", 
                 LABEL_TOTAL: "Ventas brutas:",
-                LABEL_FEE: "Comisión Trulii:",
-                COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades"
+                LABEL_FEE: "Comisión Total:",
+                COPY_VIEW_MY_ACTIVITIES: "Ver mis actividades",
+                LABEL_OPEN_ACTIVITY: "Horario abierto",
+                LABEL_ATTENDEES: "Asistentes",
+                LABEL_ATTENDEE: "Asistente"
             });
         }
         function _initScroll(){
@@ -272,16 +266,26 @@
             ); 
         }
 
+        function _setExpandedCalendar(){
+            var calendar = activity.is_open ? vm.calendars[0]:null;
+            if (!calendar)
+                return;
+
+            if ($state.is("dash.activities-manage.orders"))
+                expandCalendar(calendar, vm.TYPE_ORDER);
+
+            if ($state.is("dash.activities-manage.assistants"))
+                expandCalendar(calendar, vm.TYPE_ASSISTANT);
+
+        }
+
         function _activate() {
             _setStrings();
             _initScroll();
-           // _initWidget();
             vm.activity = _mapMainPicture(activity);
-            _getOrders(activity.id);
+            _getOrders(activity.id).then(_setExpandedCalendar);
             _getCalendars(activity);
-            console.log($state);
-            //console.log("reloadin",assistants);
-            //Function for angularSeo
+            
             $scope.htmlReady();
         }
     }

@@ -31,6 +31,7 @@
             },
             activities : [],
             reviews : [],
+            organizerRating: 0,
             totalReviews: 0,
             hasMoreReviews: true,
             showMoreReviews: showMoreReviews,
@@ -42,15 +43,14 @@
         _activate();
 
         //--------- Functions Implementation ---------//
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
-        
+
         function pageChange(){
           ActivitiesManager.loadOrganizerActivities(organizer.id, 'opened', vm.activitiesPaginationOpts.pageNumber,  vm.activitiesPaginationOpts.itemsPerPage)
           .then(function (response) {
-            console.log(response);
             vm.activities = response.results;
             vm.activitiesPaginationOpts.totalItems = response.count;
             vm.activities = vm.activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
@@ -58,7 +58,7 @@
             for(var i = 0; i < vm.activities.length; i++){
                 vm.activities[i].template = "partials/activities/dynamic_layout_item.html";
             }
-        
+
             vm.cards = vm.activities;
           });
         }
@@ -82,15 +82,14 @@
                 activities.results[i].template = "partials/activities/dynamic_layout_item.html";
             }
             vm.cards = activities.results;
-            
+
         }
 
         function _setOrganizerCity(){
             LocationManager.getAvailableCities().then(successCities);
-            
+
             vm.map = LocationManager.getMap(organizer.location, false)
             vm.marker = LocationManager.getMarker(organizer.location)
-            vm.marker.options = {icon: getAmazonUrl('static/img/map.png')};
 
             function successCities(cities){
                 vm.city = _getCity(cities, organizer);
@@ -116,7 +115,6 @@
             vm.reviews = reviews.results;
             vm.totalReviews = reviews.results.length;
             vm.hasMoreReviews= vm.reviews.length > visibleReviewListSize;
-            console.log('reviews', vm.reviews);
         }
 
         function _setCurrentState(){
@@ -132,7 +130,7 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 LABEL_PUBLISHED_ACTIVITIES: "Actividades de ",
-                LABEL_UNPUBLISHED_ACTIVITIES: "no tiene actividades",
+                LABEL_UNPUBLISHED_ACTIVITIES: "Este organizador aún no ha publicado ninguna actividad.",
                 LABEL_BIO: "Biografía",
                 LABEL_CONTACT: "Contactar",
                 LABEL_REVIEWS: "Evaluaciones",
@@ -165,24 +163,18 @@
             $state.go('organizer-profile', {organizer_id: organizer.id, organizer_name: name} ,{location: "replace", notify: false, reload: true});
 
         }
+        function _setOrganizerRating(){
+            vm.organizerRating = organizer.rating.toString().replace(',', '.');
+        }
 
         function _activate(){
-            console.log(organizer.name);
             _updateUrl();
             _setStrings();
             _setOrganizerCity();
             _setCurrentState();
             _setActivities();
             _setReviews();
-
-            //console.log('organizer:', organizer);
-
-            //vm.activities = activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
-            //if(vm.activities.length > 0)
-            //  vm.activities = activities.slice(0, vm.activitiesPaginationOpts.itemsPerPage);
-            //console.log('organizer:', organizer);
-            //console.log('reviews:', reviews);
-            
+            _setOrganizerRating();
             //Function for angularSeo
             $scope.htmlReady();
         }

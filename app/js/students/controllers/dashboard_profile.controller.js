@@ -54,7 +54,6 @@
 
         function updateProfile(){
 
-            //console.log("updateProfile.Form:", vm.profile_form);
            Error.form.clear(vm.profile_form);
             vm.student.update_profile().then(success, error);
 
@@ -95,9 +94,7 @@
             }
 
             function error(response) {
-                console.log('StudentProfileCtrl.uploadPicture. Error uploading profile picture');
                 var responseErrors = response['errors'];
-                console.log('responseErrors:', responseErrors);
                 vm.photo_loading = false;
                 if (responseErrors) {
                     vm.photo_invalid = true;
@@ -107,7 +104,6 @@
         }
 
         function openDatePicker($event){
-            console.log('openDatePicker');
             $event.preventDefault();
             $event.stopPropagation();
 
@@ -115,7 +111,6 @@
         }
 
         function selectCity(city){
-            console.log('selectCity. city:', city);
             vm.student.city = city? city.id : null;
             LocationManager.setCurrentCity(city);
         }
@@ -155,6 +150,7 @@
         
         function _setTelephone(){
             vm.student.telephone = Number(vm.student.telephone);
+            vm.student.telephone = vm.student.telephone==0 ? undefined : vm.student.telephone;
         }
 
         function _setStrings() {
@@ -174,8 +170,9 @@
                 COPY_PRIVATE_DATA_TOOLTIP: "Esta información no la compartiremos con nadie.",
                 MESSAGE_INVALID_BIRTH_DATE: "Fecha de Nacimiento inválida, por favor introduzca una fecha válida",
                 MESSAGE_EMPTY_GENDER: "Por favor introduzca un género",
-                OPTION_SELECT: "Seleccione Ciudad",
-                BIRTH_SELECT: "Seleccione una fecha", 
+                OPTION_SELECT: "Elige una ciudad",
+                OPTION_GENDER_SELECT: "Elige un genero",
+                BIRTH_SELECT: "Elige una fecha", 
                 SECTION_PROFILE: "Perfil",
                 COPY_PROFILE: "Esta información aparecerá en tu perfil y lo veran los demás usuarios.",
                 TOAST_PICTURE_UPLOAD_ERROR: "La imágen debe pesar menos de 2.5Mb"

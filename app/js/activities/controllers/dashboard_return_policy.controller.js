@@ -33,7 +33,6 @@
         /******************ACTIONS**************/
 
         function _updateActivity() {
-            console.log(vm.activity);
             Error.form.clear(vm.activity_return_policy_form);
             vm.activity.update()
                 .then(_updateSuccess, _errored);
@@ -77,8 +76,7 @@
             if(!vm.strings){ vm.strings = {}; }
             angular.extend(vm.strings, {
                 TITLE_RETURN_POLICY: "Políticas de Devolución",
-                COPY_RETURN_POLICY: "Escribe tus condiciones para reembolsar al asistente el pago que hizo por la insripción."
-                                    +  "Si no aceptas reembolso, también ponlo, o en caso contrario aplicarán los terminos de trulii.",
+                COPY_RETURN_POLICY: "Escribe tus condiciones para reembolsar al asistente el pago que hizo por la inscripción. Si no aceptas reembolso también escríbelo.",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 PLACEHOLDER_RETURN_POLICY: "Condiciones para reembolso",
                 ACTION_SAVE: "Guardar",

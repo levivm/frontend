@@ -27,11 +27,15 @@
         angular.extend(vm, {
 
             republish: false,
+            activity:activity,
             calendars: calendars,
             createCalendar: createCalendar,
             loadCalendar: loadCalendar,
             setCalendar: setCalendar,
             deleteCalendar: deleteCalendar,
+            hideCalendars:hideCalendars,
+            changeSchedule: changeSchedule,
+            checkNoMoreCalendars: checkNoMoreCalendars,
             calendar_errors: {}
 
         });
@@ -52,6 +56,39 @@
             });
 
             $state.go("^");
+        }
+        
+        function hideCalendars() {
+            if(vm.activity.isOpen){
+                document.getElementById('slider-anchor').setAttribute('disabled', true);
+            }
+            else{
+                document.getElementById('slider-anchor').removeAttribute('disabled');
+            }
+        }
+        
+        function changeSchedule(value){
+            if(vm.calendars.length>0){
+                Toast.error(vm.strings.ERROR_SCHEDULE);
+            }
+            else{
+                vm.activity.is_open = value;
+                vm.activity.update()
+                    .then(updateSuccess, _errored);
+            }
+            function updateSuccess(response) {
+                angular.extend(activity, vm.activity);
+            }
+            
+            function _errored(response) {
+                console.log(response);
+            }
+                
+                
+        }
+        
+        function checkNoMoreCalendars() {
+            return !(vm.calendars.length>0 && vm.activity.is_open);
         }
 
         function deleteCalendar(calendar) {
@@ -113,21 +150,26 @@
             angular.extend(vm.strings, {
                 DELETE_CALENDAR_ERROR: "No puede eliminar este calendario, tiene estudiantes inscritos, contactanos",
                 LABEL_CALENDARS: "Calendarios",
+                LABEL_CALENDAR_OPEN: "Calendario abierto",
+                LABEL_CALENDAR_CLOSED: "Calendario fijo",
                 LABEL_START_DATE: "Calendario ",
-                LABEL_CLOSE_SALE: "Cierre de ventas",
+                LABEL_CLOSE_SALE: "Ventas cerradas",
+                LABEL_OPEN_SALE: "Ventas abiertas",
                 LABEL_CALENDAR_SEATS: "Cupos",
+                LABEL_PACKAGES: "Paquetes",
+                LABEL_PACKAGES_PLAN: "Número de planes",
                 LABEL_START: "Fecha de inicio",
                 LABEL_END: "Última sesión",
                 LABEL_FREE: "Gratis",
                 LABEL_EDIT_CALENDAR: "Editar",
                 LABEL_DELETE_CALENDAR: "Borrar",
                 LABEL_ADD_CALENDAR: "Agregar calendario",
-                COPY_ADD_CALENDAR: "En una misma publicación puedes tener diferentes fechas de inicio, cada una con diferentes " +
-                                   "número de sesiones, fechas y horas.",
+                COPY_ADD_CALENDAR_CLOSE: "Tu actividad tiene una fecha de inicio específica y la persona no podrá inscribirse una vez esta comience.",
+                COPY_ADD_CALENDAR_OPEN: "Tu actividad es recurrente durante todas las semanas, sin tener fecha de inicio específica.",
                 COPY_REPUBLISH_CALENDAR: "Estás republicando esta actividad. Recuerda que para republicarla exitosamente debes" +
                                          "de agregar por lo menos un nuevo calendario.",
                 LABEL_WARNING: "Advertencia!",
-
+                ERROR_SCHEDULE: "No puedes cambiar a otro tipo de calendario en esta publicación mientras tengas creados calendarios del otro tipo."
             });
         }
 
@@ -136,19 +178,11 @@
             vm.republish = $stateParams.republish;
             vm.calendar_errors = {};
             _onSectionUpdated();
-
             stateChangeUnbinder = $rootScope.$on('$stateChangeStart',
                 function(event, toState, toParams, fromState, fromParams){
-                    console.group('validation:');
-                    console.log('isCreatingCalendar:', isCreatingCalendar());
-                    console.log('vm.republish:', vm.republish);
-                    console.log('toState:', toState.name);
-                    console.log('fromState:', fromState.name);
-                    console.log('fromVal:', fromState.name + DETAIL_STATE);
-                    console.groupEnd();
                     if(isCreatingCalendar()){
-                        console.log('Creating New Calendar');
                         CalendarsManager.loadCalendars(activity.id).then(function(dataCalendars){
+                          Elevator.toTop();
                           vm.calendars= dataCalendars;
                         });
                     } else {
@@ -156,7 +190,6 @@
 
                             event.preventDefault();
                             if(_hasNewCalendar()){
-                                console.log('Republish exiting. User set a valid calendar to republish');
                                 doTransition();
                             } else {
                                 var modalInstance = $modal.open({
@@ -172,7 +205,6 @@
 
                     // success function for Republish Exit Modal Ok/COntinue Button
                     function success(response) {
-                        console.log('Republish exiting. User chose to exit from republish');
                         doTransition();
                     }
 
@@ -193,7 +225,6 @@
             );
 
             $scope.$on('$destroy', stateChangeUnbinder);
-            console.log('calendars:', calendars);
             Elevator.toTop();
         }
 

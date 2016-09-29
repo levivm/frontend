@@ -86,19 +86,20 @@
                 LABEL_CONTENT: "Contenido",
                 LABEL_METHODOLOGY: "Metodología",
                 LABEL_REQUIREMENTS: "Requerimientos",
-                LABEL_EXTRA_INFO: "Información Extra",
+                LABEL_EXTRA_INFO: "Información Importante",
+                COPY_POST_ENROLL: "Este mensaje le aparecerá al usuario una vez se haya inscrito a tu actividad."+
+                                   "Te recomendamos dejar tu correo electrónico y número de contacto para que pueda contactarte. "+
+                                   "Si esta actividad se realiza en varias sedes, deja el numero de contacto de cada sede.",
+                PLACEHOLDER_POST_ENROLL: "Mensaje post-inscripción",
                 ACTION_SAVE: "Guardar",
                 COPY_HELP_TEXT_EXTRA_INFO: "¿Alguna otra información adicional que quieras comunicar "+
                                             "a tus posibles participantes?",
-                COPY_HELP_TEXT_REQUIREMETS: "¿Para inscribirse hace falta conocimientos previos en algún tema? "+
-                                            "¿Deben llevar algún material para realizar la actividad? ¿Se requiere " +
-                                            "algunar documentación?",
-                COPY_HELP_TEXT_METHODOLOGY: "¿Aplicarás algún método de enseñanza en particular? "+
-                                            "¿Su actividad será evaluadad? ¿Cómo?",
-                COPY_HELP_TEXT_CONTENT: "¿Cuáles son los temas que impartirá en su actividad?",
-                COPY_HELP_TEXT_GOALS: "¿Cuál es la finalidad de su actividad?",
-                COPY_HELP_TEXT_AUDIENCE: "¿A que tipo de personas va dirigido su actividad? "+
-                                         "¿Profesionales o público en general?"
+                COPY_HELP_TEXT_REQUIREMETS: "¿Los asistentes necesitan conocimiento/preparación previa en algo? "+
+                                            "¿Deben llevar algún tipo de material?",
+                COPY_HELP_TEXT_METHODOLOGY: "Si aplica, ¿aplicarás algún método de enseñanza particular? ¿Tu actividad será evaluada? ¿Cómo?",
+                COPY_HELP_TEXT_CONTENT: "Si aplica, explica cuáles son los temas a impartir en esta actividad.",
+                COPY_HELP_TEXT_GOALS: "¿Cuál es la finalidad de esta actividad? ¿En qué se beneficiarán los asistentes?",
+                COPY_HELP_TEXT_AUDIENCE: "¿A quien va dirigida esta actividad?"
 
             });
         }

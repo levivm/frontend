@@ -94,7 +94,7 @@
                 HEADER_TITLE_COPY_1: "Aumenta tus ventas y alcance",
                 HEADER_TITLE_COPY_2: "sin esfuerzo alguno",
                 HEADER_TEXT_COPY: "Prepara tu clase con tranquilidad, nosotros nos encargamos del resto.",
-                HEADER_ACTION_START_NOW: "Registrate gratis",
+                HEADER_ACTION_START_NOW: "Regístrate gratis",
                 PUBLISH_TITLE_COPY: "¿Por qué publicar tu actividad en Trulii?",
                 PUBLISH_TEXT_COPY_1: "Somos la única plataforma para organizadores de clases que realmente busca aumentar tus",
                 PUBLISH_TEXT_COPY_2: "inscripciones, ya que sólo hacemos dinero cuando tú lo haces, sino sería injusto, ¿no?",
@@ -121,10 +121,10 @@
                 MORE_INFO_TIPS_TEXT_1: "¿Quieres que tu publicación destaque? Sigue estos",
                 MORE_INFO_TIPS_TEXT_2: "tips",
                 MORE_INFO_TIPS_TEXT_3: "para aumentar las ventas de tu publicación",
-                MORE_INFO_FAQ_TITLE: "¿Necesitas ayuda?",
-                MORE_INFO_FAQ_TEXT_1: "En nuestro ",
-                MORE_INFO_FAQ_TEXT_2: "Soporte",
-                MORE_INFO_FAQ_TEXT_3: "puedes encontrar las respuestas. Para más información, contáctanos",
+                MORE_INFO_FAQ_TITLE: "¿Alguna pregunta?",
+                MORE_INFO_FAQ_TEXT_1: "Para más información ",
+                MORE_INFO_FAQ_TEXT_2: "Contáctanos",
+                MORE_INFO_FAQ_TEXT_3: " que con mucho gusto te aclararemos cualquier duda.",
                 SIGN_UP_TITLE: "¿Te animas a publicar tu actividad con nosotros?",
                 SIGN_UP_TEXT: "Regístrate gratis y te contactaremos en menos de una hora para validar tu información. ¡Sí, en menos de una hora!",
                 SIGN_UP_SUCCESS_TITLE_1: "Ten el teléfono a mano, que ya te llamamos.",
@@ -140,7 +140,8 @@
                 LABEL_DOCUMENT_TYPE: "Documento de identidad",
                 LABEL_DOCUMENT: "Documento",
                 LABEL_CITY: "Ciudad",
-                COPY_EMPTY_FORM: "Por favor llene el formulario de registro"
+                COPY_EMPTY_FORM: "Por favor llene el formulario de registro",
+                ORGANIZERS_BELIEVE_IN_TRULII: "Estos organizadores confían en Trulii. Sólo faltas tú"
             });
         }
         function _fromBurgerMenu(){
@@ -155,7 +156,7 @@
             _setStrings();
             _fromBurgerMenu();
             $scope.htmlReady();
-            
+
             //Function for angularSeo
             $scope.htmlReady();
         }

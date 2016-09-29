@@ -37,7 +37,8 @@
             'uiGmapgoogle-maps',
             'ui.router.metatags',
             'ng',
-            'seo'
+            'seo',
+            'uiSwitch'
         ]);  
 
     angular

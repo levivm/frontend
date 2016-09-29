@@ -5,7 +5,11 @@
             <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo "></a>
         </div>
         <div class="navbar__left-wrapper" ng-class="{'long': !user}">
-            <trulii-search-bar ng-if="isSearchVisible" data-on-navbar="true" class="navbar-search-bar" ng-class="{'navbar-search-bar-hidden': isSearchVisible() }"></trulii-search-bar>
+            <trulii-search-bar ng-if="isSearchVisible"
+                               data-on-navbar="true" 
+                               class="navbar-search-bar" 
+                               ng-class="{'navbar-search-bar-hidden': isSearchVisible() }">
+            </trulii-search-bar>
             
             <div class="buttons buttons-login float-right" ng-if="!user">
                 <a ui-sref="register" class="font-semibold  margin-horizontal-less" ng-bind="::strings.ACTION_REGISTER"></a>
@@ -24,7 +28,7 @@
         <div class="navbar__right-wrapper" >
             <a ng-if="userLogged" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
                 <trulii-avatar user="user" size="40" avatar-class="small" ng-class="{'avatar-landing': !user.photo}"></trulii-avatar>
-                <span class="font-semibold  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.first_name"></span>
+                <span class="font-semibold  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.name | limitTo : 9"></span>
                 <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
             </a>
             <a class="navbar__option navbar__option--right  hidden-md hidden-lg" ng-click="toggleSideBar()">

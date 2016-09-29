@@ -36,17 +36,17 @@
             },
             openPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             closedPaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             inactivePaginationOpts: {
                 totalItems: 0,
-                itemsPerPage: 12,
+                itemsPerPage: 8,
                 pageNumber: 1
             },
             closedOptions : {
@@ -163,12 +163,12 @@
                 LABEL_EMPTY_OPEN: "No tienes actividades abiertas",
                 LABEL_EMPTY_INACTIVE: "Actualmente no tienes borradores de actividades.",
                 SECTION_ACTIVITIES: "Mis Actividades",
-                TAB_OPEN: "Actividades > Abiertas",
+                TAB_OPEN: "Actividades > Publicadas",
                 TAB_CLOSED: "Actividades > Cerradas",
                 TAB_INACTIVE: "Actividades > Inactivas",
                 COPY_INACTIVE: "Una actividad inactiva es aquella que se encuentra en modo borrador y no está publicada.",
                 COPY_CLOSED: "Una actividad cerrada es aquella que ya finalizó. Puedes editar parte de su informaciń (como el calendario) para reu-tilizarla.",
-                COPY_OPEN: "Una actividad abierta es aquella cuyas inscripciones siguen abiertas."
+                COPY_OPEN: "Una actividad publicada es aquella cuyas inscripciones siguen abiertas."
             });
         }
 

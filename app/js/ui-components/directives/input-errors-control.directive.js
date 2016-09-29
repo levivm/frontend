@@ -29,7 +29,7 @@
                 scope.$watch('field.$invalid && !field.$dirty', function(newValue, oldValue){
                     console.groupEnd();
                     if(!scope.field){
-                        console.log('watch. field non existent');
+                       // console.log('watch. field non existent');
                     } else if (newValue === true){
                         element.addClass("has-error");                        
                     }else{

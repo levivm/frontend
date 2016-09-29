@@ -20,7 +20,9 @@
     function ActivityDashboardCtrl($state, $scope, Toast, ActivitySteps, activity, Analytics, serverConf) {
 
         var pc = this;
-
+        var positionStyle = 'absolute';
+        var valuePosition = '0px';
+        var ctrlFooter = false;
         angular.extend(pc,{
             steps: angular.copy(ActivitySteps),
             activity: activity,
@@ -115,7 +117,50 @@
                 pc.allow_unpublish = true;
             });
         }
-
+        
+        function _moveWidget(){
+            
+            
+            var sideBarPosition = (document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top + window.scrollY) ;
+            var footerPosition = document.getElementsByClassName('container-fluid')[0].offsetHeight +80 ;
+            var coverPosition = (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().top + window.scrollY) + document.getElementsByClassName('cover-blur-small')[0].offsetHeight;
+            var navBarHeight = document.getElementsByClassName('navbar')[0].offsetHeight;
+            var sidebarTop =  document.getElementsByClassName('sidebar-edit-activity')[0].getBoundingClientRect().top - navBarHeight;
+            var positionToFixed = window.scrollY +  document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight;
+            if(sidebarTop <= 20){
+                if(sideBarPosition < coverPosition){
+                    positionStyle = 'absolute';
+                    valuePosition = '0px';
+                    ctrlFooter = false;
+                }else{
+                    if( positionToFixed >= footerPosition ){
+                        positionStyle = 'absolute';
+                        valuePosition = footerPosition-document.getElementsByClassName('sidebar-edit-activity')[0].offsetHeight-180+'px';
+                        ctrlFooter = true;
+                    }else{
+                        positionStyle = 'fixed';
+                        valuePosition = '90px';
+                    }
+                }  
+            }else{
+                if( positionToFixed <= footerPosition && ctrlFooter){
+                    positionStyle = 'fixed';
+                    valuePosition = '90px';
+                }
+            
+            }
+            document.getElementsByClassName('sidebar-edit-activity')[0].style.position = positionStyle;
+            document.getElementsByClassName('sidebar-edit-activity')[0].style.top = valuePosition;
+        }
+        function _initWidget(){
+            _moveWidget();
+            angular.element(document).ready(function () {
+                $scope.$on('scrolled',
+                function(scrolled, scroll){
+                    _moveWidget();
+                });
+            });
+        }
        
         function _setStrings(){
 
@@ -137,12 +182,11 @@
 
         function activate() {
             _setStrings();
-            //_initScroll();
+            _initWidget();
             // pc.sidebar = true;
             activity.updateAllSections();
 
             match_required_steps(pc.steps, pc.activity.required_steps);
-            console.log(pc.activity);
             function match_required_steps(steps, required_steps){
                 _.each(steps, function(step){
 
@@ -153,6 +197,7 @@
             }
             
             //Function for angularSeo
+           
             $scope.htmlReady();
         }
 

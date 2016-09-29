@@ -28,7 +28,7 @@
         });
 
         _activate();
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' +  file;
         }
@@ -41,7 +41,7 @@
             if(vm.emails){
                 Referrals.postInvite(vm.emails).then(success, error);
             } else {
-                Toast.warning("Por favor ingrese correos validos separados por comas");
+                Toast.warning("Para enviar la invitación debes colocar un correo electrónico válido, tontit@.");
             }
 
             function success(response){
@@ -67,7 +67,7 @@
             function error(response){
                 Toast.warning("Ocurrio un error al reenviar la invitación");
             }
-         
+
         }
         //--------- Internal Functions ---------//
 
@@ -86,8 +86,7 @@
                 FACEBOOK_REDIRECT_URI: referrerUrl,
                 FACEBOOK_SHARE_URL: referrerUrl,
                 TWITTER_SOCIAL_PROVIDER: 'twitter',
-                TWITTER_SHARE_ACCOUNT:'Trulii_',
-                TWITTER_SHARE_TEXT: shareText,
+                TWITTER_SHARE_TEXT: "Regístrate en @Trulii_ y obtén un cupón de COP 20.000 para que aprendas lo que quieras",
                 TWITTER_SHARE_URL: referrerUrl
             });
 
@@ -104,7 +103,7 @@
                 COPY_SOCIAL_SHARE_TWITTER: "Compartir en Twitter",
                 HEADER_TITLE_COPY_1: "¡Comparte tu pasión",
                 HEADER_TITLE_COPY_2: "por aprender!",
-                HEADER_TEXT_COPY: "Invita a tus amigos a unirse a Trulii con un cupón de COP 20.000. Cuando se inscriban a una actividad, tú también recibiras un cupón. Todos salen ganando.",
+                HEADER_TEXT_COPY: "Invita a tus amigos a unirse a Trulii con un cupón de COP 20.000. Cuando se inscriban a una actividad, tú también recibirás un cupón. Todos salen ganando.",
                 HEADER_ACTION_REGISTER: "Regístrate",
                 HEADER_ACTION_LOGIN: "Iniciar sesión para invitar a mis amigos",
                 ACTION_SEND_INVITES: "Enviar invitación",
@@ -119,10 +118,10 @@
                 SHARES_PENDING: "Pendientes",
                 SHARES_NOT_REGISTERED_YET: " No se ha registrado aún.",
                 ACTION_RESEND_INVITE: "Reenviar invitación",
-                PLACEHOLDER_REFERRAL_EMAILS: "Ingresa correos electrónicos. Sepáralos entre sí con comas",
+                PLACEHOLDER_REFERRAL_EMAILS: "Ingresa los correos electrónicos y sepáralos entre sí con coma",
                 TRULII_MANIA_TEXT: "Comparte la truliimanía por tus redes sociales o por correo electrónico.",
                 TRULII_INVITED_TEXT: "Tus invitados recibirán un cupón por COP 20.000 para inscribirse en lo que quieran aprender.",
-                TRULII_COUPON_TEXT: "Cuando tus invitados se inscriban a una actividad paga, tú recibirás un cupón por COP 20.000 también.",
+                TRULII_COUPON_TEXT: "Cuando tus invitados se inscriban a una actividad paga, tú también recibirás un cupón de COP 20.000.",
                 LEARN_MORE: "Aprende más sobre cómo funciona nuestro sistema de invitaciones"
 
             });
@@ -131,7 +130,7 @@
         function _activate(){
             _setStrings();
             _setSocialShare();
-            
+
             //Function for angularSeo
             $scope.htmlReady();
         }

@@ -165,7 +165,8 @@
                     }
                 },
                 resolve: {
-                    order: getOrder
+                    order: getOrder,
+                    bankingData: getBankingData
                 }
             })
             .state('dash.activities-manage.assistants', {
@@ -216,7 +217,7 @@
             })
 
             .state('activities-detail', {
-                url:'/actividades/:category_slug/:activity_title/{activity_id:int}',
+                url:'/actividades/:category_slug/:activity_title/{activity_id:int}?calendar_id&package_id',
                 params: {
                   activity_title: {value: null, squash: false},
                   category_slug: {value: null, squash: false}
@@ -240,11 +241,10 @@
                     reviews: getReviews,
                     calendars: getCalendars,
                     organizer: getActivityOrganizer,
-                    relatedActivities: getOrganizerActivities
+                    relatedActivities: getRelatedActivities
                 },
                 metaTags:{
                     title: function(activity){
-                        console.log(activity);
                         return activity.title;
                     },
                     description: function(activity){
@@ -272,7 +272,7 @@
                 }
             })
             .state('activities-enroll', {
-                url: '/actividades/{activity_id:int}/inscribirse/{calendar_id:int}',
+                url: '/actividades/:category_slug/:activity_title/{activity_id:int}/inscribirse/{calendar_id:int}?package_id',
                 controller: 'ActivityDetailEnrollController as enroll',
                 templateUrl: 'partials/activities/detail/enroll.html',
                 resolve: {
@@ -291,7 +291,9 @@
                 controller: 'ActivityEnrollPSEResponseController as pseResponse',
                 templateUrl: 'partials/activities/detail/enroll.pse.response.html',
                 params:{
-                    pseResponseData: null
+                    pseResponseData: null,
+                    package_quantity: null,
+                    package_type: null,
                 }
             })
             .state('activities-enroll-success', {
@@ -316,7 +318,9 @@
                     organizerActivities: getOrganizerActivities
                 },
                 params:{
-                    order_id: null
+                    order_id: null,
+                    package_quantity: null,
+                    package_type: null
                 }
             });
 
@@ -358,11 +362,11 @@
             }
 
             function error(response){
-                if(response === null){
+               /* if(response === null){
                     console.log("getCurrentOrganizer. There is no Authenticated User");
                 } else {
                     console.log("getCurrentOrganizer. The Authenticated User is not a Organizer");
-                }
+                }*/
                 return $q.reject();
             }
         }
@@ -405,11 +409,6 @@
             var organizer = activity.organizer;
             if(!organizer.photo){
                organizer.photo = defaultPicture;
-            }
-
-            if(!!organizer.locations[0]){
-                var city_id = organizer.locations[0].city;
-                organizer.city = LocationManager.getCityById(city_id).name;
             }
 
             deferred.resolve(organizer);
@@ -680,6 +679,18 @@
         function getCategoryActivities(ActivitiesManager, category){
             return ActivitiesManager.getCategoryActivities(category.data.id);
         }
+        
+        
+        getRelatedActivities.$inject = ['ActivitiesManager','activity'];
+        function getRelatedActivities(ActivitiesManager, activity){
+            return ActivitiesManager.getCategoryActivities(activity.category.id);
+        }
+        
+        getBankingData.$inject = ['organizer']
+        function getBankingData(organizer){
+            return  organizer.getBankingInfo();
+        }
+
 
     }
 

@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state','UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$location', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
+    function truliiNavbar($rootScope, $timeout, $state, $location, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -23,6 +23,7 @@
                 var unsubscribeUserChanged = null;
                 var unsubscribeUserLoggedOut = null;
                 var unsubscribeStateChange = null;
+                var unsubscribeStateChangeStart = null;
                 var transitionOptions = {location : true, inherit : false, reload : false};
                 var STATE_HOW_TO_WORK_HOME = 'home';
                 var STATE_HOW_TO_WORK_ORGANIZER = 'organizer-landing';
@@ -154,7 +155,7 @@
                     return $state.current.name === 'home';
                 }
                 function isSearchVisible(){
-                     return (!($state.current.name==='search') && scope.scroll<100);
+                     return ($state.current.name==='search' || scope.scroll<100);
                 }
                 function howToWorkStudent(){
                     _stateGoHowto(STATE_HOW_TO_WORK_HOME);
@@ -188,7 +189,6 @@
                     Authentication.getAuthenticatedAccount().then(success, error);
 
                     function success(user) {
-                        console.log(user);
                         if (!user) {
                             scope.user = null;
                             return;
@@ -219,7 +219,6 @@
                     }
                     
                     function error() {
-                        console.error("navbar.getUser. Couldn't get user");
                         scope.user = null;
                         _setUserChangedWatch();
                     }
@@ -243,8 +242,10 @@
                     if (company) {
                         user.full_name = company;
                     } else if (user.full_name) {
+                        user.name = user.first_name.split(" ")[0];
                         //console.log('Full Name already defined');
                     } else if (user.first_name && user.last_name) {
+                        user.name = user.first_name.split(" ")[0];
                         user.full_name = user.first_name;
                     } else {
                         user.full_name = 'User';
@@ -327,7 +328,6 @@
                 function _setUserChangedWatch(){
                     unsubscribeUserChanged = $rootScope.$on(Authentication.USER_CHANGED_EVENT, function (event) {
                         event.preventDefault();
-                        console.log('navBar. on' + Authentication.USER_CHANGED_EVENT);
                         _getUser();
                         unsubscribeUserChanged();
                     });
@@ -408,7 +408,6 @@
                     _initNotificationWatch();
                     _getCategories();
                     _initCategoriesPosition()
-                    
                     unsubscribeStateChange = $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
                         scope.state = toState.name;
                         scope.isExplore= !(toState.name == 'home');
@@ -416,10 +415,8 @@
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
-                        console.log('navBar. on' + Authentication.USER_LOGOUT_EVENT);
                         _getUser();
                     });
-                    console.log($state.current.name);
                     
                     
                     scope.$on('$destroy', _cleanUp);

@@ -30,7 +30,7 @@
           "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
           "shortMonths": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
         })
-        
+
         angular.extend(vm, {
           activity: activity,
           stats: stats,
@@ -53,11 +53,11 @@
         _activate();
 
         //--------- Exposed Functions ---------//
-        
+
         function hasData(){
           return Object.keys(vm.stats.total_points).length > 0;
         }
-        
+
         function changeTab(tab){
           vm.activeTab = tab;
           if(vm.activeTab === vm.TAB_YEARLY){
@@ -83,7 +83,7 @@
             );
           }
         }
-        
+
         function changeDate(type){
           if(type === vm.DATE_NEXT){
             if(vm.activeTab === vm.TAB_MONTHLY){
@@ -105,20 +105,20 @@
               _getStats(vm.TAB_YEARLY);
             }
           }
-         
+
         }
-        
+
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
         }
 
 
         //--------- Internal Functions ---------//
-        
+
         function _setDate(){
           vm.date = moment().valueOf();
         }
-        
+
         function _getStats(type){
           if(type === vm.TAB_YEARLY){
             activity.getStats(moment(vm.date).year())
@@ -141,10 +141,10 @@
             );
           }
         }
-        
+
         function _setOptions(type){
           vm.options = {
-            
+
             chart: {
                 type: 'cumulativeLineChart',
                 height: 450,
@@ -154,8 +154,9 @@
                     bottom: 40,
                     left: 55
                 },
-                x: function(d){ return d3.round(d.x, 4); },
+                x: function(d){ return d.x; },
                 y: function(d){ return d.y; },
+                duration: 300,
                 useInteractiveGuideline: true,
                 clipVoronoi: false,
                 yAxis: {
@@ -167,7 +168,7 @@
                 }
               }
           };
-          
+
           if(type === vm.TAB_YEARLY){
              vm.options.chart.xAxis = {
                 axisLabel: 'MESES',
@@ -191,30 +192,49 @@
             };
           }
         }
-        
+
         function _parseData() {
+            var firstDate = moment(moment(vm.date).year()+ '-' + moment(vm.date).month() + '-' + 1, 'YYYY-MM-DD').valueOf();
             var gross = [];
             var net = [];
             var fee = [];
-            
+
+            gross.push({x: firstDate, z: firstDate, y: 0});
+            net.push({x: firstDate, z: firstDate, y: 0});
+            fee.push({x: firstDate, z: firstDate, y: 0});
+
             for (var i = 0; i < stats.points.length; i++) {
-              
+
                 var key = Object.keys(stats.points[i])[0];
                 var date = moment(Object.keys(stats.points[i])[0], 'YYYY-MM-DD').valueOf();
                 if(stats.points[i][key].gross !== 0 && stats.points[i][key].net !== 0 && stats.points[i][key].fee !== 0 && date <= moment().valueOf() && date >= moment(stats.created_at, 'YYYY-MM-DD').valueOf()){
+                  if(date === firstDate){
+                    gross.splice(gross.indexOf(0), 1);
+                    net.splice(net.indexOf(0), 1);
+                    fee.splice(fee.indexOf(0), 1);
+                  }
                   gross.push({x: date, z: moment(date).format('YYYY-MM-DD'), y: d3.round(stats.points[i][key].gross, 4)});
                   net.push({x: date, z: moment(date).format('YYYY-MM-DD'), y: d3.round(stats.points[i][key].net, 4)});
                   fee.push({x:date, z: moment(date).format('YYYY-MM-DD'), y: d3.round(stats.points[i][key].fee, 4)});
-                  
+
                 }
                 else if(stats.points[i][key].gross === 0 && stats.points[i][key].net === 0 && stats.points[i][key].fee === 0 && date >= moment(stats.created_at, 'YYYY-MM-DD').valueOf() && date <= moment().valueOf()){
+                  if(date === firstDate){
+                    gross.splice(gross.indexOf(0), 1);
+                    net.splice(net.indexOf(0), 1);
+                    fee.splice(fee.indexOf(0), 1);
+                  }
                   gross.push({x: date, y: d3.round(stats.points[i][key].gross, 4)});
                   net.push({x: date, y: d3.round(stats.points[i][key].net, 4)});
                   fee.push({x:date, y: d3.round(stats.points[i][key].fee, 4)});
                 }
-                
+
             }
-            
+
+            function findDate(object){
+              return object.x == firstDate;
+            }
+
             vm.data = [
                 {
                     values: gross,
@@ -232,12 +252,12 @@
                     color: '#38DBC8'
                 }
             ];
-            
+
              $timeout(function(){
-              $scope.$apply(); 
+              $scope.$apply();
              });
         };
-        
+
 
         function _setStrings() {
             if (!vm.strings) {
@@ -271,7 +291,10 @@
             _parseData();
             console.log(vm.stats);
             console.log(vm.data);
-        }
+            $timeout(function(){
+             $scope.$apply();
+            });
+        };
 
     }
 

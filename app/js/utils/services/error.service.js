@@ -92,9 +92,7 @@
 
         function addArrayErrors(form,responseErrors){
             _.each(responseErrors, function (error_dict) {
-                console.log('responseErrors',error_dict);
                 _.each(error_dict, function (message, field) {
-                    console.log('message:',message);
                     form[field].error_message = message.pop();
                     form[field].$setValidity(field, false);
                 });
