@@ -1,4 +1,4 @@
-xdescribe('Controller: ActivityCalendarsController', function(){
+describe('Controller: ActivityCalendarsController', function(){
     var ActivityCalendarsController,
         ActivitiesManager,
         rootScope,
@@ -30,7 +30,7 @@ xdescribe('Controller: ActivityCalendarsController', function(){
         */
         $scope =  _$rootScope_;
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
@@ -50,7 +50,7 @@ xdescribe('Controller: ActivityCalendarsController', function(){
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/activities/4/calendars')
-            .respond(readJSON('tests/mock/calendars.json'));
+            .respond(readJSON('tests/mock/calendars_close.json'));
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
@@ -107,10 +107,10 @@ xdescribe('Controller: ActivityCalendarsController', function(){
          });
          
          it('Length calendars should be 4', function() {
-             expect(ActivityCalendarsController.calendars.length).toBe(4);1457814763000
+             expect(ActivityCalendarsController.calendars.length).toBe(4);
          });
          it('Comparate calendar initial_date', function() {
-             var initial_date = new Date(1457814763000);
+             var initial_date = new Date(1476594000000.0);
              expect(ActivityCalendarsController.calendars[2].initial_date).toEqual(initial_date);
          });
          
@@ -118,7 +118,7 @@ xdescribe('Controller: ActivityCalendarsController', function(){
          
     });
     
-    describe("Set ", function(){
+    xdescribe("Set ", function(){
          it('createCalendar() function successfully', inject(function($state){
         // Call something that eventually hits $state.go
             spyOn($state, 'go');
