@@ -21835,6 +21835,33 @@ blockquote {
   top: 0;
   transition: all 0.25s;
 }
+.activity-detail__enroll-widget__content .schedules-container__html p,
+.activity-detail__enroll-widget__content .schedules-container__html ol,
+.activity-detail__enroll-widget__content .schedules-container__html ul,
+.activity-detail__enroll-widget__content .schedules-container__html li,
+.activity-detail__enroll-widget__content .schedules-container__html h1,
+.activity-detail__enroll-widget__content .schedules-container__html h2,
+.activity-detail__enroll-widget__content .schedules-container__html h3,
+.activity-detail__enroll-widget__content .schedules-container__html h4,
+.activity-detail__enroll-widget__content .schedules-container__html h5,
+.activity-detail__enroll-widget__content .schedules-container__html span,
+.activity-detail__enroll-widget__content .schedules-container__html u,
+.activity-detail__enroll-widget__content .schedules-container__html i {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #222328 !important;
+}
+.activity-detail__enroll-widget__content .schedules-container__html b {
+  font-size: 14px !important;
+  color: #222328 !important;
+}
+.activity-detail__enroll-widget__content .schedules-container__html a {
+  display: none;
+}
+.activity-detail__enroll-widget__content .schedules-container__html ol,
+.activity-detail__enroll-widget__content .schedules-container__html ul {
+  padding-left: 20px;
+}
 .activity-detail__enroll-widget__content .schedules-container__footer {
   position: absolute;
   bottom: 0px;
