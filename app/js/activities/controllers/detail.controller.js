@@ -613,8 +613,6 @@
             _updateViewCount();
             _setOrganizerRating();
             vm.showLevel = vm.activity.level === "N" ? false:true;
-            console.log(vm.showLevel);
-            console.log(vm.calendar_selected);
             //Function for angularSeo
             $scope.htmlReady();
         }
