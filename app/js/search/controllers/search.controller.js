@@ -465,7 +465,7 @@
                 LABEL_SORT_BY: "Ordenar por",
                 LABEL_LEVEL : "Nivel",
                 LABEL_COST : "Precio",
-                LABEL_DATE : "Fecha de inicio",
+                LABEL_DATE : "A partir de",
                 LABEL_OTHERS: "Otros",
                 LABEL_WITH_CERTIFICATE : "Con certificado",
                 LABEL_WEEKENDS : "Fines de Semana",
@@ -473,7 +473,7 @@
                 + " Puede que no tengamos lo que estés buscando."
                 + " Por si acaso, te recomendamos intentarlo de nuevo.",
                 LABEL_FILTER_ACTIVITIES: "Filtrar actividades",
-                LABEL_FREE: "Clases gratis"
+                LABEL_FREE: "Actividades gratuitas"
             });
         }
 
