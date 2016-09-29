@@ -26577,9 +26577,6 @@ input[type=text].form-control.referral-link:focus {
   padding-bottom: 60px !important;
 }
 .dashboard-footer {
-  padding: 0.75em 1em 0.125em 1em;
-  background-color: #ededed;
-  border-bottom: 5px solid #cbcbcb;
   position: absolute;
   bottom: 0;
   right: 0;
