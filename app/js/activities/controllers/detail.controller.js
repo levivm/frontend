@@ -189,7 +189,8 @@
                   state: 'activities-detail',
                   params: {
                       activity_id: vm.activity.id,
-                      activity_title: vm.activity.title
+                      activity_title: vm.activity.title,
+                      category_slug: vm.activity.category_slug
                   }
               }
           };
@@ -353,8 +354,8 @@
             }
             vm.map = LocationManager.getMap(activity.location, false);
             vm.marker = LocationManager.getMarker(activity.location);
-           
-           
+
+
         }
 
         function _setCurrentState(){
@@ -402,7 +403,7 @@
                 FACEBOOK_API_KEY: serverConf.FACEBOOK_APP_KEY,
                 FACEBOOK_SHARE_TYPE: "feed",
                 FACEBOOK_SHARE_CAPTION: "Trulii.com | ¡Aprende lo que quieras en tu ciudad!",
-                FACEBOOK_SHARE_TEXT: 'Comparte esto con tus amigos o menciónalos con @ "' + vm.activity.title + ' - ' + vm.activity.short_description + '"',
+                FACEBOOK_SHARE_TEXT: vm.activity.title + ' - ' + vm.activity.short_description + '"',
                 FACEBOOK_SHARE_MEDIA: vm.activity.main_photo,
                 FACEBOOK_SHARE_DESCRIPTION: vm.activity.short_description,
                 FACEBOOK_REDIRECT_URI: current_url,
