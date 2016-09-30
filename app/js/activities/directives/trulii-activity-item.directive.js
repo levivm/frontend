@@ -41,7 +41,7 @@
                     dimmed : false,
                     inactive : false,
                     isMenuVisible : false,
-                    titleSize: titleTruncateSize,
+                    titleSize: 45,
                     hasAction : hasAction,
                     showMenu : showMenu,
                     hideMenu : hideMenu,
@@ -89,7 +89,7 @@
                     })
                 }
 
-               
+
                 //Functions Analytics data
                 function viewActivity(title){
                     Analytics.generalEvents.viewActivityDetail(title);
@@ -101,7 +101,7 @@
                     var url = $state.href('organizer-profile', {organizer_id: scope.activity.organizer.id});
                     window.open(url,'_blank');
                 }
-                
+
                 function goToCategory($event){
                     $event.preventDefault();
                     $event.stopPropagation();
@@ -117,7 +117,7 @@
                 }
 
                  function goToAction(name, $event){
-                   
+
                     $event.preventDefault();
                     $event.stopPropagation();
                      switch(name){
@@ -148,7 +148,7 @@
 
                 //--------- Internal Functions ---------//
                function __deleteActivity(){
-                  
+
                     if(scope.activity.total_assistants > 0){
                         Toast.error(scope.strings.DELETE_ACTIVITY_ERROR);
                         return;
@@ -259,14 +259,14 @@
 
                 function _mapDateMsg(activity){
                     var today = new Date();
-                    
-                    if(!!activity.closest_calendar && 
-                        !!activity.closest_calendar.session_price && 
+
+                    if(!!activity.closest_calendar &&
+                        !!activity.closest_calendar.session_price &&
                         !!activity.closest_calendar.initial_date){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
                         // moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day')
-                        var duration = moment.duration(end.diff(now));                        
+                        var duration = moment.duration(end.diff(now));
                         activity.days_to_closest = duration.asDays() >= 0 ? Math.floor(duration.asDays()):
                                                                            Math.ceil(duration.asDays());
                     } else {
@@ -364,7 +364,7 @@
                     });
 
                     scope.titleSlug = title;
-            
+
                 }
 
                 function _activate(){
