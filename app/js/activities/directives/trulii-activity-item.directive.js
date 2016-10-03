@@ -265,10 +265,12 @@
                         !!activity.closest_calendar.initial_date){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
+                        var date = new Date(end);
                         // moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day')
-                        var duration = moment.duration(end.diff(now));
-                        activity.days_to_closest = duration.asDays() >= 0 ? Math.floor(duration.asDays()):
-                                                                           Math.ceil(duration.asDays());
+                        activity.days_to_closest = moment(end).startOf('day').diff(moment(now).startOf('day'), 'days');
+                        //activity.days_to_closest = duration.asDays() >= 0 ? Math.floor(duration.asDays()):Math.ceil(duration.asDays());
+                        
+                        
                     } else {
                         activity.days_to_closest = -1;
                     }
