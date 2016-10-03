@@ -1,4 +1,4 @@
-describe('Controller: ActivityCalendarsController', function(){
+xdescribe('Controller: ActivityCalendarsController', function(){
     var ActivityCalendarsController,
         ActivitiesManager,
         rootScope,
@@ -118,7 +118,7 @@ describe('Controller: ActivityCalendarsController', function(){
          
     });
     
-    xdescribe("Set ", function(){
+    describe("Set ", function(){
          it('createCalendar() function successfully', inject(function($state){
         // Call something that eventually hits $state.go
             spyOn($state, 'go');
@@ -127,12 +127,12 @@ describe('Controller: ActivityCalendarsController', function(){
             expect($state.go).toHaveBeenCalled();
         }));
         
-        it('setCalendar() function successfully', inject(function($state){
+        it('setCalendar() calendar close function successfully', inject(function($state){
         // Call something that eventually hits $state.go
         
-            var calendar = readJSON('tests/mock/calendar_sessions.json');
+            var calendar = readJSON('tests/mock/calendar_close.json');
             spyOn($state, 'go');
-            $state.go("^");
+            $state.go("^"); 
             ActivityCalendarsController.setCalendar(calendar);
             expect($state.go).toHaveBeenCalled();
         }));

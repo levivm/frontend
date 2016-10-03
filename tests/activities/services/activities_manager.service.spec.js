@@ -12,7 +12,7 @@ xdescribe('Factory: ActivitiesManager', function(){
         rootScope = $rootScope.$new();
         
         httpBackend
-            .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+            .when('GET', 'http://localhost:8000/api/activities/featured')
             .respond(readJSON('tests/mock/activities.json'));
 
         httpBackend
@@ -74,7 +74,7 @@ xdescribe('Factory: ActivitiesManager', function(){
          it('successfull getStudentActivities', function() {
             var activities;
              httpBackend
-                .when('GET', 'http://localhost:8000/api/students/4/activities/?page=1&page_size=12&status=current')
+                .when('GET', 'http://localhost:8000/api/students/4/activities/?page=1&page_size=8&status=current')
                 .respond(readJSON('tests/mock/activities.json'));
             ActivitiesManager.getStudentActivities(4, 'current').then(function(data){
                 activities = data;
@@ -92,7 +92,7 @@ xdescribe('Factory: ActivitiesManager', function(){
                 activity = data;
             });
             httpBackend.flush();
-            expect(activity.title).toEqual('Sesiones de Derecho');
+            expect(activity.title).toEqual('Curso de Italiana');
          });
          
          it('successfull getOrders', function() {
@@ -110,7 +110,7 @@ xdescribe('Factory: ActivitiesManager', function(){
          it('successfull loadOrganizerActivities', function() {
             var activities;
              httpBackend
-                .when('GET', 'http://localhost:8000/api/organizers/4/activities?page=1&page_size=12&status=open')
+                .when('GET', 'http://localhost:8000/api/organizers/4/activities?page=1&page_size=8&status=open')
                 .respond(readJSON('tests/mock/activities.json'));
             ActivitiesManager.loadOrganizerActivities(4, 'open').then(function(data){
                 activities = data;
