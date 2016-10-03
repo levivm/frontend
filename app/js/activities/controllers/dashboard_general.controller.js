@@ -184,6 +184,9 @@
 
         function _errored(responseErrors) {
             if (responseErrors) {
+                _.each(responseErrors, function (value, key, index) { 
+                    Elevator.toElement(key);
+                });
                 Error.form.add(vm.activity_create_form, responseErrors);
             }
 

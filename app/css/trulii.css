@@ -21839,7 +21839,6 @@ blockquote {
   left: 0;
   top: 0;
   transition: all 0.25s;
-  font-size: 1em !important;
 }
 .activity-detail__enroll-widget__content .schedules-container__html p,
 .activity-detail__enroll-widget__content .schedules-container__html ol,
