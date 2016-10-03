@@ -9,6 +9,7 @@ xdescribe('Controller: StudentActivitiesCtrl', function(){
             Authentication = $injector.get('Authentication');
             $compile = $injector.get('$compile');
             Student = $injector.get('Student');
+            ActivitiesManager = $injector.get('ActivitiesManager');
          })
     });
     beforeEach(inject(function($controller, _$rootScope_, $http, $httpBackend) {
@@ -22,7 +23,7 @@ xdescribe('Controller: StudentActivitiesCtrl', function(){
 
 
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+            .when('GET', 'http://localhost:8000/api/activities/featured')
             .respond(readJSON('tests/mock/activities.json'));
         $httpBackend
             .when('GET', 'http://localhost:8000/api/locations/cities/')
@@ -40,6 +41,17 @@ xdescribe('Controller: StudentActivitiesCtrl', function(){
         $httpBackend
             .when('GET', 'http://localhost:8000/api/users/current/')
             .respond(readJSON('tests/mock/currentUser.json'));
+            
+            
+        $httpBackend
+            .when('GET', 'http://localhost:8000/api/students/4/activities/?page=1&page_size=8&status=next')
+            .respond(readJSON('tests/mock/activities.json'));    
+        $httpBackend
+            .when('GET', 'http://localhost:8000/api/students/4/activities/?page=1&page_size=8&status=past')
+            .respond(readJSON('tests/mock/activities.json'));    
+        $httpBackend
+            .when('GET', 'http://localhost:8000/api/students/4/activities/?page=1&page_size=8&status=current')
+            .respond(readJSON('tests/mock/activities.json'));    
         $scope =  _$rootScope_;
         
 
@@ -52,12 +64,19 @@ xdescribe('Controller: StudentActivitiesCtrl', function(){
         }, function (err) {
             console.log(err);
         })
+        ActivitiesManager.getStudentActivities(student.id, 'next').then(function (data) {
+            nextActivities= data;
+        });
+        
+        ActivitiesManager.getStudentActivities(student.id, 'past').then(function (data) {
+            pastActivities = data;
+        });
+        
+        ActivitiesManager.getStudentActivities(student.id, 'current').then(function (data) {
+            currentActivities = data;
+        });
         
         $httpBackend.flush();
-        currentActivities = readJSON('tests/mock/activities.json');
-        nextActivities = readJSON('tests/mock/activities.json');
-        pastActivities = readJSON('tests/mock/activities.json');
-        
         
         StudentActivitiesCtrl =  $controller('StudentActivitiesCtrl', { 
                                             'student': student, 

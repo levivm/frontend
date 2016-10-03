@@ -33,7 +33,7 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
             Resolves for detail.enroll.controller
         */
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+            .when('GET', 'http://localhost:8000/api/activities/featured')
             .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
@@ -48,12 +48,12 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
             .respond(readJSON('tests/mock/activity.json'));
 
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/organizers/1/reviews?page=1&page_size=5&status=')
+            .when('GET', 'http://localhost:8000/api/organizers/2/reviews?page=1&page_size=5&status=')
             .respond(readJSON('tests/mock/reviews.json'));
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/activities/4/calendars')
-            .respond(readJSON('tests/mock/calendars.json'));
+            .respond(readJSON('tests/mock/calendars_close.json'));
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
@@ -61,7 +61,7 @@ xdescribe('Controller: ActivityDetailEnrollController', function(){
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/activities/4/calendars/13')
-            .respond(readJSON('tests/mock/calendar.json'));
+            .respond(readJSON('tests/mock/calendar_close.json'));
 
         $httpBackend
            .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')

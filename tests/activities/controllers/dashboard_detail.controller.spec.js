@@ -27,7 +27,7 @@ xdescribe('Controller: ActivityDBDetailController', function(){
         */
         $scope =  _$rootScope_;
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
@@ -47,7 +47,7 @@ xdescribe('Controller: ActivityDBDetailController', function(){
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/activities/4/calendars')
-            .respond(readJSON('tests/mock/calendars.json'));
+            .respond(readJSON('tests/mock/calendars_close.json'));
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')

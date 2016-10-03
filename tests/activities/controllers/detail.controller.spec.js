@@ -28,11 +28,11 @@ xdescribe('Controller: ActivityDetailController', function(){
     });
     beforeEach(inject(function($controller, $rootScope,_$rootScope_,  $http, $httpBackend) {
 
-        /*
+        /*http://localhost:8000/api/organizers/1/activities?page=1&page_size=8&status=open
             Resolves for detail.controller
         */
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
@@ -47,19 +47,19 @@ xdescribe('Controller: ActivityDetailController', function(){
              .respond(readJSON('tests/mock/activity.json'));
 
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/organizers/1/reviews?page=1&page_size=5&status=')
+            .when('GET', 'http://localhost:8000/api/organizers/2/reviews?page=1&page_size=5&status=')
             .respond(readJSON('tests/mock/reviews.json'));
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/activities/4/calendars')
-            .respond(readJSON('tests/mock/calendars.json'));
+            .respond(readJSON('tests/mock/calendars_close.json'));
         
         $httpBackend
             .when('PUT', 'http://localhost:8000/api/activities/4/views_counter')
             .respond(200, {});
 
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
+            .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=8&status=open')
             .respond(readJSON('tests/mock/activities-related.json'));
         $httpBackend
            .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
@@ -68,8 +68,8 @@ xdescribe('Controller: ActivityDetailController', function(){
         ActivitiesManager.getActivity(4)
             .then(function(data){
                 activity = data;
-                var organizerObj = new Organizer(activity.organizer);
-                organizerObj.getReviews().then(successReviews, errorReviews);
+                organizer = new Organizer(activity.organizer);
+                organizer.getReviews().then(successReviews, errorReviews);
 
             }, function(response){
                 console.log(response);
@@ -157,6 +157,10 @@ xdescribe('Controller: ActivityDetailController', function(){
              $httpBackend
                  .when('GET', 'http://localhost:8000/api/activities/4/calendars/13')
                  .respond(200, {});
+                 
+             $httpBackend
+                 .when('GET', 'http://localhost:8000/api/activities/search/?category=1')
+                 .respond(readJSON('tests/mock/activities.json'));
              ActivityDetailController.signUp(4, 13);
              var enrollParams = {
                  activity_id: 9,

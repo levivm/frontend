@@ -1,0 +1,309 @@
+[{
+	"id": 66,
+	"activity": 4,
+	"initial_date": 1475125200000.0,
+	"enroll_open": true,
+	"session_price": 329647.0,
+	"assistants": [{
+		"id": 636,
+		"first_name": "Elisa",
+		"last_name": "Green",
+		"full_name": "Elisa Green",
+		"email": "bernetta.williamson@mayert.com",
+		"order": 255,
+		"token": null
+	}, {
+		"id": 635,
+		"first_name": "Gisele",
+		"last_name": "Kuvalis",
+		"full_name": "Gisele Kuvalis",
+		"email": "zulauf.collette@yahoo.com",
+		"order": 255,
+		"token": null
+	}, {
+		"id": 634,
+		"first_name": "Kris",
+		"last_name": "Gutkowski",
+		"full_name": "Kris Gutkowski",
+		"email": "kohler.jerica@konopelski.biz",
+		"order": 255,
+		"token": null
+	}, {
+		"id": 633,
+		"first_name": "Ida",
+		"last_name": "O'Hara",
+		"full_name": "Ida O'Hara",
+		"email": "dellia01@hotmail.com",
+		"order": 254,
+		"token": null
+	}, {
+		"id": 632,
+		"first_name": "Magdalen",
+		"last_name": "Nikolaus",
+		"full_name": "Magdalen Nikolaus",
+		"email": "elwyn57@gmail.com",
+		"order": 254,
+		"token": null
+	}, {
+		"id": 631,
+		"first_name": "Christina",
+		"last_name": "Stiedemann",
+		"full_name": "Christina Stiedemann",
+		"email": "tlittel@lang.com",
+		"order": 254,
+		"token": null
+	}, {
+		"id": 630,
+		"first_name": "Arnie",
+		"last_name": "Thiel",
+		"full_name": "Arnie Thiel",
+		"email": "dubuque.pricilla@yahoo.com",
+		"order": 253,
+		"token": null
+	}],
+	"is_weekend": true,
+	"is_free": false,
+	"available_capacity": 1,
+	"note": "",
+	"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+	"packages": []
+}, {
+	"id": 67,
+	"activity": 4,
+	"initial_date": 1476162000000.0,
+	"enroll_open": false,
+	"session_price": 893397.0,
+	"assistants": [{
+		"id": 644,
+		"first_name": "Leafy",
+		"last_name": "Kassulke",
+		"full_name": "Leafy Kassulke",
+		"email": "jobe39@yahoo.com",
+		"order": 258,
+		"token": null
+	}, {
+		"id": 643,
+		"first_name": "Montana",
+		"last_name": "Fisher",
+		"full_name": "Montana Fisher",
+		"email": "alton79@schmitt.net",
+		"order": 258,
+		"token": null
+	}, {
+		"id": 642,
+		"first_name": "Elia",
+		"last_name": "Osinski",
+		"full_name": "Elia Osinski",
+		"email": "gottlieb.mont@hotmail.com",
+		"order": 258,
+		"token": null
+	}, {
+		"id": 641,
+		"first_name": "Veola",
+		"last_name": "Williamson",
+		"full_name": "Veola Williamson",
+		"email": "vkihn@gmail.com",
+		"order": 257,
+		"token": null
+	}, {
+		"id": 640,
+		"first_name": "Keyla",
+		"last_name": "O'Conner",
+		"full_name": "Keyla O'Conner",
+		"email": "miller.ximena@yahoo.com",
+		"order": 257,
+		"token": null
+	}, {
+		"id": 639,
+		"first_name": "Ahmad",
+		"last_name": "Rau",
+		"full_name": "Ahmad Rau",
+		"email": "wiegand.erlene@marquardt.net",
+		"order": 257,
+		"token": null
+	}, {
+		"id": 638,
+		"first_name": "Robin",
+		"last_name": "Kuhic",
+		"full_name": "Robin Kuhic",
+		"email": "uwilliamson@larson.com",
+		"order": 256,
+		"token": null
+	}, {
+		"id": 637,
+		"first_name": "Ciarra",
+		"last_name": "Barrows",
+		"full_name": "Ciarra Barrows",
+		"email": "abogan@rau.com",
+		"order": 256,
+		"token": null
+	}],
+	"is_weekend": false,
+	"is_free": false,
+	"available_capacity": 3,
+	"note": "",
+	"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+	"packages": []
+}, {
+	"id": 65,
+	"activity": 4,
+	"initial_date": 1476594000000.0,
+	"enroll_open": false,
+	"session_price": 925187.0,
+	"assistants": [{
+		"id": 629,
+		"first_name": "Henery",
+		"last_name": "Runte",
+		"full_name": "Henery Runte",
+		"email": "averie91@klein.net",
+		"order": 252,
+		"token": null
+	}, {
+		"id": 628,
+		"first_name": "Ellar",
+		"last_name": "Klein",
+		"full_name": "Ellar Klein",
+		"email": "tollie.hayes@yahoo.com",
+		"order": 252,
+		"token": null
+	}, {
+		"id": 627,
+		"first_name": "Rance",
+		"last_name": "Mosciski",
+		"full_name": "Rance Mosciski",
+		"email": "marion.davis@ruecker.biz",
+		"order": 251,
+		"token": null
+	}, {
+		"id": 626,
+		"first_name": "Alisha",
+		"last_name": "Emmerich",
+		"full_name": "Alisha Emmerich",
+		"email": "waldo95@bradtke.com",
+		"order": 251,
+		"token": null
+	}, {
+		"id": 625,
+		"first_name": "Delta",
+		"last_name": "Bashirian",
+		"full_name": "Delta Bashirian",
+		"email": "precious.dietrich@bins.com",
+		"order": 251,
+		"token": null
+	}, {
+		"id": 624,
+		"first_name": "Eloise",
+		"last_name": "Bernier",
+		"full_name": "Eloise Bernier",
+		"email": "mitchell.may@kautzer.info",
+		"order": 251,
+		"token": null
+	}, {
+		"id": 622,
+		"first_name": "Armani",
+		"last_name": "Kshlerin",
+		"full_name": "Armani Kshlerin",
+		"email": "kenneth41@yahoo.com",
+		"order": 249,
+		"token": null
+	}, {
+		"id": 621,
+		"first_name": "Ashly",
+		"last_name": "Berge",
+		"full_name": "Ashly Berge",
+		"email": "cristal71@satterfield.com",
+		"order": 248,
+		"token": null
+	}, {
+		"id": 620,
+		"first_name": "Ivana",
+		"last_name": "Ratke",
+		"full_name": "Ivana Ratke",
+		"email": "rschaden@prosacco.biz",
+		"order": 248,
+		"token": null
+	}, {
+		"id": 619,
+		"first_name": "Cornelia",
+		"last_name": "Collins",
+		"full_name": "Cornelia Collins",
+		"email": "darnell80@hotmail.com",
+		"order": 248,
+		"token": null
+	}, {
+		"id": 623,
+		"first_name": "Cinthia",
+		"last_name": "Rogahn",
+		"full_name": "Cinthia Rogahn",
+		"email": "oda.kerluke@stoltenbergondricka.net",
+		"order": 250,
+		"token": null
+	}],
+	"is_weekend": true,
+	"is_free": false,
+	"available_capacity": -1,
+	"note": "",
+	"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+	"packages": []
+}, {
+	"id": 68,
+	"activity": 4,
+	"initial_date": 1477026000000.0,
+	"enroll_open": true,
+	"session_price": 124658.0,
+	"assistants": [{
+		"id": 649,
+		"first_name": "Antoinette",
+		"last_name": "Marks",
+		"full_name": "Antoinette Marks",
+		"email": "schowalter.sariah@gmail.com",
+		"order": 261,
+		"token": null
+	}, {
+		"id": 648,
+		"first_name": "Pearle",
+		"last_name": "Senger",
+		"full_name": "Pearle Senger",
+		"email": "fernanda58@hayes.org",
+		"order": 261,
+		"token": null
+	}, {
+		"id": 647,
+		"first_name": "Jared",
+		"last_name": "Schmitt",
+		"full_name": "Jared Schmitt",
+		"email": "reffertz@durgan.com",
+		"order": 261,
+		"token": null
+	}, {
+		"id": 646,
+		"first_name": "Vonetta",
+		"last_name": "Langosh",
+		"full_name": "Vonetta Langosh",
+		"email": "malaki84@dibbertkozey.biz",
+		"order": 260,
+		"token": null
+	}, {
+		"id": 645,
+		"first_name": "Reynolds",
+		"last_name": "Wintheiser",
+		"full_name": "Reynolds Wintheiser",
+		"email": "ples62@tillmanpredovic.com",
+		"order": 259,
+		"token": null
+	}, {
+		"id": 650,
+		"first_name": "Jory",
+		"last_name": "Block",
+		"full_name": "Jory Block",
+		"email": "olan69@skiles.com",
+		"order": 262,
+		"token": null
+	}],
+	"is_weekend": true,
+	"is_free": true,
+	"available_capacity": 8,
+	"note": "",
+	"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+	"packages": []
+}]

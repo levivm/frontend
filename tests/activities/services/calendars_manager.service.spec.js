@@ -12,7 +12,7 @@ xdescribe('Factory: CalendarsManager', function(){
         rootScope = $rootScope.$new();
         
         httpBackend
-            .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+            .when('GET', 'http://localhost:8000/api/activities/featured')
             .respond(readJSON('tests/mock/activities.json'));
 
         httpBackend
@@ -49,13 +49,13 @@ xdescribe('Factory: CalendarsManager', function(){
         it('successfull setData and deleteCalendar', inject(function($rootScope, Calendar, $httpBackend) {
             var calendar, calendars, calendarsData;
             
-            calendar = readJSON('tests/mock/calendar.json');
-            CalendarsManager.calendars['4'] = readJSON('tests/mock/calendars.json'); 
+            calendar = readJSON('tests/mock/calendar_close.json');
+            CalendarsManager.calendars['4'] = readJSON('tests/mock/calendars_close.json'); 
             calendar = new Calendar(calendar);
             calendar = CalendarsManager.setCalendar(calendar);
             
             $httpBackend
-                .when('DELETE', 'http://localhost:8000/api/activities/4/calendars/13')
+                .when('DELETE', 'http://localhost:8000/api/activities/4/calendars/67')
                 .respond(200, {});
                 
                     
@@ -73,7 +73,7 @@ xdescribe('Factory: CalendarsManager', function(){
             var calendars;
             httpBackend
                 .when('GET', 'http://localhost:8000/api/activities/4/calendars')
-                .respond(readJSON('tests/mock/calendars.json'));
+                .respond(readJSON('tests/mock/calendars_close.json'));
             CalendarsManager.loadCalendars(4).then(function(data){
                 calendars = data;
             });   

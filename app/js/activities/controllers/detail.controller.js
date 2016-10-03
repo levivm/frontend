@@ -579,7 +579,7 @@
         }
 
         function _setOrganizerRating(){
-            vm.organizerRating = organizer.rating.toString().replace(',', '.');
+            vm.organizerRating = vm.organizer.rating.toString().replace(',', '.');
         }
 
         function _activate(){

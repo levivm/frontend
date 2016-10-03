@@ -23,7 +23,7 @@ xdescribe('Controller: OrganizerActivitiesCtrl', function(){
 
 
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+            .when('GET', 'http://localhost:8000/api/activities/featured')
             .respond(readJSON('tests/mock/activities.json'));
         $httpBackend
             .when('GET', 'http://localhost:8000/api/locations/cities/')
@@ -43,13 +43,13 @@ xdescribe('Controller: OrganizerActivitiesCtrl', function(){
             .respond(readJSON('tests/mock/currentOrgUser.json'));
             
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/organizers/4/activities?page=1&page_size=12&status=unpublished')
+            .when('GET', 'http://localhost:8000/api/organizers/4/activities?page=1&page_size=8&status=unpublished')
             .respond(readJSON('tests/mock/activities.json'));    
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/organizers/4/activities?page=1&page_size=12&status=opened')
+            .when('GET', 'http://localhost:8000/api/organizers/4/activities?page=1&page_size=8&status=opened')
             .respond(readJSON('tests/mock/activities.json'));    
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/organizers/4/activities?page=1&page_size=12&status=closed')
+            .when('GET', 'http://localhost:8000/api/organizers/4/activities?page=1&page_size=8&status=closed')
             .respond(readJSON('tests/mock/activities.json'));    
         $scope =  _$rootScope_;
         
