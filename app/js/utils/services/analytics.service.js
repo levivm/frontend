@@ -234,7 +234,7 @@
         }
         
         function notFound(url) {
-            _reportSocialEvent(CATEGORY_GENERAL, EACTION_NOT_FOUND, 'from: '+url);
+            _reportEvent(CATEGORY_GENERAL, EACTION_NOT_FOUND, 'from: '+url);
         }
 
 

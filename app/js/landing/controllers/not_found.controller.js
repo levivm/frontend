@@ -43,8 +43,10 @@
         function _activate(){
             _setStrings();
             //Function for angularSeo
-            if($state.params.fromState)
+            if($state.params.fromState){
                 Analytics.generalEvents.notFound($state.params.fromState);
+            }
+                
                 
                 
             $scope.htmlReady();
