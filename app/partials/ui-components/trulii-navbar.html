@@ -1,5 +1,6 @@
 <!--suppress HtmlUnknownTarget -->
-<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-landing': isNavBarTransparent() }">
+<promo-bar  ng-if="promoBar" message="Refiere  a un amigo y obtén 20.000$." url="https://www.trulii.com/referir/anonimo" messageurl=" Registrate." size="small"></promo-bar> 
+<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-landing': isNavBarTransparent(), 'if-navbar-promo':  isPromoBar()}">
     <div class="row">
         <div class="navbar__logo-container">
             <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo "></a>
@@ -20,6 +21,9 @@
             <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary font-semibold" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
+            <a ui-sref="referrals.home" ng-click="inviteNav()" class="navbar__option navbar__option--right" ng-if="user.is_student" ng-class="{'ng-hide': scroll < 80}">
+                <span ng-bind="::strings.COPY_REFERRAL"></span>
+            </a>
             <a class="navbar__option navbar__option--right  hidden-xs hidden-sm explore-categories"  ng-class="{'ng-hide': scroll < 80 && isHome()}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
                 <span class="font-semibold  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
                 <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>

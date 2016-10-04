@@ -14857,6 +14857,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .drop-menu ul li:last-child {
   border-bottom: none;
 }
+.if-navbar-promo {
+  margin-top: 30px;
+}
 .cover-sidebar {
   background: rgba(0, 0, 0, 0.52);
   position: fixed;
@@ -26731,6 +26734,41 @@ input[type=text].form-control.referral-link:focus {
 .summary-container .metric-circle-sales {
   border: 3px solid #1F5DEA;
   color: #1F5DEA;
+}
+.promo-bar {
+  display: block;
+  height: 30px;
+  overflow: visible;
+  position: relative;
+  width: 101%;
+  z-index: 200;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  background: #00e2aa;
+  color: #FFF;
+  font-weight: 700;
+}
+.promo-bar-content {
+  font-size: 14px;
+  font-weight: 700;
+  height: 30px;
+  line-height: 30px;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 1000;
+  margin: 0;
+  padding: 0;
+}
+.promo-bar-content a {
+  color: white;
+  text-decoration: underline;
+}
+.promo-bar-content a:hover {
+  color: white;
 }
 ::-webkit-scrollbar {
   width: 10px;

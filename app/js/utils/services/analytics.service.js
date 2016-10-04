@@ -45,6 +45,7 @@
         var EACTION_BMENU_CLICK='Click item burguer menu ';
         var EACTION_SHARE_SOCIAL='share';
         var EACTION_NOT_FOUND= '404';
+        var EACTION_PROMO_BAR = 'Click Promo-bar';
         //Students Actions Labels
 
         var EACTION_ENROLL_CLICK= 'Click Enroll';
@@ -55,6 +56,7 @@
         var EACTION_REFUND = 'Seek Refund';
         var EACTION_DASHBOARD_CLICK= 'Click dashboard item student';
         var EACTION_TRANSACTIONS_STUDENT="Tranasaction section";
+        var EACTION_INVITE_NAVBAR= "Click Recibe20000";
 
 
         var LABEL_ENROLL_WIDGET='click enroll widget';
@@ -102,7 +104,8 @@
             actionCard:actionCard,
             logoNavbar:logoNavbar,
             shareActivity:shareActivity,
-            notFound:notFound
+            notFound:notFound,
+            promoBar:promoBar
         };
 
         var studentEvents = {
@@ -115,7 +118,8 @@
             doReview:doReview,
             dashboardItemClicks:dashboardItemClicks,
             seeOrder:seeOrder,
-            seekRefund:seekRefund
+            seekRefund:seekRefund,
+            inviteNav:inviteNav
 
         };
 
@@ -236,7 +240,10 @@
         function notFound(url) {
             _reportEvent(CATEGORY_GENERAL, EACTION_NOT_FOUND, 'from: '+url);
         }
-
+        
+        function promoBar(url) {
+            _reportEvent(CATEGORY_GENERAL, EACTION_PROMO_BAR, url);
+        }
 
         function shareActivity(social, data){
             _reportSocialEvent(social, EACTION_SHARE_SOCIAL, data);
@@ -277,6 +284,10 @@
         }
         function seekRefund(data){
             _reportEvent(CATEGORY_STUDENT, EACTION_TRANSACTIONS_STUDENT, LABEL_SEEK_REFUND+data);
+        }
+        
+        function inviteNav(){
+            _reportEvent(CATEGORY_STUDENT, EACTION_INVITE_NAVBAR, LABEL_SENT);
         }
 
 
