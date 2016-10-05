@@ -1,6 +1,6 @@
 <!--suppress HtmlUnknownTarget -->
 <promo-bar  ng-if="promoBar" message="Invita a un amigo a unirse a Trulii y obtén un cupón de COP 20.000." url="https://www.trulii.com/referir/anonimo" messageurl=" Registrate." size="small"></promo-bar> 
-<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-landing': isNavBarTransparent(), 'if-navbar-promo':  isPromoBar()}">
+<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-landing': isNavBarTransparent()}" ng-style="isPromoBar() && {'margin-top': marginNavbar}">
     <div class="row">
         <div class="navbar__logo-container">
             <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo "></a>

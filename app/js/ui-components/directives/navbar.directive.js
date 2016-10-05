@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$location', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$window', '$location', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, $location, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
+    function truliiNavbar($rootScope, $timeout, $state, $window, $location, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -412,6 +412,8 @@
                 function _initCategoriesPosition(){
                     angular.element(document).ready(function(){
                         _updateCategoriesPosition();
+                        _setMarginNavbar();
+                        _resize();
                         scope.$on('scrolled', function(scrolled, scroll){
                             _updateCategoriesPosition();
                         });
@@ -419,6 +421,17 @@
                             updateCategoriesPosition();
                         });
                     });
+                }
+                function _resize(){
+                    angular.element($window).bind('resize', function() {
+                        _setMarginNavbar();
+                    })
+                }
+                function _setMarginNavbar(){
+                    if(scope.promoBar){
+                        scope.marginNavbar= document.getElementsByClassName('promo-bar')[0].getBoundingClientRect().height
+                    }
+                    
                 }
                 
 
