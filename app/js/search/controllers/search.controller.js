@@ -525,6 +525,7 @@
 
             //Function for angularSeo
             $scope.htmlReady();
+            console.log($stateParams);
         }
     }
 })();

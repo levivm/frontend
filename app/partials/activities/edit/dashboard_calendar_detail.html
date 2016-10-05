@@ -6,7 +6,7 @@
         <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub" ng-if="!calendar.activity.is_open">
                 <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_CALENDAR_TITLE"></span>
         </div>
-            
+
          <div class="col-xs-12 panel-default panel-default__dashboard panel-default__dashboard-sub flex-betweent-container" ng-if="calendar.activity.is_open">
                 <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_CALENDAR_TITLE"></span>
                 <div class="add-packages">
@@ -22,7 +22,7 @@
                     <switch id="enroll_close" name="enroll_close" ng-model="calendar.calendar.enroll_open" on="Abiertas" off="Cerradas" class="green"></switch>
                 </div>
         </div>
-        
+
         <div class="content-packages" ng-if="calendar.activity.is_open">
             <div class="row " id="package-{{$index}}" ng-class="{'separate-above': !$first}" ng-repeat="package in calendar.calendar.packages">
                 <div class="col-xs-4" id="price_{{$index}}"  trulii-input-errors-control="price_{{$index}}" >
@@ -37,18 +37,18 @@
                             placeholder="1" min="1"
                             ng-model="package.quantity" />
                 </div>
-                
+
                 <div class="col-xs-4" id="type_{{$index}}" trulii-input-errors-control="type_{{$index}}">
                     <label class="control-label" for="type" ng-bind="::calendar.strings.LABEL_PACKAGE_NAME"></label>
                     <select  class="form-control" name="type_{{$index}}" ng-model="package.type"
                         ng-options="type['0'] as type['1'] for type in calendar.presaveInfo.package_options">
                         <option ng-hide="package.type" value="" ng-bind="::calendar.strings.OPTION_SELECT_PNAME"></option>
                     </select>
-                     
+
                 </div>
             </div>
         </div>
-        <div class="row" ng-if="!calendar.activity.is_open"> 
+        <div class="row" ng-if="!calendar.activity.is_open">
             <alert type="danger" ng-show="calendar.errors.non_field_errors">
                 {{calendar.errors.non_field_errors}}
             </alert>
@@ -67,7 +67,7 @@
                                     max-date="null" close-text="Close"
                                     ng-click="calendar.calendar.openCloseDate($event)" ng-readonly='true'
                                     />
-                        </label> 
+                        </label>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="row" ng-if="!calendar.activity.is_open">
             <div class="col-md-6">
                 <div class="form-group "  trulii-input-errors-control="session_price">
@@ -104,10 +104,10 @@
                     </label>
                     <input type="text" id="short_description"  class="form-control" name="short_description"
                             placeholder="{{::calendar.strings.PLACEHOLDER_NOTES}}"
-                            ng-model="calendar.calendar.note">
+                            ng-model="calendar.calendar.note" maxlength="500">
                 </div>
         </div>
-        
+
         <div class="row clear-spacings">
             <div class="col-xs-12 panel-default panel-default__dashboard separate-above">
                 <span class="panel-default__dashboard-title" ng-bind="::calendar.strings.LABEL_SCHEDULES"></span>
@@ -120,12 +120,13 @@
             </div>
              <div class="trulii-checkbox separate-left-less">
                 <input type="checkbox" id="cert" ng-model="calendar.calendar.is_weekend" ng-click="search.setCertification()">
-                 <label  class="text-regular" for="cert"><span></span>{{calendar.strings.LABEL_WEEKEND}}</label>
+                <label class="text-regular" for="cert" ng-if="calendar.activity.is_open"><span></span>{{calendar.strings.LABEL_WEEKEND_OPEN}}</label>
+                <label class="text-regular" for="cert" ng-if="!calendar.activity.is_open"><span></span>{{calendar.strings.LABEL_WEEKEND_CLOSED}}</label>
             </div>
         </div>
         <div class="separate-above separate-below" >
             <trulii-submit-controls is-saving="calendar.isSaving" cancel-active="true" value="Guardar"></trulii-submit-controls>
-        </div> 
+        </div>
 
    </div>
  </form>

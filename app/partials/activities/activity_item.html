@@ -10,7 +10,7 @@
               data-toggle="tooltip" data-placement="bottom" data-original-title="{{action.name}}">
             <span class="trulii-activity-card__header__menu__item__icon" ng-class="action.icon" title="{{::action.name}}"></span>
           </div>
-          <div ng-if="isStudent"
+          <div ng-if="!organizer"
               class="trulii-activity-card__header__menu__item"
               ng-click="like($event, activity.id)"
               data-toggle="tooltip" data-placement="bottom" data-original-title="{{strings.ADD_TO_WISHLIST}}">
@@ -33,12 +33,14 @@
     </div>
     <div class="trulii-activity-card__body">
       <div class="trulii-activity-card__body__content">
-        <div class="trulii-activity-card__body__content__title text-center" ng-class="{'text-left': organizer}" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })" ng-bind="::activity.title | limitTo : titleSize">
+        <div class="trulii-activity-card__body__content__title text-center" ng-class="{'text-left': organizer}" ng-click="viewActivity(activity.title)" ui-sref="activities-detail({activity_id: {{::activity.id}} })">
+          <span ng-bind="::activity.title | limitTo : titleSize"></span>
+          <span ng-if="activity.title.length > titleSize">&hellip;</span>
         </div>
         <br>
         <div class="trulii-activity-card__body__content__organizer text-center" ng-click="goToOrganizer($event)" ng-bind="::activity.organizer.name">
         </div>
-        <span class="trulii-activity-card__body__content__rating" ng-if="activity.organizer.rating"> 
+        <span class="trulii-activity-card__body__content__rating" ng-if="activity.organizer.rating">
           <rating ng-model="activity.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
           readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
         </span>
@@ -62,9 +64,9 @@
             <span ng-bind="::activity.closest_calendar.session_price | number"></span>
           </span>
         </span>
-        <div ng-if="organizer" 
+        <div ng-if="organizer"
           ng-click="goToAssistants($event)"
-          class="trulii-activity-card__body__content__attendes" 
+          class="trulii-activity-card__body__content__attendes"
           ng-bind="::strings.COPY_ATTENDES"></div>
       </div>
     </div>

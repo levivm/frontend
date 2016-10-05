@@ -125,7 +125,7 @@
                 MORE_INFO_FAQ_TEXT_1: "Para más información ",
                 MORE_INFO_FAQ_TEXT_2: "Contáctanos",
                 MORE_INFO_FAQ_TEXT_3: " que con mucho gusto te aclararemos cualquier duda.",
-                SIGN_UP_TITLE: "¿Te animas a publicar tu actividad con nosotros?",
+                SIGN_UP_TITLE: "¿Te animas a publicar GRATIS tu actividad con nosotros?",
                 SIGN_UP_TEXT: "Regístrate gratis y te contactaremos en menos de una hora para validar tu información. ¡Sí, en menos de una hora!",
                 SIGN_UP_SUCCESS_TITLE_1: "Ten el teléfono a mano, que ya te llamamos.",
                 SIGN_UP_SUCCESS_TITLE_2: "¡Eres lo máximo!",
