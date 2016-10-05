@@ -17,12 +17,12 @@
 
         .directive('truliiActivityItem', truliiActivityItem);
 
-    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'moment', 'ActivitiesTemplatesPath'
+    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', '$modal', '$rootScope', 'moment', 'ActivitiesTemplatesPath'
         , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication',
-        'StudentsManager', 'ActivitiesManager', 'Toast', '$modal', '$rootScope'];
+        'StudentsManager', 'ActivitiesManager', 'Toast'];
 
-    function truliiActivityItem($state, $stateParams, $filter, moment, ActivitiesTemplatesPath
-        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager, ActivitiesManager, Toast, $modal, $rootScope){
+    function truliiActivityItem($state, $stateParams, $filter, $modal, $rootScope, moment, ActivitiesTemplatesPath
+        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager, ActivitiesManager, Toast){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -41,7 +41,7 @@
                     dimmed : false,
                     inactive : false,
                     isMenuVisible : false,
-                    titleSize: titleTruncateSize,
+                    titleSize: 45,
                     hasAction : hasAction,
                     showMenu : showMenu,
                     hideMenu : hideMenu,
@@ -83,13 +83,26 @@
                 function like($event, activityId){
                     $event.preventDefault();
                     $event.stopPropagation();
-                    StudentsManager.postWishList(activityId).then(function(data){
+
+                    var registerParams = {
+                        toState: {
+                            state: $state.current.name,
+                            params: $stateParams
+                        }
+                    };
+                    console.log(scope);
+                    if(_isStudent()){
+                      StudentsManager.postWishList(activityId).then(function(data){
                         scope.activity.wish_list=!scope.activity.wish_list;
                         ActivitiesManager.like(scope.activity.id, scope.activity.wish_list);
-                    })
+                      });
+                    } else {
+                        $state.go('register', registerParams);
+                    }
+
                 }
 
-               
+
                 //Functions Analytics data
                 function viewActivity(title){
                     Analytics.generalEvents.viewActivityDetail(title);
@@ -101,7 +114,7 @@
                     var url = $state.href('organizer-profile', {organizer_id: scope.activity.organizer.id});
                     window.open(url,'_blank');
                 }
-                
+
                 function goToCategory($event){
                     $event.preventDefault();
                     $event.stopPropagation();
@@ -117,7 +130,7 @@
                 }
 
                  function goToAction(name, $event){
-                   
+
                     $event.preventDefault();
                     $event.stopPropagation();
                      switch(name){
@@ -148,7 +161,7 @@
 
                 //--------- Internal Functions ---------//
                function __deleteActivity(){
-                  
+
                     if(scope.activity.total_assistants > 0){
                         Toast.error(scope.strings.DELETE_ACTIVITY_ERROR);
                         return;
@@ -259,16 +272,18 @@
 
                 function _mapDateMsg(activity){
                     var today = new Date();
-                    
-                    if(!!activity.closest_calendar && 
-                        !!activity.closest_calendar.session_price && 
+
+                    if(!!activity.closest_calendar &&
+                        !!activity.closest_calendar.session_price &&
                         !!activity.closest_calendar.initial_date){
                         var now = moment(today);
                         var end = moment(activity.closest_calendar.initial_date);
+                        var date = new Date(end);
                         // moment(vm.calendar_selected.initial_date).isBefore(moment().valueOf() , 'day')
-                        var duration = moment.duration(end.diff(now));                        
-                        activity.days_to_closest = duration.asDays() >= 0 ? Math.floor(duration.asDays()):
-                                                                           Math.ceil(duration.asDays());
+                        activity.days_to_closest = moment(end).startOf('day').diff(moment(now).startOf('day'), 'days');
+                        //activity.days_to_closest = duration.asDays() >= 0 ? Math.floor(duration.asDays()):Math.ceil(duration.asDays());
+                        
+                        
                     } else {
                         activity.days_to_closest = -1;
                     }
@@ -364,7 +379,7 @@
                     });
 
                     scope.titleSlug = title;
-            
+
                 }
 
                 function _activate(){

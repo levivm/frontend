@@ -1,4 +1,4 @@
-xdescribe('Controller: HomeController', function(){
+describe('Controller: HomeController', function(){
     var HomeController,
         generalInfo,
         ActivitiesManager,
@@ -39,7 +39,7 @@ xdescribe('Controller: HomeController', function(){
               .respond(readJSON('tests/mock/cities.json'));
 
           httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
              activities = readJSON('tests/mock/activities.json');
 
@@ -73,7 +73,7 @@ xdescribe('Controller: HomeController', function(){
             expect(HomeController.strings).toBeDefined()
          });
          it('should hasMoreActivities', function() {
-            expect(HomeController.hasMoreActivities).toBe(true);
+            expect(HomeController.hasMoreActivities).toBe(false);
 
           });
     });

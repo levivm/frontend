@@ -12,9 +12,9 @@
     angular.module('trulii.ui-components.directives')
         .directive('truliiNavbar', truliiNavbar);
 
-    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$location', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
+    truliiNavbar.$inject = ['$rootScope', '$timeout', '$state', '$window', '$location', 'UIComponentsTemplatesPath', 'Authentication', 'defaultPicture', 'SearchManager', 'LocationManager', 'ActivitiesManager', 'Analytics', 'Scroll', 'serverConf', 'Elevator', 'OrganizersManager', 'StudentsManager'];
 
-    function truliiNavbar($rootScope, $timeout, $state, $location, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
+    function truliiNavbar($rootScope, $timeout, $state, $window, $location, UIComponentsTemplatesPath, Authentication, defaultPicture, SearchManager, LocationManager, ActivitiesManager, Analytics, Scroll, serverConf, Elevator, OrganizersManager, StudentsManager) {
         return {
             restrict: 'AE',
             templateUrl: UIComponentsTemplatesPath + "trulii-navbar.html",
@@ -74,7 +74,10 @@
                     hideSubItems:hideSubItems,
                     categories: [],
                     exploreLeftPosition: 0,
-                    isHome: isHome
+                    isHome: isHome,
+                    promoBar:false,
+                    isPromoBar:isPromoBar,
+                    inviteNav:inviteNav
                 });
 
                 _activate();
@@ -151,6 +154,10 @@
                 function isNavBarTransparent(){
                     return ((_.indexOf(statesValids, $state.current.name) > -1) && scope.scroll<100);
                 }
+                
+                function isPromoBar(){
+                    return  scope.scroll<100 && scope.promoBar; 
+                }
                 function isHome(){
                     return $state.current.name === 'home';
                 }
@@ -178,6 +185,10 @@
                 function clickLogo(){
                     Analytics.generalEvents.logoNavbar();
                 }
+                
+                function inviteNav(){
+                    Analytics.studentEvents.inviteNav();
+                }
 
                 //---End functions for send data to Google Analytics----//
 
@@ -191,6 +202,7 @@
                     function success(user) {
                         if (!user) {
                             scope.user = null;
+                            scope.promoBar = true;
                             return;
                         }
                         scope.user = user;
@@ -203,25 +215,35 @@
                                 reviews: false,
                                 transactions: false
                             }
-                            if(scope.user.is_organizer)
+                            if(scope.user.is_organizer){
+                                scope.promoBar = false;
                                 _getOrganizerReviews();
+                            }
+                                
                         });
                         Authentication.isStudent().then(function (result) {
                             scope.user.is_student = result;
                             scope.subItems ={
                                 activities: false
                             }
-                            if(scope.user.is_student)
+                            if(scope.user.is_student){
+                                scope.promoBar = false;
                                 _getStudentMessages();
+                            }
+                                
                         });
                         _mapDisplayName(scope.user);
                         _setUserChangedWatch();
+                       
                     }
                     
                     function error() {
                         scope.user = null;
+                         console.log(scope.user);
                         _setUserChangedWatch();
                     }
+                    
+                    
                 }
                 function  _getOrganizerReviews() {
                     OrganizersManager.getReviews(scope.user.id, 1, 6, 'unread')
@@ -278,6 +300,7 @@
                         ACTION_EXPLORE: "Explorar",
                         COPY_BECOME_ORGANIZER: '¿Quieres ser Organizador?',
                         COPY_INVITE_FRIEND: 'Invita a un amigo',
+                        COPY_REFERRAL: "Recibe 20.000$",
                         LABEL_BLOG: 'Blog',
                         LABEL_ABOUT_US: 'Conócenos',
                         LABEL_ABOUT_MISSION: 'Misión',
@@ -389,6 +412,8 @@
                 function _initCategoriesPosition(){
                     angular.element(document).ready(function(){
                         _updateCategoriesPosition();
+                        _setMarginNavbar();
+                        _resize();
                         scope.$on('scrolled', function(scrolled, scroll){
                             _updateCategoriesPosition();
                         });
@@ -396,6 +421,17 @@
                             updateCategoriesPosition();
                         });
                     });
+                }
+                function _resize(){
+                    angular.element($window).bind('resize', function() {
+                        _setMarginNavbar();
+                    })
+                }
+                function _setMarginNavbar(){
+                    if(scope.promoBar){
+                        scope.marginNavbar= document.getElementsByClassName('promo-bar')[0].getBoundingClientRect().height
+                    }
+                    
                 }
                 
 

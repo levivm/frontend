@@ -302,7 +302,7 @@
                   <span ng-bind="::detail.activity.level_display"></span>
                 </p>
               </div>
-              <div ng-class="{'col-xs-12': !detail.showLevel && detail.calendar_selected.assistants.length<4, 'col-xs-6': detail.calendar_selected.assistants.length<4 || !detail.calendar_selected || !detail.showLevel, 'col-xs-4': detail.calendar_selected.assistants.length>3  && detail.showLevel}">
+              <div ng-class="{'col-xs-12': !detail.showLevel && detail.calendar_selected.assistants.length<4, 'col-xs-6': (detail.calendar_selected.assistants.length<4 || !detail.calendar_selected || !detail.showLevel)  && !(!detail.showLevel && detail.calendar_selected.assistants.length<4), 'col-xs-4': detail.calendar_selected.assistants.length>3  && detail.showLevel}">
                 <p ng-if="detail.activity.certification" class="text-center"
                    ng-bind="::detail.strings.VALUE_WITH_CERTIFICATION"></p>
                 <p ng-if="!detail.activity.certification" class="text-center"
@@ -530,7 +530,7 @@
   </div>
 </div>
 
-<div class="related-activities-container col-xs-12 hidden-xs hidden-sm" ng-if="detail.relatedActivities.length > 0">
+<div class="related-activities-container col-xs-12 separate-above-medium hidden-xs hidden-sm" ng-if="detail.relatedActivities.length > 0">
   <div class="row">
       <div class="limited-width">
         <h3 class="title" ng-bind="::detail.strings.COPY_SIMILAR_ACTIVITIES"></h3>

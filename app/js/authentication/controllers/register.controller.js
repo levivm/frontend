@@ -74,7 +74,7 @@
             }else{
                 Toast.error(vm.strings.ERROR_ACCEPT_TERMS);
             }
-           
+
             function error(response) {
                 var responseErrors = response.data;
                 if (responseErrors){ Error.form.add(vm.signup_form, responseErrors); }
@@ -96,7 +96,7 @@
             }else{
                 Toast.error(vm.strings.ERROR_ACCEPT_TERMS);
             }
-            
+
             function error(response) {
                 var responseErrors = response.data;
                 if (responseErrors){ Error.form.add(vm.signup_form, responseErrors); }
@@ -124,7 +124,7 @@
                 SIGNUP_LABEL : "Registrarme",
                 SIGNUP_CONFIRMATION_LABEL: "Confirmación de registro",
                 SIGNUP_CONFIRMATION_COPY_1: "!Ya estás aprobado como organizador!",
-                SIGNUP_CONFIRMATION_COPY_2: "Solo falta que coloques tu contraseña para empezar a disfrutar de Trulii.",
+                SIGNUP_CONFIRMATION_COPY_2: "Sólo falta que coloques una contraseña para a empezar a disfrutar de tu cuenta.",
                 SIGNUP_SUBMIT: "Enviar",
                 SIGNUP_ALTERNATIVES_LABEL : "Regístrate como asistente con",
                 SIGNUP_EMAIL_LABEL: "o con tu correo electrónico",
@@ -154,7 +154,7 @@
                 vm.auth.email = validatedData.email;
                 vm.auth.name = validatedData.name;
             }
-            
+
             //Function for angularSeo
             $scope.htmlReady();
         }

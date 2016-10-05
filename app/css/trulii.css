@@ -14857,6 +14857,9 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .drop-menu ul li:last-child {
   border-bottom: none;
 }
+.if-navbar-promo {
+  margin-top: 30px;
+}
 .cover-sidebar {
   background: rgba(0, 0, 0, 0.52);
   position: fixed;
@@ -17060,6 +17063,11 @@ tags-input input {
   font-size: 1em;
   padding: 1.125em 4em;
   border-radius: 3em;
+}
+@media (max-width: 1280px) {
+  .btn-lg {
+    padding: 1.125em 3em;
+  }
 }
 .btn-md {
   font-size: 0.9em;
@@ -21835,6 +21843,33 @@ blockquote {
   top: 0;
   transition: all 0.25s;
 }
+.activity-detail__enroll-widget__content .schedules-container__html p,
+.activity-detail__enroll-widget__content .schedules-container__html ol,
+.activity-detail__enroll-widget__content .schedules-container__html ul,
+.activity-detail__enroll-widget__content .schedules-container__html li,
+.activity-detail__enroll-widget__content .schedules-container__html h1,
+.activity-detail__enroll-widget__content .schedules-container__html h2,
+.activity-detail__enroll-widget__content .schedules-container__html h3,
+.activity-detail__enroll-widget__content .schedules-container__html h4,
+.activity-detail__enroll-widget__content .schedules-container__html h5,
+.activity-detail__enroll-widget__content .schedules-container__html span,
+.activity-detail__enroll-widget__content .schedules-container__html u,
+.activity-detail__enroll-widget__content .schedules-container__html i {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: #222328 !important;
+}
+.activity-detail__enroll-widget__content .schedules-container__html b {
+  font-size: 14px !important;
+  color: #222328 !important;
+}
+.activity-detail__enroll-widget__content .schedules-container__html a {
+  display: none;
+}
+.activity-detail__enroll-widget__content .schedules-container__html ol,
+.activity-detail__enroll-widget__content .schedules-container__html ul {
+  padding-left: 20px;
+}
 .activity-detail__enroll-widget__content .schedules-container__footer {
   position: absolute;
   bottom: 0px;
@@ -26577,9 +26612,6 @@ input[type=text].form-control.referral-link:focus {
   padding-bottom: 60px !important;
 }
 .dashboard-footer {
-  padding: 0.75em 1em 0.125em 1em;
-  background-color: #ededed;
-  border-bottom: 5px solid #cbcbcb;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -26702,6 +26734,39 @@ input[type=text].form-control.referral-link:focus {
 .summary-container .metric-circle-sales {
   border: 3px solid #1F5DEA;
   color: #1F5DEA;
+}
+.promo-bar {
+  display: block;
+  overflow: visible;
+  position: relative;
+  width: 101%;
+  z-index: 200;
+  margin: 0;
+  padding: 5px;
+  top: 0;
+  left: 0;
+  background: #00e2aa;
+  color: #FFF;
+  font-weight: 700;
+}
+.promo-bar-content {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 30px;
+  overflow: visible;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  z-index: 1000;
+  margin: 0;
+  padding: 0;
+}
+.promo-bar-content a {
+  color: white;
+  text-decoration: underline;
+}
+.promo-bar-content a:hover {
+  color: white;
 }
 ::-webkit-scrollbar {
   width: 10px;

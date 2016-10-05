@@ -1,4 +1,4 @@
-xdescribe('Directive: truliiInstructorCard', function(){
+describe('Directive: truliiInstructorCard', function(){
     var $rootScope,
         $scope,
         $compile,
@@ -31,8 +31,11 @@ xdescribe('Directive: truliiInstructorCard', function(){
             el = $compile(angular.element(simpleHtml))($scope);
         });
        
+        $httpBackend
+            .when('GET', 'http://localhost:8000/api/locations/cities/')
+            .respond(readJSON('tests/mock/cities.json'));
 
-        
+
         
         $scope.$digest();
     });
@@ -66,7 +69,7 @@ xdescribe('Directive: truliiInstructorCard', function(){
                 .respond(readJSON('tests/mock/cities.json'));
                 
             $httpBackend
-                .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+                .when('GET', 'http://localhost:8000/api/activities/featured')
                 .respond(readJSON('tests/mock/activities.json'));
 
             $httpBackend

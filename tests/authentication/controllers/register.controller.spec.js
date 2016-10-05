@@ -1,4 +1,4 @@
-xdescribe('Controller: RegisterController', function(){
+describe('Controller: RegisterController', function(){
     var RegisterController,
         $scope = {};
 
@@ -15,7 +15,7 @@ xdescribe('Controller: RegisterController', function(){
 
 
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
         $httpBackend
             .when('GET', 'http://localhost:8000/api/locations/cities/')
@@ -53,6 +53,7 @@ xdescribe('Controller: RegisterController', function(){
             expect(RegisterController.strings).toBeDefined();
          });
          it('should student Register success', function() {
+            RegisterController.acceptTerms =true;
             RegisterController.signup_form= $scope.vm.signup_form;
 
             RegisterController.auth = {
@@ -103,6 +104,7 @@ xdescribe('Controller: RegisterController', function(){
              };
         }));
          it('should Organizer Register success', function() {
+            RegisterController.acceptTerms =true;
             RegisterController.signup_form= $scope.vm.signup_form;
              var token = 'hwwoeltvjxliuw5nk7pk3lqjstjfwiae5gudrhvxgzzargy3ailaklakqqa6ye18';
              RegisterController.registerOrganizer();

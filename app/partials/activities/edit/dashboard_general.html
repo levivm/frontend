@@ -72,8 +72,8 @@
                   ng-submit="vm.save_activity()">
                 <fieldset>
                   <div class="form-group col-xs-12 separate-above separate-below-less" trulii-input-errors-control="title" >
-                    <label  class="control-label " for="editable_activity_title">Título</label>
-                    <input type="text" id="editable_activity_title" class="form-control" name="title"
+                    <label  class="control-label " for="title">Título</label>
+                    <input type="text" id="title" class="form-control" name="title"
                             placeholder="¿Cómo titulas a tu actividad?"
                             ng-model='vm.activity.title'>
                   </div>
@@ -115,7 +115,7 @@
                       <div class="col-md-6">
                           <label class="control-label" ng-bind="::vm.strings.LABEL_SUB_CATEGORY"></label>
                           <div trulii-input-errors-control="sub_category">
-                                <select id="sub-category-select" class="form-control" name="sub_category"
+                                <select id="sub_category" class="form-control" name="sub_category"
                                         ng-model="vm.selected_sub_category"
                                         ng-options="sub_category as sub_category.name for (index,sub_category) in vm.activity_sub_categories">
                                         <option value="" ng-show="!vm.selected_sub_category" selected ng-bind="::vm.strings.LABEL_SUB_CATEGORY">

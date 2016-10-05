@@ -1,4 +1,4 @@
-xdescribe('Controller: ActivityDBLocationController', function(){
+describe('Controller: ActivityDBLocationController', function(){
     var ActivityDBLocationController,
         ActivitiesManager,
         rootScope,
@@ -29,7 +29,7 @@ xdescribe('Controller: ActivityDBLocationController', function(){
         */
         $scope =  _$rootScope_;
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
@@ -49,7 +49,7 @@ xdescribe('Controller: ActivityDBLocationController', function(){
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/activities/4/calendars')
-            .respond(readJSON('tests/mock/calendars.json'));
+            .respond(readJSON('tests/mock/calendars_close.json'));
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
@@ -109,11 +109,11 @@ xdescribe('Controller: ActivityDBLocationController', function(){
         });
 
         it('successfully init marker', function() {
-            expect(ActivityDBLocationController.marker.coords.latitude).toEqual(49.106637);
+            expect(ActivityDBLocationController.marker.coords.latitude).toEqual(61.744693);
         });
          
         it('successfully _setLocation() update', function() {
-            expect(ActivityDBLocationController.activity.location.city.id).toEqual(1);
+            expect(ActivityDBLocationController.activity.location.city).toEqual(1);
         });
     });
 

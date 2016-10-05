@@ -1,4 +1,4 @@
-xdescribe('Controller: SearchController', function(){
+describe('Controller: SearchController', function(){
     var SearchController,
         generalInfo,
         ActivitiesManager,
@@ -41,7 +41,7 @@ xdescribe('Controller: SearchController', function(){
         //Define params for search be successfully ;
 
          $httpBackend
-              .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+              .when('GET', 'http://localhost:8000/api/activities/featured')
               .respond(readJSON('tests/mock/activities.json'));
          $httpBackend
               .when('GET', 'http://localhost:8000/api/activities/search/?city=1&page=1&q=sesiones+de+derecho')

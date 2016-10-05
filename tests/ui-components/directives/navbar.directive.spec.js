@@ -1,4 +1,4 @@
-xdescribe('Directive: truliiNavbar', function(){
+describe('Directive: truliiNavbar', function(){
     var $rootScope,
         $scope,
         $compile,
@@ -18,11 +18,11 @@ xdescribe('Directive: truliiNavbar', function(){
         });
 
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
-             .when('GET', '//localhost:8000/api/activities/info')
+             .when('GET', 'http://localhost:8000/api/activities/info')
              .respond(readJSON('tests/mock/generalinfo.json'));
 
         $httpBackend
@@ -40,10 +40,6 @@ xdescribe('Directive: truliiNavbar', function(){
 
     it('render navbar ', function(){
         expect(el.length).toBe(1);
-
-    })
-    it('should menu burguer is false ', function(){
-        expect($scope.showBurger).toBe(false);
 
     })
 });

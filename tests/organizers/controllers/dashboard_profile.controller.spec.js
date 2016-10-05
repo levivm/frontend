@@ -1,4 +1,4 @@
-xdescribe('Controller: OrganizerProfileCtrl', function(){
+describe('Controller: OrganizerProfileCtrl', function(){
     var OrganizerProfileCtrl,
         $scope = {};
 
@@ -22,7 +22,7 @@ xdescribe('Controller: OrganizerProfileCtrl', function(){
 
 
         $httpBackend
-            .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+            .when('GET', 'http://localhost:8000/api/activities/featured')
             .respond(readJSON('tests/mock/activities.json'));
         $httpBackend
             .when('GET', 'http://localhost:8000/api/locations/cities/')

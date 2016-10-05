@@ -1,4 +1,4 @@
-xdescribe('Controller: OrganizerLandingCtrl', function(){
+describe('Controller: OrganizerLandingCtrl', function(){
     var OrganizerLandingCtrl,
         generalInfo,
         ActivitiesManager,
@@ -32,7 +32,7 @@ xdescribe('Controller: OrganizerLandingCtrl', function(){
 
 
           $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
          $httpBackend
             .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')

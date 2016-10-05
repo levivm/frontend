@@ -1,4 +1,4 @@
-xdescribe('Directive: truliiSearchBar', function(){
+describe('Directive: truliiSearchBar', function(){
     var $rootScope,
         $scope,
         $compile,
@@ -19,7 +19,7 @@ xdescribe('Directive: truliiSearchBar', function(){
 
 
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
@@ -48,7 +48,7 @@ xdescribe('Directive: truliiSearchBar', function(){
                 ]
             }
             $scope.q='chef';
-            $scope.search();
+            $scope.searchBar();
         })
     });
 

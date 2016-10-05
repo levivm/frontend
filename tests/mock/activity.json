@@ -1,488 +1,515 @@
 {
-  "id": 4,
-  "title": "Sesiones de Derecho",
-  "short_description": "Eum eligendi autem maiores velit est maiores et.",
-  "sub_category": 4,
-  "sub_category_display": "Derecho",
-  "level": "A",
-  "level_display": "Avanzado",
-  "tags": [
-    "profesional",
-    "derecho"
-  ],
-  "category": {
-    "name": "Profesional",
-    "id": 1,
-    "color": "#FFC971",
-    "icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_default.png",
-    "icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_profesional_active.png",
-    "cover": "https://trulii-dev.s3.amazonaws.com/static/img/categories/cover/profesional.jpg"
-  },
-  "content": "Aut enim maxime est voluptatum velit ad esse. Magnam eius et placeat sapiente molestiae provident enim. Ex quia eum vel alias. Aspernatur iure necessitatibus eum exercitationem. Quasi provident quaerat maiores.",
-  "requirements": "Dolores aspernatur aut occaecati distinctio quis quo libero dolorem. Voluptatem nulla recusandae sed praesentium corrupti aut. Et nesciunt dolores sed impedit pariatur facere autem.",
-  "return_policy": "Fugiat quod aut pariatur fugiat in. Aut omnis quo et. Repellendus beatae sunt minima necessitatibus.",
-  "extra_info": "Dolorem dolore exercitationem laborum ratione. Voluptate quo sequi corrupti perspiciatis incidunt. Similique quo inventore magnam voluptas autem asperiores. Et autem veritatis eos.",
-  "audience": "In consequatur vitae est eius sequi fugiat possimus ipsam. Alias vel reiciendis nam sapiente pariatur non. Explicabo quae et fuga quia. Laudantium voluptatibus sit ratione quibusdam impedit reiciendis repellat. Facere rem et et et consequatur eum et.",
-  "goals": "Aperiam ea dolorum et ullam assumenda. Ratione inventore aut architecto occaecati laudantium occaecati vel non. Qui sequi ex distinctio ipsum sit. Laudantium deleniti consectetur aut rem reprehenderit.",
-  "methodology": "Expedita aliquid tempore rem tempora consequatur odit magni. Eius dolores atque sit asperiores. Quibusdam consequatur illum est error. Neque in beatae ipsa accusantium molestias.",
-  "location": {
-    "id": 1,
-    "city": 1,
-    "point": [
-      49.106637,
-      -6.1931745
-    ],
-    "address": "708 Kassie Glens\nMarielahaven, LA 75800-4172",
-    "organizer": null
-  },
-  "pictures": [
-    {
-      "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
-      "main_photo": false,
-      "id": 12
-    },
-    {
-      "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
-      "main_photo": false,
-      "id": 13
-    },
-    {
-      "photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
-      "main_photo": false,
-      "id": 14
-    }
-  ],
-  "youtube_video_url": "http://huels.org/",
-  "published": true,
-  "certification": false,
-  "last_date": 1487566800000,
-  "calendars": [
-    {
-      "id": 12,
-      "activity": 4,
-      "initial_date": 1457814763000,
-      "closing_sale": 1459110763000,
-      "number_of_sessions": 9,
-      "session_price": 211450,
-      "capacity": 14,
-      "sessions": [
-        {
-          "id": 47,
-          "date": 1487646389000,
-          "start_time": 1457097430000,
-          "end_time": 1457097430000
-        },
-        {
-          "id": 46,
-          "date": 1469245940000,
-          "start_time": 1457096216000,
-          "end_time": 1457096216000
-        },
-        {
-          "id": 45,
-          "date": 1461422287000,
-          "start_time": 1457085816000,
-          "end_time": 1457085816000
-        }
-      ],
-      "assistants": [
-        {
-          "id": 85,
-          "first_name": "Flonnie",
-          "last_name": "Nitzsche",
-          "full_name": "Flonnie Nitzsche",
-          "email": "plowe@yahoo.com",
-          "order": 43,
-          "token": null
-        },
-        {
-          "id": 81,
-          "first_name": "Lilianna",
-          "last_name": "Glover",
-          "full_name": "Lilianna Glover",
-          "email": "hbartoletti@yahoo.com",
-          "order": 40,
-          "token": null
-        }
-      ],
-      "is_weekend": true,
-      "duration": 0,
-      "is_free": true,
-      "available_capacity": 12
-    },
-    {
-      "id": 13,
-      "activity": 4,
-      "initial_date": 1457525917000,
-      "closing_sale": 1458821917000,
-      "number_of_sessions": 4,
-      "session_price": 576389,
-      "capacity": 19,
-      "sessions": [
-        {
-          "id": 51,
-          "date": 1462456966000,
-          "start_time": 1457109311000,
-          "end_time": 1457109311000
-        },
-        {
-          "id": 50,
-          "date": 1479931270000,
-          "start_time": 1457149623000,
-          "end_time": 1457149623000
-        },
-        {
-          "id": 49,
-          "date": 1477509473000,
-          "start_time": 1457152663000,
-          "end_time": 1457152663000
-        },
-        {
-          "id": 48,
-          "date": 1466664933000,
-          "start_time": 1457090573000,
-          "end_time": 1457090573000
-        }
-      ],
-      "assistants": [
-        {
-          "id": 92,
-          "first_name": "Zelma",
-          "last_name": "Schiller",
-          "full_name": "Zelma Schiller",
-          "email": "bert24@gmail.com",
-          "order": 46,
-          "token": null
-        },
-        {
-          "id": 91,
-          "first_name": "Garrison",
-          "last_name": "Ziemann",
-          "full_name": "Garrison Ziemann",
-          "email": "lum.walker@yahoo.com",
-          "order": 45,
-          "token": null
-        },
-        {
-          "id": 90,
-          "first_name": "Berdie",
-          "last_name": "Lemke",
-          "full_name": "Berdie Lemke",
-          "email": "jabari.towne@gmail.com",
-          "order": 45,
-          "token": null
-        }
-      ],
-      "is_weekend": true,
-      "duration": 0,
-      "is_free": false,
-      "available_capacity": 16
-    },
-    {
-      "id": 14,
-      "activity": 4,
-      "initial_date": 1457770279000,
-      "closing_sale": 1459066279000,
-      "number_of_sessions": 4,
-      "session_price": 730568,
-      "capacity": 13,
-      "sessions": [
-        {
-          "id": 56,
-          "date": 1485526220000,
-          "start_time": 1457125874000,
-          "end_time": 1457125874000
-        },
-        {
-          "id": 55,
-          "date": 1471451117000,
-          "start_time": 1457153276000,
-          "end_time": 1457153276000
-        },
-        {
-          "id": 54,
-          "date": 1485650577000,
-          "start_time": 1457076590000,
-          "end_time": 1457076590000
-        },
-        {
-          "id": 53,
-          "date": 1476399347000,
-          "start_time": 1457100560000,
-          "end_time": 1457100560000
-        },
-        {
-          "id": 52,
-          "date": 1464337054000,
-          "start_time": 1457110718000,
-          "end_time": 1457110718000
-        }
-      ],
-      "assistants": [
-        {
-          "id": 94,
-          "first_name": "Eryn",
-          "last_name": "Bergnaum",
-          "full_name": "Eryn Bergnaum",
-          "email": "burleigh12@hotmail.com",
-          "order": 48,
-          "token": null
-        }
-      ],
-      "is_weekend": true,
-      "duration": 0,
-      "is_free": false,
-      "available_capacity": 12
-    },
-    {
-      "id": 15,
-      "activity": 4,
-      "initial_date": 1458511233000,
-      "closing_sale": 1459807233000,
-      "number_of_sessions": 9,
-      "session_price": 729655,
-      "capacity": 4,
-      "sessions": [
-        {
-          "id": 61,
-          "date": 1473267449000,
-          "start_time": 1457081316000,
-          "end_time": 1457081316000
-        },
-        {
-          "id": 60,
-          "date": 1480971293000,
-          "start_time": 1457079255000,
-          "end_time": 1457079255000
-        },
-        {
-          "id": 59,
-          "date": 1481212489000,
-          "start_time": 1457117033000,
-          "end_time": 1457117033000
-        },
-        {
-          "id": 58,
-          "date": 1461360595000,
-          "start_time": 1457138143000,
-          "end_time": 1457138143000
-        },
-        {
-          "id": 57,
-          "date": 1485546118000,
-          "start_time": 1457074788000,
-          "end_time": 1457074788000
-        }
-      ],
-      "assistants": [
-        {
-          "id": 105,
-          "first_name": "Deloris",
-          "last_name": "Schuppe",
-          "full_name": "Deloris Schuppe",
-          "email": "hjones@yahoo.com",
-          "order": 56,
-          "token": null
-        },
-        {
-          "id": 104,
-          "first_name": "Niki",
-          "last_name": "Gorczany",
-          "full_name": "Niki Gorczany",
-          "email": "winnie88@pouros.com",
-          "order": 55,
-          "token": null
-        },
-        {
-          "id": 102,
-          "first_name": "Hermine",
-          "last_name": "Ledner",
-          "full_name": "Hermine Ledner",
-          "email": "lconn@hotmail.com",
-          "order": 53,
-          "token": null
-        }
-      ],
-      "is_weekend": false,
-      "duration": 0,
-      "is_free": false,
-      "available_capacity": 1
-    }
-  ],
-  "closest_calendar": {
-    "id": 13,
-    "activity": 4,
-    "initial_date": 1457525917000,
-    "closing_sale": 1458821917000,
-    "number_of_sessions": 4,
-    "session_price": 576389,
-    "capacity": 19,
-    "sessions": [
-      {
-        "id": 51,
-        "date": 1462456966000,
-        "start_time": 1457109311000,
-        "end_time": 1457109311000
-      },
-      {
-        "id": 50,
-        "date": 1479931270000,
-        "start_time": 1457149623000,
-        "end_time": 1457149623000
-      },
-      {
-        "id": 49,
-        "date": 1477509473000,
-        "start_time": 1457152663000,
-        "end_time": 1457152663000
-      },
-      {
-        "id": 48,
-        "date": 1466664933000,
-        "start_time": 1457090573000,
-        "end_time": 1457090573000
-      }
-    ],
-    "assistants": [
-      {
-        "id": 92,
-        "first_name": "Zelma",
-        "last_name": "Schiller",
-        "full_name": "Zelma Schiller",
-        "email": "bert24@gmail.com",
-        "order": 46,
-        "token": null
-      },
-      {
-        "id": 91,
-        "first_name": "Garrison",
-        "last_name": "Ziemann",
-        "full_name": "Garrison Ziemann",
-        "email": "lum.walker@yahoo.com",
-        "order": 45,
-        "token": null
-      },
-      {
-        "id": 90,
-        "first_name": "Berdie",
-        "last_name": "Lemke",
-        "full_name": "Berdie Lemke",
-        "email": "jabari.towne@gmail.com",
-        "order": 45,
-        "token": null
-      }
-    ],
-    "is_weekend": true,
-    "duration": 0,
-    "is_free": false,
-    "available_capacity": 16
-  },
-  "required_steps": {
-    "general": [
-      "title",
-      "short_description",
-      "sub_category",
-      "level"
-    ],
-    "location": [
-      "location"
-    ]
-  },
-  "steps": {
-    "calendars": [
-      "calendars"
-    ],
-    "general": [
-      "title",
-      "short_description",
-      "sub_category",
-      "level"
-    ],
-    "instructors": [
-      "instructors"
-    ],
-    "gallery": [
-      "pictures"
-    ],
-    "return_policy": [
-      "return_policy"
-    ],
-    "detail": [
-      "content",
-      "audience",
-      "goals",
-      "methodology",
-      "requirements",
-      "extra_info"
-    ],
-    "location": [
-      "location"
-    ]
-  },
-  "organizer": {
-    "id": 1,
-    "user": {
-      "first_name": "Hetty",
-      "last_name": "Hahn",
-      "email": "halvorson.magan@yahoo.com"
-    },
-    "name": "Lehner Ltd",
-    "bio": "syndicate front-end relationships",
-    "headline": "Multi-channeled leadingedge middleware",
-    "website": "http://hayeshessel.com/",
-    "youtube_video_url": "1-863-662-2820x72641",
-    "telephone": "1-029-630-8325x67831",
-    "photo": null,
-    "user_type": "O",
-    "created_at": 1457056573000,
-    "instructors": [
-      {
-        "full_name": "Letty Feil",
-        "id": 4,
-        "bio": "Doloribus voluptates sequi odio optio ratione velit ea. Nobis aut nam eaque in eos. Voluptate aspernatur sed nam totam dicta quas autem. Mollitia rerum velit aspernatur est expedita.",
-        "organizer": 1,
-        "photo": null,
-        "website": "http://johnston.com/"
-      },
-      {
-        "full_name": "Ingram Johnson",
-        "id": 3,
-        "bio": "Ut voluptatum nihil deleniti asperiores et. Officiis sunt earum iste ullam. Quisquam nam voluptas consequatur tenetur in laudantium. Natus minus assumenda aspernatur iure.",
-        "organizer": 1,
-        "photo": null,
-        "website": "http://lynch.info/"
-      },
-      {
-        "full_name": "Simmie Rau",
-        "id": 2,
-        "bio": "Hic praesentium et voluptatem quo. Voluptas distinctio quia eum dolorem reiciendis vitae sint. Laudantium voluptatem quas laborum praesentium hic.",
-        "organizer": 1,
-        "photo": null,
-        "website": "http://www.schmeler.com/"
-      },
-      {
-        "full_name": "Mr. Guthrie Kunde DVM",
-        "id": 1,
-        "bio": "Magnam recusandae minus consequatur omnis voluptate in deleniti. Minus optio provident reiciendis vitae eaque mollitia aut asperiores. Qui tempora aut atque impedit.",
-        "organizer": 1,
-        "photo": null,
-        "website": "http://bogisich.net/"
-      }
-    ],
-    "locations": [],
-    "rating": 0
-  },
-  "instructors": [
-    {
-      "full_name": "Simmie Rau",
-      "id": 2,
-      "bio": "Hic praesentium et voluptatem quo. Voluptas distinctio quia eum dolorem reiciendis vitae sint. Laudantium voluptatem quas laborum praesentium hic.",
-      "organizer": 1,
-      "photo": null,
-      "website": "http://www.schmeler.com/"
-    }
-  ],
-  "score": 94,
-  "rating": 0,
-  "reviews": []
+	"id": 4,
+	"title": "Curso de Italiana",
+	"short_description": "Iusto distinctio illum qui.",
+	"sub_category": 1,
+	"sub_category_display": "Italiana",
+	"level": "N",
+	"level_display": "No Aplica",
+	"tags": ["italiana", "gastronomía"],
+	"category": {
+		"name": "Gastronomía",
+		"id": 1,
+		"color": "#E5CB52",
+		"cover": "static/img/categories/cover/gastronomi%CC%81a.jpg",
+		"icon_default": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_gastronomía_default.png",
+		"icon_active": "https://trulii-dev.s3.amazonaws.com/static/img/icon_category_gastronomía_active.png",
+		"slug": "gastronomia",
+		"description": "",
+		"headline": "",
+		"cover_photo": null,
+		"content_photo": null
+	},
+	"content": "Repellat recusandae debitis dolor deleniti. Doloribus ducimus possimus sit officiis facilis est voluptas. Iure rerum qui quia in.",
+	"requirements": "Quis non quia provident quibusdam voluptatum. Fugiat ex ut quia sed reprehenderit occaecati. Sit dolorem beatae voluptatibus provident beatae dolor.",
+	"post_enroll_message": "",
+	"return_policy": "Vel quia quia quisquam distinctio unde tenetur recusandae nostrum. Officiis non suscipit sed temporibus non quidem. Delectus sunt sit quibusdam quia autem libero vel.",
+	"extra_info": "Libero cumque minima dolorem provident. Non omnis pariatur dolores sit similique. Eum nemo voluptatem distinctio qui laudantium animi accusantium.",
+	"audience": "Facere iure itaque minima sint et autem. Omnis consectetur itaque qui possimus rerum. Maxime eveniet qui cumque tempore. Eaque quod tempore tempore eius illo.",
+	"goals": "Corporis dolore amet aspernatur dolores. Sint suscipit veritatis quidem ad voluptas natus qui. Magnam pariatur exercitationem consequatur.",
+	"methodology": "Porro voluptatem et vitae praesentium est. Dolores laborum dolorem atque ut libero totam. Velit illum voluptatem ex sunt. Voluptates at non sint voluptatum at nesciunt.",
+	"location": {
+		"id": 1,
+		"city": 1,
+		"point": [61.744693, -35.858656],
+		"address": "97332 Kalen Hills Suite 439\nWest Maximilianomouth, WA 61076-6957",
+		"organizer": null
+	},
+	"pictures": [{
+		"photo": "https://trulii-dev.s3.amazonaws.com/media/activities_stock/Gastronom%C3%ADa/Italiana/Italiana%2005.jpg",
+		"main_photo": true,
+		"thumbnail": "https://trulii-dev.s3.amazonaws.com/media/activities/thumbnail_blue.jpg",
+		"id": 17
+	}, {
+		"photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+		"main_photo": false,
+		"thumbnail": "https://trulii-dev.s3.amazonaws.com/media/activities/thumbnail_blue.jpg",
+		"id": 108
+	}, {
+		"photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+		"main_photo": false,
+		"thumbnail": "https://trulii-dev.s3.amazonaws.com/media/activities/thumbnail_blue.jpg",
+		"id": 109
+	}, {
+		"photo": "https://trulii-dev.s3.amazonaws.com/media/activities/blue.jpg",
+		"main_photo": false,
+		"thumbnail": "https://trulii-dev.s3.amazonaws.com/media/activities/thumbnail_blue.jpg",
+		"id": 110
+	}],
+	"youtube_video_url": "http://farrell.com/",
+	"published": true,
+	"certification": false,
+	"calendars": [{
+		"id": 65,
+		"activity": 17,
+		"initial_date": 1476594000000.0,
+		"enroll_open": false,
+		"session_price": 925187.0,
+		"assistants": [{
+			"id": 629,
+			"first_name": "Henery",
+			"last_name": "Runte",
+			"full_name": "Henery Runte",
+			"email": "averie91@klein.net",
+			"order": 252,
+			"token": "GODEJ"
+		}, {
+			"id": 628,
+			"first_name": "Ellar",
+			"last_name": "Klein",
+			"full_name": "Ellar Klein",
+			"email": "tollie.hayes@yahoo.com",
+			"order": 252,
+			"token": "VDYSP"
+		}, {
+			"id": 627,
+			"first_name": "Rance",
+			"last_name": "Mosciski",
+			"full_name": "Rance Mosciski",
+			"email": "marion.davis@ruecker.biz",
+			"order": 251,
+			"token": "GTVPD"
+		}, {
+			"id": 626,
+			"first_name": "Alisha",
+			"last_name": "Emmerich",
+			"full_name": "Alisha Emmerich",
+			"email": "waldo95@bradtke.com",
+			"order": 251,
+			"token": "VKJSA"
+		}, {
+			"id": 625,
+			"first_name": "Delta",
+			"last_name": "Bashirian",
+			"full_name": "Delta Bashirian",
+			"email": "precious.dietrich@bins.com",
+			"order": 251,
+			"token": "KCIYR"
+		}, {
+			"id": 624,
+			"first_name": "Eloise",
+			"last_name": "Bernier",
+			"full_name": "Eloise Bernier",
+			"email": "mitchell.may@kautzer.info",
+			"order": 251,
+			"token": "ENKTM"
+		}, {
+			"id": 622,
+			"first_name": "Armani",
+			"last_name": "Kshlerin",
+			"full_name": "Armani Kshlerin",
+			"email": "kenneth41@yahoo.com",
+			"order": 249,
+			"token": "DSOPQ"
+		}, {
+			"id": 621,
+			"first_name": "Ashly",
+			"last_name": "Berge",
+			"full_name": "Ashly Berge",
+			"email": "cristal71@satterfield.com",
+			"order": 248,
+			"token": "DFQEX"
+		}, {
+			"id": 620,
+			"first_name": "Ivana",
+			"last_name": "Ratke",
+			"full_name": "Ivana Ratke",
+			"email": "rschaden@prosacco.biz",
+			"order": 248,
+			"token": "SPQBC"
+		}, {
+			"id": 619,
+			"first_name": "Cornelia",
+			"last_name": "Collins",
+			"full_name": "Cornelia Collins",
+			"email": "darnell80@hotmail.com",
+			"order": 248,
+			"token": "WUXLM"
+		}, {
+			"id": 623,
+			"first_name": "Cinthia",
+			"last_name": "Rogahn",
+			"full_name": "Cinthia Rogahn",
+			"email": "oda.kerluke@stoltenbergondricka.net",
+			"order": 250,
+			"token": "FRJIN"
+		}],
+		"is_weekend": true,
+		"is_free": false,
+		"available_capacity": -1,
+		"note": "",
+		"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+		"packages": []
+	}, {
+		"id": 67,
+		"activity": 17,
+		"initial_date": 1476162000000.0,
+		"enroll_open": false,
+		"session_price": 893397.0,
+		"assistants": [{
+			"id": 644,
+			"first_name": "Leafy",
+			"last_name": "Kassulke",
+			"full_name": "Leafy Kassulke",
+			"email": "jobe39@yahoo.com",
+			"order": 258,
+			"token": "HWTDP"
+		}, {
+			"id": 643,
+			"first_name": "Montana",
+			"last_name": "Fisher",
+			"full_name": "Montana Fisher",
+			"email": "alton79@schmitt.net",
+			"order": 258,
+			"token": "PSTRN"
+		}, {
+			"id": 642,
+			"first_name": "Elia",
+			"last_name": "Osinski",
+			"full_name": "Elia Osinski",
+			"email": "gottlieb.mont@hotmail.com",
+			"order": 258,
+			"token": "ENPKS"
+		}, {
+			"id": 641,
+			"first_name": "Veola",
+			"last_name": "Williamson",
+			"full_name": "Veola Williamson",
+			"email": "vkihn@gmail.com",
+			"order": 257,
+			"token": "HFDPI"
+		}, {
+			"id": 640,
+			"first_name": "Keyla",
+			"last_name": "O'Conner",
+			"full_name": "Keyla O'Conner",
+			"email": "miller.ximena@yahoo.com",
+			"order": 257,
+			"token": "VSJQL"
+		}, {
+			"id": 639,
+			"first_name": "Ahmad",
+			"last_name": "Rau",
+			"full_name": "Ahmad Rau",
+			"email": "wiegand.erlene@marquardt.net",
+			"order": 257,
+			"token": "VJZLO"
+		}, {
+			"id": 638,
+			"first_name": "Robin",
+			"last_name": "Kuhic",
+			"full_name": "Robin Kuhic",
+			"email": "uwilliamson@larson.com",
+			"order": 256,
+			"token": "EVKUZ"
+		}, {
+			"id": 637,
+			"first_name": "Ciarra",
+			"last_name": "Barrows",
+			"full_name": "Ciarra Barrows",
+			"email": "abogan@rau.com",
+			"order": 256,
+			"token": "FSXCM"
+		}],
+		"is_weekend": false,
+		"is_free": false,
+		"available_capacity": 3,
+		"note": "",
+		"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+		"packages": []
+	}, {
+		"id": 68,
+		"activity": 17,
+		"initial_date": 1477026000000.0,
+		"enroll_open": true,
+		"session_price": 124658.0,
+		"assistants": [{
+			"id": 649,
+			"first_name": "Antoinette",
+			"last_name": "Marks",
+			"full_name": "Antoinette Marks",
+			"email": "schowalter.sariah@gmail.com",
+			"order": 261,
+			"token": "ZAHXQ"
+		}, {
+			"id": 648,
+			"first_name": "Pearle",
+			"last_name": "Senger",
+			"full_name": "Pearle Senger",
+			"email": "fernanda58@hayes.org",
+			"order": 261,
+			"token": "SGIEX"
+		}, {
+			"id": 647,
+			"first_name": "Jared",
+			"last_name": "Schmitt",
+			"full_name": "Jared Schmitt",
+			"email": "reffertz@durgan.com",
+			"order": 261,
+			"token": "LOTCM"
+		}, {
+			"id": 646,
+			"first_name": "Vonetta",
+			"last_name": "Langosh",
+			"full_name": "Vonetta Langosh",
+			"email": "malaki84@dibbertkozey.biz",
+			"order": 260,
+			"token": "CQOFP"
+		}, {
+			"id": 645,
+			"first_name": "Reynolds",
+			"last_name": "Wintheiser",
+			"full_name": "Reynolds Wintheiser",
+			"email": "ples62@tillmanpredovic.com",
+			"order": 259,
+			"token": "ZSAGI"
+		}, {
+			"id": 650,
+			"first_name": "Jory",
+			"last_name": "Block",
+			"full_name": "Jory Block",
+			"email": "olan69@skiles.com",
+			"order": 262,
+			"token": "AVBSE"
+		}],
+		"is_weekend": true,
+		"is_free": true,
+		"available_capacity": 8,
+		"note": "",
+		"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+		"packages": []
+	}, {
+		"id": 66,
+		"activity": 17,
+		"initial_date": 1475125200000.0,
+		"enroll_open": true,
+		"session_price": 329647.0,
+		"assistants": [{
+			"id": 636,
+			"first_name": "Elisa",
+			"last_name": "Green",
+			"full_name": "Elisa Green",
+			"email": "bernetta.williamson@mayert.com",
+			"order": 255,
+			"token": "CWROA"
+		}, {
+			"id": 635,
+			"first_name": "Gisele",
+			"last_name": "Kuvalis",
+			"full_name": "Gisele Kuvalis",
+			"email": "zulauf.collette@yahoo.com",
+			"order": 255,
+			"token": "WOJSR"
+		}, {
+			"id": 634,
+			"first_name": "Kris",
+			"last_name": "Gutkowski",
+			"full_name": "Kris Gutkowski",
+			"email": "kohler.jerica@konopelski.biz",
+			"order": 255,
+			"token": "EQRVM"
+		}, {
+			"id": 633,
+			"first_name": "Ida",
+			"last_name": "O'Hara",
+			"full_name": "Ida O'Hara",
+			"email": "dellia01@hotmail.com",
+			"order": 254,
+			"token": "VCUZW"
+		}, {
+			"id": 632,
+			"first_name": "Magdalen",
+			"last_name": "Nikolaus",
+			"full_name": "Magdalen Nikolaus",
+			"email": "elwyn57@gmail.com",
+			"order": 254,
+			"token": "FJNBR"
+		}, {
+			"id": 631,
+			"first_name": "Christina",
+			"last_name": "Stiedemann",
+			"full_name": "Christina Stiedemann",
+			"email": "tlittel@lang.com",
+			"order": 254,
+			"token": "WFPBC"
+		}, {
+			"id": 630,
+			"first_name": "Arnie",
+			"last_name": "Thiel",
+			"full_name": "Arnie Thiel",
+			"email": "dubuque.pricilla@yahoo.com",
+			"order": 253,
+			"token": "FJPGT"
+		}],
+		"is_weekend": true,
+		"is_free": false,
+		"available_capacity": 1,
+		"note": "",
+		"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+		"packages": []
+	}],
+	"closest_calendar": {
+		"id": 68,
+		"activity": 17,
+		"initial_date": 1477026000000.0,
+		"enroll_open": true,
+		"session_price": 124658.0,
+		"assistants": [{
+			"id": 649,
+			"first_name": "Antoinette",
+			"last_name": "Marks",
+			"full_name": "Antoinette Marks",
+			"email": "schowalter.sariah@gmail.com",
+			"order": 261,
+			"token": "ZAHXQ"
+		}, {
+			"id": 648,
+			"first_name": "Pearle",
+			"last_name": "Senger",
+			"full_name": "Pearle Senger",
+			"email": "fernanda58@hayes.org",
+			"order": 261,
+			"token": "SGIEX"
+		}, {
+			"id": 647,
+			"first_name": "Jared",
+			"last_name": "Schmitt",
+			"full_name": "Jared Schmitt",
+			"email": "reffertz@durgan.com",
+			"order": 261,
+			"token": "LOTCM"
+		}, {
+			"id": 646,
+			"first_name": "Vonetta",
+			"last_name": "Langosh",
+			"full_name": "Vonetta Langosh",
+			"email": "malaki84@dibbertkozey.biz",
+			"order": 260,
+			"token": "CQOFP"
+		}, {
+			"id": 645,
+			"first_name": "Reynolds",
+			"last_name": "Wintheiser",
+			"full_name": "Reynolds Wintheiser",
+			"email": "ples62@tillmanpredovic.com",
+			"order": 259,
+			"token": "ZSAGI"
+		}, {
+			"id": 650,
+			"first_name": "Jory",
+			"last_name": "Block",
+			"full_name": "Jory Block",
+			"email": "olan69@skiles.com",
+			"order": 262,
+			"token": "AVBSE"
+		}],
+		"is_weekend": true,
+		"is_free": true,
+		"available_capacity": 8,
+		"note": "",
+		"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+		"packages": []
+	},
+	"required_steps": {
+		"location": ["location"],
+		"general": ["title", "short_description", "sub_category", "level"],
+		"gallery": ["pictures"],
+		"calendars": ["calendars"]
+	},
+	"steps": {
+		"location": ["location"],
+		"detail": ["content", "audience", "goals", "methodology", "requirements", "extra_info"],
+		"return_policy": ["return_policy"],
+		"general": ["title", "short_description", "sub_category", "level"],
+		"instructors": ["instructors"],
+		"gallery": ["pictures"],
+		"calendars": ["calendars"]
+	},
+	"organizer": {
+		"id": 2,
+		"user": {
+			"first_name": "Williams",
+			"last_name": "Bogisich",
+			"email": "joleen89@daugherty.biz"
+		},
+		"name": "Kiehn Inc",
+		"bio": "monetize sticky e-business",
+		"headline": "Integrated background task-force",
+		"website": "http://huels.com/",
+		"youtube_video_url": "http://www.casper.com/",
+		"telephone": "(842)505-4937x067",
+		"photo": null,
+		"user_type": "O",
+		"created_at": 1475101633000.0,
+		"instructors": [{
+			"full_name": "Adina Oberbrunner",
+			"id": 8,
+			"bio": "Omnis officiis et repellendus tempore earum. Repellat provident et non error ea officia. Dolorem fugiat tempore officia atque. Non aut quia id quas illum quidem.",
+			"organizer": 2,
+			"website": "http://armstrong.net/"
+		}, {
+			"full_name": "Odell Wintheiser",
+			"id": 7,
+			"bio": "Sed deserunt et consequatur distinctio veniam. Tempora sunt adipisci non similique officia. Omnis et quis molestiae placeat consequuntur voluptatem aperiam. Ullam ipsa corporis eligendi iusto.",
+			"organizer": 2,
+			"website": "http://www.dare.com/"
+		}, {
+			"full_name": "Bertie Deckow",
+			"id": 6,
+			"bio": "Illo ratione et quia eum neque. Voluptas sunt illum est fugiat id aliquid. Ex tenetur ut repellat nobis pariatur a eligendi. Nihil quaerat temporibus voluptatem illo qui doloribus.",
+			"organizer": 2,
+			"website": "http://mosciski.com/"
+		}, {
+			"full_name": "Anthony Wilderman",
+			"id": 5,
+			"bio": "Sint et amet velit adipisci excepturi qui. Aut unde iure omnis quam. Non et at adipisci dignissimos eaque sed qui.",
+			"organizer": 2,
+			"website": "http://www.hodkiewicz.biz/"
+		}],
+		"locations": [{
+			"id": 4,
+			"city": 1,
+			"point": [4.5980478, -74.0760867],
+			"address": "Direccion exacta",
+			"organizer": null
+		}],
+		"rating": 0.16,
+		"verified_email": true,
+		"type": "normal",
+		"current_location": null
+	},
+	"instructors": [{
+		"full_name": "Adina Oberbrunner",
+		"id": 8,
+		"bio": "Omnis officiis et repellendus tempore earum. Repellat provident et non error ea officia. Dolorem fugiat tempore officia atque. Non aut quia id quas illum quidem.",
+		"organizer": 2,
+		"website": "http://armstrong.net/"
+	}],
+	"score": 45.0,
+	"rating": 2.5,
+	"wish_list": false,
+	"reviews": [],
+	"wishlist_count": 0,
+	"is_open": false,
+	"is_open_display": "Fijo"
 }

@@ -1,4 +1,4 @@
-xdescribe('Controller: ActivityCalendarController', function(){
+describe('Controller: ActivityCalendarController', function(){
     var ActivityCalendarController,
         ActivitiesManager,
         rootScope,
@@ -29,7 +29,7 @@ xdescribe('Controller: ActivityCalendarController', function(){
         */
         $scope =  _$rootScope_;
         $httpBackend
-             .when('GET', 'http://localhost:8000/api/activities/search/?city=1&o=score&page_size=8')
+             .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
 
         $httpBackend
@@ -49,7 +49,7 @@ xdescribe('Controller: ActivityCalendarController', function(){
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/activities/4/calendars')
-            .respond(readJSON('tests/mock/calendars.json'));
+            .respond(readJSON('tests/mock/calendars_close.json'));
 
         $httpBackend
             .when('GET', 'http://localhost:8000/api/organizers/1/activities?page=1&page_size=12&status=open')
@@ -79,7 +79,12 @@ xdescribe('Controller: ActivityCalendarController', function(){
 
 
 
-
+        ActivitiesManager.loadGeneralInfo()
+              .then(function(data){
+                  presaveInfo=data;
+              }, function(response){
+                  console.log(response);
+              })
        
         currentUser = readJSON('tests/mock/currentUser.json');
         //End calls
@@ -89,6 +94,7 @@ xdescribe('Controller: ActivityCalendarController', function(){
             'activity': activity,
             'organizer': organizer,
             'calendar': calendar,
+            'presaveInfo':presaveInfo,
             '$scope': $scope});
 
 
@@ -122,8 +128,8 @@ xdescribe('Controller: ActivityCalendarController', function(){
             ActivityCalendarController.save_calendar();
             $httpBackend
                  .when('POST', 'http://localhost:8000/api/activities/4/calendars')
-                 .respond(readJSON('tests/mock/calendar_sessions.json'));
-            $scope.calendar.calendar = readJSON('tests/mock/calendar_sessions.json');
+                 .respond(readJSON('tests/mock/calendar_close.json'));
+            $scope.calendar.calendar = readJSON('tests/mock/calendar_close.json');
             $httpBackend.flush();
             expect(ActivityCalendarController.isSaving).toBe(false);
          }));
@@ -143,7 +149,7 @@ xdescribe('Controller: ActivityCalendarController', function(){
             $httpBackend
                  .when('POST', 'http://localhost:8000/api/activities/4/calendars')
                  .respond(400, {"session_price":["El precio no puede ser menor de 30000"]});
-            $scope.calendar.calendar = readJSON('tests/mock/calendar_sessions.json');
+            $scope.calendar.calendar = readJSON('tests/mock/calendar_close.json');
             $httpBackend.flush();
             expect(ActivityCalendarController.isSaving).toBe(false);
          }));

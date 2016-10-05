@@ -189,7 +189,8 @@
                   state: 'activities-detail',
                   params: {
                       activity_id: vm.activity.id,
-                      activity_title: vm.activity.title
+                      activity_title: vm.activity.title,
+                      category_slug: vm.activity.category_slug
                   }
               }
           };
@@ -353,8 +354,8 @@
             }
             vm.map = LocationManager.getMap(activity.location, false);
             vm.marker = LocationManager.getMarker(activity.location);
-           
-           
+
+
         }
 
         function _setCurrentState(){
@@ -402,7 +403,7 @@
                 FACEBOOK_API_KEY: serverConf.FACEBOOK_APP_KEY,
                 FACEBOOK_SHARE_TYPE: "feed",
                 FACEBOOK_SHARE_CAPTION: "Trulii.com | ¡Aprende lo que quieras en tu ciudad!",
-                FACEBOOK_SHARE_TEXT: 'Comparte esto con tus amigos o menciónalos con @ "' + vm.activity.title + ' - ' + vm.activity.short_description + '"',
+                FACEBOOK_SHARE_TEXT: vm.activity.title + ' - ' + vm.activity.short_description + '"',
                 FACEBOOK_SHARE_MEDIA: vm.activity.main_photo,
                 FACEBOOK_SHARE_DESCRIPTION: vm.activity.short_description,
                 FACEBOOK_REDIRECT_URI: current_url,
@@ -492,7 +493,7 @@
                 REASON_COPY_REFUND: "Te devolvemos tu dinero en caso de no realizarse la actividad.",
                 REASON_SECURE: "Pago Seguro",
                 REASON_COPY_SECURE: "Los datos de tu pago están encriptados y seguros con nosotros.",
-                EMAIL_MODAL_HEADER: "Compartir la actividad correo electrónico",
+                EMAIL_MODAL_HEADER: "CUÉNTALE A UN AMIGO SOBRE ESTA ACTIVIDAD POR CORREO ELECTRÓNICO",
                 EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
                 EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
                 EMAIL_MODAL_MESSAGE_LABEL: "Escribe un mensaje:",
@@ -578,7 +579,7 @@
         }
 
         function _setOrganizerRating(){
-            vm.organizerRating = organizer.rating.toString().replace(',', '.');
+            vm.organizerRating = vm.organizer.rating.toString().replace(',', '.');
         }
 
         function _activate(){
@@ -613,7 +614,6 @@
             _updateViewCount();
             _setOrganizerRating();
             vm.showLevel = vm.activity.level === "N" ? false:true;
-            console.log(vm.showLevel);
             //Function for angularSeo
             $scope.htmlReady();
         }

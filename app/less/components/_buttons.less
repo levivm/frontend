@@ -5,11 +5,11 @@
     color: white !important;
     border-color: transparent;
     background-color: @brand-primary !important;
-    
+
     &:hover{
         border-color: @brand-secondary;
     }
-    
+
     &:active{
         border-color: @brand-secondary !important;
     }
@@ -45,6 +45,9 @@
         font-size: 1em;
         padding: 1.125em 4em;
         border-radius: 3em;
+        @media(max-width: 1280px){
+          padding: 1.125em 3em;
+        }
     }
     &-md{
         font-size: 0.9em;
@@ -72,25 +75,25 @@
             background-color: @btn-darker-border;
         }
     }
-    
+
     &-gray-light{
         background-color: @gray-light-brand;
     }
-    
+
     &-gray-lighter{
         background-color: @gray-lighter;
     }
     &-gray-dark{
         background-color: @gray-dark-brand;
-        color: white !important; 
+        color: white !important;
     }
     &-blue-dark{
         background-color: @blue-dark;
-        color: white !important; 
+        color: white !important;
     }
     &-blue{
         background-color: @brand-warning;
-        color: white !important; 
+        color: white !important;
     }
     &-info{
         background-color: @brand-info;

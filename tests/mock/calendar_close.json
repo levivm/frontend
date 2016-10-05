@@ -1,0 +1,14 @@
+{
+	"id": 67,
+	"activity": 4,
+	"initial_date": 1476162000000.0,
+	"enroll_open": false,
+	"session_price": 893397.0,
+	"assistants": [],
+	"is_weekend": false,
+	"is_free": false,
+	"available_capacity": 3,
+	"note": "",
+	"schedules": "<p><strong>Lunes - Viernes</strong></p><p>6:00pm - 9:00pm</p>",
+	"packages": []
+}

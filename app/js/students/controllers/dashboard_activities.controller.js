@@ -51,7 +51,8 @@
             TYPE_PAST: 'past',
             TYPE_CURRENT: 'current',
             current_cards: [],
-            future_cards: []
+            future_cards: [],
+            titleSize: 10
         });
 
         _activate();
@@ -109,10 +110,10 @@
         function _mapOrders(activities, orders){
             angular.forEach(activities, mapOrders);
             return activities;
-        
+
             function mapOrders(activity){
                 activity.orders = orders.filter(filterOrders);
-                
+
                 function filterOrders(order){
                     if(order.activity.id === activity.id){
                         return order;
@@ -135,7 +136,7 @@
             return activity;
         }
         function _(params) {
-            
+
         }
         function _setStrings() {
             if (!vm.strings) {
@@ -148,7 +149,7 @@
                 SECTION_ACTIVITIES: "Mis Actividades",
                 LABEL_EMPTY_ACTIVITIES: "En este momento no estás cursando ninguna actividad. ¿Qué esperas para aprender algo nuevo? ¡Anímate, pues!",
                 LABEL_EMPTY_CURRENT_ACTIVITIES: "No tienes ninguna actividad próxima a realizar. ¿Qué estás esperando? ¡Venga, pues!",
-                LABEL_EMPTY_LAST_ACTIVITIES:"Por los momentos no tienes ninguna actividad para evaluar. ¿Qué tal si pruebas buscando algo? Quizá encuentres algo interesante.", 
+                LABEL_EMPTY_LAST_ACTIVITIES:"Por los momentos no tienes ninguna actividad para evaluar. ¿Qué tal si pruebas buscando algo? Quizá encuentres algo interesante.",
                 COPY_EMPTY_ACTIVITIES: "Parece ser el momento perfecto para que descubra una nueva pasión,"
                     + " aprenda un nuevo pasatiempo o mejore su currículo",
                 TAB_NEXT: "Actividades / Próximas",
@@ -177,21 +178,21 @@
             vm.current_activities = currentActivities.results;
 
         }
-        
+
         function _mapTemplatesCurrent(){
             for(var i = 0; i < vm.current_activities.length; i++){
                 vm.current_activities[i].template = "partials/activities/dynamic_layout_item.html";
             }
             vm.current_cards = vm.current_activities;
-            
+
         }
-        
+
         function _mapTemplatesFuture(){
             for(var i = 0; i < vm.future_activities.length; i++){
                 vm.future_activities[i].template = "partials/activities/dynamic_layout_item.html";
             }
             vm.future_cards = vm.future_activities;
-            
+
         }
 
         function _activate() {
