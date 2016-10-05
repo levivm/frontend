@@ -1,4 +1,4 @@
-xdescribe('Controller: ActivityDBDetailController', function(){
+describe('Controller: ActivityDBDetailController', function(){
     var ActivityDBDetailController,
         ActivitiesManager,
         rootScope,

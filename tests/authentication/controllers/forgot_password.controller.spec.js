@@ -1,4 +1,4 @@
-xdescribe('Controller: ForgotPasswordCtrl', function(){
+describe('Controller: ForgotPasswordCtrl', function(){
     var ForgotPasswordCtrl,
         $scope = {};
 

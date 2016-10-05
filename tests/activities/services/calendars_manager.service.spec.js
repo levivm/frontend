@@ -1,4 +1,4 @@
-xdescribe('Factory: CalendarsManager', function(){
+describe('Factory: CalendarsManager', function(){
     var service, httpBackend, topics;
     var rootScope;
     beforeEach(function(){

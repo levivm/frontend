@@ -1,4 +1,4 @@
-xdescribe('Controller: SearchController', function(){
+describe('Controller: SearchController', function(){
     var SearchController,
         generalInfo,
         ActivitiesManager,

@@ -1,4 +1,4 @@
-xdescribe('Controller: StudentAccountCtrl', function(){
+describe('Controller: StudentAccountCtrl', function(){
     var StudentAccountCtrl,
         $scope = {};
 

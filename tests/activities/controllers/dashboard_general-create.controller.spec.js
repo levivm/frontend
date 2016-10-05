@@ -1,4 +1,4 @@
-xdescribe('Controller: ActivityGeneralController', function(){
+describe('Controller: ActivityGeneralController', function(){
     var ActivityGeneralController,
         ActivitiesManager,
         rootScope,

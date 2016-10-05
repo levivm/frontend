@@ -1,4 +1,4 @@
-xdescribe('Controller: OrganizerProfileCtrl', function(){
+describe('Controller: OrganizerProfileCtrl', function(){
     var OrganizerProfileCtrl,
         $scope = {};
 
