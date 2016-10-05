@@ -14450,7 +14450,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   transition: all 0.25s;
 }
 .navbar__left-wrapper .buttons-login {
-  line-height: 2.5em;
+  line-height: 2.4em;
 }
 .navbar__left-wrapper .buttons-login > a {
   color: #767676;
