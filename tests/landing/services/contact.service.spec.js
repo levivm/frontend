@@ -1,4 +1,4 @@
-xdescribe('Factory: Contact', function(){
+describe('Factory: Contact', function(){
     var service, httpBackend, topics;
     var rootScope;
     beforeEach(function(){

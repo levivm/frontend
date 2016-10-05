@@ -1,4 +1,4 @@
-xdescribe('Directive: truliiInstructorCard', function(){
+describe('Directive: truliiInstructorCard', function(){
     var $rootScope,
         $scope,
         $compile,

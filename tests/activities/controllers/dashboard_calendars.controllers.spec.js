@@ -1,4 +1,4 @@
-xdescribe('Controller: ActivityCalendarsController', function(){
+describe('Controller: ActivityCalendarsController', function(){
     var ActivityCalendarsController,
         ActivitiesManager,
         rootScope,

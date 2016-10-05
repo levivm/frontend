@@ -1,4 +1,4 @@
-xdescribe('Directive: truliiSearchBar', function(){
+describe('Directive: truliiSearchBar', function(){
     var $rootScope,
         $scope,
         $compile,

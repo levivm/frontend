@@ -1,4 +1,4 @@
-xdescribe('Controller: OrganizerLandingCtrl', function(){
+describe('Controller: OrganizerLandingCtrl', function(){
     var OrganizerLandingCtrl,
         generalInfo,
         ActivitiesManager,
