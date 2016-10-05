@@ -65,7 +65,6 @@
                 activitiesIndex = end;
             } else {
                 vm.hasMoreActivities = false;
-                console.log('End of activities reached');
             }
         }
 
