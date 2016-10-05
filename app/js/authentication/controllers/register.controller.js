@@ -125,7 +125,7 @@
                 SIGNUP_CONFIRMATION_LABEL: "Confirmación de registro",
                 SIGNUP_CONFIRMATION_COPY_1: "!Ya estás aprobado como organizador!",
                 SIGNUP_CONFIRMATION_COPY_2: "Sólo falta que coloques una contraseña para a empezar a disfrutar de tu cuenta.",
-                SIGNUP_SUBMIT: "Comenzar",
+                SIGNUP_SUBMIT: "Enviar",
                 SIGNUP_ALTERNATIVES_LABEL : "Regístrate como asistente con",
                 SIGNUP_EMAIL_LABEL: "o con tu correo electrónico",
                 LOGIN_LABEL : "Iniciar Sesión",

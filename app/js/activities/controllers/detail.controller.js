@@ -493,7 +493,7 @@
                 REASON_COPY_REFUND: "Te devolvemos tu dinero en caso de no realizarse la actividad.",
                 REASON_SECURE: "Pago Seguro",
                 REASON_COPY_SECURE: "Los datos de tu pago están encriptados y seguros con nosotros.",
-                EMAIL_MODAL_HEADER: "Compartir la actividad correo electrónico",
+                EMAIL_MODAL_HEADER: "CUÉNTALE A UN AMIGO SOBRE ESTA ACTIVIDAD POR CORREO ELECTRÓNICO",
                 EMAIL_MODAL_SEND_TO_LABEL: "Enviar a:",
                 EMAIL_MODAL_SEND_TO_PLACEHOLDER: "Ingresa correos electronicos. Sepáralos entre sí con comas",
                 EMAIL_MODAL_MESSAGE_LABEL: "Escribe un mensaje:",

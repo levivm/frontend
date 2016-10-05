@@ -17,12 +17,12 @@
 
         .directive('truliiActivityItem', truliiActivityItem);
 
-    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', 'moment', 'ActivitiesTemplatesPath'
+    truliiActivityItem.$inject = ['$state', '$stateParams', '$filter', '$modal', '$rootScope', 'moment', 'ActivitiesTemplatesPath'
         , 'defaultPicture', 'defaultCover', 'titleTruncateSize','Analytics', 'Authentication',
-        'StudentsManager', 'ActivitiesManager', 'Toast', '$modal', '$rootScope'];
+        'StudentsManager', 'ActivitiesManager', 'Toast'];
 
-    function truliiActivityItem($state, $stateParams, $filter, moment, ActivitiesTemplatesPath
-        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager, ActivitiesManager, Toast, $modal, $rootScope){
+    function truliiActivityItem($state, $stateParams, $filter, $modal, $rootScope, moment, ActivitiesTemplatesPath
+        , defaultPicture, defaultCover, titleTruncateSize, Analytics, Authentication, StudentsManager, ActivitiesManager, Toast){
         return {
             restrict: 'E',
             templateUrl: ActivitiesTemplatesPath + "activity_item.html",
@@ -83,10 +83,23 @@
                 function like($event, activityId){
                     $event.preventDefault();
                     $event.stopPropagation();
-                    StudentsManager.postWishList(activityId).then(function(data){
+
+                    var registerParams = {
+                        toState: {
+                            state: $state.current.name,
+                            params: $stateParams
+                        }
+                    };
+                    console.log(scope);
+                    if(_isStudent()){
+                      StudentsManager.postWishList(activityId).then(function(data){
                         scope.activity.wish_list=!scope.activity.wish_list;
                         ActivitiesManager.like(scope.activity.id, scope.activity.wish_list);
-                    })
+                      });
+                    } else {
+                        $state.go('register', registerParams);
+                    }
+
                 }
 
 
