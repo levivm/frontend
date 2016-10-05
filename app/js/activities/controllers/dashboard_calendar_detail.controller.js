@@ -23,7 +23,7 @@
         var MAX_LENGTH_NOTE = 200;
         var ERROR_STUDENTS = "No se puede cambiar la sessión con estudiantes inscritos.";
         var packagesErrors = [];
-        
+
         angular.extend(vm, {
             maxLengthNote: MAX_LENGTH_NOTE,
             calendar:  angular.copy(calendar),
@@ -35,7 +35,7 @@
 
         });
         activate();
-        
+
         function _createCalendar() {
             Error.form.clear(vm.activity_calendar_form);
             if(_checkIfPackages()){
@@ -45,7 +45,7 @@
                 vm.calendar.create()
                     .then(success, _errored);
             }
-            
+
             function success(calendar){
                 vm.save_calendar = _updateCalendar;
                 CalendarsManager.setCalendar(calendar);
@@ -57,7 +57,7 @@
             }
 
         }
-        
+
         function addPackage() {
             var packageEmpty = {
                 quantity: 1,
@@ -65,11 +65,11 @@
             };
             vm.calendar.packages.push(packageEmpty);
         }
-        
+
         function lessPackage() {
             vm.calendar.packages.pop();
         }
-        
+
 
 
         function _updateCalendar() {
@@ -96,13 +96,13 @@
         function _checkIfPackages(){
             return vm.activity.is_open && vm.calendar.packages.length<1;
         }
-        
+
         function _errored(responseErrors) {
-            
-            
+
+
             if (responseErrors) {
                 if(responseErrors['packages'] && !responseErrors['schedules']){
-                     _.each(responseErrors['packages'], function (error_dict, index) { 
+                     _.each(responseErrors['packages'], function (error_dict, index) {
                             var packageError ={};
                             if(!_.isEmpty(error_dict)){
                                 _.each(Object.keys(error_dict), function(value){
@@ -112,7 +112,7 @@
                                 Elevator.toElement('package-'+index);
                             }
                         });
-                        
+
                       Error.form.addArrayErrors(vm.activity_calendar_form, packagesErrors);
                 }else{
                     Error.form.add(vm.activity_calendar_form, responseErrors);
@@ -120,7 +120,7 @@
                         Elevator.toElement('activity_calendar_form');
                     }
                 }
-                
+
             }
             vm.isSaving = false;
         }
@@ -158,7 +158,8 @@
                 LABEL_PACKAGE_PRICE: "Precio del plan",
                 LABEL_PACKAGE_NAME: "Tipo",
                 LABEL_PACKAGE_QUANTITY: "Número",
-                LABEL_WEEKEND: "Mi actividad sólo se imparte los fines de semana.",
+                LABEL_WEEKEND_CLOSED: "Mi actividad únicamente se imparte el sábado y/o domingo.",
+                LABEL_WEEKEND_OPEN: "Mi actividad también se imparte el sábado y/o domingo.",
                 COPY_SCHEDULES:"Escribe las fechas, días y horas en las que se realizarán las clases.",
                 PLACEHOLDER_SCHEDULES:"Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
                 PLACEHOLDER_NOTES: "Explica con pocas palabras en qué se distingue esta fecha de inicio entre las demás.",
@@ -189,7 +190,7 @@
             }
           }
         }
-        
+
         function activate() {
 
             _setStrings();
@@ -215,13 +216,13 @@
             vm.isSaving = false;
 
             if (vm.calendar.id){
-                vm.save_calendar = _updateCalendar; 
+                vm.save_calendar = _updateCalendar;
             }
             else{
                 vm.save_calendar = _createCalendar;
                 vm.calendar.enroll_open=true;
             }
-                
+
             if(!vm.calendar.packages){
                 vm.calendar.packages = [];
             }

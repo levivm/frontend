@@ -110,8 +110,8 @@
             pseFormData: {
                 "banksList": [],
                 "userTypes":[
-                    {'description':'Natural','value':'N'},
-                    {'description':'Jurídica','value':'J'}
+                    {'description':'Persona Natural','value':'N'},
+                    {'description':'Persona Jurídica','value':'J'}
                 ],
                 "idTypes":[
                     {'description':'Cédula de ciudadanía','value':'CC'},
@@ -841,7 +841,7 @@
                 LABEL_SAVE_PAYMENT_INFO: "Deseo guardar los datos de mi tarjeta para próximas inscripciones",
                 LABEL_CARD_HOLDER: "Nombre del titular",
                 PLACEHOLDER_CARD_HOLDER: "Ej. Daniel Peréz Jimenez",
-                LABEL_CARD_NUMBER:"Número de tarjeta de credito",
+                LABEL_CARD_NUMBER:"Número de tarjeta de crédito",
                 PLACEHOLDER_CARD_NUMBER: "Número de tarjeta",
                 LABEL_EXPIRY_DATE : "Fecha de Expiración",
                 LABEL_MONTH: "Mes",
