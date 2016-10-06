@@ -395,17 +395,19 @@
                 }
 
                 function _updateCategoriesPosition(){
-                    
-                    if(document.getElementsByClassName('navbar__left-wrapper')[0].classList.contains('long')){
+                    if(document.getElementsByClassName('navbar__left-wrapper')[0]){
+                        if(document.getElementsByClassName('navbar__left-wrapper')[0].classList.contains('long')){
                         scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 450;
                         
-                    }
-                    else{
-                        scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 250;
-                        if(scope.user.is_organizer){
-                            scope.exploreLeftPosition = scope.exploreLeftPosition - 135; 
                         }
+                        else{
+                            scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 250;
+                            if(scope.user.is_organizer){
+                                scope.exploreLeftPosition = scope.exploreLeftPosition - 135; 
+                            }
+                        }  
                     }
+                    
                     
                 }
 

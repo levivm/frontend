@@ -52,7 +52,6 @@ describe('Directive: truliiInstructorCard', function(){
                 'bio': 'Web developer'
             }
             var isolatedScope = el.isolateScope();
-           console.log(isolatedScope);
             isolatedScope.instructorEditable =  $scope.instructor;
             isolatedScope.saveInstructor();
             $httpBackend
