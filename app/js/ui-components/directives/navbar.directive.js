@@ -454,6 +454,7 @@
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
                         _getUser();
+                        _setMarginNavbar();
                     });
                     
                     

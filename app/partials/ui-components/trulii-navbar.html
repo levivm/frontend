@@ -21,7 +21,7 @@
             <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary font-semibold" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
-            <a ui-sref="referrals.home" ng-click="inviteNav()" class="navbar__option navbar__option--right" ng-if="!user || user.is_student" ng-style="scroll < 80 && {'color': #FFF}">
+            <a ui-sref="referrals.home" ng-click="inviteNav()" class="navbar__option navbar__option--right" ng-if="!user || user.is_student" ng-style="scroll < 80 && {'color': white}">
                 <span ng-bind="::strings.COPY_REFERRAL"></span>
             </a>
             <a class="navbar__option navbar__option--right  hidden-xs hidden-sm explore-categories"  ng-class="{'ng-hide': scroll < 80 && isHome()}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
