@@ -489,7 +489,15 @@
       margin-top: @navbar-short-height;
     });
 }
-
+.explore-categories{
+  position: relative;
+  a:hover{
+    text-decoration: none;
+  }
+  &:active {
+    background-color: transparent !important;
+  }
+}
 //Dropdown Menu when hover picture profile in navbar
 .drop-menu{
   position: fixed;
@@ -504,7 +512,21 @@
   border-radius: 5px;
 
   &-categories{
-    right: 13.35em;
+    position: absolute;
+    right: 5px;
+    top: 60px;
+    ul{
+      padding: 0em 1em 0em 1em !important;
+      li{
+        font-size: 1em !important;
+        height: 45px;
+        line-height: 45px;
+        a{
+          padding: 0 !important;
+          font-weight: 300;
+        }
+      }
+    }
   }
   
   

@@ -213,6 +213,15 @@
                 resolve: {
                     category: getCategory,
                     categoryActivities: getCategoryActivities
+                },
+                metaTags:{
+                    title: function(category){
+                        console.log(category);
+                        //return activity.title;
+                    },
+                    description: function(category){
+                        //return activity.short_description
+                    }
                 }
             })
 

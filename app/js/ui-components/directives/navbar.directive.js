@@ -73,7 +73,6 @@
                     isActive:isActive,
                     hideSubItems:hideSubItems,
                     categories: [],
-                    exploreLeftPosition: 0,
                     isHome: isHome,
                     promoBar:false,
                     isPromoBar:isPromoBar,
@@ -394,33 +393,14 @@
                     )
                 }
 
-                function _updateCategoriesPosition(){
-                    if(document.getElementsByClassName('navbar__left-wrapper')[0]){
-                        if(document.getElementsByClassName('navbar__left-wrapper')[0].classList.contains('long')){
-                        scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 450;
-                        
-                        }
-                        else{
-                            scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 250;
-                            if(scope.user.is_organizer){
-                                scope.exploreLeftPosition = scope.exploreLeftPosition - 135; 
-                            }
-                        }  
-                    }
-                    
-                    
-                }
+                
 
                 function _initCategoriesPosition(){
                     angular.element(document).ready(function(){
-                        _updateCategoriesPosition();
                         _setMarginNavbar();
                         _resize();
                         scope.$on('scrolled', function(scrolled, scroll){
-                            _updateCategoriesPosition();
-                        });
-                        scope.$on('resize', function(){
-                            updateCategoriesPosition();
+                            _setMarginNavbar();
                         });
                     });
                 }
@@ -431,9 +411,8 @@
                 }
                 function _setMarginNavbar(){
                     if(scope.promoBar){
-                        scope.marginNavbar= document.getElementsByClassName('promo-bar')[0].getBoundingClientRect().height
+                        scope.marginNavbar= document.getElementsByClassName('promo-bar')[0] ? document.getElementsByClassName('promo-bar')[0].getBoundingClientRect().height:40;
                     }
-                    
                 }
                 
 
@@ -453,10 +432,10 @@
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
+                        scope.promoBar = true;
                         _getUser();
                         _setMarginNavbar();
                     });
-                    
                     
                     scope.$on('$destroy', _cleanUp);
                 }

@@ -21,13 +21,25 @@
             <div class="buttons float-right hidden-xs hidden-sm" ng-if="user.is_organizer">
                 <a ng-click="createActivity()" ui-sref="dash.activities-new.general" class="btn btn-primary font-semibold" ng-bind="::strings.ACTION_CREATE"></a>
             </div>
-            <a ui-sref="referrals.home" ng-click="inviteNav()" class="navbar__option navbar__option--right" ng-if="!user || user.is_student" ng-style="scroll < 80 && {'color': white}">
+            <a ui-sref="referrals.home" ng-click="inviteNav()" class="navbar__option navbar__option--right navbar-referral" ng-if="!user || user.is_student" ng-style="scroll < 80 && {'color': white}">
                 <span ng-bind="::strings.COPY_REFERRAL"></span>
             </a>
-            <a class="navbar__option navbar__option--right  hidden-xs hidden-sm explore-categories"  ng-class="{'ng-hide': scroll < 80 && isHome()}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+            <div  class="navbar__option navbar__option--right  hidden-xs hidden-sm explore-categories" style="position: relative">
+                <a  ng-class="{'ng-hide': scroll < 80 && isHome()}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
                 <span class="font-semibold  margin-horizontal-less hidden-xs hidden-sm" ng-bind="strings.LABEL_CATEGORIES"></span>
                 <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
-            </a>
+                </a>
+                <div class="drop-menu drop-menu-categories"  ng-show="showCategories" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="category in categories track by category.id">
+                            <a ui-sref="category({category_name:category.slug})"
+                                ng-click=" hideCategoriesMenu()"
+                                ng-bind="::category.name"></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
         </div>
         <div class="navbar__right-wrapper" >
             <a ng-if="userLogged" class="navbar__option navbar__option--right  hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
@@ -43,15 +55,7 @@
     </div>
 </nav>
 
-<div class="drop-menu drop-menu-categories" ng-show="showCategories" ng-style="{'left': exploreLeftPosition}" ng-mouseover="showCategoriesMenu()" ng-mouseleave="hideCategoriesMenu()">
-    <ul class="list-unstyled">
-        <li ng-repeat="category in categories track by category.id">
-            <a ui-sref="category({category_name:category.slug})"
-                ng-click=" hideCategoriesMenu()"
-                ng-bind="::category.name"></a>
-        </li>
-    </ul>
-</div>
+
 
 <!--Dropdown menu when hover in profile picture"-->
 <div class="drop-menu" ng-show="showMenu" ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()">

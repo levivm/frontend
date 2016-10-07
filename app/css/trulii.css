@@ -14796,6 +14796,15 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     margin-top: 50px;
   }
 }
+.explore-categories {
+  position: relative;
+}
+.explore-categories a:hover {
+  text-decoration: none;
+}
+.explore-categories:active {
+  background-color: transparent !important;
+}
 .drop-menu {
   position: fixed;
   width: 17em;
@@ -14809,7 +14818,21 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   border-radius: 5px;
 }
 .drop-menu-categories {
-  right: 13.35em;
+  position: absolute;
+  right: 5px;
+  top: 60px;
+}
+.drop-menu-categories ul {
+  padding: 0em 1em 0em 1em !important;
+}
+.drop-menu-categories ul li {
+  font-size: 1em !important;
+  height: 45px;
+  line-height: 45px;
+}
+.drop-menu-categories ul li a {
+  padding: 0 !important;
+  font-weight: 300;
 }
 .drop-menu.short {
   top: 68px;
