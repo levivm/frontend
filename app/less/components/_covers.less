@@ -213,7 +213,7 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      padding: 6em 0em;
+      padding: 4em 0em;
       .before-width(1299px, {
             padding: 6em 50px;
       });
@@ -222,9 +222,9 @@
          flex-direction: column;
       });
       &-text{
-        width: 44%;
+        width: 100%;
         color: white;
-        text-align: left;
+        text-align: center;
         font-size: 0.9em;
          p{
           color: white;
@@ -242,17 +242,15 @@
         });
       }
       &-play{
-          background-image: url('@{s3url}/static/img/home/cover_video_play.jpg');
-          width: 45%;
-          background-size: cover;
-          background-attachment: initial;
-          background-position: center center;
+          width: 100px;
+          height: 100px;
+          border-radius: 50px;
+          margin: 0 auto;
           position: relative;
           -webkit-box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.20);
           -moz-box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.20);
           box-shadow: -7px 13px 41px -2px rgba(0, 0, 0, 0.20);
           &:extend(.flex-center-container);
-          border-radius: 5px;
           cursor: pointer;
           transition: all 0.35s;
           &:hover{
@@ -265,12 +263,12 @@
             width: 100%;
             height: 100%;
             content: "";
-            background-color:rgba(60, 61, 65, 0.6);
+            background-color:rgba(255, 255, 255, 0.2);
             z-index: 100000;
             position: absolute;
             top: 0;
             left: 0;
-            border-radius: 5px;
+            border-radius: 50px;
           }
           .before-sm({
             width: 80%;
@@ -555,9 +553,8 @@
       margin-bottom: 25px;
       font-weight: 600;
       .before-md({
-        font-size: 2.5em;
-        line-height: 0.85em;
-        margin-bottom: 1em;
+        font-size: 3.5em;
+        line-height: 1em;
 
         &-mobile-no-margin{
           margin-bottom: 0.2em;
@@ -581,8 +578,10 @@
         padding: 0;
       });
 
-      .before-xs({
-        font-size: 1.125em;
+      .before-md({
+        font-size: 1.75em;
+        line-height: 1.25em;
+        font-weight: 500;
       });
 
     }

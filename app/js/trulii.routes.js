@@ -65,7 +65,8 @@
                 },
                 resolve: {
                      activities: getRecommendedActivities,
-                     generalInfo: getPresaveActivityInfo
+                     generalInfo: getPresaveActivityInfo,
+                     featuredOrganizers: getFeaturedOrganizers
                 },
                 metaTags:{
                     title: DEFAULT_TITLE,
@@ -181,6 +182,19 @@
     getAvailableCities.$inject = ['LocationManager'];
     function getAvailableCities(LocationManager){
         return LocationManager.getAvailableCities();
+    }
+
+     /**
+     * @ngdoc method
+     * @name .#getFeaturedOrganizers
+     * @description Retrieves a list of featured organizers
+     * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service
+     * @requires trulii.organizers.services.OrganizersManager
+     * @methodOf trulii.routes.config
+     */
+    getFeaturedOrganizers.$inject = ['OrganizersManager'];
+    function getFeaturedOrganizers(OrganizersManager){
+        return OrganizersManager.getFeaturedOrganizers();
     }
 
     //--------- Module Run Method ---------//

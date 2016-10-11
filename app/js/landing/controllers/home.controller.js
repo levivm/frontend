@@ -13,8 +13,8 @@
         .module('trulii.landing.controllers')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['Elevator', '$state', '$scope', '$rootScope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce', '$stateParams'];
-    function HomeController(Elevator, $state, $scope, $rootScope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce, $stateParams) {
+    HomeController.$inject = ['Elevator', '$state', '$scope', '$rootScope', 'activities', 'generalInfo', 'LocationManager','serverConf', 'Analytics', '$sce', '$stateParams', 'featuredOrganizers'];
+    function HomeController(Elevator, $state, $scope, $rootScope, activities, generalInfo, LocationManager, serverConf, Analytics, $sce, $stateParams, featuredOrganizers) {
 
 
         var ACTIVITIES_STEP = 8;
@@ -103,9 +103,6 @@
                 ACTIVITIES_TEXT_COPY: "Hacemos de tu ciudad un sitio con infinitas posibilidades para aprender algo nuevo.",
                 ACTIVITIES_BUTTON_COPY: "Ver más actividades similares",
                 VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
-                VIDEO_TEXT: "Queremos abrirte las puertas del conocimiento en tu ciudad, facilitar tu aprendizaje, ayudarte a mejorar tu currículum y ayudarte a aprovechar tu tiempo libre. " +
-                             "Encuentra en un solo sitio e inscríbete en línea en cualquier clase, curso, taller o diplomado de tu ciudad, desde clases de yoga hasta diplomados de finanzas. "+
-                             "<br>¡Ve nuestro video para que nos conozcas un poquito más!",
                 CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
                 HOW_TITLE_COPY: "¿Cómo funciona?",
@@ -118,7 +115,7 @@
                 HOW_LEARN_TEXT: "¡Disfruta y aprende todo lo que puedas!",
                 HOW_REVIEW_COPY: "Evalúa",
                 HOW_REVIEW_TEXT: "La actividad para que otros tengan una referencia.",
-                ORGANIZERS_TITLE: "Algunos de nuestros organizadores",
+                ORGANIZERS_TITLE: "Estos organizadores confían en Trulii",
                 PUBLISH_COPY: "¿Quieres publicar una actividad?",
                 PUBLISH_TEXT_1: "Trulii es el <strong>mejor espacio</strong> para dar a conocer " +
                 "tu actividad. Bien sea un curso de cocina, una clase de cross-fit, un foro de negocios o un diplomado universitario, nosotros " +
@@ -169,6 +166,7 @@
                 });
             });
             vm.trendingCategories = categories.slice(0, 3);
+            vm.featuredOrganizers = featuredOrganizers.slice(0,8);
         }
 
         function _activate(){
@@ -179,6 +177,7 @@
             _fromBurgerMenu();
             _mapTemplates();
             _setTrendingCategories();
+            console.log(featuredOrganizers);
             //Analytics.generalEvents.landing();
              vm.currentCity = LocationManager.getCurrentCity();
             //Function for angularSeo

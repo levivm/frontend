@@ -138,6 +138,17 @@
 
             'withDraw': function (){
                 return renderUrl('balances/', [ 'withdraw/']);
+            },
+
+            /**
+             * @ngdoc function
+             * @name .#featureed
+             * @description Renders **`/api/organizers/featured`** Featured Organizers List URL
+             * @return {string} Rendered URL
+             * @methodOf trulii.organizers.services.OrganizerServerApi
+             */
+            'featured': function(idOrganizer){
+                return renderUrl('organizers/', ['featured']);
             }
 
 
