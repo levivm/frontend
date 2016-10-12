@@ -106,6 +106,9 @@
                 //Functions Analytics data
                 function viewActivity(title){
                     Analytics.generalEvents.viewActivityDetail(title);
+                    
+                    if($state.current.name==='search')
+                        Analytics.ecommerce.goToActivity(scope.activity);
                 }
 
                 function goToOrganizer($event){

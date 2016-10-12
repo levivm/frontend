@@ -263,7 +263,7 @@
 
                 function getTokenResponse(response){
 
-                    console.log('response de tokenization javascript:', response);
+                    //console.log('response de tokenization javascript:', response);
                     if(response.error){
                         deferred.reject(response);
                     } else {
@@ -273,7 +273,7 @@
             }
 
             function getDataError(error){
-                console.log('Error retrieving PayU data from Trulii servers', error);
+                //console.log('Error retrieving PayU data from Trulii servers', error);
                 return error;
             }
 

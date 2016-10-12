@@ -609,6 +609,8 @@
             if(!(vm.activity.published)){
                 Toast.success(vm.strings.ACTIVITY_DISABLED);
             }
+            
+           
 
             _setSocialShare();
             _initWidget();
@@ -618,6 +620,7 @@
             _setOrganizerRating();
             vm.showLevel = vm.activity.level === "N" ? false:true;
             //Function for angularSeo
+            Analytics.ecommerce.detailActivity(vm.activity, vm.package_selected?vm.package_selected:vm.calendar_selected);
             $scope.htmlReady();
         }
     }

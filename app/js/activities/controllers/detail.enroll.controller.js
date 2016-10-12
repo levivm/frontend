@@ -245,6 +245,7 @@
 
                 function _enrollSuccess(response) {
                     Analytics.studentEvents.enrollPayPse();
+                    Analytics.ecommerce.purchaseActivity(vm.activity, response, activity.is_open ?vm.package:vm.calendar);
                     vm.success = true;
                     var bank_url = response.bank_url;
                     $window.location.href = bank_url;
@@ -375,8 +376,9 @@
                               .finally(_finishProccesingPayment);
 
 
-            function _enrollSuccess(order) {
+            function _enrollSuccess(order) { 
                 Analytics.studentEvents.enrollSuccessFree();
+                Analytics.ecommerce.purchaseActivity(vm.activity, order, activity.is_open ?vm.package:vm.calendar);
                 vm.calendar.addAssistants(order.assistants);
                 vm.success = true;
                 $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':vm.calendar.id,
@@ -500,6 +502,7 @@
 
                 function _enrollSuccess(order) {
                     Analytics.studentEvents.enrollPayTdc();
+                    Analytics.ecommerce.purchaseActivity(vm.activity, order, activity.is_open ?vm.package:vm.calendar);
                     vm.calendar.addAssistants(order.assistants);
                     vm.success = true;
                     $state.go('activities-enroll-success',{'activity_id':activity.id,'calendar_id':vm.calendar.id,

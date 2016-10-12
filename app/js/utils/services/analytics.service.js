@@ -84,6 +84,15 @@
         var EACTION_CLICK_MANAGE_NAV='Click Manage activity navbar';
         var EACTION_CLICK_EDIT_NAV='Click Edit activity navbar';
         var EACTION_CLICK_NAVBAR_SECONDARY='CLick navbar secondary item';
+        
+        
+        
+        //STRINGS For ecommerce
+        
+        var EC_ADDIMPRESSION = 'ec:addImpression';
+        var EC_ADDPRODUCT = 'ec:addProduct';
+        var EC_SETACTION = 'ec:setAction';
+        
 
 
         var generalEvents = {
@@ -135,6 +144,13 @@
             navbarActionSecondary:navbarActionSecondary
 
         };
+        
+        var ecommerce = {
+            goToActivity:goToActivity,
+            detailActivity:detailActivity,
+            purchaseActivity:purchaseActivity,
+            
+        }
 
 
 
@@ -143,7 +159,8 @@
             sendPageView:sendPageView,
             generalEvents: generalEvents,
             studentEvents:studentEvents,
-            organizerEvents:organizerEvents
+            organizerEvents:organizerEvents,
+            ecommerce:ecommerce
 
         };
 
@@ -159,9 +176,12 @@
                 cookieDomain: 'auto',
                 name: 'myTracker',
             });
+            
+            $window.ga('require', 'ec');
             if(userId){
                 _setUserId();
             }
+            
             //Test trulii UA-67305468-1
             // Establezca el ID de usuario mediante el user_id con el que haya iniciado sesión.
         }
@@ -224,6 +244,7 @@
         function burguerMenuItemsClicks(data){
             var eventAction = _userType(EACTION_BMENU_CLICK);
             _reportEvent(CATEGORY_GENERAL, eventAction, data);
+            
         }
 
 
@@ -248,6 +269,8 @@
         function shareActivity(social, data){
             _reportSocialEvent(social, EACTION_SHARE_SOCIAL, data);
         }
+        
+        
         
         
         //Sudent Events
@@ -325,11 +348,72 @@
         function navbarActionSecondary(item){
             _reportEvent(CATEGORY_ORGANIZER, EACTION_CLICK_NAVBAR_SECONDARY, item);
         }
+        
+        
+        
+        //Ecommerce Section
+        
+        function goToActivity(activity) {
+            var dataObject = {
+                'id': activity.id.toString(),
+                'name': activity.title,
+                'list': 'Search Results',
+                'brand': activity.organizer.name,
+                'category': activity.category.name,
+                'price': activity.is_open ? activity.cloest_calendar_package.price : activity.closest_calendar.session_price
+            }
+            var dataAction = {       
+                'list': 'Search Results'          
+            }
+            _ecommerceTrack(EC_ADDIMPRESSION, dataObject);
+            _ecommerceAction('click', dataAction);
+        }
+        
+        function detailActivity(activity, calendar) {
+            var dataObject = {
+                'id': activity.id.toString(),
+                'name': activity.title,
+                'brand': activity.organizer.name,
+                'category': activity.category.name,
+                'price': activity.is_open ? calendar.price: calendar.session_price
+            }
+            
+            
+            _ecommerceTrack(EC_ADDIMPRESSION, dataObject);
+            _ecommerceTrack(EC_ADDPRODUCT, dataObject);
+            _ecommerceAction('detail');
+        }
+        
+        function purchaseActivity(activity, order, calendar) {
+            var dataObject = {
+                'id': activity.id.toString(),
+                'name': activity.title,
+                'brand': activity.organizer.name,
+                'category': activity.category.name,
+                'quantity': order.assistants.length,
+                'price': activity.is_open ? calendar.price: calendar.session_price
+            }
+            
+            
+            var dataAction = {
+                'id': order.id.toString(),
+                'revenue': order.fee_detail.trulii_total_fee,
+                'option': order.is_free ? 'Gratis': 'No es Gratis'
+            }
+            
+            var dataCheckout = {
+                'step': 1,
+                'option': order.payment.payment_type
+            }
+            _ecommerceTrack(EC_ADDPRODUCT, dataObject);
+            _ecommerceAction('purchase', dataAction);
+            _ecommerceAction('checkout', dataCheckout);
+        }
 
 
         //Send route (page view)
         function sendPageView(){
-            ga(TRACKER_SEND, {
+            $window.ga(TRACKER_SEND, {
               hitType: 'pageview',
               page: $location.path()
             });
@@ -345,6 +429,17 @@
                 eventAction: eventAction,
                 eventLabel: data
             });
+        }
+        
+        function  _ecommerceTrack(typeObject, dataObject) {
+            $window.ga(typeObject, dataObject);
+        }
+        
+        function _ecommerceAction(typeAction, dataAction) {
+            if(dataAction)
+                $window.ga(EC_SETACTION, typeAction, dataAction);
+            else
+                $window.ga(EC_SETACTION, typeAction);
         }
 
         function _reportSocialEvent(social, action, target){
