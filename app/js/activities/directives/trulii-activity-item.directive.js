@@ -106,9 +106,7 @@
                 //Functions Analytics data
                 function viewActivity(title){
                     Analytics.generalEvents.viewActivityDetail(title);
-                    
-                    if($state.current.name==='search')
-                        Analytics.ecommerce.goToActivity(scope.activity);
+                    Analytics.ecommerce.goToActivity(scope.activity, $state.current.name);
                 }
 
                 function goToOrganizer($event){
@@ -412,6 +410,8 @@
                     }
                     _mapMainPicture(scope.activity);
                     _mapDateMsg(scope.activity);
+                    
+                    Analytics.ecommerce.impressionActivity(scope.activity, $state.current.name);
                 }
             }
         }

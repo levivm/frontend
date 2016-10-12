@@ -278,7 +278,6 @@
             }
 
             function getEmptyPaymentData(data){
-                console.log("Data - :",data);
                 var emptyFields = _.filter(requiredCardFields, function(value,key){
                     return !data.hasOwnProperty(key)
                     || !data[key] ;

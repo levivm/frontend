@@ -947,6 +947,7 @@
             }
 
             //Function for angularSeo
+            Analytics.ecommerce.detailEnroll(vm.activity, activity.is_open ?vm.package:vm.calendar);
             $scope.htmlReady();
 
 

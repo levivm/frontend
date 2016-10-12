@@ -589,7 +589,6 @@
         }
 
         function _activate(){
-            console.log('activating detail controller', $state);
             _setStrings();
             _setCurrentState();
             _updateUrl();

@@ -341,7 +341,6 @@
             queryChange=q;
         }
         function setQuery(predicate){
-            console.log(predicate);
             if(predicate){
                 searchData[KEY_QUERY] = predicate;
                 if(predicate.length === 0){

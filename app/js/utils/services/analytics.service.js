@@ -149,7 +149,8 @@
             goToActivity:goToActivity,
             detailActivity:detailActivity,
             purchaseActivity:purchaseActivity,
-            
+            impressionActivity: impressionActivity,
+            detailEnroll:detailEnroll
         }
 
 
@@ -349,52 +350,57 @@
             _reportEvent(CATEGORY_ORGANIZER, EACTION_CLICK_NAVBAR_SECONDARY, item);
         }
         
+        function _getActivityObject(activity, calendar) {
+            var price = 0;
+            if(calendar)
+                price = activity.is_open ? calendar.price: calendar.session_price;
+            else
+                price = activity.is_open ? activity.cloest_calendar_package.price : activity.closest_calendar.session_price
+            
+            price = price ? price:0;
+            return  {
+                'id': activity.id.toString(),
+                'name': activity.title,
+                'brand': activity.organizer.name,
+                'category': activity.category.name,
+                'price': price.toString()
+            };
+        }
         
         
         //Ecommerce Section
-        
-        function goToActivity(activity) {
-            var dataObject = {
-                'id': activity.id.toString(),
-                'name': activity.title,
-                'list': 'Search Results',
-                'brand': activity.organizer.name,
-                'category': activity.category.name,
-                'price': activity.is_open ? activity.cloest_calendar_package.price : activity.closest_calendar.session_price
-            }
-            var dataAction = {       
-                'list': 'Search Results'          
-            }
+        function impressionActivity(activity, stateName) {
+            var dataObject = _getActivityObject(activity);
+            dataObject.list=stateName;
             _ecommerceTrack(EC_ADDIMPRESSION, dataObject);
+        }
+        function goToActivity(activity, stateName) {
+            var dataObject = _getActivityObject(activity);
+            var dataAction = {       
+                'list': stateName         
+            }
+            _ecommerceTrack(EC_ADDPRODUCT, dataObject);
             _ecommerceAction('click', dataAction);
         }
         
         function detailActivity(activity, calendar) {
-            var dataObject = {
-                'id': activity.id.toString(),
-                'name': activity.title,
-                'brand': activity.organizer.name,
-                'category': activity.category.name,
-                'price': activity.is_open ? calendar.price: calendar.session_price
-            }
-            
-            
-            _ecommerceTrack(EC_ADDIMPRESSION, dataObject);
+            var dataObject = _getActivityObject(activity, calendar);
             _ecommerceTrack(EC_ADDPRODUCT, dataObject);
             _ecommerceAction('detail');
         }
-        
-        function purchaseActivity(activity, order, calendar) {
-            var dataObject = {
-                'id': activity.id.toString(),
-                'name': activity.title,
-                'brand': activity.organizer.name,
-                'category': activity.category.name,
-                'quantity': order.assistants.length,
-                'price': activity.is_open ? calendar.price: calendar.session_price
+        function detailEnroll(activity, calendar) {
+            var dataObject = _getActivityObject(activity, calendar);
+            var dataCheckout = {
+                'step': 1
             }
+            _ecommerceTrack(EC_ADDPRODUCT, dataObject);
+            _ecommerceAction('checkout', dataCheckout);
             
+        }
+        function purchaseActivity(activity, order, calendar) {
             
+            var dataObject = _getActivityObject(activity, calendar);
+            dataObject.quantity= order.assistants.length;
             var dataAction = {
                 'id': order.id.toString(),
                 'revenue': order.fee_detail.trulii_total_fee,
@@ -402,7 +408,7 @@
             }
             
             var dataCheckout = {
-                'step': 1,
+                'step': 2,
                 'option': order.payment.payment_type
             }
             _ecommerceTrack(EC_ADDPRODUCT, dataObject);
