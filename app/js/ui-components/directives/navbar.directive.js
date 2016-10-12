@@ -66,7 +66,9 @@
                     howToWorkOrganizer: howToWorkOrganizer,
                     goToProfile:goToProfile,
                     toggleSideBar:toggleSideBar,
+                    toggleCategorySideBar:toggleCategorySideBar,
                     showSideBar:false,
+                    showCategorySideBar: false,
                     logout:logout,
                     subItems: {},
                     showSubItems: showSubItems,
@@ -112,6 +114,10 @@
                 
                 function toggleSideBar() {
                    scope.showSideBar= !scope.showSideBar;
+                }
+
+                function toggleCategorySideBar() {
+                   scope.showCategorySideBar= !scope.showCategorySideBar;
                 }
                 
                 function isActive(stateStr){
@@ -297,11 +303,11 @@
                         ACTION_CLOSE: "Cerrar",
                         ACTION_EXIT: "Salir",
                         ACTION_EXPLORE: "Explorar",
-                        COPY_BECOME_ORGANIZER: '¿Quieres ser Organizador?',
+                        COPY_BECOME_ORGANIZER: 'Se organizador',
                         COPY_INVITE_FRIEND: 'Invita a un amigo',
                         COPY_REFERRAL: "Recibe 20.000$",
                         LABEL_BLOG: 'Blog',
-                        LABEL_ABOUT_US: 'Conócenos',
+                        LABEL_ABOUT_US: 'Sobre nosotros',
                         LABEL_ABOUT_MISSION: 'Misión',
                         LABEL_ABOUT_CULTURE: 'Cultura',
                         LABEL_ABOUT_TEAM: 'Equipo',
@@ -343,7 +349,8 @@
                         SUBITEM_ACTIVITIES: 'activities',
                         SUBITEM_ACCOUNT:'account',
                         SUBITEM_REVIEWS: 'reviews',
-                        SUBITEM_TRANSACTIONS: 'transactions'
+                        SUBITEM_TRANSACTIONS: 'transactions',
+                        CATEGORIES_HEADER: "Categorías"
                     });
                 }
 

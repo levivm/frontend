@@ -63,6 +63,15 @@
              * @methodOf trulii.organizers.services.OrganizersManager
              */
             getReviews: getReviews,
+
+            /**
+             * @ngdoc function
+             * @name trulii.organizers.services.OrganizersManager#getFeaturedOrganizers
+             * @description Fetches list of Featured Organizers
+             * @return {object} Featured Organizer list
+             * @methodOf trulii.organizers.services.OrganizersManager
+             */
+            getFeaturedOrganizers: getFeaturedOrganizers
         };
 
         return service;
@@ -132,6 +141,17 @@
                 }
         }
 
+        function getFeaturedOrganizers() {
+            return $http.get(api.featured())
+                .then(success, error);
+
+            function success(response) {
+                return response.data;
+            }
+            function error() {
+            }
+        }
+
         function _retrieveInstance(organizerId, organizerData) {
             var instance = _pool[organizerId];
 
@@ -163,5 +183,7 @@
                 deferred.reject();
             }
         }
+
+        
     }
 })();
