@@ -476,7 +476,7 @@
     </div>
   </div>
 </div>
-<div class="col-xs-12 separate-above-more" ng-if="detail.organizer.rating">
+<div class="col-xs-12 separate-above-more hidden-xs hidden-sm" ng-if="detail.organizer.rating">
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1 limited-width">
       <hr>
@@ -586,6 +586,159 @@
       </p>
     </div>
   </div>
+</div>
+
+<div class="col-xs-12 hidden-md hidden-lg">
+  <div class="activity-detail__enroll-widget" style="top: 0px !important;" ng-class="{'widget-fixed': (detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition)}"
+      ng-style="(detail.scroll >= detail.widgetMaxPosition && {'top': detail.widgetAbsolutePosition}) || ((detail.scroll  > detail.widgetOriginalPosition - 110) && (detail.scroll  < detail.widgetMaxPosition) && {'left': detail.widgetFixedPositionRight})">
+      <div class="activity-detail__enroll-widget__content"
+        ng-class="{'activity-detail__enroll-widget__content-free': detail.calendar_selected.is_free}">
+            <div class="schedules-container" ng-class="{'expanded': detail.showSchedules}">
+              <div class="schedules-container__header">
+                <p class="text-uppercase">
+                  <strong>Horarios</strong>
+                  <i class="fa fa-times" aria-hidden="true" ng-click="detail.toggleSchedules()"></i>
+                </p>
+              </div>
+              <div class="schedules-container__html">
+                <div ng-bind-html="detail.calendar_selected.schedules"></div>
+                <div ng-if="detail.calendar_selected.note" class="text-uppercase separate-above"><p><strong>Nota</strong></p></div>
+                <div ng-if="detail.calendar_selected.note" ng-bind-html="detail.calendar_selected.note"></div>
+              </div>
+              <div class="schedules-container__footer">
+                <div class="schedules-container__footer__prev" ng-click="detail.schedulesScrollUp()">
+                  <i class="fa fa-chevron-up" aria-hidden="true"></i>
+                </div>
+                <div class="schedules-container__footer__next" ng-click="detail.schedulesScrollDown()">
+                  <i class="fa fa-chevron-down" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+            <div class="seats">
+                <p ng-show="!detail.isSelectedCalendarFull() && !detail.activity.is_open">
+                    <span ng-bind="detail.calendar_selected.available_capacity"></span>
+                    <ng-pluralize count="detail.calendar_selected.available_capacity"
+                        when="{
+                        '1': detail.strings.COPY_VACANCY_SINGULAR,
+                        'other': detail.strings.COPY_VACANCY
+                        }">
+                    </ng-pluralize>
+                </p>
+                <p ng-show="detail.isSelectedCalendarFull() && !detail.activity.is_open">
+                    <span ng-bind="detail.strings.COPY_NO_VACANCY"></span>
+                </p>
+            </div>
+            <hr>
+            <p class="text-uppercase text-center" ng-show="!detail.activity.is_open && !detail.isSelectedCalendarFull()">
+              <span ng-bind="::detail.strings.LABEL_STARTS"></span>
+            </p>
+            <p class="text-uppercase text-center" ng-show="detail.activity.is_open && !detail.isSelectedPackageFull()">
+              <span ng-bind="::detail.strings.LABEL_PACKAGES"></span>
+            </p>
+            <p class="text-uppercase text-center" ng-show="(detail.isSelectedCalendarFull() && !detail.activity.is_open) || (detail.isSelectedPackageFull() && detail.activity.is_open)">
+
+              <span ng-bind="::detail.strings.COPY_ENROLL_CLOSED" ng-show="::!vm.calendar_selected.enroll_open"></span>
+              <span ng-bind="::detail.strings.COPY_SIGN_UP_NO_DATES" ng-show="::vm.calendar_selected.enroll_open"></span>
+            </p>
+            <select class="form-control"
+              ng-if="::(!detail.activity.is_open) && !detail.isSelectedCalendarFull()"
+              ng-model="detail.calendar_selected"
+              ng-options="calendar as calendar.initial_date | date:'d MMM y' for calendar in detail.activity.upcoming_calendars track by calendar.id"
+              name="calendars">
+            </select>
+            <select class="form-control"
+              ng-if="::(detail.activity.is_open) && !detail.isSelectedPackageFull()"
+              ng-model="detail.selectedPackage"
+              name="calendars"
+              ng-change="detail.changePackage(detail.selectedPackage)">
+              <option
+                value="{{package.id}}"
+                ng-repeat="package in detail.activity.calendars[0].packages track by package.id"
+                ng-pluralize count="package.quantity"
+                when="{
+                '1': package.quantity +' '+ package.type_name,
+                'other': package.quantity +' '+  package.type_name
+                }">
+              </option>
+            </select>
+            <div class="price" ng-show="(!detail.isSelectedCalendarFull() && !detail.activity.is_open) || (!detail.isSelectedPackageFull() && detail.activity.is_open)">
+                <div ng-show="::!detail.activity.is_open">
+                    <div ng-hide="detail.calendar_selected.is_free">
+                        <div class="price__number" ng-bind="detail.calendar_selected.session_price | currency:'':0">
+                        </div>
+                        <div class="price__currency">
+                            COP
+                        </div>
+                    </div>
+                    <div ng-show="detail.calendar_selected.is_free">
+                        <div class="price__number">
+                            <s ng-bind="detail.calendar_selected.session_price | currency:'':0"></s>
+                        </div>
+                        <div class="price__currency">
+                            COP
+                        </div>
+                        <br>
+                        <h2 class="text-center no-margin" ng-bind="::detail.strings.COPY_FREE"></h2>
+                    </div>
+                </div>
+                <div ng-show="::detail.activity.is_open">
+                  <div class="price__number" ng-bind="detail.package_selected.price | currency:'':0">
+                      </div>
+                      <div class="price__currency">
+                          COP
+                      </div>
+                </div>
+            </div>
+            <button class="btn btn-success btn-lg btn-rounded btn-block"
+                ng-bind="::detail.strings.ACTION_SIGN_UP"
+                ng-disabled="detail.isSelectedCalendarFull()"
+                ng-hide="detail.isSelectedCalendarFull()"
+                ng-if="!detail.activity.is_open"
+                ng-click="detail.signUp(detail.activity.id,detail.calendar_selected.id, detail.package_selected.id); detail.widgetSignup()">
+            </button>
+            <button class="btn btn-success btn-lg btn-rounded btn-block"
+              ng-bind="::detail.strings.ACTION_SIGN_UP"
+              ng-if="detail.activity.is_open"
+              ng-click="detail.signUp(detail.activity.id, detail.calendar_selected.id, detail.package_selected.id); detail.widgetSignup()"
+             >
+            </button>
+            <div class="row">
+              <div class="col-xs-4 col-xs-offset-4">
+                <hr>
+              </div>
+            </div>
+            <div class="schedules">
+                <a href="#" ng-click="detail.toggleSchedules()" ng-bind="detail.strings.ACTION_VIEW_SCHEDULES"></a>
+            </div>
+        </div>
+        <div class="activity-detail__enroll-widget__likes">
+          <div class="heart">
+            <i class="mdi-action-favorite-outline"
+              ng-click="detail.wishList()"
+              ng-class="{'mdi-action-favorite': detail.verifyWishList(), 'text-muted': !detail.verifyWishList()}">
+            </i>
+          </div>
+          <div class="copy">
+            <!--12 personas aman esta actividad-->
+            <span class="text-center" ng-show="!detail.detail.verifyWishList()" ><strong ng-bind="::detail.strings.COPY_ADD_TO_WISHLIST"></strong></span>
+            <span class="text-center" ng-show="detail.detail.verifyWishList()" ng-bind="::detail.strings.COPY_REMOVE_FROM_WISHLIST"></span><br>
+            <span ng-bind="detail.activity.wishlist_count"></span>
+            <span>
+              <ng-pluralize count="detail.activity.wishlist_count"
+                        when="{
+                        '0': detail.strings.COPY_NUMBER_OF_LIKES,
+                        '1': detail.strings.COPY_SINGULAR_NUMBER_OF_LIKES,
+                        'other': detail.strings.COPY_NUMBER_OF_LIKES
+                        }">
+              </ng-pluralize>
+            </span>
+
+
+
+            <!--<span ng-if="detail.activity.wishlist_count === 0" ng-bind="::detail.strings.COPY_BE_THE_FIRST"></span>-->
+          </div>
+        </div>
+      </div>
 </div>
 
 <div class="absolute-container" ng-show="detail.showEmail">

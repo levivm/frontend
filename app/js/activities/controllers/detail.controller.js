@@ -73,13 +73,13 @@
             toggleEmailShow: toggleEmailShow,
             toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm,
-            showAudience: true,
-            showContent: true,
-            showGoals: true,
-            showVideo: true,
-            showMethodology: true,
-            showRequirements: true,
-            showExtra: true,
+            showAudience: false,
+            showContent: false,
+            showGoals: false,
+            showVideo: false,
+            showMethodology: false,
+            showRequirements: false,
+            showExtra: false,
             shareSocialAnalytic:shareSocialAnalytic,
             wishList:wishList,
             verifyWishList:verifyWishList,
@@ -564,7 +564,10 @@
               return dict[char] || char;
             });
             vm.title = title;
-            $state.go('activities-detail', {activity_id: activity.id, activity_title: title, category_slug: activity.category.slug} ,{location: "replace", notify: false, reload: true});
+            $state.go('activities-detail', 
+                      {activity_id: activity.id, activity_title: title, 
+                       category_slug: activity.category.slug} ,
+                      {location: "replace", notify: false, reload: false, inherit: false});
 
         }
 
@@ -586,6 +589,7 @@
         }
 
         function _activate(){
+            console.log('activating detail controller', $state);
             _setStrings();
             _setCurrentState();
             _updateUrl();
