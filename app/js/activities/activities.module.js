@@ -231,6 +231,7 @@
                   activity_title: {value: null, squash: false},
                   category_slug: {value: null, squash: false}
                 },
+                reloadOnSearch: false,
                 views:{
                     '@': {
                         controller: 'ActivityDetailController as detail',
