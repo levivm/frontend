@@ -179,6 +179,7 @@
             });
             
             $window.ga('require', 'ec');
+            $window.ga('set', '$', 'COP'); 
             if(userId){
                 _setUserId();
             }
