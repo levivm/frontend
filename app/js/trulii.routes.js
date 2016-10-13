@@ -49,6 +49,7 @@
                 url: '/buscar?q&city&category&subcategory&date&level&cost_start&cost_end&certification&weekends&page&is_free&o',
                 controller:'SearchController as search',
                 templateUrl: 'partials/search.html',
+                reloadOnSearch: false,
                 resolve:{
                     'generalInfo':getPresaveActivityInfo
                 },
