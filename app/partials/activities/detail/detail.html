@@ -313,7 +313,7 @@
       </div>
 
       <!--Audience-->
-      <div class="row separate-above-medium" ng-show="detail.activity.audience">
+      <div class="row separate-above-less" ng-show="detail.activity.audience">
         <div class="col-xs-12 section">
           <h4 ng-click="detail.showAudience = !detail.showAudience;">
             <strong class="text-dark" ng-bind="::detail.strings.LABEL_AUDIENCE"></strong>
@@ -329,7 +329,6 @@
       <!--Content-->
       <div class="row separate-above-less" ng-show="detail.activity.content">
         <div class="col-xs-12 section">
-          <div class="separator separate-vertical"></div>
           <h4 ng-click="detail.showContent = !detail.showContent;">
             <strong class="text-dark" ng-bind="::detail.strings.LABEL_CONTENT"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showContent">
@@ -346,7 +345,6 @@
       <!--Goals-->
       <div class="row separate-above-less" ng-show="detail.activity.goals">
         <div class="col-xs-12 section">
-          <div class="separator separate-vertical"></div>
           <h4 ng-click="detail.showGoals = !detail.showGoals;">
             <strong class="text-dark" ng-bind="::detail.strings.LABEL_GOALS"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showGoals">
@@ -390,7 +388,6 @@
       <!--Requirements-->
       <div class="row separate-above-less" ng-show="detail.activity.requirements">
         <div class="col-xs-12 section">
-          <div class="separator separate-vertical"></div>
           <h4 ng-click="detail.showRequirements = !detail.showRequirements;">
             <strong class="text-dark" ng-bind="::detail.strings.LABEL_REQUIREMENTS"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showRequirements">
@@ -408,7 +405,6 @@
       <div class="row separate-above-less" ng-show="detail.activity.extra_info">
 
         <div class="col-xs-12 section separate-below">
-          <div class="separator separate-vertical"></div>
           <h4 ng-click="detail.showExtra = !detail.showExtra;">
             <strong class="text-dark" ng-bind="::detail.strings.LABEL_EXTRA_INFO"></strong>
             <img ng-src="{{detail.getAmazonUrl('static/img/plus.png')}}" class="collapse-icon" alt="" ng-show="!detail.showExtra">
@@ -425,7 +421,6 @@
       <!--Instructors-->
       <div class="row" ng-show="detail.activity.instructors.length">
           <div class="col-xs-12 section separate-below">
-              <div class="separator separate-vertical"></div>
               <h4 class="text-dark">
                   <strong ng-bind="::detail.strings.LABEL_INSTRUCTORS"></strong>
               </h4>
