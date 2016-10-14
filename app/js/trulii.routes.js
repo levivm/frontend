@@ -54,7 +54,8 @@
                 },
                 params: {
                     'activities': []
-                }
+                },
+                
             })
             .state('home',{
                 url:'/',

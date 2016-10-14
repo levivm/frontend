@@ -177,7 +177,6 @@
             _fromBurgerMenu();
             _mapTemplates();
             _setTrendingCategories();
-            console.log(featuredOrganizers);
             //Analytics.generalEvents.landing();
              vm.currentCity = LocationManager.getCurrentCity();
             //Function for angularSeo

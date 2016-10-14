@@ -14422,12 +14422,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .navbar__logo {
-  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-green.png') no-repeat;
+  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-halloween.png') no-repeat;
   height: 60px;
-  width: 7em;
+  width: 9em;
   display: inline-block;
   background-size: contain;
-  margin: 10px auto 0;
+  margin: 15px auto 0;
   transition: all 0.25s;
 }
 @media screen and (max-width: 992px) {
@@ -18328,13 +18328,13 @@ ul.dropdown-menu:after {
   -moz-transition: width 350ms;
   -o-transition: width 350ms;
   transition: width 350ms;
-  background: #38dbc8;
+  background: #3B55E6;
   position: fixed;
   z-index: 10002;
   top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
+  height: 3px;
   border-bottom-right-radius: 1px;
   border-top-right-radius: 1px;
 }
