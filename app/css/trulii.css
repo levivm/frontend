@@ -14436,6 +14436,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     background-size: contain;
     position: relative;
     height: 35px;
+    margin: 5px auto 0;
     background-position: center center;
   }
 }
@@ -26331,7 +26332,6 @@ blockquote {
   background-color: rgba(255, 255, 255, 0.5);
 }
 .organizer-tile {
-  height: 150px;
   box-shadow: #DCDDE2 0px 0px 0px 0px;
   transition: all 0.33s;
   padding: 1em;

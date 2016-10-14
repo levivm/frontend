@@ -143,33 +143,28 @@
   </div>
 </div>
 <!--End of activities section-->
-
-<!--Publish section-->
-<div class="col-xs-12 trulii-cover__container hidden-xs hidden-sm">
-  <div class="row separate-above-more separate-below-more limited-width text-white ">
-    <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2">
-      <h1 class="text-center separate-below title" >
-        <strong ng-bind="::home.strings.PUBLISH_COPY"></strong>
-      </h1>
-    </div>
-    <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 ">
-      <h4 class="text-center font-dark text-line-more text-white" ng-bind-html="::home.strings.PUBLISH_TEXT_1"></h4>
-      <br>
-      <h4 class="text-center  font-dark text-line-more text-white" ng-bind-html="::home.strings.PUBLISH_TEXT_2"></h4>
-
-      <div class="col-xs-12 text-center separate-above-more">
-        <a class="btn btn-primary btn-lg "
-          ui-sref="organizer-landing"
-          ng-bind="::home.strings.PUBLISH_BUTTON_COPY">
+<!-- Organizers featured-->
+<div class="col-xs-12 container-muted" id="anchor-how">
+  <div class="row limited-width">
+    <div class="col-xs-12 separate-above separate-below">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1 class="text-primary title text-center"><strong ng-bind="::home.strings.ORGANIZERS_TITLE"></strong></h1>
+        </div>
+      </div><!-- ng-src="{{home.getAmazonUrl('static/img/organizer-profile/home-logos/desktop/'+organizer.id+'.jpg')}}"-->
+      <div class="row separate-above separate-below-more  flex-cards">
+        <a target="_blank"  ui-sref="organizer-profile({organizer_id: {{::organizer.id}} })" class="col-xs-12 col-md-3 organizer-tile" ng-repeat="organizer in home.featuredOrganizers track by organizer.id">
+          <img ng-src="{{home.getAmazonUrl('static/img/organizer-profile/home-logos/mobile/'+organizer.id+'.jpg')}}" 
+                alt="{{ organizer.name }}" 
+               class="img-responsive center-block images-organizers hidden-md hidden-lg">
+           <img ng-src="{{home.getAmazonUrl('static/img/organizer-profile/home-logos/desktop/'+organizer.id+'.jpg')}}" 
+                alt="{{ organizer.name }}" 
+               class="img-responsive center-block images-organizers hidden-sm hidden-xs">
         </a>
       </div>
     </div>
-  </div>
-   <div class="trulii-cover__background background-dark" ng-style="{'background-image': 'url({{home.getAmazonUrl('static/img/home/organizador.png')}})'}"></div>
+  </div> 
 </div>
-<!--End of publish section-->
-
-
 <!--Video section-->
 <div class="col-xs-12 hidden-xs hidden-sm">
   <div class="row">
@@ -206,22 +201,7 @@
   </div> 
 </div> 
 
-<div class="col-xs-12 container-muted" id="anchor-how">
-  <div class="row limited-width">
-    <div class="col-xs-12 separate-above separate-below">
-      <div class="row">
-        <div class="col-xs-12">
-          <h1 class="text-primary title text-center"><strong ng-bind="::home.strings.ORGANIZERS_TITLE"></strong></h1>
-        </div>
-      </div>
-      <div class="row separate-above separate-below-more  flex-cards">
-        <a class="col-xs-12 col-md-3 organizer-tile" ng-repeat="organizer in home.featuredOrganizers track by organizer.id">
-          <img ng-src="{{organizer.photo}}" alt="{{ organizer.name }}" class="img-responsive center-block images-organizers">
-        </a>
-      </div>
-    </div>
-  </div> 
-</div>
+
 <!--Info section-->
 <div class="col-xs-12 container-muted hidden-xs hidden-sm" id="anchor-how">
   <div class="row limited-width">
@@ -282,6 +262,36 @@
     </div>
   </div> 
 </div>
+<!--Publish section-->
+<div class="col-xs-12 trulii-cover__container hidden-xs hidden-sm">
+  <div class="row separate-above-more separate-below-more limited-width text-white ">
+    <div class="col-xs-12 col-md-6 col-md-offset-3 col-lg-8 col-lg-offset-2">
+      <h1 class="text-center separate-below title" >
+        <strong ng-bind="::home.strings.PUBLISH_COPY"></strong>
+      </h1>
+    </div>
+    <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 ">
+      <h4 class="text-center font-dark text-line-more text-white" ng-bind-html="::home.strings.PUBLISH_TEXT_1"></h4>
+      <br>
+      <h4 class="text-center  font-dark text-line-more text-white" ng-bind-html="::home.strings.PUBLISH_TEXT_2"></h4>
+
+      <div class="col-xs-12 text-center separate-above-more">
+        <a class="btn btn-primary btn-lg "
+          ui-sref="organizer-landing"
+          ng-bind="::home.strings.PUBLISH_BUTTON_COPY">
+        </a>
+      </div>
+    </div>
+  </div>
+   <div class="trulii-cover__background background-dark" ng-style="{'background-image': 'url({{home.getAmazonUrl('static/img/home/organizador.png')}})'}"></div>
+</div>
+<!--End of publish section-->
+
+
+
+
+
+
 <!--End of info section-->
 
 <trulii-footer></trulii-footer>
