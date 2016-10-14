@@ -17,11 +17,6 @@
                 size: '@'
             },
             link: function (scope, element, attrs) {
-               scope.stateInfo = {
-                    toState: {
-                        state: 'referrals.home'
-                    }
-                }
                 scope.clickUrl = function(){
                     Analytics.generalEvents.promoBar($state.current.url);
                 }
