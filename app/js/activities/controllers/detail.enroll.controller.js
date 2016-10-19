@@ -880,11 +880,14 @@
 
         function _updateWidgetValues(){
             vm.scroll = window.scrollY;
-            vm.widgetOriginalPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().top + window.scrollY + 50;
-            vm.widgetMaxPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY - 320;
-            vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().bottom + window.scrollY);
-            vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().left + 30;
-            vm.widgetFixedPositionRight = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().right - 30 - 225;
+            if(document.getElementsByClassName('activity-enroll')[0]){
+                vm.widgetOriginalPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().top + window.scrollY + 50;
+                vm.widgetMaxPosition = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY - 320;
+                vm.widgetAbsolutePosition = (document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().bottom + window.scrollY) - (document.getElementsByClassName('cover-blur-small')[0].getBoundingClientRect().bottom + window.scrollY);
+                vm.widgetFixedPositionLeft = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().left + 30;
+                vm.widgetFixedPositionRight = document.getElementsByClassName('activity-enroll')[0].getBoundingClientRect().right - 30 - 225;
+            }
+            
 
         }
 

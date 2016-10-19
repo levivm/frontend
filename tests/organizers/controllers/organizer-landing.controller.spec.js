@@ -34,6 +34,11 @@ describe('Controller: OrganizerLandingCtrl', function(){
           $httpBackend
              .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
+             
+        $httpBackend
+             .when('GET', 'http://localhost:8000/api/organizers/featured')
+             .respond(readJSON('tests/mock/organizersFeatured.json'));
+        
          $httpBackend
             .when('JSONP', 'https://freegeoip.net/json/?callback=JSON_CALLBACK')
             .respond(readJSON('tests/mock/ipinfo.json'));

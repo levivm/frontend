@@ -5,6 +5,7 @@ describe('Controller: HomeController', function(){
         rootScope,
         apiActivities,
         activities,
+        featuredOrganizers,
         httpBackend;
 
     beforeEach(function(){
@@ -12,7 +13,9 @@ describe('Controller: HomeController', function(){
         inject(function ($injector) {
             httpBackend = $injector.get('$httpBackend');
             ActivitiesManager = $injector.get('ActivitiesManager');
+            OrganizersManager =$injector.get('OrganizersManager')
             apiActivities = $injector.get('ActivityServerApi');
+            
          })
 
     });
@@ -33,6 +36,11 @@ describe('Controller: HomeController', function(){
         httpBackend
              .when('GET', 'http://localhost:8000/api/activities/info')
              .respond(readJSON('tests/mock/generalinfo.json'));
+             
+        httpBackend
+             .when('GET', 'http://localhost:8000/api/organizers/featured')
+             .respond(readJSON('tests/mock/organizersFeatured.json'));
+        
 
          httpBackend
               .when('GET', 'http://localhost:8000/api/locations/cities/')
@@ -56,13 +64,19 @@ describe('Controller: HomeController', function(){
         }, function(response){
             console.log(response);
         });
+        
+        OrganizersManager.getFeaturedOrganizers().then(function(data){
+            featuredOrganizers = data;
+        }, function(response){
+            console.log(response);
+        });
 
         httpBackend.flush();
 
         //End calls
 
 
-        HomeController =  $controller('HomeController', {'activities': activities,'generalInfo':generalInfo, $scope: scope});
+        HomeController =  $controller('HomeController', {'activities': activities,'generalInfo':generalInfo, 'featuredOrganizers':featuredOrganizers, $scope: scope});
         rootScope = $rootScope;
 
     }));
