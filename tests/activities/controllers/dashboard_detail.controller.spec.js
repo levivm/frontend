@@ -29,7 +29,9 @@ describe('Controller: ActivityDBDetailController', function(){
         $httpBackend
              .when('GET', 'http://localhost:8000/api/activities/featured')
              .respond(readJSON('tests/mock/activities.json'));
-
+       $httpBackend
+             .when('GET', 'http://localhost:8000/api/organizers/featured')
+             .respond(readJSON('tests/mock/organizersFeatured.json'));
         $httpBackend
              .when('GET', 'http://localhost:8000/api/activities/info')
              .respond(readJSON('tests/mock/generalinfo.json'));

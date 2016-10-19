@@ -83,28 +83,52 @@
             background-color:white;
         });
     }
-
+    
+    //Styles logo-green
+    //'@{s3url}/static/img/logo-green.png'
+    //width: 7em;
+    //margin: 10px auto 0;
     &__logo {
-        background: url('@{s3url}/static/img/logo-green.png') no-repeat;
+        background: url('@{s3url}/static/img/logo-halloween.png') no-repeat;
         height: @navbar-inner-height;
-        width: 7em;
+        width: 9em;
         display: inline-block;
         background-size: contain;
-        margin: 10px auto 0;
+        margin: 15px auto 0;
         transition: @transition-navbar;
         .before-md({
-            width: 1.2em;
+            width:  ~"calc(100vw - 120px)";
             background-size: contain;
             position: relative;
-            background-image: url('@{s3url}/static/img/logo-green-mobile.png');
             height: 35px;
+            margin: 5px auto 0;
+            background-position: center center;
         });
     }
 
     &__mobile-dashboard-controllers{
-        width: calc(100% - 154px);
+        width: ~"calc(100% - 154px)";
     }
-
+    &__mobile-left-wrapper{
+        padding-left: 30px;
+        display: inline-block;
+        vertical-align: top;
+        height: @navbar-inner-height;
+        .navbar__option{
+            background-color: transparent !important;
+            padding: 5px 2em 5px 0em;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            float: left;
+            height: 50px;
+            line-height: 40px;
+            transition: all 0.25s;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
     &__left-wrapper {
         display: inline-block;
         vertical-align: top;
@@ -489,7 +513,15 @@
       margin-top: @navbar-short-height;
     });
 }
-
+.explore-categories{
+  position: relative;
+  a:hover{
+    text-decoration: none;
+  }
+  &:active {
+    background-color: transparent !important;
+  }
+}
 //Dropdown Menu when hover picture profile in navbar
 .drop-menu{
   position: fixed;
@@ -504,7 +536,21 @@
   border-radius: 5px;
 
   &-categories{
-    right: 13.35em;
+    position: absolute;
+    right: 5px;
+    top: 60px;
+    ul{
+      padding: 0em 1em 0em 1em !important;
+      li{
+        font-size: 1em !important;
+        height: 45px;
+        line-height: 45px;
+        a{
+          padding: 0 !important;
+          font-weight: 300;
+        }
+      }
+    }
   }
   
   

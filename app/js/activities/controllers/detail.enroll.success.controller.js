@@ -64,8 +64,8 @@
         //--------- Internal Functions ---------//
 
         function _getOrganizerActivities() {
-            console.log('organizerActivities:', organizerActivities);
-            console.log('organizerActivities:', _.without(organizerActivities, activity));
+            //console.log('organizerActivities:', organizerActivities);
+            //console.log('organizerActivities:', _.without(organizerActivities, activity));
             return _.without(organizerActivities.results, activity);
         }
 
@@ -76,7 +76,7 @@
                     params: $stateParams
                 }
             };
-            console.log('vm.current_state:', vm.current_state);
+            //console.log('vm.current_state:', vm.current_state);
         }
 
         function _setCity(activity){

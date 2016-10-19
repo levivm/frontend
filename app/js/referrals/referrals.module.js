@@ -29,7 +29,7 @@
      */
     config.$inject = ['$stateProvider'];
     function config($stateProvider) {
-        $stateProvider
+        /*$stateProvider
             .state('referrals', {
                 url: '/referir',
                 abstract: true,
@@ -67,7 +67,7 @@
                     generalInfo: getPresaveActivityInfo
                 }
             })
-            ;
+            ;*/
     }
 
     /**

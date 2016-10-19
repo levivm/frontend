@@ -46,8 +46,12 @@ describe('Controller: SearchController', function(){
          $httpBackend
               .when('GET', 'http://localhost:8000/api/activities/search/?city=1&page=1&q=sesiones+de+derecho')
               .respond(readJSON('tests/mock/searchActivities.json'));
-
-
+              
+        $httpBackend
+             .when('GET', 'http://localhost:8000/api/organizers/featured')
+             .respond(readJSON('tests/mock/organizersFeatured.json'));
+        
+              
         httpBackend
              .when('GET', 'http://localhost:8000/api/activities/info')
              .respond(readJSON('tests/mock/generalinfo.json'));

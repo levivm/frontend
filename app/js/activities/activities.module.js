@@ -213,6 +213,15 @@
                 resolve: {
                     category: getCategory,
                     categoryActivities: getCategoryActivities
+                },
+                metaTags:{
+                    title: function(category){
+                        console.log(category);
+                        //return activity.title;
+                    },
+                    description: function(category){
+                        //return activity.short_description
+                    }
                 }
             })
 
@@ -222,6 +231,7 @@
                   activity_title: {value: null, squash: false},
                   category_slug: {value: null, squash: false}
                 },
+                reloadOnSearch: false,
                 views:{
                     '@': {
                         controller: 'ActivityDetailController as detail',

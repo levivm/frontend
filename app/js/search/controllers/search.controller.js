@@ -522,10 +522,9 @@
             });
 
             $scope.$on('$destroy', _cleanUp);
-
+            
             //Function for angularSeo
             $scope.htmlReady();
-            console.log($stateParams);
         }
     }
 })();

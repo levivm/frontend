@@ -66,14 +66,15 @@
                     howToWorkOrganizer: howToWorkOrganizer,
                     goToProfile:goToProfile,
                     toggleSideBar:toggleSideBar,
+                    toggleCategorySideBar:toggleCategorySideBar,
                     showSideBar:false,
+                    showCategorySideBar: false,
                     logout:logout,
                     subItems: {},
                     showSubItems: showSubItems,
                     isActive:isActive,
                     hideSubItems:hideSubItems,
                     categories: [],
-                    exploreLeftPosition: 0,
                     isHome: isHome,
                     promoBar:false,
                     isPromoBar:isPromoBar,
@@ -113,6 +114,10 @@
                 
                 function toggleSideBar() {
                    scope.showSideBar= !scope.showSideBar;
+                }
+
+                function toggleCategorySideBar() {
+                   scope.showCategorySideBar= !scope.showCategorySideBar;
                 }
                 
                 function isActive(stateStr){
@@ -298,11 +303,11 @@
                         ACTION_CLOSE: "Cerrar",
                         ACTION_EXIT: "Salir",
                         ACTION_EXPLORE: "Explorar",
-                        COPY_BECOME_ORGANIZER: '¿Quieres ser Organizador?',
+                        COPY_BECOME_ORGANIZER: 'Se organizador',
                         COPY_INVITE_FRIEND: 'Invita a un amigo',
                         COPY_REFERRAL: "Recibe 20.000$",
                         LABEL_BLOG: 'Blog',
-                        LABEL_ABOUT_US: 'Conócenos',
+                        LABEL_ABOUT_US: 'Sobre nosotros',
                         LABEL_ABOUT_MISSION: 'Misión',
                         LABEL_ABOUT_CULTURE: 'Cultura',
                         LABEL_ABOUT_TEAM: 'Equipo',
@@ -344,7 +349,8 @@
                         SUBITEM_ACTIVITIES: 'activities',
                         SUBITEM_ACCOUNT:'account',
                         SUBITEM_REVIEWS: 'reviews',
-                        SUBITEM_TRANSACTIONS: 'transactions'
+                        SUBITEM_TRANSACTIONS: 'transactions',
+                        CATEGORIES_HEADER: "Categorías"
                     });
                 }
 
@@ -394,31 +400,14 @@
                     )
                 }
 
-                function _updateCategoriesPosition(){
-                    
-                    if(document.getElementsByClassName('navbar__left-wrapper')[0].classList.contains('long')){
-                        scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 450;
-                        
-                    }
-                    else{
-                        scope.exploreLeftPosition = document.getElementsByClassName('navbar__left-wrapper')[0].getBoundingClientRect().right - 250;
-                        if(scope.user.is_organizer){
-                            scope.exploreLeftPosition = scope.exploreLeftPosition - 135; 
-                        }
-                    }
-                    
-                }
+                
 
                 function _initCategoriesPosition(){
                     angular.element(document).ready(function(){
-                        _updateCategoriesPosition();
                         _setMarginNavbar();
                         _resize();
                         scope.$on('scrolled', function(scrolled, scroll){
-                            _updateCategoriesPosition();
-                        });
-                        scope.$on('resize', function(){
-                            updateCategoriesPosition();
+                            _setMarginNavbar();
                         });
                     });
                 }
@@ -429,9 +418,8 @@
                 }
                 function _setMarginNavbar(){
                     if(scope.promoBar){
-                        scope.marginNavbar= document.getElementsByClassName('promo-bar')[0].getBoundingClientRect().height
+                        scope.marginNavbar= document.getElementsByClassName('promo-bar')[0] ? document.getElementsByClassName('promo-bar')[0].getBoundingClientRect().height:40;
                     }
-                    
                 }
                 
 
@@ -451,9 +439,10 @@
                     });
 
                     unsubscribeUserLoggedOut = $rootScope.$on(Authentication.USER_LOGOUT_EVENT, function (event) {
+                        scope.promoBar = true;
                         _getUser();
+                        _setMarginNavbar();
                     });
-                    
                     
                     scope.$on('$destroy', _cleanUp);
                 }

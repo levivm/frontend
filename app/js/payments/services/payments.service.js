@@ -263,7 +263,7 @@
 
                 function getTokenResponse(response){
 
-                    console.log('response de tokenization javascript:', response);
+                    //console.log('response de tokenization javascript:', response);
                     if(response.error){
                         deferred.reject(response);
                     } else {
@@ -273,12 +273,11 @@
             }
 
             function getDataError(error){
-                console.log('Error retrieving PayU data from Trulii servers', error);
+                //console.log('Error retrieving PayU data from Trulii servers', error);
                 return error;
             }
 
             function getEmptyPaymentData(data){
-                console.log("Data - :",data);
                 var emptyFields = _.filter(requiredCardFields, function(value,key){
                     return !data.hasOwnProperty(key)
                     || !data[key] ;
