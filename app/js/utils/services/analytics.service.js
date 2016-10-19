@@ -183,7 +183,8 @@
             if(userId){
                 _setUserId();
             }
-            
+            //Test trackingId UA-50130727-5
+            //Trulii trackingId UA-67305468-4
             //Test trulii UA-67305468-1
             // Establezca el ID de usuario mediante el user_id con el que haya iniciado sesión.
         }

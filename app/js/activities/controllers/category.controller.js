@@ -145,6 +145,10 @@
             console.log(category);
             console.log(categoryActivities);
             //Function for angularSeo
+            /*var script   = document.createElement("script");
+            script.type  = "application/ld+json"; // use this for linked script
+            script.text  = '{ "@context": "http://schema.org", "@type": "'+vm.strings.HEADER_TITLE_COPY+'", "name": "[the name of the product]", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "[rating]","reviewCount": "[number of reviews]" }}'
+            document.getElementsByTagName("head")[0].appendChild(script); */
             $scope.htmlReady();
         }
     }

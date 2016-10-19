@@ -167,7 +167,6 @@
             });
             vm.trendingCategories = categories.slice(0, 3);
             vm.featuredOrganizers = featuredOrganizers.slice(0,8);
-            console.log(vm.featuredOrganizers);
         }
 
         function _activate(){
@@ -182,6 +181,9 @@
              vm.currentCity = LocationManager.getCurrentCity();
             //Function for angularSeo
             $scope.htmlReady();
+            
+            
+            
         }
 
     }

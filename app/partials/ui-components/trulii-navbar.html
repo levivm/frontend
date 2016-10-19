@@ -276,12 +276,12 @@
     </ul>
     <!--Student Sidebar-->
     <ul class="sidebar-profile__items list-unstyled" ng-if="user.is_student">
-        <li class="sidebar-profile__items-item"
+        <!--<li class="sidebar-profile__items-item"
             ui-sref="referrals.home"
             ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_INVITE)"
             ng-bind="::strings.LABEL_STUDENT_INVITE"
             ui-sref-active="active">
-        </li>
+        </li>-->
         <li class="sidebar-profile__items-item"
             ui-sref="student-dashboard.profile"
             ng-click="hideSubItems(); toggleSideBar(); clickItemSidebar(strings.LABEL_STUDENT_PROFILE)"
@@ -370,7 +370,7 @@
 <div class="sidebar-categories lateral-slide-left hidden-md hidden-lg" ng-show="showCategorySideBar">
     <div class="header" ng-bind="::strings.CATEGORIES_HEADER">
     </div>
-    <ul class="sidebar-categories__items list-unstyled" ng-if="user.is_organizer">
+    <ul class="sidebar-categories__items list-unstyled">
         <li class="sidebar-categories__items-item" 
             ui-sref="category({category_name: category.slug})"
             ng-click="toggleCategorySideBar();"
