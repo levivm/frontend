@@ -15,12 +15,29 @@
                             <span ng-bind="vm.strings.FACEBOOK_ERROR"></span>
                         </div>
                     </div>
-                  <div class="row">
-                      <div class="col-xs-10 col-xs-offset-1">
-                          <hr class="">
-                      </div>
-                  </div>
-                  <div class="row">
+                    <div class="col-xs-12">
+                        <div class="accept-terms" >
+                            <div class="trulii-checkbox ">
+                                    <input type="checkbox" id="cert" ng-model="vm.acceptTerms">
+                                    <label  class="text-regular" for="cert"><span></span></label>
+                            </div>
+                            <h5 class="text-md text-center font-dark text-brand-dark">
+                                <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_1"></span>
+                                <a ui-sref="about.privacy-policy" class="text-underline font-regular text-brand-dark" ng-bind="vm.strings.LABEL_PRIVACY"></a>
+                                <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_3"></span>
+                                <a ui-sref="about.terms" class="text-underline font-regular text-brand-dark" ng-bind="vm.strings.LABEL_TERMS"></a>
+                                <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_5"></span>
+                            </h5>
+                                
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-10 col-xs-offset-1">
+                            <hr class="">
+                        </div>
+                    </div>
+                    <div class="row">
                       <div class="col-xs-12">
                         <h5 class="text-center" ng-bind="vm.strings.SIGNUP_EMAIL_LABEL">
                         </h5>
@@ -60,20 +77,6 @@
                           </form>
                       </div>
                   </div>
-                  <div class="accept-terms" >
-                      <div class="trulii-checkbox ">
-                                <input type="checkbox" id="cert" ng-model="vm.acceptTerms">
-                                <label  class="text-regular" for="cert"><span></span></label>
-                       </div>
-                       <h5 class="text-md text-center font-dark text-brand-dark">
-                            <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_1"></span>
-                            <a ui-sref="about.privacy-policy" class="text-underline font-regular text-brand-dark" ng-bind="vm.strings.LABEL_PRIVACY"></a>
-                            <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_3"></span>
-                            <a ui-sref="about.terms" class="text-underline font-regular text-brand-dark" ng-bind="vm.strings.LABEL_TERMS"></a>
-                            <span ng-bind="vm.strings.TERMS_AND_CONDITIONS_COPY_5"></span>
-                        </h5>
-                          
-                  </div>
                   <div class="row">
                     <div class="text-center separate-vertical" id="anchor">
                         <span class="fit-in-xs" ng-bind="vm.strings.ALREADY_HAVE_AN_ACCOUNT_COPY"></span>
@@ -88,8 +91,6 @@
                         </a>
                     </div>
                    </div>
-                  
-                  
               </div> 
             </div>
         </div>
