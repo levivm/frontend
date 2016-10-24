@@ -167,7 +167,10 @@
                     return $state.current.name === 'home';
                 }
                 function isSearchVisible(){
-                     return ($state.current.name==='search' || scope.scroll<100);
+                    if($state.current.name === "home" && scope.scroll < 580){
+                        return true;                        
+                    }
+                    return ($state.current.name==='search' || scope.scroll<100);
                 }
                 function howToWorkStudent(){
                     _stateGoHowto(STATE_HOW_TO_WORK_HOME);

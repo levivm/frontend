@@ -57,6 +57,7 @@
             widgetMaxPosition: 0,
             widgetAbsolutePosition: 0,
             showEmail: false,
+            showGallery: false,
             showSessions: false,
             hasMoreReviews: true,
             showSchedules: false,
@@ -71,6 +72,7 @@
             showMoreReviews: showMoreReviews,
             toggleSchedules: toggleSchedules,
             toggleEmailShow: toggleEmailShow,
+            toggleGalleryShow: toggleGalleryShow,
             toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm,
             showAudience: false,
@@ -246,6 +248,11 @@
         function toggleEmailShow(){
             vm.showEmail = !vm.showEmail;
             vm.formData.message = vm.social.EMAIL_SHARE_TEXT;
+        }
+
+        function toggleGalleryShow(){
+            vm.showGallery = !vm.showGallery;
+            console.log(vm.showGallery);
         }
 
         function toggleSessions(){
@@ -635,6 +642,7 @@
                 LABEL_EXTRA_INFO: "Información importante",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
+                LABEL_SHOW_GALLERY: "Mostrar galería",
                 TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",
                 TITLE_INVALID_LIKE_USER: "Sólo estudiantes pueden agregar una actividad a mis favoritos",
                 MSG_INVALID_USER: "Acción no permitida para tipo de usuario",
