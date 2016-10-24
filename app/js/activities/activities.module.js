@@ -216,7 +216,7 @@
                 },
                 metaTags:{
                     title: function(category){
-                        console.log(category);
+                        return category.data.name
                         //return activity.title;
                     },
                     description: function(category){

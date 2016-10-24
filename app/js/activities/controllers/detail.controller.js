@@ -394,7 +394,163 @@
                 return _package;
             }
         }
-
+        function _mapProductObj(productObj){
+            var offer = {  
+                "@type":"Offer",
+                "priceCurrency":"COP",
+                "price": 0,
+                "availability":"In Stock",
+                "availabilityStarts":"",
+                "availabilityEnds": "",
+                "url":productObj.url
+            };
+            var review =  {  
+                "@type":"Review",
+                "datePublished":"",
+                "reviewBody":" ",
+                "author":"",
+                "reviewRating":{  
+                    "@type":"Rating",
+                    "ratingValue":0,
+                    "bestRating":5,
+                    "worstRating":1
+                }
+            };
+            if( vm.package_selected ){
+                angular.forEach(vm.activity.calendars[0].packages, function(pack){
+                    offer.price = pack.price;
+                    offer.availabilityStarts = vm.activity.calendars[0].initial_date.toString();
+                    productObj.offers.push(offer);
+                });
+            }else{
+                 angular.forEach(vm.activity.calendars, function(calendar){
+                    offer.price = calendar.session_price;
+                    offer.availabilityStarts = calendar.initial_date.toString();
+                    productObj.offers.push(offer);
+                });
+            }
+            angular.forEach(vm.reviews, function(rev){
+                review.datePublished = rev.created_at.toString();
+                review.reviewBody = rev.comment;
+                review.author = rev.author.user.first_name +' '+ rev.author.user.last_name;
+                review.reviewRating.ratingValue = rev.rating;
+                productObj.review.push(review);
+            });
+            
+        }
+        
+        function _removeScriptSeo() {
+            var element = document.getElementById('seoJson');
+            if(!element){
+                return true;
+            }else{
+                 document.getElementsByTagName("head")[0].removeChild (element);
+                 _removeScriptSeo();
+            }
+        }
+        
+        function _initObjectsSeo(){
+            var current_url = $state.href($state.current.name, $state.params, {absolute: true});
+            var websiteObj = {  
+                "@context":"http://schema.org",
+                "@type":"WebSite",
+                "name":"Trulii",
+                "url":"https://www.trulii.com",
+                "potentialAction":{  
+                    "@type":"SearchAction",
+                    "target":"https://www.trulii.com/buscar?q=search_term_string&city=1",
+                    "query-input":"required name=search_term_string"
+                }
+            }
+            var breadCrumbObj = {
+                "@context": "http://schema.org",
+                "@type":"BreadcrumbList",
+                "itemListElement":[  
+                    {  
+                        "@type":"ListItem",
+                        "item":{  
+                            "@type":"Thing",
+                            "@id":"https://trulii.com",
+                            "name":"Home",
+                            "url":"https://trulii.com"
+                        },
+                        "position":1
+                    },
+                    {  
+                        "@type":"ListItem",
+                        "item":{
+                            "@type":"Thing",
+                            "@id":"https://trulii.com/actividades/"+vm.activity.category.slug,
+                            "name":vm.activity.category.name,
+                            "image": getAmazonUrl(vm.activity.category.cover_photo),
+                            "url":"https://trulii.com/actividades/"+vm.activity.category.slug
+                        },
+                        "position":2
+                    },
+                    {  
+                        "@type":"ListItem",
+                        "item":{  
+                            "@type":"Thing",
+                            "@id":current_url,
+                            "name":vm.activity.title,
+                            "image": vm.activity.main_photo,
+                            "url":current_url,
+                        },
+                        "position":3
+                    },
+                ]
+            }
+            var productObj = {
+                "@context": "http:\/\/schema.org",
+                "@type": "Product",
+                "image": vm.activity.main_photo,
+                "name": vm.activity.title,
+                "description": vm.activity.short_description,
+                "url": current_url,
+                "offers": [],
+                "brand": {
+                    "@context": "http:\/\/schema.org",
+                    "@type": "Organization",
+                    "name": vm.activity.organizer.name,
+                    "description": vm.activity.organizer.bio,
+                    "url": "https://trulii.com/organizador/"+vm.activity.organizer.id,
+                    "location": {
+                        "@context": "http:\/\/schema.org",
+                        "@type": "Place",
+                        "@id": vm.activity.location.id,
+                        "name": vm.activity.organizer.name,
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": vm.activity.location.address,
+                            "addressRegion": "Bogotá"
+                        },
+                        "geo": {
+                            "@type": "GeoCoordinates",
+                            "latitude": vm.activity.location.point[0],
+                            "longitude": vm.activity.location.point[1],
+                        }
+                    }
+                },
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": vm.activity.rating
+                },
+                "review": []
+            }
+            
+            _mapProductObj(productObj);
+            _removeScriptSeo();
+            _setSeoScript(websiteObj);
+            _setSeoScript(breadCrumbObj);
+            _setSeoScript(productObj);
+        }
+        function  _setSeoScript(dataObj) {
+            var script   = document.createElement("script");
+            script.type  = "application/ld+json"; // use this for linked script
+            script.text  = JSON.stringify(dataObj)
+            script.id= "seoJson";
+            document.getElementsByTagName("head")[0].appendChild(script); 
+        }
         function _setSocialShare(){
             var current_url = $state.href($state.current.name, $state.params, {absolute: true});
             vm.social = {};
@@ -621,9 +777,11 @@
             _setSearchData();
             _updateViewCount();
             _setOrganizerRating();
+            _initObjectsSeo();
             vm.showLevel = vm.activity.level === "N" ? false:true;
             //Function for angularSeo
             Analytics.ecommerce.detailActivity(vm.activity, vm.package_selected?vm.package_selected:vm.calendar_selected);
+            
             $scope.htmlReady();
         }
     }

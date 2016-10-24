@@ -85,6 +85,43 @@
         function _setCategories(){
             vm.categories = angular.copy(generalInfo.categories);
         }
+        
+       
+        function _removeScriptSeo() {
+            var element = document.getElementById('seoJson');
+            if(!element){
+                return true;
+            }else{
+                 document.getElementsByTagName("head")[0].removeChild (element);
+                 _removeScriptSeo();
+            }
+        }
+        function _initObjectsSeo(){
+            var websiteObj = {  
+                "@context":"http://schema.org",
+                "@type":"WebSite",
+                "name":"Trulii",
+                "url":"https://www.trulii.com",
+                "potentialAction":{  
+                    "@type":"SearchAction",
+                    "target":"https://www.trulii.com/buscar?q=search_term_string&city=1",
+                    "query-input":"required name=search_term_string"
+                }
+            }
+             _removeScriptSeo();
+            _setSeoScript(websiteObj);
+           
+        }
+        function  _setSeoScript(dataObj) {
+            var script   = document.createElement("script");
+            script.type  = "application/ld+json"; // use this for linked script
+            script.text  = JSON.stringify(dataObj);
+            script.id= "seoJson";
+            
+            document.getElementsByTagName("head")[0].appendChild(script); 
+            
+            //document.querySelector('script[type="application/ld+json"]')
+        }
 
         function _setStrings() {
             if (!vm.strings) { vm.strings = {}; }
@@ -180,7 +217,8 @@
             //Analytics.generalEvents.landing();
              vm.currentCity = LocationManager.getCurrentCity();
             //Function for angularSeo
-            $scope.htmlReady();
+            _initObjectsSeo();
+            $scope.htmlReady(); 
             
             
             

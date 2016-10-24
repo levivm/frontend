@@ -56,9 +56,64 @@
         function _setSearchData(){
             SearchManager.setCategory(vm.category.id);
             vm.currentCity = LocationManager.getCurrentCity();
-            console.log(vm.currentCity);
             SearchManager.setCity(vm.currentCity.id);
             vm.searchData = SearchManager.getSearchData();
+        }
+        function _removeScriptSeo() {
+            var element = document.getElementById('seoJson');
+            if(!element){
+                return true;
+            }else{
+                 document.getElementsByTagName("head")[0].removeChild (element);
+                 _removeScriptSeo();
+            }
+        }
+        function _initObjectsSeo(){
+            var websiteObj = {
+                "@context": "http://schema.org",
+                "@type": "WebSite",
+                "name": "Trulii",
+                "url": "https://trulii.com",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://trulii.com/buscar?city=1&category="+vm.category.id+"&cost_start=30000&cost_end=1000000&page=1"
+                }
+            }
+            var breadCrumbObj = {
+                "@context": "http://schema.org",
+                "@type":"BreadcrumbList",
+                "itemListElement":[  
+                    {  
+                        "@type":"ListItem",
+                        "item":{  
+                            "@id":"https://trulii.com",
+                            "name":"Home",
+                            "url":"https://trulii.com"
+                        },
+                        "position":1
+                    },
+                    {  
+                        "@type":"ListItem",
+                        "item":{  
+                            "@id":"https://trulii.com/actividades/"+vm.category.slug,
+                            "name":vm.category.name,
+                            "image": getAmazonUrl(vm.category.cover_photo),
+                            "url":"https://trulii.com/actividades/"+vm.category.slug
+                        },
+                        "position":2
+                    }
+                ]
+            }
+            _removeScriptSeo();
+            _setSeoScript(websiteObj);
+            _setSeoScript(breadCrumbObj);
+        }
+        function  _setSeoScript(dataObj) {
+            var script   = document.createElement("script");
+            script.type  = "application/ld+json"; // use this for linked script
+            script.text  = JSON.stringify(dataObj)
+            script.id= "seoJson";
+            document.getElementsByTagName("head")[0].appendChild(script); 
         }
 
         function _setStrings(){
@@ -142,13 +197,10 @@
             _setStrings();
             _setSearchData();
             _mapTemplates();
-            console.log(category);
-            console.log(categoryActivities);
+            _initObjectsSeo();
+            
             //Function for angularSeo
-            /*var script   = document.createElement("script");
-            script.type  = "application/ld+json"; // use this for linked script
-            script.text  = '{ "@context": "http://schema.org", "@type": "'+vm.strings.HEADER_TITLE_COPY+'", "name": "[the name of the product]", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "[rating]","reviewCount": "[number of reviews]" }}'
-            document.getElementsByTagName("head")[0].appendChild(script); */
+            /**/
             $scope.htmlReady();
         }
     }
