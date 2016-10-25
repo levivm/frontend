@@ -216,11 +216,12 @@
                 },
                 metaTags:{
                     title: function(category){
-                        return category.data.name
+                        return !_.isEmpty(category.data.seo_data) ? category.data.seo_data.meta.title : category.data.name;
                         //return activity.title;
                     },
                     description: function(category){
                         //return activity.short_description
+                        return !_.isEmpty(category.data.seo_data) ? category.data.seo_data.meta.description : category.data.description;
                     }
                 }
             })
