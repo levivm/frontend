@@ -89,9 +89,9 @@
         
         //STRINGS For ecommerce
         
-        var EC_ADDIMPRESSION = 'ec:addImpression';
-        var EC_ADDPRODUCT = 'ec:addProduct';
-        var EC_SETACTION = 'ec:setAction';
+        var EC_ADDIMPRESSION = 'myTracker.ec:addImpression';
+        var EC_ADDPRODUCT = 'myTracker.ec:addProduct';
+        var EC_SETACTION = 'myTracker.ec:setAction';
         
 
 
@@ -172,14 +172,15 @@
         function init(){
 
             var userId = Authentication.isAuthenticated() ? true:false;
+            $window.ga_debug = {trace: true};
             $window.ga('create', {
                 trackingId: 'UA-67305468-4',
                 cookieDomain: 'auto',
                 name: 'myTracker',
             });
             
-            $window.ga('require', 'ec');
-            $window.ga('set', '$', 'COP'); 
+            $window.ga('myTracker.require', 'ec');
+            $window.ga('myTracker.set', '&cu', 'COP'); 
             if(userId){
                 _setUserId();
             }
@@ -375,6 +376,7 @@
             var dataObject = _getActivityObject(activity);
             dataObject.list=stateName;
             _ecommerceTrack(EC_ADDIMPRESSION, dataObject);
+            $window.ga(TRACKER_SEND, 'pageview');
         }
         function goToActivity(activity, stateName) {
             var dataObject = _getActivityObject(activity);
@@ -448,6 +450,8 @@
                 $window.ga(EC_SETACTION, typeAction, dataAction);
             else
                 $window.ga(EC_SETACTION, typeAction);
+            
+            $window.ga(TRACKER_SEND, 'pageview');
         }
 
         function _reportSocialEvent(social, action, target){
