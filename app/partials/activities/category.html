@@ -34,5 +34,47 @@
       </div>
   </div>
 </div>
+
+<div class="absolute-container" ng-show="category.showPopup">
+  <div class="">
+    <div class="modal-content modal-lead">
+      <div class="close" ng-click="category.togglePopupShow()">
+        <i class="fa fa-times" aria-hidden="true"></i>
+      </div>
+      <div class="modal-body">
+        <div class="modal-lead__header">
+          <h4>Bienvenido a</h4>
+          <img ng-src="{{category.getAmazonUrl('static/img/logo-green.png')}}" alt="">
+        </div>
+        <form name='category.email_form' ng-submit="category.sendEmail()" class="separate-above separate-below-less">
+          <fieldset>
+            <span class="copy-lead" ng-bind-html="category.strings.EMAIL_LEAD_COPY"></span>
+            <div class="form-group" trulii-input-errors-control="email">
+                <input id="email" class="form-control" name="email" type="text"
+                  ng-model="category.emailLead"
+                  placeholder="{{category.strings.EMAIL_LEAD_PLACEHOLDER}}" >
+            </div>
+            <div class="form-group" trulii-input-errors-control="__all__">
+                <input type="hidden" name="__all__" ng-model="__all__"/>
+            </div>
+
+            <div class="form-group">
+              <div class="row">
+                <div class="col-xs-12 ">
+                  <button type="submit" id="submit"
+                    class="btn btn-success btn-md btn-block"
+                    ><span>Quiero mis 10.000COP</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form> 
+      </div>
+    </div>
+  </div>
+  <div class="absolute-container__background"  ng-click="category.togglePopupShow()">
+  </div>
+</div>
 <trulii-footer>
 </trulii-footer>

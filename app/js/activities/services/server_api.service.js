@@ -261,6 +261,17 @@
             'subcategoryCovers' : function (subcategoryId) {
                 return renderUrl('activities/', ['subcategories', subcategoryId, 'covers/']);
             },
+            
+             /**
+             * @ngdoc function
+             * @name .#leads
+             * @description Renders **`/api/categories/:slug/leads/`** Email leads
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'leads' : function (category) {
+                return renderUrl('activities/', ['categories', category, 'leads/']);
+            },
 
             /**
              * @ngdoc function

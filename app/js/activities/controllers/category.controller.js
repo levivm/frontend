@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
-        'Toast', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'SearchManager', 'LocationManager', 'category', 'categoryActivities'];
+    CategoryController.$inject = ['$scope', '$state', '$timeout', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
+        'Toast', 'serverConf', 'Scroll', 'Facebook', 'Analytics','Error', 'SearchManager', 'LocationManager', 'category', 'categoryActivities', 'ActivitiesManager'];
 
-    function CategoryController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
-                                      Toast, serverConf, Scroll, Facebook, Analytics, SearchManager, LocationManager, category, categoryActivities) {
+    function CategoryController($scope, $state, $timeout, $stateParams, $filter, $location, moment, Elevator,
+                                      Toast, serverConf, Scroll, Facebook, Analytics, Error, SearchManager, LocationManager, category, categoryActivities, ActivitiesManager) {
                                           
         var vm = this;
 
@@ -32,6 +32,9 @@
             category: category.data,
             categoryActivities: categoryActivities.results,
             cards: [],
+            showPopup:false,
+            togglePopupShow: togglePopupShow,
+            sendEmail:sendEmail,
             searchData: {}
         });
 
@@ -41,6 +44,23 @@
 
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
+        }
+        
+        function togglePopupShow() {
+            vm.showPopup = !vm.showPopup;
+        
+        }
+        
+        function sendEmail() {
+            Error.form.clear(vm.email_form);
+            ActivitiesManager.leadsCategory(vm.category, vm.emailLead).then(success, error);
+
+            function success(response){
+                vm.showPopup = false;
+            }
+            function error(response){
+                Error.form.add(vm.email_form, response.data);
+            }
         }
 
         //--------- Internal Functions ---------//
@@ -182,6 +202,8 @@
                 EMAIL_MODAL_MESSAGE_PLACEHOLDER: "Hey, échale un vistazo a esta actividad en Trulii. ¡Sé que te encantará!",
                 EMAIL_MODAL_SEND: "Enviar",
                 EMAIL_MODAL_DISMISS: "Cancelar",
+                EMAIL_LEAD_PLACEHOLDER: "Email",
+                EMAIL_LEAD_COPY: 'Te daremos un cupón de <strong style="font-size: 19px;">10.000 COP </strong> para tu primera clase, solo tienes que dejarnos tu correo.',
                 COPY_SHARE_SUCCESS: "La Actividad fue compartida exitosamente",
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
@@ -198,7 +220,13 @@
             _setSearchData();
             _mapTemplates();
             _initObjectsSeo();
-            
+           
+            angular.element(document).ready(function () {
+                $timeout(function(){
+                    vm.showPopup = true;
+                }, 5000);
+                
+            });
             //Function for angularSeo
             /**/
             $scope.htmlReady();

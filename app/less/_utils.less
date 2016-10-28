@@ -1466,6 +1466,52 @@
     width: 110px;
 }
 
+
+.modal-lead{
+	width: 480px;
+	margin: 0 auto;
+	.before-xs({
+		width: 90%;
+	});
+	&__header{
+		border-bottom: 1px solid @gray-light-brand;
+		padding-bottom: 20px;
+		width: 80%;
+		margin: 0 auto;
+		img{
+			width: 160px;    
+			.before-xs({
+				width: 130px;
+			});
+		}
+	}
+	.modal-body{
+		padding-top: 20px;
+		padding-right: 45px;
+		padding-bottom: 40px;
+		padding-left: 45px;
+	}
+	
+	input[type="text"]{
+		height: 36px !important;
+	}
+	
+	.close{
+		background: @brand-primary;
+		position: absolute;
+		color: white;
+		font-size: 18px;
+		border-radius: 50%;
+		padding: 1px 6px 1px 7px;
+		right: -10px;
+		top: -10px;
+		cursor: pointer;
+		z-index: 10;
+	}
+	.copy-lead{
+		color: @gray-darker;
+	}
+}
 @media (min-width: 992px){
 	.modal-lg {
 		width: 700px;

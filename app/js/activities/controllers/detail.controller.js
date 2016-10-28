@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'moment', 'Elevator',
+    ActivityDetailController.$inject = ['$scope', '$state', '$window', '$stateParams', '$filter', '$timeout', 'moment', 'Elevator',
         'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
         'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager'];
 
-    function ActivityDetailController($scope, $state, $stateParams, $filter, $timeout, moment, Elevator,
+    function ActivityDetailController($scope, $state,$window, $stateParams, $filter, $timeout, moment, Elevator,
                                       Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
 
