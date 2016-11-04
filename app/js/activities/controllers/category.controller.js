@@ -20,10 +20,10 @@
         .controller('CategoryController', CategoryController);
 
     CategoryController.$inject = ['$scope', '$state', '$timeout', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
-        'Toast', 'serverConf', 'Scroll', 'Facebook', 'Analytics','Error', 'SearchManager', 'LocationManager', 'category', 'categoryActivities', 'ActivitiesManager'];
+        'Toast', 'serverConf', 'Scroll', 'Facebook', 'Analytics','Error', 'SearchManager', 'LocationManager', 'category', 'categoryActivities', 'ActivitiesManager', 'Authentication'];
 
     function CategoryController($scope, $state, $timeout, $stateParams, $filter, $location, moment, Elevator,
-                                      Toast, serverConf, Scroll, Facebook, Analytics, Error, SearchManager, LocationManager, category, categoryActivities, ActivitiesManager) {
+                                      Toast, serverConf, Scroll, Facebook, Analytics, Error, SearchManager, LocationManager, category, categoryActivities, ActivitiesManager, Authentication) {
                                           
         var vm = this;
 
@@ -135,6 +135,26 @@
             script.id= "seoJson";
             document.getElementsByTagName("head")[0].appendChild(script); 
         }
+        
+        function _getAuth() {
+            Authentication.getAuthenticatedAccount().then(success, error);
+            
+            function success(response) {
+                if(!response)
+                    _showPopup();
+            }
+            function error(response) {
+                console.log(response);
+            }
+        }
+        
+        function _showPopup() {
+            angular.element(document).ready(function () {
+                $timeout(function(){
+                    vm.showPopup = true;
+                }, 5000);
+            });
+        }
 
         function _setStrings(){
             if(!vm.strings){ vm.strings = {}; }
@@ -216,17 +236,13 @@
         
 
         function _activate(){
+            _getAuth();
             _setStrings();
             _setSearchData();
             _mapTemplates();
             _initObjectsSeo();
            
-            angular.element(document).ready(function () {
-                $timeout(function(){
-                    vm.showPopup = true;
-                }, 5000);
-                
-            });
+          
             //Function for angularSeo
             /**/
             $scope.htmlReady();
