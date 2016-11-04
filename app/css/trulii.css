@@ -14469,12 +14469,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .navbar__logo {
-  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-halloween.png') no-repeat;
+  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-green.png') no-repeat;
   height: 60px;
-  width: 9em;
+  width: 7em;
   display: inline-block;
   background-size: contain;
-  margin: 15px auto 0;
+  margin: 10px auto 0;
   transition: all 0.25s;
 }
 @media screen and (max-width: 992px) {
