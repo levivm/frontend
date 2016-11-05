@@ -52,7 +52,7 @@
                                 name = scope.user.user.first_name;
                             }
                             scope.initial =name.substring(0,1);
-                            element.css('background', colors[scope.user.id % 10].hex);
+                            element.css('background', colors[Math.abs(scope.user.id % 10)].hex);
                             element.css('border-radius', '50%');
                             element.css('width', scope.size + 'px');
                             element.css('height', scope.size + 'px');

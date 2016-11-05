@@ -363,7 +363,15 @@
              * @description Update the number of views on an activity
              * @methodOf trulii.activities.services.Activity
              */
-            updateViewsCounter: updateViewsCounter
+            updateViewsCounter: updateViewsCounter,
+
+            /**
+             * @ngdoc function
+             * @name .#getBuiltReviews
+             * @description Get built reviews
+             * @methodOf trulii.activities.services.Activity
+             */
+            getBuiltReviews: getBuiltReviews
 
         };
 
@@ -791,6 +799,18 @@
                 });
         }
 
+        function getBuiltReviews(){
+            var that = this;
+            return $http.get(api.builtReviews(that.id)).then(success, error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                return response.data;
+            }
+        }
+        
         function updateViewsCounter(){
             return $http.put(api.viewsCounter(this.id));
         }

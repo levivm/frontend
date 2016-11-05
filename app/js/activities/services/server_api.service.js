@@ -82,6 +82,18 @@
 
             /**
              * @ngdoc function
+             * @name .#builtReviews
+             * @description Renders **`/api/activities/:idActivity/reviews/built`** Activity Reviews URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'builtReviews' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'reviews', 'built/']);
+            },
+
+            /**
+             * @ngdoc function
              * @name .#review
              * @description Renders **`/api/reviews/:idReview`** Review URL
              * @param {number} idReview Review Id

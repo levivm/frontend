@@ -19,12 +19,13 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
-    ActivityDetailController.$inject = ['$scope', '$state', '$window', '$stateParams', '$filter', '$timeout', 'moment', 'Elevator',
-        'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
+
+    ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'moment', 'Elevator',
+        'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'builtReviews', 'defaultCover',
         'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager'];
 
-    function ActivityDetailController($scope, $state,$window, $stateParams, $filter, $timeout, moment, Elevator,
-                                      Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
+    function ActivityDetailController($scope, $state, $stateParams, $filter, $timeout, moment, Elevator,
+                                      Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews, builtReviews,
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
 
         var visibleReviewListSize = 3;
@@ -235,7 +236,7 @@
         function showMoreReviews(){
             if(visibleReviewListSize < reviews.length){
                 visibleReviewListSize += 3;
-                vm.reviews = reviews.slice(0, visibleReviewListSize);
+                vm.reviews = reviews.results.slice(0, visibleReviewListSize);
             } else {
                 vm.hasMoreReviews = false;
             }
@@ -762,10 +763,12 @@
             activity = _mapInfo(activity);
             _mapTemplates();
             _setUpLocation(activity);
+            reviews.results = builtReviews.concat(reviews.results);
+            console.log(reviews.results);
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
-                reviews : reviews.results,
+                reviews : reviews.results.slice(0, visibleReviewListSize),
                 totalReviews: reviews.results.length,
                 hasMoreReviews: reviews.results.length > 3,
                 calendar_selected : _getSelectedCalendar(activity),
