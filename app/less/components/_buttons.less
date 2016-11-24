@@ -18,6 +18,42 @@
     }
 }
 
+.btn-bordered{
+    color: @gray-darker !important;
+    border-width: 3px;
+    border-color: @brand-primary !important;
+    background-color: transparent !important;
+    transition: all 0.25s;
+
+    &:hover{
+        color: white !important;
+        background-color:  @brand-primary !important;
+        border-color: @brand-secondary;
+    }
+
+    &:active{
+        color: white !important;
+        background-color:  @brand-primary !important;
+        border-color: @brand-secondary;
+    }
+    &:focus{
+        color: white !important;
+        background-color:  @brand-primary !important;
+        border-color: @brand-secondary;
+    }
+}
+.btn-yellow{
+    color: @gray-darker !important;
+    border-color: transparent;
+    background-color: @brand-yellow !important;
+
+    &:hover, &:active, &:focus{
+        border-color: @brand-yellow;
+        background-color: darken(@brand-yellow, 5%) !important;
+    }
+    
+}
+
 .btn-link {
     color: @lightbg-text;
     &:extend(.text-sm);

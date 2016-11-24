@@ -4,8 +4,15 @@
 .well-plain {
     width: 100%;
     background-color: @well-bg;
-    color: @lightbg-text;
+    color: @gray-darker !important;
     padding: 19px;
+    p, h1, h3, h4, h5{
+      color: @gray-darker !important;
+    }
+    a{
+      color: @gray-darker !important;
+      text-decoration: underline;
+    }
 }
 
 .remarks-container {
@@ -16,15 +23,15 @@
 }
 
 .container-muted{
-  background-color: @gray-lighter-brand;
+  background-color: @gray-light;
   .container-muted{
-    background-color: @gray-light-brand;
+    background-color: @gray-light;
     a{
-      color: @gray-darkest-brand;
+      color: @gray-darker;
     }
   }
   p, h1, h2, h3, h4, h5{
-    color: @gray-darkest-brand;
+    color: @gray-darker;
   }
 }
 
@@ -36,6 +43,25 @@
   a{
     color: white;
     text-decoration: underline;
+  }
+}
+
+.container-primary{
+  background-color: @brand-primary;
+  p, h1, h3, h4, h5{
+    color: white;
+  }
+  a{
+    color: white !important;
+  }
+}
+.container-yellow{
+  background-color: @brand-yellow;
+  p, h1, h3, h4, h5{
+    color: white;
+  }
+  a{
+    color: white !important;
   }
 }
 .modal-email .modal-header-message {
