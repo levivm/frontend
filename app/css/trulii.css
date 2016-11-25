@@ -11954,7 +11954,8 @@ hr.on-light {
   -ms-flex-pack: center;
   justify-content: center;
 }
-.flex-betweent-container {
+.flex-betweent-container,
+.navbar {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -11980,7 +11981,8 @@ hr.on-light {
   -ms-flex-pack: space-around;
   justify-content: space-around;
 }
-.flex-align-items-center {
+.flex-align-items-center,
+.navbar__logo-container {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12010,6 +12012,13 @@ hr.on-light {
   -webkit-flex: none;
   -ms-flex: none;
   flex: none;
+}
+.flex-justify-start,
+.navbar__logo-container {
+  -webkit-box-pack: flex-start;
+  -webkit-justify-content: flex-start;
+  -ms-flex-pack: flex-start;
+  justify-content: flex-start;
 }
 .circular-image-container {
   border-radius: 100%;
@@ -14490,10 +14499,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .navbar__logo-container {
   background-color: transparent;
   height: 70px;
-  width: 16.1em;
-  display: inline-block;
-  text-align: center;
-  transition: all 0.25s;
+  width: 20%;
+  text-align: left;
 }
 .--on-dash .navbar__logo-container {
   width: 13.9em;
@@ -14501,189 +14508,91 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 @media screen and (max-width: 992px) {
   .navbar__logo-container {
     height: 49px !important;
-    width: 125px;
+    width: 60%;
     background-color: white;
+  }
+}
+.navbar__logo-container-city {
+  border-left: 1px solid #545462;
+  padding: 2px 10px;
+  font-size: 0.9em;
+}
+.navbar__logo-container-width-user {
+  width: 50% !important;
+}
+@media screen and (max-width: 992px) {
+  .navbar__logo-container-width-user {
+    width: 60% !important;
   }
 }
 .navbar__logo {
   background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-green.png') no-repeat;
   height: 60px;
   width: 7em;
-  display: inline-block;
   background-size: contain;
-  margin: 10px auto 0;
+  margin: 10px 15px;
   transition: all 0.25s;
 }
 @media screen and (max-width: 992px) {
   .navbar__logo {
-    width: calc(100vw - 120px);
     background-size: contain;
     position: relative;
-    height: 35px;
-    margin: 5px auto 0;
-    background-position: center center;
+    height: 30px;
+    margin: 0 auto;
+    background-position: center center !important;
   }
+}
+.navbar__center {
+  font-size: 0.8em;
+  width: 60%;
+  text-align: center;
+}
+.navbar__center a {
+  color: #545462;
+  margin: 0 10px;
+}
+.navbar__center a:hover {
+  color: #545462;
 }
 .navbar__mobile-dashboard-controllers {
   width: calc(100% - 154px);
 }
 .navbar__mobile-left-wrapper {
   padding-left: 30px;
-  display: inline-block;
-  vertical-align: top;
-  height: 60px;
+  width: 20%;
 }
-.navbar__mobile-left-wrapper .navbar__option {
-  background-color: transparent !important;
-  padding: 5px 2em 5px 0em;
-  text-align: left;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  float: left;
-  height: 50px;
-  line-height: 40px;
-  transition: all 0.25s;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-.navbar__left-wrapper {
-  display: inline-block;
-  vertical-align: top;
-  height: 60px;
-  width: calc(100% - 465px);
-  margin: 0.2em 1em;
-}
-.navbar__left-wrapper .navbar__option--right {
-  float: right;
-  font-size: 13px;
-  padding-top: 0;
-}
-.navbar__left-wrapper .buttons {
-  height: 100%;
-  padding: 1em 0;
-  margin-top: 3px;
-  font-size: 13px;
-  transition: all 0.25s;
-}
-.navbar__left-wrapper .buttons-login {
-  line-height: 2.4em;
-}
-.navbar__left-wrapper .buttons-login > a {
-  color: #545462;
-  text-decoration: none;
-}
-.navbar__left-wrapper .buttons-login > a:hover {
-  color: #292929;
-}
-.navbar__left-wrapper.long {
-  width: calc(100% - 300px);
-}
-@media screen and (max-width: 992px) {
-  .navbar__left-wrapper {
-    display: none;
-  }
-}
-.navbar__right-wrapper {
-  display: inline-block;
-  vertical-align: top;
-  height: 70px;
-  transition: all 0.25s;
+.navbar__right {
+  width: 20%;
   text-align: right;
-  float: right;
-  font-size: 0.9em;
-  margin-right: 3em;
-}
-@media screen and (max-width: 992px) {
-  .navbar__right-wrapper {
-    max-width: 150px;
-    display: inline-block;
-    margin-right: 0;
-    height: 50px;
-  }
-}
-.navbar__right-wrapper .btn {
-  margin: 7px 1em;
-}
-.navbar__right-wrapper > div {
-  display: inline-block;
-}
-.navbar__option {
-  color: rgba(0, 0, 0, 0.74);
-  display: inline-block;
-  padding: 5px 1em;
-  height: 70px;
-  transition: all 0.25s;
-  font-weight: bold;
-  text-transform: uppercase;
-  line-height: 60px;
-}
-@media screen and (max-width: 992px) {
-  .navbar__option {
-    padding: 0;
-    height: 50px;
-    line-height: 40px;
-  }
-}
-.navbar__option:active,
-.navbar__option.open {
-  color: white;
-  background-color: #03d69a !important;
-}
-.navbar__option--right {
-  text-decoration: none;
-  padding: 5px 2em 5px 0em;
-  text-align: left;
-  cursor: pointer;
   display: flex;
   align-items: center;
-  float: left;
+  justify-content: flex-end;
 }
-.navbar__option--right span {
-  text-transform: capitalize;
-  font-weight: 600;
+.navbar__right-search {
+  margin-right: 25px;
+  font-size: 1.2em;
   color: #545462;
 }
-.navbar__option--right i {
-  font-size: 1.7em;
-  vertical-align: middle;
+.navbar__right-profile {
+  text-decoration: none;
+  padding: 5px 2em 5px 0em;
+  /* text-align: left; */
+  /* cursor: pointer; */
+  display: flex;
+  align-items: center;
+  /* float: left; */
+  justify-content: center;
+  color: #545462;
 }
-.navbar__option--right:hover {
+.navbar__right-profile:hover {
   text-decoration: none;
 }
-.navbar__option--right .fa-bars {
-  font-size: 1.5em;
-  padding: 1.2em 0.8em;
-}
-.navbar__option--right .user-picture {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  border-radius: 50%;
-  padding: 0.6em;
-  width: 4em;
-  height: 4em;
-  display: inline-block;
+.navbar__right-width-user {
+  width: 50% !important;
 }
 @media screen and (max-width: 992px) {
-  .navbar__option--right .user-picture {
-    margin-right: -15px;
-    width: 4em;
-    height: 4em;
-    margin-top: 5px;
-  }
-}
-.navbar__option--right .menu-icon {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  padding: 1.4em;
-  width: 4em;
-  display: inline-block;
-}
-@media screen and (max-width: 992px) {
-  .navbar__option--right .menu-icon.menu-icon-user {
-    margin-left: -5px;
+  .navbar__right-width-user {
+    width: 20% !important;
   }
 }
 .navbar .dropdown {
@@ -14767,28 +14676,48 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
 .sidebar.sidebar-short {
   top: 50px;
 }
-.navbar-landing {
+.navbar-transparent {
   background: transparent !important;
   border: none;
   color: #FFFFFF !important;
 }
-.navbar-landing .navbar__logo-container {
+.navbar-transparent .navbar__logo-container {
   background: transparent !important;
 }
-.navbar-landing .navbar__option--right {
+.navbar-transparent .navbar__logo-container-city {
+  border-left: 1px solid white;
+}
+.navbar-transparent .navbar__logo {
+  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-white.png') no-repeat;
+  background-size: contain;
+}
+.navbar-transparent .navbar__center a {
+  color: white;
+  margin: 0 10px;
+}
+.navbar-transparent .navbar__center a:hover {
+  color: white;
+}
+.navbar-transparent .navbar__right-search {
+  color: white;
+}
+.navbar-transparent .navbar__right-profile {
+  color: white;
+}
+.navbar-transparent .navbar__option--right {
   border-left: none;
 }
-.navbar-landing .navbar__option--right span {
+.navbar-transparent .navbar__option--right span {
   color: #ffffff;
 }
-.navbar-landing .btn-primary {
+.navbar-transparent .btn-primary {
   background: transparent !important;
   border: 1px solid white;
 }
-.navbar-landing .buttons-login > a {
+.navbar-transparent .buttons-login > a {
   color: #ffffff;
 }
-.navbar-landing .avatar-landing {
+.navbar-transparent .avatar-landing {
   background: transparent !important;
   border: 1px solid white !important;
 }
