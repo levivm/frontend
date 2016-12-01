@@ -38,7 +38,11 @@
             coverVideo: {},
             getAmazonUrl: getAmazonUrl,
             getAmazonVideoUrl:getAmazonVideoUrl,
-            cards: []
+            cards: [],
+            fontColor: fontColor,
+            activeOrganizer: 2,
+            changeActiveOrganizer: changeActiveOrganizer,
+            goToCategory: goToCategory
         });
 
         _activate();
@@ -80,6 +84,43 @@
         function searchCategory(category){
             Analytics.generalEvents.searchCategoryLanding(category.name)
         }
+
+        function fontColor(color){
+            var rgb = _hexToRgb(color);
+            var c = 'rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')';
+    
+            
+            var o = Math.round(((parseInt(rgb[0]) * 299) + (parseInt(rgb[1]) * 587) + (parseInt(rgb[2]) * 114)) /1000);
+            
+            //console.log(o);
+            
+            if(o > 125) {
+                return '#000'
+            }else{
+                return '#FFF'
+            }
+        }
+        
+        function changeActiveOrganizer(index){
+            vm.activeOrganizer = index;
+            index = index+1;
+            if(index == 3){
+                angular.element(document.getElementsByClassName('organizer-tiles-container'))[0].style.transform =  'translateX(0)';
+            }
+            else if(index < 3){
+                angular.element(document.getElementsByClassName('organizer-tiles-container'))[0].style.transform =  'translateX(calc(20% * ' + (3-index) + '))';
+            }
+            else{
+                angular.element(document.getElementsByClassName('organizer-tiles-container'))[0].style.transform =  'translateX(calc(-20% * ' + (index-3) + '))';
+            }
+        }
+        
+        function goToCategory(){
+            
+            console.log(vm.selectedCategory);
+            $state.go('category', {'category_name': vm.selectedCategory});
+        }
+
         // --------- Internal Functions ---------//
 
         function _setCategories(){
@@ -182,8 +223,27 @@
                     }
                 });
             });
-            vm.trendingCategories = categories.slice(0, 3);
-            vm.featuredOrganizers = featuredOrganizers.slice(0,8);
+            vm.trendingCategories = categories.slice(0, 4);
+            console.log(vm.trendingCategories);
+            vm.featuredOrganizers = featuredOrganizers.slice(0,5);
+        }
+
+        function _componentToHex(c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+        }
+
+        function _rgbToHex(r, g, b) {
+            return "#" + _componentToHex(r) + _componentToHex(g) + _componentToHex(b);
+        }
+        function _hexToRgb(hex) {
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            
+            return result ? [
+                parseInt(result[1], 16),
+                parseInt(result[2], 16),
+                parseInt(result[3], 16)
+            ] : null;
         }
 
         function _activate(){
