@@ -38,11 +38,7 @@
             coverVideo: {},
             getAmazonUrl: getAmazonUrl,
             getAmazonVideoUrl:getAmazonVideoUrl,
-            cards: [],
-            fontColor: fontColor,
-            activeOrganizer: 2,
-            changeActiveOrganizer: changeActiveOrganizer,
-            goToCategory: goToCategory
+            cards: []
         });
 
         _activate();
@@ -84,43 +80,6 @@
         function searchCategory(category){
             Analytics.generalEvents.searchCategoryLanding(category.name)
         }
-
-        function fontColor(color){
-            var rgb = _hexToRgb(color);
-            var c = 'rgb('+rgb[0]+','+rgb[1]+','+rgb[2]+')';
-    
-            
-            var o = Math.round(((parseInt(rgb[0]) * 299) + (parseInt(rgb[1]) * 587) + (parseInt(rgb[2]) * 114)) /1000);
-            
-            //console.log(o);
-            
-            if(o > 125) {
-                return '#000'
-            }else{
-                return '#FFF'
-            }
-        }
-        
-        function changeActiveOrganizer(index){
-            vm.activeOrganizer = index;
-            index = index+1;
-            if(index == 3){
-                angular.element(document.getElementsByClassName('organizer-tiles-container'))[0].style.transform =  'translateX(0)';
-            }
-            else if(index < 3){
-                angular.element(document.getElementsByClassName('organizer-tiles-container'))[0].style.transform =  'translateX(calc(20% * ' + (3-index) + '))';
-            }
-            else{
-                angular.element(document.getElementsByClassName('organizer-tiles-container'))[0].style.transform =  'translateX(calc(-20% * ' + (index-3) + '))';
-            }
-        }
-        
-        function goToCategory(){
-            
-            console.log(vm.selectedCategory);
-            $state.go('category', {'category_name': vm.selectedCategory});
-        }
-
         // --------- Internal Functions ---------//
 
         function _setCategories(){
@@ -169,18 +128,38 @@
             angular.extend(vm.strings, {
                 HEADER_TITLE_COPY: "¡Hoy es un nuevo día para aprender!",
                 HEADER_TEXT_COPY: "Encuentra e inscríbete en las mejores clases y cursos en Bogotá.",
-                HEADER_BUTTON_COPY: "Aprende algo nuevo",
-                CATEGORIES_TITLE_COPY: "Conoce y explora tu ciudad",
-                ACTIVITIES_TITLE_COPY: "Encuentra todas las clases que quieras y conoce nuevas personas",
-                ACTIVITIES_BUTTON_COPY: "Ver más actividades",
-                VIDEO_COPY: "Conócenos un poquito más",
+                HEADER_SEARCH_PLACEHOLDER: "¿Qué quieres aprender hoy?",
+                HEADER_CITY_PLACEHOLDER: "Elige tu ciudad",
+                REASON_NO_COMMISSIONS: "Servicio gratuito",
+                REASON_COPY_NO_COMMISSIONS: "Sólo paga por el valor de la clase. No cobramos comisiones.",
+                REASON_REFUND: "Devolución garantizada",
+                REASON_COPY_REFUND: "Te devolvemos tu dinero en caso de no realizarse la actividad.",
+                REASON_SECURE: "Paga seguro",
+                REASON_COPY_SECURE: "Los datos de tu pago están encriptados y seguros con nosotros.",
+                ACTIVITIES_TITLE_COPY: "Actividades populares",
+                ACTIVITIES_TEXT_COPY: "Hacemos de tu ciudad un sitio con infinitas posibilidades para aprender algo nuevo.",
+                ACTIVITIES_BUTTON_COPY: "Ver más actividades similares",
+                VIDEO_COPY: "¡Con Trulii puedes ser quien tú quieras!",
+                CATEGORIES_TITLE_COPY: "Categorías",
                 CATEGORIES_TEXT_COPY: "Habla un nuevo idioma. Aprende a tocar un nuevo instrumento. Ponte en forma. Mejora tu currículo. ¡Aprende lo que quieras!",
-                ORGANIZERS_TITLE: "Conoce a algunos de nuestros organizadores",
-                PUBLISH_COPY_1: "Publica tu actividad con nosotros",
-                PUBLISH_COPY_2: "Capta nuevos clientes y haz crecer tu negocio",
-                PUBLISH_TEXT: "Somos los mejores para dar a conocer tu actividad. Bien sea un curso de cocina, una clase de crossfit o un diplomado universitario, nosotros captamos nuevos clientes mientras tú te enfocas en enseñar lo que te apasiona ¡Regístrate sin costo alguno y comienza a aumentar tus ingresos!",
-                PUBLISH_BUTTON_COPY: "Me interesa, ¡Cuéntame más!",
-                BECOME_AN_ORGANIZER: "Sé Organizador"
+                HOW_TITLE_COPY: "¿Cómo funciona?",
+                HOW_TEXT_COPY: "En cada rincón de tu ciudad existe algo nuevo que aprender. Nosotros te lo facilitamos en tres pasos:",
+                HOW_FIND_COPY: "Encuentra",
+                HOW_FIND_TEXT: "Clases y cursos de cualquier tipo. ¡Tú eliges!",
+                HOW_SIGN_UP_COPY: "Inscríbete",
+                HOW_SIGN_UP_TEXT: "En la actividad que más te llame la atención.",
+                HOW_LEARN_COPY: "Aprende",
+                HOW_LEARN_TEXT: "¡Disfruta y aprende todo lo que puedas!",
+                HOW_REVIEW_COPY: "Evalúa",
+                HOW_REVIEW_TEXT: "La actividad para que otros tengan una referencia.",
+                ORGANIZERS_TITLE: "Estos organizadores confían en Trulii",
+                PUBLISH_COPY: "¿Quieres publicar una actividad?",
+                PUBLISH_TEXT_1: "Trulii es el <strong>mejor espacio</strong> para dar a conocer " +
+                "tu actividad. Bien sea un curso de cocina, una clase de cross-fit, un foro de negocios o un diplomado universitario, nosotros " +
+                "te ayudamos a <strong>aumentar tus ingresos</strong> buscándote nuevos asistentes mientras tú <strong>te enfocas en enseñar</strong> lo que te gusta.",
+                PUBLISH_TEXT_2: "Regístrate sin costo alguno y comienza a llenar tus cupos. ¡Trabajemos juntos!",
+                PUBLISH_TEXT_3: "¡Crece con nosotros!",
+                PUBLISH_BUTTON_COPY: "Me interesa, ¡Cuéntame más!"
             });
         }
 
@@ -223,27 +202,8 @@
                     }
                 });
             });
-            vm.trendingCategories = categories.slice(0, 4);
-            console.log(vm.trendingCategories);
-            vm.featuredOrganizers = featuredOrganizers.slice(0,5);
-        }
-
-        function _componentToHex(c) {
-            var hex = c.toString(16);
-            return hex.length == 1 ? "0" + hex : hex;
-        }
-
-        function _rgbToHex(r, g, b) {
-            return "#" + _componentToHex(r) + _componentToHex(g) + _componentToHex(b);
-        }
-        function _hexToRgb(hex) {
-            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            
-            return result ? [
-                parseInt(result[1], 16),
-                parseInt(result[2], 16),
-                parseInt(result[3], 16)
-            ] : null;
+            vm.trendingCategories = categories.slice(0, 3);
+            vm.featuredOrganizers = featuredOrganizers.slice(0,8);
         }
 
         function _activate(){

@@ -1,6 +1,6 @@
 <!--suppress HtmlUnknownTarget -->
 <promo-bar  ng-if="promoBar" message="Regístrate ahora y obtén COP 10.000 para tu primera actividad. " url="https://www.trulii.com/referir/anonimo" messageurl=" Regístrate." size="small"></promo-bar> 
-<!--<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-landing': isNavBarTransparent()}" ng-style="isPromoBar() && {'margin-top': marginNavbar}">
+<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-landing': isNavBarTransparent()}" ng-style="isPromoBar() && {'margin-top': marginNavbar}">
     <div class="row">
         <div class="navbar__mobile-left-wrapper hidden-md hidden-lg">
             <a class="navbar__option" ng-click="toggleCategorySideBar()">
@@ -55,35 +55,6 @@
         </div>
         
     </div>
-</nav>
--->
-<nav class="navbar navbar-default navbar-fixed-top " ng-class="{'navbar-transparent': isNavBarTransparent()}" ng-style="isPromoBar() && {'margin-top': marginNavbar}">
-        <div class="navbar__mobile-left-wrapper hidden-md hidden-lg">
-            <a class="font-bold text-md" ng-click="toggleCategorySideBar()">
-                 <i class="fa fa-bars" ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
-            </a>
-        </div> 
-        <div class="navbar__logo-container" ng-class="{'navbar__logo-container-width-user': user}">
-            <a ng-click="clickLogo()" ui-sref="home" class="navbar__logo " ></a>
-            <span class="navbar__logo-container-city  font-bold text-uppercase text-spaced hidden-xs hidden-sm" >Bogotá</span>
-        </div>
-        <div  ng-if="!user" class="navbar__center hidden-xs hidden-sm" > 
-            <a ui-sref="organizer-landing" class="font-bold text-uppercase text-spaced"  ng-bind="::strings.COPY_BECOME_ORGANIZER"></a>
-            <a ui-sref="contact" class="font-bold text-uppercase text-spaced"  ng-bind="::strings.LABEL_ABOUT_CONTACT_US"></a>
-            <a ui-sref="register" class="font-bold text-uppercase text-spaced"  ng-bind="::strings.ACTION_REGISTER"></a>
-            <a ui-sref="login" class="font-bold text-uppercase text-spaced"  ng-bind="::strings.ACTION_LOGIN"></a>
-        </div>
-        <div class="navbar__right" ng-class="{'navbar__right-width-user': user}">
-            <a ui-sref="search" class="font-bold text-md navbar__right-search  hidden-xs hidden-sm"> <i class="fa fa-search" aria-hidden="true"></i></a>
-            <a ng-if="userLogged" class="navbar__right-profile hidden-xs hidden-sm" ng-click="goToProfile() "  ng-mouseover="showDropMenu()" ng-mouseleave="hideDropMenu()" >
-                <trulii-avatar user="user" size="40" avatar-class="small" ng-class="{'avatar-landing': !user.photo}"></trulii-avatar>
-                <span class="font-semibold  margin-horizontal-less hidden-xs hidden-sm" ng-bind="user.user.name | limitTo : 9"></span>
-                <i class="fa fa-angle-down"  ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
-            </a>
-            <a class="font-bold text-md navbar__right-search  hidden-md hidden-lg" ng-click="toggleSideBar()">
-                 <i class="fa fa-user" ng-class="{'text-gray-lighter': isNavBarTransparent(), 'text-gray': !isNavBarTransparent()}" aria-hidden="true"></i>
-            </a>
-        </div>
 </nav>
 
 

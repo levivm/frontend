@@ -3,20 +3,9 @@
 
 .well-plain {
     width: 100%;
-    background-color: white;
-    color: @gray-darker !important;
+    background-color: @well-bg;
+    color: @lightbg-text;
     padding: 19px;
-    border-radius: @border-radius-base;
-    p, h1, h3, h4, h5{
-      color: @gray-darker !important;
-    }
-    a{
-      color: @gray-darker !important;
-      text-decoration: underline;
-    }
-    .text-muted{
-      color: @gray-regular-dark !important;
-    }
 }
 
 .remarks-container {
@@ -27,15 +16,15 @@
 }
 
 .container-muted{
-  background-color: @gray-light;
+  background-color: @gray-lighter-brand;
   .container-muted{
-    background-color: @gray-light;
+    background-color: @gray-light-brand;
     a{
-      color: @gray-darker;
+      color: @gray-darkest-brand;
     }
   }
   p, h1, h2, h3, h4, h5{
-    color: @gray-darker;
+    color: @gray-darkest-brand;
   }
 }
 
@@ -47,25 +36,6 @@
   a{
     color: white;
     text-decoration: underline;
-  }
-}
-
-.container-primary{
-  background-color: @brand-primary;
-  p, h1, h3, h4, h5{
-    color: white;
-  }
-  a{
-    color: white !important;
-  }
-}
-.container-yellow{
-  background-color: @brand-yellow;
-  p, h1, h3, h4, h5{
-    color: white;
-  }
-  a{
-    color: white !important;
   }
 }
 .modal-email .modal-header-message {
