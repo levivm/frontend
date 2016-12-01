@@ -5,7 +5,7 @@
     height: @activity-card-height;
     width: 300px;
     margin: 0 auto;
-    border-radius: @border-radius-small;
+    border-radius: @border-radius-base;
     overflow: hidden;
     margin-bottom: 25px;
     box-shadow: #DCDDE2 0px 0px 0px 0px;
@@ -19,32 +19,33 @@
     }
     &:hover{
         box-shadow: #DCDDE2 5px 10px 25px 4px;
+        .trulii-activity-card__body{
+            background-color: @gray-lighter;
+        }
     }
-    &__header{
-        height: @activity-card-height/2;
+    &__menu{
+        position: relative;
+        text-align: left;
         width: 100%;
-        background-size: cover;
-        background-color: lightgray;
-        &__menu{
-            position: relative;
-            float: right;
+        font-size: 1em;
+        &__item{
+            cursor: pointer;
+            margin-left: 5px;
             text-align: right;
-            width: 100%;
-            padding: 8px 10px;
-            font-size: 1em;
-            &__item{
-                cursor: pointer;
-                margin-left: 5px;
-                text-align: right;
-                display: inline-block;
-                &__icon{
-                    color: white;
-                    &.mdi-action-favorite{
-                        color: @brand-heart;
-                    }
+            display: inline-block;
+            &__icon{
+                color: @gray-regular-dark;
+                &.added{
+                    color: @brand-heart;
                 }
             }
         }
+    }
+    &__header{
+        height: @activity-card-height*0.66;
+        width: 100%;
+        background-size: cover;
+        background-color: lightgray;
     }
     &__category{
         &__label{
@@ -54,48 +55,28 @@
             padding: 4px 10px;
             letter-spacing: 1px;
             font-size: 9px;
-            top: 165px;
-            left: 50%;
-            transform: translate(-50%);
+            top: 15px;
+            left: 15px;
             opacity: 1;
         }
     }
     &__body{
-        &:extend(.flex-center-container);
-        height: @activity-card-height/2;
-        background-color: white;
-        text-align: center;
+        height: @activity-card-height*0.34;
+        background-color: @gray-light;
+        text-align: left;
         &__content{
-            &:extend(.flex-center-item);
-             width: 90%;
-             
+             width: 100%;
+             padding: 15px;
             &__title{
                 color: @gray-darker;
-                font-weight: 700;
                 font-size: 1.1em;
                 display: inline-block;
-                padding-bottom: 5px;
                 width: 100%;
-            }
-            &__organizer{
-                color: @gray-regular;
-                font-weight: 600;
-                font-size: 0.9em;
-                display: inline-block;
-                &:hover{
-                    text-decoration: underline;
-                }
             }
             &__date{
                 color: @gray-regular;
-                font-size: 0.8em;
-                font-weight: 600;
-                display: block;
-                margin-top: 10px;
-            }
-            &__rating{
-                color: @gray-regular;
                 font-size: 0.9em;
+                font-weight: 600;
                 display: block;
             }
             &__price{
@@ -103,6 +84,12 @@
                 font-weight: 600;
                 font-size: 1em;
                 display: inline-block;
+                text-align: right;
+                width: 100%;
+            }
+            &__free{
+                padding-top: 5px;
+                margin-top: -15px;
             }
         }
     }
@@ -143,9 +130,6 @@
                     width: 65%;
                     &__price{
                         padding-top: 20px;
-                    }
-                    &__free{
-                        padding-top: 5px;
                     }
                     &__attendes{
                         color: @gray-dark;

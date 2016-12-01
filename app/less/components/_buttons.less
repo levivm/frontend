@@ -18,42 +18,6 @@
     }
 }
 
-.btn-bordered{
-    color: @gray-darker !important;
-    border-width: 3px;
-    border-color: @brand-primary !important;
-    background-color: transparent !important;
-    transition: all 0.25s;
-
-    &:hover{
-        color: white !important;
-        background-color:  @brand-primary !important;
-        border-color: @brand-secondary;
-    }
-
-    &:active{
-        color: white !important;
-        background-color:  @brand-primary !important;
-        border-color: @brand-secondary;
-    }
-    &:focus{
-        color: white !important;
-        background-color:  @brand-primary !important;
-        border-color: @brand-secondary;
-    }
-}
-.btn-yellow{
-    color: @gray-darker !important;
-    border-color: transparent;
-    background-color: @brand-yellow !important;
-
-    &:hover, &:active, &:focus{
-        border-color: @brand-yellow;
-        background-color: darken(@brand-yellow, 5%) !important;
-    }
-    
-}
-
 .btn-link {
     color: @lightbg-text;
     &:extend(.text-sm);
@@ -96,8 +60,11 @@
 
     &-default{
         background-color: white;
-        border: 1px solid @gray-lighter;
+        border: 1px solid transparent;
         color: @blue-dark !important;
+        &:hover, &:focus{
+            border-color: transparent;
+        }
     }
     &-success{
         border-color: transparent;
@@ -219,6 +186,41 @@
     &:focus{
         outline: 0 !important;
     }
+    &-bordered{
+        color: @gray-darker !important;
+        border-width: 3px;
+        border-color: @brand-primary !important;
+        background-color: transparent !important;
+        transition: all 0.25s;
+
+        &:hover{
+            color: white !important;
+            background-color:  @brand-primary !important;
+            border-color: @brand-secondary;
+        }
+
+        &:active{
+            color: white !important;
+            background-color:  @brand-primary !important;
+            border-color: @brand-secondary;
+        }
+        &:focus{
+            color: white !important;
+            background-color:  @brand-primary !important;
+            border-color: @brand-secondary;
+        }
+    }
+    &-yellow{
+        color: @gray-darker !important;
+        border-color: transparent;
+        background-color: @brand-yellow !important;
+
+        &:hover, &:active, &:focus{
+            border-color: @brand-yellow;
+            background-color: darken(@brand-yellow, 5%) !important;
+        }
+        
+    }
 
 }
 
@@ -234,6 +236,11 @@
     &:hover{
         color: white;
     }
+}
+.btn-block-mobile{
+    .before-md({
+        width: 100%;
+    });
 }
 
 @media (max-width: 991px){

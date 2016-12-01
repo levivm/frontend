@@ -9,7 +9,9 @@
               <h5 ng-bind="::detail.organizer.name">
               </h5>
             </a>
-            <h1 class="title title-detail text-center font-light separate-above-less" ng-bind="::detail.activity.title"></h1>
+            <h1 class="title title-detail text-center font-arvo font-light separate-above-less">
+              <span class="text-xlg" ng-bind="::detail.activity.title"></span>
+            </h1>
             <div class="rating" ng-if="detail.organizer.rating">
               <rating ng-model="detail.organizer.rating" max="5" state-on="'glyphicon glyphicon-star star'"
                       readonly="true" state-off="'glyphicon glyphicon-star star-empty-off'" aria-labelledby="organizer-rating"></rating>
