@@ -19,12 +19,13 @@
         .module('trulii.activities.controllers')
         .controller('ActivityDetailController', ActivityDetailController);
 
+
     ActivityDetailController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$timeout', 'moment', 'Elevator',
-        'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'defaultCover',
+        'Toast', 'currentUser', 'activity', 'organizer', 'relatedActivities', 'calendars', 'reviews', 'builtReviews', 'defaultCover',
         'uiGmapIsReady', 'LocationManager', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'StudentsManager', 'SearchManager'];
 
     function ActivityDetailController($scope, $state, $stateParams, $filter, $timeout, moment, Elevator,
-                                      Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews,
+                                      Toast, currentUser, activity, organizer, relatedActivities, calendars, reviews, builtReviews,
                                       defaultCover, uiGmapIsReady, LocationManager, serverConf, Scroll, Facebook, Analytics, StudentsManager, SearchManager) {
 
         var visibleReviewListSize = 3;
@@ -57,6 +58,7 @@
             widgetMaxPosition: 0,
             widgetAbsolutePosition: 0,
             showEmail: false,
+            showGallery: false,
             showSessions: false,
             hasMoreReviews: true,
             showSchedules: false,
@@ -71,6 +73,7 @@
             showMoreReviews: showMoreReviews,
             toggleSchedules: toggleSchedules,
             toggleEmailShow: toggleEmailShow,
+            toggleGalleryShow: toggleGalleryShow,
             toggleSessions: toggleSessions,
             shareEmailForm: shareEmailForm,
             showAudience: false,
@@ -233,7 +236,7 @@
         function showMoreReviews(){
             if(visibleReviewListSize < reviews.length){
                 visibleReviewListSize += 3;
-                vm.reviews = reviews.slice(0, visibleReviewListSize);
+                vm.reviews = reviews.results.slice(0, visibleReviewListSize);
             } else {
                 vm.hasMoreReviews = false;
             }
@@ -246,6 +249,11 @@
         function toggleEmailShow(){
             vm.showEmail = !vm.showEmail;
             vm.formData.message = vm.social.EMAIL_SHARE_TEXT;
+        }
+
+        function toggleGalleryShow(){
+            vm.showGallery = !vm.showGallery;
+            console.log(vm.showGallery);
         }
 
         function toggleSessions(){
@@ -394,7 +402,163 @@
                 return _package;
             }
         }
-
+        function _mapProductObj(productObj){
+            var offer = {  
+                "@type":"Offer",
+                "priceCurrency":"COP",
+                "price": 0,
+                "availability":"In Stock",
+                "availabilityStarts":"",
+                "availabilityEnds": "",
+                "url":productObj.url
+            };
+            var review =  {  
+                "@type":"Review",
+                "datePublished":"",
+                "reviewBody":" ",
+                "author":"",
+                "reviewRating":{  
+                    "@type":"Rating",
+                    "ratingValue":0,
+                    "bestRating":5,
+                    "worstRating":1
+                }
+            };
+            if( vm.package_selected ){
+                angular.forEach(vm.activity.calendars[0].packages, function(pack){
+                    offer.price = pack.price;
+                    offer.availabilityStarts = vm.activity.calendars[0].initial_date.toString();
+                    productObj.offers.push(offer);
+                });
+            }else{
+                 angular.forEach(vm.activity.calendars, function(calendar){
+                    offer.price = calendar.session_price;
+                    offer.availabilityStarts = calendar.initial_date.toString();
+                    productObj.offers.push(offer);
+                });
+            }
+            angular.forEach(vm.reviews, function(rev){
+                review.datePublished = rev.created_at.toString();
+                review.reviewBody = rev.comment;
+                review.author = rev.author.user.first_name +' '+ rev.author.user.last_name;
+                review.reviewRating.ratingValue = rev.rating;
+                productObj.review.push(review);
+            });
+            
+        }
+        
+        function _removeScriptSeo() {
+            var element = document.getElementById('seoJson');
+            if(!element){
+                return true;
+            }else{
+                 document.getElementsByTagName("head")[0].removeChild (element);
+                 _removeScriptSeo();
+            }
+        }
+        
+        function _initObjectsSeo(){
+            var current_url = $state.href($state.current.name, $state.params, {absolute: true});
+            var websiteObj = {  
+                "@context":"http://schema.org",
+                "@type":"WebSite",
+                "name":"Trulii",
+                "url":"https://www.trulii.com",
+                "potentialAction":{  
+                    "@type":"SearchAction",
+                    "target":"https://www.trulii.com/buscar?q=search_term_string&city=1",
+                    "query-input":"required name=search_term_string"
+                }
+            }
+            var breadCrumbObj = {
+                "@context": "http://schema.org",
+                "@type":"BreadcrumbList",
+                "itemListElement":[  
+                    {  
+                        "@type":"ListItem",
+                        "item":{  
+                            "@type":"Thing",
+                            "@id":"https://trulii.com",
+                            "name":"Home",
+                            "url":"https://trulii.com"
+                        },
+                        "position":1
+                    },
+                    {  
+                        "@type":"ListItem",
+                        "item":{
+                            "@type":"Thing",
+                            "@id":"https://trulii.com/actividades/"+vm.activity.category.slug,
+                            "name":vm.activity.category.name,
+                            "image": getAmazonUrl(vm.activity.category.cover_photo),
+                            "url":"https://trulii.com/actividades/"+vm.activity.category.slug
+                        },
+                        "position":2
+                    },
+                    {  
+                        "@type":"ListItem",
+                        "item":{  
+                            "@type":"Thing",
+                            "@id":current_url,
+                            "name":vm.activity.title,
+                            "image": vm.activity.main_photo,
+                            "url":current_url,
+                        },
+                        "position":3
+                    },
+                ]
+            }
+            var productObj = {
+                "@context": "http:\/\/schema.org",
+                "@type": "Product",
+                "image": vm.activity.main_photo,
+                "name": vm.activity.title,
+                "description": vm.activity.short_description,
+                "url": current_url,
+                "offers": [],
+                "brand": {
+                    "@context": "http:\/\/schema.org",
+                    "@type": "Organization",
+                    "name": vm.activity.organizer.name,
+                    "description": vm.activity.organizer.bio,
+                    "url": "https://trulii.com/organizador/"+vm.activity.organizer.id,
+                    "location": {
+                        "@context": "http:\/\/schema.org",
+                        "@type": "Place",
+                        "@id": vm.activity.location.id,
+                        "name": vm.activity.organizer.name,
+                        "address": {
+                            "@type": "PostalAddress",
+                            "streetAddress": vm.activity.location.address,
+                            "addressRegion": "Bogotá"
+                        },
+                        "geo": {
+                            "@type": "GeoCoordinates",
+                            "latitude": vm.activity.location.point[0],
+                            "longitude": vm.activity.location.point[1],
+                        }
+                    }
+                },
+                "aggregateRating": {
+                    "@type": "AggregateRating",
+                    "ratingValue": vm.activity.rating
+                },
+                "review": []
+            }
+            
+            _mapProductObj(productObj);
+            _removeScriptSeo();
+            _setSeoScript(websiteObj);
+            _setSeoScript(breadCrumbObj);
+            _setSeoScript(productObj);
+        }
+        function  _setSeoScript(dataObj) {
+            var script   = document.createElement("script");
+            script.type  = "application/ld+json"; // use this for linked script
+            script.text  = JSON.stringify(dataObj)
+            script.id= "seoJson";
+            document.getElementsByTagName("head")[0].appendChild(script); 
+        }
         function _setSocialShare(){
             var current_url = $state.href($state.current.name, $state.params, {absolute: true});
             vm.social = {};
@@ -479,6 +643,7 @@
                 LABEL_EXTRA_INFO: "Información importante",
                 LABEL_RETURN_POLICY: "Política de Devolución",
                 LABEL_MORE_COMMENTS: "Ver más comentarios",
+                LABEL_SHOW_GALLERY: "Mostrar galería",
                 TITLE_INVALID_USER: "Sólo estudiantes pueden inscribirse en una Actividad",
                 TITLE_INVALID_LIKE_USER: "Sólo estudiantes pueden agregar una actividad a mis favoritos",
                 MSG_INVALID_USER: "Acción no permitida para tipo de usuario",
@@ -598,10 +763,12 @@
             activity = _mapInfo(activity);
             _mapTemplates();
             _setUpLocation(activity);
+            reviews.results = builtReviews.concat(reviews.results);
+            console.log(reviews.results);
             angular.extend(vm, {
                 activity : activity,
                 calendars : calendars,
-                reviews : reviews.results,
+                reviews : reviews.results.slice(0, visibleReviewListSize),
                 totalReviews: reviews.results.length,
                 hasMoreReviews: reviews.results.length > 3,
                 calendar_selected : _getSelectedCalendar(activity),
@@ -621,9 +788,11 @@
             _setSearchData();
             _updateViewCount();
             _setOrganizerRating();
+            _initObjectsSeo();
             vm.showLevel = vm.activity.level === "N" ? false:true;
             //Function for angularSeo
             Analytics.ecommerce.detailActivity(vm.activity, vm.package_selected?vm.package_selected:vm.calendar_selected);
+            
             $scope.htmlReady();
         }
     }

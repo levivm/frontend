@@ -151,7 +151,7 @@
         <div class="col-xs-12">
           <h1 class="text-primary title text-center"><strong ng-bind="::home.strings.ORGANIZERS_TITLE"></strong></h1>
         </div>
-      </div><!-- ng-src="{{home.getAmazonUrl('static/img/organizer-profile/home-logos/desktop/'+organizer.id+'.jpg')}}"-->
+      </div>
       <div class="row separate-above separate-below-more  flex-cards">
         <a target="_blank"  ui-sref="organizer-profile({organizer_id: {{::organizer.id}} })" class="col-xs-12 col-md-3 organizer-tile" ng-repeat="organizer in home.featuredOrganizers track by organizer.id">
           <img ng-src="{{home.getAmazonUrl('static/img/organizer-profile/home-logos/mobile/'+organizer.id+'.jpg')}}" 

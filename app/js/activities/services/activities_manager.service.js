@@ -115,6 +115,8 @@
 
 
             getCategory: getCategory,
+            
+            leadsCategory: leadsCategory,
 
             /**
              * @ngdoc method
@@ -334,6 +336,18 @@
                 return response;
             });
 
+        }
+        
+        function leadsCategory(category, email) {
+            
+            return $http.post(api.leads(category.slug), {'category': category.id, 'email': email}).then(success,error);
+
+            function success(response){
+                return response.data;
+            }
+            function error(response){
+                return $q.reject(response);
+            }
         }
 
         function getCategories(){

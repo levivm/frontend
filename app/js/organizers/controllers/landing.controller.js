@@ -16,8 +16,8 @@
         .controller('OrganizerLandingCtrl', OrganizerLandingCtrl);
 
 
-    OrganizerLandingCtrl.$inject = ['$scope', 'LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', '$sce', '$stateParams'];
-    function OrganizerLandingCtrl($scope, LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, $sce, $stateParams) {
+    OrganizerLandingCtrl.$inject = ['$scope', '$sce', '$stateParams', 'LocationManager', 'Authentication', 'Toast', 'Elevator', 'Error', 'cities', 'serverConf', 'Analytics', 'featuredOrganizers'];
+    function OrganizerLandingCtrl($scope, $sce, $stateParams, LocationManager, Authentication, Toast, Elevator, Error, cities, serverConf, Analytics, featuredOrganizers) {
 
         var vm = this;
         var documentTypes = [{'name': 'NIT', 'id': 'nit'}, {'name': 'CC', 'id': 'cc'}, {'name': 'CE', 'id': 'ce'}];
@@ -141,7 +141,7 @@
                 LABEL_DOCUMENT: "Documento",
                 LABEL_CITY: "Ciudad",
                 COPY_EMPTY_FORM: "Por favor llene el formulario de registro",
-                ORGANIZERS_BELIEVE_IN_TRULII: "Estos organizadores confían en Trulii. Sólo faltas tú"
+                ORGANIZERS_BELIEVE_IN_TRULII: "Estos organizadores confían en Trulii."
             });
         }
         function _fromBurgerMenu(){
@@ -152,9 +152,14 @@
           }
 
         }
+
+        function _setFeaturedOrganizers(){
+            vm.featuredOrganizers = featuredOrganizers.slice(0,8);
+        };
         function _activate() {
             _setStrings();
             _fromBurgerMenu();
+            _setFeaturedOrganizers();
             $scope.htmlReady();
 
             //Function for angularSeo

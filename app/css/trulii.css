@@ -12995,6 +12995,53 @@ hr.on-light {
 .modal-content .modal-footer button {
   width: 110px;
 }
+.modal-lead {
+  width: 480px;
+  margin: 0 auto;
+}
+@media screen and (max-width: 480px) {
+  .modal-lead {
+    width: 90%;
+  }
+}
+.modal-lead__header {
+  border-bottom: 1px solid #e4e7ef;
+  padding-bottom: 20px;
+  width: 80%;
+  margin: 0 auto;
+}
+.modal-lead__header img {
+  width: 160px;
+}
+@media screen and (max-width: 480px) {
+  .modal-lead__header img {
+    width: 130px;
+  }
+}
+.modal-lead .modal-body {
+  padding-top: 20px;
+  padding-right: 45px;
+  padding-bottom: 40px;
+  padding-left: 45px;
+}
+.modal-lead input[type="text"] {
+  height: 36px !important;
+}
+.modal-lead .close {
+  background: #00e2aa;
+  position: absolute;
+  color: white;
+  font-size: 18px;
+  border-radius: 50%;
+  padding: 1px 6px 1px 7px;
+  right: -10px;
+  top: -10px;
+  cursor: pointer;
+  z-index: 10;
+}
+.modal-lead .copy-lead {
+  color: #222328;
+}
 @media (min-width: 992px) {
   .modal-lg {
     width: 700px;
@@ -14422,12 +14469,12 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   }
 }
 .navbar__logo {
-  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-halloween.png') no-repeat;
+  background: url('https://s3-us-west-2.amazonaws.com/trulii-dev/static/img/logo-green.png') no-repeat;
   height: 60px;
-  width: 9em;
+  width: 7em;
   display: inline-block;
   background-size: contain;
-  margin: 15px auto 0;
+  margin: 10px auto 0;
   transition: all 0.25s;
 }
 @media screen and (max-width: 992px) {

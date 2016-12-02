@@ -19,11 +19,11 @@
         .module('trulii.activities.controllers')
         .controller('CategoryController', CategoryController);
 
-    CategoryController.$inject = ['$scope', '$state', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
-        'Toast', 'serverConf', 'Scroll', 'Facebook', 'Analytics', 'SearchManager', 'LocationManager', 'category', 'categoryActivities'];
+    CategoryController.$inject = ['$scope', '$state', '$timeout', '$stateParams', '$filter', '$location', 'moment', 'Elevator',
+        'Toast', 'serverConf', 'Scroll', 'Facebook', 'Analytics','Error', 'SearchManager', 'LocationManager', 'category', 'categoryActivities', 'ActivitiesManager', 'Authentication'];
 
-    function CategoryController($scope, $state, $stateParams, $filter, $location, moment, Elevator,
-                                      Toast, serverConf, Scroll, Facebook, Analytics, SearchManager, LocationManager, category, categoryActivities) {
+    function CategoryController($scope, $state, $timeout, $stateParams, $filter, $location, moment, Elevator,
+                                      Toast, serverConf, Scroll, Facebook, Analytics, Error, SearchManager, LocationManager, category, categoryActivities, ActivitiesManager, Authentication) {
                                           
         var vm = this;
 
@@ -32,6 +32,9 @@
             category: category.data,
             categoryActivities: categoryActivities.results,
             cards: [],
+            showPopup:false,
+            togglePopupShow: togglePopupShow,
+            sendEmail:sendEmail,
             searchData: {}
         });
 
@@ -41,6 +44,23 @@
 
         function getAmazonUrl(file){
             return  serverConf.s3URL + '/' + file;
+        }
+        
+        function togglePopupShow() {
+            vm.showPopup = !vm.showPopup;
+        
+        }
+        
+        function sendEmail() {
+            Error.form.clear(vm.email_form);
+            ActivitiesManager.leadsCategory(vm.category, vm.emailLead).then(success, error);
+
+            function success(response){
+                vm.showPopup = false;
+            }
+            function error(response){
+                Error.form.add(vm.email_form, response.data);
+            }
         }
 
         //--------- Internal Functions ---------//
@@ -56,9 +76,84 @@
         function _setSearchData(){
             SearchManager.setCategory(vm.category.id);
             vm.currentCity = LocationManager.getCurrentCity();
-            console.log(vm.currentCity);
             SearchManager.setCity(vm.currentCity.id);
             vm.searchData = SearchManager.getSearchData();
+        }
+        function _removeScriptSeo() {
+            var element = document.getElementById('seoJson');
+            if(!element){
+                return true;
+            }else{
+                 document.getElementsByTagName("head")[0].removeChild (element);
+                 _removeScriptSeo();
+            }
+        }
+        function _initObjectsSeo(){
+            var websiteObj = {
+                "@context": "http://schema.org",
+                "@type": "WebSite",
+                "name": "Trulii",
+                "url": "https://trulii.com",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://trulii.com/buscar?city=1&category="+vm.category.id+"&cost_start=30000&cost_end=1000000&page=1"
+                }
+            }
+            var breadCrumbObj = {
+                "@context": "http://schema.org",
+                "@type":"BreadcrumbList",
+                "itemListElement":[  
+                    {  
+                        "@type":"ListItem",
+                        "item":{  
+                            "@id":"https://trulii.com",
+                            "name":"Home",
+                            "url":"https://trulii.com"
+                        },
+                        "position":1
+                    },
+                    {  
+                        "@type":"ListItem",
+                        "item":{  
+                            "@id":"https://trulii.com/actividades/"+vm.category.slug,
+                            "name":vm.category.name,
+                            "image": getAmazonUrl(vm.category.cover_photo),
+                            "url":"https://trulii.com/actividades/"+vm.category.slug
+                        },
+                        "position":2
+                    }
+                ]
+            }
+            _removeScriptSeo();
+            _setSeoScript(websiteObj);
+            _setSeoScript(breadCrumbObj);
+        }
+        function  _setSeoScript(dataObj) {
+            var script   = document.createElement("script");
+            script.type  = "application/ld+json"; // use this for linked script
+            script.text  = JSON.stringify(dataObj)
+            script.id= "seoJson";
+            document.getElementsByTagName("head")[0].appendChild(script); 
+        }
+        
+        function _getAuth() {
+            Authentication.getAuthenticatedAccount().then(success, error);
+            
+            function success(response) {
+                if(!response)
+                    _showPopup();
+            }
+            function error(response) {
+                console.log(response);
+            }
+        }
+        
+        function _showPopup() {
+            angular.element(document).ready(function () {
+                $timeout(function(){
+                    vm.showPopup = true;
+                }, 5000);
+            });
         }
 
         function _setStrings(){
@@ -127,6 +222,8 @@
                 EMAIL_MODAL_MESSAGE_PLACEHOLDER: "Hey, échale un vistazo a esta actividad en Trulii. ¡Sé que te encantará!",
                 EMAIL_MODAL_SEND: "Enviar",
                 EMAIL_MODAL_DISMISS: "Cancelar",
+                EMAIL_LEAD_PLACEHOLDER: "Email",
+                EMAIL_LEAD_COPY: 'Te daremos un cupón de <strong style="font-size: 19px;">10.000 COP </strong> para tu primera clase, solo tienes que dejarnos tu correo.',
                 COPY_SHARE_SUCCESS: "La Actividad fue compartida exitosamente",
                 COPY_SHARE_ERROR: "Error compartiendo la actividad, por favor intenta de nuevo",
                 COPY_EMPTY_EMAIL: "Por favor agrega al menos un email",
@@ -139,16 +236,15 @@
         
 
         function _activate(){
+            _getAuth();
             _setStrings();
             _setSearchData();
             _mapTemplates();
-            console.log(category);
-            console.log(categoryActivities);
+            _initObjectsSeo();
+           
+          
             //Function for angularSeo
-            /*var script   = document.createElement("script");
-            script.type  = "application/ld+json"; // use this for linked script
-            script.text  = '{ "@context": "http://schema.org", "@type": "'+vm.strings.HEADER_TITLE_COPY+'", "name": "[the name of the product]", "aggregateRating": { "@type": "AggregateRating", "ratingValue": "[rating]","reviewCount": "[number of reviews]" }}'
-            document.getElementsByTagName("head")[0].appendChild(script); */
+            /**/
             $scope.htmlReady();
         }
     }

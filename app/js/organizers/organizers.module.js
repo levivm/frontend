@@ -43,7 +43,8 @@
                   from_menu: null
                 },
                 resolve:{
-                    cities: getAvailableCities
+                    cities: getAvailableCities,
+                    featuredOrganizers: getFeaturedOrganizers
                 },
                 metaTags:{
                     title:'Sé Organizador y Publica Tus Cursos| Trulii',
@@ -528,6 +529,20 @@
         getOrganizerActivityList.$inject = ['organizer'];
         function getOrganizerActivityList(organizer){
           return organizer.getActivityList();
+        }
+
+
+        /**
+         * @ngdoc method
+         * @name .#getFeaturedOrganizers
+         * @description Retrieves a list of featured organizers
+         * {@link trulii.organizers.services.OrganizersManager OrganizersManager} Service
+         * @requires trulii.organizers.services.OrganizersManager
+         * @methodOf trulii.routes.config
+        */
+        getFeaturedOrganizers.$inject = ['OrganizersManager'];
+        function getFeaturedOrganizers(OrganizersManager){
+            return OrganizersManager.getFeaturedOrganizers();
         }
     }
 })();

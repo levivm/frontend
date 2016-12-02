@@ -216,11 +216,12 @@
                 },
                 metaTags:{
                     title: function(category){
-                        console.log(category);
+                        return !_.isEmpty(category.data.seo_data) ? category.data.seo_data.meta.title : category.data.name;
                         //return activity.title;
                     },
                     description: function(category){
                         //return activity.short_description
+                        return !_.isEmpty(category.data.seo_data) ? category.data.seo_data.meta.description : category.data.description;
                     }
                 }
             })
@@ -249,6 +250,7 @@
                     currentUser: getAuthenticatedUser,
                     activity: getActivity,
                     reviews: getReviews,
+                    builtReviews: getBuiltReviews,
                     calendars: getCalendars,
                     organizer: getActivityOrganizer,
                     relatedActivities: getRelatedActivities
@@ -499,6 +501,25 @@
                 function filterByActivity(review){
                     return review.activity === activity.id;
                 }
+            }
+            function error(response){
+                return [];
+            }
+        }
+
+        /**
+         * @ngdoc method
+         * @name .#getReviews
+         * @description Gets Built Reviews for Activity
+         * @requires activity
+         * @methodOf trulii.activities.config
+         */
+        getBuiltReviews.$inject = ['activity'];
+        function getBuiltReviews(activity){
+            return activity.getBuiltReviews().then(success, error);
+
+            function success(reviews){
+                return reviews;
             }
             function error(response){
                 return [];

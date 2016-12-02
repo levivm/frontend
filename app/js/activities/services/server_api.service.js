@@ -82,6 +82,18 @@
 
             /**
              * @ngdoc function
+             * @name .#builtReviews
+             * @description Renders **`/api/activities/:idActivity/reviews/built`** Activity Reviews URL
+             * @param {number} idActivity Activity Id
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'builtReviews' : function (idActivity) {
+                return renderUrl('activities/', [idActivity, 'reviews', 'built/']);
+            },
+
+            /**
+             * @ngdoc function
              * @name .#review
              * @description Renders **`/api/reviews/:idReview`** Review URL
              * @param {number} idReview Review Id
@@ -260,6 +272,17 @@
              */
             'subcategoryCovers' : function (subcategoryId) {
                 return renderUrl('activities/', ['subcategories', subcategoryId, 'covers/']);
+            },
+            
+             /**
+             * @ngdoc function
+             * @name .#leads
+             * @description Renders **`/api/categories/:slug/leads/`** Email leads
+             * @return {string} Rendered URL
+             * @methodOf trulii.activities.services.ActivityServerApi
+             */
+            'leads' : function (category) {
+                return renderUrl('activities/', ['categories', category, 'leads/']);
             },
 
             /**
